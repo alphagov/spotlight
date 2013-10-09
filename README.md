@@ -2,7 +2,16 @@
 
 Hybrid rendering app for the GOV.UK Performance Platform
 
+
 ## Installation ##
+
+This app will run inside [the Performance Platform development environment][ppdev],
+not in the standard GDS development VM.
+
+For now, you can follow the instructions below to install using `apt`. This will
+get handled by Puppet in the future.
+
+[ppdev]: https://github.com/alphagov/pp-development
 
 ### Ubuntu ###
 
