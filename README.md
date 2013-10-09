@@ -1,10 +1,10 @@
-= Spotlight =
+# Spotlight #
 
 Hybrid rendering app for the GOV.UK Performance Platform
 
-== Installation ==
+## Installation ##
 
-=== Ubuntu ===
+### Ubuntu ###
 
 Follow the [instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) to install Node.js:
 
@@ -23,7 +23,7 @@ Install dependencies:
 `npm install`
 
 
-== Running app ==
+## Running app ##
 
 `node app/server.js`
 
@@ -31,7 +31,7 @@ This will run the app at `http://localhost:3000`. At the moment, you need to
 restart the app for file changes to take effect.
 
 
-== Running tests ==
+## Running tests ##
 
 `grunt jasmine` executes Jasmine tests in PhantomJS.
 
