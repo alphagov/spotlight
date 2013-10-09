@@ -29,7 +29,10 @@ Install grunt-cli:
 `sudo npm install -g grunt-cli`
 
 Install dependencies:
-`npm install`
+```
+npm install
+git submodule init
+```
 
 
 ## Running app ##

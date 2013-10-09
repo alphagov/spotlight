@@ -18,13 +18,11 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'public/css/limelight.css': 'styles/index.scss'
+          'public/css/spotlight.css': 'styles/index.scss'
         },
         options: {
           loadPath: [
-            'govuk/toolkit/stylesheets',
-            'govuk/static/vendor/assets/stylesheets',
-            'govuk/static/app/assets/stylesheets'
+            'lib/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'nested'
         }
