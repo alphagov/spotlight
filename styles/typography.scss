@@ -1,0 +1,16 @@
+h2 {
+  @include core-19;
+}
+
+p {
+  @include core-16;
+}
+
+a[rel="external"] {
+  @include external-link-default;
+  @include external-link-16;
+
+  @media (max-width: 640px) {
+    @include external-link-14;
+  }
+}
