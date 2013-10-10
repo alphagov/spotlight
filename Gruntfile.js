@@ -18,13 +18,11 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'public/css/limelight.css': 'styles/index.scss'
+          'public/css/spotlight.css': 'styles/index.scss'
         },
         options: {
           loadPath: [
-            'govuk/toolkit/stylesheets',
-            'govuk/static/vendor/assets/stylesheets',
-            'govuk/static/app/assets/stylesheets'
+            'lib/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'nested'
         }
@@ -62,31 +60,6 @@ module.exports = function(grunt) {
           wrap: false
         })
       }
-    },
-    copy: {
-      debug: {
-        files: [
-          {
-            expand: true,
-            flatten: true,
-            src: [
-              'govuk/static/app/assets/images/search-button.png',
-              'govuk/static/app/assets/images/gov.uk_logotype-2x.png'
-            ],
-            dest: 'public/css/',
-            filter: 'isFile'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: [
-              'govuk/static/app/assets/images/favicon.ico'
-            ],
-            dest: 'public/',
-            filter: 'isFile'
-          }
-        ]
-      }
     }
   });
   
@@ -94,7 +67,6 @@ module.exports = function(grunt) {
     'grunt-contrib-jasmine',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
-    'grunt-contrib-copy',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs'
   ].forEach(function (task) {
@@ -102,7 +74,7 @@ module.exports = function(grunt) {
   });
   
   // Default task.
-  grunt.registerTask('build', ['clean', 'jshint', 'jasmine', 'sass', 'copy:debug']);
+  grunt.registerTask('build', ['clean', 'jshint', 'jasmine', 'sass']);
   grunt.registerTask('default', ['build']);
 
 };

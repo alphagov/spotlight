@@ -33,6 +33,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.compress());
+  app.use('/css', express.static(path.join(rootDir, 'public', 'css')));
 });
 
 app.configure('development', function(){
