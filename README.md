@@ -5,27 +5,10 @@ Hybrid rendering app for the GOV.UK Performance Platform
 
 ## Installation ##
 
-This app will run inside [the Performance Platform development environment][ppdev],
+This app runs inside [the Performance Platform development environment][ppdev],
 not in the standard GDS development VM.
 
-For now, you can follow the instructions below to install using `apt`. This will
-get handled by Puppet in the future.
-
 [ppdev]: https://github.com/alphagov/pp-development
-
-### Ubuntu ###
-
-Follow the [instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) to install Node.js:
-
-```
-sudo add-apt-repository ppa:gds/performance-platform
-sudo apt-get update
-sudo apt-get install python-software-properties python g++ make
-sudo apt-get install nodejs
-```
-
-Install grunt-cli:
-`sudo npm install -g grunt-cli`
 
 Install dependencies:
 ```
