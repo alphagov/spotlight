@@ -33,3 +33,10 @@ When app is running, Jasmine tests are available at `http://localhost:3000/spec`
 
 You need to re-run `grunt jasmine` whenever the list of spec files changes to
 recreate the specrunner for use in the browser.
+
+
+## Status ##
+
+[![Build Status](https://travis-ci.org/alphagov/spotlight.png?branch=master)](https://travis-ci.org/alphagov/spotlight)
+
+[![Dependency Status](https://gemnasium.com/alphagov/spotlight.png)](https://gemnasium.com/alphagov/spotlight)
