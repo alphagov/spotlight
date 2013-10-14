@@ -1,3 +1,6 @@
 [submodule "lib/govuk_frontend_toolkit"]
 	path = lib/govuk_frontend_toolkit
 	url = https://github.com/alphagov/govuk_frontend_toolkit.git
+[submodule "govuk_template"]
+	path = govuk_template
+	url = git@github.com:alphagov/govuk_template__underscore.git
