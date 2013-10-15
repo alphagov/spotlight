@@ -4,6 +4,7 @@ config.baseUrl = 'app/';
 config.nodeRequire = require;
 requirejs.config(config);
 
+var fs = requirejs('fs');
 var argv = require('optimist').argv;
 
 var express = require('express'),
@@ -47,10 +48,14 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 
   app.get('/stagecraft-stub/*', function (req, res) {
-    var path = req.params[0];
-    var fs = requirejs('fs');
-    var content = fs.readFileSync('support/stagecraft_stub/responses/' + path + '.json');
-    res.send(JSON.parse(content));
+    var paramPath = req.params[0],
+        filePath = 'support/stagecraft_stub/responses/' + paramPath + '.json';
+    if (fs.existsSync(filePath)) {
+      var content = fs.readFileSync(filePath);
+      res.send(JSON.parse(content));
+    } else {
+      res.send({error: "No such stub exists: " + filePath});
+    }
   });
 });
 
