@@ -47,9 +47,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/_status', function (req, res) {
-  res.send({status: 'ok'});
-});
+app.get('/_status', requirejs('healthcheck_controller'));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
