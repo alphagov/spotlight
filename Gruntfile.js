@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         },
         options: {
           loadPath: [
-            'lib/govuk_frontend_toolkit/stylesheets'
+            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'nested'
         }
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         ],
         options: {
           loadPath: [
-            'lib/govuk_frontend_toolkit/stylesheets'
+            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'compressed'
         }
