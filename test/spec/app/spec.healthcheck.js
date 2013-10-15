@@ -2,9 +2,16 @@ define(['healthcheck'],
 function (healthcheck) {
 
   describe("Health Check", function () {
-    it("should return ok", function () {
-      expect(healthcheck()).toEqual({status: "ok"});
+
+    it("respond with 'ok'", function () {
+      var request = 'not important',
+          response = jasmine.createSpyObj('response', ['send']);
+
+      healthcheck(request, response);
+
+      expect(response.send).toHaveBeenCalledWith({status: "ok"});
     });
+
   });
 
 });

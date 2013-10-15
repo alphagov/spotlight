@@ -1,7 +1,7 @@
 define(function () {
 
-  return function () {
-    return {status: "ok"};
+  return function (request, response) {
+    response.send({status: "ok"});
   }
 
 });
