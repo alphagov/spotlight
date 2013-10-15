@@ -45,6 +45,8 @@ app.configure('development', function(){
     res.sendfile(path.join(rootDir, '_SpecRunner.html'));
   });
   app.use(express.errorHandler());
+
+  app.get('/stagecraft-stub/*', requirejs('../support/stagecraft_stub/stagecraft_stub_controller'));
 });
 
 app.get('/_status', requirejs('healthcheck_controller'));
