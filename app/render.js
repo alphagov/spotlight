@@ -1,5 +1,5 @@
 define([
-  'stache!node_modules/govuk_template_mustache/views/layouts/govuk_template',
+  'stache!common/templates/govuk_template',
   'tpl!common/templates/head.html'
 ],
 function (baseTemplate, headTemplate) {
