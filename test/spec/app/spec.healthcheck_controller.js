@@ -1,4 +1,4 @@
-define(['healthcheck'],
+define(['healthcheck_controller'],
 function (healthcheck) {
 
   describe("Health Check", function () {
