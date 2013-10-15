@@ -18,7 +18,7 @@
     "jsdom": "~0.8",
     "xmlhttprequest": "~1.6",
     "d3": "~3.3",
-    "govuk_template__underscore": "0.0.0"
+    "govuk_template_mustache": "0.2.1"
   },
   "devDependencies": {
     "uglify-js": "~2.4",

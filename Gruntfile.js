@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     sass: {
       development: {
         files: {
-          'public/spotlight.css': 'styles/index.scss'
+          'public/stylesheets/spotlight.css': 'styles/index.scss'
         },
         options: {
           loadPath: [
@@ -29,10 +29,10 @@ module.exports = function(grunt) {
       },
       production: {
         files: [
-          { 'public/spotlight.css': 'styles/index.scss' },
+          { 'public/stylesheets/spotlight.css': 'styles/index.scss' },
           {
             expand: true,
-            cwd: 'govuk_template/assets/stylesheets',
+            cwd: 'node_modules/govuk_template_mustache/assets/stylesheets',
             src: ['*.css'],
             dest: 'public',
             ext: '.css'
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
       production: {
         options: extend(getRequirejsConfig(), {
           baseUrl: 'app',
-          out: "public/spotlight.js",
+          out: "public/javascripts/spotlight.js",
           name: "client",
           include: ["vendor/almond"],
           deps: [
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
     },
     copy: {
       govuk_template: {
-        src: 'govuk_template/views/layouts/govuk_template.html',
+        src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
         dest: 'app/common/templates/',
         expand: true,
         flatten: true,
@@ -90,11 +90,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: 'govuk_template/assets/',
             src: '**',
-            dest: 'public/',
-            flatten: true,
-            filter: 'isFile'
+            cwd: 'node_modules/govuk_template_mustache/assets',
+            dest: 'public/'
           }
         ]
       }
