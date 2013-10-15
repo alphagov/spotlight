@@ -45,6 +45,13 @@ app.configure('development', function(){
     res.sendfile(path.join(rootDir, '_SpecRunner.html'));
   });
   app.use(express.errorHandler());
+
+  app.get('/stagecraft-stub/*', function (req, res) {
+    var path = req.params[0];
+    var fs = requirejs('fs');
+    var content = fs.readFileSync('support/stagecraft_stub/responses/' + path + '.json');
+    res.send(JSON.parse(content));
+  });
 });
 
 var server = http.createServer(app).listen(app.get('port'), function(){
