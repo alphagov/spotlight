@@ -2,10 +2,11 @@ require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
 
-APP_PORT=4030
+APP_PORT=7070
 
 Capybara.default_driver = :poltergeist
 Capybara.app_host = "http://localhost:#{APP_PORT}"
+Capybara.server_port = APP_PORT
 Capybara.run_server = false
 
 Before do 
