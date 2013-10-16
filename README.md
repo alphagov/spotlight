@@ -21,12 +21,24 @@ npm install
 
 ### Development ###
 
+First, you need to create a development build of the assets:
+
 ```bash
-grunt && node app/server.js
+cd <spotlight_dir>
+grunt
 ```
 
-This will create a development build and then run the app at
-`http://localhost:3000`.
+If you're using the PP dev environment `cd /var/apps/pp-development` and then
+`bowl performance`. If you've set up your DNS, `http://spotlight.dev.gov.uk`
+will work.
+
+Otherwise...
+```bash
+node app/server.js
+```
+
+This will run the app at
+`http://localhost:3057`.
 
 At the moment, you need to restart the app for file changes to take effect.
 
