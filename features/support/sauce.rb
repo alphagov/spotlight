@@ -8,8 +8,7 @@ if ENV['CUCUMBER_PROFILE'] == 'sauce'
   Sauce.config do |c|
     c[:start_tunnel] = true
 
-    #c[:browsers] = [["Windows 8", "Internet Explorer", "10"]]
-    c[:browsers] = [ ["Linux", "Chrome", nil]  ]
+    c[:browsers] = [["Linux", "Chrome", nil]]
   end
 
   Before do
