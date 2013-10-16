@@ -39,6 +39,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    cucumber: {
+        test: {
+            features: 'features/'
+        },
+        options: {
+            prefix: 'bundle exec',
+            format: 'progress'
+        }
+    },    
     jshint: {
       files: "app/**/*.js",
       options: {
@@ -68,7 +77,8 @@ module.exports = function(grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-sass',
-    'grunt-contrib-requirejs'
+    'grunt-contrib-requirejs',
+    'grunt-rcukes'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
