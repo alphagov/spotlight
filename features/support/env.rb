@@ -9,11 +9,10 @@ Capybara.app_host = "http://localhost:#{APP_PORT}"
 Capybara.run_server = false
 
 Before do 
-  $server = fork { exec "node app/server.js -p #{APP_PORT}" } 
-  sleep 1
+  $server = IO.popen("node app/server.js -p #{APP_PORT}")
+  $server.gets
 end 
 
 After do
-  Process.kill("INT", $server)
-  Process.wait($server)
+  Process.kill("INT", $server.pid)
 end
