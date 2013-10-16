@@ -34,7 +34,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'node_modules/govuk_template_mustache/assets/stylesheets',
             src: ['*.css'],
-            dest: 'public',
+            dest: 'public/stylesheets',
             ext: '.css'
           }
         ],
