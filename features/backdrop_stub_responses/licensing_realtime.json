@@ -1,0 +1,22 @@
+{
+    "data":[
+        {
+            "_updated_at":"2013-06-26T09:40:01.941000",
+            "for_url":"ga:pagePath=~/apply-for-a-licence",
+            "_timestamp":"2013-06-26T08:40:01+00:00",
+            "_month_start_at":"2013-06-01T00:00:00",
+            "_id":"2013-06-26T09:40:01+01:00",
+            "_week_start_at":"2013-06-24T00:00:00",
+            "unique_visitors":"15"
+        },
+        {
+            "_updated_at":"2013-06-26T09:38:02.033000",
+            "for_url":"ga:pagePath=~/apply-for-a-licence",
+            "_timestamp":"2013-06-26T08:38:02+00:00",
+            "_month_start_at":"2013-06-01T00:00:00",
+            "_id":"2013-06-26T09:38:02+01:00",
+            "_week_start_at":"2013-06-24T00:00:00",
+            "unique_visitors":"11"
+        }
+    ]
+}

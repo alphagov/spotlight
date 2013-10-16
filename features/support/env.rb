@@ -1,7 +1,10 @@
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
+require 'json'
+require 'pry-debugger'
 
+FEATURE_ROOT = File.expand_path(File.join(__FILE__, "../../"))
 APP_PORT = 7070 # Saucelabs compatible port
 
 Capybara.default_driver = :poltergeist

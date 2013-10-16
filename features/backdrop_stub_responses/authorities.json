@@ -1,0 +1,29 @@
+{
+    "bucket":"licensify",
+    "query":{
+        "group_by":"authorityUrlSlug",
+        "collect":["authorityName"]
+    },
+    "data":[
+        {
+            "authorityUrlSlug":"city-of-fake-authority",
+            "authorityName": ["City of Fake authority"],
+            "_count":2
+        },
+        {
+            "authorityUrlSlug":"City of London",
+            "authorityName": ["City of London"],
+            "_count":2
+        },
+        {
+            "authorityUrlSlug":"fake-authority-1",
+            "authorityName": ["Fake authority 1"],
+            "_count":2
+        },
+        {
+            "authorityUrlSlug":"fake-authority-2",
+            "authorityName": ["Fake authority 2"],
+            "_count":5
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "data": [
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "01", "_timestamp": "2013-06-17T16:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "02", "_timestamp": "2013-06-17T17:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "03", "_timestamp": "2013-06-17T18:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "04", "_timestamp": "2013-06-17T19:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "05", "_timestamp": "2013-06-17T20:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "06", "_timestamp": "2013-06-17T21:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "07", "_timestamp": "2013-06-17T22:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "08", "_timestamp": "2013-06-17T23:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "09", "_timestamp": "2013-06-18T00:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "10", "_timestamp": "2013-06-18T01:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "11", "_timestamp": "2013-06-18T02:00:00+00:00" },
+        { "uptime": 900, "downtime": 100, "unmonitored": 0, "avgresponse": 100, "check": "anything", "_id": "12", "_timestamp": "2013-06-18T03:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "13", "_timestamp": "2013-06-18T04:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "14", "_timestamp": "2013-06-18T05:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "15", "_timestamp": "2013-06-18T06:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "16", "_timestamp": "2013-06-18T07:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "17", "_timestamp": "2013-06-18T08:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "18", "_timestamp": "2013-06-18T09:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "19", "_timestamp": "2013-06-18T10:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "20", "_timestamp": "2013-06-18T11:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "21", "_timestamp": "2013-06-18T12:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "22", "_timestamp": "2013-06-18T13:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "23", "_timestamp": "2013-06-18T14:00:00+00:00" },
+        { "uptime": 800, "downtime": 200, "unmonitored": 0, "avgresponse": 200, "check": "anything", "_id": "24", "_timestamp": "2013-06-18T15:00:00+00:00" }
+    ]
+}

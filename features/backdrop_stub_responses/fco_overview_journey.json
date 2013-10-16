@@ -1,0 +1,170 @@
+
+{
+  "data": [
+    {
+      "_updated_at": "2013-06-23T05:00:03.299000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:confirm", 
+      "_timestamp": "2013-06-02T23:00:00+00:00", 
+      "_month_start_at": "2013-05-01T00:00:00", 
+      "uniqueEvents": 2478, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6Y29uZmlybQ==", 
+      "_week_start_at": "2013-05-27T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.301000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:done", 
+      "_timestamp": "2013-06-02T23:00:00+00:00", 
+      "_month_start_at": "2013-05-01T00:00:00", 
+      "uniqueEvents": 1921, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6ZG9uZQ==", 
+      "_week_start_at": "2013-05-27T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.302000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:invalid_form", 
+      "_timestamp": "2013-06-02T23:00:00+00:00", 
+      "_month_start_at": "2013-05-01T00:00:00", 
+      "uniqueEvents": 744, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6aW52YWxpZF9mb3Jt", 
+      "_week_start_at": "2013-05-27T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.306000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:payment_error", 
+      "_timestamp": "2013-06-02T23:00:00+00:00", 
+      "_month_start_at": "2013-05-01T00:00:00", 
+      "uniqueEvents": 67, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6cGF5bWVudF9lcnJvcg==", 
+      "_week_start_at": "2013-05-27T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.307000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:start", 
+      "_timestamp": "2013-06-02T23:00:00+00:00", 
+      "_month_start_at": "2013-05-01T00:00:00", 
+      "uniqueEvents": 2533, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6c3RhcnQ=", 
+      "_week_start_at": "2013-05-27T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.299000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:confirm", 
+      "_timestamp": "2013-06-09T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 2866, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6Y29uZmlybQ==", 
+      "_week_start_at": "2013-06-03T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.301000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:done", 
+      "_timestamp": "2013-06-09T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 2179, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6ZG9uZQ==", 
+      "_week_start_at": "2013-06-03T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.302000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:invalid_form", 
+      "_timestamp": "2013-06-09T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 337, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6aW52YWxpZF9mb3Jt", 
+      "_week_start_at": "2013-06-03T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.306000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:payment_error", 
+      "_timestamp": "2013-06-09T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 32, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6cGF5bWVudF9lcnJvcg==", 
+      "_week_start_at": "2013-06-03T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-23T05:00:03.307000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:start", 
+      "_timestamp": "2013-06-09T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 3544, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MDkyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6c3RhcnQ=", 
+      "_week_start_at": "2013-06-03T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-25T05:00:03.417000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:confirm", 
+      "_timestamp": "2013-06-16T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 2935, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6Y29uZmlybQ==", 
+      "_week_start_at": "2013-06-10T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-25T05:00:03.430000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:done", 
+      "_timestamp": "2013-06-16T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 2243, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6ZG9uZQ==", 
+      "_week_start_at": "2013-06-10T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-25T05:00:03.433000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:invalid_form", 
+      "_timestamp": "2013-06-16T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 340, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6aW52YWxpZF9mb3Jt", 
+      "_week_start_at": "2013-06-10T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-25T05:00:03.436000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:payment_error", 
+      "_timestamp": "2013-06-16T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 29, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6cGF5bWVudF9lcnJvcg==", 
+      "_week_start_at": "2013-06-10T00:00:00"
+    }, 
+    {
+      "_updated_at": "2013-06-25T05:00:03.444000", 
+      "timeSpan": "week", 
+      "dataType": "pay_legalisation_post_journey", 
+      "eventCategory": "pay-legalisation-post:start", 
+      "_timestamp": "2013-06-16T23:00:00+00:00", 
+      "_month_start_at": "2013-06-01T00:00:00", 
+      "uniqueEvents": 3644, 
+      "_id": "cGF5X2xlZ2FsaXNhdGlvbl9wb3N0X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19wYXktbGVnYWxpc2F0aW9uLXBvc3Q6c3RhcnQ=", 
+      "_week_start_at": "2013-06-10T00:00:00"
+    }
+  ]
+}
