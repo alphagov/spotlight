@@ -158,6 +158,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build:production', [
     'copy:govuk_template', 'jshint', 'jasmine', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
+  grunt.registerTask('test:all', ['jasmine', 'cucumber']);
   grunt.registerTask('default', ['build:development', 'concurrent']);
 
 };
