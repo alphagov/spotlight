@@ -46,12 +46,16 @@ app.configure('development', function(){
     res.sendfile(path.join(rootDir, '_SpecRunner.html'));
   });
   app.use(express.errorHandler());
+
+  app.get('/stagecraft-stub/*', requirejs('../support/stagecraft_stub/stagecraft_stub_controller'));
 });
 
 
 var render = requirejs('./render');
 app.use('/performance', render);
 
+
+app.get('/_status', requirejs('healthcheck_controller'));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -43,3 +43,9 @@ list of spec files changes to recreate the specrunner for use in the browser.
 `grunt build:production` to create a production release.
 
 `NODE_ENV=production node app/server.js` to run the app in production mode.
+
+## Status ##
+
+[![Build Status](https://travis-ci.org/alphagov/spotlight.png?branch=master)](https://travis-ci.org/alphagov/spotlight)
+
+[![Dependency Status](https://gemnasium.com/alphagov/spotlight.png)](https://gemnasium.com/alphagov/spotlight)

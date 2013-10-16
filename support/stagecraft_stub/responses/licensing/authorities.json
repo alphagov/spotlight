@@ -1,0 +1,15 @@
+{
+  "page-type": "browse",
+  "path": "licensing/authorities",
+  "title": "Authorities",
+  "strapline": "Licensing performance",
+  "tagline": "(authorities on GOV.UK only)",
+  "filter-label": "Find a licencing authority named:",
+  "filter-placeholder": "Example: Westminster",
+  "items": [
+    {
+      "title": "National and local authorities",
+      "query": "licensing/applications?group_by=authorityUrlSlug&collect=authorityName&sort_by=authorityName:ascending"
+    }
+  ]
+}
