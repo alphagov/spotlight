@@ -57,6 +57,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    cucumber: {
+        test: {
+            features: 'features/'
+        },
+        options: {
+            prefix: 'bundle exec',
+            format: 'progress'
+        }
+    },    
     jshint: {
       files: "app/**/*.js",
       options: {
@@ -133,6 +142,7 @@ module.exports = function(grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs',
+    'grunt-rcukes',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-nodemon',
@@ -148,6 +158,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build:production', [
     'copy:govuk_template', 'jshint', 'jasmine', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
+  grunt.registerTask('test:all', ['jasmine', 'cucumber']);
   grunt.registerTask('default', ['build:development', 'concurrent']);
 
 };

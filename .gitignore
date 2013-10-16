@@ -12,3 +12,4 @@ public/*
 dist
 node_modules
 _SpecRunner.html
+sauce_connect.log
