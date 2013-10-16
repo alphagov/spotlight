@@ -96,6 +96,34 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    watch: {
+      css: {
+        files: [
+          'styles/**/*.scss'
+        ],
+        tasks: ['sass:development'],
+        options: { nospawn: true }
+      }
+    },
+    nodemon: {
+      dev: {
+        options: {
+          file: 'app/server.js',
+          watchedExtensions: ['js'],
+          watchedFolders: ['app', 'support', 'test'],
+          delayTime: 1,
+          legacyWatch: true
+        }
+      }
+    },
+    concurrent: {
+      dev: {
+        tasks: ['nodemon', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
     }
   });
   
@@ -105,7 +133,10 @@ module.exports = function(grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs',
-    'grunt-contrib-copy'
+    'grunt-contrib-copy',
+    'grunt-contrib-watch',
+    'grunt-nodemon',
+    'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -117,7 +148,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build:production', [
     'copy:govuk_template', 'jshint', 'jasmine', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
-  grunt.registerTask('default', ['build:development']);
+  grunt.registerTask('default', ['build:development', 'concurrent']);
 
 };
 
