@@ -2,7 +2,7 @@ require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
 
-APP_PORT=7070
+APP_PORT = 7070 # Saucelabs compatible port
 
 Capybara.default_driver = :poltergeist
 Capybara.app_host = "http://localhost:#{APP_PORT}"
