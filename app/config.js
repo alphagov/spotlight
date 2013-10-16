@@ -7,7 +7,10 @@ define(function (options) {
       css: 'vendor/require-css',
       modernizr: 'modernizr_shim',
       moment: 'vendor/moment',
-      tpl: 'vendor/tpl'
+      tpl: 'vendor/tpl',
+      Mustache: 'vendor/mustache',
+      text: 'vendor/text',
+      stache: 'vendor/stache'
     },
     
     shim: {
