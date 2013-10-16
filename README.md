@@ -19,10 +19,13 @@ git submodule init
 
 ## Running app ##
 
-`node app/server.js`
+If you're using the PP dev environment, `cd /var/apps/pp-development` and then
+`bowl performance`. If you've set up your DNS, `http://spotlight.dev.gov.uk`
+will work. Otherwise...
 
-This will run the app at `http://localhost:3000`. At the moment, you need to
-restart the app for file changes to take effect.
+`node app/server.js` will run the app at `http://localhost:3000`.
+
+At the moment, you need to restart the app for file changes to take effect.
 
 
 ## Running tests ##
