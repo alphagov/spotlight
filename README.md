@@ -38,7 +38,7 @@ node app/server.js
 ```
 
 This will run the app at
-`http://localhost:3000`.
+`http://localhost:3057`.
 
 At the moment, you need to restart the app for file changes to take effect.
 
