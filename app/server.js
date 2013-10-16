@@ -12,7 +12,8 @@ var express = require('express'),
 
 
 global.isServer = true;
-global.requireBaseUrl = argv.REQUIRE_BASE_URL || '/limelight/js';
+global.requirePath = argv.REQUIRE_BASE_URL || '/app/';
+global.assetPath = '/assets/';
 
 
 var $ = global.$ = global.jQuery = require('jquery');
@@ -22,18 +23,18 @@ $.ajaxSettings.xhr = function () {
     return new XMLHttpRequest();
 };
 
-
 var rootDir = path.join(__dirname, '..');
 
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', argv.p || 3057);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.compress());
-  app.use('/css', express.static(path.join(rootDir, 'public', 'css')));
+  app.use('/assets', express.static(path.join(rootDir, 'public')));
+  app.use('/assets/images', express.static(path.join(rootDir, 'public')));
 });
 
 app.configure('development', function(){
@@ -48,6 +49,11 @@ app.configure('development', function(){
 
   app.get('/stagecraft-stub/*', requirejs('../support/stagecraft_stub/stagecraft_stub_controller'));
 });
+
+
+var render = requirejs('./render');
+app.use('/performance', render);
+
 
 app.get('/_status', requirejs('healthcheck_controller'));
 

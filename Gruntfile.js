@@ -16,15 +16,33 @@ module.exports = function(grunt) {
   grunt.initConfig({
     clean: ["public/"],
     sass: {
-      dist: {
+      development: {
         files: {
-          'public/css/spotlight.css': 'styles/index.scss'
+          'public/stylesheets/spotlight.css': 'styles/index.scss'
         },
         options: {
           loadPath: [
-            'lib/govuk_frontend_toolkit/stylesheets'
+            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'nested'
+        }
+      },
+      production: {
+        files: [
+          { 'public/stylesheets/spotlight.css': 'styles/index.scss' },
+          {
+            expand: true,
+            cwd: 'node_modules/govuk_template_mustache/assets/stylesheets',
+            src: ['*.css'],
+            dest: 'public/stylesheets',
+            ext: '.css'
+          }
+        ],
+        options: {
+          loadPath: [
+            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
+          ],
+          style: 'compressed'
         }
       }
     },
@@ -56,18 +74,64 @@ module.exports = function(grunt) {
       }
     },
     requirejs: {
-      debug: {
+      production: {
         options: extend(getRequirejsConfig(), {
           baseUrl: 'app',
-          out: "dist/limelight.js",
+          out: "public/javascripts/spotlight.js",
           name: "client",
           include: ["vendor/almond"],
           deps: [
-            'bootstrap',
-            'routes'
+            'client'
           ],
           wrap: false
         })
+      }
+    },
+    copy: {
+      govuk_template: {
+        src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
+        dest: 'app/common/templates/',
+        expand: true,
+        flatten: true,
+        filter: 'isFile'
+      },
+      govuk_assets: {
+        files: [
+          {
+            expand: true,
+            src: '**',
+            cwd: 'node_modules/govuk_template_mustache/assets',
+            dest: 'public/'
+          }
+        ]
+      }
+    },
+    watch: {
+      css: {
+        files: [
+          'styles/**/*.scss'
+        ],
+        tasks: ['sass:development'],
+        options: { nospawn: true }
+      }
+    },
+    nodemon: {
+      dev: {
+        options: {
+          file: 'app/server.js',
+          watchedExtensions: ['js'],
+          watchedFolders: ['app', 'support', 'test'],
+          delayTime: 1,
+          legacyWatch: true
+        }
+      }
+    },
+    concurrent: {
+      dev: {
+        tasks: ['nodemon', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
       }
     }
   });
@@ -78,14 +142,23 @@ module.exports = function(grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs',
-    'grunt-rcukes'
+    'grunt-rcukes',
+    'grunt-contrib-copy',
+    'grunt-contrib-watch',
+    'grunt-nodemon',
+    'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
   
   // Default task.
-  grunt.registerTask('build', ['clean', 'jshint', 'jasmine', 'sass']);
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('build:development', [
+    'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
+  ]);
+  grunt.registerTask('build:production', [
+    'copy:govuk_template', 'jshint', 'jasmine', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
+  ]);
+  grunt.registerTask('default', ['build:development', 'concurrent']);
 
 };
 
