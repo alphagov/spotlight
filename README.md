@@ -17,11 +17,6 @@ sudo npm install -g grunt-cli@0.1.9
 npm install
 ```
 
-This app makes use of [alphagov/govuk_template][govuk_template] as a git
-submodule, so you'll need to run `git submodule init` and `git submodule update`.
-
-[govuk_template]: https://github.com/alphagov/govuk_template
-
 ## Building and running app ##
 
 ### Development ###
