@@ -1,13 +1,15 @@
 define([
   'stache!common/templates/govuk_template',
-  'tpl!common/templates/head.html'
+  'stache!common/templates/head'
 ],
 function (baseTemplate, headTemplate) {
 
   var environment = process.env.NODE_ENV || 'development';
 
   var head = headTemplate({
-    environment: environment
+    requirePath: requirePath,
+    assetPath: assetPath,
+    development: environment === 'development'
   });
 
   return function render (req, res) {
