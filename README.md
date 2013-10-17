@@ -9,11 +9,18 @@ not in the standard GDS development VM.
 
 [ppdev]: https://github.com/alphagov/pp-development
 
-Install dependencies:
+We use [nodeenv][nodeenv] to contain our dependencies.
+
+[nodeenv]: https://github.com/ekalinin/nodeenv
+
+Create a new nodeenv with `nodeenv ~/.nodeenvs/spotlight --node=0.10.20` or
+activate an existing one with `source ~/.nodeenvs/spotlight/bin/activate`.
+
+Once you're in the nodeenv, install dependencies:
 
 ```bash
-bundle install
-sudo npm install -g grunt-cli@0.1.9
+bundle install # (Ruby, so not affected by the nodeenv)
+npm install -g grunt-cli@0.1.9
 npm install
 ```
 
