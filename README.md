@@ -38,7 +38,10 @@ The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and [gr
 
 #### Running tests ####
 
-`grunt jasmine` to execute Jasmine tests in PhantomJS.
+* Jasmine unit tests: `grunt jasmine`
+* Cucumber functional tests: `grunt cucumber`
+* Cucumber tests in sauce: `bundle exec cucumber --profile sauce` (no grunt task yet)
+* All tests: `grunt test:all`
 
 When the app is running in development mode, Jasmine tests are available at
 `http://localhost:3000/spec`. You need to re-run `grunt jasmine` whenever the
