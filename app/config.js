@@ -5,7 +5,7 @@ define(function (options) {
       lodash: 'vendor/lodash',
       backbone: 'vendor/backbone',
       css: 'vendor/require-css',
-      modernizr: 'modernizr_shim',
+      modernizr: 'shim/modernizr_shim',
       moment: 'vendor/moment',
       tpl: 'vendor/tpl',
       Mustache: 'vendor/mustache',
