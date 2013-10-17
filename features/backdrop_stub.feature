@@ -8,15 +8,15 @@ Feature: Backdrop stubs
     And I should receive the appropriate "<Json File>"
     
     Examples:
-      |  Location                                                                                                  | Json File                                       |
+      | Location                                                                                                   | Json File                                       |
       | /performance/licensing/api/realtime                                                                        | licensing_realtime.json                         |
       | /performance/licensing/api/monitoring                                                                      | licensing_availability_response.json            |
       | /performance/licensing/api/application?filter_by=licenceUrlSlug:application-to-licence-a-street-collection | application-to-licence-a-street-collection.json |
       | /performance/licensing/api/application?filter_by=authorityUrlSlug:fake-authority-1?group_by=licenceUrlSlug | licensing_top_5_licenses.json                   |
-      | /performance/licensing/api/application?filter_by=authorityUrlSlug:fake-authority-1, period => week         | licensing_top.json                              |
+      | /performance/licensing/api/application?filter_by=authorityUrlSlug:fake-authority-1&period=week             | licensing_top.json                              |
       | /performance/licensing/api/application?filter_by=authorityUrlSlug:fake-authority-1                         | fake-authority-1.json                           |
-      | /performance/licensing/api/application?group_by="authorityUrlSlug"                                         | authorities.json                                |
-      | /performance/licensing/api/application?group_by="licenceUrlSlug"                                           | licences.json                                   |
+      | /performance/licensing/api/application?group_by=authorityUrlSlug                                           | authorities.json                                |
+      | /performance/licensing/api/application?group_by=licenceUrlSlug                                             | licences.json                                   |
       | /performance/licensing/api/applications                                                                    | licensing_applications.json                     |
       | /performance/nonsense/api/some_rubbish?filter_by=dataType:licensing_overview_journey                       | licensing_overview_journey.json                 |
       | /performance/pay-legalisation-post/api/journey                                                             | fco_overview_journey.json                       |

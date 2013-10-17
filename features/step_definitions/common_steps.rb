@@ -3,5 +3,5 @@ When(/^I go to (.*)$/) do |url|
 end
 
 Then(/^I should receive the appropriate "(.*?)"$/) do |file_name|
-  JSON.parse(page.html).should == JSON.parse(File.read(File.join(FEATURE_ROOT, "backdrop_stub_responses", file_name)))
+  page.document.text.should == File.read(File.join(PROJECT_ROOT, "app/support/backdrop_stub/responses", file_name))# "{ \"status\": \"ok\" }"
 end
