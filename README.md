@@ -41,8 +41,7 @@ The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and [gr
 `grunt jasmine` to execute Jasmine tests in PhantomJS.
 
 When the app is running in development mode, Jasmine tests are available at
-`http://localhost:3000/spec`. You need to re-run `grunt jasmine` whenever the
-list of spec files changes to recreate the specrunner for use in the browser.
+`http://localhost:3000/spec`. The specrunner gets automatically recreated on server start and when the specfiles change. Due to a [bug in grunt-contrib watch](https://github.com/gruntjs/grunt-contrib-watch/issues/20), new spec files are not currently detected automatically. When you add a new spec file, either restart the app or run `grunt jasmine:spotlight:build`.
 
 ### Production ###
 

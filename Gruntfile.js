@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      limelight: {
+      spotlight: {
         src: 'app/**/*.js',
         options: {
           specs: 'test/spec/shared/**/spec.*.js',
@@ -123,11 +123,13 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: [
-          'styles/**/*.scss'
-        ],
+        files: ['styles/**/*.scss'],
         tasks: ['sass:development'],
         options: { nospawn: true }
+      },
+      spec: {
+        files: ['test/spec/**/spec.*.js'],
+        tasks: ['jasmine:spotlight:build']
       }
     },
     nodemon: {
@@ -135,7 +137,7 @@ module.exports = function(grunt) {
         options: {
           file: 'app/server.js',
           watchedExtensions: ['js'],
-          watchedFolders: ['app', 'support', 'test'],
+          watchedFolders: ['app', 'support'],
           delayTime: 1,
           legacyWatch: true
         }
@@ -174,8 +176,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build:production', [
     'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
-  grunt.registerTask('test:all', ['jasmine_node', 'jasmine', 'cucumber']);
-  grunt.registerTask('default', ['build:development', 'concurrent']);
+  grunt.registerTask('test:all', ['jasmine', 'cucumber']);
+  grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
 };
 
