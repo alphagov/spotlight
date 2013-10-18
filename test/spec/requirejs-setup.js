@@ -37,7 +37,7 @@ var define,
     };
 
 requirejsOrig.config({
- baseUrl: '/var/apps/spotlight/app',
+ baseUrl: path.join(__dirname, '..', '..', '..', 'app'),
  nodeRequire: require
 });
 
