@@ -21,8 +21,8 @@ npm install
 
 ### Development ###
 
-If you're using the PP dev environment `cd /var/apps/pp-development` and then
-`bowl performance`. If you've set up your DNS, `http://spotlight.dev.gov.uk`
+If you're using our dev environment then `cd /var/apps/pp-development` and
+`bowl performance`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
 will work.
 
 Otherwise...
@@ -34,7 +34,9 @@ grunt
 This will create a development build of the assets and then run the app at
 `http://localhost:3057`.
 
-The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) to monitor changes and automatically restart the server and recompile SASS.
+The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and
+[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) to monitor
+changes and automatically restart the server and recompile SASS.
 
 #### Running tests ####
 
