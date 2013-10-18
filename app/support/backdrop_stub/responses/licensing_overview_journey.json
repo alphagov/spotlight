@@ -1,0 +1,48 @@
+{
+    "data": [
+        {
+            "_updated_at": "2013-06-24T05:00:02.439000",
+            "timeSpan": "week",
+            "dataType": "licensing_overview_journey",
+            "eventCategory": "licensingUserJourney:downloadFormPage",
+            "_timestamp": "2013-06-16T23:00:00+00:00",
+            "_month_start_at": "2013-06-01T00:00:00",
+            "uniqueEvents": 4312,
+            "_id": "bGljZW5zaW5nX292ZXJ2aWV3X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19saWNlbnNpbmdVc2VySm91cm5leTpkb3dubG9hZEZvcm1QYWdl",
+            "_week_start_at": "2013-06-10T00:00:00"
+        },
+        {
+            "_updated_at": "2013-06-24T05:00:02.441000",
+            "timeSpan": "week",
+            "dataType": "licensing_overview_journey",
+            "eventCategory": "licensingUserJourney:end",
+            "_timestamp": "2013-06-16T23:00:00+00:00",
+            "_month_start_at": "2013-06-01T00:00:00",
+            "uniqueEvents": 951,
+            "_id": "bGljZW5zaW5nX292ZXJ2aWV3X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19saWNlbnNpbmdVc2VySm91cm5leTplbmQ=",
+            "_week_start_at": "2013-06-10T00:00:00"
+        },
+        {
+            "_updated_at": "2013-06-24T05:00:02.442000",
+            "timeSpan": "week",
+            "dataType": "licensing_overview_journey",
+            "eventCategory": "licensingUserJourney:feeInfoPage",
+            "_timestamp": "2013-06-16T23:00:00+00:00",
+            "_month_start_at": "2013-06-01T00:00:00",
+            "uniqueEvents": 851,
+            "_id": "bGljZW5zaW5nX292ZXJ2aWV3X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19saWNlbnNpbmdVc2VySm91cm5leTpmZWVJbmZvUGFnZQ==",
+            "_week_start_at": "2013-06-10T00:00:00"
+        },
+        {
+            "_updated_at": "2013-06-24T05:00:02.442000",
+            "timeSpan": "week",
+            "dataType": "licensing_overview_journey",
+            "eventCategory": "licensingUserJourney:submitApplicationPage",
+            "_timestamp": "2013-06-16T23:00:00+00:00",
+            "_month_start_at": "2013-06-01T00:00:00",
+            "uniqueEvents": 1393,
+            "_id": "bGljZW5zaW5nX292ZXJ2aWV3X2pvdXJuZXlfMjAxMzA2MTYyMzAwMDBfd2Vla19saWNlbnNpbmdVc2VySm91cm5leTpzdWJtaXRBcHBsaWNhdGlvblBhZ2U=",
+            "_week_start_at": "2013-06-10T00:00:00"
+        }
+    ]
+}

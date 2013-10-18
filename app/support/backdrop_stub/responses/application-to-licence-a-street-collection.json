@@ -1,0 +1,15 @@
+{
+  "bucket": "licensing",
+  "query": {
+    "group_by": "licenceUrlSlug",
+    "filter_by": "licenceUrlSlug:application-to-licence-a-street-collection",
+    "collect": ["licenceName"]
+  },
+  "data": [
+    {
+      "licenceUrlSlug": "application-to-licence-a-street-collection",
+      "licenceName": ["Application to licence a street collection"],
+      "_count": 2
+    }
+  ]
+}

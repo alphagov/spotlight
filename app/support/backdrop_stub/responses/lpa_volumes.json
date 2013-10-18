@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "comment": " From Dispatch Stats Combined + Individuals (Terry Cole)", 
+      "_updated_at": "2013-08-06T13:18:34.943000", 
+      "period": "day", 
+      "value": 351.0, 
+      "_timestamp": "2013-07-01T00:00:00+00:00", 
+      "_month_start_at": "2013-07-01T00:00:00", 
+      "key": "property_and_financial_forms_posted", 
+      "_id": "5200f7aa686c824fa7cf3235", 
+      "_week_start_at": "2013-07-01T00:00:00", 
+      "id": "2013-07-01-property_and_financial_forms_posted"
+    }, 
+    {
+      "comment": "MI Report - Scheduling Tab", 
+      "_updated_at": "2013-08-06T13:18:34.959000", 
+      "period": "day", 
+      "value": 656.0, 
+      "_timestamp": "2013-07-01T00:00:00+00:00", 
+      "_month_start_at": "2013-07-01T00:00:00", 
+      "key": "property_and_financial_paper_applications", 
+      "_id": "5200f7aa686c824fa7cf3238", 
+      "_week_start_at": "2013-07-01T00:00:00", 
+      "id": "2013-07-01-property_and_financial_paper_applications"
+    }, 
+    {
+      "comment": "MI Report - Scheduling Tab", 
+      "_updated_at": "2013-08-06T13:18:34.959000", 
+      "period": "day", 
+      "value": 252.0, 
+      "_timestamp": "2013-07-01T00:00:00+00:00", 
+      "_month_start_at": "2013-07-01T00:00:00", 
+      "key": "health_and_welfare_paper_applications", 
+      "_id": "5200f7aa686c824fa7cf3239", 
+      "_week_start_at": "2013-07-01T00:00:00", 
+      "id": "2013-07-01-health_and_welfare_paper_applications"
+    }, 
+    {
+      "comment": "MI Report - Scheduling Tab", 
+      "_updated_at": "2013-08-06T13:18:34.959000", 
+      "period": "day", 
+      "value": 0.0, 
+      "_timestamp": "2013-07-01T00:00:00+00:00", 
+      "_month_start_at": "2013-07-01T00:00:00", 
+      "key": "property_and_financial_digital_applications", 
+      "_id": "5200f7aa686c824fa7cf323a", 
+      "_week_start_at": "2013-07-01T00:00:00", 
+      "id": "2013-07-01-property_and_financial_digital_applications"
+    }, 
+    {
+      "comment": "MI Report - Scheduling Tab", 
+      "_updated_at": "2013-08-06T13:18:34.959000", 
+      "period": "day", 
+      "value": 0.0, 
+      "_timestamp": "2013-07-01T00:00:00+00:00", 
+      "_month_start_at": "2013-07-01T00:00:00", 
+      "key": "health_and_welfare_digital_applications", 
+      "_id": "5200f7aa686c824fa7cf323b", 
+      "_week_start_at": "2013-07-01T00:00:00", 
+      "id": "2013-07-01-health_and_welfare_digital_applications"
+    }
+  ]
+}
