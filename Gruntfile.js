@@ -64,7 +64,7 @@ module.exports = function(grunt) {
       match: ".*",
       projectRoot: ".",
       specFolders: ["test/spec/server"],
-      requirejs: false,
+      requirejs: true,
       forceExit: true,
       jUnit: {
         report: false,

@@ -1,7 +1,7 @@
-define(function () {
+require(function () {
   describe("Jasmine test", function () {
     it("should allow expectations", function () {
-      expect(true).toBe(true);
+      expect(false).toBe(true);
     });
   });
 });

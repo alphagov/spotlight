@@ -1,4 +1,4 @@
-//define(['../../../support/backdrop_stub/backdrop_stub_controller.js', 'fs'],
+//require(['app/support/backdrop_stub/backdrop_stub_controller.js', 'fs'],
 //function (backdrop_stub_controller, fs) {
 //
 //  describe("backdrop stub", function () {
