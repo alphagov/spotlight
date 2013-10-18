@@ -1,4 +1,4 @@
-require(['app/healthcheck_controller.js'],
+define(['app/healthcheck_controller.js'],
 function (healthcheck) {
 
   describe("Health Check", function () {
