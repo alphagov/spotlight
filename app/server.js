@@ -12,6 +12,7 @@ var express = require('express'),
 
 
 global.isServer = true;
+global.isClient = false;
 global.requirePath = argv.REQUIRE_BASE_URL || '/app/';
 global.assetPath = '/assets/';
 
@@ -22,6 +23,8 @@ $.support.cors = true;
 $.ajaxSettings.xhr = function () {
     return new XMLHttpRequest();
 };
+
+global._ = require('underscore');
 
 var rootDir = path.join(__dirname, '..');
 
@@ -48,7 +51,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 
   app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
-  app.get('/performance/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
 

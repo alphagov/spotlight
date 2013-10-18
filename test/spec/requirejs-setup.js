@@ -38,11 +38,12 @@ var define,
 
 requirejsOrig.config({
  baseUrl: '/var/apps/spotlight/app',
- nodeRequire: require,
- paths: {
-  cs: csPath
- }
+ nodeRequire: require
 });
+
+requirejsOrig.config(requirejs('config'));
+var backbone = require('backbone');
+backbone.$ = require('jquery');
 
 for(var key in requirejsOrig) {
   requirejs[key] = requirejsOrig[key];

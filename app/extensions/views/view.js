@@ -1,9 +1,11 @@
 define([
     'backbone',
     'moment',
-    'modernizr'
+    'modernizr',
+    'jquery',
+    'underscore'
 ],
-function (Backbone, moment, Modernizr) {
+function (Backbone, moment, Modernizr, $, _) {
     var View = Backbone.View.extend({
       
       moment: moment,
@@ -11,8 +13,104 @@ function (Backbone, moment, Modernizr) {
     
       initialize: function (options) {
         _.extend(this, options);
+        this.viewInstances = {};
         Backbone.View.prototype.initialize.apply(this, arguments);
       },
+
+      make: function(tagName, attributes, content) {
+        if (isServer) {
+          var el = $('<' + tagName + '>')[0];
+          if (attributes) Backbone.$(el).attr(attributes);
+          if (content != null) Backbone.$(el).html(content);
+          return el;
+        } else {
+          return Backbone.View.prototype.make.apply(this, arguments);
+        }
+      },
+
+      render: function (options) {
+        this.trigger('prerender');
+        Backbone.View.prototype.render.apply(this, arguments);
+        this.renderContent(options);
+        this.renderSubviews(options, _.bind(function () {
+          this.trigger('postrender');
+        }, this));
+      },
+      
+      renderContent: function (options) {
+        options = options || {};
+        if (this.template) {
+          this.$el.html(this.template(this.templateContext(options.context)));
+        }
+      },
+
+      templateContext: function (context) {
+        return _.extend({
+          model: this.model,
+          collection: this.collection
+        }, context);
+      },
+
+      renderSubviews: function (options, callback) {
+        
+        var remaining = 0;
+        var subviewReady = function () {
+          if (--remaining <= 0) {
+            callback();
+          }
+        };
+        
+        var viewsDefinition = this.views;
+        if (_.isFunction(viewsDefinition)) {
+          viewsDefinition = viewsDefinition();
+        }
+        var instances = this.viewInstances;
+        _.each(viewsDefinition, function (definition, selector) {
+          var el = this.$el.find(selector);
+          if (!el.length) {
+            console.warn('No element found for ' + selector);
+            return;
+          }
+          
+          el.empty();
+          
+          var view, options;
+          if (typeof definition === 'function') {
+            view = definition;
+            options = {};
+          } else if (_.isObject(definition)) {
+            view = definition.view;
+            if (_.isFunction(definition.options)) {
+              options = definition.options.call(this);
+            } else {
+              options = _.extend({}, definition.options);
+            }
+          } else {
+            console.warn('Invalid view definition for ' + selector);
+            return;
+          }
+          options.el = el;
+
+          var instance = instances[selector] = new view(options);
+
+          if (options.renderOnInit) {
+            instance.render({
+              context: this.templateContext()
+            });
+          } else {
+            instance.on('postrender', function() {
+              subviewReady(instance);
+            }, this);
+            remaining++;
+          }
+        }, this);
+        
+        if (!remaining) {
+          callback();
+        }
+      },
+      
+      views: {},
       
       keys: {
         escape: 27
@@ -48,7 +146,7 @@ function (Backbone, moment, Modernizr) {
           return function(n) { return n % magnitude === 0; };
         }
 
-        var max = values.reduce(function(a,b) {return a > b ? a : b});
+        var max = values.reduce(function(a,b) {return a > b ? a : b;});
         var magnitude = this.magnitudeFor(max);
         var decimalPlaces;
         if (max === magnitude.value) {
@@ -83,9 +181,9 @@ function (Backbone, moment, Modernizr) {
             err = targetTickCount / span * step;
 
         // Filter ticks to get closer to the desired count.
-        if (err <= .15) step *= 10;
-        else if (err <= .35) step *= 5;
-        else if (err <= .75) step *= 2;
+        if (err <= 0.15) step *= 10;
+        else if (err <= 0.35) step *= 5;
+        else if (err <= 0.75) step *= 2;
 
         // Round start and stop values to step interval.
         var first = Math.floor(extent[0] / step) * step,
@@ -144,7 +242,7 @@ function (Backbone, moment, Modernizr) {
           if (Math.abs(number) >= 499500) return View.prototype.magnitudes.million;
           if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
           return View.prototype.magnitudes.unit;
-        }
+        };
 
         /*
          * Numbers less than  10 times the magnitude -> 2 decimal digits: N.NNx
@@ -152,10 +250,10 @@ function (Backbone, moment, Modernizr) {
          * Numbers 100 times the magnitude or more   -> no decimal digits: NNNx
          */
         var decimalDigits = function(number, magnitude) {
-          if (Math.abs(number) < magnitude.value * 10) return 2
-          if (Math.abs(number) < magnitude.value * 100) return 1
+          if (Math.abs(number) < magnitude.value * 10) return 2;
+          if (Math.abs(number) < magnitude.value * 100) return 1;
           return 0;
-        }
+        };
 
         var magnitude = magnitudeOf(value);
         var digits = decimalDigits(value, magnitude);
@@ -227,16 +325,16 @@ function (Backbone, moment, Modernizr) {
 
         var millisecondsToSeconds = function (t) {
           return t/1000;
-        }
+        };
 
         var roundWithPrecision = function (x,p) {
           var a = [1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000];
           return Math.round(x*a[p])/a[p];
-        }
+        };
 
         var visualLength = function (item) {
           return item.toString().length;
-        }
+        };
 
         milliseconds = Math.round(milliseconds);
 

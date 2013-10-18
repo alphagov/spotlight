@@ -1,8 +1,9 @@
 define([
     'extensions/models/model',
-    'backbone'
+    'backbone',
+    'moment'
 ],
-function (Model, Backbone) {
+function (Model, Backbone, moment) {
     describe("Model", function() {
         it("inherits from Backbone.Model", function() {
             var model = new Model();
@@ -29,7 +30,11 @@ function (Model, Backbone) {
             });
             
             it("warns when a timestamp is invalid", function() {
-                spyOn(window.console, "warn");
+                if (typeof window === 'object') {
+                    spyOn(window.console, "warn");
+                } else {
+                    spyOn(global.console, "warn");
+                }
                 var model = new Model({
                     foo: 'bar',
                     '_timestamp': 'asdf'

@@ -2,8 +2,6 @@ define(function (options) {
   
   var config = {
     paths: {
-      lodash: 'vendor/lodash',
-      backbone: 'vendor/backbone',
       css: 'vendor/require-css',
       modernizr: 'shim/modernizr_shim',
       moment: 'vendor/moment',
@@ -14,10 +12,6 @@ define(function (options) {
     },
     
     shim: {
-      backbone: {
-        deps: ['lodash', 'jquery'],
-        exports: 'Backbone'
-      },
       modernizr: {
         exports: 'Modernizr'
       },
@@ -30,11 +24,17 @@ define(function (options) {
   if (typeof window === 'object' || options && options.isBuild) {
     // additional setup for client
     config.paths.jquery = 'vendor/jquery';
+    config.paths.underscore = 'vendor/lodash';
+    config.paths.backbone = 'vendor/backbone';
     config.paths.jqueryxdr = 'vendor/jquery.xdr';
     config.paths.jquerymousewheel = 'vendor/jquery.mousewheel';
     config.paths.d3 = 'vendor/d3.v3';
     config.paths.modernizr = 'vendor/modernizr';
 
+    config.shim.backbone = {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
+    };
     config.shim.backbone.deps.concat(['jqueryxdr', 'jquerymousewheel']);
     config.shim.jqueryxdr = {
       deps: ['jquery'],
