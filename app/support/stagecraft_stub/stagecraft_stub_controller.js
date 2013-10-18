@@ -10,5 +10,5 @@ define(function () {
     } else {
       res.send({error: "No such stub exists: " + filePath});
     }
-  }
+  };
 });
