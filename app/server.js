@@ -16,8 +16,8 @@ global.isClient = false;
 global.requirePath = argv.REQUIRE_BASE_URL || '/app/';
 global.assetPath = '/assets/';
 
-
-var $ = global.$ = global.jQuery = require('jquery');
+var backbone = require('backbone');
+var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 $.support.cors = true;
 $.ajaxSettings.xhr = function () {
@@ -55,7 +55,7 @@ app.configure('development', function(){
 
 
 var render = requirejs('./render');
-app.use('/performance', render);
+app.use('/performance/', render);
 
 
 app.get('/_status', requirejs('healthcheck_controller'));
