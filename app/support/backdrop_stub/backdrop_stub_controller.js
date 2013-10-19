@@ -2,7 +2,7 @@ define(function () {
   
   return function (req, res) {
     res.json({status: 'ok'});
-  }
+  };
 //[
 //          StubConfig.new({'service' => 'licensing', 'api_name' => 'realtime'}, 'licensing_realtime.json'),
 //          StubConfig.new({'service' => 'licensing', 'api_name' => 'monitoring'}, 'licensing_availability_response.json'),
