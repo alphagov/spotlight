@@ -40,15 +40,27 @@ function (Backbone, moment, Modernizr, $, _) {
       renderContent: function (options) {
         options = options || {};
         if (this.template) {
-          this.$el.html(this.template(this.templateContext(options.context)));
+          var context = _.extend(
+            this.templateContext(), options.context
+          );
+          this.$el.html(this.template(context));
         }
       },
 
-      templateContext: function (context) {
-        return _.extend({
+      templateContext: function () {
+        var context = {};
+        if (this.model) {
+          _.extend(context, this.model.toJSON());
+        }
+        return context;
+      },
+
+      defaultSubviewOptions: function () {
+        return {
+          renderOnInit: true,
           model: this.model,
           collection: this.collection
-        }, context);
+        };
       },
 
       renderSubviews: function (options, callback) {
@@ -66,30 +78,31 @@ function (Backbone, moment, Modernizr, $, _) {
         }
         var instances = this.viewInstances;
         _.each(viewsDefinition, function (definition, selector) {
-          var el = this.$el.find(selector);
-          if (!el.length) {
+          var $el = this.$el.find(selector);
+          if (!$el.length) {
             console.warn('No element found for ' + selector);
             return;
           }
           
-          el.empty();
+          var view,
+              options = this.defaultSubviewOptions();
+
+          $el.empty();
+          options.$el = $el;
           
-          var view, options;
           if (typeof definition === 'function') {
             view = definition;
-            options = {};
           } else if (_.isObject(definition)) {
             view = definition.view;
             if (_.isFunction(definition.options)) {
-              options = definition.options.call(this);
+              _.extend(options, definition.options.call(this));
             } else {
-              options = _.extend({}, definition.options);
+              _.extend(options, definition.options);
             }
           } else {
             console.warn('Invalid view definition for ' + selector);
             return;
           }
-          options.el = el;
 
           var instance = instances[selector] = new view(options);
 
