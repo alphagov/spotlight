@@ -10,9 +10,10 @@ var express = require('express'),
     http = require('http'),
     path = require('path');
 
-
 global.isServer = true;
 global.isClient = false;
+
+global._ = require('underscore');
 
 var backbone = require('backbone');
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
