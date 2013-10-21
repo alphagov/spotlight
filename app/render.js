@@ -1,35 +1,42 @@
 define([
-  'stache!common/templates/govuk_template',
-  'stache!common/templates/head'
+  'stagecraft_api_client',
+  'common/views/govuk',
+  'view_directory'
 ],
-function (baseTemplate, headTemplate) {
+function (StagecraftApiClient, GovUkView, ViewDirectory) {
 
   var environment = process.env.NODE_ENV || 'development';
 
-  var head = headTemplate({
-    requirePath: requirePath,
-    assetPath: assetPath,
-    development: environment === 'development'
-  });
+  var viewDirectory = new ViewDirectory();
 
-  return function render (req, res) {
-    var context = {
-      environment: environment,
+  var renderContent = function (req, res, model) {
+
+    model.set('development', environment === 'development');
+
+    var content = new GovUkView({
       requirePath: requirePath,
       assetPath: assetPath,
-      showHeader: true,
-      topOfPage: "",
-      pageTitle: "",
-      head: head,
-      bodyClasses: "",
-      insideHeader: "",
-      cookieMessage: "",
-      content: "",
-      footerTop: "",
-      footerSupportLinks: "",
-      bodyEnd: ""
-    };
+      environment: environment,
+      model: model,
+      contentView: viewDirectory.viewFromStagecraftResponse(model)
+    });
 
-    res.send(baseTemplate(context));
+    content.once('postrender', function () {
+      res.send(content.html);
+    });
+
+    content.render();
   };
+
+  var render = function (req, res) {
+    var model = new StagecraftApiClient();
+    model.once('sync error', function () {
+      model.off();
+      renderContent(req, res, model);
+    });
+
+    model.setPath(req.url);
+  };
+
+  return render;
 });
