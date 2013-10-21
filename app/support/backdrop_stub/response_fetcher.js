@@ -36,13 +36,17 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
     fetch_json: function (request) {
       //use findwhere
       //make sure query params get got
-      var filename = _.find(this.stub_mappings, function(mapping) {
+      var mapping = _.find(this.stub_mappings, function(mapping) {
         var request_params = this.get_request_params(request, Object.keys(mapping.key));
         var original_request_params = _.clone(request_params);
         var request_params_matching_key = _.extend(request_params, mapping.key)
         return JSON.stringify(original_request_params) === JSON.stringify(request_params_matching_key);
-      }, this).file;
-      return this.get_file_contents(filename);
+      }, this)
+      if (mapping) {
+        return this.get_file_contents(mapping.file);
+      } else {
+        return null;
+      }
     },
 
     get_request_params: function (request, required_params) {

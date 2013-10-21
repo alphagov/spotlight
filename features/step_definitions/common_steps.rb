@@ -7,5 +7,5 @@ Then(/^the status code should be (\d*)/) do |status_code|
 end
 
 Then(/^I should receive the appropriate "(.*?)"$/) do |file_name|
-  page.document.text.should == File.read(File.join(PROJECT_ROOT, "app/support/backdrop_stub/responses", file_name))# "{ \"status\": \"ok\" }"
+  JSON.parse(page.document.text).should == JSON.parse(File.read(File.join(PROJECT_ROOT, "app/support/backdrop_stub/responses", file_name)))
 end
