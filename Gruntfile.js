@@ -78,7 +78,8 @@ module.exports = function(grunt) {
         },
         options: {
             prefix: 'bundle exec',
-            format: 'progress'
+            format: 'progress',
+            tags: ['~@wip']
         }
     },    
     jshint: {
