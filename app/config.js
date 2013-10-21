@@ -9,15 +9,6 @@ define(function (options) {
       Mustache: 'vendor/mustache',
       text: 'vendor/text',
       stache: 'vendor/stache'
-    },
-    
-    shim: {
-      modernizr: {
-        exports: 'Modernizr'
-      },
-      moment: {
-        exports: 'Moment'
-      }
     }
   };
   
@@ -26,22 +17,27 @@ define(function (options) {
     config.paths.jquery = 'vendor/jquery';
     config.paths.underscore = 'vendor/lodash';
     config.paths.backbone = 'vendor/backbone';
-    config.paths.jqueryxdr = 'vendor/jquery.xdr';
-    config.paths.jquerymousewheel = 'vendor/jquery.mousewheel';
     config.paths.d3 = 'vendor/d3.v3';
     config.paths.modernizr = 'vendor/modernizr';
 
-    config.shim.backbone = {
-      deps: ['underscore', 'jquery'],
-      exports: 'Backbone'
-    };
-    config.shim.backbone.deps.concat(['jqueryxdr', 'jquerymousewheel']);
-    config.shim.jqueryxdr = {
-      deps: ['jquery'],
-      exports: '$'
-    };
-    config.shim.d3 = {
-      exports: 'd3'
+    config.shim = {
+      backbone: {
+        deps: ['underscore', 'jquery'],
+        exports: 'Backbone'
+      },
+      jqueryxdr: {
+        deps: ['jquery'],
+        exports: '$'
+      },
+      d3: {
+        exports: 'd3'
+      },
+      modernizr: {
+        exports: 'Modernizr'
+      },
+      moment: {
+        exports: 'Moment'
+      }
     };
   }
   
