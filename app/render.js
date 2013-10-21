@@ -30,6 +30,7 @@ function (StagecraftApiClient, GovUkView, ViewDirectory) {
 
   var render = function (req, res) {
     var model = new StagecraftApiClient();
+    model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
     model.once('sync error', function () {
       model.off();
       renderContent(req, res, model);

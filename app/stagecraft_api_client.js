@@ -9,8 +9,6 @@ function (Model) {
       this.fetch();
     },
 
-    urlRoot: 'http://localhost:3057/stagecraft-stub',
-
     url: function () {
       return this.urlRoot + this.path;
     }
