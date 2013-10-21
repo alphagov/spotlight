@@ -13,8 +13,6 @@ var express = require('express'),
 global.isServer = true;
 global.isClient = false;
 
-global._ = require('underscore');
-
 var backbone = require('backbone');
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -53,6 +51,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 
   app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
+  app.get('/backdrop-stub/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
 

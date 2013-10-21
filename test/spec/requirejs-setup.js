@@ -42,7 +42,6 @@ requirejsOrig.config({
  nodeRequire: require
 });
 
-global._ = require('underscore');
 requirejsOrig.config(requirejs('config'));
 var backbone = require('backbone');
 backbone.$ = require('jquery');
