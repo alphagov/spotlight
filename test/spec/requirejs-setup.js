@@ -36,8 +36,9 @@ var define,
       return retVal;
     };
 
+
 requirejsOrig.config({
- baseUrl: path.join(__dirname, '..', '..', '..', 'app'),
+ baseUrl: path.join(process.env.PWD, 'app'),
  nodeRequire: require
 });
 
