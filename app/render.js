@@ -1,13 +1,10 @@
 define([
   'stagecraft_api_client',
-  'common/views/govuk',
-  'view_directory'
+  'common/views/govuk'
 ],
-function (StagecraftApiClient, GovUkView, ViewDirectory) {
+function (StagecraftApiClient, GovUkView) {
 
   var environment = process.env.NODE_ENV || 'development';
-
-  var viewDirectory = new ViewDirectory();
 
   var renderContent = function (req, res, model) {
 
@@ -17,8 +14,7 @@ function (StagecraftApiClient, GovUkView, ViewDirectory) {
       requirePath: requirePath,
       assetPath: assetPath,
       environment: environment,
-      model: model,
-      contentView: viewDirectory.viewFromStagecraftResponse(model)
+      model: model
     });
 
     content.once('postrender', function () {
@@ -28,16 +24,27 @@ function (StagecraftApiClient, GovUkView, ViewDirectory) {
     content.render();
   };
 
-  var render = function (req, res) {
+  var setup = function (req, res, next) {
     var model = new StagecraftApiClient();
     model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
-    model.once('sync error', function () {
+
+    model.on('sync', function () {
       model.off();
       renderContent(req, res, model);
+    });
+
+    model.on('error', function (model, xhr, options) {
+      model.off();
+      res.status(xhr.status);
+      renderContent(req, res, model);
+    });
+
+    model.on('unknown', function (model) {
+      res.status(501);
     });
 
     model.setPath(req.url);
   };
 
-  return render;
+  return setup;
 });

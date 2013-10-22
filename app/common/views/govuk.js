@@ -16,7 +16,7 @@ function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
 
     render: function () {
       var context = this.templateContext();
-      var content = this.content = new this.contentView({
+      var content = this.content = new (this.model.get('view'))({
         model: this.model
       });
       content.once('postrender', function () {
