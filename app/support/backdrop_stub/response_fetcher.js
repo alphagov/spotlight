@@ -11,7 +11,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1'}, 'file':  'fake-authority-1.json'},
       { 'key': {'service': 'licensing', 'api_name': 'application', 'group_by': 'authorityUrlSlug'}, 'file':  'authorities.json'},
       { 'key': {'service': 'licensing', 'api_name': 'application', 'group_by': 'licenceUrlSlug'}, 'file':  'licences.json'},
-      { 'key': {'service': 'licensing', 'api_name': 'applications'}, 'file':  'licensing_applications.json'},
+      { 'key': {'service': 'licensing', 'api_name': 'application'}, 'file':  'licensing_applications.json'},
       { 'key': {'filter_by': 'dataType:licensing_overview_journey'}, 'file':  'licensing_overview_journey.json'},
       { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey'}, 'file':  'fco_overview_journey.json'},
       { 'key': {'service': 'pay-foreign-marriage-certificates', 'api_name': 'monitoring'}, 'file':  'foreign_marriage_availability.json'},
@@ -34,8 +34,6 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
     ],
 
     fetch_json: function (request) {
-      //use findwhere
-      //make sure query params get got
       var mapping = _.find(this.stub_mappings, function(mapping) {
         var request_params = this.get_request_params(request, Object.keys(mapping.key));
         var original_request_params = _.clone(request_params);
@@ -50,7 +48,6 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
     },
 
     get_request_params: function (request, required_params) {
-      console.log(request);
       return _.reduce(required_params, function(request_params, key){ 
         request_params[key] = request.param(key);
         return request_params;

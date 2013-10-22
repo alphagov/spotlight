@@ -1,7 +1,7 @@
 define(['app/support/backdrop_stub/backdrop_stub_controller.js', 'fs'],
 function (backdrop_stub_controller, fs) {
 
-  describe("backdrop stub", function () {
+  describe("controller action", function () {
     describe("when there is a mapped json response", function () {
 
       it("respond with the relevant json file", function () {
