@@ -49,6 +49,16 @@ When the app is running in development mode, Jasmine tests are available at
 `http://localhost:3000/spec`. You need to re-run `grunt jasmine` whenever the
 list of spec files changes to recreate the specrunner for use in the browser.
 
+#### Debugging locally ####
+
+Install node-inspector on your VM: `sudo npm install -g node-inspector@0.5.0` and
+run it with `node-inspector`.
+
+Start the app with `node --debug app/server.js`.
+
+Visit `http://spotlight.perfplat.dev:8080` to view
+
+
 ### Production ###
 
 `grunt build:production` to create a production release.
