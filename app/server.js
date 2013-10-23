@@ -13,8 +13,6 @@ var express = require('express'),
 
 global.isServer = true;
 global.isClient = false;
-global.requirePath = argv.REQUIRE_BASE_URL || '/app/';
-global.assetPath = '/assets/';
 
 var backbone = require('backbone');
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
@@ -31,6 +29,9 @@ var rootDir = path.join(__dirname, '..');
 var app = express();
 
 app.configure(function(){
+  app.set('environment', process.env.NODE_ENV || 'development');
+  app.set('requirePath', argv.REQUIRE_BASE_URL || '/app/');
+  app.set('assetPath', '/assets/');
   app.set('port', argv.p || 3057);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
