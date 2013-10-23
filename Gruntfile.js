@@ -65,6 +65,7 @@ module.exports = function(grunt) {
       projectRoot: "./test/spec/",
       requirejs: "test/spec/requirejs-setup.js",
       forceExit: true,
+      useHelpers: true,
       jUnit: {
         report: false,
         savePath : "./build/reports/jasmine/",
