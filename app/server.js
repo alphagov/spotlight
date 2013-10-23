@@ -41,7 +41,6 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-
   app.use('/app', express.static(path.join(rootDir, 'app')));
   app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
   app.use('/test/spec', express.static(path.join(rootDir, 'test', 'spec')));
@@ -50,10 +49,10 @@ app.configure('development', function(){
   });
   app.use(express.errorHandler());
 
-  app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
   app.get('/backdrop-stub/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
+app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
 var render = requirejs('./render');
 app.use('/performance/', render);
