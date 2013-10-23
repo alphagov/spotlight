@@ -7,7 +7,7 @@ Feature: Status codes
     Then the status code should be 200
 
   Scenario: an unknown page type returns 501 Not Implemented
-    When I go to /performance/services
+    When I go to /performance/unimplemented-page-type
     Then the status code should be 501
 
   Scenario: a non-existent Stagecraft page returns a 404 Not Found
