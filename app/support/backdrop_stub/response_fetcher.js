@@ -37,9 +37,9 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       var mapping = _.find(this.stub_mappings, function(mapping) {
         var request_params = this.get_request_params(request, Object.keys(mapping.key));
         var original_request_params = _.clone(request_params);
-        var request_params_matching_key = _.extend(request_params, mapping.key)
+        var request_params_matching_key = _.extend(request_params, mapping.key);
         return JSON.stringify(original_request_params) === JSON.stringify(request_params_matching_key);
-      }, this)
+      }, this);
       if (mapping) {
         return this.get_file_contents(mapping.file);
       } else {
@@ -51,7 +51,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       return _.reduce(required_params, function(request_params, key){ 
         request_params[key] = request.param(key);
         return request_params;
-      }, {})
+      }, {});
     },
 
     get_file_contents: function (file_name) {
