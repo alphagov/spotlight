@@ -3,10 +3,9 @@ Feature: Backdrop stubs
   As a developer
   I want to do a check on the expected routes to the backdrop stubs
 
-  @wip
   Scenario Outline: navigating to service
     When I go to <Location>
-    And I should receive the appropriate "<Json File>"
+    Then I should receive the appropriate "<Json File>"
     
     Examples:
       | Location                                                                                                   | Json File                                       |
