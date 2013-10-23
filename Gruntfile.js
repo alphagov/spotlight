@@ -51,7 +51,6 @@ module.exports = function(grunt) {
         src: 'app/**/*.js',
         options: {
           specs: 'test/spec/shared/**/spec.*.js',
-          helpers: ['test/spec/helpers/jasmine-jquery.js'],
           template: 'test/spec/index.html',
           keepRunner: true
         }
