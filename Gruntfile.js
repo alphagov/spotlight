@@ -57,8 +57,6 @@ module.exports = function(grunt) {
       }
     },
     jasmine_node: {
-      //looks like we need something other than html template to require and setup everything
-      //, see jasmine-node for how grunt options correspond to real ones
       specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
       match: ".*",
       projectRoot: "./test/spec/",

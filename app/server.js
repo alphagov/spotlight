@@ -10,7 +10,6 @@ var express = require('express'),
     http = require('http'),
     path = require('path');
 
-
 global.isServer = true;
 global.isClient = false;
 
@@ -52,6 +51,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 
   app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
+  app.get('/backdrop-stub/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
 
