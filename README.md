@@ -59,6 +59,16 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 
 When the app is running in development mode, Jasmine tests for shared components are available at `/spec`. The specrunner gets automatically recreated on server start and when the specfiles change. Due to a [bug in grunt-contrib watch](https://github.com/gruntjs/grunt-contrib-watch/issues/20), new spec files are not currently detected automatically. When you add a new spec file, either restart the app or run `grunt jasmine:spotlight:build`.
 
+#### Debugging locally ####
+
+Install node-inspector on your VM: `sudo npm install -g node-inspector@0.5.0` and
+run it with `node-inspector`.
+
+Start the app with `node --debug app/server.js`.
+
+Visit `http://spotlight.perfplat.dev:8080` to view
+
+
 ### Production ###
 
 `grunt build:production` to create a production release.

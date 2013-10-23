@@ -51,7 +51,6 @@ module.exports = function(grunt) {
         src: 'app/**/*.js',
         options: {
           specs: 'test/spec/shared/**/spec.*.js',
-          helpers: ['test/spec/helpers/jasmine-jquery.js'],
           template: 'test/spec/index.html',
           keepRunner: true
         }
@@ -63,6 +62,7 @@ module.exports = function(grunt) {
       projectRoot: "./test/spec/",
       requirejs: "test/spec/requirejs-setup.js",
       forceExit: true,
+      useHelpers: true,
       jUnit: {
         report: false,
         savePath : "./build/reports/jasmine/",
