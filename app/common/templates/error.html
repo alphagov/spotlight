@@ -1,0 +1,11 @@
+<header><h1><%= title %></h1></header>
+<p><%= description %></p>
+
+<% if (model.get('development')) { %>
+<div class="debug">
+<h1>Debug information</h1>
+<pre>
+<%= JSON.stringify(model.toJSON(), null, '  ') %>
+</pre>
+</div>
+<% } %>

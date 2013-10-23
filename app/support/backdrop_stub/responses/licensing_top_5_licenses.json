@@ -1,0 +1,454 @@
+{"data": [
+  {
+    "_count": 268.0,
+    "_group_count": 9,
+    "authorityName": ["Fake authority 1"],
+    "authorityName:set": ["Fake authority 1"],
+    "licenceName": ["Temporary event notice"],
+    "licenceName:set": ["Temporary event notice"],
+    "licenceUrlSlug": "temporary-event-notice",
+    "values": [
+      {
+        "_count": 24.0,
+        "_end_at": "2013-07-22T00:00:00+00:00",
+        "_start_at": "2013-07-15T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 24.0,
+        "_end_at": "2013-07-29T00:00:00+00:00",
+        "_start_at": "2013-07-22T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 28.0,
+        "_end_at": "2013-08-05T00:00:00+00:00",
+        "_start_at": "2013-07-29T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 36.0,
+        "_end_at": "2013-08-12T00:00:00+00:00",
+        "_start_at": "2013-08-05T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 29.0,
+        "_end_at": "2013-08-19T00:00:00+00:00",
+        "_start_at": "2013-08-12T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 28.0,
+        "_end_at": "2013-08-26T00:00:00+00:00",
+        "_start_at": "2013-08-19T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 19.0,
+        "_end_at": "2013-09-02T00:00:00+00:00",
+        "_start_at": "2013-08-26T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 33.0,
+        "_end_at": "2013-09-09T00:00:00+00:00",
+        "_start_at": "2013-09-02T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      },
+      {
+        "_count": 47.0,
+        "_end_at": "2013-09-16T00:00:00+00:00",
+        "_start_at": "2013-09-09T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Temporary event notice"],
+        "licenceName:set": ["Temporary event notice"]
+      }
+    ]
+  },
+  {
+    "_count": 67.0,
+    "_group_count": 9,
+    "authorityName": ["Fake authority 1"],
+    "authorityName:set": ["Fake authority 1"],
+    "licenceName": ["Massage and special treatment premises licensing"],
+    "licenceName:set": ["Massage and special treatment premises licensing"],
+    "licenceUrlSlug": "massage-and-special-treatment-premises-licensing-8",
+    "values": [
+      {
+        "_count": 4.0,
+        "_end_at": "2013-07-22T00:00:00+00:00",
+        "_start_at": "2013-07-15T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 10.0,
+        "_end_at": "2013-07-29T00:00:00+00:00",
+        "_start_at": "2013-07-22T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 9.0,
+        "_end_at": "2013-08-05T00:00:00+00:00",
+        "_start_at": "2013-07-29T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 4.0,
+        "_end_at": "2013-08-12T00:00:00+00:00",
+        "_start_at": "2013-08-05T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 3.0,
+        "_end_at": "2013-08-19T00:00:00+00:00",
+        "_start_at": "2013-08-12T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 5.0,
+        "_end_at": "2013-08-26T00:00:00+00:00",
+        "_start_at": "2013-08-19T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 8.0,
+        "_end_at": "2013-09-02T00:00:00+00:00",
+        "_start_at": "2013-08-26T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 14.0,
+        "_end_at": "2013-09-09T00:00:00+00:00",
+        "_start_at": "2013-09-02T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      },
+      {
+        "_count": 10.0,
+        "_end_at": "2013-09-16T00:00:00+00:00",
+        "_start_at": "2013-09-09T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Massage and special treatment premises licensing"],
+        "licenceName:set": ["Massage and special treatment premises licensing"]
+      }
+    ]
+  },
+  {
+    "_count": 57.0,
+    "_group_count": 9,
+    "authorityName": ["Fake authority 1"],
+    "authorityName:set": ["Fake authority 1"],
+    "licenceName": ["Premises licence"],
+    "licenceName:set": ["Premises licence"],
+    "licenceUrlSlug": "premises-licence",
+    "values": [
+      {
+        "_count": 6.0,
+        "_end_at": "2013-07-22T00:00:00+00:00",
+        "_start_at": "2013-07-15T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 8.0,
+        "_end_at": "2013-07-29T00:00:00+00:00",
+        "_start_at": "2013-07-22T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 11.0,
+        "_end_at": "2013-08-05T00:00:00+00:00",
+        "_start_at": "2013-07-29T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 3.0,
+        "_end_at": "2013-08-12T00:00:00+00:00",
+        "_start_at": "2013-08-05T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 5.0,
+        "_end_at": "2013-08-19T00:00:00+00:00",
+        "_start_at": "2013-08-12T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 2.0,
+        "_end_at": "2013-08-26T00:00:00+00:00",
+        "_start_at": "2013-08-19T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 3.0,
+        "_end_at": "2013-09-02T00:00:00+00:00",
+        "_start_at": "2013-08-26T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 5.0,
+        "_end_at": "2013-09-09T00:00:00+00:00",
+        "_start_at": "2013-09-02T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      },
+      {
+        "_count": 14.0,
+        "_end_at": "2013-09-16T00:00:00+00:00",
+        "_start_at": "2013-09-09T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Premises licence"],
+        "licenceName:set": ["Premises licence"]
+      }
+    ]
+  },
+  {
+    "_count": 37.0,
+    "_group_count": 9,
+    "authorityName": ["Fake authority 1"],
+    "authorityName:set": ["Fake authority 1"],
+    "licenceName": ["Food premises registration"],
+    "licenceName:set": ["Food premises registration"],
+    "licenceUrlSlug": "food-premises-registration",
+    "values": [
+      {
+        "_count": 4.0,
+        "_end_at": "2013-07-22T00:00:00+00:00",
+        "_start_at": "2013-07-15T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 2.0,
+        "_end_at": "2013-07-29T00:00:00+00:00",
+        "_start_at": "2013-07-22T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 4.0,
+        "_end_at": "2013-08-05T00:00:00+00:00",
+        "_start_at": "2013-07-29T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 3.0,
+        "_end_at": "2013-08-12T00:00:00+00:00",
+        "_start_at": "2013-08-05T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 7.0,
+        "_end_at": "2013-08-19T00:00:00+00:00",
+        "_start_at": "2013-08-12T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 8.0,
+        "_end_at": "2013-08-26T00:00:00+00:00",
+        "_start_at": "2013-08-19T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 4.0,
+        "_end_at": "2013-09-02T00:00:00+00:00",
+        "_start_at": "2013-08-26T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 1.0,
+        "_end_at": "2013-09-09T00:00:00+00:00",
+        "_start_at": "2013-09-02T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      },
+      {
+        "_count": 4.0,
+        "_end_at": "2013-09-16T00:00:00+00:00",
+        "_start_at": "2013-09-09T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Food premises registration"],
+        "licenceName:set": ["Food premises registration"]
+      }
+    ]
+  },
+  {
+    "_count": 6.0,
+    "_group_count": 5,
+    "authorityName": ["Fake authority 1"],
+    "authorityName:set": ["Fake authority 1"],
+    "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+    "licenceName:set": ["Approval of premises for civil marriage and civil partnership"],
+    "licenceUrlSlug": "approval-of-premises-for-civil-marriage-and-civil-partnership",
+    "values": [
+      {
+        "_count": 0,
+        "_end_at": "2013-07-22T00:00:00+00:00",
+        "_start_at": "2013-07-15T00:00:00+00:00",
+        "authorityName:set": null,
+        "licenceName:set": null
+      },
+      {
+        "_count": 0,
+        "_end_at": "2013-07-29T00:00:00+00:00",
+        "_start_at": "2013-07-22T00:00:00+00:00",
+        "authorityName:set": null,
+        "licenceName:set": null
+      },
+      {
+        "_count": 1.0,
+        "_end_at": "2013-08-05T00:00:00+00:00",
+        "_start_at": "2013-07-29T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+        "licenceName:set": ["Approval of premises for civil marriage and civil partnership"]
+      },
+      {
+        "_count": 1.0,
+        "_end_at": "2013-08-12T00:00:00+00:00",
+        "_start_at": "2013-08-05T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+        "licenceName:set": ["Approval of premises for civil marriage and civil partnership"]
+      },
+      {
+        "_count": 0,
+        "_end_at": "2013-08-19T00:00:00+00:00",
+        "_start_at": "2013-08-12T00:00:00+00:00",
+        "authorityName:set": null,
+        "licenceName:set": null
+      },
+      {
+        "_count": 2.0,
+        "_end_at": "2013-08-26T00:00:00+00:00",
+        "_start_at": "2013-08-19T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+        "licenceName:set": ["Approval of premises for civil marriage and civil partnership"]
+      },
+      {
+        "_count": 1.0,
+        "_end_at": "2013-09-02T00:00:00+00:00",
+        "_start_at": "2013-08-26T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+        "licenceName:set": ["Approval of premises for civil marriage and civil partnership"]
+      },
+      {
+        "_count": 1.0,
+        "_end_at": "2013-09-09T00:00:00+00:00",
+        "_start_at": "2013-09-02T00:00:00+00:00",
+        "authorityName": ["Fake authority 1"],
+        "authorityName:set": ["Fake authority 1"],
+        "licenceName": ["Approval of premises for civil marriage and civil partnership"],
+        "licenceName:set": ["Approval of premises for civil marriage and civil partnership"]
+      },
+      {
+        "_count": 0,
+        "_end_at": "2013-09-16T00:00:00+00:00",
+        "_start_at": "2013-09-09T00:00:00+00:00",
+        "authorityName:set": null,
+        "licenceName:set": null
+      }
+    ]
+  }
+]}

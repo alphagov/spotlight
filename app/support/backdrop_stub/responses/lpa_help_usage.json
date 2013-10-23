@@ -1,0 +1,165 @@
+
+{
+  "data": [
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "about-this-tool",
+      "uniqueEvents": [
+        74.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "applicant",
+      "uniqueEvents": [
+        26.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "attorneys",
+      "uniqueEvents": [
+        91.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "certificate-providers",
+      "uniqueEvents": [
+        297.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "correspondence-address",
+      "uniqueEvents": [
+        15.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "donor",
+      "uniqueEvents": [
+        95.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "fees-and-discounts",
+      "uniqueEvents": [
+        17.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "fees-and-reductions",
+      "uniqueEvents": [
+        119.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "how-attorneys-make-decisions",
+      "uniqueEvents": [
+        31.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "life-sustaining-treatment",
+      "uniqueEvents": [
+        24.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "lpa-basics",
+      "uniqueEvents": [
+        359.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "paying-attorneys",
+      "uniqueEvents": [
+        22.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "people-to-be-told",
+      "uniqueEvents": [
+        160.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "previous-powers-of-attorney",
+      "uniqueEvents": [
+        12.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "registering-the-lpa",
+      "uniqueEvents": [
+        312.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "replacement-attorneys",
+      "uniqueEvents": [
+        63.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "restrictions-and-guidance",
+      "uniqueEvents": [
+        66.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "signing-the-lpa",
+      "uniqueEvents": [
+        411.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "the-2-types-of-lpa",
+      "uniqueEvents": [
+        94.0
+      ]
+    },
+    {
+      "_count": 1.0,
+      "_group_count": 1,
+      "eventLabel": "when-an-lpa-can-be-used",
+      "uniqueEvents": [
+        44.0
+      ]
+    }
+  ]
+}

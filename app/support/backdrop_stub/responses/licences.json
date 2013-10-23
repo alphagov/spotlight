@@ -1,0 +1,19 @@
+{
+  "bucket": "licensing",
+  "query": {
+    "group_by": "licenceUrlSlug",
+    "collect": ["licenceName"]
+  },
+  "data": [
+    {
+      "licenceUrlSlug": "application-to-licence-a-street-collection",
+      "licenceName": ["Application to licence a street collection"],
+      "_count": 2
+    },
+    {
+      "licenceUrlSlug": "register-as-a-scrap-metal-dealer",
+      "licenceName": ["Register as a scrap metal dealer"],
+      "_count": 1
+    }
+  ]
+}

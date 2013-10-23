@@ -12,22 +12,26 @@ var express = require('express'),
 
 
 global.isServer = true;
-global.requirePath = argv.REQUIRE_BASE_URL || '/app/';
-global.assetPath = '/assets/';
+global.isClient = false;
 
-
-var $ = global.$ = global.jQuery = require('jquery');
+var backbone = require('backbone');
+var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 $.support.cors = true;
 $.ajaxSettings.xhr = function () {
     return new XMLHttpRequest();
 };
 
+global._ = require('underscore');
+
 var rootDir = path.join(__dirname, '..');
 
 var app = express();
 
 app.configure(function(){
+  app.set('environment', process.env.NODE_ENV || 'development');
+  app.set('requirePath', argv.REQUIRE_BASE_URL || '/app/');
+  app.set('assetPath', '/assets/');
   app.set('port', argv.p || 3057);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -47,12 +51,12 @@ app.configure('development', function(){
   });
   app.use(express.errorHandler());
 
-  app.get('/stagecraft-stub/*', requirejs('../support/stagecraft_stub/stagecraft_stub_controller'));
+  app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 });
 
 
 var render = requirejs('./render');
-app.use('/performance', render);
+app.use('/performance/', render);
 
 
 app.get('/_status', requirejs('healthcheck_controller'));

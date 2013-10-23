@@ -1,35 +1,54 @@
 define([
-  'stache!common/templates/govuk_template',
-  'stache!common/templates/head'
+  'stagecraft_api_client',
+  'common/views/govuk'
 ],
-function (baseTemplate, headTemplate) {
+function (StagecraftApiClient, GovUkView) {
 
-  var environment = process.env.NODE_ENV || 'development';
+  var renderContent = function (req, res, model) {
+    var content = new GovUkView({
+      requirePath: req.app.get('requirePath'),
+      assetPath: req.app.get('assetPath'),
+      environment: req.app.get('environment'),
+      model: model
+    });
 
-  var head = headTemplate({
-    requirePath: requirePath,
-    assetPath: assetPath,
-    development: environment === 'development'
-  });
+    content.once('postrender', function () {
+      res.send(content.html);
+    });
 
-  return function render (req, res) {
-    var context = {
-      environment: environment,
-      requirePath: requirePath,
-      assetPath: assetPath,
-      showHeader: true,
-      topOfPage: "",
-      pageTitle: "",
-      head: head,
-      bodyClasses: "",
-      insideHeader: "",
-      cookieMessage: "",
-      content: "",
-      footerTop: "",
-      footerSupportLinks: "",
-      bodyEnd: ""
-    };
+    content.render();
 
-    res.send(baseTemplate(context));
+    return content;
   };
+
+  var setup = function (req, res, next) {
+    var model = setup.getStagecraftApiClient();
+
+    model.set('development', req.app.get('environment') === 'development');
+    model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
+
+    model.on('sync', function () {
+      model.off();
+      setup.renderContent(req, res, model);
+    });
+
+    model.on('error', function (model, xhr, options) {
+      model.off();
+      res.status(xhr.status);
+      setup.renderContent(req, res, model);
+    });
+
+    model.on('unknown', function (model) {
+      res.status(501);
+    });
+
+    model.setPath(req.url);
+  };
+
+  setup.getStagecraftApiClient = function () {
+    return new StagecraftApiClient(); 
+  };
+  setup.renderContent = renderContent;
+
+  return setup;
 });

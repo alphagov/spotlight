@@ -47,14 +47,29 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      limelight: {
+      spotlight: {
         src: 'app/**/*.js',
         options: {
-          specs: 'test/spec/**/spec.*.js',
-          helpers: 'test/spec/helpers/*.js',
+          specs: 'test/spec/shared/**/spec.*.js',
           template: 'test/spec/index.html',
           keepRunner: true
         }
+      }
+    },
+    jasmine_node: {
+      //looks like we need something other than html template to require and setup everything
+      //, see jasmine-node for how grunt options correspond to real ones
+      specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
+      match: ".*",
+      projectRoot: "./test/spec/",
+      requirejs: "test/spec/requirejs-setup.js",
+      forceExit: true,
+      useHelpers: true,
+      jUnit: {
+        report: false,
+        savePath : "./build/reports/jasmine/",
+        useDotNotation: true,
+        consolidate: true
       }
     },
     cucumber: {
@@ -63,7 +78,8 @@ module.exports = function(grunt) {
         },
         options: {
             prefix: 'bundle exec',
-            format: 'progress'
+            format: 'progress',
+            tags: ['~@wip']
         }
     },    
     jshint: {
@@ -108,11 +124,13 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: [
-          'styles/**/*.scss'
-        ],
+        files: ['styles/**/*.scss'],
         tasks: ['sass:development'],
         options: { nospawn: true }
+      },
+      spec: {
+        files: ['test/spec/**/spec.*.js'],
+        tasks: ['jasmine:spotlight:build']
       }
     },
     nodemon: {
@@ -120,7 +138,7 @@ module.exports = function(grunt) {
         options: {
           file: 'app/server.js',
           watchedExtensions: ['js'],
-          watchedFolders: ['app', 'support', 'test'],
+          watchedFolders: ['app', 'support'],
           delayTime: 1,
           legacyWatch: true
         }
@@ -138,6 +156,7 @@ module.exports = function(grunt) {
   
   [
     'grunt-contrib-jasmine',
+    'grunt-jasmine-node',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-sass',
@@ -156,10 +175,10 @@ module.exports = function(grunt) {
     'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
   ]);
   grunt.registerTask('build:production', [
-    'copy:govuk_template', 'jshint', 'jasmine', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
+    'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
-  grunt.registerTask('test:all', ['jasmine', 'cucumber']);
-  grunt.registerTask('default', ['build:development', 'concurrent']);
+  grunt.registerTask('test:all', ['jasmine_node', 'jasmine', 'cucumber']);
+  grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
 };
 

@@ -2,7 +2,6 @@
 set -e
 
 npm install
-git submodule init
-git submodule update
+bundle install
 
 npm test

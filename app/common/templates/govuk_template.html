@@ -1,4 +1,4 @@
-{{ topOfPage }}
+{{{ topOfPage }}}
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="lte-ie8" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
@@ -8,7 +8,7 @@
     <title>{{ pageTitle }}</title>
 
     <script type="text/javascript">
-      (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
+      (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
     </script>
 
     <!--[if gt IE 8]><!--><link href="{{ assetPath }}stylesheets/govuk-template.css" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
@@ -75,7 +75,7 @@
             </a>
           </div>
 
-          {{ insideHeader }}
+          {{{ insideHeader }}}
         </div>
       </div>
     </header>
@@ -84,20 +84,20 @@
 
     <div id="global-cookie-message">
       
-        {{ cookieMessage }}
+        {{{ cookieMessage }}}
       
     </div>
 
-    {{ content }}
+    {{{ content }}}
 
     <footer class="group js-footer" id="footer" role="contentinfo">
 
       <div class="footer-wrapper">
-        {{ footerTop }}
+        {{{ footerTop }}}
 
         <div class="footer-meta">
           <div class="footer-meta-inner">
-            {{ footerSupportLinks }}
+            {{{ footerSupportLinks }}}
 
             <div class="open-government-licence">
               <h2><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2"><img src="{{ assetPath }}images/open-government-licence_2x.png" alt="OGL"></a></h2>
@@ -118,6 +118,6 @@
 
     <script src="{{ assetPath }}javascripts/govuk-template.js" type="text/javascript"></script>
 
-    {{ bodyEnd }}
+    {{{ bodyEnd }}}
   </body>
 </html>
