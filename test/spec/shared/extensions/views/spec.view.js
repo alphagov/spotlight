@@ -12,33 +12,9 @@ function (View, Model, Backbone, _) {
     });
 
     describe("render", function () {
-      it("renders content and waits for subviews to be rendered", function () {
-        var view = new View();
-        spyOn(view, "renderContent");
-        spyOn(view, "renderSubviews");
-        var prerender = false,
-            postrender = false;
-        view.on('prerender', function () {
-          prerender = true;
-        }, this);
-        view.on('postrender', function () {
-          postrender = true;
-        }, this);
-        view.render();
-        expect(prerender).toBe(true);
-        expect(postrender).toBe(false);
-        expect(view.renderContent).toHaveBeenCalled();
-        expect(view.renderSubviews).toHaveBeenCalled();
-        var callback = view.renderSubviews.argsForCall[0][1];
-        callback();
-        expect(postrender).toBe(true);
-      });
-    });
-
-    describe("renderContent", function () {
-
       var view;
       beforeEach(function() {
+        spyOn(View.prototype, "renderSubviews");
         view = new View();
         spyOn(view, "templateContext").andReturn({
           a: 'b',
@@ -46,8 +22,14 @@ function (View, Model, Backbone, _) {
         });
       });
 
+      it("renders subviews", function () {
+        var view = new View();
+        view.render();
+        expect(view.renderSubviews).toHaveBeenCalled();
+      });
+
       it("does nothing when no template is defined", function () {
-        view.renderContent();
+        view.render();
         expect(view.$el.html()).toEqual('');
       });
 
@@ -55,7 +37,7 @@ function (View, Model, Backbone, _) {
         view.template = function (context) {
           return context.a + ": " + context.foo;
         };
-        view.renderContent();
+        view.render();
         expect(view.$el.html()).toEqual('b: bar');
       });
 
@@ -63,7 +45,7 @@ function (View, Model, Backbone, _) {
         view.template = function (context) {
           return context.a + ": " + context.foo;
         };
-        view.renderContent({
+        view.render({
           context: { foo: 'baz' }
         });
         expect(view.$el.html()).toEqual('b: baz');
@@ -123,18 +105,16 @@ function (View, Model, Backbone, _) {
             model: model
           });
 
-          parent.on('postrender', function () {
-            var a = parent.viewInstances['.a'];
-            var b = parent.viewInstances['#b'];
-            expect(a instanceof SubViewA).toBe(true);
-            expect(a.$el.html()).toEqual('foo');
-            expect(a.model).toBe(parent.model);
-            expect(b instanceof SubViewB).toBe(true);
-            expect(b.$el.html()).toEqual('bar');
-            expect(b.model).toBe(parent.model);
-          });
-
           parent.render();
+
+          var a = parent.viewInstances['.a'];
+          var b = parent.viewInstances['#b'];
+          expect(a instanceof SubViewA).toBe(true);
+          expect(a.$el.html()).toEqual('foo');
+          expect(a.model).toBe(parent.model);
+          expect(b instanceof SubViewB).toBe(true);
+          expect(b.$el.html()).toEqual('bar');
+          expect(b.model).toBe(parent.model);
         });
       
         it("renders sub views with custom options into their selectors", function() {
@@ -154,58 +134,13 @@ function (View, Model, Backbone, _) {
             model: model
           });
 
-          parent.on('postrender', function () {
-            var subView = parent.viewInstances['.a'];
-            expect(subView instanceof SubViewA).toBe(true);
-            expect(subView.$el.html()).toEqual('foo');
-            expect(subView.customOption).toEqual(true);
-            expect(subView.model).toBe(parent.model);
-          });
-
           parent.render();
-        });
-        
-        it("waits for subviews to render on data", function () {
-          SubViewA = View.extend({
-            initialize: function () {
-              View.prototype.initialize.apply(this, arguments);
-              this.model.on('sync', this.render, this);
-            },
 
-            template: function () {
-              return 'foo';
-            }
-          });
-          spyOn(SubViewA.prototype, "render").andCallThrough();
-
-          CustomView.prototype.views = {
-            '.a': {
-              view: SubViewA,
-              options: function () {
-                return {
-                  renderOnInit: false
-                };
-              }
-            },
-            '#b': SubViewB
-          };
-          
-          var parent = new CustomView({
-            model: model
-          });
-
-          var postrender = false;
-          parent.on('postrender', function () {
-            postrender = true;
-          });
-
-          parent.render();
-          expect(parent.viewInstances['.a'].render).not.toHaveBeenCalled();
-          expect(postrender).toBe(false);
-
-          model.trigger('sync');
-          expect(parent.viewInstances['.a'].render).toHaveBeenCalled();
-          expect(postrender).toBe(true);
+          var subView = parent.viewInstances['.a'];
+          expect(subView instanceof SubViewA).toBe(true);
+          expect(subView.$el.html()).toEqual('foo');
+          expect(subView.customOption).toEqual(true);
+          expect(subView.model).toBe(parent.model);
         });
       });
     });

@@ -12,11 +12,9 @@ function (StagecraftApiClient, GovUkView) {
       model: model
     });
 
-    content.once('postrender', function () {
-      res.send(content.html);
-    });
-
     content.render();
+    
+    res.send(content.html);
 
     return content;
   };

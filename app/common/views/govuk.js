@@ -19,14 +19,11 @@ function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
       var content = this.content = new (this.model.get('view'))({
         model: this.model
       });
-      content.once('postrender', function () {
-        context.content = contentTemplate({
-          content: this.content.$el.html()
-        });
-        this.html = this.template(context);
-        this.trigger('postrender');
-      }, this);
       content.render();
+      context.content = contentTemplate({
+        content: this.content.$el.html()
+      });
+      this.html = this.template(context);
     },
 
     templateContext: function () {

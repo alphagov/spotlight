@@ -90,7 +90,9 @@ function (render, Model, GovUkView) {
       beforeEach(function() {
         model = {};
         spyOn(GovUkView.prototype, "render");
-        render.renderContent(req, res, model);
+        GovUkView.prototype.render.plan = function () {
+          this.html = 'test content';
+        };
       });
 
       it("instantiates a GovUkView", function () {
@@ -104,13 +106,7 @@ function (render, Model, GovUkView) {
 
       it("sends a response once content is rendered", function () {
         var contentView = render.renderContent(req, res, model);
-        contentView.html = 'test content';
-
-        expect(res.send.callCount).toEqual(0);
-        contentView.trigger('postrender');
-        expect(res.send.callCount).toEqual(1);
-        contentView.trigger('postrender');
-        expect(res.send.callCount).toEqual(1);
+        expect(res.send).toHaveBeenCalled()
         expect(res.send.argsForCall[0][0]).toEqual('test content');
       });
     });
