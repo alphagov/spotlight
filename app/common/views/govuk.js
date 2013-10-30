@@ -1,17 +1,15 @@
 define([
-  'extensions/views/view',
+  'common/views/raw',
   'stache!common/templates/govuk_template',
-  'stache!common/templates/content',
-  'stache!common/templates/head',
-  'stache!common/templates/body-end'
+  'stache!common/templates/content'
 ],
-function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
+function (RawView, govukTemplate, contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
    * does not seem to play nicely with <script> tags.
    */
-  var GovUkView = View.extend({
+  var GovUkView = RawView.extend({
     template: govukTemplate,
 
     render: function () {
@@ -24,30 +22,6 @@ function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
         content: this.content.$el.html()
       });
       this.html = this.template(context);
-    },
-
-    templateContext: function () {
-      var baseContext = {
-        requirePath: this.requirePath,
-        assetPath: this.assetPath,
-        development: this.environment === 'development'
-      };
-
-      return _.extend(
-        View.prototype.templateContext.apply(this, arguments),
-        baseContext,
-        {
-          head: headTemplate(baseContext),
-          bodyEnd: bodyEndTemplate(baseContext),
-          topOfPage: "",
-          pageTitle: "",
-          bodyClasses: "",
-          insideHeader: "",
-          cookieMessage: "",
-          footerTop: "",
-          footerSupportLinks: ""
-        }
-      );
     }
 
   });

@@ -2,10 +2,10 @@ define([
   'extensions/models/model',
   'view_map'
 ],
-function (Model, ViewMap) {
+function (Model, ControllerMap) {
   var StagecraftApiClient = Model.extend({
 
-    views: ViewMap,
+    controllers: ControllerMap,
 
     setPath: function (path) {
       this.path = path;
@@ -28,12 +28,12 @@ function (Model, ViewMap) {
     },
 
     parse: function (data) {
-      var view = this.views[data['page-type']];
-      if (!view) {
-        data.view = this.views.error500;
+      var controller = this.controllers[data['page-type']];
+      if (!controller) {
+        data.controller = this.controllers.error500;
         this.trigger('unknown', this);
       } else {
-        data.view = view;
+        data.controller = controller;
       }
       return data;
     }

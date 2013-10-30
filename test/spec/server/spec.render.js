@@ -1,10 +1,10 @@
 define([
-  'render',
+  'process_request',
   'extensions/models/model',
   'common/views/govuk'
 ],
-function (render, Model, GovUkView) {
-  describe("render middleware", function () {
+function (process_request, Model, GovUkView) {
+  describe("processRequest middleware", function () {
 
     var req, res, environment;
     beforeEach(function() {

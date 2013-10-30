@@ -55,8 +55,7 @@ app.configure('development', function(){
 });
 
 
-var render = requirejs('./render');
-app.use('/performance/', render);
+app.use('/performance/', requirejs('process_request'));
 
 
 app.get('/_status', requirejs('healthcheck_controller'));

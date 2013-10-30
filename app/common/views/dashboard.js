@@ -1,10 +1,10 @@
 define([
-  'extensions/views/view',
+  'extensions/views/govuk',
   'common/views/header',
   'stache!common/templates/dashboard'
 ],
-function (View, HeaderView, template) {
-  var DashboardView = View.extend({
+function (GovUkView, HeaderView, template) {
+  var DashboardView = GovUkView.extend({
     template: template,
 
     views: {
