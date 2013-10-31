@@ -2,5 +2,14 @@
   "page-type": "dashboard",
   "title": "Non-Realistic Data Stub",
   "strapline": "Service represents test data, and not related to any real dashboard. Figures on this page include only applications processed in the UK on GOV.UK.",
-  "tagline": "(this is not real data)"
+  "tagline": "(this is not real data)",
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Live number of users on any page within the service",
+      "data-group": "licensing",
+      "data-type": "realtime"
+    }
+  ]
 }
