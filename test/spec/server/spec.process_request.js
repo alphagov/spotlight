@@ -60,15 +60,12 @@ function (processRequest, Model, Controller, View) {
         client.trigger('sync');
         expect(_.isEmpty(client._events)).toBe(true);
         expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
-        expect(res.status).not.toHaveBeenCalled();
       });
 
       it("renders content when stagecraft request failed and bubbles up error status", function () {
         processRequest(req, res);
-        var xhr = {
-          status: 999
-        };
-        client.trigger('error', client, xhr);
+        client.set('status', 999);
+        client.trigger('error', client);
         expect(_.isEmpty(client._events)).toBe(true);
         expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
         expect(res.status).toHaveBeenCalledWith(999);
@@ -77,10 +74,10 @@ function (processRequest, Model, Controller, View) {
       it("sets the response status code to 501 when stagecraft api client reports an unknown stagecraft response", function () {
         processRequest(req, res);
         expect(res.status).not.toHaveBeenCalled();
-        client.trigger('unknown');
+        client.set('status', 501);
         expect(processRequest.renderContent).not.toHaveBeenCalled();
-        expect(res.status).toHaveBeenCalledWith(501);
         client.trigger('sync');
+        expect(res.status).toHaveBeenCalledWith(501);
         expect(_.isEmpty(client._events)).toBe(true);
         expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
       });
@@ -94,24 +91,18 @@ function (processRequest, Model, Controller, View) {
           viewClass: View,
           render: jasmine.createSpy()
         });
-        var getController = jasmine.createSpy();
-        getController.plan = function (options) {
-          return new ConcreteController(options);
-        }
-        model = {
-          getController: getController
-        };
+        model = new Model({
+          controller: ConcreteController
+        });
       });
 
       it("instantiates the controller defined by stagecraft API client", function () {
         var controller = processRequest.renderContent(req, res, model);
-        expect(controller.requirePath).toEqual('/testRequirePath');
-        expect(controller.assetPath).toEqual('/testAssetPath');
-        expect(controller.environment).toEqual('development');
+        expect(model.get('requirePath')).toEqual('/testRequirePath');
+        expect(model.get('assetPath')).toEqual('/testAssetPath');
+        expect(model.get('environment')).toEqual('development');
         expect(controller.model).toBe(model);
         expect(controller.render).toHaveBeenCalled();
-
-
       });
 
       it("sends a response once content is rendered", function () {
@@ -124,7 +115,7 @@ function (processRequest, Model, Controller, View) {
 
       it("provides the request route to the controller", function () {
         var controller = processRequest.renderContent(req, res, model);
-        expect(controller.route).toBe(req.route);
+        expect(model.get('route')).toBe(req.route);
       });
     });
   });

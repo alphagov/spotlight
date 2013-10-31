@@ -3,19 +3,18 @@ define([
 ],
 function (StagecraftApiClient) {
 
-  var getControllerOptions = function(req, res, controllerData) {
-    return {
+  var renderContent = function (req, res, model) {
+    model.set({
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
-      model: controllerData,
       route: req.route
-    };
-  };
+    });
 
-  var renderContent = function (req, res, controllerData) {
-    var options = getControllerOptions.apply(null, arguments);
-    var controller = new controllerData.getController(options);
+    var ControllerClass = model.get('controller');
+    var controller = new ControllerClass({
+      model: model
+    });
 
     controller.once('ready', function () {
       res.send(controller.html);
@@ -27,27 +26,18 @@ function (StagecraftApiClient) {
   };
 
   var setup = function (req, res, next) {
-    var controllerData = setup.getStagecraftApiClient();
+    var model = setup.getStagecraftApiClient();
 
-    controllerData.set('development', req.app.get('environment') === 'development');
-    controllerData.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
+    model.set('development', req.app.get('environment') === 'development');
+    model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
 
-    controllerData.on('sync', function () {
-      controllerData.off();
-      setup.renderContent(req, res, controllerData);
+    model.on('sync error', function () {
+      model.off();
+      res.status(model.get('status'));
+      setup.renderContent(req, res, model);
     });
 
-    controllerData.on('error', function (model, xhr, options) {
-      controllerData.off();
-      res.status(xhr.status);
-      setup.renderContent(req, res, controllerData);
-    });
-
-    controllerData.on('unknown', function (model) {
-      res.status(501);
-    });
-
-    controllerData.setPath(req.url);
+    model.setPath(req.url);
   };
 
   setup.getStagecraftApiClient = function () {

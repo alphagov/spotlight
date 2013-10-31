@@ -7,6 +7,10 @@ function (Model, ControllerMap) {
 
     controllers: ControllerMap,
 
+    defaults: {
+      status: 200
+    },
+
     setPath: function (path) {
       this.path = path;
       this.fetch();
@@ -20,7 +24,8 @@ function (Model, ControllerMap) {
       options = _.extend({}, options, {
         validate: true,
         error: _.bind(function(model, xhr, options) {
-          this.set('view', this.views['error' + xhr.status] || this.views.error500);
+          this.set('controller', this.controllers.error);
+          this.set('status', xhr.status);
           this.set('errorText', xhr.responseText);
         }, this)
       });
@@ -28,7 +33,6 @@ function (Model, ControllerMap) {
     },
 
     parse: function (data) {
-
       var controller;
       if (data['page-type'] === 'module') {
         controller = this.controllers.modules[data['module-type']];
@@ -40,8 +44,8 @@ function (Model, ControllerMap) {
       }
 
       if (!controller) {
-        data.controller = this.controllers.error500;
-        this.trigger('unknown', this);
+        data.controller = this.controllers.error;
+        data.status = 501;
       } else {
         data.controller = controller;
       }

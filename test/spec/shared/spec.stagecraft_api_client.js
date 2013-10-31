@@ -55,18 +55,9 @@ function (StagecraftApiClient) {
         expect(data.modules[0]['metadata-for-module']).toEqual('preserved');
       });
 
-      it("maps to Error500Controller when the page type is unknown", function () {
+      it("maps to ErrorController when the page type is unknown", function () {
         var data = client.parse({'page-type': 'not-implemented'})
-        expect(data.controller).toBe(client.controllers.error500);
-      });
-
-      it("triggers 'unknown' event when the module type is unknown", function () {
-        var triggered = false;
-        client.once('unknown', function () {
-          triggered = true;
-        });
-        var data = client.parse({'page-type': 'not-implemented'})
-        expect(triggered).toBe(true);
+        expect(data.controller).toBe(client.controllers.error);
       });
 
       it("maps page-type 'module' with a module-type 'realtime' to Realtime module", function () {
@@ -77,12 +68,12 @@ function (StagecraftApiClient) {
         expect(data.controller).toBe(client.controllers.modules.realtime);
       });
 
-      it("maps to Error500Controller when the module type is unknown", function () {
+      it("maps to ErrorController when the module type is unknown", function () {
         var data = client.parse({
           'page-type': 'module',
           'module-type': 'not-implemented'
         });
-        expect(data.controller).toBe(client.controllers.error500);
+        expect(data.controller).toBe(client.controllers.error);
       });
     });
   });

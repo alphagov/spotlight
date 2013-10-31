@@ -1,17 +1,15 @@
 define([
   'extensions/controllers/dashboard',
   'common/modules/visitors-realtime',
-  // 'extensions/controllers/error404',
-  // 'extensions/controllers/error500'
+  'common/controllers/error'
 ],
-function (DashboardController, RealtimeModuleController, Error404Controller, Error500Controller) {
+function (Dashboard, RealtimeModule, Error) {
 
   var ControllerMap = {
-    // 'error404': Error404Controller,
-    // 'error500': Error500Controller,
-    'dashboard': DashboardController,
+    'error': Error,
+    'dashboard': Dashboard,
     modules: {
-      realtime: RealtimeModuleController
+      realtime: RealtimeModule
     }
   };
 
