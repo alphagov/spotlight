@@ -94,8 +94,8 @@ function (Collection, Model, Backbone, $) {
       beforeEach(function() {
         TestCollection = Collection.extend({
           baseUrl: '//testdomain/',
-          serviceName: 'service',
-          apiName: 'apiname',
+          'data-group': 'service',
+          'data-type': 'apiname',
           queryId: 'testid'
         });
         spyOn(TestCollection.prototype, "sync");
@@ -209,8 +209,8 @@ function (Collection, Model, Backbone, $) {
       beforeEach(function() {
         TestCollection = Collection.extend({
           baseUrl: '//testdomain/',
-          serviceName: 'service',
-          apiName: 'apiname'
+          'data-group': 'service',
+          'data-type': 'apiname'
         });
       });
 
@@ -562,8 +562,8 @@ function (Collection, Model, Backbone, $) {
         SubclassOfCollection = Collection.extend({
           queryParams: {foo: 'bar'},
           baseUrl: '/',
-          serviceName: 'awesomeService',
-          apiName: 'bob'
+          'data-group': 'awesomeService',
+          'data-type': 'bob'
         });
       });
 

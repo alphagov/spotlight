@@ -31,7 +31,7 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
     initialize: function (models, options) {
       this.options = options = options || {};
 
-      _.each(['filterBy', 'collections'], function (prop) {
+      _.each(['filterBy', 'collections', 'data-type', 'data-group'], function (prop) {
         if (options[prop]) {
           this[prop] = options[prop];
         }
@@ -166,7 +166,7 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
         }
       });
 
-      return this.baseUrl + 'backdrop-stub/' + this.serviceName + '/api/' + this.apiName +'?' + $.param(params, true);
+      return this.baseUrl + 'backdrop-stub/' + this['data-group'] + '/api/' + this['data-type'] +'?' + $.param(params, true);
     },
 
     /**
