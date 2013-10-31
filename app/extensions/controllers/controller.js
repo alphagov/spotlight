@@ -11,13 +11,15 @@ define([
   _.extend(Controller.prototype, Backbone.Events, {
     initialize: function (options) {},
 
+    viewOptions: function () {},
+
     renderView: function (options) {
+      options = _.extend({}, this.viewOptions(), options);
       var view = this.view = new this.viewClass(options);
 
       view.render();
 
       this.html = view.html || view.$el.html();
-
       this.trigger('ready');
     },
 

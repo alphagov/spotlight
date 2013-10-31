@@ -76,7 +76,7 @@ function (Backbone, moment, Modernizr, $, _) {
           options.$el = $el;
           
           if (typeof definition === 'function') {
-            view = definition;
+            view = definition.call(this);
           } else if (_.isObject(definition)) {
             view = definition.view;
             if (_.isFunction(definition.options)) {

@@ -1,11 +1,12 @@
 define([
-  'extensions/controllers/module_controller',
+  'extensions/controllers/module',
   'common/views/visualisations/realtime',
   'common/collections/visitors-realtime'
 ],
 function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
   var Realtime = ModuleController.extend({
-    viewClass: VisitorsRealtimeView,
+    className: 'realtime',
+    visualisationClass: VisitorsRealtimeView,
     collectionClass: VisitorsRealtimeCollection
   });
 

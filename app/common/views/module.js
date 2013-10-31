@@ -1,10 +1,17 @@
 define([
-  'extensions/views/view'
+  'extensions/views/view',
+  'stache!common/templates/module'
 ],
-function (View) {
+function (View, template) {
 
   var ModuleView = View.extend({
-    template: moduleTemplate,
+    template: template,
+
+    templateContext: function () {
+      var context = View.prototype.templateContext.apply(this, arguments);
+      context.className = this.className;
+      return context;
+    },
 
     views: {
       ".visualisation": function() {
@@ -14,7 +21,7 @@ function (View) {
 
   });
 
-  return RawView;
+  return ModuleView;
 });
 
 

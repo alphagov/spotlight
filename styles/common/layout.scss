@@ -24,10 +24,6 @@
   }
 
   section {
-    float:left;
-    width:100%;
-    clear:left;
-
     &.half-width {
       width:48.5%;
       margin-left:3%;
@@ -71,3 +67,6 @@
   }
 }
 
+
+#content section {
+}

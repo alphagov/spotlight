@@ -88,8 +88,8 @@ function (View, Model, Backbone, _) {
         
         CustomView = View.extend({
           views: {
-            '.a': SubViewA,
-            '#b': SubViewB
+            '.a': { view: SubViewA },
+            '#b': { view: SubViewB }
           },
           
           template: function () {

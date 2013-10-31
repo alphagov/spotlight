@@ -7,6 +7,11 @@ define([
   var DashboardController = Controller.extend({
 
     viewClass: DashboardView,
+    viewOptions: function () {
+      return {
+        moduleInstances: this.moduleInstances
+      };
+    },
 
     render: function () {
       var modules = this.model.get('modules') || [];

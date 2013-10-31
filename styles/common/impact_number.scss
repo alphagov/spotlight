@@ -1,0 +1,40 @@
+p.impact-number {
+  margin-bottom: 4px;
+
+  strong {
+    color: $primary-colour;
+    @include bold-80($tabular-numbers: true) ;
+    margin-bottom: -.1em;
+    display: block;
+
+  @media (max-width: 850px) {
+      @include bold-48($tabular-numbers: true);
+  }
+
+  @media (max-width: 640px) {
+      // Revert back to default impact number size for small screen sizes.
+      // GOV.UK frontend toolkit rule decreases font size automatically
+      // for small screens.
+      @include bold-80($tabular-numbers: true);
+    }
+  }
+
+  .unavailable {
+    color: $grey-1;
+  }
+
+  .no-data {
+    color: $grey-1;
+    @include core-24($tabular-numbers: true);
+    display: block;
+    margin-bottom: 0.6em;
+
+    @media (max-width: 640px) {
+      margin-bottom: 0.4em;
+    }
+  }
+}
+
+p.stat-description {
+  margin-top: 0.1em;
+}

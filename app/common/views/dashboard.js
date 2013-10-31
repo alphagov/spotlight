@@ -9,7 +9,7 @@ function (GovUkView, contentTemplate) {
     getContent: function () {
       var context = this.model.toJSON();
 
-      context.modules = _.map(this.model.get('modules'), function (module) {
+      context.modules = _.map(this.moduleInstances, function (module) {
         return module.html;
       }).join('');
 
