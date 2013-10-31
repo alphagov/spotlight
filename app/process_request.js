@@ -1,5 +1,5 @@
 define([
-  'stagecraft_api_client',
+  'stagecraft_api_client'
 ],
 function (StagecraftApiClient) {
 
@@ -9,14 +9,13 @@ function (StagecraftApiClient) {
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
       model: controllerData,
-      layout: 'foo'
+      route: req.route
     };
   };
 
   var renderContent = function (req, res, controllerData) {
-    var controller = new controllerData.getController(
-      getControllerOptions.apply(null, arguments)
-    );
+    var options = getControllerOptions.apply(null, arguments);
+    var controller = new controllerData.getController(options);
 
     controller.once('ready', function () {
       res.send(controller.html);
