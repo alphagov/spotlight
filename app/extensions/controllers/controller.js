@@ -3,29 +3,44 @@ define([
 ], function (Backbone) {
 
   var Controller = function(options) {
-    this.initialize.apply(this, arguments);
+    options = options || {};
+    _.extend(this, options);
+    this.initialize.call(this, options);
   };
 
   _.extend(Controller.prototype, Backbone.Events, {
-    initialize: function (options) {
-      this.layout_context = options.layout_context;
+    initialize: function (options) {},
+
+    renderView: function (options) {
+      var view = this.view = new this.viewClass(options);
+
+      view.render();
+
+      this.html = view.html || view.$el.html();
+
+      this.trigger('ready');
     },
 
     render: function () {
-      var collection = new this.collectionClass([], this.model);
-
-      collection.once('sync', function() {
-        var view = new viewClass({
-          collection: collection,
-          model: model
+      if (this.collectionClass) {
+        var collection = this.collection = new this.collectionClass([], {
+          'data-type': this.model.get('data-type'),
+          'data-group': this.model.get('data-group')
         });
 
-        view.render();
+        collection.once('sync', function() {
+          this.renderView({
+            collection: collection,
+            model: this.model
+          });
+        }, this);
 
-        this.trigger('ready');
-      }, this);
-
-      collection.fetch();
+        collection.fetch();
+      } else {
+        this.renderView({
+          model: this.model
+        });
+      }
     }
   });
 
