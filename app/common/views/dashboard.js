@@ -1,9 +1,8 @@
 define([
   'common/views/govuk',
-  'common/views/header',
   'stache!common/templates/dashboard'
 ],
-function (GovUkView, HeaderView, contentTemplate) {
+function (GovUkView, contentTemplate) {
   var DashboardView = GovUkView.extend({
     contentTemplate: contentTemplate,
 
