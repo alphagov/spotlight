@@ -1,14 +1,20 @@
 define([
-  'extensions/views/govuk',
+  'common/views/govuk',
   'common/views/header',
   'stache!common/templates/dashboard'
 ],
-function (GovUkView, HeaderView, template) {
+function (GovUkView, HeaderView, contentTemplate) {
   var DashboardView = GovUkView.extend({
-    template: template,
+    contentTemplate: contentTemplate,
 
-    views: {
-      header: HeaderView
+    getContent: function () {
+      var context = this.model.toJSON();
+
+      context.modules = _.map(this.model.get('modules'), function (module) {
+        return module.html;
+      }).join('');
+
+      return this.contentTemplate(context);
     }
   });
 

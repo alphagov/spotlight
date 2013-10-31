@@ -1,9 +1,9 @@
 define([
   'common/views/govuk',
-  'extensions/models/model',
-  'extensions/views/view'
+  'extensions/views/view',
+  'extensions/models/model'
 ],
-function (GovUkView, Model, View) {
+function (GovUkView, View, Model) {
   describe("GovUkView", function () {
     it("renders a page with a content view in GOV.UK style", function () {
 
@@ -14,23 +14,21 @@ function (GovUkView, Model, View) {
       });
 
       var model = new Model({
-        view: TestView
+        requirePath: '/testRequirePath/',
+        assetPath: '/testAssetPath/',
+        environment: 'development'
       });
 
       var view = new GovUkView({
-        requirePath: '/testRequirePath/',
-        assetPath: '/testAssetPath/',
-        environment: 'development',
         model: model
       });
 
       spyOn(view, "template").andReturn('rendered')
+      spyOn(view, "getContent").andReturn('test_content');
 
       view.render();
 
       expect(view.html).toEqual('rendered');
-
-      expect(view.content.model).toBe(model);
 
       var context = view.template.argsForCall[0][0];
       expect(context.head.trim()).toEqual('<link href="&#x2F;testAssetPath&#x2F;stylesheets/spotlight.css" media="screen" rel="stylesheet" type="text/css">');

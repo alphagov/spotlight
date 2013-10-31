@@ -1,3 +1,10 @@
-<header></header>
+<header>
+<h1>
+  {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
+  {{ title }}
+  {{# tagline }}<span class="tagline">{{ tagline }}</span>{{/ tagline }}
+</h1>
+{{# copy }}<p class="explanatory">{{ copy }}</p>{{/ copy }}
+</header>
 
-<div class="modules"></div>
+{{{ modules }}}
