@@ -15,10 +15,10 @@ Capybara.app_host = "http://localhost:#{APP_PORT}"
 Capybara.server_port = APP_PORT
 Capybara.run_server = false
 
-Before do 
+Before do
   $server = IO.popen("node app/server.js -p #{APP_PORT}")
   $server.gets
-end 
+end
 
 After do
   Process.kill("INT", $server.pid)
