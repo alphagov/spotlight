@@ -34,6 +34,9 @@ function (Model, ControllerMap) {
         controller = this.controllers.modules[data['module-type']];
       } else {
         controller = this.controllers[data['page-type']];
+        _.each(data.modules, function (module) {
+          module.controller = this.controllers.modules[module['module-type']];
+        }, this);
       }
 
       if (!controller) {

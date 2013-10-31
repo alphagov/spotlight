@@ -38,6 +38,23 @@ function (StagecraftApiClient) {
         expect(data.controller).toBe(client.controllers.dashboard);
       });
 
+      it("maps all modules for page-type 'dashboard'", function () {
+        var data = client.parse({
+          'page-type': 'dashboard',
+          'some-metadata': 'should be preserved',
+          modules: [
+            {
+              'module-type': 'realtime',
+              'metadata-for-module': 'preserved'
+            }
+          ]
+        });
+        expect(data.controller).toBe(client.controllers.dashboard);
+        expect(data['some-metadata']).toEqual('should be preserved');
+        expect(data.modules[0].controller).toBe(client.controllers.modules.realtime);
+        expect(data.modules[0]['metadata-for-module']).toEqual('preserved');
+      });
+
       it("maps to Error500Controller when the page type is unknown", function () {
         var data = client.parse({'page-type': 'not-implemented'})
         expect(data.controller).toBe(client.controllers.error500);
