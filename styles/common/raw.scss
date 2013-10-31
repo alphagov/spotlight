@@ -1,0 +1,22 @@
+body.raw {
+  #skiplink-container,
+  #global-cookie-message,
+  #global-header,
+  #footer {
+    display: none;
+  }
+
+  #content,
+  .performance-platform-outer {
+    margin:0;
+    border:0;
+    padding:0;
+  }
+
+  #content {
+    h1,
+    h2 {
+      display: none;
+    }
+  }
+}

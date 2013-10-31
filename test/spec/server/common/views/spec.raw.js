@@ -1,5 +1,5 @@
 define([
-  'common/views/raw',
+  'common/views/module_raw',
   'extensions/models/model',
   'stache!common/templates/raw_template',
   'stache!common/templates/govuk_template',
