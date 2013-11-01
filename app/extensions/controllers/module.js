@@ -8,15 +8,11 @@ define([
     visualisationClass: null,
 
     initialize: function(options) {
-      // if (options.raw) {
-        // this.viewClass = RawView;
-      // }
-      // // else if (options.standalone) {
-      // //   this.viewClass = StandaloneView;
-      // // }
-      // else {
+      if (options.raw || options.raw === '') {
+        this.viewClass = RawView;
+      } else {
         this.viewClass = ModuleView;
-      // }
+      }
     },
 
     viewOptions: function () {

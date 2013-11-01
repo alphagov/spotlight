@@ -23,6 +23,9 @@ function (processRequest, Model, Controller, View) {
         app: {
           get: get
         },
+        query: {
+          raw: 'true'
+        },
         route: {}
       };
       res = {
@@ -102,12 +105,13 @@ function (processRequest, Model, Controller, View) {
         expect(model.get('assetPath')).toEqual('/testAssetPath');
         expect(model.get('environment')).toEqual('development');
         expect(controller.model).toBe(model);
+        expect(controller.raw).toEqual('true');
         expect(controller.render).toHaveBeenCalled();
       });
 
       it("sends a response once content is rendered", function () {
         var controller = processRequest.renderContent(req, res, model);
-        expect(res.send).not.toHaveBeenCalled()
+        expect(res.send).not.toHaveBeenCalled();
         controller.html = 'test content';
         controller.trigger('ready');
         expect(res.send).toHaveBeenCalledWith('test content');

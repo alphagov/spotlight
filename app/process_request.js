@@ -13,7 +13,8 @@ function (StagecraftApiClient) {
 
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
-      model: model
+      model: model,
+      raw: req.query.raw
     });
 
     controller.once('ready', function () {
