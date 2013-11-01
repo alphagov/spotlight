@@ -1,6 +1,9 @@
 {
   "name": "spotlight",
   "version": "0.0.1",
+  "description": "Hybrid rendering app for the GOV.UK Performance Platform using Backbone and D3",
+  "bugs": "https://github.com/alphagov/spotlight/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/alphagov/spotlight.git"

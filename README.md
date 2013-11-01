@@ -1,6 +1,13 @@
 # Spotlight #
 
-Hybrid rendering app for the GOV.UK Performance Platform
+Hybrid rendering app for the GOV.UK Performance Platform using [Backbone][]
+and [D3][]. JavaScript is shared between the client and server, and the app
+makes use of [progressive enhancement][] to provide a great experience in
+every browser.
+
+[Backbone]: http://backbonejs.org/
+[D3]: http://d3js.org/
+[progressive enhancement]: https://www.gov.uk/service-manual/making-software/progressive-enhancement.html
 
 ## Installation ##
 
@@ -17,7 +24,7 @@ sudo npm install -g grunt-cli@0.1.9
 npm install
 ```
 
-## Building and running app ##
+## Building and running the app ##
 
 ### Development ###
 
@@ -34,39 +41,46 @@ grunt
 This will create a development build of the assets and then run the app at
 `http://localhost:3057`.
 
-The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and
-[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) to monitor
-changes and automatically restart the server and recompile SASS.
+The app uses [grunt-nodemon][] and [grunt-contrib-watch][] to monitor changes,
+automatically restart the server and recompile Sass.
+
+[grunt-nodemon]: https://github.com/ChrisWren/grunt-nodemon
+[grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
 
 ### Running tests ###
-
 
 #### Command line ####
 
 Tests are divided into ones that work on both client and server (`test/spec/shared`) and ones that are server-only (`test/spec/server`).
 
-`grunt jasmine_node` executes shared and server Jasmine tests in Node.js.
-`grunt jasmine` executes shared Jasmine tests in PhantomJS.
-`grunt cucumber` executes Cucumber features through PhantomJS.
+`grunt test:all` runs all three of these tests in sequence:
 
-`grunt test:all` runs all of the above in sequence.
+- `grunt jasmine_node` executes shared and server Jasmine tests in Node.js.
+- `grunt jasmine` executes shared Jasmine tests in PhantomJS.
+- `grunt cucumber` executes Cucumber features through PhantomJS.
 
-
-`bundle exec cucumber --profile sauce` executes Cucumber features through SauceLabs (no Grunt task yet).
-
+`bundle exec cucumber --profile sauce` executes Cucumber features through
+SauceLabs (no Grunt task yet).
 
 #### Browser ####
 
-When the app is running in development mode, Jasmine tests for shared components are available at `/spec`. The specrunner gets automatically recreated on server start and when the specfiles change. Due to a [bug in grunt-contrib watch](https://github.com/gruntjs/grunt-contrib-watch/issues/20), new spec files are not currently detected automatically. When you add a new spec file, either restart the app or run `grunt jasmine:spotlight:build`.
+When the app is running in development mode, Jasmine tests for shared
+components are available at `/spec`. The specrunner gets automatically
+recreated on server start and when the specfiles change. Due to a
+[bug in grunt-contrib-watch][watch-20], new spec files are not currently
+detected automatically. When you add a new spec file, either restart the
+app or run `grunt jasmine:spotlight:build`.
+
+[watch-20]: https://github.com/gruntjs/grunt-contrib-watch/issues/20
 
 #### Debugging locally ####
 
-Install node-inspector on your VM: `sudo npm install -g node-inspector@0.5.0` and
-run it with `node-inspector`.
+Install node-inspector on your VM with `sudo npm install -g node-inspector@0.5.0`
+and run it with `node-inspector`.
 
 Start the app with `node --debug app/server.js`.
 
-Visit `http://spotlight.perfplat.dev:8080` to view
+Visit `http://spotlight.perfplat.dev:8080` to view the console.
 
 
 ### Production ###
