@@ -16,7 +16,7 @@ define([
     render: function () {
       var modules = this.model.get('modules') || [];
       var remaining = modules.length;
-      
+
       var onReady = _.bind(function() {
         if (--remaining > 0) {
           return;
@@ -33,7 +33,8 @@ define([
           var model = new Model(definition);
           model.set('parent', this.model);
           var module = new definition.controller({
-            model: model
+            model: model,
+            dashboard: true
           });
           instances.push(module);
           module.once('ready', onReady);

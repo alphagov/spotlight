@@ -1,8 +1,9 @@
 define([
   'extensions/controllers/controller',
   'common/views/module',
-  'common/views/module_raw'
-], function (Controller, ModuleView, RawView) {
+  'common/views/module_raw',
+  'common/views/standalone'
+], function (Controller, ModuleView, RawView, StandaloneView) {
 
   var ModuleController = Controller.extend({
     visualisationClass: null,
@@ -10,8 +11,10 @@ define([
     initialize: function(options) {
       if (options.raw || options.raw === '') {
         this.viewClass = RawView;
-      } else {
+      } else if (options.dashboard) {
         this.viewClass = ModuleView;
+      } else {
+        this.viewClass = StandaloneView;
       }
     },
 
