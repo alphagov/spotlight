@@ -1,7 +1,7 @@
 require(['app/config.js'], function (requireConfig) {
   requireConfig.baseUrl = 'app/';
   require.config(requireConfig);
-  
+
   require(window.specs, function () {
     var jasmineEnv = jasmine.getEnv();
 
@@ -15,5 +15,4 @@ require(['app/config.js'], function (requireConfig) {
 
     jasmineEnv.execute();
   });
-})
-
+});
