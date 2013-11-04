@@ -2,7 +2,7 @@ define([
   'extensions/controllers/module',
   'common/views/module',
   'common/views/module_raw',
-  'common/views/standalone'
+  'common/views/module_standalone'
 ],
 function (ModuleController, ModuleView, RawView, StandaloneView) {
   describe("ModuleController", function () {

@@ -4,13 +4,14 @@ define([
 ],
 function (GovUkView, Module) {
 
-  var ModuleRawView = GovUkView.extend({
+  var ModuleStandaloneView = GovUkView.extend({
 
     getContent: function () {
       var module = new Module({
         model: this.model,
         collection: this.collection,
-        visualisationClass: this.visualisationClass
+        visualisationClass: this.visualisationClass,
+        className: this.className
       });
       module.render();
       return module.$el.html();
@@ -24,5 +25,5 @@ function (GovUkView, Module) {
     contentViewClass: null
   });
 
-  return ModuleRawView;
+  return ModuleStandaloneView;
 });

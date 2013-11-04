@@ -1,5 +1,5 @@
 define([
-  'common/views/standalone',
+  'common/views/module_standalone',
   'common/views/module'
 ],
 function (StandaloneView, Module) {

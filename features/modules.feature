@@ -4,7 +4,7 @@ Feature: Modules
   So that I can see just the information I need
 
   Scenario: Raw module 
-    When I go to /performance/no-realistic-dashboad/realtime?raw
+    When I go to /performance/no-realistic-dashboard/realtime?raw
     Then I should see the "realtime" module for "no-realistic-dashboard" data
     And I should not see other information for the "no-realistic-dashboard" "realtime" module
 

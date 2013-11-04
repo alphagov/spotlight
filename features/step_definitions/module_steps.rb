@@ -15,11 +15,11 @@ Then(/^I should see the "(.*?)" module for "(.*?)" data$/) do |display_module, s
 end
 
 Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
-  page.find(".#{display_module} .visualisation").should_not have_content(values[display_module][service][:title])
-  page.find(".#{display_module} .visualisation").should_not have_content(values[display_module][service][:description])
+  page.find(".#{display_module}").should_not have_content(values[display_module][service][:title])
+  page.find(".#{display_module}").should_not have_content(values[display_module][service][:description])
 end
 
 Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
-  page.find(".#{display_module} .visualisation").should have_content(values[display_module][service][:title])
-  page.find(".#{display_module} .visualisation").should have_content(values[display_module][service][:description])
+  page.find(".#{display_module}").should have_content(values[display_module][service][:title])
+  page.find(".#{display_module}").should have_content(values[display_module][service][:description])
 end 
