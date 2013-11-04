@@ -21,17 +21,20 @@ $.ajaxSettings.xhr = function () {
     return new XMLHttpRequest();
 };
 
-global._ = require('underscore');
 
-var rootDir = path.join(__dirname, '..');
+var rootDir = path.join(__dirname, '..'),
+    environment = process.env.NODE_ENV || 'development';
+
+global._ = require('underscore');
+global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
 
 var app = express();
 
-app.configure(function(){
-  app.set('environment', process.env.NODE_ENV || 'development');
+app.configure(function () {
+  app.set('environment', environment);
   app.set('requirePath', argv.REQUIRE_BASE_URL || '/app/');
-  app.set('assetPath', '/assets/');
-  app.set('port', argv.p || 3057);
+  app.set('assetPath', global.config.assetPath);
+  app.set('port', argv.p || global.config.port);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -40,8 +43,7 @@ app.configure(function(){
   app.use('/assets/images', express.static(path.join(rootDir, 'public')));
 });
 
-app.configure('development', function(){
-
+app.configure('development', function () {
   app.use('/app', express.static(path.join(rootDir, 'app')));
   app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
   app.use('/test/spec', express.static(path.join(rootDir, 'test', 'spec')));
@@ -50,13 +52,12 @@ app.configure('development', function(){
   });
   app.use(express.errorHandler());
 
-  app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
   app.get('/backdrop-stub/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
+app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
 app.use('/performance/', requirejs('process_request'));
-
 
 app.get('/_status', requirejs('healthcheck_controller'));
 
@@ -67,6 +68,6 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 exports = module.exports = server;
 
-exports.use = function() {
+exports.use = function () {
 	app.use.apply(app, arguments);
 };
