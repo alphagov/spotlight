@@ -20,9 +20,8 @@ function (GovUkView, Module) {
     templateContext: function () {
       var context = GovUkView.prototype.templateContext.apply(this, arguments);
       return context;
-    },
+    }
 
-    contentViewClass: null
   });
 
   return ModuleStandaloneView;
