@@ -27,6 +27,7 @@ var rootDir = path.join(__dirname, '..'),
 
 global._ = require('underscore');
 global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
+global.config.backdropUrl = argv.backdropUrl || "http://localhost:3057/";
 
 var app = express();
 

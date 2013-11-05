@@ -10,9 +10,11 @@ define([
 function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
 
   // get base URL for Backdrop instance (with trailing slash if missing)
-  var baseUrl = "http://localhost:3057/";
-  if (baseUrl) {
-    baseUrl = baseUrl.replace(/\/?$/, '/');
+  if (typeof global === 'object' && global.config) {
+    var baseUrl = config.backdropUrl;
+    if (baseUrl) {
+      baseUrl = baseUrl.replace(/\/?$/, '/');
+    }
   }
 
   var Collection = Backbone.Collection.extend({
