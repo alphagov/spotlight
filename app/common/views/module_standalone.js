@@ -15,11 +15,6 @@ function (GovUkView, Module) {
       });
       module.render();
       return module.$el.html();
-    },
-
-    templateContext: function () {
-      var context = GovUkView.prototype.templateContext.apply(this, arguments);
-      return context;
     }
 
   });
