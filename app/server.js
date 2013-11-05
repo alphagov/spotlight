@@ -13,6 +13,7 @@ var express = require('express'),
 
 global.isServer = true;
 global.isClient = false;
+global.winston = winston;
 
 var backbone = require('backbone');
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
@@ -27,6 +28,14 @@ var rootDir = path.join(__dirname, '..'),
 
 global._ = require('underscore');
 global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
+if (argv.backdropUrl) {
+  global.config.backdropUrl = argv.backdropUrl;
+}
+if (argv.p) {
+  global.config.port = argv.p;
+}
+
+
 
 var app = express();
 
@@ -35,7 +44,7 @@ app.configure(function () {
   app.set('requirePath', argv.REQUIRE_BASE_URL || '/app/');
   app.set('assetPath', global.config.assetPath);
   app.set('backdropUrl', global.config.backdropUrl);
-  app.set('port', argv.p || global.config.port);
+  app.set('port', global.config.port);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
