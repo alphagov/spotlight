@@ -30,7 +30,7 @@ define([
           'data-group': this.model.get('data-group')
         });
 
-        collection.once('sync', function() {
+        collection.once('sync error', function() {
           this.renderView({
             collection: collection,
             model: this.model

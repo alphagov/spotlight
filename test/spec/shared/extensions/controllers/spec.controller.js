@@ -36,6 +36,24 @@ function (Controller, View, Model, Collection) {
         expect(controller.renderView).toHaveBeenCalled();
       });
 
+      it("waits for collection data and renders view on error", function () {
+        var controller = new Controller({
+          model: model,
+          viewClass: View,
+          collectionClass: Collection
+        });
+        controller.render();
+        
+        expect(controller.renderView).not.toHaveBeenCalled();
+        expect(controller.collection instanceof Collection).toBe(true);
+        expect(controller.collection.options['data-type']).toEqual('foo-type');
+        expect(controller.collection.options['data-group']).toEqual('bar-group');
+        expect(controller.collection.fetch).toHaveBeenCalled();
+
+        controller.collection.trigger('error');
+        expect(controller.renderView).toHaveBeenCalled();
+      });
+
       it("immediately renders the view when there is no collection", function () {
         var controller = new Controller({
           model: model,
