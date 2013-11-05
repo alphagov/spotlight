@@ -19,10 +19,20 @@ define([
     },
 
     viewOptions: function () {
-      return {
+      var options = {
         visualisationClass: this.visualisationClass,
         className: this.className
       };
+
+      if (isClient) {
+        // reuse existing module slot
+        var el = $('.' + this.className);
+        if (el.length) {
+          options.el = el;
+        }
+      }
+
+      return options;
     }
   });
 

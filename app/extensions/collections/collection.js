@@ -10,7 +10,12 @@ define([
 function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
 
   // get base URL for Backdrop instance (with trailing slash if missing)
-  var baseUrl = "http://localhost:3057/";
+  var baseUrl;
+  if (typeof isServer === 'boolean' && isServer) {
+    baseUrl = config.backdropUrl;
+  } else if (typeof isClient === 'boolean' && isClient) {
+    baseUrl = GOVUK.config.backdropUrl;
+  }
   if (baseUrl) {
     baseUrl = baseUrl.replace(/\/?$/, '/');
   }

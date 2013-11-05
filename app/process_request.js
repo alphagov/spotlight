@@ -8,7 +8,7 @@ function (StagecraftApiClient) {
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
-      route: req.route
+      backdropUrl: req.app.get('backdropUrl')
     });
 
     var ControllerClass = model.get('controller');
@@ -21,7 +21,7 @@ function (StagecraftApiClient) {
       res.send(controller.html);
     });
 
-    controller.render();
+    controller.render({ init: true });
 
     return controller;
   };
@@ -29,7 +29,6 @@ function (StagecraftApiClient) {
   var setup = function (req, res, next) {
     var model = setup.getStagecraftApiClient();
 
-    model.set('development', req.app.get('environment') === 'development');
     model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
 
     model.on('sync error', function () {

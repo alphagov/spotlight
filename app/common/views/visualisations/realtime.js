@@ -1,23 +1,26 @@
 define([
-  'extensions/views/view'
+  'extensions/views/view',
+  'tpl!common/templates/visualisations/realtime.html'
 ],
-function (View) {
+function (View, template) {
   var VisitorsRealtimeView = View.extend({
+
+    template: template,
+
     initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
-      this.collection.on('sync', this.updateValue, this);
-      this.collectionUpdateInterval = (options && options.collectionUpdateInterval) || 120 * 1000;
+      if (isClient) {
+        this.listenTo(this.collection, 'sync', this.updateValue);
+        this.updateValue();
+      }
       this.numberOfVisitorsRealtime = 0;
     },
-    updateInterval: 5000,
+
+    updateInterval: 250,
+
     updateValue: function () {
       if (!this.collection.length) {
         return;
-      }
-
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
       }
 
       var newNumberOfVisitors = parseFloat(this.collection.at(0).get("unique_visitors"));
@@ -29,31 +32,29 @@ function (View) {
         }
       }
 
-      var numberOfSteps = this.collectionUpdateInterval / this.updateInterval;
+      var numberOfSteps = this.collection.updateInterval / this.updateInterval;
 
       var diff = (newNumberOfVisitors - this.currentNumberOfVisitors) / numberOfSteps;
 
-      var that = this;
-      var interpolate = function () {
-        that.render.call(that);
-        that.currentNumberOfVisitors += diff;
+      var interpolate = _.bind(function () {
+        this.render();
+        this.currentNumberOfVisitors += diff;
 
         if (numberOfSteps-- > 0) {
-          that.timer = setTimeout(interpolate, that.updateInterval);
+          this.timer = setTimeout(interpolate, this.updateInterval);
         }
-      };
+      }, this);
       interpolate();
     },
-    render: function () {
-      console.log('re-render');
-      if (!this.collection.length) {
-        return;
-      }
-      var numberOfVisitors =
-        Math.round(this.currentNumberOfVisitors || parseFloat(this.collection.at(0).get("unique_visitors")));
 
-      this.html = '<p class="impact-number"><strong>' + numberOfVisitors + '</strong></p> <p class="stat-description">user' + ( numberOfVisitors == 1 ? "" : "s") + " online now</p>";
-      this.$el.html(this.html);
+    templateContext: function () {
+      var numberOfVisitors = Math.round(
+        this.currentNumberOfVisitors || parseFloat(this.collection.at(0).get("unique_visitors"))
+      );
+      return _.extend(
+        View.prototype.templateContext.apply(this, arguments),
+        { numberOfVisitors: numberOfVisitors }
+      );
     }
   });
   return VisitorsRealtimeView;

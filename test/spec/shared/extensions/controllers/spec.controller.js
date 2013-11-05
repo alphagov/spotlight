@@ -88,7 +88,7 @@ function (Controller, View, Model, Collection) {
 
       it("instantiates the view class and renders the content", function () {
         controller.renderView();
-        expect(controller.html).toEqual('content');
+        expect(controller.html).toEqual('<div>content</div>');
       });
 
       it("triggers a 'ready' event", function () {

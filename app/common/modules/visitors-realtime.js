@@ -7,7 +7,8 @@ function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
   var VisitorsRealtimeController = ModuleController.extend({
     className: 'realtime',
     visualisationClass: VisitorsRealtimeView,
-    collectionClass: VisitorsRealtimeCollection
+    collectionClass: VisitorsRealtimeCollection,
+    clientRenderOnInit: true
   });
 
   return VisitorsRealtimeController;

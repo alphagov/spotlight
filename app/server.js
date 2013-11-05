@@ -34,6 +34,7 @@ app.configure(function () {
   app.set('environment', environment);
   app.set('requirePath', argv.REQUIRE_BASE_URL || '/app/');
   app.set('assetPath', global.config.assetPath);
+  app.set('backdropUrl', global.config.backdropUrl);
   app.set('port', argv.p || global.config.port);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());

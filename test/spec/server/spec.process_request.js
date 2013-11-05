@@ -16,7 +16,8 @@ function (processRequest, Model, Controller, View) {
           port: 1234,
           environment: environment,
           requirePath: '/testRequirePath',
-          assetPath: '/testAssetPath'
+          assetPath: '/testAssetPath',
+          backdropUrl: '//testBackdrop/'
         }[id];
       };
       req = {
@@ -47,15 +48,6 @@ function (processRequest, Model, Controller, View) {
         processRequest(req, res);
         expect(processRequest.getStagecraftApiClient).toHaveBeenCalled();
         expect(client.urlRoot).toEqual('http://localhost:1234/stagecraft-stub');
-      });
-
-      it("sets the current environment as an attribute", function () {
-        processRequest(req, res);
-        expect(client.get('development')).toBe(true);
-
-        environment = 'production';
-        processRequest(req, res);
-        expect(client.get('development')).toBe(false);
       });
 
       it("renders content when stagecraft data was received successfully", function () {
@@ -103,6 +95,7 @@ function (processRequest, Model, Controller, View) {
         var controller = processRequest.renderContent(req, res, model);
         expect(model.get('requirePath')).toEqual('/testRequirePath');
         expect(model.get('assetPath')).toEqual('/testAssetPath');
+        expect(model.get('backdropUrl')).toEqual('//testBackdrop/');
         expect(model.get('environment')).toEqual('development');
         expect(controller.model).toBe(model);
         expect(controller.raw).toEqual('true');
@@ -115,11 +108,6 @@ function (processRequest, Model, Controller, View) {
         controller.html = 'test content';
         controller.trigger('ready');
         expect(res.send).toHaveBeenCalledWith('test content');
-      });
-
-      it("provides the request route to the controller", function () {
-        var controller = processRequest.renderContent(req, res, model);
-        expect(model.get('route')).toBe(req.route);
       });
     });
   });

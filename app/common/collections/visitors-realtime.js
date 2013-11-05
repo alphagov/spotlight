@@ -11,10 +11,18 @@ function (Collection) {
       limit: 2
     },
 
+    updateInterval: 120 * 1000,
+
     initialize: function (models, options) {
       Collection.prototype.initialize.apply(this, arguments);
 
       this.serviceName = options.serviceName;
+
+      if (isClient) {
+        this.timer = setInterval(
+          _.bind(this.fetch, this), this.updateInterval
+        );
+      }
     },
 
     parse: function (response) {
