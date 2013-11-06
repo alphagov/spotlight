@@ -1,0 +1,5 @@
+{
+  "assetPath": "/assets/",
+  "port": 7070,
+  "backdropUrl": "http://localhost:7070/backdrop-stub/{{ data-group }}/{{ data-type }}"
+}

@@ -16,7 +16,7 @@ Capybara.server_port = APP_PORT
 Capybara.run_server = false
 
 Before do
-  $server = IO.popen("node app/server.js --backdropUrl http://localhost:#{APP_PORT}/ -p #{APP_PORT}")
+  $server = IO.popen("node app/server.js --env cucumber -p #{APP_PORT}")
   $server.gets
 end
 

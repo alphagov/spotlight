@@ -24,7 +24,7 @@ $.ajaxSettings.xhr = function () {
 };
 
 var rootDir = path.join(__dirname, '..'),
-    environment = process.env.NODE_ENV || 'development';
+    environment = process.env.NODE_ENV || argv.env || 'development';
 
 global._ = require('underscore');
 global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
@@ -34,8 +34,6 @@ if (argv.backdropUrl) {
 if (argv.p) {
   global.config.port = argv.p;
 }
-
-
 
 var app = express();
 
@@ -62,7 +60,11 @@ app.configure('development', function () {
   });
   app.use(express.errorHandler());
 
-  app.get('/backdrop-stub/:service/api/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
+  app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
+});
+
+app.configure('cucumber', function () {
+  app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
 });
 
 app.configure('production', function () {

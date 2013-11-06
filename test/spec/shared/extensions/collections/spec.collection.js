@@ -94,7 +94,7 @@ function (Collection, Model, Backbone, $) {
       var TestCollection;
       beforeEach(function() {
         TestCollection = Collection.extend({
-          baseUrl: '//testdomain/',
+          backdropUrl: '//testdomain/{{ data-group }}/{{ data-type }}',
           'data-group': 'service',
           'data-type': 'apiname',
           queryId: 'testid'
@@ -209,7 +209,7 @@ function (Collection, Model, Backbone, $) {
       var TestCollection;
       beforeEach(function() {
         TestCollection = Collection.extend({
-          baseUrl: '//testdomain/',
+          backdropUrl: '//testdomain/{{ data-group }}/foo/{{ data-type }}',
           'data-group': 'service',
           'data-type': 'apiname'
         });
@@ -217,7 +217,7 @@ function (Collection, Model, Backbone, $) {
 
       it("constructs a backdrop query URL without params", function() {
         var collection = new TestCollection();
-        expect(collection.url()).toEqual('//testdomain/backdrop-stub/service/api/apiname?');
+        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?');
       });
 
       it("constructs a backdrop query URL with static params", function() {
@@ -228,7 +228,7 @@ function (Collection, Model, Backbone, $) {
 
         var collection = new TestCollection();
 
-        expect(collection.url()).toEqual('//testdomain/backdrop-stub/service/api/apiname?a=1&b=foo+bar');
+        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&b=foo+bar');
       });
 
       it("constructs a backdrop query URL with multiple values for a single parameter", function() {
@@ -238,7 +238,7 @@ function (Collection, Model, Backbone, $) {
 
         var collection = new TestCollection();
 
-        expect(collection.url()).toEqual('//testdomain/backdrop-stub/service/api/apiname?a=1&a=foo');
+        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&a=foo');
       });
 
       it("constructs a backdrop query URL with dynamic params", function() {
@@ -252,7 +252,7 @@ function (Collection, Model, Backbone, $) {
 
         var collection = new TestCollection();
 
-        expect(collection.url()).toEqual('//testdomain/backdrop-stub/service/api/apiname?a=1&b=foo+bar');
+        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&b=foo+bar');
       });
 
       it("constructs a backdrop query URL with moment date params", function() {
@@ -266,7 +266,7 @@ function (Collection, Model, Backbone, $) {
         };
 
         var collection = new TestCollection();
-        expect(collection.url()).toEqual('//testdomain/backdrop-stub/service/api/apiname?a=1&somedate=2013-03-08T14%3A53%3A26%2B00%3A00');
+        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&somedate=2013-03-08T14%3A53%3A26%2B00%3A00');
       });
 
       it("constructs a backdrop query URL with a single filter parameter", function () {
@@ -283,7 +283,7 @@ function (Collection, Model, Backbone, $) {
 
         var url = collection.url()
 
-        expect(url).toMatch('//testdomain/backdrop-stub/service/api/apiname?');
+        expect(url).toMatch('//testdomain/service/foo/apiname?');
         expect(url).toMatch('filter_by=foo%3Abar');
         expect(url).toMatch('a=1');
       });
@@ -300,7 +300,7 @@ function (Collection, Model, Backbone, $) {
         var collection = new TestCollection();
 
         var url = collection.url()
-        expect(url).toMatch('//testdomain/backdrop-stub/service/api/apiname?');
+        expect(url).toMatch('//testdomain/service/foo/apiname?');
         expect(url).toMatch('filter_by=foo%3Abar');
         expect(url).toMatch('filter_by=b%3Ac');
         expect(url).toMatch('a=1');
@@ -562,7 +562,7 @@ function (Collection, Model, Backbone, $) {
       beforeEach(function () {
         SubclassOfCollection = Collection.extend({
           queryParams: {foo: 'bar'},
-          baseUrl: '/',
+          backdropUrl: '/backdrop-stub/{{ data-group }}/{{ data-type }}',
           'data-group': 'awesomeService',
           'data-type': 'bob'
         });
@@ -571,7 +571,7 @@ function (Collection, Model, Backbone, $) {
       it("gets initialized with the query parameters", function () {
         var subclassOfCollection = new SubclassOfCollection();
 
-        expect(subclassOfCollection.url()).toBe("/backdrop-stub/awesomeService/api/bob?foo=bar");
+        expect(subclassOfCollection.url()).toBe("/backdrop-stub/awesomeService/bob?foo=bar");
       });
 
       it("retrieves new data when the query parameters are updated", function () {
