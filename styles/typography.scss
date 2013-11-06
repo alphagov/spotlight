@@ -14,3 +14,17 @@ a[rel="external"] {
     @include external-link-14;
   }
 }
+
+#content {
+  margin-top:1em;
+  margin-bottom:1.5em;
+
+  h1 {
+    @include bold-24;
+  }
+
+  h2 {
+    margin-top:0;
+    @include core-16;
+  }
+}

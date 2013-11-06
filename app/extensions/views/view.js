@@ -29,15 +29,6 @@ function (Backbone, moment, Modernizr, $, _) {
       },
 
       render: function (options) {
-        this.trigger('prerender');
-        Backbone.View.prototype.render.apply(this, arguments);
-        this.renderContent(options);
-        this.renderSubviews(options, _.bind(function () {
-          this.trigger('postrender');
-        }, this));
-      },
-      
-      renderContent: function (options) {
         options = options || {};
         if (this.template) {
           var context = _.extend(
@@ -45,8 +36,9 @@ function (Backbone, moment, Modernizr, $, _) {
           );
           this.$el.html(this.template(context));
         }
+        this.renderSubviews(options);
       },
-
+      
       templateContext: function () {
         var context = {};
         if (this.model) {
@@ -63,14 +55,7 @@ function (Backbone, moment, Modernizr, $, _) {
         };
       },
 
-      renderSubviews: function (options, callback) {
-        
-        var remaining = 0;
-        var subviewReady = function () {
-          if (--remaining <= 0) {
-            callback();
-          }
-        };
+      renderSubviews: function (options) {
         
         var viewsDefinition = this.views;
         if (_.isFunction(viewsDefinition)) {
@@ -91,7 +76,7 @@ function (Backbone, moment, Modernizr, $, _) {
           options.$el = $el;
           
           if (typeof definition === 'function') {
-            view = definition;
+            view = definition.call(this);
           } else if (_.isObject(definition)) {
             view = definition.view;
             if (_.isFunction(definition.options)) {
@@ -105,22 +90,10 @@ function (Backbone, moment, Modernizr, $, _) {
           }
 
           var instance = instances[selector] = new view(options);
-
-          if (options.renderOnInit) {
-            instance.render({
-              context: this.templateContext()
-            });
-          } else {
-            instance.on('postrender', function() {
-              subviewReady(instance);
-            }, this);
-            remaining++;
-          }
+          instance.render({
+            context: this.templateContext()
+          });
         }, this);
-        
-        if (!remaining) {
-          callback();
-        }
       },
       
       views: {},

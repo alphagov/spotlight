@@ -27,6 +27,7 @@ var rootDir = path.join(__dirname, '..'),
 
 global._ = require('underscore');
 global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
+global.config.backdropUrl = argv.backdropUrl || "http://localhost:3057/";
 
 var app = express();
 
@@ -62,8 +63,7 @@ app.configure('production', function () {
 
 app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
-var render = requirejs('./render');
-app.use('/performance/', render);
+app.use('/performance/', requirejs('process_request'));
 
 app.get('/_status', requirejs('healthcheck_controller'));
 

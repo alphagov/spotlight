@@ -1,11 +1,11 @@
 define([
   'extensions/views/view',
-  'stache!common/templates/govuk_template',
-  'stache!common/templates/content',
   'stache!common/templates/head',
-  'stache!common/templates/body-end'
+  'stache!common/templates/body-end',
+  'stache!common/templates/govuk_template',
+  'stache!common/templates/content'
 ],
-function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
+function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -14,26 +14,20 @@ function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
   var GovUkView = View.extend({
     template: govukTemplate,
 
+    getContent: function () {
+      return '';
+    },
+
     render: function () {
       var context = this.templateContext();
-      var content = this.content = new (this.model.get('view'))({
-        model: this.model
-      });
-      content.once('postrender', function () {
-        context.content = contentTemplate({
-          content: this.content.$el.html()
-        });
-        this.html = this.template(context);
-        this.trigger('postrender');
-      }, this);
-      content.render();
+      this.html = this.template(context);
     },
 
     templateContext: function () {
       var baseContext = {
-        requirePath: this.requirePath,
-        assetPath: this.assetPath,
-        development: this.environment === 'development'
+        requirePath: this.model.get('requirePath'),
+        assetPath: this.model.get('assetPath'),
+        development: this.model.get('environment') === 'development'
       };
 
       return _.extend(
@@ -48,10 +42,13 @@ function (View, govukTemplate, contentTemplate, headTemplate, bodyEndTemplate) {
           insideHeader: "",
           cookieMessage: "",
           footerTop: "",
-          footerSupportLinks: ""
+          footerSupportLinks: "",
+          content: contentTemplate({
+            content: this.getContent()
+          })
         }
       );
-    }
+    }    
 
   });
 

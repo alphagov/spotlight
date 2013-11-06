@@ -38,8 +38,8 @@ var define,
 
 
 requirejsOrig.config({
- baseUrl: path.join(process.env.PWD, 'app'),
- nodeRequire: require
+  baseUrl: path.join(process.env.PWD, 'app'),
+  nodeRequire: require
 });
 
 requirejsOrig.config(requirejs('config'));

@@ -8,3 +8,5 @@ Feature: Dashboard
     Then I see the title "Non-Realistic Data Stub" 
      And I see the strapline "Service represents test data, and not related to any real dashboard. Figures on this page include only applications processed in the UK on GOV.UK." 
      And I see the tagline "(this is not real data)"
+    Then I should see the "realtime" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "realtime" module

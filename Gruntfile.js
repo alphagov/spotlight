@@ -48,8 +48,9 @@ module.exports = function(grunt) {
     },
     jasmine: {
       spotlight: {
-        src: 'app/**/*.js',
+        src: ['app/**/*.js'],
         options: {
+          helpers: ['test/spec/helpers/*.js'],
           specs: 'test/spec/shared/**/spec.*.js',
           template: 'test/spec/index.html',
           keepRunner: true
@@ -79,7 +80,7 @@ module.exports = function(grunt) {
             format: 'progress',
             tags: ['~@wip']
         }
-    },    
+    },
     jshint: {
       files: "app/**/*.js",
       options: {
@@ -118,6 +119,16 @@ module.exports = function(grunt) {
             dest: 'public/'
           }
         ]
+      },
+      vendor: {
+        files: [
+          {
+            src: 'node_modules/backbone/backbone.js',
+            dest: 'app/vendor/',
+            flatten: true,
+            expand: true
+          }
+        ]
       }
     },
     watch: {
@@ -151,7 +162,7 @@ module.exports = function(grunt) {
       }
     }
   });
-  
+
   [
     'grunt-contrib-jasmine',
     'grunt-jasmine-node',
@@ -167,15 +178,15 @@ module.exports = function(grunt) {
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
-  
+
   // Default task.
   grunt.registerTask('build:development', [
-    'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
   ]);
   grunt.registerTask('build:production', [
-    'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
   ]);
-  grunt.registerTask('test:all', ['jasmine_node', 'jasmine', 'cucumber']);
+  grunt.registerTask('test:all', ['copy:vendor', 'jasmine_node', 'jasmine', 'cucumber']);
   grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
 };

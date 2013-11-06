@@ -1,0 +1,8 @@
+{
+  "page-type": "module",
+  "module-type": "realtime",
+  "title": "Real-time usage",
+  "description": "Live number of users on any page within the service",
+  "data-group": "licensing",
+  "data-type": "realtime"
+}
