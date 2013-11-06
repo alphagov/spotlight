@@ -8,7 +8,7 @@ function (Collection) {
 
     queryParams: {
       sort_by: "_timestamp:descending",
-      limit: 2
+      limit: 1
     },
 
     updateInterval: 120 * 1000,
@@ -23,6 +23,8 @@ function (Collection) {
           _.bind(this.fetch, this), this.updateInterval
         );
       }
+
+      this.count = 0;
     },
 
     parse: function (response) {

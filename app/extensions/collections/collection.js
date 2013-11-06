@@ -11,9 +11,9 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
 
   // get base URL for Backdrop instance (with trailing slash if missing)
   var baseUrl;
-  if (typeof isServer === 'boolean' && isServer) {
+  if (isServer) {
     baseUrl = config.backdropUrl;
-  } else if (typeof isClient === 'boolean' && isClient) {
+  } else if (isClient) {
     baseUrl = GOVUK.config.backdropUrl;
   }
   if (baseUrl) {

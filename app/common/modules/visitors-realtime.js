@@ -1,6 +1,6 @@
 define([
   'extensions/controllers/module',
-  'common/views/visualisations/realtime',
+  'common/views/visualisations/visitors-realtime',
   'common/collections/visitors-realtime'
 ],
 function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
