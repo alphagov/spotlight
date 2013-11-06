@@ -51,12 +51,12 @@ automatically restart the server and recompile Sass.
 
 #### Command line ####
 
-Tests are divided into ones that work on both client and server (`test/spec/shared`) and ones that are server-only (`test/spec/server`).
+Tests are divided into ones that work on both client and server (`test/spec/shared`) and ones that are server-only (`test/spec/server`) and client-only (`test/spec/client`).
 
 `grunt test:all` runs all three of these tests in sequence:
 
 - `grunt jasmine_node` executes shared and server Jasmine tests in Node.js.
-- `grunt jasmine` executes shared Jasmine tests in PhantomJS.
+- `grunt jasmine` executes shared and client Jasmine tests in PhantomJS.
 - `grunt cucumber` executes Cucumber features through PhantomJS.
 
 `bundle exec cucumber --profile sauce` executes Cucumber features through

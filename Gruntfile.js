@@ -51,7 +51,10 @@ module.exports = function(grunt) {
         src: ['app/**/*.js'],
         options: {
           helpers: ['test/spec/helpers/*.js'],
-          specs: 'test/spec/shared/**/spec.*.js',
+          specs: [
+            'test/spec/shared/**/spec.*.js',
+            'test/spec/client/**/spec.*.js'
+          ],
           template: 'test/spec/index.html',
           keepRunner: true
         }
