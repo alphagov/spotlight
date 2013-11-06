@@ -19,6 +19,7 @@ function (Collection) {
       this.serviceName = options.serviceName;
 
       if (isClient) {
+        clearInterval(this.timer);
         this.timer = setInterval(
           _.bind(this.fetch, this), this.updateInterval
         );

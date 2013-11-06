@@ -9,7 +9,9 @@ define([
     visualisationClass: null,
 
     initialize: function(options) {
-      if (options.raw != null) {
+      if (isClient) {
+        this.viewClass = ModuleView;
+      } else if (options.raw != null) {
         this.viewClass = RawView;
       } else if (options.dashboard) {
         this.viewClass = ModuleView;
