@@ -23,8 +23,6 @@ function (Collection) {
           _.bind(this.fetch, this), this.updateInterval
         );
       }
-
-      this.count = 0;
     },
 
     parse: function (response) {
