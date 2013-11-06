@@ -63,6 +63,50 @@ function (Controller, View, Model, Collection) {
         expect(controller.collection).not.toBeDefined();
         expect(controller.renderView).toHaveBeenCalled();
       });
+
+      it("render view on init on the server", function () {
+        jasmine.serverOnly(function () {
+          var controller = new Controller({
+            model: model,
+            viewClass: View,
+            collectionClass: Collection
+          });
+          controller.render({ init: true });
+          expect(controller.renderView).not.toHaveBeenCalled();
+          controller.collection.trigger('sync');
+          expect(controller.renderView).toHaveBeenCalled();
+        });
+      });
+
+      it("does not render view on init on the client by default", function () {
+        jasmine.clientOnly(function () {
+          var controller = new Controller({
+            model: model,
+            viewClass: View,
+            collectionClass: Collection
+          });
+          controller.render({ init: true });
+          expect(controller.renderView).not.toHaveBeenCalled();
+          controller.collection.trigger('sync');
+          expect(controller.renderView).not.toHaveBeenCalled();
+        });
+      });
+
+      it("renders view on init on the client when configured", function () {
+        jasmine.clientOnly(function () {
+          var controller = new Controller({
+            model: model,
+            viewClass: View,
+            collectionClass: Collection,
+            clientRenderOnInit: true
+          });
+          controller.render({ init: true });
+          expect(controller.renderView).not.toHaveBeenCalled();
+          controller.collection.trigger('sync');
+          expect(controller.renderView).toHaveBeenCalled();
+        });
+      });
+
     });
     
     describe("renderView", function () {
