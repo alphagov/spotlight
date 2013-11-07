@@ -99,7 +99,8 @@ module.exports = function(grunt) {
           name: "client",
           include: ["vendor/almond"],
           deps: [
-            'client'
+            'client',
+            'client_bootstrap'
           ],
           wrap: false
         })
