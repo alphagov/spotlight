@@ -49,14 +49,14 @@ function (VisitorsRealtimeView, Collection) {
           jasmine.renderView(view, function () {
             collection.set([{ "unique_visitors": 34 }]);
             collection.trigger('sync');
-            expect(view.$el.find('strong')).toHaveHtml('10');
-            jasmine.Clock.tick(view.updateInterval);
-            // first tick
             expect(view.$el.find('strong')).toHaveHtml('11');
             jasmine.Clock.tick(view.updateInterval);
-            // second tick
+            // first tick
             expect(view.$el.find('strong')).toHaveHtml('12');
-            jasmine.Clock.tick(view.updateInterval * 22);
+            jasmine.Clock.tick(view.updateInterval);
+            // second tick
+            expect(view.$el.find('strong')).toHaveHtml('13');
+            jasmine.Clock.tick(view.updateInterval * 21);
             // reached the new value
             expect(view.$el.find('strong')).toHaveHtml('34');
             jasmine.Clock.tick(view.updateInterval * 10);

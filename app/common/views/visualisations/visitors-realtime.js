@@ -39,9 +39,7 @@ function (View, template) {
       var diff = (newNumberOfVisitors - this.currentVisitors) / numberOfSteps;
 
       var interpolate = _.bind(function () {
-        this.render();
-
-        if (numberOfSteps-- > 0) {
+        if (--numberOfSteps > 0) {
           this.currentVisitors += diff;
           this.timer = setTimeout(interpolate, this.updateInterval);
         } else {
@@ -49,6 +47,8 @@ function (View, template) {
           // errors over time
           this.currentVisitors = newNumberOfVisitors; 
         }
+
+        this.render();
       }, this);
       interpolate();
     },
