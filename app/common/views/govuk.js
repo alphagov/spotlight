@@ -2,10 +2,11 @@ define([
   'extensions/views/view',
   'stache!common/templates/head',
   'tpl!common/templates/body-end.html',
+  'stache!common/templates/navigation',
   'stache!common/templates/govuk_template',
   'stache!common/templates/content'
 ],
-function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
+function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate, contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -41,7 +42,7 @@ function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
           topOfPage: "",
           pageTitle: "",
           bodyClasses: "",
-          insideHeader: "",
+          insideHeader: navigationTemplate,
           cookieMessage: "",
           footerTop: "",
           footerSupportLinks: "",

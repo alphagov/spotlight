@@ -1,0 +1,145 @@
+span.alpha-tag {
+  text-transform: uppercase;
+  font-weight:normal;
+  letter-spacing: 1px;
+  color: white;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background-color: $pink;
+  padding: 2px 5px 0;
+  font-size:67%;
+  display:inline-block;
+  vertical-align:top;
+  margin-top:2px;
+
+  a:hover & {
+      text-decoration: none;
+  }
+}
+
+
+
+
+#global-header {
+  .header-wrapper {
+    .header-global {
+      .header-logo {
+        margin:0;
+      }
+    }
+    .header-proposition {
+      margin-left:33.33%;
+      @include media($max-width: 768px){
+        clear:left;
+        margin-left:0;
+      }
+      .content {
+        margin: 0 15px;
+      }
+    }
+  }
+
+  .header-proposition {
+    padding-top: 0;
+    @include media($max-width: 768px){
+      padding-top: 10px;
+    }
+    #proposition-name {
+      @include core-24;
+      font-weight: bold;
+      color: $white;
+      text-decoration: none;
+    }
+    a.menu {
+      @include core-16;
+      color: $white;
+      float: right;
+      text-decoration: none;
+      padding-top: 6px;
+      display: none;
+      @include media($max-width: 768px){
+        display: block;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+      &:after {
+        display: inline-block;
+        font-size: 8px;
+        height: 8px;
+        padding-left: 5px;
+        vertical-align: middle;
+        content: " \25BC";
+      }
+      &.js-hidden:after {
+        content: " \25B2";
+      }
+    }
+    #proposition-menu {
+      margin-top: 5px;
+    }
+    #proposition-links {
+      clear: both;
+      margin: 2px 0 0 0;
+      padding: 0;
+
+      .js-enabled & {
+        display: block;
+        @include media($max-width: 768px){
+          display: none;
+        }
+        &.js-visible {
+          display: block;
+        }
+      }
+
+      li {
+
+        float: left;
+        padding: 0 15px 0 0;
+        border-bottom: 0;
+
+        &.clear-child {
+          clear: left;
+        }
+
+        @include media($max-width: 768px){
+          float: none;
+          padding: 3px 0;
+          border-bottom: 1px solid $grey-1;
+        }
+
+        a {
+          color: $white;
+          text-decoration: none;
+          @include bold-16;
+          line-height: 23px;
+
+          @include media($max-width: 768px){
+            @include bold-14;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+          &.active {
+            color: $turquoise;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#global-header .header-proposition #proposition-links li {
+    a {
+        &.active {
+            color: $white;
+            border-bottom:1px solid $primary-colour;
+        }
+        &:hover {
+            border-bottom:1px solid $primary-colour;
+            text-decoration:none;
+        }
+    }
+}
