@@ -13,9 +13,15 @@ define([
       };
     },
 
-    render: function () {
+    render: function (options) {
+      options = options || {};
       var modules = this.model.get('modules') || [];
       var remaining = modules.length;
+
+      if (!remaining) {
+        Controller.prototype.render.apply(this, arguments);
+        return;
+      }
 
       var onReady = _.bind(function() {
         if (--remaining > 0) {
@@ -24,23 +30,18 @@ define([
         Controller.prototype.render.apply(this, arguments);
       }, this);
 
-      if (!remaining) {
-        Controller.prototype.render.apply(this, arguments);
-      } else {
-
-        var instances = this.moduleInstances = [];
-        _.each(modules, function(definition) {
-          var model = new Model(definition);
-          model.set('parent', this.model);
-          var module = new definition.controller({
-            model: model,
-            dashboard: true
-          });
-          instances.push(module);
-          module.once('ready', onReady);
-          module.render();
-        }, this);
-      }
+      var instances = this.moduleInstances = [];
+      _.each(modules, function(definition) {
+        var model = new Model(definition);
+        model.set('parent', this.model);
+        var module = new definition.controller({
+          model: model,
+          dashboard: true
+        });
+        instances.push(module);
+        module.once('ready', onReady);
+        module.render({ init: options.init });
+      }, this);
     }
   });
 

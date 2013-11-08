@@ -15,29 +15,42 @@ define([
 
     renderView: function (options) {
       options = _.extend({}, this.viewOptions(), options);
-      var view = this.view = new this.viewClass(options);
+      
+      if (!this.view) {
+        this.view = new this.viewClass(options);
+      }
 
+      var view = this.view;
       view.render();
 
-      this.html = view.html || view.$el.html();
+      this.html = view.html || view.$el[0].outerHTML;
       this.trigger('ready');
     },
 
-    render: function () {
-      if (this.collectionClass) {
-        var collection = this.collection = new this.collectionClass([], {
+    render: function (options) {
+      options = options || {};
+
+      if (this.collectionClass && !this.collection) {
+        this.collection = new this.collectionClass([], {
           'data-type': this.model.get('data-type'),
           'data-group': this.model.get('data-group')
         });
+      }
 
-        collection.once('sync error', function() {
+      if (isClient && options.init && !this.clientRenderOnInit) {
+        // Do not render on init when rendering in client
+        return;
+      }
+
+      if (this.collection) {
+        this.collection.once('sync error', function() {
           this.renderView({
-            collection: collection,
+            collection: this.collection,
             model: this.model
           });
         }, this);
 
-        collection.fetch();
+        this.collection.fetch();
       } else {
         this.renderView({
           model: this.model

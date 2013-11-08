@@ -17,19 +17,9 @@ function (Backbone, moment, Modernizr, $, _) {
         Backbone.View.prototype.initialize.apply(this, arguments);
       },
 
-      make: function(tagName, attributes, content) {
-        if (isServer) {
-          var el = $('<' + tagName + '>')[0];
-          if (attributes) Backbone.$(el).attr(attributes);
-          if (content != null) Backbone.$(el).html(content);
-          return el;
-        } else {
-          return Backbone.View.prototype.make.apply(this, arguments);
-        }
-      },
-
       render: function (options) {
         options = options || {};
+        this.removeSubviews(options);
         if (this.template) {
           var context = _.extend(
             this.templateContext(), options.context
@@ -53,6 +43,11 @@ function (Backbone, moment, Modernizr, $, _) {
           model: this.model,
           collection: this.collection
         };
+      },
+
+      removeSubviews: function (options) {
+        _.invoke(this.viewInstances, 'remove');
+        this.viewInstances = {};
       },
 
       renderSubviews: function (options) {

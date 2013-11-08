@@ -9,7 +9,9 @@ define([
     visualisationClass: null,
 
     initialize: function(options) {
-      if (options.raw || options.raw === '') {
+      if (isClient) {
+        this.viewClass = ModuleView;
+      } else if (options.raw != null) {
         this.viewClass = RawView;
       } else if (options.dashboard) {
         this.viewClass = ModuleView;
@@ -19,10 +21,20 @@ define([
     },
 
     viewOptions: function () {
-      return {
+      var options = {
         visualisationClass: this.visualisationClass,
         className: this.className
       };
+
+      if (isClient) {
+        // reuse existing module slot
+        var el = $('.' + this.className);
+        if (el.length) {
+          options.el = el;
+        }
+      }
+
+      return options;
     }
   });
 

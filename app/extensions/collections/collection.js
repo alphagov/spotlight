@@ -5,17 +5,16 @@ define([
   'extensions/mixins/safesync',
   'common/date-range',
   'moment',
-  'jquery'
+  'jquery',
+  'Mustache'
 ],
-function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
-
+function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
   // get base URL for Backdrop instance (with trailing slash if missing)
-  var baseUrl;
-  if (typeof global === 'object' && global.config) {
-    baseUrl = config.backdropUrl;
-    if (baseUrl) {
-      baseUrl = baseUrl.replace(/\/?$/, '/');
-    }
+  var backdropUrl;
+  if (isServer) {
+    backdropUrl = config.backdropUrl;
+  } else if (isClient) {
+    backdropUrl = GOVUK.config.backdropUrl;
   }
 
   var Collection = Backbone.Collection.extend({
@@ -27,7 +26,7 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
     /**
      * Defines location of Backdrop service
      */
-    baseUrl: baseUrl,
+    backdropUrl: backdropUrl,
 
     defaultDateFormat: Model.prototype.defaultDateFormat,
 
@@ -168,8 +167,13 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $) {
           params[key] = value.format(this.defaultDateFormat);
         }
       });
+      
+      var base = Mustache.render(this.backdropUrl, {
+        'data-group': this['data-group'],
+        'data-type': this['data-type']
+      });
 
-      return this.baseUrl + 'backdrop-stub/' + this['data-group'] + '/api/' + this['data-type'] +'?' + $.param(params, true);
+      return base +'?' + $.param(params, true);
     },
 
     /**

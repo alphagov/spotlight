@@ -15,6 +15,7 @@ function (View, Model, Backbone, _) {
       var view;
       beforeEach(function() {
         spyOn(View.prototype, "renderSubviews");
+        spyOn(View.prototype, "removeSubviews").andCallThrough();
         view = new View();
         spyOn(view, "templateContext").andReturn({
           a: 'b',
@@ -26,6 +27,12 @@ function (View, Model, Backbone, _) {
         var view = new View();
         view.render();
         expect(view.renderSubviews).toHaveBeenCalled();
+      });
+
+      it("removes subviews before rendering", function () {
+        var view = new View();
+        view.render();
+        expect(view.removeSubviews).toHaveBeenCalled();
       });
 
       it("does nothing when no template is defined", function () {
@@ -66,8 +73,8 @@ function (View, Model, Backbone, _) {
         });
       });
     });
-    
-    describe("renderSubviews", function() {
+
+    describe("renderSubviews / removeSubviews", function() {
       
       var model, SubViewA, SubViewB, CustomView;
       beforeEach(function() {
@@ -78,12 +85,14 @@ function (View, Model, Backbone, _) {
         SubViewA = View.extend({
           template: function () {
             return 'foo';
-          }
+          },
+          remove: jasmine.createSpy()
         });
         SubViewB = View.extend({
           template: function () {
             return 'bar';
-          }
+          },
+          remove: jasmine.createSpy()
         });
         
         CustomView = View.extend({
@@ -141,6 +150,26 @@ function (View, Model, Backbone, _) {
           expect(subView.$el.html()).toEqual('foo');
           expect(subView.customOption).toEqual(true);
           expect(subView.model).toBe(parent.model);
+        });
+
+        it("removes existing subviews", function () {
+          var parent = new CustomView({
+            model: model
+          });
+
+          parent.render();
+
+          var a = parent.viewInstances['.a'];
+          var b = parent.viewInstances['#b'];
+
+          expect(a.remove).not.toHaveBeenCalled();
+          expect(b.remove).not.toHaveBeenCalled();
+
+          parent.render();
+          expect(a.remove).toHaveBeenCalled();
+          expect(b.remove).toHaveBeenCalled();
+          expect(parent.viewInstances['.a']).not.toBe(a);
+          expect(parent.viewInstances['#b']).not.toBe(b);
         });
       });
     });

@@ -51,7 +51,10 @@ module.exports = function(grunt) {
         src: ['app/**/*.js'],
         options: {
           helpers: ['test/spec/helpers/*.js'],
-          specs: 'test/spec/shared/**/spec.*.js',
+          specs: [
+            'test/spec/shared/**/spec.*.js',
+            'test/spec/client/**/spec.*.js'
+          ],
           template: 'test/spec/index.html',
           keepRunner: true
         }
@@ -96,7 +99,8 @@ module.exports = function(grunt) {
           name: "client",
           include: ["vendor/almond"],
           deps: [
-            'client'
+            'client',
+            'client_bootstrap'
           ],
           wrap: false
         })

@@ -14,9 +14,8 @@ function (GovUkView, Module) {
         className: this.className
       });
       module.render();
-      return module.$el.html();
+      return module.$el[0].outerHTML;
     }
-
   });
 
   return ModuleStandaloneView;

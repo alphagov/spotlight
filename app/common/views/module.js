@@ -6,12 +6,7 @@ function (View, template) {
 
   var ModuleView = View.extend({
     template: template,
-
-    templateContext: function () {
-      var context = View.prototype.templateContext.apply(this, arguments);
-      context.className = this.className;
-      return context;
-    },
+    tagName: 'section',
 
     views: {
       ".visualisation": function() {

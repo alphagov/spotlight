@@ -8,13 +8,22 @@ function (Collection) {
 
     queryParams: {
       sort_by: "_timestamp:descending",
-      limit: 2
+      limit: 1
     },
+
+    updateInterval: 120 * 1000,
 
     initialize: function (models, options) {
       Collection.prototype.initialize.apply(this, arguments);
 
       this.serviceName = options.serviceName;
+
+      if (isClient) {
+        clearInterval(this.timer);
+        this.timer = setInterval(
+          _.bind(this.fetch, this), this.updateInterval
+        );
+      }
     },
 
     parse: function (response) {

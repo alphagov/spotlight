@@ -9,6 +9,6 @@ Feature: Backdrop stubs
     
     Examples:
       | Location                                                                                                   | Json File                                       |
-      | /backdrop-stub/licensing/api/realtime                                                                        | licensing_realtime.json                         |
-      | /backdrop-stub/licensing/api/monitoring                                                                      | licensing_availability_response.json            |
-      | /backdrop-stub/licensing/api/application?filter_by=licenceUrlSlug:application-to-licence-a-street-collection | application-to-licence-a-street-collection.json |
+      | /backdrop-stub/licensing/realtime                                                                        | licensing_realtime.json                         |
+      | /backdrop-stub/licensing/monitoring                                                                      | licensing_availability_response.json            |
+      | /backdrop-stub/licensing/application?filter_by=licenceUrlSlug:application-to-licence-a-street-collection | application-to-licence-a-street-collection.json |

@@ -3,7 +3,7 @@ require(['config'], function (requireConfig) {
   window.isClient = true;
   window.isServer = false;
 
-  // app entry point goes here
-  console.log('ready');
+  require(['client_bootstrap'], function (bootstrap) {
+    bootstrap(GOVUK.config);
+  });
 });
-

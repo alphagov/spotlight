@@ -1,7 +1,7 @@
 define([
   'extensions/views/view',
   'stache!common/templates/head',
-  'stache!common/templates/body-end',
+  'tpl!common/templates/body-end.html',
   'stache!common/templates/govuk_template',
   'stache!common/templates/content'
 ],
@@ -13,6 +13,7 @@ function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
    */
   var GovUkView = View.extend({
     template: govukTemplate,
+    bodyEndTemplate: bodyEndTemplate,
 
     getContent: function () {
       return '';
@@ -25,6 +26,7 @@ function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
 
     templateContext: function () {
       var baseContext = {
+        model: this.model,
         requirePath: this.model.get('requirePath'),
         assetPath: this.model.get('assetPath'),
         development: this.model.get('environment') === 'development'
@@ -35,7 +37,7 @@ function (View, headTemplate, bodyEndTemplate, govukTemplate, contentTemplate) {
         baseContext,
         {
           head: headTemplate(baseContext),
-          bodyEnd: bodyEndTemplate(baseContext),
+          bodyEnd: this.bodyEndTemplate(baseContext),
           topOfPage: "",
           pageTitle: "",
           bodyClasses: "",
