@@ -1,14 +1,14 @@
 {
   "page-type": "dashboard",
-  "title": "Non-Realistic Data Stub",
-  "strapline": "Service represents test data, and not related to any real dashboard. Figures on this page include only applications processed in the UK on GOV.UK.",
-  "tagline": "(this is not real data)",
+  "title": "Deposit foreign marriage or civil partnership certificates",
+  "strapline": "Service performance",
+  "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",
   "modules": [
     {
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",
-      "data-group": "licensing",
+      "data-group": "deposit-foreign-marriage",
       "data-type": "realtime"
     },
     {

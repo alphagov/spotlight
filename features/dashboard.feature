@@ -10,3 +10,5 @@ Feature: Dashboard
      And I see the tagline "(this is not real data)"
     Then I should see the "realtime" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "realtime" module
+    Then I should see the "journey" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "journey" module

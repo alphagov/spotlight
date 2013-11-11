@@ -40,7 +40,12 @@ function (Controller, View, Model, Collection) {
         var controller = new Controller({
           model: model,
           viewClass: View,
-          collectionClass: Collection
+          collectionClass: Collection,
+          collectionOptions: function () {
+            return {
+              foo: 'bar'
+            };
+          }
         });
         controller.render();
         
@@ -48,6 +53,7 @@ function (Controller, View, Model, Collection) {
         expect(controller.collection instanceof Collection).toBe(true);
         expect(controller.collection.options['data-type']).toEqual('foo-type');
         expect(controller.collection.options['data-group']).toEqual('bar-group');
+        expect(controller.collection.options.foo).toEqual('bar');
         expect(controller.collection.fetch).toHaveBeenCalled();
 
         controller.collection.trigger('error');
@@ -126,13 +132,19 @@ function (Controller, View, Model, Collection) {
 
         controller = new Controller({
           model: model,
-          viewClass: TestView
+          viewClass: TestView,
+          viewOptions: function () {
+            return {
+              foo: 'bar'
+            };
+          }
         });
       });
 
       it("instantiates the view class and renders the content", function () {
         controller.renderView();
         expect(controller.html).toEqual('<div>content</div>');
+        expect(controller.view.foo).toEqual('bar');
       });
 
       it("triggers a 'ready' event", function () {
