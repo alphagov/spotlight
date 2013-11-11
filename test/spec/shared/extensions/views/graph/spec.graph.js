@@ -265,6 +265,7 @@ function (Graph, Collection, d3) {
       });
 
       it("resizes the graph", function () {
+        spyOn(graph, "applyConfig");
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.render();

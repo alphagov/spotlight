@@ -343,11 +343,11 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           var d3 = this.d3;
           var valueAttr = this.valueAttr;
 
-          var sumAtIndex = function (i) {
+          var sumAtIndex = _.bind(function (i) {
             return this.collection.reduce(function (memo, group) {
               return memo + group.get('values').at(i).get(valueAttr);
             }, 0);
-          };
+          }, this);
 
           var sums = [];
           for (var i = 0; i < this.collection.at(0).get('values').length; i++) {

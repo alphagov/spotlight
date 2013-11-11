@@ -1,7 +1,7 @@
 define([
   'extensions/controllers/module',
   'common/collections/journey',
-  'common/views/conversion-graph/conversion-graph'
+  'common/views/visualisations/conversion-graph/conversion-graph'
 ],
 function (ModuleController, JourneyCollection, ConversionGraph) {
   var JourneyController = ModuleController.extend({
