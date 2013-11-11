@@ -1,13 +1,12 @@
 define([
   'extensions/controllers/module',
   'common/collections/journey',
-  'extensions/views/conversion-graph/conversion-graph',
-  'extensions/views/conversion-success-rate'
+  'common/views/conversion-graph/conversion-graph'
 ],
-function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
+function (ModuleController, JourneyCollection, ConversionGraph) {
   var JourneyController = ModuleController.extend({
     className: 'journey',
-    visualisationClass: VisitorsRealtimeView,
+    visualisationClass: ConversionGraph,
     collectionClass: JourneyCollection,
     clientRenderOnInit: true,
 
@@ -15,8 +14,7 @@ function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
       return {
         steps: this.model.get('steps')
       };
-    },
-
+    }
   });
 
   return JourneyController;

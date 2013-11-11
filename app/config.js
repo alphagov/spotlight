@@ -17,7 +17,7 @@ define(function (options) {
     config.paths.jquery = 'vendor/jquery';
     config.paths.underscore = 'vendor/lodash';
     config.paths.backbone = 'vendor/backbone';
-    config.paths.d3 = 'vendor/d3.v3';
+    config.paths.d3 = 'vendor/d3';
     config.paths.modernizr = 'vendor/modernizr';
 
     config.shim = {

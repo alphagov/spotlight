@@ -131,6 +131,12 @@ module.exports = function(grunt) {
             dest: 'app/vendor/',
             flatten: true,
             expand: true
+          },
+          {
+            src: 'node_modules/d3/d3.js',
+            dest: 'app/vendor/',
+            flatten: true,
+            expand: true
           }
         ]
       }
