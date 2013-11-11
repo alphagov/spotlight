@@ -11,18 +11,9 @@ function (VisitorsRealtimeCollection, Collection) {
       spyOn(Collection.prototype, "fetch");
     });
 
-    it("assigns servicename from options", function () {
-      var collection = new VisitorsRealtimeCollection([], {
-        serviceName: 'foo'
-      });
-      expect(collection.serviceName).toEqual('foo');
-    });
-
     it("auto-updates on the client", function () {
       jasmine.clientOnly(function () {
-        var collection = new VisitorsRealtimeCollection([], {
-          serviceName: 'foo'
-        });
+        var collection = new VisitorsRealtimeCollection();
         expect(collection.fetch).not.toHaveBeenCalled();
         jasmine.Clock.tick(120 * 1000 - 1);
         expect(collection.fetch).not.toHaveBeenCalled();
@@ -33,9 +24,7 @@ function (VisitorsRealtimeCollection, Collection) {
 
     it("does not auto-update on the server", function () {
       jasmine.serverOnly(function () {
-        var collection = new VisitorsRealtimeCollection([], {
-          serviceName: 'foo'
-        });
+        var collection = new VisitorsRealtimeCollection();
         expect(collection.fetch).not.toHaveBeenCalled();
         jasmine.Clock.tick(120 * 1000);
         expect(collection.fetch).not.toHaveBeenCalled();
@@ -43,9 +32,7 @@ function (VisitorsRealtimeCollection, Collection) {
     });
 
     it("sets cache headers correctly", function () {
-      var collection = new VisitorsRealtimeCollection([], {
-        serviceName: 'foo'
-      });
+      var collection = new VisitorsRealtimeCollection();
       collection.fetch.andCallThrough();
       collection.fetch();
       expect(Collection.prototype.fetch).toHaveBeenCalled();
