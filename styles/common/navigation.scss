@@ -119,27 +119,15 @@ span.alpha-tag {
           }
 
           &:hover {
-            text-decoration: underline;
+            border-bottom:1px solid $primary-colour;
+            text-decoration:none;
           }
           &.active {
-            color: $turquoise;
+            color: $white;
+            border-bottom:1px solid $primary-colour;
           }
         }
       }
     }
   }
-}
-
-
-#global-header .header-proposition #proposition-links li {
-    a {
-        &.active {
-            color: $white;
-            border-bottom:1px solid $primary-colour;
-        }
-        &:hover {
-            border-bottom:1px solid $primary-colour;
-            text-decoration:none;
-        }
-    }
 }
