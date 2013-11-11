@@ -24,7 +24,7 @@ function (require, Collection, Group) {
       }, this);
     },
     
-    parse: function () {
+    parse: function (data) {
       return _.map(this.collectionInstances, function (collection) {
         return {
           id: collection.id,

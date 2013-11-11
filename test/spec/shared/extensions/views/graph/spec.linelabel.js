@@ -9,8 +9,12 @@ function (LineLabel, Collection) {
 
       var el, wrapper, lineLabel, collection;
       beforeEach(function() {
-        collection = new Collection();
-        collection.reset([
+        var TestCollection = Collection.extend({
+          parse: function (response) {
+            return response;
+          }
+        })
+        collection = new TestCollection([
           { y: 30, yLabel: 30, title: 'Title 1', id: 'id1', href: '/link1', values: [
             { _count: 10 }, { _count: 20 }, { _count: 30, _start_at: moment('2013-08-26'), _end_at: moment('2013-09-02') }
           ] },
@@ -55,7 +59,6 @@ function (LineLabel, Collection) {
       describe("render", function () {
         it("renders a label with text and line", function () {
           lineLabel.render();
-
           var textLabels = lineLabel.$el.find('figcaption li');
           expect(textLabels.length).toEqual(2);
 
