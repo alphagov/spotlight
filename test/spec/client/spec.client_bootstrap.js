@@ -1,5 +1,5 @@
 define([
-  'client_bootstrap',
+  'client/client_bootstrap',
   'extensions/controllers/dashboard'
 ],
 function (bootstrap, DashboardController) {
@@ -15,6 +15,20 @@ function (bootstrap, DashboardController) {
 
       expect(controller instanceof DashboardController).toBe(true);
       expect(controller.render).toHaveBeenCalled();
+    });
+
+    it("executes page preprocessors", function () {
+      var originalPreprocessors = bootstrap.preprocessors;
+      bootstrap.preprocessors = [
+        jasmine.createSpy(),
+        jasmine.createSpy()
+      ];
+
+      var controller = bootstrap({});
+      expect(bootstrap.preprocessors[0]).toHaveBeenCalled();
+      expect(bootstrap.preprocessors[1]).toHaveBeenCalled();
+
+      bootstrap.preprocessors = originalPreprocessors;
     });
   });
 });
