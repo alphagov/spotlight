@@ -61,17 +61,23 @@ module.exports = function(grunt) {
       }
     },
     jasmine_node: {
-      specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
-      match: ".*",
-      projectRoot: "./test/spec/",
-      requirejs: "test/spec/requirejs-setup.js",
-      forceExit: true,
       useHelpers: true,
-      jUnit: {
-        report: false,
-        savePath : "./build/reports/jasmine/",
-        useDotNotation: true,
-        consolidate: true
+      specFolders: [
+        "./test/spec/shared",
+        "./test/spec/server"
+      ],
+      projectRoot: "./test/spec/",
+      options: {
+        specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
+        match: ".*",
+        useRequireJs: "test/spec/requirejs-setup.js",
+        forceExit: true,
+        jUnit: {
+          report: false,
+          savePath : "./build/reports/jasmine/",
+          useDotNotation: true,
+          consolidate: true
+        }
       }
     },
     cucumber: {
@@ -175,7 +181,7 @@ module.exports = function(grunt) {
 
   [
     'grunt-contrib-jasmine',
-    'grunt-jasmine-node',
+    'grunt-jasmine-node-coverage',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-sass',

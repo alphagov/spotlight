@@ -33,7 +33,7 @@
     "uglify-js": "2.4.0",
     "grunt": "0.4.1",
     "grunt-contrib-jasmine": "0.5.2",
-    "grunt-jasmine-node": "0.1.0",
+    "grunt-jasmine-node-coverage": "0.1.6",
     "grunt-contrib-jshint": "0.7.0",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-sass": "0.5.0",
