@@ -4,14 +4,21 @@ def values
       'no-realistic-dashboard' => {
         title: 'Real-time usage',
         description: 'Real-time usage',
-        raw: 15
+        raw: "//p[@class='impact-number']/strong[text()='15']"
+      }
+    },
+    'journey' => {
+      'no-realistic-dashboard' => {
+        title: 'Users at each stage',
+        description: 'Number of users who completed important stages of the transaction last week',
+        raw: "//*[name()='svg']"
       }
     }
   }
 end
 
 Then(/^I should see the "(.*?)" module for "(.*?)" data$/) do |display_module, service|
-  page.find(".#{display_module} .visualisation").should have_content(values[display_module][service][:raw])
+  page.find(".#{display_module} .visualisation").should have_xpath(values[display_module][service][:raw])
 end
 
 Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
