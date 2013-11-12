@@ -1,0 +1,430 @@
+@import 'typography';
+@import '_css3';
+
+.graph {
+  margin:0 auto;
+
+  h2 {
+    max-width: 75%;
+  }
+
+  figure {
+    position:relative;
+    svg {
+      max-width: 954px;
+      max-height: 400px;
+    }
+  }
+
+  text {
+    @include core-16($tabular-numbers: true) ;
+    @media (max-width: 320px) {
+      font-size:9px;
+      font-size:0.9rem;
+    }
+  }
+
+  .graph-wrapper {
+    position:relative;
+
+    .inner {
+      padding:0;
+      position:absolute;
+      top: 20px;
+      bottom: 45px;
+      left: 55px;
+      right: 40px;
+
+      @media (max-width: 640px) {
+        top: 20px;
+        bottom: 40px;
+        left: 40px;
+        right: 25px;
+      }
+
+      @media (max-width: 320px) {
+        bottom: 30px;
+      }
+    }
+  }
+
+  &.graph-with-labels {
+    h2 {
+      margin-right: 200px;
+    }
+
+    ul.module-actions {
+      margin-top:-32px;
+      margin-bottom: 44px;
+    }
+
+    .inner {
+      right: 200px;
+    }
+  }
+
+  .line0 { stroke: $data-colour-1; }
+  .line1 { stroke: $data-colour-2; }
+  .line2 { stroke: $data-colour-3; }
+  .line3 { stroke: $data-colour-4; }
+  .line4 { stroke: $data-colour-5; }
+  .line5 { stroke: $data-colour-6; }
+
+  .stack0 { fill: mix($data-colour-1, $white, 25%); }
+  .stack1 { fill: mix($data-colour-2, $white, 25%); }
+  .stack2 { fill: mix($data-colour-3, $white, 25%); }
+  .stack3 { fill: mix($data-colour-4, $white, 25%); }
+  .stack4 { fill: mix($data-colour-5, $white, 25%); }
+  .stack5 { fill: mix($data-colour-6, $white, 25%); }
+
+  .selected {
+    &.stack0 { fill: mix($data-colour-1, $white, 40%); }
+    &.stack1 { fill: mix($data-colour-2, $white, 40%); }
+    &.stack2 { fill: mix($data-colour-3, $white, 40%); }
+    &.stack3 { fill: mix($data-colour-4, $white, 40%); }
+    &.stack4 { fill: mix($data-colour-5, $white, 40%); }
+    &.stack5 { fill: mix($data-colour-6, $white, 40%); }
+  }
+
+  .text0 { fill: $data-colour-1; }
+  .text1 { fill: $data-colour-2; }
+  .text2 { fill: $data-colour-3; }
+  .text3 { fill: $data-colour-4; }
+  .text4 { fill: $data-colour-5; }
+  .text5 { fill: $data-colour-6; }
+
+  span.group0 { color: $data-colour-1; }
+  span.group1 { color: $data-colour-2; }
+  span.group2 { color: $data-colour-3; }
+  span.group3 { color: $data-colour-4; }
+  span.group4 { color: $data-colour-5; }
+  span.group5 { color: $data-colour-6; }
+
+  .x-axis path,
+  .y-axis path {
+    display: none;
+  }
+
+  .selectedIndicator {
+    fill: white;
+    vector-effect: non-scaling-stroke;
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .selectedIndicator.cursorLine {
+    stroke: black;
+    stroke-linecap: square;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
+
+  .terminator {
+    stroke-width: 3px;
+  }
+
+  .line {
+    fill: none;
+    stroke-width: 2.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+
+    &.selected {
+      stroke-width: 4px;
+    }
+  }
+
+  .bar {
+    line {
+      stroke-width: 2px;
+      shape-rendering: crispEdges;
+      vector-effect: non-scaling-stroke;
+    }
+
+    rect {
+      shape-rendering: crispEdges;
+    }
+
+    text {
+      text-anchor: middle;
+    }
+  }
+
+  .tick line {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .x-axis line {
+    fill: none;
+    stroke: #444;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
+
+  .hover {
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    opacity:0;
+    background:white;
+  }
+
+  .legend {
+    position: absolute;
+    @include core-16($tabular-numbers: true);
+    top: -24px;
+    right: 0;
+    width: 200px;
+
+    .percentage,
+    .no-data {
+      color: $grey-1;
+      font-size: 14px;
+    }
+
+    .summary {
+      border-bottom: 1px solid $grey-2;
+      margin: 0 0 0 20px;
+      padding: 0 0 0 20px;
+
+      .title {
+        display: block;
+      }
+
+      .value {
+        font-size: 21px;
+        font-weight: bold;
+      }
+
+      .timeperiod {
+        display: block;
+      }
+
+    }
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      &.squares {
+        li {
+          &.label0:before { background-color: $data-colour-1; }
+          &.label1:before { background-color: $data-colour-2; }
+          &.label2:before { background-color: $data-colour-3; }
+          &.label3:before { background-color: $data-colour-4; }
+          &.label4:before { background-color: $data-colour-5; }
+          &.label5:before { background-color: $data-colour-6; }
+
+          &.label0.selected:before { border-color: darken($data-colour-1, 10%); }
+          &.label1.selected:before { border-color: darken($data-colour-2, 10%); }
+          &.label2.selected:before { border-color: darken($data-colour-3, 10%); }
+          &.label3.selected:before { border-color: darken($data-colour-4, 10%); }
+          &.label4.selected:before { border-color: darken($data-colour-5, 10%); }
+          &.label5.selected:before { border-color: darken($data-colour-6, 10%); }
+
+          &:before {
+            border:2px solid white;
+            float:left;
+            display:block;
+            content:'';
+            width:10px;
+            height:10px;
+            margin-left:-18px;
+            margin-top:1px;
+          }
+
+          margin-left: 18px;
+        }
+      }
+
+      &.has-links li {
+        z-index:100;
+      }
+
+      li {
+        position: absolute;
+        margin-top: 16px;
+
+        &.selected {
+          font-weight: bold;
+        }
+
+        .label-title {
+          display: block;
+        }
+      }
+
+    }
+  }
+
+  .labels {
+    line {
+      fill: none;
+      stroke: #444;
+      stroke-width: 1px;
+      vector-effect: non-scaling-stroke;
+
+      &.selected {
+        stroke-width: 2px;
+      }
+
+      &.crisp {
+        shape-rendering: crispEdges;
+      }
+
+      @media (max-width: 640px) {
+        display: none;
+      }
+
+    }
+  }
+
+  .callout {
+    position: absolute;
+    left:0;
+    top:0;
+    background-color: $grey-4;
+    width:200px;
+    @include box-shadow(0px 0px 3px 1px rgba(0, 0, 0, 0.35));
+    h3 {
+      font-weight:700;
+      margin:0;
+      font-size:1em;
+      padding:.4em .5em 0em;
+    }
+    p {
+      margin:0;
+      padding:0 .5em;
+      &:first-child {
+        padding-top: 0.2em;
+      }
+      &:last-child {
+        padding-bottom: 0.2em;
+      }
+    }
+    dl {
+      padding:.2em .5em;
+      margin:0;
+      dt {
+        float:left;
+        max-width:130px;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+      }
+      dd {
+        margin:0;
+        float:right;
+      }
+      &:after {
+        clear:both;
+        display:block;
+        content:'.';
+        height:0;
+        overflow:hidden;
+      }
+    }
+  }
+
+  .cursorLine.ascender,
+  .cursorLine.descender {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .graph {
+
+    h2 {
+      max-width: 92%;
+    }
+
+    &.graph-with-labels {
+      h2 {
+        margin-right: 0;
+      }
+
+      .inner {
+        right: 25px;
+      }
+
+      .graph {
+        top: 20px;
+
+        svg {
+          clear: both;
+        }
+      }
+    }
+
+    .legend {
+      position: static;
+      width: 100%;
+      overflow:hidden;
+
+      .summary {
+        border: none;
+        border-right: 1px solid $grey-2;
+        float: left;
+        margin: 0;
+        padding: 0;
+        width: 26%;
+        margin-top: 0 !important;
+
+        .percentage {
+          display: block;
+        }
+
+        .timeperiod {
+          margin-top: 4px;
+        }
+      }
+
+      ol {
+        float: right;
+        padding-left: 36px;
+        width: 73%;
+
+        li {
+          cursor: default;
+          float: left;
+          margin-bottom: 12px;
+          position: static;
+          margin-top: 0;
+          width: 42%;
+        }
+      }
+    }
+
+    .x-axis .tick:nth-child(even) text,
+    .y-axis .tick:nth-child(even) text {
+      display:none;
+    }
+
+    .line {
+      fill: none;
+      stroke-width: 1.5px;
+
+      &.selected {
+        stroke-width: 3px;
+      }
+    }
+
+    .callout {
+      @include core-16;
+      margin-top:.5em;
+      position:static;
+      max-width:240px;
+      margin:.5em auto;
+      .arrow {
+        display:none;
+      }
+    }
+  }
+}

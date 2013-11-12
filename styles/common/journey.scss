@@ -1,0 +1,179 @@
+@import 'typography';
+
+.journey figure {
+  svg {
+    max-height: 200px;
+    min-height: 100px;
+  }
+
+  &:hover {
+    max-height: 300px;
+  }
+
+  .x-axis {
+    .selected text {
+      font-weight:bold;
+    }
+
+    text {
+      font-size:12px;
+    }
+  }
+
+  .graph-wrapper .inner {
+    top: 40px;
+    bottom: 30px;
+    left: 0px;
+    right: 0px;
+  }
+
+  .half-width & {
+    max-width: 464px;
+  }
+
+  .bar {
+    text {
+      @include core-19($tabular-numbers: true) ;
+    }
+
+    rect {
+      stroke-width: 2px;
+      &.stack0 { stroke: mix($data-colour-1, $white, 25%); }
+      &.stack1 { stroke: mix($data-colour-2, $white, 25%); }
+      &.stack2 { stroke: mix($data-colour-3, $white, 25%); }
+      &.stack3 { stroke: mix($data-colour-4, $white, 25%); }
+      &.stack4 { stroke: mix($data-colour-5, $white, 25%); }
+      &.stack5 { stroke: mix($data-colour-6, $white, 25%); }
+    }
+
+    .selected {
+
+      text {
+        font-weight: bold;
+      }
+
+      line {
+        stroke-width:4px;
+      }
+
+      rect {
+        &.stack0 { stroke: $data-colour-1; }
+        &.stack1 { stroke: $data-colour-2; }
+        &.stack2 { stroke: $data-colour-3; }
+        &.stack3 { stroke: $data-colour-4; }
+        &.stack4 { stroke: $data-colour-5; }
+        &.stack5 { stroke: $data-colour-6; }
+      }
+    }
+  }
+
+  .callout {
+    position:relative;
+    width:100%;
+    margin-top:12px;
+
+    .date {
+      float:right;
+
+      &:before {
+        display: inline-block;
+        width:0.8em;
+        height:0.8em;
+        padding:0;
+        margin-right: 0.4em;
+        margin-top:-0.2em;
+        vertical-align: middle;
+        text-indent:-999em;
+        content: ".";
+      }
+
+      &.stack0:before { background: $data-colour-1; }
+      &.stack1:before { background: $data-colour-2; }
+      &.stack2:before { background: $data-colour-3; }
+      &.stack3:before { background: $data-colour-4; }
+      &.stack4:before { background: $data-colour-5; }
+      &.stack5:before { background: $data-colour-6; }
+    }
+
+    dl dt {
+      max-width:none;
+      width:50%;
+    }
+    dl dd {
+      width: 50%;
+      text-align:right;
+    }
+
+    .arrow {
+      height:20px;
+      margin-top:-40px;
+      position:absolute;
+      overflow:hidden;
+              transform: scaleX(2);
+          -ms-transform: scaleX(2);
+      -webkit-transform: scaleX(2);
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
+      color: $grey-4;
+      font-size:20px;
+
+      .inner-arrow {
+        .no-textshadow & {
+          // FIXME: this needs to be targeted at IE9 specifically,
+          // not just any no-textshadow browser
+          position:absolute;
+          display:block;
+          top:-1px;
+          margin-left:-6px;
+          left:3px;
+        }
+      }
+
+      .outer-arrow {
+        margin-top:-4px;
+        margin-left:-6px;
+        display:none;
+
+        .no-textshadow & {
+          // FIXME: this needs to be targeted at IE9 specifically,
+          // not just any no-textshadow browser
+          display:block;
+          color:$black;
+          filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=3);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .conversion-graph {
+    .bar text {
+      font-size:0.875em;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .half-width .journey figure {
+    svg {
+      max-width: 954px;
+    }
+  }
+
+  .journey figure {
+    .x-axis .tick:nth-child(even) text {
+      display: block;
+    }
+  }
+}
+
+
+@media (max-width: 320px) {
+
+  .journey figure {
+    .x-axis text {
+      font-size:8px;
+      font-size:0.8rem;
+    }
+  }
+}

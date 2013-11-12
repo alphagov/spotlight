@@ -84,7 +84,9 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         componentInstances.push(new definition.view(options));
       }, this);
 
-      $(window).on('resize', _.bind(this.render, this));
+      if (isClient) {
+        $(window).on('resize', _.bind(this.render, this));
+      }
     },
     
     /**
@@ -96,7 +98,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       return {
         graph: this,
         collection: this.collection,
-        el: this.el,
+        el: this.figure,
         svg: this.svg,
         wrapper: this.wrapper,
         margin: this.margin,
@@ -105,8 +107,12 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     },
     
     prepareGraphArea: function () {
+
+      var figure = this.figure = $('<figure class="graph"></div>');
+      figure.appendTo(this.$el);
+
       var graphWrapper = this.graphWrapper = $('<div class="graph-wrapper"></div>');
-      graphWrapper.appendTo(this.$el);
+      graphWrapper.appendTo(figure);
 
       this.innerEl = $('<div class="inner"></div>');
       this.innerEl.appendTo(graphWrapper);
@@ -242,6 +248,10 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
      * Applies current configuration, then renders components in defined order
      */
     render: function () {
+      if (isServer) {
+        return;
+      }
+
       View.prototype.render.apply(this, arguments);
 
       this.resizeWithCalloutHidden();
