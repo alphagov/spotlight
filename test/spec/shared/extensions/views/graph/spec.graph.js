@@ -15,6 +15,19 @@ function (Graph, Collection, d3) {
       });
       expect(view.d3).toBe(d3);
     });
+
+
+    var style;
+    function withGraphStyle(graphStyle) {
+      style = $('<style type="text/css">figure.graph { margin: 0 } figure.graph svg {' + graphStyle + '}</style>').appendTo($('body'));
+    }
+    afterEach(function() {
+      if (style) {
+        style.remove();
+        style = null;
+      }
+    });
+      
     
     describe("initialize", function() {
       
@@ -152,7 +165,7 @@ function (Graph, Collection, d3) {
     
     describe("resize", function () {
 
-      var graph, el, wrapper, style;
+      var graph, el, wrapper;
       beforeEach(function() {
         wrapper = $('<div id="jasmine-playground"></div>').appendTo($('body'));
         el = $('<div></div>').appendTo(wrapper);
@@ -163,14 +176,8 @@ function (Graph, Collection, d3) {
         spyOn(graph, "render");
       });
 
-      function withGraphStyle(graphStyle) {
-        style = $('<style type="text/css">.graph {' + graphStyle + '}</style>').appendTo($('body'));
-        graph.svg.attr({"class":  "graph"});
-      }
-      
       afterEach(function() {
         wrapper.remove();
-        style.remove();
       });
 
       it("re-scales graph according to aspect ratio when both max-width and max-height are defined", function () {
@@ -332,6 +339,7 @@ function (Graph, Collection, d3) {
             width: 600,
             height: 400
           });
+          withGraphStyle();
       });
       
       afterEach(function() {

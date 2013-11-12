@@ -55,6 +55,10 @@
   }
 }
 
+.performance-hidden {
+  display:none;
+}
+
 .performance-platform-outer {
   border-top: 10px solid $primary-colour;
   margin:0 30px;
@@ -65,8 +69,4 @@
     margin-right:15px;
     padding-top:1em;
   }
-}
-
-
-#content section {
 }

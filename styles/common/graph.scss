@@ -1,19 +1,17 @@
 @import 'typography';
 @import '_css3';
 
-.graph {
+figure.graph {
   margin:0 auto;
+  position:relative;
+
+  svg {
+    max-width: 954px;
+    max-height: 400px;
+  }
 
   h2 {
     max-width: 75%;
-  }
-
-  figure {
-    position:relative;
-    svg {
-      max-width: 954px;
-      max-height: 400px;
-    }
   }
 
   text {
