@@ -1,5 +1,6 @@
 {
   "assetPath": "/assets/",
   "port": 3057,
-  "backdropUrl": "http://spotlight.perfplat.dev/backdrop-stub/{{ data-group }}/{{ data-type }}"
+  "backdropUrl": "http://spotlight.perfplat.dev/backdrop-stub/{{ data-group }}/{{ data-type }}",
+  "screenshotUrl": "http://spotlight.perfplat.dev:3000/"
 }
