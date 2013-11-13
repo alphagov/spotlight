@@ -23,7 +23,7 @@ define([
 
       var view = this.view;
       view.render();
-
+      
       this.html = view.html || view.$el[0].outerHTML;
       this.trigger('ready');
     },

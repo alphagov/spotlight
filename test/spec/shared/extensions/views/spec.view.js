@@ -61,16 +61,17 @@ function (View, Model, Backbone, _) {
 
     describe("templateContext", function () {
       it("provides model attributes as properties", function () {
-        var view = new View({
-          model: new Model({
-            a: 'b',
-            foo: 'bar'
-          })
-        });
-        expect(view.templateContext()).toEqual({
+        var model = new Model({
           a: 'b',
           foo: 'bar'
         });
+        var view = new View({
+          model: model
+        });
+        var context = view.templateContext();
+        expect(context.a).toEqual('b');
+        expect(context.foo).toEqual('bar');
+        expect(context.model).toBe(model);
       });
     });
 

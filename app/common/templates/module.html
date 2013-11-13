@@ -1,5 +1,15 @@
-<h1>{{ title }}</h1>
-{{ #description }}
-<h2>{{ description }}</h2>
-{{ /description }}
+<h1><%= model.get('title') %></h1>
+<% if (model.get('info')) { %>
+<aside class="more-info">
+  <span class="more-info-link">more info</span>
+  <ul>
+    <% _.each(model.get('info'), function (row) { %>
+    <li><%= row %></li>
+    <% }) %>
+  </ul>
+</aside>
+<% } %>
+<% if (model.get('description')) { %>
+  <h2><%= model.get('description') %></h2>
+<% } %>
 <div class="visualisation"></div>

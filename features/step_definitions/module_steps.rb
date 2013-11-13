@@ -4,7 +4,8 @@ def values
       'no-realistic-dashboard' => {
         title: 'Real-time usage',
         description: 'Real-time usage',
-        raw: "//p[@class='impact-number']/strong[text()='15']"
+        raw: "//p[@class='impact-number']/strong[text()='15']",
+        info: true
       }
     },
     'journey' => {
@@ -31,6 +32,10 @@ Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |
 end
 
 Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
-  page.find(".#{display_module}").should have_content(values[display_module][service][:title])
-  page.find(".#{display_module}").should have_content(values[display_module][service][:description])
+  v = values[display_module][service]
+  page.find(".#{display_module}").should have_content(v[:title])
+  page.find(".#{display_module}").should have_content(v[:description])
+  if v[:info]
+    page.find(".#{display_module}").should have_content('more info')
+  end
 end 
