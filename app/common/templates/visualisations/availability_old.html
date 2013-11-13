@@ -1,0 +1,21 @@
+<% id ||= "availability" %>
+<% title ||= "Service availability" %>
+<section id="<%= id %>" class="graph double-decker-graph">
+  <h1><%= title %></h1>
+  <ul class="module-actions">
+    <li class="info">
+      <div>
+        <p>Data source: Pingdom</p>
+        <p>Page load time measures the time taken for a sample page within the service to load.</p>
+        <p><a href="/service-manual/operations/uptime-and-availability.html" rel="external" target="_blank">Uptime</a> measures the percentage of time that the service was observed to be available.</p>
+      </div>
+    </li>
+  </ul>
+  <nav id="availability-nav"></nav>
+  <h3>Page load time</h3>
+  <p class="impact-number response-time"></p>
+  <figure class="graph timeseries-graph response-time-graph"></figure>
+  <h3>Uptime</h3>
+  <p class="impact-number uptime"></p>
+  <figure class="graph timeseries-graph uptime-graph"></figure>
+</section>
