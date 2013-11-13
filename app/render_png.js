@@ -3,11 +3,16 @@ define([
   'url'
 ],
 function (http, url) {
-  var screenshotUrl = config.screenshotUrl;
+  var screenshotServiceUrl = config.screenshotServiceUrl;
+  var screenshotTargetUrl = config.screenshotTargetUrl;
   var port = config.port;
   var getScreenshotPath = function (url) {
-    url = url.replace(".png", "");
-    return screenshotUrl + '?url=http://localhost:' + port + url;
+    return [
+      screenshotServiceUrl,
+      '?readyExpression=$("body").hasClass("ready")&url=',
+      screenshotTargetUrl,
+      url.replace(".png", "")
+    ].join('');
   };
 
   return function (req, res) {
