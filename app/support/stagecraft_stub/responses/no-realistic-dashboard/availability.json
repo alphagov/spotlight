@@ -1,0 +1,12 @@
+{
+  "page-type": "module",
+  "module-type": "availability",
+  "title": "Service availability",
+  "description": "",
+  "data-group": "deposit-foreign-marriage",
+  "data-type": "monitoring",
+  "info": [
+    "Info text line 1",
+    "Info text line 2"
+  ]
+}

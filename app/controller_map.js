@@ -2,16 +2,18 @@ define([
   'extensions/controllers/dashboard',
   'common/modules/visitors-realtime',
   'common/modules/journey',
+  'common/modules/availability',
   'common/controllers/error'
 ],
-function (Dashboard, RealtimeModule, JourneyModule, Error) {
+function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, Error) {
 
   var ControllerMap = {
     'error': Error,
     'dashboard': Dashboard,
     modules: {
       realtime: RealtimeModule,
-      journey: JourneyModule
+      journey: JourneyModule,
+      availability: AvailabilityModule
     }
   };
 
