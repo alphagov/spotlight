@@ -40,7 +40,6 @@ define([
 
       if (isClient && options.init && !this.clientRenderOnInit) {
         // Do not render on init when rendering in client
-        console.log("reurning");
         return;
       }
 

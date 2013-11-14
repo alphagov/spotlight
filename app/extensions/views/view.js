@@ -60,10 +60,7 @@ function (Backbone, moment, Modernizr, $, _) {
           viewsDefinition = viewsDefinition();
         }
         var instances = this.viewInstances;
-        console.log(viewsDefinition);
         _.each(viewsDefinition, function (definition, selector) {
-          console.log(definition);
-          console.log(selector);
           var $el = this.$el.find(selector);
           if (!$el.length) {
             console.warn('No element found for ' + selector);

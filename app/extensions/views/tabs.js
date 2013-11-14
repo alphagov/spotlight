@@ -17,7 +17,6 @@ function (View) {
         },
         
         render: function () {
-          console.log("render me up");
             this.$el.find('ul').remove();
             this.$el.append('<ul>');
             _.each(this.tabs, function (tab, index) {
