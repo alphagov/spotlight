@@ -19,5 +19,13 @@ body.raw {
     aside.more-info {
       display: none;
     }
+
+    .visualisation {
+      float:left;
+    }
+  }
+
+  .journey .visualisation {
+    width: 954px;
   }
 }
