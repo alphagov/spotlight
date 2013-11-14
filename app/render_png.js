@@ -9,7 +9,10 @@ function (http, url) {
   var getScreenshotPath = function (url) {
     return [
       screenshotServiceUrl,
-      '?readyExpression=$("body").hasClass("ready")&url=',
+      '?readyExpression=$("body").hasClass("ready")',
+      '&forwardCacheHeaders=true',
+      '&clipSelector=.visualisation',
+      '&url=',
       screenshotTargetUrl,
       url.replace(".png", "")
     ].join('');
@@ -18,7 +21,10 @@ function (http, url) {
   return function (req, res) {
     var options = url.parse(getScreenshotPath(req.url));
     http.get(options, function (screenshot) {
-      res.writeHead(screenshot.statusCode, screenshot.headers);
+      res.status(screenshot.statusCode);
+      for (var i in screenshot.headers) {
+        res.setHeader(i, screenshot.headers[i]);
+      }
       screenshot.on("data", function(chunk) {
         res.write(chunk);
       });
