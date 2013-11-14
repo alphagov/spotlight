@@ -30,7 +30,7 @@ function (template, View, Tabs, UptimeNumber, UptimeGraph,
               {id: "day", name: "30 days"},
               {id: "hour", name: "24 hours"}
             ]
-          }
+          };
         }
       }
     }

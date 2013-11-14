@@ -1,0 +1,152 @@
+@import 'typography';
+
+.double-decker-graph {
+  .impact-number {
+    padding-top:1em;
+    width: 12.3em;
+    float:left;
+    @include core-16($tabular-numbers: true);
+    color: $black;
+
+    strong {
+      @include bold-48($tabular-numbers: true);
+      margin-bottom:-.1em;
+      display:block
+
+    }
+  }
+
+  ul.module-actions {
+    margin-top:-36px;
+    margin-bottom: 44px;
+  }
+
+  h3 {
+    clear:both;
+    height:0;
+    margin:0;
+    @include bold-19($tabular-numbers: true) ;
+  }
+
+  h1 {
+    margin-bottom:.5em;
+    margin-right:2em;
+  }
+
+  .graph {
+    margin-left: 12.5em;
+    svg {
+      min-height: 135px;
+      max-height: 135px;
+      max-width: 790px;
+    }
+
+    margin-right:-30px;
+    .inner {
+      left: 70px;
+      right:30px;
+    }
+  }
+
+  @media (max-width: 880px) {
+    
+    .graph {
+      .x-axis .tick:nth-child(even) text {
+        display:none;
+      }
+    }
+  }
+  
+  @media(max-width: 640px) {
+    .impact-number {
+      width: 10em;
+    }
+
+    .graph {
+      margin-left: 10em;
+      margin-right: 0;
+      min-height: 110px;
+
+      .y-axis .tick:nth-child(even) text {
+        display:block;
+      }
+
+      .inner {
+        left: 55px;
+      }
+    }
+  }
+
+  @media(max-width: 500px) {
+    height:410px;
+    position: relative;
+
+    h3 {
+      clear:none;
+      max-width:45%;
+      float:left;
+    }
+
+    .impact-number {
+      max-width: 45%;
+      margin-top:2em;
+    }
+
+    figure.graph {
+      margin-left:0;
+      position:absolute;
+      left:0;
+      right:0;
+
+    }
+    figure:nth-of-type(1) {
+      top: 150px;
+    }
+    figure:nth-of-type(2) {
+      top: 285px;
+    }
+  }
+
+  figure:nth-of-type(1) {
+    max-height: 163px;
+    .cursorLine.descender {
+      display: inherit;
+    }
+    .x-axis text {
+      display: none;
+    }
+    .inner {
+      bottom: 20px;
+    }
+  }
+  figure:nth-of-type(2) {
+    .cursorLine.ascender {
+      display: inherit;
+    }
+  }
+
+}
+
+
+#volumetrics-completion {
+  .line0 { stroke: $data-colour-2; }
+  .stack0 { fill: mix($data-colour-2, $white, 25%); }
+}
+
+#volumetrics-submissions-selected {
+  strong {
+    color: $data-colour-1;
+  }
+}
+
+#volumetrics-completion-selected {
+  strong {
+    color: $data-colour-2;
+  }
+}
+
+.double-decker-graph .uptime-graph  {
+  .x-axis .tick:nth-child(even) text {
+    display:block;
+  }
+}
