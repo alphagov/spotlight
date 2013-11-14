@@ -10,7 +10,7 @@ function (View) {
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
-      var events = 'reset';
+      var events = 'reset sync error';
       if (this.changeOnSelected) {
         events += ' change:selected';
       }

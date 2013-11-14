@@ -69,7 +69,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       View.prototype.initialize.apply(this, arguments);
       
       var collection = this.collection = options.collection;
-      collection.on('reset add remove', this.render, this);
+      collection.on('reset add remove sync', this.render, this);
       
       this.prepareGraphArea();
       
