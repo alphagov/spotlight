@@ -1,6 +1,5 @@
 define([
-    //convert to stache
-  'tpl!common/templates/visualisations/tabbed_availability.html',
+  'stache!common/templates/visualisations/tabbed_availability',
   'extensions/views/view',
   'extensions/views/tabs',
   'common/views/visualisations/availability/uptime-number',
@@ -14,7 +13,6 @@ function (template, View, Tabs, UptimeNumber, UptimeGraph,
     template: template,
 
     views: {
-      //need to be more specific? select inside section?
       '.uptime': {view: UptimeNumber},
       '.uptime-graph': {view: UptimeGraph},
       '.response-time': {view: ResponseTimeNumber},
