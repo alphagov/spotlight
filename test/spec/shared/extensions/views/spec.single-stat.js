@@ -9,6 +9,34 @@ define([
       serviceName: "anything"
     };
 
+    describe("initialize", function () {
+      describe("collection events", function () {
+        var view, collection;
+        beforeEach(function () {
+          spyOn(SingleStatView.prototype, 'render');
+          collection = new Collection();
+          view = new SingleStatView({
+            collection: collection
+          });
+        });
+
+        it("re-renders on reset", function () {
+          collection.trigger('reset');
+          expect(view.render).toHaveBeenCalled();
+        });
+
+        it("re-renders on sync", function () {
+          collection.trigger('sync');
+          expect(view.render).toHaveBeenCalled();
+        });
+
+        it("re-renders on error", function () {
+          collection.trigger('error');
+          expect(view.render).toHaveBeenCalled();
+        });
+      });
+    });
+
     describe("extracting the stat from the collection", function () {
 
       var stubCollection = {
