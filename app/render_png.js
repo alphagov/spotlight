@@ -4,7 +4,7 @@ define([
 ],
 function (http, url) {
   var renderPng = function (req, res) {
-    var options = url.parse(getScreenshotPath(req.url));
+    var options = url.parse(renderPng.getScreenshotPath(req.url));
     http.get(options, function (screenshot) {
       res.status(screenshot.statusCode);
       for (var i in screenshot.headers) {
