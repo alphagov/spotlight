@@ -3,22 +3,7 @@ define([
   'url'
 ],
 function (http, url) {
-  var screenshotServiceUrl = config.screenshotServiceUrl;
-  var screenshotTargetUrl = config.screenshotTargetUrl;
-  var port = config.port;
-  var getScreenshotPath = function (url) {
-    return [
-      screenshotServiceUrl,
-      '?readyExpression=$("body").hasClass("ready")',
-      '&forwardCacheHeaders=true',
-      '&clipSelector=.visualisation',
-      '&url=',
-      screenshotTargetUrl,
-      url.replace(".png", "")
-    ].join('');
-  };
-
-  return function (req, res) {
+  var renderPng = function (req, res) {
     var options = url.parse(getScreenshotPath(req.url));
     http.get(options, function (screenshot) {
       res.status(screenshot.statusCode);
@@ -36,4 +21,23 @@ function (http, url) {
       res.send("Got error: " + e.message);
     });
   };
+
+  if (global.config) {
+    renderPng.screenshotServiceUrl = config.screenshotServiceUrl;
+    renderPng.screenshotTargetUrl = config.screenshotTargetUrl;
+  }
+
+  renderPng.getScreenshotPath = function (url) {
+    return [
+      renderPng.screenshotServiceUrl,
+      '?readyExpression=$("body").hasClass("ready")',
+      '&forwardCacheHeaders=true',
+      '&clipSelector=.visualisation',
+      '&url=',
+      renderPng.screenshotTargetUrl,
+      url.replace(".png", "")
+    ].join('');
+  };
+
+  return renderPng;
 });
