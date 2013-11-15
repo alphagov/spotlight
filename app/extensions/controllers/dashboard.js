@@ -36,7 +36,8 @@ define([
         model.set('parent', this.model);
         var module = new definition.controller({
           model: model,
-          dashboard: true
+          dashboard: true,
+          url: this.url
         });
         instances.push(module);
         module.once('ready', onReady);

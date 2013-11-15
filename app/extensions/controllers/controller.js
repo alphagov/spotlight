@@ -9,6 +9,7 @@ define([
   };
 
   _.extend(Controller.prototype, Backbone.Events, {
+
     initialize: function (options) {},
 
     viewOptions: function () {},
@@ -40,6 +41,7 @@ define([
 
       if (isClient && options.init && !this.clientRenderOnInit) {
         // Do not render on init when rendering in client
+        this.trigger('ready');
         return;
       }
 

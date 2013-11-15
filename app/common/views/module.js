@@ -8,10 +8,25 @@ function (View, template) {
     template: template,
     tagName: 'section',
 
-    views: {
-      ".visualisation": function() {
-        return this.visualisationClass;
+    views: function () {
+      if (isServer && this.requiresSvg) {
+        return {};        
       }
+      return {
+        ".visualisation": function() {
+          return this.visualisationClass;
+        }
+      };
+    },
+
+    templateContext: function () {
+      return _.extend(
+        View.prototype.templateContext.call(this),
+        {
+          fallback: isServer && this.requiresSvg,
+          fallbackUrl: this.url + '.png?raw'
+        }
+      );
     }
 
   });
