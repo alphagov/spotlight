@@ -9,7 +9,8 @@ define([
 
       var options = {
         checkName: 'anything',
-        serviceName: 'anything',
+        "data-group": "anything",
+        "data-type": "monitoring",
         parse: true
       };
 

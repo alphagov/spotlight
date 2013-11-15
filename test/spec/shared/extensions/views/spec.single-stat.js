@@ -6,7 +6,8 @@ define([
 
     var collectionOptions = {
       checkName: "anything",
-      serviceName: "anything"
+      "data-group": "anything",
+      "data-type": "monitoring"
     };
 
     describe("initialize", function () {
