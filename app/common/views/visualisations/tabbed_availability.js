@@ -24,48 +24,12 @@ function (template, View, Tabs, UptimeNumber, UptimeGraph,
         options: function (){
           return {
             model: this.collection.query,
-            //from stagecraft later
-            attr: 'period',
-            tabs: [
-              {id: "day", name: "30 days"},
-              {id: "hour", name: "24 hours"}
-            ]
+            attr: this.model.get('tabbed_attr'),
+            tabs: this.model.get('tabs')
           };
         }
       }
     }
-//    initialize: function () {
-//      new UptimeNumber({
-//        el: moduleEl.find('.uptime'),
-//        collection: availabilityCollection
-//      });
-//
-//      new UptimeGraph({
-//        el: moduleEl.find('.uptime-graph'),
-//        collection: availabilityCollection
-//      });
-//
-//      new ResponseTimeNumber({
-//        el: moduleEl.find('.response-time'),
-//        collection: availabilityCollection
-//      });
-//
-//      new ResponseTimeGraph({
-//        el: moduleEl.find('.response-time-graph'),
-//        collection: availabilityCollection
-//      });
-//
-//      var graphNav = new Tabs({
-//        el: $("#availability-nav"),
-//        model: availabilityCollection.query,
-//        attr: 'period',
-//        tabs: [
-//          {id: "day", name: "30 days"},
-//          {id: "hour", name: "24 hours"}
-//        ]
-//      });
-//      Tabs.prototype.initialize.apply(this, arguments);
-//    }
   });
 
   return TabbedAvailabilityView;
