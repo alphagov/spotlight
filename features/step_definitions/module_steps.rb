@@ -14,6 +14,13 @@ def values
         description: 'Number of users who completed important stages of the transaction last week',
         raw: "//*[name()='svg']"
       }
+    },
+    'availability' => {
+      'no-realistic-dashboard' => {
+        title: 'Service availability',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
     }
   }
 end

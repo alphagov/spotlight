@@ -69,6 +69,14 @@ function (Graph, Collection, d3) {
         collection.trigger('reset');
         expect(graph.render).toHaveBeenCalled();
       });
+
+      it("re-renders when collection syncs", function() {
+        var graph = new TestGraph({
+          collection: collection
+        });
+        collection.trigger('sync');
+        expect(graph.render).toHaveBeenCalled();
+      });
       
       it("re-renders when item is added to collection", function() {
         var graph = new TestGraph({
