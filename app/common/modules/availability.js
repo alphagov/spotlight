@@ -1,12 +1,12 @@
 define([
   'extensions/controllers/module',
-  'common/views/visualisations/tabbed_availability',
+  'common/views/visualisations/availability',
   'common/collections/availability'
 ],
-function (ModuleController, TabbedAvailabilityView, AvailabilityCollection) {
+function (ModuleController, AvailabilityView, AvailabilityCollection) {
   var AvailabilityController = ModuleController.extend({
     className: 'availability',
-    visualisationClass: TabbedAvailabilityView,
+    visualisationClass: AvailabilityView,
     collectionClass: AvailabilityCollection,
     clientRenderOnInit: true
   });

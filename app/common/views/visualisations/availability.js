@@ -1,5 +1,5 @@
 define([
-  'stache!common/templates/visualisations/tabbed_availability',
+  'stache!common/templates/visualisations/availability',
   'extensions/views/view',
   'extensions/views/tabs',
   'common/views/visualisations/availability/uptime-number',
@@ -9,7 +9,7 @@ define([
 ],
 function (template, View, Tabs, UptimeNumber, UptimeGraph,
           ResponseTimeNumber, ResponseTimeGraph) {
-  var TabbedAvailabilityView = View.extend({
+  var AvailabilityView = View.extend({
     template: template,
 
     views: {
@@ -30,5 +30,5 @@ function (template, View, Tabs, UptimeNumber, UptimeGraph,
     }
   });
 
-  return TabbedAvailabilityView;
+  return AvailabilityView;
 });
