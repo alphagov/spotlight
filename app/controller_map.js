@@ -3,9 +3,11 @@ define([
   'common/modules/visitors-realtime',
   'common/modules/journey',
   'common/modules/availability',
+  'common/modules/completion_rate',
+  'common/modules/completion_numbers',
   'common/controllers/error'
 ],
-function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, Error) {
+function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, Error) {
 
   var ControllerMap = {
     'error': Error,
@@ -13,7 +15,9 @@ function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, Error) {
     modules: {
       realtime: RealtimeModule,
       journey: JourneyModule,
-      availability: AvailabilityModule
+      availability: AvailabilityModule,
+      completion_rate: CompletionRateModule,
+      completion_numbers: CompletionNumbersModule
     }
   };
 

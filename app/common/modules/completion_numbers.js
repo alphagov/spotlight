@@ -4,12 +4,12 @@ define([
   'common/collections/availability'
 ],
 function (ModuleController, TabbedAvailabilityView, AvailabilityCollection) {
-  var AvailabilityModule = ModuleController.extend({
+  var CompletionModule = ModuleController.extend({
     className: 'availability',
     visualisationClass: TabbedAvailabilityView,
     collectionClass: AvailabilityCollection,
     clientRenderOnInit: true
   });
 
-  return AvailabilityModule;
+  return CompletionModule;
 });

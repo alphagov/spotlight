@@ -21,6 +21,20 @@ def values
         description: '',
         raw: "//*[name()='svg']"
       }
+    },
+    'completion_rate' => {
+      'no-realistic-dashboard' => {
+        title: 'Completion rate',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
+    },
+    'completion_numbers' => {
+      'no-realistic-dashboard' => {
+        title: 'Completed applications',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
     }
   }
 end
