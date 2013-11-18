@@ -120,24 +120,6 @@
 
 }
 
-
-#volumetrics-completion {
-  .line0 { stroke: $data-colour-2; }
-  .stack0 { fill: mix($data-colour-2, $white, 25%); }
-}
-
-#volumetrics-submissions-selected {
-  strong {
-    color: $data-colour-1;
-  }
-}
-
-#volumetrics-completion-selected {
-  strong {
-    color: $data-colour-2;
-  }
-}
-
 .double-decker-graph .uptime-graph  {
   .x-axis .tick:nth-child(even) text {
     display:block;
