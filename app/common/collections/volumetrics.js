@@ -8,10 +8,7 @@ function (Collection, Group, dateFunctions) {
   var VolumetricsCollection = Collection.extend({
     model: Group,
 
-    apiName: 'journey',
-
     initialize: function (models, options) {
-      this.serviceName = options.serviceName;
       this.startMatcher= options.startMatcher;
       this.endMatcher= options.endMatcher;
       this.matchingAttribute= options.matchingAttribute;

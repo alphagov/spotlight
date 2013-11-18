@@ -153,12 +153,15 @@ function (VolumetricsCollection, moment) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              return new VolumetricsCollection({ data: data }, {
-                serviceName: 'notARealFCOTransaction',
+              collection = new VolumetricsCollection({ data: data }, {
+                "data-group": 'notARealFCOTransaction',
+                "data-type": 'journey',
                 startMatcher: context.start_matcher,
                 endMatcher: context.end_matcher,
                 matchingAttribute: context.matching_attribute
               });
+              collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+              return collection;
             };
 
         beforeEach(function () {
@@ -267,12 +270,17 @@ function (VolumetricsCollection, moment) {
             data
           ]};
 
-          var noDoneEventVolumetricsCollection = new VolumetricsCollection(events, {
-            serviceName: 'notARealFCOTransaction',
-            startMatcher: context.start_matcher,
-            endMatcher: context.end_matcher,
-            matchingAttribute: context.matching_attribute
-          });
+          var noDoneEventVolumetricsCollection = function () { 
+            collection = new VolumetricsCollection(events, {
+              "data-group": 'notARealFCOTransaction',
+              "data-type": 'journey',
+              startMatcher: context.start_matcher,
+              endMatcher: context.end_matcher,
+              matchingAttribute: context.matching_attribute
+            });
+            collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+            return collection;
+          }();
 
           expect(noDoneEventVolumetricsCollection.completionSeries().values.at(8).get('completion')).toBe(0);
         });
@@ -282,12 +290,15 @@ function (VolumetricsCollection, moment) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              return new VolumetricsCollection({ data: data }, {
-                serviceName: 'notARealFCOTransaction',
+              collection  = new VolumetricsCollection({ data: data }, {
+                "data-group": 'notARealFCOTransaction',
+                "data-type": 'journey',
                 startMatcher: context.start_matcher,
                 endMatcher: context.end_matcher,
                 matchingAttribute: context.matching_attribute
               });
+              collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+              return collection;
             };
 
         beforeEach(function () {
