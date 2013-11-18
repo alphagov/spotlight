@@ -1,17 +1,25 @@
 define([
   'extensions/controllers/module',
-  'common/views/visualisations/tabbed_availability',
-  'common/collections/availability'
+  'common/views/visualisations/completion_rate',
+  'common/collections/completion_rate'
 ],
-function (ModuleController, TabbedAvailabilityView, AvailabilityCollection) {
-  var CompletionModule = ModuleController.extend({
+function (ModuleController, CompletionRateView, CompletionRateCollection) {
+  var CompletionRateModule = ModuleController.extend({
     className: 'availability',
-    visualisationClass: TabbedAvailabilityView,
-    collectionClass: AvailabilityCollection,
-    clientRenderOnInit: true
+    visualisationClass: CompletionRateView,
+    collectionClass: CompletionRateCollection,
+    clientRenderOnInit: true,
+
+    collectionOptions: function () {
+      return {
+        startMatcher: /start$/,
+        endMatcher: /done$/,
+        matchingAttribute: "eventCategory"
+      };
+    }
   });
 
-  return CompletionModule;
+  return CompletionRateModule;
 });
 //define([
 //  'extensions/collections/graphcollection',

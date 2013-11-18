@@ -1,9 +1,12 @@
-define(
+define([
+  'vendor/lodash'
+],  
   function () {
     return (function () {
       return {
         latest: function (objects, filter) {
           var dates = _.map(objects, filter);
+          //fix is equalise interface - set memo even though lodash doesn't need
           return _.reduce(dates, function (latest, current) {
             return current.isAfter(latest) ? current : latest;
           });

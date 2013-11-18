@@ -38,6 +38,7 @@ function (dateFunctions, moment) {
       });
 
       it("should return undefined when no objects supplied", function () {
+        //har
         expect(dateFunctions.latest([], function() {})).toBeUndefined();
       });
 
