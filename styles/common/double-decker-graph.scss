@@ -26,18 +26,21 @@
     margin-right:2em;
   }
 
-  figure.graph .graph-wrapper {
+  figure.graph {
     margin-left: 12.5em;
-    svg {
-      min-height: 135px;
-      max-height: 135px;
-      max-width: 790px;
-    }
-
     margin-right:-30px;
-    .inner {
-      left: 70px;
-      right:30px;
+    
+    .graph-wrapper {
+      svg {
+        min-height: 135px;
+        max-height: 135px;
+        max-width: 790px;
+      }
+
+      .inner {
+        left: 70px;
+        right:30px;
+      }
     }
   }
 
