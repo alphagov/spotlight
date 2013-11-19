@@ -1,25 +1,45 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/completion_numbers',
-  'common/collections/completion_numbers'
+  'stache!common/templates/visualisations/completion_numbers',
+  'extensions/views/view',
+  'common/views/visualisations/volumetrics/number',
+  'common/views/visualisations/volumetrics/submissions-graph',
 ],
-function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) {
-  var CompletionNumbersModule = ModuleController.extend({
-    className: 'completion_numbers',
-    visualisationClass: CompletionNumbersView,
-    collectionClass: CompletionNumbersCollection,
-    clientRenderOnInit: true,
+function (template, View, VolumetricsNumberView, SubmissionGraphView) {
+  var CompletionNumbersView = View.extend({
+    template: template,
+//    var volumetricsSubmissionsNumber = new VolumetricsNumberView({
+//      collection:volumetricsSubmissions,
+//      el:$('#volumetrics-submissions-selected'),
+//      valueAttr: 'mean',
+//      selectionValueAttr: 'uniqueEvents',
+//      labelPrefix: 'mean per week over the'
+//    });
+//
+//    var volumetricsSubmissionsGraph = new VolumetricsSubmissionsGraph({
+//      el:$('#volumetrics-submissions'),
+//      collection:volumetricsSubmissions,
+//      valueAttr:'uniqueEvents'
+//    });
 
-    collectionOptions: function () {
-      return {
-        startMatcher: /start$/,
-        endMatcher: /done$/,
-        matchingAttribute: "eventCategory"
-      };
+    views: {
+      '#volumetrics-submissions-selected': {
+        view: VolumetricsNumberView,
+        options: {
+          valueAttr: 'mean',
+          selectionValueAttr: 'uniqueEvents',
+          labelPrefix: 'mean per week over the'
+        }
+      },
+      '#volumetrics-submissions': {
+        view: SubmissionGraphView,
+        options: {
+          valueAttr:'uniqueEvents'
+        }
+      }
     }
   });
 
-  return CompletionNumbersModule;
+  return CompletionNumbersView;
 });
 //define([
 //  'extensions/collections/graphcollection',

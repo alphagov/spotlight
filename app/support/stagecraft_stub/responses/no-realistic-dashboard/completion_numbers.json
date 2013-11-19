@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "module-type": "completion_rate",
+  "module-type": "completion_numbers",
   "title": "Completed applications",
   "description": "",
   "data-group": "deposit-foreign-marriage",
