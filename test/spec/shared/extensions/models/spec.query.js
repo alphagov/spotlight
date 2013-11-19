@@ -4,24 +4,12 @@ define([
 ],
 function (Query, moment) {
 
-  var setupMoment = function (date, anObject) {
-    spyOn(anObject, "moment");
-    anObject.moment.plan = function () {
-      var realMoment = anObject.moment.originalValue;
-      // set "now" to a fixed date to enable static expectations
-      if (!arguments.length) {
-        return realMoment(date);
-      }
-      return realMoment.apply(null, arguments);
-    };
-  };
-
   describe("Query", function () {
 
     describe("set", function () {
 
       beforeEach(function() {
-        setupMoment('2013-05-15 06:15:45+00:00', Query.prototype);
+        jasmine.setupMoment('2013-05-15 06:15:45+00:00', Query.prototype);
       });
 
       it("sets start and end date for 'month' period using constructor", function () {
@@ -156,7 +144,7 @@ function (Query, moment) {
     describe("timezone handling", function() {
 
       beforeEach(function() {
-        setupMoment('2013-05-15 06:15:45 +0100', Query.prototype);
+        jasmine.setupMoment('2013-05-15 06:15:45 +0100', Query.prototype);
       });
 
       it("should generate start_at and end_at as UTC", function() {

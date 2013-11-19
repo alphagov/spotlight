@@ -12,6 +12,7 @@ define([
     initialize: function (options) {},
 
     viewOptions: function () {},
+    collectionOptions: function () {},
 
     renderView: function (options) {
       options = _.extend({}, this.viewOptions(), options);
@@ -22,7 +23,7 @@ define([
 
       var view = this.view;
       view.render();
-
+      
       this.html = view.html || view.$el[0].outerHTML;
       this.trigger('ready');
     },
@@ -31,10 +32,10 @@ define([
       options = options || {};
 
       if (this.collectionClass && !this.collection) {
-        this.collection = new this.collectionClass([], {
+        this.collection = new this.collectionClass([], _.extend({
           'data-type': this.model.get('data-type'),
           'data-group': this.model.get('data-group')
-        });
+        }, this.collectionOptions()));
       }
 
       if (isClient && options.init && !this.clientRenderOnInit) {
@@ -43,7 +44,7 @@ define([
       }
 
       if (this.collection) {
-        this.collection.once('sync error', function() {
+        this.collection.once('sync reset error', function() {
           this.renderView({
             collection: this.collection,
             model: this.model

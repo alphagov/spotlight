@@ -1,0 +1,53 @@
+{
+  "page-type": "dashboard",
+  "title": "Deposit foreign marriage or civil partnership certificates",
+  "strapline": "Service performance",
+  "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "realtime"
+    },
+    {
+      "module-type": "journey",
+      "title": "Users at each stage",
+      "description": "Number of users who completed important stages of the transaction last week",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "<a href='/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page.",
+        "Completed applications count based on unique visitors to the final page of the service."
+      ],
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "journey",
+      "steps": [
+        {"id": "deposit-foreign-marriage:start", "title": "Start"},
+        {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
+        {"id": "deposit-foreign-marriage:done", "title": "Done"}
+      ]
+    },
+    {
+      "module-type": "availability",
+      "title": "Service availability",
+      "description": "",
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "monitoring",
+      "info": [
+        "Info text line 1",
+        "Info text line 2"
+      ],
+      "tabs": [
+        {"id": "day", "name": "30 days"},
+        {"id": "hour", "name": "24 hours"}
+      ],
+      "tabbed_attr": "period"
+    }
+  ]
+}

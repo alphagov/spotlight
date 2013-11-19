@@ -1,7 +1,8 @@
 define([
   'stagecraft_api_client',
   'underscore',
-  './preprocessors/navigation'
+  './preprocessors/navigation',
+  './preprocessors/module_actions'
 ],
 function (StagecraftApiClient, _) {
   

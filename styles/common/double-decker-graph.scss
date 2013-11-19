@@ -1,0 +1,136 @@
+.double-decker-graph {
+  .impact-number {
+    padding-top:1em;
+    width: 12.3em;
+    float:left;
+    @include core-16($tabular-numbers: true);
+    color: $black;
+
+    strong {
+      @include bold-48($tabular-numbers: true);
+      margin-bottom:-.1em;
+      display:block
+
+    }
+  }
+
+  h3 {
+    clear:both;
+    height:0;
+    margin:0;
+    @include bold-19($tabular-numbers: true) ;
+  }
+
+  h1 {
+    margin-bottom:.5em;
+    margin-right:2em;
+  }
+
+  figure.graph {
+    margin-left: 12.5em;
+    margin-right:-30px;
+    
+    .graph-wrapper {
+      svg {
+        min-height: 135px;
+        max-height: 135px;
+        max-width: 790px;
+      }
+
+      .inner {
+        left: 70px;
+        right:30px;
+      }
+    }
+  }
+
+  @media (max-width: 880px) {
+    
+    .graph {
+      .x-axis .tick:nth-child(even) text {
+        display:none;
+      }
+    }
+  }
+  
+  @media(max-width: 640px) {
+    .impact-number {
+      width: 10em;
+    }
+
+    figure.graph {
+      margin-left: 10em;
+      margin-right: 0;
+      .graph-wrapper {
+        svg {
+          min-height: 110px;
+        }
+      }
+
+      .y-axis .tick:nth-child(even) text {
+        display:block;
+      }
+
+      .inner {
+        left: 55px;
+      }
+    }
+  }
+
+  @media(max-width: 500px) {
+    height:385px;
+    position: relative;
+
+    h3 {
+      clear:none;
+      max-width:45%;
+      float:left;
+    }
+
+    .impact-number {
+      max-width: 45%;
+      margin-top:2em;
+    }
+
+    .timeseries-graph {
+      figure.graph {
+        margin-left:0;
+      }
+      position:absolute;
+      left:0;
+      right:0;
+
+    }
+    .timeseries-graph:nth-of-type(1) {
+      top: 150px;
+    }
+    .timeseries-graph:nth-of-type(2) {
+      top: 260px;
+    }
+  }
+
+  .timeseries-graph:nth-of-type(1) {
+    max-height: 163px;
+    .cursorLine.descender {
+      display: inherit;
+    }
+    .x-axis text {
+      display: none;
+    }
+    .inner {
+      bottom: 20px;
+    }
+  }
+  .timeseries-graph:nth-of-type(2) {
+    .cursorLine.ascender {
+      display: inherit;
+    }
+  }
+
+}
+
+.double-decker-graph .uptime-graph  {
+  .x-axis .tick:nth-child(even) text {
+    display:block;
+  }
+}

@@ -30,7 +30,10 @@ function (Backbone, moment, Modernizr, $, _) {
       },
       
       templateContext: function () {
-        var context = {};
+        var context = {
+          model: this.model,
+          collection: this.collection
+        };
         if (this.model) {
           _.extend(context, this.model.toJSON());
         }

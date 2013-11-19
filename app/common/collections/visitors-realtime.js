@@ -16,8 +16,6 @@ function (Collection) {
     initialize: function (models, options) {
       Collection.prototype.initialize.apply(this, arguments);
 
-      this.serviceName = options.serviceName;
-
       if (isClient) {
         clearInterval(this.timer);
         this.timer = setInterval(

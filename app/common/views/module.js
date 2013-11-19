@@ -1,6 +1,6 @@
 define([
   'extensions/views/view',
-  'stache!common/templates/module'
+  'tpl!common/templates/module.html'
 ],
 function (View, template) {
 

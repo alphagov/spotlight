@@ -1,0 +1,13 @@
+{
+  "page-type": "module",
+  "module-type": "journey",
+  "title": "Users at each stage",
+  "description": "Number of users who completed important stages of the transaction last week",
+  "data-group": "deposit-foreign-marriage",
+  "data-type": "journey",
+  "steps": [
+    {"id": "deposit-foreign-marriage:start", "title": "Start"},
+    {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
+    {"id": "deposit-foreign-marriage:done", "title": "Done"}
+  ]
+}

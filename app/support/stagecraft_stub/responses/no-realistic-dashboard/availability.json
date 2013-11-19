@@ -1,0 +1,17 @@
+{
+  "page-type": "module",
+  "module-type": "availability",
+  "title": "Service availability",
+  "description": "",
+  "data-group": "deposit-foreign-marriage",
+  "data-type": "monitoring",
+  "info": [
+    "Info text line 1",
+    "Info text line 2"
+  ],
+  "tabs": [
+    {"id": "day", "name": "30 days"},
+    {"id": "hour", "name": "24 hours"}
+  ],
+  "tabbed_attr": "period"
+}

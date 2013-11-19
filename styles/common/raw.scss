@@ -15,7 +15,8 @@ body.raw {
 
   #content {
     h1,
-    h2 {
+    h2,
+    aside.more-info {
       display: none;
     }
   }
