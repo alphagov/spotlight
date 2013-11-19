@@ -1,12 +1,12 @@
-define([
-  'vendor/lodash'
-],  
+define(  
   function () {
     return (function () {
       return {
         latest: function (objects, filter) {
           var dates = _.map(objects, filter);
-          //fix is equalise interface - set memo even though lodash doesn't need
+          if(dates.length < 1){
+            return dates.first;
+          };
           return _.reduce(dates, function (latest, current) {
             return current.isAfter(latest) ? current : latest;
           });
@@ -14,6 +14,9 @@ define([
 
         earliest: function (objects, filter) {
           var dates = _.map(objects, filter);
+          if(dates.length < 1){
+            return dates.first;
+          };
           return _.reduce(dates, function (earliest, current) {
             return current.isBefore(earliest) ? current : earliest;
           });

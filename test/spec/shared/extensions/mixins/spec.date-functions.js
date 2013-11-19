@@ -38,8 +38,11 @@ function (dateFunctions, moment) {
       });
 
       it("should return undefined when no objects supplied", function () {
-        //har
         expect(dateFunctions.latest([], function() {})).toBeUndefined();
+      });
+
+      it("should return undefined when no objects supplied", function () {
+        expect(dateFunctions.earliest([], function() {})).toBeUndefined();
       });
 
       it("should return a list of dates from a given date", function () {
