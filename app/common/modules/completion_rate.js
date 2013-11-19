@@ -1,7 +1,7 @@
 define([
   'extensions/controllers/module',
   'common/views/visualisations/completion_rate',
-  'common/collections/completion_rate_series'
+  'common/collections/completion_rate'
 ],
 function (ModuleController, CompletionRateView, CompletionRateCollection) {
   var CompletionRateModule = ModuleController.extend({
