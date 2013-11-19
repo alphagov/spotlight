@@ -2,7 +2,8 @@
   "page-type": "module",
   "module-type": "availability",
   "title": "Service availability",
-  "description": "",
+  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-strapline": "Service performance",
   "data-group": "deposit-foreign-marriage",
   "data-type": "monitoring",
   "info": [

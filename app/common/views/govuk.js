@@ -25,6 +25,21 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate
       this.html = this.template(context);
     },
 
+    getPageTitleItems: function () {
+      return [];
+    },
+
+    getPageTitle: function () {
+      var items = this.getPageTitleItems().filter(function (el) {
+        return el != null;
+      });
+      if (items.length <= 1) {
+        items.push('Performance');
+      }
+      items.push('GOV.UK');
+      return items.join(' - ');
+    },
+
     templateContext: function () {
       var baseContext = {
         model: this.model,
@@ -40,7 +55,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate
           head: headTemplate(baseContext),
           bodyEnd: this.bodyEndTemplate(baseContext),
           topOfPage: "",
-          pageTitle: "",
+          pageTitle: this.getPageTitle(),
           bodyClasses: "",
           insideHeader: navigationTemplate,
           cookieMessage: "",

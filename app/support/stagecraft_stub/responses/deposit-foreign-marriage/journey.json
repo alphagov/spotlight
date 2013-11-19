@@ -3,6 +3,8 @@
   "module-type": "journey",
   "title": "Users at each stage",
   "description": "Number of users who completed important stages of the transaction last week",
+  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-strapline": "Service performance",
   "info": [
     "Data source: Google Analytics (unique visitor numbers based on sampled data)",
     "<a href='/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
