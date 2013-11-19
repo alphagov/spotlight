@@ -1,9 +1,10 @@
 define([
   'common/collections/volumetrics'
 ], function(VolumetricsCollection) {
-  var CompletionSeries = VolumetricsCollection.extend({
+  var CompletionRateSeries = VolumetricsCollection.extend({
 
-    parse: function () {
+    parse: function (response) {
+      this.data = response.data;
       var that = this;
       var completionConfiguration = {
         id: "completion",
@@ -25,6 +26,6 @@ define([
 
   });
 
-  return CompletionSeries;
+  return CompletionRateSeries;
 });
 

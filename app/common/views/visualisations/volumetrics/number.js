@@ -16,6 +16,12 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
+      console.log("collection at 0");
+      console.log(this.collection.at(0));
+      console.log("collection");
+      console.log(this.collection);
+      console.log("values");
+      console.log(this.collection.at(0).get('values'));
       var weeks = this.collection.at(0).get('weeks'),
           unavailableWeeks = weeks.total - weeks.available,
           label = [this.labelPrefix, 'last', weeks.total, 'weeks'];

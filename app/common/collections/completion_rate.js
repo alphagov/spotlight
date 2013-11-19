@@ -1,10 +1,10 @@
 define([
   'extensions/collections/matrix',
-  'common/collections/completion_series'
+  'common/collections/completion_rate_series'
 ],
-function (MatrixCollection, CompletionSeriesCollection) {
+function (MatrixCollection, CompletionRateSeriesCollection) {
   var CompletionRateCollection = MatrixCollection.extend({
-    collections: [ CompletionSeriesCollection ]
+    collections: [ CompletionRateSeriesCollection ]
   });
 
   return CompletionRateCollection;

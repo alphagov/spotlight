@@ -15,9 +15,7 @@ function (template, View, VolumetricsNumberView, CompletionGraphView) {
           valueAttr: 'totalCompletion',
           selectionValueAttr: 'completion',
           formatValue: function (value) {
-            //where defined?
-            //return this.formatPercentage(value);
-            return value;
+            return this.formatPercentage(value);
           }
         }
       },

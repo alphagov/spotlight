@@ -1,5 +1,5 @@
 define([
-  'common/collections/completion_rate_series',
+  'common/collections/completion_numbers_series',
   'moment'
 ],
 function (VolumetricsCollection, moment) {
@@ -194,64 +194,47 @@ function (VolumetricsCollection, moment) {
           expect(volumetricsCollection.completionRate()).toBeCloseTo(0.476, 0.01);
         });
 
-        it("should give a series for completion rate", function () {
+        it("should give a series for applications", function () {
           var parse = volumetricsCollection.parse({data: context.data});
-          expect(parse.title).toBe("Completion rate");
-          expect(parse.id).toBe("completion");
+          expect(parse.title).toBe("Done");
+          expect(parse.id).toBe("done");
           expect(parse.weeks.total).toBe(3);
           expect(parse.weeks.available).toBe(3);
-          expect(parse.totalCompletion).toBeCloseTo(0.476, 0.01);
-          expect(parse.values.length).not.toBeUndefined();
+          expect(parse.mean).toBeCloseTo(3.33, 0.01);
+          expect(parse.values).not.toBeUndefined();
         });
 
-        it("should map completion rates to completion series", function () {
+        it("should map applications to application series", function () {
           var firstValue = volumetricsCollection.parse({data: context.data}).values.at(6);
           expect(firstValue.get('_start_at')).toBeMoment(moment("2013-06-10T01:00:00+01:00"));
           expect(firstValue.get('_end_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
-          expect(firstValue.get('completion')).toBe(0.6);
+          expect(firstValue.get('uniqueEvents')).toBe(3);
           var secondValue = volumetricsCollection.parse({data: context.data}).values.at(7);
           expect(secondValue.get('_start_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
           expect(secondValue.get('_end_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
-          expect(secondValue.get('completion')).toBeCloseTo(0.428, 0.001);
+          expect(secondValue.get('uniqueEvents')).toBe(3);
           var thirdValue = volumetricsCollection.parse({data: context.data}).values.at(8);
           expect(thirdValue.get('_start_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
           expect(thirdValue.get('_end_at')).toBeMoment(moment("2013-07-01T01:00:00+01:00"));
-          expect(thirdValue.get('completion')).toBeCloseTo(0.4444, 0.001);
+          expect(thirdValue.get('uniqueEvents')).toBe(4);
         });
 
-        it("should query for 9 weeks of data for completion series", function () {
+        it("should query for 9 weeks of data for application series", function () {
           expect(volumetricsCollection.parse({data: context.data}).values.length).toBe(9);
         });
 
-        it("should pad out missing data for completions series", function () {
+        it("should pad out missing data for application series", function () {
           var paddedValue = volumetricsCollection.parse({data: context.data}).values.at(5);
-          expect(paddedValue.get('_start_at')).toBeMoment(moment("2013-06-03T01:00:00+0100"));
+          expect(paddedValue.get('_start_at')).toBeMoment(moment("2013-06-03T01:00:00+01:00"));
           expect(paddedValue.get('_end_at')).toBeMoment(moment("2013-06-10T01:00:00+01:00"));
-          expect(paddedValue.get('completion')).toBe(null);
+          expect(paddedValue.get('uniqueEvents')).toBe(null);
+
+          var paddedValue2 = volumetricsCollection.parse({data: context.data}).values.at(4);
+          expect(paddedValue2.get('_start_at')).toBeMoment(moment("2013-05-27T01:00:00+01:00"));
+          expect(paddedValue2.get('_end_at')).toBeMoment(moment("2013-06-03T01:00:00+01:00"));
+          expect(paddedValue2.get('uniqueEvents')).toBe(null);
         });
 
-        it("should have a completion rate of 0 when there's no done event for the timestamp", function () {
-          var data = {_timestamp: "2013-06-09T23:00:00+00:00", uniqueEvents: 5};
-          data[context.matching_attribute] = "fco-transaction-name" + context.start_matcher_suffix;
-
-          var events = { data: [
-            data
-          ]};
-
-          var noDoneEventVolumetricsCollection = function () { 
-            collection = new VolumetricsCollection({}, {
-              "data-group": 'notARealFCOTransaction',
-              "data-type": 'journey',
-              startMatcher: context.start_matcher,
-              endMatcher: context.end_matcher,
-              matchingAttribute: context.matching_attribute
-            });
-            collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-            return collection;
-          }();
-
-          expect(noDoneEventVolumetricsCollection.parse(events).values.at(8).get('completion')).toBe(0);
-        });
       }
 
       function sharedBehaviourForVolumetricsWithMissingData(context) {
@@ -273,21 +256,12 @@ function (VolumetricsCollection, moment) {
           volumetricsCollection = collectionFor({data: context.data});
         });
 
-        it("should ignore missing data for completion rate", function () {
+        it("should ignore missing data for applications", function () {
           var parse = volumetricsCollection.parse({data: context.data});
 
           expect(parse.weeks.total).toBe(3);
           expect(parse.weeks.available).toBe(2);
-          expect(parse.totalCompletion).toBeCloseTo(0.5, 0.01);
-        });
-        
-        it("should have null completion rate for missing data", function () {
-          var completionWithMissingData = volumetricsCollection.parse({data: context.data}).values;
-          var missingValue = completionWithMissingData.at(7);
-
-          expect(missingValue.get('_start_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
-          expect(missingValue.get('_end_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
-          expect(missingValue.get('completion')).toBe(null);
+          expect(parse.mean).toBeCloseTo(3.5, 0.01);
         });
         
       }

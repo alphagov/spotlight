@@ -1,18 +1,20 @@
 define([
+  'extensions/collections/matrix',
   'extensions/collections/collection',
   'extensions/models/group',
   'extensions/mixins/date-functions'
 ],
-function (Collection, Group, dateFunctions) {
+function (MatrixCollection, Collection, Group, dateFunctions) {
 
-  var VolumetricsCollection = Collection.extend({
+  //was this inheritance actually necessary in the end?
+  var VolumetricsCollection = MatrixCollection.extend({
     model: Group,
 
     initialize: function (models, options) {
       this.startMatcher= options.startMatcher;
       this.endMatcher= options.endMatcher;
       this.matchingAttribute= options.matchingAttribute;
-      Collection.prototype.initialize.apply(this, arguments);
+      MatrixCollection.prototype.initialize.apply(this, arguments);
       this.query.set('period', 'week', {silent: true, utc: false});
       delete this.query.attributes.period;
     },
@@ -57,12 +59,12 @@ function (Collection, Group, dateFunctions) {
     },
 
     numberOfJourneyStarts: function () {
-      var data = this.pluck('data')[0];
+      var data = this.data;
       return this.uniqueEventsFor(data, this.startMatcher);
     },
 
     numberOfJourneyCompletions: function () {
-      var data = this.pluck('data')[0];
+      var data = this.data;
       return this.uniqueEventsFor(data, this.endMatcher);
     },
 
@@ -71,7 +73,7 @@ function (Collection, Group, dateFunctions) {
     },
 
     series: function (config) {
-      var data = this.pluck('data')[0];
+      var data = this.data;
       var events = this.eventsFrom(data);
 
       var weeksWithData = events.length;
@@ -95,49 +97,10 @@ function (Collection, Group, dateFunctions) {
           total: dateFunctions.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
           available: weeksWithData
         },
-        values: new Collection(values)
+        // this might not be nice
+        values: new Collection(values).models
       });
     },
-
-    applicationsSeries: function () {
-      var that = this;
-      var applicationConfiguration = {
-        id: "done",
-        title: "Done",
-        modelAttribute: function (event) {
-          return {
-            uniqueEvents: _.isUndefined(event) ? null : event.totalCompleted
-          };
-        },
-        collectionAttribute: function (events) {
-          return {
-            mean: that.numberOfJourneyCompletions() / events.length
-          };
-        }
-      }
-
-      return this.series(applicationConfiguration);
-    },
-
-    completionSeries: function () {
-      var that = this;
-      var completionConfiguration = {
-        id: "completion",
-        title: "Completion rate",
-        modelAttribute: function (event) {
-          return {
-            completion: that.findCompletion(event)
-          };
-        },
-        collectionAttribute: function () {
-          return {
-            totalCompletion: that.completionRate()
-          };
-        }
-      }
-
-      return this.series(completionConfiguration);
-    } 
 
   });
 
