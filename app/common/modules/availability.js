@@ -8,7 +8,8 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
     className: 'availability',
     visualisationClass: AvailabilityView,
     collectionClass: AvailabilityCollection,
-    clientRenderOnInit: true
+    clientRenderOnInit: true,
+    requiresSvg: true
   });
 
   return AvailabilityController;

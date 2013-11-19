@@ -25,7 +25,12 @@ body.raw {
     }
   }
 
-  .journey .visualisation {
-    width: 954px;
+  .journey .visualisation,
+  .availability .visualisation {
+    width: 1020px;
+  }
+
+  .availability #availability-nav {
+    display:none;
   }
 }
