@@ -42,6 +42,29 @@
         {"id": "hour", "name": "24 hours"}
       ],
       "tabbed_attr": "period"
+    },
+    {
+      "module-type": "completion_numbers",
+      "title": "Completed applications",
+      "description": "",
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "journey",
+      "info": [
+        "Info text line 1",
+        "Info text line 2"
+      ]
+    },
+    {
+      "page-type": "module",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "journey",
+      "info": [
+        "Info text line 1",
+        "Info text line 2"
+      ]
     }
   ]
 }

@@ -115,12 +115,6 @@ function (VolumetricsCollection, moment) {
       }
     ];
 
-    describe("changes", function (){
-      it("should not have so many duplicate tests with completion_rate_series", function (){
-        expect(true).toEqual(false);
-      });
-    });
-
     describe("FCO volumetrics collections", function () {
 
       sharedBehaviourForVolumetrics({
@@ -172,26 +166,6 @@ function (VolumetricsCollection, moment) {
 
         beforeEach(function () {
           volumetricsCollection = collectionFor({data: context.data});
-        });
-
-        it("should query backdrop for journey data for the specified service", function () {
-          expect(volumetricsCollection.url()).toContain("journey");
-          expect(volumetricsCollection.url()).toContain("notARealFCOTransaction");
-        });
-
-        it("should count the total number of people starting the transaction", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.numberOfJourneyStarts()).toEqual(21);
-        });
-
-        it("should count the total number of people completing the transaction", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.numberOfJourneyCompletions()).toEqual(10);
-        });
-
-        it("should give the total completion rate as a percentage", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.completionRate()).toBeCloseTo(0.476, 0.01);
         });
 
         it("should give a series for completion rate", function () {
