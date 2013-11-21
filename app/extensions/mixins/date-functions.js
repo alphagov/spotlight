@@ -6,7 +6,7 @@ define(
           var dates = _.map(objects, filter);
           if(dates.length < 1){
             return dates.first;
-          };
+          }
           return _.reduce(dates, function (latest, current) {
             return current.isAfter(latest) ? current : latest;
           });
@@ -16,7 +16,7 @@ define(
           var dates = _.map(objects, filter);
           if(dates.length < 1){
             return dates.first;
-          };
+          }
           return _.reduce(dates, function (earliest, current) {
             return current.isBefore(earliest) ? current : earliest;
           });
@@ -32,7 +32,7 @@ define(
             return latestDate.clone().subtract(weeksAgo, "weeks");
           });
         }
-      }
+      };
     }());
   }
 );

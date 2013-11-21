@@ -19,7 +19,7 @@ define([
             mean: that.numberOfJourneyCompletions() / events.length
           };
         }
-      }
+      };
 
       return this.series(applicationConfiguration);
     } 

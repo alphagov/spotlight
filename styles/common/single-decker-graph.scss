@@ -1,0 +1,89 @@
+@import 'typography';
+
+.single-decker-graph {
+  .impact-number {
+    padding-top:1em;
+    float:left;
+    width: 9em;
+    strong {
+      @include bold-48($tabular-numbers: true);
+
+      @media (max-width: 640px) {
+      // Revert back to default impact number size for small screen sizes.
+      // GOV.UK frontend toolkit rule decreases font size automatically
+      // for small screens.
+        @include bold-80($tabular-numbers: true);
+      }
+    }
+  }
+
+  ul.module-actions {
+    margin-top:-36px;
+    margin-bottom: 44px;
+  }
+
+  h3 {
+    clear:both;
+    height:0;
+    margin:0;
+    @include bold-19($tabular-numbers: true) ;
+  }
+
+  h1 {
+    margin-right:2em;
+  }
+
+  .graph {
+    margin-left: 9em;
+    svg {
+      min-height: 135px;
+      max-height: 135px;
+      max-width: 790px;
+    }
+
+    margin-right:-30px;
+    .inner {
+      left: 70px;
+      right:30px;
+    }
+  }
+
+  @media (max-width: 880px) {
+    
+    .graph {
+      .x-axis .tick:nth-child(even) text {
+        display:none;
+      }
+    }
+  }
+  
+  @media(max-width: 640px) {
+
+    .graph {
+      margin-right: 0;
+      min-height: 110px;
+      .y-axis .tick:nth-child(even) text {
+        display:block;
+      }
+    }
+  }
+
+  @media(max-width: 500px) {
+
+    .impact-number {
+      float:none;
+    }
+
+    .graph {
+      margin-left:0;
+      float:none;
+    }
+  }
+
+  figure {
+    .cursorLine.ascender {
+      display: inherit;
+    }
+  }
+
+}

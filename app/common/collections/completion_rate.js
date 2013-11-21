@@ -19,7 +19,7 @@ define([
             totalCompletion: that.completionRate()
           };
         }
-      }
+      };
 
       return this.series(completionConfiguration);
     } 
