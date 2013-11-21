@@ -26,18 +26,21 @@
     margin-right:2em;
   }
 
-  figure.graph .graph-wrapper {
+  figure.graph {
     margin-left: 12.5em;
-    svg {
-      min-height: 135px;
-      max-height: 135px;
-      max-width: 790px;
-    }
-
     margin-right:-30px;
-    .inner {
-      left: 70px;
-      right:30px;
+    
+    .graph-wrapper {
+      svg {
+        min-height: 135px;
+        max-height: 135px;
+        max-width: 790px;
+      }
+
+      .inner {
+        left: 70px;
+        right:30px;
+      }
     }
   }
 
@@ -55,10 +58,14 @@
       width: 10em;
     }
 
-    .graph {
+    figure.graph {
       margin-left: 10em;
       margin-right: 0;
-      min-height: 110px;
+      .graph-wrapper {
+        svg {
+          min-height: 110px;
+        }
+      }
 
       .y-axis .tick:nth-child(even) text {
         display:block;
@@ -71,7 +78,7 @@
   }
 
   @media(max-width: 500px) {
-    height:410px;
+    height:385px;
     position: relative;
 
     h3 {
@@ -85,18 +92,20 @@
       margin-top:2em;
     }
 
-    figure.graph {
-      margin-left:0;
+    .timeseries-graph {
+      figure.graph {
+        margin-left:0;
+      }
       position:absolute;
       left:0;
       right:0;
 
     }
-    figure:nth-of-type(1) {
+    .timeseries-graph:nth-of-type(1) {
       top: 150px;
     }
-    figure:nth-of-type(2) {
-      top: 285px;
+    .timeseries-graph:nth-of-type(2) {
+      top: 260px;
     }
   }
 
@@ -118,24 +127,6 @@
     }
   }
 
-}
-
-
-#volumetrics-completion {
-  .line0 { stroke: $data-colour-2; }
-  .stack0 { fill: mix($data-colour-2, $white, 25%); }
-}
-
-#volumetrics-submissions-selected {
-  strong {
-    color: $data-colour-1;
-  }
-}
-
-#volumetrics-completion-selected {
-  strong {
-    color: $data-colour-2;
-  }
 }
 
 .double-decker-graph .uptime-graph  {
