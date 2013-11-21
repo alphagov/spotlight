@@ -6,7 +6,6 @@ define([
 ],
 function (MatrixCollection, Collection, Group, dateFunctions) {
 
-  //was this inheritance actually necessary in the end?
   var VolumetricsCollection = MatrixCollection.extend({
     model: Group,
 
@@ -97,7 +96,6 @@ function (MatrixCollection, Collection, Group, dateFunctions) {
           total: dateFunctions.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
           available: weeksWithData
         },
-        // this might not be nice
         values: new Collection(values).models
       });
     },
