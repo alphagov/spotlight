@@ -8,5 +8,8 @@
   "info": [
     "Info text line 1",
     "Info text line 2"
-  ]
+  ],
+  "start-matcher": "start$",
+  "end-matcher": "done$",
+  "matching-attribute": "eventCategory"
 }

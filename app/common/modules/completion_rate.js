@@ -12,9 +12,9 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
 
     collectionOptions: function () {
       return {
-        startMatcher: /start$/,
-        endMatcher: /done$/,
-        matchingAttribute: "eventCategory"
+        startMatcher: new RegExp(this.model.get('start-matcher')),
+        endMatcher: new RegExp(this.model.get('end-matcher')),
+        matchingAttribute: this.model.get('matching-attribute')
       };
     }
   });
