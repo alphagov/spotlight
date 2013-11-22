@@ -17,6 +17,14 @@ function (GovUkView, Module) {
       });
       module.render();
       return module.$el[0].outerHTML;
+    },
+
+    getPageTitleItems: function () {
+      return [
+        this.model.get('title'),
+        this.model.get('dashboard-title'),
+        this.model.get('dashboard-strapline')
+      ];
     }
   });
 
