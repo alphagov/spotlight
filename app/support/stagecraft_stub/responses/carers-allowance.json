@@ -3,5 +3,17 @@
   "title": "Carer's Allowance",
   "strapline": "Service performance",
   "tagline": "To be defined.",
-  "modules": []
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Users currently on the GOV.UK Carer's Allowance service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the GOV.UK start page for the Carer's Allowance transaction."
+      ],
+      "data-group": "carers-allowance",
+      "data-type": "realtime"
+    }
+  ]
 }
