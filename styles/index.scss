@@ -1,21 +1,23 @@
-// govuk_frontend_toolkit
-@import '_colours';
-@import '_conditionals';
-@import '_css3';
-@import '_typography';
+@import
+  // govuk_frontend_toolkit
+  '_colours',
+  '_conditionals',
+  '_css3',
+  '_typography',
+  
+  'colours',
+  'typography',
+  
+  'common/raw',
+  'common/layout',
+  'common/navigation',
+  'common/module_actions',
+  'common/visualisation_fallback',
+  'common/header',
+  'common/impact_number',
+  'common/tabs',
+  'common/graph',
+  'common/journey',
+  'common/double-decker-graph',
+  'common/tooltip';
 
-
-@import 'colours';
-@import 'typography';
-
-@import 'common/raw';
-@import 'common/layout';
-@import 'common/navigation';
-@import 'common/header';
-@import 'common/graph';
-@import 'common/journey';
-@import 'common/double-decker-graph';
-@import 'common/tabs';
-@import 'common/module_actions';
-@import 'common/impact_number';
-@import 'common/tooltip';

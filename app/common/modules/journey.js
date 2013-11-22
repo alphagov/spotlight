@@ -9,6 +9,7 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
     visualisationClass: ConversionGraph,
     collectionClass: JourneyCollection,
     clientRenderOnInit: true,
+    requiresSvg: true,
 
     collectionOptions: function () {
       return {

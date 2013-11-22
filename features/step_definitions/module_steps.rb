@@ -29,6 +29,10 @@ Then(/^I should see the "(.*?)" module for "(.*?)" data$/) do |display_module, s
   page.find(".#{display_module} .visualisation").should have_xpath(values[display_module][service][:raw])
 end
 
+Then(/^I should see the "(.*?)" module fallback for "(.*?)" data$/) do |display_module, service|
+  page.find(".#{display_module}").should have_css(".visualisation-fallback")
+end
+
 Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
   page.should have_css("body.raw")
   # FIXME: This feature should assert that title and description in the module

@@ -91,10 +91,15 @@ function (Controller, View, Model, Collection) {
             viewClass: View,
             collectionClass: Collection
           });
+          var isReady = false;
+          controller.once('ready', function () {
+            isReady = true;
+          });
           controller.render({ init: true });
           expect(controller.renderView).not.toHaveBeenCalled();
           controller.collection.trigger('sync');
           expect(controller.renderView).not.toHaveBeenCalled();
+          expect(isReady).toBe(true);
         });
       });
 

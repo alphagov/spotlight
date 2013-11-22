@@ -27,6 +27,7 @@ function (processRequest, Model, Controller, View) {
         query: {
           raw: 'true'
         },
+        originalUrl: 'test url',
         route: {}
       };
       res = {
@@ -99,6 +100,7 @@ function (processRequest, Model, Controller, View) {
         expect(model.get('environment')).toEqual('development');
         expect(controller.model).toBe(model);
         expect(controller.raw).toEqual('true');
+        expect(controller.url).toEqual('test url');
         expect(controller.render).toHaveBeenCalled();
       });
 

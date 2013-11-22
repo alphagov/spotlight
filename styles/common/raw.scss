@@ -19,5 +19,18 @@ body.raw {
     aside.more-info {
       display: none;
     }
+
+    .visualisation {
+      float:left;
+    }
+  }
+
+  .journey .visualisation,
+  .availability .visualisation {
+    width: 1020px;
+  }
+
+  .availability #availability-nav {
+    display:none;
   }
 }

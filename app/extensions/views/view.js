@@ -57,7 +57,7 @@ function (Backbone, moment, Modernizr, $, _) {
         
         var viewsDefinition = this.views;
         if (_.isFunction(viewsDefinition)) {
-          viewsDefinition = viewsDefinition();
+          viewsDefinition = viewsDefinition.call(this);
         }
         var instances = this.viewInstances;
         _.each(viewsDefinition, function (definition, selector) {

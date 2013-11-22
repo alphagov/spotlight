@@ -2,7 +2,8 @@ define([
   'stagecraft_api_client',
   'underscore',
   './preprocessors/navigation',
-  './preprocessors/module_actions'
+  './preprocessors/module_actions',
+  './preprocessors/visualisation_fallback'
 ],
 function (StagecraftApiClient, _) {
   
@@ -15,6 +16,9 @@ function (StagecraftApiClient, _) {
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
       model: model
+    });
+    controller.on('ready', function () {
+      $('body').addClass('ready');
     });
     controller.render({ init: true });
     return controller;
