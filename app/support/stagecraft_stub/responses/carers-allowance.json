@@ -18,12 +18,13 @@
     {
       "module-type": "availability",
       "title": "Service availability",
-      "description": "",
+      "description": "How fast and how reliable the service is",
       "data-group": "carers-allowance",
       "data-type": "monitoring",
       "info": [
-        "Info text line 1",
-        "Info text line 2"
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "Uptime measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
         {"id": "day", "name": "30 days"},
