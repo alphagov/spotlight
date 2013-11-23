@@ -4,9 +4,13 @@ define([
   'tpl!common/templates/body-end.html',
   'stache!common/templates/navigation',
   'stache!common/templates/govuk_template',
+  'stache!common/templates/footer_top',
+  'stache!common/templates/footer_links',
   'stache!common/templates/content'
 ],
-function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate, contentTemplate) {
+function (View, headTemplate, bodyEndTemplate, navigationTemplate,
+          govukTemplate, footerTopTemplate, footerLinksTemplate,
+          contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -59,8 +63,8 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate
           bodyClasses: "",
           insideHeader: navigationTemplate,
           cookieMessage: "",
-          footerTop: "",
-          footerSupportLinks: "",
+          footerTop: footerTopTemplate(baseContext),
+          footerSupportLinks: footerLinksTemplate(baseContext),
           content: contentTemplate({
             content: this.getContent()
           })
