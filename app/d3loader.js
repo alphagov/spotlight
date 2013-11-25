@@ -1,15 +1,15 @@
 define({
   load: function(name, req, onLoad, config) {
-    function browserDoesNotSupportD3() {
-      return $('.lte-ie8').length;
-    }
+    var browserSupportsD3 = function () {
+      return !$('.lte-ie8').length;
+    };
 
-    if (!config.isBuild && browserDoesNotSupportD3()) {
-      onLoad();
-    } else {
+    if (!config.isBuild && browserSupportsD3() || config.isBuild && config.d3) {
       req(['d3'], function (d3) {
         onLoad(d3);
       });
+    } else {
+      onLoad({});
     }
   }
 });
