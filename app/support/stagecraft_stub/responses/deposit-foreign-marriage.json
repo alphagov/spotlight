@@ -40,8 +40,9 @@
       "data-group": "deposit-foreign-marriage",
       "data-type": "monitoring",
       "info": [
-        "Info text line 1",
-        "Info text line 2"
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability.html' rel='external' target='_blank'>Uptime</a> measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
         {"id": "day", "name": "30 days"},
