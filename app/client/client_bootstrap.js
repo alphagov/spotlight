@@ -13,7 +13,7 @@ function (StagecraftApiClient, _, Modernizr) {
       preprocessor();
     });
 
-    if (config.clientRequiresCors && !Modernizr.cors) {
+    if (config.clientRequiresCors && !(Modernizr.cors || window.XDomainRequest)) {
       // Don't bootstrap client in non-CORS browsers when CORS is required
       return;
     }
