@@ -30,7 +30,6 @@ function (Collection) {
 
     fetch: function (options) {
       options = _.extend({
-        ifModified: true,
         headers: {
           "cache-control": "max-age=120"
         }
