@@ -6,13 +6,6 @@
     width: 12.3em;
     strong {
       @include bold-48($tabular-numbers: true);
-
-      @media (max-width: 640px) {
-      // Revert back to default impact number size for small screen sizes.
-      // GOV.UK frontend toolkit rule decreases font size automatically
-      // for small screens.
-        @include bold-80($tabular-numbers: true);
-      }
     }
   }
 
@@ -47,12 +40,16 @@
         right:30px;
         bottom:50px;
       }
+
+      .cursorLine.ascender {
+        display: inherit;
+      }
     }
   }
 
   @media (max-width: 880px) {
     
-    .graph {
+    figure.graph {
       .x-axis .tick:nth-child(even) text {
         display:none;
       }
@@ -61,7 +58,12 @@
   
   @media(max-width: 640px) {
 
-    .graph {
+    .impact-number {
+      width: 9.8em;
+    }
+
+    figure.graph {
+      margin-left: 10em;
       margin-right: 0;
       min-height: 110px;
       .y-axis .tick:nth-child(even) text {
@@ -74,17 +76,12 @@
 
     .impact-number {
       float:none;
+      width:auto;
     }
 
-    .graph {
+    figure.graph {
       margin-left:0;
       float:none;
-    }
-  }
-
-  figure {
-    .cursorLine.ascender {
-      display: inherit;
     }
   }
 
