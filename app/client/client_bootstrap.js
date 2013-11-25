@@ -1,16 +1,22 @@
 define([
   'stagecraft_api_client',
   'underscore',
+  'modernizr',
   './preprocessors/navigation',
   './preprocessors/module_actions',
   './preprocessors/visualisation_fallback'
 ],
-function (StagecraftApiClient, _) {
+function (StagecraftApiClient, _, Modernizr) {
   
   var bootstrap = function (config) {
     _.each(bootstrap.preprocessors, function (preprocessor) {
       preprocessor();
     });
+
+    if (config.clientRequiresCors && !Modernizr.cors) {
+      // Don't bootstrap client in non-CORS browsers when CORS is required
+      return;
+    }
 
     var model = new StagecraftApiClient(config, { parse: true });
     var ControllerClass = model.get('controller');
@@ -24,7 +30,7 @@ function (StagecraftApiClient, _) {
     return controller;
   };
 
-  bootstrap.preprocessors = Array.prototype.slice.call(arguments, 2);
+  bootstrap.preprocessors = Array.prototype.slice.call(arguments, 3);
 
   return bootstrap;
 });

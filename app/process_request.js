@@ -8,7 +8,8 @@ function (StagecraftApiClient) {
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
-      backdropUrl: req.app.get('backdropUrl')
+      backdropUrl: req.app.get('backdropUrl'),
+      clientRequiresCors: req.app.get('clientRequiresCors')
     });
 
     var ControllerClass = model.get('controller');
