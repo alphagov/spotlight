@@ -1,8 +1,7 @@
 define([
-  'require',
-  'extensions/views/graph/component',
+  'extensions/views/graph/component'
 ],
-function (require, Component) {
+function (Component) {
 
   var LineLabel = Component.extend({
 
