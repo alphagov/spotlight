@@ -9,6 +9,7 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
     visualisationClass: CompletionRateView,
     collectionClass: CompletionRateCollection,
     clientRenderOnInit: true,
+    requiresSvg: true,
 
     collectionOptions: function () {
       return {

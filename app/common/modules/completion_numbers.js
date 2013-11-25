@@ -9,6 +9,7 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
     visualisationClass: CompletionNumbersView,
     collectionClass: CompletionNumbersCollection,
     clientRenderOnInit: true,
+    requiresSvg: true,
 
     collectionOptions: function () {
       return {
