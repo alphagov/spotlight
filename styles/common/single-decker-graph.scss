@@ -2,9 +2,8 @@
 
 .single-decker-graph {
   .impact-number {
-    padding-top:1em;
     float:left;
-    width: 9em;
+    width: 12.5em;
     strong {
       @include bold-48($tabular-numbers: true);
 
@@ -33,18 +32,21 @@
     margin-right:2em;
   }
 
-  .graph {
-    margin-left: 9em;
-    svg {
-      min-height: 135px;
-      max-height: 135px;
-      max-width: 790px;
-    }
+  figure.graph {
+    margin-left: 12.5em;
 
-    margin-right:-30px;
-    .inner {
-      left: 70px;
-      right:30px;
+    .graph-wrapper {
+      svg {
+        min-height: 135px;
+        max-height: 135px;
+        max-width: 790px;
+      }
+
+      .inner {
+        left: 70px;
+        right:30px;
+        bottom:50px;
+      }
     }
   }
 
