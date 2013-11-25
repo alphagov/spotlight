@@ -3,6 +3,8 @@
   "module-type": "availability",
   "title": "Service availability",
   "description": "",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Strapline",
   "data-group": "deposit-foreign-marriage",
   "data-type": "monitoring",
   "info": [

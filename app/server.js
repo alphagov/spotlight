@@ -72,6 +72,8 @@ app.configure('production', function () {
   winston.remove(winston.transports.Console);
 });
 
+app.get('*.png', requirejs('./render_png'));
+
 app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
 app.use('/performance/', requirejs('process_request'));

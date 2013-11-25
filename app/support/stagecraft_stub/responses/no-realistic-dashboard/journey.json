@@ -3,6 +3,8 @@
   "module-type": "journey",
   "title": "Users at each stage",
   "description": "Number of users who completed important stages of the transaction last week",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Strapline",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
   "steps": [

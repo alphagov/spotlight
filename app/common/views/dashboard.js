@@ -14,6 +14,13 @@ function (GovUkView, contentTemplate) {
       }).join('');
 
       return this.contentTemplate(context);
+    },
+
+    getPageTitleItems: function () {
+      return [
+        this.model.get('title'),
+        this.model.get('strapline')
+      ];
     }
   });
 

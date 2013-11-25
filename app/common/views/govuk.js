@@ -4,9 +4,13 @@ define([
   'tpl!common/templates/body-end.html',
   'stache!common/templates/navigation',
   'stache!common/templates/govuk_template',
+  'stache!common/templates/footer_top',
+  'stache!common/templates/footer_links',
   'stache!common/templates/content'
 ],
-function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate, contentTemplate) {
+function (View, headTemplate, bodyEndTemplate, navigationTemplate,
+          govukTemplate, footerTopTemplate, footerLinksTemplate,
+          contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -25,6 +29,21 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate
       this.html = this.template(context);
     },
 
+    getPageTitleItems: function () {
+      return [];
+    },
+
+    getPageTitle: function () {
+      var items = this.getPageTitleItems().filter(function (el) {
+        return el != null;
+      });
+      if (items.length <= 1) {
+        items.push('Performance');
+      }
+      items.push('GOV.UK');
+      return items.join(' - ');
+    },
+
     templateContext: function () {
       var baseContext = {
         model: this.model,
@@ -40,12 +59,12 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, govukTemplate
           head: headTemplate(baseContext),
           bodyEnd: this.bodyEndTemplate(baseContext),
           topOfPage: "",
-          pageTitle: "",
+          pageTitle: this.getPageTitle(),
           bodyClasses: "",
           insideHeader: navigationTemplate,
           cookieMessage: "",
-          footerTop: "",
-          footerSupportLinks: "",
+          footerTop: footerTopTemplate(baseContext),
+          footerSupportLinks: footerLinksTemplate(baseContext),
           content: contentTemplate({
             content: this.getContent()
           })

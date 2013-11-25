@@ -1,7 +1,7 @@
 {
   "page-type": "dashboard",
   "title": "Non-Realistic Data Stub",
-  "strapline": "Service represents test data, and not related to any real dashboard. Figures on this page include only applications processed in the UK on GOV.UK.",
+  "strapline": "Strapline",
   "tagline": "(this is not real data)",
   "modules": [
     {

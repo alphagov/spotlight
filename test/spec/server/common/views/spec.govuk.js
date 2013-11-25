@@ -36,6 +36,7 @@ function (GovUkView, View, Model) {
       var context = view.template.argsForCall[0][0];
       expect(context.head.trim()).toEqual('<link href="&#x2F;testAssetPath&#x2F;stylesheets/spotlight.css" media="screen" rel="stylesheet" type="text/css">');
       expect(context.bodyEnd).toEqual('body_end');
+      expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
       expect(content).toEqual('<section id="content"> <div class="performance-platform-outer"> test_content </div> </section>');

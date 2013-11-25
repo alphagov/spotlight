@@ -1,0 +1,13 @@
+.visualisation-fallback {
+  display:block;
+
+  img {
+    max-width:100%;
+    height: auto;
+    width: auto;
+  }
+
+  .inlinesvg & {
+    display:none;
+  }
+}
