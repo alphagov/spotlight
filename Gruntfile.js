@@ -6,8 +6,22 @@ var getRequirejsConfig = function () {
     requirejsConfig = config({ isBuild: true });
   };
   require('./app/config');
-  return requirejsConfig;
+
+  return extend(requirejsConfig, {
+    baseUrl: 'app',
+    name: "client",
+    include: ["vendor/almond"],
+    deps: [
+      'client',
+      'client/client_bootstrap'
+    ],
+    wrap: true,
+    optimize: 'none'
+  });
 };
+
+var requirejsConfig = getRequirejsConfig();
+
 
 module.exports = function(grunt) {
   "use strict";
@@ -99,16 +113,15 @@ module.exports = function(grunt) {
     },
     requirejs: {
       production: {
-        options: extend(getRequirejsConfig(), {
-          baseUrl: 'app',
+        options: extend({}, requirejsConfig, {
           out: "public/javascripts/spotlight.js",
-          name: "client",
-          include: ["vendor/almond"],
-          deps: [
-            'client',
-            'client/client_bootstrap'
-          ],
-          wrap: false
+          d3: true
+        })
+      },
+      'production-no-d3': {
+        options: extend({}, requirejsConfig, {
+          out: "public/javascripts/spotlight-no-d3.js",
+          d3: false
         })
       }
     },
@@ -200,7 +213,7 @@ module.exports = function(grunt) {
     'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
   ]);
   grunt.registerTask('build:production', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
   ]);
   grunt.registerTask('test:all', ['copy:vendor', 'cucumber', 'jasmine', 'jasmine_node']);
   grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
