@@ -10,9 +10,10 @@
   background-color: $white;
 
   header {
-    border-bottom: 5px solid $primary-colour;
+    margin-bottom: 1.5em;
     padding-bottom: 2em;
-    margin-bottom:1.5em;
+
+    border-bottom: 5px solid $primary-colour;
 
     h1 {
       width: 75%;
@@ -24,6 +25,10 @@
   }
 
   section {
+    clear: left;
+    float: left;
+    width: 100%;
+    margin-top: 1em;
     margin-bottom: 1.5em;
     padding-top: 0.4em;
 
@@ -66,7 +71,6 @@
 
 .performance-platform-outer {
   margin: 0 30px;
-  position: relative;
 
   border-top: 10px solid $primary-colour;
   padding: 2em 0;
