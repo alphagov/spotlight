@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
+allow_failures:
+  - node_js: "0.11"
 install:
   - npm install -g grunt-cli@0.1.9
   - npm install
