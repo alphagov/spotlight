@@ -18,7 +18,6 @@ def values
     'availability' => {
       'no-realistic-dashboard' => {
         title: 'Service availability',
-        description: '',
         raw: "//*[name()='svg']"
       }
     },
@@ -40,11 +39,11 @@ def values
 end
 
 Then(/^I should see the "(.*?)" module for "(.*?)" data$/) do |display_module, service|
-  page.find(".#{display_module} .visualisation").should have_xpath(values[display_module][service][:raw])
+  page.find("section.#{display_module} .visualisation").should have_xpath(values[display_module][service][:raw])
 end
 
 Then(/^I should see the "(.*?)" module fallback for "(.*?)" data$/) do |display_module, service|
-  page.find(".#{display_module}").should have_css(".visualisation-fallback")
+  page.find("section.#{display_module}").should have_css(".visualisation-fallback")
 end
 
 Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
@@ -58,9 +57,11 @@ end
 
 Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
   v = values[display_module][service]
-  page.find(".#{display_module}").should have_content(v[:title])
-  page.find(".#{display_module}").should have_content(v[:description])
+  page.find("section.#{display_module}").should have_content(v[:title])
+  if v[:description]
+    page.find("section.#{display_module}").should have_content(v[:description])
+  end
   if v[:info]
-    page.find(".#{display_module}").should have_content('more info')
+    page.find("section.#{display_module}").should have_content('more info')
   end
 end 

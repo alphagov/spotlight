@@ -18,7 +18,10 @@
   }
 
   section {
-    margin-bottom:1.5em;
+    margin-bottom: 1.5em;
+    padding-top: 0.4em;
+
+    border-top: 1px solid $grey-2;
 
     &.half-width {
       width:48.5%;
@@ -38,7 +41,7 @@
   @media (max-width: 640px) {
 
     padding: 0;
-    
+
     section {
       float:none;
       &.half-width {
@@ -59,7 +62,7 @@
   margin: 0 auto;
   max-width: 1020px;
   position: relative;
-  
+
   border-top: 10px solid $primary-colour;
   padding-top:2em;
   padding: 2em 30px 0;

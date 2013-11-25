@@ -19,7 +19,7 @@ define([
       var remaining = modules.length;
 
       if (!remaining) {
-        Controller.prototype.render.apply(this, arguments);
+        Controller.prototype.render.call(this, options);
         return;
       }
 
@@ -27,7 +27,7 @@ define([
         if (--remaining > 0) {
           return;
         }
-        Controller.prototype.render.apply(this, arguments);
+        Controller.prototype.render.call(this, options);
       }, this);
 
       var instances = this.moduleInstances = [];
