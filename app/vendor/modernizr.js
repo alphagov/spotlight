@@ -1,5 +1,5 @@
-/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-textshadow-inlinesvg-svg-touch-cssclasses-teststyles-prefixes
+/* Modernizr 2.7.0 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-textshadow-inlinesvg-svg-touch-cssclasses-teststyles-prefixes-cors
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.6.2',
+    var version = '2.7.0',
 
     Modernizr = {},
 
@@ -245,4 +245,6 @@ window.Modernizr = (function( window, document, undefined ) {
     return Modernizr;
 
 })(this, this.document);
-;
+// cors
+// By Theodoor van Donge
+Modernizr.addTest('cors', !!(window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()));;
