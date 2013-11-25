@@ -4,16 +4,19 @@
       @include bold-48;
 
       span.tagline {
-        display:block;
+        display: block;
+        margin: 1em 0 -1em 0;
+        padding: 0.6em 0 0 0;
+
         @include core-16;
-        color: $grey-1;
       }
 
       span.strapline {
         display: block;
+        margin-bottom: 5px;
+
         @include core-27;
         color: $grey-1;
-        margin-bottom: 5px;
       }
     }
   }
