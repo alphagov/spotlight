@@ -38,7 +38,6 @@ function (VisitorsRealtimeCollection, Collection) {
       expect(Collection.prototype.fetch).toHaveBeenCalled();
       var args = Collection.prototype.fetch.argsForCall[0][0];
       expect(args).toEqual({
-        ifModified: true,
         headers: {"cache-control": "max-age=120"}
       });
     });
