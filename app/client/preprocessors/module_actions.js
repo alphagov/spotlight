@@ -17,7 +17,9 @@ define([
       };
 
       var preventBubbling = function(e) {
-        return false;
+        if(!$(e.target).is('a')){
+          return false;
+        }
       };
 
       var item = $(this).next('ul');

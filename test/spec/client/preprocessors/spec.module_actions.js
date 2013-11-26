@@ -8,7 +8,7 @@ define([
     var ul;
 
     beforeEach(function() {
-      $('body').append($('<section><aside class="more-info" id="module1"><span class="more-info-link"></span><ul><li>'));
+      $('body').append($('<section><aside class="more-info" id="module1"><span class="more-info-link"></span><ul><li><a>'));
       moreInfoLink = $('.more-info-link');
       ul = $('.more-info ul');
     });
@@ -63,16 +63,27 @@ define([
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });
 
-      it("should not close the callout when the user touches the info box", function () {
-        applyModuleActions();
-        moreInfoLink.trigger('touchend');
-        expect(ul).toHaveClass('js-clicked');
-        ul.trigger('touchend');
-        expect(ul).toHaveClass('js-clicked');
-        ul.find('li').trigger('touchend');
-        expect(ul).toHaveClass('js-clicked');
-        $('body').trigger('touchend');
-        expect(ul).not.toHaveClass('js-clicked');
+      describe("when the target is not an anchor", function () {
+        it("should not close the callout when the user touches the info box", function () {
+          applyModuleActions();
+          moreInfoLink.trigger('touchend');
+          expect(ul).toHaveClass('js-clicked');
+          ul.trigger('touchend');
+          expect(ul).toHaveClass('js-clicked');
+          ul.find('li').trigger('touchend');
+          expect(ul).toHaveClass('js-clicked');
+          $('body').trigger('touchend');
+          expect(ul).not.toHaveClass('js-clicked');
+        });
+      });
+      describe("when the target is an anchor", function () {
+        it("should not close the callout when the user touches the info box", function () {
+          applyModuleActions();
+          moreInfoLink.trigger('touchend');
+          expect(ul).toHaveClass('js-clicked');
+          ul.find('a').trigger('touchend');
+          expect(ul).not.toHaveClass('js-clicked');
+        });
       });
 
     });
@@ -127,16 +138,28 @@ define([
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });
 
-      it("should not close the callout when the user clicks the info box", function () {
-        applyModuleActions();
-        moreInfoLink.trigger('click');
-        expect(ul).toHaveClass('js-clicked');
-        ul.trigger('click');
-        expect(ul).toHaveClass('js-clicked');
-        ul.find('li').trigger('click');
-        expect(ul).toHaveClass('js-clicked');
-        $('body').trigger('click');
-        expect(ul).not.toHaveClass('js-clicked');
+      describe("when the target is not an anchor", function () {
+        it("should not close the callout when the user clicks the info box", function () {
+          applyModuleActions();
+          moreInfoLink.trigger('click');
+          expect(ul).toHaveClass('js-clicked');
+          ul.trigger('click');
+          expect(ul).toHaveClass('js-clicked');
+          ul.find('li').trigger('click');
+          expect(ul).toHaveClass('js-clicked');
+          $('body').trigger('click');
+          expect(ul).not.toHaveClass('js-clicked');
+        });
+      });
+
+      describe("when the target is an anchor", function () {
+        it("should not close the callout when the user clicks the info box", function () {
+          applyModuleActions();
+          moreInfoLink.trigger('click');
+          expect(ul).toHaveClass('js-clicked');
+          ul.find('a').trigger('click');
+          expect(ul).not.toHaveClass('js-clicked');
+        });
       });
 
     });
