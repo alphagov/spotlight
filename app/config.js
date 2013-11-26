@@ -15,6 +15,7 @@ define(function (options) {
   if (typeof window === 'object' || options && options.isBuild) {
     // additional setup for client
     config.paths.jquery = 'vendor/jquery';
+    config.paths.jqueryxdr = 'vendor/jquery.xdr';
     config.paths.underscore = 'vendor/lodash';
     config.paths.backbone = 'vendor/backbone';
     config.paths.d3 = 'vendor/d3';
@@ -22,7 +23,7 @@ define(function (options) {
 
     config.shim = {
       backbone: {
-        deps: ['underscore', 'jquery'],
+        deps: ['underscore', 'jqueryxdr'],
         exports: 'Backbone'
       },
       jqueryxdr: {
