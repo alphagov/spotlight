@@ -39,7 +39,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<section id="content"> <div class="performance-platform-outer"> test_content </div> </section>');
+      expect(content).toEqual('<div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content </div> </section> </div>');
     });
   });
 });

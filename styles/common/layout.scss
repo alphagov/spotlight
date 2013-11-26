@@ -1,12 +1,19 @@
-#content {
+#wrapper {
   border-bottom: 10px solid $primary-colour;
-  background-color: #FFFFFF;
+}
+
+#content {
+  margin: 0 auto;
+  max-width: 1020px;
   padding: 0 0 1em 0;
 
+  background-color: $white;
+
   header {
-    border-bottom: 5px solid $primary-colour;
+    margin-bottom: 1.5em;
     padding-bottom: 2em;
-    margin-bottom:1.5em;
+
+    border-bottom: 5px solid $primary-colour;
 
     h1 {
       width: 75%;
@@ -18,6 +25,10 @@
   }
 
   section {
+    clear: left;
+    float: left;
+    width: 100%;
+    margin-top: 1em;
     margin-bottom: 1.5em;
     padding-top: 0.4em;
 
@@ -59,15 +70,14 @@
 }
 
 .performance-platform-outer {
-  margin: 0 auto;
-  max-width: 1020px;
-  position: relative;
+  margin: 0 30px;
 
   border-top: 10px solid $primary-colour;
-  padding-top:2em;
-  padding: 2em 30px 0;
+  padding: 2em 0;
 
   @media (max-width: 640px) {
-    padding: 1em 15px 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 1em 0;
   }
 }

@@ -82,9 +82,8 @@ body.js-enabled #content .more-info {
   }
 }
 
-
 @media (max-width: 480px) {
   #content .more-info ul {
-    width: 100%;
+    width: auto;
   }
 }
