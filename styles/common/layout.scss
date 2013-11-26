@@ -2,6 +2,12 @@
   border-bottom: 10px solid $primary-colour;
 }
 
+#wrapper * {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 #content {
   margin: 0 auto;
   max-width: 1020px;
