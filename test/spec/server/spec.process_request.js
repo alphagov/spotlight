@@ -83,6 +83,7 @@ function (processRequest, Model, Controller, View) {
 
       var model, controller;
       beforeEach(function() {
+        spyOn(processRequest, "getFullUrl").andReturn('/testRequestUrl');
         var ConcreteController = Controller.extend({
           viewClass: View,
           render: jasmine.createSpy()
@@ -98,6 +99,7 @@ function (processRequest, Model, Controller, View) {
         expect(model.get('assetPath')).toEqual('/testAssetPath');
         expect(model.get('backdropUrl')).toEqual('//testBackdrop/');
         expect(model.get('environment')).toEqual('development');
+        expect(model.get('requestUrl')).toEqual('/testRequestUrl');
         expect(controller.model).toBe(model);
         expect(controller.raw).toEqual('true');
         expect(controller.url).toEqual('test url');
@@ -110,6 +112,23 @@ function (processRequest, Model, Controller, View) {
         controller.html = 'test content';
         controller.trigger('ready');
         expect(res.send).toHaveBeenCalledWith('test content');
+      });
+    });
+
+    describe("getFullUrl", function () {
+      it("creates a fully qualified request URL", function () {
+        var get = jasmine.createSpy();
+        get.plan = function (prop) {
+          return {
+            host: 'domain'
+          }[prop];
+        };
+        var req = {
+          protocol: 'http',
+          url: '/test/path',
+          get: get
+        };
+        expect(processRequest.getFullUrl(req)).toEqual('http://domain/test/path');
       });
     });
   });

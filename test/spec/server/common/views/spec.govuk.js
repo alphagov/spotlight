@@ -23,6 +23,9 @@ function (GovUkView, View, Model) {
         model: model,
         bodyEndTemplate: function () {
           return 'body_end';
+        },
+        reportAProblemTemplate: function () {
+          return "report_a_problem";
         }
       });
 
@@ -39,7 +42,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content </div> </section> </div>');
+      expect(content).toEqual('<div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content report_a_problem </div> </section> </div>');
     });
   });
 });
