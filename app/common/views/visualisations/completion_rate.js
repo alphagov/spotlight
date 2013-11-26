@@ -2,7 +2,7 @@ define([
   'stache!common/templates/visualisations/completion_rate',
   'extensions/views/view',
   'common/views/visualisations/volumetrics/number',
-  'common/views/visualisations/volumetrics/completion-graph',
+  'common/views/visualisations/volumetrics/completion-graph'
 ],
 function (template, View, VolumetricsNumberView, CompletionGraphView) {
   var CompletionRateView = View.extend({
