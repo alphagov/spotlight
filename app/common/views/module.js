@@ -24,7 +24,7 @@ function (View, template) {
         View.prototype.templateContext.call(this),
         {
           fallback: isServer && this.requiresSvg,
-          fallbackUrl: this.url + '.png?raw'
+          fallbackUrl: this.url + '.png'
         }
       );
     }

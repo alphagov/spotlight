@@ -35,7 +35,7 @@ function (http, url) {
       '&clipSelector=.visualisation',
       '&url=',
       renderPng.screenshotTargetUrl,
-      url.replace(".png", "")
+      url.replace(/.png|\?raw/g, "?raw")
     ].join('');
   };
 
