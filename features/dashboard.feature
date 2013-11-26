@@ -16,3 +16,9 @@ Feature: Dashboard
 # FIXME: Disabled pending reliable solution to client side module rendering
 #    Then I should see the "availability" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "availability" module
+# FIXME: Disabled pending reliable solution to client side module rendering
+#    Then I should see the "completion_rate" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "completion_rate" module
+# FIXME: Disabled pending reliable solution to client side module rendering
+#    Then I should see the "completion_numbers" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "completion_numbers" module

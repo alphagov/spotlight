@@ -4,7 +4,7 @@ define([
   'common/collections/availability'
 ],
 function (ModuleController, AvailabilityView, AvailabilityCollection) {
-  var AvailabilityController = ModuleController.extend({
+  var AvailabilityModule = ModuleController.extend({
     className: 'availability',
     visualisationClass: AvailabilityView,
     collectionClass: AvailabilityCollection,
@@ -12,5 +12,5 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
     requiresSvg: true
   });
 
-  return AvailabilityController;
+  return AvailabilityModule;
 });

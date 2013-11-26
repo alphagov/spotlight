@@ -4,7 +4,7 @@ define([
   'common/views/visualisations/conversion-graph/conversion-graph'
 ],
 function (ModuleController, JourneyCollection, ConversionGraph) {
-  var JourneyController = ModuleController.extend({
+  var JourneyModule = ModuleController.extend({
     className: 'journey',
     visualisationClass: ConversionGraph,
     collectionClass: JourneyCollection,
@@ -18,5 +18,5 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
     }
   });
 
-  return JourneyController;
+  return JourneyModule;
 });

@@ -1,0 +1,88 @@
+@import 'typography';
+
+.single-decker-graph {
+  .impact-number {
+    float:left;
+    width: 12.3em;
+    strong {
+      @include bold-48($tabular-numbers: true);
+    }
+  }
+
+  ul.module-actions {
+    margin-top:-36px;
+    margin-bottom: 44px;
+  }
+
+  h3 {
+    clear:both;
+    height:0;
+    margin:0;
+    @include bold-19($tabular-numbers: true) ;
+  }
+
+  h1 {
+    margin-right:2em;
+  }
+
+  figure.graph {
+    margin-left: 12.5em;
+
+    .graph-wrapper {
+      svg {
+        min-height: 135px;
+        max-height: 135px;
+        max-width: 790px;
+      }
+
+      .inner {
+        left: 70px;
+        right:30px;
+        bottom:50px;
+      }
+
+      .cursorLine.ascender {
+        display: inherit;
+      }
+    }
+  }
+
+  @media (max-width: 880px) {
+    
+    figure.graph {
+      .x-axis .tick:nth-child(even) text {
+        display:none;
+      }
+    }
+  }
+  
+  @media(max-width: 640px) {
+
+    .impact-number {
+      width: 9.8em;
+    }
+
+    figure.graph {
+      margin-left: 10em;
+      margin-right: 0;
+      min-height: 110px;
+      .y-axis .tick:nth-child(even) text {
+        display:block;
+      }
+    }
+  }
+
+  @media(max-width: 500px) {
+
+    .impact-number {
+      float:none;
+      width:auto;
+    }
+
+    figure.graph {
+      margin-left:0;
+      float:none;
+    }
+  }
+
+}

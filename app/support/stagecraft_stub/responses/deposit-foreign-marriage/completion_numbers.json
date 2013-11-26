@@ -1,0 +1,15 @@
+{
+  "page-type": "module",
+  "module-type": "completion_numbers",
+  "title": "Completed applications",
+  "description": "",
+  "data-group": "deposit-foreign-marriage",
+  "data-type": "journey",
+  "info": [
+    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+    "Completed applications count based on unique visitors to the final page of the service."
+  ],
+  "start-matcher": "start$",
+  "end-matcher": "done$",
+  "matching-attribute": "eventCategory"
+}

@@ -4,12 +4,12 @@ define([
   'common/collections/visitors-realtime'
 ],
 function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
-  var VisitorsRealtimeController = ModuleController.extend({
+  var VisitorsRealtimeModule = ModuleController.extend({
     className: 'realtime',
     visualisationClass: VisitorsRealtimeView,
     collectionClass: VisitorsRealtimeCollection,
     clientRenderOnInit: true
   });
 
-  return VisitorsRealtimeController;
+  return VisitorsRealtimeModule;
 });

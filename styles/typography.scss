@@ -24,4 +24,18 @@ a[rel="external"] {
     margin-top:0;
     @include core-16;
   }
+
+  section {
+    margin-top:1em;
+    margin-bottom:1.5em;
+
+    h1 {
+      @include bold-24;
+    }
+
+    h2 {
+      margin-top:0;
+      @include core-16;
+    }
+  }
 }
