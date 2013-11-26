@@ -52,7 +52,7 @@ function (StandaloneView, Collection, Model, View) {
           var content = standaloneView.getContent();
           content = content.replace(/>\s+?</g, '><');
           expect(content).toContain('class="testclass"');
-          expect(content).toContain('<div class="visualisation-fallback" data-src="/testurl.png?raw"><noscript><img src="/testurl.png?raw" /></noscript></div>');
+          expect(content).toContain('<div class="visualisation-fallback" data-src="/testurl.png"><noscript><img src="/testurl.png" /></noscript></div>');
         });
       });
     });

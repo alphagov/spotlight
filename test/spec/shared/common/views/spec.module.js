@@ -61,7 +61,7 @@ function (ModuleView, Collection, Model, View) {
           .replace('&gt;', '>')
           .replace(' />', '/>');
 
-        expect(content).toEqual('<section class="testclass"><h1>Title</h1><div class="visualisation-fallback" data-src="/test/url.png?raw"><noscript><img src="/test/url.png?raw"/></noscript></div></section>');
+        expect(content).toEqual('<section class="testclass"><h1>Title</h1><div class="visualisation-fallback" data-src="/test/url.png"><noscript><img src="/test/url.png"/></noscript></div></section>');
       });
     });
 
