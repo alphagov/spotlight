@@ -2,7 +2,7 @@
   "page-type": "dashboard",
   "title": "Carer's Allowance",
   "strapline": "Service performance",
-  "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person you care for must be in receipt of a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate or Armed Forces Independence Payment.",
+  "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person who's cared for must be in receipt of a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate or Armed Forces Independence Payment.",
   "modules": [
     {
       "module-type": "realtime",
