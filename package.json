@@ -14,7 +14,7 @@
   },
   "private": true,
   "scripts": {
-    "test": "grunt test:all"
+    "test": "grunt build:development test:all"
   },
   "dependencies": {
     "express": "3.4.0",
