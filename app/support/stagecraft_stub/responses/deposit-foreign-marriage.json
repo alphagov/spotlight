@@ -16,22 +16,6 @@
       "data-type": "realtime"
     },
     {
-      "module-type": "journey",
-      "title": "Users at each stage",
-      "description": "Number of users who completed important stages of the transaction last week",
-      "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-        "The total number of unique users who arrived at each stage."
-      ],
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "journey",
-      "steps": [
-        {"id": "deposit-foreign-marriage:start", "title": "Start"},
-        {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
-        {"id": "deposit-foreign-marriage:done", "title": "Done"}
-      ]
-    },
-    {
       "module-type": "completion_numbers",
       "title": "Completed applications",
       "description": "",
@@ -46,7 +30,6 @@
       "matching-attribute": "eventCategory"
     },
     {
-      "page-type": "module",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
@@ -60,6 +43,22 @@
       "start-matcher": "start$",
       "end-matcher": "done$",
       "matching-attribute": "eventCategory"
+    },
+    {
+      "module-type": "journey",
+      "title": "Users at each stage",
+      "description": "Number of users who completed important stages of the transaction last week",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "The total number of unique users who arrived at each stage."
+      ],
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "journey",
+      "steps": [
+        {"id": "deposit-foreign-marriage:start", "title": "Start"},
+        {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
+        {"id": "deposit-foreign-marriage:done", "title": "Done"}
+      ]
     },
     {
       "module-type": "availability",
