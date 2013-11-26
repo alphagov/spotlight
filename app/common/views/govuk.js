@@ -6,11 +6,12 @@ define([
   'stache!common/templates/govuk_template',
   'stache!common/templates/footer_top',
   'stache!common/templates/footer_links',
+  'stache!common/templates/report_a_problem',
   'stache!common/templates/content'
 ],
 function (View, headTemplate, bodyEndTemplate, navigationTemplate,
           govukTemplate, footerTopTemplate, footerLinksTemplate,
-          contentTemplate) {
+          reportAProblemTemplate, contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -19,6 +20,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate,
   var GovUkView = View.extend({
     template: govukTemplate,
     bodyEndTemplate: bodyEndTemplate,
+    reportAProblemTemplate: reportAProblemTemplate,
 
     getContent: function () {
       return '';
@@ -45,12 +47,8 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate,
     },
 
     templateContext: function () {
-      var baseContext = {
-        model: this.model,
-        requirePath: this.model.get('requirePath'),
-        assetPath: this.model.get('assetPath'),
-        development: this.model.get('environment') === 'development'
-      };
+      var baseContext = this.model.toJSON();
+      baseContext.model = this.model;
 
       return _.extend(
         View.prototype.templateContext.apply(this, arguments),
@@ -63,10 +61,11 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate,
           bodyClasses: "",
           insideHeader: navigationTemplate,
           cookieMessage: "",
-          footerTop: footerTopTemplate(baseContext),
-          footerSupportLinks: footerLinksTemplate(baseContext),
+          footerTop: footerTopTemplate(),
+          footerSupportLinks: footerLinksTemplate(),
           content: contentTemplate({
-            content: this.getContent()
+            content: this.getContent(),
+            reportAProblem: this.reportAProblemTemplate(baseContext) 
           })
         }
       );

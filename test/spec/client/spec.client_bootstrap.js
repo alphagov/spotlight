@@ -5,12 +5,15 @@ define([
 function (bootstrap, DashboardController) {
   describe("client bootstrap", function () {
 
-    it("instantiates a controller from config data", function () {
+    var config;
+    beforeEach(function() {
       spyOn(DashboardController.prototype, "render");
-      var config = {
+      config = {
         'page-type': 'dashboard'
       };
+    });
 
+    it("instantiates a controller from config data", function () {
       var controller = bootstrap(config);
 
       expect(controller instanceof DashboardController).toBe(true);
@@ -24,7 +27,7 @@ function (bootstrap, DashboardController) {
         jasmine.createSpy()
       ];
 
-      var controller = bootstrap({});
+      var controller = bootstrap(config);
       expect(bootstrap.preprocessors[0]).toHaveBeenCalled();
       expect(bootstrap.preprocessors[1]).toHaveBeenCalled();
 

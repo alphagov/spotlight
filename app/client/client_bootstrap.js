@@ -4,7 +4,8 @@ define([
   'modernizr',
   './preprocessors/navigation',
   './preprocessors/module_actions',
-  './preprocessors/visualisation_fallback'
+  './preprocessors/visualisation_fallback',
+  './preprocessors/report_a_problem'
 ],
 function (StagecraftApiClient, _, Modernizr) {
   

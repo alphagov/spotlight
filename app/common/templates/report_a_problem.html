@@ -1,0 +1,27 @@
+<!-- report_a_problem -->
+<p class="report-a-problem-toggle js-footer"><a href="">Is there anything wrong with this page?</a></p>
+<div class="report-a-problem-container">
+  <h2>Help us improve GOV.UK</h2>
+  <form accept-charset="UTF-8" action="/contact/govuk/problem_reports" method="post">
+    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <input id="url" name="url" type="hidden" value="{{ requestUrl }}">
+    {{#source}}
+    <input id="source" name="source" type="hidden" value="{{ source }}">
+    {{/source}}
+    {{#pageOwner}}
+    <input id="pageOwner" name="pageOwner" type="hidden" value="{{ pageOwner }}">
+    {{/pageOwner}}
+    <p>Please don't include any personal or financial information,
+      for example your National Insurance or credit card numbers.</p>
+
+    <label for="what_doing">What you were doing</label>
+    <input id="what_doing" name="what_doing" type="text" />
+    
+    <label for="what_wrong">What went wrong</label>
+    <input id="what_wrong" name="what_wrong" type="text" />
+
+    <div><button name="commit" type="submit" class="button">Send</button></div>
+
+  </form>
+</div>
+<!-- end report_a_problem -->

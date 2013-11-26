@@ -1,0 +1,66 @@
+// Copied from static project
+
+.report-a-problem-toggle{
+  a{
+    color: #454a4c;
+  }
+
+  @include ie-lte(7) {
+    zoom: 1;
+  }
+}
+
+#content .report-a-problem-container{
+
+  .js-enabled & {
+    display: none;
+  }
+
+  clear: both;
+  margin: 3em 0 2em 0;
+  max-width: 38em;
+
+  h2 {
+    @include core-24;
+    font-weight: 600;
+    margin: 1em 0;
+  }
+
+  div {
+    padding-top: 0.5em;
+
+    .button {
+      @include button;
+      @include core-19;
+    }
+  }
+
+  p {
+    @include core-19;
+    padding-bottom: 1em;
+  }
+
+  label {
+    @include core-19;
+    padding: 0;
+    margin: 0 0 0.22em 0;
+    display: block;  
+    font-weight: bold;
+  }
+
+  input {
+    &[type="text"] {
+      display: block;
+      @include core-19;
+      margin: 0 0 1em 0;
+      background-color: #f8f8f8;
+      border: 1px inset #bfc1c3;
+      padding: 0.3em 0 0.1em 0.4em;
+      width: 95%;
+
+      @include ie-lte(7) {
+        width: 550px;
+      }
+    }
+  }
+}

@@ -2,9 +2,10 @@ define([
   'stagecraft_api_client'
 ],
 function (StagecraftApiClient) {
-
   var renderContent = function (req, res, model) {
     model.set({
+      requestPath: req.path,
+      requestUrl: setup.getFullUrl(req),
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
@@ -28,6 +29,10 @@ function (StagecraftApiClient) {
     return controller;
   };
 
+  var getFullUrl = function (req) {
+    return [req.protocol, "://", req.get('host'), req.url].join('');
+  };
+
   var setup = function (req, res, next) {
     var model = setup.getStagecraftApiClient();
 
@@ -46,6 +51,7 @@ function (StagecraftApiClient) {
     return new StagecraftApiClient();
   };
   setup.renderContent = renderContent;
+  setup.getFullUrl = getFullUrl;
 
   return setup;
 });
