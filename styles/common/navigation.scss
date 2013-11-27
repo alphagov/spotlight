@@ -1,3 +1,5 @@
+$grey-2: #2e3133;
+
 span.alpha-tag {
   text-transform: uppercase;
   font-weight:normal;
@@ -103,9 +105,10 @@ span.alpha-tag {
         }
 
         @include media($max-width: 768px){
-          float: none;
+          float: left;
+          width: 50%;
           padding: 3px 0;
-          border-bottom: 1px solid $grey-1;
+          border-bottom: 1px solid $grey-2;
         }
 
         a {
