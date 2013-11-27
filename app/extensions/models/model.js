@@ -1,17 +1,15 @@
 define([
   'backbone',
-  'moment',
+  'extensions/mixins/date-functions',
   'underscore'
 ],
-function (Backbone, moment, _) {
+function (Backbone, DateFunctions, _) {
   var Model = Backbone.Model.extend({
     
-    moment: moment,
-
     /**
      * Default date format used for parsing and serialisation
      */
-    defaultDateFormat: 'YYYY-MM-DDTHH:mm:ssTZ',
+    defaultDateFormat: 'YYYY-MM-DDTHH:mm:ssZ',
 
     /**
      * Converts date attributes into moment date objects
@@ -27,17 +25,19 @@ function (Backbone, moment, _) {
           return;
         }
         
-        var date = this.moment(value, this.defaultDateFormat);
+        var date = this.getMoment(value, this.defaultDateFormat);
         if (date.isValid()) {
           attributes[attr] = date;
         } else {
           console.warn(value, 'is not a valid date');
         }
-      });
+      }, this);
 
       return attributes;
     }
   });
+
+  _.extend(Model.prototype, DateFunctions);
 
   return Model;
 });

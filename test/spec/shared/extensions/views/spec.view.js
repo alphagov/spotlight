@@ -480,7 +480,7 @@ function (View, Model, Backbone, _) {
     });
 
     describe("formatPeriod", function () {
-      var format = View.prototype.formatPeriod;
+      var view = new View();
       var moment = Model.prototype.moment;
 
       it("formats single days", function () {
@@ -488,16 +488,16 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-19'),
           _end_at: moment('2013-08-20')
         });
-        expect(format(model, 'week')).toEqual('19 Aug 2013');
-        expect(format(model, 'day')).toEqual('19 Aug 2013');
+        expect(view.formatPeriod(model, 'week')).toEqual('19 Aug 2013');
+        expect(view.formatPeriod(model, 'day')).toEqual('19 Aug 2013');
       });
 
       it("formats as single days when there is no end date defined", function () {
         var model = new Model({
           _start_at: moment('2013-08-19')
         });
-        expect(format(model, 'week')).toEqual('19 Aug 2013');
-        expect(format(model, 'day')).toEqual('19 Aug 2013');
+        expect(view.formatPeriod(model, 'week')).toEqual('19 Aug 2013');
+        expect(view.formatPeriod(model, 'day')).toEqual('19 Aug 2013');
       });
 
       it("formats daily date periods mid-month", function () {
@@ -505,8 +505,8 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-19'),
           _end_at: moment('2013-08-26')
         });
-        expect(format(model, 'week')).toEqual('19 to 25 Aug 2013');
-        expect(format(model, 'day')).toEqual('19 to 25 Aug 2013');
+        expect(view.formatPeriod(model, 'week')).toEqual('19 to 25 Aug 2013');
+        expect(view.formatPeriod(model, 'day')).toEqual('19 to 25 Aug 2013');
       });
 
       it("formats daily date periods across month boundaries", function () {
@@ -514,15 +514,15 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-26'),
           _end_at: moment('2013-09-02')
         });
-        expect(format(model, 'week')).toEqual('26 Aug to 1 Sep 2013');
-        expect(format(model, 'day')).toEqual('26 Aug to 1 Sep 2013');
+        expect(view.formatPeriod(model, 'week')).toEqual('26 Aug to 1 Sep 2013');
+        expect(view.formatPeriod(model, 'day')).toEqual('26 Aug to 1 Sep 2013');
       });
 
       it("formats as single month when there is no end date defined", function () {
         var model = new Model({
           _start_at: moment('2013-08-01')
         });
-        expect(format(model, 'month')).toEqual('August 2013');
+        expect(view.formatPeriod(model, 'month')).toEqual('August 2013');
       });
 
       it("formats monthly date periods for a single month", function () {
@@ -530,7 +530,7 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-01'),
           _end_at: moment('2013-09-01')
         });
-        expect(format(model, 'month')).toEqual('August 2013');
+        expect(view.formatPeriod(model, 'month')).toEqual('August 2013');
       });
 
       it("formats monthly date periods across months", function () {
@@ -538,7 +538,7 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-01'),
           _end_at: moment('2013-10-01')
         });
-        expect(format(model, 'month')).toEqual('Aug to Sep 2013');
+        expect(view.formatPeriod(model, 'month')).toEqual('Aug to Sep 2013');
       });
 
       it("formats monthly date periods across years", function () {
@@ -546,7 +546,7 @@ function (View, Model, Backbone, _) {
           _start_at: moment('2013-08-01'),
           _end_at: moment('2014-02-01')
         });
-        expect(format(model, 'month')).toEqual('Aug 2013 to Jan 2014');
+        expect(view.formatPeriod(model, 'month')).toEqual('Aug 2013 to Jan 2014');
       });
     });
 

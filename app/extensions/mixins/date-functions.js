@@ -1,23 +1,67 @@
-define(function () {
+define([
+  'moment-timezone',
+  'vendor/timezones/europe_london'
+],
+function (moment) {
+
+
+  // FIXME: Work around bug in moment-timezone
+  // https://github.com/moment/moment-timezone/issues/28
+  // Remove when issue is resolved
+  var oldDateFunction = moment.fn.date;
+  moment.fn.date = function() {
+      if (arguments.length >= 1) {
+          var oldOffset = this.zone();
+          var result = oldDateFunction.apply(this, arguments);
+          var newOffset = this.zone();
+          this.add('minutes', newOffset - oldOffset);//restore proper time
+          return result;
+      } else {
+          return oldDateFunction.apply(this, arguments);
+      }
+  };
+  moment.fn.dates = moment.fn.date;
+
+  var oldStartOfFunction = moment.fn.startOf;
+  moment.fn.startOf = function(units) {
+      if (units === 'day' || units === 'days' || units === 'd') {
+          var oldOffset = this.zone();
+          var result = oldStartOfFunction.apply(this, arguments);
+          var newOffset = this.zone();
+          this.add('minutes', newOffset - oldOffset);//restore proper time
+          return result;     
+      } else {
+          return oldStartOfFunction.apply(this, arguments);
+      }
+  };
+
+
   return {
+    moment: moment,
+
+    getMoment: function () {
+      return this.moment.apply(null, arguments).tz('Europe/London');
+    },
+
     latest: function (objects, filter) {
-      var dates = _.map(objects, filter);
-      if(dates.length < 1){
+      var dates = _.map(objects, filter, this);
+      if (dates.length < 1){
         return dates.first;
       }
-      return _.reduce(dates, function (latest, current) {
-        return current.isAfter(latest) ? current : latest;
-      });
+      var res = _.reduce(dates, function (latest, current) {
+        return !latest || current.isAfter(latest) ? current : latest;
+      }, null, this);
+      return res;
     },
 
     earliest: function (objects, filter) {
-      var dates = _.map(objects, filter);
-      if(dates.length < 1){
+      var dates = _.map(objects, filter, this);
+      if (dates.length < 1){
         return dates.first;
       }
       return _.reduce(dates, function (earliest, current) {
-        return current.isBefore(earliest) ? current : earliest;
-      });
+        return !earliest || current.isBefore(earliest) ? current : earliest;
+      }, null, this);
     },
 
     numberOfWeeksInPeriod: function (start, end) {
@@ -28,7 +72,25 @@ define(function () {
       return _.times(numberOfWeeksToGenerate, function (i) {
         var weeksAgo = numberOfWeeksToGenerate - i - 1;
         return latestDate.clone().subtract(weeksAgo, "weeks");
-      });
+      }, this);
+    },
+
+    MONDAY: 1,
+    SUNDAY: 0,
+
+    lastWeekDateRange: function(date, weeksAgo) {
+      weeksAgo = weeksAgo || 0;
+
+      if (date.day() === this.SUNDAY) {
+        weeksAgo += 1;
+      }
+
+      var end = date.day(this.MONDAY).startOf('day').subtract(weeksAgo, 'weeks');
+
+      return {
+        start_at: end.clone().subtract(1, 'weeks'),
+        end_at: end
+      };
     }
   };
 });

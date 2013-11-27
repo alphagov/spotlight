@@ -1,8 +1,7 @@
 define([
-  'common/collections/volumetrics',
-  'moment'
+  'common/collections/volumetrics'
 ],
-function (VolumetricsCollection, moment) {
+function (VolumetricsCollection) {
     var someFakeFCOTransactionDataLabel = [
       {
         _timestamp: "2013-06-09T23:00:00+00:00",

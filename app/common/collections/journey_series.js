@@ -16,7 +16,7 @@ define([
 
     queryParams: function() {
       var weeksAgo = this.options.weeksAgo || 0;
-      return this.lastWeekDateRangeParams(this.moment(), weeksAgo);
+      return this.lastWeekDateRange(this.getMoment(), weeksAgo);
     },
     
     parse: function (response) {

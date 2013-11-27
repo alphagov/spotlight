@@ -1,10 +1,9 @@
 define([
   'common/views/visualisations/conversion-graph/callout',
   'extensions/collections/collection',
-  'extensions/models/model',
-  'moment'
+  'extensions/models/model'
 ],
-function (ConversionCallout, Collection, Model, moment) {
+function (ConversionCallout, Collection, Model) {
   describe("ConversionCallout", function () {
 
     describe("rendering", function () {
@@ -31,12 +30,12 @@ function (ConversionCallout, Collection, Model, moment) {
           }
         ]);
         collection.at(0).get('values').query = new Model({
-          start_at: moment('2013-05-27'),
-          end_at: moment('2013-06-03')
+          start_at: collection.getMoment('2013-05-27'),
+          end_at: collection.getMoment('2013-06-03')
         });
         collection.at(1).get('values').query = new Model({
-          start_at: moment('2013-06-03'),
-          end_at: moment('2013-06-10')
+          start_at: collection.getMoment('2013-06-03'),
+          end_at: collection.getMoment('2013-06-10')
         });
         view = new ConversionCallout({
           wrapper:wrapper,

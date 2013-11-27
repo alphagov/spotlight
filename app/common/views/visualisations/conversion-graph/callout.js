@@ -48,7 +48,7 @@ function (Callout) {
 
       var query = model.collection.query;
       var start = query.get('start_at');
-      var end = moment(query.get('end_at')).subtract(1, 'days');
+      var end = this.getMoment(query.get('end_at')).subtract(1, 'days');
 
       var header = $('<h3>').html([
         '<span class="date stack' + groupIndex + '">',

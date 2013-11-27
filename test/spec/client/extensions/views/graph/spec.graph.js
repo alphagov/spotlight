@@ -4,8 +4,11 @@ define([
   'd3'
 ],
 function (Graph, Collection, d3) {
+
   describe("Graph", function() {
-    
+
+
+
     it("keeps a reference to d3 library", function() {
       spyOn(Graph.prototype, "prepareGraphArea");
       var view = new Graph({
@@ -378,27 +381,29 @@ function (Graph, Collection, d3) {
       var collection, graph, el;
       beforeEach(function() {
         el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
-        
-        collection = new Collection([
+
+        collection = new Collection();
+
+        collection.reset([
           {
             id: 'total',
             title: 'Total applications',
             values: new Collection([
               {
-                _start_at: moment('2013-01-14').startOf('day'),
-                _end_at: moment('2013-01-21').startOf('day'),
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
                 _count: 90,
                 alternativeValue: 444
               },
               {
-                _start_at: moment('2013-01-21').startOf('day'),
-                _end_at: moment('2013-01-28').startOf('day'),
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
                 _count: 100,
                 alternativeValue: 333
               },
               {
-                _start_at: moment('2013-01-28').startOf('day'),
-                _end_at: moment('2013-02-04').startOf('day'),
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
                 _count: 114,
                 alternativeValue: 222
               }
@@ -409,20 +414,20 @@ function (Graph, Collection, d3) {
             title: 'Westminster',
             values: new Collection([
               {
-                _start_at: moment('2013-01-14').startOf('day'),
-                _end_at: moment('2013-01-21').startOf('day'),
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
                 _count: 1,
                 alternativeValue: 100
               },
               {
-                _start_at: moment('2013-01-21').startOf('day'),
-                _end_at: moment('2013-01-28').startOf('day'),
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
                 _count: 6,
                 alternativeValue: 99
               },
               {
-                _start_at: moment('2013-01-28').startOf('day'),
-                _end_at: moment('2013-02-04').startOf('day'),
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
                 _count: 11,
                 alternativeValue: 98
               }
@@ -433,20 +438,20 @@ function (Graph, Collection, d3) {
             title: 'Croydon',
             values: new Collection([
               {
-                _start_at: moment('2013-01-14').startOf('day'),
-                _end_at: moment('2013-01-21').startOf('day'),
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
                 _count: 2,
                 alternativeValue: 80
               },
               {
-                _start_at: moment('2013-01-21').startOf('day'),
-                _end_at: moment('2013-01-28').startOf('day'),
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
                 _count: 7,
                 alternativeValue: 87
               },
               {
-                _start_at: moment('2013-01-28').startOf('day'),
-                _end_at: moment('2013-02-04').startOf('day'),
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
                 _count: 12,
                 alternativeValue: 23
               }
@@ -472,8 +477,8 @@ function (Graph, Collection, d3) {
           it("scales domain from start entry end date to end entry end date", function() {
             graph.applyConfig('day');
             var domain = graph.calcXScale().domain();
-            expect(moment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-20');
-            expect(moment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-02-03');
+            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-20');
+            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-02-03');
           });
 
           it("scales range to inner width", function() {
@@ -494,8 +499,8 @@ function (Graph, Collection, d3) {
       describe("hour", function () {
 
         beforeEach(function() {
-          var start = moment.utc('2013-03-13T00:00:00');
-          var end = moment.utc('2013-03-14T00:00:00');
+          var start = graph.getMoment('2013-03-13T00:00:00');
+          var end = graph.getMoment('2013-03-14T00:00:00');
           var values = [];
           for (var date = start.clone(); +date < +end; date.add(1, 'hours')) {
             values.push({
@@ -512,8 +517,8 @@ function (Graph, Collection, d3) {
         describe("calcXScale", function() {
           it("scales domain from first timestamp to last timestamp", function() {
             var domain = graph.calcXScale().domain();
-            expect(moment(domain[0]).format()).toEqual('2013-03-13T00:00:00+00:00');
-            expect(moment(domain[1]).format()).toEqual('2013-03-13T23:00:00+00:00');
+            expect(graph.getMoment(domain[0]).format()).toEqual('2013-03-13T00:00:00+00:00');
+            expect(graph.getMoment(domain[1]).format()).toEqual('2013-03-13T23:00:00+00:00');
           });
           
           it("scales range to inner width", function() {

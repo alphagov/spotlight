@@ -1,11 +1,18 @@
 (function() {
-  function momentEqualityTester(aMoment, anotherMoment) {
-    if (moment.isMoment(aMoment) && moment.isMoment(anotherMoment)) {
+
+  var isMoment = function (m) {
+    return jasmine.isA_('Object', m) && jasmine.isA_('Date', m._d);
+  };
+
+  var format = function(o) {
+    return isMoment(o) ? o.format() : o;
+  };
+
+  jasmine.getEnv().addEqualityTester(function(aMoment, anotherMoment) {
+    if (isMoment(aMoment) && isMoment(anotherMoment)) {
       return (aMoment.unix() === anotherMoment.unix());
     }
-  }
-
-  jasmine.getEnv().addEqualityTester(momentEqualityTester);
+  });
 
   jasmine.getEnv().beforeEach(function() {
     this.addMatchers({
@@ -13,15 +20,11 @@
         var actual = this.actual;
         var notText = this.isNot ? " not" : "";
 
-        var format = function(o) {
-          return moment.isMoment(o) ? o.format() : o;
-        };
-
         this.message = function () {
           return "Expected " + format(actual) + notText + " to be moment " + format(expected);
         };
 
-        return moment.isMoment(actual) && actual.isSame(expected);
+        return isMoment(actual) && isMoment(expected) && actual.unix() === expected.unix();
       }
     });
   });

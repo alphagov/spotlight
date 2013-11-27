@@ -1,8 +1,8 @@
 define([
-  'common/collections/completion_rate',
-  'moment'
+  'common/collections/completion_rate'
 ],
-function (VolumetricsCollection, moment) {
+function (VolumetricsCollection) {
+
     var someFakeFCOTransactionDataLabel = [
       {
         _timestamp: "2013-06-09T23:00:00+00:00",
@@ -152,6 +152,7 @@ function (VolumetricsCollection, moment) {
       function sharedBehaviourForVolumetrics(context) {
 
         var volumetricsCollection = undefined,
+            getMoment,
             collectionFor = function (data) {
               collection = new VolumetricsCollection({}, {
                 "data-group": 'notARealFCOTransaction',
@@ -180,16 +181,16 @@ function (VolumetricsCollection, moment) {
 
         it("should map completion rates to completion series", function () {
           var firstValue = volumetricsCollection.parse({data: context.data}).values[6];
-          expect(firstValue.get('_start_at')).toBeMoment(moment("2013-06-10T01:00:00+01:00"));
-          expect(firstValue.get('_end_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
+          expect(firstValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-10T01:00:00+01:00"));
+          expect(firstValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-17T01:00:00+01:00"));
           expect(firstValue.get('completion')).toBe(0.6);
           var secondValue = volumetricsCollection.parse({data: context.data}).values[7];
-          expect(secondValue.get('_start_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
-          expect(secondValue.get('_end_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
+          expect(secondValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-17T01:00:00+01:00"));
+          expect(secondValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-24T01:00:00+01:00"));
           expect(secondValue.get('completion')).toBeCloseTo(0.428, 0.001);
           var thirdValue = volumetricsCollection.parse({data: context.data}).values[8];
-          expect(thirdValue.get('_start_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
-          expect(thirdValue.get('_end_at')).toBeMoment(moment("2013-07-01T01:00:00+01:00"));
+          expect(thirdValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-24T01:00:00+01:00"));
+          expect(thirdValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-07-01T01:00:00+01:00"));
           expect(thirdValue.get('completion')).toBeCloseTo(0.4444, 0.001);
         });
 
@@ -199,8 +200,8 @@ function (VolumetricsCollection, moment) {
 
         it("should pad out missing data for completions series", function () {
           var paddedValue = volumetricsCollection.parse({data: context.data}).values[5];
-          expect(paddedValue.get('_start_at')).toBeMoment(moment("2013-06-03T01:00:00+0100"));
-          expect(paddedValue.get('_end_at')).toBeMoment(moment("2013-06-10T01:00:00+01:00"));
+          expect(paddedValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-03T01:00:00+0100"));
+          expect(paddedValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-10T01:00:00+01:00"));
           expect(paddedValue.get('completion')).toBe(null);
         });
 
@@ -259,8 +260,8 @@ function (VolumetricsCollection, moment) {
           var completionWithMissingData = volumetricsCollection.parse({data: context.data}).values;
           var missingValue = completionWithMissingData[7];
 
-          expect(missingValue.get('_start_at')).toBeMoment(moment("2013-06-17T01:00:00+01:00"));
-          expect(missingValue.get('_end_at')).toBeMoment(moment("2013-06-24T01:00:00+01:00"));
+          expect(missingValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-17T01:00:00+01:00"));
+          expect(missingValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-24T01:00:00+01:00"));
           expect(missingValue.get('completion')).toBe(null);
         });
         

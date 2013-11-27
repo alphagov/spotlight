@@ -13,36 +13,34 @@ define([
 function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Tooltip) {
 
 
-  function scaleFromStartAndEndDates (modelToDate) {
-    return {
-      getXPos: function(groupIndex, modelIndex) {
-        groupIndex = groupIndex || 0;
-        var model = this.collection.at(groupIndex, modelIndex);
-        return modelToDate(model);
-      },
-      calcXScale: function () {
-        var total = this.collection.first().get('values'),
-            start = modelToDate(total.first()).toDate(),
-            end = modelToDate(total.last()).toDate();
+  var scaleFromStartAndEndDates = {
+    getXPos: function(groupIndex, modelIndex) {
+      groupIndex = groupIndex || 0;
+      var model = this.collection.at(groupIndex, modelIndex);
+      return this.modelToDate(model);
+    },
+    calcXScale: function () {
+      var total = this.collection.first().get('values'),
+          start = this.modelToDate(total.first()).toDate(),
+          end = this.modelToDate(total.last()).toDate();
 
-        return this.d3.time.scale()
-                .domain([start, end])
-                .range([0, this.innerWidth]);
-      }
-    };
-  }
+      return this.d3.time.scale()
+              .domain([start, end])
+              .range([0, this.innerWidth]);
+    }
+  };
 
-  function hourlyScale () {
-    return scaleFromStartAndEndDates(function (model) {
-      return this.moment(model.get('_timestamp'));
-    });
-  }
+  var hourlyScale = _.extend({}, scaleFromStartAndEndDates, {
+    modelToDate: function (model) {
+      return this.getMoment(model.get('_timestamp'));
+    }
+  });
 
-  function dailyScale () {
-    return scaleFromStartAndEndDates(function (model) {
-      return this.moment(model.get('_end_at')).subtract(1, 'days');
-    });
-  }
+  var dailyScale = _.extend({}, scaleFromStartAndEndDates, {
+    modelToDate: function (model) {
+      return this.getMoment(model.get('_end_at')).subtract(1, 'days');
+    }
+  });
 
 
   var Graph = View.extend({
@@ -277,9 +275,9 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     },
 
     configs: {
-      hour: hourlyScale(),
-      day: dailyScale(),
-      week: dailyScale(),
+      hour: hourlyScale,
+      day: dailyScale,
+      week: dailyScale,
       month: {
         getXPos: function(groupIndex, modelIndex) {
           return modelIndex;

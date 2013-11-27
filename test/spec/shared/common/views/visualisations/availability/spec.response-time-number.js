@@ -2,10 +2,9 @@ define([
   'common/views/visualisations/availability/response-time-number',
   'extensions/collections/collection',
   'common/collections/availability',
-  'extensions/models/model',
-  'moment'
+  'extensions/models/model'
 ],
-  function (ResponseTimeNumber, Collection, AvailabilityCollection, Model, moment) {
+  function (ResponseTimeNumber, Collection, AvailabilityCollection, Model) {
 
     describe("ResponseTimeNumber", function () {
 
@@ -68,8 +67,8 @@ define([
           });
 
           var selection = new Model();
-          selection.set('_start_at', moment('2013-06-18T01:00:00+00:00').utc());
-          selection.set('_end_at', moment('2013-06-18T02:00:00+00:00').utc());
+          selection.set('_start_at', view.getMoment('2013-06-18T01:00:00+01:00'));
+          selection.set('_end_at', view.getMoment('2013-06-18T02:00:00+01:00'));
 
           expect(view.getLabelSelected({ selectedModel: selection })).toEqual('1am to 2am,<br>18 June 2013');
         });
@@ -80,8 +79,8 @@ define([
           });
 
           var selection = new Model();
-          selection.set('_start_at', moment('2013-05-17T00:00:00+00:00').utc());
-          selection.set('_end_at', moment('2013-05-18T00:00:00+00:00').utc());
+          selection.set('_start_at', view.getMoment('2013-05-17T00:00:00+01:00'));
+          selection.set('_end_at', view.getMoment('2013-05-18T00:00:00+01:00'));
 
           expect(view.getLabelSelected({ selectedModel: selection })).toEqual('17 May 2013');
         });
