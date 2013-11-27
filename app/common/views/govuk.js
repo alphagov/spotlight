@@ -7,11 +7,12 @@ define([
   'stache!common/templates/footer_top',
   'stache!common/templates/footer_links',
   'stache!common/templates/report_a_problem',
+  'stache!common/templates/cookie_message_template',
   'stache!common/templates/content'
 ],
 function (View, headTemplate, bodyEndTemplate, navigationTemplate,
           govukTemplate, footerTopTemplate, footerLinksTemplate,
-          reportAProblemTemplate, contentTemplate) {
+          reportAProblemTemplate, cookieMessageTemplate, contentTemplate) {
   /**
    * Renders a page in GOV.UK style using govuk_template.
    * Does not use jsdom itself but renders template directly because jsdom
@@ -60,7 +61,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate,
           pageTitle: this.getPageTitle(),
           bodyClasses: "",
           insideHeader: navigationTemplate,
-          cookieMessage: "",
+          cookieMessage: cookieMessageTemplate(),
           footerTop: footerTopTemplate(),
           footerSupportLinks: footerLinksTemplate(),
           content: contentTemplate({
