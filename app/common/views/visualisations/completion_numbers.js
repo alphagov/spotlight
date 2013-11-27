@@ -2,7 +2,7 @@ define([
   'stache!common/templates/visualisations/completion_numbers',
   'extensions/views/view',
   'common/views/visualisations/volumetrics/number',
-  'common/views/visualisations/volumetrics/submissions-graph',
+  'common/views/visualisations/volumetrics/submissions-graph'
 ],
 function (template, View, VolumetricsNumberView, SubmissionGraphView) {
   var CompletionNumbersView = View.extend({
