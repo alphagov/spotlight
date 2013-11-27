@@ -1,0 +1,36 @@
+{
+  "page-type": "dashboard",
+  "title": "Carer's Allowance",
+  "strapline": "Service performance",
+  "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person who's cared for must be in receipt of a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate or Armed Forces Independence Payment.",
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "carers-allowance",
+      "data-type": "realtime"
+    },
+    {
+      "module-type": "availability",
+      "title": "Service availability",
+      "description": "",
+      "data-group": "carers-allowance",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "Uptime measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {"id": "day", "name": "30 days"},
+        {"id": "hour", "name": "24 hours"}
+      ],
+      "tabbed_attr": "period"
+    }
+  ]
+}

@@ -2,7 +2,6 @@ define(['app/support/backdrop_stub/response_fetcher.js', 'underscore', 'fs', 'pa
 function (ResponseFetcher, _, fs, path) {
 
   var stub_mappings = [
-    { 'key': {'service': 'licensing', 'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
     { 'key': {'service': 'licensing', 'api_name': 'monitoring'}, 'file':  'licensing_availability_response.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'licenceUrlSlug:application-to-licence-a-street-collection'}, 'file':  'application-to-licence-a-street-collection.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1', 'group_by': 'licenceUrlSlug'}, 'file':  'licensing_top_5_licenses.json'},
@@ -16,6 +15,8 @@ function (ResponseFetcher, _, fs, path) {
     { 'key': {'service': 'pay-foreign-marriage-certificates', 'api_name': 'monitoring'}, 'file':  'foreign_marriage_availability.json'},
     { 'key': {'service': 'pay-register-death-abroad', 'api_name': 'journey'}, 'file':  'pay-register-death-abroad-journey.json'},
     { 'key': {'service': 'deposit-foreign-marriage', 'api_name': 'journey'}, 'file':  'journey-with-missing-data.json'},
+    { 'key': {'service': 'deposit-foreign-marriage', 'api_name': 'monitoring', 'period': 'hour'}, 'file':  'deposit_foreign_marriage_monitoring_hour.json'},
+    { 'key': {'service': 'deposit-foreign-marriage', 'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
     { 'key': {'service': 'lasting-power-of-attorney', 'api_name': 'journey', 'group_by': 'eventLabel', 'filter_by': 'eventAction:help'}, 'file':  'lpa_help_usage.json'},
     { 'key': {'service': 'lasting-power-of-attorney', 'api_name': 'journey'}, 'file':  'lpa_journey.json'},
     { 'key': {'service': 'lasting-power-of-attorney', 'api_name': 'monitoring'}, 'file':  'lpa_availability.json'},
@@ -26,10 +27,10 @@ function (ResponseFetcher, _, fs, path) {
     { 'key': {'service': 'vehicle-licensing', 'api_name': 'channels'}, 'file':  'vehicle_licensing_channels.json'},
     { 'key': {'service': 'vehicle-licensing', 'api_name': 'customer-satisfaction'}, 'file':  'vehicle_licensing_customer_satisfaction.json'},
     { 'key': {'service': 'sorn', 'api_name': 'monitoring'}, 'file':  'availability.json'},
-    { 'key': {'service': 'sorn', 'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
     { 'key': {'service': 'tax-disc', 'api_name': 'monitoring'}, 'file':  'availability.json'},
-    { 'key': {'service': 'tax-disc', 'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
-    { 'key': {'api_name': 'monitoring'}, 'file':  'licensing_availability_response.json'}
+    { 'key': {'api_name': 'monitoring', 'period': 'hour'}, 'file':  'deposit_foreign_marriage_monitoring_hour.json'},
+    { 'key': {'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
+    { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'}
   ];
 
   describe("fetch json", function () {
