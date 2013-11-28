@@ -103,9 +103,10 @@ span.alpha-tag {
         }
 
         @include media($max-width: 768px){
-          float: none;
+          float: left;
+          width: 50%;
           padding: 3px 0;
-          border-bottom: 1px solid $grey-1;
+          border-bottom: 1px solid #2e3133;
         }
 
         a {
