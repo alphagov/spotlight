@@ -1,8 +1,7 @@
 define([
-  'common/collections/availability',
-  'moment'
+  'common/collections/availability'
 ],
-  function (Availability, moment) {
+  function (Availability) {
     describe('Availability', function () {
       var availabilityData = {"data":[
         {
@@ -118,8 +117,8 @@ define([
 
         data = collection.parse(response);
 
-        expect(data.values[0]._start_at).toEqual(moment("2013-06-17T15:00:00+00:00"));
-        expect(data.values[0]._end_at).toEqual(moment("2013-06-17T16:00:00+00:00"));
+        expect(data.values[0]._start_at).toEqual(collection.moment("2013-06-17T15:00:00+00:00"));
+        expect(data.values[0]._end_at).toEqual(collection.moment("2013-06-17T16:00:00+00:00"));
       });
 
       it("should parse null data without resorting to NaN", function() {

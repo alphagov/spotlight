@@ -25,10 +25,10 @@ function (MatrixCollection) {
           d.total = d.downtime + d.uptime;
           d.uptimeFraction = d.uptime / d.total;
         }
-        d._end_at = this.moment(d._end_at);
-        d._start_at = this.moment(d._start_at);
+        d._end_at = this.getMoment(d._end_at);
+        d._start_at = this.getMoment(d._start_at);
         d._timestamp = d._end_at;
-      });
+      }, this);
       return {
         id: 'availability',
         title: 'Availability',

@@ -1,9 +1,8 @@
 define([
   'extensions/views/graph/xaxis',
-  'extensions/collections/collection',
-  'moment'
+  'extensions/collections/collection'
 ],
-function (XAxis, Collection, moment) {
+function (XAxis, Collection) {
   describe("XAxisComponent", function () {
 
     var el, wrapper;
@@ -17,8 +16,9 @@ function (XAxis, Collection, moment) {
     });
 
     function viewForConfig(config, startDate, endDate) {
-      var start = moment.utc(startDate);
-      var end = moment.utc(endDate);
+      var collection = new Collection();
+      var start = collection.getMoment(startDate);
+      var end = collection.getMoment(endDate);
       var values = [];
       for (var date = start.clone(); +date < +end; date.add(1, config + 's')) {
         values.push({
@@ -26,7 +26,7 @@ function (XAxis, Collection, moment) {
         });
       }
 
-      var collection = new Collection([{
+      collection.reset([{
         values: new Collection(values)
       }]);
 
@@ -48,7 +48,7 @@ function (XAxis, Collection, moment) {
 
     describe("'hour' configuration", function () {
       it("shows 4 ticks for 6am, midday, 6pm and midnight", function () {
-        var view = viewForConfig('hour', '2013-03-13T00:00:00', '2013-03-14T00:00:00');
+        var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00');
 
         view.render();
 
@@ -63,7 +63,7 @@ function (XAxis, Collection, moment) {
 
     describe("'day' configuration", function () {
       it("shows one tick per day, and labels only for Mondays", function () {
-        var view = viewForConfig('day', '2013-03-05T00:00:00', '2013-04-05T00:00:00');
+        var view = viewForConfig('day', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
 
         view.render();
 

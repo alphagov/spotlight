@@ -1,10 +1,9 @@
 define([
   'extensions/collections/matrix',
   'extensions/collections/collection',
-  'extensions/models/group',
-  'extensions/mixins/date-functions'
+  'extensions/models/group'
 ],
-function (MatrixCollection, Collection, Group, dateFunctions) {
+function (MatrixCollection, Collection, Group) {
 
   var VolumetricsCollection = MatrixCollection.extend({
     model: Group,
@@ -41,8 +40,8 @@ function (MatrixCollection, Collection, Group, dateFunctions) {
 
     getEventForTimestamp: function (events, timestamp) {
       return _.find(events, function (d) {
-        return moment(d._timestamp).isSame(timestamp);
-      });
+        return this.getMoment(d._timestamp).isSame(timestamp);
+      }, this);
     },
 
     eventsFrom: function (data) {
@@ -77,9 +76,13 @@ function (MatrixCollection, Collection, Group, dateFunctions) {
 
       var weeksWithData = events.length;
 
-      var earliestEventTimestamp = dateFunctions.earliest(events, function (d) { return moment(d._timestamp); });
-      var latestEventTimestamp = dateFunctions.latest(events, function (d) { return moment(d._timestamp); });
-      var weekDates = dateFunctions.weeksFrom(latestEventTimestamp, 9);
+      var earliestEventTimestamp = this.earliest(events, function (d) {
+        return this.getMoment(d._timestamp);
+      });
+      var latestEventTimestamp = this.latest(events, function (d) {
+        return this.getMoment(d._timestamp);
+      });
+      var weekDates = this.weeksFrom(latestEventTimestamp, 9);
 
       var values = _.map(weekDates, function (timestamp) {
         var existingEvent = this.getEventForTimestamp(events, timestamp);
@@ -93,7 +96,7 @@ function (MatrixCollection, Collection, Group, dateFunctions) {
         id: config.id,
         title: config.title,
         weeks: {
-          total: dateFunctions.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
+          total: this.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
           available: weeksWithData
         },
         values: new Collection(values).models

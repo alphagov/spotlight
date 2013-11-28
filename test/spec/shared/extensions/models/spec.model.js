@@ -1,9 +1,8 @@
 define([
     'extensions/models/model',
-    'backbone',
-    'moment'
+    'backbone'
 ],
-function (Model, Backbone, moment) {
+function (Model, Backbone) {
     describe("Model", function() {
         it("inherits from Backbone.Model", function() {
             var model = new Model();
@@ -23,7 +22,7 @@ function (Model, Backbone, moment) {
                 });
                 
                 expect(model.get('foo')).toEqual('bar');
-                expect(moment.isMoment(model.get('_timestamp'))).toBe(true);
+                expect(model.moment.isMoment(model.get('_timestamp'))).toBe(true);
                 expect(model.get('_timestamp').format('YYYY-MM-DD')).toEqual('2013-01-01');
                 expect(model.get('_start_at').format('YYYY-MM-DD')).toEqual('2013-01-02');
                 expect(model.get('_end_at').format('YYYY-MM-DD')).toEqual('2013-01-03');
@@ -42,7 +41,7 @@ function (Model, Backbone, moment) {
                     parse: true
                 });
                 
-                expect(moment.isMoment(model.get('_timestamp'))).toBe(false);
+                expect(model.moment.isMoment(model.get('_timestamp'))).toBe(false);
                 expect(console.warn).toHaveBeenCalled();
             });
             

@@ -13,13 +13,15 @@ function (LineLabel, Collection) {
           parse: function (response) {
             return response;
           }
-        })
-        collection = new TestCollection([
+        });
+
+        collection = new TestCollection();
+        collection.reset([
           { y: 30, yLabel: 30, title: 'Title 1', id: 'id1', href: '/link1', values: [
-            { _count: 10 }, { _count: 20 }, { _count: 30, _start_at: moment('2013-08-26'), _end_at: moment('2013-09-02') }
+            { _count: 10 }, { _count: 20 }, { _count: 30, _start_at: collection.getMoment('2013-08-26'), _end_at: collection.getMoment('2013-09-02') }
           ] },
           { y: 80, yLabel: 80, title: 'Title 2', id: 'id2', href: '/link2', values: [
-            { _count: 60 }, { _count: 70 }, { _count: 80, _start_at: moment('2013-08-26'), _end_at: moment('2013-09-02') }
+            { _count: 60 }, { _count: 70 }, { _count: 80, _start_at: collection.getMoment('2013-08-26'), _end_at: collection.getMoment('2013-09-02') }
           ] }
         ], {parse: true});
 

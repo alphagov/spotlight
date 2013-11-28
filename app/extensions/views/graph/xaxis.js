@@ -28,56 +28,53 @@ function (Axis) {
           return model.get('_end_at').toDate();
         },
         tickFormat: function () {
-          var moment = this.moment;
-          return function (d, index) {
-            var date = moment(d);
+          return _.bind(function (d, index) {
+            var date = this.getMoment(d);
             if (date.hours() === 0) {
               return 'midnight';
             } else if (date.hours() === 12) {
               return 'midday';
             } else {
-              return moment(d).format('ha');
+              return this.getMoment(d).format('ha');
             }
-          };
+          }, this);
         },
         tickValues: function () {
           var values = this.collection.first().get('values').filter(function (model, index) {
             return model.get('_end_at').hours() % 6 === 0;
           });
-          return _.map(values, this.getTick);
+          return _.map(values, _.bind(this.getTick, this));
         }
       },
       day: {
         getTick: function (model) {
-          return moment(model.get('_end_at')).subtract(1, 'days').toDate();
+          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
         },
         tickFormat: function () {
-          var moment = this.moment;
-          return function (d, index) {
-            var date = moment(d);
+          return _.bind(function (d, index) {
+            var date = this.getMoment(d);
             if (date.days() === 1) {
               return date.format('D MMM');
             } else {
               return '';
             }
-          };
+          }, this);
         },
         tickValues: function () {
-          return this.collection.first().get('values').map(this.getTick);
+          return this.collection.first().get('values').map(_.bind(this.getTick, this));
         }
       },
       week: {
         getTick: function (model) {
-          return moment(model.get('_end_at')).subtract(1, 'days').toDate();
+          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
         },
         tickFormat: function () {
-          var moment = this.moment;
-          return function (d, index) {
-            return moment(d).format('D MMM');
-          };
+          return _.bind(function (d, index) {
+            return this.getMoment(d).format('D MMM');
+          }, this);
         },
         tickValues: function () {
-          return this.collection.first().get('values').map(this.getTick);
+          return this.collection.first().get('values').map(_.bind(this.getTick, this));
         }
       },
       month: {
@@ -92,7 +89,7 @@ function (Axis) {
           };
         },
         tickValues: function () {
-          return this.collection.first().get('values').map(this.getTick);
+          return this.collection.first().get('values').map(_.bind(this.getTick, this));
         }
       }
     }

@@ -156,6 +156,12 @@ module.exports = function(grunt) {
             dest: 'app/vendor/',
             flatten: true,
             expand: true
+          },
+          {
+            src: 'node_modules/moment-timezone/moment-timezone.js',
+            dest: 'app/vendor/',
+            flatten: true,
+            expand: true
           }
         ]
       }

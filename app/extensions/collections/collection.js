@@ -1,14 +1,13 @@
 define([
   'backbone',
+  'extensions/mixins/safesync',
+  'extensions/mixins/date-functions',
   'extensions/models/model',
   'extensions/models/query',
-  'extensions/mixins/safesync',
-  'common/date-range',
-  'moment',
   'jquery',
   'Mustache'
 ],
-function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
+function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
   // get base URL for Backdrop instance (with trailing slash if missing)
   var backdropUrl;
   if (isServer) {
@@ -18,8 +17,6 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
   }
 
   var Collection = Backbone.Collection.extend({
-
-    moment: moment,
 
     model: Model,
 
@@ -152,8 +149,6 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
       return params;
     },
 
-    lastWeekDateRangeParams: DateRange.lastWeekDateRange,
-
     /**
      * Constructs a Backdrop query for the current environment
      */
@@ -166,7 +161,7 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
         if (this.moment.isMoment(value)) {
           params[key] = value.format(this.defaultDateFormat);
         }
-      });
+      }, this);
       
       var base = Mustache.render(this.backdropUrl, {
         'data-group': this['data-group'],
@@ -271,7 +266,7 @@ function (Backbone, Model, Query, SafeSync, DateRange, moment, $, Mustache) {
     }
   });
 
-    _.extend(Collection.prototype, SafeSync);
+  _.extend(Collection.prototype, SafeSync, DateFunctions);
 
   return Collection;
 });

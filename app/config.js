@@ -4,7 +4,6 @@ define(function (options) {
     paths: {
       css: 'vendor/require-css',
       modernizr: 'shim/modernizr_shim',
-      moment: 'vendor/moment',
       tpl: 'vendor/tpl',
       Mustache: 'vendor/mustache',
       text: 'vendor/text',
@@ -20,6 +19,8 @@ define(function (options) {
     config.paths.backbone = 'vendor/backbone';
     config.paths.d3 = 'vendor/d3';
     config.paths.modernizr = 'vendor/modernizr';
+    config.paths.moment = 'vendor/moment';
+    config.paths['moment-timezone'] = 'vendor/moment-timezone';
 
     config.shim = {
       backbone: {
@@ -35,9 +36,6 @@ define(function (options) {
       },
       modernizr: {
         exports: 'Modernizr'
-      },
-      moment: {
-        exports: 'Moment'
       }
     };
   }

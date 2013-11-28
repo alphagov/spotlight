@@ -1,8 +1,7 @@
 define([
-  'extensions/collections/timeseries',
-  'moment'
+  'extensions/collections/timeseries'
 ],
-function (Timeseries, moment) {
+function (Timeseries) {
   describe("Timeseries", function () {
     it("keeps entries sorted chronologically", function () {
       var t = new Timeseries([

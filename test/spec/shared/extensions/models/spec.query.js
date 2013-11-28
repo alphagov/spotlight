@@ -1,15 +1,16 @@
 define([
-  'extensions/models/query',
-  'moment'
+  'extensions/models/query'
 ],
-function (Query, moment) {
+function (Query) {
 
   describe("Query", function () {
+
+    var moment = Query.prototype.moment;
 
     describe("set", function () {
 
       beforeEach(function() {
-        jasmine.setupMoment('2013-05-15 06:15:45+00:00', Query.prototype);
+        jasmine.setupMoment('2013-05-15 06:15:45+01:00', Query.prototype);
       });
 
       it("sets start and end date for 'month' period using constructor", function () {
@@ -19,8 +20,8 @@ function (Query, moment) {
         });
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('month');
-        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+00:00');
-        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+01:00');
       });
 
       it("sets start and end date for 'month' period with a custom duration", function () {
@@ -31,7 +32,7 @@ function (Query, moment) {
         });
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('month');
-        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+01:00');
         expect(query.get('start_at').format()).toEqual('2013-03-01T00:00:00+00:00');
         expect(query.get('duration')).not.toBeDefined();
       });
@@ -45,7 +46,7 @@ function (Query, moment) {
         });
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('month');
-        expect(query.get('end_at').format()).toEqual('2013-04-01T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-04-01T00:00:00+01:00');
         expect(query.get('start_at').format()).toEqual('2013-03-01T00:00:00+00:00');
         expect(query.get('duration')).not.toBeDefined();
       });
@@ -61,8 +62,8 @@ function (Query, moment) {
         expect(query.get('a')).toEqual('b');
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('month');
-        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+00:00');
-        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+01:00');
       });
 
       it("sets start and end date for 'month' period using key, value syntax", function () {
@@ -72,14 +73,14 @@ function (Query, moment) {
         query.set('period', 'month');
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('month');
-        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+00:00');
-        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-01T00:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2012-05-01T00:00:00+01:00');
       });
 
       it("sets start and end date for 'week' period", function () {
         var query = new Query({ period: 'week' });
         expect(query.get('period')).toEqual('week');
-        expect(query.get('end_at').format()).toEqual('2013-05-13T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-13T00:00:00+01:00');
         expect(query.get('start_at').format()).toEqual('2013-03-11T00:00:00+00:00');
       });
 
@@ -125,8 +126,8 @@ function (Query, moment) {
         query.set('period', 'day');
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('day');
-        expect(query.get('end_at').format()).toEqual('2013-05-15T00:00:00+00:00');
-        expect(query.get('start_at').format()).toEqual('2013-04-15T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-15T00:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2013-04-15T00:00:00+01:00');
       });
 
       it("sets correct start and end_at for hour period", function () {
@@ -136,39 +137,9 @@ function (Query, moment) {
         query.set('period', 'hour');
         expect(query.get('foo')).toEqual('bar');
         expect(query.get('period')).toEqual('hour');
-        expect(query.get('end_at').format()).toEqual('2013-05-15T06:00:00+00:00');
-        expect(query.get('start_at').format()).toEqual('2013-05-14T06:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2013-05-15T06:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2013-05-14T06:00:00+01:00');
       });
     });
-
-    describe("timezone handling", function() {
-
-      beforeEach(function() {
-        jasmine.setupMoment('2013-05-15 06:15:45 +0100', Query.prototype);
-      });
-
-      it("should generate start_at and end_at as UTC", function() {
-        var query = new Query();
-        var attributes = {
-          period: 'week'
-        };
-        query.set(attributes);
-        expect(query.get('end_at')).toBeMoment(moment('2013-05-13T00:00:00+00:00'));
-        expect(query.get('start_at')).toBeMoment(moment('2013-03-11T00:00:00+00:00'));
-      });
-
-      it("should generate start_at and end_at as GB timezone when configured to do so", function() {
-        var query = new Query();
-        var attributes = {
-            period: 'week'
-        };
-        var options = { utc: false };
-        query.set(attributes, options);
-        expect(query.get('end_at')).toBeMoment(moment('2013-05-13T00:00:00+01:00'));
-        expect(query.get('start_at')).toBeMoment(moment('2013-03-11T00:00:00+00:00')); // no DST on this date
-      });
-
-    });
-
   });
 });
