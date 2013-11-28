@@ -4,8 +4,6 @@ define(function (options) {
     paths: {
       css: 'vendor/require-css',
       modernizr: 'shim/modernizr_shim',
-      // 'moment-timezone': 'vendor/moment-timezone',
-      moment: 'vendor/moment',
       tpl: 'vendor/tpl',
       Mustache: 'vendor/mustache',
       text: 'vendor/text',
