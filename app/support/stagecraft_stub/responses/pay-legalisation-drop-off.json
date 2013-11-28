@@ -1,0 +1,81 @@
+{
+  "page-type": "dashboard",
+  "title": "Pay to legalise documents using the premium service",
+  "strapline": "Service performance",
+  "tagline": "Figures for applications processed on GOV.UK for the service to pay the Foreign & Commonwealth Office (FCO) to use the premium service to get a uk public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "pay-legalisation-drop-off",
+      "data-type": "realtime"
+    },
+    {
+      "module-type": "completion_numbers",
+      "title": "Completed applications",
+      "description": "",
+      "data-group": "pay-legalisation-drop-off",
+      "data-type": "journey",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Completed applications count based on unique visitors to the final page of the service."
+      ],
+      "start-matcher": "start$",
+      "end-matcher": "done$",
+      "matching-attribute": "eventCategory"
+    },
+    {
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "pay-legalisation-drop-off",
+      "data-type": "journey",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Completion rate measures the proportion of people who started an application and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "start-matcher": "start$",
+      "end-matcher": "done$",
+      "matching-attribute": "eventCategory"
+    },
+    {
+      "module-type": "journey",
+      "title": "Users at each stage",
+      "description": "Number of users who completed important stages of the transaction last week",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "The total number of unique users who arrived at each stage."
+      ],
+      "data-group": "pay-legalisation-drop-off",
+      "data-type": "journey",
+      "steps": [
+        {"id": "pay-legalisation-drop-off:start", "title": "Start"},
+        {"id": "pay-legalisation-drop-off:confirm", "title": "Confirm"},
+        {"id": "pay-legalisation-drop-off:done", "title": "Done"}
+      ]
+    },
+    {
+      "module-type": "availability",
+      "title": "Service availability",
+      "description": "",
+      "data-group": "pay-legalisation-drop-off",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability.html' rel='external' target='_blank'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {"id": "day", "name": "30 days"},
+        {"id": "hour", "name": "24 hours"}
+      ],
+      "tabbed_attr": "period"
+    }
+  ]
+}
