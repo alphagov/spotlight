@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "_id": "about-you", 
+      "_month_start_at": "2013-09-01T00:00:00", 
+      "_timestamp": "2013-09-01T23:00:00+00:00", 
+      "_updated_at": "2013-09-13T05:00:04.856000", 
+      "_week_start_at": "2013-08-26T00:00:00", 
+      "dataType": "carers_allowance_journey", 
+      "eventAction": "page", 
+      "eventCategory": "carers-allowance", 
+      "eventLabel": "about-you", 
+      "timeSpan": "week", 
+      "uniqueEvents": 6
+    }, 
+    {
+      "_id": "care-you-provide", 
+      "_month_start_at": "2013-09-01T00:00:00", 
+      "_timestamp": "2013-09-01T23:00:00+00:00", 
+      "_updated_at": "2013-09-13T05:00:04.856000", 
+      "_week_start_at": "2013-08-26T00:00:00", 
+      "dataType": "carers_allowance_journey", 
+      "eventAction": "page", 
+      "eventCategory": "carers-allowance", 
+      "eventLabel": "care-you-provide", 
+      "timeSpan": "week", 
+      "uniqueEvents": 4
+    }, 
+    {
+      "_id": "time-spent-abroad", 
+      "_month_start_at": "2013-09-01T00:00:00", 
+      "_timestamp": "2013-09-01T23:00:00+00:00", 
+      "_updated_at": "2013-09-13T05:00:04.856000", 
+      "_week_start_at": "2013-08-26T00:00:00", 
+      "dataType": "carers_allowance_journey", 
+      "eventAction": "page", 
+      "eventCategory": "carers-allowance", 
+      "eventLabel": "care-you-provide", 
+      "timeSpan": "week", 
+      "uniqueEvents": 4
+    }, 
+    {
+      "_id": "other-money", 
+      "_month_start_at": "2013-09-01T00:00:00", 
+      "_timestamp": "2013-09-01T23:00:00+00:00", 
+      "_updated_at": "2013-09-13T05:00:04.856000", 
+      "_week_start_at": "2013-08-26T00:00:00", 
+      "dataType": "carers_allowance_journey", 
+      "eventAction": "page", 
+      "eventCategory": "carers-allowance", 
+      "eventLabel": "other-money", 
+      "timeSpan": "week", 
+      "uniqueEvents": 3
+    }, 
+    {
+      "_id": "consent-and-declaration", 
+      "_month_start_at": "2013-09-01T00:00:00", 
+      "_timestamp": "2013-09-01T23:00:00+00:00", 
+      "_updated_at": "2013-09-13T05:00:04.856000", 
+      "_week_start_at": "2013-08-26T00:00:00", 
+      "dataType": "carers_allowance_journey", 
+      "eventAction": "page", 
+      "eventCategory": "carers-allowance", 
+      "eventLabel": "consent-and-declaration", 
+      "timeSpan": "week", 
+      "uniqueEvents": 3
+    } 
+  ]
+}
