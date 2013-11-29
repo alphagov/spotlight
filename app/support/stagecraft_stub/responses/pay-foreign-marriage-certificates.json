@@ -54,6 +54,7 @@
       ],
       "data-group": "pay-foreign-marriage-certificates",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-foreign-marriage-certificates:start", "title": "Start"},
         {"id": "pay-foreign-marriage-certificates:confirm", "title": "Confirm"},

@@ -54,6 +54,7 @@
       ],
       "data-group": "pay-legalisation-drop-off",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-legalisation-drop-off:start", "title": "Start"},
         {"id": "pay-legalisation-drop-off:confirm", "title": "Confirm"},

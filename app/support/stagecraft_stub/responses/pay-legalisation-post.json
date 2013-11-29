@@ -54,6 +54,7 @@
       ],
       "data-group": "pay-legalisation-post",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-legalisation-post:start", "title": "Start"},
         {"id": "pay-legalisation-post:confirm", "title": "Confirm"},

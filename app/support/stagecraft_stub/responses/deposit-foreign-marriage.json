@@ -54,6 +54,7 @@
       ],
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "deposit-foreign-marriage:start", "title": "Start"},
         {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},

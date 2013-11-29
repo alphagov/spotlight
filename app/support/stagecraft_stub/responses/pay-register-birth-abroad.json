@@ -54,6 +54,7 @@
       ],
       "data-group": "pay-register-birth-abroad",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-register-birth-abroad:start", "title": "Start"},
         {"id": "pay-register-birth-abroad:confirm", "title": "Confirm"},

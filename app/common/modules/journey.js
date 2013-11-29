@@ -13,7 +13,8 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
 
     collectionOptions: function () {
       return {
-        steps: this.model.get('steps')
+        steps: this.model.get('steps'),
+        matchingAttribute: this.model.get('matching-attribute')
       };
     }
   });

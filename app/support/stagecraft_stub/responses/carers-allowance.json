@@ -25,14 +25,14 @@
       ],
       "data-group": "carers-allowance",
       "data-type": "journey",
+      "matching-attribute": "eventLabel",
       "steps": [
         {"id": "about-you", "title": "About You"},
         {"id": "care-you-provide", "title": "About the Care You Provide"},
         {"id": "time-spent-abroad", "title": "Abroad"},
         {"id": "other-money", "title": "Other Money"},
         {"id": "consent-and-declaration", "title": "Consent and Declaration"}
-      ],
-      "stepAttribute": "eventLabel"
+      ]
     },
     {
       "module-type": "availability",
