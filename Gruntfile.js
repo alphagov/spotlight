@@ -26,6 +26,11 @@ var requirejsConfig = getRequirejsConfig();
 module.exports = function(grunt) {
   "use strict";
 
+  var args = [];
+  if(grunt.option('notVM')){
+    args = ['--backdropUrl=http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}', '--screenshotTargetUrl=http://localhost:3057', '--screenshotServiceUrl=http://localhost:3000'];
+  };
+
   // Project configuration.
   grunt.initConfig({
     clean: ["public/"],
@@ -184,7 +189,8 @@ module.exports = function(grunt) {
           watchedExtensions: ['js'],
           watchedFolders: ['app', 'support'],
           delayTime: 1,
-          legacyWatch: true
+          legacyWatch: true,
+          args: args
         }
       }
     },
@@ -214,7 +220,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks(task);
   });
 
-  // Default task.
   grunt.registerTask('build:development', [
     'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
   ]);
@@ -222,6 +227,7 @@ module.exports = function(grunt) {
     'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
   ]);
   grunt.registerTask('test:all', ['copy:vendor', 'cucumber', 'jasmine', 'jasmine_node']);
+  // Default task.
   grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
 };

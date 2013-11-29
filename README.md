@@ -35,22 +35,21 @@ will work.
 Otherwise...
 ```bash
 cd <spotlight_dir>
-node app/server.js --backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}'
-grunt
+grunt --notVM
 ```
 
 This will create a development build of the assets and then run the app at
 `http://localhost:3057`.
-
-If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
-
-[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 The app uses [grunt-nodemon][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
 
 [grunt-nodemon]: https://github.com/ChrisWren/grunt-nodemon
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
+
+If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
+
+[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 ### Running tests ###
 
@@ -83,10 +82,17 @@ app or run `grunt jasmine:spotlight:build`.
 Install node-inspector on your VM with `sudo npm install -g node-inspector@0.5.0`
 and run it with `node-inspector`.
 
+On the VM:
+
 Start the app with `node --debug app/server.js`.
 
-Visit `http://spotlight.perfplat.dev:8080` to view the console.
+Visit `http://spotlight.perfplat.dev:8080/debug` to view the console.
 
+Or on your machine
+
+Start the app with `node --debug app/server.js --backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}' --screenshotTargetUrl='http://localhost:3057' --screenshotServiceUrl='http://localhost:3000'`.
+
+Visit `http://localhost:8080/debug` to view the console.
 
 ### Production ###
 
