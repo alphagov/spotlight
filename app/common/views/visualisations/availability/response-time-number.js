@@ -25,7 +25,13 @@ function (SingleStatView) {
       day: {
         label: '30 days',
         selectionFormat: function (start, end) {
-          return start.format('D MMMM YYYY');
+
+          return [
+            start.format('dddd'),
+            ' <span class="fulldate">',
+            start.format('D MMMM YYYY'),
+            '</span>'
+          ].join('');
         }
       }
     },
