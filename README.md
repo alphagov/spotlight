@@ -69,7 +69,7 @@ SauceLabs (no Grunt task yet).
 #### Browser ####
 
 When the app is running in development mode, Jasmine tests for shared
-components are available at `/spec`. The specrunner gets automatically
+components are available at `/tests`. The specrunner gets automatically
 recreated on server start and when the specfiles change. Due to a
 [bug in grunt-contrib-watch][watch-20], new spec files are not currently
 detected automatically. When you add a new spec file, either restart the
