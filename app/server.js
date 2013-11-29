@@ -8,12 +8,10 @@ var argv = require('optimist').argv;
 
 var express = require('express'),
     http = require('http'),
-    path = require('path'),
-    winston = require('winston');
+    path = require('path');
 
 global.isServer = true;
 global.isClient = false;
-global.winston = winston;
 
 var backbone = require('backbone');
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
@@ -67,11 +65,6 @@ app.configure('development', function () {
   });
 });
 
-app.configure('production', function () {
-  winston.add(winston.transports.File, { filename: 'log/spotlight.log' });
-  winston.remove(winston.transports.Console);
-});
-
 app.get('*.png', requirejs('./render_png'));
 
 app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
@@ -81,7 +74,7 @@ app.use('/performance/', requirejs('process_request'));
 app.get('/_status', requirejs('healthcheck_controller'));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  winston.info("Express server listening on port " + app.get('port'));
+  console.log("Express server listening on port " + app.get('port'));
 });
 
 

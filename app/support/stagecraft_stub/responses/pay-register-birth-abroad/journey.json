@@ -1,0 +1,21 @@
+{
+  "page-type": "module",
+  "module-type": "journey",
+  "title": "Users at each stage",
+  "description": "Number of users who completed important stages of the transaction last week",
+  "dashboard-title": "Payment to register a birth abroad in the UK",
+  "dashboard-strapline": "Service performance",
+  "info": [
+    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+    "<a href='/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
+    "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page.",
+    "Completed applications count based on unique visitors to the final page of the service."
+  ],
+  "data-group": "pay-register-birth-abroad",
+  "data-type": "journey",
+  "steps": [
+    {"id": "pay-register-birth-abroad:start", "title": "Start"},
+    {"id": "pay-register-birth-abroad:confirm", "title": "Confirm"},
+    {"id": "pay-register-birth-abroad:done", "title": "Done"}
+  ]
+}

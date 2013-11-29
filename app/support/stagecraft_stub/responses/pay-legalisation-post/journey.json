@@ -1,0 +1,21 @@
+{
+  "page-type": "module",
+  "module-type": "journey",
+  "title": "Users at each stage",
+  "description": "Number of users who completed important stages of the transaction last week",
+  "dashboard-title": "Pay to get documents legalised by post",
+  "dashboard-strapline": "Service performance",
+  "info": [
+    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+    "<a href='/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
+    "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page.",
+    "Completed applications count based on unique visitors to the final page of the service."
+  ],
+  "data-group": "pay-legalisation-post",
+  "data-type": "journey",
+  "steps": [
+    {"id": "pay-legalisation-post:start", "title": "Start"},
+    {"id": "pay-legalisation-post:confirm", "title": "Confirm"},
+    {"id": "pay-legalisation-post:done", "title": "Done"}
+  ]
+}
