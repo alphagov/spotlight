@@ -26,12 +26,13 @@
       "data-group": "carers-allowance",
       "data-type": "journey",
       "steps": [
-        {"id": "carers-allowance:page:about-you", "title": "About You"},
-        {"id": "carers-allowance:page:care-you-provide", "title": "About the Care You Provide"},
-        {"id": "carers-allowance:page:time-spent-abroad", "title": "Abroad"},
-        {"id": "carers-allowance:page:other-money", "title": "Other Money"},
-        {"id": "carers-allowance:page:consent-and-declaration", "title": "Consent and Declaration"}
-      ]
+        {"id": "about-you", "title": "About You"},
+        {"id": "care-you-provide", "title": "About the Care You Provide"},
+        {"id": "time-spent-abroad", "title": "Abroad"},
+        {"id": "other-money", "title": "Other Money"},
+        {"id": "consent-and-declaration", "title": "Consent and Declaration"}
+      ],
+      "stepAttribute": "eventLabel"
     },
     {
       "module-type": "availability",
