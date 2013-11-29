@@ -90,7 +90,14 @@ Visit `http://spotlight.perfplat.dev:8080/debug` to view the console.
 
 Or on your machine
 
-Start the app with `node --debug app/server.js --backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}' --screenshotTargetUrl='http://localhost:3057' --screenshotServiceUrl='http://localhost:3000'`.
+Start the app with:
+
+```
+node app/server.js \
+--backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}' \ 
+--screenshotTargetUrl='http://localhost:3057' \
+--screenshotServiceUrl='http://localhost:3000'
+```
 
 Visit `http://localhost:8080/debug` to view the console.
 
