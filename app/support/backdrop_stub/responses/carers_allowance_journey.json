@@ -35,7 +35,7 @@
       "dataType": "carers_allowance_journey", 
       "eventAction": "page", 
       "eventCategory": "carers-allowance", 
-      "eventLabel": "care-you-provide", 
+      "eventLabel": "time-spent-abroad", 
       "timeSpan": "week", 
       "uniqueEvents": 4
     }, 
