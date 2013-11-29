@@ -38,6 +38,7 @@ if (environment === 'cucumber') {
 }
 
 var app = express();
+app.disable('x-powered-by');
 
 app.configure(function () {
   app.set('environment', environment);
