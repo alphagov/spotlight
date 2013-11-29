@@ -160,6 +160,7 @@ figure.graph {
 
   .hover {
     position: absolute;
+    z-index: 1;
     left:0;
     top:0;
     right:0;
@@ -350,7 +351,7 @@ figure.graph {
       }
 
       .graph {
-        top: 20px;
+        top: 10px;
 
         svg {
           clear: both;
@@ -362,6 +363,12 @@ figure.graph {
       position: static;
       width: 100%;
       overflow:hidden;
+
+      ol li .label-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
 
       .summary {
         border: none;
@@ -421,5 +428,13 @@ figure.graph {
         display:none;
       }
     }
+  }
+}
+
+
+
+@media (max-width: 440px) {
+  .graph .legend ol li {
+    width: 90%;
   }
 }

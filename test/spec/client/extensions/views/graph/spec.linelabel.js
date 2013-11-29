@@ -31,7 +31,8 @@ function (LineLabel, Collection) {
         lineLabel = new LineLabel({
           interactive: false,
           showSquare: false,
-          collection: collection
+          collection: collection,
+          rendered: true
         });
         lineLabel.wrapper = wrapper;
         lineLabel.offset = 100;
@@ -179,7 +180,8 @@ function (LineLabel, Collection) {
             positions: [
               { ideal: 30, min: 30, size: 20 },
               { ideal: 80, min: 80, size: 30 }
-            ]
+            ],
+            rendered: true
           };
           spyOn(LineLabel.prototype, "setLabelPositions");
         });
