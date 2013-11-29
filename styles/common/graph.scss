@@ -65,6 +65,15 @@ figure.graph {
   .line4 { stroke: $data-colour-5; }
   .line5 { stroke: $data-colour-6; }
 
+  .not-selected {
+    &.line0 { stroke: mix($data-colour-1, $white, 50%); }
+    &.line1 { stroke: mix($data-colour-2, $white, 50%); }
+    &.line2 { stroke: mix($data-colour-3, $white, 50%); }
+    &.line3 { stroke: mix($data-colour-4, $white, 50%); }
+    &.line4 { stroke: mix($data-colour-5, $white, 50%); }
+    &.line5 { stroke: mix($data-colour-6, $white, 50%); }
+  }
+
   .stack0 { fill: mix($data-colour-1, $white, 25%); }
   .stack1 { fill: mix($data-colour-2, $white, 25%); }
   .stack2 { fill: mix($data-colour-3, $white, 25%); }
@@ -223,6 +232,13 @@ figure.graph {
           &.label4.selected:before { border-color: darken($data-colour-5, 10%); }
           &.label5.selected:before { border-color: darken($data-colour-6, 10%); }
 
+          &.label0.not-selected:before { background-color: mix($data-colour-1, $white, 50%) }
+          &.label1.not-selected:before { background-color: mix($data-colour-2, $white, 50%) }
+          &.label2.not-selected:before { background-color: mix($data-colour-3, $white, 50%) }
+          &.label3.not-selected:before { background-color: mix($data-colour-4, $white, 50%) }
+          &.label4.not-selected:before { background-color: mix($data-colour-5, $white, 50%) }
+          &.label5.not-selected:before { background-color: mix($data-colour-6, $white, 50%) }
+
           &:before {
             border:2px solid white;
             float:left;
@@ -267,6 +283,10 @@ figure.graph {
 
       &.selected {
         stroke-width: 2px;
+      }
+
+      &.not-selected {
+        stroke: mix(#444, $white, 50%);
       }
 
       &.crisp {
