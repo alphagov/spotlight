@@ -25,8 +25,8 @@ define(['express', 'path'], function (express, path){
         app.use('/app', express.static(path.join(rootDir, 'app')));
         app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
         app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
-        app.use('/test/spec', express.static(path.join(rootDir, 'test', 'spec')));
-        app.use('/spec', function (req, res) {
+        app.use('/spec', express.static(path.join(rootDir, 'spec')));
+        app.use('/tests', function (req, res) {
           res.sendfile(path.join(rootDir, '_SpecRunner.html'));
         });
       });
