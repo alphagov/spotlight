@@ -101,8 +101,7 @@ function (MatrixCollection, Collection, Group) {
         },
         values: new Collection(values).models
       });
-    },
-
+    }
   });
 
   return VolumetricsCollection;
