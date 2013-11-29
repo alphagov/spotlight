@@ -16,6 +16,24 @@
       "data-type": "realtime"
     },
     {
+      "module-type": "journey",
+      "title": "Users at each stage",
+      "description": "Number of users who completed important stages of the transaction last week",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "The total number of unique users who arrived at each stage."
+      ],
+      "data-group": "carers-allowance",
+      "data-type": "journey",
+      "steps": [
+        {"id": "carers-allowance:page:about-you", "title": "About You"},
+        {"id": "carers-allowance:page:care-you-provide", "title": "About the Care You Provide"},
+        {"id": "carers-allowance:page:time-spent-abroad", "title": "Abroad"},
+        {"id": "carers-allowance:page:other-money", "title": "Other Money"},
+        {"id": "carers-allowance:page:consent-and-declaration", "title": "Consent and Declaration"}
+      ]
+    },
+    {
       "module-type": "availability",
       "title": "Service availability",
       "description": "",
