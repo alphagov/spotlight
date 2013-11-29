@@ -1,8 +1,8 @@
 var requirejs = require('requirejs');
-var config = requirejs('./config');
-config.baseUrl = 'app/';
-config.nodeRequire = require;
-requirejs.config(config);
+var app_config = requirejs('./config');
+app_config.baseUrl = 'app/';
+app_config.nodeRequire = require;
+requirejs.config(app_config);
 
 var argv = require('optimist').argv;
 
@@ -25,13 +25,7 @@ var rootDir = path.join(__dirname, '..'),
     environment = process.env.NODE_ENV || argv.env || 'development';
 
 global._ = require('underscore');
-global.config = require(path.join(rootDir, 'config', 'config.' + environment + '.json'));
-if (argv.backdropUrl) {
-  global.config.backdropUrl = argv.backdropUrl;
-}
-if (argv.p) {
-  global.config.port = argv.p;
-}
+global.config = requirejs('environment_config').configure(environment, argv);
 
 if (environment === 'cucumber') {
   environment = 'development';

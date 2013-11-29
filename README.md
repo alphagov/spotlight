@@ -35,11 +35,16 @@ will work.
 Otherwise...
 ```bash
 cd <spotlight_dir>
+node app/server.js --backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}'
 grunt
 ```
 
 This will create a development build of the assets and then run the app at
 `http://localhost:3057`.
+
+If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
+
+[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 The app uses [grunt-nodemon][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
