@@ -22,7 +22,7 @@
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Data source: Google Analytics",
         "Completed applications count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
@@ -36,8 +36,8 @@
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-        "Completion rate measures the proportion of people who started an application and were able to complete it.",
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "start-matcher": "start$",
@@ -49,7 +49,7 @@
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Data source: Google Analytics",
         "The total number of unique users who arrived at each stage."
       ],
       "data-group": "pay-register-death-abroad",
