@@ -6,7 +6,7 @@
   "data-group": "pay-legalisation-drop-off",
   "data-type": "journey",
   "info": [
-    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+    "Data source: Google Analytics",
     "Completed applications count based on unique visitors to the final page of the service."
   ],
   "start-matcher": "start$",

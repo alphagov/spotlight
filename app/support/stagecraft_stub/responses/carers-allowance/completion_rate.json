@@ -1,0 +1,17 @@
+{
+  "page-type": "module",
+  "module-type": "completion_rate",
+  "title": "Completion rate",
+  "dashboard-title": "Carer's Allowance",
+  "dashboard-strapline": "Service performance",
+  "data-group": "carers-allowance",
+  "data-type": "journey",
+  "info": [
+    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+    "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+    "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+  ],
+  "start-matcher": "about-you$",
+  "end-matcher": "consent-and-declaration$",
+  "matching-attribute": "eventLabel"
+}

@@ -1,0 +1,14 @@
+{
+  "page-type": "module",
+  "module-type": "realtime",
+  "title": "Real-time usage",
+  "description": "Live number of users on any page within the service",
+  "info": [
+    "Data source: Google Analytics",
+    "Shows the estimated number of users currently accessing the service on GOV.UK."
+  ],
+  "dashboard-title": "Carer's Allowance",
+  "dashboard-strapline": "Service performance",
+  "data-group": "carers-allowance",
+  "data-type": "realtime"
+}

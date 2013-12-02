@@ -199,9 +199,9 @@ define([
     describe("parse", function () {
       it("should not change order if they follow the specified sort order", function() {
         var models = [
-          {eventCategory: "example:downloadFormPage", uniqueEvents: 54321},
-          {eventCategory: "example:submitApplicationPage", uniqueEvents: 4321},
-          {eventCategory: "example:end", uniqueEvents: 321}
+          {stepAttr: "example:downloadFormPage", uniqueEvents: 54321},
+          {stepAttr: "example:submitApplicationPage", uniqueEvents: 4321},
+          {stepAttr: "example:end", uniqueEvents: 321}
         ];
         var collection = new TestCollection(models, {parse: true});
 
@@ -212,9 +212,9 @@ define([
 
       it("should reorder according to a provided sort order", function() {
         var models = [
-          {eventCategory: "example:submitApplicationPage", uniqueEvents: 4321},
-          {eventCategory: "example:downloadFormPage", uniqueEvents: 54321},
-          {eventCategory: "example:end", uniqueEvents: 321}
+          {stepAttr: "example:submitApplicationPage", uniqueEvents: 4321},
+          {stepAttr: "example:downloadFormPage", uniqueEvents: 54321},
+          {stepAttr: "example:end", uniqueEvents: 321}
         ];
         var collection = new TestCollection(models, {parse: true});
 
@@ -225,10 +225,10 @@ define([
 
       it("should not include unrecognised keys", function() {
         var models = [
-          {eventCategory: "afly_1", uniqueEvents: 4321},
-          {eventCategory: "example:downloadFormPage", uniqueEvents: 54321},
-          {eventCategory: "example:submitApplicationPage", uniqueEvents: 321},
-          {eventCategory: "example:end", uniqueEvents: 3211}
+          {stepAttr: "afly_1", uniqueEvents: 4321},
+          {stepAttr: "example:downloadFormPage", uniqueEvents: 54321},
+          {stepAttr: "example:submitApplicationPage", uniqueEvents: 321},
+          {stepAttr: "example:end", uniqueEvents: 3211}
         ];
         var collection = new TestCollection(models, {parse: true});
 
@@ -240,11 +240,11 @@ define([
       
       it("adds a normalised fraction of unique events for each step", function () {
         var models = [
-          {eventCategory: "example:downloadFormPage", uniqueEvents: 50000},
-          {eventCategory: "example:submitApplicationPage", uniqueEvents: 25000},
-          {eventCategory: "example:end", uniqueEvents: 10000}
+          {stepAttr: "example:downloadFormPage", uniqueEvents: 50000},
+          {stepAttr: "example:submitApplicationPage", uniqueEvents: 25000},
+          {stepAttr: "example:end", uniqueEvents: 10000}
         ];
-        var collection = new TestCollection();
+        var collection = new TestCollection(null, { matchingAttribute: 'stepAttr' });
         collection.reset(collection.parse({ data: models }));
 
         expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
@@ -257,7 +257,7 @@ define([
 
       it("deals with missing steps in the response", function () {
         var models = [];
-        var collection = new TestCollection();
+        var collection = new TestCollection(null, { matchingAttribute: 'stepAttr' });
         collection.reset(collection.parse({ data: models }));
 
         expect(collection.length).toEqual(3);
@@ -279,9 +279,21 @@ define([
           {customStep: "example:end", uniqueEvents: 10000}
         ];
 
-        var collection = new TestCollection(null, {
-          getStep: function(d) { return d.customStep; }
-        });
+        var collection = new TestCollection(null, { matchingAttribute: 'customStep' });
+        collection.reset(collection.parse({ data: models }));
+
+        expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
+        expect(collection.at(0).get('uniqueEvents')).toEqual(50000);
+      });
+
+      it("defaults to eventCategory when no step is configured", function() {
+        var models = [
+          {eventCategory: "example:downloadFormPage", uniqueEvents: 50000},
+          {eventCategory: "example:submitApplicationPage", uniqueEvents: 25000},
+          {eventCategory: "example:end", uniqueEvents: 10000}
+        ];
+
+        var collection = new TestCollection(null);
         collection.reset(collection.parse({ data: models }));
 
         expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
