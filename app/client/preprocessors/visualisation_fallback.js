@@ -8,7 +8,11 @@ define([
     }
 
     $('.visualisation-fallback').each(function () {
-      $(this).html($('<img src="' + $(this).data('src') + '" />'));
+      var img = $('<img/>').attr('src', $(this).data('src'));
+      var $this = $(this);
+      img.on('load', function () {
+        $this.html(img);
+      });
     });
   };
 
