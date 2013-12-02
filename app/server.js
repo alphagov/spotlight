@@ -30,11 +30,12 @@ global.isClient = false;
 global._ = require('underscore');
 global.config = requirejs('environment_config').configure(environment, argv);
 
-if (environment === 'cucumber') {
+//App stuff
+
+if(environment.match(/^development/)){
   environment = 'development';
 }
 
-//App stuff
 var http = require('http'),
     path = require('path');
 

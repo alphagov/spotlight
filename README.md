@@ -35,7 +35,7 @@ will work.
 Otherwise...
 ```bash
 cd <spotlight_dir>
-grunt --notVM
+NODE_ENV=development_no_vm grunt
 ```
 
 This will create a development build of the assets and then run the app at
@@ -94,9 +94,7 @@ Start the app with:
 
 ```
 node app/server.js \
---backdropUrl='http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}' \ 
---screenshotTargetUrl='http://localhost:3057' \
---screenshotServiceUrl='http://localhost:3000'
+--env=development_no_vm
 ```
 
 Visit `http://localhost:8080/debug` to view the console.

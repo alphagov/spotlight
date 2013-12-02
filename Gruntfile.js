@@ -26,11 +26,6 @@ var requirejsConfig = getRequirejsConfig();
 module.exports = function(grunt) {
   "use strict";
 
-  var args = [];
-  if(grunt.option('notVM')){
-    args = ['--backdropUrl=http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}', '--screenshotTargetUrl=http://localhost:3057', '--screenshotServiceUrl=http://localhost:3000'];
-  };
-
   // Project configuration.
   grunt.initConfig({
     clean: ["public/"],
@@ -189,8 +184,7 @@ module.exports = function(grunt) {
           watchedExtensions: ['js'],
           watchedFolders: ['app', 'support'],
           delayTime: 1,
-          legacyWatch: true,
-          args: args
+          legacyWatch: true
         }
       }
     },

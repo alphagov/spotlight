@@ -1,0 +1,7 @@
+{
+  "assetPath": "/assets/",
+  "port": 3057,
+  "backdropUrl": "http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}",
+  "screenshotTargetUrl": "http://localhost:3057",
+  "screenshotServiceUrl": "http://localhost:3000"
+}
