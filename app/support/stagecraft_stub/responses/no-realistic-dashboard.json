@@ -55,8 +55,7 @@
         "Info text line 2"
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     },
     {
       "page-type": "module",
@@ -70,8 +69,7 @@
         "Info text line 2"
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     }
   ]
 }

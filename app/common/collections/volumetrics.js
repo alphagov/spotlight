@@ -11,7 +11,7 @@ function (MatrixCollection, Collection, Group) {
     initialize: function (models, options) {
       this.startMatcher= options.startMatcher;
       this.endMatcher= options.endMatcher;
-      this.matchingAttribute= options.matchingAttribute;
+      this.matchingAttribute= options.matchingAttribute || 'eventCategory';
       MatrixCollection.prototype.initialize.apply(this, arguments);
       this.query.set('period', 'week', {silent: true, utc: false});
       delete this.query.attributes.period;

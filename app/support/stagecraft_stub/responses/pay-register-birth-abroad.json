@@ -26,8 +26,7 @@
         "Completed applications count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     },
     {
       "module-type": "completion_rate",
@@ -41,8 +40,7 @@
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     },
     {
       "module-type": "journey",
@@ -54,7 +52,6 @@
       ],
       "data-group": "pay-register-birth-abroad",
       "data-type": "journey",
-      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-register-birth-abroad:start", "title": "Start"},
         {"id": "pay-register-birth-abroad:confirm", "title": "Confirm"},

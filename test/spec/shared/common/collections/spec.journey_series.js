@@ -285,6 +285,20 @@ define([
         expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
         expect(collection.at(0).get('uniqueEvents')).toEqual(50000);
       });
+
+      it("defaults to eventCategory when no step is configured", function() {
+        var models = [
+          {eventCategory: "example:downloadFormPage", uniqueEvents: 50000},
+          {eventCategory: "example:submitApplicationPage", uniqueEvents: 25000},
+          {eventCategory: "example:end", uniqueEvents: 10000}
+        ];
+
+        var collection = new TestCollection(null);
+        collection.reset(collection.parse({ data: models }));
+
+        expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
+        expect(collection.at(0).get('uniqueEvents')).toEqual(50000);
+      });
     });
   });
 });

@@ -45,7 +45,7 @@ define([
     },
 
     getStep: function(d) {
-      return d[this.options.matchingAttribute];
+      return d[this.options.matchingAttribute] || d.eventCategory;
     }
   });
 
