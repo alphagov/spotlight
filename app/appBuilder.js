@@ -16,15 +16,15 @@ define(['express', 'path'], function (express, path){
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         app.use(express.compress());
-        app.use('/assets', express.static(path.join(rootDir, 'public')));
-        app.use('/assets/images', express.static(path.join(rootDir, 'public')));
+        app.use('/assets', express['static'](path.join(rootDir, 'public')));
+        app.use('/assets/images', express['static'](path.join(rootDir, 'public')));
 
         if(environment === 'development'){
           app.use(express.errorHandler());
-          app.use('/app', express.static(path.join(rootDir, 'app')));
+          app.use('/app', express['static'](path.join(rootDir, 'app')));
           app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
-          app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
-          app.use('/spec', express.static(path.join(rootDir, 'spec')));
+          app.use('/.grunt', express['static'](path.join(rootDir, '.grunt')));
+          app.use('/spec', express['static'](path.join(rootDir, 'spec')));
           app.use('/tests', function (req, res) {
             res.sendfile(path.join(rootDir, '_SpecRunner.html'));
           });

@@ -108,7 +108,9 @@ module.exports = function(grunt) {
       files: "app/**/*.js",
       options: {
         ignores: ['app/vendor/**'],
-        eqnull: true
+        eqnull: true,
+        es3: true,
+        es5: false
       }
     },
     requirejs: {
