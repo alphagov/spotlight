@@ -98,8 +98,17 @@ function (Component) {
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       this.componentWrapper.selectAll('path.line').classed('selected', false);
+      this.componentWrapper.selectAll('path.line').classed('not-selected', Boolean(groupSelected));
+      this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
+      this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
+
       if (groupSelected) {
-        var line = this.componentWrapper.select('path.line' + groupIndexSelected).classed('selected', true);
+        var line = this.componentWrapper.select('path.line' + groupIndexSelected)
+          .classed('selected', true)
+          .classed('not-selected', false);
+        this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
+          .classed('selected', true)
+          .classed('not-selected', false);
         var group = line.node().parentNode;
         group.parentNode.appendChild(group);
       }

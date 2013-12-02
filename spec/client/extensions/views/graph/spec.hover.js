@@ -55,8 +55,10 @@ function (Hover) {
     });
     
     describe("event handlers", function () {
-      var component, scaleFactor;
+      var component, scaleFactor, graphWrapper;
+
       beforeEach(function() {
+        graphWrapper = $('<div class ="graph-wrapper"></div>');
         spyOn(Hover.prototype, "selectPoint");
         component = new Hover({
           bodyListener: true,
@@ -68,6 +70,7 @@ function (Hover) {
           },
           collection: { on: jasmine.createSpy() },
           graph: {
+            graphWrapper: graphWrapper,
             scaleFactor: jasmine.createSpy(),
             on: jasmine.createSpy()
           }
@@ -76,7 +79,7 @@ function (Hover) {
       
       describe("onMouseMove", function () {
         it("calculates the mouse move position when the graph is not scaled", function () {
-          spyOn(component.$el, "offset").andReturn({
+          spyOn(graphWrapper, "offset").andReturn({
             left: 200, top: 200
           });
           component.graph.scaleFactor.andReturn(1);
@@ -88,7 +91,7 @@ function (Hover) {
         });
 
         it("calculates the mouse move position when the graph is scaled", function () {
-          spyOn(component.$el, "offset").andReturn({
+          spyOn(graphWrapper, "offset").andReturn({
             left: 100, top: 100
           });
           component.graph.scaleFactor.andReturn(0.5);
@@ -102,7 +105,7 @@ function (Hover) {
       
       describe("onTouchStart", function () {
         it("calculates the touch position when the graph is not scaled", function () {
-          spyOn(component.$el, "offset").andReturn({
+          spyOn(graphWrapper, "offset").andReturn({
             left: 200, top: 200
           });
           component.graph.scaleFactor.andReturn(1);
@@ -118,7 +121,7 @@ function (Hover) {
         });
 
         it("calculates the touch position when the graph is scaled", function () {
-          spyOn(component.$el, "offset").andReturn({
+          spyOn(graphWrapper, "offset").andReturn({
             left: 100, top: 100
           });
           component.graph.scaleFactor.andReturn(0.5);

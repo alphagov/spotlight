@@ -103,21 +103,67 @@ function (Line, Collection) {
 
     describe("onChangeSelected", function () {
 
-      beforeEach(function() {
-        view.render();
-      });
+      var hasClass = function (selector, className) {
+        var selection = view.componentWrapper.selectAll(selector);
+        var eachItemHasClass = true;
+        selection.each(function () {
+          if (!eachItemHasClass) {
+            return;
+          }
+          var itemHasClass = _.contains(
+            d3.select(this).attr('class').split(' '),
+            className
+          );
+          if (!itemHasClass) {
+            eachItemHasClass = false;
+          }
+        });
+        return eachItemHasClass;
+      };
 
-      it("highlights the selected group", function () {
+      it("highlights the selected group and dims the other groups", function () {
+        view.render();
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-        expect(view.componentWrapper.select('path.line0').attr('class').indexOf('selected')).toBe(-1);
-        expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
+        expect(hasClass('path.line0', 'selected')).toBe(false);
+        expect(hasClass('path.line1', 'selected')).toBe(true);
+        expect(hasClass('path.line0', 'not-selected')).toBe(true);
+        expect(hasClass('path.line1', 'not-selected')).toBe(false);
         expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
         view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-        expect(view.componentWrapper.select('path.line0').attr('class').indexOf('selected')).not.toBe(-1);
-        expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).toBe(-1);
+        expect(hasClass('path.line0', 'selected')).toBe(true);
+        expect(hasClass('path.line1', 'selected')).toBe(false);
+        expect(hasClass('path.line0', 'not-selected')).toBe(false);
+        expect(hasClass('path.line1', 'not-selected')).toBe(true);
+      });
+
+      it("highlights the selected group and dims the other groups and their line terminators", function () {
+        collection.at(0).get('values').at(2).set('b', null);
+        collection.at(1).get('values').at(2).set('c', null);
+
+        view.render();
+        view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
+        expect(hasClass('path.line0', 'selected')).toBe(false);
+        expect(hasClass('path.line1', 'selected')).toBe(true);
+        expect(hasClass('path.line0', 'not-selected')).toBe(true);
+        expect(hasClass('path.line1', 'not-selected')).toBe(false);
+        expect(hasClass('circle.terminator.line0', 'selected')).toBe(false);
+        expect(hasClass('circle.terminator.line1', 'selected')).toBe(true);
+        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(true);
+        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(false);
+        expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+        view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
+        expect(hasClass('path.line0', 'selected')).toBe(true);
+        expect(hasClass('path.line1', 'selected')).toBe(false);
+        expect(hasClass('path.line0', 'not-selected')).toBe(false);
+        expect(hasClass('path.line1', 'not-selected')).toBe(true);
+        expect(hasClass('circle.terminator.line0', 'selected')).toBe(true);
+        expect(hasClass('circle.terminator.line1', 'selected')).toBe(false);
+        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(false);
+        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
       });
 
       it("renders a selection indicator on the selected item", function () {
+        view.render();
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
         expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
@@ -127,6 +173,7 @@ function (Line, Collection) {
       });
 
       it("doesn't renders a selection indicator for missing data item", function () {
+        view.render();
         collection.at(1).get('values').at(1).set('c', null);
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
