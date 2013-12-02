@@ -8,7 +8,7 @@ function (Component) {
     offset: 20,
     linePaddingInner: 4,
     linePaddingOuter: 4,
-    overlapLabelTop: 0,
+    overlapLabelTop: 10,
     overlapLabelBottom: 20,
     labelOffset: 6,
 
@@ -48,6 +48,15 @@ function (Component) {
       this.renderSummary();
       this.renderLabels();
       this.renderLines();
+
+      if (!this.rendered) {
+        // On first render, height of multi-line labels is sometimes reported
+        // incorrectly. Work around by triggering re-render once.
+        this.rendered = true;
+        setTimeout(_.bind(function () {
+          this.render();
+        }, this), 0);
+      }
     },
 
     /**
@@ -310,8 +319,14 @@ function (Component) {
       labels.classed('selected', function (group, groupIndex) {
         return groupIndexSelected === groupIndex;
       });
+      labels.classed('not-selected', function (group, groupIndex) {
+        return groupIndexSelected != null && groupIndexSelected !== groupIndex;
+      });
       lines.classed('selected', function (group, groupIndex) {
         return groupIndexSelected === groupIndex;
+      });
+      lines.classed('not-selected', function (group, groupIndex) {
+        return groupIndexSelected != null && groupIndexSelected !== groupIndex;
       });
     },
 

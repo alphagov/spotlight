@@ -41,6 +41,30 @@
         right:30px;
       }
     }
+
+    .x-axis .tick:nth-child(even) text {
+      display:block;
+    }
+  }
+
+  .timeseries-graph {
+    &:nth-of-type(1) {
+      max-height: 163px;
+      .cursorLine.descender {
+        display: inherit;
+      }
+      .x-axis text {
+        display: none;
+      }
+      .inner {
+        bottom: 20px;
+      }
+    }
+    &:nth-of-type(2) {
+      .cursorLine.ascender {
+        display: inherit;
+      }
+    }
   }
 
   @media (max-width: 880px) {
@@ -77,59 +101,33 @@
   }
 
   @media(max-width: 500px) {
-    height:385px;
-    position: relative;
-
-    h3 {
-      clear:none;
-      max-width:45%;
-      float:left;
-    }
 
     .impact-number {
-      max-width: 50%;
-      margin-top:2em;
+      float:none;
+      width: auto;
     }
 
     .timeseries-graph {
       figure.graph {
         margin-left:0;
       }
-      position:absolute;
-      left:0;
-      right:0;
 
+      &:nth-of-type(1) {
+        .cursorLine.descender {
+          display: none;
+        }
+        .x-axis text {
+          display: inherit;
+        }
+        .inner {
+          bottom: 40px;
+        }
+      }
+      &:nth-of-type(2) {
+        .cursorLine.ascender {
+          display: none;
+        }
+      }
     }
-    .timeseries-graph:nth-of-type(1) {
-      top: 160px;
-    }
-    .timeseries-graph:nth-of-type(2) {
-      top: 270px;
-    }
-  }
-
-  .timeseries-graph:nth-of-type(1) {
-    max-height: 163px;
-    .cursorLine.descender {
-      display: inherit;
-    }
-    .x-axis text {
-      display: none;
-    }
-    .inner {
-      bottom: 20px;
-    }
-  }
-  .timeseries-graph:nth-of-type(2) {
-    .cursorLine.ascender {
-      display: inherit;
-    }
-  }
-
-}
-
-.double-decker-graph .uptime-graph  {
-  .x-axis .tick:nth-child(even) text {
-    display:block;
   }
 }

@@ -82,7 +82,7 @@ define([
           selection.set('_start_at', view.getMoment('2013-05-17T00:00:00+01:00'));
           selection.set('_end_at', view.getMoment('2013-05-18T00:00:00+01:00'));
 
-          expect(view.getLabelSelected({ selectedModel: selection })).toEqual('17 May 2013');
+          expect(view.getLabelSelected({ selectedModel: selection })).toEqual('Friday <span class="fulldate">17 May 2013</span>');
         });
 
         it("should display (no data) when the selected data is unavailable", function () {

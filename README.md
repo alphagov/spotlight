@@ -35,7 +35,7 @@ will work.
 Otherwise...
 ```bash
 cd <spotlight_dir>
-grunt
+NODE_ENV=development_no_vm grunt
 ```
 
 This will create a development build of the assets and then run the app at
@@ -46,6 +46,10 @@ automatically restart the server and recompile Sass.
 
 [grunt-nodemon]: https://github.com/ChrisWren/grunt-nodemon
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
+
+If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
+
+[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 ### Running tests ###
 
@@ -65,7 +69,7 @@ SauceLabs (no Grunt task yet).
 #### Browser ####
 
 When the app is running in development mode, Jasmine tests for shared
-components are available at `/spec`. The specrunner gets automatically
+components are available at `/tests`. The specrunner gets automatically
 recreated on server start and when the specfiles change. Due to a
 [bug in grunt-contrib-watch][watch-20], new spec files are not currently
 detected automatically. When you add a new spec file, either restart the
@@ -78,10 +82,22 @@ app or run `grunt jasmine:spotlight:build`.
 Install node-inspector on your VM with `sudo npm install -g node-inspector@0.5.0`
 and run it with `node-inspector`.
 
+On the VM:
+
 Start the app with `node --debug app/server.js`.
 
-Visit `http://spotlight.perfplat.dev:8080` to view the console.
+Visit `http://spotlight.perfplat.dev:8080/debug` to view the console.
 
+Or on your machine
+
+Start the app with:
+
+```
+node app/server.js \
+--env=development_no_vm
+```
+
+Visit `http://localhost:8080/debug` to view the console.
 
 ### Production ###
 

@@ -21,6 +21,7 @@
       "description": "Number of users who completed important stages of the transaction last week",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
+      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "deposit-foreign-marriage:start", "title": "Start"},
         {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
@@ -54,8 +55,7 @@
         "Info text line 2"
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     },
     {
       "page-type": "module",
@@ -69,8 +69,7 @@
         "Info text line 2"
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "end-matcher": "done$"
     }
   ]
 }

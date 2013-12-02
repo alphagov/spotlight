@@ -52,16 +52,14 @@ function (Axis) {
         },
         tickFormat: function () {
           return _.bind(function (d, index) {
-            var date = this.getMoment(d);
-            if (date.days() === 1) {
-              return date.format('D MMM');
-            } else {
-              return '';
-            }
+            return this.getMoment(d).format('D MMM');
           }, this);
         },
         tickValues: function () {
-          return this.collection.first().get('values').map(_.bind(this.getTick, this));
+          var values = this.collection.first().get('values').filter(function (model, index) {
+            return model.get('_end_at').days() === 1;
+          });
+          return _.map(values, _.bind(this.getTick, this));
         }
       },
       week: {
