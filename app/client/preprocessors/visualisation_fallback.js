@@ -8,7 +8,7 @@ define([
     }
 
     $('.visualisation-fallback').each(function () {
-      $(this).html($('<img/>').attr('src', $(this).data('src')));
+      $(this).html($('<img src="' + $(this).data('src') + '" />'));
     });
   };
 
