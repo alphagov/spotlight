@@ -7,11 +7,11 @@ p.impact-number {
     margin-bottom: -.1em;
     display: block;
 
-  @media (max-width: 850px) {
+    @media (max-width: 850px) {
       @include bold-48($tabular-numbers: true);
-  }
+    }
 
-  @media (max-width: 640px) {
+    @media (max-width: 640px) {
       // Revert back to default impact number size for small screen sizes.
       // GOV.UK frontend toolkit rule decreases font size automatically
       // for small screens.
@@ -31,6 +31,13 @@ p.impact-number {
 
     @media (max-width: 640px) {
       margin-bottom: 0.4em;
+    }
+  }
+
+  span.fulldate {
+    display: block;
+    @media (max-width: 500px) {
+      display: inline;
     }
   }
 }

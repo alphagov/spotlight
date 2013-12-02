@@ -62,21 +62,18 @@ function (XAxis, Collection) {
     });
 
     describe("'day' configuration", function () {
-      it("shows one tick per day, and labels only for Mondays", function () {
+      it("shows tick and label each Sunday", function () {
         var view = viewForConfig('day', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
 
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
-        expect(wrapper.selectAll('.tick')[0].length).toEqual(31);
-        expect(d3.select(ticks[0]).text()).toEqual('4 Mar');
-        expect(d3.select(ticks[1]).text()).toEqual('');
-        expect(d3.select(ticks[7]).text()).toEqual('11 Mar');
-        expect(d3.select(ticks[14]).text()).toEqual('18 Mar');
-        expect(d3.select(ticks[21]).text()).toEqual('25 Mar');
-        expect(d3.select(ticks[28]).text()).toEqual('1 Apr');
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(4);
+        expect(d3.select(ticks[0]).text()).toEqual('10 Mar');
+        expect(d3.select(ticks[1]).text()).toEqual('17 Mar');
+        expect(d3.select(ticks[2]).text()).toEqual('24 Mar');
+        expect(d3.select(ticks[3]).text()).toEqual('31 Mar');
       });
     });
-
   });
 });
