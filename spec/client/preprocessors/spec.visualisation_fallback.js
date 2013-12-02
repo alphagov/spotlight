@@ -25,7 +25,7 @@ define([
       expect(el.html()).toEqual('original content');
     });
 
-    it('replaces the fallback container content with a fallback image', function() {
+    xit('replaces the fallback container content with a fallback image', function() {
       visualisationFallback.Modernizr.inlinesvg = false;
       visualisationFallback();
       expect(el.html()).toEqual('<img src="/test/src">');
