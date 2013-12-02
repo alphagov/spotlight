@@ -74,8 +74,7 @@ function (VolumetricsCollection) {
         data: someFakeFCOTransactionDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
-        end_matcher: /done$/,
-        matching_attribute: "eventCategory"
+        end_matcher: /done$/
       });
 
       sharedBehaviourForVolumetrics({

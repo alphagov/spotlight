@@ -64,12 +64,12 @@ module.exports = function(grunt) {
       spotlight: {
         src: ['app/**/*.js'],
         options: {
-          helpers: ['test/spec/helpers/*.js'],
+          helpers: ['spec/helpers/*.js'],
           specs: [
-            'test/spec/shared/**/spec.*.js',
-            'test/spec/client/**/spec.*.js'
+            'spec/shared/**/spec.*.js',
+            'spec/client/**/spec.*.js'
           ],
-          template: 'test/spec/index.html',
+          template: 'spec/index.html',
           keepRunner: true
         }
       }
@@ -77,14 +77,14 @@ module.exports = function(grunt) {
     jasmine_node: {
       useHelpers: true,
       specFolders: [
-        "./test/spec/shared",
-        "./test/spec/server"
+        "./spec/shared",
+        "./spec/server"
       ],
-      projectRoot: "./test/spec/",
+      projectRoot: "./spec/",
       options: {
         specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
         match: ".*",
-        useRequireJs: "test/spec/requirejs-setup.js",
+        useRequireJs: "spec/requirejs-setup.js",
         forceExit: true,
         jUnit: {
           report: false,
@@ -173,7 +173,7 @@ module.exports = function(grunt) {
         options: { nospawn: true }
       },
       spec: {
-        files: ['test/spec/**/spec.*.js'],
+        files: ['spec/**/spec.*.js'],
         tasks: ['jasmine:spotlight:build']
       }
     },
@@ -214,7 +214,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks(task);
   });
 
-  // Default task.
   grunt.registerTask('build:development', [
     'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
   ]);
@@ -222,6 +221,7 @@ module.exports = function(grunt) {
     'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
   ]);
   grunt.registerTask('test:all', ['copy:vendor', 'cucumber', 'jasmine', 'jasmine_node']);
+  // Default task.
   grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
 };

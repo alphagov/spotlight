@@ -15,7 +15,7 @@ Capybara.app_host = "http://localhost:#{APP_PORT}"
 Capybara.server_port = APP_PORT
 Capybara.run_server = false
 
-$server = IO.popen("node app/server.js --env cucumber -p #{APP_PORT}")
+$server = IO.popen("node app/server.js --env development_cucumber -p #{APP_PORT}")
 $server.gets
 
 at_exit do

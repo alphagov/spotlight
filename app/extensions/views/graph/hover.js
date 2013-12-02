@@ -46,7 +46,7 @@ function (Component) {
     },
     
     onMouseMove: function (e) {
-      var offset = this.$el.offset();
+      var offset = this.graph.graphWrapper.offset();
       var scaleFactor = this.graph.scaleFactor();
       var x = (e.pageX - offset.left) / scaleFactor - this.margin.left;
       var y = (e.pageY - offset.top) / scaleFactor - this.margin.top;
@@ -58,7 +58,7 @@ function (Component) {
     
     onTouchStart: function (e) {
       var touch = e.originalEvent.touches[0];
-      var offset = this.$el.offset();
+      var offset = this.graph.graphWrapper.offset();
       var scaleFactor = this.graph.scaleFactor();
       var x = (touch.pageX - offset.left) / scaleFactor - this.margin.left;
       var y = (touch.pageY - offset.top) / scaleFactor - this.margin.top;

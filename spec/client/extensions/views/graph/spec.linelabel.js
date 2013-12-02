@@ -31,7 +31,8 @@ function (LineLabel, Collection) {
         lineLabel = new LineLabel({
           interactive: false,
           showSquare: false,
-          collection: collection
+          collection: collection,
+          rendered: true
         });
         lineLabel.wrapper = wrapper;
         lineLabel.offset = 100;
@@ -179,7 +180,8 @@ function (LineLabel, Collection) {
             positions: [
               { ideal: 30, min: 30, size: 20 },
               { ideal: 80, min: 80, size: 30 }
-            ]
+            ],
+            rendered: true
           };
           spyOn(LineLabel.prototype, "setLabelPositions");
         });
@@ -214,25 +216,44 @@ function (LineLabel, Collection) {
       });
 
       describe("onChangeSelected", function () {
-        it("adds class 'selected' to label and little line of selected group", function () {
+        var hasClass = function (selection, className) {
+          return _.contains(
+            selection.attr('class').split(' '),
+            className
+          );
+        };
+
+        it("marks selected label and line as selected and others as not selected", function () {
           lineLabel.render();
           var littleLines = wrapper.select('.labels');
           var labels = lineLabel.$el.find('figcaption ol li');
           lineLabel.onChangeSelected(collection.at(1), 1);
-          expect(labels.eq(0).attr('class').indexOf('selected')).toBe(-1);
-          expect(labels.eq(1).attr('class').indexOf('selected')).not.toBe(-1);
-          expect(littleLines.select('line:nth-child(1)').attr('class').indexOf('selected')).toBe(-1);
-          expect(littleLines.select('line:nth-child(2)').attr('class').indexOf('selected')).not.toBe(-1);
+          expect(hasClass(labels.eq(0), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'selected')).toBe(true);
+          expect(hasClass(labels.eq(0), 'not-selected')).toBe(true);
+          expect(hasClass(labels.eq(1), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(true);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(true);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
           lineLabel.onChangeSelected(collection.at(0), 0);
-          expect(labels.eq(0).attr('class').indexOf('selected')).not.toBe(-1);
-          expect(labels.eq(1).attr('class').indexOf('selected')).toBe(-1);
-          expect(littleLines.select('line:nth-child(1)').attr('class').indexOf('selected')).not.toBe(-1);
-          expect(littleLines.select('line:nth-child(2)').attr('class').indexOf('selected')).toBe(-1);
+          expect(hasClass(labels.eq(0), 'selected')).toBe(true);
+          expect(hasClass(labels.eq(1), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'not-selected')).toBe(true);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'selected')).toBe(true);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(true);
           lineLabel.onChangeSelected(null, null);
-          expect(labels.eq(0).attr('class').indexOf('selected')).toBe(-1);
-          expect(labels.eq(1).attr('class').indexOf('selected')).toBe(-1);
-          expect(littleLines.select('line:nth-child(1)').attr('class').indexOf('selected')).toBe(-1);
-          expect(littleLines.select('line:nth-child(2)').attr('class').indexOf('selected')).toBe(-1);
+          expect(hasClass(labels.eq(0), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
         });
 
         it("displays the values for the current selection", function () {
