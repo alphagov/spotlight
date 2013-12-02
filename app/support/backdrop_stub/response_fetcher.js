@@ -3,6 +3,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
   var ResponseFetcher = Model.extend({
   
     stub_mappings: [
+      { 'key': {'service': 'carers-allowance', 'api_name': 'journey'}, 'file':  'carers_allowance_journey.json'},
       { 'key': {'service': 'licensing', 'api_name': 'monitoring'}, 'file':  'licensing_availability_response.json'},
       { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'licenceUrlSlug:application-to-licence-a-street-collection'}, 'file':  'application-to-licence-a-street-collection.json'},
       { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1', 'group_by': 'licenceUrlSlug'}, 'file':  'licensing_top_5_licenses.json'},
