@@ -29,6 +29,7 @@ global.isClient = false;
 
 global._ = require('underscore');
 global.config = requirejs('environment_config').configure(environment, argv);
+global.logger = requirejs('logger');
 
 //App stuff
 
@@ -43,7 +44,7 @@ var rootDir = path.join(__dirname, '..');
 var app = requirejs('appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  global.logger.info("Express server listening on port " + app.get('port'));
 });
 
 exports = module.exports = server;

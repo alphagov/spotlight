@@ -1,7 +1,12 @@
-define(['express', 'path'], function (express, path){
+define([
+  'express',
+  'path',
+  'winston'
+],
+function (express, path, winston) {
 
   var appBuilder = {
-    getApp: function (environment, rootDir, require_base_url) { 
+    getApp: function (environment, rootDir, require_base_url) {
       app = express();
       app.disable('x-powered-by');
 
@@ -19,7 +24,8 @@ define(['express', 'path'], function (express, path){
         app.use('/assets', express['static'](path.join(rootDir, 'public')));
         app.use('/assets/images', express['static'](path.join(rootDir, 'public')));
 
-        if(environment === 'development'){
+        if (environment === 'development') {
+          global.logger.debug('Winston is logging in development');
           app.use(express.errorHandler());
           app.use('/app', express['static'](path.join(rootDir, 'app')));
           app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
@@ -28,6 +34,14 @@ define(['express', 'path'], function (express, path){
           app.use('/tests', function (req, res) {
             res.sendfile(path.join(rootDir, '_SpecRunner.html'));
           });
+        } else {
+          global.logger.add(winston.transports.File, {
+            filename: '/var/log/spotlight/spotlight.log',
+            level: 'info',
+            colorize: false,
+            json: true
+          });
+          global.logger.remove(winston.transports.Console);
         }
 
       });
