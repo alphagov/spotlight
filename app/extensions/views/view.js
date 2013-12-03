@@ -55,9 +55,11 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     renderSubviews: function (options) {
       
       var viewsDefinition = this.views;
+      console.log(viewsDefinition);
       if (_.isFunction(viewsDefinition)) {
         viewsDefinition = viewsDefinition.call(this);
       }
+      console.log(viewsDefinition);
       var instances = this.viewInstances;
       _.each(viewsDefinition, function (definition, selector) {
         var $el = this.$el.find(selector);

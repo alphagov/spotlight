@@ -1,0 +1,10 @@
+{
+  "page-type": "module",
+  "module-type": "stacked",
+  "title": "Categories in a stack",
+  "description": "",
+  "data-group": "housing-policy",
+  "data-type": "residential-transactions",
+  "value-attr": "value:sum",
+  "show-line-labels": true
+}
