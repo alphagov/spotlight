@@ -1,7 +1,7 @@
 define([
   'common/collections/completion_rate'
 ],
-function (VolumetricsCollection) {
+function (CompletionRateCollection) {
 
     var someFakeFCOTransactionDataLabel = [
       {
@@ -117,7 +117,7 @@ function (VolumetricsCollection) {
 
     describe("FCO volumetrics collections", function () {
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
@@ -125,7 +125,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventCategory"
       });
 
-      sharedBehaviourForVolumetricsWithMissingData({
+      sharedBehaviourForCompletionWithMissingData({
         data: missingDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
@@ -133,7 +133,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventCategory"
       });
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataLabel,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
@@ -141,7 +141,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventLabel"
       });
 
-      sharedBehaviourForVolumetricsWithMissingData({
+      sharedBehaviourForCompletionWithMissingData({
         data: missingDataLabel,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
@@ -149,12 +149,12 @@ function (VolumetricsCollection) {
         matching_attribute: "eventLabel"
       });
 
-      function sharedBehaviourForVolumetrics(context) {
+      function sharedBehaviourForCompletion(context) {
 
         var volumetricsCollection = undefined,
             getMoment,
             collectionFor = function (data) {
-              collection = new VolumetricsCollection({}, {
+              collection = new CompletionRateCollection({}, {
                 "data-group": 'notARealFCOTransaction',
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,
@@ -213,8 +213,8 @@ function (VolumetricsCollection) {
             data
           ]};
 
-          var noDoneEventVolumetricsCollection = function () { 
-            collection = new VolumetricsCollection({}, {
+          var noDoneEventCompletionRateCollection = function () { 
+            collection = new CompletionRateCollection({}, {
               "data-group": 'notARealFCOTransaction',
               "data-type": 'journey',
               startMatcher: context.start_matcher,
@@ -225,15 +225,15 @@ function (VolumetricsCollection) {
             return collection;
           }();
 
-          expect(noDoneEventVolumetricsCollection.parse(events).values[8].get('completion')).toBe(0);
+          expect(noDoneEventCompletionRateCollection.parse(events).values[8].get('completion')).toBe(0);
         });
       }
 
-      function sharedBehaviourForVolumetricsWithMissingData(context) {
+      function sharedBehaviourForCompletionWithMissingData(context) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              collection  = new VolumetricsCollection({}, {
+              collection  = new CompletionRateCollection({}, {
                 "data-group": 'notARealFCOTransaction',
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,

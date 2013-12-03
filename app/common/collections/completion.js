@@ -5,7 +5,7 @@ define([
 ],
 function (MatrixCollection, Collection, Group) {
 
-  var VolumetricsCollection = MatrixCollection.extend({
+  var CompletionCollection = MatrixCollection.extend({
     model: Group,
 
     initialize: function (models, options) {
@@ -104,5 +104,5 @@ function (MatrixCollection, Collection, Group) {
     }
   });
 
-  return VolumetricsCollection;
+  return CompletionCollection;
 });

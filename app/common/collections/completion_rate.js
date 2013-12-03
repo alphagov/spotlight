@@ -1,7 +1,7 @@
 define([
-  'common/collections/volumetrics'
-], function(VolumetricsCollection) {
-  var CompletionRateSeries = VolumetricsCollection.extend({
+  'common/collections/completion'
+], function(CompletionCollection) {
+  var CompletionRateSeries = CompletionCollection.extend({
 
     parse: function (response) {
       this.data = response.data;
