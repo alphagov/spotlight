@@ -3,13 +3,13 @@ define([
 ],
 function (MatrixCollection) {
 
-  var VolumetricsCollection = MatrixCollection.extend({
+  var CategoriesCollection = MatrixCollection.extend({
     queryParams: function () {
       return {
-        collect: 'value:sum',
-        period: 'month',
-        group_by: 'geography',
-        filter_by: ['key:residential_property_transactions']
+        collect: this.options.valueAttr,
+        period: this.options.period,
+        group_by: this.options.category,
+        filter_by: this.filter_by ? this.filter_by : []
       }
     },
 
@@ -30,5 +30,5 @@ function (MatrixCollection) {
 
   });
   
-  return VolumetricsCollection;
+  return CategoriesCollection;
 });

@@ -18,7 +18,7 @@ function (VolumetricsCollection) {
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
       ], 
-      "some-group": "xyz"
+      "some-category": "xyz"
     }, 
     {
       "some:value": 7, 
@@ -34,7 +34,7 @@ function (VolumetricsCollection) {
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
       ], 
-      "some-group": "abc"
+      "some-category": "abc"
     }, 
     {
       "some:value": 16, 
@@ -50,7 +50,7 @@ function (VolumetricsCollection) {
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
       ], 
-      "some-group": "def"
+      "some-category": "def"
     }
   ]
 };
@@ -105,25 +105,37 @@ function (VolumetricsCollection) {
       }
     ];
 
+    var collection;
+    beforeEach(function (){
+      collection = new VolumetricsCollection([], {
+        'data-type': "some-type",
+        'data-group': "some-group",
+        valueAttr: "some:value",
+        category: "some-category",
+        period: "month",
+        seriesList: [
+          { id: "abc", title: "ABC" },
+          { id: "def", title: "DEF" },
+          { id: "xyz", title: "XYZ" }
+        ]         
+      });
+      collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+    });
 
+    describe("url", function () {
+      it("should query backdrop with the correct url for the config", function () {
+        expect(collection.url()).toContain("some-group");
+        expect(collection.url()).toContain("some-type");
+        expect(collection.url()).toContain("period=month");
+        expect(collection.url()).toContain("group_by=some-category");
+        expect(collection.url()).toContain("collect=some%3Avalue");
+        expect(collection.url()).not.toContain("filter_by");
+      });
+    });
 
     describe("parse", function () {
       it("parses the response", function () {
-        var collection = new VolumetricsCollection([], {
-          'data-type': "some-type",
-          'data-group': "some-group",
-          valueAttr: "some:value",
-          category: "some-group",
-          period: "month",
-          seriesList: [
-            { id: "abc", title: "ABC" },
-            { id: "def", title: "DEF" },
-            { id: "xyz", title: "XYZ" }
-          ]         
-        });
-
         var parsed = collection.parse(response);
-
         expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
       });
     });

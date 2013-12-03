@@ -37,7 +37,6 @@ define([
           'data-type': this.model.get('data-type'),
           'data-group': this.model.get('data-group')
         }, this.collectionOptions()));
-        console.log(_.extend({ 'data-type': this.model.get('data-type'), 'data-group': this.model.get('data-group') }, this.collectionOptions()));
       }
 
       if (isClient && options.init && !this.clientRenderOnInit) {
