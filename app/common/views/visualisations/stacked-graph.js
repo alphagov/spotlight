@@ -3,18 +3,24 @@ define([
 ],
 function (Graph) {
   var StackedGraph = Graph.extend({
+
+    initialize: function (options) {
+      Graph.prototype.initialize.apply(this, arguments);
+
+      this.valueAttr = this.model.get('value-attr');
+    },
     
     components: function () {
-
       var labelComponent, labelOptions, stackOptions;
-      if (this.options.showLineLabels) {
+
+      if (this.model.get('show-line-labels')) {
         labelComponent = this.sharedComponents.linelabel;
         labelOptions = {
           showValues: true,
           showValuesPercentage: true,
           showSummary: true,
           showTimePeriod: true,
-          attachLinks: this.options.lineLabelLinks
+          attachLinks: this.model.get('line-label-links')
         };
         stackOptions = {
           selectGroup: false,

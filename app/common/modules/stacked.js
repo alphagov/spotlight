@@ -23,7 +23,6 @@ function (ModuleController, MatrixCollection, StackedGraph) {
 
     parse: function (response) {
       var data = response.data;
-      console.log(data);
 
       return _.map(this.seriesList, function (series) {
         var dataSeries = _.find(data, function (d) {
@@ -43,13 +42,7 @@ function (ModuleController, MatrixCollection, StackedGraph) {
     visualisationClass: StackedGraph,
     collectionClass: VolumetricsCollection,
     clientRenderOnInit: true,
-    requiresSvg: true,
-    viewOptions: function () {
-      return {
-        valueAttr: this.model.get('value-attr'),
-        showLineLabels: this.model.get('show-line-labels')
-      };
-    }
+    requiresSvg: true
   });
 
   return StackedModule;
