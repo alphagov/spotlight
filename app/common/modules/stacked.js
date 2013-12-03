@@ -1,48 +1,25 @@
 define([
   'extensions/controllers/module',
-  'extensions/collections/matrix',
+  'common/collections/categories',
   'common/views/visualisations/stacked-graph'
 ],
-function (ModuleController, MatrixCollection, StackedGraph) {
+function (ModuleController, CategoriesCollection, StackedGraph) {
 
-  // TODO: move this to separate file and move/write tests
-  var VolumetricsCollection = MatrixCollection.extend({
-    queryParams: function () {
-      return {
-        collect: 'value:sum',
-        period: 'month',
-        group_by: 'geography',
-        filter_by: ['key:residential_property_transactions']
-      }
-    },
-
-    seriesList: [
-      { id: 'England', title: 'England' },
-      { id: 'Scotland', title: 'Scotland' }
-    ],
-
-    parse: function (response) {
-      var data = response.data;
-
-      return _.map(this.seriesList, function (series) {
-        var dataSeries = _.find(data, function (d) {
-          return d.geography === series.id;
-        });
-
-        return _.extend({}, series, {
-          values: dataSeries.values
-        });
-      });
-    }
-
-  });
-  
   var StackedModule = ModuleController.extend({
     className: 'stacked',
     visualisationClass: StackedGraph,
-    collectionClass: VolumetricsCollection,
+    collectionClass: CategoriesCollection,
     clientRenderOnInit: true,
-    requiresSvg: true
+    requiresSvg: true,
+    collectionOptions: function () {
+      return {
+        valueAttr: this.model.get("value-attr"),
+        category: this.model.get("category"),
+        period: this.model.get("period"),
+        seriesList: this.model.get("series"),
+        filter_by: this.model.get("filter-by")
+      };
+    }
   });
 
   return StackedModule;
