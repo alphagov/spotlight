@@ -21,6 +21,7 @@ Install dependencies:
 ```bash
 bundle install
 sudo npm install -g grunt-cli@0.1.9
+sudo npm install -g supervisor@0.5.6
 npm install
 ```
 
@@ -41,10 +42,10 @@ NODE_ENV=development_no_vm grunt
 This will create a development build of the assets and then run the app at
 `http://localhost:3057`.
 
-The app uses [grunt-nodemon][] and [grunt-contrib-watch][] to monitor changes,
+The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
 
-[grunt-nodemon]: https://github.com/ChrisWren/grunt-nodemon
+[node-supervisor]: https://github.com/isaacs/node-supervisor
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
 
 If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
