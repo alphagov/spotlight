@@ -13,14 +13,14 @@ var environment = process.env.NODE_ENV || argv.env || 'development';
 //GLOBALS:
 
 //- setting server $ stuff
-var backbone = require('backbone');
+var backbone = require('backbone'),
     XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
 $.support.cors = true;
 
 $.ajaxSettings.xhr = function () {
-    return new XMLHttpRequest();
+  return new XMLHttpRequest();
 };
 
 //- the rest
@@ -50,5 +50,5 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 exports = module.exports = server;
 
 exports.use = function () {
-	app.use.apply(app, arguments);
+  app.use.apply(app, arguments);
 };
