@@ -119,7 +119,7 @@ function (ConversionCallout, Collection, Model) {
         expect(view.$el.find('.arrow').css('left')).toEqual('95px');
       });
 
-      it("positions an arrow element to point to the currently selected model", function () {
+      it("positions an arrow element to point to the currently selected model when there is only one series", function () {
         collection.pop();
 
         view.render();
