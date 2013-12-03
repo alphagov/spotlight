@@ -36,7 +36,7 @@ function (express, path, winston) {
           });
         } else {
           global.logger.add(winston.transports.File, {
-            filename: '/var/log/spotlight/spotlight.log',
+            filename: 'log/spotlight.log.json',
             level: 'info',
             colorize: false,
             json: true
