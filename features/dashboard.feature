@@ -20,3 +20,5 @@ Feature: Dashboard
      And I should see other information for the "no-realistic-dashboard" "completion_rate" module
     Then I should see the "completion_numbers" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "completion_numbers" module
+    Then I should see the "stacked" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "stacked" module

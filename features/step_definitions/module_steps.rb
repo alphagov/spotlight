@@ -34,6 +34,13 @@ def values
         description: '',
         raw: "//*[name()='svg']"
       }
+    },
+    'stacked' => {
+      'no-realistic-dashboard' => {
+        title: 'Categories in a stack',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
     }
   }
 end
