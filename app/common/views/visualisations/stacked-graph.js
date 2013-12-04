@@ -5,7 +5,6 @@ function (Graph) {
   var StackedGraph = Graph.extend({
 
     initialize: function (options) {
-      this.showLineLabels = this.model.get('show-line-labels');
       Graph.prototype.initialize.apply(this, arguments);
       this.valueAttr = this.model.get('value-attr');
     },

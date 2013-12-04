@@ -104,9 +104,13 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       };
     },
     
+    showLineLabels: function () {
+      return this.model.get('show-line-labels');
+    },
+
     prepareGraphArea: function () {
       var figure = this.figure = $('<figure/>').addClass("graph");
-      if (this.showLineLabels) {
+      if (this.showLineLabels()) {
         figure.addClass("graph-with-labels");
       }
       figure.appendTo(this.$el);

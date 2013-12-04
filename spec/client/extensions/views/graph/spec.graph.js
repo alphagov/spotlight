@@ -1,9 +1,10 @@
 define([
   'extensions/views/graph/graph',
   'extensions/collections/collection',
-  'd3'
+  'd3',
+  'extensions/models/model'
 ],
-function (Graph, Collection, d3) {
+function (Graph, Collection, d3, Model) {
 
   describe("Graph", function() {
 
@@ -14,7 +15,8 @@ function (Graph, Collection, d3) {
       var view = new Graph({
         collection: {
           on: jasmine.createSpy()
-        }
+        },
+        model: new Model()
       });
       expect(view.d3).toBe(d3);
     });
@@ -67,7 +69,8 @@ function (Graph, Collection, d3) {
       
       it("re-renders when collection resets", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         collection.trigger('reset');
         expect(graph.render).toHaveBeenCalled();
@@ -75,7 +78,8 @@ function (Graph, Collection, d3) {
 
       it("re-renders when collection syncs", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         collection.trigger('sync');
         expect(graph.render).toHaveBeenCalled();
@@ -83,7 +87,8 @@ function (Graph, Collection, d3) {
       
       it("re-renders when item is added to collection", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         collection.trigger('add');
         expect(graph.render).toHaveBeenCalled();
@@ -91,7 +96,8 @@ function (Graph, Collection, d3) {
       
       it("re-renders when items is removed from collection", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         collection.trigger('remove');
         expect(graph.render).toHaveBeenCalled();
@@ -99,14 +105,16 @@ function (Graph, Collection, d3) {
       
       it("prepare graph area", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         expect(graph.prepareGraphArea).toHaveBeenCalled();
       });
       
       it("initialises components", function() {
         var graph = new TestGraph({
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         expect(testComponent1).toHaveBeenCalledWith({
           a: 'b',    // default option
@@ -130,7 +138,8 @@ function (Graph, Collection, d3) {
         var TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
-          collection: new Collection()
+          collection: new Collection(),
+          model: new Model()
         });
       });
       
@@ -182,7 +191,8 @@ function (Graph, Collection, d3) {
         el = $('<div></div>').appendTo(wrapper);
         graph = new Graph({
           collection: new Collection(),
-          el: el
+          el: el,
+          model: new Model()
         });
         spyOn(graph, "render");
       });
@@ -277,7 +287,8 @@ function (Graph, Collection, d3) {
       beforeEach(function() {
         spyOn(Graph.prototype, 'prepareGraphArea');
         graph = new Graph({
-          collection: new Collection()
+          collection: new Collection(),
+          model: new Model()
         });
         spyOn(graph, "resizeWithCalloutHidden");
       });
@@ -361,7 +372,8 @@ function (Graph, Collection, d3) {
           el.width(600);
           graph = new TestGraph({
             el: el,
-            collection: new Collection()
+            collection: new Collection(),
+            model: new Model()
           });
           expect(graph.scaleFactor()).toEqual(1);
       });
@@ -370,7 +382,8 @@ function (Graph, Collection, d3) {
           el.width(300);
           graph = new TestGraph({
             el: el,
-            collection: new Collection()
+            collection: new Collection(),
+            model: new Model()
           });
           expect(graph.scaleFactor()).toEqual(0.5);
       });
@@ -461,7 +474,8 @@ function (Graph, Collection, d3) {
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           el: el,
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         graph.innerWidth = 444;
         graph.innerHeight = 333;
