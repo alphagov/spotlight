@@ -8,11 +8,19 @@ function (Graph) {
       Graph.prototype.initialize.apply(this, arguments);
       this.valueAttr = this.model.get('value-attr');
     },
+
+    interactiveFunction: function (e) {
+      if (this.graph.lineLabelOnTop()) {
+        return e.slice >= 3;
+      } else {
+        return e.slice % 3 !== 2;
+      }
+    },
     
     components: function () {
       var labelComponent, labelOptions, stackOptions;
 
-      if (this.model.get('show-line-labels')) {
+      if (this.showLineLabels()) {
         labelComponent = this.sharedComponents.linelabel;
         labelOptions = {
           showValues: true,
@@ -25,13 +33,7 @@ function (Graph) {
           selectGroup: false,
           allowMissingData: true,
           drawCursorLine: true,
-          interactive: function (e) {
-            if (this.graph.lineLabelOnTop()) {
-              return e.slice >= 3;
-            } else {
-              return e.slice % 3 !== 2;
-            }
-          }
+          interactive: this.interactiveFunction
         };
       } else {
         labelComponent = this.sharedComponents.callout;
