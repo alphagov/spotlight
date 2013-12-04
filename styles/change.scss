@@ -1,0 +1,28 @@
+.increase:after,
+.decrease:after {
+  display: inline-block;
+  padding-right:0.2em;
+  color: $primary-colour;
+}
+
+.increase:after {
+  content: "\25B2";
+}
+
+.decrease:after {
+  content: "\25BC";
+}
+
+.improvement:after {
+  color: $positive-colour;
+}
+
+.decline:after {
+  color: $negative-colour;
+}
+
+.no-change:after {
+  content: "\25CF";
+  color: silver;
+  margin-right: 5px;
+}

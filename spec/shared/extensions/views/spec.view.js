@@ -397,6 +397,12 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(234568234)).toBe('235m');
         expect(formatNumericLabel(499499499)).toBe('499m');
       });
+      
+      it("should display numbers from 500000000 and above as fractions of 1b", function() {
+        expect(formatNumericLabel(500000000)).toBe('0.50b');
+        expect(formatNumericLabel(1000000000)).toBe('1.00b');
+        expect(formatNumericLabel(25250000000)).toBe('25.3b');
+      });
 
       it("should format negative numbers", function() {
         expect(formatNumericLabel(-0.001)).toBe('0');
@@ -469,6 +475,13 @@ function (View, Model, Backbone, _) {
       it("formats a number as percentage string with set number of decimals", function () {
         expect(format(0.011, 2)).toEqual('1.10%');
         expect(format(1, 2)).toEqual('100.00%');
+      });
+      
+      it("formats signed input with the correct sign", function () {
+        expect(format(0.011, 2, false)).toEqual('1.10%');
+        expect(format(1, 2, true)).toEqual('+100.00%');
+        expect(format(-1, 0, true)).toEqual('−100%');
+        expect(format(0, 3, true)).toEqual('0.000%');
       });
 
       it("does not try to format invalid inputs", function () {

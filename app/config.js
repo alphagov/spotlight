@@ -8,7 +8,8 @@ define(function (options) {
       Mustache: 'vendor/mustache',
       text: 'vendor/text',
       stache: 'vendor/stache'
-    }
+    },
+    waitSeconds: 0
   };
   
   if (typeof window === 'object' || options && options.isBuild) {
