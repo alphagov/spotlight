@@ -98,6 +98,7 @@
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
       "value-attr": "value:sum",
+      "cumulative": true,
       "category": "geography",
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
