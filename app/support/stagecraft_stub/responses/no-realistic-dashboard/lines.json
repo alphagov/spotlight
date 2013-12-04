@@ -8,7 +8,7 @@
   "cumulative": false,
   "value-attr": "value:sum",
   "category": "type",
-  "period": "month",
+  "period": "quarter",
   "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
   "series": [
      { "id": "completed", "title": "Completed" },
