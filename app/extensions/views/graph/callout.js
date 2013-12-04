@@ -75,17 +75,14 @@ function (Component, Pivot) {
       return false;
     },
 
+    getHeader: function (el, group, groupIndex, model, index) {
+      return this.formatPeriod(model, this.periodFormat);
+    },
+
     configs: {
-      week: {
-        getHeader: function (el, group, groupIndex, model, index) {
-          return this.formatPeriod(model, 'week');
-        }
-      },
-      month: {
-        getHeader: function (el, group, groupIndex, model, index) {
-          return this.formatPeriod(model, 'month');
-        }
-      }
+      week: { periodFormat: 'week' },
+      month: { periodFormat: 'month' },
+      quarter: { periodFormat: 'month' }
     },
 
     renderContent: function (el, group, groupIndex, model, index) {
