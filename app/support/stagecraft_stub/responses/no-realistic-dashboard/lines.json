@@ -12,5 +12,6 @@
   "series": [
      { "id": "completed", "title": "Completed" },
      { "id": "started", "title": "Started" }
-   ]
+   ],
+  "show-line-labels": true
 }
