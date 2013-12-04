@@ -5,7 +5,7 @@ define([
 ],
 function (ModuleController, CategoriesCollection, StackedGraph) {
 
-  var StackedModule = ModuleController.extend({
+  var GroupedTimeseriesModule = ModuleController.extend({
     className: 'stacked',
     visualisationClass: StackedGraph,
     collectionClass: CategoriesCollection,
@@ -22,5 +22,5 @@ function (ModuleController, CategoriesCollection, StackedGraph) {
     }
   });
 
-  return StackedModule;
+  return GroupedTimeseriesModule;
 });

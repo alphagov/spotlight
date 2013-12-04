@@ -5,10 +5,10 @@ define([
   'common/modules/availability',
   'common/modules/completion_rate',
   'common/modules/completion_numbers',
-  'common/modules/stacked',
+  'common/modules/grouped_timeseries',
   'common/controllers/error'
 ],
-function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, StackedModule, Error) {
+function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, GroupedTimeseriesModule, Error) {
 
   var ControllerMap = {
     'error': Error,
@@ -19,7 +19,7 @@ function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, Completi
       availability: AvailabilityModule,
       completion_rate: CompletionRateModule,
       completion_numbers: CompletionNumbersModule,
-      stacked: StackedModule
+      grouped_timeseries: GroupedTimeseriesModule
     }
   };
 

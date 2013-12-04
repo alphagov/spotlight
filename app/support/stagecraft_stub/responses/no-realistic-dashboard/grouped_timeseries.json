@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "module-type": "stacked",
+  "module-type": "grouped_timeseries",
   "title": "Categories in a stack",
   "description": "",
   "data-group": "housing-policy",
