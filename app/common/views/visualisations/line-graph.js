@@ -2,7 +2,13 @@ define([
   'extensions/views/graph/graph'
 ],
 function (Graph) {
-  var MultiTimeseriesGraph = Graph.extend({
+  var LineGraph = Graph.extend({
+
+    initialize: function (options) {
+      Graph.prototype.initialize.apply(this, arguments);
+
+      this.valueAttr = this.model.get('value-attr');
+    },
     
     components: function () {
       return [
@@ -27,6 +33,6 @@ function (Graph) {
     }
   });
 
-  return MultiTimeseriesGraph;
+  return LineGraph;
 });
 

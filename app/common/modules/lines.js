@@ -1,13 +1,13 @@
 define([
   'extensions/controllers/module',
   'common/collections/categories',
-  'common/views/visualisations/stacked-graph'
+  'common/views/visualisations/line-graph'
 ],
-function (ModuleController, CategoriesCollection, StackedGraph) {
+function (ModuleController, CategoriesCollection, LineGraph) {
 
   var LinesModule = ModuleController.extend({
     className: 'lines',
-    visualisationClass: StackedGraph,
+    visualisationClass: LineGraph,
     collectionClass: CategoriesCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
