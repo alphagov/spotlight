@@ -110,9 +110,6 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
     prepareGraphArea: function () {
       var figure = this.figure = $('<figure/>').addClass("graph");
-      if (this.showLineLabels()) {
-        figure.addClass("graph-with-labels");
-      }
       figure.appendTo(this.$el);
 
       var graphWrapper = this.graphWrapper = $('<div class="graph-wrapper"></div>');
