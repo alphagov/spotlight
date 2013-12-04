@@ -72,24 +72,6 @@
       "end-matcher": "done$"
     },
     {
-      "module-type": "grouped_timeseries",
-      "title": "Categories in a stack",
-      "description": "",
-      "data-group": "housing-policy",
-      "data-type": "residential-transactions",
-      "value-attr": "value:sum",
-      "category": "geography",
-      "period": "month",
-      "filter-by": ["key:residential_property_transactions"],
-      "series": [
-         { "id": "England", "title": "England" },
-         { "id": "Scotland", "title": "Scotland" },
-         { "id": "Wales", "title": "Wales" },
-         { "id": "Northern_Ireland", "title": "Northern Ireland" }
-       ],
-      "show-line-labels": true
-    },
-    {
       "module-type": "multi_stats",
       "title": "Average mortgage",
       "description": "A range of factors indicative of the state of the housing market",
@@ -108,6 +90,42 @@
           "format": "{{ value }}%"
         }
       ]
+    },
+    {
+      "module-type": "grouped_timeseries",
+      "title": "Categories in a stack",
+      "description": "",
+      "data-group": "housing-policy",
+      "data-type": "residential-transactions",
+      "value-attr": "value:sum",
+      "category": "geography",
+      "period": "month",
+      "filter-by": ["key:residential_property_transactions"],
+      "series": [
+         { "id": "England", "title": "England" },
+         { "id": "Scotland", "title": "Scotland" },
+         { "id": "Wales", "title": "Wales" },
+         { "id": "Northern_Ireland", "title": "Northern Ireland" }
+       ],
+      "show-line-labels": true
+    },
+    {
+      "page-type": "module",
+      "module-type": "grouped_timeseries",
+      "title": "Categories as lines",
+      "description": "",
+      "data-group": "housing-policy",
+      "data-type": "dwellings",
+      "cumulative": false,
+      "value-attr": "value:sum",
+      "category": "type",
+      "period": "quarter",
+      "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+      "series": [
+         { "id": "completed", "title": "Completed" },
+         { "id": "started", "title": "Started" }
+       ],
+      "show-line-labels": true
     }
   ]
 }
