@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "module-type": "grouped_timeseries",
+  "module-type": "grouped_timeseries_lines",
   "title": "Categories as lines",
   "description": "",
   "data-group": "housing-policy",
