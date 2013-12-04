@@ -131,6 +131,18 @@ function (VolumetricsCollection) {
         expect(collection.url()).toContain("collect=some%3Avalue");
         expect(collection.url()).not.toContain("filter_by");
       });
+
+      it("should contain filters", function () {
+        filteredCollection = new VolumetricsCollection([], {
+          'data-type': "some-type",
+          'data-group': "some-group",
+          filterBy: ["filter_1:abc", "filter_2:def"]
+        });
+        filteredCollection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+
+        expect(filteredCollection.url()).toContain("filter_by=filter_1%3Aabc");
+        expect(filteredCollection.url()).toContain("filter_by=filter_2%3Adef");
+      });
     });
 
     describe("parse", function () {

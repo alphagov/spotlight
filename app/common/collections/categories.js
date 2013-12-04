@@ -5,11 +5,12 @@ function (MatrixCollection) {
 
   var CategoriesCollection = MatrixCollection.extend({
     queryParams: function () {
+      console.log(this.options);
       return {
         collect: this.options.valueAttr,
         period: this.options.period,
         group_by: this.options.category,
-        filter_by: this.filter_by ? this.filter_by : []
+        filter_by: this.options.filterBy ? this.options.filterBy : []
       };
     },
 

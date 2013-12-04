@@ -17,7 +17,7 @@ function (ModuleController, CategoriesCollection, CategoriesView) {
         category: this.model.get("category"),
         period: this.model.get("period"),
         seriesList: this.model.get("series"),
-        filter_by: this.model.get("filter-by")
+        filterBy: this.model.get("filter-by")
       };
     }
 
