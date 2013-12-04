@@ -131,11 +131,11 @@ function (Graph, Collection, d3, Model) {
     
     describe("prepareGraphArea", function() {
       
-      var graph, el;
+      var graph, el, TestGraph;
       beforeEach(function() {
         el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
         
-        var TestGraph = Graph.extend();
+        TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
           collection: new Collection(),
@@ -159,6 +159,25 @@ function (Graph, Collection, d3, Model) {
       it("creates wrapper element", function() {
         var wrapper = graph.el.find('svg g.wrapper');
         expect(wrapper.length).toEqual(1);
+      });
+
+      describe("when the models 'show-line-labels' attribute is not falsy", function (){
+        it("creates a figure with the class graph", function (){
+          expect(graph.el.find('figure.graph').length).toEqual(1);
+          expect(graph.el.find('figure.graph.graph-with-labels').length).toEqual(0);
+        });
+      });
+      describe("when the models 'show-line-labels' attribute is not falsy", function (){
+        it("creates a figure with the class graph graph-with-labels", function (){
+          model = new Model();
+          model.set({'show-line-labels': true});
+          graph = new TestGraph({
+            el: el,
+            collection: new Collection(),
+            model: model
+          });
+          expect(graph.el.find('figure.graph.graph-with-labels').length).toEqual(1);
+        });
       });
     });
 
