@@ -1,10 +1,11 @@
 {
   "page-type": "module",
-  "module-type": "lines",
+  "module-type": "grouped_timeseries",
   "title": "Categories as lines",
   "description": "",
   "data-group": "housing-policy",
   "data-type": "dwellings",
+  "cumulative": false,
   "value-attr": "value:sum",
   "category": "type",
   "period": "month",

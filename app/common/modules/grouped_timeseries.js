@@ -1,13 +1,13 @@
 define([
   'extensions/controllers/module',
   'common/collections/categories',
-  'common/views/visualisations/stacked-graph'
+  'common/views/visualisations/categories'
 ],
-function (ModuleController, CategoriesCollection, StackedGraph) {
+function (ModuleController, CategoriesCollection, CategoriesView) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
     className: 'grouped_timeseries',
-    visualisationClass: StackedGraph,
+    visualisationClass: CategoriesView,
     collectionClass: CategoriesCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
@@ -20,6 +20,7 @@ function (ModuleController, CategoriesCollection, StackedGraph) {
         filter_by: this.model.get("filter-by")
       };
     }
+
   });
 
   return GroupedTimeseriesModule;
