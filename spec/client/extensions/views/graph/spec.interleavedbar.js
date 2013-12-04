@@ -250,6 +250,29 @@ function (InterleavedBar, Collection) {
         assertSegment(group2.select('g.segment:nth-child(2)'), { x: 32, y: -30, width: 6, height: 30, textX: 35, textY: -50, text: 'foo five' });
         assertSegment(group2.select('g.segment:nth-child(3)'), { x: 52, y: -36, width: 6, height: 36, textX: 55, textY: -56, text: 'foo six' });
       });
+
+      it("renders a centre-aligned segment and text for each model in a single series with gaps between bars", function () {
+        collection.pop();
+        view.blockMarginFraction = 0.2; // 4 pixels for a block width of 20 - 2 pixels on each side
+        view.barMarginFraction = 0.2; // 4 pixels for a block width of 20 - should be ignored as there are no gaps within blocks
+        view.text = function(model, i) {
+          return 'foo ' + model.get('name')
+        };
+        view.offsetText = -20;
+        view.render();
+
+        var segments = view.componentWrapper.selectAll('g.segment');
+
+        expect(segments[0].length).toEqual(3);
+        expect(segments.selectAll('rect')[0].length).toEqual(1);
+        expect(segments.selectAll('line')[0].length).toEqual(1);
+        expect(segments.selectAll('text')[0].length).toEqual(1);
+        
+        var group1 = d3.select('g.group:nth-child(1)');
+        assertSegment(group1.select('g.segment:nth-child(1)'), { x:  2, y:  -4, width: 16, height:  4, textX: 10, textY: -24, text: 'foo one' });
+        assertSegment(group1.select('g.segment:nth-child(2)'), { x: 22, y: -10, width: 16, height: 10, textX: 30, textY: -30, text: 'foo two' });
+        assertSegment(group1.select('g.segment:nth-child(3)'), { x: 42, y: -16, width: 16, height: 16, textX: 50, textY: -36, text: 'foo three' });
+      });
     });
 
     describe("onHover", function () {

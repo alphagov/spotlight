@@ -16,7 +16,7 @@ var getRequirejsConfig = function () {
       'client/client_bootstrap'
     ],
     wrap: true,
-    optimize: 'none'
+    optimize: 'uglify'
   });
 };
 
@@ -179,6 +179,14 @@ module.exports = function(grunt) {
         tasks: ['jasmine:spotlight:build']
       }
     },
+    shell: {
+      supervisor: {
+        options: {
+          stdout: true
+        },
+        command: 'supervisor -w app app/server'
+      }
+    },
     nodemon: {
       dev: {
         options: {
@@ -192,7 +200,7 @@ module.exports = function(grunt) {
     },
     concurrent: {
       dev: {
-        tasks: ['nodemon', 'watch'],
+        tasks: ['shell:supervisor', 'watch'],
         options: {
           logConcurrentOutput: true
         }
@@ -210,7 +218,7 @@ module.exports = function(grunt) {
     'grunt-rcukes',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
-    'grunt-nodemon',
+    'grunt-shell',
     'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
