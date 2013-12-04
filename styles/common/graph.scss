@@ -1,3 +1,16 @@
+.stacked {
+
+  figure.graph {
+    clear: both;
+
+    figcaption {
+      top: -10px;
+    }
+
+  }
+
+}
+
 figure.graph {
   margin:0 auto;
   position:relative;
