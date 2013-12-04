@@ -10,7 +10,7 @@ define([
     var el;
     beforeEach(function() {
       visualisationFallback.Modernizr = {};
-      el = $('<div class="visualisation-fallback" data-src="/test/src">original content</div>');
+      el = $('<div class="visualisation-fallback" data-src="spec/client/preprocessors/transparent.gif">original content</div>');
       $('body').append(el);
     });
 
@@ -28,7 +28,14 @@ define([
     it('replaces the fallback container content with a fallback image', function() {
       visualisationFallback.Modernizr.inlinesvg = false;
       visualisationFallback();
-      expect(el.html()).toEqual('<img src="/test/src">');
+
+      waitsFor(function() {
+        return (el.html() !== 'original content');
+      });
+
+      runs(function() {
+        expect(el.html()).toEqual('<img src="spec/client/preprocessors/transparent.gif">');
+      });
     });
   });
 });

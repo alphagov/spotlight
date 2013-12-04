@@ -23,7 +23,7 @@ function (Callout) {
       var numGroups = this.collection.length;
       var numBarSpaces = numGroups - 1;
 
-      var allBarMargins = this.barMarginFraction * blockWidth;
+      var allBarMargins = numBarSpaces > 0 ? this.barMarginFraction * blockWidth : 0;
       var allBlockMargins = this.blockMarginFraction * blockWidth;
       var barWidth = (blockWidth - allBlockMargins - allBarMargins) / numGroups;
 

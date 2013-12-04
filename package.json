@@ -27,7 +27,8 @@
     "d3": "3.3.7",
     "govuk_template_mustache": "0.2.2",
     "govuk_frontend_toolkit": "0.12.6",
-    "moment-timezone": "0.0.3"
+    "moment-timezone": "0.0.3",
+    "winston": "0.7.2"
   },
   "devDependencies": {
     "uglify-js": "2.4.0",
@@ -44,6 +45,7 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-concurrent": "0.4.1",
     "backbone": "1.1.0",
-    "underscore": "1.5.2"
+    "underscore": "1.5.2",
+    "grunt-shell": "~0.6.1"
   }
 }
