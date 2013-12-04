@@ -118,6 +118,21 @@ function (ConversionCallout, Collection, Model) {
         view.onChangeSelected(collection.at(1), 1, collection.at(1).get('values').at(2), 2);
         expect(view.$el.find('.arrow').css('left')).toEqual('95px');
       });
+
+      it("positions an arrow element to point to the currently selected model when there is only one series", function () {
+        collection.pop();
+
+        view.render();
+        
+        view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
+        expect(view.$el.find('.arrow').css('left')).toEqual('50px');
+        
+        view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(1), 1);
+        expect(view.$el.find('.arrow').css('left')).toEqual('70px');
+
+        view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(2), 2);
+        expect(view.$el.find('.arrow').css('left')).toEqual('90px');
+      });
     });
 
   });
