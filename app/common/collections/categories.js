@@ -1,5 +1,5 @@
 define([
-  'extensions/collections/matrix',
+  'extensions/collections/matrix'
 ],
 function (MatrixCollection) {
 
@@ -10,11 +10,11 @@ function (MatrixCollection) {
         period: this.options.period,
         group_by: this.options.category,
         filter_by: this.filter_by ? this.filter_by : []
-      }
+      };
     },
 
     parse: function (response) {
-      var data = response.data
+      var data = response.data;
           category = this.options.category;
 
       return _.map(this.options.seriesList, function (series) {
