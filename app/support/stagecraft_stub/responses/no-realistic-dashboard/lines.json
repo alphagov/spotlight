@@ -1,0 +1,16 @@
+{
+  "page-type": "module",
+  "module-type": "lines",
+  "title": "Categories as lines",
+  "description": "",
+  "data-group": "housing-policy",
+  "data-type": "dwellings",
+  "value-attr": "value:sum",
+  "category": "type",
+  "period": "month",
+  "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+  "series": [
+     { "id": "completed", "title": "Completed" },
+     { "id": "started", "title": "Started" }
+   ]
+}
