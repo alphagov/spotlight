@@ -5,7 +5,6 @@ function (MatrixCollection) {
 
   var CategoriesCollection = MatrixCollection.extend({
     queryParams: function () {
-      console.log(this.options);
       return {
         collect: this.options.valueAttr,
         period: this.options.period,
