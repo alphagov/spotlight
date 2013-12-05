@@ -2,7 +2,7 @@
 .decrease:after {
   display: inline-block;
   padding-right:0.2em;
-  color: $primary-colour;
+  color: $grey-2;
 }
 
 .increase:after {
@@ -23,6 +23,7 @@
 
 .no-change:after {
   content: "\25CF";
-  color: silver;
+  color: $grey-2;
   margin-right: 5px;
+  margin-left: 2px;
 }
