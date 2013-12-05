@@ -80,8 +80,8 @@
       "period": "month",
       "stats": [
         {
-          "title": "Size of mortgage",
-          "attr": "value_of_loans_sterling",
+          "title": "Median size of mortgage",
+          "attr": "median_advance_sterling",
           "format": "£{{ value }}"
         },
         {

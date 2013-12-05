@@ -1,0 +1,21 @@
+{
+  "page-type": "module",
+  "module-type": "multi_stats",
+  "title": "Average mortgage",
+  "description": "A range of factors indicative of the state of the housing market",
+  "data-group": "housing-policy",
+  "data-type": "first-time-buyer",
+  "period": "month",
+  "stats": [
+    {
+      "title": "Median size of mortgage",
+      "attr": "median_advance_sterling",
+      "format": "£{{ value }}"
+    },
+    {
+      "title": "Median advance",
+      "attr": "median_percentage_advance",
+      "format": "{{ value }}%"
+    }
+  ]
+}
