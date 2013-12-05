@@ -26,6 +26,44 @@
          { "id": "Northern_Ireland", "title": "Northern Ireland" }
        ],
       "show-line-labels": true
+    },
+    {
+      "module-type": "multi_stats",
+      "title": "Average mortgage",
+      "description": "A range of factors indicative of the state of the housing market",
+      "data-group": "housing-policy",
+      "data-type": "first-time-buyer",
+      "period": "month",
+      "stats": [
+        {
+          "title": "Size of mortgage",
+          "attr": "value_of_loans_sterling",
+          "format": "£{{ value }}"
+        },
+        {
+          "title": "Median advance",
+          "attr": "median_percentage_advance",
+          "format": "{{ value }}%"
+        },
+        {
+          "title": "Median borrowers income",
+          "attr": "borrowers_median_total_income",
+          "format": "£{{ value }}"
+        },
+        {
+          "title": "Repayments as a percentage of income",
+          "attr": "median_capital_and_interest_payments_as_a_percentage_of_income",
+          "format": "{{ value }}%"
+        },
+        {
+          "title": "Income multiple",
+          "attr": "median_income_multiple"
+        },
+        {
+          "title": "Median age of borrower",
+          "attr": "median_age_of_borrower"
+        }
+      ]
     }
   ]
 }

@@ -41,6 +41,13 @@ def values
         description: '',
         raw: "//*[name()='svg']"
       }
+    },
+    'multi_stats' => {
+      'no-realistic-dashboard' => {
+        title: 'Average mortgage',
+        description: 'A range of factors indicative of the state of the housing market',
+        raw: "//ul/li//p[@class='impact-number']"
+      }
     }
   }
 end

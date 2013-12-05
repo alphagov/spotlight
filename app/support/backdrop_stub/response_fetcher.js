@@ -33,7 +33,8 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'service': 'tax-disc', 'api_name': 'monitoring'}, 'file':  'availability.json'},
       { 'key': {'api_name': 'monitoring', 'period': 'hour'}, 'file':  'deposit_foreign_marriage_monitoring_hour.json'},
       { 'key': {'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
-      { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'}
+      { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
+      { 'key': {'service': 'housing-policy', 'api_name': 'first-time-buyer'}, 'file': 'housing-first-time-buyer.json'}
     ],
 
     fetch_json: function (request) {

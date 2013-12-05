@@ -72,7 +72,6 @@
       "end-matcher": "done$"
     },
     {
-      "page-type": "module",
       "module-type": "grouped_timeseries",
       "title": "Categories in a stack",
       "description": "",
@@ -89,6 +88,26 @@
          { "id": "Northern_Ireland", "title": "Northern Ireland" }
        ],
       "show-line-labels": true
+    },
+    {
+      "module-type": "multi_stats",
+      "title": "Average mortgage",
+      "description": "A range of factors indicative of the state of the housing market",
+      "data-group": "housing-policy",
+      "data-type": "first-time-buyer",
+      "period": "month",
+      "stats": [
+        {
+          "title": "Size of mortgage",
+          "attr": "value_of_loans_sterling",
+          "format": "£{{ value }}"
+        },
+        {
+          "title": "Median advance",
+          "attr": "median_percentage_advance",
+          "format": "{{ value }}%"
+        }
+      ]
     }
   ]
 }
