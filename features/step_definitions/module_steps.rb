@@ -35,7 +35,7 @@ def values
         raw: "//*[name()='svg']"
       }
     },
-    'stacked' => {
+    'grouped_timeseries' => {
       'no-realistic-dashboard' => {
         title: 'Categories in a stack',
         description: '',

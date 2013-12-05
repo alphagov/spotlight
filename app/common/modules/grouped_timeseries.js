@@ -6,7 +6,7 @@ define([
 function (ModuleController, CategoriesCollection, StackedGraph) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
-    className: 'stacked',
+    className: 'grouped_timeseries',
     visualisationClass: StackedGraph,
     collectionClass: CategoriesCollection,
     clientRenderOnInit: true,

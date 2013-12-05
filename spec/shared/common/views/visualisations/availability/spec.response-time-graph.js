@@ -1,10 +1,9 @@
 define([
   'common/views/visualisations/availability/response-time-graph',
   'extensions/collections/collection',
-  'extensions/models/query',
-  'extensions/models/model'
+  'extensions/models/query'
 ],
-  function (Graph, Collection, Query, Model) {
+  function (Graph, Collection, Query) {
 
     describe("configuration", function () {
 
@@ -22,8 +21,7 @@ define([
 
       it("returns configuration for hour when query period is for hour", function () {
         var view = new Graph({
-          collection: collectionForPeriod('hour'),
-          model: new Model()
+          collection: collectionForPeriod('hour')
         });
 
         expect(view.getConfigNames()).toEqual(['stack', 'hour']);
@@ -31,8 +29,7 @@ define([
 
       it("returns configuration for day when query period is for day", function () {
         var view = new Graph({
-          collection: collectionForPeriod('day'),
-          model: new Model()
+          collection: collectionForPeriod('day')
         });
 
         expect(view.getConfigNames()).toEqual(['stack', 'day']);

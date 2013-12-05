@@ -1,10 +1,10 @@
 define([
   'extensions/views/graph/graph',
   'extensions/collections/collection',
+  'extensions/models/model',
   'd3',
-  'extensions/models/model'
 ],
-function (Graph, Collection, d3, Model) {
+function (Graph, Collection, Model, d3) {
 
   describe("Graph", function() {
 
@@ -15,8 +15,7 @@ function (Graph, Collection, d3, Model) {
       var view = new Graph({
         collection: {
           on: jasmine.createSpy()
-        },
-        model: new Model()
+        }
       });
       expect(view.d3).toBe(d3);
     });
@@ -69,8 +68,7 @@ function (Graph, Collection, d3, Model) {
       
       it("re-renders when collection resets", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         collection.trigger('reset');
         expect(graph.render).toHaveBeenCalled();
@@ -78,8 +76,7 @@ function (Graph, Collection, d3, Model) {
 
       it("re-renders when collection syncs", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         collection.trigger('sync');
         expect(graph.render).toHaveBeenCalled();
@@ -87,8 +84,7 @@ function (Graph, Collection, d3, Model) {
       
       it("re-renders when item is added to collection", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         collection.trigger('add');
         expect(graph.render).toHaveBeenCalled();
@@ -96,8 +92,7 @@ function (Graph, Collection, d3, Model) {
       
       it("re-renders when items is removed from collection", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         collection.trigger('remove');
         expect(graph.render).toHaveBeenCalled();
@@ -105,16 +100,14 @@ function (Graph, Collection, d3, Model) {
       
       it("prepare graph area", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         expect(graph.prepareGraphArea).toHaveBeenCalled();
       });
       
       it("initialises components", function() {
         var graph = new TestGraph({
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         expect(testComponent1).toHaveBeenCalledWith({
           a: 'b',    // default option
@@ -138,8 +131,7 @@ function (Graph, Collection, d3, Model) {
         TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
-          collection: new Collection(),
-          model: new Model()
+          collection: new Collection()
         });
       });
       
@@ -169,8 +161,9 @@ function (Graph, Collection, d3, Model) {
       });
       describe("when the models 'show-line-labels' attribute is not falsy", function (){
         it("creates a figure with the class graph graph-with-labels", function (){
-          model = new Model();
-          model.set({'show-line-labels': true});
+          var model = new Model({
+            'show-line-labels': true
+          });
           graph = new TestGraph({
             el: el,
             collection: new Collection(),
@@ -210,8 +203,7 @@ function (Graph, Collection, d3, Model) {
         el = $('<div></div>').appendTo(wrapper);
         graph = new Graph({
           collection: new Collection(),
-          el: el,
-          model: new Model()
+          el: el
         });
         spyOn(graph, "render");
       });
@@ -306,8 +298,7 @@ function (Graph, Collection, d3, Model) {
       beforeEach(function() {
         spyOn(Graph.prototype, 'prepareGraphArea');
         graph = new Graph({
-          collection: new Collection(),
-          model: new Model()
+          collection: new Collection()
         });
         spyOn(graph, "resizeWithCalloutHidden");
       });
@@ -391,8 +382,7 @@ function (Graph, Collection, d3, Model) {
           el.width(600);
           graph = new TestGraph({
             el: el,
-            collection: new Collection(),
-            model: new Model()
+            collection: new Collection()
           });
           expect(graph.scaleFactor()).toEqual(1);
       });
@@ -401,8 +391,7 @@ function (Graph, Collection, d3, Model) {
           el.width(300);
           graph = new TestGraph({
             el: el,
-            collection: new Collection(),
-            model: new Model()
+            collection: new Collection()
           });
           expect(graph.scaleFactor()).toEqual(0.5);
       });
@@ -493,8 +482,7 @@ function (Graph, Collection, d3, Model) {
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           el: el,
-          collection: collection,
-          model: new Model()
+          collection: collection
         });
         graph.innerWidth = 444;
         graph.innerHeight = 333;

@@ -6,7 +6,9 @@ function (Graph) {
 
     initialize: function (options) {
       Graph.prototype.initialize.apply(this, arguments);
-      this.valueAttr = this.model.get('value-attr');
+      if (this.model && this.model.get('value-attr')) {
+        this.valueAttr = this.model.get('value-attr');
+      }
     },
 
     interactiveFunction: function (e) {

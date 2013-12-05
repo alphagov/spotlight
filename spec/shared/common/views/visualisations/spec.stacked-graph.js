@@ -22,8 +22,9 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Model) {
 
   var graph;
   beforeEach(function () {
-    model = new Model();
-    model.set({'value-attr': "someAttr"});
+    var model = new Model({
+      'value-attr': "someAttr"
+    });
     graph = new StackedGraph({
       collection: new Collection(),
       model: model
@@ -72,8 +73,9 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Model) {
   describe("components", function () {
     describe("when showLineLabels is truthy", function () {
       it("should return the stack component with the correct args on initialize", function (){
-        model = new Model();
-        model.set({'show-line-labels': true});
+        var model = new Model({
+          'show-line-labels': true
+        });
         graph = new StackedGraph({
           collection: new Collection(),
           model: model
@@ -95,9 +97,10 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Model) {
 
     describe("when showLineLabels is truthy", function () {
       it("should return the linelabel component with the correct args on initialize", function (){
-        model = new Model();
-        model.set({'show-line-labels': true});
-        model.set({'line-label-links': true});
+        var model = new Model({
+          'show-line-labels': true,
+          'line-label-links': true
+        });
         graph = new StackedGraph({
           collection: new Collection(),
           model: model
@@ -131,8 +134,7 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Model) {
 
     it("returns configuration for day when query period is for day", function () {
       var graph = new StackedGraph({
-        collection: collectionForPeriod('day'),
-        model: new Model()
+        collection: collectionForPeriod('day')
       });
 
       expect(graph.getConfigNames()).toEqual(['stack', 'day']);

@@ -105,7 +105,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     },
     
     showLineLabels: function () {
-      return this.model.get('show-line-labels');
+      return this.model && this.model.get('show-line-labels');
     },
 
     prepareGraphArea: function () {
