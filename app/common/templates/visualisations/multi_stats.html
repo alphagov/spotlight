@@ -1,0 +1,26 @@
+<ul>
+{{# statsWithValue }}
+<li>
+	
+	<h3>{{ title }}</h3>
+	
+	<div class="impact">
+	<p class="impact-number">
+	<strong>{{ current }}</strong>
+	{{ date }}
+	</p>
+	</div>
+		
+	<div class="delta">
+	{{# percentChange }}
+	<p class="impact-number change {{ trend }}">{{ percentChange }}</p>
+	<p class="stat-description previous-date">{{ previousDate }}</p>
+	{{/ percentChange }}
+	</div>
+	
+	<div class="sparkline">
+	</div>
+
+</li>	
+{{/ statsWithValue }}
+</ul>

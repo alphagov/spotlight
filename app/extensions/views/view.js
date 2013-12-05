@@ -100,12 +100,14 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
     
     magnitudes: {
+        billion:  {value: 1e9, threshold: 499500000, suffix:"b"},
         million:  {value: 1e6, threshold: 499500, suffix:"m"},
         thousand: {value: 1e3, threshold: 499.5,  suffix:"k"},
         unit:     {value: 1,   threshold: 0,      suffix:""}
     },
 
     magnitudeFor: function (value) {
+        if (value >= 1e9) return this.magnitudes.billion;
         if (value >= 1e6) return this.magnitudes.million;
         if (value >= 1e3) return this.magnitudes.thousand;
         return this.magnitudes.unit;
@@ -193,6 +195,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * formatNumericLabel(  12345) -> 12.3k
      * formatNumericLabel( 123456) -> 123k
      * formatNumericLabel(1234567) -> 1.23m
+     * formatNumericLabel(1234567890) -> 1.23b
      *
      * This function is more complicated than one would think it need be for
      * two reasons:
@@ -222,6 +225,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * as 500,000 and formatted as 0.50m.
        */
       var magnitudeOf = function(number) {
+        if (Math.abs(number) >= 499500000) return View.prototype.magnitudes.billion;
         if (Math.abs(number) >= 499500) return View.prototype.magnitudes.million;
         if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
         return View.prototype.magnitudes.unit;
@@ -253,12 +257,22 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       return roundedValue.toFixed(digits) + magnitude.suffix;
     },
 
-    formatPercentage: function (fraction, numDecimals) {
+    formatPercentage: function (fraction, numDecimals, showSigns) {
       if (isNaN(fraction) || !_.isNumber(fraction)) {
         return fraction;
       }
       numDecimals = numDecimals || 0;
-      return (100 * fraction).toFixed(numDecimals) + '%';
+      showSigns = showSigns || false;
+      var value = Math.abs(100 * fraction).toFixed(numDecimals);
+      if (showSigns) {
+        if (fraction > 0) {
+          value = "+" + value;
+        } else if (fraction < 0) { 
+          value = "−" + value;
+        } 
+      }
+      value += "%";
+      return value;
     },
 
     formatPeriod: function (model, period) {
