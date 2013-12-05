@@ -355,7 +355,7 @@ figure.graph {
 
 @media (max-width: 640px) {
 
-  .graph {
+  figure.graph {
 
     h2 {
       max-width: 92%;
@@ -454,7 +454,7 @@ figure.graph {
 
 
 @media (max-width: 440px) {
-  .graph .legend ol li {
+  figure.graph .legend ol li {
     width: 90%;
   }
 }
