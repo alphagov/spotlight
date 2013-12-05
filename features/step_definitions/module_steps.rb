@@ -35,20 +35,20 @@ def values
         raw: "//*[name()='svg']"
       }
     },
-    'grouped_timeseries' => {
-      'no-realistic-dashboard' => {
-        title: 'Categories in a stack',
-        description: '',
-        raw: "//*[name()='svg']"
-      }
-    },
     'multi_stats' => {
       'no-realistic-dashboard' => {
         title: 'Average mortgage',
         description: 'A range of factors indicative of the state of the housing market',
         raw: "//ul/li//p[@class='impact-number']"
     },
-    'lines' => {
+    'grouped-timeseries-stacked' => {
+      'no-realistic-dashboard' => {
+        title: 'Categories in a stack',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
+    },
+    'grouped-timeseries-line' => {
       'no-realistic-dashboard' => {
         title: 'Categories as lines',
         description: '',

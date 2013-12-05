@@ -22,7 +22,7 @@ Feature: Dashboard
      And I should see other information for the "no-realistic-dashboard" "completion_numbers" module
     Then I should see the "multi_stats" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "multi_stats" module
-    Then I should see the "stacked" module for "no-realistic-dashboard" data
-     And I should see other information for the "no-realistic-dashboard" "stacked" module
-    Then I should see the "lines" module for "no-realistic-dashboard" data
-     And I should see other information for the "no-realistic-dashboard" "lines" module
+    Then I should see the "grouped-timeseries-stacked" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "grouped-timeseries-stacked" module
+    Then I should see the "grouped-timeseries-line" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "grouped-timeseries-line" module
