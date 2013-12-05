@@ -1,0 +1,23 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries",
+  "title": "Residential property transactions by region",
+  "description": "",
+  "data-group": "housing-policy",
+  "data-type": "residential-transactions",
+  "value-attr": "value:sum",
+  "category": "geography",
+  "period": "month",
+  "filter-by": ["key:residential_property_transactions"],
+  "info": [
+    "Info text line 1",
+    "Info text line 2"
+  ],
+  "series": [
+     { "id": "England", "title": "England" },
+     { "id": "Scotland", "title": "Scotland" },
+     { "id": "Wales", "title": "Wales" },
+     { "id": "Northern_Ireland", "title": "Northern Ireland" }
+   ],
+  "show-line-labels": true
+}

@@ -6,9 +6,10 @@ define([
   'common/modules/completion_rate',
   'common/modules/completion_numbers',
   'common/modules/multi_stats',
+  'common/modules/grouped_timeseries',
   'common/controllers/error'
 ],
-function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, MultiStatsModule, Error) {
+function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, MultiStatsModule, GroupedTimeseriesModule, Error) {
 
   var ControllerMap = {
     'error': Error,
@@ -19,7 +20,8 @@ function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, Completi
       availability: AvailabilityModule,
       completion_rate: CompletionRateModule,
       completion_numbers: CompletionNumbersModule,
-      multi_stats: MultiStatsModule
+      multi_stats: MultiStatsModule,
+      grouped_timeseries: GroupedTimeseriesModule
     }
   };
 

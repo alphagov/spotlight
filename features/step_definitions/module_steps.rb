@@ -35,6 +35,13 @@ def values
         raw: "//*[name()='svg']"
       }
     },
+    'grouped_timeseries' => {
+      'no-realistic-dashboard' => {
+        title: 'Categories in a stack',
+        description: '',
+        raw: "//*[name()='svg']"
+      }
+    },
     'multi_stats' => {
       'no-realistic-dashboard' => {
         title: 'Average mortgage',

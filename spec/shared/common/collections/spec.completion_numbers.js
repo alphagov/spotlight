@@ -1,7 +1,7 @@
 define([
   'common/collections/completion_numbers'
 ],
-function (VolumetricsCollection) {
+function (CompletionNumbersCollection) {
 
     var someFakeFCOTransactionDataLabel = [
       {
@@ -117,7 +117,7 @@ function (VolumetricsCollection) {
 
     describe("FCO volumetrics collections", function () {
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
@@ -125,7 +125,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventCategory"
       });
 
-      sharedBehaviourForVolumetricsWithMissingData({
+      sharedBehaviourForCompletionWithMissingData({
         data: missingDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
@@ -133,7 +133,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventCategory"
       });
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataLabel,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
@@ -141,7 +141,7 @@ function (VolumetricsCollection) {
         matching_attribute: "eventLabel"
       });
 
-      sharedBehaviourForVolumetricsWithMissingData({
+      sharedBehaviourForCompletionWithMissingData({
         data: missingDataLabel,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
@@ -149,11 +149,11 @@ function (VolumetricsCollection) {
         matching_attribute: "eventLabel"
       });
 
-      function sharedBehaviourForVolumetrics(context) {
+      function sharedBehaviourForCompletion(context) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              collection = new VolumetricsCollection({}, {
+              collection = new CompletionNumbersCollection({}, {
                 "data-group": 'notARealFCOTransaction',
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,
@@ -211,11 +211,11 @@ function (VolumetricsCollection) {
 
       }
 
-      function sharedBehaviourForVolumetricsWithMissingData(context) {
+      function sharedBehaviourForCompletionWithMissingData(context) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              collection  = new VolumetricsCollection({}, {
+              collection  = new CompletionNumbersCollection({}, {
                 "data-group": 'notARealFCOTransaction',
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,

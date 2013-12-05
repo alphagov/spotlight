@@ -1,7 +1,7 @@
 define([
-  'common/collections/volumetrics'
+  'common/collections/completion'
 ],
-function (VolumetricsCollection) {
+function (CompletionCollection) {
     var someFakeFCOTransactionDataLabel = [
       {
         _timestamp: "2013-06-09T23:00:00+00:00",
@@ -70,14 +70,14 @@ function (VolumetricsCollection) {
 
     describe("FCO volumetrics collections", function () {
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
         end_matcher: /done$/
       });
 
-      sharedBehaviourForVolumetrics({
+      sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataLabel,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
@@ -85,11 +85,11 @@ function (VolumetricsCollection) {
         matching_attribute: "eventLabel"
       });
 
-      function sharedBehaviourForVolumetrics(context) {
+      function sharedBehaviourForCompletion(context) {
 
         var volumetricsCollection = undefined,
             collectionFor = function (data) {
-              collection = new VolumetricsCollection({}, {
+              collection = new CompletionCollection({}, {
                 "data-group": 'notARealFCOTransaction',
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,
