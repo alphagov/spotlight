@@ -40,6 +40,7 @@ def values
         title: 'Average mortgage',
         description: 'A range of factors indicative of the state of the housing market',
         raw: "//ul/li//p[@class='impact-number']"
+      }
     },
     'grouped-timeseries-stacked' => {
       'no-realistic-dashboard' => {

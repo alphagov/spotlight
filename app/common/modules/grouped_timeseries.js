@@ -6,11 +6,7 @@ define([
 function (ModuleController, CategoriesCollection, CategoriesView) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
-<<<<<<< HEAD
-    className: 'grouped_timeseries',
-=======
     className: 'grouped-timeseries-stacked',
->>>>>>> Duplicate grouped timeseries controller for line layout
     visualisationClass: CategoriesView,
     collectionClass: CategoriesCollection,
     clientRenderOnInit: true,
