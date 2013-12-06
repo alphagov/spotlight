@@ -25,18 +25,24 @@ function (Collection) {
     },
 
     parse: function (response) {
-      return _.map(response.data, function (item) {
+      var latestIndexWithValues = -1;
+      var data = _.map(response.data, function (item, index) {
         var res = {
           _start_at: item._start_at,
           _end_at: item._end_at
         };
         
         _.each(this.getAttrNames(), function (attr) {
-          res[attr] = item[attr][0];
+          if (item[attr] && item[attr].length) {
+            latestIndexWithValues = index;
+            res[attr] = item[attr][0];
+          }
         }, this);
         
         return res;
       }, this);
+
+      return data.slice(0, latestIndexWithValues + 1);
     }
     
   });

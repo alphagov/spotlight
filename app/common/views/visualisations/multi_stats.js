@@ -9,7 +9,11 @@ function (View, template, Mustache) {
     template: template,
     
     getFormattedValue: function (stat) {
-      var value = this.formatNumericLabel(this.collection.last().get(stat.attr));
+      var value = this.collection.last().get(stat.attr);
+      if (value == null) {
+        return null;
+      }
+      value = this.formatNumericLabel(value);
       if (stat.format) {
         return Mustache.render(
           stat.format,
@@ -19,13 +23,12 @@ function (View, template, Mustache) {
       return value;
     },
     
-    
     getChange: function (collection, attr) {
       var current = collection.last().get(attr);
       var previous = null, previousDate = null, trend = null, percentChange;
       if (collection.length > 1) {
         previous = collection.at(collection.length-2).get(attr);  
-        if ((_.isNumber(previous)) && (previous !== 0)){ 
+        if (_.isNumber(current) &&_.isNumber(previous) && (previous !== 0)){
           previousDate = collection.at(collection.length-2).get('_start_at').format('MMM YYYY');  
           percentChange = this.formatPercentage((current-previous) / previous, 2, true);
           if (current > previous) {
@@ -45,13 +48,14 @@ function (View, template, Mustache) {
     },
 
     templateContext: function () {
-
       var stats = [];
       if (this.collection.length) {
         stats = _.map(this.model.get('stats'), function (stat) {
+          var current = this.getFormattedValue(stat);
           var change = this.getChange(this.collection, stat.attr);
           return _.extend({}, stat, {
             current: this.getFormattedValue(stat),
+            hasValue: current != null,
             date: this.collection.last().get('_start_at').format('MMM YYYY'),
             previousDate: change.previousDate,
             percentChange: change.percentChange,

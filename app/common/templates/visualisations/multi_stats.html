@@ -6,7 +6,12 @@
 	
 	<div class="impact">
 	<p class="impact-number">
+	{{# hasValue }}
 	<strong>{{ current }}</strong>
+	{{/ hasValue }}
+	{{^ hasValue }}
+	<span class="no-data">(no data)</span>
+	{{/ hasValue }}
 	{{ date }}
 	</p>
 	</div>
