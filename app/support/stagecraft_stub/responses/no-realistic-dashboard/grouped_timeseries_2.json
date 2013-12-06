@@ -1,0 +1,22 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries_2",
+  "title": "Building starts and completions",
+  "description": "How many residential builds have been started and completed",
+  "data-group": "housing-policy",
+  "data-type": "dwellings",
+  "cumulative": false,
+  "value-attr": "value:sum",
+  "category": "type",
+  "period": "quarter",
+  "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+  "info": [
+    "Source: National House-Building Council (NHBC)",
+    "TBD"
+  ],
+  "series": [
+     { "id": "completed", "title": "Completed" },
+     { "id": "started", "title": "Started" }
+   ],
+  "show-line-labels": true
+}

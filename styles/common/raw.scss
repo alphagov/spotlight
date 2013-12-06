@@ -28,8 +28,10 @@ body.raw {
   .journey .visualisation,
   .availability .visualisation,
   .completion_rate .visualisation,
-  .completion_numbers .visualisation {
-    width: 1020px;
+  .completion_numbers .visualisation,
+  .grouped_timeseries .visualisation,
+  .grouped_timeseries_2 .visualisation {
+    width: 960px;
   }
 
   .availability #availability-nav {

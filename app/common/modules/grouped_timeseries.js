@@ -6,7 +6,7 @@ define([
 function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
-    className: 'grouped-timeseries',
+    className: 'grouped_timeseries',
     visualisationClass: GroupedTimeseriesView,
     collectionClass: GroupedTimeseriesCollection,
     clientRenderOnInit: true,

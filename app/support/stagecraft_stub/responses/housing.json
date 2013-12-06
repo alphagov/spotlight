@@ -5,7 +5,6 @@
   "tagline": "The government is helping local councils and developers work with local communities to plan and build better places to live for everyone. This includes building affordable housing, improving the quality of rented housing, helping more people to buy a home and providing housing support for vulnerable people.",
   "modules": [
     {
-      "page-type": "module",
       "module-type": "grouped_timeseries_2",
       "title": "Building starts and completions",
       "description": "How many residential builds have been started and completed",
@@ -27,7 +26,6 @@
       "show-line-labels": true
     },
     {
-      "page-type": "module",
       "module-type": "grouped_timeseries",
       "title": "Residential property transactions by region",
       "description": "",

@@ -42,14 +42,14 @@ def values
         raw: "//ul/li//p[@class='impact-number']"
       }
     },
-    'grouped-timeseries' => {
+    'grouped_timeseries' => {
       'no-realistic-dashboard' => {
         title: 'Categories in a stack',
         description: '',
         raw: "//*[name()='svg']"
       }
     },
-    'grouped-timeseries-2' => {
+    'grouped_timeseries_2' => {
       'no-realistic-dashboard' => {
         title: 'Categories as lines',
         description: '',
