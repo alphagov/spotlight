@@ -76,7 +76,6 @@ function (MultiStatsView, Model, Collection) {
     });
       
     it("does not show deltas for collection of length 1", function () {
-      
       collection.pop();
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(0) h3')).toHaveText('Statistic A');
@@ -84,45 +83,43 @@ function (MultiStatsView, Model, Collection) {
         expect(view.$el.find('ul li:eq(0) p.change').length).toEqual(0);
         expect(view.$el.find('ul li:eq(0) p.previous-date').length).toEqual(0);
       });
-      
     });
     
     it("does not fail miserably for collection of length 0", function () {
-      
       collection.pop();
       collection.pop();
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li').length).toEqual(0);
       });
-      
     });
     
     it("does not show a percentage if the denominator is null", function () {
-      
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(2) p.change').length).toEqual(0);
         expect(view.$el.find('ul li:eq(2) p.previous-date').length).toEqual(0);
       });
-      
     });
     
     it("does not show a percentage if the denominator is zero", function () {
-      
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(3) p.change').length).toEqual(0);
         expect(view.$el.find('ul li:eq(3) p.previous-date').length).toEqual(0);
       });
-      
     });
     
     it("does show a percentage if the numerator is zero", function () {
-      
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(4) p.change')).toHaveText('−100.00%');
         expect(view.$el.find('ul li:eq(4) p.previous-date')).toHaveText('Aug 2013');
       });
-      
     });
 
+    it("indicates missing data", function () {
+      collection.last().set('c', null);
+      jasmine.renderView(view, function () {
+        expect(view.$el.find('ul li').length).toEqual(5);
+        expect(view.$el.find('ul li:eq(2) p.impact-number span.no-data')).toHaveText('(no data)');
+      });
+    });
   })
 });
