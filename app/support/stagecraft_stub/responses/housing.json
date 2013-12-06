@@ -70,7 +70,7 @@
           "format": "{{ value }}%"
         },
         {
-          "title": "Median borrower income",
+          "title": "Median borrower(s) income",
           "attr": "borrowers_median_total_income",
           "format": "£{{ value }}"
         },
