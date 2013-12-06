@@ -1,5 +1,5 @@
 define([
-  'common/collections/categories'
+  'common/collections/grouped_timeseries'
 ],
 function (VolumetricsCollection) {
   describe("VolumetricsCollection", function () {

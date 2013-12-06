@@ -1,14 +1,14 @@
 define([
   'extensions/controllers/module',
-  'common/collections/categories',
-  'common/views/visualisations/categories'
+  'common/collections/grouped_timeseries',
+  'common/views/visualisations/grouped_timeseries'
 ],
-function (ModuleController, CategoriesCollection, CategoriesView) {
+function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
     className: 'grouped-timeseries-stacked',
-    visualisationClass: CategoriesView,
-    collectionClass: CategoriesCollection,
+    visualisationClass: GroupedTimeseriesView,
+    collectionClass: GroupedTimeseriesCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
     collectionOptions: function () {
