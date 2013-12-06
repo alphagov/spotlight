@@ -112,7 +112,7 @@
     },
     {
       "page-type": "module",
-      "module-type": "grouped_timeseries_line",
+      "module-type": "grouped_timeseries_2",
       "title": "Categories as lines",
       "description": "",
       "data-group": "housing-policy",
