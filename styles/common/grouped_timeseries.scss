@@ -1,6 +1,11 @@
-.grouped_timeseries {
+.grouped-timeseries,
+.grouped-timeseries-2 {
   figure.graph {
     clear: both;
+    .legend ol {
+      width:100%;
+      padding-left:0;
+    }
   }
   #content & .more-info-link {
     margin-bottom: 14px;

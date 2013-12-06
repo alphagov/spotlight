@@ -2,8 +2,30 @@
   "page-type": "dashboard",
   "title": "Housing",
   "strapline": "Policy performance",
-  "tagline": "",
+  "tagline": "The government is helping local councils and developers work with local communities to plan and build better places to live for everyone. This includes building affordable housing, improving the quality of rented housing, helping more people to buy a home and providing housing support for vulnerable people.",
   "modules": [
+    {
+      "page-type": "module",
+      "module-type": "grouped_timeseries_2",
+      "title": "Building starts and completions",
+      "description": "How many residential builds have been started and completed",
+      "data-group": "housing-policy",
+      "data-type": "dwellings",
+      "cumulative": false,
+      "value-attr": "value:sum",
+      "category": "type",
+      "period": "quarter",
+      "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+      "info": [
+        "Source: National House-Building Council (NHBC)",
+        "TBD"
+      ],
+      "series": [
+         { "id": "completed", "title": "Completed" },
+         { "id": "started", "title": "Started" }
+       ],
+      "show-line-labels": true
+    },
     {
       "page-type": "module",
       "module-type": "grouped_timeseries",
@@ -11,13 +33,14 @@
       "description": "",
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
+      "cumulative": false,
       "value-attr": "value:sum",
       "category": "geography",
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
       "info": [
-        "Info text line 1",
-        "Info text line 2"
+        "Source: HMRC",
+        "TBD"
       ],
       "series": [
          { "id": "England", "title": "England" },
