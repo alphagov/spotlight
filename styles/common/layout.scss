@@ -1,31 +1,3 @@
-.related-pages {
-  overflow: hidden;
-  line-height: 1.2;
-  width: 35%; 
-
-  ol.items{
-    padding-left: 0px;
-
-    li{
-      display: block;
-      overflow: hidden;
-      list-style: none;
-      padding: 5px 0 10px;
-
-      ul.attributes{
-        padding-left: 0px;
-
-        li{
-          list-style: none;
-          display: block;
-          float: left;
-          padding: 0 15px 0 0;
-        }
-      }
-    }
-  }
-}
-
 #wrapper {
   border-bottom: 10px solid $primary-colour;
 }
@@ -62,6 +34,34 @@
         width: 60%;
         margin-right: 10px;
         float: left;
+      }
+    }
+
+    .related-pages {
+      overflow: hidden;
+      line-height: 1.2;
+      width: 35%;
+
+      ol.items {
+        padding-left: 0px;
+
+        li{
+          display: block;
+          overflow: hidden;
+          list-style: none;
+          padding: 5px 0 10px;
+
+          ul.attributes{
+            padding-left: 0px;
+
+            li{
+              list-style: none;
+              display: block;
+              float: left;
+              padding: 0 15px 0 0;
+            }
+          }
+        }
       }
     }
   }
