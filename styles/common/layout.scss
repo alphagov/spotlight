@@ -1,16 +1,20 @@
 .related-pages {
-  float: right;
-  line-height: 1;
-  max-width: 35%; 
+  overflow: hidden;
+  line-height: 1.2;
+  width: 35%; 
+
   ol.items{
     padding-left: 0px;
+
     li{
       display: block;
       overflow: hidden;
       list-style: none;
       padding: 5px 0 10px;
+
       ul.attributes{
         padding-left: 0px;
+
         li{
           list-style: none;
           display: block;
@@ -42,8 +46,10 @@
   header {
     margin-bottom: 1.5em;
     padding-bottom: 2em;
+    width: 100%;
 
     border-bottom: 5px solid $primary-colour;
+    display: inline-block;
 
     h1 {
       width: 75%;
@@ -51,6 +57,12 @@
 
     p.explanatory {
       width: 75%;
+
+      &.with_related_pages {
+        width: 60%;
+        margin-right: 10px;
+        float: left;
+      }
     }
   }
 

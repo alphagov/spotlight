@@ -27,6 +27,7 @@ function (DashboardView, Model) {
         expect(result).toEqual('rendered');
         var context = view.contentTemplate.argsForCall[0][0];
         expect(context.foo).toEqual('bar');
+        expect(context.additional_copy_class).toBeUndefined();
         expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
       });
       
@@ -38,6 +39,7 @@ function (DashboardView, Model) {
           var context = view.contentTemplate.argsForCall[0][0];
           expect(context.foo).toEqual('bar');
           expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
+          expect(context.additional_copy_class).toEqual("with_related_pages");
           expect(context.related_pages[0].formatted_public_timestamp).toEqual("8th October 2013");
         });
       });

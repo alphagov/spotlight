@@ -1,32 +1,30 @@
 <header>
-<h1>
-  {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
-  {{ title }}
-  {{# tagline }}<span class="tagline">{{ tagline }}</span>{{/ tagline }}
-</h1>
-{{# copy }}<p class="explanatory">{{ copy }}</p>{{/ copy }}
+  <h1>
+    {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
+    {{ title }}
+    {{# tagline }}<span class="tagline">{{ tagline }}</span>{{/ tagline }}
+  </h1>
+  {{# copy }}<p class="explanatory {{additional_copy_class}}">{{ copy }}</p>{{/ copy }}
+  <aside class='related-pages'>
+    {{# related_pages_title }}
+      <h3>{{ related_pages_title }}</h3>
+    {{/ related_pages_title }}
+    <!--this could come from a relatively simple query to https://www.gov.uk/government/policies.json?keywords=&topics%5B%5D=housing&departments%5B%5D=all-->
+    <!--we'll pretend it comes from stagecraft for now-->
+    <ol class="items">
+      {{# related_pages }}
+      <li>
+        <h3><a href="{{ url }}">{{ title }}</a></h3>
+        <ul class="attributes">
+          <li><abbr class="public_timestamp" title="{{ public_timestamp }}">{{ formatted_public_timestamp }}</abbr></li>
+          <li class="organisations">
+            {{{ organisations }}}
+          </li>
+        </ul>
+      </li>
+      {{/ related_pages }}
+    </ol>
+  </aside>
 </header>
-<div class='related-pages'>
-  {{# related_pages_title }}
-    <h3>{{ related_pages_title }}</h3>
-  {{/ related_pages_title }}
-  <!--this could come from a relatively simple query to https://www.gov.uk/government/policies.json?keywords=&topics%5B%5D=housing&departments%5B%5D=all-->
-  <!--we'll pretend it comes from stagecraft for now-->
-  <ol class="items">
-    {{# related_pages }}
-    <li>
-      <h3><a href="{{ url }}">{{ title }}</a></h3>
-      <ul class="attributes">
-        <li><abbr class="public_timestamp" title="{{ public_timestamp }}">{{ formatted_public_timestamp }}</abbr></li>
-        <li class="organisations">
-          {{{ organisations }}}
-        </li>
-        <!--<li class="display-type">{{ display_type }}</li>-->
-        <!--<li class="topics">{{ topics }}</li>-->
-      </ul>
-    </li>
-    {{/ related_pages }}
-  </ol>
-</div>
 
 {{{ modules }}}
