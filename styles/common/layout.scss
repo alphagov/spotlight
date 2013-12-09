@@ -95,6 +95,18 @@
 
     padding: 0;
 
+    header {
+      p.explanatory {
+        &.with_related_pages {
+          float: none;
+          width: 75%;
+        }
+      }
+      .related-pages {
+        width: 75%;
+      }
+    }
+
     section {
       float:none;
       &.half-width {
