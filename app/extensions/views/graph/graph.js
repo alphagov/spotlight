@@ -316,6 +316,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           });
 
           var yScale = this.d3.scale.linear();
+          // TODO: Replace this 0 with yMin if required. 
           var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           yScale.domain(tickValues.extent);
           yScale.rangeRound([this.innerHeight, 0]);

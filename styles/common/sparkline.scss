@@ -1,0 +1,29 @@
+
+.sparkline-graph {
+
+  figure.graph {
+    .graph-wrapper {
+      svg {
+        max-height: 70px;
+        max-width: 160px;
+      }
+
+      .inner {
+        left: 0;
+        right: 0;
+        bottom: 0;  
+        top: 0;
+      }
+    }
+  }
+
+  @media (max-width: 880px) {   
+  }
+  
+  @media(max-width: 640px) {
+  }
+
+  @media(max-width: 500px) {
+  }
+
+}

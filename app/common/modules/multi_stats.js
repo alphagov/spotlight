@@ -8,6 +8,9 @@ function (ModuleController, MultiStatsView, MultiStatsCollection) {
     className: 'multi_stats',
     visualisationClass: MultiStatsView,
     collectionClass: MultiStatsCollection,
+    clientRenderOnInit: true,
+    requiresSvg: true,
+    
     collectionOptions: function() { 
       return { 
         stats: this.model.get('stats'), 
