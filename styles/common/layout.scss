@@ -30,16 +30,11 @@
 
     p.explanatory {
       width: 75%;
-
-      &.with_related_pages {
-        width: 60%;
-        margin-right: 10px;
-        float: left;
-      }
     }
 
     .related-pages {
       float: right;
+      margin-left: 15px;
       line-height: 1.2;
       width: 35%;
 
@@ -97,14 +92,9 @@
     padding: 0;
 
     header {
-      p.explanatory {
-        &.with_related_pages {
-          float: none;
-          width: 75%;
-        }
-      }
       .related-pages {
         float: none;
+        margin-left: 0;
         width: 75%;
       }
     }

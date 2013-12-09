@@ -31,17 +31,6 @@ function (DashboardView, Model) {
         expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
       });
       
-      describe("when related_pages are present on the model", function (){
-        it("should include a formatted_public_timestamp in the context", function (){
-          model.set({"related_pages":[{"public_timestamp":"2013-10-08T06:51:36+01:00"}]});
-          var result = view.getContent();
-          expect(result).toEqual('rendered');
-          var context = view.contentTemplate.argsForCall[0][0];
-          expect(context.foo).toEqual('bar');
-          expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
-          expect(context.additional_copy_class).toEqual("with_related_pages");
-        });
-      });
     });
 
     describe("getPageTitle", function () {

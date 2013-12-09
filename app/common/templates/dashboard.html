@@ -4,7 +4,6 @@
     {{ title }}
     {{# tagline }}<span class="tagline">{{ tagline }}</span>{{/ tagline }}
   </h1>
-  {{# copy }}<p class="explanatory {{additional_copy_class}}">{{ copy }}</p>{{/ copy }}
   {{# related_pages_title }}
     <aside class='related-pages'>
       <h3>{{ related_pages_title }}</h3>
@@ -25,6 +24,7 @@
       </ol>
     </aside>
   {{/ related_pages_title }}
+  {{# copy }}<p class="explanatory">{{ copy }}</p>{{/ copy }}
 </header>
 
 {{{ modules }}}
