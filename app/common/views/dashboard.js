@@ -8,16 +8,9 @@ function (GovUkView, contentTemplate) {
 
     extendRelatedPagesContext: function (context) {
       if(context.related_pages){
-        _.each(context.related_pages, function (page, i){
-          context.related_pages[i].formatted_public_timestamp = this.getFormattedTimestamp(page.public_timestamp);
-        }, this);
         context.additional_copy_class = "with_related_pages";
       }
       return context;
-    },
-
-    getFormattedTimestamp: function (timestamp) {
-      return this.getMoment(timestamp).format("Do MMMM YYYY");
     },
 
     getContent: function () {
