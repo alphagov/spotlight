@@ -27,10 +27,8 @@ function (DashboardView, Model) {
         expect(result).toEqual('rendered');
         var context = view.contentTemplate.argsForCall[0][0];
         expect(context.foo).toEqual('bar');
-        expect(context.additional_copy_class).toBeUndefined();
         expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
       });
-      
     });
 
     describe("getPageTitle", function () {
