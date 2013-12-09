@@ -10,7 +10,6 @@ define([
   'common/controllers/error'
 ],
 function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, MultiStatsModule, GroupedTimeseriesModule, Error) {
-
   var ControllerMap = {
     'error': Error,
     'dashboard': Dashboard,

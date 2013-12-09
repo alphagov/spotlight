@@ -1,0 +1,25 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries_3",
+  "title": "House price index (HPI) by region",
+  "description": "Average HPIs by region",
+  "data-group": "housing-policy",
+  "data-type": "house-price-index",
+  "cumulative": false,
+  "value-attr": "value:sum",
+  "category": "geography",
+  "period": "month",
+  "filter-by": ["key:house_price_index"],
+  "info": [
+    "Source: ONS",
+    "TBD"
+  ],
+  "series": [
+     { "id": "Scotland", "title": "Scotland" },
+     { "id": "Wales", "title": "Wales" },
+     { "id": "London", "title": "London" },
+     { "id": "England", "title": "England" },
+     { "id": "Northern_Ireland", "title": "Northern Ireland" }
+   ],
+  "show-line-labels": true
+}
