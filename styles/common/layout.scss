@@ -39,7 +39,7 @@
     }
 
     .related-pages {
-      overflow: hidden;
+      float: right;
       line-height: 1.2;
       width: 35%;
 
@@ -104,6 +104,7 @@
         }
       }
       .related-pages {
+        float: none;
         width: 75%;
       }
     }

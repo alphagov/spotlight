@@ -21,7 +21,7 @@ function (GovUkView, contentTemplate) {
     },
 
     getContent: function () {
-      context = this.extendRelatedPagesContext(this.model.toJSON());
+      var context = this.extendRelatedPagesContext(this.model.toJSON());
 
       context.modules = _.map(this.moduleInstances, function (module) {
         return module.html;
