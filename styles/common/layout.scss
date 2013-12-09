@@ -18,15 +18,53 @@
   header {
     margin-bottom: 1.5em;
     padding-bottom: 2em;
+    width: 100%;
 
     border-bottom: 5px solid $primary-colour;
+    display: inline-block;
 
     h1 {
       width: 75%;
+      display: inline-block;
     }
 
     p.explanatory {
       width: 75%;
+    }
+
+    .related-pages {
+      float: right;
+      margin-left: 15px;
+      width: 35%;
+
+      ol.items {
+        margin: 0;
+        padding-left: 0px;
+
+        li{
+          display: block;
+          overflow: hidden;
+          list-style: none;
+          margin: 7px 0;
+
+          h3 {
+            @include core-19;
+            line-height: 1;
+          }
+
+          ul.attributes{
+            padding-left: 0px;
+
+            li{
+              list-style: none;
+              display: block;
+              float: left;
+              padding: 0 10px 0 0;
+              margin: 0;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -58,6 +96,14 @@
   @media (max-width: 640px) {
 
     padding: 0;
+
+    header {
+      .related-pages {
+        float: none;
+        margin-left: 0;
+        width: 75%;
+      }
+    }
 
     section {
       float:none;

@@ -10,6 +10,7 @@ Feature: Dashboard
      And I see the title "Non-Realistic Data Stub" 
      And I see the strapline "Strapline" 
      And I see the tagline "(this is not real data)"
+    Then I should see the "related-pages" information for "no-realistic-dashboard"
     Then I should see the "realtime" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "realtime" module
     Then I should see the "journey" module for "no-realistic-dashboard" data
