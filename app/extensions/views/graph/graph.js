@@ -30,13 +30,13 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     }
   };
 
-  var hourlyScale = _.extend({}, scaleFromStartAndEndDates, {
+  var scaleByTimestamp = _.extend({}, scaleFromStartAndEndDates, {
     modelToDate: function (model) {
       return this.getMoment(model.get('_timestamp'));
     }
   });
 
-  var dailyScale = _.extend({}, scaleFromStartAndEndDates, {
+  var scaleByEndDate = _.extend({}, scaleFromStartAndEndDates, {
     modelToDate: function (model) {
       return this.getMoment(model.get('_end_at')).subtract(1, 'days');
     }
@@ -281,9 +281,10 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     },
 
     configs: {
-      hour: hourlyScale,
-      day: dailyScale,
-      week: dailyScale,
+      hour: scaleByTimestamp,
+      day: scaleByEndDate,
+      week: scaleByEndDate,
+      quarter: scaleByEndDate,
       month: {
         getXPos: function(groupIndex, modelIndex) {
           return modelIndex;

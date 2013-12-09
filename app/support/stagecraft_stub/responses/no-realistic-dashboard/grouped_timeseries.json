@@ -5,6 +5,7 @@
   "description": "",
   "data-group": "housing-policy",
   "data-type": "residential-transactions",
+  "cumulative": true,
   "value-attr": "value:sum",
   "category": "geography",
   "period": "month",

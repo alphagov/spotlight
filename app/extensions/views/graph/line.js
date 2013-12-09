@@ -25,9 +25,10 @@ function (Component) {
     var renderTerminators = function() {
       selection.selectAll(".terminator").remove();
       group.get('values').each(function (model, index) {
-        var missingPreviousPoint = (index > 0 && getY(model, index - 1) === null),
+        var hasCurrentPoint = (getY(model, index) !== null),
+            missingPreviousPoint = (index > 0 && getY(model, index - 1) === null),
             missingNextPoint = (index < group.get('values').size() - 1 && getY(model, index + 1) === null),
-            showTerminator = missingPreviousPoint || missingNextPoint;
+            showTerminator = hasCurrentPoint && (missingPreviousPoint || missingNextPoint);
 
         if (showTerminator) {
           selection.append("circle")

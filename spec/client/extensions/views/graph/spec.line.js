@@ -42,11 +42,11 @@ function (Line, Collection) {
         wrapper: wrapper,
         collection: collection,
         x: function (group, groupIndex, model, index) {
-          return model.get('a');
+          return group.get('values').at(index).get('a');
         },
         y: function (group, groupIndex, model, index) {
           var attr = group.get('testAttr');
-          return model.get(attr);
+          return group.get('values').at(index).get(attr);
         }
       });
       spyOn(Line.prototype, "onChangeSelected");
@@ -137,8 +137,8 @@ function (Line, Collection) {
       });
 
       it("highlights the selected group and dims the other groups and their line terminators", function () {
-        collection.at(0).get('values').at(2).set('b', null);
-        collection.at(1).get('values').at(2).set('c', null);
+        collection.at(0).get('values').at(3).set('b', null);
+        collection.at(1).get('values').at(3).set('c', null);
 
         view.render();
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);

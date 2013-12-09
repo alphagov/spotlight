@@ -140,6 +140,18 @@ function (Query) {
         expect(query.get('end_at').format()).toEqual('2013-05-15T06:00:00+01:00');
         expect(query.get('start_at').format()).toEqual('2013-05-14T06:00:00+01:00');
       });
+
+      it("sets correct start and end_at for quarter period", function () {
+        var query = new Query({
+          foo: 'bar'
+        });
+        query.set('period', 'quarter');
+        expect(query.get('foo')).toEqual('bar');
+        expect(query.get('period')).toEqual('quarter');
+        expect(query.get('end_at').format()).toEqual('2013-04-01T00:00:00+01:00');
+        expect(query.get('start_at').format()).toEqual('2005-04-01T00:00:00+01:00');
+      });
+
     });
   });
 });

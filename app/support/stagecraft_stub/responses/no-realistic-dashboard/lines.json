@@ -1,0 +1,18 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries_2",
+  "title": "Categories as lines",
+  "description": "",
+  "data-group": "housing-policy",
+  "data-type": "dwellings",
+  "cumulative": false,
+  "value-attr": "value:sum",
+  "category": "type",
+  "period": "quarter",
+  "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+  "series": [
+     { "id": "completed", "title": "Completed" },
+     { "id": "started", "title": "Started" }
+   ],
+  "show-line-labels": true
+}

@@ -1,14 +1,14 @@
 define([
   'extensions/controllers/module',
-  'common/collections/categories',
-  'common/views/visualisations/stacked-graph'
+  'common/collections/grouped_timeseries',
+  'common/views/visualisations/grouped_timeseries'
 ],
-function (ModuleController, CategoriesCollection, StackedGraph) {
+function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) {
 
   var GroupedTimeseriesModule = ModuleController.extend({
     className: 'grouped_timeseries',
-    visualisationClass: StackedGraph,
-    collectionClass: CategoriesCollection,
+    visualisationClass: GroupedTimeseriesView,
+    collectionClass: GroupedTimeseriesCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
     collectionOptions: function () {
@@ -17,9 +17,10 @@ function (ModuleController, CategoriesCollection, StackedGraph) {
         category: this.model.get("category"),
         period: this.model.get("period"),
         seriesList: this.model.get("series"),
-        filter_by: this.model.get("filter-by")
+        filterBy: this.model.get("filter-by")
       };
     }
+
   });
 
   return GroupedTimeseriesModule;

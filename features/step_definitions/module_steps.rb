@@ -35,6 +35,13 @@ def values
         raw: "//*[name()='svg']"
       }
     },
+    'multi_stats' => {
+      'no-realistic-dashboard' => {
+        title: 'Average mortgage',
+        description: 'A range of factors indicative of the state of the housing market',
+        raw: "//ul/li//p[@class='impact-number']"
+      }
+    },
     'grouped_timeseries' => {
       'no-realistic-dashboard' => {
         title: 'Categories in a stack',
@@ -42,11 +49,11 @@ def values
         raw: "//*[name()='svg']"
       }
     },
-    'multi_stats' => {
+    'grouped_timeseries_2' => {
       'no-realistic-dashboard' => {
-        title: 'Average mortgage',
-        description: 'A range of factors indicative of the state of the housing market',
-        raw: "//ul/li//p[@class='impact-number']"
+        title: 'Categories as lines',
+        description: '',
+        raw: "//*[name()='svg']"
       }
     }
   }
