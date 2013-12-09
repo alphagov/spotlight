@@ -35,17 +35,22 @@
     .related-pages {
       float: right;
       margin-left: 15px;
-      line-height: 1.2;
       width: 35%;
 
       ol.items {
+        margin: 0;
         padding-left: 0px;
 
         li{
           display: block;
           overflow: hidden;
           list-style: none;
-          padding: 5px 0 10px;
+          margin: 7px 0;
+
+          h3 {
+            @include core-19;
+            line-height: 1;
+          }
 
           ul.attributes{
             padding-left: 0px;
@@ -55,6 +60,7 @@
               display: block;
               float: left;
               padding: 0 10px 0 0;
+              margin: 0;
             }
           }
         }
