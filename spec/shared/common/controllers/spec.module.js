@@ -28,7 +28,7 @@ function (ModuleController, Controller, ModuleView, RawView, StandaloneView) {
       it("uses a ModuleView when the dashboard option is present", function () {
         jasmine.serverOnly(function () {
           var options = {
-            dashboard: true
+            dashboard: true,
             model: {
               get: function (key) {
                 return {
@@ -49,6 +49,51 @@ function (ModuleController, Controller, ModuleView, RawView, StandaloneView) {
           expect(moduleController.viewClass).toBe(StandaloneView);
         });
       });
+    });
+
+    describe("id", function () {
+      describe("when model slug defined", function () {
+
+        var moduleController
+        beforeEach(function () {
+          var options = {
+            model: {
+              get: function (key) {
+                return {
+                  "module-type": "some_module",
+                  "slug": "a_slug"
+                }[key];
+              }
+            }
+          };
+          moduleController = new ModuleController(options);
+        });
+
+        it("should set id from the model slug", function () {
+          expect(moduleController.id()).toBe("a_slug");
+        });
+
+      });
+      describe("when model slug not defined", function () {
+        var moduleController
+        beforeEach(function () {
+          var options = {
+            model: {
+              get: function (key) {
+                return {
+                  "module-type": "some_module",
+                }[key];
+              }
+            }
+          };
+          moduleController = new ModuleController(options);
+        });
+
+        it("should set id from the model module type", function () {
+          expect(moduleController.id()).toBe("some_module");
+        });
+      });
+
     });
 
     describe("render", function () {
