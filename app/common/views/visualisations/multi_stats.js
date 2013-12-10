@@ -1,6 +1,6 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/single_stat',
+  'common/views/visualisations/multi_stat_item',
   'stache!common/templates/visualisations/multi_stats',
   'Mustache'
 ],

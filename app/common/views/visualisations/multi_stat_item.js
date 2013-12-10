@@ -1,7 +1,7 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/single_stat/sparkline',
-  'stache!common/templates/visualisations/single_stat',
+  'common/views/visualisations/multi_stat_item/sparkline',
+  'stache!common/templates/visualisations/multi_stat_item',
   'Mustache'
 ],
 function (View, SparklineView, template, Mustache) {
