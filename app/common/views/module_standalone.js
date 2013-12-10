@@ -12,6 +12,7 @@ function (GovUkView, Module) {
         collection: this.collection,
         visualisationClass: this.visualisationClass,
         className: this.className,
+        id: this.id,
         requiresSvg: this.requiresSvg,
         url: this.url
       });

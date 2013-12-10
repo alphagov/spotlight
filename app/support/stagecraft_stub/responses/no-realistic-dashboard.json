@@ -109,13 +109,15 @@
       ]
     },
     {
+      "page-type": "module",
+      "slug": "stacked_categories",
       "module-type": "grouped_timeseries",
       "title": "Categories in a stack",
       "description": "",
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
-      "value-attr": "value:sum",
       "cumulative": true,
+      "value-attr": "value:sum",
       "category": "geography",
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
@@ -126,10 +128,10 @@
          { "id": "Northern_Ireland", "title": "Northern Ireland" }
        ],
       "show-line-labels": true
-    },
+    }
     {
-      "page-type": "module",
-      "module-type": "grouped_timeseries_2",
+      "slug": "starts_completions",
+      "module-type": "grouped_timeseries",
       "title": "Categories as lines",
       "description": "",
       "data-group": "housing-policy",
@@ -139,6 +141,10 @@
       "category": "type",
       "period": "quarter",
       "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+      "info": [
+        "Source: National House-Building Council (NHBC)",
+        "TBD"
+      ],
       "series": [
          { "id": "completed", "title": "Completed" },
          { "id": "started", "title": "Started" }
