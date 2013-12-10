@@ -1,30 +1,33 @@
 define([
   'common/views/visualisations/multi_stat_item',
   'extensions/models/model',
-  'extensions/collections/collection'
+  'extensions/collections/matrix'
 ],
-function (SingleStatView, Model, Collection) {
+function (SingleStatView, Model, MatrixCollection) {
   describe("SingleStatView", function () {
     
     var collection, view;
     beforeEach(function() { 
-      collection = new Collection();
+      collection = new MatrixCollection();
       collection.reset([{
-        _start_at: collection.getMoment("2013-08-01T00:00:00+00:00"),
-        a: 1, 
-        b: 2,
-        c: null,
-        d: 0,
-        e: 5
-      },
-      { 
-        _start_at: collection.getMoment("2013-09-01T00:00:00+00:00"),
-        a: 0.5, 
-        b: 4,
-        c: 6,
-        d: 10,
-        e: 0
-      }
+        id: 'test'
+        title: 'test', 
+        values: [{
+          _start_at: collection.getMoment("2013-08-01T00:00:00+00:00"),
+          a: 1, 
+          b: 2,
+          c: null,
+          d: 0,
+          e: 5
+        },
+        { 
+          _start_at: collection.getMoment("2013-09-01T00:00:00+00:00"),
+          a: 0.5, 
+          b: 4,
+          c: 6,
+          d: 10,
+          e: 0
+        }]
       ]);
       view = new SingleStatView({
         collection: collection,

@@ -1,15 +1,18 @@
 define([
   'common/views/visualisations/multi_stats',
   'extensions/models/model',
-  'extensions/collections/collection'
+  'extensions/collections/matrix'
 ],
-function (MultiStatsView, Model, Collection) {
+function (MultiStatsView, Model, MatrixCollection) {
   describe("MultiStatsView", function () {
     
     var collection, view;
     beforeEach(function() { 
-      collection = new Collection();
-      collection.reset([{
+      collection = new MatrixCollection();
+      collection.reset([
+        id: 'test', 
+        title: 'test', 
+        values: [{
         _start_at: collection.getMoment("2013-08-01T00:00:00+00:00"),
         a: 1, 
         b: 2,
@@ -24,7 +27,7 @@ function (MultiStatsView, Model, Collection) {
         c: 6,
         d: 10,
         e: 0
-      }
+      }]
       ]);
       view = new MultiStatsView({
         collection: collection,
