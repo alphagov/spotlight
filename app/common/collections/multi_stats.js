@@ -43,7 +43,6 @@ function (MatrixCollection) {
       }, this);
 
       data = data.slice(0, latestIndexWithValues + 1);
-      console.log('COLLECTION, returning', data);
       
       return {
         id: 'multistats',
