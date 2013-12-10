@@ -1,52 +1,5 @@
 {
-  "data": [ 
-  {
-    "_count": 1.0, 
-    "_end_at": "2007-08-01T00:00:00+00:00", 
-    "_start_at": "2007-07-01T00:00:00+00:00", 
-    "borrowers_median_total_income": [
-      35603.0
-    ], 
-    "borrowers_median_total_income:set": [
-      35603.0
-    ], 
-    "median_advance_sterling": [
-      118999.0
-    ], 
-    "median_advance_sterling:set": [
-      118999.0
-    ], 
-    "median_age_of_borrower": [
-      29.0
-    ], 
-    "median_age_of_borrower:set": [
-      29.0
-    ], 
-    "median_capital_and_interest_payments_as_a_percentage_of_income": [
-      24.2
-    ], 
-    "median_capital_and_interest_payments_as_a_percentage_of_income:set": [
-      24.2
-    ], 
-    "median_income_multiple": [
-      3.38
-    ], 
-    "median_income_multiple:set": [
-      3.38
-    ], 
-    "median_percentage_advance": [
-      90.0
-    ], 
-    "median_percentage_advance:set": [
-      90.0
-    ], 
-    "value_of_loans_sterling": [
-      4500000000.0
-    ], 
-    "value_of_loans_sterling:set": [
-      4500000000.0
-    ]
-  }, 
+  "data": [  
   {
     "_count": 1.0, 
     "_end_at": "2007-09-01T00:00:00+00:00", 
