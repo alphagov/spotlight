@@ -10,7 +10,7 @@ function (View, SingleStat, template, Mustache) {
     template: template,
     
     render: function() { 
-      console.log('MultiStatsView render, collection', this.collection);
+
         View.prototype.render.apply(this, arguments);
         
         var ul = this.$el.find('ul');
@@ -31,7 +31,6 @@ function (View, SingleStat, template, Mustache) {
       if (this.collection.length) {
         stats = this.model.get('stats');
       }
-      console.log('getStats', stats);
       return stats;
       
     }
