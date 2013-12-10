@@ -4,8 +4,10 @@ define([
 function (Graph) {
   var Sparkline = Graph.extend({
     
+    minYDomainExtent: 0, 
+    
     getConfigNames: function () {
-      return ['stack', 'month']; 
+      return ['stack', 'month', 'ymin']; 
     },
     
     components: function () {
