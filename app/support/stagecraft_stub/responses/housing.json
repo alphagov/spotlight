@@ -23,7 +23,8 @@
   ],
   "modules": [
     {
-      "module-type": "grouped_timeseries_2",
+      "slug": "starts_completions",
+      "module-type": "grouped_timeseries",
       "title": "Building starts and completions",
       "description": "How many residential builds have been started and completed",
       "data-group": "housing-policy",
@@ -44,6 +45,7 @@
       "show-line-labels": true
     },
     {
+      "slug": "regional_transactions",
       "module-type": "grouped_timeseries",
       "title": "Residential property transactions by region",
       "description": "",

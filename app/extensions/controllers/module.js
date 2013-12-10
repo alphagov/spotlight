@@ -12,6 +12,10 @@ define([
     visualisationClass: null,
     requiresSvg: false,
 
+    id: function () {
+      return this.model.get("slug") || this.model.get("module-type");
+    },
+        
     initialize: function(options) {
       if (isClient) {
         this.viewClass = ModuleView;
@@ -19,7 +23,7 @@ define([
         this.viewClass = RawView;
       } else if (options.dashboard) {
         this.viewClass = ModuleView;
-        this.url = this.url + '/' + this.className;
+        this.url = this.url + '/' + this.id();
       } else {
         this.viewClass = StandaloneView;
       }
@@ -38,13 +42,14 @@ define([
       var options = {
         visualisationClass: this.visualisationClass,
         className: this.className,
+        id: this.id,
         requiresSvg: this.requiresSvg,
         url: this.url
       };
 
       if (isClient) {
         // reuse existing module slot
-        var el = $('.' + this.className);
+        var el = $('#' + this.id());
         if (el.length) {
           options.el = el;
         }
