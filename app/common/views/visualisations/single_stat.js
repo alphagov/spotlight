@@ -21,18 +21,29 @@ function (View, SparklineView, template, Mustache) {
     },
     
     templateContext: function () {
+    
 
       var stats = [];
       var change = this.getChange(this.collection, this.stat.attr);
-      var date = this.collection.first().get('values').last().get('_start_at').format('MMM YYYY');
+      var start_date = this.collection.first().get('values').first().get('_start_at');
+      var current_date = this.collection.first().get('values').last().get('_start_at');
       var extendedStat = _.extend(this.stat, {
          current: this.getFormattedValue(this.collection, this.stat),
-         date: date, 
+         date: current_date.format('MMM YYYY'), 
          previousDate: change.previousDate,
          percentChange: change.percentChange,
          trend: change.trend
        });
        extendedStat.hasValue = (extendedStat.current != null);
+       
+       if (current_date.diff(start_date, 'days') > 730) {
+         extendedStat.timePeriodValue = 'years';
+       } else if (current_date.diff(start_date, 'days') > 60) { 
+         extendedStat.timePeriodValue = 'months';
+       } else { 
+         extendedStat.timePeriodValue = 'days';
+       }
+       extendedStat.timePeriod = current_date.diff(start_date, extendedStat.timePeriodValue);    
       
       return _.extend(
         View.prototype.templateContext.apply(this, arguments),
