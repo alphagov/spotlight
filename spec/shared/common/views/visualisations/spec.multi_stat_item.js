@@ -3,8 +3,8 @@ define([
   'extensions/models/model',
   'extensions/collections/matrix'
 ],
-function (SingleStatView, Model, MatrixCollection) {
-  describe("SingleStatView", function () {
+function (MultiStatItemView, Model, MatrixCollection) {
+  describe("MultiStatItemView", function () {
     
     var collection, view;
     beforeEach(function() { 
