@@ -72,10 +72,11 @@ function (View, SparklineView, template, Mustache) {
       var current = collection.first().get('values').last().get(attr);
       var previous = null, previousDate = null, trend = null, percentChange;
       var collection_length = collection.first().get('values').length;
+      var numMonths = 13; // TODO: Make length of comparison configurable. 
       if (collection_length > 1) {
-        previous = collection.first().get('values').at(collection_length-2).get(attr);  
+        previous = collection.first().get('values').at(collection_length-numMonths).get(attr);  
         if (_.isNumber(current) &&_.isNumber(previous) && (previous !== 0)){
-          previousDate = collection.first().get('values').at(collection_length-2).get('_start_at').format('MMM YYYY');  
+          previousDate = collection.first().get('values').at(collection_length-numMonths).get('_start_at').format('MMM YYYY');  
           percentChange = this.formatPercentage((current-previous) / previous, 2, true);
           if (current > previous) {
             trend = 'increase';
