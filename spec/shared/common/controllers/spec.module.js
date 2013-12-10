@@ -29,6 +29,13 @@ function (ModuleController, Controller, ModuleView, RawView, StandaloneView) {
         jasmine.serverOnly(function () {
           var options = {
             dashboard: true
+            model: {
+              get: function (key) {
+                return {
+                  "module-type": "some_module"
+                }[key];
+              }
+            }
           };
           var moduleController = new ModuleController(options);
           expect(moduleController.viewClass).toBe(ModuleView);

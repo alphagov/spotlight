@@ -128,7 +128,7 @@
          { "id": "Northern_Ireland", "title": "Northern Ireland" }
        ],
       "show-line-labels": true
-    }
+    },
     {
       "slug": "starts_completions",
       "module-type": "grouped_timeseries",
