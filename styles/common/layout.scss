@@ -29,6 +29,7 @@
     }
 
     p.explanatory {
+      @include core-19;
       width: 75%;
     }
 
