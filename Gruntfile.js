@@ -182,9 +182,10 @@ module.exports = function(grunt) {
     shell: {
       supervisor: {
         options: {
-          stdout: true
+          stdout: true,
+          stderr: true
         },
-        command: 'supervisor -w app app/server'
+        command: 'supervisor -w app -i app/vendor -e "js|html" -n error app/server'
       }
     },
     nodemon: {
