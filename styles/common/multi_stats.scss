@@ -17,6 +17,7 @@
 
   p.impact-number, p.stat-description { 
     margin-bottom: 0;
+    @include core-16($tabular-numbers: true);
 	  strong {
 	    @include bold-36($tabular-numbers: true);
 	  }
