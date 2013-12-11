@@ -6,6 +6,7 @@ function (StagecraftApiClient) {
     model.set({
       requestPath: req.path,
       requestUrl: setup.getFullUrl(req),
+      govukUrl: setup.getGovukUrl(req),
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
       environment: req.app.get('environment'),
@@ -33,6 +34,10 @@ function (StagecraftApiClient) {
     return [req.protocol, "://", req.get('host'), req.url].join('');
   };
 
+  var getGovukUrl = function (req) {
+    return [req.protocol, "://", req.app.get('govukHost'), req.originalUrl].join('');
+  };
+
   var setup = function (req, res, next) {
     var model = setup.getStagecraftApiClient();
 
@@ -52,6 +57,7 @@ function (StagecraftApiClient) {
   };
   setup.renderContent = renderContent;
   setup.getFullUrl = getFullUrl;
+  setup.getGovukUrl = getGovukUrl;
 
   return setup;
 });

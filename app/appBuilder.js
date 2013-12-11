@@ -15,6 +15,7 @@ function (express, path, winston) {
         app.set('requirePath', require_base_url || '/app/');
         app.set('assetPath', global.config.assetPath);
         app.set('backdropUrl', global.config.backdropUrl);
+        app.set('govukHost', global.config.govukHost);
         app.set('clientRequiresCors', global.config.clientRequiresCors);
         app.set('port', global.config.port);
         app.use(express.logger('dev'));

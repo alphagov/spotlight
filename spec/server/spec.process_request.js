@@ -131,5 +131,24 @@ function (processRequest, Model, Controller, View) {
         expect(processRequest.getFullUrl(req)).toEqual('http://domain/test/path');
       });
     });
+
+    describe("govukUrl", function () {
+      it("sets the URL to be equal to the GOV.UK location", function () {
+        var get = jasmine.createSpy();
+        get.plan = function (prop) {
+          return {
+            govukHost: 'spotlight.dev.gov.uk'
+          }[prop];
+        };
+        var req = {
+          app: {
+            get: get
+          },
+          protocol: 'http',
+          originalUrl: '/performance/foo'
+        };
+        expect(processRequest.getGovukUrl(req)).toEqual('http://spotlight.dev.gov.uk/performance/foo');
+      });
+    });
   });
 });

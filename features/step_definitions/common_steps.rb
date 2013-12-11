@@ -18,4 +18,8 @@ Then(/^I can report an error for the current page$/) do
   page.should have_css('.report-a-problem-container', :visible => false)
   page.find('.report-a-problem-toggle a').click
   page.should have_css('.report-a-problem-container', :visible => true)
+
+  current_path = URI.parse(current_url).path
+  page.should have_css('input#url', :visible => false)
+  page.find('input#url', :visible => false)['value'].should === "http://spotlight.test.gov.uk#{current_path}"
 end

@@ -3,5 +3,6 @@
   "port": 3057,
   "backdropUrl": "http://spotlight.perfplat.dev/backdrop-stub/{{ data-group }}/{{ data-type }}",
   "screenshotTargetUrl": "http://spotlight.perfplat.dev",
-  "screenshotServiceUrl": "http://spotlight.perfplat.dev:3000"
+  "screenshotServiceUrl": "http://spotlight.perfplat.dev:3000",
+  "govukHost": "spotlight.dev.gov.uk"
 }
