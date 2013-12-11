@@ -108,9 +108,9 @@
     }
 
     section {
-      float:none;
       &.half-width {
         width: 100%;
+
         & ~ .half-width {
           margin-left:0;
         }
