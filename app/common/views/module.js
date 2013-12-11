@@ -10,13 +10,21 @@ function (View, template) {
 
     views: function () {
       if (isServer && this.requiresSvg) {
-        return {};        
+        return {};
       }
       return {
         ".visualisation": function() {
           return this.visualisationClass;
         }
       };
+    },
+
+    render: function () {
+      View.prototype.render.apply(this, arguments);
+
+      if (this.model.get('restricted_data') === true) {
+        this.$el.addClass('module-banner restricted-data-banner');
+      }
     },
 
     templateContext: function () {
@@ -33,5 +41,3 @@ function (View, template) {
 
   return ModuleView;
 });
-
-

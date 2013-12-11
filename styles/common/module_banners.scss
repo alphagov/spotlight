@@ -1,0 +1,66 @@
+#content {
+  section {
+    // Module banners are grey by default
+    &.module-banner {
+      padding-top: 5em;
+      margin-left: 0;
+
+      @media (max-width: 480px) {
+        padding-top: 6em;
+      }
+
+      .module-banner-text {
+        position: absolute;
+        top: 1em;
+        right: -25px;
+        bottom: 0em;
+        left: -25px;
+
+        border-width: 0 10px;
+        border-style: solid;
+        border-color: $grey-1;
+
+        p {
+          margin: 0;
+          padding: 1em 0.6em;
+
+          background-color: $grey-3;
+          background-image: none;
+          background-repeat: no-repeat;
+          background-position: 98% 50%;
+        }
+
+        &:after {
+          background: $grey-3;
+          content: " ";
+          position: absolute;
+          display: block;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 5px;
+
+          @media (max-width: 640px) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // Banners indicating restricted data are red with a warning triangle
+    &.restricted-data-banner {
+      .module-banner-text {
+        border-color: $mellow-red;
+
+        p {
+          background-color: $mellow-red-25;
+          background-image: url(../images/warning.png);
+        }
+
+        &:after {
+          background: $mellow-red-25;
+        }
+      }
+    }
+  }
+}

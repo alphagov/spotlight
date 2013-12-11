@@ -1,3 +1,9 @@
+<% if (model.get('restricted_data') === true) { %>
+  <div class="module-banner-text">
+    <p>This section contains <strong>commercially licensed data</strong>. Do not share or redistribute.</p>
+  </div>
+<% } %>
+
 <h1><%= model.get('title') %></h1>
 <% if (model.get('info')) { %>
 <aside class="more-info">
