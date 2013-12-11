@@ -62,11 +62,11 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
           pageTitle: this.getPageTitle(),
           bodyClasses: "",
           insideHeader: navigationTemplate,
-          breadcrumbs: breadcrumbsTemplate,
           cookieMessage: cookieMessageTemplate(),
           footerTop: footerTopTemplate(),
           footerSupportLinks: footerLinksTemplate(),
           content: contentTemplate({
+            breadcrumbs: breadcrumbsTemplate,
             content: this.getContent(),
             reportAProblem: this.reportAProblemTemplate(baseContext) 
           })
