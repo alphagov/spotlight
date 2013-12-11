@@ -1,5 +1,6 @@
 #content {
   section {
+    // Module banners are grey by default
     &.module-banner {
       padding-top: 5em;
       margin-left: 0;
@@ -42,6 +43,22 @@
           @media (max-width: 640px) {
             display: none;
           }
+        }
+      }
+    }
+
+    // Banners indicating restricted data are red with a warning triangle
+    &.restricted-data-banner {
+      .module-banner-text {
+        border-color: $mellow-red;
+
+        p {
+          background-color: $mellow-red-25;
+          background-image: url(../images/warning.png);
+        }
+
+        &:after {
+          background: $mellow-red-25;
         }
       }
     }

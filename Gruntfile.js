@@ -128,6 +128,11 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      spotlight_assets: {
+        src: 'images/warning.png',
+        dest: 'public/images/warning.png',
+        filter: 'isFile'
+      },
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
         dest: 'app/common/templates/',
@@ -225,10 +230,10 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build:development', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:development'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'copy:spotlight_assets', 'sass:development'
   ]);
   grunt.registerTask('build:production', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:govuk_assets', 'copy:spotlight_assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
   ]);
   grunt.registerTask('test:all', ['copy:vendor', 'cucumber', 'jasmine', 'jasmine_node']);
   // Default task.

@@ -23,7 +23,7 @@ function (View, template) {
       View.prototype.render.apply(this, arguments);
 
       if (this.model.get('restricted_data') === true) {
-        this.$el.addClass('module-banner');
+        this.$el.addClass('module-banner restricted-data-banner');
       }
     },
 
