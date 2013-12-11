@@ -72,5 +72,17 @@ function (ModuleView, Collection, Model, View) {
         expect(getContent()).toEqual('<section class="testclass"><h1>Title</h1><div class="visualisation">test content</div></section>');
       });
     });
+
+    it("renders a module with class module-banner when Stagecraft sets restricted_data to true", function () {
+      model.set('restricted_data', true);
+      moduleView.render();
+      expect(getContent()).toEqual('<section class="testclass module-banner"><div class="module-banner-text"><p>This section contains <strong>commercially licensed data</strong>. Do not share or redistribute.</p></div><h1>Title</h1><div class="visualisation">test content</div></section>');
+    });
+
+    it("renders a module without class module-banner when Stagecraft returns restricted_data false", function () {
+      model.set('restricted_data', false);
+      moduleView.render();
+      expect(getContent()).toEqual('<section class="testclass"><h1>Title</h1><div class="visualisation">test content</div></section>');
+    });
   });
 });

@@ -73,6 +73,7 @@
       "data-group": "housing-policy",
       "data-type": "first-time-buyer",
       "period": "month",
+      "restricted_data": true,
       "info": [
         "Source: Council of Mortgage Lenders"
       ],
