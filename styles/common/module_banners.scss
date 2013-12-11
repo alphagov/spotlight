@@ -2,19 +2,15 @@
   section {
     // Module banners are grey by default
     &.module-banner {
-      padding-top: 5em;
+      padding-top: 84px;
       margin-left: 0;
-
-      @media (max-width: 480px) {
-        padding-top: 6em;
-      }
 
       .module-banner-text {
         position: absolute;
-        top: 1em;
-        right: -25px;
-        bottom: 0em;
-        left: -25px;
+        top: 16px;
+        right: -30px;
+        bottom: 0;
+        left: -30px;
 
         border-width: 0 10px;
         border-style: solid;
@@ -22,7 +18,7 @@
 
         p {
           margin: 0;
-          padding: 1em 0.6em;
+          padding: 16px 50px 16px 20px;
 
           background-color: $grey-3;
           background-image: none;
@@ -39,10 +35,6 @@
           right: 0;
           bottom: 0;
           height: 5px;
-
-          @media (max-width: 640px) {
-            display: none;
-          }
         }
       }
     }
@@ -60,6 +52,34 @@
         &:after {
           background: $mellow-red-25;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  #content {
+    section {
+      padding-right: 12px;
+      padding-left: 12px;
+
+      &.module-banner {
+        padding-top: 96px;
+
+        .module-banner-text {
+          right: -15px;
+          left: -15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  #content {
+    section {
+      &.module-banner {
+        padding-top: 112px;
       }
     }
   }
