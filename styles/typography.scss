@@ -10,8 +10,18 @@ a[rel="external"] {
   @include external-link-default;
   @include external-link-16;
 
-  @media (max-width: 640px) {
-    @include external-link-14;
+}
+
+a[rel="external"][target="_blank"]:after {
+  // hidden as it's not displayed correctly in IE8 due to browser bug
+  .lte-ie8 & {
+      display:none;
+  }
+
+  background-image: url("../images/icon-newwindow.gif");
+  
+  @include device-pixel-ratio() {
+    background-image: url("../images/icon-newwindow@2x.gif");
   }
 }
 
