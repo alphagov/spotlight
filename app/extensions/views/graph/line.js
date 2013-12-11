@@ -99,6 +99,7 @@ function (Component) {
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       this.componentWrapper.selectAll('path.line').classed('selected', false);
+      this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false);
       this.componentWrapper.selectAll('path.line').classed('not-selected', Boolean(groupSelected));
       this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
       this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
@@ -107,6 +108,18 @@ function (Component) {
         var line = this.componentWrapper.select('path.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
+        //var line_colour = $('path.line' + groupIndexSelected).css("stroke");
+        //this works and is shorter
+        var line_colour = line.style('stroke');
+        var groupFollowingIndexSelected = parseInt(groupIndexSelected) + 1;
+        var following_sibling_line = this.componentWrapper.select('path.line' + groupFollowingIndexSelected)
+          .classed('selected-following-sibling', true)
+          .style('stroke', line_colour);
+        //unset colour when done
+        //====
+        //select group index plus one
+        //set class for following sibling
+        //set colour to that of group index selected
         this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);

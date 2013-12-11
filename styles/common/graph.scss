@@ -82,12 +82,21 @@ figure.graph {
   .stack5 { fill: mix($data-colour-6, $white, 25%); }
 
   .selected {
-    &.stack0 { fill: mix($data-colour-1, $white, 40%); }
-    &.stack1 { fill: mix($data-colour-2, $white, 40%); }
-    &.stack2 { fill: mix($data-colour-3, $white, 40%); }
-    &.stack3 { fill: mix($data-colour-4, $white, 40%); }
-    &.stack4 { fill: mix($data-colour-5, $white, 40%); }
-    &.stack5 { fill: mix($data-colour-6, $white, 40%); }
+    &.stack0 { fill: mix($data-colour-1, $white, 50%); }
+    &.stack1 { fill: mix($data-colour-2, $white, 50%); }
+    &.stack2 { fill: mix($data-colour-3, $white, 50%); }
+    &.stack3 { fill: mix($data-colour-4, $white, 50%); }
+    &.stack4 { fill: mix($data-colour-5, $white, 50%); }
+    &.stack5 { fill: mix($data-colour-6, $white, 50%); }
+  }
+
+  .not-selected {
+    &.stack0 { fill: mix($data-colour-1, $white, 10%); }
+    &.stack1 { fill: mix($data-colour-2, $white, 10%); }
+    &.stack2 { fill: mix($data-colour-3, $white, 10%); }
+    &.stack3 { fill: mix($data-colour-4, $white, 10%); }
+    &.stack4 { fill: mix($data-colour-5, $white, 10%); }
+    &.stack5 { fill: mix($data-colour-6, $white, 10%); }
   }
 
   .text0 { fill: $data-colour-1; }
@@ -136,6 +145,9 @@ figure.graph {
     vector-effect: non-scaling-stroke;
 
     &.selected {
+      stroke-width: 4px;
+    }
+    &.selected-following-sibling{
       stroke-width: 4px;
     }
   }
