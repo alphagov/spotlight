@@ -53,6 +53,7 @@
           }
 
           ul.attributes{
+            @include core-14;
             padding-left: 0px;
 
             li{
