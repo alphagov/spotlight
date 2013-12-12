@@ -19,7 +19,7 @@ function (MultiStatsView, Model, Collection) {
             _start_at: collection.getMoment("2013-08-01T00:00:00+00:00"),
             a: 1, 
             b: 2,
-            c: 0, // TODO: Add null back in. 
+            c: 0, 
             d: 0,
             e: 5
           },
@@ -74,24 +74,13 @@ function (MultiStatsView, Model, Collection) {
 
     });
     
-    it("has at least some of the expected content", function () {
+    it("has some of the expected content", function () {
 
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(0) h3')).toHaveText('Statistic A');
       });
 
     });    
-    
-    // TODO - add back in. 
-    it("renders nothing if the collection is empty", function () {
-
-      collection.first().get('values').reset([]);
-       
-      jasmine.renderView(view, function () {
-        expect(view.$el.find('ul li').length).toEqual(0); 
-      });
-
-    });
     
   })
 });
