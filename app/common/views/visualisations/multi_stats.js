@@ -4,7 +4,7 @@ define([
   'stache!common/templates/visualisations/multi_stats',
   'Mustache'
 ],
-function (View, SingleStat, template, Mustache) {
+function (View, MultiStatItem, template, Mustache) {
   var MultiStatsView = View.extend({
 
     template: template,
@@ -16,7 +16,7 @@ function (View, SingleStat, template, Mustache) {
         var ul = this.$el.find('ul');
         _.each(this.getStats(), function(d) {
           var el = $('<li>').appendTo(ul);
-          view = new SingleStat({
+          view = new MultiStatItem({
             'collection': this.collection, 
             'stat': d,
             'el': el

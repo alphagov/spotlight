@@ -1,22 +1,13 @@
 <h3>{{ title }}</h3>
 
 <div class="impact">
-<p class="impact-number">
-{{# hasValue }}
-<strong>{{ current }}</strong>
-{{/ hasValue }}
-{{^ hasValue }}
-<span class="no-data">(no data)</span>
-{{/ hasValue }}
-{{ date }}
-</p>
+<p class="single-stat-headline impact-number"></p>
 </div>
 	
 <div class="delta">
-{{# percentChange }}
-<p class="impact-number change {{ trend }}">{{ percentChange }}</p>
-<p class="stat-description previous-date">{{ previousDate }}</p>
-{{/ percentChange }}
+<div class="single-stat-delta"></div>
+<!-- <p class="impact-number change {{ trend }}">{{ percentChange }}</p>
+<p class="stat-description previous-date">{{ previousDate }}</p> -->
 </div>
 
 <div class="sparkline">	

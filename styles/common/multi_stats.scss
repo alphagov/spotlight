@@ -17,26 +17,34 @@
 
   p.impact-number, p.stat-description { 
     margin-bottom: 0;
+    clear: both;
     @include core-16($tabular-numbers: true);
 	  strong {
 	    @include bold-36($tabular-numbers: true);
 	  }
   }
 
-  p.stat-description { 
-    margin-bottom: 0;
+  p.impact-number { 
+    margin-top: 8px;
   }
 
   .delta { 
     position: absolute;
     bottom: 0;
-    left: 10em;
+    left: 8em;
+    @include core-16($tabular-numbers: true);
   }
 
   .sparkline { 
     position: absolute;
     bottom: 0;
-    left: 15em;
+    right: 0;
+    left: 13em;
+  }
+
+  .sparkline-graph { 
+    float: none;
+    clear: both;
   }
  
   @media(max-width: 640px) {
@@ -46,7 +54,7 @@
 	  }
 	
 	  .delta { 
-	    left: 8em;
+	    left: 7em;
 	  }
 	
   }

@@ -7,7 +7,7 @@ function (Graph) {
     minYDomainExtent: 0, 
     
     getConfigNames: function () {
-      return ['stack', 'month', 'ymin']; 
+      return ['overlay', 'month', 'ymin']; 
     },
     
     components: function () {
