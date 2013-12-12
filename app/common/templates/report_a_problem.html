@@ -4,7 +4,7 @@
   <h2>Help us improve GOV.UK</h2>
   <form accept-charset="UTF-8" action="/contact/govuk/problem_reports" method="post">
     <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-    <input id="url" name="url" type="hidden" value="{{ requestUrl }}">
+    <input id="url" name="url" type="hidden" value="{{ govukUrl }}">
     {{#source}}
     <input id="source" name="source" type="hidden" value="{{ source }}">
     {{/source}}
@@ -16,7 +16,7 @@
 
     <label for="what_doing">What you were doing</label>
     <input id="what_doing" name="what_doing" type="text" />
-    
+
     <label for="what_wrong">What went wrong</label>
     <input id="what_wrong" name="what_wrong" type="text" />
 

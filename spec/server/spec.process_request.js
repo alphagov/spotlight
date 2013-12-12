@@ -83,7 +83,6 @@ function (processRequest, Model, Controller, View) {
 
       var model, controller;
       beforeEach(function() {
-        spyOn(processRequest, "getFullUrl").andReturn('/testRequestUrl');
         var ConcreteController = Controller.extend({
           viewClass: View,
           render: jasmine.createSpy()
@@ -99,7 +98,6 @@ function (processRequest, Model, Controller, View) {
         expect(model.get('assetPath')).toEqual('/testAssetPath');
         expect(model.get('backdropUrl')).toEqual('//testBackdrop/');
         expect(model.get('environment')).toEqual('development');
-        expect(model.get('requestUrl')).toEqual('/testRequestUrl');
         expect(controller.model).toBe(model);
         expect(controller.raw).toEqual('true');
         expect(controller.url).toEqual('test url');
@@ -115,20 +113,22 @@ function (processRequest, Model, Controller, View) {
       });
     });
 
-    describe("getFullUrl", function () {
-      it("creates a fully qualified request URL", function () {
+    describe("govukUrl", function () {
+      it("sets the URL to be equal to the GOV.UK location", function () {
         var get = jasmine.createSpy();
         get.plan = function (prop) {
           return {
-            host: 'domain'
+            govukHost: 'spotlight.dev.gov.uk'
           }[prop];
         };
         var req = {
+          app: {
+            get: get
+          },
           protocol: 'http',
-          url: '/test/path',
-          get: get
+          originalUrl: '/performance/foo'
         };
-        expect(processRequest.getFullUrl(req)).toEqual('http://domain/test/path');
+        expect(processRequest.getGovukUrl(req)).toEqual('http://spotlight.dev.gov.uk/performance/foo');
       });
     });
   });
