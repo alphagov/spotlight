@@ -45,7 +45,7 @@ function (MultiStatItemView, Model, Collection) {
     it("calculates initial time period correctly", function () {
 
       jasmine.renderView(view, function () {
-        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Last 31 days');
+        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Past 31 days');
       });
 
     });
@@ -54,7 +54,7 @@ function (MultiStatItemView, Model, Collection) {
 
       collection.first().get('values').first().set({'_start_at': collection.getMoment("2011-08-01T00:00:00+00:00")});
       jasmine.renderView(view, function () {
-        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Last 2 years');
+        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Past 2 years');
       });
 
     });
@@ -63,7 +63,7 @@ function (MultiStatItemView, Model, Collection) {
 
       collection.first().get('values').first().set({'_start_at': collection.getMoment("2013-07-29T00:00:00+00:00")});
       jasmine.renderView(view, function () {
-        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Last 1 month');
+        expect(view.$el.find('.sparkline .stat-description').text()).toEqual('Past 1 month');
       });
 
     });
