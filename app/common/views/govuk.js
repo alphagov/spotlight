@@ -3,6 +3,7 @@ define([
   'stache!common/templates/head',
   'tpl!common/templates/body-end.html',
   'stache!common/templates/navigation',
+  'stache!common/templates/breadcrumbs',
   'stache!common/templates/govuk_template',
   'stache!common/templates/footer_top',
   'stache!common/templates/footer_links',
@@ -10,7 +11,7 @@ define([
   'stache!common/templates/cookie_message_template',
   'stache!common/templates/content'
 ],
-function (View, headTemplate, bodyEndTemplate, navigationTemplate,
+function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTemplate,
           govukTemplate, footerTopTemplate, footerLinksTemplate,
           reportAProblemTemplate, cookieMessageTemplate, contentTemplate) {
   /**
@@ -65,6 +66,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate,
           footerTop: footerTopTemplate(),
           footerSupportLinks: footerLinksTemplate(),
           content: contentTemplate({
+            breadcrumbs: breadcrumbsTemplate,
             content: this.getContent(),
             reportAProblem: this.reportAProblemTemplate(baseContext) 
           })

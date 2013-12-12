@@ -29,6 +29,7 @@
     }
 
     p.explanatory {
+      @include core-19;
       width: 75%;
     }
   }
@@ -82,7 +83,6 @@
 .performance-platform-outer {
   margin: 0 30px;
 
-  border-top: 10px solid $primary-colour;
   padding: 2em 0 0;
 
   @media (max-width: 640px) {
