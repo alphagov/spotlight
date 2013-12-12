@@ -5,8 +5,6 @@ define([
 ],
 function (MultiStatsView, Model, Collection) {
   describe("MultiStatsView", function () {
-    
-    // TODO: Test that getStats returns some stats - look at view attribute?
      
     var collection, view;
     beforeEach(function() { 
@@ -67,7 +65,6 @@ function (MultiStatsView, Model, Collection) {
     }), 
     
     it("adds li elements to the page", function () {
-
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li').length).toEqual(5);
       });
@@ -75,11 +72,9 @@ function (MultiStatsView, Model, Collection) {
     });
     
     it("has some of the expected content", function () {
-
       jasmine.renderView(view, function () {
         expect(view.$el.find('ul li:eq(0) h3')).toHaveText('Statistic A');
       });
-
     });    
     
   })
