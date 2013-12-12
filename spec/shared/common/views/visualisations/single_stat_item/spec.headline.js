@@ -50,22 +50,11 @@ function (SingleStatView, HeadlineView, Collection, Mustache) {
     });
 
   });
- 
-  // TODO: Fix this. 
-  it("does not fail miserably for collection of length 0", function () {
-    
-    collection.first().get('values').reset([]);
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('strong').length).toEqual(0);
-    });
-    
-  });
 
   it("indicates missing data", function () {
     
     collection.first().get('values').last().set('a', null);
     jasmine.renderView(view, function () {
-      console.log('view', view.$el.html());
       expect(view.$el.find('strong').length).toEqual(0);
       expect(view.$el.text()).toContain('(no data)');
     });
@@ -76,7 +65,6 @@ function (SingleStatView, HeadlineView, Collection, Mustache) {
     
     collection.first().get('values').last().set('a', null);
     jasmine.renderView(view, function () {
-      console.log('view', view.$el.html());
       expect(view.$el.find('strong').length).toEqual(0);
       expect(view.$el.text()).toContain('(no data)');
     });
