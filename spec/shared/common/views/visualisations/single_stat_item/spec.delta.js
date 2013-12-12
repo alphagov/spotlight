@@ -61,16 +61,6 @@ function (DeltaView, Model, Collection, Mustache) {
 
   });
 
-  // TODO: fix this. 
-  it("does not show deltas for collection of length 1", function () {
-    //collection.pop();
-    // jasmine.renderView(view, function () {
-    //   expect(view.$el.find('ul li:eq(0) h3')).toHaveText('Statistic A');
-    //   expect(view.$el.find('ul li:eq(0) p.impact-number strong')).toHaveText('1');
-    //   expect(view.$el.find('ul li:eq(0) p.change').length).toEqual(0);
-    //   expect(view.$el.find('ul li:eq(0) p.previous-date').length).toEqual(0);
-    // });
-  });
   
   it("does not show a delta if the denominator is null", function () {
     collection.first().get('values').first().set('a', null);
