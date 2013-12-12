@@ -10,12 +10,14 @@ function (SingleStatView) {
     render: function() { 
       SingleStatView.prototype.render.apply(this, arguments);
       this.$el.find('p:first').addClass('change impact-number');
+      this.$el.find('p').removeClass('increase decrease no-change');
+      this.$el.find('p').addClass(this.trend);
     },
     
     getValue: function() { 
       var model = this.collection.first().get('values').last();
       var change = this.getChange(model, this.stat.attr);
-      this.$el.find('p').addClass(change.trend);
+      this.trend = change.trend;
       return change.percentChange;
     },
     
@@ -26,9 +28,7 @@ function (SingleStatView) {
     
     getValueSelected: function(selected) { 
       var change = this.getChange(selected.selectedModel, this.stat.attr);
-      //this.$el.find('p:first').removeClass('increase decrease no-change');
-      //console.log('change.trend', this.$el.find('p'), change.trend);
-      this.$el.find('p').addClass(change.trend);
+      this.trend = change.trend;
       return change.percentChange;
     },
     
