@@ -114,7 +114,7 @@
       "slug": "regional_hpi",
       "module-type": "grouped_timeseries",
       "title": "House price index (HPI) by region",
-      "description": "Average HPIs by region",
+      "description": "Average HPIs by region (100 = February 2002)",
       "data-group": "housing-policy",
       "data-type": "house-price-index",
       "cumulative": false,
@@ -123,8 +123,7 @@
       "period": "month",
       "filter-by": ["key:house_price_index"],
       "info": [
-        "Source: ONS",
-        "TBD"
+        "Source: Office of National Statistics (ONS)"
       ],
       "series": [
          { "id": "Scotland", "title": "Scotland" },
