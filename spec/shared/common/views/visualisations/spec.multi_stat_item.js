@@ -68,16 +68,6 @@ function (MultiStatItemView, Model, Collection) {
 
     });
     
-    // TODO: Add this back in when we've figured out how to fix graph.js for empty/short collections. 
-    it("correctly does not show time values if our collection is too short", function () {
-
-      //collection.first().get('values').first().destroy();
-      jasmine.renderView(view, function () {
-        //expect(view.$el.find('.sparkline .stat-description').text()).toEqual('');
-      });
-
-    });
-    
 
   })
 });
