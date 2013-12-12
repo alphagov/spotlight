@@ -33,6 +33,10 @@
     bottom: 0;
     left: 8em;
     @include core-16($tabular-numbers: true);
+    
+    span.no-data { 
+      display: block;
+    }
   }
 
   .sparkline { 
@@ -40,6 +44,9 @@
     bottom: 0;
     right: 0;
     left: 13em;
+		p.stat-description { 
+	    padding-left: 10px;
+	  }
   }
 
   .sparkline-graph { 
@@ -47,14 +54,38 @@
     clear: both;
   }
  
-  @media(max-width: 640px) {
+  @media(max-width: 880px) {
 
 		li { 
 		  width: 100%;
 	  }
-	
 	  .delta { 
-	    left: 7em;
+	    left: 12em;
+	  }
+		.sparkline { 
+	    left: 20em;
+	  }
+	
+  }
+
+  @media(max-width: 640px) {
+
+	  .delta { 
+	    left: 9em;
+	  }
+		.sparkline { 
+	    left: 14em;
+	  }
+	
+  }
+
+  @media(max-width: 500px) {
+
+	  .delta { 
+	    left: 8em;
+	  }
+		.sparkline { 
+	    left: 12em;
 	  }
 	
   }
