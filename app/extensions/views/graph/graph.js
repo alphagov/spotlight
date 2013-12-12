@@ -344,12 +344,18 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           this.layers = stack(this.collection.models.slice().reverse());
         },
         getYPos: function (groupIndex, modelIndex) {
+          if(!this.collection.at(groupIndex)){
+            return null;
+          }
           var model = this.collection.at(groupIndex).get('values').at(modelIndex);
           var yProperty = this.stackYProperty || 'y';
           if (model[yProperty] === null) {
             return null;
           }
           var y0Property = this.stackY0Property || 'y0';
+          console.log(model[y0Property]);
+          console.log(model[yProperty]);
+          //0 is top...
           return model[y0Property] + model[yProperty];
         },
         getY0Pos: function (groupIndex, modelIndex) {

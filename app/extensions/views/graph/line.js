@@ -98,6 +98,7 @@ function (Component) {
     },
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
+      var groupFollowingIndexSelected = parseInt(groupIndexSelected, 10) + 1;
       //sibling line
       this.componentWrapper.selectAll('path.line').classed('selected', false);
       //sibling line
@@ -112,7 +113,6 @@ function (Component) {
           .classed('not-selected', false);
         //sibling line
         var line_colour = line.style('stroke');
-        var groupFollowingIndexSelected = parseInt(groupIndexSelected, 10) + 1;
         var following_sibling_line = this.componentWrapper.select('path.line' + groupFollowingIndexSelected)
           .classed('selected-following-sibling', true)
           .style('stroke', line_colour);
@@ -133,7 +133,12 @@ function (Component) {
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
           if (y !== null) {
+            //here
+            var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
+            var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected) || 0;
+            console.log(y2);
             this.renderSelectionPoint(groupIndexSelected, x, y);
+            this.renderSelectionPoint(groupFollowingIndexSelected, x2, y2);
           }
         }
       }
