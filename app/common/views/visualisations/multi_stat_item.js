@@ -37,34 +37,41 @@ function (View, HeadlineItemView, DeltaItemView, SparklineView, template) {
       );
     },
     
-    views: {
-      '.sparkline-graph': {
-        view: SparklineView,
-        options: function () {
-          return {
-            valueAttr: this.stat.attr
-          };
+    views: function () {
+      var views = {
+        '.single-stat-headline': {
+          view: HeadlineItemView,
+          options: function () {
+            return {
+              stat: this.stat,
+              valueAttr: this.stat.attr
+            };
+          }
+        },
+        '.single-stat-delta': {
+          view: DeltaItemView,
+          options: function () {
+            return {
+              stat: this.stat,
+              collection: this.collection,
+              valueAttr: this.stat.attr
+            };
+          }
         }
-      },
-      '.single-stat-headline': {
-        view: HeadlineItemView,
-        options: function () {
-          return {
-            stat: this.stat,
-            valueAttr: this.stat.attr
-          };
-        }
-      },
-      '.single-stat-delta': {
-        view: DeltaItemView,
-        options: function () {
-          return {
-            stat: this.stat,
-            collection: this.collection,
-            valueAttr: this.stat.attr
-          };
-        }
+      };
+
+      if (this.sparkline) {
+        views['.sparkline-graph'] = {
+          view: SparklineView,
+          options: function () {
+            return {
+              valueAttr: this.stat.attr
+            };
+          }
+        };
       }
+
+      return views;
     }
 
   });

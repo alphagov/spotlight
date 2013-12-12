@@ -62,6 +62,9 @@ function (MultiStatsView, Model, Collection) {
             ]
         })
       });
+      jasmine.serverOnly(function () {
+        view.sparkline = false;
+      });
     }), 
     
     it("adds li elements to the page", function () {
