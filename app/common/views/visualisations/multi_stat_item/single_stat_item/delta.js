@@ -50,12 +50,7 @@ function (SingleStatView) {
       
       if (typeof matchingValues !== 'undefined') {
         previousValue = matchingValues.get(attr);
-        //console.log('currentValue:', currentValue, 'and previousValue:', previousValue);
-        if (previousValue === null) {
-          percentChange = null;
-        } else if (previousValue === 0.0) {
-          percentChange = null;
-        } else { 
+        if (previousValue) { 
           percentChange = (currentValue-previousValue) / previousValue;
           if (percentChange !== 0.0) {
             percentChange = this.formatPercentage(percentChange, 2, true);
@@ -70,8 +65,6 @@ function (SingleStatView) {
         } else { 
           trend = 'no-change';
         }
-      } else { 
-        percentChange = 'no data';
       }
       
       return {
