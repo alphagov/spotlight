@@ -93,6 +93,38 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }, this);
     },
     
+    /*
+     *  Subviews definition. Override in subclasses.
+     *
+     *  Syntax:
+     *  views: {
+     *      '.selector1': SubView,
+     *      // default, provides subview with result of this.defaultSubviewOptions()
+     *
+     *      '#selector2': {
+     *        view: AnotherView,
+     *        options: {
+     *          // overrides to this.defaultSubviewOptions
+     *          model: this.collection.selectedItem,
+     *          customOption: 'foo'
+     *        }
+     *      },
+     *      '.selector3': {
+     *        view: YetAnotherView,
+     *        options: function () {
+     *          // `this` refers to parent view
+     *          return {
+     *            // overrides to this.defaultSubviewOptions
+     *            model: this.collection.selectedItem,
+     *            customOption: 'foo'
+     *          }
+     *        }
+     *      }
+     *  },
+     *
+     *  N.B.: Selectors need to refer to elements created by the parent view.
+     *  No wrapper element is created for subviews.
+     */
     views: {},
     
     keys: {

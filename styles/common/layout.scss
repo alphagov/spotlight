@@ -18,14 +18,18 @@
   header {
     margin-bottom: 1.5em;
     padding-bottom: 2em;
+    width: 100%;
 
     border-bottom: 5px solid $primary-colour;
+    display: inline-block;
 
     h1 {
       width: 75%;
+      display: inline-block;
     }
 
     p.explanatory {
+      @include core-19;
       width: 75%;
     }
   }
@@ -34,6 +38,7 @@
     clear: left;
     float: left;
     width: 100%;
+    position: relative;
     margin-top: 1em;
     margin-bottom: 1.5em;
     padding-top: 0.4em;
@@ -60,9 +65,9 @@
     padding: 0;
 
     section {
-      float:none;
       &.half-width {
         width: 100%;
+
         & ~ .half-width {
           margin-left:0;
         }
@@ -78,7 +83,6 @@
 .performance-platform-outer {
   margin: 0 30px;
 
-  border-top: 10px solid $primary-colour;
   padding: 2em 0 0;
 
   @media (max-width: 640px) {

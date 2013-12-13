@@ -5,7 +5,7 @@ define([
 ],
 function (GovUkView, View, Model) {
   describe("GovUkView", function () {
-    it("renders a page with a content view in GOV.UK style", function () {
+    it("renders a page with breadcrumbs and content view in GOV.UK style", function () {
 
       var TestView = View.extend({
         template: function () {
@@ -42,7 +42,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content report_a_problem </div> </section> </div>');
+      expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li><a href="/performance">Performance</a></li> </ol> </div> <div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content report_a_problem </div> </section> </div>');
     });
   });
 });

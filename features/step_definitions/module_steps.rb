@@ -42,14 +42,14 @@ def values
         raw: "//ul/li//p[@class='change impact-number increase']"
       }
     },
-    'grouped_timeseries' => {
+    'stacked_categories' => {
       'no-realistic-dashboard' => {
         title: 'Categories in a stack',
         description: '',
         raw: "//*[name()='svg']"
       }
     },
-    'grouped_timeseries_2' => {
+    'starts_completions' => {
       'no-realistic-dashboard' => {
         title: 'Categories as lines',
         description: '',
@@ -59,12 +59,21 @@ def values
   }
 end
 
+def find_section_for(identifier)
+  if page.has_css?("section##{identifier}") 
+    section = page.find("section##{identifier}")
+  else
+    section = page.find("section.#{identifier}")
+  end
+  section
+end
+
 Then(/^I should see the "(.*?)" module for "(.*?)" data$/) do |display_module, service|
-  page.find("section.#{display_module} .visualisation").should have_xpath(values[display_module][service][:raw])
+  find_section_for(display_module).find(".visualisation").should have_xpath(values[display_module][service][:raw])
 end
 
 Then(/^I should see the "(.*?)" module fallback for "(.*?)" data$/) do |display_module, service|
-  page.find("section.#{display_module}").should have_css(".visualisation-fallback")
+  find_section_for(display_module).should have_css(".visualisation-fallback")
 end
 
 Then(/^I should not see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
@@ -78,11 +87,11 @@ end
 
 Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |service, display_module|
   v = values[display_module][service]
-  page.find("section.#{display_module}").should have_content(v[:title])
+  find_section_for(display_module).should have_content(v[:title])
   if v[:description]
-    page.find("section.#{display_module}").should have_content(v[:description])
+    find_section_for(display_module).should have_content(v[:description])
   end
   if v[:info]
-    page.find("section.#{display_module}").should have_content('more info')
+    find_section_for(display_module).should have_content('more info')
   end
 end 
