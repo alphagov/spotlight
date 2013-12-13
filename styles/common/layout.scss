@@ -26,7 +26,12 @@
     h1 {
       width: 75%;
       display: inline-block;
+      @media (max-width: 640px) {
+        width:100%;
+      }
     }
+
+
 
     p.explanatory {
       @include core-19;
