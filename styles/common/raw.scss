@@ -2,11 +2,15 @@ body.raw {
   #skiplink-container,
   #global-cookie-message,
   #global-header,
-  #footer {
+  #global-breadcrumb,
+  #footer,
+  .report-a-problem-toggle,
+  .module-banner-text {
     display: none;
   }
 
   #content,
+  #wrapper,
   .performance-platform-outer {
     margin:0;
     border:0;
