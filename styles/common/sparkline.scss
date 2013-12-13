@@ -1,12 +1,14 @@
-
 .sparkline-graph {
-
   figure.graph {
     .graph-wrapper {
       svg {
         max-height: 30px;
         max-width: 180px;
         min-height: 30px;
+
+        @media (max-width: 880px) {   
+          max-width: 300px;
+        }
       }
 
       .inner {
@@ -17,15 +19,4 @@
       }
     }
   }
-
-  @media (max-width: 880px) {   
-	  figure.graph {
-	    .graph-wrapper {
-			  svg {
-			    max-width: 300px;
-			  }
-			}
-		}
-  }
-
 }
