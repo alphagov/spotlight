@@ -1,0 +1,16 @@
+<h3>{{ title }}</h3>
+
+<div class="impact">
+<p class="single-stat-headline impact-number"></p>
+</div>
+	
+<div class="delta">
+<div class="single-stat-delta"></div>
+</div>
+
+<div class="sparkline">	
+<div class="sparkline-graph"></div>
+{{# timePeriod }}
+<p class="stat-description">Past {{ timePeriod }} {{ timePeriodValue }}</p>
+{{/ timePeriod }}
+</div>

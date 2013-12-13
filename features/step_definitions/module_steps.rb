@@ -39,7 +39,7 @@ def values
       'no-realistic-dashboard' => {
         title: 'Average mortgage',
         description: 'A range of factors indicative of the state of the housing market',
-        raw: "//ul/li//p[@class='impact-number']"
+        raw: "//ul/li//p[@class='change impact-number increase']"
       }
     },
     'stacked_categories' => {

@@ -1,14 +1,14 @@
 define([
-  'extensions/collections/collection'
+  'extensions/collections/matrix'
 ],
-function (Collection) {
-  var MultiStatsCollection = Collection.extend({
+function (MatrixCollection) {
+  var MultiStatsCollection = MatrixCollection.extend({
     
     initialize: function (attrs, options) {
       options = options || {};
       this.stats = options.stats;
       this.period = options.period;
-      Collection.prototype.initialize.apply(this, arguments);
+      MatrixCollection.prototype.initialize.apply(this, arguments);
     },
     
     getAttrNames: function() {
@@ -42,7 +42,14 @@ function (Collection) {
         return res;
       }, this);
 
-      return data.slice(0, latestIndexWithValues + 1);
+      data = data.slice(0, latestIndexWithValues + 1);
+      
+      return {
+        id: 'multistats',
+        title: 'MultiStats',
+        values: data
+      };
+      
     }
     
   });

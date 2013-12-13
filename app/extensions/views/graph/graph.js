@@ -298,7 +298,19 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           return xScale;
         }
       },
-
+      
+      ymin: { 
+        initialize: function() {
+          var d3 = this.d3;
+          var valueAttr = this.valueAttr;      
+          var min = d3.min(this.collection.models, function (group) {
+            return d3.min(group.get('values').models, function (value) {
+              return value.get(valueAttr);
+            });
+          });
+          this.getYMin = min;
+        }
+      },
 
       overlay: {
         getYPos: function (groupIndex, modelIndex) {
@@ -316,7 +328,8 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           });
 
           var yScale = this.d3.scale.linear();
-          var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
+          var yMin = this.getYMin || 0;
+          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           yScale.domain(tickValues.extent);
           yScale.rangeRound([this.innerHeight, 0]);
           yScale.tickValues = tickValues.values;
@@ -370,7 +383,8 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           }
           var max = d3.max(sums);
           var yScale = this.d3.scale.linear();
-          var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
+          var yMin = this.getYMin || 0;
+          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           yScale.domain(tickValues.extent);
           yScale.rangeRound([this.innerHeight, 0]);
           yScale.tickValues = tickValues.values;

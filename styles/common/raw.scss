@@ -2,11 +2,15 @@ body.raw {
   #skiplink-container,
   #global-cookie-message,
   #global-header,
-  #footer {
+  #global-breadcrumb,
+  #footer,
+  .report-a-problem-toggle,
+  .module-banner-text {
     display: none;
   }
 
   #content,
+  #wrapper,
   .performance-platform-outer {
     margin:0;
     border:0;
@@ -29,8 +33,13 @@ body.raw {
   .availability .visualisation,
   .completion_rate .visualisation,
   .completion_numbers .visualisation,
-  .grouped_timeseries .visualisation {
+  .grouped_timeseries .visualisation,
+  .multi_stats .visualisation {
     width: 960px;
+  }
+
+  .multi_stats .sparkline-graph figure.graph .graph-wrapper {
+    width: 180px;
   }
 
   .availability #availability-nav {

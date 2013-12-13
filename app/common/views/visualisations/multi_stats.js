@@ -1,74 +1,42 @@
 define([
   'extensions/views/view',
+  'common/views/visualisations/multi_stat_item',
   'stache!common/templates/visualisations/multi_stats',
   'Mustache'
 ],
-function (View, template, Mustache) {
+function (View, MultiStatItem, template, Mustache) {
   var MultiStatsView = View.extend({
 
     template: template,
-    
-    getFormattedValue: function (stat) {
-      var value = this.collection.last().get(stat.attr);
-      if (value == null) {
-        return null;
-      }
-      value = this.formatNumericLabel(value);
-      if (stat.format) {
-        return Mustache.render(
-          stat.format,
-          { value: value }
-        );
-      }
-      return value;
-    },
-    
-    getChange: function (collection, attr) {
-      var current = collection.last().get(attr);
-      var previous = null, previousDate = null, trend = null, percentChange;
-      if (collection.length > 1) {
-        previous = collection.at(collection.length-2).get(attr);  
-        if (_.isNumber(current) &&_.isNumber(previous) && (previous !== 0)){
-          previousDate = collection.at(collection.length-2).get('_start_at').format('MMM YYYY');  
-          percentChange = this.formatPercentage((current-previous) / previous, 2, true);
-          if (current > previous) {
-            trend = 'increase';
-          } else if (current < previous) { 
-            trend = 'decrease';
-          } else { 
-            trend = 'no-change';
-          }
-        }
-      }
-      return {
-        previousDate: previousDate, 
-        percentChange: percentChange, 
-        trend: trend
-      };
-    },
 
-    templateContext: function () {
+    sparkline: true,
+    
+    render: function() { 
+        View.prototype.render.apply(this, arguments);
+        
+        var ul = this.$el.find('ul');
+        _.each(this.getStats(), function(d) {
+          var el = $('<li>').appendTo(ul);
+          view = new MultiStatItem({
+            collection: this.collection,
+            stat: d,
+            el: el,
+            sparkline: this.sparkline
+          });
+          view.render();
+        }, this);
+    }, 
+
+    getStats: function() { 
+
       var stats = [];
       if (this.collection.length) {
-        stats = _.map(this.model.get('stats'), function (stat) {
-          var current = this.getFormattedValue(stat);
-          var change = this.getChange(this.collection, stat.attr);
-          return _.extend({}, stat, {
-            current: this.getFormattedValue(stat),
-            hasValue: current != null,
-            date: this.collection.last().get('_start_at').format('MMM YYYY'),
-            previousDate: change.previousDate,
-            percentChange: change.percentChange,
-            trend: change.trend
-          });
-        }, this);
-      } 
+        stats = this.model.get('stats');
+      }
+      return stats;
       
-      return _.extend(
-        View.prototype.templateContext.apply(this, arguments),
-        { statsWithValue: stats }
-      );
     }
+
   });
   return MultiStatsView;
 });
