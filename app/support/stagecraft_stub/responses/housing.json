@@ -118,9 +118,9 @@
       "data-group": "housing-policy",
       "data-type": "house-price-index",
       "cumulative": false,
-      "value-attr": "value:sum",
+      "value-attr": "value:mean",
       "category": "geography",
-      "period": "month",
+      "period": "quarter",
       "filter-by": ["key:house_price_index"],
       "info": [
         "Source: Office of National Statistics (ONS)"
