@@ -54,7 +54,7 @@ function (MatrixCollection, Collection, Group) {
         return {
           _timestamp: events[0]._timestamp,
           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)  
+          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
         };
       }, this);
     },
