@@ -1,0 +1,26 @@
+{
+  "page-type": "module",
+  "slug": "weekly_by_channel",
+  "module-type": "grouped_timeseries",
+  "title": "Claims by channel",
+  "description": "<h2><span class=i\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time</h2>",
+  "data-group": "carers-allowance",
+  "data-type": "weekly-claims",
+  "dashboard-title": "Carer's Allowance",
+  "dashboard-strapline": "Service performance",
+  "category": "key",
+  "period": "week",
+  "value-attr": "value:sum",
+  "show-line-labels": true,
+  "cumulative": true,
+  "info": [
+    "Data source: DWP database",
+    "Shows the number of successful claims for carer's allowance, broken down by channel",
+    "Digital: applications made online",
+    "Offline: applications made using a printed form"
+  ],
+  "series": [
+     { "id": "ca_clerical_received", "title": "Non Digital" },
+     { "id": "ca_e_claims_received", "title": "Digital" }
+  ]
+}
