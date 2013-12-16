@@ -72,7 +72,7 @@
       "description": "A range of factors indicative of the state of the housing market for first-time buyers",
       "data-group": "housing-policy",
       "data-type": "first-time-buyer",
-      "period": "month",
+      "period": "quarter",
       "restricted_data": true,
       "info": [
         "Source: Council of Mortgage Lenders"
