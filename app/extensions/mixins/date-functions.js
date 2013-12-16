@@ -35,6 +35,13 @@ function (moment) {
       }
   };
 
+  // Use month short names as per our style guide. 
+  moment.lang('en', {
+      monthsShort : [
+          "Jan", "Feb", "Mar", "Apr", "May", "June",
+          "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ]
+  });
 
   return {
     moment: moment,
