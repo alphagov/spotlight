@@ -16,9 +16,6 @@ span.alpha-tag {
   }
 }
 
-
-
-
 #global-header {
   .header-wrapper {
     .header-global {
@@ -50,29 +47,7 @@ span.alpha-tag {
       text-decoration: none;
     }
     a.menu {
-      @include core-16;
-      color: $white;
-      float: right;
-      text-decoration: none;
-      padding-top: 6px;
       display: none;
-      @include media($max-width: 768px){
-        display: block;
-      }
-      &:hover {
-        text-decoration: underline;
-      }
-      &:after {
-        display: inline-block;
-        font-size: 8px;
-        height: 8px;
-        padding-left: 5px;
-        vertical-align: middle;
-        content: " \25BC";
-      }
-      &.js-hidden:after {
-        content: " \25B2";
-      }
     }
     #proposition-menu {
       margin-top: 5px;
