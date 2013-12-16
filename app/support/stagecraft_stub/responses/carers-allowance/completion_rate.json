@@ -7,8 +7,8 @@
   "data-group": "carers-allowance",
   "data-type": "journey",
   "info": [
-    "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-    "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+    "Data source: Google Analytics",
+    "<a href='https://www.gov.uk/service-manual/measurement/completion-rate.html' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
     "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
   ],
   "start-matcher": "about-you$",

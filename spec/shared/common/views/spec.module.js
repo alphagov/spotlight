@@ -49,6 +49,13 @@ function (ModuleView, Collection, Model, View) {
       expect(getContent()).toEqual('<section class="testclass"><h1>Title</h1><aside class="more-info"><span class="more-info-link">more info</span><ul><li>Info line 1</li><li>Info line 2</li></ul></aside><h2>Description</h2><div class="visualisation">test content</div></section>');
     });
 
+    it("renders a module with description and info link", function () {
+      model.set('description', 'Description');
+      model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
+      moduleView.render();
+      expect(getContent()).toEqual('<section class="testclass"><h1>Title</h1><aside class="more-info"><span class="more-info-link">more info</span><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></aside><h2>Description</h2><div class="visualisation">test content</div></section>');
+    });
+
     it("renders an SVG-based module as a fallback element on the server", function () {
       jasmine.serverOnly(function () {
         moduleView.requiresSvg = true;
