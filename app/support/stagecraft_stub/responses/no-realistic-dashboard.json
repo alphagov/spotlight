@@ -142,8 +142,7 @@
       "period": "quarter",
       "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
       "info": [
-        "Source: National House-Building Council (NHBC)",
-        "TBD"
+        "Source: National House-Building Council (NHBC)"
       ],
       "series": [
          { "id": "completed", "title": "Completed" },
