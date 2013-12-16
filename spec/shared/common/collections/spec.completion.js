@@ -39,32 +39,32 @@ function (CompletionCollection) {
       {
         _timestamp: "2013-06-09T23:00:00+00:00",
         eventCategory: "fco-transaction-name:start",
-        uniqueEvents: 5
+        value: 5
       },
       {
         _timestamp: "2013-06-16T23:00:00+00:00",
         eventCategory: "fco-transaction-name:start",
-        uniqueEvents: 7
+        value: 7
       },
       {
         _timestamp: "2013-06-23T23:00:00+00:00",
         eventCategory: "fco-transaction-name:start",
-        uniqueEvents: 9
+        value: 9
       },
       {
         _timestamp: "2013-06-09T23:00:00+00:00",
         eventCategory: "fco-transaction-name:done",
-        uniqueEvents: 3
+        value: 3
       },
       {
         _timestamp: "2013-06-16T23:00:00+00:00",
         eventCategory: "fco-transaction-name:done",
-        uniqueEvents: 3
+        value: 3
       },
       {
         _timestamp: "2013-06-23T23:00:00+00:00",
         eventCategory: "fco-transaction-name:done",
-        uniqueEvents: 4
+        value: 4
       }
     ];
 
@@ -74,7 +74,8 @@ function (CompletionCollection) {
         data: someFakeFCOTransactionDataCategory,
         start_matcher: /start$/,
         start_matcher_suffix: "start",
-        end_matcher: /done$/
+        end_matcher: /done$/,
+        value_attribute: "value"
       });
 
       sharedBehaviourForCompletion({
@@ -94,7 +95,8 @@ function (CompletionCollection) {
                 "data-type": 'journey',
                 startMatcher: context.start_matcher,
                 endMatcher: context.end_matcher,
-                matchingAttribute: context.matching_attribute
+                matchingAttribute: context.matching_attribute,
+                valueAttribute: context.value_attribute
               });
               collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
               return collection;

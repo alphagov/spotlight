@@ -1,0 +1,18 @@
+{
+  "page-type": "module",
+  "slug": "carers_allowance_digital_takeup_weekly",
+  "module-type": "completion_rate",
+  "title": "Digital takeup",
+  "dashboard-title": "Carer's Allowance",
+  "dashboard-strapline": "Users completing the transaction online, including assisted digital users",
+  "data-group": "carers-allowance",
+  "data-type": "weekly-claims",
+  "info": [
+    "Data source: Department for Work and Pensions",
+    "Digital take-up measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+  ],
+  "start-matcher": "^ca_",
+  "end-matcher": "ca_e_claims_received$",
+  "matching-attribute": "key",
+  "value-attribute": "value"
+}
