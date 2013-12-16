@@ -14,7 +14,7 @@ function (Graph) {
       return [
         {
           view: this.sharedComponents.line,
-          options: { allowMissingData: true, drawCursorLine: true }
+          options: { allowMissingData: true }
         },
         { view: this.sharedComponents.hover }
       ];
