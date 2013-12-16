@@ -24,10 +24,10 @@
     display: inline-block;
 
     h1 {
-      width: 75%;
+      width: 100%;
       display: inline-block;
-      @media (max-width: 640px) {
-        width:100%;
+      @include media(desktop) {
+        width: 75%;
       }
     }
 
