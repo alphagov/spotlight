@@ -17,22 +17,6 @@
     },
     {
       "module-type": "completion_rate",
-      "slug": "carers_allowance_completion",
-      "title": "Completion rate",
-      "description": "",
-      "data-group": "carers-allowance",
-      "data-type": "journey",
-      "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
-        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
-      ],
-      "start-matcher": "about-you$",
-      "end-matcher": "consent-and-declaration$",
-      "matching-attribute": "eventLabel"
-    },
-    {
-      "module-type": "completion_rate",
       "slug": "carers_allowance_digital_takeup_weekly",
       "title": "Digital takeup",
       "dashboard-title": "Carer's Allowance",
@@ -46,6 +30,22 @@
       "end-matcher": "ca_e_claims_received$",
       "matching-attribute": "key",
       "value-attribute": "value"
+    },
+    {
+      "module-type": "completion_rate",
+      "slug": "carers_allowance_completion",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "carers-allowance",
+      "data-type": "journey",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "start-matcher": "about-you$",
+      "end-matcher": "consent-and-declaration$",
+      "matching-attribute": "eventLabel"
     },
     {
       "module-type": "journey",
