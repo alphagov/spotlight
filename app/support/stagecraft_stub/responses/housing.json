@@ -46,8 +46,8 @@
     {
       "slug": "regional_transactions",
       "module-type": "grouped_timeseries",
-      "title": "Residential property transactions by region",
-      "description": "",
+      "title": "Residential property transactions",
+      "description": "Volume of residential property transactions by nations and regions",
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
       "cumulative": false,

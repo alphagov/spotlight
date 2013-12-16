@@ -17,22 +17,6 @@
     },
     {
       "module-type": "completion_rate",
-      "slug": "carers_allowance_completion",
-      "title": "Completion rate",
-      "description": "",
-      "data-group": "carers-allowance",
-      "data-type": "journey",
-      "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
-        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
-      ],
-      "start-matcher": "about-you$",
-      "end-matcher": "consent-and-declaration$",
-      "matching-attribute": "eventLabel"
-    },
-    {
-      "module-type": "completion_rate",
       "slug": "carers_allowance_digital_takeup_weekly",
       "title": "Digital takeup",
       "dashboard-title": "Carer's Allowance",
@@ -48,6 +32,22 @@
       "value-attribute": "value"
     },
     {
+      "module-type": "completion_rate",
+      "slug": "carers_allowance_completion",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "carers-allowance",
+      "data-type": "journey",
+      "info": [
+        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "start-matcher": "about-you$",
+      "end-matcher": "consent-and-declaration$",
+      "matching-attribute": "eventLabel"
+    },
+    {
       "module-type": "journey",
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
@@ -59,11 +59,11 @@
       "data-type": "journey",
       "matching-attribute": "eventLabel",
       "steps": [
-        {"id": "about-you", "title": "About You"},
-        {"id": "care-you-provide", "title": "About the Care You Provide"},
-        {"id": "time-spent-abroad", "title": "Abroad"},
-        {"id": "other-money", "title": "Other Money"},
-        {"id": "consent-and-declaration", "title": "Consent and Declaration"}
+        {"id": "about-you", "title": "About you"},
+        {"id": "care-you-provide", "title": "About the care you provide"},
+        {"id": "time-spent-abroad", "title": "Time abroad"},
+        {"id": "other-money", "title": "Other money"},
+        {"id": "consent-and-declaration", "title": "Consent and declaration"}
       ]
     },
     {

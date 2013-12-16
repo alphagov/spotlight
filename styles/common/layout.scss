@@ -24,9 +24,14 @@
     display: inline-block;
 
     h1 {
-      width: 75%;
+      width: 100%;
       display: inline-block;
+      @include media(desktop) {
+        width: 75%;
+      }
     }
+
+
 
     p.explanatory {
       @include core-19;
