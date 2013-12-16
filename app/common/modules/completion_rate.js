@@ -15,7 +15,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
       return {
         startMatcher: new RegExp(this.model.get('start-matcher')),
         endMatcher: new RegExp(this.model.get('end-matcher')),
-        matchingAttribute: this.model.get('matching-attribute')
+        matchingAttribute: this.model.get('matching-attribute'),
+        valueAttribute: this.model.get('value-attribute')
       };
     }
   });

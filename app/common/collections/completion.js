@@ -12,6 +12,7 @@ function (MatrixCollection, Collection, Group) {
       this.startMatcher= options.startMatcher;
       this.endMatcher= options.endMatcher;
       this.matchingAttribute= options.matchingAttribute || 'eventCategory';
+      this.valueAttribute= options.valueAttribute || 'uniqueEvents';
       MatrixCollection.prototype.initialize.apply(this, arguments);
       this.query.set('period', 'week', {silent: true, utc: false});
       delete this.query.attributes.period;
@@ -26,7 +27,9 @@ function (MatrixCollection, Collection, Group) {
         return 0;
       }
 
-      return _.reduce(events, function (mem, d) { return mem + d.uniqueEvents; }, 0);
+      return _.reduce(events, function (mem, d) { 
+        return mem + d[this.valueAttribute]; 
+      }, 0, this);
     },
 
     findCompletion: function (event) {
@@ -51,7 +54,7 @@ function (MatrixCollection, Collection, Group) {
         return {
           _timestamp: events[0]._timestamp,
           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
+          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)  
         };
       }, this);
     },
