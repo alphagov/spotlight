@@ -128,7 +128,7 @@ function (processRequest, Model, Controller, View) {
           protocol: 'http',
           originalUrl: '/performance/foo'
         };
-        expect(processRequest.getGovukUrl(req)).toEqual('http://spotlight.dev.gov.uk/performance/foo');
+        expect(processRequest.getGovukUrl(req)).toEqual('https://spotlight.dev.gov.uk/performance/foo');
       });
     });
   });

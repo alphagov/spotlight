@@ -21,5 +21,5 @@ Then(/^I can report an error for the current page$/) do
 
   current_path = URI.parse(current_url).path
   page.should have_css('input#url', :visible => false)
-  page.find('input#url', :visible => false)['value'].should === "http://spotlight.test.gov.uk#{current_path}"
+  page.find('input#url', :visible => false)['value'].should === "https://spotlight.test.gov.uk#{current_path}"
 end
