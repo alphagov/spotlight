@@ -68,8 +68,8 @@
     },
     {
       "module-type": "multi_stats",
-      "title": "Average mortgage",
-      "description": "A range of factors indicative of the state of the housing market",
+      "title": "Average first mortgage",
+      "description": "A range of factors indicative of the state of the housing market for first-time buyers",
       "data-group": "housing-policy",
       "data-type": "first-time-buyer",
       "period": "month",

@@ -37,8 +37,8 @@ def values
     },
     'multi_stats' => {
       'no-realistic-dashboard' => {
-        title: 'Average mortgage',
-        description: 'A range of factors indicative of the state of the housing market',
+        title: 'Average first mortgage',
+        description: 'A range of factors indicative of the state of the housing market for first-time buyers',
         raw: "//ul/li//p[@class='change impact-number increase']"
       }
     },
