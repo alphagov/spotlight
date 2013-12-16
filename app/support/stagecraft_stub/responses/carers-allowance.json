@@ -39,8 +39,8 @@
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
-        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+        "Data source: Google Analytics",
+        "<a href=\"/service-manual/measurement/completion-rate.html\" rel=\"external\" target=\"_blank\">Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "start-matcher": "about-you$",
@@ -52,7 +52,7 @@
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Data source: Google Analytics",
         "The total number of unique users who arrived at each stage."
       ],
       "data-group": "carers-allowance",
@@ -75,7 +75,7 @@
       "info": [
         "Data source: Pingdom",
         "Page load time measures the time taken for a sample page within the service to load.",
-        "Uptime measures the percentage of time that the service was observed to be available."
+        "<a href=\"/service-manual/operations/uptime-and-availability.html\" rel=\"external\" target=\"_blank\">Uptime</a> measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
         {"id": "day", "name": "30 days"},
