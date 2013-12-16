@@ -39,7 +39,7 @@
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Data source: Google Analytics",
         "Completion rate measures the proportion of people who started a claim and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
@@ -52,7 +52,7 @@
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
       "info": [
-        "Data source: Google Analytics (unique visitor numbers based on sampled data)",
+        "Data source: Google Analytics",
         "The total number of unique users who arrived at each stage."
       ],
       "data-group": "carers-allowance",
