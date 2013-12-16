@@ -59,11 +59,11 @@
       "data-type": "journey",
       "matching-attribute": "eventLabel",
       "steps": [
-        {"id": "about-you", "title": "About You"},
-        {"id": "care-you-provide", "title": "About the Care You Provide"},
+        {"id": "about-you", "title": "About you"},
+        {"id": "care-you-provide", "title": "About the care you provide"},
         {"id": "time-spent-abroad", "title": "Abroad"},
-        {"id": "other-money", "title": "Other Money"},
-        {"id": "consent-and-declaration", "title": "Consent and Declaration"}
+        {"id": "other-money", "title": "Other money"},
+        {"id": "consent-and-declaration", "title": "Consent and declaration"}
       ]
     },
     {
