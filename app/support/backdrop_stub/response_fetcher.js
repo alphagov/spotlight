@@ -38,6 +38,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
       { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'first-time-buyer'}, 'file': 'housing-first-time-buyer.json'},
+      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key'}, 'file': 'carers_allowance_weekly_by_channel.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'}
     ],
 
