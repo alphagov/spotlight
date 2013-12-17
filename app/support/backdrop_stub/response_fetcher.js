@@ -4,6 +4,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
   
     stub_mappings: [
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_residential_transactions.json'},
+      { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_residential_transactions_quarterly.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'house-price-index', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_house_price_index_quarterly.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'house-price-index', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_house_price_index.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'journey'}, 'file':  'carers_allowance_journey.json'},
