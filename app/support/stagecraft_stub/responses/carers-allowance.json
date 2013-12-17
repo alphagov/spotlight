@@ -5,7 +5,7 @@
   "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person who's cared for must be in receipt of a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate or Armed Forces Independence Payment.",
   "modules": [
     {
-      "slug": "weekly_by_channel",
+      "slug": "weekly-by-channel",
       "module-type": "grouped_timeseries",
       "title": "Claims by channel",
       "description": "<h2><span class=i\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time</h2>",
@@ -42,7 +42,7 @@
     },
     {
       "module-type": "completion_rate",
-      "slug": "carers_allowance_digital_takeup_weekly",
+      "slug": "digital-takeup-weekly",
       "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
@@ -58,7 +58,7 @@
     },
     {
       "module-type": "completion_rate",
-      "slug": "carers_allowance_completion",
+      "slug": "completion-rate",
       "title": "Completion rate",
       "description": "",
       "data-group": "carers-allowance",
