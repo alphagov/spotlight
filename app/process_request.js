@@ -29,7 +29,7 @@ function (StagecraftApiClient) {
   };
 
   var getGovukUrl = function (req) {
-    return [req.protocol, "://", req.app.get('govukHost'), req.originalUrl].join('');
+    return ["https://", req.app.get('govukHost'), req.originalUrl].join('');
   };
 
   var setup = function (req, res, next) {
