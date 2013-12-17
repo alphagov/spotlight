@@ -15,7 +15,7 @@
   "cumulative": true,
   "info": [
     "Data source: DWP database",
-    "Shows the number of successful claims for carer's allowance, broken down by channel",
+    "Shows the number of successful claims for Carer's Allowance, broken down by channel",
     "Digital: applications made online",
     "Offline: applications made using a printed form"
   ],

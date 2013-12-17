@@ -20,7 +20,7 @@
       "cumulative": true,
       "info": [
         "Data source: DWP database",
-        "Shows the number of successful claims for carer's allowance, broken down by channel",
+        "Shows the number of successful claims for Carer's Allowance, broken down by channel",
         "Digital: applications made online",
         "Offline: applications made using a printed form"
       ],
@@ -43,7 +43,7 @@
     {
       "module-type": "completion_rate",
       "slug": "carers_allowance_digital_takeup_weekly",
-      "title": "Digital takeup",
+      "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
