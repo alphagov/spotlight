@@ -383,6 +383,7 @@ figure.graph {
       position: static;
       width: 100%;
       overflow:hidden;
+      padding-top: 10px;
 
       ol li .label-title {
         text-overflow: ellipsis;
@@ -448,13 +449,5 @@ figure.graph {
         display:none;
       }
     }
-  }
-}
-
-
-
-@media (max-width: 440px) {
-  figure.graph .legend ol li {
-    width: 90%;
   }
 }
