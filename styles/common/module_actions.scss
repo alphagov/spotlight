@@ -1,5 +1,6 @@
 #content {
   .more-info-link {
+    @include core-16;
     float: right;
     margin: -0.6em 0 0 0;
     padding: 0;
@@ -21,6 +22,7 @@
   }
 
   .more-info {
+    @include core-16;
     position: relative;
 
     ul {
