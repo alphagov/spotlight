@@ -51,9 +51,9 @@
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
       "cumulative": false,
-      "value-attr": "value:sum",
+      "value-attr": "value:mean",
       "category": "geography",
-      "period": "month",
+      "period": "quarter",
       "filter-by": ["key:residential_property_transactions"],
       "info": [
         "Source: HMRC"
