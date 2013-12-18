@@ -31,11 +31,10 @@
       }
     }
 
-
-
     p.explanatory {
       @include core-19;
-      width: 75%;
+      width: 60%;   
+      float: left;
     }
   }
 
@@ -73,6 +72,11 @@
   @media (max-width: 640px) {
 
     padding: 0;
+
+    header p.explanatory {
+      width: 90%;   
+      float: none;
+    }
 
     section {
       &.half-width {
