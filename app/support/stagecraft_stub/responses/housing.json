@@ -51,9 +51,9 @@
       "data-group": "housing-policy",
       "data-type": "residential-transactions",
       "cumulative": false,
-      "value-attr": "value:sum",
+      "value-attr": "value:mean",
       "category": "geography",
-      "period": "month",
+      "period": "quarter",
       "filter-by": ["key:residential_property_transactions"],
       "info": [
         "Source: HMRC"
@@ -112,7 +112,7 @@
       "slug": "regional_hpi",
       "module-type": "grouped_timeseries",
       "title": "House price index (HPI)",
-      "description": "Average HPIs by regions and nations (100 = February 2002)",
+      "description": "Average HPIs by nations and regions (100 = February 2002)",
       "data-group": "housing-policy",
       "data-type": "house-price-index",
       "cumulative": false,
