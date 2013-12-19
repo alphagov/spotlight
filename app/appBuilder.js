@@ -47,6 +47,10 @@ function (express, path, winston) {
 
       });
 
+      app.get('/', function (req, res) {
+        res.redirect(301, '/performance');
+      });
+
       app.get('*.png', requirejs('./render_png'));
 
       app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
