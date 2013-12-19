@@ -47,7 +47,7 @@ function (moment) {
     moment: moment,
 
     getMoment: function () {
-      return this.moment.apply(null, arguments).tz('Europe/London');
+      return this.moment.apply(null, arguments).tz('Africa/Dakar');
     },
 
     latest: function (objects, filter) {

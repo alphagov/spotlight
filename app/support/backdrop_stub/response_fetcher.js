@@ -17,8 +17,8 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'service': 'licensing', 'api_name': 'application', 'group_by': 'licenceUrlSlug'}, 'file':  'licences.json'},
       { 'key': {'service': 'licensing', 'api_name': 'application'}, 'file':  'licensing_applications.json'},
       { 'key': {'filter_by': 'dataType:licensing_overview_journey'}, 'file':  'licensing_overview_journey.json'},
-      { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey', 'start_at': '2013-10-14T00:00:00+01:00'}, 'file':  'fco_overview_journey_start_14.json'},
-      { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey', 'start_at': '2013-10-07T00:00:00+01:00'}, 'file':  'fco_overview_journey_start_7.json'},
+      { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey', 'start_at': '2013-10-14T00:00:00+00:00'}, 'file':  'fco_overview_journey_start_14.json'},
+      { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey', 'start_at': '2013-10-07T00:00:00+00:00'}, 'file':  'fco_overview_journey_start_7.json'},
       { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey'}, 'file':  'fco_overview_journey.json'},
       { 'key': {'service': 'pay-foreign-marriage-certificates', 'api_name': 'monitoring'}, 'file':  'foreign_marriage_availability.json'},
       { 'key': {'service': 'pay-register-death-abroad', 'api_name': 'journey'}, 'file':  'pay-register-death-abroad-journey.json'},
@@ -44,8 +44,8 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       //+01 could be fixed by dakar
       //will get null 07 with bst
       //need dakar and one date back to get real 07
-      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-14T00:00:00+01:00'}, 'file': 'carers_allowance_weekly_by_channel_start_14.json'},
-      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-07T00:00:00+01:00'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
+      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-14T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_14.json'},
+      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-07T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'}
     ],
