@@ -9,7 +9,7 @@
         margin: 0;
         padding-left: 0px;
 
-        li{
+        li {
           display: block;
           overflow: hidden;
           list-style: none;
@@ -23,17 +23,8 @@
             }
           }
 
-          ul.attributes{
+          .metadata {
             @include core-14;
-            padding-left: 0px;
-
-            li{
-              list-style: none;
-              display: block;
-              float: left;
-              padding: 0 10px 0 0;
-              margin: 0;
-            }
           }
         }
       }
