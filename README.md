@@ -31,9 +31,13 @@ npm install
 
 If you're using our dev environment then `cd /var/apps/pp-development` and
 `bowl performance`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
-will work.
+will work. This will use backdrop as a data source.
 
-Otherwise...
+If you want to run the app with stubs then `cd /var/apps/spotlight` and
+`grunt`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
+will work. This will use stubs as a data source.
+
+Otherwise, if not on the VM...
 ```bash
 cd <spotlight_dir>
 NODE_ENV=development_no_vm grunt
