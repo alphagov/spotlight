@@ -9,6 +9,7 @@
   ],
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service performance",
+  "dashboard-slug": "carers-allowance",
   "data-group": "carers-allowance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",

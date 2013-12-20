@@ -4,6 +4,7 @@
   "title": "Service availability",
   "dashboard-title": "Payment to register a death abroad",
   "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-register-death-abroad",
   "data-group": "pay-register-death-abroad",
   "data-type": "monitoring",
   "info": [

@@ -3,6 +3,9 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
+  "dashboard-title": "Pay to get documents legalised by post",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-legalisation-post",
   "data-group": "pay-legalisation-post",
   "data-type": "journey",
   "info": [

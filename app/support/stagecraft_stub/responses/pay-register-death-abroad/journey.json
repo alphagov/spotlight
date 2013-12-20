@@ -5,6 +5,7 @@
   "description": "Number of users who completed important stages of the transaction last week",
   "dashboard-title": "Payment to register a death abroad",
   "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-register-death-abroad",
   "info": [
     "Data source: Google Analytics",
     "The total number of unique users who arrived at each stage."

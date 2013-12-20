@@ -3,6 +3,9 @@
   "module-type": "completion_numbers",
   "title": "Completed applications",
   "description": "",
+  "dashboard-title": "Payment to register a birth abroad in the UK",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-register-birth-abroad",
   "data-group": "pay-register-birth-abroad",
   "data-type": "journey",
   "info": [

@@ -5,6 +5,7 @@
   "description": "Number of users who completed important stages of the transaction last week",
   "dashboard-title": "Pay to get documents legalised by post",
   "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-legalisation-post",
   "info": [
     "Data source: Google Analytics",
     "The total number of unique users who arrived at each stage."
