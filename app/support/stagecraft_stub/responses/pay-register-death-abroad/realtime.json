@@ -3,6 +3,9 @@
   "module-type": "realtime",
   "title": "Real-time usage",
   "description": "Live number of users on any page within the service",
+  "dashboard-title": "Payment to register a death abroad",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-register-death-abroad",
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."

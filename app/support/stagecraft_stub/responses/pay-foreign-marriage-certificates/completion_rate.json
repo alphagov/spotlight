@@ -3,6 +3,9 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
+  "dashboard-title": "Payment for certificates to get married abroad",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-foreign-marriage-certificates",
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",
   "info": [

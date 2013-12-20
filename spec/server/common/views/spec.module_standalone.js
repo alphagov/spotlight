@@ -74,5 +74,25 @@ function (StandaloneView, Collection, Model, View) {
         expect(standaloneView.getPageTitle()).toEqual('Title - Performance - GOV.UK');
       });
     });
+
+    describe("Standalone module breadcrumbs", function () {
+      it("adds the parent dashboard as a crumb when Stagecraft returns the necessary properties", function () {
+        model.set({
+          'dashboard-title': 'Parent dashboard',
+          'dashboard-slug': 'parent-dashboard'
+        });
+        expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
+          {path: '/performance', title: 'Performance'},
+          {path: '/performance/parent-dashboard', title: 'Parent dashboard'}
+        ]);
+      });
+
+      it("leaves just a PP crumb when Stagecraft doesn't return enough data", function () {
+        model.set({
+          'dashboard-title': 'Parent dashboard without a slug',
+        });
+        expect(standaloneView.getBreadcrumbCrumbs()).toEqual([{path: '/performance', title: 'Performance'}]);
+      });
+    });
   });
 });

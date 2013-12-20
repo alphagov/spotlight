@@ -23,6 +23,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
     template: govukTemplate,
     bodyEndTemplate: bodyEndTemplate,
     reportAProblemTemplate: reportAProblemTemplate,
+    breadcrumbsTemplate: breadcrumbsTemplate,
 
     getContent: function () {
       return '';
@@ -48,6 +49,19 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
       return items.join(' - ');
     },
 
+    getBreadcrumbCrumbs: function () {
+      return [
+        {'path': '/performance', 'title': 'Performance'}
+      ];
+    },
+
+    getBreadcrumbs: function () {
+      var breadcrumbs = this.getBreadcrumbCrumbs().filter(function (el) {
+        return el != null;
+      });
+      return {'breadcrumbs': breadcrumbs};
+    },
+
     templateContext: function () {
       var baseContext = this.model.toJSON();
       baseContext.model = this.model;
@@ -66,13 +80,13 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
           footerTop: footerTopTemplate(),
           footerSupportLinks: footerLinksTemplate(),
           content: contentTemplate({
-            breadcrumbs: breadcrumbsTemplate,
+            breadcrumbs: this.breadcrumbsTemplate(this.getBreadcrumbs()),
             content: this.getContent(),
-            reportAProblem: this.reportAProblemTemplate(baseContext) 
+            reportAProblem: this.reportAProblemTemplate(baseContext)
           })
         }
       );
-    }    
+    }
 
   });
 

@@ -5,6 +5,7 @@
   "description": "Number of users who completed important stages of the transaction last week",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Strapline",
+  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
   "steps": [

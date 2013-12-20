@@ -3,6 +3,9 @@
   "module-type": "realtime",
   "title": "Real-time usage",
   "description": "Live number of users on any page within the service",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Strapline",
+  "dashboard-slug": "no-realistic-dashboard",
   "info": [
     "Info text line 1",
     "Info text line 2"

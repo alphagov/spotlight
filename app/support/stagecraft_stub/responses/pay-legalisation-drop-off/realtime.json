@@ -3,6 +3,9 @@
   "module-type": "realtime",
   "title": "Real-time usage",
   "description": "Live number of users on any page within the service",
+  "dashboard-title": "Pay to legalise documents using the premium service",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "pay-legalisation-drop-off",
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."

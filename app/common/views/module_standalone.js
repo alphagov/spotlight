@@ -26,6 +26,17 @@ function (GovUkView, Module) {
         this.model.get('dashboard-title'),
         this.model.get('dashboard-strapline')
       ];
+    },
+
+    getBreadcrumbCrumbs: function () {
+      var crumbs = [{path: '/performance', title: 'Performance'}];
+      if (this.model.get('dashboard-slug') && this.model.get('dashboard-title')) {
+        crumbs.push({
+          path: '/performance/' + this.model.get('dashboard-slug'),
+          title: this.model.get('dashboard-title')
+        });
+      }
+      return crumbs;
     }
   });
 

@@ -3,6 +3,9 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Strapline",
+  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
   "info": [

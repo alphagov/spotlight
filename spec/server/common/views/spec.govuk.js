@@ -43,7 +43,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li><a href="/performance">Performance</a></li> </ol> </div> <div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content report_a_problem </div> </section> </div>');
+      expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li><a href="&#x2F;performance">Performance</a></li> </ol> </div> <div id="wrapper"> <section id="content" class="group"> <div class="performance-platform-outer"> test_content report_a_problem </div> </section> </div>');
     });
   });
 });

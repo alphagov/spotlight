@@ -8,6 +8,7 @@
   "data-type": "weekly-claims",
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service performance",
+  "dashboard-slug": "carers-allowance",
   "category": "key",
   "period": "week",
   "value-attr": "value:sum",

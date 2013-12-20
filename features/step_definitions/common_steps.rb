@@ -14,6 +14,10 @@ Then(/^I should receive the appropriate "(.*?)"$/) do |file_name|
   JSON.parse(page.document.text).should == JSON.parse(File.read(File.join(PROJECT_ROOT, "app/support/backdrop_stub/responses", file_name)))
 end
 
+Then(/^I see "(.*?)" crumb(s?) in the breadcrumb trail$/) do |num_crumbs, plural_crumbs|
+  page.all('#global-breadcrumb ol li').count.should eql(num_crumbs.to_i)
+end
+
 Then(/^I can report an error for the current page$/) do
   page.should have_css('.report-a-problem-container', :visible => false)
   page.find('.report-a-problem-toggle a').click
