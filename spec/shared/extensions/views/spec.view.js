@@ -552,8 +552,8 @@ function (View, Model, Backbone, _) {
 
       it("formats monthly date periods across months", function () {
         var model = new Model({
-          _start_at: moment('2013-08-01'),
-          _end_at: moment('2013-10-01')
+          _start_at: getMoment('2013-08-01'),
+          _end_at: getMoment('2013-10-01')
         });
         expect(view.formatPeriod(model, 'month')).toEqual('Aug to Sep 2013');
       });

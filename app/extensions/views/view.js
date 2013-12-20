@@ -326,12 +326,19 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           }
           return start.format('D MMM YYYY');
         case 'month':
+          console.log("tis month");
+          console.log(end);
           if (end) {
+            console.log("has end");
             end = this.getMoment(end).subtract(1, 'months');
+            console.log(start.diff(end));
             if (start.diff(end)) {
+              console.log("has diff");
               if (start.year() !== end.year()) {
+                console.log("year");
                 return start.format('MMM YYYY') + ' to ' + end.format('MMM YYYY');
               } else if (start.month() !== end.month()) {
+                console.log("returnin");
                 return start.format('MMM') + ' to ' + end.format('MMM YYYY');
               }
             }
