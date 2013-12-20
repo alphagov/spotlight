@@ -31,7 +31,7 @@
 
     li {
       @include core-16;
-      background-image: image-url("separator.png");
+      background-image: url(../images/separator.png);
       background-position: 100% 50%;
       background-repeat: no-repeat;
       float: left;
@@ -41,7 +41,7 @@
       padding-right: 1em;
 
       @include device-pixel-ratio() {
-        background-image: image-url("separator-2x.png");
+        background-image: url(../images/separator-2x.png);
         background-size: 6px 11px;
       }
 
