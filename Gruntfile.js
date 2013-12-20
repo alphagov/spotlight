@@ -56,7 +56,8 @@ module.exports = function(grunt) {
           loadPath: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
-          style: 'compressed'
+          style: 'compressed',
+          bundleExec: true
         }
       }
     },
