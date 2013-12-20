@@ -1,5 +1,7 @@
 <div id="global-breadcrumb">
   <ol class="group" role="breadcrumbs">
-    <li><a href="/performance">Performance</a></li>
+    {{# breadcrumbs }}
+    <li><a href="{{ path }}">{{ title }}</a></li>
+    {{/ breadcrumbs }}
   </ol>
 </div>

@@ -26,6 +26,12 @@ function (GovUkView, Module) {
         this.model.get('dashboard-title'),
         this.model.get('dashboard-strapline')
       ];
+    },
+
+    getBreadcrumbCrumbs: function () {
+      return [
+        {'path': '/performance', 'title': 'Performance'}
+      ];
     }
   });
 
