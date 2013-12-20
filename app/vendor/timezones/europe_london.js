@@ -1,11 +1,6 @@
 define(["moment-timezone"], function (moment) {
     moment.tz.add({
         "zones": {
-            "Africa/Dakar": [
-                "-1:9:44 - LMT 1912 -1:9:44",
-                "-1 - WAT 1941_5 -1",
-                "0 - GMT"
-            ],
             "Europe/London": [
                 "-0:1:15 - LMT 1847_11_1_0 -0:1:15",
                 "0 GB-Eire %s 1968_9_27 1",
