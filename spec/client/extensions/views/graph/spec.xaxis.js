@@ -15,7 +15,7 @@ function (XAxis, Collection) {
       el.remove();
     });
 
-    function viewForConfig(config, startDate, endDate) {
+    function viewForConfig(config, startDate, endDate, useEllipses) {
       var collection = new Collection();
       var start = collection.getMoment(startDate);
       var end = collection.getMoment(endDate);
@@ -33,6 +33,7 @@ function (XAxis, Collection) {
       var view = new XAxis({
         collection: collection,
         wrapper: wrapper,
+        useEllipses: useEllipses,
         getScale: function () {
           return view.d3.time.scale().domain([start.toDate(), end.toDate()]);
         },
@@ -64,7 +65,6 @@ function (XAxis, Collection) {
     describe("'day' configuration", function () {
       it("shows tick and label each Sunday", function () {
         var view = viewForConfig('day', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
-
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
@@ -75,5 +75,23 @@ function (XAxis, Collection) {
         expect(d3.select(ticks[3]).text()).toEqual('31 Mar');
       });
     });
+    
+    
+    describe("any configuration", function () {
+      it("renders ellipses for smaller screens", function () {
+        var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', true);
+        
+        XAxis.prototype.d3.select(el[0]).select('svg').style('width', '1000px');
+        view.render();
+        
+        var ticks = wrapper.selectAll('.tick')[0];
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(4);
+        expect(d3.select(ticks[0]).text()).toEqual('m…');
+        expect(d3.select(ticks[1]).text()).toEqual('6am');
+        expect(d3.select(ticks[2]).text()).toEqual('m…');
+        expect(d3.select(ticks[3]).text()).toEqual('6pm');
+      });
+    });
+    
   });
 });
