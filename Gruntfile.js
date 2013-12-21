@@ -216,6 +216,16 @@ module.exports = function(grunt) {
           logConcurrentOutput: true
         }
       }
+    },
+    digest: {
+      options: {
+        out: 'public/asset-digest.json',
+        separator: '-',
+        algorithm: 'md5'
+      },
+      files: {
+        src: ['public/**/*.*']
+      }
     }
   });
 
@@ -226,6 +236,7 @@ module.exports = function(grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs',
+    'grunt-digest',
     'grunt-rcukes',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
@@ -239,12 +250,12 @@ module.exports = function(grunt) {
     'copy:govuk_assets', 'copy:spotlight_assets'
   ]);
   grunt.registerTask('build:development', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:development'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:development', 'digest'
   ]);
   grunt.registerTask('build:production', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
+    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3', 'digest'
   ]);
-  grunt.registerTask('test:all', ['copy:vendor', 'jshint', 'cucumber', 'jasmine', 'jasmine_node']);
+  grunt.registerTask('test:all', ['copy:vendor', 'jshint', 'digest', 'cucumber', 'jasmine', 'jasmine_node']);
   // Default task.
   grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
 
