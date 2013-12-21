@@ -7,7 +7,7 @@ every browser.
 
 [Backbone]: http://backbonejs.org/
 [D3]: http://d3js.org/
-[progressive enhancement]: https://www.gov.uk/service-manual/making-software/progressive-enhancement.html
+[progressive enhancement]: https://www.gov.uk/service-manual/making-software/progressive-enhancement
 
 ## Installation ##
 
@@ -113,5 +113,9 @@ Visit `http://localhost:8080/debug` to view the console.
 ## Status ##
 
 [![Build Status](https://travis-ci.org/alphagov/spotlight.png?branch=master)](https://travis-ci.org/alphagov/spotlight)
+
+[![Dependency Status](https://david-dm.org/alphagov/spotlight.png)](https://david-dm.org/alphagov/spotlight)
+
+[![devDependency Status](https://david-dm.org/alphagov/spotlight/dev-status.png)](https://david-dm.org/alphagov/spotlight#info=devDependencies)
 
 [![Dependency Status](https://gemnasium.com/alphagov/spotlight.png)](https://gemnasium.com/alphagov/spotlight)
