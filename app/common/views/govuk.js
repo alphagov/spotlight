@@ -1,6 +1,6 @@
 define([
   'extensions/views/view',
-  'stache!common/templates/head',
+  'tpl!common/templates/head.html',
   'tpl!common/templates/body-end.html',
   'stache!common/templates/navigation',
   'stache!common/templates/breadcrumbs',
