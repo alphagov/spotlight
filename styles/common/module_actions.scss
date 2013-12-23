@@ -2,9 +2,8 @@
   .more-info-link {
     @include core-16;
     float: right;
-    margin: -0.6em 0 0 0;
+    margin: 0.2em 0 0 0;
     padding: 0;
-    top: -1em;
     position: relative;
 
     color: $link-colour;
@@ -28,9 +27,9 @@
     ul {
       display: none;
       background: $grey-4;
-      top: 1em;
+      top: 2em;
       position: absolute;
-      margin: -0.2em 0 0 0;
+      margin: 0.6em 0 0 0;
       padding: 0.6em;
       right: 0;
       width: 22em;
@@ -81,6 +80,12 @@ body.js-enabled #content .more-info {
   }
   ul.js-clicked {
     display: block;
+  }
+}
+
+@media (max-width: 640px) {
+	#content .more-info-link {
+	  margin-top: 0.05em;
   }
 }
 
