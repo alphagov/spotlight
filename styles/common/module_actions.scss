@@ -21,7 +21,7 @@
   }
 
   .more-info {
-    @include core-16;
+    @include core-16($tabular-numbers: true);
     position: relative;
 
     ul {
