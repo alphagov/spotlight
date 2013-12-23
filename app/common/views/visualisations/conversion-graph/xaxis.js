@@ -3,6 +3,7 @@ define([
 ],
 function (XAxis) {
   var ConversionXAxis = XAxis.extend({
+    useEllipses: true,
     tickValues: function () {
       return _.range(this.collection.at(0).get('values').length);
     },
