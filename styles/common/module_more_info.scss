@@ -10,7 +10,7 @@
   }
 
   .more-info {
-    @include core-16($tabular-numbers: true);
+    @include core-16;
 
     position: relative;
 
