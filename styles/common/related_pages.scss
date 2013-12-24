@@ -12,7 +12,6 @@
         li {
           display: block;
           overflow: hidden;
-          list-style: none;
           margin: 7px 0;
 
           h3 {
@@ -28,35 +27,38 @@
           }
         }
       }
+    }
+  }
+}
 
-      @media (max-width: 640px) {
+@media (max-width: 640px) {
+  body {
+    #content header .related-pages {
+        position: relative;
         float: none;
         margin-left: 0;
         width: 90%;
+    }
 
-        h3.popover-link {
-          color: $link-colour;
-          text-decoration: underline;
-          cursor: pointer;
-          text-transform: lowercase;
-          font-weight: normal;
+    &.js-enabled #content header .related-pages {
 
-          &:hover {
-            color: $link-hover-colour;
-          }
+      h3.popover-link {
+        @include popover-link;
 
-          &:before {
-            content: "View ";
-            text-transform: capitalize;
-          }
+        text-transform: lowercase;
+        font-weight: normal;
+
+        &:before {
+          content: "View ";
+          text-transform: capitalize;
         }
+      }
 
-        ul.items {
-          display: none;
+      ul.items {
+        @include popover-block(18%);
 
-          &.js-clicked {
-            display: block;
-          }
+        &.js-clicked {
+          @include popover-js-show-on-click;
         }
       }
     }
