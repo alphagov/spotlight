@@ -11,10 +11,17 @@
   'typography',
   'change',
 
+<<<<<<< HEAD
   // Mixins need to be defined first
   'common/popover',
 
   // Main
+=======
+  'common/popover',
+  'common/footer',
+  'common/report_a_problem',
+  'common/raw',
+>>>>>>> Move popover related Sass into a single file
   'common/layout',
   'common/raw',
 
