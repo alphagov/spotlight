@@ -5,7 +5,7 @@
       margin-left: 25px;
       width: 35%;
 
-      ol.items {
+      ul.items {
         margin: 0;
         padding-left: 0px;
 
@@ -33,6 +33,31 @@
         float: none;
         margin-left: 0;
         width: 90%;
+
+        h3.popover-link {
+          color: $link-colour;
+          text-decoration: underline;
+          cursor: pointer;
+          text-transform: lowercase;
+          font-weight: normal;
+
+          &:hover {
+            color: $link-hover-colour;
+          }
+
+          &:before {
+            content: "View ";
+            text-transform: capitalize;
+          }
+        }
+
+        ul.items {
+          display: none;
+
+          &.js-clicked {
+            display: block;
+          }
+        }
       }
     }
   }
