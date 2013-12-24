@@ -1,5 +1,5 @@
 #content {
-  .more-info-link {
+  .more-info-link.popover-link {
     @include core-16;
     float: right;
     margin: 0.2em 0 0 0;
@@ -84,7 +84,7 @@ body.js-enabled #content .more-info {
 }
 
 @media (max-width: 640px) {
-	#content .more-info-link {
+	#content .more-info-link.popover-link {
 	  margin-top: 0.05em;
   }
 }

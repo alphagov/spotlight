@@ -3,12 +3,12 @@ define([
   'underscore',
   'modernizr',
   './preprocessors/navigation',
-  './preprocessors/module_actions',
+  './preprocessors/popover',
   './preprocessors/visualisation_fallback',
   './preprocessors/report_a_problem'
 ],
 function (StagecraftApiClient, _, Modernizr) {
-  
+
   var bootstrap = function (config) {
     _.each(bootstrap.preprocessors, function (preprocessor) {
       preprocessor();
