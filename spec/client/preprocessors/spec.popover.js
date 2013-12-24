@@ -1,5 +1,5 @@
 define([
-  'client/preprocessors/module_actions'
+  'client/preprocessors/popover'
 ], function (applyModuleActions) {
   describe('Module actions', function() {
 
@@ -8,8 +8,8 @@ define([
     var ul;
 
     beforeEach(function() {
-      $('body').append($('<section><aside class="more-info" id="module1"><span class="more-info-link"></span><ul><li><a>'));
-      moreInfoLink = $('.more-info-link');
+      $('body').append($('<section><aside class="more-info" id="module1"><span class="popover-link"></span><ul><li><a>'));
+      moreInfoLink = $('.popover-link');
       ul = $('.more-info ul');
     });
 
@@ -51,14 +51,14 @@ define([
       });
 
       it("should close other open callouts on touch", function () {
-        $('body').append($('<section><aside class="more-info" id="module2"><span class="more-info-link"></span><ul><li>'));
+        $('body').append($('<section><aside class="more-info" id="module2"><span class="popover-link"></span><ul><li>'));
         applyModuleActions();
 
-        $('#module1 .more-info-link').trigger('touchend');
+        $('#module1 .popover-link').trigger('touchend');
         expect($('#module1 ul')).toHaveClass('js-clicked');
         expect($('#module2 ul')).not.toHaveClass('js-clicked');
 
-        $('#module2 .more-info-link').trigger('touchend');
+        $('#module2 .popover-link').trigger('touchend');
         expect($('#module1 ul')).not.toHaveClass('js-clicked');
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });
@@ -126,14 +126,14 @@ define([
       });
 
       it("should close other open callouts on click", function () {
-        $('body').append($('<section><aside class="more-info" id="module2"><span class="more-info-link"></span><ul><li>'));
+        $('body').append($('<section><aside class="more-info" id="module2"><span class="popover-link"></span><ul><li>'));
         applyModuleActions();
 
-        $('#module1 .more-info-link').trigger('click');
+        $('#module1 .popover-link').trigger('click');
         expect($('#module1 ul')).toHaveClass('js-clicked');
         expect($('#module2 ul')).not.toHaveClass('js-clicked');
 
-        $('#module2 .more-info-link').trigger('click');
+        $('#module2 .popover-link').trigger('click');
         expect($('#module1 ul')).not.toHaveClass('js-clicked');
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });

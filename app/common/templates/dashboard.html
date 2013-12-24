@@ -7,8 +7,8 @@
   {{# copy }}<p class="explanatory">{{ copy }}</p>{{/ copy }}
   {{# related_pages_title }}
     <aside class='related-pages'>
-      <h3>{{ related_pages_title }}</h3>
-      <ol class="items">
+      <h3 class='popover-link'>{{ related_pages_title }}</h3>
+      <ul class="items">
         {{# related_pages }}
         <li>
           <h3>
@@ -19,7 +19,7 @@
           {{/ metadata }}
         </li>
         {{/ related_pages }}
-      </ol>
+      </ul>
     </aside>
   {{/ related_pages_title }}
 </header>

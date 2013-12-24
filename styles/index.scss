@@ -11,24 +11,36 @@
   'typography',
   'change',
 
-  'common/footer',
-  'common/report_a_problem',
-  'common/raw',
+  // Mixins need to be defined first
+  'common/popover',
+
+  // Main
   'common/layout',
-  'common/breadcrumbs',
+  'common/raw',
+
+  // Header
   'common/navigation',
-  'common/related_pages',
-  'common/module_actions',
-  'common/module_banners',
-  'common/visualisation_fallback',
+  'common/breadcrumbs',
   'common/header',
-  'common/impact_number',
+  'common/related_pages',
+
+  // Module meta
+  'common/module_banners',
+  'common/module_more_info',
   'common/tabs',
+  'common/tooltip',
+  'common/visualisation_fallback',
+
+  // Modules
   'common/graph',
+  'common/impact_number',
   'common/journey',
   'common/double-decker-graph',
   'common/single-decker-graph',
-  'common/tooltip',
-  'common/grouped_timeseries',
   'common/multi_stats',
-  'common/sparkline';
+  'common/sparkline',
+  'common/grouped_timeseries',
+
+  // Footer
+  'common/report_a_problem',
+  'common/footer';
