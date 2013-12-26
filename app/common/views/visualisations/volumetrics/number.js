@@ -18,7 +18,12 @@ function (SingleStatView) {
     getLabel: function () {
       var weeks = this.collection.at(0).get('weeks'),
           unavailableWeeks = weeks.total - weeks.available,
-          label = [this.labelPrefix, 'last', weeks.total, 'weeks'];
+          label = [
+            this.labelPrefix,
+            'last',
+            weeks.total,
+            this.pluralise('week', weeks.total)
+          ];
 
       if (unavailableWeeks > 0) {
         label = label.concat([
