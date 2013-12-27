@@ -8,6 +8,8 @@ function (Graph) {
     numYTicks: 3,
 
     getConfigNames: function () {
+      console.log('getConfigNames', this.model.get('period'));
+      var configNames = ['stack'];
       return ['stack', 'week'];
     },
     
