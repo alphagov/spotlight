@@ -40,7 +40,8 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'first-time-buyer'}, 'file': 'housing-first-time-buyer.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key'}, 'file': 'carers_allowance_weekly_by_channel.json'},
-      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'}
+      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'},
+      { 'key': {'service': 'g-cloud', 'api_name': 'sales', "collect": "monthly_spend:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-procurement.json'}
     ],
 
     fetch_json: function (request) {
