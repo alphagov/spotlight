@@ -1,0 +1,26 @@
+{
+  "page-type": "module",
+  "slug": "who_is_using",
+  "module-type": "grouped_timeseries",
+  "title": "Who is using G-Cloud",
+  "description": "The cumulative spend by central government and wider public services",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
+  "dashboard-slug": "g-cloud",
+  "data-group": "g-cloud",
+  "data-type": "sales",
+  "cumulative": false,
+  "category": "sector",
+  "value-attr": "monthly_spend:sum",
+  "period": "month",
+  "info": [
+    "Source: TBA"
+  ],
+  "series": [
+     { "id": "Central government", "title": "Central government" },
+     { "id": "Local government", "title": "Local government" },
+     { "id": "Not for profit", "title": "Not for profit" },
+     { "id": "Other wider public sector", "title": "Other wider public sector" }
+   ],
+  "show-line-labels": true
+}

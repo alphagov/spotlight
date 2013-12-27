@@ -14,5 +14,28 @@
       "url": "https://www.gov.uk/government/policies/buying-and-managing-government-goods-and-services-more-efficiently-and-effectively"
     }
   ],
-  "modules": []
+  "modules": [
+    {
+      "slug": "who_is_using",
+      "module-type": "grouped_timeseries",
+      "title": "Who is using G-Cloud",
+      "description": "The cumulative spend by central government and wider public services",
+      "data-group": "g-cloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "category": "sector",
+      "value-attr": "monthly_spend:sum",
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Central government", "title": "Central government" },
+         { "id": "Local government", "title": "Local government" },
+         { "id": "Not for profit", "title": "Not for profit" },
+         { "id": "Other wider public sector", "title": "Other wider public sector" }
+       ],
+      "show-line-labels": true
+    }
+  ]
 }
