@@ -15,27 +15,49 @@
     }
   ],
   "modules": [
-  {
-    "slug": "monthly_spend_by_lot",
-    "module-type": "grouped_timeseries",
-    "title": "Monthly spend by lot",
-    "description": "Spend through G-Cloud by category",
-    "data-group": "g-cloud",
-    "data-type": "sales",
-    "cumulative": false,
-    "value-attr": "monthly_spend:sum",
-    "category": "lot",
-    "period": "month",
-    "info": [
-      "Source: TBA"
-    ],
-    "series": [
-       { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
-       { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
-       { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-       { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
-     ],
-    "show-line-labels": true
-  }
+    {
+      "slug": "monthly_spend_by_lot",
+      "module-type": "grouped_timeseries",
+      "title": "Monthly spend by lot",
+      "description": "Spend through G-Cloud by category",
+      "data-group": "g-cloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "value-attr": "monthly_spend:sum",
+      "category": "lot",
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
+         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
+         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
+       ],
+      "show-line-labels": true
+    },
+    {
+      "slug": "who_is_using",
+      "module-type": "grouped_timeseries",
+      "title": "Who is using G-Cloud",
+      "description": "The cumulative spend by central government and wider public services",
+      "data-group": "g-cloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "category": "sector",
+      "value-attr": "monthly_spend:sum",
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Central government", "title": "Central government" },
+         { "id": "Local government", "title": "Local government" },
+         { "id": "Not for profit", "title": "Not for profit" },
+         { "id": "Other wider public sector", "title": "Other wider public sector" }
+       ],
+      "show-line-labels": true
+    }
   ]
 }
