@@ -307,6 +307,7 @@ figure.graph {
     background-color: $grey-4;
     width:200px;
     @include box-shadow(0px 0px 3px 1px rgba(0, 0, 0, 0.35));
+    @include core-16($tabular-numbers: true);
     h3 {
       font-weight:700;
       margin:0;
