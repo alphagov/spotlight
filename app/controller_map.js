@@ -1,26 +1,29 @@
 define([
   'extensions/controllers/dashboard',
-  'common/modules/visitors-realtime',
-  'common/modules/journey',
+  'common/controllers/error',
   'common/modules/availability',
-  'common/modules/completion_rate',
   'common/modules/completion_numbers',
-  'common/modules/multi_stats',
+  'common/modules/completion_rate',
   'common/modules/grouped_timeseries',
-  'common/controllers/error'
+  'common/modules/journey',
+  'common/modules/multi_stats',
+  'common/modules/visitors-realtime'
 ],
-function (Dashboard, RealtimeModule, JourneyModule, AvailabilityModule, CompletionRateModule, CompletionNumbersModule, MultiStatsModule, GroupedTimeseriesModule, Error) {
+function (DashboardController, ErrorController,
+  AvailabilityModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
+  JourneyModule, MultiStatsModule, VisitorsRealtimeModule) {
+
   var ControllerMap = {
-    'error': Error,
-    'dashboard': Dashboard,
+    dashboard: DashboardController,
+    error: ErrorController,
     modules: {
-      realtime: RealtimeModule,
-      journey: JourneyModule,
       availability: AvailabilityModule,
-      completion_rate: CompletionRateModule,
       completion_numbers: CompletionNumbersModule,
+      completion_rate: CompletionRateModule,
+      grouped_timeseries: GroupedTimeseriesModule,
+      journey: JourneyModule,
       multi_stats: MultiStatsModule,
-      grouped_timeseries: GroupedTimeseriesModule
+      realtime: VisitorsRealtimeModule
     }
   };
 
