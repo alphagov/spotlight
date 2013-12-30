@@ -17,7 +17,7 @@
   "value-attribute": "monthly_spend",
   "tabs": [
     {"id": "monthly_spend", "name": "Total spend"},
-    {"id": "count", "name": "Contracts"}
+    {"id": "count", "name": "Contracts awarded"}
   ],
   "tabbed_attr": "collect"
 }
