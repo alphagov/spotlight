@@ -13,6 +13,8 @@ function (MatrixCollection, Collection, Group) {
       this.endMatcher= options.endMatcher;
       this.matchingAttribute= options.matchingAttribute || 'eventCategory';
       this.valueAttribute= options.valueAttribute || 'uniqueEvents';
+      this.tabbedAttr= options.tabbedAttr || null;
+      this.tabs= options.tabs || null;
       MatrixCollection.prototype.initialize.apply(this, arguments);
       this.query.set('period', 'week', {silent: true, utc: false});
       delete this.query.attributes.period;
