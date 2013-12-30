@@ -12,7 +12,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1332.0
+      "value": 13.0
     }, 
     {
       "_day_start_at": "2013-04-01T00:00:00", 
@@ -26,7 +26,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3609.0
+      "value": 36.0
     }, 
     {
       "_day_start_at": "2013-05-01T00:00:00", 
@@ -40,7 +40,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1472.0
+      "value": 14.0
     }, 
     {
       "_day_start_at": "2013-05-01T00:00:00", 
@@ -54,7 +54,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3546.0
+      "value": 35.0
     }, 
     {
       "_day_start_at": "2013-06-01T00:00:00", 
@@ -68,7 +68,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1763.0
+      "value": 17.0
     }, 
     {
       "_day_start_at": "2013-06-01T00:00:00", 
@@ -82,7 +82,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3183.0
+      "value": 31.0
     }, 
     {
       "_day_start_at": "2013-07-01T00:00:00", 
@@ -96,7 +96,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1629.0
+      "value": 16.0
     }, 
     {
       "_day_start_at": "2013-07-01T00:00:00", 
@@ -110,7 +110,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3003.0
+      "value": 30.0
     }, 
     {
       "_day_start_at": "2013-08-01T00:00:00", 
@@ -124,7 +124,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1906.0
+      "value": 19.0
     }, 
     {
       "_day_start_at": "2013-08-01T00:00:00", 
@@ -138,7 +138,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3047.0
+      "value": 30.0
     }, 
     {
       "_day_start_at": "2013-09-01T00:00:00", 
@@ -152,7 +152,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1785.0
+      "value": 17.0
     }, 
     {
       "_day_start_at": "2013-09-01T00:00:00", 
@@ -166,7 +166,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3223.0
+      "value": 32.0
     }, 
     {
       "_day_start_at": "2013-10-01T00:00:00", 
@@ -180,7 +180,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1773.0
+      "value": 17.0
     }, 
     {
       "_day_start_at": "2013-10-01T00:00:00", 
@@ -194,7 +194,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 3050.0
+      "value": 30.0
     }, 
     {
       "_day_start_at": "2013-11-01T00:00:00", 
@@ -208,7 +208,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 1792.0
+      "value": 17.0
     }, 
     {
       "_day_start_at": "2013-11-01T00:00:00", 
@@ -222,7 +222,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 2763.0
+      "value": 27.0
     }, 
     {
       "_day_start_at": "2013-12-01T00:00:00", 
@@ -236,7 +236,7 @@
       "comment": null, 
       "sme_large": "Small and medium enterprises", 
       "period": "month", 
-      "monthly_spend": 10.0
+      "value": 10.0
     }, 
     {
       "_day_start_at": "2013-12-01T00:00:00", 
@@ -250,7 +250,7 @@
       "comment": null, 
       "sme_large": "Large enterprises", 
       "period": "month", 
-      "monthly_spend": 100.0
+      "value": 100.0
     }
   ]
 }

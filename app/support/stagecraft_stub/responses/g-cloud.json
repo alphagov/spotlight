@@ -25,10 +25,11 @@
       "info": [
         "Data source: TBA"
       ],
+      "_start_at": "2012-04-01T00:00:00+00:00",
       "start-matcher": "enterprises$",
       "end-matcher": "^Small",
       "matching-attribute": "sme_large",
-      "value-attribute": "monthly_spend",
+      "value-attribute": "value",
       "tabs": [
         {"id": "monthly_spend", "name": "Total spend"},
         {"id": "count", "name": "Contracts awarded"}
