@@ -12,7 +12,7 @@
       list-style: none;
       float: left;
       cursor: pointer;
-      width: 8em;
+      min-width: 8em;
       &:hover {
         text-decoration: underline;
       }
