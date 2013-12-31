@@ -257,9 +257,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * as 500,000 and formatted as 0.50m.
        */
       var magnitudeOf = function(number) {
-        if (Math.abs(number) >= 499500000) return View.prototype.magnitudes.billion;
-        if (Math.abs(number) >= 499500) return View.prototype.magnitudes.million;
-        if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
+        if (Math.abs(number) >= 999500000) return View.prototype.magnitudes.billion;
+        if (Math.abs(number) >= 999500) return View.prototype.magnitudes.million;
+        if (Math.abs(number) >= 999.5) return View.prototype.magnitudes.thousand;
         return View.prototype.magnitudes.unit;
       };
 
