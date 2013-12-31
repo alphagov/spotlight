@@ -76,13 +76,13 @@ function (View, Model, Backbone, _) {
     });
 
     describe("renderSubviews / removeSubviews", function() {
-      
+
       var model, SubViewA, SubViewB, CustomView;
       beforeEach(function() {
         model = new Model({
           foo: 'bar'
         });
-          
+
         SubViewA = View.extend({
           template: function () {
             return 'foo';
@@ -95,13 +95,13 @@ function (View, Model, Backbone, _) {
           },
           remove: jasmine.createSpy()
         });
-        
+
         CustomView = View.extend({
           views: {
             '.a': { view: SubViewA },
             '#b': { view: SubViewB }
           },
-          
+
           template: function () {
             return "<div class='a'></div><div id='b'></div>";
           }
@@ -109,7 +109,7 @@ function (View, Model, Backbone, _) {
       });
 
       describe('render default options', function () {
-        
+
         it("renders subviews with default options into their selectors", function() {
           var parent = new CustomView({
             model: model
@@ -126,7 +126,7 @@ function (View, Model, Backbone, _) {
           expect(b.$el.html()).toEqual('bar');
           expect(b.model).toBe(parent.model);
         });
-      
+
         it("renders sub views with custom options into their selectors", function() {
 
           CustomView.prototype.views = {
@@ -174,28 +174,32 @@ function (View, Model, Backbone, _) {
         });
       });
     });
-    
 
-    describe("formatDuration", function() {
-      describe("when there are more than threshold rounded milliseconds", function() {
-        it("should return the number of milliseconds to seconds to two decimal places with s", function() {
+    describe('formatDuration', function () {
+      describe('milliseconds', function () {
+        it('should return the number of milliseconds to a given precision followed by ms', function () {
           var view = View.prototype;
-          expect(view.formatDuration(1000,3)).toBe("1s");
-          expect(view.formatDuration(10000,4)).toBe("10s");
-          expect(view.formatDuration(10600,4)).toBe("10.6s");
-          expect(view.formatDuration(10670,4)).toBe("10.7s");
-          expect(view.formatDuration(10470,4)).toBe("10.5s");
-          expect(view.formatDuration(100470,4)).toBe("100s");
-          expect(view.formatDuration(100670,4)).toBe("101s");
+          expect(view.formatDuration(0, 'ms', 4)).toBe('0ms');
+          expect(view.formatDuration(2594, 'ms', 3)).toBe('2590ms');
+          expect(view.formatDuration(2594, 'ms', 4)).toBe('2594ms');
+          expect(view.formatDuration(2594, 'ms', 5)).toBe('2594ms');
         });
       });
-      describe("when there are fewer than threshold rounded milliseconds", function() {
-        it("should return the number of milliseconds with ms", function() {
+
+      describe('seconds', function () {
+        it('should return the number of seconds to a given precision followed by s', function () {
           var view = View.prototype;
-          expect(view.formatDuration(1000,4)).toBe("1000ms");
+          expect(view.formatDuration(0, 's', 3)).toBe('0s');
+          expect(view.formatDuration(246, 's', 3)).toBe('0.246s');
+          expect(view.formatDuration(358, 's', 2)).toBe('0.36s');
+          expect(view.formatDuration(4628, 's', 3)).toBe('4.63s');
+          expect(view.formatDuration(8849, 's', 2)).toBe('8.8s');
+          expect(view.formatDuration(372956, 's', 2)).toBe('370s');
+          expect(view.formatDuration(15428, 's', 3)).toBe('15.4s');
+          expect(view.formatDuration(15428, 's', 6)).toBe('15.428s');
         });
       });
-    })
+    });
 
     describe("numberListFormatter", function() {
       describe("when all label are lower than 1000", function() {
@@ -204,7 +208,7 @@ function (View, Model, Backbone, _) {
           expect(formatter(50)).toBe("50");
         });
       });
-      
+
       describe("when all label are lower than 1,000,000", function() {
         it("should format all labels as thousands", function() {
           var formatter = View.prototype.numberListFormatter([0, 1000, 2000, 3000]);
@@ -217,7 +221,7 @@ function (View, Model, Backbone, _) {
           expect(formatter(1000)).toBe("1.0k");
           expect(formatter(1500)).toBe("1.5k");
         });
-        
+
         it("should format with decimals when the max value matches the magnitude", function() {
           var formatter = View.prototype.numberListFormatter([0, 1000]);
           expect(formatter(200)).toBe("0.2k");
@@ -283,7 +287,7 @@ function (View, Model, Backbone, _) {
         it("should decrease the number of ticks if it allows nicer ticks", function() {
           var extent = [0, 4000];
           var ticks = View.prototype.calculateLinearTicks(extent, 7);
-          expect(ticks.values).toEqual([0, 1000, 2000, 3000, 4000])
+          expect(ticks.values).toEqual([0, 1000, 2000, 3000, 4000]);
         });
       });
 
@@ -334,13 +338,13 @@ function (View, Model, Backbone, _) {
     });
 
     describe("formatNumericLabel", function() {
-      
+
       var formatNumericLabel = View.prototype.formatNumericLabel;
 
       it("should handle null input, when missing data", function() {
         expect(formatNumericLabel(null)).toBe(null);
-      }),
-      
+      });
+
       it("should display entire numbers from 0 to 499", function() {
         expect(formatNumericLabel(0)).toBe('0');
         expect(formatNumericLabel(1)).toBe('1');
@@ -397,7 +401,7 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(234568234)).toBe('235m');
         expect(formatNumericLabel(499499499)).toBe('499m');
       });
-      
+
       it("should display numbers from 500000000 and above as fractions of 1b", function() {
         expect(formatNumericLabel(500000000)).toBe('0.50b');
         expect(formatNumericLabel(1000000000)).toBe('1.00b');
@@ -419,7 +423,7 @@ function (View, Model, Backbone, _) {
             for (var i = start; i < end; i+=increment) {
               createExpectation(i, format(i));
             }
-          })
+          });
         },
         createExpectation = function(i, expectation) {
           expect(formatNumericLabel(i)).toBe(expectation);
@@ -460,7 +464,7 @@ function (View, Model, Backbone, _) {
           expect(formatNumericLabel(1010000)).toBe("1.01m");
           expect(formatNumericLabel(9099000)).toBe("9.10m");
           expect(formatNumericLabel(1009900)).toBe("1.01m");
-        })
+        });
       });
     });
 
@@ -476,7 +480,7 @@ function (View, Model, Backbone, _) {
         expect(format(0.011, 2)).toEqual('1.10%');
         expect(format(1, 2)).toEqual('100.00%');
       });
-      
+
       it("formats signed input with the correct sign", function () {
         expect(format(0.011, 2, false)).toEqual('1.10%');
         expect(format(1, 2, true)).toEqual('+100.00%');
@@ -594,7 +598,7 @@ function (View, Model, Backbone, _) {
         view.testProp = { foo: 'bar' };
         expect(view.prop('testProp')).toEqual({ foo: 'bar' });
       });
-      
+
       it("retrieves an object method result", function() {
         var view = new View();
         view.otherProp = { foo: 'bar' };
@@ -603,7 +607,7 @@ function (View, Model, Backbone, _) {
         };
         expect(view.prop('testProp')).toEqual({ foo: 'bar' });
       });
-      
+
       it("retrieves property from another object", function() {
         var view = new View();
         var anotherObject = {
@@ -611,7 +615,7 @@ function (View, Model, Backbone, _) {
         };
         expect(view.prop('testProp', anotherObject)).toEqual({ foo: 'bar' });
       });
-      
+
       it("retrieves method result from another object", function() {
         var view = new View();
         var anotherObject = {
