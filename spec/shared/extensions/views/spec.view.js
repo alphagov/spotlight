@@ -397,6 +397,10 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(1000000)).toBe('1.00m');
         expect(formatNumericLabel(1005000)).toBe('1.01m');
         expect(formatNumericLabel(1005001)).toBe('1.01m');
+        expect(formatNumericLabel(1009900)).toBe('1.01m');
+        expect(formatNumericLabel(1010000)).toBe('1.01m');
+        expect(formatNumericLabel(1220000)).toBe('1.22m');
+        expect(formatNumericLabel(9099000)).toBe('9.10m');
         expect(formatNumericLabel(100000000)).toBe('100m');
         expect(formatNumericLabel(234568234)).toBe('235m');
         expect(formatNumericLabel(499499499)).toBe('499m');
@@ -429,7 +433,6 @@ function (View, Model, Backbone, _) {
           expect(formatNumericLabel(i)).toBe(expectation);
         };
 
-
         createTests(0,   20,   1, function(i) { return i.toString(); });
         createTests(500, 600,  1, function(i) { return "0." + Math.round(i / 10) + "k"; });
         createTests(980, 995,  1, function(i) { return "0." + Math.round(i / 10) + "k"; });
@@ -452,19 +455,6 @@ function (View, Model, Backbone, _) {
         createTests(994499, 995000,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(2) + "m"; });
         createTests(995000, 999999,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
         createTests(999999, 1999999, 10000, function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
-      });
-
-      describe("rounding changes", function () {
-        it("should now show millions to two decimal places", function () {
-          expect(formatNumericLabel(1220000)).toBe("1.22m");
-        });
-
-        it("should show all millions to two decimal places", function () {
-          expect(formatNumericLabel(1000000)).toBe("1.00m");
-          expect(formatNumericLabel(1010000)).toBe("1.01m");
-          expect(formatNumericLabel(9099000)).toBe("9.10m");
-          expect(formatNumericLabel(1009900)).toBe("1.01m");
-        });
       });
     });
 

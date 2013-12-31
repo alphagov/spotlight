@@ -132,10 +132,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     magnitudes: {
-        billion:  {value: 1e9, threshold: 499500000, suffix:"b"},
-        million:  {value: 1e6, threshold: 499500, suffix:"m"},
-        thousand: {value: 1e3, threshold: 499.5,  suffix:"k"},
-        unit:     {value: 1,   threshold: 0,      suffix:""}
+      billion:  {value: 1e9, suffix: "b" },
+      million:  {value: 1e6, suffix: "m" },
+      thousand: {value: 1e3, suffix: "k" },
+      unit:     {value: 1,   suffix: ""  }
     },
 
     magnitudeFor: function (value) {
