@@ -38,6 +38,21 @@ function (dateFunctions) {
 
       expect(weeks).toEqual(3);
     });
+    
+    it("should count number of arbitrary intervals in a time period", function () {
+      var start = moment("05-May-2013");
+      var end = moment("26-Jul-2013");
+
+      var months = dateFunctions.numberOfEventsInPeriod(start, end, 'month');
+      expect(months).toEqual(2);
+      
+      var start = moment("2013-05-06T00:00:00+0000");
+      var end = moment("2013-05-06T14:00:00+0000");
+
+      var hours = dateFunctions.numberOfEventsInPeriod(start, end, 'hour');
+      expect(hours).toEqual(14);
+  
+    });
 
     it("should return undefined when no objects supplied", function () {
       expect(dateFunctions.latest([], function() {})).toBeUndefined();
@@ -59,6 +74,17 @@ function (dateFunctions) {
       expect(dates[2]).toBeMoment(moment("10-June-2013"));
       expect(dates[1]).toBeMoment(moment("03-June-2013"));
       expect(dates[0]).toBeMoment(moment("27-May-2013"));
+    });
+    
+    it("should return a list of arbitrary periods from a given date", function () {
+      var dates = dateFunctions.periodsFrom(moment("01-Jul-2013"), 6, 'month');
+      expect(dates.length).toBe(6);
+      expect(dates[5]).toBeMoment(moment("01-Jul-2013"));
+      expect(dates[4]).toBeMoment(moment("01-June-2013"));
+      expect(dates[3]).toBeMoment(moment("01-May-2013"));
+      expect(dates[2]).toBeMoment(moment("01-Apr-2013"));
+      expect(dates[1]).toBeMoment(moment("01-Mar-2013"));
+      expect(dates[0]).toBeMoment(moment("01-Feb-2013"));
     });
 
     describe("Last week date range", function() {
