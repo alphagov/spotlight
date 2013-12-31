@@ -567,6 +567,26 @@ function (View, Model, Backbone, _) {
       });
     });
 
+    describe('numberToSignificantFigures', function () {
+      it('should round a positive number to a given number of sig figs', function () {
+        var view = View.prototype;
+        expect(view.numberToSignificantFigures(0, 4)).toBe(0);
+        expect(view.numberToSignificantFigures(0.35628, 3)).toBe(0.356);
+        expect(view.numberToSignificantFigures(12, 1)).toBe(10);
+        expect(view.numberToSignificantFigures(628, 3)).toBe(628);
+        expect(view.numberToSignificantFigures(2594, 3)).toBe(2590);
+        expect(view.numberToSignificantFigures(2594, 9)).toBe(2594);
+      });
+      it('should round a negative number to a given number of sig figs', function () {
+        var view = View.prototype;
+        expect(view.numberToSignificantFigures(-0.35628, 3)).toBe(-0.356);
+        expect(view.numberToSignificantFigures(-12, 1)).toBe(-10);
+        expect(view.numberToSignificantFigures(-628, 3)).toBe(-628);
+        expect(view.numberToSignificantFigures(-2594, 3)).toBe(-2590);
+        expect(view.numberToSignificantFigures(-2594, 9)).toBe(-2594);
+      });
+    });
+
     describe("pluralise", function () {
       var pluralise = View.prototype.pluralise;
 

@@ -364,28 +364,33 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         return t/1000;
       };
 
-      var roundToSignificantFigures = function (value, sigFigs) {
-        if (value === 0) {
-          return 0;
-        } else {
-          var exponent = sigFigs - Math.floor(Math.log(value) / Math.LN10) - 1;
-          var magnitude = Math.pow(10, exponent);
-          return Math.round(value * magnitude) / magnitude;
-        }
-      };
-
       milliseconds = Math.round(milliseconds);
 
       if (unit === 's') {
-        formattedNumber = roundToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
+        formattedNumber = View.prototype.numberToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
         formatString = 's';
       } else {
-        formattedNumber = roundToSignificantFigures(milliseconds, precision);
+        formattedNumber = View.prototype.numberToSignificantFigures(milliseconds, precision);
         formatString = 'ms';
       }
 
       return formattedNumber + formatString;
 
+    },
+
+    /**
+     * Rounds a number to a given number of significant figures
+     * @param {Number} value Number to round
+     * @param {Number} sigFigs Number of significant figures to round to
+     */
+    numberToSignificantFigures: function (value, sigFigs) {
+      if (value === 0) {
+        return 0;
+      } else {
+        var exponent = sigFigs - Math.floor(Math.log(Math.abs(value)) / Math.LN10) - 1;
+        var magnitude = Math.pow(10, exponent);
+        return Math.round(value * magnitude) / magnitude;
+      }
     },
 
     /**
