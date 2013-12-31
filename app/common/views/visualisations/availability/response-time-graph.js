@@ -17,7 +17,7 @@ function (Graph) {
         { view: this.sharedComponents.yaxis, options: {
             tickFormat: function () {
               return function (d) {
-                return ResponseTimeGraph.prototype.formatDuration(d, 4);
+                return ResponseTimeGraph.prototype.formatDuration(d, 's', 2);
               };
             }
           }
@@ -33,7 +33,7 @@ function (Graph) {
           view: this.sharedComponents.tooltip,
           options: {
             formatValue: function (value) {
-              return this.formatDuration(value, 4);
+              return this.formatDuration(value, 's', 2);
             }
           }
         },
