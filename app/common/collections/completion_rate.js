@@ -8,11 +8,15 @@ define([
       if (this.options && this.options.tabbedAttr) {
         params[this.options.tabbedAttr] = this.options.tabs[0].id;
       }
+      if (this.options && this.options.period) {
+        params.period = this.options.period;
+      }
       return params;
     },
 
     parse: function (response) {
       this.data = response.data;
+      
       var that = this;
       var completionConfiguration = {
         id: "completion",

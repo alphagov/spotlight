@@ -18,7 +18,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         matchingAttribute: this.model.get('matching-attribute'),
         valueAttribute: this.model.get('value-attribute'),
         tabbedAttr: this.model.get('tabbed_attr'),
-        tabs: this.model.get('tabs')
+        tabs: this.model.get('tabs'),
+        period: this.model.get('period')
       };
     }
   });
