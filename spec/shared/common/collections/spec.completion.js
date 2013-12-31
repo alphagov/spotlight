@@ -123,7 +123,7 @@ function (CompletionCollection) {
 
         it("should give the total completion rate as a percentage", function () {
           volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.completionRate()).toBeCloseTo(0.476, 0.01);
+          expect(volumetricsCollection.completionRate()).toBeCloseTo(0.476, 1);
         });
 
       }

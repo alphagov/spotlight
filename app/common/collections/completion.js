@@ -15,8 +15,13 @@ function (MatrixCollection, Collection, Group) {
       this.valueAttribute= options.valueAttribute || 'uniqueEvents';
       this.tabbedAttr= options.tabbedAttr || null;
       this.tabs= options.tabs || null;
+      this.period= options.period || null;
       MatrixCollection.prototype.initialize.apply(this, arguments);
-      this.query.set('period', 'week', {silent: true, utc: false});
+      if (!this.period) {
+        this.query.set('period', 'week', {silent: true, utc: false});
+      } else { 
+        this.query.set('period', this.period, {silent: true, utc: false});
+      }
       delete this.query.attributes.period;
     },
 
@@ -77,9 +82,9 @@ function (MatrixCollection, Collection, Group) {
 
     series: function (config) {
       var data = this.data;
+      
       var events = this.eventsFrom(data);
-
-      var weeksWithData = events.length;
+      var eventsWithData = events.length;
 
       var earliestEventTimestamp = this.earliest(events, function (d) {
         return this.getMoment(d._timestamp);
@@ -87,25 +92,42 @@ function (MatrixCollection, Collection, Group) {
       var latestEventTimestamp = this.latest(events, function (d) {
         return this.getMoment(d._timestamp);
       });
-      var weekDates = this.weeksFrom(latestEventTimestamp, 9);
+      
+      var eventDates;
+      var datePeriod = this.period || "week";
+      if (!this.period) {
+        eventDates = this.weeksFrom(latestEventTimestamp, 9);
+      } else { 
+        eventDates = this.periodsFrom(latestEventTimestamp, 21, datePeriod);
+      }
 
-      var values = _.map(weekDates, function (timestamp) {
+      var values = _.map(eventDates, function (timestamp) {
         var existingEvent = this.getEventForTimestamp(events, timestamp);
         return _.extend(config.modelAttribute(existingEvent), {
           _start_at: timestamp.clone().add(1, 'hours'),
-          _end_at: timestamp.clone().add(1, 'hours').add(1, 'weeks')
+          _end_at: timestamp.clone().add(1, 'hours').add(1, datePeriod)
         });
       }, this);
-
-      return _.extend(config.collectionAttribute(events), {
+      
+      var vals = _.extend(config.collectionAttribute(events), {
         id: config.id,
         title: config.title,
-        weeks: {
-          total: this.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
-          available: weeksWithData
-        },
         values: new Collection(values).models
       });
+      
+      if (!this.period) {
+        vals.weeks = {
+          total: this.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
+          available: eventsWithData
+        };
+      } else { 
+        vals.weeks = {
+          total: this.numberOfEventsInPeriod(earliestEventTimestamp, latestEventTimestamp, datePeriod) + 1,
+          available: eventsWithData
+        };        
+      }
+
+      return vals;
     }
   });
 
