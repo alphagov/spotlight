@@ -223,34 +223,6 @@
       "sme_large": "Large enterprises", 
       "period": "month", 
       "value": 27.0
-    }, 
-    {
-      "_day_start_at": "2013-12-01T00:00:00", 
-      "_hour_start_at": "2013-12-01T00:00:00", 
-      "_id": "MjAxMy0xMi0wMlQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-12-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-12-01T00:00:00+00:00", 
-      "_updated_at": "2013-12-10T13:52:48.916000", 
-      "_month_start_at": "2013-12-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 10.0
-    }, 
-    {
-      "_day_start_at": "2013-12-01T00:00:00", 
-      "_hour_start_at": "2013-12-01T00:00:00", 
-      "_id": "MjAxMy0xMi0wMlQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-12-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-12-01T00:00:00+00:00", 
-      "_updated_at": "2013-12-10T13:52:48.921000", 
-      "_month_start_at": "2013-12-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 100.0
     }
   ]
 }
