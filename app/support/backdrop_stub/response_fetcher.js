@@ -41,13 +41,11 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
       { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'first-time-buyer'}, 'file': 'housing-first-time-buyer.json'},
-      //+01 could be fixed by dakar
-      //will get null 07 with bst
-      //need dakar and one date back to get real 07
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-14T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_14.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-07T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
-      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'}
+      { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'},
+      { 'key': {'service': 'g-cloud', 'api_name': 'sales'}, 'file': 'g-cloud-monthly-by-lot.json'}
     ],
 
     fetch_json: function (request) {
