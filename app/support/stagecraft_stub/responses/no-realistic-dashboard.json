@@ -149,28 +149,6 @@
          { "id": "started", "title": "Started" }
        ],
       "show-line-labels": true
-    },
-    {
-      "slug": "monthly_spend_by_lot",
-      "module-type": "grouped_timeseries",
-      "title": "Monthly spend by lot",
-      "description": "Spend through G-Cloud by category",
-      "data-group": "g-cloud",
-      "data-type": "sales",
-      "cumulative": false,
-      "value-attr": "monthly_spend:sum",
-      "category": "lot",
-      "period": "month",
-      "info": [
-        "Source: TBA"
-      ],
-      "series": [
-         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
-         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
-         { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
-       ],
-      "show-line-labels": true
-    }  
+    }
   ]
 }

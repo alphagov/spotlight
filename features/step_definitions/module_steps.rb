@@ -55,13 +55,6 @@ def values
         description: '',
         raw: "//*[name()='svg']"
       }
-    },
-    'monthly_spend_by_lot' => {
-      'no-realistic-dashboard' => {
-        title: 'Categories as lines',
-        description: '',
-        raw: "//*[name()='svg']"
-      }
     }
   }
 end
