@@ -137,6 +137,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         thousand: {value: 1e3, threshold: 499.5,  suffix:"k"},
         unit:     {value: 1,   threshold: 0,      suffix:""}
     },
+    
+    currencies: {
+        gbp: { prefix: "£", suffix: "" }
+    },
 
     magnitudeFor: function (value) {
         if (value >= 1e9) return this.magnitudes.billion;
@@ -145,8 +149,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         return this.magnitudes.unit;
     },
 
-    format: function (value, magnitude, decimalPlaces) {
-        return (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
+    format: function (value, magnitude, decimalPlaces, currency) {
+        var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
+        if (currency) {
+          val = currency.prefix + val + currency.suffix;
+        }
+        return val;
     },
 
     /**
@@ -158,7 +166,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * @param values
      * @return {Function}
      */
-    numberListFormatter: function (values) {
+    numberListFormatter: function (values, currency) {
       function isAnExactMultipleOf(magnitude) {
         return function(n) { return n % magnitude === 0; };
       }
@@ -173,9 +181,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }
 
       var format = this.format;
+      var currency_entry = (currency) ? this.currencies[currency] : null;
       return function(value) {
         if (value === 0) return "0";
-        return format(value, magnitude, decimalPlaces);
+        return format(value, magnitude, decimalPlaces, currency_entry);
       };
     },
 
@@ -241,7 +250,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * If we can relax these two reasons, the algorithm can become much simpler.
      * See for example View.prototype.format for a simpler alternative.
      */
-    formatNumericLabel: function(value) {
+    formatNumericLabel: function(value, currency) {
       if (value === null) return null;
       if (value === 0) return "0";
 
@@ -262,20 +271,21 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
         return View.prototype.magnitudes.unit;
       };
-
+      
       /*
        * Numbers less than  10 times the magnitude -> 2 decimal digits: N.NNx
        * Numbers less than 100 times the magnitude -> 1 decimal digits: NN.Nx
        * Numbers 100 times the magnitude or more   -> no decimal digits: NNNx
        */
-      var decimalDigits = function(number, magnitude) {
-        if (Math.abs(number) < magnitude.value * 10) return 2;
-        if (Math.abs(number) < magnitude.value * 100) return 1;
+      var decimalDigits = function(number, magnitude, currency) {
+        // Shorten labels if currency symbols are used. 
+        if (Math.abs(number) < magnitude.value * 10) return (currency) ? 1 : 2;
+        if (Math.abs(number) < magnitude.value * 100) return (currency) ? 0 : 1;
         return 0;
       };
-
+ 
       var magnitude = magnitudeOf(value);
-      var digits = decimalDigits(value, magnitude);
+      var digits = decimalDigits(value, magnitude, currency);
       var roundingFactor = Math.pow(10, digits);
 
       var roundedValue = Math.round(value * roundingFactor / magnitude.value) / roundingFactor;
@@ -283,10 +293,20 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       if (magnitude === View.prototype.magnitudes.unit) {
         // Render only significant decimal digits: 1.5 -> 1.5
         // NOTE: Why are we formatting decimal digits differently for numbers below 1000?
-        return roundedValue.toString() + magnitude.suffix;
+        var val = roundedValue.toString() + magnitude.suffix;
+        if (currency) {
+          var c = View.prototype.currencies[currency];
+          val = c.prefix + val + c.suffix;
+        }
+        return val;
       }
       // Render a fixed number of decimal digits: 1,500 -> 1.50k
-      return roundedValue.toFixed(digits) + magnitude.suffix;
+      var v = roundedValue.toFixed(digits) + magnitude.suffix;
+      if (currency) {
+        var curr = View.prototype.currencies[currency];
+        v = curr.prefix + v + curr.suffix;
+      }
+      return v;
     },
 
     formatPercentage: function (fraction, numDecimals, showSigns) {
