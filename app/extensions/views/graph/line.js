@@ -61,6 +61,10 @@ function (Component) {
     
     y: function (group, groupIndex, model, index) {
       var yPos = this.graph.getYPos(groupIndex, index);
+      console.log('groupindex');
+      console.log(groupIndex);
+      console.log('ypos');
+      console.log(yPos);
       return yPos === null ? yPos : this.scales.y(yPos);
     },
 
@@ -135,7 +139,8 @@ function (Component) {
           if (y !== null) {
             //here
             var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
-            var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected) || 0;
+            var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
+            console.log("the y2");
             console.log(y2);
             this.renderSelectionPoint(groupIndexSelected, x, y);
             this.renderSelectionPoint(groupFollowingIndexSelected, x2, y2);

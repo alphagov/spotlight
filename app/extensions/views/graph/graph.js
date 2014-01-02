@@ -345,7 +345,11 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         },
         getYPos: function (groupIndex, modelIndex) {
           if(!this.collection.at(groupIndex)){
-            return null;
+            if(this.collection.at(groupIndex - 1)){
+              return 0;
+            }else{
+              return null;
+            }
           }
           var model = this.collection.at(groupIndex).get('values').at(modelIndex);
           var yProperty = this.stackYProperty || 'y';
