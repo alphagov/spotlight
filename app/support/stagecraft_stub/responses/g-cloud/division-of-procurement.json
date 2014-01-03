@@ -10,6 +10,8 @@
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
+  "cumulative_values": "true", 
+  "include_total": "true",
   "value-attr": "monthly_spend:sum",
   "category": "sme_large",
   "period": "month",
@@ -18,7 +20,8 @@
   ],
   "series": [
     { "id": "Large enterprises", "title": "Large enterprises" },
-    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" }
+    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+    { "id": "Total", "title": "Total" }
    ],
   "show-line-labels": true
 }
