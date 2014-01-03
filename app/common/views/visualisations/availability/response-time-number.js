@@ -41,7 +41,7 @@ function (SingleStatView) {
       if (averageResponse === null) {
         return "<span class='no-data'>(no data)</span>";
       } else {
-        return this.formatDuration(Math.round(averageResponse), 4);
+        return this.formatDuration(Math.round(averageResponse), 's', 2);
       }
     },
 
@@ -50,7 +50,7 @@ function (SingleStatView) {
       if (responseTime === null) {
         return "<span class='no-data'>(no data)</span>";
       } else {
-        return this.formatDuration(responseTime, 4);
+        return this.formatDuration(responseTime, 's', 2);
       }
     },
 

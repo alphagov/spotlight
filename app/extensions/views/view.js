@@ -7,9 +7,9 @@ define([
 ],
 function (Backbone, DateFunctions, Modernizr, $, _) {
   var View = Backbone.View.extend({
-    
+
     modernizr: Modernizr,
-  
+
     initialize: function (options) {
       _.extend(this, options);
       this.viewInstances = {};
@@ -27,7 +27,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }
       this.renderSubviews(options);
     },
-    
+
     templateContext: function () {
       var context = {
         model: this.model,
@@ -53,7 +53,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     renderSubviews: function (options) {
-      
+
       var viewsDefinition = this.views;
       if (_.isFunction(viewsDefinition)) {
         viewsDefinition = viewsDefinition.call(this);
@@ -65,13 +65,13 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           console.warn('No element found for ' + selector);
           return;
         }
-        
+
         var view,
             options = this.defaultSubviewOptions();
 
         $el.empty();
         options.$el = $el;
-        
+
         if (typeof definition === 'function') {
           view = definition.call(this);
         } else if (_.isObject(definition)) {
@@ -92,7 +92,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         });
       }, this);
     },
-    
+
     /*
      *  Subviews definition. Override in subclasses.
      *
@@ -126,11 +126,11 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      *  No wrapper element is created for subviews.
      */
     views: {},
-    
+
     keys: {
       escape: 27
     },
-    
+
     magnitudes: {
         billion:  {value: 1e9, threshold: 499500000, suffix:"b"},
         million:  {value: 1e6, threshold: 499500, suffix:"m"},
@@ -171,7 +171,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       } else {
         decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value))? 0 : 1;
       }
-      
+
       var format = this.format;
       return function(value) {
         if (value === 0) return "0";
@@ -299,9 +299,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       if (showSigns) {
         if (fraction > 0) {
           value = "+" + value;
-        } else if (fraction < 0) { 
+        } else if (fraction < 0) {
           value = "−" + value;
-        } 
+        }
       }
       value += "%";
       return value;
@@ -350,39 +350,44 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }
     },
 
-    formatDuration: function (milliseconds, maxLength) {
+    /**
+     * Formats a number of milliseconds as a given unit of time
+     * @param {Number} milliseconds Duration in milliseconds
+     * @param {String} unit Unit to format as (either ms or s)
+     * @param {Number} precision Number of significant figures to format to
+     */
+    formatDuration: function (milliseconds, unit, precision) {
+
+      var formattedNumber, formatString;
 
       var millisecondsToSeconds = function (t) {
         return t/1000;
       };
 
-      var roundWithPrecision = function (x,p) {
-        var a = [1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000];
-        return Math.round(x*a[p])/a[p];
-      };
-
-      var visualLength = function (item) {
-        return item.toString().length;
+      var roundToSignificantFigures = function (value, sigFigs) {
+        if (value === 0) {
+          return 0;
+        } else {
+          var exponent = sigFigs - Math.floor(Math.log(value) / Math.LN10) - 1;
+          var magnitude = Math.pow(10, exponent);
+          return Math.round(value * magnitude) / magnitude;
+        }
       };
 
       milliseconds = Math.round(milliseconds);
 
-      if(visualLength(milliseconds) > maxLength){
-        var seconds = millisecondsToSeconds(milliseconds);
-        var secondsWithPrecision = roundWithPrecision(seconds, 1);
-        if(visualLength(secondsWithPrecision) > maxLength){
-          return Math.round(seconds) + 's';        
-        }
-        else{
-          return secondsWithPrecision + 's';
-        }
-      }
-      else{
-        return milliseconds + 'ms';
+      if (unit === 's') {
+        formattedNumber = roundToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
+        formatString = 's';
+      } else {
+        formattedNumber = roundToSignificantFigures(milliseconds, precision);
+        formatString = 'ms';
       }
 
+      return formattedNumber + formatString;
+
     },
-  
+
     /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.

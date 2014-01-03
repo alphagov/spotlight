@@ -43,6 +43,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "monthly_spend", "period": "month", "group_by": "sme_large", "cumulative_values": "true", "include_total": "true"}, 'file': 'g-cloud-procurement.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "count", "period": "month", "group_by": "sme_large", "cumulative_values": "true", "include_total": "true"}, 'file': 'g-cloud-procurement-count.json'},
+      { 'key': {'service': 'g-cloud', 'api_name': 'sales'}, 'file': 'g-cloud-monthly-by-lot.json'}
     ],
 
     fetch_json: function (request) {
