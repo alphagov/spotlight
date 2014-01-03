@@ -20,7 +20,7 @@
       "module-type": "grouped_timeseries",
       "title": "Cumulative procurement by company size",
       "description": "The cumulative division of procurement between SMEs and larger enterprises",
-      "data-group": "g-cloud",
+      "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
       "value-attr": "monthly_spend:sum",

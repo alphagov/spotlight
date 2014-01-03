@@ -7,7 +7,7 @@
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
   "dashboard-slug": "g-cloud",
-  "data-group": "g-cloud",
+  "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
   "value-attr": "monthly_spend:sum",
