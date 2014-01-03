@@ -19,10 +19,10 @@ function (MatrixCollection, Collection, Group) {
       MatrixCollection.prototype.initialize.apply(this, arguments);
       if (!this.period) {
         this.query.set('period', 'week', {silent: true, utc: false});
+        delete this.query.attributes.period;
       } else { 
-        this.query.set('period', this.period, {silent: true, utc: false});
+        this.query.set('period', this.period);
       }
-      delete this.query.attributes.period;
     },
 
     uniqueEventsFor: function (data, matcher) {

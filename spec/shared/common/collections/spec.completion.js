@@ -105,6 +105,17 @@ function (CompletionCollection) {
         beforeEach(function () {
           volumetricsCollection = collectionFor({data: context.data});
         });
+        
+        it("should include the period in the url, if it is set", function () {
+          var periodCollection = new CompletionCollection({}, {
+            "data-group": 'notARealFCOTransaction',
+            "data-type": 'journey',
+            "period": "month"
+          });
+          periodCollection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+          
+          expect(periodCollection.url()).toContain("period=month");
+        });
 
         it("should query backdrop for journey data for the specified service", function () {
           expect(volumetricsCollection.url()).toContain("journey");

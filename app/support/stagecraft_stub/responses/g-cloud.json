@@ -21,7 +21,7 @@
       "title": "Proportion of procurement from small and medium enterprises",
       "dashboard-title": "Measures the proportion of market covered by SMEs",
       "data-group": "gcloud",
-      "data-type": "proportion-sme-monthly",
+      "data-type": "proportion-sme",
       "info": [
         "Data source: TBA"
       ],
