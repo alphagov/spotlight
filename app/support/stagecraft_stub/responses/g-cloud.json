@@ -18,7 +18,7 @@
     {
       "slug": "division_of_procurement",
       "module-type": "grouped_timeseries",
-      "title": "Division of procurement by company size",
+      "title": "Cumulative procurement by company size",
       "description": "The cumulative division of procurement between SMEs and larger enterprises",
       "data-group": "g-cloud",
       "data-type": "sales",
