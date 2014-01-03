@@ -7,7 +7,7 @@
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "Public purchasing performance",
   "dashboard-slug": "g-cloud",
-  "data-group": "g-cloud",
+  "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
   "value-attr": "monthly_spend:sum",
