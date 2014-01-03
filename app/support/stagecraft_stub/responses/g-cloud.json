@@ -16,7 +16,7 @@
   ],
   "modules": [
     {
-      "slug": "who_is_using",
+      "slug": "who-is-using",
       "module-type": "grouped_timeseries",
       "title": "Who is using G-Cloud",
       "description": "The cumulative spend by central government and wider public services",
@@ -38,7 +38,7 @@
       "show-line-labels": true
     },
     {
-      "slug": "monthly_spend_by_lot",
+      "slug": "spend-by-lot",
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
       "description": "Spend through G-Cloud by category",
