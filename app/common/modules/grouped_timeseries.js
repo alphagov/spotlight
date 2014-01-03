@@ -13,6 +13,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) 
     requiresSvg: true,
     collectionOptions: function () {
       return {
+        tabs: this.model.get("tabs"),
         valueAttr: this.model.get("value-attr"),
         category: this.model.get("category"),
         period: this.model.get("period"),

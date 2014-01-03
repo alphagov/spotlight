@@ -12,7 +12,7 @@
   "cumulative": false,
   "cumulative_values": "true", 
   "include_total": "true",
-  "value-attr": "monthly_spend:sum",
+  "value-attr": "value",
   "category": "sme_large",
   "period": "month",
   "info": [
@@ -23,5 +23,10 @@
     { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
     { "id": "Total", "title": "Total" }
    ],
-  "show-line-labels": true
+  "show-line-labels": true,
+  "tabs": [
+    {"id": "monthly_spend", "name": "Total spend"},
+    {"id": "count", "name": "Contracts awarded"}
+  ],
+  "tabbed_attr": "collect"
 }
