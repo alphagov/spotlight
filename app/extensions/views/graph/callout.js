@@ -90,7 +90,8 @@ function (Component, Pivot) {
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
 
       var value = this.formatNumericLabel(
-        Math.floor(model.get(this.graph.valueAttr))
+        Math.floor(model.get(this.graph.valueAttr)),
+        this.graph.currency
       );
       if (this.showPercentage) {
         value += ' (' + this.formatPercentage(model.get('fraction')) + ')';
