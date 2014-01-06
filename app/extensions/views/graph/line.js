@@ -61,10 +61,6 @@ function (Component) {
     
     y: function (group, groupIndex, model, index) {
       var yPos = this.graph.getYPos(groupIndex, index);
-      console.log('groupindex');
-      console.log(groupIndex);
-      console.log('ypos');
-      console.log(yPos);
       return yPos === null ? yPos : this.scales.y(yPos);
     },
 
@@ -142,13 +138,12 @@ function (Component) {
             var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
             this.renderSelectionPoint(groupIndexSelected, x, y);
             this.renderSelectionPoint(groupIndexSelected, x2, y2);
-            console.log("res");
           }
         }
       }
     },
 
-    renderSelectionPoint: function (groupIndexSelected, x, y, stroke_colour) {
+    renderSelectionPoint: function (groupIndexSelected, x, y) {
       this.componentWrapper.append('circle').attr({
         'class': 'selectedIndicator line' + groupIndexSelected,
         cx: x,

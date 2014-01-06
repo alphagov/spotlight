@@ -16,7 +16,11 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
   var scaleFromStartAndEndDates = {
     getXPos: function(groupIndex, modelIndex) {
       groupIndex = groupIndex || 0;
+      console.log("here");
+      console.log(groupIndex);
+      console.log(modelIndex);
       var model = this.collection.at(groupIndex, modelIndex);
+      console.log(model);
       return this.modelToDate(model);
     },
     calcXScale: function () {
@@ -357,9 +361,6 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
             return null;
           }
           var y0Property = this.stackY0Property || 'y0';
-          console.log(model[y0Property]);
-          console.log(model[yProperty]);
-          //0 is top...
           return model[y0Property] + model[yProperty];
         },
         getY0Pos: function (groupIndex, modelIndex) {
