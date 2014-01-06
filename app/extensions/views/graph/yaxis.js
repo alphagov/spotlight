@@ -19,7 +19,7 @@ function (require, Axis) {
       return this.scales.y;
     },
     tickFormat: function () {
-      return this.numberListFormatter(this.scales.y.tickValues);
+      return this.numberListFormatter(this.scales.y.tickValues, this.graph.currency);
     }
   });
   

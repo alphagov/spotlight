@@ -71,6 +71,8 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       
       this.prepareGraphArea();
       
+      this.currency = options.currency;
+      
       this.scales = {};
       this.margin = {};
 
@@ -285,19 +287,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       day: scaleByEndDate,
       week: scaleByEndDate,
       quarter: scaleByEndDate,
-      month: {
-        getXPos: function(groupIndex, modelIndex) {
-          return modelIndex;
-        },
-        calcXScale: function () {
-          var start, end, xScale;
-          var total = this.collection.first().get('values');
-          xScale = this.d3.scale.linear();
-          xScale.domain([0, total.length - 1]);
-          xScale.range([0, this.innerWidth]);
-          return xScale;
-        }
-      },
+      month: scaleByEndDate, 
       
       ymin: { 
         initialize: function() {

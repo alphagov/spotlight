@@ -47,6 +47,7 @@
       "cumulative": false,
       "value-attr": "monthly_spend:sum",
       "category": "lot",
+      "currency": "gbp", 
       "period": "month",
       "info": [
         "Source: TBA"
