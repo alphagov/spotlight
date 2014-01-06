@@ -16,6 +16,7 @@
   ],
   "modules": [
     {
+
       "slug": "who-is-using",
       "module-type": "grouped_timeseries",
       "title": "Who is using G-Cloud",
@@ -25,6 +26,7 @@
       "cumulative": false,
       "category": "sector",
       "value-attr": "monthly_spend:sum",
+      "currency": "gbp", 
       "period": "month",
       "info": [
         "Source: TBA"
