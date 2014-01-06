@@ -13,7 +13,12 @@ function (template, View, StackedGraph, LineGraph) {
           graph = cumulative ? StackedGraph : LineGraph;
 
       return {
-        '.categories': { view: graph }
+        '.categories': { 
+          view: graph, 
+            options: { 
+              "currency": this.model.get('currency') 
+            }
+        }
       };
     }
   });

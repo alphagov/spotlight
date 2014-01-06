@@ -29,6 +29,15 @@ function (express, fs, path, winston) {
 
         if (environment === 'development') {
           global.logger.debug('Winston is logging in development');
+
+          // In development, overwrite the asset digest so that each value is equal to the key,
+          // because Sass will recompile itself to the non-cachebusted filename with each change.
+          var assetDigest = app.get('assetDigest');
+          _.each(assetDigest, function (value, key) {
+            assetDigest[key] = key;
+          });
+          app.set('assetDigest', assetDigest);
+
           app.use(express.errorHandler());
           app.use('/app', express['static'](path.join(rootDir, 'app')));
           app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));

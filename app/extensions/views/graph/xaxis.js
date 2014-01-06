@@ -117,17 +117,25 @@ function (Axis) {
       },
       month: {
         getTick: function (model, index) {
-          return index;
+          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
         },
         tickFormat: function () {
-          var period = this.collection.query.get('period');
-          var values = this.collection.first().get('values');
-          return function (d, index) {
-            return values.at(index).get('_start_at').format('MMM');
-          };
+          return _.bind(function (d, index) {
+            var val = this.getMoment(d).format('MMM');
+            if (d.getMonth() === 0) {
+              val += " " + this.getMoment(d).format('YYYY');
+            }
+            return val;
+          }, this);
         },
         tickValues: function () {
-          return this.collection.first().get('values').map(_.bind(this.getTick, this));
+          var tickVals = this.collection.first().get('values').map(_.bind(this.getTick, this));
+          if (tickVals.length > 15) {
+            tickVals = _.filter(tickVals, function(d) {
+              return ((d.getMonth() % 3) === 0);
+            });
+          }
+          return tickVals;
         }
       }
     }

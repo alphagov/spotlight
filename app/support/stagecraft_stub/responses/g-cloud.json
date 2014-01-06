@@ -36,6 +36,29 @@
         {"id": "count", "name": "Contracts awarded"}
       ],
       "tabbed_attr": "collect"
+    }, 
+    {
+      "slug": "spend-by-lot",
+      "module-type": "grouped_timeseries",
+      "title": "Monthly spend by lot",
+      "description": "Spend through G-Cloud by category",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "value-attr": "monthly_spend:sum",
+      "category": "lot",
+      "currency": "gbp",
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
+         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
+         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
+       ],
+      "show-line-labels": true
     }
   ]
 }
