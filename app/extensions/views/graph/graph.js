@@ -71,6 +71,8 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       
       this.prepareGraphArea();
       
+      this.currency = options.currency;
+      
       this.scales = {};
       this.margin = {};
 
