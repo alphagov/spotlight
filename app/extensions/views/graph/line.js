@@ -140,16 +140,15 @@ function (Component) {
             //here
             var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
             var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
-            console.log("the y2");
-            console.log(y2);
             this.renderSelectionPoint(groupIndexSelected, x, y);
-            this.renderSelectionPoint(groupFollowingIndexSelected, x2, y2);
+            this.renderSelectionPoint(groupIndexSelected, x2, y2);
+            console.log("res");
           }
         }
       }
     },
 
-    renderSelectionPoint: function (groupIndexSelected, x, y) {
+    renderSelectionPoint: function (groupIndexSelected, x, y, stroke_colour) {
       this.componentWrapper.append('circle').attr({
         'class': 'selectedIndicator line' + groupIndexSelected,
         cx: x,
