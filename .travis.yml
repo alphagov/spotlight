@@ -8,7 +8,6 @@ matrix:
 install:
   - npm install -g grunt-cli@0.1.9
   - npm install
-  - gem install debugger-linecache -v '1.2.0' --with-ruby-include=$rvm_path/src/ruby-1.9.3-p484/
   - bundle install
 notifications:
   email: false
