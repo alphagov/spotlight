@@ -48,12 +48,13 @@
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
       "description": "Spend through G-Cloud by category",
-      "data-group": "g-cloud",
+      "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
       "value-attr": "monthly_spend:sum",
       "category": "lot",
       "period": "month",
+      "currency": "gbp", 
       "info": [
         "Source: TBA"
       ],

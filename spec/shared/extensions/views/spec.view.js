@@ -229,6 +229,18 @@ function (View, Model, Backbone, _) {
           expect(formatter(800)).toBe("0.8k");
           expect(formatter(1000)).toBe("1.0k");
         });
+        
+        it("should format with currency prefix if required", function() {
+           var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
+           expect(formatter(200)).toBe("£0.2k");
+         });
+         
+         it("should format with currency suffix if required", function() {
+            View.prototype.currencies['cny'] = { 'prefix': '', 'suffix': ' CNY' };
+            var formatter = View.prototype.numberListFormatter([0, 1000], 'cny');
+            expect(formatter(200)).toBe("0.2k CNY");
+          });
+          
       });
 
       describe("when labels go over 1,000,000", function() {
@@ -345,7 +357,7 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(null)).toBe(null);
       });
 
-      it("should display entire numbers from 0 to 499", function() {
+      it("should display entire numbers from 0 to 999", function() {
         expect(formatNumericLabel(0)).toBe('0');
         expect(formatNumericLabel(1)).toBe('1');
         expect(formatNumericLabel(9)).toBe('9');
@@ -354,6 +366,9 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(100)).toBe('100');
         expect(formatNumericLabel(398)).toBe('398');
         expect(formatNumericLabel(499)).toBe('499');
+        expect(formatNumericLabel(500)).toBe('500');
+        expect(formatNumericLabel(777)).toBe('777');
+        expect(formatNumericLabel(999)).toBe('999');
       });
 
       it("should display real numbers from 0 to 9.99 with two decimal digits", function() {
@@ -370,40 +385,34 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(99.96)).toBe('100');
       });
 
-      it("should display numbers from 500 to 499499 as fractions of 1k", function() {
-        expect(formatNumericLabel(500)).toBe('0.50k');
-        expect(formatNumericLabel(777)).toBe('0.78k');
-        expect(formatNumericLabel(994)).toBe('0.99k');
-        expect(formatNumericLabel(995)).toBe('1.00k');
-        expect(formatNumericLabel(996)).toBe('1.00k');
-        expect(formatNumericLabel(999)).toBe('1.00k');
+      it("should display numbers from 1000 to 999499 as fractions of 1k", function() {
         expect(formatNumericLabel(1000)).toBe('1.00k');
         expect(formatNumericLabel(1005)).toBe('1.01k');
         expect(formatNumericLabel(1006)).toBe('1.01k');
         expect(formatNumericLabel(100000)).toBe('100k');
         expect(formatNumericLabel(234568)).toBe('235k');
-        expect(formatNumericLabel(499499)).toBe('499k');
+        expect(formatNumericLabel(500000)).toBe('500k');
+        expect(formatNumericLabel(777777)).toBe('778k');
+        expect(formatNumericLabel(999499)).toBe('999k');
       });
 
-      it("should display numbers from 499500 and above as fractions of 1m", function() {
-        expect(formatNumericLabel(499500)).toBe('0.50m');
-        expect(formatNumericLabel(500000)).toBe('0.50m');
-        expect(formatNumericLabel(777777)).toBe('0.78m');
-        expect(formatNumericLabel(994499)).toBe('0.99m');
-        expect(formatNumericLabel(994999)).toBe('0.99m');
-        expect(formatNumericLabel(995000)).toBe('1.00m');
-        expect(formatNumericLabel(995001)).toBe('1.00m');
+      it("should display numbers from 999500 and above as fractions of 1m", function() {
+        expect(formatNumericLabel(999500)).toBe('1.00m');
+        expect(formatNumericLabel(999501)).toBe('1.00m');
         expect(formatNumericLabel(999900)).toBe('1.00m');
         expect(formatNumericLabel(1000000)).toBe('1.00m');
         expect(formatNumericLabel(1005000)).toBe('1.01m');
         expect(formatNumericLabel(1005001)).toBe('1.01m');
+        expect(formatNumericLabel(1009900)).toBe('1.01m');
+        expect(formatNumericLabel(1010000)).toBe('1.01m');
+        expect(formatNumericLabel(1220000)).toBe('1.22m');
+        expect(formatNumericLabel(9099000)).toBe('9.10m');
         expect(formatNumericLabel(100000000)).toBe('100m');
         expect(formatNumericLabel(234568234)).toBe('235m');
-        expect(formatNumericLabel(499499499)).toBe('499m');
+        expect(formatNumericLabel(999499499)).toBe('999m');
       });
 
-      it("should display numbers from 500000000 and above as fractions of 1b", function() {
-        expect(formatNumericLabel(500000000)).toBe('0.50b');
+      it("should display numbers from 999500000 and above as fractions of 1b", function() {
         expect(formatNumericLabel(1000000000)).toBe('1.00b');
         expect(formatNumericLabel(25250000000)).toBe('25.3b');
       });
@@ -417,54 +426,44 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(-1234)).toBe('-1.23k');
       });
 
-      describe("generative tests", function() {
-        var createTests = function(start, end, increment, format) {
+      it("should display currency symbols, with fewer decimal places", function() {
+         expect(formatNumericLabel(null, 'gbp')).toBe(null);
+         expect(formatNumericLabel(0.00, 'gbp')).toBe('0');
+         expect(formatNumericLabel(100, 'gbp')).toBe('£100');
+         expect(formatNumericLabel(12.34, 'gbp')).toBe('£12');
+         expect(formatNumericLabel(777, 'gbp')).toBe('£777');
+         expect(formatNumericLabel(995001, 'gbp')).toBe('£995k');
+         expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.0b');
+       });
+
+      describe("generative tests", function () {
+        var createTests = function (start, end, increment, format) {
           it("should correctly format numbers in the range " + start + "-" + end, function() {
             for (var i = start; i < end; i+=increment) {
               createExpectation(i, format(i));
             }
           });
-        },
-        createExpectation = function(i, expectation) {
+        };
+
+        var createExpectation = function (i, expectation) {
           expect(formatNumericLabel(i)).toBe(expectation);
         };
 
-
         createTests(0,   20,   1, function(i) { return i.toString(); });
-        createTests(500, 600,  1, function(i) { return "0." + Math.round(i / 10) + "k"; });
-        createTests(980, 995,  1, function(i) { return "0." + Math.round(i / 10) + "k"; });
-        createTests(995, 1000, 1, function(i) {
-          var expected = "1." + (Math.round(i / 10) - 100);
-          if (expected.length < 4) {
-            expected += "0";
-          }
-          return expected + "k";
-        });
+        createTests(500, 600,  1, function(i) { return i.toString(); });
+        createTests(980, 999,  1, function(i) { return i.toString(); });
         createTests(1000,   1100,    1,    function(i) { return (Math.round(i / 10) / 100).toPrecision(3) + "k"; });
         createTests(9400,   10000,   10,   function(i) { return (Math.round(i / 10) / 100).toPrecision(3) + "k"; });
         createTests(10000,  11500,   10,   function(i) { return (Math.round(i / 100) / 10).toPrecision(3) + "k"; });
         createTests(50450,  50500,   10,   function(i) { return (Math.round(i / 100) / 10).toPrecision(3) + "k"; });
         createTests(100000, 101000,  10,   function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
         createTests(499000, 499500,  100,  function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
-        createTests(499500, 500000,  100,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(2) + "m"; });
-        createTests(504500, 506000,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(2) + "m"; });
-        createTests(700000, 800000,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(2) + "m"; });
-        createTests(994499, 995000,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(2) + "m"; });
-        createTests(995000, 999999,  150,  function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
+        createTests(499500, 500000,  100,  function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
+        createTests(504500, 506000,  150,  function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
+        createTests(700000, 800000,  150,  function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
+        createTests(994499, 999500,  150,  function(i) { return Math.round(i / 1000).toPrecision(3) + "k"; });
+        createTests(999500, 999999,  150,   function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
         createTests(999999, 1999999, 10000, function(i) { return (Math.round(i / 10000) / 100).toPrecision(3) + "m"; });
-      });
-
-      describe("rounding changes", function () {
-        it("should now show millions to two decimal places", function () {
-          expect(formatNumericLabel(1220000)).toBe("1.22m");
-        });
-
-        it("should show all millions to two decimal places", function () {
-          expect(formatNumericLabel(1000000)).toBe("1.00m");
-          expect(formatNumericLabel(1010000)).toBe("1.01m");
-          expect(formatNumericLabel(9099000)).toBe("9.10m");
-          expect(formatNumericLabel(1009900)).toBe("1.01m");
-        });
       });
     });
 
@@ -564,6 +563,26 @@ function (View, Model, Backbone, _) {
           _end_at: moment('2014-02-01')
         });
         expect(view.formatPeriod(model, 'month')).toEqual('Aug 2013 to Jan 2014');
+      });
+    });
+
+    describe('numberToSignificantFigures', function () {
+      it('should round a positive number to a given number of sig figs', function () {
+        var view = View.prototype;
+        expect(view.numberToSignificantFigures(0, 4)).toBe(0);
+        expect(view.numberToSignificantFigures(0.35628, 3)).toBe(0.356);
+        expect(view.numberToSignificantFigures(12, 1)).toBe(10);
+        expect(view.numberToSignificantFigures(628, 3)).toBe(628);
+        expect(view.numberToSignificantFigures(2594, 3)).toBe(2590);
+        expect(view.numberToSignificantFigures(2594, 9)).toBe(2594);
+      });
+      it('should round a negative number to a given number of sig figs', function () {
+        var view = View.prototype;
+        expect(view.numberToSignificantFigures(-0.35628, 3)).toBe(-0.356);
+        expect(view.numberToSignificantFigures(-12, 1)).toBe(-10);
+        expect(view.numberToSignificantFigures(-628, 3)).toBe(-628);
+        expect(view.numberToSignificantFigures(-2594, 3)).toBe(-2590);
+        expect(view.numberToSignificantFigures(-2594, 9)).toBe(-2594);
       });
     });
 

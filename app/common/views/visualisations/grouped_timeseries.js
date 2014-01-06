@@ -14,7 +14,10 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
           graph = cumulative ? StackedGraph : LineGraph;
           
       var val = {
-            '.categories': { view: graph }
+            '.categories': { view: graph },
+            options: { 
+              "currency": this.model.get('currency') 
+            }
           };
           
       if (this.model && this.model.get('tabbed_attr')) {
@@ -32,6 +35,7 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
       }
 
       return val;
+      
     }
   });
 
