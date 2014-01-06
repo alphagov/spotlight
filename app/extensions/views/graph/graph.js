@@ -16,11 +16,13 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
   var scaleFromStartAndEndDates = {
     getXPos: function(groupIndex, modelIndex) {
       groupIndex = groupIndex || 0;
-      console.log("here");
-      console.log(groupIndex);
-      console.log(modelIndex);
-      var model = this.collection.at(groupIndex, modelIndex);
-      console.log(model);
+      if(!this.collection.at(groupIndex)){
+        if(this.collection.at(groupIndex - 1)){
+          var model = this.collection.at(groupIndex - 1, modelIndex);
+        }
+      } else{
+        var model = this.collection.at(groupIndex, modelIndex);
+      }
       return this.modelToDate(model);
     },
     calcXScale: function () {

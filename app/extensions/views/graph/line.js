@@ -56,6 +56,8 @@ function (Component) {
     
     x: function (group, groupIndex, model, index) {
       var xPos = this.graph.getXPos(groupIndex, index);
+//this is happily scaling dates... so we need to get the previous model if non present for this groupindex
+//then we model to date on this one... wait, actually there shouldn't be model groupindex 4 as only 4 available and 0 based
       return xPos === null ? xPos : Math.floor(this.scales.x(xPos)) + 0.5;
     },
     
@@ -134,7 +136,11 @@ function (Component) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
           if (y !== null) {
             //here
+            //this should now to min like y does min
             var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
+            console.log("x2");
+            console.log(x2);
+            console.log("x2");
             var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
             this.renderSelectionPoint(groupIndexSelected, x, y);
             this.renderSelectionPoint(groupIndexSelected, x2, y2);
