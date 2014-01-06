@@ -14,9 +14,11 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
           graph = cumulative ? StackedGraph : LineGraph;
           
       var val = {
-            '.categories': { view: graph },
-            options: { 
-              "currency": this.model.get('currency') 
+            '.categories': { 
+              view: graph,
+              options: { 
+                "currency": this.model.get('currency') 
+              }
             }
           };
           

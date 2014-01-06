@@ -28,6 +28,7 @@
       "value-attr": "value",
       "category": "sme_large",
       "period": "month",
+      "currency": "gbp",
       "info": [
         "Source: TBA"
       ],
@@ -44,7 +45,7 @@
       "tabbed_attr": "collect"
     },
     {
-      "slug": "monthly_spend_by_lot",
+      "slug": "spend-by-lot",
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
       "description": "Spend through G-Cloud by category",
