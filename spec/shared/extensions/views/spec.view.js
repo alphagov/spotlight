@@ -229,6 +229,18 @@ function (View, Model, Backbone, _) {
           expect(formatter(800)).toBe("0.8k");
           expect(formatter(1000)).toBe("1.0k");
         });
+        
+        it("should format with currency prefix if required", function() {
+           var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
+           expect(formatter(200)).toBe("£0.2k");
+         });
+         
+         it("should format with currency suffix if required", function() {
+            View.prototype.currencies['cny'] = { 'prefix': '', 'suffix': ' CNY' };
+            var formatter = View.prototype.numberListFormatter([0, 1000], 'cny');
+            expect(formatter(200)).toBe("0.2k CNY");
+          });
+          
       });
 
       describe("when labels go over 1,000,000", function() {
@@ -413,6 +425,16 @@ function (View, Model, Backbone, _) {
         expect(formatNumericLabel(-123.4)).toBe('-123');
         expect(formatNumericLabel(-1234)).toBe('-1.23k');
       });
+
+      it("should display currency symbols, with fewer decimal places", function() {
+         expect(formatNumericLabel(null, 'gbp')).toBe(null);
+         expect(formatNumericLabel(0.00, 'gbp')).toBe('0');
+         expect(formatNumericLabel(100, 'gbp')).toBe('£100');
+         expect(formatNumericLabel(12.34, 'gbp')).toBe('£12');
+         expect(formatNumericLabel(777, 'gbp')).toBe('£777');
+         expect(formatNumericLabel(995001, 'gbp')).toBe('£995k');
+         expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.0b');
+       });
 
       describe("generative tests", function () {
         var createTests = function (start, end, increment, format) {

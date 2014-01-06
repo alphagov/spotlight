@@ -26,6 +26,7 @@
     "value-attr": "monthly_spend:sum",
     "category": "lot",
     "period": "month",
+    "currency": "gbp", 
     "info": [
       "Source: TBA"
     ],

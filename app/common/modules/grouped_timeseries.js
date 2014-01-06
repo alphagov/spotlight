@@ -16,6 +16,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) 
         valueAttr: this.model.get("value-attr"),
         category: this.model.get("category"),
         period: this.model.get("period"),
+        currency: this.model.get("currency"),
         seriesList: this.model.get("series"),
         filterBy: this.model.get("filter-by")
       };
