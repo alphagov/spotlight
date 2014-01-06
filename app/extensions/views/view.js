@@ -132,10 +132,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     magnitudes: {
-        billion:  {value: 1e9, threshold: 499500000, suffix:"b"},
-        million:  {value: 1e6, threshold: 499500, suffix:"m"},
-        thousand: {value: 1e3, threshold: 499.5,  suffix:"k"},
-        unit:     {value: 1,   threshold: 0,      suffix:""}
+      billion:  {value: 1e9, suffix: "b" },
+      million:  {value: 1e6, suffix: "m" },
+      thousand: {value: 1e3, suffix: "k" },
+      unit:     {value: 1,   suffix: ""  }
     },
 
     magnitudeFor: function (value) {
@@ -257,9 +257,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * as 500,000 and formatted as 0.50m.
        */
       var magnitudeOf = function(number) {
-        if (Math.abs(number) >= 499500000) return View.prototype.magnitudes.billion;
-        if (Math.abs(number) >= 499500) return View.prototype.magnitudes.million;
-        if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
+        if (Math.abs(number) >= 999500000) return View.prototype.magnitudes.billion;
+        if (Math.abs(number) >= 999500) return View.prototype.magnitudes.million;
+        if (Math.abs(number) >= 999.5) return View.prototype.magnitudes.thousand;
         return View.prototype.magnitudes.unit;
       };
 
@@ -364,28 +364,33 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         return t/1000;
       };
 
-      var roundToSignificantFigures = function (value, sigFigs) {
-        if (value === 0) {
-          return 0;
-        } else {
-          var exponent = sigFigs - Math.floor(Math.log(value) / Math.LN10) - 1;
-          var magnitude = Math.pow(10, exponent);
-          return Math.round(value * magnitude) / magnitude;
-        }
-      };
-
       milliseconds = Math.round(milliseconds);
 
       if (unit === 's') {
-        formattedNumber = roundToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
+        formattedNumber = View.prototype.numberToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
         formatString = 's';
       } else {
-        formattedNumber = roundToSignificantFigures(milliseconds, precision);
+        formattedNumber = View.prototype.numberToSignificantFigures(milliseconds, precision);
         formatString = 'ms';
       }
 
       return formattedNumber + formatString;
 
+    },
+
+    /**
+     * Rounds a number to a given number of significant figures
+     * @param {Number} value Number to round
+     * @param {Number} sigFigs Number of significant figures to round to
+     */
+    numberToSignificantFigures: function (value, sigFigs) {
+      if (value === 0) {
+        return 0;
+      } else {
+        var exponent = sigFigs - Math.floor(Math.log(Math.abs(value)) / Math.LN10) - 1;
+        var magnitude = Math.pow(10, exponent);
+        return Math.round(value * magnitude) / magnitude;
+      }
     },
 
     /**
