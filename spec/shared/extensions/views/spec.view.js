@@ -230,13 +230,17 @@ function (View, Model, Backbone, _) {
           expect(formatter(1000)).toBe("1.0k");
         });
         
-        it("should format with currency symbols if required", function() {
+        it("should format with currency prefix if required", function() {
            var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
            expect(formatter(200)).toBe("£0.2k");
-           expect(formatter(400)).toBe("£0.4k");
-           expect(formatter(800)).toBe("£0.8k");
-           expect(formatter(1000)).toBe("£1.0k");
          });
+         
+         it("should format with currency suffix if required", function() {
+            View.prototype.currencies['cny'] = { 'prefix': '', 'suffix': ' CNY' };
+            var formatter = View.prototype.numberListFormatter([0, 1000], 'cny');
+            expect(formatter(200)).toBe("0.2k CNY");
+          });
+          
       });
 
       describe("when labels go over 1,000,000", function() {
