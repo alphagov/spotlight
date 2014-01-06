@@ -21,7 +21,6 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
           };
           
       if (this.model && this.model.get('tabbed_attr')) {
-        console.log('tabbed_attr', this.model.get('tabbed_attr'));
         val["#categories-nav"] = {
            view: Tabs,
            options: function (){
