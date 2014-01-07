@@ -113,8 +113,6 @@ function (VolumetricsCollection) {
         valueAttr: "some:value",
         category: "some-category",
         period: "month",
-        cumulative_values: "true",
-        include_total: "true",
         seriesList: [
           { id: "abc", title: "ABC" },
           { id: "def", title: "DEF" },
@@ -131,8 +129,6 @@ function (VolumetricsCollection) {
         expect(collection.url()).toContain("period=month");
         expect(collection.url()).toContain("group_by=some-category");
         expect(collection.url()).toContain("collect=some%3Avalue");
-        expect(collection.url()).toContain("cumulative_values=true");
-        expect(collection.url()).toContain("include_total=true");
         expect(collection.url()).not.toContain("filter_by");
       });
 

@@ -9,9 +9,7 @@ function (MatrixCollection) {
         collect: this.options.valueAttr,
         period: this.options.period,
         group_by: this.options.category,
-        filter_by: this.options.filterBy ? this.options.filterBy : [],
-        cumulative_values: this.options.cumulative_values,
-        include_total: this.options.include_total
+        filter_by: this.options.filterBy ? this.options.filterBy : []
       };
     },
 
