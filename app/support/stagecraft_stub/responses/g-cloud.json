@@ -24,8 +24,6 @@
       "data-type": "sales",
       "cumulative": false,
       "value-attr": "monthly_spend",
-      "cumulative_values": "true", 
-      "include_total": "true", 
       "category": "sme_large",
       "period": "month",
       "currency": "gbp",

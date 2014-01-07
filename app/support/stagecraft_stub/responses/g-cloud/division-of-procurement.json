@@ -10,8 +10,6 @@
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
-  "cumulative_values": "true", 
-  "include_total": "true",
   "value-attr": "value",
   "category": "sme_large",
   "period": "month",
