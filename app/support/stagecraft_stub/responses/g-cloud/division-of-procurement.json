@@ -12,7 +12,7 @@
   "cumulative": false,
   "cumulative_values": "true", 
   "include_total": "true",
-  "value-attr": "value",
+  "value-attr": "monthly_spend",
   "category": "sme_large",
   "period": "month",
   "info": [
