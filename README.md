@@ -16,10 +16,12 @@ not in the standard GDS development VM.
 
 [ppdev]: https://github.com/alphagov/pp-development
 
-Install dependencies:
+Install dependencies. 
+Run these commands on the VM.
 
 ```bash
 bundle install
+sudo apt-get install npm
 sudo npm install -g grunt-cli@0.1.9
 sudo npm install -g supervisor@0.5.6
 npm install
@@ -52,7 +54,8 @@ automatically restart the server and recompile Sass.
 [node-supervisor]: https://github.com/isaacs/node-supervisor
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
 
-If you want to test with png rendering run the [screenshot-as-a-service][] app first in the appropriate environment.
+If you want to test with PNG fallbacks run the [screenshot-as-a-service][]
+app first in the appropriate environment.
 
 [screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
@@ -60,7 +63,7 @@ If you want to test with png rendering run the [screenshot-as-a-service][] app f
 
 #### Command line ####
 
-Tests are divided into ones that work on both client and server (`test/spec/shared`) and ones that are server-only (`test/spec/server`) and client-only (`test/spec/client`).
+Tests are divided into ones that work on both client and server (`test/spec/shared`), ones that are server-only (`test/spec/server`) and ones that are client-only (`test/spec/client`).
 
 `grunt test:all` runs all three of these tests in sequence:
 
@@ -69,7 +72,7 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 - `grunt cucumber` executes Cucumber features through PhantomJS.
 
 `bundle exec cucumber --profile sauce` executes Cucumber features through
-SauceLabs (no Grunt task yet).
+SauceLabs (there's no Grunt task for this yet).
 
 #### Browser ####
 

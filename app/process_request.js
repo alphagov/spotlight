@@ -7,6 +7,7 @@ function (StagecraftApiClient) {
       govukUrl: setup.getGovukUrl(req),
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),
+      assetDigest: req.app.get('assetDigest'),
       environment: req.app.get('environment'),
       backdropUrl: req.app.get('backdropUrl'),
       clientRequiresCors: req.app.get('clientRequiresCors')

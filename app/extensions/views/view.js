@@ -7,9 +7,9 @@ define([
 ],
 function (Backbone, DateFunctions, Modernizr, $, _) {
   var View = Backbone.View.extend({
-    
+
     modernizr: Modernizr,
-  
+
     initialize: function (options) {
       _.extend(this, options);
       this.viewInstances = {};
@@ -27,7 +27,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }
       this.renderSubviews(options);
     },
-    
+
     templateContext: function () {
       var context = {
         model: this.model,
@@ -53,7 +53,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     renderSubviews: function (options) {
-      
+
       var viewsDefinition = this.views;
       if (_.isFunction(viewsDefinition)) {
         viewsDefinition = viewsDefinition.call(this);
@@ -65,13 +65,13 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           console.warn('No element found for ' + selector);
           return;
         }
-        
+
         var view,
             options = this.defaultSubviewOptions();
 
         $el.empty();
         options.$el = $el;
-        
+
         if (typeof definition === 'function') {
           view = definition.call(this);
         } else if (_.isObject(definition)) {
@@ -92,7 +92,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         });
       }, this);
     },
-    
+
     /*
      *  Subviews definition. Override in subclasses.
      *
@@ -126,16 +126,20 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      *  No wrapper element is created for subviews.
      */
     views: {},
-    
+
     keys: {
       escape: 27
     },
-    
+
     magnitudes: {
-        billion:  {value: 1e9, threshold: 499500000, suffix:"b"},
-        million:  {value: 1e6, threshold: 499500, suffix:"m"},
-        thousand: {value: 1e3, threshold: 499.5,  suffix:"k"},
-        unit:     {value: 1,   threshold: 0,      suffix:""}
+      billion:  {value: 1e9, suffix: "b" },
+      million:  {value: 1e6, suffix: "m" },
+      thousand: {value: 1e3, suffix: "k" },
+      unit:     {value: 1,   suffix: ""  }
+    },
+    
+    currencies: {
+      gbp: { prefix: "£", suffix: "" }
     },
 
     magnitudeFor: function (value) {
@@ -145,8 +149,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         return this.magnitudes.unit;
     },
 
-    format: function (value, magnitude, decimalPlaces) {
-        return (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
+    format: function (value, magnitude, decimalPlaces, currency) {
+       var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
+       if (currency) {
+         val = currency.prefix + val + currency.suffix;
+       }
+       return val;
     },
 
     /**
@@ -158,7 +166,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * @param values
      * @return {Function}
      */
-    numberListFormatter: function (values) {
+    numberListFormatter: function (values, currency) {
       function isAnExactMultipleOf(magnitude) {
         return function(n) { return n % magnitude === 0; };
       }
@@ -171,11 +179,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       } else {
         decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value))? 0 : 1;
       }
-      
+
       var format = this.format;
+      var currency_entry = (currency) ? this.currencies[currency] : null;
       return function(value) {
         if (value === 0) return "0";
-        return format(value, magnitude, decimalPlaces);
+        return format(value, magnitude, decimalPlaces, currency_entry);
       };
     },
 
@@ -241,7 +250,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * If we can relax these two reasons, the algorithm can become much simpler.
      * See for example View.prototype.format for a simpler alternative.
      */
-    formatNumericLabel: function(value) {
+    formatNumericLabel: function(value, currency) {
       if (value === null) return null;
       if (value === 0) return "0";
 
@@ -257,9 +266,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * as 500,000 and formatted as 0.50m.
        */
       var magnitudeOf = function(number) {
-        if (Math.abs(number) >= 499500000) return View.prototype.magnitudes.billion;
-        if (Math.abs(number) >= 499500) return View.prototype.magnitudes.million;
-        if (Math.abs(number) >= 499.5) return View.prototype.magnitudes.thousand;
+        if (Math.abs(number) >= 999500000) return View.prototype.magnitudes.billion;
+        if (Math.abs(number) >= 999500) return View.prototype.magnitudes.million;
+        if (Math.abs(number) >= 999.5) return View.prototype.magnitudes.thousand;
         return View.prototype.magnitudes.unit;
       };
 
@@ -269,13 +278,13 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * Numbers 100 times the magnitude or more   -> no decimal digits: NNNx
        */
       var decimalDigits = function(number, magnitude) {
-        if (Math.abs(number) < magnitude.value * 10) return 2;
-        if (Math.abs(number) < magnitude.value * 100) return 1;
+        if (Math.abs(number) < magnitude.value * 10) return (currency) ? 1 : 2;
+        if (Math.abs(number) < magnitude.value * 100) return (currency) ? 0 : 1;
         return 0;
       };
 
       var magnitude = magnitudeOf(value);
-      var digits = decimalDigits(value, magnitude);
+      var digits = decimalDigits(value, magnitude, currency);
       var roundingFactor = Math.pow(10, digits);
 
       var roundedValue = Math.round(value * roundingFactor / magnitude.value) / roundingFactor;
@@ -283,10 +292,20 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       if (magnitude === View.prototype.magnitudes.unit) {
         // Render only significant decimal digits: 1.5 -> 1.5
         // NOTE: Why are we formatting decimal digits differently for numbers below 1000?
-        return roundedValue.toString() + magnitude.suffix;
+        var val = roundedValue.toString() + magnitude.suffix;
+        if (currency) {
+          var c = View.prototype.currencies[currency];
+          val = c.prefix + val + c.suffix;
+        }
+        return val;
       }
       // Render a fixed number of decimal digits: 1,500 -> 1.50k
-      return roundedValue.toFixed(digits) + magnitude.suffix;
+      var v = roundedValue.toFixed(digits) + magnitude.suffix;
+      if (currency) {
+        var curr = View.prototype.currencies[currency];
+        v = curr.prefix + v + curr.suffix;
+      }
+      return v;
     },
 
     formatPercentage: function (fraction, numDecimals, showSigns) {
@@ -299,9 +318,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       if (showSigns) {
         if (fraction > 0) {
           value = "+" + value;
-        } else if (fraction < 0) { 
+        } else if (fraction < 0) {
           value = "−" + value;
-        } 
+        }
       }
       value += "%";
       return value;
@@ -350,39 +369,49 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       }
     },
 
-    formatDuration: function (milliseconds, maxLength) {
+    /**
+     * Formats a number of milliseconds as a given unit of time
+     * @param {Number} milliseconds Duration in milliseconds
+     * @param {String} unit Unit to format as (either ms or s)
+     * @param {Number} precision Number of significant figures to format to
+     */
+    formatDuration: function (milliseconds, unit, precision) {
+
+      var formattedNumber, formatString;
 
       var millisecondsToSeconds = function (t) {
         return t/1000;
       };
 
-      var roundWithPrecision = function (x,p) {
-        var a = [1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000];
-        return Math.round(x*a[p])/a[p];
-      };
-
-      var visualLength = function (item) {
-        return item.toString().length;
-      };
-
       milliseconds = Math.round(milliseconds);
 
-      if(visualLength(milliseconds) > maxLength){
-        var seconds = millisecondsToSeconds(milliseconds);
-        var secondsWithPrecision = roundWithPrecision(seconds, 1);
-        if(visualLength(secondsWithPrecision) > maxLength){
-          return Math.round(seconds) + 's';        
-        }
-        else{
-          return secondsWithPrecision + 's';
-        }
-      }
-      else{
-        return milliseconds + 'ms';
+      if (unit === 's') {
+        formattedNumber = View.prototype.numberToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
+        formatString = 's';
+      } else {
+        formattedNumber = View.prototype.numberToSignificantFigures(milliseconds, precision);
+        formatString = 'ms';
       }
 
+      return formattedNumber + formatString;
+
     },
-  
+
+    /**
+     * Rounds a number to a given number of significant figures
+     * @param {Number} value Number to round
+     * @param {Number} sigFigs Number of significant figures to round to
+     */
+    numberToSignificantFigures: function (value, sigFigs) {
+      if (value === 0) {
+        return 0;
+      } else {
+        var exponent = sigFigs - Math.floor(Math.log(Math.abs(value)) / Math.LN10) - 1;
+        var magnitude = Math.pow(10, exponent);
+        return Math.round(value * magnitude) / magnitude;
+      }
+    },
+
     /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.

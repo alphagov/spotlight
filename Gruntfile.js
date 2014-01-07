@@ -26,9 +26,10 @@ var requirejsConfig = getRequirejsConfig();
 module.exports = function(grunt) {
   "use strict";
 
-  // Project configuration.
   grunt.initConfig({
+    // Removes the contents of the public directory
     clean: ["public/"],
+    // Builds Sass in development and production
     sass: {
       development: {
         files: {
@@ -56,10 +57,12 @@ module.exports = function(grunt) {
           loadPath: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
-          style: 'compressed'
+          style: 'compressed',
+          bundleExec: true
         }
       }
     },
+    // Sets up Jasmine tests
     jasmine: {
       spotlight: {
         src: ['app/**/*.js'],
@@ -74,6 +77,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Sets up server-side Jasmine node tests
     jasmine_node: {
       useHelpers: true,
       specFolders: [
@@ -94,6 +98,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Sets up Cucumber feature tests
     cucumber: {
         test: {
             features: 'features/'
@@ -104,6 +109,7 @@ module.exports = function(grunt) {
             tags: ['~@wip']
         }
     },
+    // Lints our JavaScript
     jshint: {
       files: "app/**/*.js",
       options: {
@@ -113,6 +119,7 @@ module.exports = function(grunt) {
         es5: false
       }
     },
+    // Creates a single big JS file
     requirejs: {
       production: {
         options: extend({}, requirejsConfig, {
@@ -127,6 +134,7 @@ module.exports = function(grunt) {
         })
       }
     },
+    // Copies templates and assets from external modules and dirs
     copy: {
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
@@ -178,6 +186,7 @@ module.exports = function(grunt) {
         ]
       }
     },
+    // Watches styles and specs for changes
     watch: {
       css: {
         files: ['styles/**/*.scss'],
@@ -189,6 +198,7 @@ module.exports = function(grunt) {
         tasks: ['jasmine:spotlight:build']
       }
     },
+    // Supervises the node process in development
     shell: {
       supervisor: {
         options: {
@@ -198,17 +208,7 @@ module.exports = function(grunt) {
         command: 'supervisor -w app -i app/vendor -e "js|html" -n error app/server'
       }
     },
-    nodemon: {
-      dev: {
-        options: {
-          file: 'app/server.js',
-          watchedExtensions: ['js'],
-          watchedFolders: ['app', 'support'],
-          delayTime: 1,
-          legacyWatch: true
-        }
-      }
-    },
+    // Runs development tasks concurrently
     concurrent: {
       dev: {
         tasks: ['shell:supervisor', 'watch'],
@@ -216,9 +216,21 @@ module.exports = function(grunt) {
           logConcurrentOutput: true
         }
       }
+    },
+    // Creates an asset digest for cachebusting URLs
+    digest: {
+      options: {
+        out: 'public/asset-digest.json',
+        separator: '-',
+        algorithm: 'md5'
+      },
+      files: {
+        src: ['public/**/*.*']
+      }
     }
   });
 
+  // Load external module tasks
   [
     'grunt-contrib-jasmine',
     'grunt-jasmine-node-coverage',
@@ -226,6 +238,7 @@ module.exports = function(grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-sass',
     'grunt-contrib-requirejs',
+    'grunt-digest',
     'grunt-rcukes',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
@@ -236,17 +249,51 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('copy:assets', [
-    'copy:govuk_assets', 'copy:spotlight_assets'
+    'copy:govuk_assets',
+    'copy:spotlight_assets'
   ]);
+
   grunt.registerTask('build:development', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:development'
+    'copy:vendor',
+    'copy:govuk_template',
+    'jshint',
+    'clean',
+    'copy:assets',
+    'sass:development',
+    'digest'
   ]);
+
   grunt.registerTask('build:production', [
-    'copy:vendor', 'copy:govuk_template', 'jshint', 'clean', 'copy:assets', 'sass:production', 'requirejs:production', 'requirejs:production-no-d3'
+    'copy:vendor',
+    'copy:govuk_template',
+    'jshint',
+    'clean',
+    'copy:assets',
+    'sass:production',
+    'requirejs:production',
+    'requirejs:production-no-d3',
+    'digest'
   ]);
-  grunt.registerTask('test:all', ['copy:vendor', 'jshint', 'cucumber', 'jasmine', 'jasmine_node']);
-  // Default task.
-  grunt.registerTask('default', ['build:development', 'jasmine:spotlight:build', 'concurrent']);
+
+  grunt.registerTask('test:all', [
+    'copy:vendor',
+    'copy:govuk_template',
+    'jshint',
+    'clean',
+    'copy:assets',
+    'sass:development',
+    'digest',
+    'cucumber',
+    'jasmine',
+    'jasmine_node'
+  ]);
+
+  // Default task
+  grunt.registerTask('default', [
+    'build:development',
+    'jasmine:spotlight:build',
+    'concurrent'
+  ]);
 
 };
 

@@ -1,9 +1,10 @@
 define([
   'express',
+  'fs',
   'path',
   'winston'
 ],
-function (express, path, winston) {
+function (express, fs, path, winston) {
 
   var appBuilder = {
     getApp: function (environment, rootDir, require_base_url) {
@@ -14,6 +15,7 @@ function (express, path, winston) {
         app.set('environment', environment);
         app.set('requirePath', require_base_url || '/app/');
         app.set('assetPath', global.config.assetPath);
+        app.set('assetDigest', JSON.parse(fs.readFileSync(path.join(rootDir, 'public', 'asset-digest.json'), {encoding: 'utf8'})));
         app.set('backdropUrl', global.config.backdropUrl);
         app.set('govukHost', global.config.govukHost);
         app.set('clientRequiresCors', global.config.clientRequiresCors);
@@ -27,6 +29,15 @@ function (express, path, winston) {
 
         if (environment === 'development') {
           global.logger.debug('Winston is logging in development');
+
+          // In development, overwrite the asset digest so that each value is equal to the key,
+          // because Sass will recompile itself to the non-cachebusted filename with each change.
+          var assetDigest = app.get('assetDigest');
+          _.each(assetDigest, function (value, key) {
+            assetDigest[key] = key;
+          });
+          app.set('assetDigest', assetDigest);
+
           app.use(express.errorHandler());
           app.use('/app', express['static'](path.join(rootDir, 'app')));
           app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
