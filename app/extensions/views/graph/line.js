@@ -56,8 +56,6 @@ function (Component) {
     
     x: function (group, groupIndex, model, index) {
       var xPos = this.graph.getXPos(groupIndex, index);
-//this is happily scaling dates... so we need to get the previous model if non present for this groupindex
-//then we model to date on this one... wait, actually there shouldn't be model groupindex 4 as only 4 available and 0 based
       return xPos === null ? xPos : Math.floor(this.scales.x(xPos)) + 0.5;
     },
     
@@ -99,12 +97,35 @@ function (Component) {
       );
     },
 
+    siblingLineIndex: function(originalIndex){
+      console.log(parseInt(originalIndex, 10) + 1);
+      return parseInt(originalIndex, 10) + 1;
+    },
+    resetSiblingLine: function() {
+      this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', null);
+      console.log("345");
+    },
+    colourSiblingLine: function(line, originalIndex) {
+      var line_colour = line.style('stroke');
+      console.log(line_colour);
+      var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
+        .classed('selected-following-sibling', true)
+        .style('stroke', line_colour);
+      console.log("234");
+    },
+    renderSiblingCircle: function(groupSelected, originalIndex, modelSelected, indexSelected) {
+      var x2 = this.x(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
+      var y2 = this.y(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
+      this.renderSelectionPoint(originalIndex, x2, y2);
+      console.log("123");
+    },
+
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
-      var groupFollowingIndexSelected = parseInt(groupIndexSelected, 10) + 1;
-      //sibling line
+      console.log("33333");
       this.componentWrapper.selectAll('path.line').classed('selected', false);
-      //sibling line
-      this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', line_colour);
+      if(this.encompassStack){
+        this.resetSiblingLine();
+      }
       this.componentWrapper.selectAll('path.line').classed('not-selected', Boolean(groupSelected));
       this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
       this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
@@ -113,12 +134,9 @@ function (Component) {
         var line = this.componentWrapper.select('path.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
-        //sibling line
-        var line_colour = line.style('stroke');
-        var following_sibling_line = this.componentWrapper.select('path.line' + groupFollowingIndexSelected)
-          .classed('selected-following-sibling', true)
-          .style('stroke', line_colour);
-        //sibling line
+        if(this.encompassStack){
+          this.colourSiblingLine(line, groupIndexSelected);
+        }
         this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
@@ -135,13 +153,14 @@ function (Component) {
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
           if (y !== null) {
-            var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
-            var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
             this.renderSelectionPoint(groupIndexSelected, x, y);
-            this.renderSelectionPoint(groupIndexSelected, x2, y2);
+            if(this.encompassStack){
+              this.renderSiblingCircle(groupSelected, groupIndexSelected, modelSelected, indexSelected);
+            }
           }
         }
       }
+      console.log("33333");
     },
 
     renderSelectionPoint: function (groupIndexSelected, x, y) {
