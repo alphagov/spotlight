@@ -16,10 +16,12 @@ function (XAxis, Collection) {
     });
 
     function viewForConfig(config, startDate, endDate, useEllipses) {
+      
       var collection = new Collection();
       var start = collection.getMoment(startDate);
       var end = collection.getMoment(endDate);
       var values = [];
+
       for (var date = start.clone(); +date < +end; date.add(1, config + 's')) {
         values.push({
           _end_at: date.clone()
@@ -73,6 +75,22 @@ function (XAxis, Collection) {
         expect(d3.select(ticks[1]).text()).toEqual('17 Mar');
         expect(d3.select(ticks[2]).text()).toEqual('24 Mar');
         expect(d3.select(ticks[3]).text()).toEqual('31 Mar');
+      });
+    });
+    
+    describe("'month' configuration", function () {
+      it("shows tick and label each month, or quarter if appropriate", function () {
+        var view = viewForConfig('month', '2012-01-05T00:00:00+00:00', '2013-12-05T00:00:00+01:00');
+        view.render();
+        
+        var ticks = wrapper.selectAll('.tick')[0];
+        
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(8);
+        expect(d3.select(ticks[0]).text()).toEqual('Jan 2012');
+        expect(d3.select(ticks[1]).text()).toEqual('Apr');
+        expect(d3.select(ticks[2]).text()).toEqual('July');
+        expect(d3.select(ticks[3]).text()).toEqual('Oct');
+        expect(d3.select(ticks[4]).text()).toEqual('Jan 2013');
       });
     });
     
