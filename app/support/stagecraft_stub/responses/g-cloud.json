@@ -33,9 +33,9 @@
         "Source: TBA"
       ],
       "series": [
-         { "id": "Large enterprises", "title": "Large enterprises" },
+         { "id": "Total", "title": "Total" },
          { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-         { "id": "Total", "title": "Total" }
+         { "id": "Large enterprises", "title": "Large enterprises" }
        ],
       "show-line-labels": true,
       "tabs": [
@@ -60,10 +60,10 @@
         "Source: TBA"
       ],
       "series": [
-         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
-         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
          { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
+         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }
        ],
       "show-line-labels": true
     }
