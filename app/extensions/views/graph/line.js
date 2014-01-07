@@ -135,12 +135,7 @@ function (Component) {
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
           if (y !== null) {
-            //here
-            //this should now to min like y does min
             var x2 = this.x(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
-            console.log("x2");
-            console.log(x2);
-            console.log("x2");
             var y2 = this.y(groupSelected, groupFollowingIndexSelected, modelSelected, indexSelected);
             this.renderSelectionPoint(groupIndexSelected, x, y);
             this.renderSelectionPoint(groupIndexSelected, x2, y2);
