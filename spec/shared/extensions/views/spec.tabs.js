@@ -1,7 +1,8 @@
 define([
   'extensions/views/tabs',
+  'extensions/collections/collection',
   'extensions/models/model'], 
-function(Tabs, Model) {
+function(Tabs, Collection, Model) {
   describe("Tabs", function() {
     describe("initialize", function() {
       it("should initialize with a model, target attribute and array of tabs", function() {
@@ -63,9 +64,12 @@ function(Tabs, Model) {
       
       beforeEach(function () {
         model = new Model();
+        collection = new Collection();
+        collection.options = {};
         spyOn(model, "set");
         tab = new Tabs({
           model: model,
+          collection: collection,
           attr: 'anAttribute',
           tabs: [{
             name: "Test",
@@ -77,12 +81,15 @@ function(Tabs, Model) {
         });
       });
       
-      it("should update the model when a non-active tab is clicked on", function () {
+      
+      it("should update the model and collection when a non-active tab is clicked on", function () {
         jasmine.renderView(tab, function () {
           tab.$el.find('li:eq(1)').trigger('click');
           expect(model.set).toHaveBeenCalledWith('anAttribute', 'foo');
+          expect(collection.options.valueAttr).toEqual('foo');
         });
       });
+            
     });
   });
 

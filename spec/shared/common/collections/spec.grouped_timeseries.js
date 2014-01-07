@@ -135,22 +135,6 @@ function (VolumetricsCollection) {
         expect(collection.url()).toContain("include_total=true");
         expect(collection.url()).not.toContain("filter_by");
       });
-      
-      it("should query backdrop with the correct url if tabs are defined", function () {
-        
-        tabbedCollection = new VolumetricsCollection([], {
-          'data-type': "some-type",
-          'data-group': "some-group",
-          "tabs": [
-            {"id": "monthly_spend", "name": "Total spend"},
-            {"id": "count", "name": "Contracts awarded"}
-          ],
-          "tabbed_attr": "collect"
-        });
-        tabbedCollection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-        
-        expect(tabbedCollection.url()).toContain("collect=monthly_spend");
-      });
 
       it("should contain filters", function () {
         filteredCollection = new VolumetricsCollection([], {

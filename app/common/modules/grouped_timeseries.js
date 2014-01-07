@@ -4,7 +4,7 @@ define([
   'common/views/visualisations/grouped_timeseries'
 ],
 function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) {
-
+  
   var GroupedTimeseriesModule = ModuleController.extend({
     className: 'grouped_timeseries',
     visualisationClass: GroupedTimeseriesView,

@@ -6,7 +6,7 @@ function (MatrixCollection) {
   var CategoriesCollection = MatrixCollection.extend({
     queryParams: function () {
       return {
-        collect: (this.options.tabs) ? this.options.tabs[0].id: this.options.valueAttr,
+        collect: this.options.valueAttr,
         period: this.options.period,
         group_by: this.options.category,
         filter_by: this.options.filterBy ? this.options.filterBy : [],
