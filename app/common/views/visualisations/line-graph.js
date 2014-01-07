@@ -10,6 +10,12 @@ function (Graph) {
       this.valueAttr = this.model.get('value-attr');
     },
     
+    render: function (options) {
+      this.valueAttr = this.collection.options.valueAttr; 
+      
+      Graph.prototype.render.apply(this, arguments);
+    },
+    
     components: function () {
       return [
         { view: this.sharedComponents.xaxis },
