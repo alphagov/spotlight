@@ -17,10 +17,10 @@
     "Source: TBA"
   ],
   "series": [
-     { "id": "Central government", "title": "Central government" },
-     { "id": "Local government", "title": "Local government" },
-     { "id": "Not for profit", "title": "Not for profit" },
-     { "id": "Other wider public sector", "title": "Other wider public sector" }
+    { "id": "Central government", "title": "Central government" },
+    { "id": "Other wider public sector", "title": "Other wider public sector" },
+    { "id": "Local government", "title": "Local government" },
+    { "id": "Not for profit", "title": "Not for profit" }
    ],
   "show-line-labels": true
 }

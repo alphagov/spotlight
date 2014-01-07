@@ -25,7 +25,7 @@
       "data-type": "sales",
       "cumulative": false,
       "category": "sector",
-      "value-attr": "monthly_spend:sum",
+      "value-attr": "cumulative_spend:sum",
       "currency": "gbp", 
       "period": "month",
       "info": [
@@ -33,9 +33,9 @@
       ],
       "series": [
          { "id": "Central government", "title": "Central government" },
+         { "id": "Other wider public sector", "title": "Other wider public sector" },
          { "id": "Local government", "title": "Local government" },
-         { "id": "Not for profit", "title": "Not for profit" },
-         { "id": "Other wider public sector", "title": "Other wider public sector" }
+         { "id": "Not for profit", "title": "Not for profit" }
        ],
       "show-line-labels": true
     },
