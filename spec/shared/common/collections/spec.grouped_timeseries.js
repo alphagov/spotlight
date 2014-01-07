@@ -131,8 +131,6 @@ function (VolumetricsCollection) {
         expect(collection.url()).toContain("period=month");
         expect(collection.url()).toContain("group_by=some-category");
         expect(collection.url()).toContain("collect=some%3Avalue");
-        expect(collection.url()).toContain("cumulative_values=true");
-        expect(collection.url()).toContain("include_total=true");
         expect(collection.url()).not.toContain("filter_by");
       });
 
