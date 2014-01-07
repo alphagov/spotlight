@@ -19,9 +19,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) 
         period: this.model.get("period"),
         currency: this.model.get("currency"),
         seriesList: this.model.get("series"),
-        filterBy: this.model.get("filter-by"),
-        cumulative_values: this.model.get("cumulative_values"),
-        include_total: this.model.get("include_total")
+        filterBy: this.model.get("filter-by")
       };
     }
 
