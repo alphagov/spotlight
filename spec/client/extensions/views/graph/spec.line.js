@@ -37,6 +37,7 @@ function (Line, Collection) {
         selectedModel: { a: 1 },
         selectedModelIndex: 2
       });
+      //only one line... wrong place for selection render then?
       view = new Line({
         interactive: false,
         wrapper: wrapper,
@@ -162,14 +163,19 @@ function (Line, Collection) {
         expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
       });
 
-      it("renders a selection indicator on the selected item", function () {
+      it("renders a selection indicator on the selected item and the one after using the class of the first", function () {
         view.render();
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
         expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
-        expect(view.componentWrapper.selectAll('circle.selectedIndicator')[0].length).toEqual(1);
-        expect(view.componentWrapper.selectAll('circle.selectedIndicator').attr('cx')).toEqual('4');
-        expect(view.componentWrapper.selectAll('circle.selectedIndicator').attr('cy')).toEqual('6');
+        var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0]
+        expect(circles.length).toEqual(2);
+        expect($(circles[0]).attr("cx")).toEqual('4');
+        expect($(circles[0]).attr("cy")).toEqual('6');
+        expect($(circles[1]).attr("cx")).toEqual('4');
+        expect($(circles[1]).attr("cy")).toEqual('6');
+        expect($(circles[0]).attr("class")).toEqual($(circles[1]).attr("class"));
+        //not sure how to test which line they're on...
       });
 
       it("doesn't renders a selection indicator for missing data item", function () {

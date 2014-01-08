@@ -132,7 +132,9 @@ function (require, Line, Component) {
           break;
         }
       }
-
+      if (!this.selectGroup) {
+        selectedGroupIndex = null;
+      }
       if (e.toggle) {
         this.collection.selectItem(selectedGroupIndex, selectedItemIndex, { toggle: true });
       } else {
