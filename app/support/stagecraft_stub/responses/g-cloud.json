@@ -16,7 +16,7 @@
   ],
   "modules": [
     {
-      "slug": "division_of_procurement",
+      "slug": "division-of-procurement",
       "module-type": "grouped_timeseries",
       "title": "Cumulative procurement by company size",
       "description": "The cumulative division of procurement between SMEs and larger enterprises",
@@ -40,6 +40,30 @@
         {"id": "cumulative_count:sum", "name": "Contracts awarded"}
       ],
       "tabbed_attr": "collect"
+    },
+    {
+      "slug": "who-is-using",
+      "module-type": "grouped_timeseries",
+      "title": "Who is using G-Cloud",
+      "description": "The cumulative spend by central government and wider public services",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "category": "sector",
+      "value-attr": "cumulative_spend:sum",
+      "currency": "gbp", 
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Central government", "title": "Central government" },
+         { "id": "Other wider public sector", "title": "Other wider public sector" },
+         { "id": "Local government", "title": "Local government" },
+         { "id": "Unknown", "title": "Unknown" },
+         { "id": "Not for profit", "title": "Not for profit" }
+       ],
+      "show-line-labels": true
     },
     {
       "slug": "spend-by-lot",
