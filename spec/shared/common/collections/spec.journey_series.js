@@ -48,7 +48,7 @@ define([
       it("requests data for the last week by default", function() { 
         var collection = new TestCollection();
         
-        jasmine.setupMoment('2013-03-13', collection);
+        jasmine.setupMoment('2013-03-13T00:00:00+00:00', collection);
       
         var params = collection.queryParams();
         expect(params).toHaveStartAndEndDatesMatching('2013-03-04T00:00:00', '2013-03-11T00:00:00');
@@ -69,7 +69,7 @@ define([
         describe("Sundays", function () {
           it("should start the query 13 days before and finish 6 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-14', conversionCollection);
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
@@ -79,7 +79,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-14', conversionCollection);
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-06-24T00:00:00', '2013-07-01T00:00:00');
@@ -89,7 +89,7 @@ define([
         describe("Mondays", function () {
           it("should start the query 7 days before and finish 0 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-15', conversionCollection);
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-08T00:00:00', '2013-07-15T00:00:00');
@@ -99,7 +99,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-15', conversionCollection);
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
@@ -109,7 +109,7 @@ define([
         describe("Saturdays", function () {
           it("should start the query 12 days before and finish 5 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-13', conversionCollection);
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
@@ -119,7 +119,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-13', conversionCollection);
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-06-24T00:00:00', '2013-07-01T00:00:00');
@@ -131,7 +131,7 @@ define([
         describe("Sundays", function () {
           it("should start the query 13 days before and finish 6 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-14', conversionCollection);
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -142,7 +142,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-14', conversionCollection);
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-06-24T00:00:00');
@@ -153,7 +153,7 @@ define([
         describe("Mondays", function () {
           it("should start the query 7 days before and finish 0 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-15', conversionCollection);
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-08T00:00:00');
@@ -164,7 +164,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-15', conversionCollection);
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -175,7 +175,7 @@ define([
         describe("Saturdays", function () {
           it("should start the query 12 days before and finish 5 days before - by default", function () {
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-13', conversionCollection);
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -186,7 +186,7 @@ define([
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-13', conversionCollection);
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-06-24T00:00:00');
