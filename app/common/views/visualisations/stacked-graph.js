@@ -31,9 +31,6 @@ function (Graph) {
           showTimePeriod: true,
           attachLinks: this.model.get('line-label-links')
         };
-        lineOptions = {
-          encompassStack: true
-        };
         stackOptions = {
           selectGroup: true,
           encompassStack: true,
@@ -48,7 +45,6 @@ function (Graph) {
       return [
         { view: this.sharedComponents.xaxis },
         { view: this.sharedComponents.yaxis },
-        { view: this.sharedComponents.line, options: lineOptions },
         { view: this.sharedComponents.stack, options: stackOptions },
         { view: labelComponent, options: labelOptions },
         { view: this.sharedComponents.hover }
