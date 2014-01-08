@@ -47,7 +47,16 @@ function (Graph) {
         { view: this.sharedComponents.yaxis },
         { view: this.sharedComponents.stack, options: stackOptions },
         { view: labelComponent, options: labelOptions },
-        { view: this.sharedComponents.hover }
+        { view: this.sharedComponents.hover },
+        {
+          view: this.sharedComponents.tooltip,
+          options: {
+            formatValue: function (value) {
+              return this.formatNumericLabel(value);
+            },
+            encompassStack: true
+          }
+        }
       ];
     },
 

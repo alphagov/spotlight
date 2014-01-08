@@ -20,6 +20,11 @@ function (Component, Pivot) {
 
     y: function (group, groupIndex, model, index) {
       var yPos = this.graph.getYPos(groupIndex, index);
+      if(this.encompassStack){
+        //we need to center the tooltip in the stack
+        var yPos2 = this.graph.getYPos(groupIndex+1, index);
+        yPos = ((yPos - yPos2) / 2) + yPos2;
+      }
       return this.scales.y(yPos);
     },
 
