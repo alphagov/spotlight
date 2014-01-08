@@ -10,22 +10,19 @@
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
-  "cumulative_values": "true", 
-  "include_total": "true",
-  "value-attr": "value",
+  "value-attr": "cumulative_spend",
   "category": "sme_large",
   "period": "month",
   "info": [
     "Source: TBA"
   ],
   "series": [
-    { "id": "Large enterprises", "title": "Large enterprises" },
     { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-    { "id": "Total", "title": "Total" }
+    { "id": "Large enterprises", "title": "Large enterprises" }
    ],
   "show-line-labels": true,
   "tabs": [
-    {"id": "monthly_spend", "name": "Total spend"},
+    {"id": "cumulative_spend", "name": "Total spend"},
     {"id": "count", "name": "Contracts awarded"}
   ],
   "tabbed_attr": "collect"
