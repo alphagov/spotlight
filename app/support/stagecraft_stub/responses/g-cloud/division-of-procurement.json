@@ -10,9 +10,10 @@
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
-  "value-attr": "cumulative_spend",
+  "value-attr": "cumulative_spend:sum",
   "category": "sme_large",
   "period": "month",
+  "currency": "gbp",
   "info": [
     "Source: TBA"
   ],
@@ -22,8 +23,8 @@
    ],
   "show-line-labels": true,
   "tabs": [
-    {"id": "cumulative_spend", "name": "Total spend"},
-    {"id": "count", "name": "Contracts awarded"}
+    {"id": "cumulative_spend:sum", "name": "Total spend"},
+    {"id": "cumulative_count:sum", "name": "Contracts awarded"}
   ],
   "tabbed_attr": "collect"
 }
