@@ -13,6 +13,9 @@ function (View) {
         onTabClick: function (event) {
             var tabId = $(event.currentTarget).data('tab-id');
             this.model.set(this.attr, tabId);
+            if (this.collection) {
+              this.collection.options.valueAttr = tabId;
+            }
             event.preventDefault();
         },
         

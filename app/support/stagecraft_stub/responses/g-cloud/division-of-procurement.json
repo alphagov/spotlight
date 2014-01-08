@@ -1,0 +1,30 @@
+{
+  "page-type": "module",
+  "slug": "division_of_procurement",
+  "module-type": "grouped_timeseries",
+  "title": "Cumulative procurement by company size",
+  "description": "The cumulative division of procurement between SMEs and larger enterprises",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
+  "dashboard-slug": "g-cloud",
+  "data-group": "gcloud",
+  "data-type": "sales",
+  "cumulative": false,
+  "value-attr": "cumulative_spend:sum",
+  "category": "sme_large",
+  "period": "month",
+  "currency": "gbp",
+  "info": [
+    "Source: TBA"
+  ],
+  "series": [
+    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+    { "id": "Large enterprises", "title": "Large enterprises" }
+   ],
+  "show-line-labels": true,
+  "tabs": [
+    {"id": "cumulative_spend:sum", "name": "Total spend"},
+    {"id": "cumulative_count:sum", "name": "Contracts awarded"}
+  ],
+  "tabbed_attr": "collect"
+}
