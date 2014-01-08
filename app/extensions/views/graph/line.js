@@ -98,7 +98,6 @@ function (Component) {
     },
 
     siblingLineIndex: function(originalIndex){
-      console.log(parseInt(originalIndex, 10) + 1);
       return parseInt(originalIndex, 10) + 1;
     },
     resetSiblingLine: function() {
@@ -106,7 +105,6 @@ function (Component) {
     },
     colourSiblingLine: function(line, originalIndex) {
       var line_colour = line.style('stroke');
-      console.log(line_colour);
       var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
         .classed('selected-following-sibling', true)
         .style('stroke', line_colour);
