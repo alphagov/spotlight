@@ -1,440 +1,441 @@
+
 {
   "data": [
     {
-      "_count": 384.0, 
+      "_count": 480.0, 
       "_group_count": 24, 
-      "count": 29587658.44, 
+      "cumulative_count:sum": 8855.0, 
       "sme_large": "Large enterprises", 
       "values": [
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-02-01T00:00:00+00:00", 
           "_start_at": "2012-01-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-03-01T00:00:00+00:00", 
           "_start_at": "2012-02-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-04-01T00:00:00+00:00", 
           "_start_at": "2012-03-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-05-01T00:00:00+00:00", 
           "_start_at": "2012-04-01T00:00:00+00:00", 
-          "count": 1.0
+          "cumulative_count:sum": 3.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-06-01T00:00:00+00:00", 
           "_start_at": "2012-05-01T00:00:00+00:00", 
-          "count": 2.0
+          "cumulative_count:sum": 4.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-07-01T00:00:00+00:00", 
           "_start_at": "2012-06-01T00:00:00+00:00", 
-          "count": 3.0
+          "cumulative_count:sum": 9.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-08-01T00:00:00+00:00", 
           "_start_at": "2012-07-01T00:00:00+00:00", 
-          "count": 3.0
+          "cumulative_count:sum": 12.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-09-01T00:00:00+00:00", 
           "_start_at": "2012-08-01T00:00:00+00:00", 
-          "count": 4.0
+          "cumulative_count:sum": 14.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-10-01T00:00:00+00:00", 
           "_start_at": "2012-09-01T00:00:00+00:00", 
-          "count": 5.0
+          "cumulative_count:sum": 17.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-11-01T00:00:00+00:00", 
           "_start_at": "2012-10-01T00:00:00+00:00", 
-          "count": 371126.26
+          "cumulative_count:sum": 23.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-12-01T00:00:00+00:00", 
           "_start_at": "2012-11-01T00:00:00+00:00", 
-          "count": 239008.76
+          "cumulative_count:sum": 27.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-01-01T00:00:00+00:00", 
           "_start_at": "2012-12-01T00:00:00+00:00", 
-          "count": 618503.99
+          "cumulative_count:sum": 43.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "count": 892228.8600000001
+          "cumulative_count:sum": 137.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
-          "count": 662714.19
+          "cumulative_count:sum": 228.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
-          "count": 2321173.74
+          "cumulative_count:sum": 342.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
-          "count": 2138700.62
+          "cumulative_count:sum": 419.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
-          "count": 1517007.09
+          "cumulative_count:sum": 535.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "count": 3934071.5
+          "cumulative_count:sum": 665.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "count": 3770616.6399999987
+          "cumulative_count:sum": 873.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
-          "count": 2896056.54
+          "cumulative_count:sum": 1070.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "count": 3295297.6099999994
+          "cumulative_count:sum": 1257.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "count": 3364610.8199999994
+          "cumulative_count:sum": 1501.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "count": 2916054.3699999996
+          "cumulative_count:sum": 1676.0
         }
       ]
     }, 
     {
-      "_count": 384.0, 
+      "_count": 480.0, 
       "_group_count": 24, 
-      "count": 41153929.359999985, 
+      "cumulative_count:sum": 15729.0, 
       "sme_large": "Small and medium enterprises", 
       "values": [
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-02-01T00:00:00+00:00", 
           "_start_at": "2012-01-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-03-01T00:00:00+00:00", 
           "_start_at": "2012-02-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-04-01T00:00:00+00:00", 
           "_start_at": "2012-03-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-05-01T00:00:00+00:00", 
           "_start_at": "2012-04-01T00:00:00+00:00", 
-          "count": 486312.0
+          "cumulative_count:sum": 13.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-06-01T00:00:00+00:00", 
           "_start_at": "2012-05-01T00:00:00+00:00", 
-          "count": 85289.25
+          "cumulative_count:sum": 28.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-07-01T00:00:00+00:00", 
           "_start_at": "2012-06-01T00:00:00+00:00", 
-          "count": 347829.0
+          "cumulative_count:sum": 49.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-08-01T00:00:00+00:00", 
           "_start_at": "2012-07-01T00:00:00+00:00", 
-          "count": 340912.4
+          "cumulative_count:sum": 71.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-09-01T00:00:00+00:00", 
           "_start_at": "2012-08-01T00:00:00+00:00", 
-          "count": 654206.1
+          "cumulative_count:sum": 104.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-10-01T00:00:00+00:00", 
           "_start_at": "2012-09-01T00:00:00+00:00", 
-          "count": 909071.98
+          "cumulative_count:sum": 135.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-11-01T00:00:00+00:00", 
           "_start_at": "2012-10-01T00:00:00+00:00", 
-          "count": 809282.36
+          "cumulative_count:sum": 179.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2012-12-01T00:00:00+00:00", 
           "_start_at": "2012-11-01T00:00:00+00:00", 
-          "count": 681151.65
+          "cumulative_count:sum": 231.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-01-01T00:00:00+00:00", 
           "_start_at": "2012-12-01T00:00:00+00:00", 
-          "count": 855937.74
+          "cumulative_count:sum": 279.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "count": 925372.8900000001
+          "cumulative_count:sum": 326.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
-          "count": 1272716.48
+          "cumulative_count:sum": 426.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
-          "count": 4657255.25
+          "cumulative_count:sum": 633.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
-          "count": 1507334.9
+          "cumulative_count:sum": 766.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
-          "count": 2567003.8400000003
+          "cumulative_count:sum": 951.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "count": 2690817.9699999997
+          "cumulative_count:sum": 1179.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "count": 3521289.8599999994
+          "cumulative_count:sum": 1445.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
-          "count": 3776108.2200000007
+          "cumulative_count:sum": 1728.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "count": 5081686.009999999
+          "cumulative_count:sum": 2020.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "count": 4837823.299999999
+          "cumulative_count:sum": 2400.0
         }, 
         {
-          "_count": 16.0, 
+          "_count": 20.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "count": 5146528.16
+          "cumulative_count:sum": 2766.0
         }
       ]
     }, 
     {
-      "_count": 768.0, 
+      "_count": 480.0, 
       "_group_count": 24, 
-      "count": 81153929.359999985, 
-      "sme_large": "Total", 
+      "cumulative_count:sum": 527.0, 
+      "sme_large": "Unknown", 
       "values": [
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-02-01T00:00:00+00:00", 
           "_start_at": "2012-01-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-03-01T00:00:00+00:00", 
           "_start_at": "2012-02-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-04-01T00:00:00+00:00", 
           "_start_at": "2012-03-01T00:00:00+00:00", 
-          "count": 0.0
+          "cumulative_count:sum": 0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-05-01T00:00:00+00:00", 
           "_start_at": "2012-04-01T00:00:00+00:00", 
-          "count": 586312.0
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-06-01T00:00:00+00:00", 
           "_start_at": "2012-05-01T00:00:00+00:00", 
-          "count": 95289.25
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-07-01T00:00:00+00:00", 
           "_start_at": "2012-06-01T00:00:00+00:00", 
-          "count": 547829.0
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-08-01T00:00:00+00:00", 
           "_start_at": "2012-07-01T00:00:00+00:00", 
-          "count": 340912.4
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-09-01T00:00:00+00:00", 
           "_start_at": "2012-08-01T00:00:00+00:00", 
-          "count": 654206.1
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-10-01T00:00:00+00:00", 
           "_start_at": "2012-09-01T00:00:00+00:00", 
-          "count": 999071.98
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-11-01T00:00:00+00:00", 
           "_start_at": "2012-10-01T00:00:00+00:00", 
-          "count": 909282.36
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2012-12-01T00:00:00+00:00", 
           "_start_at": "2012-11-01T00:00:00+00:00", 
-          "count": 881151.65
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-01-01T00:00:00+00:00", 
           "_start_at": "2012-12-01T00:00:00+00:00", 
-          "count": 955937.74
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "count": 1345372.8900000001
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
-          "count": 2272716.48
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
-          "count": 7657255.25
+          "cumulative_count:sum": 0.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
-          "count": 3507334.9
+          "cumulative_count:sum": 1.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
-          "count": 3567003.8400000003
+          "cumulative_count:sum": 2.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "count": 4690817.9699999997
+          "cumulative_count:sum": 3.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "count": 5521289.8599999994
+          "cumulative_count:sum": 11.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
-          "count": 6776108.2200000007
+          "cumulative_count:sum": 33.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "count": 7081686.009999999
+          "cumulative_count:sum": 70.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "count": 25.0
+          "cumulative_count:sum": 150.0
         }, 
         {
-          "_count": 32.0, 
+          "_count": 20.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "count": 24.0
+          "cumulative_count:sum": 257.0
         }
       ]
     }

@@ -37,7 +37,7 @@
       "show-line-labels": true,
       "tabs": [
         {"id": "cumulative_spend:sum", "name": "Total spend"},
-        {"id": "count", "name": "Contracts awarded"}
+        {"id": "cumulative_count:sum", "name": "Contracts awarded"}
       ],
       "tabbed_attr": "collect"
     },
