@@ -103,7 +103,6 @@ function (Component) {
     },
     resetSiblingLine: function() {
       this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', null);
-      console.log("345");
     },
     colourSiblingLine: function(line, originalIndex) {
       var line_colour = line.style('stroke');
@@ -111,17 +110,14 @@ function (Component) {
       var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
         .classed('selected-following-sibling', true)
         .style('stroke', line_colour);
-      console.log("234");
     },
     renderSiblingCircle: function(groupSelected, originalIndex, modelSelected, indexSelected) {
       var x2 = this.x(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
       var y2 = this.y(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
       this.renderSelectionPoint(originalIndex, x2, y2);
-      console.log("123");
     },
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
-      console.log("33333");
       this.componentWrapper.selectAll('path.line').classed('selected', false);
       if(this.encompassStack){
         this.resetSiblingLine();
@@ -160,7 +156,6 @@ function (Component) {
           }
         }
       }
-      console.log("33333");
     },
 
     renderSelectionPoint: function (groupIndexSelected, x, y) {
