@@ -11,8 +11,9 @@
   "data-type": "sales",
   "cumulative": false,
   "category": "sector",
-  "value-attr": "monthly_spend:sum",
+  "value-attr": "cumulative_spend:sum",
   "period": "month",
+  "currency": "gbp",
   "info": [
     "Source: TBA"
   ],
