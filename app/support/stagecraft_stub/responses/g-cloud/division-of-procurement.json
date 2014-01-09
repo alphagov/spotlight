@@ -19,7 +19,8 @@
   ],
   "series": [
     { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-    { "id": "Large enterprises", "title": "Large enterprises" }
+    { "id": "Large enterprises", "title": "Large enterprises" },
+    { "id": "Unknown", "title": "Not yet classified" }
    ],
   "show-line-labels": true,
   "tabs": [
