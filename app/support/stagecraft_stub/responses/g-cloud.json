@@ -83,7 +83,7 @@
          { "id": "Central government", "title": "Central government" },
          { "id": "Other wider public sector", "title": "Other wider public sector" },
          { "id": "Local government", "title": "Local government" },
-         { "id": "Unknown", "title": "Unknown" },
+         { "id": "Unknown", "title": "Not yet classified" },
          { "id": "Not for profit", "title": "Not for profit" }
        ],
       "show-line-labels": true
