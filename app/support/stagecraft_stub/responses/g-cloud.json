@@ -2,7 +2,7 @@
   "page-type": "dashboard",
   "title": "G-Cloud",
   "strapline": "Public purchasing performance",
-  "copy": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
+  "tagline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
   "related_pages_title": "Related information",
   "related_pages": [
     {
@@ -51,7 +51,7 @@
       "cumulative": false,
       "category": "sector",
       "value-attr": "cumulative_spend:sum",
-      "currency": "gbp", 
+      "currency": "gbp",
       "period": "month",
       "info": [
         "Source: TBA"
@@ -76,7 +76,7 @@
       "value-attr": "monthly_spend:sum",
       "category": "lot",
       "period": "month",
-      "currency": "gbp", 
+      "currency": "gbp",
       "info": [
         "Source: TBA"
       ],

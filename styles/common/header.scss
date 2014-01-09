@@ -29,21 +29,21 @@
       @include core-19;
       display: block;
       margin: 1em 0 -1em 0;
-      padding: 0.6em 0 0 0;
+      padding: 0.5em 0 1em 0;
 
       @include media(desktop) {
         width: 75%;
       }
-    }
 
-    p.explanatory {
-      @include core-19;
-      width: 60%;
-      float: left;
+      &.with-related-pages {
+        padding-top: 0;
+        float: left;
+        width: 60%;
 
-      @include media(mobile) {
-        width: 90%;
-        float: none;
+        @include media(mobile) {
+          float: none;
+          width: 90%;
+        }
       }
     }
   }
