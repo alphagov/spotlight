@@ -23,12 +23,16 @@
 
         color: $grey-1;
       }
+    }
 
-      span.tagline {
-        @include core-19;
-        display: block;
-        margin: 1em 0 -1em 0;
-        padding: 0.6em 0 0 0;
+    p.tagline {
+      @include core-19;
+      display: block;
+      margin: 1em 0 -1em 0;
+      padding: 0.6em 0 0 0;
+
+      @include media(desktop) {
+        width: 75%;
       }
     }
 
