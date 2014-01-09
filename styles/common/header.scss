@@ -1,22 +1,45 @@
 #content {
   header {
+    margin-bottom: 1.5em;
+    padding-bottom: 2em;
+    width: 100%;
+
+    border-bottom: 5px solid $primary-colour;
+    display: inline-block;
+
     h1 {
       @include bold-48;
+      width: 100%;
+      display: inline-block;
 
-      span.tagline {
-        display: block;
-        margin: 1em 0 -1em 0;
-        padding: 0.6em 0 0 0;
-
-        @include core-19;
+      @include media(desktop) {
+        width: 75%;
       }
 
       span.strapline {
+        @include core-27;
         display: block;
         margin-bottom: 5px;
 
-        @include core-27;
         color: $grey-1;
+      }
+
+      span.tagline {
+        @include core-19;
+        display: block;
+        margin: 1em 0 -1em 0;
+        padding: 0.6em 0 0 0;
+      }
+    }
+
+    p.explanatory {
+      @include core-19;
+      width: 60%;
+      float: left;
+
+      @include media(mobile) {
+        width: 90%;
+        float: none;
       }
     }
   }
