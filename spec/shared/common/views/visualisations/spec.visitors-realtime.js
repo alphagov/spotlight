@@ -13,9 +13,9 @@ function (VisitorsRealtimeView, Collection) {
 
       jasmine.renderView(view, function () {
         expect(view.$el.html()).toEqual(
-          '<p class="impact-number"><strong>10</strong></p><p class="stat-description">users online now</p>'
-        )
-      })
+          '<p>  <span class="impact-number"><strong>10</strong></span>  <span class="stat-description">users online now</span></p>'
+        );
+      });
     });
 
     it("renders singular if one user", function () {
@@ -26,10 +26,8 @@ function (VisitorsRealtimeView, Collection) {
       });
 
       jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual(
-          '<p class="impact-number"><strong>1</strong></p><p class="stat-description">user online now</p>'
-        )
-      })
+        expect(view.$el.find('.stat-description').text()).toEqual('user online now');
+      });
     });
 
     describe('interpolating numbers', function () {
@@ -75,6 +73,6 @@ function (VisitorsRealtimeView, Collection) {
       jasmine.renderView(view, function () {
         expect(view.$el.html()).toEqual('');
       });
-    })
-  })
+    });
+  });
 });
