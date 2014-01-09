@@ -30,12 +30,12 @@ function (ConversionCallout, Collection, Model) {
           }
         ]);
         collection.at(0).get('values').query = new Model({
-          start_at: collection.getMoment('2013-05-27'),
-          end_at: collection.getMoment('2013-06-03')
+          start_at: collection.getMoment('2013-05-27T00:00:00+00:00'),
+          end_at: collection.getMoment('2013-06-03T00:00:00+00:00')
         });
         collection.at(1).get('values').query = new Model({
-          start_at: collection.getMoment('2013-06-03'),
-          end_at: collection.getMoment('2013-06-10')
+          start_at: collection.getMoment('2013-06-03T00:00:00+00:00'),
+          end_at: collection.getMoment('2013-06-10T00:00:00+00:00')
         });
         view = new ConversionCallout({
           wrapper:wrapper,

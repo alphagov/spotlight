@@ -16,8 +16,34 @@
   ],
   "modules": [
     {
-      "module-type": "completion_rate",
+      "slug": "division-of-procurement",
+      "module-type": "grouped_timeseries",
+      "title": "Cumulative procurement by company size",
+      "description": "The cumulative division of procurement between SMEs and larger enterprises",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "value-attr": "cumulative_spend:sum",
+      "category": "sme_large",
+      "period": "month",
+      "currency": "gbp",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+         { "id": "Large enterprises", "title": "Large enterprises" }
+       ],
+      "show-line-labels": true,
+      "tabs": [
+        {"id": "cumulative_spend:sum", "name": "Total spend"},
+        {"id": "cumulative_count:sum", "name": "Contracts awarded"}
+      ],
+      "tabbed_attr": "collect"
+    },
+    {
       "slug": "proportion-smes",
+      "module-type": "completion_rate",
       "title": "Proportion of procurement from small and medium enterprises",
       "dashboard-title": "Measures the proportion of market covered by SMEs",
       "data-group": "gcloud",
@@ -36,7 +62,31 @@
         {"id": "count", "name": "Contracts awarded"}
       ],
       "tabbed_attr": "collect"
-    }, 
+    },
+    {
+      "slug": "who-is-using",
+      "module-type": "grouped_timeseries",
+      "title": "Who is using G-Cloud",
+      "description": "The cumulative spend by central government and wider public services",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "category": "sector",
+      "value-attr": "cumulative_spend:sum",
+      "currency": "gbp", 
+      "period": "month",
+      "info": [
+        "Source: TBA"
+      ],
+      "series": [
+         { "id": "Central government", "title": "Central government" },
+         { "id": "Other wider public sector", "title": "Other wider public sector" },
+         { "id": "Local government", "title": "Local government" },
+         { "id": "Unknown", "title": "Unknown" },
+         { "id": "Not for profit", "title": "Not for profit" }
+       ],
+      "show-line-labels": true
+    },
     {
       "slug": "spend-by-lot",
       "module-type": "grouped_timeseries",
@@ -47,16 +97,16 @@
       "cumulative": false,
       "value-attr": "monthly_spend:sum",
       "category": "lot",
-      "currency": "gbp",
       "period": "month",
+      "currency": "gbp", 
       "info": [
         "Source: TBA"
       ],
       "series": [
-         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" },
-         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
          { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" }
+         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }
        ],
       "show-line-labels": true
     }
