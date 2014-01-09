@@ -5,9 +5,11 @@ define([
 function (Line, Collection) {
   
   describe("Line Component", function () {
-    var el, wrapper, collection, view;
+    var el, wrapper, collection, view, line0_colour, line1_colour;
     beforeEach(function() {
-      el = $('<div></div>').appendTo($('body'));
+      line0_colour = "#097f96";
+      line1_colour = "#d14836";
+      el = $('<div><style type="text/css">.line0 {stroke: '+line0_colour+';}.line1 {stroke: '+line1_colour+';}</style></div>').appendTo($('body'));
       wrapper = Line.prototype.d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
         {
@@ -121,46 +123,129 @@ function (Line, Collection) {
         });
         return eachItemHasClass;
       };
+      var hasColour = function (selector, colour) {
+        console.log(colour);
+        var selection = view.componentWrapper.selectAll(selector);
+        var eachItemHasColour = true;
+        selection.each(function () {
+          if (!eachItemHasColour) {
+            return;
+          }
+          var itemHasColour = d3.select(this).attr('stroke') == colour
+          if (!itemHasColour) {
+            eachItemHasColour = false;
+          }
+        });
+        return eachItemHasColour;
+      };
 
-      it("highlights the selected group and dims the other groups", function () {
-        view.render();
-        view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-        expect(hasClass('path.line0', 'selected')).toBe(false);
-        expect(hasClass('path.line1', 'selected')).toBe(true);
-        expect(hasClass('path.line0', 'not-selected')).toBe(true);
-        expect(hasClass('path.line1', 'not-selected')).toBe(false);
-        expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
-        view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-        expect(hasClass('path.line0', 'selected')).toBe(true);
-        expect(hasClass('path.line1', 'selected')).toBe(false);
-        expect(hasClass('path.line0', 'not-selected')).toBe(false);
-        expect(hasClass('path.line1', 'not-selected')).toBe(true);
+      describe("when encompassStack is true", function (){
+        it("highlights the selected group and the following line, dims the other groups and sets the following line colour to that of the selected", function () {
+          view.encompassStack = true;
+          view.render();
+          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(false);
+          expect(hasClass('path.line1', 'selected')).toBe(true);
+          expect(hasClass('path.line0', 'not-selected')).toBe(true);
+          expect(hasClass('path.line1', 'not-selected')).toBe(false);
+          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+          //as this is the last line there is no further line to colour to encompass the stack
+          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
+          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
+          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
+          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+
+          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
+
+          expect(hasClass('path.line0', 'selected')).toBe(true);
+          expect(hasClass('path.line1', 'selected')).toBe(false);
+          expect(hasClass('path.line0', 'not-selected')).toBe(false);
+          expect(hasClass('path.line1', 'not-selected')).toBe(true);
+          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
+          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(true);
+          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
+          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line0_colour);
+        });
+      });
+      describe("when encompassStack is not set", function (){
+        it("highlights the selected group and dims the other groups", function () {
+          view.render();
+          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(false);
+          expect(hasClass('path.line1', 'selected')).toBe(true);
+          expect(hasClass('path.line0', 'not-selected')).toBe(true);
+          expect(hasClass('path.line1', 'not-selected')).toBe(false);
+          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
+          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
+          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
+          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(true);
+          expect(hasClass('path.line1', 'selected')).toBe(false);
+          expect(hasClass('path.line0', 'not-selected')).toBe(false);
+          expect(hasClass('path.line1', 'not-selected')).toBe(true);
+          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
+          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
+          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
+          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+        });
       });
 
-      it("highlights the selected group and dims the other groups and their line terminators", function () {
-        collection.at(0).get('values').at(3).set('b', null);
-        collection.at(1).get('values').at(3).set('c', null);
+      describe("when encompassStack is true", function (){
+        it("highlights the selected group and dims the other groups and their line terminators", function () {
+          collection.at(0).get('values').at(3).set('b', null);
+          collection.at(1).get('values').at(3).set('c', null);
 
-        view.render();
-        view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-        expect(hasClass('path.line0', 'selected')).toBe(false);
-        expect(hasClass('path.line1', 'selected')).toBe(true);
-        expect(hasClass('path.line0', 'not-selected')).toBe(true);
-        expect(hasClass('path.line1', 'not-selected')).toBe(false);
-        expect(hasClass('circle.terminator.line0', 'selected')).toBe(false);
-        expect(hasClass('circle.terminator.line1', 'selected')).toBe(true);
-        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(true);
-        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(false);
-        expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
-        view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-        expect(hasClass('path.line0', 'selected')).toBe(true);
-        expect(hasClass('path.line1', 'selected')).toBe(false);
-        expect(hasClass('path.line0', 'not-selected')).toBe(false);
-        expect(hasClass('path.line1', 'not-selected')).toBe(true);
-        expect(hasClass('circle.terminator.line0', 'selected')).toBe(true);
-        expect(hasClass('circle.terminator.line1', 'selected')).toBe(false);
-        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(false);
-        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
+          view.encompassStack = true;
+          view.render();
+          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(false);
+          expect(hasClass('path.line1', 'selected')).toBe(true);
+          expect(hasClass('path.line0', 'not-selected')).toBe(true);
+          expect(hasClass('path.line1', 'not-selected')).toBe(false);
+          expect(hasClass('circle.terminator.line0', 'selected')).toBe(false);
+          expect(hasClass('circle.terminator.line1', 'selected')).toBe(true);
+          expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(true);
+          expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(false);
+          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(true);
+          expect(hasClass('path.line1', 'selected')).toBe(false);
+          expect(hasClass('path.line0', 'not-selected')).toBe(false);
+          expect(hasClass('path.line1', 'not-selected')).toBe(true);
+          expect(hasClass('circle.terminator.line0', 'selected')).toBe(true);
+          expect(hasClass('circle.terminator.line1', 'selected')).toBe(false);
+          expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(false);
+          expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
+        });
+      });
+      describe("when encompassStack is not set", function (){
+        it("highlights the selected group and dims the other groups and their line terminators", function () {
+          collection.at(0).get('values').at(3).set('b', null);
+          collection.at(1).get('values').at(3).set('c', null);
+
+          view.render();
+          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(false);
+          expect(hasClass('path.line1', 'selected')).toBe(true);
+          expect(hasClass('path.line0', 'not-selected')).toBe(true);
+          expect(hasClass('path.line1', 'not-selected')).toBe(false);
+          expect(hasClass('circle.terminator.line0', 'selected')).toBe(false);
+          expect(hasClass('circle.terminator.line1', 'selected')).toBe(true);
+          expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(true);
+          expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(false);
+          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
+          expect(hasClass('path.line0', 'selected')).toBe(true);
+          expect(hasClass('path.line1', 'selected')).toBe(false);
+          expect(hasClass('path.line0', 'not-selected')).toBe(false);
+          expect(hasClass('path.line1', 'not-selected')).toBe(true);
+          expect(hasClass('circle.terminator.line0', 'selected')).toBe(true);
+          expect(hasClass('circle.terminator.line1', 'selected')).toBe(false);
+          expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(false);
+          expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
+        });
       });
 
       it("renders a selection indicator on the selected item and the one after using the class of the first", function () {

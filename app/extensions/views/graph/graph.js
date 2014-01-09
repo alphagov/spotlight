@@ -14,16 +14,21 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
 
   var scaleFromStartAndEndDates = {
-    getXPos: function(groupIndex, modelIndex) {
-      groupIndex = groupIndex || 0;
+
+    getModel: function(groupIndex, modelIndex){
       var model;
-      if(!this.collection.at(groupIndex)){
+      if(!this.collection.at(groupIndex) && this.encompassStack){
         if(this.collection.at(groupIndex - 1)){
-          model = this.collection.at(groupIndex - 1, modelIndex);
+          return this.collection.at(groupIndex - 1, modelIndex);
         }
       } else{
-        model = this.collection.at(groupIndex, modelIndex);
+        return this.collection.at(groupIndex, modelIndex);
       }
+    },
+
+    getXPos: function(groupIndex, modelIndex) {
+      groupIndex = groupIndex || 0;
+      var model = this.getModel(groupIndex, modelIndex);
       return this.modelToDate(model);
     },
     calcXScale: function () {
@@ -352,7 +357,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         },
         getYPos: function (groupIndex, modelIndex) {
           if(!this.collection.at(groupIndex)){
-            if(this.collection.at(groupIndex - 1)){
+            if(this.collection.at(groupIndex - 1) && this.encompassStack){
               return 0;
             }else{
               return null;

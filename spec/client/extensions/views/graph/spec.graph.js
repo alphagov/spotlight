@@ -507,6 +507,27 @@ function (Graph, Collection, Model, d3) {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
+        describe("calcXScale", function() {
+          describe("groupIndex is set", function(){
+            describe("when there is no model at this index", function(){
+              describe("when encompassStack is true", function(){
+                it("should return the value of modelToDate with the model at this index minus 1", function (){
+
+                });
+              });
+            });
+            describe("when encompassStack is true", function(){
+              it("should return the value of modelToDate with the model at this index", function (){
+
+              });
+            });
+          });
+          describe("when groupIndex is not set", function (){
+            it("should return the value of modelToDate with the model at this 0", function (){
+
+            });
+          });
+        });
       }
 
       describe("day", function () {
@@ -599,6 +620,28 @@ function (Graph, Collection, Model, d3) {
       });
 
       describe("stack", function () {
+
+        describe("getYPos", function(){
+          describe("if there is nothing at the index", function(){
+            describe("if there is something at the previous index", function(){
+              describe("if encompassStack is true", function(){
+                it("returns 0", function (){
+
+                });
+              });
+            });
+            describe("if encompassStack is false", function(){
+              it("returns null", function (){
+
+              });
+            });
+            describe("if there is nothing at the previous index", function(){
+              it("returns null", function (){
+
+              });
+            });
+          });
+        });
 
         describe("calculation", function () {
           it("calculates d3 stack", function () {

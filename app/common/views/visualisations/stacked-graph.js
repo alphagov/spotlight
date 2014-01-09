@@ -60,6 +60,8 @@ function (Graph) {
       ];
     },
 
+    encompassStack: true,
+
     getConfigNames: function () {
       return ['stack', this.collection.query.get('period') || 'week'];
     }
