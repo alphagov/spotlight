@@ -378,6 +378,10 @@ figure.graph {
     }
   }
 
+  .cursorLine.overlay{
+    stroke-width: 3px;
+  }
+
   .cursorLine.ascender,
   .cursorLine.descender {
     display: none;

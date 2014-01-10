@@ -103,16 +103,23 @@ function (Component) {
     resetSiblingLine: function() {
       this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', null);
     },
-    colourSiblingLine: function(line, originalIndex) {
-      var line_colour = line.style('stroke');
+    colourSiblingLine: function(line_colour, originalIndex) {
       var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
         .classed('selected-following-sibling', true)
         .style('stroke', line_colour);
     },
-    renderSiblingCircle: function(groupSelected, originalIndex, modelSelected, indexSelected) {
-      var x2 = this.x(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
-      var y2 = this.y(groupSelected, this.siblingLineIndex(originalIndex), modelSelected, indexSelected);
+    renderSiblingCircle: function(y2, x2, originalIndex) {
       this.renderSelectionPoint(originalIndex, x2, y2);
+    },
+    renderOverlayCursorLine: function(y, x, y2, x2, line_colour) {
+      this.componentWrapper.append('line').attr({
+          'class': 'selectedIndicator cursorLine overlay',
+          x1: x,
+          y1: y,
+          x2: x2,
+          y2: y2
+        })
+        .style('stroke', line_colour);
     },
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
@@ -124,12 +131,15 @@ function (Component) {
       this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
       this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
 
+      var line_colour, x2, y2;
+
       if (groupSelected) {
         var line = this.componentWrapper.select('path.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
         if(this.encompassStack){
-          this.colourSiblingLine(line, groupIndexSelected);
+          line_colour = line.style('stroke');
+          this.colourSiblingLine(line_colour, groupIndexSelected);
         }
         this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
           .classed('selected', true)
@@ -146,10 +156,15 @@ function (Component) {
         }
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
+          if(this.encompassStack && this.drawCursorLine){
+            x2 = this.x(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
+            y2 = this.y(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
+            this.renderOverlayCursorLine(y, x, y2, x2, line_colour);
+          }
           if (y !== null) {
             this.renderSelectionPoint(groupIndexSelected, x, y);
             if(this.encompassStack){
-              this.renderSiblingCircle(groupSelected, groupIndexSelected, modelSelected, indexSelected);
+              this.renderSiblingCircle(y2, x2, groupIndexSelected);
             }
           }
         }
