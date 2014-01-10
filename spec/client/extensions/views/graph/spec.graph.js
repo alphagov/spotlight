@@ -507,24 +507,61 @@ function (Graph, Collection, Model, d3) {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
-        describe("calcXScale", function() {
+        describe("getXPos", function() {
+          beforeEach(function(){
+            graph.applyConfig('day');
+            spyOn(graph, 'modelToDate').andReturn(123);
+          });
           describe("groupIndex is set", function(){
             describe("when there is no model at this index", function(){
+              beforeEach(function(){
+                graph.collection = {
+                  at: function(index){
+                    if(index == 4){
+                      return "model minus one";
+                    }else{
+                      return null;
+                    }
+                  }
+                }
+              });
               describe("when encompassStack is true", function(){
+                beforeEach(function(){
+                  graph.encompassStack = true;
+                });
                 it("should return the value of modelToDate with the model at this index minus 1", function (){
-
+                  expect(graph.getXPos(5)).toEqual(123);
+                  expect(graph.modelToDate).toHaveBeenCalledWith('model minus one');
                 });
               });
             });
-            describe("when encompassStack is true", function(){
+            describe("when there is a model at this index", function(){
+              beforeEach(function(){
+                graph.collection = {
+                  at: function(index){
+                    return "model";
+                  }
+                }
+              });
               it("should return the value of modelToDate with the model at this index", function (){
-
+                expect(graph.getXPos(5)).toEqual(123);
+                expect(graph.modelToDate).toHaveBeenCalledWith('model');
               });
             });
           });
           describe("when groupIndex is not set", function (){
+            beforeEach(function(){
+              graph.collection = {
+                at: function(index){
+                  if(index == 0){
+                    return "model at 0";
+                  }
+                }
+              }
+            });
             it("should return the value of modelToDate with the model at this 0", function (){
-
+              expect(graph.getXPos(null)).toEqual(123);
+              expect(graph.modelToDate).toHaveBeenCalledWith('model at 0');
             });
           });
         });
@@ -620,24 +657,51 @@ function (Graph, Collection, Model, d3) {
       });
 
       describe("stack", function () {
+        beforeEach(function() {
+          graph.applyConfig('stack');
+        });
 
         describe("getYPos", function(){
           describe("if there is nothing at the index", function(){
             describe("if there is something at the previous index", function(){
+              beforeEach(function(){
+                graph.collection = {
+                  at: function(index){
+                    if(index == 4){
+                      return true;
+                    }else{
+                      return null;
+                    }
+                  }
+                }
+              });
               describe("if encompassStack is true", function(){
+                beforeEach(function(){
+                  graph.encompassStack = true;
+                });
                 it("returns 0", function (){
-
+                  expect(graph.getYPos(5)).toEqual(0);
+                });
+              });
+              describe("if encompassStack is false", function(){
+                beforeEach(function(){
+                  graph.encompassStack = false;
+                });
+                it("returns 0", function (){
+                  expect(graph.getYPos(5)).toEqual(null);
                 });
               });
             });
-            describe("if encompassStack is false", function(){
-              it("returns null", function (){
-
-              });
-            });
             describe("if there is nothing at the previous index", function(){
+              beforeEach(function(){
+                graph.collection = {
+                  at: function(index){
+                    return null;
+                  }
+                }
+              });
               it("returns null", function (){
-
+                expect(graph.getYPos(5)).toEqual(null);
               });
             });
           });

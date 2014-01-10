@@ -18,9 +18,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     getModel: function(groupIndex, modelIndex){
       var model;
       if(!this.collection.at(groupIndex) && this.encompassStack){
-        if(this.collection.at(groupIndex - 1)){
-          return this.collection.at(groupIndex - 1, modelIndex);
-        }
+        return this.collection.at(groupIndex - 1, modelIndex);
       } else{
         return this.collection.at(groupIndex, modelIndex);
       }
