@@ -441,7 +441,7 @@ figure.graph {
     }
 
     .callout {
-      @include core-16;
+      @include core-16($tabular-numbers: true);
       margin-top:.5em;
       position:static;
       max-width:240px;

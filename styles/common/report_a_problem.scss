@@ -10,7 +10,7 @@
   }
 }
 
-#content .report-a-problem-container{
+#content .report-a-problem-container {
 
   .js-enabled & {
     display: none;
@@ -21,7 +21,7 @@
   max-width: 38em;
 
   h2 {
-    @include core-24;
+    @include core-24($tabular-numbers: true);
     font-weight: 600;
     margin: 1em 0;
   }
@@ -31,27 +31,27 @@
 
     .button {
       @include button;
-      @include core-19;
+      @include core-19($tabular-numbers: true);
     }
   }
 
   p {
-    @include core-19;
+    @include core-19($tabular-numbers: true);
     padding-bottom: 1em;
   }
 
   label {
-    @include core-19;
+    @include core-19($tabular-numbers: true);
     padding: 0;
     margin: 0 0 0.22em 0;
-    display: block;  
+    display: block;
     font-weight: bold;
   }
 
   input {
     &[type="text"] {
       display: block;
-      @include core-19;
+      @include core-19($tabular-numbers: true);
       margin: 0 0 1em 0;
       background-color: #f8f8f8;
       border: 1px inset #bfc1c3;
