@@ -156,10 +156,12 @@ function (Component) {
         }
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
-          if(this.encompassStack && this.drawCursorLine){
+          if(this.encompassStack){
             x2 = this.x(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
             y2 = this.y(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
-            this.renderOverlayCursorLine(y, x, y2, x2, line_colour);
+            if(this.drawCursorLine){
+              this.renderOverlayCursorLine(y, x, y2, x2, line_colour);
+            }
           }
           if (y !== null) {
             this.renderSelectionPoint(groupIndexSelected, x, y);
