@@ -112,14 +112,16 @@ function (Component) {
       this.renderSelectionPoint(originalIndex, x2, y2);
     },
     renderOverlayCursorLine: function(y, x, y2, x2, line_colour) {
-      this.componentWrapper.append('line').attr({
-          'class': 'selectedIndicator cursorLine overlay',
-          x1: x,
-          y1: y,
-          x2: x2,
-          y2: y2
-        })
-        .style('stroke', line_colour);
+      if(y!==y2){
+        this.componentWrapper.append('line').attr({
+            'class': 'selectedIndicator cursorLine overlay',
+            x1: x,
+            y1: y,
+            x2: x2,
+            y2: y2
+          })
+          .style('stroke', line_colour);
+      }
     },
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
@@ -164,10 +166,10 @@ function (Component) {
             }
           }
           if (y !== null) {
-            this.renderSelectionPoint(groupIndexSelected, x, y);
             if(this.encompassStack){
               this.renderSiblingCircle(y2, x2, groupIndexSelected);
             }
+            this.renderSelectionPoint(groupIndexSelected, x, y);
           }
         }
       }
