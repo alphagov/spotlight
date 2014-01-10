@@ -6,40 +6,6 @@ function (Tooltip, Model) {
 
   describe("Tooltip", function () {
 
-    describe("y", function () {
-      var el, tooltip, wrapper;
-      beforeEach(function () {
-        el = $('<div></div>').appendTo($('body'));
-        wrapper = Tooltip.prototype.d3.select(el[0]).append('svg').append('g');
-        tooltip = new Tooltip({
-          el: el,
-          wrapper: wrapper,
-          collection: { on: jasmine.createSpy() },
-          graph: {
-            valueAttr: "modelValue"
-          },
-          constrainToBounds: false,
-          x: function (group, groupIndex, model, index) {
-            return model.get('x');
-          },
-          textWidth: function() {
-            return model.get('textWidth');
-          }
-        });
-      });
-
-      describe("when encompassStack is true", function(){
-        it("should scale the half way between the default yPos and the next one", function (){
-
-        });
-      });
-      describe("when encompassStack is not set", function(){
-        it("should scale the yPos", function (){
-
-        });
-      });
-    });
-
     describe("onChangeSelected", function () {
       var el, tooltip, wrapper, model;
       beforeEach(function () {
