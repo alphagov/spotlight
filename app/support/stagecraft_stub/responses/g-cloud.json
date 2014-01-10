@@ -37,8 +37,8 @@
        ],
       "show-line-labels": true,
       "tabs": [
-        {"id": "cumulative_spend:sum", "name": "Total spend"},
-        {"id": "cumulative_count:sum", "name": "Contracts awarded"}
+        {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
+        {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
       ],
       "tabbed_attr": "collect"
     },
