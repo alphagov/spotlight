@@ -224,7 +224,7 @@ function (Line, Collection) {
       });
 
       describe("when encompassStack is true", function (){
-        it("renders a selection indicator on the selected item and the one after using the class of the first", function () {
+        beforeEach(function(){
           var y = function (group, groupIndex, model, index) {
             return groupIndex * 100;
           };
@@ -234,6 +234,10 @@ function (Line, Collection) {
           view.y = y;
           view.x = x;
           view.encompassStack = true;
+          view.drawCursorLine = true;
+          view.renderCursorLine = function(){return null;};
+        });
+        it("renders a selection indicator on the selected item and the one after using the class of the first and joins them by line", function () {
           view.render();
           view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
@@ -245,6 +249,13 @@ function (Line, Collection) {
           expect($(circles[1]).attr("cx")).toEqual('100');
           expect($(circles[1]).attr("cy")).toEqual('200');
           expect($(circles[0]).attr("class")).toEqual($(circles[1]).attr("class"));
+
+          var overlayCursorLine = view.componentWrapper.select('line.selectedIndicator.cursorLine.overlay');
+          expect(overlayCursorLine.attr('x1')).toEqual('50');
+          expect(overlayCursorLine.attr('y1')).toEqual('100');
+          expect(overlayCursorLine.attr('x2')).toEqual('100');
+          expect(overlayCursorLine.attr('y2')).toEqual('200');
+          expect(overlayCursorLine.style('stroke')).toEqual(line1_colour);
         });
       });
       describe("when encompassStack is true", function (){
