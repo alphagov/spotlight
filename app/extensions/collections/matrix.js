@@ -70,6 +70,9 @@ function (require, Collection, Group) {
       }
       
       var selectGroup = this.at(selectGroupIndex) || null;
+      console.log("SELECT GROUP");
+      console.log(selectGroup);
+      console.log("SELECT GROUP2");
       var selectModel = null;
       if (selectIndex != null) {
         if (selectGroup) {

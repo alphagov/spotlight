@@ -126,12 +126,17 @@ function (require, Line, Component) {
           group, i, point, { allowMissingData: this.allowMissingData }
         );
 
-        if (distanceAndClosestModel.diff > 0 || i === 0) {
+        console.log(distanceAndClosestModel.index);
+        if (distanceAndClosestModel.diff > 0) {
           selectedGroupIndex = i;
           selectedItemIndex = distanceAndClosestModel.index;
           break;
+        }else if(i === 0){
+          selectedGroupIndex = null;
+          selectedItemIndex = distanceAndClosestModel.index;
         }
       }
+
       if (!this.selectGroup) {
         selectedGroupIndex = null;
       }

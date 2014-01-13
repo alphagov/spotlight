@@ -28,7 +28,20 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      return model.get(this.graph.valueAttr);
+      console.log(group);
+      //if group is null then model is and array
+      //might be better to just test if array though?
+      if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+        var sum = _.reduce(model, function(sum, model){
+          return sum += model.get(this.graph.valueAttr);
+        }, 0, this);
+        if(sum === 0){
+          sum = null;
+        }
+        return sum
+      }else{
+        return model.get(this.graph.valueAttr);
+      }
     },
 
     formatValue: function (value) {
@@ -40,6 +53,7 @@ function (Component, Pivot) {
     },
 
     onChangeSelected: function (group, groupIndex, model, index) {
+      //make handle groups being array
       var unselected = model == null;
       var selection = this.componentWrapper.selectAll('text');
 
