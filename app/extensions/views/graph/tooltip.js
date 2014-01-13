@@ -38,7 +38,7 @@ function (Component, Pivot) {
         if(sum === 0){
           sum = null;
         }
-        return sum
+        return sum;
       }else{
         return model.get(this.graph.valueAttr);
       }
