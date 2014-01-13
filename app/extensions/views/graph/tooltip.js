@@ -28,16 +28,16 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      //if group is null then model is and array
-      //might be better to just test if array though?
       if( Object.prototype.toString.call( model ) === '[object Array]' ) {
-        var sum = _.reduce(model, function(sum, model){
-          return sum += model.get(this.graph.valueAttr);
-        }, 0, this);
-        if(sum === 0){
-          sum = null;
-        }
-        return sum;
+        //if we wanted the sum later
+        //var sum = _.reduce(model, function(sum, model){
+        //  return sum += model.get(this.graph.valueAttr);
+        //}, 0, this);
+        //if(sum === 0){
+        //  sum = null;
+        //}
+        //return sum;
+        return null;
       }else{
         return model.get(this.graph.valueAttr);
       }
