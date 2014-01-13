@@ -12,7 +12,7 @@ function (template, View, Tabs, VolumetricsNumberView, CompletionGraphView) {
     initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
 
-      if (this.model && this.model.get('tabbed_attr')) {
+      if (this.model && this.model.get('tabs')) {
          this.views["#completion-nav"] = {
            view: Tabs,
            options: function (){

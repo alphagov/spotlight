@@ -58,11 +58,11 @@
       "matching-attribute": "sme_large",
       "value-attribute": "value",
       "period": "month",
+      "value-attribute": "proportion_spend",
       "tabs": [
         {"id": "monthly_spend", "name": "Total spend"},
         {"id": "count", "name": "Contracts awarded"}
-      ],
-      "tabbed_attr": "collect"
+      ]
     },
     {
       "slug": "who-is-using",
