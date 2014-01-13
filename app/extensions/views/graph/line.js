@@ -220,8 +220,6 @@ function (Component) {
      * @param {Boolean} [options.allowMissingData=false] Accept data points with null value
      */
     getDistanceAndClosestModel: function (group, groupIndex, point, options) {
-      console.log(point);
-
       options = _.extend({
         allowMissingData: false
       }, options);
@@ -284,7 +282,6 @@ function (Component) {
 
       var bestIndex = distLeft < distRight ? leftIndex : rightIndex;
 
-      console.log(dist, diff, bestIndex);
       return {
         dist: dist,
         diff: diff,

@@ -346,15 +346,29 @@ function (Line, Collection) {
       });
 
       it("selected the null point when there is a gap in the data and allowMissingData is true", function() {
-        collection.at(0).get('values').at(3).set('b', null);
+        collection.at(0).get('values').at(2).set('b', null);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 3,
+          x: 5.49,
           y: 2
-        });
-        expect(res.dist).toEqual(2);
-        expect(res.diff).toEqual(-2);
+        }, {allowMissingData: true})
         expect(res.index).toEqual(1);
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+          x: 5.5,
+          y: 2
+        }, {allowMissingData: true})
+        expect(res.index).toEqual(2);
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+          x: 7.99,
+          y: 2
+        }, {allowMissingData: true})
+        expect(res.index).toEqual(2);
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+          x: 8,
+          y: 2
+        }, {allowMissingData: true})
+        expect(res.index).toEqual(3);
       });
+
     });
 
     describe("onHover", function () {
