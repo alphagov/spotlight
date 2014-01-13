@@ -344,8 +344,18 @@ function (Line, Collection) {
         expect(res.diff).toEqual(0);
         expect(res.index).toEqual(0);
       });
-    });
 
+      it("selected the null point when there is a gap in the data and allowMissingData is true", function() {
+        collection.at(0).get('values').at(3).set('b', null);
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+          x: 3,
+          y: 2
+        });
+        expect(res.dist).toEqual(2);
+        expect(res.diff).toEqual(-2);
+        expect(res.index).toEqual(1);
+      });
+    });
 
     describe("onHover", function () {
 

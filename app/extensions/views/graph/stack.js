@@ -142,8 +142,6 @@ function (require, Line, Component) {
 //          selectedItemIndex = distanceAndClosestModel.index;
 //          break;
 //        }
-        console.log(distanceAndClosestModel);
-        console.log(i);
         if(isNaN(distanceAndClosestModel.diff)){
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
