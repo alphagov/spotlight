@@ -352,21 +352,25 @@ function (Line, Collection) {
           y: 2
         }, {allowMissingData: true})
         expect(res.index).toEqual(1);
+        expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 5.5,
           y: 2
         }, {allowMissingData: true})
         expect(res.index).toEqual(2);
+        expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 7.99,
           y: 2
         }, {allowMissingData: true})
         expect(res.index).toEqual(2);
+        expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 8,
           y: 2
         }, {allowMissingData: true})
         expect(res.index).toEqual(3);
+        expect(isNaN(res.diff)).toEqual(false);
       });
 
     });
