@@ -1,3 +1,11 @@
+// Legend colours for the graph
+span.group0 { color: $data-colour-1; }
+span.group1 { color: $data-colour-2; }
+span.group2 { color: $data-colour-3; }
+span.group3 { color: $data-colour-4; }
+span.group4 { color: $data-colour-5; }
+span.group5 { color: $data-colour-6; }
+
 figure.graph {
   margin:0 auto;
   position:relative;
@@ -96,13 +104,6 @@ figure.graph {
   .text3 { fill: $data-colour-4; }
   .text4 { fill: $data-colour-5; }
   .text5 { fill: $data-colour-6; }
-
-  span.group0 { color: $data-colour-1; }
-  span.group1 { color: $data-colour-2; }
-  span.group2 { color: $data-colour-3; }
-  span.group3 { color: $data-colour-4; }
-  span.group4 { color: $data-colour-5; }
-  span.group5 { color: $data-colour-6; }
 
   .x-axis path,
   .y-axis path {
