@@ -258,7 +258,12 @@ function (Stack, Collection) {
       });
 
       it("calls selectItem with selectGroupIndex null when diff and dist are NaN", function() {
-        expect(false).toEqual(true);
+        var closestModelDetails = {dist: NaN, diff: NaN, index: 1};
+        spyOn(view, 'getDistanceAndClosestModel').andReturn(closestModelDetails);
+        var selectItem = jasmine.createSpy('selectItem');
+        view.collection.selectItem = selectItem;
+        view.onHover({ x: 3.1, y: 2 });
+        expect(selectItem).toHaveBeenCalledWith(null, 1);
       });
     });
   });
