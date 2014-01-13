@@ -43,6 +43,16 @@ function (Tooltip, Model) {
         el.remove();
       });
 
+      it("renders nothing if the value is the sum of an array of models and no_total set", function (){
+        expect(false).toEqual(true);
+      });
+      it("renders the sum of values if the model is an array of models", function (){
+        expect(false).toEqual(true);
+      });
+      it("renders no data if the value comes from an array of models which sum to zero", function (){
+        expect(false).toEqual(true);
+      });
+
       it("renders a tooltip at the position with offsets", function () {
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);

@@ -256,6 +256,10 @@ function (Stack, Collection) {
         view.onHover({ x: 3.1, y: missingDataIndex });
         expect(collection.selectItem.mostRecentCall.args[1]).toEqual(missingDataIndex);
       });
+
+      it("calls selectItem with selectGroupIndex null when diff and dist are NaN", function() {
+        expect(false).toEqual(true);
+      });
     });
   });
 });
