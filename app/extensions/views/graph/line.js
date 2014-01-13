@@ -220,6 +220,7 @@ function (Component) {
      * @param {Boolean} [options.allowMissingData=false] Accept data points with null value
      */
     getDistanceAndClosestModel: function (group, groupIndex, point, options) {
+
       options = _.extend({
         allowMissingData: false
       }, options);
@@ -269,7 +270,12 @@ function (Component) {
       var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
       var weight = distLeft / (distLeft + distRight) || 0;
       var leftY = this.y(group, groupIndex, left, leftIndex);
-      var rightY = this.y(group, groupIndex, right, rightIndex);
+      for (i = rightIndex; i < group.get('values').models.length; i++) {
+        var rightY = this.y(group, groupIndex, right, i);
+        if(rightY){
+          break;
+        }
+      }
       var y = this.d3.interpolate(leftY, rightY)(weight);
       var diff = point.y - y;
       var dist = Math.abs(diff);
