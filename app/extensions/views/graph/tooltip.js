@@ -28,7 +28,6 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      console.log(group);
       //if group is null then model is and array
       //might be better to just test if array though?
       if( Object.prototype.toString.call( model ) === '[object Array]' ) {

@@ -124,7 +124,6 @@ function (Line, Collection) {
         return eachItemHasClass;
       };
       var hasColour = function (selector, colour) {
-        console.log(colour);
         var selection = view.componentWrapper.selectAll(selector);
         var eachItemHasColour = true;
         selection.each(function () {
@@ -244,10 +243,10 @@ function (Line, Collection) {
           expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
           var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0]
           expect(circles.length).toEqual(2);
-          expect($(circles[0]).attr("cx")).toEqual('50');
-          expect($(circles[0]).attr("cy")).toEqual('100');
-          expect($(circles[1]).attr("cx")).toEqual('100');
-          expect($(circles[1]).attr("cy")).toEqual('200');
+          expect($(circles[0]).attr("cx")).toEqual('100');
+          expect($(circles[0]).attr("cy")).toEqual('200');
+          expect($(circles[1]).attr("cx")).toEqual('50');
+          expect($(circles[1]).attr("cy")).toEqual('100');
           expect($(circles[0]).attr("class")).toEqual($(circles[1]).attr("class"));
 
           var overlayCursorLine = view.componentWrapper.select('line.selectedIndicator.cursorLine.overlay');
