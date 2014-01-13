@@ -54,7 +54,8 @@ function (Graph) {
             formatValue: function (value) {
               return this.formatNumericLabel(value);
             },
-            encompassStack: true
+            encompassStack: true,
+            noTotal: true
           }
         }
       ];

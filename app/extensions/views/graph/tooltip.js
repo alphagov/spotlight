@@ -34,7 +34,7 @@ function (Component, Pivot) {
         }, 0, this);
         if(sum === 0){
           sum = null;
-        }else{
+        }else if(this.noTotal){
           sum = "no total";
         }
         return sum;
