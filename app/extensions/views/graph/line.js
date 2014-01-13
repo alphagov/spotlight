@@ -269,7 +269,13 @@ function (Component) {
       var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
       var weight = distLeft / (distLeft + distRight) || 0;
       var leftY = this.y(group, groupIndex, left, leftIndex);
-      var rightY = this.y(group, groupIndex, right, rightIndex);
+      var rightY;
+      for (i = rightIndex; i < group.get('values').models.length; i++) {
+        rightY = this.y(group, groupIndex, right, i);
+        if(rightY){
+          break;
+        }
+      }
       var y = this.d3.interpolate(leftY, rightY)(weight);
       var diff = point.y - y;
       var dist = Math.abs(diff);

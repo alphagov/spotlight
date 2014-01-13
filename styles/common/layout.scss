@@ -15,29 +15,6 @@
 
   background-color: $white;
 
-  header {
-    margin-bottom: 1.5em;
-    padding-bottom: 2em;
-    width: 100%;
-
-    border-bottom: 5px solid $primary-colour;
-    display: inline-block;
-
-    h1 {
-      width: 100%;
-      display: inline-block;
-      @include media(desktop) {
-        width: 75%;
-      }
-    }
-
-    p.explanatory {
-      @include core-19;
-      width: 60%;   
-      float: left;
-    }
-  }
-
   section {
     clear: left;
     float: left;
@@ -72,11 +49,6 @@
   @media (max-width: 640px) {
 
     padding: 0;
-
-    header p.explanatory {
-      width: 90%;   
-      float: none;
-    }
 
     section {
       &.half-width {

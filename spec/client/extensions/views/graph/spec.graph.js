@@ -31,10 +31,10 @@ function (Graph, Collection, Model, d3) {
         style = null;
       }
     });
-      
-    
+
+
     describe("initialize", function() {
-      
+
       var collection, TestGraph, testComponent1, testComponent2;
       beforeEach(function() {
         collection = new Collection();
@@ -65,7 +65,7 @@ function (Graph, Collection, Model, d3) {
         spyOn(TestGraph.prototype, "render");
         spyOn(TestGraph.prototype, "prepareGraphArea");
       });
-      
+
       it("re-renders when collection resets", function() {
         var graph = new TestGraph({
           collection: collection
@@ -81,7 +81,7 @@ function (Graph, Collection, Model, d3) {
         collection.trigger('sync');
         expect(graph.render).toHaveBeenCalled();
       });
-      
+
       it("re-renders when item is added to collection", function() {
         var graph = new TestGraph({
           collection: collection
@@ -89,7 +89,7 @@ function (Graph, Collection, Model, d3) {
         collection.trigger('add');
         expect(graph.render).toHaveBeenCalled();
       });
-      
+
       it("re-renders when items is removed from collection", function() {
         var graph = new TestGraph({
           collection: collection
@@ -97,14 +97,14 @@ function (Graph, Collection, Model, d3) {
         collection.trigger('remove');
         expect(graph.render).toHaveBeenCalled();
       });
-      
-      it("prepare graph area", function() {
+
+      it("prepares the graph area", function() {
         var graph = new TestGraph({
           collection: collection
         });
         expect(graph.prepareGraphArea).toHaveBeenCalled();
       });
-      
+
       it("initialises components", function() {
         var graph = new TestGraph({
           collection: collection
@@ -121,20 +121,20 @@ function (Graph, Collection, Model, d3) {
         expect(graph.componentInstances[1] instanceof testComponent2).toBe(true);
       });
     });
-    
+
     describe("prepareGraphArea", function() {
-      
+
       var graph, el, TestGraph;
       beforeEach(function() {
         el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
-        
+
         TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
           collection: new Collection()
         });
       });
-      
+
       afterEach(function() {
         el.remove();
       });
@@ -147,7 +147,13 @@ function (Graph, Collection, Model, d3) {
         var svg = graph.el.find('svg');
         expect(svg.length).toEqual(1);
       });
-      
+
+      it('renders an SVG element with correct WAI-ARIA attributes', function () {
+        var svg = graph.el.find('svg');
+        expect(svg.attr('role')).toEqual('presentation');
+        expect(svg.attr('aria-hidden')).toEqual('true');
+      });
+
       it("creates wrapper element", function() {
         var wrapper = graph.el.find('svg g.wrapper');
         expect(wrapper.length).toEqual(1);
@@ -194,7 +200,7 @@ function (Graph, Collection, Model, d3) {
         expect(pxToValue(false)).toEqual(null);
       });
     });
-    
+
     describe("resize", function () {
 
       var graph, el, wrapper;
@@ -265,7 +271,7 @@ function (Graph, Collection, Model, d3) {
         expect(svg.css('max-height')).toEqual('75px');
         expect(svg.css('display')).toEqual('block');
       });
-      
+
       it("calculates inner dimensions and margin", function() {
         wrapper.css({
           width: '150px',
@@ -289,9 +295,9 @@ function (Graph, Collection, Model, d3) {
         expect(graph.margin.bottom).toEqual(3);
         expect(graph.margin.left).toEqual(4);
       });
-      
+
     });
-    
+
     describe("render", function() {
 
       var graph;
@@ -326,7 +332,7 @@ function (Graph, Collection, Model, d3) {
           graph.render();
         }).toThrow();
       });
-      
+
       it("requires x and y scale implementation s", function() {
         graph.getConfigNames = function () {
           return [];
@@ -342,7 +348,7 @@ function (Graph, Collection, Model, d3) {
         expect(graph.scales.x).toEqual('test x scale');
         expect(graph.scales.y).toEqual('test y scale');
       });
-      
+
       it("renders component instances", function() {
         graph.getConfigNames = function () {
           return [];
@@ -361,7 +367,7 @@ function (Graph, Collection, Model, d3) {
         expect(component2.render).toHaveBeenCalled();
       });
     });
-    
+
     describe("scaleFactor", function () {
       var el, TestGraph;
       beforeEach(function() {
@@ -373,11 +379,11 @@ function (Graph, Collection, Model, d3) {
           });
           withGraphStyle();
       });
-      
+
       afterEach(function() {
           el.remove();
       });
-      
+
       it("calculates the scale factor when the graph is not resized", function() {
           el.width(600);
           graph = new TestGraph({
@@ -386,7 +392,7 @@ function (Graph, Collection, Model, d3) {
           });
           expect(graph.scaleFactor()).toEqual(1);
       });
-      
+
       it("calculates the scale factor when the graph is resized", function() {
           el.width(300);
           graph = new TestGraph({
@@ -396,7 +402,7 @@ function (Graph, Collection, Model, d3) {
           expect(graph.scaleFactor()).toEqual(0.5);
       });
     });
-    
+
     describe("configs", function () {
 
       var collection, graph, el;
@@ -487,7 +493,7 @@ function (Graph, Collection, Model, d3) {
         graph.innerWidth = 444;
         graph.innerHeight = 333;
       });
-      
+
       afterEach(function() {
         el.remove();
       });
@@ -599,7 +605,7 @@ function (Graph, Collection, Model, d3) {
             expect(graph.getMoment(domain[0]).format()).toEqual('2013-03-13T00:00:00+00:00');
             expect(graph.getMoment(domain[1]).format()).toEqual('2013-03-13T23:00:00+00:00');
           });
-          
+
           it("scales range to inner width", function() {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
@@ -618,18 +624,18 @@ function (Graph, Collection, Model, d3) {
             collection.at(1).get('values').each(function (model) { model.set('_count', 1); });
             collection.at(2).get('values').each(function (model) { model.set('_count', 1); });
             expect(graph.calcYScale().domain()).toEqual([0, 6]);
-            
+
             collection.at(0).get('values').each(function (model) { model.set('_count', 2); });
             collection.at(1).get('values').each(function (model) { model.set('_count', 2); });
             collection.at(2).get('values').each(function (model) { model.set('_count', 2); });
             expect(graph.calcYScale().domain()).toEqual([0, 6]);
-            
+
             collection.at(0).get('values').each(function (model) { model.set('_count', 5); });
             collection.at(1).get('values').each(function (model) { model.set('_count', 5); });
             collection.at(2).get('values').each(function (model) { model.set('_count', 5); });
             expect(graph.calcYScale().domain()).toEqual([0, 6]);
           });
-          
+
           it("scales domain from 0 to nice value above max value by default", function() {
             expect(graph.calcYScale().domain()).toEqual([0, 120]);
           });
@@ -638,13 +644,13 @@ function (Graph, Collection, Model, d3) {
             graph.valueAttr = 'alternativeValue';
             expect(graph.calcYScale().domain()).toEqual([0, 500]);
           });
-          
+
           it("scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used", function () {
             graph.valueAttr = 'alternativeValue';
             graph.applyConfig('stack');
             expect(graph.calcYScale().domain()).toEqual([0, 700]);
           });
-          
+
           it("scales range to inner height", function() {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });
@@ -735,7 +741,7 @@ function (Graph, Collection, Model, d3) {
             };
 
             graph.applyConfig('stack');
-            
+
             expect(graph.layers.length).toEqual(3);
             expect(graph.layers[0].get('values').at(0).yCustom0).toEqual(0);
             expect(graph.layers[0].get('values').at(0).yCustom).toEqual(2);
@@ -761,12 +767,12 @@ function (Graph, Collection, Model, d3) {
           it("scales domain from 0 to nice value above max value", function() {
             expect(graph.calcYScale().domain()).toEqual([0, 140]);
           });
-          
+
           it("scales domain from 0 to nice value above max value when an alternative value attribute is used", function () {
             graph.valueAttr = 'alternativeValue';
             expect(graph.calcYScale().domain()).toEqual([0, 700]);
           });
-          
+
           it("scales range to inner height", function() {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });

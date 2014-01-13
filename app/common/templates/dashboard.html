@@ -2,9 +2,12 @@
   <h1>
     {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
     {{ title }}
-    {{# tagline }}<span class="tagline">{{ tagline }}</span>{{/ tagline }}
   </h1>
-  {{# copy }}<p class="explanatory">{{ copy }}</p>{{/ copy }}
+  {{# tagline }}
+    <p class="tagline {{# related_pages_title }}with-related-pages{{/ related_pages_title }}">
+      {{{ tagline }}}
+    </p>
+  {{/ tagline }}
   {{# related_pages_title }}
     <aside class='related-pages'>
       <h3 class='popover-link'>{{ related_pages_title }}</h3>
