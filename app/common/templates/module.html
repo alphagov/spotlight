@@ -6,14 +6,14 @@
 
 
 <% if (model.get('info')) { %>
-<aside class="more-info">
-  <span class="more-info-link popover-link">more info</span>
+<details class="more-info">
+  <summary class="more-info-link">more info</summary>
   <ul>
     <% _.each(model.get('info'), function (row) { %>
     <li><%= row %></li>
     <% }) %>
   </ul>
-</aside>
+</details>
 <% } %>
 <h1><%= model.get('title') %></h1>
 <% if (model.get('description')) { %>
