@@ -15,7 +15,7 @@
   </ul>
 </details>
 <% } %>
-<h1><%= model.get('title') %></h1>
+<h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% if (model.get('description')) { %>
   <h2><%= model.get('description') %></h2>
 <% } %>
