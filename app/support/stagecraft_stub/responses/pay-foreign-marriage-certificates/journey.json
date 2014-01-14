@@ -8,7 +8,9 @@
   "dashboard-slug": "pay-foreign-marriage-certificates",
   "info": [
     "Data source: Google Analytics",
-    "The total number of unique users who arrived at each stage."
+    "The total number of users who arrived at each stage.",
+    "Number of users is based on count of unique events from each stage."
+
   ],
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",
