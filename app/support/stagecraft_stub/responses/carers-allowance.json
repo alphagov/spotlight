@@ -28,7 +28,6 @@
       "period": "week",
       "value-attr": "value:sum",
       "show-line-labels": true,
-      "one-hundred-percent": true,
       "cumulative": true,
       "info": [
         "Data source: DWP database",
