@@ -82,12 +82,21 @@ figure.graph {
   .stack5 { fill: mix($data-colour-6, $white, 25%); }
 
   .selected {
-    &.stack0 { fill: mix($data-colour-1, $white, 40%); }
-    &.stack1 { fill: mix($data-colour-2, $white, 40%); }
-    &.stack2 { fill: mix($data-colour-3, $white, 40%); }
-    &.stack3 { fill: mix($data-colour-4, $white, 40%); }
-    &.stack4 { fill: mix($data-colour-5, $white, 40%); }
-    &.stack5 { fill: mix($data-colour-6, $white, 40%); }
+    &.stack0 { fill: mix($data-colour-1, $white, 50%); }
+    &.stack1 { fill: mix($data-colour-2, $white, 50%); }
+    &.stack2 { fill: mix($data-colour-3, $white, 50%); }
+    &.stack3 { fill: mix($data-colour-4, $white, 50%); }
+    &.stack4 { fill: mix($data-colour-5, $white, 50%); }
+    &.stack5 { fill: mix($data-colour-6, $white, 50%); }
+  }
+
+  .not-selected {
+    &.stack0 { fill: mix($data-colour-1, $white, 10%); }
+    &.stack1 { fill: mix($data-colour-2, $white, 10%); }
+    &.stack2 { fill: mix($data-colour-3, $white, 10%); }
+    &.stack3 { fill: mix($data-colour-4, $white, 10%); }
+    &.stack4 { fill: mix($data-colour-5, $white, 10%); }
+    &.stack5 { fill: mix($data-colour-6, $white, 10%); }
   }
 
   .text0 { fill: $data-colour-1; }
@@ -119,7 +128,6 @@ figure.graph {
 
   .selectedIndicator.cursorLine {
     stroke: black;
-    stroke-linecap: square;
     stroke-width: 1px;
     shape-rendering: crispEdges;
   }
@@ -136,6 +144,9 @@ figure.graph {
     vector-effect: non-scaling-stroke;
 
     &.selected {
+      stroke-width: 4px;
+    }
+    &.selected-following-sibling{
       stroke-width: 4px;
     }
   }
@@ -218,26 +229,40 @@ figure.graph {
 
       &.squares {
         li {
-          &.label0:before { background-color: $data-colour-1; }
-          &.label1:before { background-color: $data-colour-2; }
-          &.label2:before { background-color: $data-colour-3; }
-          &.label3:before { background-color: $data-colour-4; }
-          &.label4:before { background-color: $data-colour-5; }
-          &.label5:before { background-color: $data-colour-6; }
+          &.label0:before { background-color: mix($data-colour-1, $white, 25%); }
+          &.label1:before { background-color: mix($data-colour-2, $white, 25%); }
+          &.label2:before { background-color: mix($data-colour-3, $white, 25%); }
+          &.label3:before { background-color: mix($data-colour-4, $white, 25%); }
+          &.label4:before { background-color: mix($data-colour-5, $white, 25%); }
+          &.label5:before { background-color: mix($data-colour-6, $white, 25%); }
 
-          &.label0.selected:before { border-color: darken($data-colour-1, 10%); }
-          &.label1.selected:before { border-color: darken($data-colour-2, 10%); }
-          &.label2.selected:before { border-color: darken($data-colour-3, 10%); }
-          &.label3.selected:before { border-color: darken($data-colour-4, 10%); }
-          &.label4.selected:before { border-color: darken($data-colour-5, 10%); }
-          &.label5.selected:before { border-color: darken($data-colour-6, 10%); }
+          &.label0:before { border-color: $data-colour-1; }
+          &.label1:before { border-color: $data-colour-2; }
+          &.label2:before { border-color: $data-colour-3; }
+          &.label3:before { border-color: $data-colour-4; }
+          &.label4:before { border-color: $data-colour-5; }
+          &.label5:before { border-color: $data-colour-6; }
 
-          &.label0.not-selected:before { background-color: mix($data-colour-1, $white, 50%) }
-          &.label1.not-selected:before { background-color: mix($data-colour-2, $white, 50%) }
-          &.label2.not-selected:before { background-color: mix($data-colour-3, $white, 50%) }
-          &.label3.not-selected:before { background-color: mix($data-colour-4, $white, 50%) }
-          &.label4.not-selected:before { background-color: mix($data-colour-5, $white, 50%) }
-          &.label5.not-selected:before { background-color: mix($data-colour-6, $white, 50%) }
+          &.label0.selected:before { background-color: mix($data-colour-1, $white, 50%); }
+          &.label1.selected:before { background-color: mix($data-colour-2, $white, 50%); }
+          &.label2.selected:before { background-color: mix($data-colour-3, $white, 50%); }
+          &.label3.selected:before { background-color: mix($data-colour-4, $white, 50%); }
+          &.label4.selected:before { background-color: mix($data-colour-5, $white, 50%); }
+          &.label5.selected:before { background-color: mix($data-colour-6, $white, 50%); }
+
+          &.label0.not-selected:before { background-color: mix($data-colour-1, $white, 10%) }
+          &.label1.not-selected:before { background-color: mix($data-colour-2, $white, 10%) }
+          &.label2.not-selected:before { background-color: mix($data-colour-3, $white, 10%) }
+          &.label3.not-selected:before { background-color: mix($data-colour-4, $white, 10%) }
+          &.label4.not-selected:before { background-color: mix($data-colour-5, $white, 10%) }
+          &.label5.not-selected:before { background-color: mix($data-colour-6, $white, 10%) }
+
+          &.label0.not-selected:before { border-color: mix($data-colour-1, $white, 50%) }
+          &.label1.not-selected:before { border-color: mix($data-colour-2, $white, 50%) }
+          &.label2.not-selected:before { border-color: mix($data-colour-3, $white, 50%) }
+          &.label3.not-selected:before { border-color: mix($data-colour-4, $white, 50%) }
+          &.label4.not-selected:before { border-color: mix($data-colour-5, $white, 50%) }
+          &.label5.not-selected:before { border-color: mix($data-colour-6, $white, 50%) }
 
           &:before {
             border:2px solid white;
@@ -264,6 +289,10 @@ figure.graph {
 
         &.selected {
           font-weight: bold;
+        }
+
+        &.not-selected {
+          color: mix(#0b0c0c, $white, 25%);
         }
 
         .label-title {
@@ -346,6 +375,10 @@ figure.graph {
         overflow:hidden;
       }
     }
+  }
+
+  .cursorLine.overlay{
+    stroke-width: 3px;
   }
 
   .cursorLine.ascender,

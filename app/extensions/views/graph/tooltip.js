@@ -3,8 +3,9 @@ define([
   'extensions/mixins/pivot'
 ],
 function (Component, Pivot) {
-  var Tooltip = Component.extend({
+  var LABELS_OFF = "no labels";
 
+  var Tooltip = Component.extend({
     classed: 'tooltip',
     constrainToBounds: true,
     horizontal: 'right',
@@ -28,7 +29,31 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      return model.get(this.graph.valueAttr);
+      if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+        var no_data = true;
+        var sum = _.reduce(model, function(sum, model){
+          var value = model.get(this.graph.valueAttr);
+          if(value !== null){
+            no_data = false;
+          }
+          return sum += model.get(this.graph.valueAttr);
+        }, 0, this);
+        //this is a hack based on a bug in getDistanceAndClosestModel
+        //which manifests in grouped_timeseries displayed as stack.
+        //it causes the total rather than the stack value to be displayed
+        //when hovering to the right of the last value.
+        //in the case of stacked_graph this is not desired 
+        //(though we still want '(no data)' labels) 
+        //and so we show nothing if noTotal is true and the sum isn't null 
+        if(no_data){
+          sum = null;
+        }else if(this.noTotal){
+          sum = LABELS_OFF;
+        }
+        return sum;
+      }else{
+        return model.get(this.graph.valueAttr);
+      }
     },
 
     formatValue: function (value) {
@@ -49,6 +74,11 @@ function (Component, Pivot) {
       }
 
       var value = this.getValue(group, groupIndex, model, index);
+
+      if(value == LABELS_OFF){
+        selection.data([]).exit().remove();
+        return;
+      }
 
       if (value == null) {
         value = this.formatMissingValue();
