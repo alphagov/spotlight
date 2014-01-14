@@ -350,7 +350,29 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
             });
 
           if(this.isOneHundredPercent()){
-            stack.offset('expand');
+            stack.offset(function(data) {
+              var lineCount = data.length,
+                  lineLength = data[0].length,
+                  i, j, sumOfYValues, y0 = [];
+
+              for (j = 0; j < lineLength; ++j) {
+                sumOfYValues = 0;
+                for (i = 0; i < lineCount; i++){
+                  sumOfYValues += data[i][j][1];
+                }
+                for (i = 0; i < lineCount; i++){
+                  if (sumOfYValues){
+                    data[i][j][1] = data[i][j][1] / sumOfYValues;
+                  } else {
+                    data[i][j][1] = null;
+                  }
+                }
+              }
+              for (j = 0; j < lineLength; ++j){
+                y0[j] = 0;
+              }
+              return y0;
+            });
           }
 
           if (this.outStack) {
@@ -399,7 +421,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           yScale.rangeRound([this.innerHeight, 0]);
           yScale.tickValues = tickValues.values;
           return yScale;
-        },
+        }
       }
     }
   });

@@ -41,7 +41,7 @@ function (Graph) {
         labelComponent = this.sharedComponents.callout;
       }
 
-      var yAxisOptions = {}
+      var yAxisOptions = {};
       if (this.model.get('one-hundred-percent')) {
         yAxisOptions = {
           tickFormat: function(){
