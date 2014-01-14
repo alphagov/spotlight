@@ -20,7 +20,8 @@ function (View, template) {
 
     attributes: function() {
       return {
-        'aria-labelledby' : this.ariaId()
+        'aria-labelledby': this.ariaId(),
+        'role': 'region'
       };
     },
 
