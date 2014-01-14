@@ -46,14 +46,14 @@ function (ModuleView, Collection, Model, View) {
       model.set('description', 'Description');
       model.set('info', ['Info line 1', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section class="testclass"><aside class="more-info"><span class="more-info-link popover-link">more info</span><ul><li>Info line 1</li><li>Info line 2</li></ul></aside><h1>Title</h1><h2>Description</h2><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section class="testclass"><details class="more-info"><summary class="more-info-link">more info</summary><ul><li>Info line 1</li><li>Info line 2</li></ul></details><h1>Title</h1><h2>Description</h2><div class="visualisation">test content</div></section>');
     });
 
     it("renders a module with description and info link", function () {
       model.set('description', 'Description');
       model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section class="testclass"><aside class="more-info"><span class="more-info-link popover-link">more info</span><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></aside><h1>Title</h1><h2>Description</h2><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section class="testclass"><details class="more-info"><summary class="more-info-link">more info</summary><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></details><h1>Title</h1><h2>Description</h2><div class="visualisation">test content</div></section>');
     });
 
     it("renders an SVG-based module as a fallback element on the server", function () {
