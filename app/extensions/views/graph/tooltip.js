@@ -30,23 +30,23 @@ function (Component, Pivot) {
 
     getValue: function (group, groupIndex, model, index) {
       if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+        var no_data = true;
         var sum = _.reduce(model, function(sum, model){
+          var value = model.get(this.graph.valueAttr);
+          if(value !== null){
+            no_data = false;
+          }
           return sum += model.get(this.graph.valueAttr);
         }, 0, this);
-        //currently summing only happens in a module - 
-        //grouped time series displayed as a stack - 
-        //where null signifies no data at that point and these reduce to 0.
-        //As a result we have this hack to force a no data label
-        //it would be better to acknowledge the nulls rather than sum to zeros
-        //as we would be able to better deal with 0s
-        if(sum === 0){
+        //this is a hack based on a bug in getDistanceAndClosestModel
+        //which manifests in grouped_timeseries displayed as stack.
+        //it causes the total rather than the stack value to be displayed
+        //when hovering to the right of the last value.
+        //in the case of stacked_graph this is not desired 
+        //(though we still want '(no data)' labels) 
+        //and so we show nothing if noTotal is true and the sum isn't null 
+        if(no_data){
           sum = null;
-          //this is a hack based on a bug in getDistanceAndClosestModel
-          //which manifests in grouped_timeseries displayed at stack
-          //which causes the total rather than the stack value to be displayed
-          //when hovering to the right of the last value.
-          //As this value is not 0 when summed we turn off labels when there is a sum
-          //and noTotal is true 
         }else if(this.noTotal){
           sum = LABELS_OFF;
         }

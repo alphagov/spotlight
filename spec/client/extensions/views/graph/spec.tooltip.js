@@ -79,19 +79,19 @@ function (Tooltip, Model) {
         expect(wrapper.select('text.tooltip-text').text()).toEqual("961");
         expect(wrapper.select('text.tooltip-stroke').text()).toEqual("961");
       });
-      it("renders no data if the value comes from an array of models which sum to zero", function (){
+      it("renders no data if the value comes from an array of models which all have null data", function (){
         model = new Model({
           x: 110,
           y: 120,
           textWidth: 100,
-          modelValue: 0,
+          modelValue: null 
         });
 
         model2 = new Model({
           x: 110,
           y: 120,
           textWidth: 100,
-          modelValue: 0,
+          modelValue: null
         });
         tooltip.render();
         tooltip.onChangeSelected(null, null, [model, model2], 1);
