@@ -32,7 +32,8 @@ function (Graph) {
           attachLinks: this.model.get('line-label-links')
         };
         stackOptions = {
-          selectGroup: false,
+          selectGroup: true,
+          encompassStack: true,
           allowMissingData: true,
           drawCursorLine: true,
           interactive: this.interactiveFunction
@@ -46,9 +47,21 @@ function (Graph) {
         { view: this.sharedComponents.yaxis },
         { view: this.sharedComponents.stack, options: stackOptions },
         { view: labelComponent, options: labelOptions },
-        { view: this.sharedComponents.hover }
+        { view: this.sharedComponents.hover },
+        {
+          view: this.sharedComponents.tooltip,
+          options: {
+            formatValue: function (value) {
+              return this.formatNumericLabel(value);
+            },
+            encompassStack: true,
+            noTotal: true
+          }
+        }
       ];
     },
+
+    encompassStack: true,
 
     getConfigNames: function () {
       return ['stack', this.collection.query.get('period') || 'week'];
