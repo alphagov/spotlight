@@ -15,7 +15,7 @@
           margin: 7px 0;
 
           h3 {
-            @include core-19($tabular-numbers: true);
+            @include core-19;
             line-height: 1;
             a[rel="external"] {
               @include external-link-19;
@@ -23,7 +23,7 @@
           }
 
           .metadata {
-            @include core-14($tabular-numbers: true);
+            @include core-14;
           }
         }
       }

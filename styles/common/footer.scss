@@ -27,15 +27,15 @@ $grey-6: #a1acb2;
 
       @include media-down(mobile) {
         display: block;
-
+        
         margin: 0 0 30px 0;
 
         width: 100%;
       }
     }
-
+  
     ul {
-      @include core-16($tabular-numbers: true);
+      @include core-16;
       list-style: none;
 
       border: 1px solid $grey-6;
@@ -53,7 +53,7 @@ $grey-6: #a1acb2;
         border-width: 0;
         min-height: 0;
       }
-
+    
       li {
         display: block;
 

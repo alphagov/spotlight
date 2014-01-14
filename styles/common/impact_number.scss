@@ -1,10 +1,10 @@
-.impact-number {
-  margin-bottom: 0.25em;
+p.impact-number {
+  margin-bottom: 4px;
 
   strong {
     color: $primary-colour;
     @include bold-80($tabular-numbers: true) ;
-    margin-bottom: -0.1em;
+    margin-bottom: -.1em;
     display: block;
 
     @media (max-width: 850px) {
@@ -42,6 +42,6 @@
   }
 }
 
-.stat-description {
+p.stat-description {
   margin-top: 0.1em;
 }

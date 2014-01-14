@@ -2,14 +2,12 @@ define([
   'extensions/views/graph/component'
 ],
 function (Component) {
-
+  
   /**
    * Graph component that intercepts and normalises user interaction events
    */
   var Hover = Component.extend({
-
-    rightHandGracePixels: 16,
-
+    
     events: function () {
       if (this.modernizr.touch) {
         return {
@@ -21,14 +19,14 @@ function (Component) {
         };
       }
     },
-
+    
     dispose: function () {
       if (this.modernizr.touch) {
         $('body').off('touchstart', this.onTouchStartBody);
       }
       Component.prototype.dispose.apply(this, arguments);
     },
-
+    
     render: function () {
       if (!this.hoverEl) {
         this.hoverEl = $('<div></div>').addClass('hover').appendTo(this.graph.graphWrapper);
@@ -46,18 +44,18 @@ function (Component) {
         that.collection.selectItem(null, null);
       });
     },
-
+    
     onMouseMove: function (e) {
       var offset = this.graph.graphWrapper.offset();
       var scaleFactor = this.graph.scaleFactor();
       var x = (e.pageX - offset.left) / scaleFactor - this.margin.left;
       var y = (e.pageY - offset.top) / scaleFactor - this.margin.top;
-
+      
       this.attachBodyListener('mousemove');
       this.selectPoint(x, y);
       return false;
     },
-
+    
     onTouchStart: function (e) {
       var touch = e.originalEvent.touches[0];
       var offset = this.graph.graphWrapper.offset();
@@ -71,7 +69,7 @@ function (Component) {
       });
       return false;
     },
-
+    
     /**
      * Triggers a graph 'hover' event for a specific coordinate.
      */
@@ -83,7 +81,7 @@ function (Component) {
         slice: slice
       }, options));
     },
-
+    
     /**
      * Finds 'slice' of the graph for a specific coordinate.
      * The graph area is divided into 9 slices counted in reading direction:
@@ -92,10 +90,10 @@ function (Component) {
      * The main graph area therefore is slice 4.
      */
     getSlice: function (x, y) {
-      return (y >= this.graph.innerHeight ? 6 : y < 0 ? 0 : 3) +
-             (x >= (this.graph.innerWidth + this.rightHandGracePixels) ? 2 : x < 0 ? 0 : 1);
+      return (y >= this.graph.innerHeight ? 6 : y < 0 ? 0 : 3) + 
+             (x >= this.graph.innerWidth ? 2 : x < 0 ? 0 : 1);
     }
-
+    
   });
 
   return Hover;

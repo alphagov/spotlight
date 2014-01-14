@@ -45,10 +45,6 @@ function (Component) {
       this.figcaption = wrapper.selectAll('figcaption').data(['one-figcaption']);
       this.figcaption.enter().insert('figcaption', '.graph-wrapper').attr('class', 'legend');
 
-      // Hide elements from assistive technology to improve their experience
-      this.figcaption.attr('role', 'presentation');
-      this.figcaption.attr('aria-hidden', 'true');
-
       this.renderSummary();
       this.renderLabels();
       this.renderLines();
