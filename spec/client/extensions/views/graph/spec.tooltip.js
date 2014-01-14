@@ -21,9 +21,15 @@ function (Tooltip, Model) {
           },
           constrainToBounds: false,
           x: function (group, groupIndex, model, index) {
+            if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+              model = model[0];
+            }
             return model.get('x');
           },
           y: function (group, groupIndex, model, index) {
+            if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+              model = model[0];
+            }
             return model.get('y');
           },
           textWidth: function() {
@@ -35,7 +41,14 @@ function (Tooltip, Model) {
           x: 110,
           y: 120,
           textWidth: 100,
-          modelValue: "Tooltip Text",
+          modelValue: 84,
+        });
+
+        model2 = new Model({
+          x: 110,
+          y: 120,
+          textWidth: 100,
+          modelValue: 877,
         });
       });
 
@@ -43,12 +56,56 @@ function (Tooltip, Model) {
         el.remove();
       });
 
+      it("renders nothing if the value is the sum of an array of models and noTotal set", function (){
+        tooltip.noTotal = true;
+        tooltip.render();
+
+        tooltip.onChangeSelected(null, null, model, 1);
+        expect(wrapper.select('text.tooltip-text')[0][0]).not.toBeFalsy();
+        expect(wrapper.select('text.tooltip-stroke')[0][0]).not.toBeFalsy();
+
+        tooltip.onChangeSelected(null, null, [model, model2], 1);
+        expect(wrapper.select('text.tooltip-text')[0][0]).toBeFalsy();
+        expect(wrapper.select('text.tooltip-stroke')[0][0]).toBeFalsy();
+      });
+      it("renders the sum of values if the model is an array of models", function (){
+        tooltip.render();
+
+        tooltip.onChangeSelected(null, null, model, 1);
+        expect(wrapper.select('text.tooltip-text')[0][0]).not.toBeFalsy();
+        expect(wrapper.select('text.tooltip-stroke')[0][0]).not.toBeFalsy();
+
+        tooltip.onChangeSelected(null, null, [model, model2], 1);
+        expect(wrapper.select('text.tooltip-text').text()).toEqual("961");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("961");
+      });
+      it("renders no data if the value comes from an array of models which all have null data", function (){
+        model = new Model({
+          x: 110,
+          y: 120,
+          textWidth: 100,
+          modelValue: null 
+        });
+
+        model2 = new Model({
+          x: 110,
+          y: 120,
+          textWidth: 100,
+          modelValue: null
+        });
+        tooltip.render();
+        tooltip.onChangeSelected(null, null, [model, model2], 1);
+
+        expect(wrapper.select('text.tooltip-text').text()).toEqual("(no data)");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("(no data)");
+      });
+
       it("renders a tooltip at the position with offsets", function () {
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-text').text()).toEqual("Tooltip Text");
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("Tooltip Text");
+        expect(wrapper.select('text.tooltip-text').text()).toEqual("84");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("84");
         expect(wrapper.select('text.tooltip-text').attr('transform')).toEqual("translate(3, 102)");
         expect(wrapper.select('text.tooltip-stroke').attr('transform')).toEqual("translate(3, 102)");
       });
@@ -90,7 +147,7 @@ function (Tooltip, Model) {
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("The value is Tooltip Text!");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("The value is 84!");
       });
 
       it("formats using formatMissingValue when data is null", function () {
