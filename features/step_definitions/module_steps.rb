@@ -4,7 +4,7 @@ def values
       'no-realistic-dashboard' => {
         title: 'Real-time usage',
         description: 'Real-time usage',
-        raw: "//span[@class='impact-number']/strong[text()='15']",
+        raw: "//p[@class='impact-number']/strong[text()='15']",
         info: true
       }
     },
@@ -60,7 +60,7 @@ def values
 end
 
 def find_section_for(identifier)
-  if page.has_css?("section##{identifier}")
+  if page.has_css?("section##{identifier}") 
     section = page.find("section##{identifier}")
   else
     section = page.find("section.#{identifier}")
@@ -94,4 +94,4 @@ Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |serv
   if v[:info]
     find_section_for(display_module).should have_content('more info')
   end
-end
+end 

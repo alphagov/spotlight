@@ -1,13 +1,9 @@
-body {
-  font-family: $NTA-Light-Tabular;
-}
-
 h2 {
-  @include core-19($tabular-numbers: true);
+  @include core-19;
 }
 
 p {
-  @include core-16($tabular-numbers: true);
+  @include core-16;
 }
 
 a[rel="external"] {
@@ -23,7 +19,7 @@ a[rel="external"][target="_blank"]:after {
   }
 
   background-image: url("../images/icon-newwindow.gif");
-
+  
   @include device-pixel-ratio() {
     background-image: url("../images/icon-newwindow@2x.gif");
   }
@@ -31,12 +27,12 @@ a[rel="external"][target="_blank"]:after {
 
 #content {
   h1 {
-    @include bold-24($tabular-numbers: true);
+    @include bold-24;
   }
 
   h2 {
     margin-top:0;
-    @include core-16($tabular-numbers: true);
+    @include core-16;
   }
 
   section {
@@ -44,12 +40,12 @@ a[rel="external"][target="_blank"]:after {
     margin-bottom:1.5em;
 
     h1 {
-      @include bold-24($tabular-numbers: true);
+      @include bold-24;
     }
 
     h2 {
       margin-top:0;
-      @include core-16($tabular-numbers: true);
+      @include core-16;
     }
   }
 }

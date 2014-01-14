@@ -1,6 +1,6 @@
 #content {
   .more-info-link.popover-link {
-    @include core-16($tabular-numbers: true);
+    @include core-16;
     @include popover-link;
 
     float: right;

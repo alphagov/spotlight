@@ -75,13 +75,6 @@ function (LineLabel, Collection) {
           expect(lines[0].length).toEqual(2);
         });
 
-        it('renders a label with correct WAI-ARIA attributes', function () {
-          lineLabel.render();
-          var lineLabelElement = lineLabel.$el.find('figcaption');
-          expect(lineLabelElement.attr('role')).toEqual('presentation');
-          expect(lineLabelElement.attr('aria-hidden')).toEqual('true');
-        });
-
         it("renders a label with squares", function () {
           lineLabel.showSquare = true;
           lineLabel.render();
