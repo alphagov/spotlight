@@ -7,7 +7,6 @@
     "Data source: Google Analytics",
     "The total number of users who arrived at each stage.",
     "Number of users is based on count of unique events from each stage."
-
   ],
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service performance",
