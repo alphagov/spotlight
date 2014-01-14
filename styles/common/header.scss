@@ -1,22 +1,49 @@
 #content {
   header {
+    margin-bottom: 1.5em;
+    padding-bottom: 2em;
+    width: 100%;
+
+    border-bottom: 5px solid $primary-colour;
+    display: inline-block;
+
     h1 {
-      @include bold-48;
+      @include bold-48($tabular-numbers: true);
+      width: 100%;
+      display: inline-block;
 
-      span.tagline {
-        display: block;
-        margin: 1em 0 -1em 0;
-        padding: 0.6em 0 0 0;
-
-        @include core-19;
+      @include media(desktop) {
+        width: 75%;
       }
 
       span.strapline {
+        @include core-27($tabular-numbers: true);
         display: block;
         margin-bottom: 5px;
 
-        @include core-27;
         color: $grey-1;
+      }
+    }
+
+    p.tagline {
+      @include core-19;
+      display: block;
+      margin: 1em 0 -1em 0;
+      padding: 0.5em 0 1em 0;
+
+      @include media(desktop) {
+        width: 75%;
+      }
+
+      &.with-related-pages {
+        padding-top: 0;
+        float: left;
+        width: 60%;
+
+        @include media(mobile) {
+          float: none;
+          width: 90%;
+        }
       }
     }
   }

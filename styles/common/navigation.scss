@@ -37,11 +37,11 @@ span.alpha-tag {
 
   .header-proposition {
     padding-top: 0;
-    @include media($max-width: 768px){
+    @include media($max-width: 768px) {
       padding-top: 10px;
     }
     #proposition-name {
-      @include core-24;
+      @include core-24($tabular-numbers: true);
       font-weight: bold;
       color: $white;
       text-decoration: none;
@@ -59,7 +59,7 @@ span.alpha-tag {
 
       .js-enabled & {
         display: block;
-        @include media($max-width: 768px){
+        @include media($max-width: 768px) {
           display: none;
         }
         &.js-visible {
@@ -87,11 +87,11 @@ span.alpha-tag {
         a {
           color: $white;
           text-decoration: none;
-          @include bold-16;
+          @include bold-16($tabular-numbers: true);
           line-height: 23px;
 
-          @include media($max-width: 768px){
-            @include bold-14;
+          @include media($max-width: 768px) {
+            @include bold-14($tabular-numbers: true);
           }
 
           &:hover {
