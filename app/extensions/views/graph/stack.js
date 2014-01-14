@@ -126,22 +126,6 @@ function (require, Line, Component) {
           group, i, point, { allowMissingData: this.allowMissingData }
         );
 
-// if we don't have data for the period then show no data
-//        if(isNaN(distanceAndClosestModel.diff) && i === 0){
-//          selectedGroupIndex = null;
-//          selectedItemIndex = distanceAndClosestModel.index;
-//          break;
-// if we have data for the period but are above the stack show sum for whole stack
-//        }else if (distanceAndClosestModel.diff <= 0 && i ===0 ) {
-//          selectedGroupIndex = null;
-//          selectedItemIndex = distanceAndClosestModel.index;
-//          break;
-// if we are in one of the stacks show data for that stack
-//        }else if (distanceAndClosestModel.diff > 0 || i ===0 ) {
-//          selectedGroupIndex = i;
-//          selectedItemIndex = distanceAndClosestModel.index;
-//          break;
-//        }
         if(isNaN(distanceAndClosestModel.diff)){
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
