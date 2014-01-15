@@ -28,7 +28,8 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
     defaultDateFormat: Model.prototype.defaultDateFormat,
 
     initialize: function (models, options) {
-      this.options = options = options || {};
+      options = options || {};
+      this.options = options;
 
       _.each(['filterBy', 'collections', 'data-type', 'data-group'], function (prop) {
         if (options[prop]) {
@@ -162,7 +163,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
           params[key] = value.format(this.defaultDateFormat);
         }
       }, this);
-      
+
       var base = Mustache.render(this.backdropUrl, {
         'data-group': this['data-group'],
         'data-type': this['data-type']
