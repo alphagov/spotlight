@@ -20,7 +20,7 @@ function (Graph) {
     },
     
     components: function () {
-      var labelComponent, labelOptions, stackOptions;
+      var labelComponent, labelOptions, stackOptions, yAxisOptions;
 
       if (this.showLineLabels()) {
         labelComponent = this.sharedComponents.linelabel;
@@ -41,8 +41,7 @@ function (Graph) {
         labelComponent = this.sharedComponents.callout;
       }
 
-      var yAxisOptions = {};
-      if (this.model.get('one-hundred-percent')) {
+      if (this.model && this.model.get('one-hundred-percent')) {
         yAxisOptions = {
           tickFormat: function(){
             return function(d){

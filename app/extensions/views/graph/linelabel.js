@@ -94,13 +94,15 @@ function (Component) {
       var data = [],
           summary = "";
 
-      if (value === null) {
-        data.push("no data");
-      } else {
+      if (value === null && percentage == null) {
+        return '<span class="no-data">(no data)</span>';
+      }
+
+      if (value !== null) {
         data.push(this.formatNumericLabel(value));
       }
       if (percentage) {
-        if(this.graph.model.get('one-hundred-percent')){
+        if(this.graph.model && this.graph.model.get('one-hundred-percent')){
           data.unshift(this.formatPercentage(percentage));
         } else {
           data.push(this.formatPercentage(percentage));

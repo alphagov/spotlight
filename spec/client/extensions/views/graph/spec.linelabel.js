@@ -331,7 +331,7 @@ function (LineLabel, Collection) {
           var figcaption = lineLabel.$el.find('figcaption');
 
           collection.selectItem(null, 2);
-          expect(figcaption.find('.summary .value')).toHaveText('(no data)');
+          expect(figcaption.find('.summary .no-data')).toHaveText('(no data)');
           expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');
           expect(figcaption.find('li').eq(0).find('.no-data')).toHaveText('(no data)');
           expect(figcaption.find('li').eq(1).find('.no-data')).toHaveText('(no data)');
