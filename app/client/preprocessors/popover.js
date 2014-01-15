@@ -9,7 +9,7 @@ define([
     } else {
       eventName = 'click';
     }
-    $('section').on(eventName, '.popover-link', function(e) {
+    $('section, main').on(eventName, '.popover-link', function(e) {
       var close = function(e) {
         item.removeClass('js-clicked');
         $('body').off(eventName, close);
