@@ -51,12 +51,12 @@ a[rel="external"][target="_blank"]:after {
       @include bold-24($tabular-numbers: true);
     }
 
-    h2.dashboard {
+    h2.dashboard, h3 {
       @include core-16($tabular-numbers: true);
     }
 
-    h3 {
-     @include core-16($tabular-numbers: true);
+    .double-decker-graph h3 {
+      @include bold-19($tabular-numbers: true);
     }
-  }
-}
+
+  
