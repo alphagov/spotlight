@@ -5,18 +5,46 @@ define([
     
     queryParams: function () {
       var params = {};
-      if (this.options && this.options.tabbedAttr) {
-        params[this.options.tabbedAttr] = this.options.tabs[0].id;
+      
+      if (this.options) {
+        if (this.options.tabbedAttr) {
+          params[this.options.tabbedAttr] = this.options.tabs[0].id;
+        }
+        if (this.options.period) {
+          params.period = this.options.period;
+        }
+        if (this.options.category) {
+          params.group_by = this.options.category;
+        }
       }
-      if (this.options && this.options.period) {
-        params.period = this.options.period;
-      }
+      
       return params;
     },
 
     parse: function (response) {
       this.data = response.data;
       
+      // If we have nested data, make it flat. 
+      var newData = [];
+      _.each(this.data, function(d) {
+        if (d.values) {
+          var attr = this.options.matchingAttribute;
+          var category = d[attr];
+          _.each(d.values, function(e) {
+            e[attr] = category;
+            if (!e._timestamp) {
+              e._timestamp = e._start_at;
+            }
+            if (!e._month_start_at) {
+              e._month_start_at = e._start_at;
+            }
+            newData.push(e);
+          });
+        }
+      }, this);
+      
+      this.data = (newData.length) ? newData : this.data;
+
       var that = this;
       var completionConfiguration = {
         id: "completion",

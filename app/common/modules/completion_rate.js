@@ -19,7 +19,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         valueAttribute: this.model.get('value-attribute'),
         tabbedAttr: this.model.get('tabbed_attr'),
         tabs: this.model.get('tabs'),
-        period: this.model.get('period')
+        period: this.model.get('period'),
+        category: this.model.get("category")
       };
     }
   });

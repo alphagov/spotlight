@@ -88,6 +88,7 @@ function(Tabs, Collection, Model) {
           tab.$el.find('li:eq(1)').trigger('click');
           expect(model.set).toHaveBeenCalledWith('anAttribute', 'foo');
           expect(collection.options.valueAttr).toEqual('foo');
+          expect(collection.options.valueAttribute).toEqual('foo');
         });
       });
       

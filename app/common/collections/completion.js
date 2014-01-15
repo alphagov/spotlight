@@ -12,7 +12,7 @@ function (MatrixCollection, Collection, Group) {
       this.startMatcher= options.startMatcher;
       this.endMatcher= options.endMatcher;
       this.matchingAttribute= options.matchingAttribute || 'eventCategory';
-      this.valueAttribute= options.valueAttribute || 'uniqueEvents';
+      this.setValueAttribute(options);
       this.tabbedAttr= options.tabbedAttr || null;
       this.tabs= options.tabs || null;
       this.period= options.period || null;
@@ -24,6 +24,10 @@ function (MatrixCollection, Collection, Group) {
         this.query.set('period', this.period);
       }
     },
+    
+    setValueAttribute: function(options) { 
+      this.valueAttribute= options.valueAttribute || 'uniqueEvents';
+    }, 
 
     uniqueEventsFor: function (data, matcher) {
       var events = _.filter(data, function (d) {
@@ -81,9 +85,12 @@ function (MatrixCollection, Collection, Group) {
     },
 
     series: function (config) {
+      
       var data = this.data;
       
-      var events = this.eventsFrom(data);
+      this.setValueAttribute(this.options);
+      
+      var events = this.eventsFrom(data); 
       var eventsWithData = events.length;
 
       var earliestEventTimestamp = this.earliest(events, function (d) {

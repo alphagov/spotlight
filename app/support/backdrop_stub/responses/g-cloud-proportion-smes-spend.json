@@ -1,228 +1,388 @@
 {
   "data": [
     {
-      "_day_start_at": "2013-04-01T00:00:00", 
-      "_hour_start_at": "2013-04-01T00:00:00", 
-      "_id": "MjAxMy0xMC0wN1QwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-04-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-04-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.910000", 
-      "_month_start_at": "2013-04-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 1507334.0
-    }, 
-    {
-      "_day_start_at": "2013-04-01T00:00:00", 
-      "_hour_start_at": "2013-04-01T00:00:00", 
-      "_id": "MjAxMy0xMC0wN1QwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-04-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-04-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.916000", 
-      "_month_start_at": "2013-04-01T00:00:00", 
-      "comment": null, 
+      "_count": 400.0, 
+      "_group_count": 20, 
+      "monthly_spend:sum": 31020523.17000001, 
       "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 2138700.0
+      "values": [
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-05-01T00:00:00+00:00", 
+          "_start_at": "2012-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 82005.74
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-06-01T00:00:00+00:00", 
+          "_start_at": "2012-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 77760.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-07-01T00:00:00+00:00", 
+          "_start_at": "2012-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 123151.76
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-08-01T00:00:00+00:00", 
+          "_start_at": "2012-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 90837.82999999999
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_start_at": "2012-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 104699.96
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_start_at": "2012-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 172032.16
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-11-01T00:00:00+00:00", 
+          "_start_at": "2012-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 371126.26
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-12-01T00:00:00+00:00", 
+          "_start_at": "2012-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 239008.76
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-01-01T00:00:00+00:00", 
+          "_start_at": "2012-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": 618503.99
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-02-01T00:00:00+00:00", 
+          "_start_at": "2013-01-01T00:00:00+00:00", 
+          "monthly_spend:sum": 1207646.86
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-03-01T00:00:00+00:00", 
+          "_start_at": "2013-02-01T00:00:00+00:00", 
+          "monthly_spend:sum": 761553.1900000001
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-04-01T00:00:00+00:00", 
+          "_start_at": "2013-03-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2321173.74
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-05-01T00:00:00+00:00", 
+          "_start_at": "2013-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2138700.62
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-06-01T00:00:00+00:00", 
+          "_start_at": "2013-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 1599807.0899999999
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-07-01T00:00:00+00:00", 
+          "_start_at": "2013-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 4216860.92
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-08-01T00:00:00+00:00", 
+          "_start_at": "2013-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 4322025.85
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-09-01T00:00:00+00:00", 
+          "_start_at": "2013-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2896425.74
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-10-01T00:00:00+00:00", 
+          "_start_at": "2013-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 3325343.61
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-11-01T00:00:00+00:00", 
+          "_start_at": "2013-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 3422344.4
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-12-01T00:00:00+00:00", 
+          "_start_at": "2013-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2929514.69
+        }
+      ]
     }, 
     {
-      "_day_start_at": "2013-05-01T00:00:00", 
-      "_hour_start_at": "2013-05-01T00:00:00", 
-      "_id": "MjAxMy0xMC0xNFQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-05-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-05-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.911000", 
-      "_month_start_at": "2013-05-01T00:00:00", 
-      "comment": null, 
+      "_count": 400.0, 
+      "_group_count": 20, 
+      "monthly_spend:sum": 41473387.87999998, 
       "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 2567003.0
+      "values": [
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-05-01T00:00:00+00:00", 
+          "_start_at": "2012-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 486312.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-06-01T00:00:00+00:00", 
+          "_start_at": "2012-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 85289.25
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-07-01T00:00:00+00:00", 
+          "_start_at": "2012-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 347829.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-08-01T00:00:00+00:00", 
+          "_start_at": "2012-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 340912.4
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_start_at": "2012-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 654206.1
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_start_at": "2012-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 937071.98
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-11-01T00:00:00+00:00", 
+          "_start_at": "2012-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 809282.36
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-12-01T00:00:00+00:00", 
+          "_start_at": "2012-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 687651.6499999999
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-01-01T00:00:00+00:00", 
+          "_start_at": "2012-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": 855937.74
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-02-01T00:00:00+00:00", 
+          "_start_at": "2013-01-01T00:00:00+00:00", 
+          "monthly_spend:sum": 925372.8899999999
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-03-01T00:00:00+00:00", 
+          "_start_at": "2013-02-01T00:00:00+00:00", 
+          "monthly_spend:sum": 1292936.48
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-04-01T00:00:00+00:00", 
+          "_start_at": "2013-03-01T00:00:00+00:00", 
+          "monthly_spend:sum": 4682093.42
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-05-01T00:00:00+00:00", 
+          "_start_at": "2013-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 1507334.9
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-06-01T00:00:00+00:00", 
+          "_start_at": "2013-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2567003.84
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-07-01T00:00:00+00:00", 
+          "_start_at": "2013-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2758557.52
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-08-01T00:00:00+00:00", 
+          "_start_at": "2013-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 3522989.86
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-09-01T00:00:00+00:00", 
+          "_start_at": "2013-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 3841698.22
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-10-01T00:00:00+00:00", 
+          "_start_at": "2013-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 5127171.01
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-11-01T00:00:00+00:00", 
+          "_start_at": "2013-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 4868477.8
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-12-01T00:00:00+00:00", 
+          "_start_at": "2013-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 5175259.46
+        }
+      ]
     }, 
     {
-      "_day_start_at": "2013-05-01T00:00:00", 
-      "_hour_start_at": "2013-05-01T00:00:00", 
-      "_id": "MjAxMy0xMC0xNFQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-05-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-05-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.918000", 
-      "_month_start_at": "2013-05-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 1517007.0
-    }, 
-    {
-      "_day_start_at": "2013-06-01T00:00:00", 
-      "_hour_start_at": "2013-06-01T00:00:00", 
-      "_id": "MjAxMy0xMC0yMVQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-06-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-06-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.911000", 
-      "_month_start_at": "2013-06-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 2690817.0
-    }, 
-    {
-      "_day_start_at": "2013-06-01T00:00:00", 
-      "_hour_start_at": "2013-06-01T00:00:00", 
-      "_id": "MjAxMy0xMC0yMVQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-06-01T00:00:00", 
-      "_quarter_start_at": "2013-04-01T00:00:00", 
-      "_timestamp": "2013-06-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.918000", 
-      "_month_start_at": "2013-06-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 3934071.0
-    }, 
-    {
-      "_day_start_at": "2013-07-01T00:00:00", 
-      "_hour_start_at": "2013-07-01T00:00:00", 
-      "_id": "MjAxMy0xMC0yOFQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-07-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-07-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.912000", 
-      "_month_start_at": "2013-07-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 3521289.0
-    }, 
-    {
-      "_day_start_at": "2013-07-01T00:00:00", 
-      "_hour_start_at": "2013-07-01T00:00:00", 
-      "_id": "MjAxMy0xMC0yOFQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-07-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-07-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.919000", 
-      "_month_start_at": "2013-07-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 3770616.0
-    }, 
-    {
-      "_day_start_at": "2013-08-01T00:00:00", 
-      "_hour_start_at": "2013-08-01T00:00:00", 
-      "_id": "MjAxMy0xMS0wNFQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-08-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-08-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.913000", 
-      "_month_start_at": "2013-08-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 3776108.0
-    }, 
-    {
-      "_day_start_at": "2013-08-01T00:00:00", 
-      "_hour_start_at": "2013-08-01T00:00:00", 
-      "_id": "MjAxMy0xMS0wNFQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-08-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-08-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.919000", 
-      "_month_start_at": "2013-08-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 2896056.0
-    }, 
-    {
-      "_day_start_at": "2013-09-01T00:00:00", 
-      "_hour_start_at": "2013-09-01T00:00:00", 
-      "_id": "MjAxMy0xMS0xMVQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-09-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-09-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.914000", 
-      "_month_start_at": "2013-09-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 5081686.0
-    }, 
-    {
-      "_day_start_at": "2013-09-01T00:00:00", 
-      "_hour_start_at": "2013-09-01T00:00:00", 
-      "_id": "MjAxMy0xMS0xMVQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-09-01T00:00:00", 
-      "_quarter_start_at": "2013-07-01T00:00:00", 
-      "_timestamp": "2013-09-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.920000", 
-      "_month_start_at": "2013-09-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 3295297.0
-    }, 
-    {
-      "_day_start_at": "2013-10-01T00:00:00", 
-      "_hour_start_at": "2013-10-01T00:00:00", 
-      "_id": "MjAxMy0xMS0xOFQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-10-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-10-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.914000", 
-      "_month_start_at": "2013-10-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 4837823.0
-    }, 
-    {
-      "_day_start_at": "2013-10-01T00:00:00", 
-      "_hour_start_at": "2013-10-01T00:00:00", 
-      "_id": "MjAxMy0xMS0xOFQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-10-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-10-01T00:00:00+01:00", 
-      "_updated_at": "2013-12-10T13:52:48.920000", 
-      "_month_start_at": "2013-10-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 3364610.0
-    }, 
-    {
-      "_day_start_at": "2013-11-01T00:00:00", 
-      "_hour_start_at": "2013-11-01T00:00:00", 
-      "_id": "MjAxMy0xMS0yNVQwMDowMDowMCswMDowMC5jYV9lX2NsYWltc19yZWNlaXZlZA==", 
-      "_month_start_at": "2013-11-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-11-01T00:00:00+00:00", 
-      "_updated_at": "2013-12-10T13:52:48.915000", 
-      "_month_start_at": "2013-11-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Small and medium enterprises", 
-      "period": "month", 
-      "value": 5146528.0
-    }, 
-    {
-      "_day_start_at": "2013-11-01T00:00:00", 
-      "_hour_start_at": "2013-11-01T00:00:00", 
-      "_id": "MjAxMy0xMS0yNVQwMDowMDowMCswMDowMC5jYV9jbGVyaWNhbF9yZWNlaXZlZA==", 
-      "_month_start_at": "2013-11-01T00:00:00", 
-      "_quarter_start_at": "2013-10-01T00:00:00", 
-      "_timestamp": "2013-11-01T00:00:00+00:00", 
-      "_updated_at": "2013-12-10T13:52:48.921000", 
-      "_month_start_at": "2013-11-01T00:00:00", 
-      "comment": null, 
-      "sme_large": "Large enterprises", 
-      "period": "month", 
-      "value": 2916054.0
+      "_count": 400.0, 
+      "_group_count": 20, 
+      "monthly_spend:sum": 5295078.5, 
+      "sme_large": "Unknown", 
+      "values": [
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-05-01T00:00:00+00:00", 
+          "_start_at": "2012-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-06-01T00:00:00+00:00", 
+          "_start_at": "2012-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-07-01T00:00:00+00:00", 
+          "_start_at": "2012-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-08-01T00:00:00+00:00", 
+          "_start_at": "2012-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_start_at": "2012-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_start_at": "2012-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-11-01T00:00:00+00:00", 
+          "_start_at": "2012-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2012-12-01T00:00:00+00:00", 
+          "_start_at": "2012-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-01-01T00:00:00+00:00", 
+          "_start_at": "2012-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-02-01T00:00:00+00:00", 
+          "_start_at": "2013-01-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-03-01T00:00:00+00:00", 
+          "_start_at": "2013-02-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-04-01T00:00:00+00:00", 
+          "_start_at": "2013-03-01T00:00:00+00:00", 
+          "monthly_spend:sum": 0.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-05-01T00:00:00+00:00", 
+          "_start_at": "2013-04-01T00:00:00+00:00", 
+          "monthly_spend:sum": 57620.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-06-01T00:00:00+00:00", 
+          "_start_at": "2013-05-01T00:00:00+00:00", 
+          "monthly_spend:sum": 8925.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-07-01T00:00:00+00:00", 
+          "_start_at": "2013-06-01T00:00:00+00:00", 
+          "monthly_spend:sum": 6800.0
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-08-01T00:00:00+00:00", 
+          "_start_at": "2013-07-01T00:00:00+00:00", 
+          "monthly_spend:sum": 104333.3
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-09-01T00:00:00+00:00", 
+          "_start_at": "2013-08-01T00:00:00+00:00", 
+          "monthly_spend:sum": 557014.71
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-10-01T00:00:00+00:00", 
+          "_start_at": "2013-09-01T00:00:00+00:00", 
+          "monthly_spend:sum": 632144.9299999999
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-11-01T00:00:00+00:00", 
+          "_start_at": "2013-10-01T00:00:00+00:00", 
+          "monthly_spend:sum": 1498873.87
+        }, 
+        {
+          "_count": 20.0, 
+          "_end_at": "2013-12-01T00:00:00+00:00", 
+          "_start_at": "2013-11-01T00:00:00+00:00", 
+          "monthly_spend:sum": 2429366.69
+        }
+      ]
     }
   ]
 }

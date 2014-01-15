@@ -147,6 +147,43 @@ function (CompletionRateCollection) {
         uniqueEvents: 3
       }
     ];
+    
+    var someFakeFCOTransactionDataNested = [
+      { 
+        eventLabel: "fco-transaction-name_begin", 
+        values: [
+          {
+            _timestamp: "2013-04-01T00:00:00+00:00",
+            uniqueEvents: 5
+          },
+          {
+            _timestamp: "2013-05-01T00:00:00+00:00",
+            uniqueEvents: 7
+          },
+          {
+            _timestamp: "2013-06-01T00:00:00+00:00",
+            uniqueEvents: 9
+          }
+        ]
+      },
+      {
+        eventLabel: "fco-transaction-name_end", 
+        values: [
+          {
+            _timestamp: "2013-04-01T00:00:00+00:00",
+            uniqueEvents: 2
+          },
+          {
+            _timestamp: "2013-05-01T00:00:00+00:00",
+            uniqueEvents: 2
+          },
+          {
+            _timestamp: "2013-06-01T00:00:00+00:00",
+            uniqueEvents: 3
+          }
+        ]
+      }
+    ];
 
     describe("FCO volumetrics collections", function () {
 
@@ -184,6 +221,15 @@ function (CompletionRateCollection) {
       
       sharedBehaviourForCompletion({
         data: someFakeFCOTransactionDataLabelMonthly,
+        start_matcher: /_begin$/,
+        start_matcher_suffix: "_begin",
+        end_matcher: /_end$/,
+        matching_attribute: "eventLabel", 
+        period: "month"
+      });
+      
+      sharedBehaviourForCompletion({
+        data: someFakeFCOTransactionDataNested,
         start_matcher: /_begin$/,
         start_matcher_suffix: "_begin",
         end_matcher: /_end$/,
