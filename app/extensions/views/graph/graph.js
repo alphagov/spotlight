@@ -44,14 +44,14 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
 
   var Graph = View.extend({
-    
+
     d3: d3,
-    
+
     valueAttr: '_count',
 
     minYDomainExtent: 6,
     numYTicks: 7,
-    
+
     sharedComponents: {
       xaxis: XAxis,
       yaxis: YAxis,
@@ -65,12 +65,12 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
     initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
-      
+
       var collection = this.collection = options.collection;
       collection.on('reset add remove sync', this.render, this);
-      
+
       this.prepareGraphArea();
-      
+
       this.scales = {};
       this.margin = {};
 
@@ -86,7 +86,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         $(window).on('resize', _.bind(this.render, this));
       }
     },
-    
+
     /**
      * Defines default options that get passed to all graph components.
      * This object will be extended with component-specific options.
@@ -103,7 +103,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         scales: this.scales
       };
     },
-    
+
     showLineLabels: function () {
       return this.model && this.model.get('show-line-labels');
     },
@@ -120,13 +120,20 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
       this.innerEl = $('<div class="inner"></div>');
       this.innerEl.appendTo(graphWrapper);
-      
+
       var svg = this.svg = this.d3.select(graphWrapper[0]).append('svg');
-      
+
+      // Apply attributes to SVGs so that they're ignored by screenreaders.
+      // The WAI-ARIA 1.0 spec says that authors MAY use aria-hidden only
+      // if they're hiding content to improve the experience for users
+      // of assistive technologies.
+      svg.attr('role', 'presentation');
+      svg.attr('aria-hidden', 'true');
+
       this.wrapper = svg.append('g')
         .classed('wrapper', true);
     },
-    
+
     /**
      * Calculates current factor between size in displayed pixels and logical
      * size.
@@ -134,12 +141,12 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     scaleFactor: function () {
       return $(this.svg.node()).width() / this.width;
     },
-    
+
     // Not implemented; override in configuration or subclass
     calcXScale: function () {
       throw('No x scale defined.');
     },
-    
+
     // Not implemented; override in configuration or subclass
     calcYScale: function () {
       throw('No y scale defined.');
@@ -247,7 +254,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
         callout.removeClass('performance-hidden');
       }
     },
-    
+
     /**
      * Applies current configuration, then renders components in defined order
      */
@@ -275,7 +282,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
       this.scales.x = this.calcXScale();
       this.scales.y = this.calcYScale();
-      
+
       _.each(this.componentInstances, function (component) {
         _.each(configNames, function(configName) {
           component.applyConfig(configName);
@@ -289,12 +296,12 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       day: scaleByEndDate,
       week: scaleByEndDate,
       quarter: scaleByEndDate,
-      month: scaleByEndDate, 
-      
-      ymin: { 
+      month: scaleByEndDate,
+
+      ymin: {
         initialize: function() {
           var d3 = this.d3;
-          var valueAttr = this.valueAttr;      
+          var valueAttr = this.valueAttr;
           var min = d3.min(this.collection.models, function (group) {
             return d3.min(group.get('values').models, function (value) {
               return value.get(valueAttr);
@@ -342,7 +349,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           if (this.outStack) {
             stack.out(_.bind(this.outStack, this));
           }
-            
+
           this.layers = stack(this.collection.models.slice().reverse());
         },
         getYPos: function (groupIndex, modelIndex) {

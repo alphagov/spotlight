@@ -55,6 +55,34 @@ function (StandaloneView, Collection, Model, View) {
           expect(content).toContain('<div class="visualisation-fallback" data-src="/testurl.png"><noscript><img src="/testurl.png" /></noscript></div>');
         });
       });
+
+      it("renders h1 and h2 elements as required for accessibility", function () {
+        jasmine.serverOnly(function () {
+          var Visualisation = View.extend({
+            render: function () {
+              this.$el.html('test content');
+            }
+          });
+          var model = new Model();
+          model.set('page-type', 'module');
+          model.set('description', 'my description')
+          var collection = new Collection();
+          var standaloneView = new StandaloneView({
+            visualisationClass: Visualisation,
+            className: 'testclass',
+            requiresSvg: true,
+            url: '/testurl',
+            collection: collection,
+            model: model
+          });
+
+          var content = standaloneView.getContent();
+          content = content.replace(/>\s+?</g, '><');
+          expect(content).toContain('<h1 id="undefined-heading"></h1>');
+          expect(content).toContain('<h2 class="dashboard">my description</h2>');
+        });
+      });
+
     });
 
     describe("getPageTitle", function () {

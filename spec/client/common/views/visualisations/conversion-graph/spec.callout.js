@@ -68,32 +68,32 @@ function (ConversionCallout, Collection, Model) {
         
         view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack0">27 May to 2 June 2013</span> Stage: Stage 1');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>12</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>12</dd>' +
                                                '<dt>Percentage relative to start:</dt><dd>34%</dd>');
 
         view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(1), 1);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack0">27 May to 2 June 2013</span> Stage: Stage 2');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>15</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>15</dd>' +
                                                 '<dt>Percentage relative to start:</dt><dd>42%</dd>');
 
         view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(2), 2);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack0">27 May to 2 June 2013</span> Stage: Stage 3');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>18</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>18</dd>' +
                                                 '<dt>Percentage relative to start:</dt><dd>51%</dd>');
 
         view.onChangeSelected(collection.at(1), 1, collection.at(1).get('values').at(0), 0);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack1">3 to 9 June 2013</span> Stage: Stage 1');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>21</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>21</dd>' +
                                                 '<dt>Percentage relative to start:</dt><dd>29%</dd>');
 
         view.onChangeSelected(collection.at(1), 1, collection.at(1).get('values').at(1), 1);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack1">3 to 9 June 2013</span> Stage: Stage 2');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>24</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>24</dd>' +
                                                 '<dt>Percentage relative to start:</dt><dd>33%</dd>');
 
         view.onChangeSelected(collection.at(1), 1, collection.at(1).get('values').at(2), 2);
         expect(view.$el.find('h3')).toHaveHtml('<span class="date stack1">3 to 9 June 2013</span> Stage: Stage 3');
-        expect(view.$el.find('dl')).toHaveHtml('<dt>Unique visitors to stage:</dt><dd>27</dd>' +
+        expect(view.$el.find('dl')).toHaveHtml('<dt>Number of users:</dt><dd>27</dd>' +
                                                 '<dt>Percentage relative to start:</dt><dd>37%</dd>');
       });
 

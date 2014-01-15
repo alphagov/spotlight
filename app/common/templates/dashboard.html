@@ -5,11 +5,11 @@
   </h1>
   {{# tagline }}
     <p class="tagline {{# related_pages_title }}with-related-pages{{/ related_pages_title }}">
-      {{ tagline }}
+      {{{ tagline }}}
     </p>
   {{/ tagline }}
   {{# related_pages_title }}
-    <aside class='related-pages'>
+    <aside class='related-pages' role='complementary'>
       <h3 class='popover-link'>{{ related_pages_title }}</h3>
       <ul class="items">
         {{# related_pages }}

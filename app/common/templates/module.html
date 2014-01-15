@@ -6,18 +6,24 @@
 
 
 <% if (model.get('info')) { %>
-<aside class="more-info">
-  <span class="more-info-link popover-link">more info</span>
+<details class="more-info" role="complementary">
+  <summary class="more-info-link">more info</summary>
   <ul>
     <% _.each(model.get('info'), function (row) { %>
     <li><%= row %></li>
     <% }) %>
   </ul>
-</aside>
+</details>
 <% } %>
-<h1><%= model.get('title') %></h1>
+
+<% if (model.get('page-type') === 'module') { %><h1 id="<%= this.ariaId() %>"><% } else { %><h2 id="<%= this.ariaId() %>"><% } %>
+<%= model.get('title') %>
+<% if (model.get('page-type') === 'module') { %></h1><% } else { %></h2><% } %>
+
 <% if (model.get('description')) { %>
-  <h2><%= model.get('description') %></h2>
+	<% if (model.get('page-type') === 'module') { %><h2 class="dashboard"><% } else { %><h3><% } %>
+	<%= model.get('description') %>
+	<% if (model.get('page-type') === 'module') { %></h2><% } else { %></h3><% } %>
 <% } %>
 
 <% if (fallback) { %>

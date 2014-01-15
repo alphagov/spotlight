@@ -1,18 +1,24 @@
 #content {
-  .more-info-link.popover-link {
+  .more-info-link {
     @include core-16($tabular-numbers: true);
     @include popover-link;
 
+    outline: none;
     float: right;
     margin: 0.2em 0 0 0;
     padding: 0;
     position: relative;
   }
 
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
   .more-info {
     @include core-16($tabular-numbers: true);
 
     position: relative;
+    display: block; 
 
     &:hover ul {
       @include popover-no-js-show-on-hover;
@@ -27,17 +33,12 @@
   }
 }
 
-body.js-enabled #content .more-info {
-  &:hover ul {
-    @include popover-js-hide-on-hover;
-  }
-  ul.js-clicked {
-    @include popover-js-show-on-click;
-  }
+.details #content .more-info ul { 
+  display: block;
 }
 
 @media (max-width: 640px) {
-	#content .more-info-link.popover-link {
+	#content .more-info-link {
 	  margin-top: 0.05em;
   }
 }

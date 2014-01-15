@@ -61,7 +61,7 @@ function (Callout) {
       ].join(''));
 
       var body = $('<dl>').html([
-        '<dt>Unique visitors to stage:</dt>',
+        '<dt>Number of users:</dt>',
         '<dd>',
         this.formatNumericLabel(model.get('uniqueEvents')),
         '</dd>',
