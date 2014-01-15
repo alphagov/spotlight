@@ -293,6 +293,9 @@ figure.graph {
 
         &.not-selected {
           color: mix(#0b0c0c, $white, 25%);
+          .percentage{
+            color: mix(#0b0c0c, $white, 25%);
+          }
         }
 
         .label-title {
