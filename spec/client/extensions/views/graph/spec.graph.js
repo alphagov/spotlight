@@ -693,7 +693,7 @@ function (Graph, Collection, Model, d3) {
                 beforeEach(function(){
                   graph.encompassStack = false;
                 });
-                it("returns 0", function (){
+                it("returns null", function (){
                   expect(graph.getYPos(5)).toEqual(null);
                 });
               });

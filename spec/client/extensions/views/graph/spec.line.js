@@ -39,7 +39,7 @@ function (Line, Collection) {
         selectedModel: { a: 1 },
         selectedModelIndex: 2
       });
-      //only one line... wrong place for selection render then?
+
       view = new Line({
         interactive: false,
         wrapper: wrapper,
