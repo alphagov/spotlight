@@ -265,20 +265,27 @@ function (Component) {
         rightIndex = leftIndex;
       }
 
-      var distLeft = Math.abs(point.x - this.x(group, groupIndex, left, leftIndex));
-      var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
-      var weight = distLeft / (distLeft + distRight) || 0;
-      var leftY = this.y(group, groupIndex, left, leftIndex);
-      var rightY;
-      for (i = rightIndex; i < group.get('values').models.length; i++) {
-        rightY = this.y(group, groupIndex, right, i);
-        if(rightY){
-          break;
+      if ( leftIndex + 1 < values.length ){
+        var distLeft = Math.abs(point.x - this.x(group, groupIndex, left, leftIndex));
+        var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
+        var weight = distLeft / (distLeft + distRight) || 0;
+        var leftY = this.y(group, groupIndex, left, leftIndex);
+        var rightY;
+        for (i = rightIndex; i < group.get('values').models.length; i++) {
+          rightY = this.y(group, groupIndex, right, i);
+          if(rightY){
+            break;
+          }
         }
+        var y = this.d3.interpolate(leftY, rightY)(weight);
+        var diff = point.y - y;
+        var dist = Math.abs(diff);
+      }else{
+        //because NaN < 1 == false but null < 1 == true
+        //and I don't want to get into refactoring line and its use of this method
+        var diff = NaN;
+        var dist = NaN;
       }
-      var y = this.d3.interpolate(leftY, rightY)(weight);
-      var diff = point.y - y;
-      var dist = Math.abs(diff);
 
       var bestIndex = distLeft < distRight ? leftIndex : rightIndex;
 
