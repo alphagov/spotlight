@@ -126,7 +126,7 @@ function (require, Line, Component) {
           group, i, point, { allowMissingData: this.allowMissingData }
         );
 
-        if(!distanceAndClosestModel.diff){
+        if(isNaN(distanceAndClosestModel.diff)){
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
           break;

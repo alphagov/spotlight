@@ -213,6 +213,11 @@ function (Stack, Collection) {
         expect(collection.selectItem.mostRecentCall.args).toEqual([1, 0]);
       });
 
+      it("selects no group is the x position is after the end of the graph", function () {
+        view.onHover({ x: 50, y: 2 });
+        expect(collection.selectItem.mostRecentCall.args).toEqual([null, 0]);
+      });
+
       it("selects the first group and the closest model in that group when the user hovers above the topmost area", function () {
         view.onHover({ x: 1, y: -200 });
         expect(collection.selectItem).toHaveBeenCalledWith(0, 0);

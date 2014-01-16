@@ -311,6 +311,18 @@ function (Line, Collection) {
         expect(res.index).toEqual(2);
       });
 
+      it("calculates NaN distance to a line when the x is off the scale", function () {
+        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+          x: 50,
+          y: -3
+        }, {
+          allowMissingData: true
+        });
+        expect(isNaN(res.dist)).toEqual(true);
+        expect(isNaN(res.diff)).toEqual(true);
+        expect(res.index).toEqual(1);
+      });
+
       it("calculates distance to an interpolated position between points and picks closest model that is not null", function () {
         collection.at(0).get('values').at(1).set('b', null);
         var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
