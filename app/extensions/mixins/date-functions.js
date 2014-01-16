@@ -74,11 +74,22 @@ function (moment) {
     numberOfWeeksInPeriod: function (start, end) {
       return end.diff(start, "week");
     },
+    
+    numberOfEventsInPeriod: function (start, end, period) {
+      return end.diff(start, period);
+    },
 
     weeksFrom: function (latestDate, numberOfWeeksToGenerate) {
       return _.times(numberOfWeeksToGenerate, function (i) {
         var weeksAgo = numberOfWeeksToGenerate - i - 1;
         return latestDate.clone().subtract(weeksAgo, "weeks");
+      }, this);
+    },
+    
+    periodsFrom: function (latestDate, numberOfPeriodsToGenerate, period) {
+      return _.times(numberOfPeriodsToGenerate, function (i) {
+        var periodsAgo = numberOfPeriodsToGenerate - i - 1;
+        return latestDate.clone().subtract(periodsAgo, period);
       }, this);
     },
 

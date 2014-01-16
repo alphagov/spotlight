@@ -7,8 +7,9 @@ function (Graph) {
     minYDomainExtent: 1,
     numYTicks: 3,
 
+
     getConfigNames: function () {
-      return ['stack', 'week'];
+      return ['stack', this.model.get('period') || 'week'];
     },
     
     components: function () {

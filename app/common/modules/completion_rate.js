@@ -16,7 +16,11 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         startMatcher: new RegExp(this.model.get('start-matcher')),
         endMatcher: new RegExp(this.model.get('end-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
-        valueAttribute: this.model.get('value-attribute')
+        valueAttribute: this.model.get('value-attribute'),
+        tabbedAttr: this.model.get('tabbed_attr'),
+        tabs: this.model.get('tabs'),
+        period: this.model.get('period'),
+        category: this.model.get("category")
       };
     }
   });

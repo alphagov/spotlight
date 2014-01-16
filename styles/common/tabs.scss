@@ -1,7 +1,7 @@
 .visualisation nav {
   ul {
 
-    margin-top:0;
+    margin-top: 14px;
     border-bottom: 1px solid $grey-2;
     padding-left: 0;
     
@@ -17,7 +17,7 @@
         text-decoration: underline;
       }
       &.active {
-        padding: 7px 16px 9px 16px;
+        padding: 9px 16px 7px 16px;
         margin-bottom: -1px;
         background-color: $white;
         border: 1px solid $grey-2;
@@ -28,7 +28,7 @@
         }
       }
       a {
-        padding: 4px 16px 4px 13px;
+        padding: 6px 16px 2px 13px;
         text-decoration: none;
         color: $text-colour;
         display:block;

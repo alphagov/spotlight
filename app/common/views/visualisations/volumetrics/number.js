@@ -16,19 +16,20 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
-      var weeks = this.collection.at(0).get('weeks'),
-          unavailableWeeks = weeks.total - weeks.available,
+      var periodLabel = this.model.get('period') || "week";
+      var events = this.collection.at(0).get("weeks"),
+          unavailableEvents = events.total - events.available,
           label = [
             this.labelPrefix,
             'last',
-            weeks.total,
-            this.pluralise('week', weeks.total)
+            events.total,
+            this.pluralise(periodLabel, events.total)
           ];
 
-      if (unavailableWeeks > 0) {
+      if (unavailableEvents > 0) {
         label = label.concat([
-          "<span class='unavailable'>(" + unavailableWeeks,
-          this.pluralise('week', unavailableWeeks),
+          "<span class='unavailable'>(" + unavailableEvents,
+          this.pluralise(periodLabel, unavailableEvents),
           "unavailable)</span>"
         ]);
       }

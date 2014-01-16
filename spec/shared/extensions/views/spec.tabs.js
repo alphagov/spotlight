@@ -76,7 +76,8 @@ function(Tabs, Collection, Model) {
             id: "test"
           },{
             name: "Foo",
-            id: "foo"
+            id: "foo",
+            currency: "gbp"
           }]
         });
       });
@@ -87,6 +88,16 @@ function(Tabs, Collection, Model) {
           tab.$el.find('li:eq(1)').trigger('click');
           expect(model.set).toHaveBeenCalledWith('anAttribute', 'foo');
           expect(collection.options.valueAttr).toEqual('foo');
+          expect(collection.options.valueAttribute).toEqual('foo');
+        });
+      });
+      
+      it("should update the currency when a non-active tab is clicked on", function () {
+        collection.options.tabs = tab.tabs;
+        jasmine.renderView(tab, function () {
+          expect(collection.options.currency).toBeUndefined();
+          tab.$el.find('li:eq(1)').trigger('click');
+          expect(collection.options.currency).toEqual('gbp');
         });
       });
             

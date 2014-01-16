@@ -13,9 +13,16 @@ function (View) {
         onTabClick: function (event) {
             var tabId = $(event.currentTarget).data('tab-id');
             this.model.set(this.attr, tabId);
-            if (this.collection) {
-              this.collection.options.valueAttr = tabId;
-            }
+            this.collection.options.valueAttr = tabId;
+            this.collection.options.valueAttribute = tabId;
+            
+            // Set currency, if defined on the tab.
+            _.filter(this.collection.options.tabs, function(t) {
+              if (t.id === tabId) {
+                this.collection.options.currency = t.currency;
+              }
+            }, this);
+            
             event.preventDefault();
         },
         
@@ -32,4 +39,3 @@ function (View) {
         }
     });
 });
-

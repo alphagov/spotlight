@@ -1,16 +1,19 @@
 define([
   'common/views/visualisations/volumetrics/number',
   'extensions/views/view',
-  'extensions/collections/collection'
+  'extensions/collections/collection',
+  'extensions/models/model'
 ],
-function (VolumetricsNumberView, View, Collection) {
+function (VolumetricsNumberView, View, Collection, Model) {
   describe("VolumetricsNumberView", function () {
-    var subject, collection;
+    var subject, collection, model;
     beforeEach(function () {
       spyOn(VolumetricsNumberView.prototype, 'render');
       collection = new Collection();
+      model = new Model();
       subject = new VolumetricsNumberView({
-        collection: collection
+        collection: collection,
+        model: model
       });
     });
 
@@ -69,7 +72,14 @@ function (VolumetricsNumberView, View, Collection) {
         it("should return the appropriately formatted label", function (){
           expect(subject.getLabel()).toEqual(prefix + " last 12 weeks <span class='unavailable'>(2 weeks unavailable)</span>");
         });
+        
+        it("should return the appropriately formatted label for arbitrary periods", function (){
+          subject.model.set('period', 'month');
+          expect(subject.getLabel()).toEqual(prefix + " last 12 months <span class='unavailable'>(2 months unavailable)</span>");
+        });
+        
       });
+      
       describe("when there are not unavailableWeeks", function (){
         beforeEach(function(){
           fakeModel = {
@@ -87,7 +97,14 @@ function (VolumetricsNumberView, View, Collection) {
         it("should return the appropriately formatted label", function (){
           expect(subject.getLabel()).toEqual(prefix + " last 12 weeks");
         });
+        
+        it("should return the appropriately formatted label for arbitrary periods", function (){
+          subject.model.set('period', 'month');
+          expect(subject.getLabel()).toEqual(prefix + " last 12 months");
+        });
+        
       });
+      
     });
 
     describe("getValueSelected", function () {
@@ -110,7 +127,7 @@ function (VolumetricsNumberView, View, Collection) {
     });
 
     describe("getLabelSelected", function () {
-      it("should call the view formatPerios method with the appropriate selectedModel attribute", function (){
+      it("should call the view formatPeriod method with the appropriate selectedModel attribute", function (){
         var fakeSelection = {
           selectedModel: "SELECTED MODEL!!!!!!" 
         };

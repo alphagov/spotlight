@@ -71,8 +71,6 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
       this.prepareGraphArea();
 
-      this.currency = options.currency;
-
       this.scales = {};
       this.margin = {};
 
@@ -270,6 +268,10 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       }
 
       View.prototype.render.apply(this, arguments);
+      
+      if (this.collection.options) {
+        this.currency = this.collection.options.currency;
+      }
 
       this.resizeWithCalloutHidden();
 
