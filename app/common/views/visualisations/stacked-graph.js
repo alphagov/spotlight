@@ -20,7 +20,7 @@ function (Graph) {
     },
     
     components: function () {
-      var labelComponent, labelOptions, stackOptions;
+      var labelComponent, labelOptions, stackOptions, yAxisOptions;
 
       if (this.showLineLabels()) {
         labelComponent = this.sharedComponents.linelabel;
@@ -41,9 +41,19 @@ function (Graph) {
         labelComponent = this.sharedComponents.callout;
       }
 
+      if (this.model && this.model.get('one-hundred-percent')) {
+        yAxisOptions = {
+          tickFormat: function(){
+            return function(d){
+              return d * 100 + "%";
+            };
+          }
+        };
+      }
+
       return [
         { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis },
+        { view: this.sharedComponents.yaxis, options: yAxisOptions },
         { view: this.sharedComponents.stack, options: stackOptions },
         { view: labelComponent, options: labelOptions },
         { view: this.sharedComponents.hover }

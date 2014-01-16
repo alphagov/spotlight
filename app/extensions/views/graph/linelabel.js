@@ -90,6 +90,29 @@ function (Component) {
       return events;
     },
 
+    renderValuePercentage: function (value, percentage){
+      var data = [],
+          summary = "";
+
+      if (value === null && percentage == null) {
+        return '<span class="no-data">(no data)</span>';
+      }
+
+      if (value !== null) {
+        data.push(this.formatNumericLabel(value));
+      }
+      if (percentage) {
+        if(this.graph.model && this.graph.model.get('one-hundred-percent')){
+          data.unshift(this.formatPercentage(percentage));
+        } else {
+          data.push(this.formatPercentage(percentage));
+        }
+      }
+      summary = '<span class="value">'+ data.shift() +'</span>';
+      summary += ( data.length ? ' <span class="percentage">(' + data.shift() + ')</span>' : '');
+      return summary;
+    },
+
     renderSummary: function () {
 
       this.summaryHeight = 0;
@@ -111,13 +134,10 @@ function (Component) {
           value = this.collection.sum(attr);
         }
 
-        if (value === null) {
-          summary += "<span class='value'>(no data)</span>";
+        if (this.showValuesPercentage && value) {
+          summary += this.renderValuePercentage(value, 1);
         } else {
-          summary += "<span class='value'>" + this.formatNumericLabel(value) + "</span>";
-          if (this.showValuesPercentage) {
-            summary += " <span class='percentage'>(" + this.formatPercentage(1) + ")</span>";
-          }
+          summary += this.renderValuePercentage(value);
         }
       }
 
@@ -248,17 +268,12 @@ function (Component) {
           value = this.collection.sum(attr, groupIndex);
         }
 
-        if (value === null) {
-          labelMeta += "<span class='no-data'>(no data)</span>";
-        } else {
-          labelMeta += ("<span class='value'>" + this.formatNumericLabel(value) + "</span>");
-        }
 
         if (this.showValuesPercentage && value) {
-          var fraction = this.collection.fraction(
-            attr, groupIndex, selected.selectedModelIndex
-          );
-          labelMeta += (" <span class='percentage'>(" + this.formatPercentage(fraction) + ")</span>");
+          var fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex);
+          labelMeta += this.renderValuePercentage(value, fraction);
+        } else {
+          labelMeta += this.renderValuePercentage(value);
         }
       }
 

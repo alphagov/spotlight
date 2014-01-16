@@ -1,0 +1,39 @@
+{
+  "page-type": "dashboard",
+  "strapline": "Performance",
+  "title": "Activity on GOV.UK",
+  "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, including a look at how our content is being used. You can also see activity on the <a href=\"/performance/dashboard/government\">departments and policy</a> section of GOV.UK.",
+  "modules": [
+    {
+      "module-type": "realtime",
+      "title": "Real-time usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "government",
+      "data-type": "realtime"
+    },
+    {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access GOV.UK",
+      "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on GOV.UK over time",
+      "data-group": "government",
+      "data-type": "device-type",
+      "category": "key",
+      "period": "week",
+      "value-attr": "value:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "cumulative": true,
+      "info": [ "Data source: Google Analytics" ],
+      "series": [
+         { "id": "mobile", "title": "Mobile" },
+         { "id": "tablet", "title": "Tablet" },
+         { "id": "desktop", "title": "Desktop" }
+      ]
+    }
+  ]
+}

@@ -110,6 +110,10 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       return this.model && this.model.get('show-line-labels');
     },
 
+    isOneHundredPercent: function () {
+      return this.model && this.model.get('one-hundred-percent');
+    },
+
     prepareGraphArea: function () {
       var figure = this.figure = $('<figure/>').addClass("graph");
       if (this.showLineLabels()) {
@@ -344,6 +348,33 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
             .y(function (model, index) {
               return model.get(valueAttr);
             });
+
+          if(this.isOneHundredPercent()){
+            stack.offset(function(data) {
+              var lineCount = data.length,
+                  lineLength = data[0].length,
+                  i, j, sumOfYValues, y0 = [];
+
+              for (j = 0; j < lineLength; ++j) {
+                sumOfYValues = 0;
+                for (i = 0; i < lineCount; i++){
+                  sumOfYValues += data[i][j][1];
+                }
+                for (i = 0; i < lineCount; i++){
+                  if (sumOfYValues){
+                    data[i][j][1] = data[i][j][1] / sumOfYValues;
+                  } else {
+                    data[i][j][1] = null;
+                  }
+                }
+              }
+              for (j = 0; j < lineLength; ++j){
+                y0[j] = 0;
+              }
+              return y0;
+            });
+          }
+
           if (this.outStack) {
             stack.out(_.bind(this.outStack, this));
           }
@@ -382,7 +413,11 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           var yScale = this.d3.scale.linear();
           var yMin = this.getYMin || 0;
           var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
-          yScale.domain(tickValues.extent);
+          if(this.isOneHundredPercent()){
+            yScale.domain([0,1]);
+          } else {
+            yScale.domain(tickValues.extent);
+          }
           yScale.rangeRound([this.innerHeight, 0]);
           yScale.tickValues = tickValues.values;
           return yScale;
