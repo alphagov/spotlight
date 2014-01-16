@@ -19,6 +19,11 @@ function (CompletionCollection) {
         uniqueEvents: 9
       },
       {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventLabel: "fco-transaction-name_begin",
+        uniqueEvents: null
+      },
+      {
         _timestamp: "2013-06-09T23:00:00+00:00",
         eventLabel: "fco-transaction-name_end",
         uniqueEvents: 3
@@ -32,6 +37,11 @@ function (CompletionCollection) {
         _timestamp: "2013-06-23T23:00:00+00:00",
         eventLabel: "fco-transaction-name_end",
         uniqueEvents: 4
+      },
+      {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventLabel: "fco-transaction-name_end",
+        uniqueEvents: null
       }
     ];
 
@@ -52,6 +62,11 @@ function (CompletionCollection) {
         value: 9
       },
       {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventCategory: "fco-transaction-name:start",
+        value: null
+      },
+      {
         _timestamp: "2013-06-09T23:00:00+00:00",
         eventCategory: "fco-transaction-name:done",
         value: 3
@@ -65,6 +80,11 @@ function (CompletionCollection) {
         _timestamp: "2013-06-23T23:00:00+00:00",
         eventCategory: "fco-transaction-name:done",
         value: 4
+      },
+      {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventCategory: "fco-transaction-name:done",
+        value: null
       }
     ];
 

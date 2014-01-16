@@ -39,7 +39,7 @@ function (MatrixCollection, Collection, Group) {
       }
 
       return _.reduce(events, function (mem, d) { 
-        return mem + d[this.valueAttribute]; 
+        return mem + d[this.valueAttribute];
       }, 0, this);
     },
 
@@ -47,6 +47,9 @@ function (MatrixCollection, Collection, Group) {
       var completion = null;
 
       if (event != null) {
+        if ((event.totalStarted === 0) || isNaN(event.totalStarted)) {
+          return null;
+        }
         completion = event.totalCompleted / event.totalStarted;
       }
       return completion;
