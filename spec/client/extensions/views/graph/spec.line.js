@@ -320,7 +320,7 @@ function (Line, Collection) {
         });
         expect(isNaN(res.dist)).toEqual(true);
         expect(isNaN(res.diff)).toEqual(true);
-        expect(res.index).toEqual(1);
+        expect(res.index).toEqual(4);
       });
 
       it("calculates distance to an interpolated position between points and picks closest model that is not null", function () {
