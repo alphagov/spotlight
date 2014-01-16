@@ -97,16 +97,52 @@ function (Component) {
       );
     },
 
+    siblingLineIndex: function(originalIndex){
+      return parseInt(originalIndex, 10) + 1;
+    },
+    resetSiblingLine: function() {
+      this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', null);
+    },
+    colourSiblingLine: function(line_colour, originalIndex) {
+      var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
+        .classed('selected-following-sibling', true)
+        .style('stroke', line_colour);
+    },
+    renderSiblingCircle: function(y2, x2, originalIndex) {
+      this.renderSelectionPoint(originalIndex, x2, y2);
+    },
+    renderOverlayCursorLine: function(y, x, y2, x2, line_colour) {
+      if(y!==y2){
+        this.componentWrapper.append('line').attr({
+            'class': 'selectedIndicator cursorLine overlay',
+            x1: x,
+            y1: y,
+            x2: x2,
+            y2: y2
+          })
+          .style('stroke', line_colour);
+      }
+    },
+
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       this.componentWrapper.selectAll('path.line').classed('selected', false);
+      if(this.encompassStack){
+        this.resetSiblingLine();
+      }
       this.componentWrapper.selectAll('path.line').classed('not-selected', Boolean(groupSelected));
       this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
       this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
+
+      var line_colour, x2, y2;
 
       if (groupSelected) {
         var line = this.componentWrapper.select('path.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
+        if(this.encompassStack){
+          line_colour = line.style('stroke');
+          this.colourSiblingLine(line_colour, groupIndexSelected);
+        }
         this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
@@ -122,7 +158,17 @@ function (Component) {
         }
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
+          if(this.encompassStack){
+            x2 = this.x(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
+            y2 = this.y(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
+            if(this.drawCursorLine){
+              this.renderOverlayCursorLine(y, x, y2, x2, line_colour);
+            }
+          }
           if (y !== null) {
+            if(this.encompassStack){
+              this.renderSiblingCircle(y2, x2, groupIndexSelected);
+            }
             this.renderSelectionPoint(groupIndexSelected, x, y);
           }
         }
@@ -221,12 +267,27 @@ function (Component) {
 
       var distLeft = Math.abs(point.x - this.x(group, groupIndex, left, leftIndex));
       var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
-      var weight = distLeft / (distLeft + distRight) || 0;
-      var leftY = this.y(group, groupIndex, left, leftIndex);
-      var rightY = this.y(group, groupIndex, right, rightIndex);
-      var y = this.d3.interpolate(leftY, rightY)(weight);
-      var diff = point.y - y;
-      var dist = Math.abs(diff);
+
+      var diff, dist;
+      if ( leftIndex + 1 < values.length ){
+        var weight = distLeft / (distLeft + distRight) || 0;
+        var leftY = this.y(group, groupIndex, left, leftIndex);
+        var rightY;
+        for (i = rightIndex; i < group.get('values').models.length; i++) {
+          rightY = this.y(group, groupIndex, right, i);
+          if(rightY){
+            break;
+          }
+        }
+        var y = this.d3.interpolate(leftY, rightY)(weight);
+        diff = point.y - y;
+        dist = Math.abs(diff);
+      }else{
+        //because NaN < 1 == false but null < 1 == true
+        //and I don't want to get into refactoring line and its use of this method
+        diff = NaN;
+        dist = NaN;
+      }
 
       var bestIndex = distLeft < distRight ? leftIndex : rightIndex;
 

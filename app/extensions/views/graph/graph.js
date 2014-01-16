@@ -14,9 +14,19 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
 
 
   var scaleFromStartAndEndDates = {
+
+    getModel: function(groupIndex, modelIndex){
+      var model;
+      if(!this.collection.at(groupIndex) && this.encompassStack){
+        return this.collection.at(groupIndex - 1, modelIndex);
+      } else{
+        return this.collection.at(groupIndex, modelIndex);
+      }
+    },
+
     getXPos: function(groupIndex, modelIndex) {
       groupIndex = groupIndex || 0;
-      var model = this.collection.at(groupIndex, modelIndex);
+      var model = this.getModel(groupIndex, modelIndex);
       return this.modelToDate(model);
     },
     calcXScale: function () {
@@ -384,6 +394,13 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
           this.layers = stack(this.collection.models.slice().reverse());
         },
         getYPos: function (groupIndex, modelIndex) {
+          if(!this.collection.at(groupIndex)){
+            if(this.collection.at(groupIndex - 1) && this.encompassStack){
+              return 0;
+            }else{
+              return null;
+            }
+          }
           var model = this.collection.at(groupIndex).get('values').at(modelIndex);
           var yProperty = this.stackYProperty || 'y';
           if (model[yProperty] === null) {

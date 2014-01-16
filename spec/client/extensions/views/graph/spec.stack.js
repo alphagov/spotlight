@@ -213,6 +213,11 @@ function (Stack, Collection) {
         expect(collection.selectItem.mostRecentCall.args).toEqual([1, 0]);
       });
 
+      it("selects no group is the x position is after the end of the graph", function () {
+        view.onHover({ x: 50, y: 2 });
+        expect(collection.selectItem.mostRecentCall.args).toEqual([null, 4]);
+      });
+
       it("selects the first group and the closest model in that group when the user hovers above the topmost area", function () {
         view.onHover({ x: 1, y: -200 });
         expect(collection.selectItem).toHaveBeenCalledWith(0, 0);
@@ -255,6 +260,15 @@ function (Stack, Collection) {
         view.allowMissingData = true;
         view.onHover({ x: 3.1, y: missingDataIndex });
         expect(collection.selectItem.mostRecentCall.args[1]).toEqual(missingDataIndex);
+      });
+
+      it("calls selectItem with selectGroupIndex null when diff and dist are NaN", function() {
+        var closestModelDetails = {dist: NaN, diff: NaN, index: 1};
+        spyOn(view, 'getDistanceAndClosestModel').andReturn(closestModelDetails);
+        var selectItem = jasmine.createSpy('selectItem');
+        view.collection.selectItem = selectItem;
+        view.onHover({ x: 3.1, y: 2 });
+        expect(selectItem).toHaveBeenCalledWith(null, 1);
       });
     });
   });
