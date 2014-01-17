@@ -18,6 +18,7 @@
     "Source: TBA"
   ],
   "series": [
+    { "id": "Total", "title": "Total" },
     { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
     { "id": "Large enterprises", "title": "Large enterprises" },
     { "id": "Unknown", "title": "Not yet classified" }
@@ -27,5 +28,6 @@
     {"id": "cumulative_spend:sum", "name": "Total spend"},
     {"id": "cumulative_count:sum", "name": "Contracts awarded"}
   ],
-  "tabbed_attr": "collect"
+  "tabbed_attr": "collect",
+  "show-total-lines": true
 }

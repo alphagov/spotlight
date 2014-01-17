@@ -6,50 +6,50 @@ function (VolumetricsCollection) {
     var response = {
   "data": [
     {
-      "some:value": 5, 
+      "some:value": 5,
       "values": [
         {
-          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_end_at": "2012-09-01T00:00:00+00:00",
           "some:value": 3,
           "_start_at": "2012-08-01T00:00:00+00:00"
-        }, 
+        },
         {
-          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_end_at": "2012-10-01T00:00:00+00:00",
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
-      ], 
+      ],
       "some-category": "xyz"
-    }, 
+    },
     {
-      "some:value": 7, 
+      "some:value": 7,
       "values": [
         {
-          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_end_at": "2012-09-01T00:00:00+00:00",
           "some:value": 3,
           "_start_at": "2012-08-01T00:00:00+00:00"
-        }, 
+        },
         {
-          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_end_at": "2012-10-01T00:00:00+00:00",
           "some:value": 4,
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
-      ], 
+      ],
       "some-category": "abc"
-    }, 
+    },
     {
-      "some:value": 16, 
+      "some:value": 16,
       "values": [
         {
-          "_end_at": "2012-09-01T00:00:00+00:00", 
+          "_end_at": "2012-09-01T00:00:00+00:00",
           "some:value": 6,
           "_start_at": "2012-08-01T00:00:00+00:00"
-        }, 
+        },
         {
-          "_end_at": "2012-10-01T00:00:00+00:00", 
+          "_end_at": "2012-10-01T00:00:00+00:00",
           "some:value": 10,
           "_start_at": "2012-09-01T00:00:00+00:00"
         }
-      ], 
+      ],
       "some-category": "def"
     }
   ]
@@ -61,12 +61,12 @@ function (VolumetricsCollection) {
         "title": "ABC",
         "values": [
           {
-            "_end_at": "2012-09-01T00:00:00+00:00", 
+            "_end_at": "2012-09-01T00:00:00+00:00",
             "some:value": 3,
             "_start_at": "2012-08-01T00:00:00+00:00"
-          }, 
+          },
           {
-            "_end_at": "2012-10-01T00:00:00+00:00", 
+            "_end_at": "2012-10-01T00:00:00+00:00",
             "some:value": 4,
             "_start_at": "2012-09-01T00:00:00+00:00"
           }
@@ -77,33 +77,53 @@ function (VolumetricsCollection) {
         "title": "DEF",
         "values": [
           {
-            "_end_at": "2012-09-01T00:00:00+00:00", 
+            "_end_at": "2012-09-01T00:00:00+00:00",
             "some:value": 6,
             "_start_at": "2012-08-01T00:00:00+00:00"
-          }, 
+          },
           {
-            "_end_at": "2012-10-01T00:00:00+00:00", 
+            "_end_at": "2012-10-01T00:00:00+00:00",
             "some:value": 10,
             "_start_at": "2012-09-01T00:00:00+00:00"
           }
         ]
-      }, 
+      },
       {
         "id": "xyz",
         "title": "XYZ",
         "values": [
           {
-            "_end_at": "2012-09-01T00:00:00+00:00", 
+            "_end_at": "2012-09-01T00:00:00+00:00",
             "some:value": 3,
             "_start_at": "2012-08-01T00:00:00+00:00"
-          }, 
+          },
           {
-            "_end_at": "2012-10-01T00:00:00+00:00", 
+            "_end_at": "2012-10-01T00:00:00+00:00",
             "_start_at": "2012-09-01T00:00:00+00:00"
           }
         ]
       }
     ];
+
+    var totalSeries = [
+      {
+        "id": "Total",
+        "title": "Total",
+        "values": [
+          {
+            "_start_at": "2012-08-01T00:00:00+00:00",
+            "_end_at": "2012-09-01T00:00:00+00:00",
+            "some:value": 12
+          },
+          {
+            "_start_at": "2012-09-01T00:00:00+00:00",
+            "_end_at": "2012-10-01T00:00:00+00:00",
+            "some:value": 14
+          }
+        ]
+      }
+    ];
+    var expectedWithTotal = totalSeries.concat(expected);
 
     var collection;
     beforeEach(function (){
@@ -117,7 +137,7 @@ function (VolumetricsCollection) {
           { id: "abc", title: "ABC" },
           { id: "def", title: "DEF" },
           { id: "xyz", title: "XYZ" }
-        ]         
+        ]
       });
       collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
@@ -149,6 +169,28 @@ function (VolumetricsCollection) {
       it("parses the response", function () {
         var parsed = collection.parse(response);
         expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
+      });
+
+      it("calculates total lines if specified", function () {
+        totalCollection = new VolumetricsCollection([], {
+          'data-type': "some-type",
+          'data-group': "some-group",
+          valueAttr: "some:value",
+          category: "some-category",
+          period: "month",
+          seriesList: [
+            { id: "Total", title: "Total" },
+            { id: "abc", title: "ABC" },
+            { id: "def", title: "DEF" },
+            { id: "xyz", title: "XYZ" }
+          ],
+          'show-total-lines': true
+        });
+        totalCollection.options.showTotalLines = true;
+
+        var parsed = totalCollection.parse(response);
+        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithTotal));
+
       });
     });
   });
