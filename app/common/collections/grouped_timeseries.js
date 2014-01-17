@@ -30,7 +30,9 @@ function (MatrixCollection) {
         _.each(response.data, function(d) {
           _.each(d.values, function (obj) {
             if (tmp[obj._start_at]) {
-              tmp[obj._start_at][valueAttr] += (valueAttr in obj) ? obj[valueAttr] : 0;
+              if ((valueAttr in obj) && (obj[valueAttr] !== null)) {
+                tmp[obj._start_at][valueAttr] += obj[valueAttr];
+              }
             } else {
               tmp[obj._start_at] = {_end_at: obj._end_at};
               tmp[obj._start_at][valueAttr] = (valueAttr in obj) ? obj[valueAttr] : 0;
