@@ -28,7 +28,7 @@
       "period": "month",
       "currency": "gbp",
       "info": [
-        "Source: TBA"
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
          { "id": "Total", "title": "Total" },
@@ -48,11 +48,11 @@
       "slug": "proportion-smes",
       "module-type": "completion_rate",
       "title": "Proportion of procurement from small and medium enterprises",
-      "dashboard-title": "Measures the proportion of market covered by SMEs",
+      "description": "The proportion of the market covered by SMEs",
       "data-group": "gcloud",
       "data-type": "sales",
       "info": [
-        "Data source: TBA"
+        "Data source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "_start_at": "2012-04-01T00:00:00+00:00",
       "start-matcher": ".*$",
@@ -70,8 +70,8 @@
     {
       "slug": "who-is-using",
       "module-type": "grouped_timeseries",
-      "title": "Who is using G-Cloud",
-      "description": "The cumulative spend by central government and wider public services",
+      "title": "Cumulative spend by customer type",
+      "description": "The cumulative spend through G-Cloud by central government and wider public services",
       "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
@@ -80,7 +80,7 @@
       "currency": "gbp",
       "period": "month",
       "info": [
-        "Source: TBA"
+        "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
          { "id": "Total", "title": "Total" },
@@ -97,7 +97,7 @@
       "slug": "spend-by-lot",
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
-      "description": "Spend through G-Cloud by category",
+      "description": "The spending each month through G-Cloud by category of service purchased",
       "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
@@ -106,7 +106,7 @@
       "period": "month",
       "currency": "gbp",
       "info": [
-        "Source: TBA"
+        "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
          { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },

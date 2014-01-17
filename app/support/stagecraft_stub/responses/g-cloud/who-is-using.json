@@ -2,8 +2,8 @@
   "page-type": "module",
   "slug": "who_is_using",
   "module-type": "grouped_timeseries",
-  "title": "Who is using G-Cloud",
-  "description": "The cumulative spend by central government and wider public services",
+  "title": "Cumulative spend by customer type",
+  "description": "The cumulative spend through G-Cloud by central government and wider public services",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
   "dashboard-slug": "g-cloud",
@@ -15,7 +15,7 @@
   "period": "month",
   "currency": "gbp",
   "info": [
-    "Source: TBA"
+    "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
     { "id": "Total", "title": "Total" },

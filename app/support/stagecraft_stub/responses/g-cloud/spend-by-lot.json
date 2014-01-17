@@ -3,7 +3,7 @@
   "slug": "monthly_spend_by_lot",
   "module-type": "grouped_timeseries",
   "title": "Monthly spend by lot",
-  "description": "Spend through G-Cloud by category",
+  "description": "The spending each month through G-Cloud by category of service purchased",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "Public purchasing performance",
   "dashboard-slug": "g-cloud",
@@ -15,7 +15,7 @@
   "period": "month",
   "currency": "gbp", 
   "info": [
-    "Source: TBA"
+    "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
   { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
