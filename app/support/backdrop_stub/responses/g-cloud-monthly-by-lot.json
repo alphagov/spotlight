@@ -1,322 +1,323 @@
+
 {
   "data": [
     {
-      "_count": 96.0, 
-      "_group_count": 12, 
+      "_count": 165.0, 
+      "_group_count": 11, 
       "lot": "Cloud Infrastructure as a Service (Iaas)", 
-      "monthly_spend:sum": 2866903.5100000002, 
+      "monthly_spend:sum": 3077764.75, 
       "values": [
         {
-          "_count": 8.0, 
-          "_end_at": "2013-01-01T00:00:00+00:00", 
-          "_start_at": "2012-12-01T00:00:00+00:00", 
-          "monthly_spend:sum": 152558.13999999998
-        }, 
-        {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "monthly_spend:sum": 87725.96
+          "monthly_spend:sum": 87725.95999999999
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
           "monthly_spend:sum": 126858.20999999999
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
           "monthly_spend:sum": 136732.45
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
           "monthly_spend:sum": 173441.69
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
           "monthly_spend:sum": 159332.81
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "monthly_spend:sum": 157416.46999999997
+          "monthly_spend:sum": 157416.47
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "monthly_spend:sum": 169168.80000000002
+          "monthly_spend:sum": 201526.38
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
           "monthly_spend:sum": 375578.35
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
           "monthly_spend:sum": 309856.43000000005
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "monthly_spend:sum": 596941.4000000001
+          "monthly_spend:sum": 603067.1799999999
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "monthly_spend:sum": 421292.8
+          "monthly_spend:sum": 746228.82
+        }, 
+        {
+          "_count": 0, 
+          "_end_at": "2014-01-01T00:00:00+00:00", 
+          "_start_at": "2013-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": null
         }
       ]
     }, 
     {
-      "_count": 96.0, 
-      "_group_count": 12, 
+      "_count": 165.0, 
+      "_group_count": 11, 
       "lot": "Cloud Platform as a Service (PaaS)", 
-      "monthly_spend:sum": 620229.4999999999, 
+      "monthly_spend:sum": 511957.18, 
       "values": [
         {
-          "_count": 8.0, 
-          "_end_at": "2013-01-01T00:00:00+00:00", 
-          "_start_at": "2012-12-01T00:00:00+00:00", 
-          "monthly_spend:sum": 120272.32
-        }, 
-        {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
           "monthly_spend:sum": 33558.0
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
           "monthly_spend:sum": 3691.0
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
           "monthly_spend:sum": 134484.88
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
           "monthly_spend:sum": 8311.29
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
           "monthly_spend:sum": 15978.09
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
           "monthly_spend:sum": 8346.29
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
           "monthly_spend:sum": 24105.5
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
           "monthly_spend:sum": 21277.05
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "monthly_spend:sum": 8311.29
+          "monthly_spend:sum": 20311.29
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
           "monthly_spend:sum": 122569.79
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
           "monthly_spend:sum": 119324.0
+        }, 
+        {
+          "_count": 0, 
+          "_end_at": "2014-01-01T00:00:00+00:00", 
+          "_start_at": "2013-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": null
         }
       ]
     }, 
     {
-      "_count": 96.0, 
-      "_group_count": 12, 
+      "_count": 165.0, 
+      "_group_count": 11, 
       "lot": "Cloud Software as a Service (SaaS)", 
-      "monthly_spend:sum": 10404529.089999998, 
+      "monthly_spend:sum": 11651477.73, 
       "values": [
         {
-          "_count": 8.0, 
-          "_end_at": "2013-01-01T00:00:00+00:00", 
-          "_start_at": "2012-12-01T00:00:00+00:00", 
-          "monthly_spend:sum": 367895.0
-        }, 
-        {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "monthly_spend:sum": 127404.26000000001
+          "monthly_spend:sum": 127404.26
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
-          "monthly_spend:sum": 178413.59
+          "monthly_spend:sum": 198633.59
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
-          "monthly_spend:sum": 2699712.8499999996
+          "monthly_spend:sum": 2724551.02
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
           "monthly_spend:sum": 431709.56
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
-          "monthly_spend:sum": 755950.12
+          "monthly_spend:sum": 759590.12
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "monthly_spend:sum": 1440805.88
+          "monthly_spend:sum": 1713293.93
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "monthly_spend:sum": 1262649.6
+          "monthly_spend:sum": 1771701.23
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
-          "monthly_spend:sum": 1052492.4100000001
+          "monthly_spend:sum": 1086431.6099999999
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "monthly_spend:sum": 484021.79000000004
+          "monthly_spend:sum": 571142.3
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "monthly_spend:sum": 918152.1199999999
+          "monthly_spend:sum": 1372397.88
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "monthly_spend:sum": 685321.91
+          "monthly_spend:sum": 894622.23
+        }, 
+        {
+          "_count": 0, 
+          "_end_at": "2014-01-01T00:00:00+00:00", 
+          "_start_at": "2013-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": null
         }
       ]
     }, 
     {
-      "_count": 96.0, 
-      "_group_count": 12, 
+      "_count": 165.0, 
+      "_group_count": 11, 
       "lot": "Cloud Support Services (CSS)", 
-      "monthly_spend:sum": 51275248.48999999, 
+      "monthly_spend:sum": 55464170.949999996, 
       "values": [
         {
-          "_count": 8.0, 
-          "_end_at": "2013-01-01T00:00:00+00:00", 
-          "_start_at": "2012-12-01T00:00:00+00:00", 
-          "monthly_spend:sum": 833716.27
-        }, 
-        {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-02-01T00:00:00+00:00", 
           "_start_at": "2013-01-01T00:00:00+00:00", 
-          "monthly_spend:sum": 1568913.5300000003
+          "monthly_spend:sum": 1884331.53
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-03-01T00:00:00+00:00", 
           "_start_at": "2013-02-01T00:00:00+00:00", 
-          "monthly_spend:sum": 1626467.8699999999
+          "monthly_spend:sum": 1725306.87
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-04-01T00:00:00+00:00", 
           "_start_at": "2013-03-01T00:00:00+00:00", 
-          "monthly_spend:sum": 4007498.8099999996
+          "monthly_spend:sum": 4007498.81
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-05-01T00:00:00+00:00", 
           "_start_at": "2013-04-01T00:00:00+00:00", 
-          "monthly_spend:sum": 3032572.98
+          "monthly_spend:sum": 3090192.98
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-06-01T00:00:00+00:00", 
           "_start_at": "2013-05-01T00:00:00+00:00", 
-          "monthly_spend:sum": 3152749.91
+          "monthly_spend:sum": 3240834.91
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-07-01T00:00:00+00:00", 
           "_start_at": "2013-06-01T00:00:00+00:00", 
-          "monthly_spend:sum": 5018320.83
+          "monthly_spend:sum": 5103161.75
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-08-01T00:00:00+00:00", 
           "_start_at": "2013-07-01T00:00:00+00:00", 
-          "monthly_spend:sum": 5835982.599999999
+          "monthly_spend:sum": 5952015.899999999
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-09-01T00:00:00+00:00", 
           "_start_at": "2013-08-01T00:00:00+00:00", 
-          "monthly_spend:sum": 5222816.95
+          "monthly_spend:sum": 5811851.66
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-10-01T00:00:00+00:00", 
           "_start_at": "2013-09-01T00:00:00+00:00", 
-          "monthly_spend:sum": 7574794.1099999985
+          "monthly_spend:sum": 8183349.53
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-11-01T00:00:00+00:00", 
           "_start_at": "2013-10-01T00:00:00+00:00", 
-          "monthly_spend:sum": 6564770.809999999
+          "monthly_spend:sum": 7691661.22
         }, 
         {
-          "_count": 8.0, 
+          "_count": 15.0, 
           "_end_at": "2013-12-01T00:00:00+00:00", 
           "_start_at": "2013-11-01T00:00:00+00:00", 
-          "monthly_spend:sum": 6836643.82
+          "monthly_spend:sum": 8773965.79
+        }, 
+        {
+          "_count": 0, 
+          "_end_at": "2014-01-01T00:00:00+00:00", 
+          "_start_at": "2013-12-01T00:00:00+00:00", 
+          "monthly_spend:sum": null
         }
       ]
     }
