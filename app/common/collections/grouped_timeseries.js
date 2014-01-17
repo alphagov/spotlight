@@ -14,8 +14,38 @@ function (MatrixCollection) {
     },
 
     parse: function (response) {
-      var data = response.data;
-          category = this.options.category;
+      var data = response.data,
+        category = this.options.category,
+        valueAttr = this.options.valueAttr;
+
+      if (this.options.showTotalLines) {
+
+        var totalSeries = {};
+        totalSeries[category] = "Total";
+        totalSeries[valueAttr] = 0.0;
+
+        var totalValues = [];
+        var tmp = {};
+
+        _.each(response.data, function(d) {
+          _.each(d.values, function (obj) {
+            if (tmp[obj._start_at]) {
+              tmp[obj._start_at][valueAttr] += (valueAttr in obj) ? obj[valueAttr] : 0;
+            } else {
+              tmp[obj._start_at] = {_end_at: obj._end_at};
+              tmp[obj._start_at][valueAttr] = (valueAttr in obj) ? obj[valueAttr] : 0;
+            }
+          });
+        });
+        _.each(tmp, function (v, i) {
+            var t = {_start_at: i, _end_at: v._end_at};
+            t[valueAttr] = v[valueAttr];
+            totalValues.push(t);
+        });
+
+        totalSeries.values = totalValues;
+        data.push(totalSeries);
+      }
 
       return _.map(this.options.seriesList, function (series) {
         var dataSeries = _.find(data, function (d) {
@@ -29,6 +59,6 @@ function (MatrixCollection) {
     }
 
   });
-  
+
   return CategoriesCollection;
 });

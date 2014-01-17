@@ -31,6 +31,7 @@
         "Source: TBA"
       ],
       "series": [
+         { "id": "Total", "title": "Total" },
          { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
          { "id": "Large enterprises", "title": "Large enterprises" },
          { "id": "Unknown", "title": "Not yet classified" }
@@ -40,7 +41,8 @@
         {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
         {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
       ],
-      "tabbed_attr": "collect"
+      "tabbed_attr": "collect",
+      "show-total-lines": true
     },
     {
       "slug": "proportion-smes",
@@ -81,13 +83,15 @@
         "Source: TBA"
       ],
       "series": [
+         { "id": "Total", "title": "Total" },
          { "id": "Central government", "title": "Central government" },
          { "id": "Other wider public sector", "title": "Other wider public sector" },
          { "id": "Local government", "title": "Local government" },
          { "id": "Unknown", "title": "Not yet classified" },
          { "id": "Not for profit", "title": "Not for profit" }
        ],
-      "show-line-labels": true
+      "show-line-labels": true,
+      "show-total-lines": true
     },
     {
       "slug": "spend-by-lot",
