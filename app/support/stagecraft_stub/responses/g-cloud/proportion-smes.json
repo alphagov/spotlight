@@ -10,7 +10,7 @@
   "data-group": "gcloud",
   "data-type": "sales",
   "info": [
-    "Data source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "start-matcher": ".*$",
   "end-matcher": "^Small",

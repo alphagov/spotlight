@@ -52,7 +52,7 @@
       "data-group": "gcloud",
       "data-type": "sales",
       "info": [
-        "Data source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "_start_at": "2012-04-01T00:00:00+00:00",
       "start-matcher": ".*$",
@@ -80,7 +80,7 @@
       "currency": "gbp",
       "period": "month",
       "info": [
-        "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
          { "id": "Total", "title": "Total" },
@@ -106,7 +106,7 @@
       "period": "month",
       "currency": "gbp",
       "info": [
-        "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
          { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },

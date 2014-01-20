@@ -15,7 +15,7 @@
   "period": "month",
   "currency": "gbp",
   "info": [
-    "Source: Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
     { "id": "Total", "title": "Total" },
