@@ -38,11 +38,23 @@ function (SingleStatView) {
     },
 
     getValueSelected: function (selection) {
-      return this.formatValue(selection.selectedModel.get(this.selectionValueAttr));
+      var val;
+      if (selection.selectedGroupIndex !== null) {
+        val = selection.selectedModel.get(this.selectionValueAttr);
+      } else { 
+        val = null;
+      }
+      return this.formatValue(val);
     },
 
     getLabelSelected: function (selection) {
-      return this.formatPeriod(selection.selectedModel, 'week');
+      var val;
+      if (selection.selectedGroupIndex !== null) {
+        return this.formatPeriod(selection.selectedModel, 'week');
+      } else { 
+        return '';
+      }
+      
     }
   });
 
