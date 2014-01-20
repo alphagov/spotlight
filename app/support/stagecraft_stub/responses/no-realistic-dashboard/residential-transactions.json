@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "stacked_categories",
   "module-type": "grouped_timeseries",
   "title": "Categories in a stack",
   "description": "",
