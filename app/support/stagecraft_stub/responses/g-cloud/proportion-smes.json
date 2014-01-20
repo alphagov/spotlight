@@ -3,13 +3,14 @@
   "module-type": "completion_rate",
   "slug": "proportion-smes",
   "title": "Proportion of procurement from small and medium enterprises",
+  "description": "The proportion of the market covered by SMEs",
   "dashboard-title": "Public purchasing performance",
-  "dashboard-strapline": "Measures the proportion of market covered by SMEs",
+  "dashboard-strapline": "Measures the proportion of the market covered by SMEs",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "info": [
-    "Data source: TBA"
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "start-matcher": ".*$",
   "end-matcher": "^Small",
