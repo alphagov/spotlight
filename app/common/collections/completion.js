@@ -108,7 +108,7 @@ function (MatrixCollection, Collection, Group) {
       if (!this.period) {
         eventDates = this.weeksFrom(latestEventTimestamp, 9);
       } else { 
-        eventDates = this.periodsFrom(latestEventTimestamp, 21, datePeriod);
+        eventDates = this.periodsFrom(latestEventTimestamp, 12, datePeriod);
       }
 
       var values = _.map(eventDates, function (timestamp) {

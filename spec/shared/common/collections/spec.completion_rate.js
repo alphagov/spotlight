@@ -274,15 +274,15 @@ function (CompletionRateCollection) {
 
         it("should map completion rates to completion series", function () {
           if (volumetricsCollection.period) {
-            var firstValue = volumetricsCollection.parse({data: context.data}).values[18];
+            var firstValue = volumetricsCollection.parse({data: context.data}).values[9];
             expect(firstValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-04-01T02:00:00+01:00"));
             expect(firstValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-05-01T02:00:00+01:00"));
             expect(firstValue.get('completion')).toBe(0.4);
-            var secondValue = volumetricsCollection.parse({data: context.data}).values[19];
+            var secondValue = volumetricsCollection.parse({data: context.data}).values[10];
             expect(secondValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-05-01T02:00:00+01:00"));
             expect(secondValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-01T02:00:00+01:00"));
             expect(secondValue.get('completion')).toBeCloseTo(0.286, 1);
-            var thirdValue = volumetricsCollection.parse({data: context.data}).values[20];
+            var thirdValue = volumetricsCollection.parse({data: context.data}).values[11];
             expect(thirdValue.get('_start_at')).toBeMoment(volumetricsCollection.getMoment("2013-06-01T02:00:00+01:00"));
             expect(thirdValue.get('_end_at')).toBeMoment(volumetricsCollection.getMoment("2013-07-01T02:00:00+01:00"));
             expect(thirdValue.get('completion')).toBeCloseTo(0.333, 1);
@@ -304,7 +304,7 @@ function (CompletionRateCollection) {
 
         it("should query for the appropriate number of data items for completion series", function () {
           if (volumetricsCollection.period) { 
-            expect(volumetricsCollection.parse({data: context.data}).values.length).toBe(21);
+            expect(volumetricsCollection.parse({data: context.data}).values.length).toBe(12);
           } else { 
             expect(volumetricsCollection.parse({data: context.data}).values.length).toBe(9);
           }
