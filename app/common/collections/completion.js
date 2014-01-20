@@ -64,13 +64,19 @@ function (MatrixCollection, Collection, Group) {
     eventsFrom: function (data) {
       var eventsByTimestamp = _.groupBy(data, function (d) { return d._timestamp; });
 
-      return _.map(eventsByTimestamp, function (events) {
-        return {
-          _timestamp: events[0]._timestamp,
-          totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
-        };
-      }, this);
+       var mapped = _.map(eventsByTimestamp, function (events) {
+         return {
+           _timestamp: events[0]._timestamp,
+           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
+           totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
+         };
+       }, this);
+
+       var eventsWithStarts = _.filter(mapped, function(e) {
+         return e.totalStarted;
+       });
+
+       return eventsWithStarts;
     },
 
     numberOfJourneyStarts: function () {

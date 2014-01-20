@@ -20,6 +20,11 @@ function (CompletionRateCollection) {
         uniqueEvents: 9
       },
       {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventLabel: "fco-transaction-name_begin",
+        uniqueEvents: null
+      },
+      {
         _timestamp: "2013-06-09T23:00:00+00:00",
         eventLabel: "fco-transaction-name_end",
         uniqueEvents: 3
@@ -33,6 +38,11 @@ function (CompletionRateCollection) {
         _timestamp: "2013-06-23T23:00:00+00:00",
         eventLabel: "fco-transaction-name_end",
         uniqueEvents: 4
+      },
+      {
+        _timestamp: "2013-06-30T23:00:00+00:00",
+        eventLabel: "fco-transaction-name_end",
+        uniqueEvents: null
       }
     ];
 
