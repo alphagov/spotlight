@@ -5,7 +5,7 @@
   "title": "Cumulative procurement by company size",
   "description": "The cumulative division of procurement between SMEs and larger enterprises",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
+  "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
