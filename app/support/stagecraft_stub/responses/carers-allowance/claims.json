@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "weekly_by_channel",
   "module-type": "grouped_timeseries",
   "title": "Claims by channel",
   "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
