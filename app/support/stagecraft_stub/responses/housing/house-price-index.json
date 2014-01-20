@@ -1,26 +1,26 @@
 {
   "page-type": "module",
-  "slug": "regional_transactions",
   "module-type": "grouped_timeseries",
-  "title": "Residential property transactions",
-  "description": "Volume of residential property transactions by nations and regions",
+  "title": "House price index (HPI)",
+  "description": "Average HPIs by nations and regions (100 = February 2002)",
   "dashboard-title": "Housing",
   "dashboard-strapline": "Policy performance",
   "dashboard-slug": "housing",
   "data-group": "housing-policy",
-  "data-type": "residential-transactions",
+  "data-type": "house-price-index",
+  "cumulative": false,
   "value-attr": "value:mean",
   "category": "geography",
   "period": "quarter",
-  "filter-by": ["key:residential_property_transactions"],
+  "filter-by": ["key:house_price_index"],
   "info": [
-    "Info text line 1",
-    "Info text line 2"
+    "Source: Office of National Statistics (ONS)"
   ],
   "series": [
-     { "id": "England", "title": "England" },
      { "id": "Scotland", "title": "Scotland" },
      { "id": "Wales", "title": "Wales" },
+     { "id": "London", "title": "London" },
+     { "id": "England", "title": "England" },
      { "id": "Northern_Ireland", "title": "Northern Ireland" }
    ],
   "show-line-labels": true
