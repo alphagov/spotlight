@@ -5,6 +5,7 @@
   "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person who's cared for must be in receipt of a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate or Armed Forces Independence Payment.",
   "modules": [
     {
+      "slug": "realtime",
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",
@@ -16,7 +17,7 @@
       "data-type": "realtime"
     },
     {
-      "slug": "weekly-by-channel",
+      "slug": "claims",
       "module-type": "grouped_timeseries",
       "title": "Claims by channel",
       "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
@@ -41,8 +42,8 @@
       ]
     },
     {
+      "slug": "digital-takeup",
       "module-type": "completion_rate",
-      "slug": "digital-takeup-weekly",
       "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
@@ -57,8 +58,8 @@
       "value-attribute": "value"
     },
     {
-      "module-type": "completion_rate",
       "slug": "completion-rate",
+      "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
       "data-group": "carers-allowance",
@@ -73,6 +74,7 @@
       "matching-attribute": "eventLabel"
     },
     {
+      "slug": "journey",
       "module-type": "journey",
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
@@ -93,6 +95,7 @@
       ]
     },
     {
+      "slug": "availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",

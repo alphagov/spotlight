@@ -28,6 +28,7 @@
   ],
   "modules": [
     {
+      "slug": "realtime",
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",
@@ -39,6 +40,7 @@
       "data-type": "realtime"
     },
     {
+      "slug": "journey",
       "module-type": "journey",
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
@@ -52,6 +54,7 @@
       ]
     },
     {
+      "slug": "availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",
@@ -68,6 +71,7 @@
       "tabbed_attr": "period"
     },
     {
+      "slug": "applications",
       "module-type": "completion_numbers",
       "title": "Completed applications",
       "description": "",
@@ -81,6 +85,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "completion-rate",
       "page-type": "module",
       "module-type": "completion_rate",
       "title": "Completion rate",
@@ -95,6 +100,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "average-first-mortgage",
       "module-type": "multi_stats",
       "title": "Average first mortgage",
       "description": "A range of factors indicative of the state of the housing market for first-time buyers",
@@ -115,8 +121,8 @@
       ]
     },
     {
+      "slug": "residential-transactions",
       "page-type": "module",
-      "slug": "stacked_categories",
       "module-type": "grouped_timeseries",
       "title": "Categories in a stack",
       "description": "",
@@ -136,7 +142,7 @@
       "show-line-labels": true
     },
     {
-      "slug": "starts_completions",
+      "slug": "starts-and-completions",
       "module-type": "grouped_timeseries",
       "title": "Categories as lines",
       "description": "",

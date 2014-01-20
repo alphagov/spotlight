@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "who_is_using",
   "module-type": "grouped_timeseries",
   "title": "Cumulative spend by customer type",
   "description": "The cumulative spend through G-Cloud by central government and wider public services",

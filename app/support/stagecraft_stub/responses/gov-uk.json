@@ -5,6 +5,7 @@
   "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, including a look at how our content is being used. You can also see activity on the <a href=\"/performance/dashboard/government\">departments and policy</a> section of GOV.UK.",
   "modules": [
     {
+      "slug": "realtime",
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",

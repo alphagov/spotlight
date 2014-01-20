@@ -5,6 +5,7 @@
   "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
   "modules": [
     {
+      "slug": "realtime",
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",
@@ -16,6 +17,7 @@
       "data-type": "realtime"
     },
     {
+      "slug": "applications",
       "module-type": "completion_numbers",
       "title": "Completed applications",
       "description": "",
@@ -30,6 +32,7 @@
       "matching-attribute": "eventCategory"
     },
     {
+      "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
@@ -45,6 +48,7 @@
       "matching-attribute": "eventCategory"
     },
     {
+      "slug": "journey",
       "module-type": "journey",
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
@@ -63,6 +67,7 @@
       ]
     },
     {
+      "slug": "availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",

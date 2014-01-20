@@ -9,7 +9,7 @@
   ],
   "dashboard-title": "Activity on GOV.UK",
   "dashboard-strapline": "Performance",
-  "dashboard-slug": "dashboard",
+  "dashboard-slug": "gov-uk",
   "data-group": "government",
   "data-type": "realtime"
 }

@@ -5,6 +5,7 @@
   "tagline": "Figures for applications processed on GOV.UK for the service to pay the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
   "modules": [
     {
+      "slug": "realtime",
       "module-type": "realtime",
       "title": "Real-time usage",
       "description": "Live number of users on any page within the service",
@@ -16,6 +17,7 @@
       "data-type": "realtime"
     },
     {
+      "slug": "applications",
       "module-type": "completion_numbers",
       "title": "Completed applications",
       "description": "",
@@ -29,6 +31,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
@@ -43,6 +46,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "journey",
       "module-type": "journey",
       "title": "Users at each stage",
       "description": "Number of users who completed important stages of the transaction last week",
@@ -60,6 +64,7 @@
       ]
     },
     {
+      "slug": "availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",

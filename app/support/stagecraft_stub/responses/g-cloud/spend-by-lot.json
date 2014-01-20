@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "monthly_spend_by_lot",
   "module-type": "grouped_timeseries",
   "title": "Monthly spend by lot",
   "description": "The spending each month through G-Cloud by category of service purchased",
@@ -13,7 +12,7 @@
   "value-attr": "monthly_spend:sum",
   "category": "lot",
   "period": "month",
-  "currency": "gbp", 
+  "currency": "gbp",
   "info": [
     "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],

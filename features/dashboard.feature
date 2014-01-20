@@ -24,7 +24,7 @@ Feature: Dashboard
      And I should see other information for the "no-realistic-dashboard" "completion_numbers" module
     Then I should see the "multi_stats" module for "no-realistic-dashboard" data
      And I should see other information for the "no-realistic-dashboard" "multi_stats" module
-    Then I should see the "stacked_categories" module for "no-realistic-dashboard" data
-     And I should see other information for the "no-realistic-dashboard" "stacked_categories" module
-    Then I should see the "starts_completions" module for "no-realistic-dashboard" data
-     And I should see other information for the "no-realistic-dashboard" "starts_completions" module
+    Then I should see the "residential-transactions" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "residential-transactions" module
+    Then I should see the "starts-and-completions" module for "no-realistic-dashboard" data
+     And I should see other information for the "no-realistic-dashboard" "starts-and-completions" module
