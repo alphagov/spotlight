@@ -494,3 +494,15 @@ figure.graph {
     }
   }
 }
+
+@media (max-width: 900px) {
+
+  figure.graph {
+
+    .x-axis .tick:nth-child(even) text,
+    .y-axis .tick:nth-child(even) text {
+      display:none;
+    }
+
+  }
+}
