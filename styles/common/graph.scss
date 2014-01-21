@@ -438,9 +438,9 @@ figure.graph {
         border: none;
         border-right: 1px solid $grey-2;
         float: left;
-        margin: 0;
-        padding: 0;
-        width: 26%;
+        margin: 0 18px 0 0;
+        padding: 0 18px 0 0;
+        width: 35%;
         margin-top: 0 !important;
 
         .percentage {
@@ -453,9 +453,7 @@ figure.graph {
       }
 
       ol {
-        float: right;
-        padding-left: 36px;
-        width: 73%;
+        float: left;
 
         li {
           cursor: default;
