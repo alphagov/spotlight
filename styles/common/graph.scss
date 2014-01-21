@@ -21,6 +21,7 @@ figure.graph {
 
   text {
     @include core-16($tabular-numbers: true) ;
+
     @media (max-width: 320px) {
       font-size:9px;
       font-size:0.9rem;
@@ -470,6 +471,11 @@ figure.graph {
     .y-axis .tick:nth-child(even) text {
       display:none;
     }
+
+    .y-axis .tick:nth-child(odd) text { 
+	    font-size:12px;
+	    font-size:1.2rem;
+     }
 
     .line {
       fill: none;
