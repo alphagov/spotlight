@@ -52,7 +52,11 @@ function (Component, Pivot) {
         }
         return sum;
       }else{
-        return model.get(this.graph.valueAttr);
+        if(this.graph.model && this.graph.model.get('one-hundred-percent')){
+          return this.collection.fraction(this.graph.valueAttr, groupIndex, index);
+        } else {
+          return model.get(this.graph.valueAttr);
+        }
       }
     },
 
