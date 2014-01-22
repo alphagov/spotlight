@@ -111,7 +111,7 @@
       "series": [
          { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
          { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-         { "id": "Cloud Infrastructure as a Service (Iaas)", "title": "Cloud Infrastructure as a Service" },
+         { "id": "Cloud Infrastructure as a Service (IaaS)", "title": "Cloud Infrastructure as a Service" },
          { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }
        ],
       "show-line-labels": true
