@@ -1,7 +1,8 @@
 define([
-  'common/collections/grouped_timeseries'
+  'common/collections/grouped_timeseries',
+  'extensions/models/query'
 ],
-function (VolumetricsCollection) {
+function (VolumetricsCollection, Query) {
   describe("VolumetricsCollection", function () {
     var response = {
   "data": [
@@ -141,6 +142,20 @@ function (VolumetricsCollection) {
       });
       collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
+
+    it("should pass through duration to query generator which won't add it to the url", function () {
+      spyOn(Query.prototype, 'set');
+      var durationCollection = new VolumetricsCollection([], {
+        'data-type': "some-type",
+        'data-group': "some-group",
+        'duration': 60
+      });
+      var args = durationCollection.query.set.mostRecentCall.args
+      expect(durationCollection.query.set).toHaveBeenCalled();
+      expect(args[0].duration).toEqual(60);
+      expect(durationCollection.url()).not.toContain('duration');
+    });
+
 
     describe("url", function () {
       it("should query backdrop with the correct url for the config", function () {
