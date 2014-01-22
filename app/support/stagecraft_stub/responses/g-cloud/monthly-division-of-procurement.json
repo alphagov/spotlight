@@ -1,16 +1,16 @@
 {
   "page-type": "module",
-  "slug": "division_of_procurement",
+  "slug": "monthly-division-of-procurement",
   "module-type": "grouped_timeseries",
-  "title": "Cumulative procurement by company size",
-  "description": "The cumulative division of procurement between SMEs and larger enterprises",
+  "title": "Total procurement by company size",
+  "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
-  "value-attr": "cumulative_spend:sum",
+  "value-attr": "monthly_spend:sum",
   "category": "sme_large",
   "period": "month",
   "currency": "gbp",
@@ -25,8 +25,8 @@
    ],
   "show-line-labels": true,
   "tabs": [
-    {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
-    {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
+    {"id": "monthly_spend:sum", "name": "Total spend", "currency": "gbp"},
+    {"id": "count:sum", "name": "Contracts awarded", "currrency": null}
   ],
   "tabbed_attr": "collect",
   "show-total-lines": true

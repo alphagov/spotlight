@@ -3,7 +3,7 @@
   "module-type": "completion_rate",
   "slug": "proportion-smes",
   "title": "Proportion of procurement from small and medium enterprises",
-  "description": "The proportion of the market covered by SMEs",
+  "description": "The proportion of procurement allocated to SMEs each month",
   "dashboard-title": "Public purchasing performance",
   "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",

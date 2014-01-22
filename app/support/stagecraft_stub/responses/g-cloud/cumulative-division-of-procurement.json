@@ -1,17 +1,17 @@
 {
   "page-type": "module",
-  "slug": "who_is_using",
+  "slug": "cumulative-division-of-procurement",
   "module-type": "grouped_timeseries",
-  "title": "Cumulative spend by customer type",
-  "description": "Cumulative spend over time, showing spend by central government and wider public services",
+  "title": "Cumulative procurement by company size",
+  "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "cumulative": false,
-  "category": "sector",
   "value-attr": "cumulative_spend:sum",
+  "category": "sme_large",
   "period": "month",
   "currency": "gbp",
   "info": [
@@ -19,12 +19,15 @@
   ],
   "series": [
     { "id": "Total", "title": "Total" },
-    { "id": "Central government", "title": "Central government" },
-    { "id": "Other wider public sector", "title": "Other wider public sector" },
-    { "id": "Local government", "title": "Local government" },
-    { "id": "Unknown", "title": "Not yet classified" },
-    { "id": "Not for profit", "title": "Not for profit" }
+    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+    { "id": "Large enterprises", "title": "Large enterprises" },
+    { "id": "Unknown", "title": "Not yet classified" }
    ],
   "show-line-labels": true,
+  "tabs": [
+    {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
+    {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
+  ],
+  "tabbed_attr": "collect",
   "show-total-lines": true
 }

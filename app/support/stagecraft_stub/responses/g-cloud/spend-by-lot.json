@@ -3,7 +3,7 @@
   "slug": "monthly_spend_by_lot",
   "module-type": "grouped_timeseries",
   "title": "Monthly spend by lot",
-  "description": "The spending each month through G-Cloud by category of service purchased",
+  "description": "Spend each month by category of service purchased",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
