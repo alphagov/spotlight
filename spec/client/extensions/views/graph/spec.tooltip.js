@@ -15,7 +15,7 @@ function (Tooltip, Model) {
         tooltip = new Tooltip({
           el: el,
           wrapper: wrapper,
-          collection: { on: jasmine.createSpy() },
+          collection: { on: jasmine.createSpy(), fraction: function(){ return "101";} },
           graph: {
             valueAttr: "modelValue"
           },
@@ -84,7 +84,7 @@ function (Tooltip, Model) {
           x: 110,
           y: 120,
           textWidth: 100,
-          modelValue: null 
+          modelValue: null
         });
 
         model2 = new Model({
@@ -98,6 +98,23 @@ function (Tooltip, Model) {
 
         expect(wrapper.select('text.tooltip-text').text()).toEqual("(no data)");
         expect(wrapper.select('text.tooltip-stroke').text()).toEqual("(no data)");
+      });
+      it("renders fraction of the selected model on one hundred percent graph", function (){
+        tooltip.render();
+
+        tooltip.graph.model = {
+          get: function(arg){
+            if(arg === 'one-hundred-percent'){
+              return true;
+            }
+            return false;
+          }
+        }
+        spyOn(tooltip.collection, "fraction").andReturn('101');
+        tooltip.onChangeSelected(null, 2, model, 3);
+        expect(wrapper.select('text.tooltip-text').text()).toEqual("101");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("101");
+        expect(tooltip.collection.fraction).toHaveBeenCalledWith(tooltip.graph.valueAttr, 2, 3);
       });
 
       it("renders a tooltip at the position with offsets", function () {
