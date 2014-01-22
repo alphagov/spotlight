@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "slug": "who_is_using",
+  "slug": "cumulative-spend-by-customer-type",
   "module-type": "grouped_timeseries",
   "title": "Cumulative spend by customer type",
   "description": "Cumulative spend over time, showing spend by central government and wider public services",

@@ -20,7 +20,7 @@
   ],
   "modules": [
     {
-      "slug": "monthly-division-of-procurement",
+      "slug": "monthly-procurement-by-company-size",
       "module-type": "grouped_timeseries",
       "title": "Monthly procurement by company size",
       "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
@@ -49,7 +49,7 @@
       "show-total-lines": true
     },
     {
-      "slug": "cumulative-division-of-procurement",
+      "slug": "cumulative-procurement-by-company-size",
       "module-type": "grouped_timeseries",
       "title": "Cumulative procurement by company size",
       "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",
@@ -78,7 +78,7 @@
       "show-total-lines": true
     },
     {
-      "slug": "proportion-smes",
+      "slug": "proportion-of-procurement-from-small-and-medium-enterprises",
       "module-type": "completion_rate",
       "title": "Proportion of procurement from small and medium enterprises",
       "description": "The proportion of procurement allocated to SMEs each month",
@@ -101,7 +101,7 @@
       "category": "sme_large"
     },
     {
-      "slug": "who-is-using",
+      "slug": "cumulative-spend-by-customer-type",
       "module-type": "grouped_timeseries",
       "title": "Cumulative spend by customer type",
       "description": "Cumulative spend over time, showing spend by central government and wider public services",
@@ -127,7 +127,7 @@
       "show-total-lines": true
     },
     {
-      "slug": "spend-by-lot",
+      "slug": "monthly-spend-by-lot",
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
       "description": "Spend each month by category of service purchased",

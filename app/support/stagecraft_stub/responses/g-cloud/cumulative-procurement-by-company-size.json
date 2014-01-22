@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "slug": "cumulative-division-of-procurement",
+  "slug": "cumulative-procurement-by-company-size",
   "module-type": "grouped_timeseries",
   "title": "Cumulative procurement by company size",
   "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",

@@ -1,6 +1,6 @@
 {
   "page-type": "module",
-  "slug": "monthly-division-of-procurement",
+  "slug": "monthly-procurement-by-company-size",
   "module-type": "grouped_timeseries",
   "title": "Monthly procurement by company size",
   "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
