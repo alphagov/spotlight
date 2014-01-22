@@ -21,9 +21,9 @@ figure.graph {
 
   text {
     @include core-16($tabular-numbers: true) ;
+
     @media (max-width: 320px) {
-      font-size:9px;
-      font-size:0.9rem;
+      font-size: 9px;
     }
   }
 
@@ -438,9 +438,9 @@ figure.graph {
         border: none;
         border-right: 1px solid $grey-2;
         float: left;
-        margin: 0;
-        padding: 0;
-        width: 26%;
+        margin: 0 18px 0 0;
+        padding: 0 18px 0 0;
+        width: 35%;
         margin-top: 0 !important;
 
         .percentage {
@@ -453,9 +453,7 @@ figure.graph {
       }
 
       ol {
-        float: right;
-        padding-left: 36px;
-        width: 73%;
+        float: left;
 
         li {
           cursor: default;
@@ -472,6 +470,10 @@ figure.graph {
     .y-axis .tick:nth-child(even) text {
       display:none;
     }
+
+    .y-axis .tick:nth-child(odd) text { 
+	    font-size: 12px;
+     }
 
     .line {
       fill: none;
@@ -492,5 +494,17 @@ figure.graph {
         display:none;
       }
     }
+  }
+}
+
+@media (max-width: 900px) {
+
+  figure.graph {
+
+    .x-axis .tick:nth-child(even) text,
+    .y-axis .tick:nth-child(even) text {
+      display:none;
+    }
+
   }
 }

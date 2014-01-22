@@ -2,16 +2,20 @@
   "page-type": "dashboard",
   "title": "G-Cloud",
   "strapline": "Public purchasing performance",
-  "tagline": "Figures for CloudStore, the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework.",
+  "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "related_pages_title": "Related information",
   "related_pages": [
     {
-      "title": "How to use CloudStore",
-      "url": "https://www.gov.uk/how-to-use-cloudstore"
+      "title": "CloudStore",
+      "url": "http://govstore.service.gov.uk/cloudstore/"
+    },
+    {
+      "title": "Introduction to CloudStore and G-Cloud",
+      "url": "/how-to-use-cloudstore"
     },
     {
       "title": "Buying and managing government goods and services more efficiently and effectively",
-      "url": "https://www.gov.uk/government/policies/buying-and-managing-government-goods-and-services-more-efficiently-and-effectively"
+      "url": "/government/policies/buying-and-managing-government-goods-and-services-more-efficiently-and-effectively"
     }
   ],
   "modules": [

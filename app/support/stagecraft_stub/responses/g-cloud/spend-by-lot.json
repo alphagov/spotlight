@@ -5,7 +5,7 @@
   "title": "Monthly spend by lot",
   "description": "The spending each month through G-Cloud by category of service purchased",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public purchasing performance",
+  "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",

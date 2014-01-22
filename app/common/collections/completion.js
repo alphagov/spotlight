@@ -64,13 +64,19 @@ function (MatrixCollection, Collection, Group) {
     eventsFrom: function (data) {
       var eventsByTimestamp = _.groupBy(data, function (d) { return d._timestamp; });
 
-      return _.map(eventsByTimestamp, function (events) {
-        return {
-          _timestamp: events[0]._timestamp,
-          totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
-        };
-      }, this);
+       var mapped = _.map(eventsByTimestamp, function (events) {
+         return {
+           _timestamp: events[0]._timestamp,
+           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
+           totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
+         };
+       }, this);
+
+       var eventsWithStarts = _.filter(mapped, function(e) {
+         return e.totalStarted;
+       });
+
+       return eventsWithStarts;
     },
 
     numberOfJourneyStarts: function () {
@@ -108,7 +114,7 @@ function (MatrixCollection, Collection, Group) {
       if (!this.period) {
         eventDates = this.weeksFrom(latestEventTimestamp, 9);
       } else { 
-        eventDates = this.periodsFrom(latestEventTimestamp, 21, datePeriod);
+        eventDates = this.periodsFrom(latestEventTimestamp, 12, datePeriod);
       }
 
       var values = _.map(eventDates, function (timestamp) {
