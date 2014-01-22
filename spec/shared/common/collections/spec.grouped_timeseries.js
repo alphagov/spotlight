@@ -146,13 +146,17 @@ function (VolumetricsCollection, Query) {
     it("should pass through duration to query generator which won't add it to the url", function () {
       spyOn(Query.prototype, 'set');
       var durationCollection = new VolumetricsCollection([], {
-        'data-type': "some-type",
-        'data-group': "some-group",
+        'period': 'week',
         'duration': 60
       });
       var args = durationCollection.query.set.mostRecentCall.args
       expect(durationCollection.query.set).toHaveBeenCalled();
       expect(args[0].duration).toEqual(60);
+      expect(durationCollection.url()).not.toContain('duration');
+    });
+
+    it("should not add duration to url undefined", function () {
+      var durationCollection = new VolumetricsCollection([], {"period": "week"});
       expect(durationCollection.url()).not.toContain('duration');
     });
 

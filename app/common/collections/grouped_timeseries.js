@@ -10,7 +10,7 @@ function (MatrixCollection) {
         period: this.options.period,
         group_by: this.options.category,
         filter_by: this.options.filterBy ? this.options.filterBy : [],
-        duration: this.options.duration
+        duration: this.options.duration ? this.options.duration : null
       };
     },
 
