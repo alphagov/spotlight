@@ -20,7 +20,8 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) 
         currency: this.model.get("currency"),
         seriesList: this.model.get("series"),
         filterBy: this.model.get("filter-by"),
-        showTotalLines: this.model.get("show-total-lines")
+        showTotalLines: this.model.get("show-total-lines"),
+        duration: this.model.get("duration")
       };
     }
 

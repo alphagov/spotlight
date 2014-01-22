@@ -9,7 +9,8 @@ function (MatrixCollection) {
         collect: this.options.valueAttr,
         period: this.options.period,
         group_by: this.options.category,
-        filter_by: this.options.filterBy ? this.options.filterBy : []
+        filter_by: this.options.filterBy ? this.options.filterBy : [],
+        duration: this.options.duration
       };
     },
 

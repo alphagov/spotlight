@@ -20,7 +20,7 @@ function (Graph) {
     },
     
     components: function () {
-      var labelComponent, labelOptions, stackOptions, yAxisOptions;
+      var labelComponent, labelOptions, stackOptions, yAxisOptions, tooltipFormat;
 
       if (this.showLineLabels()) {
         labelComponent = this.sharedComponents.linelabel;
@@ -50,6 +50,13 @@ function (Graph) {
             };
           }
         };
+        tooltipFormat = function(d){
+          return Math.round(d * 100) + "%";
+        };
+      } else {
+        tooltipFormat = function(d){
+          return this.formatNumericLabel(d);
+        };
       }
 
       return [
@@ -61,9 +68,7 @@ function (Graph) {
         {
           view: this.sharedComponents.tooltip,
           options: {
-            formatValue: function (value) {
-              return this.formatNumericLabel(value);
-            },
+            formatValue: tooltipFormat,
             encompassStack: true,
             noTotal: true
           }

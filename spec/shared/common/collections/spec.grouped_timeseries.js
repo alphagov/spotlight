@@ -1,59 +1,60 @@
 define([
-  'common/collections/grouped_timeseries'
+  'common/collections/grouped_timeseries',
+  'extensions/models/query'
 ],
-function (VolumetricsCollection) {
+function (VolumetricsCollection, Query) {
   describe("VolumetricsCollection", function () {
     var response = {
-  "data": [
-    {
-      "some:value": 5,
-      "values": [
+      "data": [
         {
-          "_end_at": "2012-09-01T00:00:00+00:00",
-          "some:value": 3,
-          "_start_at": "2012-08-01T00:00:00+00:00"
+          "some:value": 5,
+          "values": [
+            {
+              "_end_at": "2012-09-01T00:00:00+00:00",
+              "some:value": 3,
+              "_start_at": "2012-08-01T00:00:00+00:00"
+            },
+            {
+              "_end_at": "2012-10-01T00:00:00+00:00",
+              "_start_at": "2012-09-01T00:00:00+00:00"
+            }
+          ],
+          "some-category": "xyz"
         },
         {
-          "_end_at": "2012-10-01T00:00:00+00:00",
-          "_start_at": "2012-09-01T00:00:00+00:00"
-        }
-      ],
-      "some-category": "xyz"
-    },
-    {
-      "some:value": 7,
-      "values": [
-        {
-          "_end_at": "2012-09-01T00:00:00+00:00",
-          "some:value": 3,
-          "_start_at": "2012-08-01T00:00:00+00:00"
+          "some:value": 7,
+          "values": [
+            {
+              "_end_at": "2012-09-01T00:00:00+00:00",
+              "some:value": 3,
+              "_start_at": "2012-08-01T00:00:00+00:00"
+            },
+            {
+              "_end_at": "2012-10-01T00:00:00+00:00",
+              "some:value": 4,
+              "_start_at": "2012-09-01T00:00:00+00:00"
+            }
+          ],
+          "some-category": "abc"
         },
         {
-          "_end_at": "2012-10-01T00:00:00+00:00",
-          "some:value": 4,
-          "_start_at": "2012-09-01T00:00:00+00:00"
+          "some:value": 16,
+          "values": [
+            {
+              "_end_at": "2012-09-01T00:00:00+00:00",
+              "some:value": 6,
+              "_start_at": "2012-08-01T00:00:00+00:00"
+            },
+            {
+              "_end_at": "2012-10-01T00:00:00+00:00",
+              "some:value": 10,
+              "_start_at": "2012-09-01T00:00:00+00:00"
+            }
+          ],
+          "some-category": "def"
         }
-      ],
-      "some-category": "abc"
-    },
-    {
-      "some:value": 16,
-      "values": [
-        {
-          "_end_at": "2012-09-01T00:00:00+00:00",
-          "some:value": 6,
-          "_start_at": "2012-08-01T00:00:00+00:00"
-        },
-        {
-          "_end_at": "2012-10-01T00:00:00+00:00",
-          "some:value": 10,
-          "_start_at": "2012-09-01T00:00:00+00:00"
-        }
-      ],
-      "some-category": "def"
-    }
-  ]
-};
+      ]
+    };
 
     var expected = [
       {
@@ -141,6 +142,20 @@ function (VolumetricsCollection) {
       });
       collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
+
+    it("should pass through duration to query generator which won't add it to the url", function () {
+      spyOn(Query.prototype, 'set');
+      var durationCollection = new VolumetricsCollection([], {
+        'data-type': "some-type",
+        'data-group': "some-group",
+        'duration': 60
+      });
+      var args = durationCollection.query.set.mostRecentCall.args
+      expect(durationCollection.query.set).toHaveBeenCalled();
+      expect(args[0].duration).toEqual(60);
+      expect(durationCollection.url()).not.toContain('duration');
+    });
+
 
     describe("url", function () {
       it("should query backdrop with the correct url for the config", function () {
