@@ -4,7 +4,6 @@ define([
   'modernizr',
   './preprocessors/navigation',
   './preprocessors/popover',
-  './preprocessors/details_shim',
   './preprocessors/visualisation_fallback',
   './preprocessors/report_a_problem'
 ],

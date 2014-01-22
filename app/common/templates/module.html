@@ -6,14 +6,14 @@
 
 
 <% if (model.get('info')) { %>
-<details class="more-info" role="complementary">
-  <summary class="more-info-link">more info</summary>
+<aside class="more-info" role="complementary">
+  <span class="more-info-link popover-link">more info</span>
   <ul>
     <% _.each(model.get('info'), function (row) { %>
     <li><%= row %></li>
     <% }) %>
   </ul>
-</details>
+</aside>
 <% } %>
 
 <% if (model.get('page-type') === 'module') { %><h1 id="<%= this.ariaId() %>"><% } else { %><h2 id="<%= this.ariaId() %>"><% } %>
