@@ -20,35 +20,6 @@
   ],
   "modules": [
     {
-      "slug": "monthly-procurement-by-company-size",
-      "module-type": "grouped_timeseries",
-      "title": "Monthly procurement by company size",
-      "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
-      "data-group": "gcloud",
-      "data-type": "sales",
-      "cumulative": false,
-      "value-attr": "monthly_spend:sum",
-      "category": "sme_large",
-      "period": "month",
-      "currency": "gbp",
-      "info": [
-        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
-      ],
-      "series": [
-         { "id": "Total", "title": "Total" },
-         { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-         { "id": "Large enterprises", "title": "Large enterprises" },
-         { "id": "Unknown", "title": "Not yet classified" }
-       ],
-      "show-line-labels": true,
-      "tabs": [
-        {"id": "monthly_spend:sum", "name": "Total spend", "currency": "gbp"},
-        {"id": "count:sum", "name": "Contracts awarded", "currrency": null}
-      ],
-      "tabbed_attr": "collect",
-      "show-total-lines": true
-    },
-    {
       "slug": "cumulative-procurement-by-company-size",
       "module-type": "grouped_timeseries",
       "title": "Cumulative procurement by company size",
@@ -73,6 +44,35 @@
       "tabs": [
         {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
         {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
+      ],
+      "tabbed_attr": "collect",
+      "show-total-lines": true
+    },
+    {
+      "slug": "monthly-procurement-by-company-size",
+      "module-type": "grouped_timeseries",
+      "title": "Monthly procurement by company size",
+      "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "cumulative": false,
+      "value-attr": "monthly_spend:sum",
+      "category": "sme_large",
+      "period": "month",
+      "currency": "gbp",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "series": [
+         { "id": "Total", "title": "Total" },
+         { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+         { "id": "Large enterprises", "title": "Large enterprises" },
+         { "id": "Unknown", "title": "Not yet classified" }
+       ],
+      "show-line-labels": true,
+      "tabs": [
+        {"id": "monthly_spend:sum", "name": "Total spend", "currency": "gbp"},
+        {"id": "count:sum", "name": "Contracts awarded", "currrency": null}
       ],
       "tabbed_attr": "collect",
       "show-total-lines": true
