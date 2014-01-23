@@ -1,9 +1,9 @@
 {
   "page-type": "module",
-  "slug": "who_is_using",
+  "slug": "cumulative-spend-by-customer-type",
   "module-type": "grouped_timeseries",
   "title": "Cumulative spend by customer type",
-  "description": "The cumulative spend through G-Cloud by central government and wider public services",
+  "description": "Cumulative spend over time, showing spend by central government and wider public services",
   "dashboard-title": "G-Cloud",
   "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
   "dashboard-slug": "g-cloud",
@@ -15,7 +15,8 @@
   "period": "month",
   "currency": "gbp",
   "info": [
-    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+    "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
     { "id": "Total", "title": "Total" },

@@ -1,0 +1,34 @@
+{
+  "page-type": "module",
+  "slug": "cumulative-procurement-by-company-size",
+  "module-type": "grouped_timeseries",
+  "title": "Cumulative procurement by company size",
+  "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
+  "dashboard-slug": "g-cloud",
+  "data-group": "gcloud",
+  "data-type": "sales",
+  "cumulative": false,
+  "value-attr": "cumulative_spend:sum",
+  "category": "sme_large",
+  "period": "month",
+  "currency": "gbp",
+  "info": [
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+    "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+  ],
+  "series": [
+    { "id": "Total", "title": "Total" },
+    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
+    { "id": "Large enterprises", "title": "Large enterprises" },
+    { "id": "Unknown", "title": "Not yet classified" }
+   ],
+  "show-line-labels": true,
+  "tabs": [
+    {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
+    {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
+  ],
+  "tabbed_attr": "collect",
+  "show-total-lines": true
+}

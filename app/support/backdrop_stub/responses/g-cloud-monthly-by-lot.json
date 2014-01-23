@@ -1,10 +1,9 @@
-
 {
   "data": [
     {
       "_count": 165.0, 
       "_group_count": 11, 
-      "lot": "Cloud Infrastructure as a Service (Iaas)", 
+      "lot": "Cloud Infrastructure as a Service (IaaS)", 
       "monthly_spend:sum": 3077764.75, 
       "values": [
         {

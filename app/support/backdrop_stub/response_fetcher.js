@@ -50,6 +50,8 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "cumulative_spend:sum", "group_by": "sector"}, 'file': 'g-cloud-who-is-using.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "cumulative_spend:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-procurement.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "cumulative_count:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-procurement-count.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "monthly_spend:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-monthly-procurement.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "count:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-monthly-procurement-count.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "monthly_spend:sum", "group_by": "lot"}, 'file': 'g-cloud-monthly-by-lot.json'}
     ],
 
