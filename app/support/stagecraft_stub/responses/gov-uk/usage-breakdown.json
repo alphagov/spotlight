@@ -1,0 +1,21 @@
+{
+  "dashboard-title": "Activity on GOV.UK",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "dashboard",
+  "page-type": "module",
+  "slug": "useage-breakdown",
+  "module-type": "grouped_timeseries",
+  "title": "Site traffic",
+  "description": "Unique visitors to GOV.UK over the last year",
+  "data-group": "govuk",
+  "data-type": "visitors",
+  "category": "dataType",
+  "period": "month",
+  "value-attr": "visitors:sum",
+  "show-line-labels": true,
+  "cumulative": false,
+  "info": [ "Data source: Google Analytics" ],
+  "series": [
+      { "id": "govuk_visitors", "title": "GOV.UK" }
+  ]
+}
