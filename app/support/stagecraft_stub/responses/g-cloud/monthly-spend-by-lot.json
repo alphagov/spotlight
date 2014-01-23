@@ -13,9 +13,10 @@
   "value-attr": "monthly_spend:sum",
   "category": "lot",
   "period": "month",
-  "currency": "gbp", 
+  "currency": "gbp",
   "info": [
-    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a><br/>Data is collated via monthly returns from suppliers on the G-Cloud framework"
+    "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+    "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
   { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
