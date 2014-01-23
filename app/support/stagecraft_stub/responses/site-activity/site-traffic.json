@@ -3,7 +3,6 @@
   "dashboard-strapline": "Performance",
   "dashboard-slug": "dashboard",
   "page-type": "module",
-  "slug": "useage-breakdown",
   "module-type": "grouped_timeseries",
   "title": "Site traffic",
   "description": "Unique visitors to GOV.UK over the last year",

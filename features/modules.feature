@@ -4,12 +4,12 @@ Feature: Modules
   So that I can see just the information I need
 
   Scenario: Raw module
-    When I go to /performance/no-realistic-dashboard/realtime?raw
+    When I go to /performance/no-realistic-dashboard/live-service-usage?raw
     Then I should see the "realtime" module for "no-realistic-dashboard" data
     And I should not see other information for the "no-realistic-dashboard" "realtime" module
 
   Scenario: Standalone module
-    When I go to /performance/no-realistic-dashboard/realtime
+    When I go to /performance/no-realistic-dashboard/live-service-usage
     Then I see "2" crumbs in the breadcrumb trail
     Then I should see the "realtime" module for "no-realistic-dashboard" data
     And I should see other information for the "no-realistic-dashboard" "realtime" module

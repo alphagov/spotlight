@@ -28,8 +28,9 @@
   ],
   "modules": [
     {
+      "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Real-time usage",
+      "title": "Live service usage",
       "description": "Live number of users on any page within the service",
       "info": [
         "Info text line 1",
@@ -52,6 +53,7 @@
       ]
     },
     {
+      "slug": "service-availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",
