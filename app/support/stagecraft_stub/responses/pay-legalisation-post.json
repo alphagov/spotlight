@@ -5,8 +5,9 @@
   "tagline": "Figures for applications processed on GOV.UK for the service to pay the Foreign & Commonwealth Office (FCO) to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government.",
   "modules": [
     {
+      "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Real-time usage",
+      "title": "Live service usage",
       "description": "Live number of users on any page within the service",
       "info": [
         "Data source: Google Analytics",

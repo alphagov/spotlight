@@ -7,7 +7,7 @@
     {
       "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Real-time usage",
+      "title": "Live service usage",
       "description": "Live number of users on any page within the service",
       "info": [
         "Data source: Google Analytics",

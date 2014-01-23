@@ -1,15 +1,15 @@
 {
   "page-type": "module",
   "module-type": "realtime",
-  "title": "Real-time usage",
+  "title": "Live service usage",
   "description": "Live number of users on any page within the service",
-  "dashboard-title": "Pay to legalise documents using the premium service",
+  "dashboard-title": "Payment to register a death abroad",
   "dashboard-strapline": "Service performance",
-  "dashboard-slug": "pay-legalisation-drop-off",
+  "dashboard-slug": "pay-register-death-abroad",
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."
   ],
-  "data-group": "pay-legalisation-drop-off",
+  "data-group": "pay-register-death-abroad",
   "data-type": "realtime"
 }

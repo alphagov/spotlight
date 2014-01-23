@@ -5,8 +5,9 @@
   "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
   "modules": [
     {
+      "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Real-time usage",
+      "title": "Live service usage",
       "description": "Live number of users on any page within the service",
       "info": [
         "Data source: Google Analytics",

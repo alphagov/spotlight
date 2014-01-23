@@ -2,8 +2,8 @@ def values
   {
     'realtime' => {
       'no-realistic-dashboard' => {
-        title: 'Real-time usage',
-        description: 'Real-time usage',
+        title: 'Live service usage',
+        description: 'Live service usage',
         raw: "//span[@class='impact-number']/strong[text()='15']",
         info: true
       }

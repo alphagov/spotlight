@@ -1,15 +1,15 @@
 {
   "page-type": "module",
   "module-type": "realtime",
-  "title": "Real-time usage",
+  "title": "Live service usage",
   "description": "Live number of users on any page within the service",
-  "dashboard-title": "Payment to register a death abroad",
+  "dashboard-title": "Pay to get documents legalised by post",
   "dashboard-strapline": "Service performance",
-  "dashboard-slug": "pay-register-death-abroad",
+  "dashboard-slug": "pay-legalisation-post",
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."
   ],
-  "data-group": "pay-register-death-abroad",
+  "data-group": "pay-legalisation-post",
   "data-type": "realtime"
 }

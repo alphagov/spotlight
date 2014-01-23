@@ -1,15 +1,15 @@
 {
   "page-type": "module",
   "module-type": "realtime",
-  "title": "Real-time usage",
+  "title": "Live service usage",
   "description": "Live number of users on any page within the service",
-  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-title": "Pay to legalise documents using the premium service",
   "dashboard-strapline": "Service performance",
-  "dashboard-slug": "deposit-foreign-marriage",
+  "dashboard-slug": "pay-legalisation-drop-off",
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."
   ],
-  "data-group": "deposit-foreign-marriage",
+  "data-group": "pay-legalisation-drop-off",
   "data-type": "realtime"
 }
