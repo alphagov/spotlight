@@ -63,6 +63,7 @@
       ]
     },
     {
+      "slug": "service-availability",
       "module-type": "availability",
       "title": "Service availability",
       "description": "",
