@@ -111,7 +111,7 @@ module.exports = function(grunt) {
     },
     // Lints our JavaScript
     jshint: {
-      files: "app/**/*.js",
+      files: ["app/**/*.js", "app/support/**/*.json"],
       options: {
         ignores: ['app/vendor/**'],
         eqnull: true,
