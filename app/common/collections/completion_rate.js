@@ -10,8 +10,11 @@ define([
         if (this.options.tabbedAttr) {
           params[this.options.tabbedAttr] = this.options.tabs[0].id;
         }
-        if (this.options.period) {
-          params.period = this.options.period;
+        if (this.options.period || this.period) {
+          params.period = this.options.period || this.period;
+        }
+        if (this.options.duration || this.duration) {
+          params.duration = this.options.duration || this.duration;
         }
         if (this.options.category) {
           params.group_by = this.options.category;

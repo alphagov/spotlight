@@ -1,9 +1,10 @@
 define([
   'extensions/collections/matrix',
   'extensions/collections/collection',
-  'extensions/models/group'
+  'extensions/models/group',
+  'extensions/models/query'
 ],
-function (MatrixCollection, Collection, Group) {
+function (MatrixCollection, Collection, Group, Query) {
 
   var CompletionCollection = MatrixCollection.extend({
     model: Group,
@@ -15,13 +16,11 @@ function (MatrixCollection, Collection, Group) {
       this.setValueAttribute(options);
       this.tabbedAttr= options.tabbedAttr || null;
       this.tabs= options.tabs || null;
-      this.period= options.period || null;
+      this.period= options.period || 'week';
+      this.duration = options.duration || Query.prototype.periods[this.period].duration;
       MatrixCollection.prototype.initialize.apply(this, arguments);
-      if (!this.period) {
-        this.query.set('period', 'week', {silent: true, utc: false});
+      if(!options.period){
         delete this.query.attributes.period;
-      } else { 
-        this.query.set('period', this.period);
       }
     },
     
@@ -109,19 +108,13 @@ function (MatrixCollection, Collection, Group) {
         return this.getMoment(d._timestamp);
       });
       
-      var eventDates;
-      var datePeriod = this.period || "week";
-      if (!this.period) {
-        eventDates = this.weeksFrom(latestEventTimestamp, 9);
-      } else { 
-        eventDates = this.periodsFrom(latestEventTimestamp, 12, datePeriod);
-      }
+      var eventDates = this.periodsFrom(latestEventTimestamp, this.duration, this.period);
 
       var values = _.map(eventDates, function (timestamp) {
         var existingEvent = this.getEventForTimestamp(events, timestamp);
         return _.extend(config.modelAttribute(existingEvent), {
           _start_at: timestamp.clone().add(1, 'hours'),
-          _end_at: timestamp.clone().add(1, 'hours').add(1, datePeriod)
+          _end_at: timestamp.clone().add(1, 'hours').add(1, this.period)
         });
       }, this);
       
@@ -131,17 +124,10 @@ function (MatrixCollection, Collection, Group) {
         values: new Collection(values).models
       });
       
-      if (!this.period) {
-        vals.weeks = {
-          total: this.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
-          available: eventsWithData
-        };
-      } else { 
-        vals.weeks = {
-          total: this.numberOfEventsInPeriod(earliestEventTimestamp, latestEventTimestamp, datePeriod) + 1,
-          available: eventsWithData
-        };        
-      }
+      vals.weeks = {
+        total: this.numberOfEventsInPeriod(earliestEventTimestamp, latestEventTimestamp, this.period) + 1,
+        available: eventsWithData
+      };
 
       return vals;
     }
