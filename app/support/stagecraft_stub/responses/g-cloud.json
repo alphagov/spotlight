@@ -147,7 +147,7 @@
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "series": [
-         { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
+         { "id": "Cloud Support Services (CSS)", "title": "Specialist cloud services" },
          { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
          { "id": "Cloud Infrastructure as a Service (IaaS)", "title": "Cloud Infrastructure as a Service" },
          { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }

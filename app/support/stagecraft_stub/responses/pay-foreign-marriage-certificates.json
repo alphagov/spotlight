@@ -30,6 +30,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
