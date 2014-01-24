@@ -19,13 +19,14 @@ function (MatrixCollection, Collection, Group, Query) {
       this.period= options.period || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
       MatrixCollection.prototype.initialize.apply(this, arguments);
-      if(!options.period){
-        delete this.query.attributes.period;
-      }
     },
     
     setValueAttribute: function(options) {
-      this.valueAttribute= options.valueAttribute || 'uniqueEvents';
+      if(options.valueAttribute){
+        this.valueAttribute = options.valueAttribute+':sum';
+      } else {
+        this.valueAttribute = 'uniqueEvents:sum';
+      }
     },
 
     uniqueEventsFor: function (data, matcher) {

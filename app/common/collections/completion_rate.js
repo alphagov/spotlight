@@ -1,6 +1,7 @@
 define([
-  'common/collections/completion'
-], function(CompletionCollection) {
+  'common/collections/completion',
+  'extensions/collections/collection'
+], function(CompletionCollection, Collection) {
   var CompletionRateSeries = CompletionCollection.extend({
     
     queryParams: function () {
@@ -20,12 +21,51 @@ define([
           params.group_by = this.options.category;
         }
       }
+      params.collect = this.valueAttribute;
+      params.group_by = this.matchingAttribute;
       
       return params;
     },
 
     parse: function (response) {
       this.data = response.data;
+      var values = [], value;
+
+      var periods = response.data[0].values.length;
+
+      _.times(periods, function(i){
+        value = {
+          _start_at: this.getMoment(response.data[0].values[i]._start_at),
+          _end_at: this.getMoment(response.data[0].values[i]._end_at)
+        };
+        startTotal = 0;
+        endTotal = 0;
+        _.each(response.data, function(d){
+          if(d[this.matchingAttribute].match(this.startMatcher) !== null){
+            startTotal += d.values[i][this.valueAttribute];
+          }
+          if(d[this.matchingAttribute].match(this.endMatcher) !== null){
+            endTotal += d.values[i][this.valueAttribute];
+          }
+        }, this);
+        if(startTotal > 0){
+          value.completion = endTotal / startTotal;
+        } else {
+          value.completion = null;
+        }
+        values.push(value);
+      }, this);
+
+      return {
+        id: "completion",
+        title: "Completion rate",
+        values: new Collection(values).models,
+        weeks: {
+          total: values.length,
+          available: values.length
+        }
+      };
+
       
       // If we have nested data, make it flat.
       var newData = [];
