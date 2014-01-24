@@ -24,9 +24,9 @@ function (MatrixCollection, Collection, Group, Query) {
       }
     },
     
-    setValueAttribute: function(options) { 
+    setValueAttribute: function(options) {
       this.valueAttribute= options.valueAttribute || 'uniqueEvents';
-    }, 
+    },
 
     uniqueEventsFor: function (data, matcher) {
       var events = _.filter(data, function (d) {
@@ -37,7 +37,7 @@ function (MatrixCollection, Collection, Group, Query) {
         return 0;
       }
 
-      return _.reduce(events, function (mem, d) { 
+      return _.reduce(events, function (mem, d) {
         return mem + d[this.valueAttribute];
       }, 0, this);
     },
@@ -63,19 +63,19 @@ function (MatrixCollection, Collection, Group, Query) {
     eventsFrom: function (data) {
       var eventsByTimestamp = _.groupBy(data, function (d) { return d._timestamp; });
 
-       var mapped = _.map(eventsByTimestamp, function (events) {
-         return {
-           _timestamp: events[0]._timestamp,
-           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-           totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
-         };
-       }, this);
+      var mapped = _.map(eventsByTimestamp, function (events) {
+        return {
+          _timestamp: events[0]._timestamp,
+          totalStarted: this.uniqueEventsFor(events, this.startMatcher),
+          totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
+        };
+      }, this);
 
-       var eventsWithStarts = _.filter(mapped, function(e) {
-         return e.totalStarted;
-       });
+      var eventsWithStarts = _.filter(mapped, function(e) {
+        return e.totalStarted;
+      });
 
-       return eventsWithStarts;
+      return eventsWithStarts;
     },
 
     numberOfJourneyStarts: function () {
@@ -98,7 +98,7 @@ function (MatrixCollection, Collection, Group, Query) {
       
       this.setValueAttribute(this.options);
       
-      var events = this.eventsFrom(data); 
+      var events = this.eventsFrom(data);
       var eventsWithData = events.length;
 
       var earliestEventTimestamp = this.earliest(events, function (d) {

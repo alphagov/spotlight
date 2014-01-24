@@ -27,7 +27,7 @@ define([
     parse: function (response) {
       this.data = response.data;
       
-      // If we have nested data, make it flat. 
+      // If we have nested data, make it flat.
       var newData = [];
       _.each(this.data, function(d) {
         if (d.values) {
@@ -65,7 +65,7 @@ define([
       };
 
       return this.series(completionConfiguration);
-    } 
+    }
 
   });
 
