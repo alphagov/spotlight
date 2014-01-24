@@ -16,19 +16,6 @@ a[rel="external"] {
 
 }
 
-a[rel="external"][target="_blank"]:after {
-  // hidden as it's not displayed correctly in IE8 due to browser bug
-  .lte-ie8 & {
-      display:none;
-  }
-
-  background-image: url("../images/icon-newwindow.gif");
-
-  @include device-pixel-ratio() {
-    background-image: url("../images/icon-newwindow@2x.gif");
-  }
-}
-
 #content {
   h1 {
     @include bold-24($tabular-numbers: true);
