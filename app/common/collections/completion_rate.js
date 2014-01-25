@@ -3,27 +3,18 @@ define([
   'extensions/collections/collection'
 ], function(CompletionCollection, Collection) {
   var CompletionRateSeries = CompletionCollection.extend({
-    
     queryParams: function () {
-      var params = {};
-      
-      if (this.options) {
-        if (this.options.tabbedAttr) {
-          params[this.options.tabbedAttr] = this.options.tabs[0].id;
-        }
-        if (this.options.period || this.period) {
-          params.period = this.options.period || this.period;
-        }
-        if (this.options.duration || this.duration) {
-          params.duration = this.options.duration || this.duration;
-        }
-        if (this.options.category) {
-          params.group_by = this.options.category;
-        }
+      var params = {
+        collect: this.valueAttr,
+        duration: this.duration,
+        group_by: this.matchingAttribute
+        period: this.period,
       }
-      params.collect = this.valueAttr;
-      params.group_by = this.matchingAttribute;
-      
+
+      if (this.options && this.options.tabbedAttr) {
+        params[this.options.tabbedAttr] = this.options.tabs[0].id;
+      }
+
       return params;
     },
 
