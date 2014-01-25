@@ -21,7 +21,7 @@ define([
           params.group_by = this.options.category;
         }
       }
-      params.collect = this.valueAttribute;
+      params.collect = this.valueAttr;
       params.group_by = this.matchingAttribute;
       
       return params;
@@ -42,10 +42,10 @@ define([
         endTotal = 0;
         _.each(response.data, function(d){
           if(d[this.matchingAttribute].match(this.startMatcher) !== null){
-            startTotal += d.values[i][this.valueAttribute];
+            startTotal += d.values[i][this.valueAttr];
           }
           if(d[this.matchingAttribute].match(this.endMatcher) !== null){
-            endTotal += d.values[i][this.valueAttribute];
+            endTotal += d.values[i][this.valueAttr];
           }
         }, this);
         if(startTotal > 0){

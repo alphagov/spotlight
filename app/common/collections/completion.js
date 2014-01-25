@@ -22,10 +22,10 @@ function (MatrixCollection, Collection, Group, Query) {
     },
     
     setValueAttribute: function(options) {
-      if(options.valueAttribute){
-        this.valueAttribute = options.valueAttribute+':sum';
+      if(options.valueAttr){
+        this.valueAttr = options.valueAttr+':sum';
       } else {
-        this.valueAttribute = 'uniqueEvents:sum';
+        this.valueAttr = 'uniqueEvents:sum';
       }
     },
 
@@ -39,7 +39,7 @@ function (MatrixCollection, Collection, Group, Query) {
       }
 
       return _.reduce(events, function (mem, d) {
-        return mem + d[this.valueAttribute];
+        return mem + d[this.valueAttr];
       }, 0, this);
     },
 

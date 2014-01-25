@@ -95,7 +95,7 @@ function (CompletionCollection) {
         start_matcher: /start$/,
         start_matcher_suffix: "start",
         end_matcher: /done$/,
-        value_attribute: "value"
+        value_attr: "value"
       });
 
       sharedBehaviourForCompletion({
@@ -116,7 +116,7 @@ function (CompletionCollection) {
                 startMatcher: context.start_matcher,
                 endMatcher: context.end_matcher,
                 matchingAttribute: context.matching_attribute,
-                valueAttribute: context.value_attribute
+                valueAttr: context.value_attr
               });
               collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
               return collection;
