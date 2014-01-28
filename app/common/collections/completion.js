@@ -14,8 +14,6 @@ function (MatrixCollection, Collection, Group, Query) {
       this.endMatcher = options.endMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
-      this.tabbedAttr = options.tabbedAttr || null;
-      this.tabs = options.tabs || null;
       this.period = options.period || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
 
@@ -49,7 +47,7 @@ function (MatrixCollection, Collection, Group, Query) {
 
       var values = [];
       var dataTotals = { start: null, end: null };
-      var periods = response.data[0].values.length;
+      var periods = response.data[0].values ? response.data[0].values.length : 0;
 
       _.times(periods, function(i){
         var totals = _.reduce(response.data, function(memo, d){
@@ -79,7 +77,7 @@ function (MatrixCollection, Collection, Group, Query) {
       var collectionAttrs = {
         values: new Collection(values).models,
         _start: dataTotals.start,
-        _end: dataTotals.end,
+        _end: dataTotals.end
       };
 
       return _.extend(this.defaultCollectionAttrs(collectionAttrs), collectionAttrs);

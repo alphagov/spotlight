@@ -13,7 +13,7 @@ define([
       return {
         id: "done",
         title: "Done",
-        mean: collection._end / available,
+        mean: available > 0 ? collection._end / available : null,
         weeks: {
           total: collection.values.length,
           available: available
