@@ -29,7 +29,7 @@ function (CompletionRateCollection) {
       var input = {
         _start: 10,
         _end: 5,
-        values: [ {completion: 1}, {completion: null} ]
+        values: [ { get: function(){ return 1; } }, { get: function(){ return null; } } ]
       };
       var expected = {
         id: "completion",
@@ -44,7 +44,7 @@ function (CompletionRateCollection) {
       var input = {
         _start: 0,
         _end: 5,
-        values: [ {completion: 1}, {completion: null} ]
+        values: [ { get: function(){ return 1; } }, { get: function(){ return null; } } ]
       };
       var expected = {
         id: "completion",
