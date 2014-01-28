@@ -1,6 +1,14 @@
 <% if (numberOfVisitors != null) { %>
 <p>
-  <span class="impact-number"><strong><%= numberOfVisitors %></strong></span>
-  <span class="stat-description"><%= numberOfVisitors == 1 ? "user" : "users" %> online now</span>
+  <div class="stat">
+    <div class="impact-number"><strong>&nbsp;</strong></div>
+    <span class="stat-description"></span>
+  </div>
+
+  <div class="sparkline">
+    <div class="sparkline-graph"></div>
+    <span class="sparkline-title"></span>
+  </div>
+
 </p>
 <% } %>
