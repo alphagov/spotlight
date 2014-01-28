@@ -5,7 +5,7 @@
   "title": "Monthly spend by lot",
   "description": "Spend each month by category of service purchased",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via SMEs.",
+  "dashboard-strapline": "Public purchasing performance",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
@@ -19,7 +19,7 @@
     "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "series": [
-  { "id": "Cloud Support Services (CSS)", "title": "Cloud Support Services" },
+  { "id": "Cloud Support Services (CSS)", "title": "Specialist cloud services" },
   { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
   { "id": "Cloud Infrastructure as a Service (IaaS)", "title": "Cloud Infrastructure as a Service" },
   { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }

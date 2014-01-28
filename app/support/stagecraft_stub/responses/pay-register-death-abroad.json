@@ -31,6 +31,7 @@
       "matching-attribute": "eventCategory"
     },
     {
+      "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
@@ -38,7 +39,7 @@
       "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
-        "<a href='/service-manual/measurement/completion-rate' rel='external' target='_blank'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "start-matcher": "start$",
@@ -73,7 +74,7 @@
       "info": [
         "Data source: Pingdom",
         "Page load time measures the time taken for a sample page within the service to load.",
-        "<a href='/service-manual/operations/uptime-and-availability' rel='external' target='_blank'>Uptime</a> measures the percentage of time that the service was observed to be available."
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
         {"id": "day", "name": "30 days"},

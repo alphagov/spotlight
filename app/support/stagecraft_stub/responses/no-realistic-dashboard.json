@@ -83,6 +83,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "completion-rate",
       "page-type": "module",
       "module-type": "completion_rate",
       "title": "Completion rate",

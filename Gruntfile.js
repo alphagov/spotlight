@@ -111,7 +111,7 @@ module.exports = function(grunt) {
     },
     // Lints our JavaScript
     jshint: {
-      files: "app/**/*.js",
+      files: ["app/**/*.js", "app/support/**/*.json"],
       options: {
         ignores: ['app/vendor/**'],
         eqnull: true,
@@ -253,22 +253,22 @@ module.exports = function(grunt) {
     'copy:spotlight_assets'
   ]);
 
-  grunt.registerTask('build:development', [
+  grunt.registerTask('build:common', [
     'copy:vendor',
     'copy:govuk_template',
     'jshint',
     'clean',
-    'copy:assets',
+    'copy:assets'
+  ]);
+
+  grunt.registerTask('build:development', [
+    'build:common',
     'sass:development',
     'digest'
   ]);
 
   grunt.registerTask('build:production', [
-    'copy:vendor',
-    'copy:govuk_template',
-    'jshint',
-    'clean',
-    'copy:assets',
+    'build:common',
     'sass:production',
     'requirejs:production',
     'requirejs:production-no-d3',
