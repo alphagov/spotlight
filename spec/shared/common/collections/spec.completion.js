@@ -2,163 +2,150 @@ define([
   'common/collections/completion'
 ],
 function (CompletionCollection) {
-    var someFakeFCOTransactionDataLabel = [
-      {
-        _timestamp: "2013-06-09T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_begin",
-        uniqueEvents: 5
-      },
-      {
-        _timestamp: "2013-06-16T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_begin",
-        uniqueEvents: 7
-      },
-      {
-        _timestamp: "2013-06-23T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_begin",
-        uniqueEvents: 9
-      },
-      {
-        _timestamp: "2013-06-30T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_begin",
-        uniqueEvents: null
-      },
-      {
-        _timestamp: "2013-06-09T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_end",
-        uniqueEvents: 3
-      },
-      {
-        _timestamp: "2013-06-16T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_end",
-        uniqueEvents: 3
-      },
-      {
-        _timestamp: "2013-06-23T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_end",
-        uniqueEvents: 4
-      },
-      {
-        _timestamp: "2013-06-30T23:00:00+00:00",
-        eventLabel: "fco-transaction-name_end",
-        uniqueEvents: null
-      }
-    ];
+  describe("Completion collection", function () {
+    var mockResponse = {
+      "data": [
+        {
+          "eventCategory": "start",
+          "uniqueEvents:sum": 40.0,
+          "values": [
+            {
+              "_end_at": "2013-12-02T00:00:00+00:00",
+              "_start_at": "2013-11-25T00:00:00+00:00",
+              "uniqueEvents:sum": 15.0
+            },
+            {
+              "_end_at": "2013-12-09T00:00:00+00:00",
+              "_start_at": "2013-12-02T00:00:00+00:00",
+              "uniqueEvents:sum": 25.0
+            }
+          ]
+        },
+        {
+          "eventCategory": "confirm",
+          "uniqueEvents:sum": 20.0,
+          "values": [
+            {
+              "_end_at": "2013-12-02T00:00:00+00:00",
+              "_start_at": "2013-11-25T00:00:00+00:00",
+              "uniqueEvents:sum": 8.0
+            },
+            {
+              "_end_at": "2013-12-09T00:00:00+00:00",
+              "_start_at": "2013-12-02T00:00:00+00:00",
+              "uniqueEvents:sum": 12.0
+            }
+          ]
+        },
+        {
+          "eventCategory": "done",
+          "uniqueEvents:sum": 10.0,
+          "values": [
+            {
+              "_end_at": "2013-12-02T00:00:00+00:00",
+              "_start_at": "2013-11-25T00:00:00+00:00",
+              "uniqueEvents:sum": 10.0
+            },
+            {
+              "_end_at": "2013-12-09T00:00:00+00:00",
+              "_start_at": "2013-12-02T00:00:00+00:00",
+              "uniqueEvents:sum": null
+            }
+          ]
+        }
+      ]
+    };
 
-    var someFakeFCOTransactionDataCategory = [
-      {
-        _timestamp: "2013-06-09T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:start",
-        value: 5
-      },
-      {
-        _timestamp: "2013-06-16T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:start",
-        value: 7
-      },
-      {
-        _timestamp: "2013-06-23T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:start",
-        value: 9
-      },
-      {
-        _timestamp: "2013-06-30T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:start",
-        value: null
-      },
-      {
-        _timestamp: "2013-06-09T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:done",
-        value: 3
-      },
-      {
-        _timestamp: "2013-06-16T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:done",
-        value: 3
-      },
-      {
-        _timestamp: "2013-06-23T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:done",
-        value: 4
-      },
-      {
-        _timestamp: "2013-06-30T23:00:00+00:00",
-        eventCategory: "fco-transaction-name:done",
-        value: null
-      }
-    ];
-
-    describe("FCO volumetrics collections", function () {
-
-      sharedBehaviourForCompletion({
-        data: someFakeFCOTransactionDataCategory,
-        start_matcher: /start$/,
-        start_matcher_suffix: "start",
-        end_matcher: /done$/,
-        value_attr: "value"
+    it("should use options in query params", function() {
+      var collection = new CompletionCollection({}, {
+        valueAttr: 'one',
+        period: 'month',
+        matchingAttribute: 'two',
+        tabbedAttr: 'tabbing',
+        tabs: [
+          { id: 'tabid' }
+        ]
       });
 
-      sharedBehaviourForCompletion({
-        data: someFakeFCOTransactionDataLabel,
-        start_matcher: /_begin$/,
-        start_matcher_suffix: "_begin",
-        end_matcher: /_end$/,
-        matching_attribute: "eventLabel"
-      });
-
-      function sharedBehaviourForCompletion(context) {
-
-        var volumetricsCollection = undefined,
-            collectionFor = function (data) {
-              collection = new CompletionCollection({}, {
-                "data-group": 'notARealFCOTransaction',
-                "data-type": 'journey',
-                startMatcher: context.start_matcher,
-                endMatcher: context.end_matcher,
-                matchingAttribute: context.matching_attribute,
-                valueAttr: context.value_attr
-              });
-              collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-              return collection;
-            };
-
-        beforeEach(function () {
-          volumetricsCollection = collectionFor({data: context.data});
-        });
-        
-        it("should include the period in the url, if it is set", function () {
-          var periodCollection = new CompletionCollection({}, {
-            "data-group": 'notARealFCOTransaction',
-            "data-type": 'journey',
-            "period": "month"
-          });
-          periodCollection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-          
-          expect(periodCollection.url()).toContain("period=month");
-        });
-
-        it("should query backdrop for journey data for the specified service", function () {
-          expect(volumetricsCollection.url()).toContain("journey");
-          expect(volumetricsCollection.url()).toContain("notARealFCOTransaction");
-        });
-
-        it("should count the total number of people starting the transaction", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.numberOfJourneyStarts()).toEqual(21);
-        });
-
-        it("should count the total number of people completing the transaction", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.numberOfJourneyCompletions()).toEqual(10);
-        });
-
-        it("should give the total completion rate as a percentage", function () {
-          volumetricsCollection.data = context.data;
-          expect(volumetricsCollection.completionRate()).toBeCloseTo(0.476, 1);
-        });
-
-      }
-
+      expect(collection.url()).toContain('period=month');
+      expect(collection.url()).toContain('collect=one');
+      expect(collection.url()).toContain('group_by=two');
+      expect(collection.url()).toContain('tabbing=tabid');
     });
-  }
-);
+
+    it("should use default query params", function() {
+      var collection = new CompletionCollection({}, {});
+
+      expect(collection.url()).toContain('period=week');
+      expect(collection.url()).toContain('collect=uniqueEvents%3Asum');
+      expect(collection.url()).toContain('group_by=eventCategory');
+    });
+
+    it("should update value attribute on parse", function() {
+      var collection = new CompletionCollection({}, { valueAttr: 'one' });
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+
+      expect(collection.valueAttr).toEqual('one');
+      collection.options.valueAttr = 'two';
+      collection.parse(mockResponse);
+      expect(collection.valueAttr).toEqual('two');
+    });
+
+    it("should parse responses", function() {
+      var collection = new CompletionCollection({}, {
+        startMatcher: "start",
+        endMatcher: "done"
+      });
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+
+      var result = collection.parse(mockResponse);
+
+      expect(result._start).toEqual(40);
+      expect(result._end).toEqual(10);
+      expect(result.values.length).toEqual(2);
+      expect(result.values[0].attributes).toEqual({
+        _start_at: collection.getMoment('2013-11-25T00:00:00+00:00'),
+        _end_at: collection.getMoment('2013-12-02T00:00:00+00:00'),
+        _start: 15,
+        _end: 10
+      });
+      expect(result.values[1].attributes).toEqual({
+        _start_at: collection.getMoment('2013-12-02T00:00:00+00:00'),
+        _end_at: collection.getMoment('2013-12-09T00:00:00+00:00'),
+        _start: 25,
+        _end: null
+      });
+      expect(collection.defaultValueAttrs).toHaveBeenCalled();
+      expect(collection.defaultCollectionAttrs).toHaveBeenCalled();
+    });
+
+    it("should allow matcher to be a regex", function() {
+      var collection = new CompletionCollection({}, {
+        startMatcher: "start",
+        endMatcher: "(confirm|done)"
+      });
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+
+      var result = collection.parse(mockResponse);
+
+      expect(result._start).toEqual(40);
+      expect(result._end).toEqual(30);
+      expect(result.values.length).toEqual(2);
+      expect(result.values[0].attributes).toEqual({
+        _start_at: collection.getMoment('2013-11-25T00:00:00+00:00'),
+        _end_at: collection.getMoment('2013-12-02T00:00:00+00:00'),
+        _start: 15,
+        _end: 18
+      });
+      expect(result.values[1].attributes).toEqual({
+        _start_at: collection.getMoment('2013-12-02T00:00:00+00:00'),
+        _end_at: collection.getMoment('2013-12-09T00:00:00+00:00'),
+        _start: 25,
+        _end: 12
+      });
+    });
+  });
+});
