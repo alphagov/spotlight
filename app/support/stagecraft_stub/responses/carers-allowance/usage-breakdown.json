@@ -20,7 +20,7 @@
     "Offline: applications made using a printed form"
   ],
   "series": [
-     { "id": "ca_clerical_received", "title": "Non Digital" },
+     { "id": "ca_clerical_received", "title": "Non-digital" },
      { "id": "ca_e_claims_received", "title": "Digital" }
   ]
 }
