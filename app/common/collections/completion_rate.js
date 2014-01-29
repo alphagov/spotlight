@@ -2,68 +2,23 @@ define([
   'common/collections/completion'
 ], function(CompletionCollection) {
   var CompletionRateSeries = CompletionCollection.extend({
-    
-    queryParams: function () {
-      var params = {};
-      
-      if (this.options) {
-        if (this.options.tabbedAttr) {
-          params[this.options.tabbedAttr] = this.options.tabs[0].id;
-        }
-        if (this.options.period) {
-          params.period = this.options.period;
-        }
-        if (this.options.category) {
-          params.group_by = this.options.category;
-        }
-      }
-      
-      return params;
+    defaultValueAttrs: function (value){
+      return {
+        completion: value._start > 0 ? value._end / value._start : null
+      };
     },
 
-    parse: function (response) {
-      this.data = response.data;
-      
-      // If we have nested data, make it flat. 
-      var newData = [];
-      _.each(this.data, function(d) {
-        if (d.values) {
-          var attr = this.options.matchingAttribute;
-          var category = d[attr];
-          _.each(d.values, function(e) {
-            e[attr] = category;
-            if (!e._timestamp) {
-              e._timestamp = e._start_at;
-            }
-            if (!e._month_start_at) {
-              e._month_start_at = e._start_at;
-            }
-            newData.push(e);
-          });
-        }
-      }, this);
-      
-      this.data = (newData.length) ? newData : this.data;
-
-      var that = this;
-      var completionConfiguration = {
+    defaultCollectionAttrs: function(collection){
+      return {
         id: "completion",
         title: "Completion rate",
-        modelAttribute: function (event) {
-          return {
-            completion: that.findCompletion(event)
-          };
-        },
-        collectionAttribute: function () {
-          return {
-            totalCompletion: that.completionRate()
-          };
+        totalCompletion: collection._start > 0 ? (collection._end/collection._start) : null,
+        weeks: {
+          total: collection.values.length,
+          available: _.filter(collection.values, function(v){ return v.get('completion') !== null; }).length
         }
       };
-
-      return this.series(completionConfiguration);
-    } 
-
+    }
   });
 
   return CompletionRateSeries;

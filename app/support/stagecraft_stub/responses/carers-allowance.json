@@ -55,7 +55,7 @@
       "start-matcher": "^ca_",
       "end-matcher": "ca_e_claims_received$",
       "matching-attribute": "key",
-      "value-attribute": "value"
+      "value-attribute": "value:sum"
     },
     {
       "module-type": "completion_rate",
