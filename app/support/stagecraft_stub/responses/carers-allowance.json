@@ -17,9 +17,9 @@
       "data-type": "realtime"
     },
     {
-      "slug": "weekly-by-channel",
+      "slug": "usage-breakdown",
       "module-type": "grouped_timeseries",
-      "title": "Claims by channel",
+      "title": "Usage breakdown",
       "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
@@ -43,7 +43,7 @@
     },
     {
       "module-type": "completion_rate",
-      "slug": "digital-takeup-weekly",
+      "slug": "digital-takeup",
       "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
