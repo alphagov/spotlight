@@ -1,16 +1,16 @@
 .realtime {
 
 	.stat {
-	  float: left; 
-	  width: 220px; 
+	  float: left;
+	  width: 220px;
 	  min-width: 220px;
 
-	  @media (max-width: 640px) {   
+	  @media (max-width: 640px) {
       float: none;
     }
 	}
 
-  .sparkline { 
+  .sparkline {
     overflow: hidden;
 
 		.sparkline-graph {
@@ -21,18 +21,18 @@
 		        max-width: 100%;
 		        min-height: 70px;
 		      }
-	
+
 		      .inner {
-		        left: 10px;
-		        right: 10px;
-		        bottom: 10px;  
+		        left: 70px;
+		        right: 70px;
+		        bottom: 10px;
 		        top: 10px;
 		      }
-	
+
 		    }
 		  }
 		}
-		
+
 	}
 
 }

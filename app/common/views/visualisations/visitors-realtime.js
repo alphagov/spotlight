@@ -15,7 +15,12 @@ function (View, SparklineView, template) {
     graphLabelTag: '.sparkline-title',
 
     initialize: function (options) {
+
       View.prototype.initialize.apply(this, arguments);
+
+      if (isClient) {
+        this.listenTo(this.collection, 'sync', this.render());
+      }
 
       this.selectionValueAttr = 'unique_visitors';
 
@@ -30,7 +35,10 @@ function (View, SparklineView, template) {
     },
 
     render: function() {
+
       View.prototype.render.apply(this, arguments);
+
+      this.currentVisitors = this.getCurrentVisitors();
 
       var value, headlineLabel, labels, graphLabel, content;
       var selection = this.collection.getCurrentSelection();
@@ -84,14 +92,14 @@ function (View, SparklineView, template) {
 
     views: function() {
      var views = {};
-     // Only render sparkline if more than one data item exists.
      if (this.collection && this.collection.length && this.collection.first().get('values').length > 1 && this.sparkline) {
        views['.sparkline-graph'] = {
           view: SparklineView,
           options: function () {
             return {
               valueAttr: this.selectionValueAttr,
-              period: "hour"
+              period: "hour",
+              showEndTicks: true
             };
           }
         };
@@ -122,7 +130,7 @@ function (View, SparklineView, template) {
 
         if (latestDate) {
           var period = "hour";
-          if (startDate.diff(latestDate, 'hours') < 1) {
+          if (latestDate.diff(startDate, 'hours') < 1) {
             period = "minute";
           }
           timePeriod = latestDate.diff(startDate, period);

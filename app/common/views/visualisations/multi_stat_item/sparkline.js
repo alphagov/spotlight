@@ -3,20 +3,22 @@ define([
 ],
 function (Graph) {
   var Sparkline = Graph.extend({
-    
-    minYDomainExtent: 0, 
-    
+
+    minYDomainExtent: 0,
+    numYTicks: 1,
+
     initialize: function (options) {
       Graph.prototype.initialize.apply(this, arguments);
 
       this.period = options.period;
       this.showTooltip = options.showTooltip;
+      this.showEndTicks = options.showEndTicks;
     },
 
     getConfigNames: function () {
       return ['overlay', this.period || 'month', 'ymin'];
     },
-    
+
     components: function () {
       var val = [
         {
@@ -25,17 +27,16 @@ function (Graph) {
         },
         { view: this.sharedComponents.hover }
       ];
-      if (this.showTooltip) {
-        var tooltipComponent = {
-          view: this.sharedComponents.tooltip,
-          options: {
-            formatValue: function (value) {
-              return this.formatNumericLabel(value);
-            }
-          }
-        };
-        val.push(tooltipComponent);
+
+      if (this.showEndTicks) {
+        val.push({
+          view: this.sharedComponents.yaxis
+        });
+        val.push({
+          view: this.sharedComponents.yaxisRight
+        });
       }
+
       return val;
     }
   });
