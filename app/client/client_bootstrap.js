@@ -2,7 +2,6 @@ define([
   'stagecraft_api_client',
   'underscore',
   'modernizr',
-  './preprocessors/navigation',
   './preprocessors/popover',
   './preprocessors/visualisation_fallback',
   './preprocessors/report_a_problem'

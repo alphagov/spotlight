@@ -1,150 +1,88 @@
 define([
   'extensions/collections/matrix',
   'extensions/collections/collection',
-  'extensions/models/group'
+  'extensions/models/group',
+  'extensions/models/query'
 ],
-function (MatrixCollection, Collection, Group) {
+function (MatrixCollection, Collection, Group, Query) {
 
   var CompletionCollection = MatrixCollection.extend({
     model: Group,
 
     initialize: function (models, options) {
-      this.startMatcher= options.startMatcher;
-      this.endMatcher= options.endMatcher;
-      this.matchingAttribute= options.matchingAttribute || 'eventCategory';
+      this.startMatcher = options.startMatcher;
+      this.endMatcher = options.endMatcher;
+      this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
-      this.tabbedAttr= options.tabbedAttr || null;
-      this.tabs= options.tabs || null;
-      this.period= options.period || null;
+      this.period = options.period || 'week';
+      this.duration = options.duration || Query.prototype.periods[this.period].duration;
+
       MatrixCollection.prototype.initialize.apply(this, arguments);
-      if (!this.period) {
-        this.query.set('period', 'week', {silent: true, utc: false});
-        delete this.query.attributes.period;
-      } else { 
-        this.query.set('period', this.period);
-      }
     },
-    
-    setValueAttribute: function(options) { 
-      this.valueAttribute= options.valueAttribute || 'uniqueEvents';
-    }, 
 
-    uniqueEventsFor: function (data, matcher) {
-      var events = _.filter(data, function (d) {
-        return d[this.matchingAttribute].match(matcher) !== null;
-      }, this);
+    setValueAttribute: function(options) {
+      this.valueAttr = options.valueAttr ? options.valueAttr : 'uniqueEvents:sum';
+    },
 
-      if (events.length === 0) {
-        return 0;
+    queryParams: function () {
+      var params = {
+        collect: this.valueAttr,
+        duration: this.duration,
+        group_by: this.matchingAttribute,
+        period: this.period
+      };
+
+      if (this.options && this.options.tabbedAttr) {
+        params[this.options.tabbedAttr] = this.options.tabs[0].id;
       }
 
-      return _.reduce(events, function (mem, d) { 
-        return mem + d[this.valueAttribute];
-      }, 0, this);
+      return params;
     },
 
-    findCompletion: function (event) {
-      var completion = null;
+    parse: function (response) {
+      this.data = response.data;
 
-      if (event != null) {
-        if ((event.totalStarted === 0) || isNaN(event.totalStarted)) {
-          return null;
-        }
-        completion = event.totalCompleted / event.totalStarted;
-      }
-      return completion;
-    },
-
-    getEventForTimestamp: function (events, timestamp) {
-      return _.find(events, function (d) {
-        return this.getMoment(d._timestamp).isSame(timestamp);
-      }, this);
-    },
-
-    eventsFrom: function (data) {
-      var eventsByTimestamp = _.groupBy(data, function (d) { return d._timestamp; });
-
-       var mapped = _.map(eventsByTimestamp, function (events) {
-         return {
-           _timestamp: events[0]._timestamp,
-           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
-           totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
-         };
-       }, this);
-
-       var eventsWithStarts = _.filter(mapped, function(e) {
-         return e.totalStarted;
-       });
-
-       return eventsWithStarts;
-    },
-
-    numberOfJourneyStarts: function () {
-      var data = this.data;
-      return this.uniqueEventsFor(data, this.startMatcher);
-    },
-
-    numberOfJourneyCompletions: function () {
-      var data = this.data;
-      return this.uniqueEventsFor(data, this.endMatcher);
-    },
-
-    completionRate: function () {
-      return this.numberOfJourneyCompletions() / this.numberOfJourneyStarts();
-    },
-
-    series: function (config) {
-      
-      var data = this.data;
-      
+      // refresh value attribute to work with tabbed interface
       this.setValueAttribute(this.options);
-      
-      var events = this.eventsFrom(data); 
-      var eventsWithData = events.length;
 
-      var earliestEventTimestamp = this.earliest(events, function (d) {
-        return this.getMoment(d._timestamp);
-      });
-      var latestEventTimestamp = this.latest(events, function (d) {
-        return this.getMoment(d._timestamp);
-      });
-      
-      var eventDates;
-      var datePeriod = this.period || "week";
-      if (!this.period) {
-        eventDates = this.weeksFrom(latestEventTimestamp, 9);
-      } else { 
-        eventDates = this.periodsFrom(latestEventTimestamp, 12, datePeriod);
-      }
+      var values = [];
+      var dataTotals = { start: null, end: null };
+      var periods = response.data[0].values ? response.data[0].values.length : 0;
 
-      var values = _.map(eventDates, function (timestamp) {
-        var existingEvent = this.getEventForTimestamp(events, timestamp);
-        return _.extend(config.modelAttribute(existingEvent), {
-          _start_at: timestamp.clone().add(1, 'hours'),
-          _end_at: timestamp.clone().add(1, 'hours').add(1, datePeriod)
-        });
-      }, this);
-      
-      var vals = _.extend(config.collectionAttribute(events), {
-        id: config.id,
-        title: config.title,
-        values: new Collection(values).models
-      });
-      
-      if (!this.period) {
-        vals.weeks = {
-          total: this.numberOfWeeksInPeriod(earliestEventTimestamp, latestEventTimestamp) + 1,
-          available: eventsWithData
+      _.times(periods, function(i){
+        var totals = _.reduce(response.data, function(memo, d){
+          if(d.values[i][this.valueAttr] > 0){
+            if(d[this.matchingAttribute].match(this.startMatcher) !== null){
+              memo.start += d.values[i][this.valueAttr];
+            }
+            if(d[this.matchingAttribute].match(this.endMatcher) !== null){
+              memo.end += d.values[i][this.valueAttr];
+            }
+          }
+          return memo;
+        }, {start: null, end: null}, this);
+
+        var value = {
+          _start_at: this.getMoment(response.data[0].values[i]._start_at),
+          _end_at: this.getMoment(response.data[0].values[i]._end_at),
+          _start: totals.start,
+          _end: totals.end
         };
-      } else { 
-        vals.weeks = {
-          total: this.numberOfEventsInPeriod(earliestEventTimestamp, latestEventTimestamp, datePeriod) + 1,
-          available: eventsWithData
-        };        
-      }
+        values.push(_.extend(this.defaultValueAttrs(value), value));
 
-      return vals;
+        dataTotals.start += totals.start;
+        dataTotals.end+= totals.end;
+      }, this);
+
+      var collectionAttrs = {
+        values: new Collection(values).models,
+        _start: dataTotals.start,
+        _end: dataTotals.end
+      };
+
+      return _.extend(this.defaultCollectionAttrs(collectionAttrs), collectionAttrs);
     }
+
   });
 
   return CompletionCollection;

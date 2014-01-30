@@ -2,28 +2,24 @@ define([
   'common/collections/completion'
 ], function(CompletionCollection) {
   var CompletionNumbersSeries = CompletionCollection.extend({
+    defaultValueAttrs: function (value){
+      return {
+        uniqueEvents: value._end
+      };
+    },
 
-    parse: function (response) {
-      this.data = response.data;
-      var that = this;
-      var applicationConfiguration = {
+    defaultCollectionAttrs: function(collection){
+      var available = _.filter(collection.values, function(v){ return v.get('uniqueEvents') !== null; }).length;
+      return {
         id: "done",
         title: "Done",
-        modelAttribute: function (event) {
-          return {
-            uniqueEvents: _.isUndefined(event) ? null : event.totalCompleted
-          };
-        },
-        collectionAttribute: function (events) {
-          return {
-            mean: that.numberOfJourneyCompletions() / events.length
-          };
+        mean: available > 0 ? collection._end / available : null,
+        weeks: {
+          total: collection.values.length,
+          available: available
         }
       };
-
-      return this.series(applicationConfiguration);
-    } 
-
+    }
   });
 
   return CompletionNumbersSeries;

@@ -10,6 +10,7 @@ var getRequirejsConfig = function () {
   return extend(requirejsConfig, {
     baseUrl: 'app',
     name: "client",
+    waitSeconds: 60,
     include: ["vendor/almond"],
     deps: [
       'client',
