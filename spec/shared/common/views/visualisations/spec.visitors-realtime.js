@@ -10,12 +10,12 @@ function (VisitorsRealtimeView, Collection) {
       collection = new Collection();
       var data = [
         {
-          _timestamp: collection.getMoment("2002-03-01T00:00:00+00:00"),
-          unique_visitors: 120
-        },
-        {
           _timestamp: collection.getMoment("2002-03-01T00:03:00+00:00"),
           unique_visitors: '100'
+        },
+        {
+          _timestamp: collection.getMoment("2002-03-01T00:00:00+00:00"),
+          unique_visitors: 120
         }
       ];
       collection.reset([ {
@@ -52,12 +52,12 @@ function (VisitorsRealtimeView, Collection) {
 
       var testData = [
         {
-          _timestamp: testCollection.moment().subtract('minutes', 3),
-          unique_visitors: 3
-        },
-        {
           _timestamp: testCollection.moment(),
           unique_visitors: 5
+        },
+        {
+          _timestamp: testCollection.moment().subtract('minutes', 3),
+          unique_visitors: 3
         }
       ];
       testCollection.reset([ {
@@ -84,12 +84,12 @@ function (VisitorsRealtimeView, Collection) {
       testCollection = new Collection();
       var testData = [
         {
-          _timestamp: collection.getMoment("2002-03-01T00:00:00+00:00"),
-          unique_visitors: 3
-        },
-        {
           _timestamp: collection.getMoment("2002-03-01T00:03:00+00:00"),
           unique_visitors: 1
+        },
+        {
+          _timestamp: collection.getMoment("2002-03-01T00:00:00+00:00"),
+          unique_visitors: 3
         }
       ];
       testCollection.reset([ {

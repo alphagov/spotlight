@@ -8,8 +8,8 @@ function (MatrixCollection) {
 
     queryParams: function () {
       return {
-        sort_by: "_timestamp:ascending",
-        limit: this.options.numTwoMinPeriodsToQuery || 182
+        sort_by: "_timestamp:descending",
+        limit: this.options.numTwoMinPeriodsToQuery || 722
       };
     },
 
@@ -28,14 +28,10 @@ function (MatrixCollection) {
 
     parse: function (response) {
 
-      _.each(response.data, function(d) {
-        d.unique_visitors = parseFloat(d.unique_visitors);
-      });
-
       return {
         id: 'realtime',
         title: 'Realtime',
-        values: response.data
+        values: response.data.reverse()
       };
 
     },
