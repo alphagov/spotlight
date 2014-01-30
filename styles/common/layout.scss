@@ -9,6 +9,8 @@
 }
 
 #content {
+  // Opera requires display:block for max-width to work...
+  display: block;
   margin: 0 auto;
   max-width: 1020px;
   padding: 0 0 1em 0;
