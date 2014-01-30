@@ -202,6 +202,15 @@ function (View, Model, Backbone, _) {
     });
 
     describe("numberListFormatter", function() {
+
+      describe("in the special case where the values are 0 and 1", function() {
+        it("should not use decimal places", function() {
+          var formatter = View.prototype.numberListFormatter([0, 1]);
+          expect(formatter(0)).toBe("0");
+          expect(formatter(1)).toBe("1");
+        });
+      });
+
       describe("when all label are lower than 1000", function() {
         it("should format all labels as units", function() {
           var formatter = View.prototype.numberListFormatter([0, 50, 100, 150]);
@@ -229,18 +238,18 @@ function (View, Model, Backbone, _) {
           expect(formatter(800)).toBe("0.8k");
           expect(formatter(1000)).toBe("1.0k");
         });
-        
+
         it("should format with currency prefix if required", function() {
            var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
            expect(formatter(200)).toBe("£0.2k");
          });
-         
+
          it("should format with currency suffix if required", function() {
             View.prototype.currencies['cny'] = { 'prefix': '', 'suffix': ' CNY' };
             var formatter = View.prototype.numberListFormatter([0, 1000], 'cny');
             expect(formatter(200)).toBe("0.2k CNY");
           });
-          
+
       });
 
       describe("when labels go over 1,000,000", function() {

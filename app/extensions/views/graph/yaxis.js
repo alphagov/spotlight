@@ -3,7 +3,7 @@ define([
   './axis'
 ],
 function (require, Axis) {
-  
+
   var YAxis = Axis.extend({
     position: 'left',
     classed: 'y-axis',
@@ -22,6 +22,6 @@ function (require, Axis) {
       return this.numberListFormatter(this.scales.y.tickValues, this.graph.currency);
     }
   });
-  
+
   return YAxis;
 });
