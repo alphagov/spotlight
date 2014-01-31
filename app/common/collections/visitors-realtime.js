@@ -9,7 +9,7 @@ function (MatrixCollection) {
     queryParams: function () {
       return {
         sort_by: "_timestamp:descending",
-        limit: this.options.numTwoMinPeriodsToQuery || 722
+        limit: this.options.numTwoMinPeriodsToQuery || (((60/2) * 24) + 2)
       };
     },
 
