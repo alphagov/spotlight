@@ -4,7 +4,7 @@
   "title": "Live service usage",
   "description": "Live number of users on any page within the service",
   "dashboard-title": "Pay to get documents legalised by post",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-legalisation-post",
   "info": [
     "Data source: Google Analytics",

@@ -9,7 +9,7 @@
     "Number of users is measured using the count of unique events from each stage."
   ],
   "dashboard-title": "Carer's Allowance",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "carers-allowance",
   "data-group": "carers-allowance",
   "data-type": "journey",

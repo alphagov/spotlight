@@ -4,7 +4,7 @@
   "title": "Live service usage",
   "description": "Live number of users on any page within the service",
   "dashboard-title": "Payment to register a death abroad",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-register-death-abroad",
   "info": [
     "Data source: Google Analytics",
