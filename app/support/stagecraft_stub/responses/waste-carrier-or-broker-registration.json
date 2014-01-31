@@ -4,5 +4,17 @@
   "strapline": "Service performance",
   "tagline": "Businesses need to register if they transport waste regularly (or some types of waste as a one off). They also need to register if they buy, sell or dispose of waste – or arrange for someone else to do so.",
   "modules": [
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Users currently using the transaction",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "waste-carriers-registration",
+      "data-type": "realtime"
+    }
   ]
 }
