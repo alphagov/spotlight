@@ -3,7 +3,7 @@
   "module-type": "availability",
   "title": "Service availability",
   "dashboard-title": "Pay to get documents legalised by post",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-legalisation-post",
   "data-group": "pay-legalisation-post",
   "data-type": "monitoring",
