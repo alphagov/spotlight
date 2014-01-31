@@ -4,7 +4,7 @@
   "title": "Service availability",
   "description": "",
   "dashboard-title": "Register as a waste carrier, broker or dealer",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "waste-carrier-or-broker-registration",
   "info": [
     "Data source: Pingdom",
