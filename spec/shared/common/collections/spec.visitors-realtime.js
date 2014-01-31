@@ -21,6 +21,24 @@ function (VisitorsRealtimeCollection, Collection) {
       expect(params.limit).toEqual(60);
     });
 
+    it("parses string data into float format", function () {
+      var collection = new VisitorsRealtimeCollection({
+          'data': [
+            {
+              _timestamp: "2002-03-01T00:00:03+00:00",
+              unique_visitors: '100'
+            },
+            {
+              _timestamp: "2002-03-01T00:00:00+00:00",
+              unique_visitors: '120'
+            }
+          ]
+      }, { 'parse': true } );
+      expect(collection.first().get('values').first().get('_timestamp').format()).toEqual("2002-03-01T00:00:00+00:00");
+      expect(collection.first().get('values').first().get('unique_visitors')).toEqual(120);
+      expect(collection.first().get('values').last().get('unique_visitors')).toEqual(100);
+    });
+
     it("auto-updates on the client", function () {
       jasmine.clientOnly(function () {
         var collection = new VisitorsRealtimeCollection();
