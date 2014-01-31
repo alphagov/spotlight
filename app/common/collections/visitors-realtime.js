@@ -28,6 +28,10 @@ function (MatrixCollection) {
 
     parse: function (response) {
 
+      _.each(response.data, function(d) {
+        d.unique_visitors = parseFloat(d.unique_visitors);
+      });
+
       return {
         id: 'realtime',
         title: 'Realtime',

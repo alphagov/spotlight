@@ -69,7 +69,7 @@ function (View, SparklineView, template) {
 
     getCurrentVisitors: function () {
       if (this.collection && this.collection.length && this.collection.first().get('values').length) {
-        var val = parseFloat(this.collection.first().get('values').last().get(this.selectionValueAttr));
+        var val = this.collection.first().get('values').last().get(this.selectionValueAttr);
         val = Math.round(val);
         this.currentVisitors = val;
         return this.formatNumericLabel(val);
