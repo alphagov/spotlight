@@ -206,7 +206,7 @@ module.exports = function(grunt) {
           stdout: true,
           stderr: true
         },
-        command: 'supervisor -w app -i app/vendor -e "js|html" -n error app/server'
+        command: './node_modules/supervisor/lib/cli-wrapper.js -w app -i app/vendor -e "js|html" -n error app/server'
       }
     },
     // Runs development tasks concurrently
