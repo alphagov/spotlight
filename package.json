@@ -17,6 +17,7 @@
     "test": "grunt test:all"
   },
   "dependencies": {
+    "backbone": "1.1.0",
     "d3": "3.3.7",
     "express": "3.4.7",
     "govuk_frontend_toolkit": "0.12.6",
@@ -28,10 +29,11 @@
     "requirejs": "2.1.8",
     "winston": "0.7.2",
     "xmlhttprequest": "1.6.0",
-    "xtend": "2.1.1"
+    "xtend": "2.1.1",
+    "underscore": "1.5.2",
+    "uglify-js": "2.4.0"
   },
   "devDependencies": {
-    "backbone": "1.1.0",
     "grunt": "0.4.2",
     "grunt-concurrent": "0.4.2",
     "grunt-contrib-clean": "0.5.0",
@@ -44,8 +46,6 @@
     "grunt-digest": "0.1.2",
     "grunt-jasmine-node-coverage": "0.1.6",
     "grunt-rcukes": "0.0.5",
-    "grunt-shell": "0.6.1",
-    "uglify-js": "2.4.0",
-    "underscore": "1.5.2"
+    "grunt-shell": "0.6.1"
   }
 }
