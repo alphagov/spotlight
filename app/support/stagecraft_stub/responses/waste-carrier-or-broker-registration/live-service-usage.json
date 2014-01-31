@@ -1,0 +1,15 @@
+{
+  "page-type": "module",
+  "module-type": "realtime",
+  "title": "Live service usage",
+  "description": "Users currently using the transaction",
+  "dashboard-title": "Register as a waste carrier, broker or dealer",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "waste-carrier-or-broker-registration",
+  "info": [
+    "Data source: Google Analytics",
+    "Shows the estimated number of users currently accessing the service on GOV.UK."
+  ],
+  "data-group": "waste-carriers-registration",
+  "data-type": "realtime"
+}
