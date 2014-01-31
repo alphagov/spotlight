@@ -15,6 +15,8 @@
   "cumulative": false,
   "info": [ "Data source: Google Analytics" ],
   "series": [
-      { "id": "govuk_visitors", "title": "GOV.UK" }
+    { "id": "govuk_visitors", "title": "GOV.UK" },
+    { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 12 },
+    { "id": "directgov_visitors", "title": "directgov", "timeshift": 12 }
   ]
 }
