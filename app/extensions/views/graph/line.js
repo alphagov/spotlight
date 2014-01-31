@@ -17,9 +17,10 @@ function (Component) {
       .defined(function (model, index) { return getY(model, index) !== null; });
 
     var renderLine = function() {
+      var timeshift = group.get('timeshift') ? ' timeshift' : '';
       selection.select('path')
         .attr('d', line(group.get('values').models))
-        .attr('class', 'line line' + groupIndex + ' ' + group.get('id'));
+        .attr('class', 'line line' + groupIndex + ' ' + group.get('id') + timeshift);
     };
 
     var renderTerminators = function() {

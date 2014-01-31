@@ -73,6 +73,8 @@ figure.graph {
   .line4 { stroke: $data-colour-5; }
   .line5 { stroke: $data-colour-6; }
 
+  .line.timeshift { stroke-dasharray: 5, 10; }
+
   .not-selected {
     &.line0 { stroke: mix($data-colour-1, $white, 50%); }
     &.line1 { stroke: mix($data-colour-2, $white, 50%); }
