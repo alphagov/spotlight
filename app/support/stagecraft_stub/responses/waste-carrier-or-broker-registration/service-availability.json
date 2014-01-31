@@ -2,11 +2,10 @@
   "page-type": "module",
   "module-type": "availability",
   "title": "Service availability",
-  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "deposit-foreign-marriage",
-  "data-group": "deposit-foreign-marriage",
-  "data-type": "monitoring",
+  "description": "",
+  "dashboard-title": "Register as a waste carrier, broker or dealer",
+  "dashboard-strapline": "Service performance",
+  "dashboard-slug": "waste-carrier-or-broker-registration",
   "info": [
     "Data source: Pingdom",
     "Page load time measures the time taken for a sample page within the service to load.",
@@ -16,5 +15,7 @@
     {"id": "day", "name": "30 days"},
     {"id": "hour", "name": "24 hours"}
   ],
-  "tabbed_attr": "period"
+  "tabbed_attr": "period",
+  "data-group": "waste-carriers-registration",
+  "data-type": "monitoring"
 }

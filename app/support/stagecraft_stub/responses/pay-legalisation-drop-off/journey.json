@@ -4,7 +4,7 @@
   "title": "Users at each stage",
   "description": "Number of users who completed important stages of the transaction last week",
   "dashboard-title": "Pay to legalise documents using the premium service",
-  "dashboard-strapline": "Service performance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-legalisation-drop-off",
   "info": [
     "Data source: Google Analytics",
