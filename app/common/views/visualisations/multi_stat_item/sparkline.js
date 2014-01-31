@@ -31,8 +31,8 @@ function (Graph) {
       if (this.showEndTicks) {
         val.push({
           view: this.sharedComponents.yaxis
-        });
-        val.push({
+        },
+        {
           view: this.sharedComponents.yaxisRight
         });
       }
