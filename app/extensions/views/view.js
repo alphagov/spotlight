@@ -330,6 +330,11 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       var start = model.get('_start_at') || model.get('start_at');
       var end = model.get('_end_at') || model.get('end_at');
 
+      if(model.get('_original_start_at')){
+        start = this.getMoment(model.get('_original_start_at'));
+        end = this.getMoment(model.get('_original_end_at'));
+      }
+
       switch (period) {
         case 'week': // fall through; we're formatting weeks same as days
         case 'day':

@@ -277,6 +277,10 @@ function (Component) {
         }
       }
 
+      if (group.get('timeshift')){
+        labelMeta += '<span class="percentage">('+ group.get('timeshift')+' '+this.collection.options.period+'s ago)</span>';
+      }
+
       if (this.attachLinks) {
         selection.select('a').html(labelTitle);
         selection.select('.meta').html(labelMeta);

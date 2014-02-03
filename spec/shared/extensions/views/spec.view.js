@@ -564,6 +564,17 @@ function (View, Model, Backbone, _) {
         });
         expect(view.formatPeriod(model, 'month')).toEqual('Aug 2013 to Jan 2014');
       });
+
+      it("formats original dates if they are set", function () {
+        var model = new Model({
+          _original_start_at: '2010-08-01T00:00:00+00:00',
+          _original_end_at: '2011-02-01T00:00:00+00:00',
+
+          _start_at: View.prototype.getMoment('2013-08-01T00:00:00+00:00'),
+          _end_at: View.prototype.getMoment('2014-02-01T00:00:00+00:00')
+        });
+        expect(view.formatPeriod(model, 'month')).toEqual('Aug 2010 to Jan 2011');
+      });
     });
 
     describe('numberToSignificantFigures', function () {
