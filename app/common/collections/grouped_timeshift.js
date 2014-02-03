@@ -15,27 +15,27 @@ function (MatrixCollection, Query) {
       };
     },
 
-    standardDuration: function (){
-      if(this.options.duration){
+    standardDuration: function () {
+      if (this.options.duration) {
         return this.options.duration;
       } else {
         return Query.prototype.periods[this.options.period].duration;
       }
     },
 
-    duration: function (){
-      var maxTimeshift = _.max(this.options.seriesList, function(series){
+    duration: function () {
+      var maxTimeshift = _.max(this.options.seriesList, function (series) {
         return series.timeshift;
       });
       return maxTimeshift.timeshift + this.standardDuration();
     },
 
-    applyStandardDates: function (seriesList, standard){
-      return _.map(seriesList, function(series){
-        for(var i=0,_i=series.values.length; i<_i; i++){
+    applyStandardDates: function (seriesList, standard) {
+      return _.map(seriesList, function (series) {
+        for (var i = 0, _i = series.values.length; i < _i; i++) {
           // copy old values by value rather than reference
-          series.values[i]._original_start_at = ""+series.values[i]._start_at;
-          series.values[i]._original_end_at = ""+series.values[i]._end_at;
+          series.values[i]._original_start_at = '' + series.values[i]._start_at;
+          series.values[i]._original_end_at = '' + series.values[i]._end_at;
 
           series.values[i]._start_at = standard[i]._start_at;
           series.values[i]._end_at = standard[i]._end_at;
@@ -54,11 +54,11 @@ function (MatrixCollection, Query) {
           return d[this.options.category] === series.id;
         }, this);
 
-        if(dataSeries){
+        if (dataSeries) {
           var start = startOffset;
           var id = series.id;
 
-          if(series.timeshift){
+          if (series.timeshift) {
             id = series.id + series.timeshift;
             start = startOffset - series.timeshift;
           }
