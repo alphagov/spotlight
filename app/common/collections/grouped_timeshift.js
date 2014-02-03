@@ -49,7 +49,7 @@ function (MatrixCollection, Query) {
       var startOffset = this.duration() - this.standardDuration();
       var standardDateValues = data[0].values.slice(startOffset);
 
-      var matchedSeries = _.filter(_.map(this.options.seriesList, function (series) {
+      var matchedSeries = _.map(this.options.seriesList, function (series) {
         var dataSeries = _.find(data, function (d) {
           return d[this.options.category] === series.id;
         }, this);
@@ -70,7 +70,7 @@ function (MatrixCollection, Query) {
           });
         }
         return false;
-      }, this), function(obj){ return obj; }, this);
+      }, this);
 
       return this.applyStandardDates(matchedSeries, standardDateValues);
     }
