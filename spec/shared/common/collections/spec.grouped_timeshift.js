@@ -29,7 +29,7 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week'
       });
 
-      expect(collection.standardDuration()).toBe(9);
+      expect(collection.standardDuration()).toBe(weekDuration);
     });
 
     it("should allow for a custom standard duration", function(){
@@ -41,7 +41,7 @@ function (GroupedTimeshiftCollection, Query) {
       expect(collection.standardDuration()).toBe(29);
     });
 
-    it("should work out the duration of a graph", function (){
+    it("should work out the duration of a graph based on a maximum timeshift", function (){
       var collection = new GroupedTimeshiftCollection([],{
         period: 'week',
         seriesList: [
