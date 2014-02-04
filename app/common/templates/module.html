@@ -16,9 +16,13 @@
 </aside>
 <% } %>
 
-<% if (model.get('page-type') === 'module') { %><h1 id="<%= this.ariaId() %>"><% } else { %><h2 id="<%= this.ariaId() %>"><% } %>
-<%= model.get('title') %>
-<% if (model.get('page-type') === 'module') { %></h1><% } else { %></h2><% } %>
+<% if (model.get('page-type') === 'module') { %>
+  <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
+<% } else { %>
+  <h2 id="<%= this.ariaId() %>">
+    <a href="<%= model.get('parent').get('slug') %>/<%= model.get('slug') %>"><%= model.get('title') %></a>
+  </h2>
+<% } %>
 
 <% if (model.get('description')) { %>
 	<% if (model.get('page-type') === 'module') { %><h2 class="dashboard"><% } else { %><h3><% } %>
