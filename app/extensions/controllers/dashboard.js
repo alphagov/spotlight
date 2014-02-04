@@ -28,23 +28,26 @@ define([
         return;
       }
 
-      var onReady = _.bind(function() {
-        if (--this.remaining > 0) {
-          return;
-        }
-        Controller.prototype.render.call(this, options);
-      }, this);
-
-      _.each(this.modules, function(definition) {
+      _.each(this.modules, function (definition) {
         var model = new Model(definition);
         model.set('parent', this.model);
+
         var module = new definition.controller({
           model: model,
           dashboard: true,
           url: this.url
         });
+
         this.moduleInstances.push(module);
-        module.once('ready', onReady);
+
+        module.once('ready', _.bind(function () {
+          this.remaining = this.remaining -1;
+
+          if (this.remaining === 0) {
+            Controller.prototype.render.call(this, options);
+          }
+        }, this));
+
         module.render({ init: options.init });
       }, this);
     }
