@@ -1,16 +1,16 @@
 {
   "page-type": "module",
   "module-type": "completion_numbers",
-  "title": "Completed applications",
+  "title": "Payments",
   "description": "",
-  "dashboard-title": "Payment to register a death abroad",
+  "dashboard-title": "Payment to register a birth abroad in the UK",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-register-death-abroad",
-  "data-group": "pay-register-death-abroad",
+  "dashboard-slug": "pay-register-birth-abroad",
+  "data-group": "pay-register-birth-abroad",
   "data-type": "journey",
   "info": [
     "Data source: Google Analytics",
-    "Completed applications count based on unique visitors to the final page of the service."
+    "Completed payments count based on unique visitors to the final page of the service."
   ],
   "start-matcher": "start$",
   "end-matcher": "done$",

@@ -1,7 +1,7 @@
 {
   "page-type": "module",
   "module-type": "grouped_timeseries",
-  "title": "Usage breakdown",
+  "title": "Claims breakdown",
   "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
   "data-group": "carers-allowance",
   "data-type": "weekly-claims",

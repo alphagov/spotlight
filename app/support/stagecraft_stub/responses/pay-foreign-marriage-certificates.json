@@ -2,7 +2,7 @@
   "page-type": "dashboard",
   "title": "Payment for certificates to get married abroad",
   "strapline": "Service dashboard",
-  "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) for documents you need to get married abroad.",
+  "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) for documents you need to get married abroad.",
   "modules": [
     {
       "slug": "live-service-usage",
@@ -17,15 +17,15 @@
       "data-type": "realtime"
     },
     {
-      "slug": "completed-applications",
+      "slug": "payments",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Payments",
       "description": "",
       "data-group": "pay-foreign-marriage-certificates",
       "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
-        "Completed applications count based on unique visitors to the final page of the service."
+        "Completed payments count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
       "end-matcher": "done$"

@@ -2,7 +2,7 @@
   "page-type": "dashboard",
   "title": "Pay to legalise documents using the premium service",
   "strapline": "Service dashboard",
-  "tagline": "Figures for applications processed on GOV.UK for the service to pay the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
+  "tagline": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
   "modules": [
     {
       "slug": "live-service-usage",
@@ -17,15 +17,15 @@
       "data-type": "realtime"
     },
     {
-      "slug": "completed-applications",
+      "slug": "payments",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Payments",
       "description": "",
       "data-group": "pay-legalisation-drop-off",
       "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
-        "Completed applications count based on unique visitors to the final page of the service."
+        "Completed payments count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
       "end-matcher": "done$"
