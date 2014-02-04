@@ -5,7 +5,7 @@
   "title": "Cumulative spend by customer type",
   "description": "Cumulative spend over time, showing spend by central government and wider public services",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public purchasing dashboard",
+  "dashboard-strapline": "Public sector purchasing dashboard",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
