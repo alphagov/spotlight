@@ -29,7 +29,7 @@
   ],
   "modules": [
     {
-      "slug": "starts_completions",
+      "slug": "building-starts-and-completions",
       "module-type": "grouped_timeseries",
       "title": "Building starts and completions",
       "description": "How many residential builds have been started and completed",
@@ -50,7 +50,7 @@
       "show-line-labels": true
     },
     {
-      "slug": "regional_transactions",
+      "slug": "residential-property-transactions",
       "module-type": "grouped_timeseries",
       "title": "Residential property transactions",
       "description": "Volume of residential property transactions by nations and regions",
@@ -73,6 +73,7 @@
       "show-line-labels": true
     },
     {
+      "slug": "average-first-mortgage",
       "module-type": "multi_stats",
       "title": "Average first mortgage",
       "description": "A range of factors indicative of the state of the housing market for first-time buyers",
@@ -115,7 +116,7 @@
       ]
     },
     {
-      "slug": "regional_hpi",
+      "slug": "house-price-index",
       "module-type": "grouped_timeseries",
       "title": "House price index (HPI)",
       "description": "Average HPIs by nations and regions (100 = February 2002)",
