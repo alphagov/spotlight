@@ -50,14 +50,14 @@ function (ModuleView, Collection, Model, View) {
       model.set('description', 'Description');
       model.set('info', ['Info line 1', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="A-Title-heading" role="region" class="testclass"><aside class="more-info" role="complementary"><span class="more-info-link popover-link">more info</span><ul><li>Info line 1</li><li>Info line 2</li></ul></aside><h2 id="A-Title-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="A-Title-heading" role="region" class="testclass"><h2 id="A-Title-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation">test content</div></section>');
     });
 
     it("renders a module with description and info link", function () {
       model.set('description', 'Description');
       model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="A-Title-heading" role="region" class="testclass"><aside class="more-info" role="complementary"><span class="more-info-link popover-link">more info</span><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></aside><h2 id="A-Title-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="A-Title-heading" role="region" class="testclass"><h2 id="A-Title-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation">test content</div></section>');
     });
 
     it("renders an SVG-based module as a fallback element on the server", function () {
