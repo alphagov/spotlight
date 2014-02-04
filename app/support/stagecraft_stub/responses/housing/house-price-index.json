@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "regional_hpi",
   "module-type": "grouped_timeseries",
   "title": "House price index (HPI)",
   "description": "Average HPIs by nations and regions (100 = February 2002)",
