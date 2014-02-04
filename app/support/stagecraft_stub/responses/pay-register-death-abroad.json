@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "title": "Payment to register a death abroad",
   "strapline": "Service dashboard",
-  "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
+  "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
   "modules": [
     {
       "slug": "live-service-usage",
@@ -18,14 +18,15 @@
       "data-type": "realtime"
     },
     {
+      "slug": "payments",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Payments",
       "description": "",
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
-        "Completed applications count based on unique visitors to the final page of the service."
+        "Completed payments count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
       "end-matcher": "done$",
@@ -48,13 +49,14 @@
       "matching-attribute": "eventCategory"
     },
     {
+      "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Users at each stage",
-      "description": "Number of users who completed important stages of the transaction last week",
+      "title": "Users at each step",
+      "description": "Number of users who completed important steps of the transaction last week",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each stage.",
-        "Number of users is measured using the count of unique events from each stage."
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
       ],
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",

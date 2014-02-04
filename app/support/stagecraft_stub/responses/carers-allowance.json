@@ -18,10 +18,10 @@
       "data-type": "realtime"
     },
     {
-      "slug": "weekly-by-channel",
+      "slug": "claims-breakdown",
       "module-type": "grouped_timeseries",
-      "title": "Claims by channel",
-      "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
+      "title": "Claims breakdown",
+      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "dashboard-title": "Carer's Allowance",
@@ -35,16 +35,16 @@
         "Data source: DWP database",
         "Shows the number of successful claims for Carer's Allowance, broken down by channel",
         "Digital: applications made online",
-        "Offline: applications made using a printed form"
+        "Paper form: applications made using a paper form"
       ],
       "series": [
-         { "id": "ca_clerical_received", "title": "Non Digital" },
+         { "id": "ca_clerical_received", "title": "Paper form" },
          { "id": "ca_e_claims_received", "title": "Digital" }
       ]
     },
     {
       "module-type": "completion_rate",
-      "slug": "digital-takeup-weekly",
+      "slug": "digital-takeup",
       "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",

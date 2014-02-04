@@ -1,7 +1,7 @@
 {
   "dashboard-title": "Activity on GOV.UK",
   "dashboard-strapline": "Performance",
-  "dashboard-slug": "dashboard",
+  "dashboard-slug": "site-activity",
   "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Site traffic",

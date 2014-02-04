@@ -5,7 +5,7 @@
   "title": "Cumulative procurement by company size",
   "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public purchasing performance",
+  "dashboard-strapline": "Public sector purchasing dashboard",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",

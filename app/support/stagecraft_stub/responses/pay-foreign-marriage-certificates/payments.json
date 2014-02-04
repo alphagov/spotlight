@@ -1,7 +1,7 @@
 {
   "page-type": "module",
   "module-type": "completion_numbers",
-  "title": "Completed applications",
+  "title": "Payments",
   "dashboard-title": "Payment for certificates to get married abroad",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-foreign-marriage-certificates",
@@ -10,7 +10,7 @@
   "data-type": "journey",
   "info": [
     "Data source: Google Analytics",
-    "Completed applications count based on unique visitors to the final page of the service."
+    "Completed payments count based on unique visitors to the final page of the service."
   ],
   "start-matcher": "start$",
   "end-matcher": "done$",

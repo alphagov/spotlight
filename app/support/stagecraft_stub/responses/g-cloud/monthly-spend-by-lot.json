@@ -5,7 +5,7 @@
   "title": "Monthly spend by lot",
   "description": "Spend each month by category of service purchased",
   "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public purchasing performance",
+  "dashboard-strapline": "Public sector purchasing dashboard",
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",

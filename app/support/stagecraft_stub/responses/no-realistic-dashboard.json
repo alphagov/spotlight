@@ -71,8 +71,9 @@
       "tabbed_attr": "period"
     },
     {
+      "slug": "applications",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Applications",
       "description": "",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
