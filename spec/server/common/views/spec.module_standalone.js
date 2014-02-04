@@ -14,7 +14,9 @@ function (StandaloneView, Collection, Model, View) {
           this.$el.html('test content');
         }
       });
-      model = new Model();
+      model = new Model({
+        parent: new Model()
+      });
       collection = new Collection();
       standaloneView = new StandaloneView({
         visualisationClass: Visualisation,
@@ -38,7 +40,9 @@ function (StandaloneView, Collection, Model, View) {
               this.$el.html('test content');
             }
           });
-          var model = new Model();
+          var model = new Model({
+            parent: new Model()
+          });
           var collection = new Collection();
           var standaloneView = new StandaloneView({
             visualisationClass: Visualisation,
