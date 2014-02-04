@@ -89,7 +89,6 @@
       "steps": [
         {"id": "about-you", "title": "About you"},
         {"id": "care-you-provide", "title": "About the care you provide"},
-        {"id": "time-spent-abroad", "title": "Time abroad"},
         {"id": "other-money", "title": "Other money"},
         {"id": "consent-and-declaration", "title": "Consent and declaration"}
       ]
