@@ -2,7 +2,7 @@
   "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Usage breakdown",
-  "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
+  "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
   "data-group": "carers-allowance",
   "data-type": "weekly-claims",
   "dashboard-title": "Carer's Allowance",
@@ -17,10 +17,10 @@
     "Data source: DWP database",
     "Shows the number of successful claims for Carer's Allowance, broken down by channel",
     "Digital: applications made online",
-    "Offline: applications made using a printed form"
+    "Paper form: applications made using a paper form"
   ],
   "series": [
-     { "id": "ca_clerical_received", "title": "Non-digital" },
+     { "id": "ca_clerical_received", "title": "Paper form" },
      { "id": "ca_e_claims_received", "title": "Digital" }
   ]
 }
