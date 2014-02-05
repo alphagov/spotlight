@@ -161,7 +161,7 @@ function (VisitorsRealtimeView, Collection) {
     describe("getValue", function () {
       it("should return the right value", function (){
         var return_value = view.getValue();
-        expect(return_value).toEqual("100");
+        expect(return_value).toEqual(100);
       });
     });
 
@@ -185,7 +185,7 @@ function (VisitorsRealtimeView, Collection) {
           }
         };
         var return_value = view.getValueSelected(fakeSelection);
-        expect(return_value).toEqual("140");
+        expect(return_value).toEqual(140);
       });
     });
 
