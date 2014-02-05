@@ -2,8 +2,8 @@
 
 	.stat {
 	  float: left;
-	  width: 220px;
-	  min-width: 220px;
+	  width: 240px;
+	  min-width: 240px;
 
 	  @media (max-width: 640px) {
       float: none;
@@ -27,6 +27,10 @@
 		        right: 70px;
 		        bottom: 10px;
 		        top: 10px;
+					  @media (max-width: 640px) {
+				      left: 30px;
+				      right: 30px;
+				    }
 		      }
 
 		    }

@@ -72,7 +72,7 @@ function (View, SparklineView, template) {
         var val = this.collection.first().get('values').last().get(this.selectionValueAttr);
         val = Math.round(val);
         this.currentVisitors = val;
-        return this.formatNumericLabel(val);
+        return val;
       } else {
         return null;
       }
@@ -164,7 +164,7 @@ function (View, SparklineView, template) {
         var val = selection.selectedModel.get(this.selectionValueAttr);
         val = Math.round(val);
         this.currentVisitors = val;
-        return this.formatNumericLabel(val);
+        return val;
       } else {
         return null;
       }
