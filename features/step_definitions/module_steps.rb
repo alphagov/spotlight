@@ -30,7 +30,7 @@ def values
     },
     'completion_numbers' => {
       'no-realistic-dashboard' => {
-        title: 'Completed applications',
+        title: 'Applications',
         description: '',
         raw: "//*[name()='svg']"
       }

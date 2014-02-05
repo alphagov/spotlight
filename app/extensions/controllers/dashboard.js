@@ -7,6 +7,13 @@ define([
   var DashboardController = Controller.extend({
 
     viewClass: DashboardView,
+
+    initialize: function () {
+      this.modules = this.model.get('modules') || [];
+      this.remaining = this.modules.length;
+      this.moduleInstances = [];
+    },
+
     viewOptions: function () {
       return {
         moduleInstances: this.moduleInstances
@@ -15,32 +22,32 @@ define([
 
     render: function (options) {
       options = options || {};
-      var modules = this.model.get('modules') || [];
-      var remaining = modules.length;
 
-      if (!remaining) {
+      if (this.remaining === 0) {
         Controller.prototype.render.call(this, options);
         return;
       }
 
-      var onReady = _.bind(function() {
-        if (--remaining > 0) {
-          return;
-        }
-        Controller.prototype.render.call(this, options);
-      }, this);
-
-      var instances = this.moduleInstances = [];
-      _.each(modules, function(definition) {
+      _.each(this.modules, function (definition) {
         var model = new Model(definition);
         model.set('parent', this.model);
+
         var module = new definition.controller({
           model: model,
           dashboard: true,
           url: this.url
         });
-        instances.push(module);
-        module.once('ready', onReady);
+
+        this.moduleInstances.push(module);
+
+        module.once('ready', _.bind(function () {
+          this.remaining = this.remaining -1;
+
+          if (this.remaining === 0) {
+            Controller.prototype.render.call(this, options);
+          }
+        }, this));
+
         module.render({ init: options.init });
       }, this);
     }

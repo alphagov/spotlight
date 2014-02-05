@@ -1,4 +1,5 @@
 {
+  "slug": "no-realistic-dashboard",
   "page-type": "dashboard",
   "title": "Non-Realistic Data Stub",
   "strapline": "Strapline",
@@ -70,8 +71,9 @@
       "tabbed_attr": "period"
     },
     {
+      "slug": "applications",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Applications",
       "description": "",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",

@@ -1,8 +1,9 @@
 {
+  "slug": "g-cloud",
   "page-type": "dashboard",
   "title": "G-Cloud",
-  "strapline": "Public purchasing performance",
-  "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of procurement via small and medium sized enterprises (SMEs).",
+  "strapline": "Public sector purchasing dashboard",
+  "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of sales via small and medium sized enterprises (SMEs).",
   "related_pages_title": "Related information",
   "related_pages": [
     {
@@ -20,10 +21,10 @@
   ],
   "modules": [
     {
-      "slug": "cumulative-procurement-by-company-size",
+      "slug": "cumulative-sales-by-company-size",
       "module-type": "grouped_timeseries",
-      "title": "Cumulative procurement by company size",
-      "description": "Cumulative procurement over time, showing the division between SMEs and larger enterprises",
+      "title": "Cumulative sales by company size",
+      "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
       "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
@@ -50,10 +51,10 @@
       "show-total-lines": true
     },
     {
-      "slug": "monthly-procurement-by-company-size",
+      "slug": "monthly-sales-by-company-size",
       "module-type": "grouped_timeseries",
-      "title": "Monthly procurement by company size",
-      "description": "Total procurement each month, showing the division between SMEs and larger enterprises",
+      "title": "Monthly sales by company size",
+      "description": "Total sales each month, showing the division between SMEs and larger enterprises",
       "data-group": "gcloud",
       "data-type": "sales",
       "cumulative": false,
@@ -80,10 +81,10 @@
       "show-total-lines": true
     },
     {
-      "slug": "proportion-of-procurement-from-small-and-medium-enterprises",
+      "slug": "proportion-of-sales-from-small-and-medium-enterprises",
       "module-type": "completion_rate",
-      "title": "Proportion of procurement from small and medium enterprises",
-      "description": "The proportion of procurement allocated to SMEs each month",
+      "title": "Proportion of sales from small and medium enterprises",
+      "description": "The proportion of sales allocated to SMEs each month",
       "data-group": "gcloud",
       "data-type": "sales",
       "info": [

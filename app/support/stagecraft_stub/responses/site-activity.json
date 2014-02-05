@@ -1,4 +1,5 @@
 {
+  "slug": "site-activity",
   "page-type": "dashboard",
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
@@ -30,7 +31,10 @@
       "cumulative": false,
       "info": [ "Data source: Google Analytics" ],
       "series": [
-         { "id": "govuk_visitors", "title": "GOV.UK" }
+         { "id": "govuk_visitors", "title": "GOV.UK" },
+         { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 12 },
+         { "id": "directgov_visitors", "title": "Directgov", "timeshift": 12 },
+         { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 12 }
       ]
     },
     {

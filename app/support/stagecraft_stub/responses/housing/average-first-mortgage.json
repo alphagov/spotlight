@@ -4,7 +4,7 @@
   "title": "Average first mortgage",
   "description": "A range of factors indicative of the state of the housing market for first-time buyers",
   "dashboard-title": "Housing",
-  "dashboard-strapline": "Policy performance",
+  "dashboard-strapline": "Policy dashboard",
   "dashboard-slug": "housing",
   "data-group": "housing-policy",
   "data-type": "first-time-buyer",

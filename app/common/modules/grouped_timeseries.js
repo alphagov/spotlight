@@ -1,14 +1,27 @@
 define([
   'extensions/controllers/module',
   'common/collections/grouped_timeseries',
+  'common/collections/grouped_timeshift',
   'common/views/visualisations/grouped_timeseries'
 ],
-function (ModuleController, GroupedTimeseriesCollection, GroupedTimeseriesView) {
+function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollection, GroupedTimeseriesView) {
   
   var GroupedTimeseriesModule = ModuleController.extend({
+    initialize: function () {
+      ModuleController.prototype.initialize.apply(this, arguments);
+
+      var containsTimeshift = false;
+      if(this.model.get('series')){
+        containsTimeshift = _.any(this.model.get('series'), function(series){ return series.timeshift; });
+      }
+      if(containsTimeshift){
+        this.collectionClass = GroupedTimeshiftCollection;
+      } else  {
+        this.collectionClass = GroupedTimeseriesCollection;
+      }
+    },
     className: 'grouped_timeseries',
     visualisationClass: GroupedTimeseriesView,
-    collectionClass: GroupedTimeseriesCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
     collectionOptions: function () {

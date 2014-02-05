@@ -1,4 +1,5 @@
 {
+  "slug": "carers-allowance",
   "page-type": "dashboard",
   "title": "Carer's Allowance",
   "strapline": "Service dashboard",
@@ -17,10 +18,10 @@
       "data-type": "realtime"
     },
     {
-      "slug": "weekly-by-channel",
+      "slug": "claims-breakdown",
       "module-type": "grouped_timeseries",
-      "title": "Claims by channel",
-      "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> applications over time",
+      "title": "Claims breakdown",
+      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "dashboard-title": "Carer's Allowance",
@@ -34,16 +35,16 @@
         "Data source: DWP database",
         "Shows the number of successful claims for Carer's Allowance, broken down by channel",
         "Digital: applications made online",
-        "Offline: applications made using a printed form"
+        "Paper form: applications made using a paper form"
       ],
       "series": [
-         { "id": "ca_clerical_received", "title": "Non Digital" },
+         { "id": "ca_clerical_received", "title": "Paper form" },
          { "id": "ca_e_claims_received", "title": "Digital" }
       ]
     },
     {
+      "slug": "digital-takeup",
       "module-type": "completion_rate",
-      "slug": "digital-takeup-weekly",
       "title": "Digital take-up",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
@@ -58,8 +59,8 @@
       "value-attribute": "value:sum"
     },
     {
-      "module-type": "completion_rate",
       "slug": "completion-rate",
+      "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
       "data-group": "carers-allowance",
@@ -74,13 +75,14 @@
       "matching-attribute": "eventLabel"
     },
     {
+      "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Users at each stage",
-      "description": "Number of users who completed important stages of the transaction last week",
+      "title": "Users at each step",
+      "description": "Number of users who completed important steps of the transaction last week",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each stage.",
-        "Number of users is measured using the count of unique events from each stage."
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
       ],
       "data-group": "carers-allowance",
       "data-type": "journey",
@@ -88,7 +90,6 @@
       "steps": [
         {"id": "about-you", "title": "About you"},
         {"id": "care-you-provide", "title": "About the care you provide"},
-        {"id": "time-spent-abroad", "title": "Time abroad"},
         {"id": "other-money", "title": "Other money"},
         {"id": "consent-and-declaration", "title": "Consent and declaration"}
       ]

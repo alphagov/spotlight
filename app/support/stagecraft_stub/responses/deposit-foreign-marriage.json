@@ -1,8 +1,9 @@
 {
+  "slug": "deposit-foreign-marriage",
   "page-type": "dashboard",
   "title": "Deposit foreign marriage or civil partnership certificates",
   "strapline": "Service dashboard",
-  "tagline": "Figures for applications processed on GOV.UK in the UK for the service to pay the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",
+  "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",
   "modules": [
     {
       "slug": "live-service-usage",
@@ -17,14 +18,15 @@
       "data-type": "realtime"
     },
     {
+      "slug": "payments",
       "module-type": "completion_numbers",
-      "title": "Completed applications",
+      "title": "Payments",
       "description": "",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
-        "Completed applications count based on unique visitors to the final page of the service."
+        "Completed payments count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
       "end-matcher": "done$"
@@ -45,13 +47,14 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Users at each stage",
-      "description": "Number of users who completed important stages of the transaction last week",
+      "title": "Users at each step",
+      "description": "Number of users who completed important steps of the transaction last week",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each stage.",
-        "Number of users is measured using the count of unique events from each stage."
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
       ],
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",

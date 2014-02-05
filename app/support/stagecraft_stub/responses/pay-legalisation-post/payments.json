@@ -1,16 +1,16 @@
 {
   "page-type": "module",
   "module-type": "completion_numbers",
-  "title": "Completed applications",
+  "title": "Payments",
   "description": "",
-  "dashboard-title": "Pay to legalise documents using the premium service",
+  "dashboard-title": "Pay to get documents legalised by post",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-legalisation-drop-off",
-  "data-group": "pay-legalisation-drop-off",
+  "dashboard-slug": "pay-legalisation-post",
+  "data-group": "pay-legalisation-post",
   "data-type": "journey",
   "info": [
     "Data source: Google Analytics",
-    "Completed applications count based on unique visitors to the final page of the service."
+    "Completed payments count based on unique visitors to the final page of the service."
   ],
   "start-matcher": "start$",
   "end-matcher": "done$",
