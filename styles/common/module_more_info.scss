@@ -1,43 +1,24 @@
 #content {
-  .more-info-link.popover-link {
-    @include core-16($tabular-numbers: true);
-    @include popover-link;
-
-    float: right;
-    margin: 0.2em 0 0 0;
-    padding: 0;
-    position: relative;
-  }
-
   .more-info {
+    border-top: 5px solid $primary-colour;
     @include core-16($tabular-numbers: true);
-
-    position: relative;
-
-    &:hover ul {
-      @include popover-no-js-show-on-hover;
-    }
+    width: 66%;
+    margin-top: 1.5em;
+    padding-top: 0.5em;
 
     ul {
-      @include popover-block(92%);
-
-      right: 0;
-      width: 22em;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        padding: 0.25em 0 0 0;
+      }
     }
-  }
-}
-
-body.js-enabled #content .more-info {
-  &:hover ul {
-    @include popover-js-hide-on-hover;
-  }
-  ul.js-clicked {
-    @include popover-js-show-on-click;
   }
 }
 
 @media (max-width: 640px) {
-	#content .more-info-link.popover-link {
-	  margin-top: 0.05em;
+	#content .more-info {
+	  width: 100%;
   }
 }

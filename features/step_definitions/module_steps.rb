@@ -92,6 +92,6 @@ Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |serv
     find_section_for(display_module).should have_content(v[:description])
   end
   if v[:info]
-    find_section_for(display_module).should have_content('more info')
+    find_section_for(display_module).should have_content('About the data')
   end
 end
