@@ -18,17 +18,18 @@ function (View, SparklineView, template) {
 
       View.prototype.initialize.apply(this, arguments);
 
+      var events = '';
+
       if (isClient) {
-        this.listenTo(this.collection, 'sync', this.render());
+        events += "sync ";
       }
+      if (this.changeOnSelected) {
+        events += 'change:selected';
+      }
+
+      this.collection.on(events, this.render, this);
 
       this.selectionValueAttr = 'unique_visitors';
-
-      var events = '';
-      if (this.changeOnSelected) {
-        events += ' change:selected';
-      }
-      this.collection.on(events, this.render, this);
 
       this.currentVisitors = this.getCurrentVisitors();
 
