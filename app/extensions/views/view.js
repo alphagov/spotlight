@@ -137,7 +137,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       thousand: {value: 1e3, suffix: "k" },
       unit:     {value: 1,   suffix: ""  }
     },
-    
+
     currencies: {
       gbp: { prefix: "£", suffix: "" }
     },
@@ -175,7 +175,11 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       var magnitude = this.magnitudeFor(max);
       var decimalPlaces;
       if (max === magnitude.value) {
-        decimalPlaces = 1;
+        if ((values.length === 2) && (values[0] === 0) && (values[1] === 1)) {
+          decimalPlaces = 0;
+        } else {
+          decimalPlaces = 1;
+        }
       } else {
         decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value))? 0 : 1;
       }
@@ -198,10 +202,11 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * @return {Object}
      */
     calculateLinearTicks: function(extent, minimumTickCount) {
+
       if (extent[0] >= extent[1]) {
         throw new Error("Upper bound must be larger than lower.");
       }
-      var targetTickCount = minimumTickCount - 1,
+      var targetTickCount = (minimumTickCount === 1) ? minimumTickCount : minimumTickCount - 1,
           span = extent[1] - extent[0],
           step = Math.pow(10, Math.floor(Math.log(span / targetTickCount) / Math.LN10)),
           err = targetTickCount / span * step;
@@ -217,9 +222,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           lastInclusive = last + step / 2;
 
       return {
-        values:_.range(first, lastInclusive, step) ,
-        extent:[first, last],
-        step:step
+        values: _.range(first, lastInclusive, step),
+        extent: [first, last],
+        step: step
       };
     },
 

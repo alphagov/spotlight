@@ -78,6 +78,11 @@ function (Hover) {
       });
 
       describe("onMouseMove", function () {
+
+        beforeEach(function() {
+            jasmine.Clock.useMock();
+        });
+
         it("calculates the mouse move position when the graph is not scaled", function () {
           spyOn(graphWrapper, "offset").andReturn({
             left: 200, top: 200
@@ -90,7 +95,7 @@ function (Hover) {
           expect(component.selectPoint).toHaveBeenCalledWith(90, 80);
         });
 
-        it("calculates the mouse move position when the graph is scaled", function () {
+        it("calculates the mouse move position when the graph is scaled, allowing for throttling", function () {
           spyOn(graphWrapper, "offset").andReturn({
             left: 100, top: 100
           });
@@ -99,6 +104,7 @@ function (Hover) {
             pageX: 150,
             pageY: 150
           });
+          jasmine.Clock.tick(1000);
           expect(component.selectPoint).toHaveBeenCalledWith(90, 80);
         });
       });

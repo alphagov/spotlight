@@ -1,20 +1,22 @@
 define([
-  'extensions/collections/collection'
+  'extensions/collections/matrix'
 ],
-function (Collection) {
-  var VisitorsRealtimeCollection = Collection.extend({
+function (MatrixCollection) {
+  var VisitorsRealtimeCollection = MatrixCollection.extend({
 
     apiName: "realtime",
 
-    queryParams: {
-      sort_by: "_timestamp:descending",
-      limit: 1
+    queryParams: function () {
+      return {
+        sort_by: "_timestamp:descending",
+        limit: this.options.numTwoMinPeriodsToQuery || (((60/2) * 24) + 2)
+      };
     },
 
     updateInterval: 120 * 1000,
 
     initialize: function (models, options) {
-      Collection.prototype.initialize.apply(this, arguments);
+      MatrixCollection.prototype.initialize.apply(this, arguments);
 
       if (isClient) {
         clearInterval(this.timer);
@@ -25,7 +27,17 @@ function (Collection) {
     },
 
     parse: function (response) {
-      return response.data;
+
+      _.each(response.data, function(d) {
+        d.unique_visitors = parseFloat(d.unique_visitors);
+      });
+
+      return {
+        id: 'realtime',
+        title: 'Realtime',
+        values: response.data.reverse()
+      };
+
     },
 
     fetch: function (options) {
@@ -34,8 +46,9 @@ function (Collection) {
           "cache-control": "max-age=120"
         }
       }, options);
-      Collection.prototype.fetch.call(this, options);
+      MatrixCollection.prototype.fetch.call(this, options);
     }
   });
+
   return VisitorsRealtimeCollection;
 });

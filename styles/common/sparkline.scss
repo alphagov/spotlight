@@ -1,22 +1,36 @@
-.sparkline-graph {
-  figure.graph {
-    .graph-wrapper {
-      svg {
-        max-height: 30px;
-        max-width: 180px;
-        min-height: 30px;
+.sparkline {
 
-        @media (max-width: 880px) {   
-          max-width: 300px;
-        }
-      }
+	.sparkline-graph {
+	  figure.graph {
+	    .graph-wrapper {
+	      svg {
+	        max-height: 30px;
+	        max-width: 180px;
+	        min-height: 30px;
 
-      .inner {
-        left: 10px;
-        right: 10px;
-        bottom: 10px;  
-        top: 10px;
-      }
-    }
-  }
+	        @media (max-width: 880px) {
+	          max-width: 300px;
+	        }
+
+				  .y-axis .tick text {
+				    display: block;
+				  }
+
+	      }
+
+	      .inner {
+	        left: 10px;
+	        right: 10px;
+	        bottom: 10px;
+	        top: 10px;
+	      }
+	    }
+	  }
+	}
+
+	.sparkline-title {
+	  float: right;
+	  min-height: 3em;
+	}
+
 }

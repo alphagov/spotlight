@@ -29,12 +29,7 @@ body.raw {
     }
   }
 
-  .journey .visualisation,
-  .availability .visualisation,
-  .completion_rate .visualisation,
-  .completion_numbers .visualisation,
-  .grouped_timeseries .visualisation,
-  .multi_stats .visualisation {
+  .visualisation {
     width: 960px;
   }
 

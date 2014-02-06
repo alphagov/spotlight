@@ -8,7 +8,13 @@ function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
     className: 'realtime',
     visualisationClass: VisitorsRealtimeView,
     collectionClass: VisitorsRealtimeCollection,
-    clientRenderOnInit: true
+    clientRenderOnInit: true,
+    requiresSvg: true,
+    collectionOptions: function () {
+      return {
+        numTwoMinPeriodsToQuery: this.model.get("numTwoMinPeriodsToQuery")
+      };
+    }
   });
 
   return VisitorsRealtimeModule;

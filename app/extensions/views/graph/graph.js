@@ -3,6 +3,7 @@ define([
   'd3loader!',
   './xaxis',
   './yaxis',
+  './yaxisRight',
   './line',
   './stack',
   './linelabel',
@@ -10,7 +11,7 @@ define([
   './callout',
   './tooltip'
 ],
-function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Tooltip) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip) {
 
 
   var scaleFromStartAndEndDates = {
@@ -65,6 +66,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
     sharedComponents: {
       xaxis: XAxis,
       yaxis: YAxis,
+      yaxisRight: YAxisRight,
       line: Line,
       stack: Stack,
       linelabel: LineLabel,
@@ -278,7 +280,7 @@ function (View, d3, XAxis, YAxis, Line, Stack, LineLabel, Hover, Callout, Toolti
       }
 
       View.prototype.render.apply(this, arguments);
-      
+
       if (this.collection.options) {
         this.currency = this.collection.options.currency;
       }
