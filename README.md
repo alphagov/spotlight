@@ -16,14 +16,13 @@ not in the standard GDS development VM.
 
 [ppdev]: https://github.com/alphagov/pp-development
 
-Install dependencies. 
+Install dependencies.
 Run these commands on the VM.
 
 ```bash
 bundle install
 sudo apt-get install npm
 sudo npm install -g grunt-cli@0.1.9
-sudo npm install -g supervisor@0.5.6
 npm install
 ```
 
