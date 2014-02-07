@@ -48,16 +48,15 @@ function (Component) {
     },
 
     onMouseMove: _.throttle(function (e) {
+      var offset = this.graph.graphWrapper.offset();
+      var scaleFactor = this.graph.scaleFactor();
+      var x = (e.pageX - offset.left) / scaleFactor - this.margin.left;
+      var y = (e.pageY - offset.top) / scaleFactor - this.margin.top;
 
-        var offset = this.graph.graphWrapper.offset();
-        var scaleFactor = this.graph.scaleFactor();
-        var x = (e.pageX - offset.left) / scaleFactor - this.margin.left;
-        var y = (e.pageY - offset.top) / scaleFactor - this.margin.top;
-
-        this.attachBodyListener('mousemove');
-        this.selectPoint(x, y);
-        return false;
-    }, 250),
+      this.attachBodyListener('mousemove');
+      this.selectPoint(x, y);
+      return false;
+    }, 40),
 
     onTouchStart: function (e) {
       var touch = e.originalEvent.touches[0];
