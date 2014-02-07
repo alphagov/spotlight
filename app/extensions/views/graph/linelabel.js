@@ -8,7 +8,7 @@ function (Component) {
     offset: 20,
     linePaddingInner: 4,
     linePaddingOuter: 4,
-    overlapLabelTop: 10,
+    overlapLabelTop: 40,
     overlapLabelBottom: 20,
     labelOffset: 6,
 
