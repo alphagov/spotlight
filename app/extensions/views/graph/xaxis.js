@@ -65,9 +65,6 @@ function (Axis) {
     configs: {
       hour: {
         ticks: 4,
-        getTick: function (model) {
-          return model.get('_end_at').toDate();
-        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             var date = this.getMoment(d);
@@ -83,9 +80,6 @@ function (Axis) {
       },
       day: {
         ticks: 4,
-        getTick: function (model) {
-          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
-        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -93,9 +87,6 @@ function (Axis) {
         }
       },
       week: {
-        getTick: function (model) {
-          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
-        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -103,9 +94,6 @@ function (Axis) {
         }
       },
       month: {
-        getTick: function (model, index) {
-          return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
-        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             var val = this.getMoment(d).format('MMM');
