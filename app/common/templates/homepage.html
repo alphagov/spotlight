@@ -1,0 +1,79 @@
+<div id='homepage-content'>
+
+  <header>
+    <h1>Our performance</h1>
+
+    <p>
+      On these performance pages you can find
+      <a href="/performance/services">detailed dashboards</a>
+      for a growing number of services, compare all services in
+      <a href="/performance/transactions-explorer">Transactions Explorer</a>,
+      or view <a href="/performance/site-activity">activity on GOV.UK</a>.
+    </p>
+  </header>
+
+  <section>
+    <h2>Detailed dashboards</h2>
+    <p>Services providing detailed performance data to GOV.UK</p>
+
+    <% _.each(detailedDashboardColumns, function (column) { %>
+      <div class="cols3 service-listing">
+        <dl>
+          <% _.each(column, function (group) { %>
+            <dt class='<%= group.sanitised_title %>'><%= group.title %></dt>
+            <dd>
+              <ol>
+                <% _.each(group.services, function (service) { %>
+                  <li><a href='/performance/<%= service.slug %>'><%= service.name %></a></li>
+                <% }); %>
+              </ol>
+            </dd>
+          <% }); %>
+        </dl>
+      </div>
+    <% }); %>
+  </section>
+
+  <div>
+    <section class="cols2 service-listing">
+      <h2>Transactions Explorer</h2>
+      <p>An overview of all transaction-based services the government provides.</p>
+      <ul>
+        <li><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">All services</a></li>
+        <li><a href="/performance/transactions-explorer/high-volume-services/by-transactions-per-year/descending">High-volume services</a></li>
+      </ul>
+      <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
+        <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>" width='465' height='223'>
+      </a>
+    </section>
+
+    <section class="cols2 service-listing">
+      <h2>Activity on GOV.UK</h2>
+      <p>Web traffic on our site, including a look at how our content is being used.</p>
+      <ul>
+        <li><a href="/performance/dashboard">Activity on GOV.UK</a></li>
+        <li><a href="/performance/dashboard/government">Departments and policy</a></li>
+      </ul>
+      <!-- GOV.UK realtime module goes here -->
+    </section>
+  </div>
+
+  <section>
+    <h2>Further information</h2>
+
+    <article class="cols2">
+      <a href="/service-manual/measurement/other-kpis">
+        <h3>How we measure performance</h3>
+      </a>
+      <p>Our guidance for government organisations on how to track the services they provide.</p>
+    </article>
+
+    <article class="cols2">
+      <a href="https://gds.blog.gov.uk/category/measurement-analytics/">
+        <h3>Measurement and analytics — GDS blog</h3>
+      </a>
+      <p>Latest posts from the performance and analytics teams on the GDS blog.</p>
+    </article>
+  </section>
+
+</div>
