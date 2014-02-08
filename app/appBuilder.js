@@ -66,6 +66,8 @@ function (express, fs, path, winston) {
 
       app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
+      app.get('/performance', requirejs('./common/controllers/homepage'));
+
       app.use('/performance/', requirejs('process_request'));
 
       app.get('/_status', requirejs('healthcheck_controller'));
