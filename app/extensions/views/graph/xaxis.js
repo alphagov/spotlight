@@ -64,6 +64,7 @@ function (Axis) {
 
     configs: {
       hour: {
+        ticks: 4,
         getTick: function (model) {
           return model.get('_end_at').toDate();
         },
@@ -78,15 +79,10 @@ function (Axis) {
               return this.getMoment(d).format('ha');
             }
           }, this);
-        },
-        tickValues: function () {
-          var values = this.collection.first().get('values').filter(function (model, index) {
-            return model.get('_end_at').hours() % 6 === 0;
-          });
-          return _.map(values, _.bind(this.getTick, this));
         }
       },
       day: {
+        ticks: 4,
         getTick: function (model) {
           return this.getMoment(model.get('_end_at')).subtract(1, 'days').toDate();
         },
@@ -94,12 +90,6 @@ function (Axis) {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
           }, this);
-        },
-        tickValues: function () {
-          var values = this.collection.first().get('values').filter(function (model, index) {
-            return model.get('_end_at').days() === 1;
-          });
-          return _.map(values, _.bind(this.getTick, this));
         }
       },
       week: {
@@ -110,9 +100,6 @@ function (Axis) {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
           }, this);
-        },
-        tickValues: function () {
-          return this.collection.first().get('values').map(_.bind(this.getTick, this));
         }
       },
       month: {
@@ -127,15 +114,6 @@ function (Axis) {
             }
             return val;
           }, this);
-        },
-        tickValues: function () {
-          var tickVals = this.collection.first().get('values').map(_.bind(this.getTick, this));
-          if (tickVals.length > 15) {
-            tickVals = _.filter(tickVals, function(d) {
-              return ((d.getMonth() % 3) === 0);
-            });
-          }
-          return tickVals;
         }
       }
     }

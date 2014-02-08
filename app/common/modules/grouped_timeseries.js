@@ -34,7 +34,8 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         seriesList: this.model.get("series"),
         filterBy: this.model.get("filter-by"),
         showTotalLines: this.model.get("show-total-lines"),
-        duration: this.model.get("duration")
+        duration: this.model.get("duration"),
+        axisPeriod: this.model.get("axis-period")
       };
     }
 

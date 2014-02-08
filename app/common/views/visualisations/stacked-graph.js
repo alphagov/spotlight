@@ -79,7 +79,13 @@ function (Graph) {
     encompassStack: true,
 
     getConfigNames: function () {
-      return ['stack', this.collection.query.get('period') || 'week'];
+      var axisConfig = 'week';
+      if(this.collection.options.axisPeriod){
+        axisConfig = this.collection.options.axisPeriod;
+      } else if (this.collection.query.get('period')){
+        axisConfig = this.collection.query.get('period');
+      }
+      return ['stack', axisConfig];
     }
   });
   

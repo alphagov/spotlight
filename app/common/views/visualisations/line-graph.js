@@ -35,7 +35,13 @@ function (Graph) {
     },
     
     getConfigNames: function () {
-      return ['overlay', this.collection.query.get('period') || 'week'];
+      var axisConfig = 'week';
+      if(this.collection.options.axisPeriod){
+        axisConfig = this.collection.options.axisPeriod;
+      } else if (this.collection.query.get('period')){
+        axisConfig = this.collection.query.get('period');
+      }
+      return ['overlay', axisConfig];
     }
   });
 
