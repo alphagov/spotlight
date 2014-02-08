@@ -7,6 +7,8 @@
   "data-type": "devices",
   "category": "deviceCategory",
   "period": "week",
+  "axis-period": "month",
+  "duration": 52,
   "value-attr": "visitors:sum",
   "show-line-labels": true,
   "one-hundred-percent": true,
