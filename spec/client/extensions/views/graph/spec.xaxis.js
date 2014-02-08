@@ -50,17 +50,18 @@ function (XAxis, Collection) {
     }
 
     describe("'hour' configuration", function () {
-      it("shows 4 ticks for 6am, midday, 6pm and midnight", function () {
+      it("shows 5 ticks for midnight, 6am, midday, 6pm and midnight", function () {
         var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00');
 
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
-        expect(wrapper.selectAll('.tick')[0].length).toEqual(4);
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(5);
         expect(d3.select(ticks[0]).text()).toEqual('midnight');
         expect(d3.select(ticks[1]).text()).toEqual('6am');
         expect(d3.select(ticks[2]).text()).toEqual('midday');
         expect(d3.select(ticks[3]).text()).toEqual('6pm');
+        expect(d3.select(ticks[4]).text()).toEqual('midnight');
       });
     });
 
@@ -85,12 +86,11 @@ function (XAxis, Collection) {
         
         var ticks = wrapper.selectAll('.tick')[0];
         
-        expect(wrapper.selectAll('.tick')[0].length).toEqual(8);
-        expect(d3.select(ticks[0]).text()).toEqual('Jan 2012');
-        expect(d3.select(ticks[1]).text()).toEqual('Apr');
-        expect(d3.select(ticks[2]).text()).toEqual('July');
-        expect(d3.select(ticks[3]).text()).toEqual('Oct');
-        expect(d3.select(ticks[4]).text()).toEqual('Jan 2013');
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(7);
+        expect(d3.select(ticks[0]).text()).toEqual('Apr');
+        expect(d3.select(ticks[1]).text()).toEqual('July');
+        expect(d3.select(ticks[2]).text()).toEqual('Oct');
+        expect(d3.select(ticks[3]).text()).toEqual('Jan 2013');
       });
     });
     
@@ -103,7 +103,7 @@ function (XAxis, Collection) {
         view.render();
         
         var ticks = wrapper.selectAll('.tick')[0];
-        expect(wrapper.selectAll('.tick')[0].length).toEqual(4);
+        expect(wrapper.selectAll('.tick')[0].length).toEqual(5);
         expect(d3.select(ticks[0]).text()).toContain('…');
       });
     });
