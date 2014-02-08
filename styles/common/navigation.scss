@@ -15,3 +15,11 @@ span.alpha-tag {
       text-decoration: none;
   }
 }
+
+#performance-platform-colour-bar {
+  margin: 0 auto;
+  height: 0;
+  max-width: 960px;
+
+  border-top: 10px solid $primary-colour;
+}
