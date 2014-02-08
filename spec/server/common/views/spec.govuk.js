@@ -5,21 +5,25 @@ define([
 ],
 function (GovUkView, View, Model) {
   describe("GovUkView", function () {
-    it("renders a page with breadcrumbs and content view in GOV.UK style", function () {
 
-      var TestView = View.extend({
-        template: function () {
-          return 'test_content';
-        }
-      });
-
-      var model = new Model({
+    var model;
+    beforeEach(function () {
+      model = new Model({
         requirePath: '/testRequirePath/',
         assetPath: '/testAssetPath/',
         assetDigest: {
           'spotlight.css': 'spotlight-cachebust.css'
         },
         environment: 'development'
+      });
+    });
+
+    it("renders a page with breadcrumbs and content view in GOV.UK style", function () {
+
+      var TestView = View.extend({
+        template: function () {
+          return 'test_content';
+        }
       });
 
       var view = new GovUkView({
@@ -47,6 +51,22 @@ function (GovUkView, View, Model) {
 
       var content = context.content.replace(/\s+/g, ' ').trim();
       expect(content).toEqual('<div id="performance-platform-colour-bar" role="presentation"></div> <div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li><a href="&#x2F;performance">Performance</a></li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> <div class="performance-platform-outer"> test_content report_a_problem </div> </main> </div>');
+    });
+
+    it("doesn't display the breadcrumb wrapper if there are no breadcrumbs", function () {
+      var view = new GovUkView({
+        model: model,
+      });
+
+      spyOn(view, 'template').andReturn('rendered')
+      spyOn(view, 'getBreadcrumbCrumbs').andReturn([]);
+
+      view.render();
+
+      var context = view.template.argsForCall[0][0];
+      var content = context.content.replace(/\s+/g, ' ').trim();
+
+      expect(content.indexOf('breadcrumb')).toEqual(-1);
     });
   });
 });
