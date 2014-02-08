@@ -1,17 +1,11 @@
 define([
+  'page_config',
   'stagecraft_api_client'
 ],
-function (StagecraftApiClient) {
+function (PageConfig, StagecraftApiClient) {
+
   var renderContent = function (req, res, model) {
-    model.set({
-      govukUrl: setup.getGovukUrl(req),
-      requirePath: req.app.get('requirePath'),
-      assetPath: req.app.get('assetPath'),
-      assetDigest: req.app.get('assetDigest'),
-      environment: req.app.get('environment'),
-      backdropUrl: req.app.get('backdropUrl'),
-      clientRequiresCors: req.app.get('clientRequiresCors')
-    });
+    model.set(PageConfig.commonConfig(req));
 
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
@@ -27,10 +21,6 @@ function (StagecraftApiClient) {
     controller.render({ init: true });
 
     return controller;
-  };
-
-  var getGovukUrl = function (req) {
-    return ["https://", req.app.get('govukHost'), req.originalUrl].join('');
   };
 
   var setup = function (req, res, next) {
@@ -50,8 +40,8 @@ function (StagecraftApiClient) {
   setup.getStagecraftApiClient = function () {
     return new StagecraftApiClient();
   };
+
   setup.renderContent = renderContent;
-  setup.getGovukUrl = getGovukUrl;
 
   return setup;
 });
