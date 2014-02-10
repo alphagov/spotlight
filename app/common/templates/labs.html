@@ -1,14 +1,5 @@
 <div id='labs-content'>
 
-  <section id='prototypes-warning'>
-    <h2>Prototypes</h2>
-    <p>This information should not be used in an emergency.</p>
-    <p>
-      These prototypes may break at any time, and may disappear temporarily or permanently.
-      They may not be accessible or work in older browsers.
-    </p>
-  </section>
-
   <header>
     <h1>Performance Platform labs</h1>
 
@@ -16,57 +7,64 @@
 
     <p>
       If you work in government and you want to work with a data scientist,
-      <a href='FIXME'>get in touch</a>.
+      <a href='performance@digital.cabinet-office.gov.uk'>get in touch</a>.
     </p>
   </header>
 
+  <section id='prototypes-warning'>
+    <h2>Prototypes</h2>
+    <p>
+      These prototypes may break at any time, and may disappear temporarily or permanently.
+      They may not be accessible or work in older browsers.
+    </p>
+  </section>
+
   <section id='main-project'>
-    <a href='FIXME'>
-      <img src='FIXME' alt='Screenshot of river levels tracker' width='FIXME' height='FIXME' />
+    <a href='http://ukriver-levels.herokuapp.com'>
+      <img src='<%= assetPath %>images/<%= assetDigest['labs-river-levels.jpg'] %>' alt='Screenshot of river levels tracker' width='630' height='355' />
     </a>
     <div>
-      <a href='FIXME'>
+      <a href='http://ukriver-levels.herokuapp.com'>
         <h2>UK river levels tracker</h2>
       </a>
-      <p>Combines data from data.gov.uk and the Met Office to show river levels in the United Kingdom.</p>
+      <p>Uses <a href='http://www.environment-agency.gov.uk/homeandleisure/floods/riverlevels/'>data from the Environment Agency</a> to show river levels in the United Kingdom.</p>
     </div>
   </section>
 
   <section>
     <div class='cols3 secondary-project'>
-      <a href='FIXME'>
-        <img src='FIXME' alt='Screenshot of GOV.UK performance displays' width='FIXME' height='FIXME' />
+      <a href='http://gds-screens-realtime.herokuapp.com/'>
+        <img src='<%= assetPath %>images/<%= assetDigest['labs-govuk-performance-displays.jpg'] %>' alt='Screenshot of GOV.UK performance displays' width='300' height='170' />
       </a>
       <h2>GOV.UK performance displays</h2>
-      <p>Displays information about GOV.UK use in a full-screen, responsive carousel.</p>
       <ul>
-        <li><a href='FIXME'>GOV.UK users right now</a></li>
-        <li><a href='FIXME'>GOV.UK usage statistics</a></li>
-        <li><a href='FIXME'>Transaction users right now</a></li>
-        <li><a href='FIXME'>GOV.UK top content</a></li>
+        <li><a href='http://gds-screens-govuk-realtime.herokuapp.com/'>GOV.UK users right now</a></li>
+        <li><a href='http://gds-screens-slides.herokuapp.com/'>GOV.UK usage statistics</a></li>
+        <li><a href='http://gds-screens-realtime.herokuapp.com/'>Transaction users right now</a></li>
+        <li><a href='http://gds-screens-leaderboard.herokuapp.com/'>GOV.UK top content</a></li>
       </ul>
     </div>
 
     <div class='cols3 secondary-project'>
-      <a href='FIXME'>
-        <img src='FIXME' alt='Screenshot of foreign travel advice tracker' width='FIXME' height='FIXME' />
+      <a href='http://dpcollins.github.io/FCO2/WorldLOCAL.html'>
+        <img src='<%= assetPath %>images/<%= assetDigest['labs-govuk-travel-advice.jpg'] %>' alt='Screenshot of foreign travel advice tracker' width='300' height='170' />
       </a>
-      <a href='FIXME'>
+      <a href='http://dpcollins.github.io/FCO2/WorldLOCAL.html'>
         <h2>Foreign travel advice tracker</h2>
       </a>
       <p>Uses GOV.UK browsing data to show how views of travel advice has changed over the last seven days.</p>
     </div>
 
     <div class='cols3 secondary-project'>
-      <a href='FIXME'>
-        <img src='FIXME' alt='FIXME' width='FIXME' height='FIXME' />
+      <a href='http://morning-retreat-5772.herokuapp.com/'>
+        <img src='<%= assetPath %>images/<%= assetDigest['labs-staff-in-government-buildings.jpg'] %>' alt='Screenshot of staff numbers in government buildings visualisation' width='300' height='170' />
       </a>
-      <a href='FIXME'>
+      <a href='http://morning-retreat-5772.herokuapp.com/'>
         <h2>
-          Another project
+          Staff numbers in government buildings
         </h2>
       </a>
-      <p>Text.</p>
+      <p>Uses <a href='http://data.gov.uk/dataset/epims'>data from data.gov.uk</a> to show staff numbers in Government Central Civil Estate properties.</p>
     </div>
   </section>
 
