@@ -68,6 +68,8 @@ function (express, fs, path, winston) {
 
       app.get('/performance', requirejs('./common/controllers/homepage'));
 
+      app.get('/performance/labs', requirejs('./common/controllers/labs'));
+
       app.use('/performance/', requirejs('process_request'));
 
       app.get('/_status', requirejs('healthcheck_controller'));
