@@ -1,0 +1,119 @@
+#homepage-content {
+  @extend %contain-floats;
+
+  header {
+    margin-top: 1.5em;
+    padding-bottom: 0;
+    border: none;
+
+    p {
+      @include core-24;
+      margin-top: 1.6em;
+      width: 100%;
+
+      @include media(desktop) {
+        width: 65.625%;
+      }
+    }
+  }
+
+  section {
+    margin-top: 0;
+    margin-bottom: 2em;
+    padding-top: 0;
+    border-top: none;
+
+    h2 {
+      @include bold-24;
+      margin-bottom: 0.75em;
+
+      border-bottom: 5px solid $primary-colour;
+    }
+
+    h3 {
+      @include bold-19;
+      margin-top: 1em;
+    }
+
+    p, dl, ul {
+      @include core-19;
+    }
+
+    p {
+      margin: 0.2em 0 1em 0;
+    }
+  }
+
+  article {
+    min-height: 0;
+  }
+
+  .service-listing {
+    dl, ol, ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    dt {
+      margin: 0;
+      padding: 0;
+
+      &.t + dd {
+        border-bottom: none;
+      }
+
+      &.service_groups {
+        font-weight: bold;
+        margin-top: 3em;
+      }
+    }
+
+    dd {
+      margin: 0 0 0.75em 0;
+      padding: 0;
+      border-bottom: 1px solid $grey-3;
+    }
+
+    li {
+      border-top: 1px solid $grey-3;
+      padding:.3em 0;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin-top: 1.579em;
+  }
+}
+
+@include media(desktop) {
+  .cols2,
+  #content section.cols2,
+  #content article.cols2 {
+    width: 48.4375%;
+    float: left;
+    clear: none;
+    margin-right: 0;
+    margin-left: 3.125%;
+  }
+
+  .cols2,
+  #content section.cols2:first-of-type,
+  #content article.cols2:first-of-type {
+    margin-left: 0;
+  }
+
+  .cols3 {
+    width: 31.25%;
+    float: left;
+    clear: none;
+    margin-right: 0;
+    margin-left: 3.125%;
+  }
+
+  .cols3:first-of-type {
+    margin-left: 0;
+  }
+}
