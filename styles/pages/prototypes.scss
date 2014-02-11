@@ -3,8 +3,18 @@
 
   margin-top: 2em;
 
+  h1, h2, h3, h4, p, section {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
   section {
     border: none;
+    margin-bottom: 30px;
 
     img {
       max-width: 100%;
@@ -52,14 +62,14 @@
     img {
       @include media(tablet) {
         float: left;
-        width: 64%;
+        width: 630px / 960px * 100%;
       }
     }
 
     div {
       @include media(tablet) {
         float: right;
-        width: 32%;
+        width: 300px / 960px * 100%;
       }
     }
   }
