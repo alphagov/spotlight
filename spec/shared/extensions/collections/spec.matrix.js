@@ -4,15 +4,15 @@ define([
   'extensions/models/group'
 ],
 function (MatrixCollection, Collection, Group) {
-  
+
   describe("MatrixCollection", function() {
-    
+
     describe("initialize", function() {
-      
+
       it("uses Group models", function () {
         expect(MatrixCollection.prototype.model).toBe(Group);
       });
-      
+
       it("listens to selection changes in all groups", function () {
         var group0 = new Group({
           values: [
@@ -26,22 +26,22 @@ function (MatrixCollection, Collection, Group) {
             { a: 'four' }
           ]
         }, { parse: true });
-        spyOn(MatrixCollection.prototype, "onGroupChangeSelected");
+        spyOn(MatrixCollection.prototype, 'onGroupChangeSelected');
         var collection = new MatrixCollection();
         collection.reset([ group0, group1 ]);
-        
+
         group0.get('values').selectItem(1);
         expect(collection.onGroupChangeSelected).toHaveBeenCalledWith(
           group0, 0, group0.get('values').at(1), 1
         );
-        
+
         group1.get('values').selectItem(0);
         expect(collection.onGroupChangeSelected).toHaveBeenCalledWith(
           group1, 1, group1.get('values').at(0), 0
         );
       });
     });
-    
+
     describe("parse", function () {
       it("assigns constituent collections as 'values' attribute", function () {
         var collection = new MatrixCollection([], {});
@@ -53,7 +53,7 @@ function (MatrixCollection, Collection, Group) {
         expect(collection.at(0).get('values').at(0).get('foo')).toEqual('bar');
         expect(collection.at(1).get('values').at(0).get('foo')).toEqual('baz');
       });
-      
+
       it("assigns id and title properties as attributes when available", function () {
         var subCollection1 = new Collection([ { foo: 'bar' } ]);
         subCollection1.id = 'id1';
@@ -73,10 +73,10 @@ function (MatrixCollection, Collection, Group) {
         expect(collection.at(1).get('title')).toEqual('Title 2');
       });
     });
-    
+
 
     describe("selection", function () {
-      
+
       var collection, spy;
       beforeEach(function() {
         spy = jasmine.createSpy();
@@ -96,130 +96,137 @@ function (MatrixCollection, Collection, Group) {
         collection.on('change:selected', spy);
         collection.reset([ group0, group1 ]);
       });
-      
+
       describe("selectItem", function () {
 
-        var assertGroupSelection = function (group) {
-          if (group == null) {
-            expect(collection.selectedItem).toBe(null);
-            expect(collection.selectedIndex).toBe(null);
-          } else {
-            expect(collection.selectedItem).toBe(collection.at(group));
-            expect(collection.selectedIndex).toEqual(group);
-          }
-        };
-
-        var assertItemSelection = function (group, model) {
-          var selectedItem = collection.at(group).get('values').selectedItem;
-          if (model == null) {
-            expect(selectedItem).toBeFalsy();
-          } else {
-            expect(selectedItem).toBe(collection.at(group).get('values').at(model));
-          }
-        };
-        
         it("selects a group", function () {
           collection.selectItem(1);
-          assertGroupSelection(1);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(collection.at(1));
+          expect(collection.selectedIndex).toEqual(1);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
-        
+
         it("selects an item in a group and the group and unselects all other groups", function () {
           collection.selectItem(1, 1);
-          assertGroupSelection(1);
-          assertItemSelection(0, null);
-          assertItemSelection(1, 1);
+
+          expect(collection.selectedItem).toBe(collection.at(1));
+          expect(collection.selectedIndex).toEqual(1);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBe(collection.at(1).get('values').at(1));
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, collection.at(1).get('values').at(1), 1);
-          
+
           collection.selectItem(0, 0);
-          assertGroupSelection(0);
-          assertItemSelection(0, 0);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(collection.at(0));
+          expect(collection.selectedIndex).toEqual(0);
+          expect(collection.at(0).get('values').selectedItem).toBe(collection.at(0).get('values').at(0));
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
         });
 
         it("selects an item in all groups", function () {
           collection.selectItem(null, 1);
-          assertGroupSelection(null);
-          assertItemSelection(0, 1);
-          assertItemSelection(1, 1);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBe(collection.at(0).get('values').at(1));
+          expect(collection.at(1).get('values').selectedItem).toBe(collection.at(1).get('values').at(1));
           expect(spy).toHaveBeenCalledWith(null, null, [
             collection.at(0).get('values').at(1),
             collection.at(1).get('values').at(1)
           ], 1);
-          
+
           collection.selectItem(null, 0);
-          assertGroupSelection(null);
-          assertItemSelection(0, 0);
-          assertItemSelection(1, 0);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBe(collection.at(0).get('values').at(0));
+          expect(collection.at(1).get('values').selectedItem).toBe(collection.at(1).get('values').at(0));
           expect(spy).toHaveBeenCalledWith(null, null, [
             collection.at(0).get('values').at(0),
             collection.at(1).get('values').at(0)
           ], 0);
         });
-        
+
         it("unselects group and item", function () {
           collection.selectItem(1, 1);
           collection.selectItem(null);
-          assertGroupSelection(null);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
-        
+
         it("unselects item but keeps group", function () {
           collection.selectItem(1, 1);
           collection.selectItem(1, null);
-          assertGroupSelection(1);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(collection.at(1));
+          expect(collection.selectedIndex).toEqual(1);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
 
         it("optionally toggles selection of a group", function () {
           collection.selectItem(1, null, { toggle: true });
-          assertGroupSelection(1);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(collection.at(1));
+          expect(collection.selectedIndex).toEqual(1);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
 
           collection.selectItem(1, null, { toggle: true });
-          assertGroupSelection(null);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
 
         it("optionally toggles selection of item in a group", function () {
           collection.selectItem(1, 1, { toggle: true });
-          assertGroupSelection(1);
-          assertItemSelection(0, null);
-          assertItemSelection(1, 1);
+
+          expect(collection.selectedItem).toBe(collection.at(1));
+          expect(collection.selectedIndex).toEqual(1);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBe(collection.at(1).get('values').at(1));
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, collection.at(1).get('values').at(1), 1);
-  
+
           collection.selectItem(1, 1, { toggle: true });
-          assertGroupSelection(null);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
 
         it("optionally toggles selection of an item across all group", function () {
           collection.selectItem(null, 1, { toggle: true });
-          assertGroupSelection(null);
-          assertItemSelection(0, 1);
-          assertItemSelection(1, 1);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBe(collection.at(0).get('values').at(1));
+          expect(collection.at(1).get('values').selectedItem).toBe(collection.at(1).get('values').at(1));
           expect(spy).toHaveBeenCalledWith(null, null, [
             collection.at(0).get('values').at(1),
             collection.at(1).get('values').at(1)
           ], 1);
 
           collection.selectItem(null, 1, { toggle: true });
-          assertGroupSelection(null);
-          assertItemSelection(0, null);
-          assertItemSelection(1, null);
+
+          expect(collection.selectedItem).toBe(null);
+          expect(collection.selectedIndex).toBe(null);
+          expect(collection.at(0).get('values').selectedItem).toBeFalsy();
+          expect(collection.at(1).get('values').selectedItem).toBeFalsy();
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
 
@@ -227,13 +234,14 @@ function (MatrixCollection, Collection, Group) {
           collection.selectItem(1, 1, { silent: true });
           expect(spy).not.toHaveBeenCalled();
         });
-        
+
       });
 
       describe("getCurrentSelection", function () {
 
         it("retrieves an object with an empty selection when nothing is selected", function () {
           collection.selectItem(null);
+
           var currentSelection = collection.getCurrentSelection();
           expect(currentSelection.selectedGroup).toBe(null);
           expect(currentSelection.selectedGroupIndex).toBe(null);
@@ -243,6 +251,7 @@ function (MatrixCollection, Collection, Group) {
 
         it("retrieves an object with the currently selected group", function () {
           collection.selectItem(1, null);
+
           var currentSelection = collection.getCurrentSelection();
           expect(currentSelection.selectedGroup).toBe(collection.at(1));
           expect(currentSelection.selectedGroupIndex).toBe(1);
@@ -252,6 +261,7 @@ function (MatrixCollection, Collection, Group) {
 
         it("retrieves an object with the currently selected group and item", function () {
           collection.selectItem(1, 1);
+
           var currentSelection = collection.getCurrentSelection();
           expect(currentSelection.selectedGroup).toBe(collection.at(1));
           expect(currentSelection.selectedGroupIndex).toBe(1);
@@ -261,6 +271,7 @@ function (MatrixCollection, Collection, Group) {
 
         it("retrieves an object with the currently selected items", function () {
           collection.selectItem(null, 1);
+
           var currentSelection = collection.getCurrentSelection();
           expect(currentSelection.selectedGroup).toBe(null);
           expect(currentSelection.selectedGroupIndex).toBe(null);
@@ -376,7 +387,7 @@ function (MatrixCollection, Collection, Group) {
             { a: 7, b: null }
           ]))
         });
-        
+
         it("always returns 1 when applied to all groups and items", function () {
           expect(collection.fraction('a')).toEqual(1);
           expect(collection.fraction('b')).toEqual(1);
