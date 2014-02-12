@@ -31,21 +31,13 @@ npm install
 ### Development ###
 
 If you're using our dev environment then `cd /var/apps/pp-development` and
-`bowl performance`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
-will work. This will use backdrop as a data source.
+`bowl performance`. This will use the Backdrop app as a data source.
 
-If you want to run the app with stubs then `cd /var/apps/spotlight` and
-`grunt`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
-will work. This will use stubs as a data source.
+If you want to run the app from static files then `cd /var/apps/spotlight` and
+`grunt`. This will use stubs in the Spotlight repo as a data source.
 
-Otherwise, if not on the VM...
-```bash
-cd <spotlight_dir>
-NODE_ENV=development_no_vm grunt
-```
-
-This will create a development build of the assets and then run the app at
-`http://localhost:3057`.
+Once you've set up your DNS, `http://spotlight.perfplat.dev`
+will connect to the app (which is running on port 3057).
 
 The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
