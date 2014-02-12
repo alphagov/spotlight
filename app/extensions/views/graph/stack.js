@@ -120,7 +120,7 @@ function (require, Line, Component) {
       };
 
       var selectedGroupIndex, selectedItemIndex;
-      for (var i = this.collection.models.length - 1; i >= 0; i--) {
+      for (var i = this.collection.length - 1; i >= 0; i--) {
         var group = this.collection.models[i];
         var distanceAndClosestModel = this.getDistanceAndClosestModel(
           group, i, point, { allowMissingData: this.allowMissingData }
@@ -130,7 +130,7 @@ function (require, Line, Component) {
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
           break;
-        }else if (distanceAndClosestModel.diff > 0 || i ===0 ) {
+        } else if (distanceAndClosestModel.diff > 0 || i === 0) {
           selectedGroupIndex = i;
           selectedItemIndex = distanceAndClosestModel.index;
           break;

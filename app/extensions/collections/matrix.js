@@ -11,10 +11,10 @@ function (require, Collection, Group) {
    */
   var MatrixCollection = Collection.extend({
     model: Group,
-    
+
     initialize: function () {
       Collection.prototype.initialize.apply(this, arguments);
-      
+
       this.on('reset', function () {
         this.each(function (group, groupIndex) {
           group.get('values').on('change:selected', function (model, index) {
@@ -23,7 +23,7 @@ function (require, Collection, Group) {
         }, this);
       }, this);
     },
-    
+
     parse: function (data) {
       return _.map(this.collectionInstances, function (collection) {
         return {
@@ -33,7 +33,7 @@ function (require, Collection, Group) {
         };
       });
     },
-    
+
     /**
      * Chooses an item in the collection as `selected` and notifies listeners.
      * @param {Number} groupIndex Index of group to select, or `null` to unselect
@@ -49,12 +49,11 @@ function (require, Collection, Group) {
       }
 
       this.selectedSlice = null;
-      
       var toggled = false;
       this.each(function (group, groupIndex) {
         var values = group.get('values');
         var index = null;
-        if (selectGroupIndex == null || selectGroupIndex === groupIndex) {
+        if (selectGroupIndex === null || selectGroupIndex === groupIndex) {
           if (options.toggle && values.selectedIndex === selectIndex) {
             toggled = true;
           } else {
@@ -68,10 +67,10 @@ function (require, Collection, Group) {
         selectGroupIndex = null;
         selectIndex = null;
       }
-      
       var selectGroup = this.at(selectGroupIndex) || null;
       var selectModel = null;
-      if (selectIndex != null) {
+
+      if (selectIndex !== null) {
         if (selectGroup) {
           selectModel = selectGroup.get('values').at(selectIndex);
         } else {
@@ -81,9 +80,9 @@ function (require, Collection, Group) {
           this.selectedSlice = selectIndex;
         }
       }
-      
+
       Collection.prototype.selectItem.call(this, selectGroupIndex, { silent: true });
-      
+
       if (!options.silent) {
         this.trigger('change:selected', selectGroup, selectGroupIndex, selectModel, selectIndex);
       }
@@ -147,7 +146,7 @@ function (require, Collection, Group) {
         return memo;
       }, null);
     },
-    
+
     sum: function (attr, groupIndex, index) {
       if (groupIndex != null && index != null) {
         return this.at(groupIndex, index).get(attr);
@@ -179,7 +178,7 @@ function (require, Collection, Group) {
         return 1;
       }
     },
-    
+
     onGroupChangeSelected: function (group, groupIndex, model, index) {
       if (index === null) {
         group = null;
@@ -188,7 +187,7 @@ function (require, Collection, Group) {
       this.trigger('change:selected', group, groupIndex, model, index);
     }
   });
-  
+
   return MatrixCollection;
 });
 
