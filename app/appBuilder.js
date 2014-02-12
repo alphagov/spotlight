@@ -68,7 +68,7 @@ function (express, fs, path, winston) {
 
       app.get('/performance', requirejs('./common/controllers/homepage'));
 
-      app.get('/performance/labs', requirejs('./common/controllers/labs'));
+      app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
 
       app.use('/performance/', requirejs('process_request'));
 
