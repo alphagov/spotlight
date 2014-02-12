@@ -10,11 +10,17 @@ function (View) {
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
-      var events = 'reset sync error';
       if (this.changeOnSelected) {
-        events += ' change:selected';
+        this.collection.on('change:selected', this.onChangeSelected, this);
       }
-      this.collection.on(events, this.render, this);
+      this.collection.on('reset sync error', this.render, this);
+    },
+
+    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel, selectIndex) {
+      if (selectModel) {
+        this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
+      }
+      this.render();
     },
 
     render: function () {
@@ -22,6 +28,11 @@ function (View) {
 
       var value, label;
       var selection = this.collection.getCurrentSelection();
+
+      if (this.selectedModel) {
+        selection.selectedModel = this.selectedModel;
+      }
+
       if (selection.selectedModel) {
         value = this.getValueSelected(selection);
         label = this.getLabelSelected(selection);
@@ -43,6 +54,7 @@ function (View) {
         content += ' ' + label;
       }
       this.$el.html(content);
+      delete this.selectedModel;
     },
 
     getLabel: function () {
