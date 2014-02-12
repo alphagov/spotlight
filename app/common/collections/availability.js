@@ -27,7 +27,7 @@ function (MatrixCollection) {
         }
         d._end_at = this.getMoment(d._end_at);
         d._start_at = this.getMoment(d._start_at);
-        d._timestamp = d._end_at;
+        d._timestamp = d._start_at;
       }, this);
       return {
         id: 'availability',

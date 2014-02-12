@@ -1,0 +1,66 @@
+#labs-content {
+  @extend %contain-floats;
+
+  margin-top: 2em;
+
+  section {
+    border: none;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ul {
+      padding-left: 0;
+
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+
+  #prototypes-warning {
+    @include media(tablet) {
+      width: 32%;
+      float: right;
+    }
+
+    h2 {
+      @include bold-24;
+    }
+
+    p {
+      @include core-16;
+    }
+  }
+
+  header {
+    padding-bottom: 0;
+    border: none;
+
+    @include media(tablet) {
+      width: 64%;
+    }
+
+    p {
+      @include core-24;
+    }
+  }
+
+  #main-project {
+    img {
+      @include media(tablet) {
+        float: left;
+        width: 64%;
+      }
+    }
+
+    div {
+      @include media(tablet) {
+        float: right;
+        width: 32%;
+      }
+    }
+  }
+}

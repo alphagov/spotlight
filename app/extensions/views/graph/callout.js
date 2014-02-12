@@ -76,13 +76,8 @@ function (Component, Pivot) {
     },
 
     getHeader: function (el, group, groupIndex, model, index) {
-      return this.formatPeriod(model, this.periodFormat);
-    },
-
-    configs: {
-      week: { periodFormat: 'week' },
-      month: { periodFormat: 'month' },
-      quarter: { periodFormat: 'month' }
+      var period = this.graph.collection.query.get('period') || 'week';
+      return this.formatPeriod(model, period);
     },
 
     renderContent: function (el, group, groupIndex, model, index) {
