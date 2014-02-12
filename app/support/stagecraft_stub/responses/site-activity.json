@@ -25,16 +25,18 @@
       "data-group": "govuk",
       "data-type": "visitors",
       "category": "dataType",
-      "period": "month",
+      "period": "week",
+      "duration": 52,
+      "axis-period": "month",
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "cumulative": false,
       "info": [ "Data source: Google Analytics" ],
       "series": [
          { "id": "govuk_visitors", "title": "GOV.UK" },
-         { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 12 },
-         { "id": "directgov_visitors", "title": "Directgov", "timeshift": 12 },
-         { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 12 }
+         { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 52 },
+         { "id": "directgov_visitors", "title": "Directgov", "timeshift": 52 },
+         { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 52 }
       ]
     },
     {
@@ -46,6 +48,8 @@
       "data-type": "devices",
       "category": "deviceCategory",
       "period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,

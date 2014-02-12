@@ -308,7 +308,7 @@ function (Graph, Collection, Model, d3) {
         });
         spyOn(graph, "resizeWithCalloutHidden");
       });
-      
+
       it("sets the currency on render, if defined", function () {
         spyOn(graph, "applyConfig");
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
@@ -512,11 +512,11 @@ function (Graph, Collection, Model, d3) {
 
       function sharedSpecsForScalingBetweenStartAndEndDates() {
         describe("calcXScale", function() {
-          it("scales domain from start entry end date to end entry end date", function() {
+          it("scales domain from start entry start date to end entry start date", function() {
             graph.applyConfig('day');
             var domain = graph.calcXScale().domain();
-            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-20');
-            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-02-03');
+            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
+            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
           });
 
           it("scales range to inner width", function() {
