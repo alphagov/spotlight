@@ -20,6 +20,6 @@
     { "id": "govuk_visitors", "title": "GOV.UK" },
     { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 52 },
     { "id": "directgov_visitors", "title": "Directgov", "timeshift": 52 },
-    { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 12 }
+    { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 52 }
   ]
 }
