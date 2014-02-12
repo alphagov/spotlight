@@ -140,7 +140,7 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Model) {
       expect(graph.getConfigNames()).toEqual(['stack', 'day']);
     });
 
-    it("returns configuration for month when settings period is for day", function () {
+    it("returns configuration for when axis period is set", function () {
       var collection = new Collection([], { axisPeriod: 'month' });
       var graph = new StackedGraph({ collection: collection });
 
