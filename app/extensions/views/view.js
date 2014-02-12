@@ -355,6 +355,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           }
           return start.format('D MMM YYYY');
         case 'month':
+        case 'quarter':
           if (end) {
             end = this.getMoment(end).subtract(1, 'months');
             if (start.diff(end)) {

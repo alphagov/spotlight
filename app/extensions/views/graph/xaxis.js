@@ -2,9 +2,9 @@ define([
   './axis'
 ],
 function (Axis) {
-  
+
   var XAxis = Axis.extend({
-    
+
     classed: 'x-axis',
     position: 'bottom',
     orient: 'bottom',
@@ -16,43 +16,44 @@ function (Axis) {
         this.ellipsifyAxisLabels();
       }
     },
-    ellipsifyAxisLabels: function() { 
-      
+    ellipsifyAxisLabels: function() {
+
       // Manually add ellipses to x-axis labels if they are longer than the
       // space allocated for each data item.
       // We do this by hand with D3, because SVG text elements don't support
       // CSS ellipsis styles or line breaks.
       var labels = d3.selectAll('.x-axis .tick text');
       if (!this.svg) {
-        this.svg = d3.select('svg'); // For unit tests. 
+        this.svg = d3.select('svg'); // For unit tests.
       }
       var svgWidth = this.svg.style('width').replace('px','');
       var blockWidth = svgWidth / this.collection.first().get('values').length;
-      
-      labels.each(function() { 
-        
+
+      labels.each(function() {
+
         if (d3.select(this).attr('original-text') === null) {
           d3.select(this).attr('original-length-px', this.getComputedTextLength());
           d3.select(this).attr('original-text', d3.select(this).text());
         }
-        
+
         var textLength = d3.select(this).attr('original-length-px');
         var text = d3.select(this).attr('original-text');
-        
+
         if (textLength > (blockWidth)) {
           var percentTooLong = blockWidth / textLength;
           var lastChar = (text.length * percentTooLong) - 3;
           d3.select(this).text(text.substring(0,lastChar) + "…");
-        } else { 
+        } else {
           d3.select(this).text(text);
         }
-        
-      }); 
+
+      });
     },
-    
+
     getScale: function () {
       return this.scales.x;
     },
+
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       var ticks = this.componentWrapper.selectAll('.tick');
       ticks.classed('selected', false);
@@ -64,7 +65,7 @@ function (Axis) {
 
     configs: {
       hour: {
-        ticks: 4,
+        ticks: [d3.time.hour.utc, 6],
         tickFormat: function () {
           return _.bind(function (d, index) {
             var date = this.getMoment(d);
@@ -79,7 +80,7 @@ function (Axis) {
         }
       },
       day: {
-        ticks: 4,
+        ticks: [d3.time.mondays.utc, 1],
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -87,6 +88,7 @@ function (Axis) {
         }
       },
       week: {
+        ticks: [d3.time.mondays.utc, 1],
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -94,6 +96,7 @@ function (Axis) {
         }
       },
       month: {
+        ticks: [d3.time.month.utc, 1],
         tickFormat: function () {
           return _.bind(function (d, index) {
             var val = this.getMoment(d).format('MMM');
@@ -106,6 +109,6 @@ function (Axis) {
       }
     }
   });
-  
+
   return XAxis;
 });
