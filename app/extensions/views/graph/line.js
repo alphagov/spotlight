@@ -54,12 +54,12 @@ function (Component) {
     interactive: true,
 
     drawCursorLine: false,
-    
+
     x: function (group, groupIndex, model, index) {
       var xPos = this.graph.getXPos(groupIndex, index);
       return xPos === null ? xPos : Math.floor(this.scales.x(xPos)) + 0.5;
     },
-    
+
     y: function (group, groupIndex, model, index) {
       var yPos = this.graph.getYPos(groupIndex, index);
       return yPos === null ? yPos : this.scales.y(yPos);
@@ -70,13 +70,13 @@ function (Component) {
      */
     render: function () {
       Component.prototype.render.apply(this, arguments);
-      
+
       var selection = this.componentWrapper
         .selectAll('g.group')
         .data(this.collection.models);
       selection.enter().append('g').attr('class', 'group').append('path');
       selection.exit().remove();
-        
+
       var that = this;
       var groups = [];
       selection.each(function (group, groupIndex) {
@@ -225,15 +225,15 @@ function (Component) {
         allowMissingData: false
       }, options);
 
-      var values = group.get('values');
-      
+      var lineCollection = group.get('values');
+
       // find indices right and left of point
-      var leftIndexStart = values.length -1;
+      var leftIndexStart = lineCollection.length -1;
       var rightIndexStart = 0;
-      for (var i = 0; i < values.length; i++) {
-        if (this.x(group, groupIndex, values.at(i), i) >= point.x) {
-          rightIndexStart = i;
-          leftIndexStart = i - 1;
+      for (var a = 0; a < lineCollection.length; a++) {
+        if (this.x(group, groupIndex, lineCollection.at(a), a) >= point.x) {
+          rightIndexStart = a;
+          leftIndexStart = a - 1;
           break;
         }
       }
@@ -241,21 +241,21 @@ function (Component) {
       // search for valid models. when not allowing nulls, search for models
       // with non-null values
       var leftIndex, rightIndex;
-      for (i = leftIndexStart; i >= 0; i--) {
-        if (options.allowMissingData || this.y(group, groupIndex, values.at(i), i) !== null) {
-          leftIndex = i;
+      for (var b = leftIndexStart; b >= 0; b--) {
+        if (options.allowMissingData || this.y(group, groupIndex, lineCollection.at(b), b) !== null) {
+          leftIndex = b;
           break;
         }
       }
-      for (i = rightIndexStart; i < values.length; i++) {
-        if (options.allowMissingData || this.y(group, groupIndex, values.at(i), i) !== null) {
-          rightIndex = i;
+      for (var c = rightIndexStart; c < lineCollection.length; c++) {
+        if (options.allowMissingData || this.y(group, groupIndex, lineCollection.at(c), c) !== null) {
+          rightIndex = c;
           break;
         }
       }
 
-      var left = values.at(leftIndex);
-      var right = values.at(rightIndex);
+      var left = lineCollection.at(leftIndex);
+      var right = lineCollection.at(rightIndex);
       if (!left && !right) {
         return;
       } else if (!left) {
@@ -270,20 +270,20 @@ function (Component) {
       var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
 
       var diff, dist;
-      if ( leftIndex + 1 < values.length ){
+      if (leftIndex + 1 < lineCollection.length){
         var weight = distLeft / (distLeft + distRight) || 0;
         var leftY = this.y(group, groupIndex, left, leftIndex);
         var rightY;
-        for (i = rightIndex; i < group.get('values').models.length; i++) {
+        for (i = rightIndex; i < group.get('values').length; i++) {
           rightY = this.y(group, groupIndex, right, i);
-          if(rightY){
+          if(rightY !== null){
             break;
           }
         }
         var y = this.d3.interpolate(leftY, rightY)(weight);
         diff = point.y - y;
         dist = Math.abs(diff);
-      }else{
+      } else {
         //because NaN < 1 == false but null < 1 == true
         //and I don't want to get into refactoring line and its use of this method
         diff = NaN;
@@ -298,7 +298,7 @@ function (Component) {
         index: bestIndex
       };
     },
-    
+
     /**
      * Selects an item for a given position.
      * For each group, the algorithm interpolates between points to find the
@@ -316,13 +316,13 @@ function (Component) {
         x: e.x,
         y: e.y
       };
-      
+
       var bestDist = Infinity,
           bestModelIndex,
           bestGroupIndex,
           selectedDist,
           selectedIndex = this.collection.selectedIndex;
-      
+
       // Find closest point of closest group
       this.collection.each(function (group, groupIndex) {
         var result = this.getDistanceAndClosestModel(group, groupIndex, point);
@@ -337,7 +337,7 @@ function (Component) {
           selectedModelIndex = result.index;
         }
       }, this);
-      
+
       // Selection bias - only switch between groups when new group is
       // significantly closer than currently selected group.
       var biasThreshold = 15;
