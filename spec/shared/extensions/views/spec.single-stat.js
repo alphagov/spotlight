@@ -11,8 +11,11 @@ define([
     };
 
     describe("initialize", function () {
+
       describe("collection events", function () {
+
         var view, collection;
+
         beforeEach(function () {
           spyOn(SingleStatView.prototype, 'render');
           collection = new Collection();
@@ -35,6 +38,58 @@ define([
           collection.trigger('error');
           expect(view.render).toHaveBeenCalled();
         });
+
+        describe("changeOnSelected", function () {
+
+          it("should not listen to change:selected by default", function () {
+            collection.trigger('change:selected');
+            expect(view.render).not.toHaveBeenCalled();
+          });
+
+          it("should listen to change:selected when changeOnSelected is true", function () {
+            view.changeOnSelected = true;
+            view.initialize();
+
+            collection.trigger('change:selected');
+            expect(view.render).toHaveBeenCalled();
+          });
+
+        });
+      });
+    });
+
+    describe("onChangeSelected", function () {
+
+      var view, collection;
+
+      beforeEach(function () {
+        spyOn(SingleStatView.prototype, 'render');
+        collection = new Collection();
+        view = new SingleStatView({
+          collection: collection
+        });
+      });
+
+      it("sets selectedModel if available", function () {
+        var model = jasmine.createSpy('myfakeModel');
+
+        expect(view.selectedModel).toBeUndefined();
+
+        view.onChangeSelected(null, null, model, null);
+
+        expect(view.selectedModel).toEqual(model);
+      });
+
+      it("sets selectedModel to first item if passed array", function () {
+        var model = jasmine.createSpy('myfakeModel');
+        view.onChangeSelected(null, null, [model], null);
+
+        expect(view.selectedModel).toEqual(model);
+      });
+
+      it("calls render", function () {
+        view.onChangeSelected();
+        expect(view.render).toHaveBeenCalled();
       });
     });
 
