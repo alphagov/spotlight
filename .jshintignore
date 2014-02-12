@@ -1,0 +1,14 @@
+Vagrantfile
+*.md
+*.xml
+*.log
+*.sublime*
+*.sh
+.grunt/*
+package.json
+srcy.conf.json
+node_modules/*
+vendor/*
+spec/*
+public/javascripts/*
+app/vendor/*
