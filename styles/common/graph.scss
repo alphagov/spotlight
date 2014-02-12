@@ -30,7 +30,7 @@ figure.graph {
   .graph-wrapper {
     position:relative;
 
-    .inner, .hover {
+    .inner {
       padding:0;
       position:absolute;
       top: 20px;
@@ -179,6 +179,17 @@ figure.graph {
     stroke: #444;
     stroke-width: 1px;
     shape-rendering: crispEdges;
+  }
+
+  .hover {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: white;
   }
 
   .legend {
