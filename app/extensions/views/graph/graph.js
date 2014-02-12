@@ -41,18 +41,17 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     }
   };
 
+  var scaleByStartDate = _.extend({}, scaleFromStartAndEndDates, {
+    modelToDate: function (model) {
+      return this.getMoment(model.get('_start_at'));
+    }
+  });
+
   var scaleByTimestamp = _.extend({}, scaleFromStartAndEndDates, {
     modelToDate: function (model) {
       return this.getMoment(model.get('_timestamp'));
     }
   });
-
-  var scaleByEndDate = _.extend({}, scaleFromStartAndEndDates, {
-    modelToDate: function (model) {
-      return this.getMoment(model.get('_end_at')).subtract(1, 'days');
-    }
-  });
-
 
   var Graph = View.extend({
 
@@ -309,10 +308,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
     configs: {
       hour: scaleByTimestamp,
-      day: scaleByEndDate,
-      week: scaleByEndDate,
-      quarter: scaleByEndDate,
-      month: scaleByEndDate,
+      day: scaleByStartDate,
+      week: scaleByStartDate,
+      month: scaleByStartDate,
+      quarter: scaleByStartDate,
 
       ymin: {
         initialize: function() {
