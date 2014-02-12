@@ -16,13 +16,11 @@ not in the standard GDS development VM.
 
 [ppdev]: https://github.com/alphagov/pp-development
 
-Install dependencies.
-Run these commands on the VM.
+Once you've got a machine that has the required system-level dependencies, you can install
+application dependencies with:
 
 ```bash
 bundle install
-sudo apt-get install npm
-sudo npm install -g grunt-cli@0.1.9
 npm install
 ```
 
@@ -30,11 +28,27 @@ npm install
 
 ### Development ###
 
-If you're using our dev environment then `cd /var/apps/pp-development` and
-`bowl performance`. This will use the Backdrop app as a data source.
+**Full stack:** if you're using our development environment then you can run all our apps in one go and use a real database for development.
+As a bonus, this will let you test the image fallbacks using the [screenshot-as-a-service][] app.
 
-If you want to run the app from static files then `cd /var/apps/spotlight` and
-`grunt`. This will use stubs in the Spotlight repo as a data source.
+[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
+
+```bash
+cd /var/apps/pp-development
+bundle install
+bowl performance
+```
+
+**Just Spotlight:** if you want to only run this app, that's fine too.
+
+```bash
+cd /var/apps/spotlight
+grunt
+```
+
+Perhaps you want to run just the Spotlight app and connect to a different data source. You can do that
+by creating your own config file in `/config/config.development_personal.json` that mimics
+`/config/config.development.json` with a different `backdropUrl` property. It'll be ignored by Git.
 
 Once you've set up your DNS, `http://spotlight.perfplat.dev`
 will connect to the app (which is running on port 3057).
@@ -44,11 +58,6 @@ automatically restart the server and recompile Sass.
 
 [node-supervisor]: https://github.com/isaacs/node-supervisor
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
-
-If you want to test with PNG fallbacks run the [screenshot-as-a-service][]
-app first in the appropriate environment.
-
-[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 ### Running tests ###
 

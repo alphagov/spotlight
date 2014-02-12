@@ -4,12 +4,12 @@ define([
 ],
 function (environmentConfig, fs) {
   describe("environmentConfig", function () {
-    var args = { 
+    var args = {
       _: [],
       backdropUrl: 'http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}',
-      '$0': 'node ./app/server.js', 
+      '$0': 'node ./app/server.js',
       screenshotTargetUrl: "http://localhost:3057"
-    }; 
+    };
     var environmentJson = JSON.parse(fs.readFileSync(path.join('config', 'config.development.json')));
     var environment = 'development';
     var resultingConfigObject;
