@@ -1,8 +1,15 @@
 {
   "predef": [
     "define",
+    "it",
+    "expect",
+    "describe",
+    "spyOn",
+    "beforeEach",
+    "jasmine",
     "_",
-    "$"
+    "xit",
+    "xdescribe"
   ],
 
   "node"          : true,
