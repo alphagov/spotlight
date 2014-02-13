@@ -24,7 +24,7 @@ function (require, Collection, Group) {
       }, this);
     },
 
-    parse: function (data) {
+    parse: function () {
       return _.map(this.collectionInstances, function (collection) {
         return {
           id: collection.id,
@@ -104,7 +104,7 @@ function (require, Collection, Group) {
             selectedModel: groupValues.selectedItem
           });
         }
-      } else if (this.selectedSlice != null) {
+      } else if (this.selectedSlice !== null) {
         var selectedSlice = this.selectedSlice;
         return {
           selectedGroupIndex: null,
@@ -117,6 +117,25 @@ function (require, Collection, Group) {
       }
 
       return res;
+    },
+
+    getDataByTableFormat: function () {
+      var allTables = [];
+
+      _.each(this.models, function (collectionOfCollections, index) {
+        var collection = collectionOfCollections.get('values');
+
+        if (collection.length) {
+          if (collection.length > 0 && index === 0) {
+            allTables.push(_.keys(collection.models[0].attributes));
+          }
+          _.each(collection.models, function (model) {
+            allTables.push(_.map(model.attributes, function (val) { return val; }));
+          });
+        }
+      });
+
+      return allTables;
     },
 
     at: function (groupIndex, index) {
