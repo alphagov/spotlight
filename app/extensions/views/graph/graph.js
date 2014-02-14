@@ -9,7 +9,8 @@ define([
   './linelabel',
   './hover',
   './callout',
-  './tooltip'
+  './tooltip',
+  'extensions/views/table'
 ],
 function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, Table) {
 
@@ -82,6 +83,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       this.scales = {};
       this.margin = {};
+
+      var tableView = new Table(options);
 
       // initialize graph components
       var componentInstances = this.componentInstances = [];

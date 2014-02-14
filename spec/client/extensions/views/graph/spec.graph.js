@@ -1,8 +1,8 @@
 define([
   'extensions/views/graph/graph',
-  'extensions/collections/collection',
+  'extensions/collections/matrix',
   'extensions/models/model',
-  'd3',
+  'd3'
 ],
 function (Graph, Collection, Model, d3) {
 
