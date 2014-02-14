@@ -11,21 +11,19 @@ define([
   './callout',
   './tooltip'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip) {
-
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, Table) {
 
   var scaleFromStartAndEndDates = {
 
-    getModel: function(groupIndex, modelIndex){
-      var model;
-      if(!this.collection.at(groupIndex) && this.encompassStack){
+    getModel: function (groupIndex, modelIndex) {
+      if (!this.collection.at(groupIndex) && this.encompassStack) {
         return this.collection.at(groupIndex - 1, modelIndex);
-      } else{
+      } else {
         return this.collection.at(groupIndex, modelIndex);
       }
     },
 
-    getXPos: function(groupIndex, modelIndex) {
+    getXPos: function (groupIndex, modelIndex) {
       groupIndex = groupIndex || 0;
       var model = this.getModel(groupIndex, modelIndex);
       return this.modelToDate(model);
@@ -124,9 +122,9 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     prepareGraphArea: function () {
-      var figure = this.figure = $('<figure/>').addClass("graph");
+      var figure = this.figure = $('<figure/>').addClass('graph');
       if (this.showLineLabels()) {
-        figure.addClass("graph-with-labels");
+        figure.addClass('graph-with-labels');
       }
       figure.appendTo(this.$el);
 
@@ -159,12 +157,12 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
     // Not implemented; override in configuration or subclass
     calcXScale: function () {
-      throw('No x scale defined.');
+      throw 'No x scale defined.';
     },
 
     // Not implemented; override in configuration or subclass
     calcYScale: function () {
-      throw('No y scale defined.');
+      throw 'No y scale defined.';
     },
 
     getConfigNames: function () {
@@ -182,7 +180,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     resize: function () {
       var $svg = $(this.svg.node());
       $svg.attr('style', '');
-      var width = this.width = $svg.parent().width();
+      var width = this.width = $svg.parent().width(),
+          height;
 
       // when both max-width and max-height are defined, scale graph according
       // to this aspect ratio
@@ -291,7 +290,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         configNames = [configNames];
       }
 
-      _.each(configNames, function(configName) {
+      _.each(configNames, function (configName) {
         this.applyConfig(configName);
       }, this);
 
@@ -299,7 +298,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales.y = this.calcYScale();
 
       _.each(this.componentInstances, function (component) {
-        _.each(configNames, function(configName) {
+        _.each(configNames, function (configName) {
           component.applyConfig(configName);
         });
         component.render();
@@ -314,7 +313,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       quarter: scaleByStartDate,
 
       ymin: {
-        initialize: function() {
+        initialize: function () {
           var d3 = this.d3;
           var valueAttr = this.valueAttr;
           var min = d3.min(this.collection.models, function (group) {
@@ -352,7 +351,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       },
 
       stack: {
-        initialize: function() {
+        initialize: function () {
           var valueAttr = this.valueAttr;
           var stack = this.d3.layout.stack()
             .values(function (group) {
@@ -362,7 +361,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
               return model.get(valueAttr);
             });
 
-          if(this.isOneHundredPercent()){
+          if (this.isOneHundredPercent()){
             stack.offset(function(data) {
               var lineCount = data.length,
                   lineLength = data[0].length,
@@ -370,18 +369,18 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
               for (j = 0; j < lineLength; ++j) {
                 sumOfYValues = 0;
-                for (i = 0; i < lineCount; i++){
+                for (i = 0; i < lineCount; i++) {
                   sumOfYValues += data[i][j][1];
                 }
-                for (i = 0; i < lineCount; i++){
-                  if (sumOfYValues){
+                for (i = 0; i < lineCount; i++) {
+                  if (sumOfYValues) {
                     data[i][j][1] = data[i][j][1] / sumOfYValues;
                   } else {
                     data[i][j][1] = null;
                   }
                 }
               }
-              for (j = 0; j < lineLength; ++j){
+              for (j = 0; j < lineLength; ++j) {
                 y0[j] = 0;
               }
               return y0;
@@ -395,10 +394,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           this.layers = stack(this.collection.models.slice().reverse());
         },
         getYPos: function (groupIndex, modelIndex) {
-          if(!this.collection.at(groupIndex)){
-            if(this.collection.at(groupIndex - 1) && this.encompassStack){
+          if (!this.collection.at(groupIndex)) {
+            if (this.collection.at(groupIndex - 1) && this.encompassStack) {
               return 0;
-            }else{
+            } else {
               return null;
             }
           }
@@ -433,8 +432,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           var yScale = this.d3.scale.linear();
           var yMin = this.getYMin || 0;
           var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
-          if(this.isOneHundredPercent()){
-            yScale.domain([0,1]);
+          if (this.isOneHundredPercent()) {
+            yScale.domain([0, 1]);
           } else {
             yScale.domain(tickValues.extent);
           }
