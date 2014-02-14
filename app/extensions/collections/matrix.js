@@ -104,7 +104,7 @@ function (require, Collection, Group) {
             selectedModel: groupValues.selectedItem
           });
         }
-      } else if (this.selectedSlice !== null) {
+      } else if (this.selectedSlice != null) {
         var selectedSlice = this.selectedSlice;
         return {
           selectedGroupIndex: null,
