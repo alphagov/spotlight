@@ -173,25 +173,26 @@ function (View, SparklineView, template) {
 
     getLabelSelected: function (selection) {
 
-      var selectedTime, selectedTimeDiff, headline;
+      var headline;
 
       if (selection.selectedModel) {
-        var timestamp = selection.selectedModel.get('_timestamp');
+        var timestamp = selection.selectedModel.get('_timestamp'),
+            users = this.pluralise('user', this.currentVisitors);
 
-        selectedTime = this.moment(timestamp).calendar();
-        selectedTime = selectedTime.charAt(0).toLowerCase() + selectedTime.slice(1);
-        selectedTimeDiff = this.moment(timestamp).fromNow();
-
-        var users = this.pluralise("user", this.currentVisitors);
-        headline = [users, " ", selectedTime, ", ", selectedTimeDiff].join('');
+        headline = [
+          users,
+          ' ',
+          this.moment(timestamp).calendar(),
+          ',<br />',
+          this.moment(timestamp).fromNow()
+        ].join('');
       } else {
-        selectedTimeDiff = "<span class='no-data'>(no data)</span>";
-        headline = "<span class='no-data'>(no data)</span>";
+        headline = '<span class="no-data">(no data)</span>';
       }
 
       return {
         'headline': headline,
-        'graph': selectedTimeDiff
+        'graph': ''
       };
     }
 

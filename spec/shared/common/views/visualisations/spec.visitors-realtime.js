@@ -202,8 +202,8 @@ function (VisitorsRealtimeView, Collection) {
           }
         };
         var return_value = view.getLabelSelected(fakeSelection);
-        expect(return_value.headline).toEqual('users 1 Mar 2002, 12 years ago');
-        expect(return_value.graph).toEqual('12 years ago');
+        expect(return_value.headline).toEqual('users 1 Mar 2002,<br />12 years ago');
+        expect(return_value.graph).toEqual('');
       });
     });
 
