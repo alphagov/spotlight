@@ -43,7 +43,7 @@
       "slug": "device-type",
       "module-type": "grouped_timeseries",
       "title": "How people access GOV.UK",
-      "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on GOV.UK over time",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
       "data-group": "govuk",
       "data-type": "devices",
       "category": "deviceCategory",
@@ -56,9 +56,9 @@
       "cumulative": true,
       "info": [ "Data source: Google Analytics" ],
       "series": [
+         { "id": "desktop", "title": "Desktop" },
          { "id": "mobile", "title": "Mobile" },
-         { "id": "tablet", "title": "Tablet" },
-         { "id": "desktop", "title": "Desktop" }
+         { "id": "tablet", "title": "Tablet" }
       ]
     },
     {

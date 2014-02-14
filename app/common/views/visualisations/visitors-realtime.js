@@ -35,7 +35,7 @@ function (View, SparklineView, template) {
 
     },
 
-    render: function() {
+    render: function () {
 
       View.prototype.render.apply(this, arguments);
 
@@ -57,7 +57,7 @@ function (View, SparklineView, template) {
       }
 
       if (value === null) {
-        content = "<span class='no-data'>(no data)</span>";
+        content = '<span class="no-data">(no data)</span>';
       } else {
         content = value;
       }
@@ -91,27 +91,27 @@ function (View, SparklineView, template) {
       );
     },
 
-    views: function() {
-     var views = {};
-     if (this.collection && this.collection.length && this.collection.first().get('values').length > 1 && this.sparkline) {
-       views['.sparkline-graph'] = {
+    views: function () {
+      var views = {};
+      if (this.collection && this.collection.length && this.collection.first().get('values').length > 1 && this.sparkline) {
+        views['.sparkline-graph'] = {
           view: SparklineView,
           options: function () {
             return {
               valueAttr: this.selectionValueAttr,
-              period: "hour",
+              period: 'hour',
               showEndTicks: true
             };
           }
         };
-     }
-     return views;
+      }
+      return views;
     },
 
     formatDate: function (d) {
       return [
         d.format('ha'),
-        " ",
+        ' ',
         d.format('D MMMM YYYY')
       ].join('');
     },
@@ -130,28 +130,28 @@ function (View, SparklineView, template) {
         startDate = this.collection.first().get('values').first().get('_timestamp');
 
         if (latestDate) {
-          var period = "hour";
+          var period = 'hour';
           if (latestDate.diff(startDate, 'hours') < 1) {
-            period = "minute";
+            period = 'minute';
           }
           timePeriod = latestDate.diff(startDate, period);
           timePeriodValue = this.pluralise(period, timePeriod);
-          var users = this.pluralise("user", this.currentVisitors);
+          var users = this.pluralise('user', this.currentVisitors);
           if (this.moment().diff(latestDate, 'minutes') > 10) {
             var formattedDate = this.formatDate(latestDate);
-            headlineLabel = [users, "online at<br/>", formattedDate].join(' ');
-            graphLabel = [users, "in the", timePeriod, timePeriodValue, "to<br/>", formattedDate].join(' ');
+            headlineLabel = [users, 'online at<br/>', formattedDate].join(' ');
+            graphLabel = [users, 'in the', timePeriod, timePeriodValue, 'to<br/>', formattedDate].join(' ');
           } else {
-            headlineLabel = [users, "online now"].join(' ');
+            headlineLabel = [users, 'online now'].join(' ');
             graphLabel = [users.charAt(0).toUpperCase() + users.slice(1),
-                     "over past", timePeriod, timePeriodValue].join(' ');
+                     'over past', timePeriod, timePeriodValue].join(' ');
           }
         }
       }
 
       if (!latestDate) {
-        headlineLabel = "<span class='no-data'>(no data)</span>";
-        graphLabel = "<span class='no-data'>(no data)</span>";
+        headlineLabel = '<span class="no-data">(no data)</span>';
+        graphLabel = '<span class="no-data">(no data)</span>';
       }
 
       return {
@@ -173,25 +173,26 @@ function (View, SparklineView, template) {
 
     getLabelSelected: function (selection) {
 
-      var selectedTime, selectedTimeDiff, headline;
+      var headline;
 
       if (selection.selectedModel) {
-        var timestamp = selection.selectedModel.get('_timestamp');
+        var timestamp = selection.selectedModel.get('_timestamp'),
+            users = this.pluralise('user', this.currentVisitors);
 
-        selectedTime = this.moment(timestamp).calendar();
-        selectedTime = selectedTime.charAt(0).toLowerCase() + selectedTime.slice(1);
-        selectedTimeDiff = this.moment(timestamp).fromNow();
-
-        var users = this.pluralise("user", this.currentVisitors);
-        headline = [users, " ", selectedTime, ", ", selectedTimeDiff].join('');
+        headline = [
+          users,
+          ' ',
+          this.moment(timestamp).calendar(),
+          ',<br />',
+          this.moment(timestamp).fromNow()
+        ].join('');
       } else {
-        selectedTimeDiff = "<span class='no-data'>(no data)</span>";
-        headline = "<span class='no-data'>(no data)</span>";
+        headline = '<span class="no-data">(no data)</span>';
       }
 
       return {
         'headline': headline,
-        'graph': selectedTimeDiff
+        'graph': ''
       };
     }
 

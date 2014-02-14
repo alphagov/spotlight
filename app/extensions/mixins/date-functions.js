@@ -35,12 +35,26 @@ function (moment) {
       }
   };
 
-  // Use month short names as per our style guide.
+  /* Configure Moment locale options as per our style guide
+   * www.gov.uk/design-principles/style-guide/style-points#style-dates-and-times
+   */
   moment.lang('en', {
-      monthsShort : [
-          "Jan", "Feb", "Mar", "Apr", "May", "June",
-          "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-      ]
+    calendar: {
+      lastDay:  '[yesterday at] LT',
+      sameDay:  '[today at] LT',
+      nextDay:  '[tomorrow at] LT',
+      lastWeek: '[last] dddd [at] LT',
+      nextWeek: 'dddd [at] LT',
+      sameElse: 'L'
+    },
+    longDateFormat: {
+      LT: 'h:mma',
+      L:  'D MMM YYYY'
+    },
+    monthsShort: [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+      'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ]
   });
 
   return {
