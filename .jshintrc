@@ -2,7 +2,10 @@
   "predef": [
     "define",
     "_",
-    "$"
+    "$",
+    "isClient",
+    "isServer",
+    "window"
   ],
 
   "node"          : true,
