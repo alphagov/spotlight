@@ -15,3 +15,5 @@ _SpecRunner.html
 
 *.log
 *.log.json
+
+/config/config.development_personal.json
