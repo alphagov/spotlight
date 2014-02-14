@@ -1,0 +1,89 @@
+{
+    "slug": "student-finance",
+    "page-type": "dashboard",
+    "strapline": "Service dashboard",
+    "title": "Apply for student finance",
+    "tagline": "Full-time higher education for England only",
+    "related_pages_title": "Visit the site",
+    "related_pages": [
+        {
+            "title": "Apply online for student finance",
+            "url": "https://www.gov.uk/apply-online-for-student-finance",
+            "metadata": ""
+        }
+    ],
+    "modules": [
+        {
+            "slug": "device-type",
+            "module-type": "grouped_timeseries",
+            "title": "How people access the service",
+            "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
+            "data-group": "student-finance",
+            "data-type": "device-usage",
+            "category": "deviceCategory",
+            "period": "week",
+            "axis-period": "month",
+            "duration": 52,
+            "value-attr": "visitors:sum",
+            "show-line-labels": true,
+            "one-hundred-percent": true,
+            "cumulative": true,
+            "info": [
+                "Data source: Google Analytics",
+                "Student Loans Company"
+            ],
+            "series": [
+                {
+                    "id": "mobile",
+                    "title": "Mobile"
+                },
+                {
+                    "id": "tablet",
+                    "title": "Tablet"
+                },
+                {
+                    "id": "desktop",
+                    "title": "Desktop"
+                }
+            ]
+        },
+        {
+            "slug": "browser-type",
+            "module-type": "grouped_timeseries",
+            "title": "How people access the service",
+            "description": "Breakdown of <span class=\"group0\">Chrome</span>, <span class=\"group1\">Firefox</span>, <span class=\"group2\">Internet Explorer</span> and <span class=\"group3\">Safari</span> browser usage on this service over time",
+            "data-group": "student-finance",
+            "data-type": "browser-usage",
+            "category": "browser",
+            "period": "week",
+            "axis-period": "month",
+            "duration": 52,
+            "value-attr": "visitors:sum",
+            "show-line-labels": true,
+            "one-hundred-percent": false,
+            "cumulative": true,
+            "info": [
+                "Data source: Google Analytics",
+                "Student Loans Company"
+            ],
+            "series": [
+                {
+                    "id": "Chrome",
+                    "title": "Chrome"
+                },
+                {
+                    "id": "Firefox",
+                    "title": "Firefox"
+                },
+                {
+                    "id": "Internet Explorer",
+                    "title": "Internet Explorer"
+                },
+                {
+                    "id": "Safari",
+                    "title": "Safari"
+                }
+            ]
+        }
+    ]
+}

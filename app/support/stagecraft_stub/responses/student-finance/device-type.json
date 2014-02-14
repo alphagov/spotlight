@@ -1,0 +1,38 @@
+{
+    "slug": "device-type",
+	"page-type": "module",
+    "module-type": "grouped_timeseries",
+    "title": "How people access the service",
+    "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
+    "data-group": "student-finance",
+    "data-type": "device-usage",
+    "category": "deviceCategory",
+    "period": "week",
+    "axis-period": "month",
+    "duration": 52,
+    "value-attr": "visitors:sum",
+    "show-line-labels": true,
+    "one-hundred-percent": true,
+    "cumulative": true,
+    "info": [
+        "Data source: Google Analytics",
+		"Student Loans Company"
+    ],
+    "series": [
+        {
+            "id": "mobile",
+            "title": "Mobile"
+        },
+        {
+            "id": "tablet",
+            "title": "Tablet"
+        },
+        {
+            "id": "desktop",
+            "title": "Desktop"
+        }
+    ],
+    "dashboard-title": "Apply for student finance",
+    "dashboard-strapline": "Performance",
+    "dashboard-slug": "student-finance"
+}
