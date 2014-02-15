@@ -60,7 +60,6 @@
       ],
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",
-      "matching-attribute": "eventCategory",
       "steps": [
         {"id": "pay-register-death-abroad:start", "title": "Start"},
         {"id": "pay-register-death-abroad:confirm", "title": "Confirm"},

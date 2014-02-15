@@ -9,10 +9,10 @@
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
-      "description": "Live number of users on any page within the service",
+      "description": "Live number of users on GOV.UK",
       "info": [
         "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service on GOV.UK."
+        "Shows the estimated number of users currently accessing GOV.UK."
       ],
       "data-group": "government",
       "data-type": "realtime"

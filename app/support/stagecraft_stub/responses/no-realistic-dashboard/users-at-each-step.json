@@ -1,0 +1,26 @@
+{
+  "module-type": "journey",
+  "title": "Users at each step",
+  "description": "Number of users who completed important stages of the transaction last week",
+  "data-group": "deposit-foreign-marriage",
+  "data-type": "journey",
+  "matching-attribute": "eventCategory",
+  "steps": [
+    {
+      "id": "deposit-foreign-marriage:start",
+      "title": "Start"
+    },
+    {
+      "id": "deposit-foreign-marriage:confirm",
+      "title": "Confirm"
+    },
+    {
+      "id": "deposit-foreign-marriage:done",
+      "title": "Done"
+    }
+  ],
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
+}

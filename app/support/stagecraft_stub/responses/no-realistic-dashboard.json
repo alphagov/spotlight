@@ -2,7 +2,7 @@
   "slug": "no-realistic-dashboard",
   "page-type": "dashboard",
   "title": "Non-Realistic Data Stub",
-  "strapline": "Strapline",
+  "strapline": "Performance",
   "tagline": "This is a tagline (this is not real data).",
   "related_pages_title": "Housing policies",
   "related_pages": [
@@ -41,8 +41,9 @@
       "data-type": "realtime"
     },
     {
+      "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Users at each stage",
+      "title": "Users at each step",
       "description": "Number of users who completed important stages of the transaction last week",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
@@ -86,7 +87,6 @@
     },
     {
       "slug": "completion-rate",
-      "page-type": "module",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
@@ -100,6 +100,7 @@
       "end-matcher": "done$"
     },
     {
+      "slug": "average-first-mortgage",
       "module-type": "multi_stats",
       "title": "Average first mortgage",
       "description": "A range of factors indicative of the state of the housing market for first-time buyers",
@@ -120,7 +121,6 @@
       ]
     },
     {
-      "page-type": "module",
       "slug": "stacked_categories",
       "module-type": "grouped_timeseries",
       "title": "Categories in a stack",
