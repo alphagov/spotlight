@@ -4,5 +4,5 @@ Feature: Healthcheck
   I want to do a check on the status of the system
 
   Scenario: check the system is running
-    When I check the status page
-    Then status should be "ok"
+    When I go to /_status
+    Then the status should be "ok"

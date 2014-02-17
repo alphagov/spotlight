@@ -4,7 +4,7 @@ Feature: Dashboard
   I want to check my service's performance
 
   Scenario: display description
-    When I go view my dashboard
+    When I go to /performance/no-realistic-dashboard
      And I wait for the page to be fully loaded
     Then I can report an error for the current page
      And I see "1" crumb in the breadcrumb trail
