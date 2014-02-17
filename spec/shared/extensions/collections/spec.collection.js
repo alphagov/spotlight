@@ -146,7 +146,7 @@ function (Collection, Model, Backbone, $) {
         collection.collectionInstances = [part1, part2];
         spyOn(collection, "parse");
       });
-      
+
       it("propagates shared query parameters to all collections", function () {
         collection.query.set('foo', 'bar');
         expect(part1.query.attributes).toEqual({ foo: 'bar', part: 'one' });
@@ -154,56 +154,56 @@ function (Collection, Model, Backbone, $) {
         expect(part1.fetch).toHaveBeenCalled();
         expect(part2.fetch).toHaveBeenCalled();
       });
-      
+
       it("fetches data for all collections", function() {
         collection.fetch();
         expect(part1.fetch).toHaveBeenCalled();
         expect(part2.fetch).toHaveBeenCalled();
       });
-      
+
       it("parses data once all collections have fetched successfully", function() {
         collection.fetch();
         expect(part1.fetch).toHaveBeenCalled();
         expect(part2.fetch).toHaveBeenCalled();
         expect(collection.parse).not.toHaveBeenCalled();
-        
+
         part2.fetch.argsForCall[0][0].success();
         expect(collection.parse).not.toHaveBeenCalled();
-        
+
         part1.fetch.argsForCall[0][0].success();
         expect(collection.parse).toHaveBeenCalled();
       });
-      
+
       it("fails as soon as a request fails", function() {
         var onError1 = jasmine.createSpy();
         var onError2 = jasmine.createSpy();
-        
+
         collection.fetch({
           error: onError1
         });
         collection.on('error', onError2);
-        
+
         expect(part2.on.argsForCall[0][0]).toEqual('error');
         var onErrorListener = part2.on.argsForCall[0][1];
-        
+
         expect(part1.fetch).toHaveBeenCalled();
         expect(part2.fetch).toHaveBeenCalled();
         expect(onError1).not.toHaveBeenCalled();
         expect(onError2).not.toHaveBeenCalled();
-        
+
         // part 2 fails - the error is escalated immediately
         onErrorListener.call(collection);
         expect(collection.parse).not.toHaveBeenCalled();
         expect(onError1).toHaveBeenCalled();
         expect(onError2).toHaveBeenCalled();
-        
+
         // part 1 returns successfully - parse is still not called
         part1.fetch.argsForCall[0][0].success();
         expect(collection.parse).not.toHaveBeenCalled();
       });
-      
+
     });
-    
+
     describe("url", function() {
 
       var TestCollection;
@@ -509,7 +509,7 @@ function (Collection, Model, Backbone, $) {
     });
 
     describe("selectItem", function () {
-      
+
       var collection, spy;
       beforeEach(function() {
         spy = jasmine.createSpy();
@@ -520,21 +520,21 @@ function (Collection, Model, Backbone, $) {
         ]);
         collection.on('change:selected', spy);
       });
-      
+
       it("selects an item in the collection and triggers an event by default", function () {
         collection.selectItem(1);
         expect(collection.selectedItem).toBe(collection.at(1));
         expect(collection.selectedIndex).toEqual(1);
         expect(spy).toHaveBeenCalledWith(collection.at(1), 1);
       });
-      
+
       it("selects an item in the collection but allows suppressing the event", function () {
         collection.selectItem(1, { silent: true });
         expect(collection.selectedItem).toBe(collection.at(1));
         expect(collection.selectedIndex).toEqual(1);
         expect(spy).not.toHaveBeenCalled();
       });
-      
+
       it("does not do anything when the item is already selected", function () {
         collection.selectItem(1, { silent: true });
         expect(collection.selectedItem).toBe(collection.at(1));
@@ -545,7 +545,7 @@ function (Collection, Model, Backbone, $) {
         collection.selectItem(2);
         expect(spy).toHaveBeenCalled();
       });
-      
+
       it("unselects the current selection", function () {
         collection.selectItem(1, { silent: true });
         expect(collection.selectedItem).toBe(collection.at(1));
