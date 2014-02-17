@@ -1,0 +1,87 @@
+{
+    "id": "http://www.gov.uk/performance/module-schema#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Defines the JSON DSL used to create performance graphs on gov.uk/performance website",
+    "type" : "object",
+    "required" : true,
+    "additionalProperties" : true,
+    "properties" : {
+        "dashboard-title" : {"type" : "string", "required" : true},
+        "dashboard-strapline" : {"type" : "string", "required" : false},
+        "dashboard-slug" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
+        "page-type" : {"type" : "string", "required" : true, "enumeration" : ["module"]},
+        "module-type" : {"type" : "string", "required" : true, "enumeration" : ["grouped_timeseries", "completion_rate", "availability"]},
+        "title" : {"type" : "string", "required" : true},
+        "description" : {"type" : "string", "required" : false},
+        "data-group" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
+        "data-type" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
+        "info" : {
+            "type" : "array",
+            "required" : true,
+            "items" : {"type" : "string", "required" : true}
+        }
+    },
+    "oneOf": [
+        { 
+            "title" : "grouped timeseries specific properties",
+            "properties" : {
+                "module-type" : {"type" : "string", "required" : true, "enumeration" : "grouped_timeseries"},
+                "description" : {"required" : true},
+                "category" : {"type" : "string", "required" : true},
+                "period" : {"type" : "string", "required" : true, "enumeration" : ["day", "week", "month"]},
+                "axis-period" : {"type" : "string", "required" : false, "enumeration" : ["day", "week", "month"]},
+                "value-attr" : {"type" : "string", "required" : true, "pattern" : "[\\w-]+:sum"},
+                "show-line-labels" : {"type" : "boolean", "required" : false},
+                "one-hundred-percent" : {"type" : "boolean", "required" : false},
+                "duration" : {"type" : "integer", "required" : false},
+                "cumulative" : {"type" : "boolean", "required" : false},
+                "series" : {
+                    "type" : "array",
+                    "required" : true,
+                    "items" : {
+                        "type" : "object",
+                        "required" : true,
+                        "additionalProperties" : false,
+                        "properties" : {
+                            "id" : {"type" : "string", "required" : true},
+                            "title" : {"type" : "string", "required" : true},
+                            "timeshift" : {"type" : "integer", "required" : false}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "title" : "Completion rate specific properties",
+            "properties" : {
+                "module-type" : {"type" : "string", "required" : true, "enumeration" : "completion_rate"},
+                "period" : {"type" : "string", "required" : true, "enumeration" : ["day", "week", "month"]},
+                "start-matcher" : {"type" : "string", "required" : true},
+                "end-matcher" : {"type" : "string", "required" : true},
+                "matching-attribute" : {"type" : "string", "required" : true},
+                "value-attribute" : {"type" : "string", "required" : true, "pattern" : "[\\w-]+:sum"}
+            }
+        },
+        {
+            "title" : "Availability specific properties",
+            "properties" : {
+                "module-type" : {"type" : "string", "required" : true, "enumeration" : "availability"},
+                "description" : {"required" : true},
+                "tabs" : {
+                    "type" : "array",
+                    "required" : true,
+                    "items" : {
+                        "type" : "object",
+                        "required" : true,
+                        "additionalProperties" : false,
+                        "properties" : {
+                            "id" : {"type" : "string", "required" : true},
+                            "name" : {"type" : "string", "required" : true}
+                        }
+                    }
+                },
+                "tabbed_attr" : {"type" : "string", "required" : true}
+            }
+        }
+    ]   
+}

@@ -1,0 +1,27 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries",
+  "title": "Usage breakdown",
+  "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
+  "data-group": "student-finance",
+  "data-type": "transactions-by-channel",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Strap line",
+  "dashboard-slug": "student-finance",
+  "category": "channel",
+  "period": "month",
+  "value-attr": "count:sum",
+  "show-line-labels": true,
+  "show-total-lines": true,
+  "cumulative": true,
+  "info": [
+    "Data source: SLC database",
+    "Shows the number of applications, broken down by channel"
+  ],
+  "series": [
+    { "id": "paper", "title": "Paper" },
+    { "id": "digital", "title": "Digital" },
+    { "id": "paper", "title": "Paper", "timeshift": 12 },
+    { "id": "digital", "title": "Digital", "timeshift": 12 }
+  ]
+}

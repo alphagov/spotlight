@@ -1,0 +1,19 @@
+{
+  "page-type": "module",
+  "module-type": "completion_rate",
+  "title": "Completion rate",
+  "dashboard-title": "Student Finance",
+  "dashboard-strapline": "strapline",
+  "dashboard-slug": "student-finance",
+  "data-group": "student-finance",
+  "data-type": "transactions-by-channel",
+  "period": "month",
+  "info": [
+    "Data source: SLC Database",
+    "Completion rate measures the percentage of started applications that were subsequently submitted."
+  ],
+  "start-matcher": "started",
+  "end-matcher": "submitted",
+  "matching-attribute": "stage",
+  "value-attribute": "count:sum"
+}
