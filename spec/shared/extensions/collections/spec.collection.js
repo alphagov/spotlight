@@ -608,5 +608,25 @@ function (Collection, Model, Backbone) {
         expect(selection.selectedModel).toBeFalsy();
       });
     });
+
+    describe('getDataByTableFormat', function () {
+        var collection;
+        beforeEach(function () {
+          collection = new Collection([
+            { a: 1, b: 2 },
+            { a: 3, b: 4 }
+          ]);
+        });
+
+        it('returns an array', function () {
+          expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
+        });
+
+        it('sorts the array by tabular format', function () {
+          var expected = [['a', 'b'], [1, 2], [3, 4]];
+
+          expect(collection.getDataByTableFormat()).toEqual(expected);
+        });
+      });
   });
 });
