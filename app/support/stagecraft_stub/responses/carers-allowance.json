@@ -46,6 +46,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
+      "description": "",
       "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",

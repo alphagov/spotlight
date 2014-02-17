@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "starts_completions",
   "module-type": "grouped_timeseries",
   "title": "Building starts and completions",
   "description": "How many residential builds have been started and completed",

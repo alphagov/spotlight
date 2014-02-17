@@ -1,6 +1,5 @@
 {
-    "slug": "browser-type",
-	"page-type": "module",
+    "page-type": "module",
     "module-type": "grouped_timeseries",
     "title": "How people access the service",
     "description": "Breakdown of <span class=\"group0\">Chrome</span>, <span class=\"group1\">Firefox</span>, <span class=\"group2\">Internet Explorer</span> and <span class=\"group3\">Safari</span> browser usage on this service over time",
@@ -37,6 +36,6 @@
         }
     ],
     "dashboard-title": "Apply for student finance",
-    "dashboard-strapline": "Performance",
+    "dashboard-strapline": "Service dashboard",
     "dashboard-slug": "student-finance"
 }

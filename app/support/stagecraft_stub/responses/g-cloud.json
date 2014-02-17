@@ -91,7 +91,6 @@
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
-      "_start_at": "2012-04-01T00:00:00+00:00",
       "start-matcher": ".*$",
       "end-matcher": "^Small",
       "matching-attribute": "sme_large",

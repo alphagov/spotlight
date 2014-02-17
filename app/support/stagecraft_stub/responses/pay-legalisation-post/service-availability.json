@@ -2,6 +2,7 @@
   "page-type": "module",
   "module-type": "availability",
   "title": "Service availability",
+  "description": "",
   "dashboard-title": "Pay to get documents legalised by post",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "pay-legalisation-post",

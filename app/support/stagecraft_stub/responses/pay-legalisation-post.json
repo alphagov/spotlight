@@ -29,7 +29,8 @@
         "Completed payments count based on unique visitors to the final page of the service."
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$"
+      "end-matcher": "done$",
+      "matching-attribute": "eventCategory"
     },
     {
       "slug": "completion-rate",
@@ -44,7 +45,8 @@
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$"
+      "end-matcher": "done$",
+      "matching-attribute": "eventCategory"
     },
     {
       "slug": "users-at-each-step",
