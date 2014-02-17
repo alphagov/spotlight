@@ -11,7 +11,8 @@
     "_",
     "xit",
     "xdescribe",
-    "$"
+    "$",
+    "d3"
   ],
 
   "node"          : true,
@@ -36,7 +37,7 @@
   "strict"        : false,
   "trailing"      : true,
   "maxdepth"      : 3,
-  "maxstatements" : 15,
+  "maxstatements" : 25,
   "maxcomplexity" : 7,
 
   "asi"           : false,
