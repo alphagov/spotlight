@@ -1,6 +1,6 @@
 define([
   'extensions/views/graph/graph',
-  'extensions/collections/matrix',
+  'extensions/collections/collection',
   'extensions/models/model',
   'd3'
 ],
@@ -14,7 +14,8 @@ function (Graph, Collection, Model, d3) {
       spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
         collection: {
-          on: jasmine.createSpy()
+          on: jasmine.createSpy(),
+          getDataByTableFormat: jasmine.createSpy()
         }
       });
       expect(view.d3).toBe(d3);

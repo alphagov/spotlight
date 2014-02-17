@@ -8,7 +8,8 @@ function (Table, View, $) {
     it('inherits from View', function () {
       var table = new Table({
           collection: {
-            on: jasmine.createSpy()
+            on: jasmine.createSpy(),
+            getDataByTableFormat: jasmine.createSpy()
           }
         });
 
