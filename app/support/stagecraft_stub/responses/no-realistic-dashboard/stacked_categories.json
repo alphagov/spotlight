@@ -1,11 +1,10 @@
 {
   "page-type": "module",
-  "slug": "stacked_categories",
   "module-type": "grouped_timeseries",
   "title": "Categories in a stack",
   "description": "",
   "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Strapline",
+  "dashboard-strapline": "Performance",
   "dashboard-slug": "no-realistic-dashboard",
   "data-group": "housing-policy",
   "data-type": "residential-transactions",

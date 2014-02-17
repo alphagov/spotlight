@@ -4,7 +4,7 @@
   "title": "Completion rate",
   "description": "",
   "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Strapline",
+  "dashboard-strapline": "Performance",
   "dashboard-slug": "no-realistic-dashboard",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
@@ -13,6 +13,5 @@
     "Info text line 2"
   ],
   "start-matcher": "start$",
-  "end-matcher": "done$",
-  "matching-attribute": "eventCategory"
+  "end-matcher": "done$"
 }

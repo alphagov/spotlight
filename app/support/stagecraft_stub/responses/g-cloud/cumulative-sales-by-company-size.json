@@ -1,6 +1,5 @@
 {
   "page-type": "module",
-  "slug": "cumulative-sales-by-company-size",
   "module-type": "grouped_timeseries",
   "title": "Cumulative sales by company size",
   "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",

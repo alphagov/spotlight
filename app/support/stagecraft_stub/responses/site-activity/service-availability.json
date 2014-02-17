@@ -5,6 +5,7 @@
   "dashboard-title": "Activity on GOV.UK",
   "dashboard-strapline": "Performance",
   "dashboard-slug": "site-activity",
+  "description": "",
   "data-group": "govuk",
   "data-type": "monitoring",
   "info": [

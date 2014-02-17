@@ -1,7 +1,3 @@
-When(/^I go view my dashboard$/) do
-  visit "/performance/no-realistic-dashboard"
-end
-
 Then(/^I see the title "(.*?)"$/) do |expected_title|
   page.find("#content header h1").should have_content(expected_title)
 end
@@ -22,7 +18,7 @@ end
 
 def section_values
   {
-    "related-pages" => { 
+    "related-pages" => {
       "no-realistic-dashboard" => [
         "Helping people to buy a home",
         "Increasing the number of available homes",
