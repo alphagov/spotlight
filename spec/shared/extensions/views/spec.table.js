@@ -1,8 +1,9 @@
 define([
   'extensions/views/table',
-  'extensions/views/view'
+  'extensions/views/view',
+  'jquery'
 ],
-function (Table, View) {
+function (Table, View, $) {
   describe('Table', function () {
     it('inherits from View', function () {
       var table = new Table({
