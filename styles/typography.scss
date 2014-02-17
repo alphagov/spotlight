@@ -3,7 +3,7 @@ body {
 }
 
 h2 {
-  @include core-19($tabular-numbers: true);
+  @include core-19;
 }
 
 p {
@@ -18,24 +18,20 @@ a[rel="external"] {
 
 #content {
   h1 {
-    @include bold-24($tabular-numbers: true);
+    @include bold-24;
   }
 
   h2 {
     margin-top:0;
-    @include core-16($tabular-numbers: true);
+    @include core-16;
   }
 
   section {
     margin-top:1em;
     margin-bottom:1.5em;
 
-    h1 {
-      @include bold-24($tabular-numbers: true);
-    }
-
-    h2 {
-      @include bold-24($tabular-numbers: true);
+    h1, h2 {
+      @include bold-24;
     }
 
     h2.dashboard, h3 {
@@ -47,5 +43,3 @@ a[rel="external"] {
     }
   }
 }
-
-  
