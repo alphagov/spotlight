@@ -84,7 +84,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales = {};
       this.margin = {};
 
-      var tableView = new Table(options);
+      this.table = new Table(_.extend(options, {$el: this.figure}));
 
       // initialize graph components
       var componentInstances = this.componentInstances = [];

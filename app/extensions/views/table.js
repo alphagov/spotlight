@@ -11,6 +11,7 @@ function (View) {
       collection.on('reset add remove sync', this.render, this);
 
       this.prepareTable();
+      this.render();
     },
 
     prepareTable: function () {
@@ -51,6 +52,7 @@ function (View) {
     // </table>
 
     render: function () {
+      this.table.empty();
       _.each(this.collection.getDataByTableFormat(), function (row) {
 
         this.row = this.renderEl('tr', this.table);

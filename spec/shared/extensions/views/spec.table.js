@@ -17,16 +17,22 @@ function (Table, View) {
     describe('initialize', function () {
       var table;
       beforeEach(function () {
+        spyOn(Table.prototype, 'render');
         spyOn(Table.prototype, 'prepareTable');
         table = new Table({
           collection: {
-            on: jasmine.createSpy()
+            on: jasmine.createSpy(),
+            getDataByTableFormat: function () {}
           }
         });
       });
 
       it('calls prepareTable', function () {
         expect(Table.prototype.prepareTable).toHaveBeenCalled();
+      });
+
+      it('calls render', function () {
+        expect(Table.prototype.render).toHaveBeenCalled();
       });
     });
 
@@ -42,14 +48,6 @@ function (Table, View) {
             }
           }
         });
-      });
-
-      it('calls renderEl', function () {
-        expect(Table.prototype.renderEl).not.toHaveBeenCalled();
-
-        table.render();
-
-        expect(Table.prototype.renderEl).toHaveBeenCalled();
       });
 
       describe('renderEl', function () {
