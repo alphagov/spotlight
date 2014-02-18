@@ -1,0 +1,27 @@
+.list {
+
+  ol {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  ol li {
+    counter-increment: no-dot-counter;
+    list-style: none;
+    *list-style-type: decimal;
+  }
+
+  ol:first-child {
+    counter-reset: no-dot-counter;
+  }
+
+  ol li:before {
+    content: counter(no-dot-counter);
+    font-weight: bold;
+    float: left;
+    text-align: right;
+    width: 1.5em;
+    margin-right: 10px;
+  }
+
+}
