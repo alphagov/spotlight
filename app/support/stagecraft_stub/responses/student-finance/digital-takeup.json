@@ -2,8 +2,8 @@
   "page-type": "module",
   "module-type": "completion_rate",
   "title": "Digital take-up",
-  "dashboard-title": "Student Finance",
-  "dashboard-strapline": "Users submitting applications online",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "student-finance",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
@@ -13,7 +13,7 @@
     "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
   ],
   "end-matcher": "digital",
-  "start-matcher": ".*",
+  "start-matcher": "[paper|digital]",
   "matching-attribute": "channel",
   "value-attribute": "count:sum"
 }
