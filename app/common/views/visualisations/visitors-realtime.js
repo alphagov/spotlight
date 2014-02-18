@@ -14,7 +14,8 @@ function (View, SparklineView, template) {
     labelTag: '.stat-description',
     graphLabelTag: '.sparkline-title',
 
-    initialize: function () {
+    initialize: function (options) {
+      options = options || {};
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -23,12 +24,14 @@ function (View, SparklineView, template) {
       if (isClient) {
         events += "sync";
       }
+
+      this.changeOnSelected = options.changeOnSelected || this.changeOnSelected;
+
       if (this.changeOnSelected) {
-        events += 'change:selected';
+        this.collection.on('change:selected', this.onChangeSelected, this);
       }
 
       this.collection.on(events, this.render, this);
-      this.collection.on('change:selected', this.renderText, this);
 
       this.selectionValueAttr = 'unique_visitors';
 
@@ -36,7 +39,7 @@ function (View, SparklineView, template) {
 
     },
 
-    renderText: function (selectGroup, selectGroupIndex, selectModel) {
+    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
       var content = '<span class="no-data">(no data)</span>',
           selection = this.collection.getCurrentSelection(),
           label;
@@ -69,7 +72,7 @@ function (View, SparklineView, template) {
 
       View.prototype.render.apply(this, arguments);
 
-      this.renderText();
+      this.onChangeSelected();
     },
 
     getCurrentVisitors: function () {

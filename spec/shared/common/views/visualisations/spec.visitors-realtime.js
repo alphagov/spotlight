@@ -33,6 +33,60 @@ function (VisitorsRealtimeView, Collection) {
       });
     });
 
+    afterEach(function () {
+      view.remove();
+    });
+
+    describe('initialize', function () {
+
+      describe('collection events', function () {
+
+        describe('onChangeSelected', function () {
+
+          it('should not listen change:selected when changeOnSelected is false', function () {
+              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+              spyOn(VisitorsRealtimeView.prototype, 'render');
+              view = new VisitorsRealtimeView({
+                collection: collection,
+                changeOnSelected: false
+              });
+              collection.trigger('change:selected');
+
+              expect(view.onChangeSelected).not.toHaveBeenCalled();
+          });
+
+          it('should listen change:selected by default', function () {
+              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+              spyOn(VisitorsRealtimeView.prototype, 'render');
+
+              view.initialize();
+
+              collection.trigger('change:selected');
+              expect(view.onChangeSelected).toHaveBeenCalled();
+          });
+
+        });
+
+        describe('render', function () {
+
+          it('should call onChangeSelected', function () {
+              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+              view.initialize();
+              VisitorsRealtimeView.prototype.onChangeSelected.reset();
+
+              expect(view.onChangeSelected).not.toHaveBeenCalled();
+
+              view.render();
+
+              expect(view.onChangeSelected).toHaveBeenCalled();
+          });
+
+        });
+
+      });
+
+    });
+
     it('renders number of users at most recent timestamp', function () {
       jasmine.renderView(view, function () {
         expect(view.$el.find('.impact-number strong').text()).toEqual('100');
