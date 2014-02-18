@@ -15,8 +15,13 @@ figure.graph {
     max-height: 400px;
   }
 
+  // visually hidden table but read aloud by screen readers
   table {
-    display: none;
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
   }
 
   h2 {
