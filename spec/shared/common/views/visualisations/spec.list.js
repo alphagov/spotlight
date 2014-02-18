@@ -95,6 +95,37 @@ function (ListView, ListCollection) {
 
     });
 
+    it("it should use a labelRegex if provided", function() {
+
+      var collection = new ListCollection({
+        "data": [
+          { "pageTitle": "foo - GOV.UK",
+            "pagePath": "/foo" },
+          { "pageTitle": "bar - GOV.UK",
+            "pagePath": "/bar" }
+        ]
+      }, { 
+        "id": "foo", "title": "foo",
+        "parse": "true",
+        "labelAttr": "pageTitle",
+        "labelRegex": "^(.*)\\s-[^-]+$",
+        "linkAttr": "pagePath"
+      });
+
+      view = new ListView({
+        collection: collection
+      });
+
+      var foo = jasmine.renderView(view, function() {
+        var listItems = view.$el.find('li');
+
+        expect(listItems.length).toEqual(2);
+        expect(listItems.first().text().trim()).toEqual('foo');
+        expect(listItems.last().text().trim()).toEqual('bar');
+      });
+
+    });
+
   });
 
 });

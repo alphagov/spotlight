@@ -37,6 +37,7 @@
       "sort-by": "pageviews:descending",
       "limit": 10,
       "label-attr": "pageTitle",
+      "label-regex": "^(.*)\\s-[^-]+$",
       "link-attr": "pagePath"
     },
     {
