@@ -47,7 +47,7 @@ function (Component) {
       });
     },
 
-    onMouseMove: _.throttle(function (e) {
+    onMouseMove: function (e) {
       var offset = this.graph.graphWrapper.offset();
       var scaleFactor = this.graph.scaleFactor();
       var x = (e.pageX - offset.left) / scaleFactor - this.margin.left;
@@ -56,7 +56,7 @@ function (Component) {
       this.attachBodyListener('mousemove');
       this.selectPoint(x, y);
       return false;
-    }, 40),
+    },
 
     onTouchStart: function (e) {
       var touch = e.originalEvent.touches[0];
