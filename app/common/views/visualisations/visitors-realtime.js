@@ -14,20 +14,21 @@ function (View, SparklineView, template) {
     labelTag: '.stat-description',
     graphLabelTag: '.sparkline-title',
 
-    initialize: function (options) {
+    initialize: function () {
 
       View.prototype.initialize.apply(this, arguments);
 
       var events = '';
 
       if (isClient) {
-        events += "sync ";
+        events += "sync";
       }
       if (this.changeOnSelected) {
         events += 'change:selected';
       }
 
       this.collection.on(events, this.render, this);
+      this.collection.on('change:selected', this.renderText, this);
 
       this.selectionValueAttr = 'unique_visitors';
 
@@ -35,37 +36,40 @@ function (View, SparklineView, template) {
 
     },
 
+    renderText: function (selectGroup, selectGroupIndex, selectModel) {
+      var content = '<span class="no-data">(no data)</span>',
+          selection = this.collection.getCurrentSelection(),
+          label;
+
+      this.currentVisitors = this.getCurrentVisitors();
+
+      if (selectModel) {
+        this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
+      }
+
+      if (this.selectedModel) {
+        selection.selectedModel = this.selectedModel;
+      }
+
+      if (selection.selectedModel) {
+        content = this.getValueSelected(selection);
+        label = this.getLabelSelected(selection);
+      } else {
+        content = this.getValue();
+        label = this.getLabel();
+      }
+
+      this.$el.find(this.valueTag).html(content);
+      this.$el.find(this.labelTag).html(label.headline);
+      this.$el.find(this.graphLabelTag).html(label.graph);
+      delete this.selectedModel;
+    },
+
     render: function () {
 
       View.prototype.render.apply(this, arguments);
 
-      this.currentVisitors = this.getCurrentVisitors();
-
-      var value, headlineLabel, labels, graphLabel, content;
-      var selection = this.collection.getCurrentSelection();
-
-      if (selection.selectedModel) {
-        value = this.getValueSelected(selection);
-        labels = this.getLabelSelected(selection);
-        headlineLabel = labels.headline;
-        graphLabel = labels.graph;
-      } else {
-        value = this.getValue();
-        labels = this.getLabel();
-        headlineLabel = labels.headline;
-        graphLabel = labels.graph;
-      }
-
-      if (value === null) {
-        content = '<span class="no-data">(no data)</span>';
-      } else {
-        content = value;
-      }
-
-      this.$el.find(this.valueTag).html(content);
-      this.$el.find(this.labelTag).html(headlineLabel);
-      this.$el.find(this.graphLabelTag).html(graphLabel);
-
+      this.renderText();
     },
 
     getCurrentVisitors: function () {
