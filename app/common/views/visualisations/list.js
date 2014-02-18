@@ -8,10 +8,10 @@ function (View, template) {
 
     template: template,
     templateContext: function() {
-      var items = this.collection.map(function(item) {
-        var labelAttr = this.collection.options['label-attr'],
-            linkAttr = this.collection.options['link-attr'],
-            urlRoot = this.collection.options['url-root'] || '';
+      var items = this.collection.first().get('values').map(function(item) {
+        var labelAttr = this.collection.options.labelAttr,
+            linkAttr = this.collection.options.linkAttr,
+            urlRoot = this.collection.options.urlRoot || '';
 
         return {
           "label": item.get(labelAttr),

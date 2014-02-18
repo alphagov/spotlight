@@ -1,21 +1,25 @@
 define([
   'common/views/visualisations/list',
-  'extensions/collections/collection'
+  'common/collections/list'
 ],
-function (ListView, Collection) {
+function (ListView, ListCollection) {
 
   describe("ListView", function() {
 
     it("should show the correct number of items", function() {
 
-      var collection = new Collection([
-        { "pageTitle": "foo",
-          "pagePath": "/foo" },
-        { "pageTitle": "bar",
-          "pagePath": "/bar" }
-      ], { 
-        "label-attr": "pageTitle",
-        "link-attr": "pagePath"
+      var collection = new ListCollection({
+        "data": [
+          { "pageTitle": "foo",
+            "pagePath": "/foo" },
+          { "pageTitle": "bar",
+            "pagePath": "/bar" }
+        ]
+      }, { 
+        "id": "foo", "title": "foo",
+        "parse": "true",
+        "labelAttr": "pageTitle",
+        "linkAttr": "pagePath"
       });
 
       view = new ListView({
@@ -36,15 +40,19 @@ function (ListView, Collection) {
 
     it("should show the urls with a url-root", function() {
 
-      var collection = new Collection([
-        { "pageTitle": "foo",
-          "pagePath": "/foo" },
-        { "pageTitle": "bar",
-          "pagePath": "/bar" }
-      ], { 
-        "label-attr": "pageTitle",
-        "link-attr": "pagePath",
-        "url-root": "https://www.gov.uk"
+      var collection = new ListCollection({
+        "data": [
+          { "pageTitle": "foo",
+            "pagePath": "/foo" },
+          { "pageTitle": "bar",
+            "pagePath": "/bar" }
+        ]
+      }, { 
+        "id": "foo", "title": "foo",
+        "parse": "true",
+        "labelAttr": "pageTitle",
+        "linkAttr": "pagePath",
+        "urlRoot": "https://www.gov.uk"
       });
 
       view = new ListView({
@@ -61,13 +69,17 @@ function (ListView, Collection) {
 
     it("should not show links if there is no link-attr", function() {
 
-      var collection = new Collection([
-        { "pageTitle": "foo",
-          "pagePath": "/foo" },
-        { "pageTitle": "bar",
-          "pagePath": "/bar" }
-      ], { 
-        "label-attr": "pageTitle"
+      var collection = new ListCollection({
+        "data": [
+          { "pageTitle": "foo",
+            "pagePath": "/foo" },
+          { "pageTitle": "bar",
+            "pagePath": "/bar" }
+        ]
+      }, { 
+        "id": "foo", "title": "foo",
+        "parse": "true",
+        "labelAttr": "pageTitle"
       });
 
       view = new ListView({
