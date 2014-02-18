@@ -46,7 +46,7 @@ function (MatrixCollection) {
       return {
         id: this.options.id,
         title: this.options.title,
-        values: data.reverse()
+        values: data
       };
 
     },
