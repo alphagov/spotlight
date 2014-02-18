@@ -1,0 +1,28 @@
+{
+  "page-type": "module",
+  "module-type": "grouped_timeseries",
+  "title": "Applications at each stage of completion",
+  "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
+  "data-group": "student-finance",
+  "data-type": "transactions-by-channel",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
+  "category": "stage",
+  "period": "month",
+  "value-attr": "count:sum",
+  "show-line-labels": true,
+  "cumulative": false,
+  "info": [
+    "Data source: SLC database",
+    "Shows the number of applications, broken down by stage",
+    "Started: applications in progress",
+    "Submitted: applications submitted"
+  ],
+  "series": [
+    { "id": "started", "title": "Started" },
+    { "id": "submitted", "title": "Submitted" },
+    { "id": "started", "title": "Started", "timeshift": 12 },
+    { "id": "submitted", "title": "Submitted", "timeshift": 12 }
+  ]
+}

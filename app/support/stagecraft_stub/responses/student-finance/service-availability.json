@@ -1,0 +1,20 @@
+{
+  "page-type": "module",
+  "module-type": "availability",
+  "title": "Service availability",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
+  "data-group": "student-finance",
+  "data-type": "monitoring",
+  "info": [
+    "Data source: Pingdom",
+    "Page load time measures the time taken for a sample page within the service to load.",
+    "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+  ],
+  "tabs": [
+    {"id": "day", "name": "30 days"},
+    {"id": "hour", "name": "24 hours"}
+  ],
+  "tabbed_attr": "period"
+}
