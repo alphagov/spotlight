@@ -20,9 +20,9 @@
     "Submitted: applications submitted"
   ],
   "series": [
-  { "id": "started", "title": "Started" },
-  { "id": "submitted", "title": "Submitted" },
-  { "id": "started", "title": "Started", "timeshift": 12 },
-  { "id": "submitted", "title": "Submitted", "timeshift": 12 }
+    { "id": "started", "title": "Started" },
+    { "id": "submitted", "title": "Submitted" },
+    { "id": "started", "title": "Started", "timeshift": 12 },
+    { "id": "submitted", "title": "Submitted", "timeshift": 12 }
   ]
 }

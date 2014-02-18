@@ -1,187 +1,166 @@
 {
-    "slug": "student-finance",
-    "page-type": "dashboard",
-    "strapline": "Service dashboard",
-    "title": "Apply for student finance",
-    "tagline": "Full-time higher education for England only",
-    "related_pages_title": "Visit the site",
-    "related_pages": [
-        {
-            "title": "Apply online for student finance for higher education",
-            "url": "https://www.gov.uk/apply-online-for-student-finance",
-            "metadata": ""
-        }
-    ],
-    "modules": [
-        {
-          "slug": "applications-by-stage",
-          "module-type": "grouped_timeseries",
-          "title": "Applications at each stage of completion",
-          "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
-          "data-group": "student-finance",
-          "data-type": "transactions-by-channel",
-          "category": "stage",
-          "period": "month",
-          "value-attr": "count:sum",
-          "show-line-labels": true,
-          "cumulative": false,
-          "info": [
-              "Data source: SLC database",
-              "Shows the number of applications, broken down by stage",
-              "Started: applications in progress",
-              "Submitted: applications submitted"
-          ],
-          "series": [
-              { "id": "started", "title": "Started" },
-              { "id": "submitted", "title": "Submitted" },
-              { "id": "started", "title": "Started", "timeshift": 12 },
-              { "id": "submitted", "title": "Submitted", "timeshift": 12 }
-          ]
-        },
-        {
-          "slug": "usage-breakdown",
-          "module-type": "grouped_timeseries",
-          "title": "Usage breakdown",
-          "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
-          "data-group": "student-finance",
-          "data-type": "transactions-by-channel",
-          "category": "channel",
-          "period": "month",
-          "value-attr": "count:sum",
-          "show-line-labels": true,
-          "show-total-lines": true,
-          "cumulative": true,
-          "info": [
-              "Data source: SLC database",
-              "Shows the number of applications, broken down by channel"
-          ],
-          "series": [
-              { "id": "paper", "title": "Paper" },
-              { "id": "digital", "title": "Digital" },
-              { "id": "paper", "title": "Paper", "timeshift": 12 },
-              { "id": "digital", "title": "Digital", "timeshift": 12 }
-          ]
-        },
-        {
-            "slug": "digital-takeup",
-            "module-type": "completion_rate",
-            "title": "Digital take-up",
-            "data-group": "student-finance",
-            "data-type": "transactions-by-channel",
-            "period": "month",
-            "info": [
-                "Data source: SLC Database",
-                "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
-            ],
-            "end-matcher": "digital",
-            "start-matcher": "[paper|digital]",
-            "matching-attribute": "channel",
-            "value-attribute": "count:sum"
-        },
-        {
-            "slug": "completion-rate",
-            "module-type": "completion_rate",
-            "title": "Completion rate",
-            "data-group": "student-finance",
-            "data-type": "transactions-by-channel",
-            "period": "month",
-            "info": [
-                "Data source: SLC Database",
-                "Completion rate measures the percentage of started applications that were subsequently submitted."
-            ],
-            "start-matcher": "started",
-            "end-matcher": "submitted",
-            "matching-attribute": "stage",
-            "value-attribute": "count:sum"
-        },
-        {
-            "slug": "service-availability",
-            "module-type": "availability",
-            "title": "Service availability",
-            "data-group": "student-finance",
-            "data-type": "monitoring",
-            "info": [
-                "Data source: Pingdom",
-                "Page load time measures the time taken for a sample page within the service to load.",
-                "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
-          ],
-          "tabs": [
-            {"id": "day", "name": "30 days"},
-            {"id": "hour", "name": "24 hours"}
-          ],
-          "tabbed_attr": "period"
-        },
-        {
-            "slug": "device-type",
-            "module-type": "grouped_timeseries",
-            "title": "How people access the service",
-            "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
-            "data-group": "student-finance",
-            "data-type": "device-usage",
-            "category": "deviceCategory",
-            "period": "week",
-            "axis-period": "month",
-            "duration": 52,
-            "value-attr": "visitors:sum",
-            "show-line-labels": true,
-            "one-hundred-percent": true,
-            "cumulative": true,
-            "info": [
-                "Data source: Google Analytics",
-                "Student Loans Company"
-            ],
-            "series": [
-                {
-                    "id": "mobile",
-                    "title": "Mobile"
-                },
-                {
-                    "id": "tablet",
-                    "title": "Tablet"
-                },
-                {
-                    "id": "desktop",
-                    "title": "Desktop"
-                }
-            ]
-        },
-        {
-            "slug": "browser-type",
-            "module-type": "grouped_timeseries",
-            "title": "How people access the service",
-            "description": "Breakdown of <span class=\"group0\">Chrome</span>, <span class=\"group1\">Firefox</span>, <span class=\"group2\">Internet Explorer</span> and <span class=\"group3\">Safari</span> browser usage on this service over time",
-            "data-group": "student-finance",
-            "data-type": "browser-usage",
-            "category": "browser",
-            "period": "week",
-            "axis-period": "month",
-            "duration": 52,
-            "value-attr": "visitors:sum",
-            "show-line-labels": true,
-            "one-hundred-percent": false,
-            "cumulative": true,
-            "info": [
-                "Data source: Google Analytics",
-                "Student Loans Company"
-            ],
-            "series": [
-                {
-                    "id": "Chrome",
-                    "title": "Chrome"
-                },
-                {
-                    "id": "Firefox",
-                    "title": "Firefox"
-                },
-                {
-                    "id": "Internet Explorer",
-                    "title": "Internet Explorer"
-                },
-                {
-                    "id": "Safari",
-                    "title": "Safari"
-                }
-            ]
-        }
-    ]
+  "slug": "student-finance",
+  "page-type": "dashboard",
+  "strapline": "Service dashboard",
+  "title": "Apply for student finance",
+  "tagline": "Full-time higher education for England only",
+  "related_pages_title": "Visit the site",
+  "related_pages": [
+    {
+      "title": "Apply online for student finance for higher education",
+      "url": "https://www.gov.uk/apply-online-for-student-finance",
+      "metadata": ""
+    }
+  ],
+  "modules": [
+    {
+      "slug": "applications-by-stage",
+      "module-type": "grouped_timeseries",
+      "title": "Applications at each stage of completion",
+      "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
+      "data-group": "student-finance",
+      "data-type": "transactions-by-channel",
+      "category": "stage",
+      "period": "month",
+      "value-attr": "count:sum",
+      "show-line-labels": true,
+      "cumulative": false,
+      "info": [
+        "Data source: SLC database",
+        "Shows the number of applications, broken down by stage",
+        "Started: applications in progress",
+        "Submitted: applications submitted"
+      ],
+      "series": [
+        { "id": "started", "title": "Started" },
+        { "id": "submitted", "title": "Submitted" },
+        { "id": "started", "title": "Started", "timeshift": 12 },
+        { "id": "submitted", "title": "Submitted", "timeshift": 12 }
+      ]
+    },
+    {
+      "slug": "usage-breakdown",
+      "module-type": "grouped_timeseries",
+      "title": "Usage breakdown",
+      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
+      "data-group": "student-finance",
+      "data-type": "transactions-by-channel",
+      "category": "channel",
+      "period": "month",
+      "value-attr": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "cumulative": true,
+      "info": [
+        "Data source: SLC database",
+        "Shows the number of applications, broken down by channel"
+      ],
+      "series": [
+        { "id": "paper", "title": "Paper" },
+        { "id": "digital", "title": "Digital" },
+        { "id": "paper", "title": "Paper", "timeshift": 12 },
+        { "id": "digital", "title": "Digital", "timeshift": 12 }
+      ]
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "data-group": "student-finance",
+      "data-type": "transactions-by-channel",
+      "period": "month",
+      "info": [
+        "Data source: SLC Database",
+        "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
+      ],
+      "end-matcher": "digital",
+      "start-matcher": "[paper|digital]",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum"
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "data-group": "student-finance",
+      "data-type": "transactions-by-channel",
+      "period": "month",
+      "info": [
+        "Data source: SLC Database",
+        "Completion rate measures the percentage of started applications that were subsequently submitted."
+      ],
+      "start-matcher": "started",
+      "end-matcher": "submitted",
+      "matching-attribute": "stage",
+      "value-attribute": "count:sum"
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "availability",
+      "title": "Service availability",
+      "data-group": "student-finance",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        { "id": "day", "name": "30 days" },
+        { "id": "hour", "name": "24 hours" }
+      ],
+      "tabbed_attr": "period"
+    },
+    {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
+      "data-group": "student-finance",
+      "data-type": "device-usage",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "cumulative": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Student Loans Company"
+      ],
+      "series": [
+        { "id": "mobile", "title": "Mobile" },
+        { "id": "tablet", "title": "Tablet" },
+        { "id": "desktop", "title": "Desktop" }
+      ]
+    },
+    {
+      "slug": "browser-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group0\">Chrome</span>, <span class=\"group1\">Firefox</span>, <span class=\"group2\">Internet Explorer</span> and <span class=\"group3\">Safari</span> browser usage on this service over time",
+      "data-group": "student-finance",
+      "data-type": "browser-usage",
+      "category": "browser",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": false,
+      "cumulative": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Student Loans Company"
+      ],
+      "series": [
+        { "id": "Chrome", "title": "Chrome" },
+        { "id": "Firefox", "title": "Firefox" },
+        { "id": "Internet Explorer", "title": "Internet Explorer" },
+        { "id": "Safari", "title": "Safari" }
+      ]
+    }
+  ]
 }
