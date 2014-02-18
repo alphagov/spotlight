@@ -83,7 +83,7 @@ function (Table, View, $) {
         table.render();
 
         expect(table.table.html())
-          .toBe('<tbody><tr><th scope="col">date</th><td>another</td><td>last</td></tr><tr><th scope="col">01/02/01</th><td>foo</td><td>bar</td></tr></tbody>');
+          .toBe('<tbody><tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr><tr><td>01/02/01</td><td>foo</td><td>bar</td></tr></tbody>');
       });
     });
   });

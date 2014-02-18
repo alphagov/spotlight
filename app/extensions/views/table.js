@@ -53,14 +53,14 @@ function (View) {
 
     render: function () {
       this.table.empty();
-      _.each(this.collection.getDataByTableFormat(), function (row) {
+      _.each(this.collection.getDataByTableFormat(), function (row, rowIndex) {
 
         this.row = this.renderEl('tr', this.table);
 
-        _.each(row, function (cel, index) {
+        _.each(row, function (cel) {
           var elName = 'td',
               attr;
-          if (index === 0) {
+          if (rowIndex === 0) {
             elName = 'th';
             attr = {scope: 'col'};
           }
