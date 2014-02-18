@@ -19,6 +19,7 @@ function (ModuleController, ListView, ListCollection) {
         "sortBy": this.model.get('sort-by'),
         "limit": this.model.get('limit'),
         "labelAttr": this.model.get('label-attr'),
+        "labelRegex": this.model.get('label-regex'),
         "linkAttr": this.model.get('link-attr'),
         "urlRoot": this.model.get('url-root')
       };
