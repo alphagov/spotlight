@@ -59,6 +59,49 @@ function (MatrixCollection) {
           values: dataSeries.values
         });
       });
+    },
+
+    getDataByTableFormat: function () {
+      if (this.options.axisLabels && this.options.seriesList && this.options.period) {
+        var allTables = [],
+          dateRow = this.options.axisLabels.x.label + ' (' + this.options.period + ')',
+          dateKey = this.options.axisLabels.x.key,
+          series = this.options.seriesList,
+          seriesLength = series.length,
+          seriesData = this.options.axisLabels.y.key,
+          tableHeadings = [];
+
+        tableHeadings.push(dateRow);
+
+        _.each(series, function (item) {
+          tableHeadings.push(item.title);
+        });
+
+        allTables.push(tableHeadings);
+        _.each(this.models, function (collectionOfCollections, index) {
+          var collection = collectionOfCollections.get('values');
+
+          if (collection.length && index === 0) {
+            _.each(collection.models, function (model) {
+              var tableRow = new Array(seriesLength + 1);
+              tableRow[0] = this.getMoment(model.get(dateKey))
+                .format(this.periods[this.options.period].format.long);
+              tableRow[1] = model.get(seriesData);
+
+              allTables.push(tableRow);
+            }, this);
+          } else {
+            _.each(collection.models, function (model, modelIndex) {
+              var tableRow = allTables[modelIndex + 1];
+              tableRow[index + 1] = model.get(seriesData);
+            });
+          }
+        }, this);
+
+        return allTables;
+      }
+
+      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });
