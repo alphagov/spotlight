@@ -104,6 +104,8 @@ moduleSchemas.availability = moduleSchemas.common;
 
 moduleSchemas.multi_stats = moduleSchemas.common;
 
+moduleSchemas.list = moduleSchemas.common;
+
 var validationResult = {},
     stagecraftStubDirectory = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses');
 

@@ -29,18 +29,6 @@
   ],
   "modules": [
     {
-      "module-type": "list",
-      "title": "Top content",
-      "description": "Most unique pageviews",
-      "data-group": "govuk",
-      "data-type": "most_viewed",
-      "sort-by": "pageviews:descending",
-      "limit": 10,
-      "label-attr": "pageTitle",
-      "label-regex": "^(.*)\\s-[^-]+$",
-      "link-attr": "pagePath"
-    },
-    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
@@ -51,6 +39,34 @@
       ],
       "data-group": "licensing",
       "data-type": "realtime"
+    },
+    {
+      "slug": "top-content",
+      "module-type": "list",
+      "title": "Top content",
+      "description": "Most unique pageviews",
+      "classes": ["cols2"],
+      "data-group": "govuk",
+      "data-type": "most_viewed",
+      "sort-by": "pageviews:descending",
+      "limit": 10,
+      "label-attr": "pageTitle",
+      "label-regex": "^(.*)\\s-[^-]+$",
+      "link-attr": "pagePath"
+    },
+    {
+      "slug": "trending",
+      "module-type": "list",
+      "title": "Trending",
+      "description": "Greatest increase in absolute unique pageviews",
+      "classes": ["cols2", "up"],
+      "data-group": "govuk",
+      "data-type": "most_viewed",
+      "sort-by": "pageviews:descending",
+      "limit": 10,
+      "label-attr": "pageTitle",
+      "label-regex": "^(.*)\\s-[^-]+$",
+      "link-attr": "pagePath"
     },
     {
       "slug": "users-at-each-step",
