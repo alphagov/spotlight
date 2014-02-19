@@ -85,32 +85,32 @@ function (moment) {
     periods: {
       hour: {
         format: {
-          long: 'ha',
-          short: 'ha'
+          longhand: 'ha',
+          shorthand: 'ha'
         }
       },
       day: {
         format: {
-          long: 'D MMMM',
-          short: 'D MMM'
+          longhand: 'D MMMM',
+          shorthand: 'D MMM'
         }
       },
       week: {
         format: {
-          long: 'D MMMM',
-          short: 'D MMM'
+          longhand: 'D MMMM',
+          shorthand: 'D MMM'
         }
       },
       month: {
         format: {
-          long: 'MMMM YYYY',
-          short: 'MMM YYYY'
+          longhand: 'MMMM YYYY',
+          shorthand: 'MMM YYYY'
         }
       },
       quarter: {
         format: {
-          long: 'MMMM YYYY',
-          short: 'MMM YYYY'
+          longhand: 'MMMM YYYY',
+          shorthand: 'MMM YYYY'
         }
       }
     }

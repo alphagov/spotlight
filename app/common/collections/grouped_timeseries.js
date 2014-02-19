@@ -85,7 +85,7 @@ function (MatrixCollection) {
             _.each(collection.models, function (model) {
               var tableRow = new Array(seriesLength + 1);
               tableRow[0] = this.getMoment(model.get(dateKey))
-                .format(this.periods[this.options.period].format.long);
+                .format(this.periods[this.options.period].format.longhand);
               tableRow[1] = model.get(seriesData);
 
               allTables.push(tableRow);
