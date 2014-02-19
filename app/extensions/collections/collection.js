@@ -264,6 +264,20 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
         selectedModel: this.selectedItem,
         selectedModelIndex: this.selectedIndex
       };
+    },
+
+    getDataByTableFormat: function () {
+      var table = [];
+
+      _.each(this.models, function (model, index) {
+        if (index === 0) {
+          table.push(_.keys(model.attributes));
+        }
+
+        table.push(_.map(model.attributes, function (val) { return val; }));
+      });
+
+      return table;
     }
   });
 

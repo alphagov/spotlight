@@ -2,19 +2,20 @@ define([
   'extensions/views/graph/graph',
   'extensions/collections/collection',
   'extensions/models/model',
-  'd3',
+  'd3'
 ],
 function (Graph, Collection, Model, d3) {
 
-  describe("Graph", function() {
+  describe('Graph', function () {
 
 
 
-    it("keeps a reference to d3 library", function() {
-      spyOn(Graph.prototype, "prepareGraphArea");
+    it('keeps a reference to d3 library', function () {
+      spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
         collection: {
-          on: jasmine.createSpy()
+          on: jasmine.createSpy(),
+          getDataByTableFormat: jasmine.createSpy()
         }
       });
       expect(view.d3).toBe(d3);
@@ -25,7 +26,7 @@ function (Graph, Collection, Model, d3) {
     function withGraphStyle(graphStyle) {
       style = $('<style type="text/css">figure.graph { margin: 0 } figure.graph svg {' + graphStyle + '}</style>').appendTo($('body'));
     }
-    afterEach(function() {
+    afterEach(function () {
       if (style) {
         style.remove();
         style = null;
@@ -33,10 +34,10 @@ function (Graph, Collection, Model, d3) {
     });
 
 
-    describe("initialize", function() {
+    describe('initialize', function () {
 
       var collection, TestGraph, testComponent1, testComponent2;
-      beforeEach(function() {
+      beforeEach(function () {
         collection = new Collection();
         testComponent1 = jasmine.createSpy();
         testComponent2 = jasmine.createSpy();
@@ -59,14 +60,14 @@ function (Graph, Collection, Model, d3) {
           getDefaultComponentOptions: function () {
             return {
               a: 'b'
-            }
+            };
           }
         });
-        spyOn(TestGraph.prototype, "render");
-        spyOn(TestGraph.prototype, "prepareGraphArea");
+        spyOn(TestGraph.prototype, 'render');
+        spyOn(TestGraph.prototype, 'prepareGraphArea');
       });
 
-      it("re-renders when collection resets", function() {
+      it('re-renders when collection resets', function () {
         var graph = new TestGraph({
           collection: collection
         });
@@ -74,7 +75,7 @@ function (Graph, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
-      it("re-renders when collection syncs", function() {
+      it('re-renders when collection syncs', function () {
         var graph = new TestGraph({
           collection: collection
         });
@@ -82,7 +83,7 @@ function (Graph, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
-      it("re-renders when item is added to collection", function() {
+      it('re-renders when item is added to collection', function () {
         var graph = new TestGraph({
           collection: collection
         });
@@ -90,7 +91,7 @@ function (Graph, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
-      it("re-renders when items is removed from collection", function() {
+      it('re-renders when items is removed from collection', function () {
         var graph = new TestGraph({
           collection: collection
         });
@@ -98,14 +99,14 @@ function (Graph, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
-      it("prepares the graph area", function() {
+      it('prepares the graph area', function () {
         var graph = new TestGraph({
           collection: collection
         });
         expect(graph.prepareGraphArea).toHaveBeenCalled();
       });
 
-      it("initialises components", function() {
+      it('initialises components', function () {
         var graph = new TestGraph({
           collection: collection
         });
@@ -122,10 +123,10 @@ function (Graph, Collection, Model, d3) {
       });
     });
 
-    describe("prepareGraphArea", function() {
+    describe('prepareGraphArea', function () {
 
       var graph, el, TestGraph;
-      beforeEach(function() {
+      beforeEach(function () {
         el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
 
         TestGraph = Graph.extend();
@@ -135,15 +136,15 @@ function (Graph, Collection, Model, d3) {
         });
       });
 
-      afterEach(function() {
+      afterEach(function () {
         el.remove();
       });
 
-      it("creates element to measure size of inner graph area", function () {
+      it('creates element to measure size of inner graph area', function () {
         expect(graph.el.find('.inner').length).toEqual(1);
       });
 
-      it("creates empty SVG element", function () {
+      it('creates empty SVG element', function () {
         var svg = graph.el.find('svg');
         expect(svg.length).toEqual(1);
       });
@@ -154,19 +155,19 @@ function (Graph, Collection, Model, d3) {
         expect(svg.attr('aria-hidden')).toEqual('true');
       });
 
-      it("creates wrapper element", function() {
+      it('creates wrapper element', function () {
         var wrapper = graph.el.find('svg g.wrapper');
         expect(wrapper.length).toEqual(1);
       });
 
-      describe("when the models 'show-line-labels' attribute is not falsy", function (){
-        it("creates a figure with the class graph", function (){
+      describe('when the models "show-line-labels" attribute is not falsy', function () {
+        it('creates a figure with the class graph', function () {
           expect(graph.el.find('figure.graph').length).toEqual(1);
           expect(graph.el.find('figure.graph.graph-with-labels').length).toEqual(0);
         });
       });
-      describe("when the models 'show-line-labels' attribute is not falsy", function (){
-        it("creates a figure with the class graph graph-with-labels", function (){
+      describe('when the models "show-line-labels" attribute is not falsy', function () {
+        it('creates a figure with the class graph graph-with-labels', function () {
           var model = new Model({
             'show-line-labels': true
           });
@@ -180,17 +181,17 @@ function (Graph, Collection, Model, d3) {
       });
     });
 
-    describe("pxToValue", function () {
+    describe('pxToValue', function () {
       var pxToValue = Graph.prototype.pxToValue;
 
-      it("extracts number from valid CSS px values", function () {
+      it('extracts number from valid CSS px values', function () {
         expect(pxToValue('1px')).toEqual(1);
         expect(pxToValue('1.0px')).toEqual(1);
         expect(pxToValue('0.5px')).toEqual(0.5);
         expect(pxToValue('100px')).toEqual(100);
       });
 
-      it("returns null when it is not a valid CSS px value", function () {
+      it('returns null when it is not a valid CSS px value', function () {
         expect(pxToValue(100)).toEqual(null);
         expect(pxToValue(1)).toEqual(null);
         expect(pxToValue('1p')).toEqual(null);
@@ -201,62 +202,62 @@ function (Graph, Collection, Model, d3) {
       });
     });
 
-    describe("resize", function () {
+    describe('resize', function () {
 
       var graph, el, wrapper;
-      beforeEach(function() {
+      beforeEach(function () {
         wrapper = $('<div id="jasmine-playground"></div>').appendTo($('body'));
         el = $('<div></div>').appendTo(wrapper);
         graph = new Graph({
           collection: new Collection(),
           el: el
         });
-        spyOn(graph, "render");
+        spyOn(graph, 'render');
       });
 
-      afterEach(function() {
+      afterEach(function () {
         wrapper.remove();
       });
 
-      it("re-scales graph according to aspect ratio when both max-width and max-height are defined", function () {
+      it('re-scales graph according to aspect ratio when both max-width and max-height are defined', function () {
         wrapper.css({
           width: '150px'
         });
-        withGraphStyle("max-width: 200px; max-height:100px;");
+        withGraphStyle('max-width: 200px; max-height:100px;');
 
         graph.resize();
         expect(graph.width).toEqual(150);
         expect(graph.height).toEqual(75);
       });
 
-      it("re-scales graph according to min-height when defined", function () {
+      it('re-scales graph according to min-height when defined', function () {
         wrapper.css({
           width: '150px'
         });
-        withGraphStyle("max-width: 200px; max-height:100px; min-height:80px");
+        withGraphStyle('max-width: 200px; max-height:100px; min-height:80px');
 
         graph.resize();
         expect(graph.width).toEqual(150);
         expect(graph.height).toEqual(80);
       });
 
-      it("re-scales graph according to defined height and available width", function () {
+      it('re-scales graph according to defined height and available width', function () {
         wrapper.css({
           width: '150px',
           height: '100px'
         });
-        withGraphStyle("max-width: 200px;");
+        withGraphStyle('max-width: 200px;');
 
         graph.resize();
         expect(graph.width).toEqual(150);
         expect(graph.height).toEqual(100);
       });
 
-      it("updates SVG element with auto resize options", function() {
+      it('updates SVG element with auto resize options', function () {
         wrapper.css({
           width: '150px'
         });
-        withGraphStyle("max-width: 200px; max-height:100px;");
+        withGraphStyle('max-width: 200px; max-height:100px;');
         graph.resize();
 
         var svg = graph.el.find('svg');
@@ -272,12 +273,12 @@ function (Graph, Collection, Model, d3) {
         expect(svg.css('display')).toEqual('block');
       });
 
-      it("calculates inner dimensions and margin", function() {
+      it('calculates inner dimensions and margin', function () {
         wrapper.css({
           width: '150px',
           position: 'relative'
         });
-        withGraphStyle("max-width: 200px; max-height:100px;");
+        withGraphStyle('max-width: 200px; max-height:100px;');
 
         el.find('.inner').css({
           position: 'absolute',
@@ -298,19 +299,19 @@ function (Graph, Collection, Model, d3) {
 
     });
 
-    describe("render", function() {
+    describe('render', function () {
 
       var graph;
-      beforeEach(function() {
+      beforeEach(function () {
         spyOn(Graph.prototype, 'prepareGraphArea');
         graph = new Graph({
           collection: new Collection()
         });
-        spyOn(graph, "resizeWithCalloutHidden");
+        spyOn(graph, 'resizeWithCalloutHidden');
       });
 
-      it("sets the currency on render, if defined", function () {
-        spyOn(graph, "applyConfig");
+      it('sets the currency on render, if defined', function () {
+        spyOn(graph, 'applyConfig');
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.collection.options = {
@@ -320,17 +321,17 @@ function (Graph, Collection, Model, d3) {
         expect(graph.currency).toEqual('gbp');
       });
 
-      it("resizes the graph", function () {
-        spyOn(graph, "applyConfig");
+      it('resizes the graph', function () {
+        spyOn(graph, 'applyConfig');
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.render();
         expect(graph.resizeWithCalloutHidden).toHaveBeenCalled();
       });
 
-      it("applies configurations to graph", function () {
-        spyOn(graph, "applyConfig");
-        spyOn(graph, "getConfigNames").andReturn(['foo', 'bar']);
+      it('applies configurations to graph', function () {
+        spyOn(graph, 'applyConfig');
+        spyOn(graph, 'getConfigNames').andReturn(['foo', 'bar']);
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.render();
@@ -338,13 +339,13 @@ function (Graph, Collection, Model, d3) {
         expect(graph.applyConfig).toHaveBeenCalledWith('bar');
       });
 
-      it("requires a configuration for the y dimension", function() {
+      it('requires a configuration for the y dimension', function () {
         expect(function () {
           graph.render();
         }).toThrow();
       });
 
-      it("requires x and y scale implementation s", function() {
+      it('requires x and y scale implementation s', function () {
         graph.getConfigNames = function () {
           return [];
         };
@@ -360,7 +361,7 @@ function (Graph, Collection, Model, d3) {
         expect(graph.scales.y).toEqual('test y scale');
       });
 
-      it("renders component instances", function() {
+      it('renders component instances', function () {
         graph.getConfigNames = function () {
           return [];
         };
@@ -379,45 +380,45 @@ function (Graph, Collection, Model, d3) {
       });
     });
 
-    describe("scaleFactor", function () {
-      var el, TestGraph;
-      beforeEach(function() {
-          el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
-          el.css('display', 'block');
-          TestGraph = Graph.extend({
-            width: 600,
-            height: 400
-          });
-          withGraphStyle();
+    describe('scaleFactor', function () {
+      var el, TestGraph, graph;
+      beforeEach(function () {
+        el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
+        el.css('display', 'block');
+        TestGraph = Graph.extend({
+          width: 600,
+          height: 400
+        });
+        withGraphStyle();
       });
 
-      afterEach(function() {
-          el.remove();
+      afterEach(function () {
+        el.remove();
       });
 
-      it("calculates the scale factor when the graph is not resized", function() {
-          el.width(600);
-          graph = new TestGraph({
-            el: el,
-            collection: new Collection()
-          });
-          expect(graph.scaleFactor()).toEqual(1);
+      it('calculates the scale factor when the graph is not resized', function () {
+        el.width(600);
+        graph = new TestGraph({
+          el: el,
+          collection: new Collection()
+        });
+        expect(graph.scaleFactor()).toEqual(1);
       });
 
-      it("calculates the scale factor when the graph is resized", function() {
-          el.width(300);
-          graph = new TestGraph({
-            el: el,
-            collection: new Collection()
-          });
-          expect(graph.scaleFactor()).toEqual(0.5);
+      it('calculates the scale factor when the graph is resized', function () {
+        el.width(300);
+        graph = new TestGraph({
+          el: el,
+          collection: new Collection()
+        });
+        expect(graph.scaleFactor()).toEqual(0.5);
       });
     });
 
-    describe("configs", function () {
+    describe('configs', function () {
 
       var collection, graph, el;
-      beforeEach(function() {
+      beforeEach(function () {
         el = $('<div id="jasmine-playground"></div>').appendTo($('body'));
 
         collection = new Collection();
@@ -505,78 +506,78 @@ function (Graph, Collection, Model, d3) {
         graph.innerHeight = 333;
       });
 
-      afterEach(function() {
+      afterEach(function () {
         el.remove();
       });
 
 
       function sharedSpecsForScalingBetweenStartAndEndDates() {
-        describe("calcXScale", function() {
-          it("scales domain from start entry start date to end entry start date", function() {
+        describe('calcXScale', function () {
+          it('scales domain from start entry start date to end entry start date', function () {
             graph.applyConfig('day');
             var domain = graph.calcXScale().domain();
             expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
             expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
           });
 
-          it("scales range to inner width", function() {
+          it('scales range to inner width', function () {
             graph.applyConfig('day');
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
-        describe("getXPos", function() {
-          beforeEach(function(){
+        describe('getXPos', function () {
+          beforeEach(function () {
             graph.applyConfig('day');
             spyOn(graph, 'modelToDate').andReturn(123);
           });
-          describe("groupIndex is set", function(){
-            describe("when there is no model at this index", function(){
-              beforeEach(function(){
+          describe('groupIndex is set', function () {
+            describe('when there is no model at this index', function () {
+              beforeEach(function () {
                 graph.collection = {
-                  at: function(index){
-                    if(index == 4){
-                      return "model minus one";
-                    }else{
+                  at: function (index) {
+                    if (index === 4) {
+                      return 'model minus one';
+                    } else {
                       return null;
                     }
                   }
-                }
+                };
               });
-              describe("when encompassStack is true", function(){
-                beforeEach(function(){
+              describe('when encompassStack is true', function () {
+                beforeEach(function () {
                   graph.encompassStack = true;
                 });
-                it("should return the value of modelToDate with the model at this index minus 1", function (){
+                it('should return the value of modelToDate with the model at this index minus 1', function () {
                   expect(graph.getXPos(5)).toEqual(123);
                   expect(graph.modelToDate).toHaveBeenCalledWith('model minus one');
                 });
               });
             });
-            describe("when there is a model at this index", function(){
-              beforeEach(function(){
+            describe('when there is a model at this index', function () {
+              beforeEach(function () {
                 graph.collection = {
-                  at: function(index){
-                    return "model";
+                  at: function () {
+                    return 'model';
                   }
-                }
+                };
               });
-              it("should return the value of modelToDate with the model at this index", function (){
+              it('should return the value of modelToDate with the model at this index', function () {
                 expect(graph.getXPos(5)).toEqual(123);
                 expect(graph.modelToDate).toHaveBeenCalledWith('model');
               });
             });
           });
-          describe("when groupIndex is not set", function (){
-            beforeEach(function(){
+          describe('when groupIndex is not set', function () {
+            beforeEach(function () {
               graph.collection = {
-                at: function(index){
-                  if(index == 0){
-                    return "model at 0";
+                at: function (index) {
+                  if (index === 0) {
+                    return 'model at 0';
                   }
                 }
-              }
+              };
             });
-            it("should return the value of modelToDate with the model at this 0", function (){
+            it('should return the value of modelToDate with the model at this 0', function () {
               expect(graph.getXPos(null)).toEqual(123);
               expect(graph.modelToDate).toHaveBeenCalledWith('model at 0');
             });
@@ -584,17 +585,17 @@ function (Graph, Collection, Model, d3) {
         });
       }
 
-      describe("day", function () {
+      describe('day', function () {
         sharedSpecsForScalingBetweenStartAndEndDates();
       });
 
-      describe("week", function () {
+      describe('week', function () {
         sharedSpecsForScalingBetweenStartAndEndDates();
       });
 
-      describe("hour", function () {
+      describe('hour', function () {
 
-        beforeEach(function() {
+        beforeEach(function () {
           var start = graph.getMoment('2013-03-13T00:00:00');
           var end = graph.getMoment('2013-03-14T00:00:00');
           var values = [];
@@ -610,27 +611,27 @@ function (Graph, Collection, Model, d3) {
           graph.applyConfig('hour');
         });
 
-        describe("calcXScale", function() {
-          it("scales domain from first timestamp to last timestamp", function() {
+        describe('calcXScale', function () {
+          it('scales domain from first timestamp to last timestamp', function () {
             var domain = graph.calcXScale().domain();
             expect(graph.getMoment(domain[0]).format()).toEqual('2013-03-13T00:00:00+00:00');
             expect(graph.getMoment(domain[1]).format()).toEqual('2013-03-13T23:00:00+00:00');
           });
 
-          it("scales range to inner width", function() {
+          it('scales range to inner width', function () {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
       });
 
-      describe("overlay", function () {
+      describe('overlay', function () {
 
-        beforeEach(function() {
+        beforeEach(function () {
           graph.applyConfig('overlay');
         });
 
-        describe("calcYScale", function() {
-          it("scales domain to a minimum value of 6 to avoid extreme line jumps on graph and duplicate y axis values", function () {
+        describe('calcYScale', function () {
+          it('scales domain to a minimum value of 6 to avoid extreme line jumps on graph and duplicate y axis values', function () {
             collection.at(0).get('values').each(function (model) { model.set('_count', 1); });
             collection.at(1).get('values').each(function (model) { model.set('_count', 1); });
             collection.at(2).get('values').each(function (model) { model.set('_count', 1); });
@@ -647,85 +648,85 @@ function (Graph, Collection, Model, d3) {
             expect(graph.calcYScale().domain()).toEqual([0, 6]);
           });
 
-          it("scales domain from 0 to nice value above max value by default", function() {
+          it('scales domain from 0 to nice value above max value by default', function () {
             expect(graph.calcYScale().domain()).toEqual([0, 120]);
           });
 
-          it("scales domain from 0 to nice value above max value by default when an alternative value attribute is used", function () {
+          it('scales domain from 0 to nice value above max value by default when an alternative value attribute is used', function () {
             graph.valueAttr = 'alternativeValue';
             expect(graph.calcYScale().domain()).toEqual([0, 500]);
           });
 
-          it("scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used", function () {
+          it('scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used', function () {
             graph.valueAttr = 'alternativeValue';
             graph.applyConfig('stack');
             expect(graph.calcYScale().domain()).toEqual([0, 700]);
           });
 
-          it("scales range to inner height", function() {
+          it('scales range to inner height', function () {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });
 
-          it("sets the tickValues correctly", function() {
+          it('sets the tickValues correctly', function () {
             expect(graph.calcYScale().tickValues)
-                .toEqual([0, 20, 40, 60, 80, 100, 120])
-          })
+                .toEqual([0, 20, 40, 60, 80, 100, 120]);
+          });
         });
       });
 
-      describe("stack", function () {
-        beforeEach(function() {
+      describe('stack', function () {
+        beforeEach(function () {
           graph.applyConfig('stack');
         });
 
-        describe("getYPos", function(){
-          describe("if there is nothing at the index", function(){
-            describe("if there is something at the previous index", function(){
-              beforeEach(function(){
+        describe('getYPos', function () {
+          describe('if there is nothing at the index', function () {
+            describe('if there is something at the previous index', function () {
+              beforeEach(function () {
                 graph.collection = {
-                  at: function(index){
-                    if(index == 4){
+                  at: function (index) {
+                    if (index === 4) {
                       return true;
-                    }else{
+                    } else {
                       return null;
                     }
                   }
-                }
+                };
               });
-              describe("if encompassStack is true", function(){
-                beforeEach(function(){
+              describe('if encompassStack is true', function () {
+                beforeEach(function () {
                   graph.encompassStack = true;
                 });
-                it("returns 0", function (){
+                it('returns 0', function () {
                   expect(graph.getYPos(5)).toEqual(0);
                 });
               });
-              describe("if encompassStack is false", function(){
-                beforeEach(function(){
+              describe('if encompassStack is false', function () {
+                beforeEach(function () {
                   graph.encompassStack = false;
                 });
-                it("returns null", function (){
+                it('returns null', function () {
                   expect(graph.getYPos(5)).toEqual(null);
                 });
               });
             });
-            describe("if there is nothing at the previous index", function(){
-              beforeEach(function(){
+            describe('if there is nothing at the previous index', function () {
+              beforeEach(function () {
                 graph.collection = {
-                  at: function(index){
+                  at: function () {
                     return null;
                   }
-                }
+                };
               });
-              it("returns null", function (){
+              it('returns null', function () {
                 expect(graph.getYPos(5)).toEqual(null);
               });
             });
           });
         });
 
-        describe("calculation", function () {
-          it("calculates d3 stack", function () {
+        describe('calculation', function () {
+          it('calculates d3 stack', function () {
             graph.applyConfig('stack');
 
             expect(graph.layers.length).toEqual(3);
@@ -743,7 +744,7 @@ function (Graph, Collection, Model, d3) {
             expect(graph.layers[2].get('values').at(0).y).toEqual(90);
           });
 
-          it("calculates d3 stack using custom properties", function () {
+          it('calculates d3 stack using custom properties', function () {
             graph.stackYProperty = 'yCustom';
             graph.stackY0Property = 'yCustom0';
             graph.outStack = function (model, y0, y) {
@@ -769,28 +770,28 @@ function (Graph, Collection, Model, d3) {
           });
         });
 
-        describe("calcYScale", function() {
+        describe('calcYScale', function () {
 
-          beforeEach(function() {
+          beforeEach(function () {
             graph.applyConfig('stack');
           });
 
-          it("scales domain from 0 to nice value above max value", function() {
+          it('scales domain from 0 to nice value above max value', function () {
             expect(graph.calcYScale().domain()).toEqual([0, 140]);
           });
 
-          it("scales domain from 0 to nice value above max value when an alternative value attribute is used", function () {
+          it('scales domain from 0 to nice value above max value when an alternative value attribute is used', function () {
             graph.valueAttr = 'alternativeValue';
             expect(graph.calcYScale().domain()).toEqual([0, 700]);
           });
 
-          it("scales range to inner height", function() {
+          it('scales range to inner height', function () {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });
 
-          it("sets the tickValues correctly", function() {
-              expect(graph.calcYScale().tickValues)
-                  .toEqual([0, 20, 40, 60, 80, 100, 120, 140])
+          it('sets the tickValues correctly', function () {
+            expect(graph.calcYScale().tickValues)
+                .toEqual([0, 20, 40, 60, 80, 100, 120, 140]);
           });
         });
       });

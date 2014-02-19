@@ -5,15 +5,15 @@ define([
 ],
 function (MatrixCollection, Collection, Group) {
 
-  describe("MatrixCollection", function() {
+  describe('MatrixCollection', function () {
 
-    describe("initialize", function() {
+    describe('initialize', function () {
 
-      it("uses Group models", function () {
+      it('uses Group models', function () {
         expect(MatrixCollection.prototype.model).toBe(Group);
       });
 
-      it("listens to selection changes in all groups", function () {
+      it('listens to selection changes in all groups', function () {
         var group0 = new Group({
           values: [
             { a: 'one' },
@@ -42,8 +42,8 @@ function (MatrixCollection, Collection, Group) {
       });
     });
 
-    describe("parse", function () {
-      it("assigns constituent collections as 'values' attribute", function () {
+    describe('parse', function () {
+      it('assigns constituent collections as \'values\' attribute', function () {
         var collection = new MatrixCollection([], {});
         collection.collectionInstances = [
           new Collection([ { foo: 'bar' } ]),
@@ -54,7 +54,7 @@ function (MatrixCollection, Collection, Group) {
         expect(collection.at(1).get('values').at(0).get('foo')).toEqual('baz');
       });
 
-      it("assigns id and title properties as attributes when available", function () {
+      it('assigns id and title properties as attributes when available', function () {
         var subCollection1 = new Collection([ { foo: 'bar' } ]);
         subCollection1.id = 'id1';
         subCollection1.title = 'Title 1';
@@ -75,10 +75,10 @@ function (MatrixCollection, Collection, Group) {
     });
 
 
-    describe("selection", function () {
+    describe('selection', function () {
 
       var collection, spy;
-      beforeEach(function() {
+      beforeEach(function () {
         spy = jasmine.createSpy();
         var group0 = new Group({
           values: [
@@ -97,9 +97,9 @@ function (MatrixCollection, Collection, Group) {
         collection.reset([ group0, group1 ]);
       });
 
-      describe("selectItem", function () {
+      describe('selectItem', function () {
 
-        it("selects a group", function () {
+        it('selects a group', function () {
           collection.selectItem(1);
 
           expect(collection.selectedItem).toBe(collection.at(1));
@@ -109,7 +109,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
 
-        it("selects an item in a group and the group and unselects all other groups", function () {
+        it('selects an item in a group and the group and unselects all other groups', function () {
           collection.selectItem(1, 1);
 
           expect(collection.selectedItem).toBe(collection.at(1));
@@ -127,7 +127,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
         });
 
-        it("selects an item in all groups", function () {
+        it('selects an item in all groups', function () {
           collection.selectItem(null, 1);
 
           expect(collection.selectedItem).toBe(null);
@@ -151,7 +151,7 @@ function (MatrixCollection, Collection, Group) {
           ], 0);
         });
 
-        it("unselects group and item", function () {
+        it('unselects group and item', function () {
           collection.selectItem(1, 1);
           collection.selectItem(null);
 
@@ -162,7 +162,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
 
-        it("unselects item but keeps group", function () {
+        it('unselects item but keeps group', function () {
           collection.selectItem(1, 1);
           collection.selectItem(1, null);
 
@@ -173,7 +173,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
 
-        it("optionally toggles selection of a group", function () {
+        it('optionally toggles selection of a group', function () {
           collection.selectItem(1, null, { toggle: true });
 
           expect(collection.selectedItem).toBe(collection.at(1));
@@ -191,7 +191,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(collection.at(1), 1, null, null);
         });
 
-        it("optionally toggles selection of item in a group", function () {
+        it('optionally toggles selection of item in a group', function () {
           collection.selectItem(1, 1, { toggle: true });
 
           expect(collection.selectedItem).toBe(collection.at(1));
@@ -209,7 +209,7 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
 
-        it("optionally toggles selection of an item across all group", function () {
+        it('optionally toggles selection of an item across all group', function () {
           collection.selectItem(null, 1, { toggle: true });
 
           expect(collection.selectedItem).toBe(null);
@@ -230,16 +230,16 @@ function (MatrixCollection, Collection, Group) {
           expect(spy).toHaveBeenCalledWith(null, null, null, null);
         });
 
-        it("allows suppressing the change:selected event", function () {
+        it('allows suppressing the change:selected event', function () {
           collection.selectItem(1, 1, { silent: true });
           expect(spy).not.toHaveBeenCalled();
         });
 
       });
 
-      describe("getCurrentSelection", function () {
+      describe('getCurrentSelection', function () {
 
-        it("retrieves an object with an empty selection when nothing is selected", function () {
+        it('retrieves an object with an empty selection when nothing is selected', function () {
           collection.selectItem(null);
 
           var currentSelection = collection.getCurrentSelection();
@@ -249,7 +249,7 @@ function (MatrixCollection, Collection, Group) {
           expect(currentSelection.selectedModelIndex).toBe(null);
         });
 
-        it("retrieves an object with the currently selected group", function () {
+        it('retrieves an object with the currently selected group', function () {
           collection.selectItem(1, null);
 
           var currentSelection = collection.getCurrentSelection();
@@ -259,7 +259,7 @@ function (MatrixCollection, Collection, Group) {
           expect(currentSelection.selectedModelIndex).toBe(null);
         });
 
-        it("retrieves an object with the currently selected group and item", function () {
+        it('retrieves an object with the currently selected group and item', function () {
           collection.selectItem(1, 1);
 
           var currentSelection = collection.getCurrentSelection();
@@ -269,7 +269,7 @@ function (MatrixCollection, Collection, Group) {
           expect(currentSelection.selectedModelIndex).toBe(1);
         });
 
-        it("retrieves an object with the currently selected items", function () {
+        it('retrieves an object with the currently selected items', function () {
           collection.selectItem(null, 1);
 
           var currentSelection = collection.getCurrentSelection();
@@ -284,128 +284,154 @@ function (MatrixCollection, Collection, Group) {
       });
     });
 
-    describe("at", function () {
+    describe('at', function () {
       var collection;
-      beforeEach(function() {
+      beforeEach(function () {
         collection = new MatrixCollection([
           { id: 'first' }, { id: 'second' }
         ]);
         collection.at(0).set('values', new Collection([
           { a: 1, b: 2 },
           { a: 3, b: 4 }
-        ]))
+        ]));
         collection.at(1).set('values', new Collection([
           { a: 5, b: 6 },
           { a: 7, b: null }
-        ]))
+        ]));
       });
 
-      it("retrieves a group", function () {
+      it('retrieves a group', function () {
         expect(collection.at(1).get('id')).toEqual('second');
       });
 
-      it("retrieves an item in a group", function () {
+      it('retrieves an item in a group', function () {
         expect(collection.at(1, 1).get('a')).toEqual(7);
         expect(collection.at(1, 1).get('b')).toBe(null);
       });
     });
 
-    describe("aggregates", function () {
+    describe('aggregates', function () {
 
-      describe("sum", function () {
-        describe("default case", function () {
+      describe('sum', function () {
+        describe('default case', function () {
           var collection;
-          beforeEach(function() {
+          beforeEach(function () {
             collection = new MatrixCollection([{}, {}]);
             collection.at(0).set('values', new Collection([
               { a: 1, b: 2 },
               { a: 3, b: 4 }
-            ]))
+            ]));
             collection.at(1).set('values', new Collection([
               { a: 5, b: 6 },
               { a: 7, b: null }
-            ]))
+            ]));
           });
 
-          it("sums a given attribute for all items in all groups", function () {
+          it('sums a given attribute for all items in all groups', function () {
             expect(collection.sum('a')).toEqual(16);
             expect(collection.sum('b')).toEqual(12);
           });
 
-          it("sums a given attribute for all items in a specific group", function () {
+          it('sums a given attribute for all items in a specific group', function () {
             expect(collection.sum('a', 1)).toEqual(12);
             expect(collection.sum('b', 1)).toEqual(6);
           });
 
-          it("sums a given attribute for a specific item in all groups", function () {
+          it('sums a given attribute for a specific item in all groups', function () {
             expect(collection.sum('a', null, 1)).toEqual(10);
             expect(collection.sum('b', null, 1)).toEqual(4);
           });
         });
 
-        describe("null case", function () {
+        describe('null case', function () {
           var collection;
-          beforeEach(function() {
+          beforeEach(function () {
             collection = new MatrixCollection([{}, {}]);
             collection.at(0).set('values', new Collection([
               { a: null, b: null },
               { a: null, b: null }
-            ]))
+            ]));
             collection.at(1).set('values', new Collection([
               { a: null, b: null },
               { a: null, b: null }
-            ]))
+            ]));
           });
 
-          it("sums a given attribute for all items in all groups", function () {
+          it('sums a given attribute for all items in all groups', function () {
             expect(collection.sum('a')).toEqual(null);
             expect(collection.sum('b')).toEqual(null);
           });
 
-          it("sums a given attribute for all items in a specific group", function () {
+          it('sums a given attribute for all items in a specific group', function () {
             expect(collection.sum('a', 1)).toEqual(null);
             expect(collection.sum('b', 1)).toEqual(null);
           });
 
-          it("sums a given attribute for a specific item in all groups", function () {
+          it('sums a given attribute for a specific item in all groups', function () {
             expect(collection.sum('a', null, 1)).toEqual(null);
             expect(collection.sum('b', null, 1)).toEqual(null);
           });
         });
       });
 
-      describe("fraction", function () {
+      describe('fraction', function () {
         var collection;
-        beforeEach(function() {
+        beforeEach(function () {
           collection = new MatrixCollection([{}, {}]);
           collection.at(0).set('values', new Collection([
             { a: 1, b: 2 },
             { a: 3, b: 4 }
-          ]))
+          ]));
           collection.at(1).set('values', new Collection([
             { a: 5, b: 6 },
             { a: 7, b: null }
-          ]))
+          ]));
         });
 
-        it("always returns 1 when applied to all groups and items", function () {
+        it('always returns 1 when applied to all groups and items', function () {
           expect(collection.fraction('a')).toEqual(1);
           expect(collection.fraction('b')).toEqual(1);
         });
 
-        it("calculates the fraction for a given attribute for all items in a specific group", function () {
+        it('calculates the fraction for a given attribute for all items in a specific group', function () {
           expect(collection.fraction('a', 1)).toBeCloseTo(0.75, 0.01);
           expect(collection.fraction('b', 1)).toBeCloseTo(0.60, 0.01);
         });
 
-        it("calculates the fraction for a given attribute for a specific item in all groups", function () {
+        it('calculates the fraction for a given attribute for a specific item in all groups', function () {
           expect(collection.fraction('a', null, 1)).toBeCloseTo(0.625, 0.01);
           expect(collection.fraction('b', null, 1)).toBeCloseTo(0.33, 0.01);
         });
 
-        it("calculates the fraction for a given attribute for a specific item in a specific group", function () {
+        it('calculates the fraction for a given attribute for a specific item in a specific group', function () {
           expect(collection.fraction('a', 1, 1)).toBeCloseTo(0.70, 0.01);
           expect(collection.fraction('b', 1, 1)).toEqual(0);
+        });
+      });
+
+
+      describe('getDataByTableFormat', function () {
+        var collection;
+        beforeEach(function () {
+          collection = new MatrixCollection([{}, {}]);
+          collection.at(0).set('values', new Collection([
+            { a: 1, b: 2 },
+            { a: 3, b: 4 }
+          ]));
+          collection.at(1).set('values', new Collection([
+            { a: 5, b: 6 },
+            { a: 7, b: null }
+          ]));
+        });
+
+        it('returns an array', function () {
+          expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
+        });
+
+        it('sorts the array by tabular format', function () {
+          var expected = [['a', 'b'], [1, 2], [3, 4], [5, 6], [7, null]];
+
+          expect(collection.getDataByTableFormat()).toEqual(expected);
         });
       });
     });
