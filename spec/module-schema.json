@@ -10,7 +10,7 @@
     "dashboard-strapline" : {"type" : "string", "required" : false},
     "dashboard-slug" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
     "page-type" : {"type" : "string", "required" : true, "enumeration" : ["module"]},
-    "module-type" : {"type" : "string", "required" : true, "enumeration" : ["grouped_timeseries", "completion_rate", "availability"]},
+    "module-type" : {"type" : "string", "required" : true, "enumeration" : ["grouped_timeseries", "completion_rate", "availability", "journey"]},
     "title" : {"type" : "string", "required" : true},
     "description" : {"type" : "string", "required" : false},
     "data-group" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
@@ -66,7 +66,6 @@
       "title" : "Availability specific properties",
       "properties" : {
         "module-type" : {"type" : "string", "required" : true, "enumeration" : "availability"},
-        "description" : {"required" : true},
         "tabs" : {
           "type" : "array",
           "required" : true,
@@ -81,6 +80,26 @@
           }
         },
         "tabbed_attr" : {"type" : "string", "required" : true}
+      }
+    },
+    {
+      "title" : "Stageprompt journey specific properties",
+      "properties" : {
+        "module-type" : {"type" : "string", "required" : true, "enumeration" : "journey"},
+        "matching-attribute" : {"type" : "string", "required" : true},
+        "steps" : {
+          "type" : "array",
+          "required" : true,
+          "items" : {
+            "type" : "object",
+            "required" : true,
+            "additionalProperties" : false,
+            "properties" : {
+              "id" : {"type" : "string", "required" : true},
+              "title" : {"type" : "string", "required" : true}
+            }
+          }
+        }
       }
     }
   ]
