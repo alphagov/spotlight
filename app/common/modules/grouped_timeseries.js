@@ -37,7 +37,8 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         filterBy: this.model.get('filter-by'),
         showTotalLines: this.model.get('show-total-lines'),
         duration: this.model.get('duration'),
-        axisPeriod: this.model.get('axis-period')
+        axisPeriod: this.model.get('axis-period'),
+        axisLabels: this.model.get('axis-labels')
       };
     }
 
