@@ -4,29 +4,30 @@ define([
 ],
 function (ListView, ListCollection) {
 
-  describe("ListView", function() {
+  describe('ListView', function () {
 
-    it("should show the correct number of items", function() {
+    it('should show the correct number of items', function () {
 
       var collection = new ListCollection({
-        "data": [
-          { "pageTitle": "foo",
-            "pagePath": "/foo" },
-          { "pageTitle": "bar",
-            "pagePath": "/bar" }
+        'data': [
+          { 'pageTitle': 'foo',
+            'pagePath': '/foo' },
+          { 'pageTitle': 'bar',
+            'pagePath': '/bar' }
         ]
-      }, { 
-        "id": "foo", "title": "foo",
-        "parse": "true",
-        "labelAttr": "pageTitle",
-        "linkAttr": "pagePath"
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'linkAttr': 'pagePath'
       });
 
-      view = new ListView({
+      var view = new ListView({
         collection: collection
       });
 
-      var foo = jasmine.renderView(view, function() {
+      jasmine.renderView(view, function () {
         var listItems = view.$el.find('li');
 
         expect(listItems.length).toEqual(2);
@@ -38,55 +39,55 @@ function (ListView, ListCollection) {
 
     });
 
-    it("should show the urls with a url-root", function() {
+    it('should show the urls with a url-root', function () {
 
       var collection = new ListCollection({
-        "data": [
-          { "pageTitle": "foo",
-            "pagePath": "/foo" },
-          { "pageTitle": "bar",
-            "pagePath": "/bar" }
+        'data': [
+          { 'pageTitle': 'foo',
+            'pagePath': '/foo' },
+          { 'pageTitle': 'bar',
+            'pagePath': '/bar' }
         ]
-      }, { 
-        "id": "foo", "title": "foo",
-        "parse": "true",
-        "labelAttr": "pageTitle",
-        "linkAttr": "pagePath",
-        "urlRoot": "https://www.gov.uk"
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'linkAttr': 'pagePath',
+        'urlRoot': 'https://www.gov.uk'
       });
 
-      view = new ListView({
+      var view = new ListView({
         collection: collection
       });
 
-      var foo = jasmine.renderView(view, function() {
-        var listItems = view.$el.find('li');
-
+      jasmine.renderView(view, function () {
         expect(view.$el.find('li a').first().attr('href')).toEqual('https://www.gov.uk/foo');
       });
 
     });
 
-    it("should not show links if there is no link-attr", function() {
+    it('should not show links if there is no link-attr', function () {
 
       var collection = new ListCollection({
-        "data": [
-          { "pageTitle": "foo",
-            "pagePath": "/foo" },
-          { "pageTitle": "bar",
-            "pagePath": "/bar" }
+        'data': [
+          { 'pageTitle': 'foo',
+            'pagePath': '/foo' },
+          { 'pageTitle': 'bar',
+            'pagePath': '/bar' }
         ]
-      }, { 
-        "id": "foo", "title": "foo",
-        "parse": "true",
-        "labelAttr": "pageTitle"
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle'
       });
 
-      view = new ListView({
+      var view = new ListView({
         collection: collection
       });
 
-      var foo = jasmine.renderView(view, function() {
+      jasmine.renderView(view, function () {
         var listItems = view.$el.find('li');
 
         expect(listItems.length).toEqual(2);
@@ -95,28 +96,29 @@ function (ListView, ListCollection) {
 
     });
 
-    it("it should use a labelRegex if provided", function() {
+    it('it should use a labelRegex if provided', function () {
 
       var collection = new ListCollection({
-        "data": [
-          { "pageTitle": "foo - GOV.UK",
-            "pagePath": "/foo" },
-          { "pageTitle": "bar - GOV.UK",
-            "pagePath": "/bar" }
+        'data': [
+          { 'pageTitle': 'foo - GOV.UK',
+            'pagePath': '/foo' },
+          { 'pageTitle': 'bar - GOV.UK',
+            'pagePath': '/bar' }
         ]
-      }, { 
-        "id": "foo", "title": "foo",
-        "parse": "true",
-        "labelAttr": "pageTitle",
-        "labelRegex": "^(.*)\\s-[^-]+$",
-        "linkAttr": "pagePath"
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'labelRegex': '^(.*)\\s-[^-]+$',
+        'linkAttr': 'pagePath'
       });
 
-      view = new ListView({
+      var view = new ListView({
         collection: collection
       });
 
-      var foo = jasmine.renderView(view, function() {
+      jasmine.renderView(view, function () {
         var listItems = view.$el.find('li');
 
         expect(listItems.length).toEqual(2);

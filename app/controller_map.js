@@ -18,14 +18,14 @@ function (DashboardController, ErrorController,
     dashboard: DashboardController,
     error: ErrorController,
     modules: {
-      availability: AvailabilityModule,
-      completion_numbers: CompletionNumbersModule,
-      completion_rate: CompletionRateModule,
-      grouped_timeseries: GroupedTimeseriesModule,
-      journey: JourneyModule,
-      list: ListModule,
-      multi_stats: MultiStatsModule,
-      realtime: VisitorsRealtimeModule
+      'availability': AvailabilityModule,
+      'completion_numbers': CompletionNumbersModule,
+      'completion_rate': CompletionRateModule,
+      'grouped_timeseries': GroupedTimeseriesModule,
+      'journey': JourneyModule,
+      'list': ListModule,
+      'multi_stats': MultiStatsModule,
+      'realtime': VisitorsRealtimeModule
     }
   };
 

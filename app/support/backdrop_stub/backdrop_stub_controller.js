@@ -3,7 +3,7 @@ define([
 ], function (ResponseFetcher) {
   return function (req, res) {
     var fetcher = new ResponseFetcher();
-    var json = fetcher.fetch_json(req);
+    var json = fetcher.fetchJson(req);
     if (json) {
       return res.json(json);
     } else {

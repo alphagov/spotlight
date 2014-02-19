@@ -6,8 +6,8 @@ function (MatrixCollection) {
 
     queryParams: function () {
       return {
-        sort_by: this.options.sortBy,
-        limit: this.options.limit
+        'sort_by': this.options.sortBy,
+        'limit': this.options.limit
       };
     },
 
@@ -17,7 +17,7 @@ function (MatrixCollection) {
       // this is delibrately not allowing empty strings
       // as this is an undesirable title or id
       if (!options || !options.title || !options.id) {
-        throw new Error("Both 'title' and 'id' are required options for a ListCollection instance");
+        throw new Error('Both "title" and "id" are required options for a ListCollection instance');
       }
 
       if (isClient && _.isNumber(this.options.updateInterval)) {
@@ -33,8 +33,8 @@ function (MatrixCollection) {
       var numberRegexp = /^[0-9\.]+$/,
           data;
 
-      data = _.map(response.data, function(d) {
-        return _.reduce(d, function(out, val, key) {
+      data = _.map(response.data, function (d) {
+        return _.reduce(d, function (out, val, key) {
           if (numberRegexp.test(val)) {
             val = parseFloat(val);
           }
