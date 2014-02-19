@@ -59,7 +59,8 @@ function (View) {
 
         _.each(row, function (cel) {
           var elName = 'td',
-              attr;
+              attr,
+              cel = cel || 'no data';
           if (rowIndex === 0) {
             elName = 'th';
             attr = {scope: 'col'};
