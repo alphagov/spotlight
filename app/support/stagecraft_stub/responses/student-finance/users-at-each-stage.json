@@ -1,0 +1,26 @@
+{
+  "page-type": "module",
+  "module-type": "journey",
+  "title": "Users at each stage",
+  "info": [
+    "Data source: Google Analytics",
+    "The total number of users who arrived at each step.",
+    "Number of users is measured using the count of unique events from each step."
+  ],
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
+  "data-group": "student-finance",
+  "data-type": "journey",
+  "matching-attribute": "eventLabel",
+  "steps": [
+    {"id": "about-you", "title": "About you"},
+    {"id": "previous-study", "title": "About your previous studies"},
+    {"id": "course-and-fees", "title": "Course and fees"},
+    {"id": "living-costs", "title": "Living costs"},
+    {"id": "financial-info", "title": "Financial info"},
+    {"id": "additional-info", "title": "Additional info"},
+    {"id": "confirm", "title": "Confirm"},
+    {"id": "submitted", "title": "Submitted"}
+  ]
+}

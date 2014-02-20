@@ -95,21 +95,27 @@
       "value-attribute": "count:sum"
     },
     {
-      "slug": "service-availability",
-      "module-type": "availability",
-      "title": "Service availability",
-      "data-group": "student-finance",
-      "data-type": "monitoring",
+      "slug": "users-at-each-stage",
+      "module-type": "journey",
+      "title": "Users at each stage",
       "info": [
-        "Data source: Pingdom",
-        "Page load time measures the time taken for a sample page within the service to load.",
-        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
       ],
-      "tabs": [
-        { "id": "day", "name": "30 days" },
-        { "id": "hour", "name": "24 hours" }
-      ],
-      "tabbed_attr": "period"
+      "data-group": "student-finance",
+      "data-type": "journey",
+      "matching-attribute": "eventLabel",
+      "steps": [
+        {"id": "about-you", "title": "About you"},
+        {"id": "previous-study", "title": "About your previous studies"},
+        {"id": "course-and-fees", "title": "Course and fees"},
+        {"id": "living-costs", "title": "Living costs"},
+        {"id": "financial-info", "title": "Financial info"},
+        {"id": "additional-info", "title": "Additional info"},
+        {"id": "confirm", "title": "Confirm"},
+        {"id": "submitted", "title": "Submitted"}
+      ]
     },
     {
       "slug": "device-type",
@@ -161,6 +167,23 @@
         { "id": "Internet Explorer", "title": "Internet Explorer" },
         { "id": "Safari", "title": "Safari" }
       ]
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "availability",
+      "title": "Service availability",
+      "data-group": "student-finance",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        { "id": "day", "name": "30 days" },
+        { "id": "hour", "name": "24 hours" }
+      ],
+      "tabbed_attr": "period"
     }
   ]
 }
