@@ -38,7 +38,17 @@
         "Info text line 2"
       ],
       "data-group": "licensing",
-      "data-type": "realtime"
+      "data-type": "realtime",
+      "axis-labels": {
+        "x": {
+          "label": "Time",
+          "key": "_timestamp"
+        },
+        "y": {
+          "label": "Number of unique visitors",
+          "key": "unique_visitors"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -133,11 +143,21 @@
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
       "series": [
-         { "id": "England", "title": "England" },
-         { "id": "Scotland", "title": "Scotland" },
-         { "id": "Wales", "title": "Wales" },
-         { "id": "Northern_Ireland", "title": "Northern Ireland" }
-       ],
+        { "id": "England", "title": "England" },
+        { "id": "Scotland", "title": "Scotland" },
+        { "id": "Wales", "title": "Wales" },
+        { "id": "Northern_Ireland", "title": "Northern Ireland" }
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Date of transaction",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Number of redisential transactions",
+          "key": "value:sum"
+        }
+      },
       "show-line-labels": true
     },
     {
@@ -156,9 +176,19 @@
         "Source: National House-Building Council (NHBC)"
       ],
       "series": [
-         { "id": "completed", "title": "Completed" },
-         { "id": "started", "title": "Started" }
-       ],
+        { "id": "completed", "title": "Completed" },
+        { "id": "started", "title": "Started" }
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Date of transaction",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Value",
+          "key": "value:sum"
+        }
+      },
       "show-line-labels": true
     }
   ]
