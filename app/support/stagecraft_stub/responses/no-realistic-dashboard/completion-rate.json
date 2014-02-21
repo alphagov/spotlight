@@ -13,5 +13,15 @@
     "Info text line 2"
   ],
   "start-matcher": "start$",
-  "end-matcher": "done$"
+  "end-matcher": "done$",
+  "axis-labels": {
+    "x": {
+      "label": "Date of completion",
+      "key": "_start_at"
+    },
+    "y": {
+      "label": "Completion percentage",
+      "key": "completion"
+    }
+  }
 }
