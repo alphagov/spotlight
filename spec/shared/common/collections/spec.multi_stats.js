@@ -1,5 +1,8 @@
-define(['common/collections/multi_stats', 'extensions/models/model', 'extensions/collections/matrix'],
-  function(MultiStatsCollection, Model, MatrixCollection) {
+define([
+  'common/collections/multi_stats',
+  'extensions/collections/matrix'
+],
+  function (MultiStatsCollection, MatrixCollection) {
   describe('MultiStatsCollection', function () {
 
     var stats;
@@ -92,6 +95,23 @@ define(['common/collections/multi_stats', 'extensions/models/model', 'extensions
       expect(collection.first().get('values').at(1).get('a')).toEqual(123);
       expect(collection.first().get('values').at(1).get('b')).not.toBeDefined();
       expect(collection.first().get('values').at(1).get('c')).not.toBeDefined();
+    });
+
+    describe('getDataByTableFormat', function () {
+      var collection;
+      beforeEach(function () {
+        spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
+        collection = new MultiStatsCollection({}, {
+          startMatcher: 'start',
+          endMatcher: 'done'
+        });
+      });
+
+      it('returns nothing', function () {
+        collection.getDataByTableFormat();
+        expect(collection.getDataByTableFormat()).toEqual(undefined);
+        expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
+      });
     });
   });
 });

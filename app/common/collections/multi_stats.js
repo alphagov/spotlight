@@ -50,6 +50,10 @@ function (MatrixCollection) {
         values: data
       };
 
+    },
+
+    getDataByTableFormat: function () {
+      return;
     }
 
   });
