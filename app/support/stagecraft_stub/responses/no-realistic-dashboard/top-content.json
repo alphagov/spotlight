@@ -1,0 +1,16 @@
+{
+  "module-type": "list",
+  "title": "Top content",
+  "description": "Most unique pageviews",
+  "data-group": "govuk",
+  "data-type": "most_viewed",
+  "sort-by": "pageviews:descending",
+  "limit": 10,
+  "label-attr": "pageTitle",
+  "label-regex": "^(.*)\\s-[^-]+$",
+  "link-attr": "pagePath",
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
+}

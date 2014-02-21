@@ -44,7 +44,7 @@ function (ResponseFetcher, _, fs, path) {
             return mapping.key[key];
           } };
 
-          expect(response_fetcher.fetch_json(request)).toEqual(JSON.parse(json_response));
+          expect(response_fetcher.fetchJson(request)).toEqual(JSON.parse(json_response));
         });
       });
     });
@@ -61,7 +61,7 @@ function (ResponseFetcher, _, fs, path) {
           return params[key];
         } };
 
-        expect(response_fetcher.fetch_json(request)).toEqual(null);
+        expect(response_fetcher.fetchJson(request)).toEqual(null);
       });
 
     });
