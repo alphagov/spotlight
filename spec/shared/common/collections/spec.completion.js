@@ -1,7 +1,9 @@
 define([
-  'common/collections/completion'
+  'common/collections/completion',
+  'extensions/collections/collection',
+  'extensions/collections/matrix'
 ],
-function (CompletionCollection) {
+function (CompletionCollection, Collection, MatrixCollection) {
   describe('Completion collection', function () {
     var mockResponse = {
       'data': [
@@ -121,7 +123,7 @@ function (CompletionCollection) {
       expect(collection.defaultCollectionAttrs).toHaveBeenCalled();
     });
 
-    it('should allow matcher to be a regex', function() {
+    it('should allow matcher to be a regex', function () {
       var collection = new CompletionCollection({}, {
         startMatcher: 'start',
         endMatcher: '(confirm|done)'
@@ -145,6 +147,53 @@ function (CompletionCollection) {
         _end_at: collection.getMoment('2013-12-09T00:00:00+00:00'),
         _start: 25,
         _end: 12
+      });
+    });
+
+    describe('getDataByTableFormat', function () {
+      var collection;
+      beforeEach(function () {
+        spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
+        collection = new CompletionCollection({}, {
+          startMatcher: 'start',
+          endMatcher: 'done'
+        });
+        collection.options.axisLabels = {
+          'x': {
+            'label': 'Date of completion',
+            'key': 'a'
+          },
+          'y': {
+            'label': 'Completion Percentage',
+            'key': 'b'
+          }
+        };
+        collection.period = 'month'
+        collection.at(0).set('values', new Collection([
+          { a: '2012-08-01T00:00:00+00:00', b: 0.215 },
+          { a: '2014-01-30T11:32:02+00:00', b: 0.408 }
+        ]));
+      });
+
+      it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
+        delete collection.options.axisLabels;
+        collection.getDataByTableFormat();
+        expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
+      });
+
+      it('will not call the MatrixCollection if axis is set', function () {
+        collection.getDataByTableFormat();
+        expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
+      });
+
+      it('returns an array', function () {
+        expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
+      });
+
+      it('sorts the array by tabular format with the correct timestamp format and percentage format', function () {
+        var expected = [['Date of completion (month)', 'Completion Percentage'], ['August 2012', '22%'], ['January 2014', '41%']];
+
+        expect(collection.getDataByTableFormat()).toEqual(expected);
       });
     });
   });
