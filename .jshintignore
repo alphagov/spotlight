@@ -10,3 +10,4 @@ node_modules/*
 vendor/*
 public/javascripts/*
 app/vendor/*
+tools/*

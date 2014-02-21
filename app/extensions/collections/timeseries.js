@@ -8,8 +8,10 @@ function (Collection) {
     /**
      * Keep sorted chronologically
      */
-    comparator: function(model) {
-      return +model.get('_start_at');
+    comparator: function (model) {
+      var startAt = model.get('_start_at');
+      
+      return +((startAt !== undefined) ? startAt : model.get('_timestamp'));
     }
     
   });

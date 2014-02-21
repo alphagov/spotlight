@@ -2,7 +2,7 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
 
   var ResponseFetcher = Model.extend({
   
-    stub_mappings: [
+    stubMappings: [
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_residential_transactions.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_residential_transactions_quarterly.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'house-price-index', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_house_price_index_quarterly.json'},
@@ -40,44 +40,47 @@ define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model,
       { 'key': {'api_name': 'monitoring', 'period': 'hour'}, 'file':  'deposit_foreign_marriage_monitoring_hour.json'},
       { 'key': {'api_name': 'monitoring', 'period': 'day'}, 'file':  'deposit_foreign_marriage_monitoring_day.json'},
       { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'},
+      { 'key': {'service': 'govuk', 'api_name': 'most_viewed', 'sort_by': 'pageviews:descending', 'limit': '10'}, 'file': 'govuk_most_viewed.json'},
+      { 'key': {'service': 'govuk', 'api_name': 'most_viewed_policies', 'sort_by': 'pageviews:descending', 'limit': '10'}, 'file': 'govuk_most_viewed_policies.json'},
+      { 'key': {'service': 'govuk', 'api_name': 'most_viewed_news', 'sort_by': 'pageviews:descending', 'limit': '10'}, 'file': 'govuk_most_viewed_news.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'first-time-buyer'}, 'file': 'housing-first-time-buyer.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-14T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_14.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key', 'start_at': '2013-10-07T00:00:00+00:00'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims', 'collect': 'value:sum', 'period': 'week', 'group_by': 'key'}, 'file': 'carers_allowance_weekly_by_channel_start_7.json'},
       { 'key': {'service': 'carers-allowance', 'api_name': 'weekly-claims'}, 'file': 'carers-allowance-weekly-claims.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "monthly_spend:sum", "group_by": "sme_large" }, 'file': 'g-cloud-proportion-smes-spend.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "count:sum", "group_by": "sme_large" }, 'file': 'g-cloud-proportion-smes-count.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "cumulative_spend:sum", "group_by": "sector"}, 'file': 'g-cloud-who-is-using.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "cumulative_spend:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-procurement.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "cumulative_count:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-procurement-count.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "monthly_spend:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-monthly-procurement.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "collect": "count:sum", "period": "month", "group_by": "sme_large"}, 'file': 'g-cloud-monthly-procurement-count.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', "period": "month", "collect": "monthly_spend:sum", "group_by": "lot"}, 'file': 'g-cloud-monthly-by-lot.json'}
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'monthly_spend:sum', 'group_by': 'sme_large' }, 'file': 'g-cloud-proportion-smes-spend.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'count:sum', 'group_by': 'sme_large' }, 'file': 'g-cloud-proportion-smes-count.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'cumulative_spend:sum', 'group_by': 'sector'}, 'file': 'g-cloud-who-is-using.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'cumulative_spend:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-procurement.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'cumulative_count:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-procurement-count.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'monthly_spend:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-monthly-procurement.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'count:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-monthly-procurement-count.json'},
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'monthly_spend:sum', 'group_by': 'lot'}, 'file': 'g-cloud-monthly-by-lot.json'}
     ],
 
-    fetch_json: function (request) {
-      var mapping = _.find(this.stub_mappings, function(mapping) {
-        var request_params = this.get_request_params(request, Object.keys(mapping.key));
-        var original_request_params = _.clone(request_params);
-        var request_params_matching_key = _.extend(request_params, mapping.key);
-        return JSON.stringify(original_request_params) === JSON.stringify(request_params_matching_key);
+    fetchJson: function (request) {
+      var mapping = _.find(this.stubMappings, function (mapping) {
+        var requestParams = this.getRequestParams(request, Object.keys(mapping.key));
+        var originalRequestParams = _.clone(requestParams);
+        var requestParamsMatchingKey = _.extend(requestParams, mapping.key);
+        return JSON.stringify(originalRequestParams) === JSON.stringify(requestParamsMatchingKey);
       }, this);
       if (mapping) {
-        return this.get_file_contents(mapping.file);
+        return this.getFileContents(mapping.file);
       } else {
         return null;
       }
     },
 
-    get_request_params: function (request, required_params) {
-      return _.reduce(required_params, function(request_params, key){ 
-        request_params[key] = request.param(key);
-        return request_params;
+    getRequestParams: function (request, requiredParams) {
+      return _.reduce(requiredParams, function (requestParams, key) {
+        requestParams[key] = request.param(key);
+        return requestParams;
       }, {});
     },
 
-    get_file_contents: function (file_name) {
-      return JSON.parse(fs.readFileSync(path.join('app/support/backdrop_stub/responses', file_name)));
+    getFileContents: function (fileName) {
+      return JSON.parse(fs.readFileSync(path.join('app/support/backdrop_stub/responses', fileName)));
     }
 
   });
