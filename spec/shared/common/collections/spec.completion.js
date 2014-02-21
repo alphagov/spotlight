@@ -2,61 +2,61 @@ define([
   'common/collections/completion'
 ],
 function (CompletionCollection) {
-  describe("Completion collection", function () {
+  describe('Completion collection', function () {
     var mockResponse = {
-      "data": [
+      'data': [
         {
-          "eventCategory": "start",
-          "uniqueEvents:sum": 40.0,
-          "values": [
+          'eventCategory': 'start',
+          'uniqueEvents:sum': 40.0,
+          'values': [
             {
-              "_end_at": "2013-12-02T00:00:00+00:00",
-              "_start_at": "2013-11-25T00:00:00+00:00",
-              "uniqueEvents:sum": 15.0
+              '_end_at': '2013-12-02T00:00:00+00:00',
+              '_start_at': '2013-11-25T00:00:00+00:00',
+              'uniqueEvents:sum': 15.0
             },
             {
-              "_end_at": "2013-12-09T00:00:00+00:00",
-              "_start_at": "2013-12-02T00:00:00+00:00",
-              "uniqueEvents:sum": 25.0
+              '_end_at': '2013-12-09T00:00:00+00:00',
+              '_start_at': '2013-12-02T00:00:00+00:00',
+              'uniqueEvents:sum': 25.0
             }
           ]
         },
         {
-          "eventCategory": "confirm",
-          "uniqueEvents:sum": 20.0,
-          "values": [
+          'eventCategory': 'confirm',
+          'uniqueEvents:sum': 20.0,
+          'values': [
             {
-              "_end_at": "2013-12-02T00:00:00+00:00",
-              "_start_at": "2013-11-25T00:00:00+00:00",
-              "uniqueEvents:sum": 8.0
+              '_end_at': '2013-12-02T00:00:00+00:00',
+              '_start_at': '2013-11-25T00:00:00+00:00',
+              'uniqueEvents:sum': 8.0
             },
             {
-              "_end_at": "2013-12-09T00:00:00+00:00",
-              "_start_at": "2013-12-02T00:00:00+00:00",
-              "uniqueEvents:sum": 12.0
+              '_end_at': '2013-12-09T00:00:00+00:00',
+              '_start_at': '2013-12-02T00:00:00+00:00',
+              'uniqueEvents:sum': 12.0
             }
           ]
         },
         {
-          "eventCategory": "done",
-          "uniqueEvents:sum": 10.0,
-          "values": [
+          'eventCategory': 'done',
+          'uniqueEvents:sum': 10.0,
+          'values': [
             {
-              "_end_at": "2013-12-02T00:00:00+00:00",
-              "_start_at": "2013-11-25T00:00:00+00:00",
-              "uniqueEvents:sum": 10.0
+              '_end_at': '2013-12-02T00:00:00+00:00',
+              '_start_at': '2013-11-25T00:00:00+00:00',
+              'uniqueEvents:sum': 10.0
             },
             {
-              "_end_at": "2013-12-09T00:00:00+00:00",
-              "_start_at": "2013-12-02T00:00:00+00:00",
-              "uniqueEvents:sum": null
+              '_end_at': '2013-12-09T00:00:00+00:00',
+              '_start_at': '2013-12-02T00:00:00+00:00',
+              'uniqueEvents:sum': null
             }
           ]
         }
       ]
     };
 
-    it("should use options in query params", function() {
+    it('should use options in query params', function() {
       var collection = new CompletionCollection({}, {
         valueAttr: 'one',
         period: 'month',
@@ -73,7 +73,7 @@ function (CompletionCollection) {
       expect(collection.url()).toContain('tabbing=tabid');
     });
 
-    it("should use default query params", function() {
+    it('should use default query params', function() {
       var collection = new CompletionCollection({}, {});
 
       expect(collection.url()).toContain('period=week');
@@ -81,10 +81,10 @@ function (CompletionCollection) {
       expect(collection.url()).toContain('group_by=eventCategory');
     });
 
-    it("should update value attribute on parse", function() {
+    it('should update value attribute on parse', function() {
       var collection = new CompletionCollection({}, { valueAttr: 'one' });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       expect(collection.valueAttr).toEqual('one');
       collection.options.valueAttr = 'two';
@@ -92,13 +92,13 @@ function (CompletionCollection) {
       expect(collection.valueAttr).toEqual('two');
     });
 
-    it("should parse responses", function() {
+    it('should parse responses', function () {
       var collection = new CompletionCollection({}, {
-        startMatcher: "start",
-        endMatcher: "done"
+        startMatcher: 'start',
+        endMatcher: 'done'
       });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       var result = collection.parse(mockResponse);
 
@@ -121,13 +121,13 @@ function (CompletionCollection) {
       expect(collection.defaultCollectionAttrs).toHaveBeenCalled();
     });
 
-    it("should allow matcher to be a regex", function() {
+    it('should allow matcher to be a regex', function() {
       var collection = new CompletionCollection({}, {
-        startMatcher: "start",
-        endMatcher: "(confirm|done)"
+        startMatcher: 'start',
+        endMatcher: '(confirm|done)'
       });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function(value){ return {}; })
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       var result = collection.parse(mockResponse);
 
