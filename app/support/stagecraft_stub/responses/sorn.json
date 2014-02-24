@@ -1,0 +1,26 @@
+{
+  "slug": "sorn",
+  "page-type": "dashboard",
+  "title": "Statutory Off Road Notification",
+  "strapline": "Service dashboard",
+  "tagline": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>. <abbr title='Statutory Off Road Notification'>SORN</abbr>s must be made for a registered vehicle that is not being used on the road, and which has been taxed since 31 January 1998.",
+  "modules": [
+    {
+      "slug": "service-availability",
+      "module-type": "availability",
+      "title": "Service availability",
+      "data-group": "sorn",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        { "id": "day", "name": "30 days" },
+        { "id": "hour", "name": "24 hours" }
+      ],
+      "tabbed_attr": "period"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "tax-disc",
+  "page-type": "dashboard",
+  "title": "Tax disc",
+  "strapline": "Service dashboard",
+  "tagline": "Tax disc is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='sorn'>SORN (Statutory Off Road Notification)</a>. This service is provided by the DVLA to relicense vehicles that are kept on public roads. This service does not include first vehicle registrations.",
+  "modules": [
+    {
+      "slug": "service-availability",
+      "module-type": "availability",
+      "title": "Service availability",
+      "data-group": "tax-disc",
+      "data-type": "monitoring",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        { "id": "day", "name": "30 days" },
+        { "id": "hour", "name": "24 hours" }
+      ],
+      "tabbed_attr": "period"
+    }
+  ]
+}
