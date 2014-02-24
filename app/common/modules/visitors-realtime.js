@@ -12,7 +12,8 @@ function (ModuleController, VisitorsRealtimeView, VisitorsRealtimeCollection) {
     requiresSvg: true,
     collectionOptions: function () {
       return {
-        numTwoMinPeriodsToQuery: this.model.get("numTwoMinPeriodsToQuery")
+        numTwoMinPeriodsToQuery: this.model.get("numTwoMinPeriodsToQuery"),
+        axisLabels: this.model.get('axis-labels')
       };
     }
   });
