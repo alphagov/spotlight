@@ -76,6 +76,13 @@ function (Table, View, $) {
           expect(context.html()).toBe('<th>test heading</th>');
         });
 
+        it('renders elements with falsy values', function () {
+          var context = $('<tr>');
+          table.renderEl('th', context, 0);
+
+          expect(context.html()).toBe('<th>0</th>');
+        });
+
         it('renders attributs', function () {
           var context = $('<tr>');
           table.renderEl('th', context, 'test heading', {scope: 'col'});

@@ -23,7 +23,7 @@ function (View) {
       var element;
       if (context) {
         element = $('<' + elementName + '></' + elementName + '>');
-        if (value) {
+        if (value !== null || value !== undefined) {
           element.text(value);
         }
         if (attr) {
@@ -60,7 +60,7 @@ function (View) {
         _.each(row, function (cel) {
           var elName = 'td',
               attr,
-              celValue = cel || 'no data';
+              celValue = (cel === null || cel === undefined) ? 'no data' : cel;
           if (rowIndex === 0) {
             elName = 'th';
             attr = {scope: 'col'};

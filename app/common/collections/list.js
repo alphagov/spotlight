@@ -54,6 +54,32 @@ function (MatrixCollection) {
     fetch: function (options) {
       options = _.extend(this.options.fetchOptions || {}, options);
       MatrixCollection.prototype.fetch.call(this, options);
+    },
+
+    getDataByTableFormat: function () {
+      if (this.options.axisLabels) {
+        var allTables = [],
+          dateKey = this.options.axisLabels.x.key,
+          seriesData = this.options.axisLabels.y.key,
+          tableHeadings = [];
+
+        tableHeadings.push(this.options.axisLabels.x.label, this.options.axisLabels.y.label);
+
+        allTables.push(tableHeadings);
+
+        _.each(this.models[0].get('values').models, function (model) {
+          var tableRow = [];
+          tableRow[0] = this.getMoment(model.get(dateKey))
+            .format('h:mm:ss a');
+          tableRow[1] = model.get(seriesData);
+
+          allTables.push(tableRow);
+        }, this);
+
+        return allTables;
+      }
+
+      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });
