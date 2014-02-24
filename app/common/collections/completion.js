@@ -15,6 +15,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
       this.period = options.period || 'week';
+      this.axisPeriod = options.axisPeriod || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
 
       MatrixCollection.prototype.initialize.apply(this, arguments);
