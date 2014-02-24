@@ -38,7 +38,17 @@
         "Info text line 2"
       ],
       "data-group": "licensing",
-      "data-type": "realtime"
+      "data-type": "realtime",
+      "axis-labels": {
+        "x": {
+          "label": "Time",
+          "key": "_timestamp"
+        },
+        "y": {
+          "label": "Number of unique visitors",
+          "key": "unique_visitors"
+        }
+      }
     },
     {
       "slug": "top-content",
@@ -61,8 +71,8 @@
       "description": "Greatest increase in absolute unique pageviews",
       "classes": ["cols2", "up"],
       "data-group": "govuk",
-      "data-type": "most_viewed",
-      "sort-by": "pageviews:descending",
+      "data-type": "trending",
+      "sort-by": "percent_change:descending",
       "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
@@ -125,7 +135,17 @@
         "Info text line 2"
       ],
       "start-matcher": "start$",
-      "end-matcher": "done$"
+      "end-matcher": "done$",
+      "axis-labels": {
+        "x": {
+          "label": "Date of completion",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Completion percentage",
+          "key": "completion"
+        }
+      }
     },
     {
       "slug": "average-first-mortgage",
@@ -161,11 +181,21 @@
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
       "series": [
-         { "id": "England", "title": "England" },
-         { "id": "Scotland", "title": "Scotland" },
-         { "id": "Wales", "title": "Wales" },
-         { "id": "Northern_Ireland", "title": "Northern Ireland" }
-       ],
+        { "id": "England", "title": "England" },
+        { "id": "Scotland", "title": "Scotland" },
+        { "id": "Wales", "title": "Wales" },
+        { "id": "Northern_Ireland", "title": "Northern Ireland" }
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Date of transaction",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Number of redisential transactions",
+          "key": "value:sum"
+        }
+      },
       "show-line-labels": true
     },
     {
@@ -184,9 +214,19 @@
         "Source: National House-Building Council (NHBC)"
       ],
       "series": [
-         { "id": "completed", "title": "Completed" },
-         { "id": "started", "title": "Started" }
-       ],
+        { "id": "completed", "title": "Completed" },
+        { "id": "started", "title": "Started" }
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Date of transaction",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Value",
+          "key": "value:sum"
+        }
+      },
       "show-line-labels": true
     }
   ]

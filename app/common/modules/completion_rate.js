@@ -20,7 +20,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         startMatcher: new RegExp(this.model.get('start-matcher')),
         endMatcher: new RegExp(this.model.get('end-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
-        tabbedAttr: this.model.get('tabbed_attr')
+        tabbedAttr: this.model.get('tabbed_attr'),
+        axisLabels: this.model.get('axis-labels')
       };
     }
   });

@@ -46,10 +46,15 @@ function (Table, View, $) {
           collection: {
             on: jasmine.createSpy(),
             getDataByTableFormat: function () {
-              return [['date', 'another', 'last'], ['01/02/01', 'foo', 'bar']];
+              return [['date', 'another', 'last'], ['01/02/01', 'foo', null]];
             }
           }
         });
+      });
+
+      it('will call renderEl with "no data" when a row has null values', function () {
+        table.render();
+        expect(Table.prototype.renderEl.mostRecentCall.args[2]).toEqual('no data');
       });
 
       describe('renderEl', function () {
@@ -71,6 +76,13 @@ function (Table, View, $) {
           expect(context.html()).toBe('<th>test heading</th>');
         });
 
+        it('renders elements with falsy values', function () {
+          var context = $('<tr>');
+          table.renderEl('th', context, 0);
+
+          expect(context.html()).toBe('<th>0</th>');
+        });
+
         it('renders attributs', function () {
           var context = $('<tr>');
           table.renderEl('th', context, 'test heading', {scope: 'col'});
@@ -83,7 +95,7 @@ function (Table, View, $) {
         table.render();
 
         expect(table.table.html())
-          .toBe('<tbody><tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr><tr><td>01/02/01</td><td>foo</td><td>bar</td></tr></tbody>');
+          .toBe('<tbody><tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr><tr><td>01/02/01</td><td>foo</td><td>no data</td></tr></tbody>');
       });
     });
   });

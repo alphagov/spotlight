@@ -68,8 +68,7 @@ moduleSchemas.common = {
       'required': true
     },
     'description': {
-      'type': 'string',
-      'required': true
+      'type': 'string'
     },
     'info': {
       'type': 'array',

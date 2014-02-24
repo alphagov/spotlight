@@ -80,6 +80,39 @@ function (moment) {
         start_at: end.clone().subtract(1, 'weeks'),
         end_at: end
       };
+    },
+
+    periods: {
+      hour: {
+        format: {
+          longhand: 'ha',
+          shorthand: 'ha'
+        }
+      },
+      day: {
+        format: {
+          longhand: 'D MMMM',
+          shorthand: 'D MMM'
+        }
+      },
+      week: {
+        format: {
+          longhand: 'D MMMM',
+          shorthand: 'D MMM'
+        }
+      },
+      month: {
+        format: {
+          longhand: 'MMMM YYYY',
+          shorthand: 'MMM YYYY'
+        }
+      },
+      quarter: {
+        format: {
+          longhand: 'MMMM YYYY',
+          shorthand: 'MMM YYYY'
+        }
+      }
     }
   };
 });
