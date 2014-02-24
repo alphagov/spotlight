@@ -10,8 +10,8 @@ function (MatrixCollection, Collection, Group, Query) {
     model: Group,
 
     initialize: function (models, options) {
-      this.startMatcher = options.startMatcher;
-      this.endMatcher = options.endMatcher;
+      this.denominatorMatcher = options.denominatorMatcher;
+      this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
       this.period = options.period || 'week';
@@ -53,10 +53,10 @@ function (MatrixCollection, Collection, Group, Query) {
       _.times(periods, function (i) {
         var totals = _.reduce(response.data, function (memo, d) {
           if (d.values[i][this.valueAttr] > 0) {
-            if (d[this.matchingAttribute].match(this.startMatcher) !== null) {
+            if (d[this.matchingAttribute].match(this.denominatorMatcher) !== null) {
               memo.start += d.values[i][this.valueAttr];
             }
-            if (d[this.matchingAttribute].match(this.endMatcher) !== null) {
+            if (d[this.matchingAttribute].match(this.numeratorMatcher) !== null) {
               memo.end += d.values[i][this.valueAttr];
             }
           }
