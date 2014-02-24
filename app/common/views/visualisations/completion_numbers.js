@@ -8,7 +8,7 @@ function (template, View, VolumetricsNumberView, SubmissionGraphView) {
   var CompletionNumbersView = View.extend({
     template: template,
 
-    views: function() {
+    views: function () {
       var period = this.collection.options.period || 'week';
       return {
         '#volumetrics-submissions-selected': {
@@ -22,7 +22,7 @@ function (template, View, VolumetricsNumberView, SubmissionGraphView) {
         '#volumetrics-submissions': {
           view: SubmissionGraphView,
           options: {
-            valueAttr:'uniqueEvents'
+            valueAttr: 'uniqueEvents'
           }
         }
       };
