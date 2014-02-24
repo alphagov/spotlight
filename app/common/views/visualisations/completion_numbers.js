@@ -8,22 +8,27 @@ function (template, View, VolumetricsNumberView, SubmissionGraphView) {
   var CompletionNumbersView = View.extend({
     template: template,
 
-    views: {
-      '#volumetrics-submissions-selected': {
-        view: VolumetricsNumberView,
-        options: {
-          valueAttr: 'mean',
-          selectionValueAttr: 'uniqueEvents',
-          labelPrefix: 'mean per week over the'
+    views: function() {
+      var period = this.collection.options.period || 'week';
+      return {
+        '#volumetrics-submissions-selected': {
+          view: VolumetricsNumberView,
+          options: {
+            valueAttr: 'mean',
+            selectionValueAttr: 'uniqueEvents',
+            labelPrefix: 'mean per ' + period + ' over the'
+          }
+        },
+        '#volumetrics-submissions': {
+          view: SubmissionGraphView,
+          options: {
+            valueAttr:'uniqueEvents'
+          }
         }
-      },
-      '#volumetrics-submissions': {
-        view: SubmissionGraphView,
-        options: {
-          valueAttr:'uniqueEvents'
-        }
-      }
+      };
+
     }
+
   });
 
   return CompletionNumbersView;
