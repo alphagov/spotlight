@@ -21,7 +21,7 @@ function (MatrixCollection, Collection, Group, Query) {
       MatrixCollection.prototype.initialize.apply(this, arguments);
     },
 
-    setValueAttribute: function(options) {
+    setValueAttribute: function (options) {
       this.valueAttr = options.valueAttr ? options.valueAttr : 'uniqueEvents:sum';
     },
 
@@ -50,13 +50,13 @@ function (MatrixCollection, Collection, Group, Query) {
       var dataTotals = { start: null, end: null };
       var periods = response.data[0].values ? response.data[0].values.length : 0;
 
-      _.times(periods, function(i){
-        var totals = _.reduce(response.data, function(memo, d){
-          if(d.values[i][this.valueAttr] > 0){
-            if(d[this.matchingAttribute].match(this.startMatcher) !== null){
+      _.times(periods, function (i) {
+        var totals = _.reduce(response.data, function (memo, d) {
+          if (d.values[i][this.valueAttr] > 0) {
+            if (d[this.matchingAttribute].match(this.startMatcher) !== null) {
               memo.start += d.values[i][this.valueAttr];
             }
-            if(d[this.matchingAttribute].match(this.endMatcher) !== null){
+            if (d[this.matchingAttribute].match(this.endMatcher) !== null) {
               memo.end += d.values[i][this.valueAttr];
             }
           }
@@ -72,7 +72,7 @@ function (MatrixCollection, Collection, Group, Query) {
         values.push(_.extend(this.defaultValueAttrs(value), value));
 
         dataTotals.start += totals.start;
-        dataTotals.end+= totals.end;
+        dataTotals.end += totals.end;
       }, this);
 
       var collectionAttrs = {
