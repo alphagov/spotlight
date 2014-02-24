@@ -6,18 +6,18 @@ function (MatrixCollection) {
 
     queryParams: function () {
       return {
-        period: "day",
-        collect: ["downtime:sum", "uptime:sum", "unmonitored:sum", "avgresponse:mean"]
+        period: 'day',
+        collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']
       };
     },
 
     parse: function (response) {
       var data = response.data;
       _.each(data, function (d) {
-        d.uptime = d["uptime:sum"];
-        d.downtime = d["downtime:sum"];
-        d.unmonitored = d["unmonitored:sum"];
-        d.avgresponse = d["avgresponse:mean"];
+        d.uptime = d['uptime:sum'];
+        d.downtime = d['downtime:sum'];
+        d.unmonitored = d['unmonitored:sum'];
+        d.avgresponse = d['avgresponse:mean'];
         if (d.downtime === null && d.uptime === null) {
           d.total = null;
           d.uptimeFraction = null;
@@ -42,7 +42,7 @@ function (MatrixCollection) {
       }, 0);
     },
 
-    _getTotalTime: function ( includeUnmonitored ) {
+    _getTotalTime: function (includeUnmonitored) {
       return this.at(0).get('values').reduce(function (memo, model) {
         var res = memo + model.get('total');
         if (includeUnmonitored) {
