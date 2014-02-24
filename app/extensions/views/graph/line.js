@@ -3,28 +3,28 @@ define([
 ],
 function (Component) {
 
-  var LineRenderer = function(that, selection, group, groupIndex) {
-    var getX = function (model, index) {
-      return that.x(group, groupIndex, model, index);
-    };
-    var getY = function (model, index) {
-      return that.y(group, groupIndex, model, index);
-    };
+  var lineRenderer = function (selection, group, groupIndex) {
+    var getX = _.bind(function (model, index) {
+      return this.x(group, groupIndex, model, index);
+    }, this);
+    var getY = _.bind(function (model, index) {
+      return this.y(group, groupIndex, model, index);
+    }, this);
 
     var line = d3.svg.line()
       .x(getX)
       .y(getY)
       .defined(function (model, index) { return getY(model, index) !== null; });
 
-    var renderLine = function() {
+    var renderLine = function () {
       var timeshift = group.get('timeshift') ? ' timeshift' : '';
       selection.select('path')
         .attr('d', line(group.get('values').models))
         .attr('class', 'line line' + groupIndex + ' ' + group.get('id') + timeshift);
     };
 
-    var renderTerminators = function() {
-      selection.selectAll(".terminator").remove();
+    var renderTerminators = function () {
+      selection.selectAll('.terminator').remove();
       group.get('values').each(function (model, index) {
         var hasCurrentPoint = (getY(model, index) !== null),
             missingPreviousPoint = (index > 0 && getY(model, index - 1) === null),
@@ -32,17 +32,17 @@ function (Component) {
             showTerminator = hasCurrentPoint && (missingPreviousPoint || missingNextPoint);
 
         if (showTerminator) {
-          selection.append("circle")
-            .attr("class", "terminator line" + groupIndex)
-            .attr("cx", getX(model, index))
-            .attr("cy", getY(model, index))
-            .attr("r", 1.5);
+          selection.append('circle')
+            .attr('class', 'terminator line' + groupIndex)
+            .attr('cx', getX(model, index))
+            .attr('cy', getY(model, index))
+            .attr('r', 1.5);
         }
       });
     };
 
     return {
-      render: function() {
+      render: function () {
         renderLine();
         renderTerminators();
       }
@@ -77,15 +77,16 @@ function (Component) {
       selection.enter().append('g').attr('class', 'group').append('path');
       selection.exit().remove();
 
-      var that = this;
       var groups = [];
+      var renderLine = _.bind(lineRenderer, this);
       selection.each(function (group, groupIndex) {
         var groupSelection = d3.select(this);
         groups.push(groupSelection);
-        LineRenderer(that, groupSelection, group, groupIndex).render();
+
+        renderLine(groupSelection, group, groupIndex).render();
       });
 
-      for (var i = groups.length - 1; i >= 0; i--){
+      for (var i = groups.length - 1; i >= 0; i--) {
         this.moveToFront(groups[i]);
       }
 
@@ -98,22 +99,22 @@ function (Component) {
       );
     },
 
-    siblingLineIndex: function(originalIndex){
+    siblingLineIndex: function (originalIndex) {
       return parseInt(originalIndex, 10) + 1;
     },
-    resetSiblingLine: function() {
+    resetSiblingLine: function () {
       this.componentWrapper.selectAll('path.line').classed('selected-following-sibling', false).style('stroke', null);
     },
-    colourSiblingLine: function(line_colour, originalIndex) {
-      var following_sibling_line = this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
+    colourSiblingLine: function (lineColour, originalIndex) {
+      this.componentWrapper.select('path.line' + this.siblingLineIndex(originalIndex))
         .classed('selected-following-sibling', true)
-        .style('stroke', line_colour);
+        .style('stroke', lineColour);
     },
-    renderSiblingCircle: function(y2, x2, originalIndex) {
+    renderSiblingCircle: function (y2, x2, originalIndex) {
       this.renderSelectionPoint(originalIndex, x2, y2);
     },
-    renderOverlayCursorLine: function(y, x, y2, x2, line_colour) {
-      if(y!==y2){
+    renderOverlayCursorLine: function (y, x, y2, x2, lineColour) {
+      if (y !== y2) {
         this.componentWrapper.append('line').attr({
             'class': 'selectedIndicator cursorLine overlay',
             x1: x,
@@ -121,28 +122,28 @@ function (Component) {
             x2: x2,
             y2: y2
           })
-          .style('stroke', line_colour);
+          .style('stroke', lineColour);
       }
     },
 
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       this.componentWrapper.selectAll('path.line').classed('selected', false);
-      if(this.encompassStack){
+      if (this.encompassStack) {
         this.resetSiblingLine();
       }
       this.componentWrapper.selectAll('path.line').classed('not-selected', Boolean(groupSelected));
       this.componentWrapper.selectAll('circle.terminator').classed('selected', false);
       this.componentWrapper.selectAll('circle.terminator').classed('not-selected', Boolean(groupSelected));
 
-      var line_colour, x2, y2;
+      var lineColour, x2, y2;
 
       if (groupSelected) {
         var line = this.componentWrapper.select('path.line' + groupIndexSelected)
           .classed('selected', true)
           .classed('not-selected', false);
-        if(this.encompassStack){
-          line_colour = line.style('stroke');
-          this.colourSiblingLine(line_colour, groupIndexSelected);
+        if (this.encompassStack) {
+          lineColour = line.style('stroke');
+          this.colourSiblingLine(lineColour, groupIndexSelected);
         }
         this.componentWrapper.selectAll('circle.terminator.line' + groupIndexSelected)
           .classed('selected', true)
@@ -159,15 +160,15 @@ function (Component) {
         }
         if (groupSelected) {
           var y = this.y(groupSelected, groupIndexSelected, modelSelected, indexSelected);
-          if(this.encompassStack){
+          if (this.encompassStack) {
             x2 = this.x(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
             y2 = this.y(groupSelected, this.siblingLineIndex(groupIndexSelected), modelSelected, indexSelected);
-            if(this.drawCursorLine){
-              this.renderOverlayCursorLine(y, x, y2, x2, line_colour);
+            if (this.drawCursorLine) {
+              this.renderOverlayCursorLine(y, x, y2, x2, lineColour);
             }
           }
           if (y !== null) {
-            if(this.encompassStack){
+            if (this.encompassStack) {
               this.renderSiblingCircle(y2, x2, groupIndexSelected);
             }
             this.renderSelectionPoint(groupIndexSelected, x, y);
@@ -228,7 +229,7 @@ function (Component) {
       var lineCollection = group.get('values');
 
       // find indices right and left of point
-      var leftIndexStart = lineCollection.length -1;
+      var leftIndexStart = lineCollection.length - 1;
       var rightIndexStart = 0;
       for (var a = 0; a < lineCollection.length; a++) {
         if (this.x(group, groupIndex, lineCollection.at(a), a) >= point.x) {
@@ -270,13 +271,13 @@ function (Component) {
       var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
 
       var diff, dist;
-      if (leftIndex + 1 < lineCollection.length){
+      if (leftIndex + 1 < lineCollection.length) {
         var weight = distLeft / (distLeft + distRight) || 0;
         var leftY = this.y(group, groupIndex, left, leftIndex);
         var rightY;
-        for (i = rightIndex; i < group.get('values').length; i++) {
+        for (var i = rightIndex; i < group.get('values').length; i++) {
           rightY = this.y(group, groupIndex, right, i);
-          if(rightY !== null){
+          if (rightY !== null) {
             break;
           }
         }
@@ -321,6 +322,7 @@ function (Component) {
           bestModelIndex,
           bestGroupIndex,
           selectedDist,
+          selectedModelIndex,
           selectedIndex = this.collection.selectedIndex;
 
       // Find closest point of closest group

@@ -5,7 +5,8 @@
     "$",
     "isClient",
     "isServer",
-    "window"
+    "window",
+    "d3"
   ],
 
   "node"          : true,

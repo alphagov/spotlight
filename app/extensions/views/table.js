@@ -59,12 +59,13 @@ function (View) {
 
         _.each(row, function (cel) {
           var elName = 'td',
-              attr;
+              attr,
+              celValue = cel || 'no data';
           if (rowIndex === 0) {
             elName = 'th';
             attr = {scope: 'col'};
           }
-          this.renderEl(elName, this.row, cel, attr);
+          this.renderEl(elName, this.row, celValue, attr);
         }, this);
 
       }, this);
