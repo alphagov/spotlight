@@ -16,7 +16,9 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         startMatcher: new RegExp(this.model.get('start-matcher')),
         endMatcher: new RegExp(this.model.get('end-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
-        valueAttr: this.model.get('value-attribute')
+        valueAttr: this.model.get('value-attribute'),
+        period: this.model.get("period"),
+        axisPeriod: this.model.get("axis-period")
       };
     }
   });
