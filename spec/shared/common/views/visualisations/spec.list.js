@@ -39,6 +39,34 @@ function (ListView, ListCollection) {
 
     });
 
+    it('should escape labels properly', function() {
+
+      var collection = new ListCollection({
+        'data': [
+          { 'pageTitle': 'foo&#x27;',
+            'pagePath': '/foo' }
+        ]
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'linkAttr': 'pagePath'
+      });
+
+      var view = new ListView({
+        collection: collection
+      });
+
+      jasmine.renderView(view, function () {
+        var listItems = view.$el.find('li');
+
+        expect(listItems.length).toEqual(1);
+        expect(listItems.first().text().trim()).toEqual('foo\'');
+      });
+
+    });
+
     it('should show the urls with a url-root', function () {
 
       var collection = new ListCollection({
