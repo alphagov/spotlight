@@ -9,7 +9,13 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
     visualisationClass: AvailabilityView,
     collectionClass: AvailabilityCollection,
     clientRenderOnInit: true,
-    requiresSvg: true
+    requiresSvg: true,
+
+    collectionOptions: function () {
+      return {
+        axisLabels: this.model.get('axis-labels')
+      };
+    }
   });
 
   return AvailabilityModule;
