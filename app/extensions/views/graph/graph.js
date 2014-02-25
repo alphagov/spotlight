@@ -84,7 +84,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales = {};
       this.margin = {};
 
-      this.table = new Table(_.extend(options, {$el: this.figure}));
+      // temporary feature flag around tables
+      if (isClient && window.location.search === '?tables') {
+        this.table = new Table(_.extend(options, {$el: this.figure}));
+      }
 
       // initialize graph components
       var componentInstances = this.componentInstances = [];
