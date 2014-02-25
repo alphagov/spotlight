@@ -129,7 +129,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
     var expectedWithTotal = totalSeries.concat(expected);
 
     var collection;
-    beforeEach(function (){
+    beforeEach(function () {
       collection = new GroupedTimeseries([], {
         'data-type': 'some-type',
         'data-group': 'some-group',
