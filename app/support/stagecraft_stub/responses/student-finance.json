@@ -24,7 +24,7 @@
       "period": "month",
       "value-attr": "count:sum",
       "show-line-labels": true,
-      "cumulative": false,
+      "use_stack": false,
       "info": [
         "Data source: SLC database",
         "Shows the number of applications, broken down by stage",
@@ -50,7 +50,7 @@
       "value-attr": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
-      "cumulative": true,
+      "use_stack": true,
       "info": [
         "Data source: SLC database",
         "Shows the number of applications, broken down by channel"
@@ -131,7 +131,7 @@
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
-      "cumulative": true,
+      "use_stack": true,
       "info": [
         "Data source: Google Analytics",
         "Student Loans Company"
@@ -156,7 +156,7 @@
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": false,
-      "cumulative": true,
+      "use_stack": true,
       "info": [
         "Data source: Google Analytics",
         "Student Loans Company"

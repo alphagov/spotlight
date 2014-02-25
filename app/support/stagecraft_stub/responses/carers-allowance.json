@@ -30,7 +30,7 @@
       "period": "week",
       "value-attr": "value:sum",
       "show-line-labels": true,
-      "cumulative": true,
+      "use_stack": true,
       "info": [
         "Data source: DWP database",
         "Shows the number of successful claims for Carer's Allowance, broken down by channel",

@@ -10,8 +10,8 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
     template: template,
       
     views: function () {
-      var cumulative = this.model.get('cumulative'),
-          graph = cumulative ? StackedGraph : LineGraph;
+      var use_stack = this.model.get('use_stack'),
+          graph = use_stack ? StackedGraph : LineGraph;
           
       var val = {
             '.categories': { 

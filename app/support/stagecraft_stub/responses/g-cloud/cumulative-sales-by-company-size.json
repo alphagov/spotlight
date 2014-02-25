@@ -8,7 +8,7 @@
   "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
-  "cumulative": false,
+  "use_stack": false,
   "value-attr": "cumulative_spend:sum",
   "category": "sme_large",
   "period": "month",

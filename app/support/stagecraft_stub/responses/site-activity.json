@@ -30,7 +30,7 @@
       "axis-period": "month",
       "value-attr": "visitors:sum",
       "show-line-labels": true,
-      "cumulative": false,
+      "use_stack": false,
       "info": [ "Data source: Google Analytics" ],
       "series": [
          { "id": "govuk_visitors", "title": "GOV.UK" },
@@ -109,7 +109,7 @@
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
-      "cumulative": true,
+      "use_stack": true,
       "info": [ "Data source: Google Analytics" ],
       "series": [
          { "id": "desktop", "title": "Desktop" },

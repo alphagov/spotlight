@@ -13,7 +13,7 @@
   "value-attr": "count:sum",
   "show-line-labels": true,
   "show-total-lines": true,
-  "cumulative": true,
+  "use_stack": true,
   "info": [
     "Data source: SLC database",
     "Shows the number of applications, broken down by channel"
