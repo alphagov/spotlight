@@ -28,8 +28,8 @@
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
       ],
-      "start-matcher": "start$",
-      "end-matcher": "done$",
+      "denominator-matcher": "start$",
+      "numerator-matcher": "done$",
       "matching-attribute": "eventCategory"
     },
     {
@@ -44,8 +44,8 @@
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
-      "start-matcher": "start$",
-      "end-matcher": "done$",
+      "denominator-matcher": "start$",
+      "numerator-matcher": "done$",
       "matching-attribute": "eventCategory"
     },
     {

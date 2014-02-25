@@ -12,8 +12,8 @@
     "Info text line 1",
     "Info text line 2"
   ],
-  "start-matcher": "start$",
-  "end-matcher": "done$",
+  "denominator-matcher": "start$",
+  "numerator-matcher": "done$",
   "axis-labels": {
     "x": {
       "label": "Date of completion",

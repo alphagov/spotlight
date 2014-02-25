@@ -12,8 +12,8 @@
     "Data source: SLC Database",
     "Completion rate measures the percentage of started applications that were subsequently submitted."
   ],
-  "start-matcher": "started",
-  "end-matcher": "submitted",
+  "denominator-matcher": "started",
+  "numerator-matcher": "submitted",
   "matching-attribute": "stage",
   "value-attribute": "count:sum"
 }

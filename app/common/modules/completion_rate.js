@@ -19,8 +19,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         period: this.model.get('period'),
         axisPeriod: this.model.get('axis-period'),
         duration: this.model.get('duration'),
-        denominatorMatcher: new RegExp(this.model.get('start-matcher')),
-        numeratorMatcher: new RegExp(this.model.get('end-matcher')),
+        numeratorMatcher: new RegExp(this.model.get('numerator-matcher')),
+        denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
         tabbedAttr: this.model.get('tabbed_attr'),
         axisLabels: this.model.get('axis-labels')
