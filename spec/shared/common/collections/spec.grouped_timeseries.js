@@ -129,7 +129,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
     var expectedWithTotal = totalSeries.concat(expected);
 
     var collection;
-    beforeEach(function (){
+    beforeEach(function () {
       collection = new GroupedTimeseries([], {
         'data-type': 'some-type',
         'data-group': 'some-group',
@@ -190,6 +190,41 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       it('parses the response', function () {
         var parsed = collection.parse(response);
         expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
+      });
+
+      it('copes if not all of the specified series are present in the response', function () {
+        var collectionWithExtraSeries = new GroupedTimeseries([], {
+          'data-type': 'some-type',
+          'data-group': 'some-group',
+          valueAttr: 'some:value',
+          category: 'some-category',
+          period: 'month',
+          seriesList: [
+            { id: 'abc', title: 'ABC' },
+            { id: 'def', title: 'DEF' },
+            { id: 'xyz', title: 'XYZ' },
+            { id: 'ghi', title: 'GHI' }
+          ]
+        });
+
+        var parsed = collectionWithExtraSeries.parse(response);
+        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
+      });
+
+      it('copes if none of the specified series are present in the response', function () {
+        var collectionWithExtraSeries = new GroupedTimeseries([], {
+          'data-type': 'some-type',
+          'data-group': 'some-group',
+          valueAttr: 'some:value',
+          category: 'some-category',
+          period: 'month',
+          seriesList: [
+            { id: 'ghi', title: 'GHI' }
+          ]
+        });
+
+        var parsed = collectionWithExtraSeries.parse(response);
+        expect(JSON.stringify(parsed)).toEqual(JSON.stringify([]));
       });
 
       it('calculates total lines if specified', function () {
