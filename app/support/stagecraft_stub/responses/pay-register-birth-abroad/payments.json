@@ -12,7 +12,7 @@
     "Data source: Google Analytics",
     "Completed payments count based on unique visitors to the final page of the service."
   ],
-  "start-matcher": "start$",
-  "end-matcher": "done$",
+  "denominator-matcher": "start$",
+  "numerator-matcher": "done$",
   "matching-attribute": "eventCategory"
 }

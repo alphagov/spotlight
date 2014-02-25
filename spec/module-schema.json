@@ -56,8 +56,8 @@
       "properties" : {
         "module-type" : {"type" : "string", "required" : true, "enumeration" : "completion_rate"},
         "period" : {"type" : "string", "required" : true, "enumeration" : ["day", "week", "month"]},
-        "start-matcher" : {"type" : "string", "required" : true},
-        "end-matcher" : {"type" : "string", "required" : true},
+        "denominator-matcher" : {"type" : "string", "required" : true},
+        "numerator-matcher" : {"type" : "string", "required" : true},
         "matching-attribute" : {"type" : "string", "required" : true},
         "value-attribute" : {"type" : "string", "required" : true, "pattern" : "[\\w-]+:sum"}
       }

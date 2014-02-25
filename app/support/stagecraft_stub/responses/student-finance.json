@@ -73,8 +73,8 @@
         "Data source: SLC Database",
         "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
       ],
-      "end-matcher": "digital",
-      "start-matcher": "[paper|digital]",
+      "numerator-matcher": "digital",
+      "denominator-matcher": "[paper|digital]",
       "matching-attribute": "channel",
       "value-attribute": "count:sum"
     },
@@ -89,8 +89,8 @@
         "Data source: SLC Database",
         "Completion rate measures the percentage of started applications that were subsequently submitted."
       ],
-      "start-matcher": "started",
-      "end-matcher": "submitted",
+      "denominator-matcher": "started",
+      "numerator-matcher": "submitted",
       "matching-attribute": "stage",
       "value-attribute": "count:sum"
     },
