@@ -50,15 +50,22 @@ function (MatrixCollection) {
         data.push(totalSeries);
       }
 
-      return _.map(this.options.seriesList, function (series) {
-        var dataSeries = _.find(data, function (d) {
-          return d[category] === series.id;
-        });
+      return _.chain(this.options.seriesList)
+                     .filter(function (series) {
+                        return _.find(data, function (d) {
+                          return d[category] === series.id;
+                        });
+                      })
+                     .map(function (series) {
+                        var dataSeries = _.find(data, function (d) {
+                          return d[category] === series.id;
+                        });
 
-        return _.extend({}, series, {
-          values: dataSeries.values
-        });
-      });
+                        return _.extend({}, series, {
+                          values: dataSeries.values
+                        });
+                      })
+                     .value();
     },
 
     getDataByTableFormat: function () {
