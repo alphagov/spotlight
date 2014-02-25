@@ -22,13 +22,13 @@ function (MatrixCollection) {
       if (this.options.showTotalLines) {
 
         var totalSeries = {};
-        totalSeries[category] = "Total";
+        totalSeries[category] = 'Total';
         totalSeries[valueAttr] = 0.0;
 
         var totalValues = [];
         var tmp = {};
 
-        _.each(response.data, function(d) {
+        _.each(response.data, function (d) {
           _.each(d.values, function (obj) {
             if (tmp[obj._start_at]) {
               if ((valueAttr in obj) && (obj[valueAttr] !== null)) {
@@ -44,7 +44,7 @@ function (MatrixCollection) {
             var t = {_start_at: i, _end_at: v._end_at};
             t[valueAttr] = v[valueAttr];
             totalValues.push(t);
-        });
+          });
 
         totalSeries.values = totalValues;
         data.push(totalSeries);
