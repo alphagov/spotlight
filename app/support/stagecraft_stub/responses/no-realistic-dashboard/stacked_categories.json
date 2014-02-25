@@ -8,7 +8,7 @@
   "dashboard-slug": "no-realistic-dashboard",
   "data-group": "housing-policy",
   "data-type": "residential-transactions",
-  "cumulative": true,
+  "use_stack": true,
   "value-attr": "value:sum",
   "category": "geography",
   "period": "month",

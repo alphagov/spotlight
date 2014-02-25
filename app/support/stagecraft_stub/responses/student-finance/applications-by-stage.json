@@ -12,7 +12,7 @@
   "period": "month",
   "value-attr": "count:sum",
   "show-line-labels": true,
-  "cumulative": false,
+  "use_stack": false,
   "info": [
     "Data source: SLC database",
     "Shows the number of applications, broken down by stage",

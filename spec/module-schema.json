@@ -34,7 +34,7 @@
         "show-line-labels" : {"type" : "boolean", "required" : false},
         "one-hundred-percent" : {"type" : "boolean", "required" : false},
         "duration" : {"type" : "integer", "required" : false},
-        "cumulative" : {"type" : "boolean", "required" : false},
+        "use_stack" : {"type" : "boolean", "required" : false},
         "series" : {
           "type" : "array",
           "required" : true,

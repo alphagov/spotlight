@@ -12,7 +12,7 @@
   "value-attr": "visitors:sum",
   "show-line-labels": true,
   "one-hundred-percent": true,
-  "cumulative": true,
+  "use_stack": true,
   "info": [
     "Data source: Google Analytics",
     "Student Loans Company"
