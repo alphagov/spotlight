@@ -49,28 +49,33 @@ function (MatrixCollection, Query) {
       var startOffset = this.duration() - this.standardDuration();
       var standardDateValues = data[0].values.slice(startOffset);
 
-      var matchedSeries = _.map(this.options.seriesList, function (series) {
-        var dataSeries = _.find(data, function (d) {
-          return d[this.options.category] === series.id;
-        }, this);
+      var matchedSeries = _.chain(this.options.seriesList)
+                           .filter(function (series) {
+                              return _.find(data, function (d) {
+                                return d[this.options.category] === series.id;
+                              }, this);
+                            }, this)
+                           .map(function (series) {
+                              var dataSeries = _.find(data, function (d) {
+                                return d[this.options.category] === series.id;
+                              }, this);
 
-        if (dataSeries) {
-          var start = startOffset;
-          var id = series.id;
+                              var start = startOffset;
+                              var id = series.id;
 
-          if (series.timeshift) {
-            id = series.id + series.timeshift;
-            start = startOffset - series.timeshift;
-          }
-          var end = start + this.standardDuration();
+                              if (series.timeshift) {
+                                id = series.id + series.timeshift;
+                                start = startOffset - series.timeshift;
+                              }
+                              var end = start + this.standardDuration();
 
-          return _.extend({}, series, {
-            id: id,
-            values: dataSeries.values.slice(start, end)
-          });
-        }
-        return false;
-      }, this);
+                              return _.extend({}, series, {
+                                id: id,
+                                values: dataSeries.values.slice(start, end)
+                              });
+
+                            }, this)
+                           .value();
 
       return this.applyStandardDates(matchedSeries, standardDateValues);
     }
