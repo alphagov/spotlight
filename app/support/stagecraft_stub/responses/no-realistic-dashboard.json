@@ -107,7 +107,17 @@
         {"id": "day", "name": "30 days"},
         {"id": "hour", "name": "24 hours"}
       ],
-      "tabbed_attr": "period"
+      "tabbed_attr": "period",
+      "axis-labels": {
+        "x": {
+          "label": "Time",
+          "key": "_timestamp"
+        },
+        "y": {
+          "label": "Service Availability",
+          "key": "avgresponse"
+        }
+      }
     },
     {
       "slug": "applications",
