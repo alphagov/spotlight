@@ -13,8 +13,8 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
 
     collectionOptions: function () {
       return {
-        denominatorMatcher: new RegExp(this.model.get('start-matcher')),
-        numeratorMatcher: new RegExp(this.model.get('end-matcher')),
+        numeratorMatcher: new RegExp(this.model.get('numerator-matcher')),
+        denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period'),

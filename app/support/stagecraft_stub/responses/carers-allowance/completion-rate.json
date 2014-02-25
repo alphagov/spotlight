@@ -13,7 +13,7 @@
     "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
     "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
   ],
-  "start-matcher": "about-you$",
-  "end-matcher": "consent-and-declaration$",
+  "denominator-matcher": "about-you$",
+  "numerator-matcher": "consent-and-declaration$",
   "matching-attribute": "eventLabel"
 }
