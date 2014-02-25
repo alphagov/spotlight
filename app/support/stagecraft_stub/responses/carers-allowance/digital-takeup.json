@@ -12,8 +12,8 @@
     "Data source: Department for Work and Pensions",
     "Digital take-up measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
   ],
-  "start-matcher": "^ca_",
-  "end-matcher": "ca_e_claims_received$",
+  "denominator-matcher": "^ca_",
+  "numerator-matcher": "ca_e_claims_received$",
   "matching-attribute": "key",
   "value-attribute": "value:sum"
 }

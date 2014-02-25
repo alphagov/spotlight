@@ -13,9 +13,13 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
 
     collectionOptions: function () {
       return {
-        startMatcher: new RegExp(this.model.get('start-matcher')),
-        endMatcher: new RegExp(this.model.get('end-matcher')),
-        matchingAttribute: this.model.get('matching-attribute')
+        numeratorMatcher: new RegExp(this.model.get('numerator-matcher')),
+        denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
+        matchingAttribute: this.model.get('matching-attribute'),
+        valueAttr: this.model.get('value-attribute'),
+        period: this.model.get('period'),
+        axisPeriod: this.model.get('axis-period'),
+        duration: this.model.get('duration')
       };
     }
   });

@@ -102,8 +102,8 @@ define([
       beforeEach(function () {
         spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
         collection = new MultiStatsCollection({}, {
-          startMatcher: 'start',
-          endMatcher: 'done'
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done'
         });
       });
 

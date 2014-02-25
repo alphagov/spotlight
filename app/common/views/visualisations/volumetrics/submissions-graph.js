@@ -7,7 +7,13 @@ function (Graph) {
     numYTicks: 3,
 
     getConfigNames: function () {
-      return ['stack', 'week'];
+      var axisConfig = 'week';
+      if (this.collection.options.axisPeriod) {
+        axisConfig = this.collection.options.axisPeriod;
+      } else if (this.collection.query.get('period')) {
+        axisConfig = this.collection.query.get('period');
+      }
+      return ['stack', axisConfig];
     },
     
     components: function () {

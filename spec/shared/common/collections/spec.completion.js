@@ -96,8 +96,8 @@ function (CompletionCollection, Collection, MatrixCollection) {
 
     it('should parse responses', function () {
       var collection = new CompletionCollection({}, {
-        startMatcher: 'start',
-        endMatcher: 'done'
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
       });
       collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
       collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
@@ -125,8 +125,8 @@ function (CompletionCollection, Collection, MatrixCollection) {
 
     it('should allow matcher to be a regex', function () {
       var collection = new CompletionCollection({}, {
-        startMatcher: 'start',
-        endMatcher: '(confirm|done)'
+        denominatorMatcher: 'start',
+        numeratorMatcher: '(confirm|done)'
       });
       collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
       collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
@@ -155,8 +155,8 @@ function (CompletionCollection, Collection, MatrixCollection) {
       beforeEach(function () {
         spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
         collection = new CompletionCollection({}, {
-          startMatcher: 'start',
-          endMatcher: 'done'
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done'
         });
         collection.options.axisLabels = {
           'x': {
