@@ -4,7 +4,10 @@ define([
 function (View) {
   return View.extend({
     initialize: function (options) {
+      options = options || {};
       var collection = this.collection = options.collection;
+
+      this.valueAttr = options.valueAttr;
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -23,8 +26,8 @@ function (View) {
       var element;
       if (context) {
         element = $('<' + elementName + '></' + elementName + '>');
-        if (value !== null || value !== undefined) {
-          element.text(value);
+        if (value && value !== null || value !== undefined) {
+          element.text(this.formatValueForTable(value));
         }
         if (attr) {
           element.attr(attr);
@@ -32,6 +35,19 @@ function (View) {
         element.appendTo(context);
       }
       return element;
+    },
+
+    // TODO: This should live in a common formatter as this also lives in other places.
+    // It should probably be controlled by some central config for formatting in the module setup json.
+    formatValueForTable: function (value) {
+      if (this.valueAttr === 'avgresponse' && typeof value === 'number') {
+        return this.formatDuration(value, 's', 2);
+      }
+      if (this.valueAttr === 'uptimeFraction' && typeof value === 'number') {
+        return this.formatPercentage(value);
+      } else {
+        return value;
+      }
     },
 
     // Example Input
@@ -53,7 +69,7 @@ function (View) {
 
     render: function () {
       this.table.empty();
-      _.each(this.collection.getDataByTableFormat(), function (row, rowIndex) {
+      _.each(this.collection.getDataByTableFormat(this.valueAttr), function (row, rowIndex) {
 
         this.row = this.renderEl('tr', this.table);
 
@@ -61,6 +77,7 @@ function (View) {
           var elName = 'td',
               attr,
               celValue = (cel === null || cel === undefined) ? 'no data' : cel;
+
           if (rowIndex === 0) {
             elName = 'th';
             attr = {scope: 'col'};
