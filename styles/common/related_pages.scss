@@ -2,8 +2,8 @@
   header {
     .related-pages {
       float: right;
-      margin-left: 25px;
-      width: 35%;
+      margin-left: 30px;
+      width: 300px / 960px * 100%; // 31.25%
 
       ul.items {
         margin: 0;

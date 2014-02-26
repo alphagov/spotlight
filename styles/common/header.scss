@@ -32,18 +32,9 @@
       padding: 0.5em 0 1em 0;
 
       @include media(desktop) {
-        width: 75%;
-      }
-
-      &.with-related-pages {
-        padding-top: 0;
+        width: 600px / 960px * 100%; //62.5%
+        margin-right: 30px;
         float: left;
-        width: 60%;
-
-        @include media(mobile) {
-          float: none;
-          width: 90%;
-        }
       }
     }
   }
