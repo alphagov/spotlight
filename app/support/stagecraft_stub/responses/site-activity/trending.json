@@ -1,7 +1,12 @@
 {
   "module-type": "list",
   "title": "Trending",
-  "description": "Greatest increase in absolute unique pageviews",
+  "description": "Greatest increase in pageviews week-on-week",
+  "info": [
+    "Data source: Google Analytics",
+    "Based on percentage increase between total pageviews in past seven days and total pageviews in previous seven days. Low pageviews in either period are rounded up to a set threshold.",
+    "Excludes search results, help pages, the Service Design Manual, the Performance Platform, policies, and transformation projects."
+  ],
   "data-group": "govuk",
   "data-type": "trending",
   "sort-by": "percent_change:descending",
