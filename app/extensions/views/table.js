@@ -43,7 +43,7 @@ function (View) {
       if (this.valueAttr === 'avgresponse' && typeof value === 'number') {
         return this.formatDuration(value, 's', 2);
       }
-      if (this.valueAttr === 'uptimeFraction' && typeof value === 'number') {
+      if (this.valueAttr === 'uptimeFraction' || this.valueAttr === 'completion' && typeof value === 'number') {
         return this.formatPercentage(value);
       } else {
         return value;
