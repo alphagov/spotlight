@@ -1,7 +1,11 @@
 {
   "module-type": "list",
   "title": "Top content",
-  "description": "Most unique pageviews",
+  "description": "Most pageviews in past seven days",
+  "info": [
+    "Data source: Google Analytics",
+    "The content on GOV.UK with the most pageviews in the past seven days."
+  ],
   "data-group": "govuk",
   "data-type": "most_viewed",
   "sort-by": "pageviews:descending",

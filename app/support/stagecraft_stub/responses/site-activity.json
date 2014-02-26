@@ -3,13 +3,13 @@
   "page-type": "dashboard",
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
-  "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, including a look at how our content is being used.",
+  "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, based on data from Google Analytics.",
   "modules": [
     {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
-      "description": "Live number of users on GOV.UK",
+      "description": "Number of users currently on GOV.UK",
       "info": [
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing GOV.UK."
@@ -21,7 +21,7 @@
       "slug": "site-traffic",
       "module-type": "grouped_timeseries",
       "title": "Site traffic",
-      "description": "Unique visitors to GOV.UK over the last year",
+      "description": "Unique visitors to GOV.UK over the past year",
       "data-group": "govuk",
       "data-type": "visitors",
       "category": "dataType",
@@ -43,7 +43,7 @@
       "slug": "top-content",
       "module-type": "list",
       "title": "Top content",
-      "description": "Most unique pageviews",
+      "description": "Most pageviews in past seven days",
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed",
@@ -56,8 +56,8 @@
     {
       "slug": "trending",
       "module-type": "list",
-      "title": "Trending",
-      "description": "Greatest increase in absolute unique pageviews",
+      "title": "Trending content",
+      "description": "Greatest increase in pageviews week-on-week",
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "trending",
@@ -70,8 +70,8 @@
     {
       "slug": "top-policies",
       "module-type": "list",
-      "title": "Top policies last week",
-      "description": "Most unique pageviews",
+      "title": "Top policies",
+      "description": "Most pageviews in past seven days",
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed_policies",
@@ -82,10 +82,10 @@
       "link-attr": "pagePath"
     },
     {
-      "slug": "top-publications",
+      "slug": "top-announcements",
       "module-type": "list",
-      "title": "Top publications last week",
-      "description": "Most unique pageviews",
+      "title": "Top announcements",
+      "description": "Most pageviews in past seven days",
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed_news",
@@ -110,7 +110,10 @@
       "show-line-labels": true,
       "one-hundred-percent": true,
       "use_stack": true,
-      "info": [ "Data source: Google Analytics" ],
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
       "series": [
          { "id": "desktop", "title": "Desktop" },
          { "id": "mobile", "title": "Mobile" },

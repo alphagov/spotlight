@@ -1,7 +1,11 @@
 {
   "module-type": "list",
-  "title": "Top publications last week",
-  "description": "Most unique pageviews",
+  "title": "Top announcements",
+  "description": "Most pageviews in past seven days",
+  "info": [
+    "Data source: Google Analytics",
+    "The press releases and news on GOV.UK with the most pageviews in the past seven days."
+  ],
   "data-group": "govuk",
   "data-type": "most_viewed_news",
   "sort-by": "pageviews:descending",
