@@ -92,7 +92,7 @@
       "sort-by": "pageviews:descending",
       "limit": 10,
       "label-attr": "pageTitle",
-      "label-regex": "^(.*)\\s-[^-]+$",
+      "label-regex": "^(.*?)(?:\\s-\\s(?:News stories\\s-\\s|Press releases\\s-\\s|Policy\\s-\\s)?GOV.UK)?$",
       "link-attr": "pagePath"
     },
     {
