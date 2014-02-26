@@ -86,7 +86,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       // temporary feature flag around tables
       if (isClient && window.location.search === '?tables') {
-        this.table = new Table(_.extend(options, {$el: this.figure}));
+        this.table = new Table(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
       }
 
       // initialize graph components
