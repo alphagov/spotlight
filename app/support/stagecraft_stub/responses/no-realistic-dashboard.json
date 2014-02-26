@@ -131,7 +131,17 @@
         "Info text line 2"
       ],
       "denominator-matcher": "start$",
-      "numerator-matcher": "done$"
+      "numerator-matcher": "done$",
+      "axis-labels": {
+        "x": {
+          "label": "Date of Application",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Number of applications",
+          "key": "uniqueEvents"
+        }
+      }
     },
     {
       "slug": "completion-rate",
