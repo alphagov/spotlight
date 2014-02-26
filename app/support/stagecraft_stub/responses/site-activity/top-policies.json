@@ -11,7 +11,7 @@
   "sort-by": "pageviews:descending",
   "limit": 10,
   "label-attr": "pageTitle",
-  "label-regex": "^(.*)\\s-[^-]+$",
+  "label-regex": "^(.*?)(?:\\s-\\s(?:Policy\\s-\\s|Policies\\s-\\s)?GOV.UK)?$",
   "link-attr": "pagePath",
   "page-type": "module",
   "dashboard-title": "Activity on GOV.UK",

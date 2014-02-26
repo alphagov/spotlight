@@ -1,6 +1,6 @@
 {
   "module-type": "list",
-  "title": "Trending",
+  "title": "Trending content",
   "description": "Greatest increase in pageviews week-on-week",
   "info": [
     "Data source: Google Analytics",
