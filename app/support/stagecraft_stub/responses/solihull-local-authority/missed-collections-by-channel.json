@@ -5,14 +5,14 @@
   "dashboard-slug": "solihull-local-authority",
   "module-type": "grouped_timeseries",
   "title": "Transactions by channel",
-  "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span> and <span class=\"group2\">other</span>.",
+  "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">digital</span> and <span class=\"group3\">other</span>.",
   "data-group": "solihull-local-authority",
   "data-type": "transactions-by-channel",
   "category": "channel",
   "period": "week",
   "value-attr": "count:sum",
   "show-line-labels": true,
-  "cumulative": false,
+  "use_stack": false,
   "info": [
     "Data source: CSV extract",
     "Shows the number of missed waste collections, broken down by channel"
@@ -20,6 +20,7 @@
   "series": [
     { "id": "Phone", "title": "Phone" },
     { "id": "FaceToFace", "title": "Face to face" },
+    { "id": "Digital", "title": "Digital" },
     { "id": "Other", "title": "Other" }
   ]
 }
