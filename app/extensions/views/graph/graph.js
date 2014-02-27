@@ -351,7 +351,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           yScale.domain(tickValues.extent);
           yScale.rangeRound([this.innerHeight, 0]);
-          yScale.tickValues = tickValues.values;
+          yScale.tickValueList = tickValues.values;
           return yScale;
         }
       },
@@ -444,7 +444,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
             yScale.domain(tickValues.extent);
           }
           yScale.rangeRound([this.innerHeight, 0]);
-          yScale.tickValues = tickValues.values;
+          yScale.tickValueList = tickValues.values;
           return yScale;
         }
       }
