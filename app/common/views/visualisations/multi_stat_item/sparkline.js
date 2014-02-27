@@ -12,7 +12,7 @@ function (Graph) {
 
       this.period = options.period;
       this.showTooltip = options.showTooltip;
-      this.showEndTicks = options.showEndTicks;
+      this.showStartAndEndTicks = options.showStartAndEndTicks;
     },
 
     getConfigNames: function () {
@@ -28,12 +28,14 @@ function (Graph) {
         { view: this.sharedComponents.hover }
       ];
 
-      if (this.showEndTicks) {
+      if (this.showStartAndEndTicks) {
         val.push({
-          view: this.sharedComponents.yaxis
+          view: this.sharedComponents.yaxis,
+          options: { showStartAndEndTicks: true }
         },
         {
-          view: this.sharedComponents.yaxisRight
+          view: this.sharedComponents.yaxisRight,
+          options: { showStartAndEndTicks: true }
         });
       }
 

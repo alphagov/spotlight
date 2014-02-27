@@ -107,7 +107,7 @@ function (View, SparklineView, template) {
             return {
               valueAttr: this.selectionValueAttr,
               period: 'hour',
-              showEndTicks: true
+              showStartAndEndTicks: true
             };
           }
         };

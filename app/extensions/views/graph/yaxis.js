@@ -20,6 +20,13 @@ function (require, Axis) {
     },
     tickFormat: function () {
       return this.numberListFormatter(this.scales.y.tickValues, this.graph.currency);
+    },
+    tickValues: function () {
+      if (this.graph.showStartAndEndTicks) {
+        var ticks = this.scales.y.tickValues;
+        return [[0, ticks[ticks.length - 1]]];
+      }
+      return null;
     }
   });
 
