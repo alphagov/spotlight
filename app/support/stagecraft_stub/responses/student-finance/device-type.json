@@ -2,7 +2,7 @@
   "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "How people access the service",
-  "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
+  "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
   "data-group": "student-finance",
   "data-type": "device-usage",
   "category": "deviceCategory",
@@ -18,9 +18,9 @@
     "Student Loans Company"
   ],
   "series": [
-    { "id": "mobile", "title": "Mobile" },
-    { "id": "tablet", "title": "Tablet" },
-    { "id": "desktop", "title": "Desktop" }
+    { "id": "mobile", "title": "Desktop" },
+    { "id": "tablet", "title": "Mobile" },
+    { "id": "desktop", "title": "Tablet" }
   ],
   "dashboard-title": "Apply for student finance",
   "dashboard-strapline": "Service dashboard",
