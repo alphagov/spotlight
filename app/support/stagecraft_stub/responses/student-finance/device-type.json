@@ -18,9 +18,18 @@
     "Student Loans Company"
   ],
   "series": [
-    { "id": "mobile", "title": "Desktop" },
-    { "id": "tablet", "title": "Mobile" },
-    { "id": "desktop", "title": "Tablet" }
+    {
+      "id": "mobile",
+      "title": "Desktop"
+    },
+    {
+      "id": "tablet",
+      "title": "Mobile"
+    },
+    {
+      "id": "desktop",
+      "title": "Tablet"
+    }
   ],
   "dashboard-title": "Apply for student finance",
   "dashboard-strapline": "Service dashboard",

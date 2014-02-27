@@ -32,10 +32,24 @@
         "Submitted: applications submitted"
       ],
       "series": [
-        { "id": "started", "title": "Started" },
-        { "id": "submitted", "title": "Submitted" },
-        { "id": "started", "title": "Started", "timeshift": 12 },
-        { "id": "submitted", "title": "Submitted", "timeshift": 12 }
+        {
+          "id": "started",
+          "title": "Started"
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted"
+        },
+        {
+          "id": "started",
+          "title": "Started",
+          "timeshift": 12
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted",
+          "timeshift": 12
+        }
       ]
     },
     {
@@ -56,10 +70,24 @@
         "Shows the number of applications, broken down by channel"
       ],
       "series": [
-        { "id": "paper", "title": "Paper" },
-        { "id": "digital", "title": "Digital" },
-        { "id": "paper", "title": "Paper", "timeshift": 12 },
-        { "id": "digital", "title": "Digital", "timeshift": 12 }
+        {
+          "id": "paper",
+          "title": "Paper"
+        },
+        {
+          "id": "digital",
+          "title": "Digital"
+        },
+        {
+          "id": "paper",
+          "title": "Paper",
+          "timeshift": 12
+        },
+        {
+          "id": "digital",
+          "title": "Digital",
+          "timeshift": 12
+        }
       ]
     },
     {
@@ -107,14 +135,38 @@
       "data-type": "journey",
       "matching-attribute": "eventLabel",
       "steps": [
-        {"id": "about-you", "title": "About you"},
-        {"id": "previous-study", "title": "About your previous studies"},
-        {"id": "course-and-fees", "title": "Course and fees"},
-        {"id": "living-costs", "title": "Living costs"},
-        {"id": "financial-info", "title": "Financial info"},
-        {"id": "additional-info", "title": "Additional info"},
-        {"id": "confirm", "title": "Confirm"},
-        {"id": "submitted", "title": "Submitted"}
+        {
+          "id": "about-you",
+          "title": "About you"
+        },
+        {
+          "id": "previous-study",
+          "title": "About your previous studies"
+        },
+        {
+          "id": "course-and-fees",
+          "title": "Course and fees"
+        },
+        {
+          "id": "living-costs",
+          "title": "Living costs"
+        },
+        {
+          "id": "financial-info",
+          "title": "Financial info"
+        },
+        {
+          "id": "additional-info",
+          "title": "Additional info"
+        },
+        {
+          "id": "confirm",
+          "title": "Confirm"
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted"
+        }
       ]
     },
     {
@@ -124,7 +176,7 @@
       "description": "",
       "data-group": "student-finance",
       "data-type": "site-traffic",
-	  "value-attribute": "visitors:sum",
+      "value-attribute": "visitors:sum",
       "info": [
         "Data source: Google Analytics",
         "The number of unique visits to online service pages."
@@ -153,9 +205,18 @@
         "Student Loans Company"
       ],
       "series": [
-        { "id": "mobile", "title": "Desktop" },
-        { "id": "tablet", "title": "Mobile" },
-        { "id": "desktop", "title": "Tablet" }
+        {
+          "id": "mobile",
+          "title": "Desktop"
+        },
+        {
+          "id": "tablet",
+          "title": "Mobile"
+        },
+        {
+          "id": "desktop",
+          "title": "Tablet"
+        }
       ]
     },
     {
@@ -170,8 +231,14 @@
         "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
-        { "id": "day", "name": "30 days" },
-        { "id": "hour", "name": "24 hours" }
+        {
+          "id": "day",
+          "name": "30 days"
+        },
+        {
+          "id": "hour",
+          "name": "24 hours"
+        }
       ],
       "tabbed_attr": "period"
     }
