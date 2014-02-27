@@ -190,8 +190,8 @@ function (CompletionCollection, Collection, MatrixCollection) {
         expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
       });
 
-      it('sorts the array by tabular format with the correct timestamp format and percentage format', function () {
-        var expected = [['Date of completion (month)', 'Completion Percentage'], ['August 2012', '22%'], ['January 2014', '41%']];
+      it('sorts the array by tabular format with the correct timestamp format and raw percentage data', function () {
+        var expected = [['Date of completion (month)', 'Completion Percentage'], ['August 2012', 0.215], ['January 2014', 0.408]];
 
         expect(collection.getDataByTableFormat()).toEqual(expected);
       });

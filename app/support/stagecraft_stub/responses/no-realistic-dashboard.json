@@ -90,7 +90,17 @@
         {"id": "deposit-foreign-marriage:start", "title": "Start"},
         {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
         {"id": "deposit-foreign-marriage:done", "title": "Done"}
-      ]
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Title",
+          "key": "title"
+        },
+        "y": {
+          "label": "Users at step",
+          "key": "uniqueEvents"
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -107,7 +117,17 @@
         {"id": "day", "name": "30 days"},
         {"id": "hour", "name": "24 hours"}
       ],
-      "tabbed_attr": "period"
+      "tabbed_attr": "period",
+      "axis-labels": {
+        "x": {
+          "label": "Time",
+          "key": "_timestamp"
+        },
+        "y": {
+          "label": "Service Availability",
+          "key": "avgresponse"
+        }
+      }
     },
     {
       "slug": "applications",
@@ -121,7 +141,17 @@
         "Info text line 2"
       ],
       "denominator-matcher": "start$",
-      "numerator-matcher": "done$"
+      "numerator-matcher": "done$",
+      "axis-labels": {
+        "x": {
+          "label": "Date of Application",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Number of applications",
+          "key": "uniqueEvents"
+        }
+      }
     },
     {
       "slug": "completion-rate",

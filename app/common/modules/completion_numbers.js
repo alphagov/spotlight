@@ -19,6 +19,7 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period'),
         axisPeriod: this.model.get('axis-period'),
+        axisLabels: this.model.get('axis-labels'),
         duration: this.model.get('duration')
       };
     }

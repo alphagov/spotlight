@@ -6,18 +6,18 @@ function (MatrixCollection) {
 
     queryParams: function () {
       return {
-        period: "day",
-        collect: ["downtime:sum", "uptime:sum", "unmonitored:sum", "avgresponse:mean"]
+        period: 'day',
+        collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']
       };
     },
 
     parse: function (response) {
       var data = response.data;
       _.each(data, function (d) {
-        d.uptime = d["uptime:sum"];
-        d.downtime = d["downtime:sum"];
-        d.unmonitored = d["unmonitored:sum"];
-        d.avgresponse = d["avgresponse:mean"];
+        d.uptime = d['uptime:sum'];
+        d.downtime = d['downtime:sum'];
+        d.unmonitored = d['unmonitored:sum'];
+        d.avgresponse = d['avgresponse:mean'];
         if (d.downtime === null && d.uptime === null) {
           d.total = null;
           d.uptimeFraction = null;
@@ -42,7 +42,7 @@ function (MatrixCollection) {
       }, 0);
     },
 
-    _getTotalTime: function ( includeUnmonitored ) {
+    _getTotalTime: function (includeUnmonitored) {
       return this.at(0).get('values').reduce(function (memo, model) {
         var res = memo + model.get('total');
         if (includeUnmonitored) {
@@ -66,6 +66,38 @@ function (MatrixCollection) {
       } else {
         return total / values.length;
       }
+    },
+
+    getDataByTableFormat: function (valueAttr) {
+      if (this.options.axisLabels) {
+        var allTables = [],
+          availabilityTitle = {
+            avgresponse: 'Page load time',
+            uptimeFraction: 'Uptime'
+          },
+          formatDate = (this.options.valueAttr === 'hour') ? 'h:mm:ss a' : 'D MMMM',
+          dateKey = this.options.axisLabels.x.key,
+          attributeTitle = availabilityTitle[valueAttr] || this.options.axisLabels.y.label,
+          valueAttribute = valueAttr || this.options.axisLabels.y.key,
+          tableHeadings = [];
+
+        tableHeadings.push(this.options.axisLabels.x.label, attributeTitle);
+
+        allTables.push(tableHeadings);
+
+        _.each(this.models[0].get('values').models, function (model) {
+          var tableRow = [];
+          tableRow[0] = this.getMoment(model.get(dateKey))
+            .format(formatDate);
+          tableRow[1] = model.get(valueAttribute);
+
+          allTables.push(tableRow);
+        }, this);
+
+        return allTables;
+      }
+
+      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });
