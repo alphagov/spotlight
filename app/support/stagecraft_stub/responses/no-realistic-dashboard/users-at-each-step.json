@@ -22,5 +22,15 @@
   "page-type": "module",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard"
+  "dashboard-slug": "no-realistic-dashboard",
+  "axis-labels": {
+    "x": {
+      "label": "Title",
+      "key": "title"
+    },
+    "y": {
+      "label": "Users at step",
+      "key": "uniqueEvents"
+    }
+  }
 }
