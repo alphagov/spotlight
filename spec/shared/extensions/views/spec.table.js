@@ -97,6 +97,11 @@ function (Table, View, $) {
           expect(table.formatValueForTable(0.2)).toEqual('20%');
         });
 
+        it('formats the value for completion', function () {
+          table.valueAttr = 'completion';
+          expect(table.formatValueForTable(0.2)).toEqual('20%');
+        });
+
         it('formats the value for avgresponse', function () {
           table.valueAttr = 'avgresponse';
           expect(table.formatValueForTable(2100)).toEqual('2.1s');

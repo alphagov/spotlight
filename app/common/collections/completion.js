@@ -100,7 +100,7 @@ function (MatrixCollection, Collection, Group, Query) {
           var tableRow = [];
           tableRow[0] = this.getMoment(model.get(dateKey))
             .format(this.periods[this.period].format.longhand);
-          tableRow[1] = Math.round((model.get(seriesData) * 100)) + '%';
+          tableRow[1] = model.get(seriesData);
 
           allTables.push(tableRow);
         }, this);
