@@ -7,7 +7,10 @@
   "dashboard-slug": "student-finance",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
-  "period": "month",
+  "filter-by": ["country:england", "application_type:full-time application"],
+  "period": "week",
+  "axis-period": "month",
+  "duration": 52,
   "info": [
     "Data source: SLC Database",
     "Completion rate measures the percentage of started applications that were subsequently submitted."

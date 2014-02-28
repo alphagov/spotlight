@@ -9,7 +9,10 @@
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "student-finance",
   "category": "channel",
-  "period": "month",
+  "filter-by": ["country:england", "application_type:full-time application"],
+  "period": "week",
+  "axis-period": "month",
+  "duration": 52,
   "value-attr": "count:sum",
   "show-line-labels": true,
   "show-total-lines": true,
@@ -21,7 +24,7 @@
   "series": [
     { "id": "paper", "title": "Paper" },
     { "id": "digital", "title": "Digital" },
-    { "id": "paper", "title": "Paper", "timeshift": 12 },
-    { "id": "digital", "title": "Digital", "timeshift": 12 }
+    { "id": "paper", "title": "Paper", "timeshift": 52 },
+    { "id": "digital", "title": "Digital", "timeshift": 52 }
   ]
 }

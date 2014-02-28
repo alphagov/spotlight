@@ -21,7 +21,10 @@
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "stage",
-      "period": "month",
+      "filter-by": ["country:england", "application_type:full-time application"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "value-attr": "count:sum",
       "show-line-labels": true,
       "use_stack": false,
@@ -43,12 +46,12 @@
         {
           "id": "started",
           "title": "Started",
-          "timeshift": 12
+          "timeshift": 52
         },
         {
           "id": "submitted",
           "title": "Submitted",
-          "timeshift": 12
+          "timeshift": 52
         }
       ]
     },
@@ -60,7 +63,10 @@
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "channel",
-      "period": "month",
+      "filter-by": ["country:england", "application_type:full-time application"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "value-attr": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -81,12 +87,12 @@
         {
           "id": "paper",
           "title": "Paper",
-          "timeshift": 12
+          "timeshift": 52
         },
         {
           "id": "digital",
           "title": "Digital",
-          "timeshift": 12
+          "timeshift": 52
         }
       ]
     },
@@ -96,7 +102,10 @@
       "title": "Digital take-up",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "period": "month",
+      "filter-by": ["country:england", "application_type:full-time application"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "info": [
         "Data source: SLC Database",
         "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
@@ -112,7 +121,10 @@
       "title": "Completion rate",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "period": "month",
+      "filter-by": ["country:england", "application_type:full-time application"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "info": [
         "Data source: SLC Database",
         "Completion rate measures the percentage of started applications that were subsequently submitted."
