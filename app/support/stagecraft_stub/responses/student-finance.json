@@ -32,10 +32,24 @@
         "Submitted: applications submitted"
       ],
       "series": [
-        { "id": "started", "title": "Started" },
-        { "id": "submitted", "title": "Submitted" },
-        { "id": "started", "title": "Started", "timeshift": 12 },
-        { "id": "submitted", "title": "Submitted", "timeshift": 12 }
+        {
+          "id": "started",
+          "title": "Started"
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted"
+        },
+        {
+          "id": "started",
+          "title": "Started",
+          "timeshift": 12
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted",
+          "timeshift": 12
+        }
       ]
     },
     {
@@ -56,10 +70,24 @@
         "Shows the number of applications, broken down by channel"
       ],
       "series": [
-        { "id": "paper", "title": "Paper" },
-        { "id": "digital", "title": "Digital" },
-        { "id": "paper", "title": "Paper", "timeshift": 12 },
-        { "id": "digital", "title": "Digital", "timeshift": 12 }
+        {
+          "id": "paper",
+          "title": "Paper"
+        },
+        {
+          "id": "digital",
+          "title": "Digital"
+        },
+        {
+          "id": "paper",
+          "title": "Paper",
+          "timeshift": 12
+        },
+        {
+          "id": "digital",
+          "title": "Digital",
+          "timeshift": 12
+        }
       ]
     },
     {
@@ -97,7 +125,7 @@
     {
       "slug": "users-at-each-stage",
       "module-type": "journey",
-      "title": "Users at each stage",
+      "title": "Completion at each stage",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -107,21 +135,61 @@
       "data-type": "journey",
       "matching-attribute": "eventLabel",
       "steps": [
-        {"id": "about-you", "title": "About you"},
-        {"id": "previous-study", "title": "About your previous studies"},
-        {"id": "course-and-fees", "title": "Course and fees"},
-        {"id": "living-costs", "title": "Living costs"},
-        {"id": "financial-info", "title": "Financial info"},
-        {"id": "additional-info", "title": "Additional info"},
-        {"id": "confirm", "title": "Confirm"},
-        {"id": "submitted", "title": "Submitted"}
+        {
+          "id": "about-you",
+          "title": "About you"
+        },
+        {
+          "id": "previous-study",
+          "title": "About your previous studies"
+        },
+        {
+          "id": "course-and-fees",
+          "title": "Course and fees"
+        },
+        {
+          "id": "living-costs",
+          "title": "Living costs"
+        },
+        {
+          "id": "financial-info",
+          "title": "Financial info"
+        },
+        {
+          "id": "additional-info",
+          "title": "Additional info"
+        },
+        {
+          "id": "confirm",
+          "title": "Confirm"
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted"
+        }
       ]
+    },
+    {
+      "slug": "site-traffic",
+      "module-type": "completion_numbers",
+      "title": "Site traffic",
+      "description": "",
+      "data-group": "student-finance",
+      "data-type": "site-traffic",
+      "value-attribute": "visitors:sum",
+      "info": [
+        "Data source: Google Analytics",
+        "The number of unique visits to online service pages."
+      ],
+      "denominator-matcher": "student_finance_site_traffic",
+      "numerator-matcher": "student_finance_site_traffic",
+      "matching-attribute": "dataType"
     },
     {
       "slug": "device-type",
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
-      "description": "Breakdown of <span class=\"group0\">mobile</span>, <span class=\"group1\">tablet</span> and <span class=\"group2\">desktop</span> usage on this service over time",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
       "data-group": "student-finance",
       "data-type": "device-usage",
       "category": "deviceCategory",
@@ -137,35 +205,18 @@
         "Student Loans Company"
       ],
       "series": [
-        { "id": "mobile", "title": "Mobile" },
-        { "id": "tablet", "title": "Tablet" },
-        { "id": "desktop", "title": "Desktop" }
-      ]
-    },
-    {
-      "slug": "browser-type",
-      "module-type": "grouped_timeseries",
-      "title": "How people access the service",
-      "description": "Breakdown of <span class=\"group0\">Chrome</span>, <span class=\"group1\">Firefox</span>, <span class=\"group2\">Internet Explorer</span> and <span class=\"group3\">Safari</span> browser usage on this service over time",
-      "data-group": "student-finance",
-      "data-type": "browser-usage",
-      "category": "browser",
-      "period": "week",
-      "axis-period": "month",
-      "duration": 52,
-      "value-attr": "visitors:sum",
-      "show-line-labels": true,
-      "one-hundred-percent": false,
-      "use_stack": true,
-      "info": [
-        "Data source: Google Analytics",
-        "Student Loans Company"
-      ],
-      "series": [
-        { "id": "Chrome", "title": "Chrome" },
-        { "id": "Firefox", "title": "Firefox" },
-        { "id": "Internet Explorer", "title": "Internet Explorer" },
-        { "id": "Safari", "title": "Safari" }
+        {
+          "id": "mobile",
+          "title": "Desktop"
+        },
+        {
+          "id": "tablet",
+          "title": "Mobile"
+        },
+        {
+          "id": "desktop",
+          "title": "Tablet"
+        }
       ]
     },
     {
@@ -180,8 +231,14 @@
         "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
       ],
       "tabs": [
-        { "id": "day", "name": "30 days" },
-        { "id": "hour", "name": "24 hours" }
+        {
+          "id": "day",
+          "name": "30 days"
+        },
+        {
+          "id": "hour",
+          "name": "24 hours"
+        }
       ],
       "tabbed_attr": "period"
     }
