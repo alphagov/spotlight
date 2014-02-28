@@ -57,8 +57,8 @@
     {
       "slug": "trending",
       "module-type": "list",
-      "title": "Trending",
-      "description": "Greatest increase in absolute unique pageviews",
+      "title": "Trending content",
+      "description": "Largest percentage increase in pageviews week-on-week",
       "classes": ["cols2", "up"],
       "data-group": "govuk",
       "data-type": "trending",

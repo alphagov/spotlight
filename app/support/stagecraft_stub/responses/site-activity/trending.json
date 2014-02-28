@@ -1,7 +1,7 @@
 {
   "module-type": "list",
   "title": "Trending content",
-  "description": "Greatest increase in pageviews week-on-week",
+  "description": "Largest percentage increase in pageviews week-on-week",
   "info": [
     "Data source: Google Analytics",
     "Based on percentage increase between total pageviews in past seven days and total pageviews in previous seven days. Low pageviews in either period are rounded up to a set threshold.",
