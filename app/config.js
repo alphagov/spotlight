@@ -1,5 +1,5 @@
 define(function (options) {
-  
+
   var config = {
     paths: {
       css: 'vendor/require-css',
@@ -10,12 +10,12 @@ define(function (options) {
       stache: 'vendor/stache'
     }
   };
-  
+
   if (typeof window === 'object' || options && options.isBuild) {
     // additional setup for client
     config.paths.jquery = 'vendor/jquery';
     config.paths.jqueryxdr = 'vendor/jquery.xdr';
-    config.paths.underscore = 'vendor/lodash';
+    config.paths.lodash = 'vendor/lodash';
     config.paths.backbone = 'vendor/backbone';
     config.paths.d3 = 'vendor/d3';
     config.paths.modernizr = 'vendor/modernizr';
@@ -24,7 +24,7 @@ define(function (options) {
 
     config.shim = {
       backbone: {
-        deps: ['underscore', 'jqueryxdr'],
+        deps: ['lodash', 'jqueryxdr'],
         exports: 'Backbone'
       },
       jqueryxdr: {
@@ -39,6 +39,6 @@ define(function (options) {
       }
     };
   }
-  
+
   return config;
 });

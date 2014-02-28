@@ -11,15 +11,5 @@
     "Info text line 2"
   ],
   "data-group": "licensing",
-  "data-type": "realtime",
-  "axis-labels": {
-    "x": {
-      "label": "Time",
-      "key": "_timestamp"
-    },
-    "y": {
-      "label": "Number of unique visitors",
-      "key": "unique_visitors"
-    }
-  }
+  "data-type": "realtime"
 }

@@ -1,4 +1,4 @@
-define(['app/support/backdrop_stub/response_fetcher.js', 'underscore', 'fs', 'path'],
+define(['app/support/backdrop_stub/response_fetcher.js', 'lodash', 'fs', 'path'],
 function (ResponseFetcher, _, fs, path) {
 
   var stub_mappings = [

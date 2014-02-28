@@ -1,6 +1,6 @@
 define([
   'stagecraft_api_client',
-  'underscore',
+  'lodash',
   'modernizr',
   './preprocessors/popover',
   './preprocessors/visualisation_fallback',

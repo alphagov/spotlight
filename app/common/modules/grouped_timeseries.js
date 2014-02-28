@@ -38,7 +38,16 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         showTotalLines: this.model.get('show-total-lines'),
         duration: this.model.get('duration'),
         axisPeriod: this.model.get('axis-period'),
-        axisLabels: this.model.get('axis-labels')
+        axisLabels: _.merge({
+          "x": {
+            "label": "Date of transaction",
+            "key": "_start_at"
+          },
+          "y": {
+            "label": "Number of redisential transactions",
+            "key": "value:sum"
+          }
+        }, this.model.get('axis-labels'))
       };
     }
 

@@ -27,7 +27,7 @@ $.ajaxSettings.xhr = function () {
 global.isServer = true;
 global.isClient = false;
 
-global._ = require('underscore');
+global._ = require('lodash');
 global.config = requirejs('environment_config').configure(environment, argv);
 global.logger = requirejs('logger');
 
