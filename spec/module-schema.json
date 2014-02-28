@@ -15,6 +15,11 @@
     "description" : {"type" : "string", "required" : false},
     "data-group" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
     "data-type" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
+    "filter-by" : {
+      "type" : "array",
+      "required" : false,
+      "items" : {"type" : "string", "required" : false}
+    },
     "info" : {
       "type" : "array",
       "required" : true,
@@ -56,6 +61,8 @@
       "properties" : {
         "module-type" : {"type" : "string", "required" : true, "enumeration" : "completion_rate"},
         "period" : {"type" : "string", "required" : true, "enumeration" : ["day", "week", "month"]},
+        "axis-period" : {"type" : "string", "required" : false, "enumeration" : ["day", "week", "month"]},
+        "duration" : {"type" : "integer", "required" : false},
         "denominator-matcher" : {"type" : "string", "required" : true},
         "numerator-matcher" : {"type" : "string", "required" : true},
         "matching-attribute" : {"type" : "string", "required" : true},
