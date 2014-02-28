@@ -19,15 +19,5 @@
     { "id": "Wales", "title": "Wales" },
     { "id": "Northern_Ireland", "title": "Northern Ireland" }
   ],
-  "axis-labels": {
-    "x": {
-      "label": "Date of transaction",
-      "key": "_start_at"
-    },
-    "y": {
-      "label": "Number of redisential transactions",
-      "key": "value:sum"
-    }
-  },
   "show-line-labels": true
 }

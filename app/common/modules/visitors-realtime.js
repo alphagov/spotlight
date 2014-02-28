@@ -18,7 +18,16 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
         sortBy: '_timestamp:descending',
         limit: this.model.get('numTwoMinPeriodsToQuery') || (((60 / 2) * 24) + 2),
         fetchOptions: { headers: { 'cache-control': 'max-age=120' } },
-        axisLabels: this.model.get('axis-labels')
+        axisLabels: _.merge({
+          "x": {
+            "label": "Time",
+            "key": "_timestamp"
+          },
+          "y": {
+            "label": "Number of unique visitors",
+            "key": "unique_visitors"
+          }
+        }, this.model.get('axis-labels'))
       };
     }
   });

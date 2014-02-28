@@ -15,7 +15,16 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
       return {
         steps: this.model.get('steps'),
         matchingAttribute: this.model.get('matching-attribute'),
-        axisLabels: this.model.get('axis-labels')
+        axisLabels: _.merge({
+          "x": {
+            "label": "Title",
+            "key": "title"
+          },
+          "y": {
+            "label": "Users at step",
+            "key": "uniqueEvents"
+          }
+        }, this.model.get('axis-labels'))
       };
     }
   });

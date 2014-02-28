@@ -20,15 +20,5 @@
     { "id": "completed", "title": "Completed" },
     { "id": "started", "title": "Started" }
   ],
-  "axis-labels": {
-    "x": {
-      "label": "Date of transaction",
-      "key": "_start_at"
-    },
-    "y": {
-      "label": "Value",
-      "key": "value:sum"
-    }
-  },
   "show-line-labels": true
 }

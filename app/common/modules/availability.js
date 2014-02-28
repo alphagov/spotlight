@@ -13,7 +13,16 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
-        axisLabels: this.model.get('axis-labels')
+        axisLabels: _.merge({
+          "x": {
+            "label": "Time",
+            "key": "_timestamp"
+          },
+          "y": {
+            "label": "Service Availability",
+            "key": "avgresponse"
+          }
+        }, this.model.get('axis-labels'))
       };
     }
   });
