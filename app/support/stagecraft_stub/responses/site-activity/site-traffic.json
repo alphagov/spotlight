@@ -5,7 +5,7 @@
   "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Site traffic",
-  "description": "Unique visitors to GOV.UK over the past year",
+  "description": "Unique visitors to GOV.UK over the past year, compared with the previous year",
   "data-group": "govuk",
   "data-type": "visitors",
   "category": "dataType",
