@@ -1,7 +1,7 @@
-define(['extensions/models/model', 'underscore', 'fs', 'path'], function (Model, _, fs, path) {
+define(['extensions/models/model', 'lodash', 'fs', 'path'], function (Model, _, fs, path) {
 
   var ResponseFetcher = Model.extend({
-  
+
     stubMappings: [
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_residential_transactions.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_residential_transactions_quarterly.json'},

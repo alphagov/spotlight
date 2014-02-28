@@ -46,7 +46,7 @@ requirejsOrig.config(requirejs('config'));
 var backbone = require('backbone');
 backbone.$ = require('jquery');
 
-global._ = require('underscore');
+global._ = require('lodash');
 
 for(var key in requirejsOrig) {
   requirejs[key] = requirejsOrig[key];

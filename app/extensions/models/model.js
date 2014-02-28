@@ -1,11 +1,11 @@
 define([
   'backbone',
   'extensions/mixins/date-functions',
-  'underscore'
+  'lodash'
 ],
 function (Backbone, DateFunctions, _) {
   var Model = Backbone.Model.extend({
-    
+
     /**
      * Default date format used for parsing and serialisation
      */
@@ -24,7 +24,7 @@ function (Backbone, DateFunctions, _) {
         if (!value) {
           return;
         }
-        
+
         var date = this.getMoment(value, this.defaultDateFormat);
         if (date.isValid()) {
           attributes[attr] = date;

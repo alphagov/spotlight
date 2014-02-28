@@ -1,7 +1,7 @@
 var fs = require('fs'),
     path = require('path'),
     jsonschema = require('jsonschema'),
-    _ = require('underscore');
+    _ = require('lodash');
 
 var Validator = jsonschema.Validator,
     v = new Validator();

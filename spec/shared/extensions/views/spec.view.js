@@ -2,7 +2,7 @@ define([
   'extensions/views/view',
   'extensions/models/model',
   'backbone',
-  'underscore'
+  'lodash'
 ],
 function (View, Model, Backbone, _) {
   describe("View", function() {

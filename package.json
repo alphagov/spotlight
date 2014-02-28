@@ -26,13 +26,13 @@
     "govuk_template_mustache": "0.5.1",
     "jquery": "1.8.3",
     "jsdom": "0.8.6",
+    "lodash": "2.4.1",
     "moment-timezone": "0.0.3",
     "optimist": "0.6.0",
     "requirejs": "2.1.8",
     "winston": "0.7.2",
     "xmlhttprequest": "1.6.0",
     "xtend": "2.1.1",
-    "underscore": "1.5.2",
     "uglify-js": "2.4.0"
   },
   "devDependencies": {

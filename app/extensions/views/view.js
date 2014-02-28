@@ -3,7 +3,7 @@ define([
     'extensions/mixins/date-functions',
     'modernizr',
     'jquery',
-    'underscore'
+    'lodash'
 ],
 function (Backbone, DateFunctions, Modernizr, $, _) {
   var View = Backbone.View.extend({
