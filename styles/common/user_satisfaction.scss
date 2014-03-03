@@ -1,0 +1,32 @@
+.user_satisfaction .visualisation {
+
+  overflow: hidden;
+  position: relative;
+
+  .stat { 
+    float: left;
+  }
+
+  .delta { 
+    position: absolute;
+    bottom: 5px;
+    left: 12em;
+  }
+
+  @media(max-width: 850px) {
+
+	  .delta { 
+	    left: 9em;
+	  }
+	
+  }
+
+  @media(max-width: 640px) {
+
+	  .delta { 
+	    left: 8em;
+	    bottom: 2px;
+	  }
+	
+  }
+}
