@@ -9,6 +9,10 @@ function (Graph, GraphTable, Collection, Model, d3) {
 
   describe('Graph', function () {
 
+    beforeEach(function () {
+      spyOn(GraphTable.prototype, 'initialize');
+    });
+
     it('keeps a reference to d3 library', function () {
       spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
@@ -207,7 +211,6 @@ function (Graph, GraphTable, Collection, Model, d3) {
       beforeEach(function () {
         wrapper = $('<div id="jasmine-playground"></div>').appendTo($('body'));
         el = $('<div></div>').appendTo(wrapper);
-        GraphTable.prototype.prepareTable = jasmine.createSpy();
         graph = new Graph({
           collection: new Collection(),
           el: el
