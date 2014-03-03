@@ -19,7 +19,18 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period'),
         axisPeriod: this.model.get('axis-period'),
-        axes: this.model.get('axes'),
+        axes: _.merge({
+          x: {
+            label: 'Date of Application',
+            key: '_start_at'
+          },
+          y: [
+            {
+              label: 'Number of applications',
+              key: 'uniqueEvents'
+            }
+          ]
+        }, this.model.get('axes')),
         duration: this.model.get('duration')
       };
     }
