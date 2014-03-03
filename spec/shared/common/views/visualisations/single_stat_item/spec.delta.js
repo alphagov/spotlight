@@ -60,6 +60,46 @@ function (DeltaView, Model, Collection) {
 
     });
 
+     it('correctly applies no-change classes to the number, based on the value displayed', function () {
+
+      var testNoChangeCollection = new Collection();
+      testNoChangeCollection.reset([ {
+        id: 'test',
+        title: 'test',
+        values: new Collection([
+          {
+            _start_at: collection.getMoment("2012-09-01T00:00:00+00:00"),
+            a: 1,
+            b: 2,
+            c: null,
+            d: 0,
+            e: 5
+          },
+          {
+            _start_at: collection.getMoment("2013-09-01T00:00:00+00:00"),
+            a: 0.9999999,
+            b: 4,
+            c: 6,
+            d: 10,
+            e: 0
+          }
+        ])
+      } ]);
+      var testNoChangeView = new DeltaView({
+        collection: testNoChangeCollection,
+        stat: {
+          'title': 'Statistic A',
+          'attr': 'a'
+        },
+        valueAttr: 'a'
+      });
+
+      jasmine.renderView(testNoChangeView, function () {
+        expect(testNoChangeView.$el.find('.change')).toHaveClass('no-change');
+      });
+
+    });
+
     it('does not show a delta if the denominator is null', function () {
       collection.first().get('values').first().set('a', null);
       jasmine.renderView(view, function () {

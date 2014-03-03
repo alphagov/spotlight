@@ -58,18 +58,24 @@ function (SingleStatView) {
       
       if (typeof matchingValues !== 'undefined') {
         previousValue = matchingValues.get(attr);
+
         if (previousValue) {
           percentChange = (currentValue - previousValue) / previousValue;
-          if (percentChange !== 0.0) {
-            percentChange = this.formatPercentage(percentChange, 2, true);
+          var decimalPlaces = 2;
+          var displayedValue = percentChange.toFixed(decimalPlaces);
+          if ((displayedValue !== '-0.00') && (displayedValue !== '0.00')) {
+            percentChange = this.formatPercentage(percentChange, decimalPlaces, true);
           } else {
             percentChange = 'no change';
           }
         }
-        if (currentValue > previousValue) {
-          trend = 'increase';
-        } else if (currentValue < previousValue) {
-          trend = 'decrease';
+
+        if (percentChange !== 'no change') {
+          if (currentValue > previousValue) {
+            trend = 'increase';
+          } else if (currentValue < previousValue) {
+            trend = 'decrease';
+          }
         } else {
           trend = 'no-change';
         }
