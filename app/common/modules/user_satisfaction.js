@@ -5,7 +5,11 @@ define([
 ],
 function (ModuleController, UserSatisfactionView, ListCollection) {
   var UserSatisfactionModule = ModuleController.extend({
-    className: 'user_satisfaction',
+    className: function () {
+      var classes = this.model.get('classes');
+
+      return ['user_satisfaction'].concat(classes || []).join(' ');
+    },
     visualisationClass: UserSatisfactionView,
     collectionClass: ListCollection,
     clientRenderOnInit: true,
