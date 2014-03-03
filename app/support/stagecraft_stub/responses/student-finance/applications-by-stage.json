@@ -18,7 +18,7 @@
     "Started: applications in progress",
     "Submitted: applications submitted"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Started",

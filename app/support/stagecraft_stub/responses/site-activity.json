@@ -32,7 +32,7 @@
       "show-line-labels": true,
       "use_stack": false,
       "info": [ "Data source: Google Analytics" ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "GOV.UK",
@@ -152,7 +152,7 @@
         "Data source: Google Analytics",
         "Desktop category includes traffic from desktops and laptops"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "Desktop",

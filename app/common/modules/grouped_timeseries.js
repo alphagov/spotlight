@@ -11,9 +11,9 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
       ModuleController.prototype.initialize.apply(this, arguments);
 
       var containsTimeshift = false,
-          axisLabels = this.model.get('axisLabels');
-      if (axisLabels && axisLabels.y) {
-        containsTimeshift = _.any(axisLabels.y, function (series) {
+          axes = this.model.get('axes');
+      if (axes && axes.y) {
+        containsTimeshift = _.any(axes.y, function (series) {
           return series.timeshift;
         });
       }
@@ -39,13 +39,13 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         showTotalLines: this.model.get('show-total-lines'),
         duration: this.model.get('duration'),
         axisPeriod: this.model.get('axis-period'),
-        axisLabels: _.merge({
+        axes: _.merge({
           "x": {
             "label": "Date",
             "key": "_start_at"
           },
           "y": []
-        }, this.model.get('axis-labels'))
+        }, this.model.get('axes'))
       };
     }
 

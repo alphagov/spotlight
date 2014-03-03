@@ -146,7 +146,7 @@ function (ListCollection, Collection, MatrixCollection) {
           id: 'a',
           title: 'a'
         });
-        collection.options.axisLabels = {
+        collection.options.axes = {
           'x': {
             'label': 'Date of transaction',
             'key': 'a'
@@ -163,7 +163,7 @@ function (ListCollection, Collection, MatrixCollection) {
       });
 
       it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axisLabels;
+        delete collection.options.axes;
         collection.getDataByTableFormat();
         expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
       });

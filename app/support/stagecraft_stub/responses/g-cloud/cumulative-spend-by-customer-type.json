@@ -13,7 +13,7 @@
     "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
     "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Total",

@@ -15,7 +15,7 @@
   "info": [
     "Source: National House-Building Council (NHBC)"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Completed",

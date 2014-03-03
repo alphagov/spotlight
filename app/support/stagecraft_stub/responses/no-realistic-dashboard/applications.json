@@ -14,7 +14,7 @@
   ],
   "denominator-matcher": "start$",
   "numerator-matcher": "done$",
-  "axis-labels": {
+  "axes": {
     "x": {
       "label": "Date of Application",
       "key": "_start_at"

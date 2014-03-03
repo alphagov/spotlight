@@ -14,7 +14,7 @@
   "info": [
     "Data source: Google Analytics"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "GOV.UK",

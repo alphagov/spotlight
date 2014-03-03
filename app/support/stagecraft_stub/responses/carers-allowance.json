@@ -37,7 +37,7 @@
         "Digital: applications made online",
         "Paper form: applications made using a paper form"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "Paper form",

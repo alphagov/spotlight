@@ -13,7 +13,7 @@
     "Data source: CSV extract",
     "Shows the number of missed waste collections, broken down by channel"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Phone",

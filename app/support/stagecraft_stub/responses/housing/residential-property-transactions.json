@@ -14,7 +14,7 @@
   "info": [
     "Source: HMRC"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "England",

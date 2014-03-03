@@ -24,7 +24,7 @@ function (MatrixCollection, Query) {
     },
 
     duration: function () {
-      var seriesList = this.options.axisLabels && this.options.axisLabels.y,
+      var seriesList = this.options.axes && this.options.axes.y,
           maxTimeshift = _.max(seriesList, function (series) {
             return series.timeshift;
           });
@@ -50,7 +50,7 @@ function (MatrixCollection, Query) {
       var startOffset = this.duration() - this.standardDuration();
       var standardDateValues = data[0].values.slice(startOffset);
 
-      var matchedSeries = _.chain(this.options.axisLabels.y)
+      var matchedSeries = _.chain(this.options.axes.y)
                            .filter(function (series) {
                               return _.find(data, function (d) {
                                 return d[this.options.category] === series.categoryId;

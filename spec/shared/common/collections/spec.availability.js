@@ -139,7 +139,7 @@ define([
             denominatorMatcher: 'start',
             numeratorMatcher: 'done'
           });
-          collection.options.axisLabels = {
+          collection.options.axes = {
             'x': {
               'label': 'Time',
               'key': 'a'
@@ -156,7 +156,7 @@ define([
         });
 
         it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-          delete collection.options.axisLabels;
+          delete collection.options.axes;
           collection.getDataByTableFormat();
           expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
         });
@@ -175,7 +175,7 @@ define([
           expect(collection.getDataByTableFormat('uptimeFraction')[0][1]).toEqual('Uptime');
         });
 
-        it('takes the title from the axisLabels config if valueAttr isnt passed', function () {
+        it('takes the title from the axes config if valueAttr isnt passed', function () {
           expect(collection.getDataByTableFormat()[0][1]).toEqual('Service Availability');
         });
 

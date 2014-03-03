@@ -20,7 +20,7 @@ define([
               title: 'End'
             }
           ],
-          axisLabels: {
+          axes: {
             x: {
               key: 'title'
             },

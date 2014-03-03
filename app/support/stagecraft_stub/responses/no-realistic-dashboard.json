@@ -125,7 +125,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "axis-labels": {
+      "axes": {
         "x": {
           "label": "Date of Application",
           "key": "_start_at"
@@ -183,7 +183,7 @@
       "category": "geography",
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "England",
@@ -224,7 +224,7 @@
       "info": [
         "Source: National House-Building Council (NHBC)"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "Completed",

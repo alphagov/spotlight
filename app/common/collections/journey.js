@@ -9,16 +9,16 @@ function (MatrixCollection, JourneySeriesCollection) {
     getDataByTableFormat: function () {
       var options = this.options;
 
-      if (options.axisLabels && options.steps) {
+      if (options.axes && options.steps) {
         var allTables = [],
           steps = options.steps;
 
         allTables.push(_.map(steps, function (item) {
-          return item[options.axisLabels.x.key];
+          return item[options.axes.x.key];
         }));
 
         allTables.push(_.map(this.models[0].attributes.values.models, function (model) {
-          return model.get(options.axisLabels.y.key);
+          return model.get(options.axes.y.key);
         }));
 
         return allTables;

@@ -13,7 +13,7 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
-        axisLabels: _.merge({
+        axes: _.merge({
           "x": {
             "label": "Time",
             "key": "_timestamp"
@@ -22,7 +22,7 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
             "label": "Service Availability",
             "key": "avgresponse"
           }
-        }, this.model.get('axis-labels'))
+        }, this.model.get('axes'))
       };
     }
   });

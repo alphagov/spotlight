@@ -85,14 +85,14 @@ function (MatrixCollection, Collection, Group, Query) {
     },
 
     getDataByTableFormat: function () {
-      if (this.options.axisLabels && this.period) {
+      if (this.options.axes && this.period) {
         var allTables = [],
-          dateRow = this.options.axisLabels.x.label + ' (' + this.period + ')',
-          dateKey = this.options.axisLabels.x.key,
-          seriesData = this.options.axisLabels.y.key,
+          dateRow = this.options.axes.x.label + ' (' + this.period + ')',
+          dateKey = this.options.axes.x.key,
+          seriesData = this.options.axes.y.key,
           tableHeadings = [];
 
-        tableHeadings.push(dateRow, this.options.axisLabels.y.label);
+        tableHeadings.push(dateRow, this.options.axes.y.label);
 
         allTables.push(tableHeadings);
 

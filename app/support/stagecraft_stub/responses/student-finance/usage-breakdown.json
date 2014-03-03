@@ -17,7 +17,7 @@
     "Data source: SLC database",
     "Shows the number of applications, broken down by channel"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Paper",

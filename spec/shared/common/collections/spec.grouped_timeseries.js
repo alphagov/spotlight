@@ -136,7 +136,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         valueAttr: 'some:value',
         category: 'some-category',
         period: 'month',
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"
@@ -217,7 +217,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          axisLabels: {
+          axes: {
             x: {
               "label": "Date",
               "key": "_start_at"
@@ -258,7 +258,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          axisLabels: {
+          axes: {
             x: {
               "label": "Date",
               "key": "_start_at"
@@ -284,7 +284,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          axisLabels: {
+          axes: {
             x: {
               "label": "Date",
               "key": "_start_at"
@@ -326,7 +326,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       beforeEach(function () {
         spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
         collection = new GroupedTimeseries([{}, {}]);
-        collection.options.axisLabels = {
+        collection.options.axes = {
           'x': {
             'label': 'Date of transaction',
             'key': 'a'
@@ -354,7 +354,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       });
 
       it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axisLabels;
+        delete collection.options.axes;
         collection.getDataByTableFormat();
         expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
       });

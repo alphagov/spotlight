@@ -43,7 +43,7 @@
       "info": [
         "Source: National House-Building Council (NHBC)"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "Completed",
@@ -74,7 +74,7 @@
       "info": [
         "Source: HMRC"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "England",
@@ -158,7 +158,7 @@
       "info": [
         "Source: Office of National Statistics (ONS)"
       ],
-      "axis-labels": {
+      "axes": {
         "y": [
           {
             "label": "Scotland",

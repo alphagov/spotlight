@@ -16,7 +16,7 @@
     "Data source: Google Analytics",
     "Desktop category includes traffic from desktops and laptops"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Desktop",

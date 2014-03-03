@@ -158,7 +158,7 @@ function (CompletionCollection, Collection, MatrixCollection) {
           denominatorMatcher: 'start',
           numeratorMatcher: 'done'
         });
-        collection.options.axisLabels = {
+        collection.options.axes = {
           'x': {
             'label': 'Date of completion',
             'key': 'a'
@@ -176,7 +176,7 @@ function (CompletionCollection, Collection, MatrixCollection) {
       });
 
       it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axisLabels;
+        delete collection.options.axes;
         collection.getDataByTableFormat();
         expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
       });

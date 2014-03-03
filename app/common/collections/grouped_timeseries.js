@@ -50,7 +50,7 @@ function (MatrixCollection) {
         data.push(totalSeries);
       }
 
-      return _.chain(this.options.axisLabels.y)
+      return _.chain(this.options.axes.y)
                      .filter(function (series) {
                         return _.find(data, function (d) {
                           return d[category] === series.categoryId;
@@ -72,11 +72,11 @@ function (MatrixCollection) {
     },
 
     getDataByTableFormat: function () {
-      if (this.options.axisLabels && this.options.period) {
+      if (this.options.axes && this.options.period) {
         var allTables = [],
-          dateRow = this.options.axisLabels.x.label + ' (' + this.options.period + ')',
-          dateKey = this.options.axisLabels.x.key,
-          seriesList = this.options.axisLabels.y,
+          dateRow = this.options.axes.x.label + ' (' + this.options.period + ')',
+          dateKey = this.options.axes.x.key,
+          seriesList = this.options.axes.y,
           tableHeadings = [];
 
         tableHeadings.push(dateRow);

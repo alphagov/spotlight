@@ -13,7 +13,7 @@
   "category": "geography",
   "period": "month",
   "filter-by": ["key:residential_property_transactions"],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "England",

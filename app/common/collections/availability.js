@@ -69,19 +69,19 @@ function (MatrixCollection) {
     },
 
     getDataByTableFormat: function (valueAttr) {
-      if (this.options.axisLabels) {
+      if (this.options.axes) {
         var allTables = [],
           availabilityTitle = {
             avgresponse: 'Page load time',
             uptimeFraction: 'Uptime'
           },
           formatDate = (this.options.valueAttr === 'hour') ? 'h:mm:ss a' : 'D MMMM',
-          dateKey = this.options.axisLabels.x.key,
-          attributeTitle = availabilityTitle[valueAttr] || this.options.axisLabels.y.label,
-          valueAttribute = valueAttr || this.options.axisLabels.y.key,
+          dateKey = this.options.axes.x.key,
+          attributeTitle = availabilityTitle[valueAttr] || this.options.axes.y.label,
+          valueAttribute = valueAttr || this.options.axes.y.key,
           tableHeadings = [];
 
-        tableHeadings.push(this.options.axisLabels.x.label, attributeTitle);
+        tableHeadings.push(this.options.axes.x.label, attributeTitle);
 
         allTables.push(tableHeadings);
 

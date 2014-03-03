@@ -11,7 +11,7 @@ function (GroupedTimeshiftCollection, Query) {
         valueAttr: 'value',
         period: 'week',
         category: 'group',
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"
@@ -55,7 +55,7 @@ function (GroupedTimeshiftCollection, Query) {
     it('should work out the duration of a graph based on a maximum timeshift', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week',
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"
@@ -180,7 +180,7 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"
@@ -218,7 +218,7 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"
@@ -262,7 +262,7 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        axisLabels: {
+        axes: {
           x: {
             "label": "Date",
             "key": "_start_at"

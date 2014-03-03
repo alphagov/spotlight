@@ -16,7 +16,7 @@
     "Data source: Google Analytics",
     "Student Loans Company"
   ],
-  "axis-labels": {
+  "axes": {
     "y": [
       {
         "label": "Desktop",

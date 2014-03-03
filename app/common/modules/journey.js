@@ -15,7 +15,7 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
       return {
         steps: this.model.get('steps'),
         matchingAttribute: this.model.get('matching-attribute'),
-        axisLabels: _.merge({
+        axes: _.merge({
           "x": {
             "label": "Title",
             "key": "title"
@@ -24,7 +24,7 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
             "label": "Users at step",
             "key": "uniqueEvents"
           }
-        }, this.model.get('axis-labels'))
+        }, this.model.get('axes'))
       };
     }
   });

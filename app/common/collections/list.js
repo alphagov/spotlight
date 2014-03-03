@@ -57,13 +57,13 @@ function (MatrixCollection) {
     },
 
     getDataByTableFormat: function () {
-      if (this.options.axisLabels) {
+      if (this.options.axes) {
         var allTables = [],
-          dateKey = this.options.axisLabels.x.key,
-          seriesData = this.options.axisLabels.y.key,
+          dateKey = this.options.axes.x.key,
+          seriesData = this.options.axes.y.key,
           tableHeadings = [];
 
-        tableHeadings.push(this.options.axisLabels.x.label, this.options.axisLabels.y.label);
+        tableHeadings.push(this.options.axes.x.label, this.options.axes.y.label);
 
         allTables.push(tableHeadings);
 
