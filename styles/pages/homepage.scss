@@ -87,33 +87,3 @@
     margin-top: 1.579em;
   }
 }
-
-@include media(desktop) {
-  .cols2,
-  #content section.cols2,
-  #content article.cols2 {
-    width: 465px / 960px * 100%;
-    float: left;
-    clear: none;
-    margin-right: 0;
-    margin-left: 30px / 960px * 100%;
-  }
-
-  .cols2:first-of-type,
-  #content section.cols2:first-of-type,
-  #content article.cols2:first-of-type {
-    margin-left: 0;
-  }
-
-  .cols3 {
-    width: 300px / 960px * 100%;
-    float: left;
-    clear: none;
-    margin-right: 0;
-    margin-left: 30px / 960px * 100%;
-  }
-
-  .cols3:first-of-type {
-    margin-left: 0;
-  }
-}
