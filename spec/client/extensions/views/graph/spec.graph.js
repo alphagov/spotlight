@@ -667,8 +667,8 @@ function (Graph, Collection, Model, d3) {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });
 
-          it('sets the tickValues correctly', function () {
-            expect(graph.calcYScale().tickValues)
+          it('sets the tick values correctly', function () {
+            expect(graph.calcYScale().tickValueList)
                 .toEqual([0, 20, 40, 60, 80, 100, 120]);
           });
         });
@@ -789,8 +789,8 @@ function (Graph, Collection, Model, d3) {
             expect(graph.calcYScale().range()).toEqual([333, 0]);
           });
 
-          it('sets the tickValues correctly', function () {
-            expect(graph.calcYScale().tickValues)
+          it('sets the tick values correctly', function () {
+            expect(graph.calcYScale().tickValueList)
                 .toEqual([0, 20, 40, 60, 80, 100, 120, 140]);
           });
         });

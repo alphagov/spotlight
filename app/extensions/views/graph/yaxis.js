@@ -19,7 +19,14 @@ function (require, Axis) {
       return this.scales.y;
     },
     tickFormat: function () {
-      return this.numberListFormatter(this.scales.y.tickValues, this.graph.currency);
+      return this.numberListFormatter(this.scales.y.tickValueList, this.graph.currency);
+    },
+    tickValues: function () {
+      if (this.graph.showStartAndEndTicks) {
+        var ticks = this.scales.y.tickValueList;
+        return [[0, ticks[ticks.length - 1]]];
+      }
+      return null;
     }
   });
 
