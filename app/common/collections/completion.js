@@ -89,10 +89,10 @@ function (MatrixCollection, Collection, Group, Query) {
         var allTables = [],
           dateRow = this.options.axes.x.label + ' (' + this.period + ')',
           dateKey = this.options.axes.x.key,
-          seriesData = this.options.axes.y.key,
+          seriesData = this.options.axes.y[0].key,
           tableHeadings = [];
 
-        tableHeadings.push(dateRow, this.options.axes.y.label);
+        tableHeadings.push(dateRow, this.options.axes.y[0].label);
 
         allTables.push(tableHeadings);
 

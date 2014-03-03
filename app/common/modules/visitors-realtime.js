@@ -23,10 +23,12 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
             "label": "Time",
             "key": "_timestamp"
           },
-          "y": {
-            "label": "Number of unique visitors",
-            "key": "unique_visitors"
-          }
+          "y": [
+            {
+              "label": "Number of unique visitors",
+              "key": "unique_visitors"
+            }
+          ]
         }, this.model.get('axes'))
       };
     }

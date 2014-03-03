@@ -286,28 +286,28 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           period: 'month',
           axes: {
             x: {
-              "label": "Date",
-              "key": "_start_at"
+              label: "Date",
+              key: "_start_at"
             },
             y: [
               {
-                "label": "Total",
-                "categoryId": "Total"
+                label: "Total",
+                categoryId: "Total"
               },
               {
-                "label": "ABC",
-                "categoryId": "abc",
-                "key": "value:sum"
+                label: "ABC",
+                categoryId: "abc",
+                key: "value:sum"
               },
               {
-                "label": "DEF",
-                "categoryId": "def",
-                "key": "value:sum"
+                label: "DEF",
+                categoryId: "def",
+                key: "value:sum"
               },
               {
-                "label": "XYZ",
-                "categoryId": "xyz",
-                "key": "value:sum"
+                label: "XYZ",
+                categoryId: "xyz",
+                key: "value:sum"
               }
             ]
           },
@@ -327,18 +327,18 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
         collection = new GroupedTimeseries([{}, {}]);
         collection.options.axes = {
-          'x': {
-            'label': 'Date of transaction',
-            'key': 'a'
+          x: {
+            label: 'Date of transaction',
+            key: 'a'
           },
-          'y': [
+          y: [
             {
-              "label": "col a title",
-              "key": "b"
+              label: "col a title",
+              key: "b"
             },
             {
-              "label": "col b title",
-              "key": "b"
+              label: "col b title",
+              key: "b"
             }
           ]
         };

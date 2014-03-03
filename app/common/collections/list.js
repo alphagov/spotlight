@@ -60,10 +60,10 @@ function (MatrixCollection) {
       if (this.options.axes) {
         var allTables = [],
           dateKey = this.options.axes.x.key,
-          seriesData = this.options.axes.y.key,
+          seriesData = this.options.axes.y[0].key,
           tableHeadings = [];
 
-        tableHeadings.push(this.options.axes.x.label, this.options.axes.y.label);
+        tableHeadings.push(this.options.axes.x.label, this.options.axes.y[0].label);
 
         allTables.push(tableHeadings);
 

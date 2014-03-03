@@ -147,14 +147,16 @@ function (ListCollection, Collection, MatrixCollection) {
           title: 'a'
         });
         collection.options.axes = {
-          'x': {
-            'label': 'Date of transaction',
-            'key': 'a'
+          x: {
+            label: 'Date of transaction',
+            key: 'a'
           },
-          'y': {
-            'label': 'Number of visitors',
-            'key': 'b'
-          }
+          y: [
+            {
+              label: 'Number of visitors',
+              key: 'b'
+            }
+          ]
         };
         collection.at(0).set('values', new Collection([
           { a: '2012-08-01T00:00:00+00:00', b: 2 },

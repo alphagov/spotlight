@@ -28,10 +28,12 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
             "label": "Date of completion",
             "key": "_start_at"
           },
-          "y": {
-            "label": "Completion percentage",
-            "key": "completion"
-          }
+          "y": [
+            {
+              "label": "Completion percentage",
+              "key": "completion"
+            }
+          ]
         }, this.model.get('axes'))
       };
     }

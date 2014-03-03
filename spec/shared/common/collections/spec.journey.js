@@ -24,9 +24,11 @@ define([
             x: {
               key: 'title'
             },
-            y: {
-              key: 'b'
-            }
+            y: [
+              {
+                key: 'b'
+              }
+            ]
           }
         });
         collection.at(0).set('values', new Collection([

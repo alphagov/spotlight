@@ -19,9 +19,11 @@
       "label": "Date of Application",
       "key": "_start_at"
     },
-    "y": {
-      "label": "Number of applications",
-      "key": "uniqueEvents"
-    }
+    "y": [
+      {
+        "label": "Number of applications",
+        "key": "uniqueEvents"
+      }
+    ]
   }
 }

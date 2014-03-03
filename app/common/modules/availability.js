@@ -18,10 +18,12 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
             "label": "Time",
             "key": "_timestamp"
           },
-          "y": {
-            "label": "Service Availability",
-            "key": "avgresponse"
-          }
+          "y": [
+            {
+              "label": "Service Availability",
+              "key": "avgresponse"
+            }
+          ]
         }, this.model.get('axes'))
       };
     }

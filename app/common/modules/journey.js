@@ -20,10 +20,12 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
             "label": "Title",
             "key": "title"
           },
-          "y": {
-            "label": "Users at step",
-            "key": "uniqueEvents"
-          }
+          "y": [
+            {
+              "label": "Users at step",
+              "key": "uniqueEvents"
+            }
+          ]
         }, this.model.get('axes'))
       };
     }

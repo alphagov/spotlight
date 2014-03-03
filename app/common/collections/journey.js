@@ -18,7 +18,7 @@ function (MatrixCollection, JourneySeriesCollection) {
         }));
 
         allTables.push(_.map(this.models[0].attributes.values.models, function (model) {
-          return model.get(options.axes.y.key);
+          return model.get(options.axes.y[0].key);
         }));
 
         return allTables;

@@ -159,14 +159,16 @@ function (CompletionCollection, Collection, MatrixCollection) {
           numeratorMatcher: 'done'
         });
         collection.options.axes = {
-          'x': {
-            'label': 'Date of completion',
-            'key': 'a'
+          x: {
+            label: 'Date of completion',
+            key: 'a'
           },
-          'y': {
-            'label': 'Completion Percentage',
-            'key': 'b'
-          }
+          y: [
+            {
+              label: 'Completion Percentage',
+              key: 'b'
+            }
+          ]
         };
         collection.period = 'month'
         collection.at(0).set('values', new Collection([
