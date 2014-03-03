@@ -28,6 +28,10 @@
   figure.graph {
     margin-left: 12.5em;
 
+    a.table-toggle {
+      margin-left: -12.5em;
+    }
+
     .graph-wrapper {
       svg {
         min-height: 135px;
@@ -48,14 +52,14 @@
   }
 
   @media (max-width: 880px) {
-    
+
     figure.graph {
       .x-axis .tick:nth-child(even) text {
         display:none;
       }
     }
   }
-  
+
   @media(max-width: 640px) {
 
     .impact-number {

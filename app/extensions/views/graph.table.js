@@ -14,13 +14,14 @@ function (Table, HideShow) {
           $reveal: this.$table,
           $el: this.$toggleContainer,
           showLabel: 'Show the data for this graph.',
-          hideLabel: 'Hide the data for this graph.'
+          hideLabel: 'Hide the data for this graph.',
+          className: 'table-toggle'
         });
       }
     },
     prepareTable: function () {
       this.$table.appendTo(this.$toggleContainer);
       this.$toggleContainer.appendTo(this.$el);
-    },
+    }
   });
 });

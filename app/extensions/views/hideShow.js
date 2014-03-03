@@ -7,6 +7,7 @@ define([
       this.showLabel = options.showLabel;
       this.hideLabel = options.hideLabel;
       this.shown = false;
+      this.className = options.className || '';
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -18,7 +19,11 @@ define([
     },
 
     render: function () {
-      this.$handle = $('<a href="#">' + this.showLabel + '</a>');
+      this.$handle = $('<a>', {
+        'class': this.className,
+        'href': '#',
+        'text': this.showLabel
+      });
       this.$handle.insertBefore(this.$reveal);
     },
 

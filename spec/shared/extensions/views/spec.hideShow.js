@@ -53,6 +53,14 @@ function (HideShow, View, $) {
         expect(hideShow.$el.find('a').length).toEqual(1);
       });
 
+      it('creates a handle with a class name is specified', function () {
+        hideShow = new HideShow({
+          $el: $el,
+          className: 'testClassName'
+        });
+        expect(hideShow.$handle.attr('class')).toEqual('testClassName');
+      });
+
       it('inserts the handle before the item it reveals', function () {
         expect(hideShow.$handle.next().text()).toEqual(hideShow.$reveal.text());
       });
