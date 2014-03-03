@@ -36,12 +36,30 @@
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
-      "series": [
-         { "id": "Total", "title": "Total" },
-         { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-         { "id": "Large enterprises", "title": "Large enterprises" },
-         { "id": "Unknown", "title": "Not yet classified" }
-       ],
+      "axis-labels": {
+         "y": [
+           {
+             "label": "Total",
+             "categoryId": "Total",
+             "key": "value:sum"
+           },
+           {
+             "label": "Small and medium enterprises",
+             "categoryId": "Small and medium enterprises",
+             "key": "value:sum"
+           },
+           {
+             "label": "Large enterprises",
+             "categoryId": "Large enterprises",
+             "key": "value:sum"
+           },
+           {
+             "label": "Not yet classified",
+             "categoryId": "Unknown",
+             "key": "value:sum"
+           }
+         ]
+      },
       "show-line-labels": true,
       "tabs": [
         {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
@@ -66,12 +84,30 @@
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
-      "series": [
-         { "id": "Total", "title": "Total" },
-         { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-         { "id": "Large enterprises", "title": "Large enterprises" },
-         { "id": "Unknown", "title": "Not yet classified" }
-       ],
+      "axis-labels": {
+         "y": [
+           {
+             "label": "Total",
+             "categoryId": "Total",
+             "key": "value:sum"
+           },
+           {
+             "label": "Small and medium enterprises",
+             "categoryId": "Small and medium enterprises",
+             "key": "value:sum"
+           },
+           {
+             "label": "Large enterprises",
+             "categoryId": "Large enterprises",
+             "key": "value:sum"
+           },
+           {
+             "label": "Not yet classified",
+             "categoryId": "Unknown",
+             "key": "value:sum"
+           }
+         ]
+      },
       "show-line-labels": true,
       "tabs": [
         {"id": "monthly_spend:sum", "name": "Total spend", "currency": "gbp"},
@@ -119,14 +155,40 @@
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
-      "series": [
-         { "id": "Total", "title": "Total" },
-         { "id": "Central government", "title": "Central government" },
-         { "id": "Other wider public sector", "title": "Other wider public sector" },
-         { "id": "Local government", "title": "Local government" },
-         { "id": "Unknown", "title": "Not yet classified" },
-         { "id": "Not for profit", "title": "Not for profit" }
-       ],
+      "axis-labels": {
+          "y": [
+            {
+              "label": "Total",
+              "categoryId": "Total",
+              "key": "value:sum"
+            },
+            {
+              "label": "Central government",
+              "categoryId": "Central government",
+              "key": "value:sum"
+            },
+            {
+              "label": "Other wider public sector",
+              "categoryId": "Other wider public sector",
+              "key": "value:sum"
+            },
+            {
+              "label": "Local government",
+              "categoryId": "Local government",
+              "key": "value:sum"
+            },
+            {
+              "label": "Unknown",
+              "categoryId": "Not yet classified",
+              "key": "value:sum"
+            },
+            {
+              "label": "Not for profit",
+              "categoryId": "Not for profit",
+              "key": "value:sum"
+            }
+          ]
+      },
       "show-line-labels": true,
       "show-total-lines": true
     },
@@ -146,12 +208,30 @@
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
-      "series": [
-         { "id": "Cloud Support Services (CSS)", "title": "Specialist cloud services" },
-         { "id": "Cloud Software as a Service (SaaS)", "title": "Cloud Software as a Service" },
-         { "id": "Cloud Infrastructure as a Service (IaaS)", "title": "Cloud Infrastructure as a Service" },
-         { "id": "Cloud Platform as a Service (PaaS)", "title": "Cloud Platform as a Service" }
-       ],
+      "axis-labels": {
+         "y": [
+           {
+             "label": "Cloud Support Services (CSS)",
+             "categoryId": "Specialist cloud services",
+             "key": "value:sum"
+           },
+           {
+             "label": "Cloud Software as a Service (SaaS)",
+             "categoryId": "Cloud Software as a Service",
+             "key": "value:sum"
+           },
+           {
+             "label": "Cloud Infrastructure as a Service (IaaS)",
+             "categoryId": "Cloud Infrastructure as a Service",
+             "key": "value:sum"
+           },
+           {
+             "label": "Cloud Platform as a Service (PaaS)",
+             "categoryId": "Cloud Platform as a Service",
+             "key": "value:sum"
+           }
+         ]
+      },
       "show-line-labels": true
     }
   ]

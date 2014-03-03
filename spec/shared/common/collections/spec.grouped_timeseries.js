@@ -136,11 +136,29 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         valueAttr: 'some:value',
         category: 'some-category',
         period: 'month',
-        seriesList: [
-          { id: 'abc', title: 'ABC' },
-          { id: 'def', title: 'DEF' },
-          { id: 'xyz', title: 'XYZ' }
-        ]
+        axisLabels: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "ABC",
+              "categoryId": "abc",
+              "key": "value:sum"
+            },
+            {
+              "label": "DEF",
+              "categoryId": "def",
+              "key": "value:sum"
+            },
+            {
+              "label": "XYZ",
+              "categoryId": "xyz",
+              "key": "value:sum"
+            }
+          ]
+        }
       });
       collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
@@ -199,12 +217,34 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'abc', title: 'ABC' },
-            { id: 'def', title: 'DEF' },
-            { id: 'xyz', title: 'XYZ' },
-            { id: 'ghi', title: 'GHI' }
-          ]
+          axisLabels: {
+            x: {
+              "label": "Date",
+              "key": "_start_at"
+            },
+            y: [
+              {
+                "label": "ABC",
+                "categoryId": "abc",
+                "key": "value:sum"
+              },
+              {
+                "label": "DEF",
+                "categoryId": "def",
+                "key": "value:sum"
+              },
+              {
+                "label": "XYZ",
+                "categoryId": "xyz",
+                "key": "value:sum"
+              },
+              {
+                "label": "GHI",
+                "categoryId": "ghi",
+                "key": "value:sum"
+              }
+            ]
+          }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
@@ -218,9 +258,19 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'ghi', title: 'GHI' }
-          ]
+          axisLabels: {
+            x: {
+              "label": "Date",
+              "key": "_start_at"
+            },
+            y: [
+              {
+                "label": "GHI",
+                "categoryId": "ghi",
+                "key": "value:sum"
+              }
+            ]
+          }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
@@ -234,12 +284,33 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'Total', title: 'Total' },
-            { id: 'abc', title: 'ABC' },
-            { id: 'def', title: 'DEF' },
-            { id: 'xyz', title: 'XYZ' }
-          ],
+          axisLabels: {
+            x: {
+              "label": "Date",
+              "key": "_start_at"
+            },
+            y: [
+              {
+                "label": "Total",
+                "categoryId": "Total"
+              },
+              {
+                "label": "ABC",
+                "categoryId": "abc",
+                "key": "value:sum"
+              },
+              {
+                "label": "DEF",
+                "categoryId": "def",
+                "key": "value:sum"
+              },
+              {
+                "label": "XYZ",
+                "categoryId": "xyz",
+                "key": "value:sum"
+              }
+            ]
+          },
           'show-total-lines': true
         });
         totalCollection.options.showTotalLines = true;
@@ -260,17 +331,18 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             'label': 'Date of transaction',
             'key': 'a'
           },
-          'y': {
-            'label': 'Number of residential transactions',
-            'key': 'b'
-          }
+          'y': [
+            {
+              "label": "col a title",
+              "key": "b"
+            },
+            {
+              "label": "col b title",
+              "key": "b"
+            }
+          ]
         };
         collection.options.period = 'month';
-        collection.options.seriesList = [{
-          'title': 'col a title'
-        }, {
-          'title': 'col b title'
-        }];
         collection.at(0).set('values', new Collection([
           { a: '2012-08-01T00:00:00+00:00', b: 2 },
           { a: '2012-09-01T00:00:00+00:00', b: 4 }

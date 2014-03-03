@@ -32,12 +32,33 @@
       "show-line-labels": true,
       "use_stack": false,
       "info": [ "Data source: Google Analytics" ],
-      "series": [
-         { "id": "govuk_visitors", "title": "GOV.UK" },
-         { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 52 },
-         { "id": "directgov_visitors", "title": "Directgov", "timeshift": 52 },
-         { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 52 }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "GOV.UK",
+            "categoryId": "govuk_visitors",
+            "key": "value:sum"
+          },
+          {
+            "label": "GOV.UK",
+            "categoryId": "govuk_visitors",
+            "key": "value:sum",
+            "timeshift": 52
+          },
+          {
+            "label": "Directgov",
+            "categoryId": "directgov_visitors",
+            "key": "value:sum",
+            "timeshift": 52
+          },
+          {
+            "label": "Business Link",
+            "categoryId": "businesslink_visitors",
+            "key": "value:sum",
+            "timeshift": 52
+          }
+        ]
+      }
     },
     {
       "slug": "top-content",
@@ -131,11 +152,25 @@
         "Data source: Google Analytics",
         "Desktop category includes traffic from desktops and laptops"
       ],
-      "series": [
-         { "id": "desktop", "title": "Desktop" },
-         { "id": "mobile", "title": "Mobile" },
-         { "id": "tablet", "title": "Tablet" }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "key": "value:sum"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "key": "value:sum"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "key": "value:sum"
+          }
+        ]
+      }
     },
     {
       "slug": "service-availability",

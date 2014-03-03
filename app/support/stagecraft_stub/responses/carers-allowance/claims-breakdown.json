@@ -1,5 +1,4 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Claims breakdown",
   "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
@@ -7,7 +6,6 @@
   "data-type": "weekly-claims",
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "carers-allowance",
   "category": "key",
   "period": "week",
   "value-attr": "value:sum",
@@ -19,8 +17,20 @@
     "Digital: applications made online",
     "Paper form: applications made using a paper form"
   ],
-  "series": [
-     { "id": "ca_clerical_received", "title": "Paper form" },
-     { "id": "ca_e_claims_received", "title": "Digital" }
-  ]
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Paper form",
+        "categoryId": "ca_clerical_received",
+        "key": "value:sum"
+      },
+      {
+        "label": "Digital",
+        "categoryId": "ca_e_claims_received",
+        "key": "value:sum"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-slug": "carers-allowance"
 }

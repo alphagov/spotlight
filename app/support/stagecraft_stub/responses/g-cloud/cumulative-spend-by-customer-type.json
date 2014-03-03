@@ -1,30 +1,56 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Cumulative spend by customer type",
   "description": "Cumulative spend over time, showing spend by central government and wider public services",
-  "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public sector purchasing dashboard",
-  "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "use_stack": false,
-  "value-attr": "cumulative_spend:sum",
   "category": "sector",
-  "period": "month",
+  "value-attr": "cumulative_spend:sum",
   "currency": "gbp",
+  "period": "month",
   "info": [
     "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
     "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
-  "series": [
-    { "id": "Total", "title": "Total" },
-    { "id": "Central government", "title": "Central government" },
-    { "id": "Other wider public sector", "title": "Other wider public sector" },
-    { "id": "Local government", "title": "Local government" },
-    { "id": "Unknown", "title": "Not yet classified" },
-    { "id": "Not for profit", "title": "Not for profit" }
-   ],
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Total",
+        "categoryId": "Total",
+        "key": "value:sum"
+      },
+      {
+        "label": "Central government",
+        "categoryId": "Central government",
+        "key": "value:sum"
+      },
+      {
+        "label": "Other wider public sector",
+        "categoryId": "Other wider public sector",
+        "key": "value:sum"
+      },
+      {
+        "label": "Local government",
+        "categoryId": "Local government",
+        "key": "value:sum"
+      },
+      {
+        "label": "Unknown",
+        "categoryId": "Not yet classified",
+        "key": "value:sum"
+      },
+      {
+        "label": "Not for profit",
+        "categoryId": "Not for profit",
+        "key": "value:sum"
+      }
+    ]
+  },
   "show-line-labels": true,
-  "show-total-lines": true
+  "show-total-lines": true,
+  "page-type": "module",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "Public sector purchasing dashboard",
+  "dashboard-slug": "g-cloud"
 }

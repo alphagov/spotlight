@@ -1,13 +1,9 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Usage breakdown",
   "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
-  "dashboard-title": "Apply for student finance",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "student-finance",
   "category": "channel",
   "filter-by": ["country:england", "application_type:full-time application"],
   "period": "week",
@@ -21,10 +17,34 @@
     "Data source: SLC database",
     "Shows the number of applications, broken down by channel"
   ],
-  "series": [
-    { "id": "paper", "title": "Paper" },
-    { "id": "digital", "title": "Digital" },
-    { "id": "paper", "title": "Paper", "timeshift": 52 },
-    { "id": "digital", "title": "Digital", "timeshift": 52 }
-  ]
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Paper",
+        "categoryId": "paper",
+        "key": "value:sum"
+      },
+      {
+        "label": "Digital",
+        "categoryId": "digital",
+        "key": "value:sum"
+      },
+      {
+        "label": "Paper",
+        "categoryId": "paper",
+        "key": "value:sum",
+        "timeshift": 52
+      },
+      {
+        "label": "Digital",
+        "categoryId": "digital",
+        "key": "value:sum",
+        "timeshift": 52
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance"
 }

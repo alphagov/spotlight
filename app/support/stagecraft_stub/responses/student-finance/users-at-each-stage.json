@@ -1,5 +1,4 @@
 {
-  "page-type": "module",
   "module-type": "journey",
   "title": "Users at each stage",
   "description": "Number of users who completed important stages of the transaction last week",
@@ -8,9 +7,6 @@
     "The total number of users who arrived at each stage of the application process.",
     "Number of users is measured using the count of unique events from each step."
   ],
-  "dashboard-title": "Apply for student finance",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "student-finance",
   "data-group": "student-finance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",

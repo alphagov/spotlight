@@ -37,10 +37,20 @@
         "Digital: applications made online",
         "Paper form: applications made using a paper form"
       ],
-      "series": [
-         { "id": "ca_clerical_received", "title": "Paper form" },
-         { "id": "ca_e_claims_received", "title": "Digital" }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Paper form",
+            "categoryId": "ca_clerical_received",
+            "key": "value:sum"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "ca_e_claims_received",
+            "key": "value:sum"
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",

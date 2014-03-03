@@ -1,13 +1,9 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Applications at each stage of completion",
   "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
-  "dashboard-title": "Apply for student finance",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "student-finance",
   "category": "stage",
   "filter-by": ["country:england", "application_type:full-time application"],
   "period": "week",
@@ -22,10 +18,34 @@
     "Started: applications in progress",
     "Submitted: applications submitted"
   ],
-  "series": [
-    { "id": "started", "title": "Started" },
-    { "id": "submitted", "title": "Submitted" },
-    { "id": "started", "title": "Started", "timeshift": 52 },
-    { "id": "submitted", "title": "Submitted", "timeshift": 52 }
-  ]
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Started",
+        "categoryId": "started",
+        "key": "value:sum"
+      },
+      {
+        "label": "Submitted",
+        "categoryId": "submitted",
+        "key": "value:sum"
+      },
+      {
+        "label": "Started",
+        "categoryId": "started",
+        "key": "value:sum",
+        "timeshift": 52
+      },
+      {
+        "label": "Submitted",
+        "categoryId": "submitted",
+        "key": "value:sum",
+        "timeshift": 52
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance"
 }

@@ -2,6 +2,9 @@
   "module-type": "list",
   "title": "Top content",
   "description": "Most unique pageviews",
+  "classes": [
+    "cols2"
+  ],
   "data-group": "govuk",
   "data-type": "most_viewed",
   "sort-by": "pageviews:descending",

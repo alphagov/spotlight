@@ -13,11 +13,29 @@
   "category": "geography",
   "period": "month",
   "filter-by": ["key:residential_property_transactions"],
-  "series": [
-    { "id": "England", "title": "England" },
-    { "id": "Scotland", "title": "Scotland" },
-    { "id": "Wales", "title": "Wales" },
-    { "id": "Northern_Ireland", "title": "Northern Ireland" }
-  ],
+  "axis-labels": {
+    "y": [
+      {
+        "label": "England",
+        "categoryId": "England",
+        "key": "value:sum"
+      },
+      {
+        "label": "Scotland",
+        "categoryId": "Scotland",
+        "key": "value:sum"
+      },
+      {
+        "label": "Wales",
+        "categoryId": "Wales",
+        "key": "value:sum"
+      },
+      {
+        "label": "Northern Ireland",
+        "categoryId": "Northern_Ireland",
+        "key": "value:sum"
+      }
+    ]
+  },
   "show-line-labels": true
 }

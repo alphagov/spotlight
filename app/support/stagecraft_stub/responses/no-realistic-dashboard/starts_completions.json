@@ -16,9 +16,19 @@
   "info": [
     "Source: National House-Building Council (NHBC)"
   ],
-  "series": [
-    { "id": "completed", "title": "Completed" },
-    { "id": "started", "title": "Started" }
-  ],
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Completed",
+        "categoryId": "completed",
+        "key": "value:sum"
+      },
+      {
+        "label": "Started",
+        "categoryId": "started",
+        "key": "value:sum"
+      }
+    ]
+  },
   "show-line-labels": true
 }

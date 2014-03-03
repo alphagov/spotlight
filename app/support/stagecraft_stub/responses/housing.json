@@ -43,10 +43,20 @@
       "info": [
         "Source: National House-Building Council (NHBC)"
       ],
-      "series": [
-         { "id": "completed", "title": "Completed" },
-         { "id": "started", "title": "Started" }
-       ],
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Completed",
+            "categoryId": "completed",
+            "key": "value:sum"
+          },
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "key": "value:sum"
+          }
+        ]
+      },
       "show-line-labels": true
     },
     {
@@ -64,12 +74,30 @@
       "info": [
         "Source: HMRC"
       ],
-      "series": [
-         { "id": "England", "title": "England" },
-         { "id": "Scotland", "title": "Scotland" },
-         { "id": "Wales", "title": "Wales" },
-         { "id": "Northern_Ireland", "title": "Northern Ireland" }
-       ],
+      "axis-labels": {
+        "y": [
+          {
+            "label": "England",
+            "categoryId": "England",
+            "key": "value:sum"
+          },
+          {
+            "label": "Scotland",
+            "categoryId": "Scotland",
+            "key": "value:sum"
+          },
+          {
+            "label": "Wales",
+            "categoryId": "Wales",
+            "key": "value:sum"
+          },
+          {
+            "label": "Northern Ireland",
+            "categoryId": "Northern_Ireland",
+            "key": "value:sum"
+          }
+        ]
+      },
       "show-line-labels": true
     },
     {
@@ -130,13 +158,35 @@
       "info": [
         "Source: Office of National Statistics (ONS)"
       ],
-      "series": [
-         { "id": "Scotland", "title": "Scotland" },
-         { "id": "Wales", "title": "Wales" },
-         { "id": "London", "title": "London" },
-         { "id": "England", "title": "England" },
-         { "id": "Northern_Ireland", "title": "Northern Ireland" }
-       ],
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Scotland",
+            "categoryId": "Scotland",
+            "key": "value:sum"
+          },
+          {
+            "label": "Wales",
+            "categoryId": "Wales",
+            "key": "value:sum"
+          },
+          {
+            "label": "London",
+            "categoryId": "London",
+            "key": "value:sum"
+          },
+          {
+            "label": "England",
+            "categoryId": "England",
+            "key": "value:sum"
+          },
+          {
+            "label": "Northern Ireland",
+            "categoryId": "Northern_Ireland",
+            "key": "value:sum"
+          }
+        ]
+      },
       "show-line-labels": true
     }
   ]

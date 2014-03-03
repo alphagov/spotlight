@@ -10,9 +10,10 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
     initialize: function () {
       ModuleController.prototype.initialize.apply(this, arguments);
 
-      var containsTimeshift = false;
-      if (this.model.get('series')) {
-        containsTimeshift = _.any(this.model.get('series'), function (series) {
+      var containsTimeshift = false,
+          axisLabels = this.model.get('axisLabels');
+      if (axisLabels && axisLabels.y) {
+        containsTimeshift = _.any(axisLabels.y, function (series) {
           return series.timeshift;
         });
       }
@@ -40,13 +41,10 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         axisPeriod: this.model.get('axis-period'),
         axisLabels: _.merge({
           "x": {
-            "label": "Date of transaction",
+            "label": "Date",
             "key": "_start_at"
           },
-          "y": {
-            "label": "Number of redisential transactions",
-            "key": "value:sum"
-          }
+          "y": []
         }, this.model.get('axis-labels'))
       };
     }

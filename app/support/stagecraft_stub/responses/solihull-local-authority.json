@@ -29,12 +29,58 @@
         "Data source: CSV extract",
         "Shows the number of missed waste collections, broken down by channel"
       ],
-      "series": [
-        { "id": "Phone", "title": "Phone" },
-        { "id": "FaceToFace", "title": "Face to face" },
-        { "id": "Digital", "title": "Digital" },
-        { "id": "Other", "title": "Other" }
-      ]
+
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Phone",
+            "categoryId": "Phone",
+            "key": "value:sum"
+          },
+          {
+            "label": "Face to face",
+            "categoryId": "FaceToFace",
+            "key": "value:sum"
+          },
+          {
+            "label": "Other",
+            "categoryId": "Other",
+            "key": "value:sum"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "usage-breakdown",
+      "module-type": "grouped_timeseries",
+      "title": "Usage breakdown",
+      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">Non Digital</span> transactions",
+      "data-group": "solihull-local-authority",
+      "data-type": "transactions-by-channel",
+      "category": "digital",
+      "period": "week",
+      "value-attr": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "cumulative": true,
+      "info": [
+        "Data source: CSV extract",
+        "Shows the number of digital and non digital transactions"
+      ],
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Digital",
+            "categoryId": "Digital",
+            "key": "value:sum"
+          },
+          {
+            "label": "Non Digital",
+            "categoryId": "NonDigital",
+            "key": "value:sum"
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",

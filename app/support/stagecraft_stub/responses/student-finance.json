@@ -34,26 +34,32 @@
         "Started: applications in progress",
         "Submitted: applications submitted"
       ],
-      "series": [
-        {
-          "id": "started",
-          "title": "Started"
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted"
-        },
-        {
-          "id": "started",
-          "title": "Started",
-          "timeshift": 52
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted",
-          "timeshift": 52
-        }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "key": "value:sum"
+          },
+          {
+            "label": "Submitted",
+            "categoryId": "submitted",
+            "key": "value:sum"
+          },
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "key": "value:sum",
+            "timeshift": 52
+          },
+          {
+            "label": "Submitted",
+            "categoryId": "submitted",
+            "key": "value:sum",
+            "timeshift": 52
+          }
+        ]
+      }
     },
     {
       "slug": "usage-breakdown",
@@ -75,26 +81,32 @@
         "Data source: SLC database",
         "Shows the number of applications, broken down by channel"
       ],
-      "series": [
-        {
-          "id": "paper",
-          "title": "Paper"
-        },
-        {
-          "id": "digital",
-          "title": "Digital"
-        },
-        {
-          "id": "paper",
-          "title": "Paper",
-          "timeshift": 52
-        },
-        {
-          "id": "digital",
-          "title": "Digital",
-          "timeshift": 52
-        }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "key": "value:sum"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "digital",
+            "key": "value:sum"
+          },
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "key": "value:sum",
+            "timeshift": 52
+          },
+          {
+            "label": "Digital",
+            "categoryId": "digital",
+            "key": "value:sum",
+            "timeshift": 52
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",
@@ -213,20 +225,25 @@
         "Data source: Google Analytics",
         "Student Loans Company"
       ],
-      "series": [
-        {
-          "id": "mobile",
-          "title": "Mobile"
-        },
-        {
-          "id": "tablet",
-          "title": "Tablet"
-        },
-        {
-          "id": "desktop",
-          "title": "Desktop"
-        }
-      ]
+      "axis-labels": {
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "mobile",
+            "key": "value:sum"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "tablet",
+            "key": "value:sum"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "desktop",
+            "key": "value:sum"
+          }
+        ]
+      }
     },
     {
       "slug": "service-availability",

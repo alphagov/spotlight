@@ -1,24 +1,37 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Building starts and completions",
   "description": "How many residential builds have been started and completed",
-  "dashboard-title": "Housing",
-  "dashboard-strapline": "Policy dashboard",
-  "dashboard-slug": "housing",
   "data-group": "housing-policy",
   "data-type": "dwellings",
   "use_stack": false,
   "value-attr": "value:sum",
   "category": "type",
   "period": "quarter",
-  "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+  "filter-by": [
+    "geography:United_Kingdom",
+    "tenure:all_dwellings"
+  ],
   "info": [
     "Source: National House-Building Council (NHBC)"
   ],
-  "series": [
-     { "id": "completed", "title": "Completed" },
-     { "id": "started", "title": "Started" }
-   ],
-  "show-line-labels": true
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Completed",
+        "categoryId": "completed",
+        "key": "value:sum"
+      },
+      {
+        "label": "Started",
+        "categoryId": "started",
+        "key": "value:sum"
+      }
+    ]
+  },
+  "show-line-labels": true,
+  "page-type": "module",
+  "dashboard-title": "Housing",
+  "dashboard-strapline": "Policy dashboard",
+  "dashboard-slug": "housing"
 }

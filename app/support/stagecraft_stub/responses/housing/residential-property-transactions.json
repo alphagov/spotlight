@@ -1,26 +1,46 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Residential property transactions",
   "description": "Volume of residential property transactions by nations and regions",
-  "dashboard-title": "Housing",
-  "dashboard-strapline": "Policy dashboard",
-  "dashboard-slug": "housing",
   "data-group": "housing-policy",
   "data-type": "residential-transactions",
   "use_stack": false,
   "value-attr": "value:mean",
   "category": "geography",
   "period": "quarter",
-  "filter-by": ["key:residential_property_transactions"],
+  "filter-by": [
+    "key:residential_property_transactions"
+  ],
   "info": [
     "Source: HMRC"
   ],
-  "series": [
-     { "id": "England", "title": "England" },
-     { "id": "Scotland", "title": "Scotland" },
-     { "id": "Wales", "title": "Wales" },
-     { "id": "Northern_Ireland", "title": "Northern Ireland" }
-   ],
-  "show-line-labels": true
+  "axis-labels": {
+    "y": [
+      {
+        "label": "England",
+        "categoryId": "England",
+        "key": "value:sum"
+      },
+      {
+        "label": "Scotland",
+        "categoryId": "Scotland",
+        "key": "value:sum"
+      },
+      {
+        "label": "Wales",
+        "categoryId": "Wales",
+        "key": "value:sum"
+      },
+      {
+        "label": "Northern Ireland",
+        "categoryId": "Northern_Ireland",
+        "key": "value:sum"
+      }
+    ]
+  },
+  "show-line-labels": true,
+  "page-type": "module",
+  "dashboard-title": "Housing",
+  "dashboard-strapline": "Policy dashboard",
+  "dashboard-slug": "housing"
 }

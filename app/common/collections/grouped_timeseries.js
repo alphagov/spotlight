@@ -50,18 +50,21 @@ function (MatrixCollection) {
         data.push(totalSeries);
       }
 
-      return _.chain(this.options.seriesList)
+      return _.chain(this.options.axisLabels.y)
                      .filter(function (series) {
                         return _.find(data, function (d) {
-                          return d[category] === series.id;
+                          return d[category] === series.categoryId;
                         });
                       })
                      .map(function (series) {
                         var dataSeries = _.find(data, function (d) {
-                          return d[category] === series.id;
+                          return d[category] === series.categoryId;
                         });
 
-                        return _.extend({}, series, {
+                        return _.extend({
+                          id: series.categoryId,
+                          title: series.label
+                        }, {
                           values: dataSeries.values
                         });
                       })
@@ -69,38 +72,38 @@ function (MatrixCollection) {
     },
 
     getDataByTableFormat: function () {
-      if (this.options.axisLabels && this.options.seriesList && this.options.period) {
+      if (this.options.axisLabels && this.options.period) {
         var allTables = [],
           dateRow = this.options.axisLabels.x.label + ' (' + this.options.period + ')',
           dateKey = this.options.axisLabels.x.key,
-          series = this.options.seriesList,
-          seriesLength = series.length,
-          seriesData = this.options.axisLabels.y.key,
+          seriesList = this.options.axisLabels.y,
           tableHeadings = [];
 
         tableHeadings.push(dateRow);
 
-        _.each(series, function (item) {
-          tableHeadings.push(item.title);
+        _.each(seriesList, function (series) {
+          tableHeadings.push(series.label);
         });
 
         allTables.push(tableHeadings);
+
         _.each(this.models, function (collectionOfCollections, index) {
-          var collection = collectionOfCollections.get('values');
+          var series = seriesList[index],
+              collection = collectionOfCollections.get('values');
 
           if (collection.length && index === 0) {
             _.each(collection.models, function (model) {
-              var tableRow = new Array(seriesLength + 1);
+              var tableRow = new Array(series.length);
               tableRow[0] = this.getMoment(model.get(dateKey))
                 .format(this.periods[this.options.period].format.longhand);
-              tableRow[1] = model.get(seriesData);
+              tableRow[1] = model.get(series.key);
 
               allTables.push(tableRow);
             }, this);
           } else {
             _.each(collection.models, function (model, modelIndex) {
               var tableRow = allTables[modelIndex + 1];
-              tableRow[index + 1] = model.get(seriesData);
+              tableRow[index + 1] = model.get(series.key);
             });
           }
         }, this);

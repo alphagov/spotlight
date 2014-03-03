@@ -1,0 +1,35 @@
+{
+  "module-type": "grouped_timeseries",
+  "title": "Usage breakdown",
+  "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">Non Digital</span> transactions",
+  "data-group": "solihull-local-authority",
+  "data-type": "transactions-by-channel",
+  "category": "digital",
+  "period": "week",
+  "value-attr": "count:sum",
+  "show-line-labels": true,
+  "show-total-lines": true,
+  "cumulative": true,
+  "info": [
+    "Data source: CSV extract",
+    "Shows the number of digital and non digital transactions"
+  ],
+  "axis-labels": {
+    "y": [
+      {
+        "label": "Digital",
+        "categoryId": "Digital",
+        "key": "value:sum"
+      },
+      {
+        "label": "Non Digital",
+        "categoryId": "NonDigital",
+        "key": "value:sum"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Solihull missed waste collection",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "solihull-local-authority"
+}
