@@ -81,7 +81,97 @@ function (DeltaView, Model, Collection) {
         expect(view.$el.find('.change').text()).toContain('−100.00%');
       });
     });
- 
+
+    it('uses the timeAttr option if it is passed', function () {
+
+      var testCollection, testView;
+
+      testCollection = new Collection();
+      testCollection.reset([ {
+        id: 'test',
+        title: 'test',
+        values: new Collection([
+          {
+            _timestamp: testCollection.getMoment('2012-09-01T00:00:00+00:00'),
+            a: 1,
+            b: 2,
+            c: null,
+            d: 0,
+            e: 5
+          },
+          {
+            _timestamp: testCollection.getMoment('2013-09-01T00:00:00+00:00'),
+            a: 0.5,
+            b: 4,
+            c: 6,
+            d: 10,
+            e: 0
+          }
+        ])
+      } ]);
+      testView = new DeltaView({
+        collection: testCollection,
+        stat: {
+          'title': 'Statistic A',
+          'attr': 'a'
+        },
+        valueAttr: 'a',
+        timeAttr: '_timestamp'
+      });
+
+      jasmine.renderView(testView, function () {
+        expect(testView.$el.find('.change')).toHaveText('−50.00%');
+        expect(testView.$el.text()).toContain('Sep 2012');
+      });
+
+    });
+
+    it('uses delta and deltaPeriod if passed', function () {
+
+      var testCollection, testView;
+      testCollection = new Collection();
+      testCollection.reset([ {
+        id: 'test',
+        title: 'test',
+        values: new Collection([
+          {
+            _timestamp: testCollection.getMoment('2013-08-01T00:00:00+00:00'),
+            a: 1,
+            b: 2,
+            c: null,
+            d: 0,
+            e: 5
+          },
+          {
+            _timestamp: testCollection.getMoment('2013-09-01T00:00:00+00:00'),
+            a: 0.5,
+            b: 4,
+            c: 6,
+            d: 10,
+            e: 0
+          }
+        ])
+      } ]);
+      testView = new DeltaView({
+        collection: testCollection,
+        stat: {
+          'title': 'Statistic A',
+          'attr': 'a'
+        },
+        valueAttr: 'a',
+        timeAttr: '_timestamp',
+        delta: 1,
+        deltaPeriod: 'months'
+      });
+
+      jasmine.renderView(testView, function () {
+        expect(testView.$el.find('.change')).toHaveText('−50.00%');
+        expect(testView.$el.text()).toContain('Aug 2013');
+      });
+
+    });
+
+
   });
 
 });

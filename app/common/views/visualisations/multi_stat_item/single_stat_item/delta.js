@@ -7,6 +7,14 @@ function (SingleStatView) {
     changeOnSelected: true,
     valueTag: 'p',
 
+    initialize: function (options) {
+      SingleStatView.prototype.initialize.apply(this, arguments);
+
+      this.delta = options.delta || 12;
+      this.deltaPeriod = options.deltaPeriod || 'months';
+      this.timeAttr = options.timeAttr || '_start_at';
+    },
+
     render: function() { 
       SingleStatView.prototype.render.apply(this, arguments);
       this.$el.find('p:first').addClass('change impact-number');
@@ -40,13 +48,13 @@ function (SingleStatView) {
 
       var previousValue = null, previousDate = null, trend = null, percentChange = null;
       var currentValue = model.get(attr);
-      var currentDate = model.get('_start_at');
-      
+      var currentDate = model.get(this.timeAttr);
+
       // Get previous value from collection. 
-      previousDate = currentDate.clone().subtract('months', 12);     
+      previousDate = currentDate.clone().subtract(this.deltaPeriod, this.delta);
       var matchingValues = this.collection.first().get('values').find(function(d) {
-        return (d.get('_start_at').valueOf() === previousDate.valueOf());
-      });
+        return (d.get(this.timeAttr).valueOf() === previousDate.valueOf());
+      }, this);
       
       if (typeof matchingValues !== 'undefined') {
         previousValue = matchingValues.get(attr);

@@ -6,6 +6,12 @@ function (SingleStatView, Mustache) {
   var HeadlineItemView = SingleStatView.extend({
     
     changeOnSelected: true,
+
+    initialize: function (options) {
+      SingleStatView.prototype.initialize.apply(this, arguments);
+
+      this.timeAttr = options.timeAttr || '_start_at';
+    },
     
     getValue: function() { 
       var model = this.collection.first().get('values').last();
@@ -15,21 +21,21 @@ function (SingleStatView, Mustache) {
     getLabel: function() { 
       var current_date = this.collection.first().get('values').last();
       if (typeof current_date !== 'undefined') {
-        current_date = current_date.get('_start_at').format('MMM YYYY');
+        current_date = current_date.get(this.timeAttr).format('MMM YYYY');
       } else { 
         current_date = '';
       }
       return current_date;
     },
     
-    getValueSelected: function(selected) { 
+    getValueSelected: function(selected) {
       return this.getFormattedValue(selected.selectedModel, this.stat);
     },
     
-    getLabelSelected: function(selected) { 
+    getLabelSelected: function(selected) {
       var current_date = selected.selectedModel;
       if (typeof current_date !== 'undefined') {
-        current_date = current_date.get('_start_at').format('MMM YYYY');
+        current_date = current_date.get(this.timeAttr).format('MMM YYYY');
       } else { 
         current_date = '';
       }
@@ -45,7 +51,11 @@ function (SingleStatView, Mustache) {
       if (value == null) {
         return null;
       }
-      value = this.formatNumericLabel(value);
+      if (this.isPercent) {
+        value = this.formatPercentage(value);
+      } else {
+        value = this.formatNumericLabel(value);
+      }
       if (stat.format) {
         return Mustache.render(
           stat.format,
