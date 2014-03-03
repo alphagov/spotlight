@@ -5,10 +5,22 @@ define([
 function (Line, Collection) {
   
   describe("Line Component", function () {
-    var el, wrapper, collection, view, line0_colour, line1_colour;
+    var el, wrapper, collection, view, line0_colour, line1_colour, line0_colour_rgb, line1_colour_rgb;
+
+    var matchesColour = function (str, line) {
+      if (line === 0) {
+        return (str === line0_colour) || (str === line0_colour_rgb);
+      } else if (line === 1) {
+        return (str === line1_colour) || (str === line1_colour_rgb);
+      }
+      return false;
+    };
+
     beforeEach(function() {
       line0_colour = "#097f96";
       line1_colour = "#d14836";
+      line0_colour_rgb = "rgb(9, 127, 150)";
+      line1_colour_rgb = "rgb(209, 72, 54)";
       el = $('<div><style type="text/css">.line0 {stroke: '+line0_colour+';}.line1 {stroke: '+line1_colour+';}</style></div>').appendTo($('body'));
       wrapper = Line.prototype.d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
@@ -151,8 +163,8 @@ function (Line, Collection) {
           //as this is the last line there is no further line to colour to encompass the stack
           expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
           expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
-          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
+          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
 
           view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
 
@@ -162,8 +174,8 @@ function (Line, Collection) {
           expect(hasClass('path.line1', 'not-selected')).toBe(true);
           expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
           expect(hasClass('path.line1', 'selected-following-sibling')).toBe(true);
-          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
-          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line0_colour);
+          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
+          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 0)).toBeTruthy;
         });
       });
       describe("when encompassStack is not set", function (){
@@ -176,8 +188,8 @@ function (Line, Collection) {
           expect(hasClass('path.line1', 'not-selected')).toBe(false);
           expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
           expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
-          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
+          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
           expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
 
           view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
@@ -188,8 +200,8 @@ function (Line, Collection) {
           expect(hasClass('path.line1', 'not-selected')).toBe(true);
           expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
           expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(view.componentWrapper.select('path.line0').style('stroke')).toEqual(line0_colour);
-          expect(view.componentWrapper.select('path.line1').style('stroke')).toEqual(line1_colour);
+          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
+          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
         });
       });
 
@@ -254,7 +266,7 @@ function (Line, Collection) {
           expect(overlayCursorLine.attr('y1')).toEqual('100');
           expect(overlayCursorLine.attr('x2')).toEqual('100');
           expect(overlayCursorLine.attr('y2')).toEqual('200');
-          expect(overlayCursorLine.style('stroke')).toEqual(line1_colour);
+          expect(matchesColour(overlayCursorLine.style('stroke'), 1)).toBeTruthy;
         });
       });
       describe("when encompassStack is true", function (){
