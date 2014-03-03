@@ -6,7 +6,7 @@ function (Table, HideShow) {
   return Table.extend({
     initialize: function () {
       if (this.collection.options.axisLabels) {
-        this.$toggleContainer = $('<div></div>');
+        this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
         Table.prototype.initialize.apply(this, arguments);
 
@@ -14,8 +14,7 @@ function (Table, HideShow) {
           $reveal: this.$table,
           $el: this.$toggleContainer,
           showLabel: 'Show the data for this graph.',
-          hideLabel: 'Hide the data for this graph.',
-          className: 'table-toggle'
+          hideLabel: 'Hide the data for this graph.'
         });
       }
     },
