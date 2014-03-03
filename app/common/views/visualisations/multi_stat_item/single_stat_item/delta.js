@@ -15,33 +15,33 @@ function (SingleStatView) {
       this.timeAttr = options.timeAttr || '_start_at';
     },
 
-    render: function() { 
+    render: function () {
       SingleStatView.prototype.render.apply(this, arguments);
       this.$el.find('p:first').addClass('change impact-number');
       this.$el.find('p').removeClass('increase decrease no-change');
       this.$el.find('p').addClass(this.trend);
     },
     
-    getValue: function() { 
+    getValue: function () {
       var model = this.collection.first().get('values').last();
       var change = this.getChange(model, this.stat.attr);
       this.trend = change.trend;
       return change.percentChange;
     },
     
-    getLabel: function() { 
+    getLabel: function () {
       var model = this.collection.first().get('values').last();
       return this.getChange(model, this.stat.attr).previousDate;
     },
     
-    getValueSelected: function(selected) { 
+    getValueSelected: function (selected) {
       var change = this.getChange(selected.selectedModel, this.stat.attr);
       this.trend = change.trend;
       return change.percentChange;
     },
     
-    getLabelSelected: function(selected) { 
-       return this.getChange(selected.selectedModel, this.stat.attr).previousDate;
+    getLabelSelected: function (selected) {
+      return this.getChange(selected.selectedModel, this.stat.attr).previousDate;
     },
     
     getChange: function (model, attr) {
@@ -52,35 +52,35 @@ function (SingleStatView) {
 
       // Get previous value from collection. 
       previousDate = currentDate.clone().subtract(this.deltaPeriod, this.delta);
-      var matchingValues = this.collection.first().get('values').find(function(d) {
+      var matchingValues = this.collection.first().get('values').find(function (d) {
         return (d.get(this.timeAttr).valueOf() === previousDate.valueOf());
       }, this);
       
       if (typeof matchingValues !== 'undefined') {
         previousValue = matchingValues.get(attr);
-        if (previousValue) { 
-          percentChange = (currentValue-previousValue) / previousValue;
+        if (previousValue) {
+          percentChange = (currentValue - previousValue) / previousValue;
           if (percentChange !== 0.0) {
             percentChange = this.formatPercentage(percentChange, 2, true);
-          } else { 
+          } else {
             percentChange = 'no change';
           }
         }
         if (currentValue > previousValue) {
           trend = 'increase';
-        } else if (currentValue < previousValue) { 
+        } else if (currentValue < previousValue) {
           trend = 'decrease';
-        } else { 
+        } else {
           trend = 'no-change';
         }
       }
       
       return {
-        previousDate: previousDate.format('MMM YYYY'), 
-        percentChange: percentChange, 
+        previousDate: previousDate.format('MMM YYYY'),
+        percentChange: percentChange,
         trend: trend
       };
-  }
+    }
   
   });
 

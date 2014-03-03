@@ -13,33 +13,33 @@ function (SingleStatView, Mustache) {
       this.timeAttr = options.timeAttr || '_start_at';
     },
     
-    getValue: function() { 
+    getValue: function () {
       var model = this.collection.first().get('values').last();
       return this.getFormattedValue(model, this.stat);
     },
     
-    getLabel: function() { 
-      var current_date = this.collection.first().get('values').last();
-      if (typeof current_date !== 'undefined') {
-        current_date = current_date.get(this.timeAttr).format('MMM YYYY');
-      } else { 
-        current_date = '';
+    getLabel: function () {
+      var currentDate = this.collection.first().get('values').last();
+      if (typeof currentDate !== 'undefined') {
+        currentDate = currentDate.get(this.timeAttr).format('MMM YYYY');
+      } else {
+        currentDate = '';
       }
-      return current_date;
+      return currentDate;
     },
     
-    getValueSelected: function(selected) {
+    getValueSelected: function (selected) {
       return this.getFormattedValue(selected.selectedModel, this.stat);
     },
     
-    getLabelSelected: function(selected) {
-      var current_date = selected.selectedModel;
-      if (typeof current_date !== 'undefined') {
-        current_date = current_date.get(this.timeAttr).format('MMM YYYY');
-      } else { 
-        current_date = '';
+    getLabelSelected: function (selected) {
+      var currentDate = selected.selectedModel;
+      if (typeof currentDate !== 'undefined') {
+        currentDate = currentDate.get(this.timeAttr).format('MMM YYYY');
+      } else {
+        currentDate = '';
       }
-      return current_date;
+      return currentDate;
     },
     
     getFormattedValue: function (model, stat) {
@@ -48,7 +48,7 @@ function (SingleStatView, Mustache) {
       if (typeof model !== 'undefined') {
         value = model.get(stat.attr);
       }
-      if (value == null) {
+      if (value === null) {
         return null;
       }
       if (this.isPercent) {
