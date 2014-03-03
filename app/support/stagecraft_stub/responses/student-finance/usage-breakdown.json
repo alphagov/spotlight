@@ -24,7 +24,7 @@
   "series": [
     { "id": "paper", "title": "Paper" },
     { "id": "digital", "title": "Digital" },
-    { "id": "paper", "title": "Paper", "timeshift": 52 },
-    { "id": "digital", "title": "Digital", "timeshift": 52 }
+    { "id": "paper", "title": "Paper", "timeshift": 52 },
+    { "id": "digital", "title": "Digital", "timeshift": 52 }
   ]
 }
