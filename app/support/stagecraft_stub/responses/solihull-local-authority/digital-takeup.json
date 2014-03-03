@@ -1,7 +1,7 @@
 {
   "page-type": "module",
   "dashboard-title": "Solihull missed waste collection",
-  "dashboard-strapline": "Solihull Local Authority",
+  "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "solihull-local-authority",
   "module-type": "completion_rate",
   "title": "Digital take-up",
@@ -11,7 +11,7 @@
   "info": [
     "Data source: CSV update",
     "Digital take-up measures digital transactions as a percentage of the total."
-  ],  
+  ],
   "numerator-matcher": "^Digital$",
   "denominator-matcher": ".*",
   "matching-attribute": "channel",
