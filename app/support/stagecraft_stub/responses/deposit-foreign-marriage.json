@@ -60,11 +60,13 @@
       ],
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
-      "steps": [
-        {"id": "deposit-foreign-marriage:start", "title": "Start"},
-        {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
-        {"id": "deposit-foreign-marriage:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "deposit-foreign-marriage:start", "label": "Start"},
+          {"journeyId": "deposit-foreign-marriage:confirm", "label": "Confirm"},
+          {"journeyId": "deposit-foreign-marriage:done", "label": "Done"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

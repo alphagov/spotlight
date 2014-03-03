@@ -8,8 +8,8 @@ define([
       if (options.getStep) {
         this.getStep = options.getStep;
       }
-      if (options.steps) {
-        this.steps = options.steps;
+      if (options.axes) {
+        this.axes = options.axes;
       }
       Collection.prototype.initialize.apply(this, arguments);
     },
@@ -18,16 +18,16 @@ define([
       var weeksAgo = this.options.weeksAgo || 0;
       return this.lastWeekDateRange(this.getMoment(), weeksAgo);
     },
-    
+
     parse: function (response) {
-      var data = _.map(this.steps, function (step) {
+      var data = _.map(this.axes.y, function (step) {
         return _.extend({
-          title: step.title,
-          step: step.id,
+          title: step.label,
+          step: step.journeyId,
           uniqueEvents: 0,
           uniqueEventsNormalised: 0
         }, _.find(response.data, function (responseStep) {
-          return this.getStep(responseStep) === step.id;
+          return this.getStep(responseStep) === step.journeyId;
         }, this));
       }, this);
 

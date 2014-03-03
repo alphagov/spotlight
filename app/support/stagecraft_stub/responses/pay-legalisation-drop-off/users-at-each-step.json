@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "journey",
   "title": "Users at each step",
   "description": "Number of users who completed important steps of the transaction last week",
-  "dashboard-title": "Pay to legalise documents using the premium service",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-legalisation-drop-off",
   "info": [
     "Data source: Google Analytics",
     "The total number of users who arrived at each step.",
@@ -13,9 +9,24 @@
   ],
   "data-group": "pay-legalisation-drop-off",
   "data-type": "journey",
-  "steps": [
-    {"id": "pay-legalisation-drop-off:start", "title": "Start"},
-    {"id": "pay-legalisation-drop-off:confirm", "title": "Confirm"},
-    {"id": "pay-legalisation-drop-off:done", "title": "Done"}
-  ]
+  "axes": {
+    "y": [
+      {
+        "journeyId": "pay-legalisation-drop-off:start",
+        "label": "Start"
+      },
+      {
+        "journeyId": "pay-legalisation-drop-off:confirm",
+        "label": "Confirm"
+      },
+      {
+        "journeyId": "pay-legalisation-drop-off:done",
+        "label": "Done"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Pay to legalise documents using the premium service",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "pay-legalisation-drop-off"
 }

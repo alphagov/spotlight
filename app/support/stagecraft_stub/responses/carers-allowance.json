@@ -98,12 +98,14 @@
       "data-group": "carers-allowance",
       "data-type": "journey",
       "matching-attribute": "eventLabel",
-      "steps": [
-        {"id": "about-you", "title": "About you"},
-        {"id": "care-you-provide", "title": "About the care you provide"},
-        {"id": "other-money", "title": "Other money"},
-        {"id": "consent-and-declaration", "title": "Consent and declaration"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "about-you", "label": "About you"},
+          {"journeyId": "care-you-provide", "label": "About the care you provide"},
+          {"journeyId": "other-money", "label": "Other money"},
+          {"journeyId": "consent-and-declaration", "label": "Consent and declaration"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

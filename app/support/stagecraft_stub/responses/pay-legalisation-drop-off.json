@@ -60,11 +60,13 @@
       ],
       "data-group": "pay-legalisation-drop-off",
       "data-type": "journey",
-      "steps": [
-        {"id": "pay-legalisation-drop-off:start", "title": "Start"},
-        {"id": "pay-legalisation-drop-off:confirm", "title": "Confirm"},
-        {"id": "pay-legalisation-drop-off:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "pay-legalisation-drop-off:start", "label": "Start"},
+          {"journeyId": "pay-legalisation-drop-off:confirm", "label": "Confirm"},
+          {"journeyId": "pay-legalisation-drop-off:done", "label": "Done"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

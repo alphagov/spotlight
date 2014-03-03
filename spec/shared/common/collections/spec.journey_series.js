@@ -5,20 +5,25 @@ define([
     var TestCollection;
     beforeEach(function() {
       TestCollection = JourneySeriesCollection.extend({
-        steps: [
-          {
-            id: 'example:downloadFormPage',
-            title: 'A'
-          },
-          {
-            id: 'example:submitApplicationPage',
-            title: 'B'
-          },
-          {
-            id: 'example:end',
-            title: 'C'
-          }
-        ]
+        axes: {
+          y: [
+            {
+              journeyId: 'example:downloadFormPage',
+              label: 'A',
+              key: 'uniqueEvents'
+            },
+            {
+              journeyId: 'example:submitApplicationPage',
+              label: 'B',
+              key: 'uniqueEvents'
+            },
+            {
+              journeyId: 'example:end',
+              label: 'C',
+              key: 'uniqueEvents'
+            }
+          ]
+        },
       });
 
       this.addMatchers({
@@ -30,37 +35,41 @@ define([
     });
 
     describe("initialize", function () {
-      it("allows setting steps from the constructor", function () {
+      it("allows setting axes from the constructor", function () {
         var collection = new JourneySeriesCollection([], {
-          steps: [
-            { id: 'example:downloadFormPage', title: 'A' }
-          ]
+          axes: {
+            y: [
+              { journeyId: 'example:downloadFormPage', label: 'A', key: 'uniqueEvents' }
+            ]
+          }
         });
 
-        expect(collection.steps).toEqual([
-          { id: 'example:downloadFormPage', title: 'A' }
-        ]);
+        expect(collection.axes).toEqual({
+          y: [
+            { journeyId: 'example:downloadFormPage', label: 'A', key: 'uniqueEvents' }
+          ]
+        });
       });
     });
 
     describe("queryParams", function() {
-      
-      it("requests data for the last week by default", function() { 
+
+      it("requests data for the last week by default", function() {
         var collection = new TestCollection();
-        
+
         jasmine.setupMoment('2013-03-13T00:00:00+00:00', collection);
-      
+
         var params = collection.queryParams();
         expect(params).toHaveStartAndEndDatesMatching('2013-03-04T00:00:00', '2013-03-11T00:00:00');
       });
-      
-      it("requests data for an earlier week", function() { 
+
+      it("requests data for an earlier week", function() {
         var collection = new TestCollection(null, {
           weeksAgo: 1
         });
-        
+
         jasmine.setupMoment('2013-03-13', collection);
-      
+
         var params = collection.queryParams();
         expect(params).toHaveStartAndEndDatesMatching('2013-02-25T00:00:00', '2013-03-04T00:00:00');
       });
@@ -195,7 +204,7 @@ define([
         });
       });
     });
-    
+
     describe("parse", function () {
       it("should not change order if they follow the specified sort order", function() {
         var models = [
@@ -237,7 +246,7 @@ define([
         expect(collection.at(1).get('step')).toEqual("example:submitApplicationPage");
         expect(collection.at(2).get('step')).toEqual("example:end");
       });
-      
+
       it("adds a normalised fraction of unique events for each step", function () {
         var models = [
           {stepAttr: "example:downloadFormPage", uniqueEvents: 50000},

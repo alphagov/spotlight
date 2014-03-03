@@ -13,19 +13,10 @@ function (ModuleController, JourneyCollection, ConversionGraph) {
 
     collectionOptions: function () {
       return {
-        steps: this.model.get('steps'),
         matchingAttribute: this.model.get('matching-attribute'),
         axes: _.merge({
-          "x": {
-            "label": "Title",
-            "key": "title"
-          },
-          "y": [
-            {
-              "label": "Users at step",
-              "key": "uniqueEvents"
-            }
-          ]
+          x: {},
+          y: []
         }, this.model.get('axes'))
       };
     }

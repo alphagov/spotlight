@@ -10,13 +10,44 @@
   "data-group": "student-finance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",
-  "steps": [
-    {"id": "about-you", "title": "About you"},
-    {"id": "previous-study", "title": "About your previous studies"},
-    {"id": "course-and-fees", "title": "Course and fees"},
-    {"id": "living-costs", "title": "Living costs"},
-    {"id": "financial-info", "title": "Financial info"},
-    {"id": "additional-info", "title": "Additional info"},
-    {"id": "confirm", "title": "Confirm"}
-  ]
+  "axes": {
+    "y": [
+      {
+        "journeyId": "about-you",
+        "label": "About you"
+      },
+      {
+        "journeyId": "previous-study",
+        "label": "About your previous studies"
+      },
+      {
+        "journeyId": "course-and-fees",
+        "label": "Course and fees"
+      },
+      {
+        "journeyId": "living-costs",
+        "label": "Living costs"
+      },
+      {
+        "journeyId": "financial-info",
+        "label": "Financial info"
+      },
+      {
+        "journeyId": "additional-info",
+        "label": "Additional info"
+      },
+      {
+        "journeyId": "confirm",
+        "label": "Confirm"
+      },
+      {
+        "journeyId": "submitted",
+        "label": "Submitted"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Apply for student finance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance"
 }

@@ -10,22 +10,17 @@ define([
       beforeEach(function () {
         spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
         collection = new JourneyCollection([{}], {
-          steps: [
-            {
-              id: 'example:start',
-              title: 'Start'
-            },
-            {
-              id: 'example:end',
-              title: 'End'
-            }
-          ],
           axes: {
-            x: {
-              key: 'title'
-            },
+            x: {},
             y: [
               {
+                journeyId: 'example:start',
+                label: 'Start',
+                key: 'b'
+              },
+              {
+                journeyId: 'example:end',
+                label: 'End',
                 key: 'b'
               }
             ]
@@ -37,13 +32,13 @@ define([
         ]));
       });
 
-      it('calls the MatrixCollection getDataByTableFormat if no steps are set', function () {
-        delete collection.options.steps;
+      it('calls the MatrixCollection getDataByTableFormat if no axes are set', function () {
+        delete collection.options.axes;
         collection.getDataByTableFormat();
         expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
       });
 
-      it('will not call the MatrixCollection if steps are set', function () {
+      it('will not call the MatrixCollection if axes are set', function () {
         collection.getDataByTableFormat();
         expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
       });
