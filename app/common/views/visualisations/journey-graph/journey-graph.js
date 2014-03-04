@@ -30,7 +30,7 @@ function (Graph, XAxis, Bar, Callout, Hover) {
     getYPos: function (groupIndex, modelIndex) {
       return this.configs.overlay.getYPos.apply(this, arguments);
     },
-    
+
     calcXScale: function () {
       var xScale = this.d3.scale.linear();
       var count = this.collection.at(0).get('values').length;

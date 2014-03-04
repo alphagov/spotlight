@@ -2,7 +2,7 @@ define([
   'extensions/views/graph/xaxis'
 ],
 function (XAxis) {
-  var ConversionXAxis = XAxis.extend({
+  var JourneyXAxis = XAxis.extend({
     useEllipses: true,
     tickValues: function () {
       return [_.range(this.collection.at(0).get('values').length)];
@@ -17,5 +17,5 @@ function (XAxis) {
     }
   });
 
-  return ConversionXAxis;
+  return JourneyXAxis;
 });

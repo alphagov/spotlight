@@ -2,9 +2,9 @@ define([
   'extensions/views/graph/callout'
 ],
 function (Callout) {
-  
-  var ConversionCallout = Callout.extend({
-  
+
+  var JourneyCallout = Callout.extend({
+
     horizontal: 'centre',
     vertical: 'bottom',
     xOffset: 0,
@@ -33,11 +33,11 @@ function (Callout) {
       }
       return x;
     },
-    
+
     y: function (group, groupIndex, model, index) {
       return 0;
     },
-    
+
     getPivotingElement: function () {
       return this.calloutEl.find('.arrow');
     },
@@ -70,12 +70,12 @@ function (Callout) {
           this.formatPercentage(model.get('uniqueEventsNormalised')),
         '</dd>'
       ].join(''));
-      
+
       el.empty().append(arrow, header, body);
     }
-    
+
 
   });
-  
-  return ConversionCallout;
+
+  return JourneyCallout;
 });

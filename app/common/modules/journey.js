@@ -1,12 +1,12 @@
 define([
   'extensions/controllers/module',
   'common/collections/journey',
-  'common/views/visualisations/conversion-graph/conversion-graph'
+  'common/views/visualisations/journey-graph/journey-graph'
 ],
-function (ModuleController, JourneyCollection, ConversionGraph) {
+function (ModuleController, JourneyCollection, JourneyGraph) {
   var JourneyModule = ModuleController.extend({
     className: 'journey',
-    visualisationClass: ConversionGraph,
+    visualisationClass: JourneyGraph,
     collectionClass: JourneyCollection,
     clientRenderOnInit: true,
     requiresSvg: true,

@@ -2,7 +2,7 @@ define([
   'extensions/views/graph/interleavedbar'
 ],
 function (InterleavedBar) {
-  var ConversionBar = InterleavedBar.extend({
+  var JourneyBar = InterleavedBar.extend({
     interactive: true,
     strokeAlign: 'inner',
 
@@ -16,5 +16,5 @@ function (InterleavedBar) {
     }
   });
 
-  return ConversionBar;
+  return JourneyBar;
 });
