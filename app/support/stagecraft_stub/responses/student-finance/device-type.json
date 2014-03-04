@@ -20,18 +20,15 @@
     "y": [
       {
         "label": "Desktop",
-        "categoryId": "mobile",
-        "key": "value:sum"
+        "categoryId": "mobile"
       },
       {
         "label": "Mobile",
-        "categoryId": "tablet",
-        "key": "value:sum"
+        "categoryId": "tablet"
       },
       {
         "label": "Tablet",
-        "categoryId": "desktop",
-        "key": "value:sum"
+        "categoryId": "desktop"
       }
     ]
   },

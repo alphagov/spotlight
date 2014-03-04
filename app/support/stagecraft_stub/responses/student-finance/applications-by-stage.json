@@ -5,7 +5,10 @@
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
   "category": "stage",
-  "filter-by": ["country:england", "application_type:full-time application"],
+  "filter-by": [
+    "country:england",
+    "application_type:full-time application"
+  ],
   "period": "week",
   "axis-period": "month",
   "duration": 52,
@@ -22,24 +25,20 @@
     "y": [
       {
         "label": "Started",
-        "categoryId": "started",
-        "key": "value:sum"
+        "categoryId": "started"
       },
       {
         "label": "Submitted",
-        "categoryId": "submitted",
-        "key": "value:sum"
+        "categoryId": "submitted"
       },
       {
         "label": "Started",
         "categoryId": "started",
-        "key": "value:sum",
         "timeshift": 52
       },
       {
         "label": "Submitted",
         "categoryId": "submitted",
-        "key": "value:sum",
         "timeshift": 52
       }
     ]

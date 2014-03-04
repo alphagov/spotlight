@@ -17,33 +17,27 @@
     "y": [
       {
         "label": "Total",
-        "categoryId": "Total",
-        "key": "value:sum"
+        "categoryId": "Total"
       },
       {
         "label": "Central government",
-        "categoryId": "Central government",
-        "key": "value:sum"
+        "categoryId": "Central government"
       },
       {
         "label": "Other wider public sector",
-        "categoryId": "Other wider public sector",
-        "key": "value:sum"
+        "categoryId": "Other wider public sector"
       },
       {
         "label": "Local government",
-        "categoryId": "Local government",
-        "key": "value:sum"
+        "categoryId": "Local government"
       },
       {
         "label": "Unknown",
-        "categoryId": "Not yet classified",
-        "key": "value:sum"
+        "categoryId": "Not yet classified"
       },
       {
         "label": "Not for profit",
-        "categoryId": "Not for profit",
-        "key": "value:sum"
+        "categoryId": "Not for profit"
       }
     ]
   },

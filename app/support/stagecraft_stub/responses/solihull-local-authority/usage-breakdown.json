@@ -18,13 +18,11 @@
     "y": [
       {
         "label": "Digital",
-        "categoryId": "Digital",
-        "key": "value:sum"
+        "categoryId": "Digital"
       },
       {
         "label": "Non Digital",
-        "categoryId": "NonDigital",
-        "key": "value:sum"
+        "categoryId": "NonDigital"
       }
     ]
   },

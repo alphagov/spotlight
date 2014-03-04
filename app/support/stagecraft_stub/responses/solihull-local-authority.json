@@ -33,18 +33,15 @@
         "y": [
           {
             "label": "Phone",
-            "categoryId": "Phone",
-            "key": "value:sum"
+            "categoryId": "Phone"
           },
           {
             "label": "Face to face",
-            "categoryId": "FaceToFace",
-            "key": "value:sum"
+            "categoryId": "FaceToFace"
           },
           {
             "label": "Other",
-            "categoryId": "Other",
-            "key": "value:sum"
+            "categoryId": "Other"
           }
         ]
       }
@@ -70,13 +67,11 @@
         "y": [
           {
             "label": "Digital",
-            "categoryId": "Digital",
-            "key": "value:sum"
+            "categoryId": "Digital"
           },
           {
             "label": "Non Digital",
-            "categoryId": "NonDigital",
-            "key": "value:sum"
+            "categoryId": "NonDigital"
           }
         ]
       }

@@ -17,23 +17,19 @@
     "y": [
       {
         "label": "Total",
-        "categoryId": "Total",
-        "key": "value:sum"
+        "categoryId": "Total"
       },
       {
         "label": "Small and medium enterprises",
-        "categoryId": "Small and medium enterprises",
-        "key": "value:sum"
+        "categoryId": "Small and medium enterprises"
       },
       {
         "label": "Large enterprises",
-        "categoryId": "Large enterprises",
-        "key": "value:sum"
+        "categoryId": "Large enterprises"
       },
       {
         "label": "Not yet classified",
-        "categoryId": "Unknown",
-        "key": "value:sum"
+        "categoryId": "Unknown"
       }
     ]
   },

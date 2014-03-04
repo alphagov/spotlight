@@ -1,41 +1,39 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Categories in a stack",
   "description": "",
-  "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "housing-policy",
   "data-type": "residential-transactions",
   "use_stack": true,
   "value-attr": "value:sum",
   "category": "geography",
   "period": "month",
-  "filter-by": ["key:residential_property_transactions"],
+  "filter-by": [
+    "key:residential_property_transactions"
+  ],
   "axes": {
     "y": [
       {
         "label": "England",
-        "categoryId": "England",
-        "key": "value:sum"
+        "categoryId": "England"
       },
       {
         "label": "Scotland",
-        "categoryId": "Scotland",
-        "key": "value:sum"
+        "categoryId": "Scotland"
       },
       {
         "label": "Wales",
-        "categoryId": "Wales",
-        "key": "value:sum"
+        "categoryId": "Wales"
       },
       {
         "label": "Northern Ireland",
-        "categoryId": "Northern_Ireland",
-        "key": "value:sum"
+        "categoryId": "Northern_Ireland"
       }
     ]
   },
-  "show-line-labels": true
+  "show-line-labels": true,
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
 }

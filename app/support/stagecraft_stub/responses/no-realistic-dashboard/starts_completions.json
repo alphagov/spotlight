@@ -1,18 +1,17 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Categories as lines",
   "description": "",
-  "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "housing-policy",
   "data-type": "dwellings",
   "use_stack": false,
   "value-attr": "value:sum",
   "category": "type",
   "period": "quarter",
-  "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+  "filter-by": [
+    "geography:United_Kingdom",
+    "tenure:all_dwellings"
+  ],
   "info": [
     "Source: National House-Building Council (NHBC)"
   ],
@@ -20,15 +19,17 @@
     "y": [
       {
         "label": "Completed",
-        "categoryId": "completed",
-        "key": "value:sum"
+        "categoryId": "completed"
       },
       {
         "label": "Started",
-        "categoryId": "started",
-        "key": "value:sum"
+        "categoryId": "started"
       }
     ]
   },
-  "show-line-labels": true
+  "show-line-labels": true,
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
 }

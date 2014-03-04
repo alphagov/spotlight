@@ -38,24 +38,20 @@
         "y": [
           {
             "label": "Started",
-            "categoryId": "started",
-            "key": "value:sum"
+            "categoryId": "started"
           },
           {
             "label": "Submitted",
-            "categoryId": "submitted",
-            "key": "value:sum"
+            "categoryId": "submitted"
           },
           {
             "label": "Started",
             "categoryId": "started",
-            "key": "value:sum",
             "timeshift": 52
           },
           {
             "label": "Submitted",
             "categoryId": "submitted",
-            "key": "value:sum",
             "timeshift": 52
           }
         ]
@@ -85,24 +81,20 @@
         "y": [
           {
             "label": "Paper",
-            "categoryId": "paper",
-            "key": "value:sum"
+            "categoryId": "paper"
           },
           {
             "label": "Digital",
-            "categoryId": "digital",
-            "key": "value:sum"
+            "categoryId": "digital"
           },
           {
             "label": "Paper",
             "categoryId": "paper",
-            "key": "value:sum",
             "timeshift": 52
           },
           {
             "label": "Digital",
             "categoryId": "digital",
-            "key": "value:sum",
             "timeshift": 52
           }
         ]
@@ -235,18 +227,15 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "mobile",
-            "key": "value:sum"
+            "categoryId": "mobile"
           },
           {
             "label": "Mobile",
-            "categoryId": "tablet",
-            "key": "value:sum"
+            "categoryId": "tablet"
           },
           {
             "label": "Tablet",
-            "categoryId": "desktop",
-            "key": "value:sum"
+            "categoryId": "desktop"
           }
         ]
       }

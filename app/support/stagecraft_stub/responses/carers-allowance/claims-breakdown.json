@@ -21,13 +21,11 @@
     "y": [
       {
         "label": "Paper form",
-        "categoryId": "ca_clerical_received",
-        "key": "value:sum"
+        "categoryId": "ca_clerical_received"
       },
       {
         "label": "Digital",
-        "categoryId": "ca_e_claims_received",
-        "key": "value:sum"
+        "categoryId": "ca_e_claims_received"
       }
     ]
   },

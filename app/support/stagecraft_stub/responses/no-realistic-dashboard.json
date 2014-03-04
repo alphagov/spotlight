@@ -191,23 +191,19 @@
         "y": [
           {
             "label": "England",
-            "categoryId": "England",
-            "key": "value:sum"
+            "categoryId": "England"
           },
           {
             "label": "Scotland",
-            "categoryId": "Scotland",
-            "key": "value:sum"
+            "categoryId": "Scotland"
           },
           {
             "label": "Wales",
-            "categoryId": "Wales",
-            "key": "value:sum"
+            "categoryId": "Wales"
           },
           {
             "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland",
-            "key": "value:sum"
+            "categoryId": "Northern_Ireland"
           }
         ]
       },
@@ -232,13 +228,11 @@
         "y": [
           {
             "label": "Completed",
-            "categoryId": "completed",
-            "key": "value:sum"
+            "categoryId": "completed"
           },
           {
             "label": "Started",
-            "categoryId": "started",
-            "key": "value:sum"
+            "categoryId": "started"
           }
         ]
       },
