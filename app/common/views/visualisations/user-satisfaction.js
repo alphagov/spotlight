@@ -2,14 +2,12 @@ define([
   'extensions/views/view',
   'common/views/visualisations/multi_stat_item/single_stat_item/headline',
   'common/views/visualisations/multi_stat_item/single_stat_item/delta',
-  'stache!common/templates/visualisations/user-satisfaction',
-  'Mustache'
+  'stache!common/templates/visualisations/user-satisfaction'
 ],
 function (View, HeadlineItemView, DeltaItemView, template) {
   var UserSatisfactionView = View.extend({
 
     template: template,
-    sparkline: true,
 
     initialize: function () {
 
