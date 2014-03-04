@@ -9,18 +9,15 @@ define([
           y: [
             {
               journeyId: 'example:downloadFormPage',
-              label: 'A',
-              key: 'uniqueEvents'
+              label: 'A'
             },
             {
               journeyId: 'example:submitApplicationPage',
-              label: 'B',
-              key: 'uniqueEvents'
+              label: 'B'
             },
             {
               journeyId: 'example:end',
-              label: 'C',
-              key: 'uniqueEvents'
+              label: 'C'
             }
           ]
         },
@@ -39,14 +36,14 @@ define([
         var collection = new JourneySeriesCollection([], {
           axes: {
             y: [
-              { journeyId: 'example:downloadFormPage', label: 'A', key: 'uniqueEvents' }
+              { journeyId: 'example:downloadFormPage', label: 'A' }
             ]
           }
         });
 
         expect(collection.axes).toEqual({
           y: [
-            { journeyId: 'example:downloadFormPage', label: 'A', key: 'uniqueEvents' }
+            { journeyId: 'example:downloadFormPage', label: 'A' }
           ]
         });
       });
@@ -245,40 +242,6 @@ define([
         expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
         expect(collection.at(1).get('step')).toEqual("example:submitApplicationPage");
         expect(collection.at(2).get('step')).toEqual("example:end");
-      });
-
-      it("adds a normalised fraction of unique events for each step", function () {
-        var models = [
-          {stepAttr: "example:downloadFormPage", uniqueEvents: 50000},
-          {stepAttr: "example:submitApplicationPage", uniqueEvents: 25000},
-          {stepAttr: "example:end", uniqueEvents: 10000}
-        ];
-        var collection = new TestCollection(null, { matchingAttribute: 'stepAttr' });
-        collection.reset(collection.parse({ data: models }));
-
-        expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
-        expect(collection.at(0).get('uniqueEventsNormalised')).toEqual(1);
-        expect(collection.at(1).get('step')).toEqual("example:submitApplicationPage");
-        expect(collection.at(1).get('uniqueEventsNormalised')).toEqual(0.5);
-        expect(collection.at(2).get('step')).toEqual("example:end");
-        expect(collection.at(2).get('uniqueEventsNormalised')).toEqual(0.2);
-      });
-
-      it("deals with missing steps in the response", function () {
-        var models = [];
-        var collection = new TestCollection(null, { matchingAttribute: 'stepAttr' });
-        collection.reset(collection.parse({ data: models }));
-
-        expect(collection.length).toEqual(3);
-        expect(collection.at(0).get('step')).toEqual("example:downloadFormPage");
-        expect(collection.at(0).get('uniqueEvents')).toEqual(0);
-        expect(collection.at(0).get('uniqueEventsNormalised')).toEqual(0);
-        expect(collection.at(1).get('step')).toEqual("example:submitApplicationPage");
-        expect(collection.at(1).get('uniqueEvents')).toEqual(0);
-        expect(collection.at(1).get('uniqueEventsNormalised')).toEqual(0);
-        expect(collection.at(2).get('step')).toEqual("example:end");
-        expect(collection.at(2).get('uniqueEvents')).toEqual(0);
-        expect(collection.at(2).get('uniqueEventsNormalised')).toEqual(0);
       });
 
       it("assigns step from a configurable property", function() {

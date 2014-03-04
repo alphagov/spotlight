@@ -44,11 +44,15 @@ function (Callout) {
 
     renderContent: function (el, group, groupIndex, model, index) {
 
+      var attr = this.graph.valueAttr;
+
       var arrow = $('<div>').addClass('arrow').html('<span class="outer-arrow">&#x25B2;</span><span class="inner-arrow">&#x25B2;</span>');
 
       var query = model.collection.query;
       var start = query.get('start_at');
       var end = this.getMoment(query.get('end_at')).subtract(1, 'days');
+      var val = model.get(attr) || 0;
+      var max = model.collection.max(function (m) { return m.get(attr) || 0; }).get(attr) || 1;
 
       var header = $('<h3>').html([
         '<span class="date stack' + groupIndex + '">',
@@ -63,11 +67,11 @@ function (Callout) {
       var body = $('<dl>').html([
         '<dt>Number of users:</dt>',
         '<dd>',
-        this.formatNumericLabel(model.get('uniqueEvents')),
+          this.formatNumericLabel(val),
         '</dd>',
         '<dt>Percentage relative to start:</dt>',
         '<dd>',
-          this.formatPercentage(model.get('uniqueEventsNormalised')),
+          this.formatPercentage(val / max),
         '</dd>'
       ].join(''));
 

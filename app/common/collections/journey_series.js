@@ -23,23 +23,11 @@ define([
       var data = _.map(this.axes.y, function (step) {
         return _.extend({
           title: step.label,
-          step: step.journeyId,
-          uniqueEvents: 0,
-          uniqueEventsNormalised: 0
+          step: step.journeyId
         }, _.find(response.data, function (responseStep) {
           return this.getStep(responseStep) === step.journeyId;
         }, this));
       }, this);
-
-      var maxVal = _.reduce(data, function (memo, step) {
-        return Math.max(memo, step.uniqueEvents);
-      }, 0);
-
-      if (maxVal !== 0) {
-        _.each(data, function (step) {
-          step.uniqueEventsNormalised = step.uniqueEvents / maxVal;
-        });
-      }
 
       return data;
     },

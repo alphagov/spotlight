@@ -198,6 +198,21 @@ function (require, Collection, Group) {
       }
     },
 
+    max: function (attr) {
+      var groupMaximums = this.map(function (group) {
+        var values = group.get('values'),
+          max;
+
+        if (values.length) {
+          max = values.max(function (model) {
+            return model.get(attr) || 0;
+          }).get(attr);
+        }
+        return max;
+      }, this);
+      return Math.max.apply(Math, groupMaximums);
+    },
+
     onGroupChangeSelected: function (group, groupIndex, model, index) {
       if (index === null) {
         group = null;
@@ -209,5 +224,3 @@ function (require, Collection, Group) {
 
   return MatrixCollection;
 });
-
-

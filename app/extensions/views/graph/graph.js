@@ -332,7 +332,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         getYPos: function (groupIndex, modelIndex) {
           var group = this.collection.at(groupIndex);
           var model = group.get('values').at(modelIndex);
-          return model.get(this.valueAttr);
+          return model.get(this.valueAttr) || 0;
         },
         calcYScale: function () {
           var d3 = this.d3;

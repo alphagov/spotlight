@@ -409,6 +409,39 @@ function (MatrixCollection, Collection, Group) {
         });
       });
 
+      describe('max', function () {
+        var collection;
+        beforeEach(function () {
+          collection = new MatrixCollection([{}, {}]);
+          collection.at(0).set('values', new Collection([
+            { a: 1, b: 2 },
+            { a: 3, b: 4 }
+          ]));
+          collection.at(1).set('values', new Collection([
+            { a: 5, b: 6 },
+            { a: 7, b: null }
+          ]));
+        });
+
+        it('calculates the maximum value of an attribute', function () {
+          expect(collection.max('a')).toEqual(7);
+          expect(collection.max('b')).toEqual(6);
+        });
+
+        it('handles undefined values', function () {
+          collection.at(0).set('values', new Collection([{ a: 1 }]));
+          collection.at(1).set('values', new Collection([{ a: 1 }]));
+          expect(collection.max('b')).toBeNaN();
+        });
+
+        it('handles empty datasets', function () {
+          collection.at(0).set('values', new Collection([]));
+          collection.at(1).set('values', new Collection([]));
+          expect(collection.max('b')).toBeNaN();
+        });
+
+      });
+
 
       describe('getDataByTableFormat', function () {
         var collection;

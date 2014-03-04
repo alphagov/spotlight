@@ -6,7 +6,7 @@ function (MatrixCollection, JourneySeriesCollection) {
   var JourneyCollection = MatrixCollection.extend({
     collections: [ JourneySeriesCollection ],
 
-    getDataByTableFormat: function () {
+    getDataByTableFormat: function (valueAttr) {
       var options = this.options;
 
       if (options.axes) {
@@ -18,7 +18,7 @@ function (MatrixCollection, JourneySeriesCollection) {
         }));
 
         allTables.push(_.map(this.models[0].attributes.values.models, function (model, i) {
-          return model.get(options.axes.y[i].key || 'uniqueEvents');
+          return model.get(options.axes.y[i].key || valueAttr);
         }));
 
         return allTables;
