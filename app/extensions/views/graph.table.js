@@ -20,7 +20,7 @@ function (Table, HideShow) {
     },
     prepareTable: function () {
       this.$table.appendTo(this.$toggleContainer);
-      this.$toggleContainer.appendTo(this.$el);
+      this.$toggleContainer.insertAfter(this.$el);
     }
   });
 });

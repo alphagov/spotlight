@@ -84,7 +84,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales = {};
       this.margin = {};
 
-      // temporary feature flag around tables
       this.table = new GraphTable(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
 
       // initialize graph components
