@@ -60,6 +60,28 @@ function (DeltaView, Model, Collection) {
 
     });
 
+    it('includes colour classes if specified, but not otherwise', function () {
+
+      var testColourView = new DeltaView({
+        collection: collection,
+        stat: {
+          'title': 'Statistic A',
+          'attr': 'a'
+        },
+        valueAttr: 'a',
+        showColours: true
+      });
+
+      jasmine.renderView(view, function () {
+        expect(view.$el.find('.change')).not.toHaveClass('decline');
+      });
+
+      jasmine.renderView(testColourView, function () {
+        expect(testColourView.$el.find('.change')).toHaveClass('decline');
+      });
+
+    });
+
      it('correctly applies no-change classes to the number, based on the value displayed', function () {
 
       var testNoChangeCollection = new Collection();

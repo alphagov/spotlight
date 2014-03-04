@@ -56,7 +56,8 @@ function (View, HeadlineItemView, DeltaItemView, template) {
               valueAttr: this.stat.attr,
               timeAttr: '_timestamp',
               delta: 1,
-              deltaPeriod: 'months'
+              deltaPeriod: 'months',
+              showColours: true
             };
           }
         }

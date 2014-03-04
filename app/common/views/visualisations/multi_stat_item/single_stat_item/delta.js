@@ -73,8 +73,14 @@ function (SingleStatView) {
         if (percentChange !== 'no change') {
           if (currentValue > previousValue) {
             trend = 'increase';
+            if (this.showColours) {
+              trend += ' improvement';
+            }
           } else if (currentValue < previousValue) {
             trend = 'decrease';
+            if (this.showColours) {
+              trend += ' decline';
+            }
           }
         } else {
           trend = 'no-change';
