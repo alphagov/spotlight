@@ -1,5 +1,7 @@
 .sparkline {
 
+	min-height: 120px;
+
 	.sparkline-graph {
 	  figure.graph {
 	    .graph-wrapper {
@@ -29,7 +31,9 @@
 	}
 
 	.sparkline-title {
-	  float: right;
+	  position: absolute;
+	  top: 150px;
+	  right: 0;
 	  min-height: 3em;
 	}
 
