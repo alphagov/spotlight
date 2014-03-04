@@ -150,6 +150,9 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             'dashboard-strapline': dashboardData.strapline,
             'dashboard-slug': dashboardSlug
           });
+
+          delete module.classes; // We don't care about the classes property on the page-per-thing pages
+
           // Validate it against a schema based on module-type
           var moduleType = module['module-type'];
           validationResult = v.validate(module, moduleSchemas[moduleType]);

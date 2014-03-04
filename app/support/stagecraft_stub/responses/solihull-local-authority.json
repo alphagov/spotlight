@@ -17,7 +17,7 @@
       "slug": "missed-collections-by-channel",
       "module-type": "grouped_timeseries",
       "title": "Transactions by channel",
-      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">Digital</span> and <span class=\"group3\">other</span>.",
+      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">digital</span> and <span class=\"group3\">other</span>.",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",
       "category": "channel",
