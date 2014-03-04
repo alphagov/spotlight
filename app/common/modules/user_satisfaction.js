@@ -13,7 +13,6 @@ function (ModuleController, UserSatisfactionView, ListCollection) {
     visualisationClass: UserSatisfactionView,
     collectionClass: ListCollection,
     clientRenderOnInit: true,
-    requiresSvg: true,
     collectionOptions: function () {
       return {
         id: 'user_satisfaction',
