@@ -121,7 +121,7 @@ function (Table, View, $) {
       it('renders a table', function () {
         table.render();
 
-        expect(table.table.html())
+        expect(table.$table.html())
           .toBe('<tbody><tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr><tr><td>01/02/01</td><td>foo</td><td>no data</td></tr></tbody>');
       });
     });

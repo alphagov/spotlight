@@ -13,7 +13,7 @@ function (MatrixCollection) {
 
     getAttrNames: function () {
       return _.map(this.stats, function (stat) {
-       return stat.attr;
+        return stat.attr;
       });
     },
 
@@ -50,10 +50,6 @@ function (MatrixCollection) {
         values: data
       };
 
-    },
-
-    getDataByTableFormat: function () {
-      return;
     }
 
   });

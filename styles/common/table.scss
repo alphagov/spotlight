@@ -1,0 +1,27 @@
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th, td {
+    @include core-16($tabular-numbers: true);
+    padding: 0.7em 0.5em 0.7em 1em;
+  }
+
+  th {
+    text-align: left;
+    font-weight: bold;
+    border: solid 1px #a1acb2;
+    background-color: #dee0e2;
+    color: #0b0c0c;
+    line-height: 1.25em;
+  }
+
+  td {
+    background: #eaedef;
+    border: dotted 1px #b8c6cc;
+  }
+
+  tr:nth-child(even) td {
+    background: #fff;
+  }
+}

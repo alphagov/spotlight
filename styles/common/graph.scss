@@ -6,6 +6,16 @@ span.group3 { color: $data-colour-4; }
 span.group4 { color: $data-colour-5; }
 span.group5 { color: $data-colour-6; }
 
+.table-toggle {
+  table {
+    .js-enabled & {
+      display: none;
+    }
+
+    padding-bottom: 1em;
+  }
+}
+
 figure.graph {
   margin:0 auto;
   position:relative;
@@ -13,15 +23,6 @@ figure.graph {
   svg {
     max-width: 954px;
     max-height: 400px;
-  }
-
-  // visually hidden table but read aloud by screen readers
-  table {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
   }
 
   h2 {

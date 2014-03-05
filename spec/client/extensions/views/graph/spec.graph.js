@@ -1,14 +1,17 @@
 define([
   'extensions/views/graph/graph',
+  'extensions/views/graph/table',
   'extensions/collections/collection',
   'extensions/models/model',
   'd3'
 ],
-function (Graph, Collection, Model, d3) {
+function (Graph, GraphTable, Collection, Model, d3) {
 
   describe('Graph', function () {
 
-
+    beforeEach(function () {
+      spyOn(GraphTable.prototype, 'initialize');
+    });
 
     it('keeps a reference to d3 library', function () {
       spyOn(Graph.prototype, 'prepareGraphArea');

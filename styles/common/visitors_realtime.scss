@@ -1,44 +1,40 @@
 .realtime {
+  .stat {
+    float: left;
+    width: 240px;
+    min-width: 240px;
 
-	.stat {
-	  float: left;
-	  width: 240px;
-	  min-width: 240px;
-
-	  @media (max-width: 640px) {
+    @media (max-width: 640px) {
       float: none;
     }
-	}
+  }
 
   .sparkline {
     overflow: hidden;
+    min-height: 120px;
 
-		.sparkline-graph {
-		  figure.graph {
-		    .graph-wrapper {
-		      svg {
-		        max-height: 70px;
-		        max-width: 100%;
-		        min-height: 70px;
-		      }
+    .sparkline-graph {
+      figure.graph {
+        .graph-wrapper {
+          svg {
+            max-height: 70px;
+            max-width: 100%;
+            min-height: 70px;
+          }
 
-		      .inner {
-		        left: 70px;
-		        right: 70px;
-		        bottom: 10px;
-		        top: 10px;
+          .inner {
+            left: 70px;
+            right: 70px;
+            bottom: 10px;
+            top: 10px;
 
-					  @media (max-width: 640px) {
-				      left: 30px;
-				      right: 30px;
-				    }
-
-		      }
-
-		    }
-		  }
-		}
-
-	}
-
+            @media (max-width: 640px) {
+              left: 30px;
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

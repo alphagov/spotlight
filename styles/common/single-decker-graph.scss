@@ -48,14 +48,14 @@
   }
 
   @media (max-width: 880px) {
-    
+
     figure.graph {
       .x-axis .tick:nth-child(even) text {
         display:none;
       }
     }
   }
-  
+
   @media(max-width: 640px) {
 
     .impact-number {

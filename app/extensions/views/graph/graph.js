@@ -10,9 +10,9 @@ define([
   './hover',
   './callout',
   './tooltip',
-  'extensions/views/table'
+  'extensions/views/graph/table'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, Table) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, GraphTable) {
 
   var scaleFromStartAndEndDates = {
 
@@ -84,10 +84,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales = {};
       this.margin = {};
 
-      // temporary feature flag around tables
-      if (isClient && window.location.search === '?tables') {
-        this.table = new Table(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
-      }
+      this.table = new GraphTable(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
 
       // initialize graph components
       var componentInstances = this.componentInstances = [];

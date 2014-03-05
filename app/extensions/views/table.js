@@ -13,13 +13,14 @@ function (View) {
 
       collection.on('reset add remove sync', this.render, this);
 
+      this.$table = $('<table></table>');
+
       this.prepareTable();
       this.render();
     },
 
     prepareTable: function () {
-      this.table = $('<table></table>');
-      this.table.appendTo(this.$el);
+      this.$table.appendTo(this.$el);
     },
 
     renderEl: function (elementName, context, value, attr) {
@@ -68,10 +69,10 @@ function (View) {
     // </table>
 
     render: function () {
-      this.table.empty();
+      this.$table.empty();
       _.each(this.collection.getDataByTableFormat(this.valueAttr), function (row, rowIndex) {
 
-        this.row = this.renderEl('tr', this.table);
+        this.row = this.renderEl('tr', this.$table);
 
         _.each(row, function (cel) {
           var elName = 'td',
