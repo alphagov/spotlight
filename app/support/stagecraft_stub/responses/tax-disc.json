@@ -6,6 +6,32 @@
   "tagline": "Tax disc is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='sorn'>SORN (Statutory Off Road Notification)</a>. This service is provided by the DVLA to relicense vehicles that are kept on public roads. This service does not include first vehicle registrations.",
   "modules": [
     {
+      "slug": "applications-breakdown",
+      "module-type": "grouped_timeseries",
+      "title": "Applications breakdown",
+      "description": "Tax disc applications per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+      "data-group": "vehicle-licensing",
+      "data-type": "volumetrics",
+      "category": "channel",
+      "period": "month",
+      "value-attr": "volume:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "filter-by": ["service:tax-disc"],
+      "info": [
+        "Data source: DVLA database",
+        "Shows the number of successful applications to renew a tax disc, broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+        "Digital and automated phone: applications made online or using the automated telephone service",
+        "Post Office: applications made at a Post Office branch",
+        "DVLA centre: applications made at local DVLA centres"
+      ],
+      "series": [
+         { "id": "fully-digital", "title": "Digital and automated phone" },
+         { "id": "assisted-digital", "title": "Post Office" },
+         { "id": "manual", "title": "DVLA centre" }
+      ]
+    },
+    {
       "slug": "service-availability",
       "module-type": "availability",
       "title": "Service availability",
