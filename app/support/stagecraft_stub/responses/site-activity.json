@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
-  "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, based on data from Google Analytics.",
+  "tagline": "Web performance data for all of GOV.UK, including site traffic and availability.",
   "modules": [
     {
       "slug": "live-service-usage",
