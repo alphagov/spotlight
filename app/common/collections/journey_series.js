@@ -1,6 +1,6 @@
 define([
   'extensions/collections/collection'
-], function(Collection) {
+], function (Collection) {
   var JourneySeriesCollection = Collection.extend({
 
     initialize: function (models, options) {
@@ -14,7 +14,7 @@ define([
       Collection.prototype.initialize.apply(this, arguments);
     },
 
-    queryParams: function() {
+    queryParams: function () {
       var weeksAgo = this.options.weeksAgo || 0;
       return this.lastWeekDateRange(this.getMoment(), weeksAgo);
     },
@@ -32,7 +32,7 @@ define([
       return data;
     },
 
-    getStep: function(d) {
+    getStep: function (d) {
       return d[this.options.matchingAttribute] || d.eventCategory;
     }
   });

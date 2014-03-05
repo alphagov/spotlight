@@ -3,7 +3,7 @@ define([
   'extensions/mixins/pivot'
 ],
 function (Component, Pivot) {
-  var LABELS_OFF = "no labels";
+  var LABELS_OFF = 'no labels';
 
   var Tooltip = Component.extend({
     classed: 'tooltip',
@@ -29,12 +29,12 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      if( Object.prototype.toString.call( model ) === '[object Array]' ) {
-        var no_data = true;
-        var sum = _.reduce(model, function(sum, model){
+      if (Object.prototype.toString.call(model) === '[object Array]') {
+        var noData = true;
+        var sum = _.reduce(model, function (sum, model) {
           var value = model.get(this.graph.valueAttr);
-          if(value !== null){
-            no_data = false;
+          if (value !== null) {
+            noData = false;
           }
           return sum += model.get(this.graph.valueAttr);
         }, 0, this);
@@ -42,17 +42,17 @@ function (Component, Pivot) {
         //which manifests in grouped_timeseries displayed as stack.
         //it causes the total rather than the stack value to be displayed
         //when hovering to the right of the last value.
-        //in the case of stacked_graph this is not desired 
-        //(though we still want '(no data)' labels) 
-        //and so we show nothing if noTotal is true and the sum isn't null 
-        if(no_data){
+        //in the case of stacked_graph this is not desired
+        //(though we still want '(no data)' labels)
+        //and so we show nothing if noTotal is true and the sum isn't null
+        if (noData) {
           sum = null;
-        }else if(this.noTotal){
+        } else if (this.noTotal) {
           sum = LABELS_OFF;
         }
         return sum;
-      }else{
-        if(this.graph.model && this.graph.model.get('one-hundred-percent')){
+      } else {
+        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
           return this.collection.fraction(this.graph.valueAttr, groupIndex, index);
         } else {
           return model.get(this.graph.valueAttr);
@@ -69,7 +69,7 @@ function (Component, Pivot) {
     },
 
     onChangeSelected: function (group, groupIndex, model, index) {
-      var unselected = model == null;
+      var unselected = model === null;
       var selection = this.componentWrapper.selectAll('text');
 
       if (unselected) {
@@ -79,12 +79,12 @@ function (Component, Pivot) {
 
       var value = this.getValue(group, groupIndex, model, index);
 
-      if(value == LABELS_OFF){
+      if (value === LABELS_OFF) {
         selection.data([]).exit().remove();
         return;
       }
 
-      if (value == null) {
+      if (value === null) {
         value = this.formatMissingValue();
       } else {
         value = this.formatValue(value);
@@ -92,7 +92,7 @@ function (Component, Pivot) {
 
       selection = selection.data([value, value]);
       selection.exit().remove();
-      selection.enter().append("text").attr('class', function (d, index) {
+      selection.enter().append('text').attr('class', function (d, index) {
         return index === 0 ? 'tooltip-stroke' : 'tooltip-text';
       }).attr('dy', this.textHeight);
 

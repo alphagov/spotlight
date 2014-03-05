@@ -138,24 +138,24 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         period: 'month',
         axes: {
           x: {
-            "label": "Date",
-            "key": "_start_at"
+            'label': 'Date',
+            'key': '_start_at'
           },
           y: [
             {
-              "label": "ABC",
-              "categoryId": "abc",
-              "key": "value:sum"
+              'label': 'ABC',
+              'categoryId': 'abc',
+              'key': 'value:sum'
             },
             {
-              "label": "DEF",
-              "categoryId": "def",
-              "key": "value:sum"
+              'label': 'DEF',
+              'categoryId': 'def',
+              'key': 'value:sum'
             },
             {
-              "label": "XYZ",
-              "categoryId": "xyz",
-              "key": "value:sum"
+              'label': 'XYZ',
+              'categoryId': 'xyz',
+              'key': 'value:sum'
             }
           ]
         }
@@ -219,29 +219,29 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           period: 'month',
           axes: {
             x: {
-              "label": "Date",
-              "key": "_start_at"
+              'label': 'Date',
+              'key': '_start_at'
             },
             y: [
               {
-                "label": "ABC",
-                "categoryId": "abc",
-                "key": "value:sum"
+                'label': 'ABC',
+                'categoryId': 'abc',
+                'key': 'value:sum'
               },
               {
-                "label": "DEF",
-                "categoryId": "def",
-                "key": "value:sum"
+                'label': 'DEF',
+                'categoryId': 'def',
+                'key': 'value:sum'
               },
               {
-                "label": "XYZ",
-                "categoryId": "xyz",
-                "key": "value:sum"
+                'label': 'XYZ',
+                'categoryId': 'xyz',
+                'key': 'value:sum'
               },
               {
-                "label": "GHI",
-                "categoryId": "ghi",
-                "key": "value:sum"
+                'label': 'GHI',
+                'categoryId': 'ghi',
+                'key': 'value:sum'
               }
             ]
           }
@@ -260,14 +260,14 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           period: 'month',
           axes: {
             x: {
-              "label": "Date",
-              "key": "_start_at"
+              'label': 'Date',
+              'key': '_start_at'
             },
             y: [
               {
-                "label": "GHI",
-                "categoryId": "ghi",
-                "key": "value:sum"
+                'label': 'GHI',
+                'categoryId': 'ghi',
+                'key': 'value:sum'
               }
             ]
           }
@@ -286,28 +286,28 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           period: 'month',
           axes: {
             x: {
-              label: "Date",
-              key: "_start_at"
+              label: 'Date',
+              key: '_start_at'
             },
             y: [
               {
-                label: "Total",
-                categoryId: "Total"
+                label: 'Total',
+                categoryId: 'Total'
               },
               {
-                label: "ABC",
-                categoryId: "abc",
-                key: "value:sum"
+                label: 'ABC',
+                categoryId: 'abc',
+                key: 'value:sum'
               },
               {
-                label: "DEF",
-                categoryId: "def",
-                key: "value:sum"
+                label: 'DEF',
+                categoryId: 'def',
+                key: 'value:sum'
               },
               {
-                label: "XYZ",
-                categoryId: "xyz",
-                key: "value:sum"
+                label: 'XYZ',
+                categoryId: 'xyz',
+                key: 'value:sum'
               }
             ]
           },

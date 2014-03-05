@@ -11,8 +11,8 @@ function (PageConfig) {
         return {
           assetPath: '/path/to/assets/',
           govukHost: 'www.gov.uk'
-        }[prop]
-      }
+        }[prop];
+      };
       req = {
         app: {
           get: get
@@ -30,7 +30,7 @@ function (PageConfig) {
 
     describe('commonConfig', function () {
       it('returns configuration required by all Spotlight pages', function () {
-        var commonConfig = PageConfig.commonConfig(req)
+        var commonConfig = PageConfig.commonConfig(req);
         expect(Object.keys(commonConfig).length).toEqual(7);
         expect(commonConfig.assetPath).toEqual('/path/to/assets/');
       });

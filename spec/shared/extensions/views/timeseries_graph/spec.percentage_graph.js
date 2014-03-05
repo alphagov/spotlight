@@ -1,11 +1,10 @@
 define([
   'extensions/views/timeseries_graph/percentage_graph',
-  'extensions/collections/collection',
-  'extensions/models/query'
+  'extensions/collections/collection'
 ],
-  function (Graph, Collection, Query) {
+  function (Graph, Collection) {
 
-    describe("configuration", function () {
+    describe('configuration', function () {
 
       function collectionForPeriod(period) {
         var CollectionWithPeriod =  Collection.extend({
@@ -19,7 +18,7 @@ define([
         return new CollectionWithPeriod();
       }
 
-      it("returns configuration for hour when query period is for hour", function () {
+      it('returns configuration for hour when query period is for hour', function () {
         var view = new Graph({
           collection: collectionForPeriod('hour')
         });
@@ -27,7 +26,7 @@ define([
         expect(view.getConfigNames()).toEqual(['stack', 'hour']);
       });
 
-      it("returns configuration for day when query period is for day", function () {
+      it('returns configuration for day when query period is for day', function () {
         var view = new Graph({
           collection: collectionForPeriod('day')
         });
@@ -35,7 +34,7 @@ define([
         expect(view.getConfigNames()).toEqual(['stack', 'day']);
       });
 
-      it("returns configuration for week when query period is undefined", function () {
+      it('returns configuration for week when query period is undefined', function () {
         var view = new Graph({
           collection: collectionForPeriod()
         });

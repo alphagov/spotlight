@@ -4,7 +4,7 @@ define([
 ],
 function (SingleStatView, Mustache) {
   var HeadlineItemView = SingleStatView.extend({
-    
+
     changeOnSelected: true,
 
     initialize: function (options) {
@@ -12,12 +12,12 @@ function (SingleStatView, Mustache) {
 
       this.timeAttr = options.timeAttr || '_start_at';
     },
-    
+
     getValue: function () {
       var model = this.collection.first().get('values').last();
       return this.getFormattedValue(model, this.stat);
     },
-    
+
     getLabel: function () {
       var currentDate = this.collection.first().get('values').last();
       if (typeof currentDate !== 'undefined') {
@@ -27,11 +27,11 @@ function (SingleStatView, Mustache) {
       }
       return currentDate;
     },
-    
+
     getValueSelected: function (selected) {
       return this.getFormattedValue(selected.selectedModel, this.stat);
     },
-    
+
     getLabelSelected: function (selected) {
       var currentDate = selected.selectedModel;
       if (typeof currentDate !== 'undefined') {
@@ -41,9 +41,9 @@ function (SingleStatView, Mustache) {
       }
       return currentDate;
     },
-    
+
     getFormattedValue: function (model, stat) {
-      
+
       var value = null;
       if (typeof model !== 'undefined') {
         value = model.get(stat.attr);

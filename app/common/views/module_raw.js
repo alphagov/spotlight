@@ -1,8 +1,7 @@
 define([
-  'common/views/module_standalone',
-  'common/views/module'
+  'common/views/module_standalone'
 ],
-function (StandaloneView, Module) {
+function (StandaloneView) {
 
   var ModuleRawView = StandaloneView.extend({
 

@@ -23,7 +23,7 @@ function (PageConfig, StagecraftApiClient) {
     return controller;
   };
 
-  var setup = function (req, res, next) {
+  var setup = function (req, res) {
     var model = setup.getStagecraftApiClient();
 
     model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';

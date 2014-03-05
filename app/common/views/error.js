@@ -26,7 +26,7 @@ function (GovUkView, contentTemplate) {
       '501': {
         title: 'This page is not available',
         description: 'Please try again next year.'
-      }      
+      }
     }
   });
 

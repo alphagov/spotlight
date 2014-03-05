@@ -3,9 +3,9 @@ define([
   'd3'
 ],
 function (Component, d3) {
-  describe("Component", function() {
+  describe('Component', function () {
     
-    it("keeps a reference to d3 library", function() {
+    it('keeps a reference to d3 library', function () {
       var view = new Component({
         collection: {
           on: jasmine.createSpy()
@@ -14,11 +14,11 @@ function (Component, d3) {
       expect(view.d3).toBe(d3);
     });
     
-    describe("initialize", function() {
+    describe('initialize', function () {
       
       var graph, collection;
-      beforeEach(function() {
-        spyOn(Component.prototype, "onHover");
+      beforeEach(function () {
+        spyOn(Component.prototype, 'onHover');
         graph = {
           on: jasmine.createSpy()
         };
@@ -27,7 +27,7 @@ function (Component, d3) {
         };
       });
       
-      it("assigns options as object properties", function() {
+      it('assigns options as object properties', function () {
         var view = new Component({
           testProperty: true,
           collection: collection
@@ -35,15 +35,15 @@ function (Component, d3) {
         expect(view.testProperty).toBe(true);
       });
       
-      it("does not listen to user interaction by default", function () {
+      it('does not listen to user interaction by default', function () {
         var view = new Component({
           graph: graph,
           collection: collection
         });
-        expect(graph.on).not.toHaveBeenCalled();
+        expect(view.graph.on).not.toHaveBeenCalled();
       });
       
-      it("listens to user interaction unconditionally when configured", function () {
+      it('listens to user interaction unconditionally when configured', function () {
         var view = new Component({
           graph: graph,
           collection: collection,
@@ -57,7 +57,7 @@ function (Component, d3) {
         expect(view.onHover).toHaveBeenCalled();
       });
       
-      it("listens to user interaction conditionally when configured", function () {
+      it('listens to user interaction conditionally when configured', function () {
         var view = new Component({
           graph: graph,
           collection: collection,
@@ -80,18 +80,18 @@ function (Component, d3) {
         expect(view.onHover).toHaveBeenCalledWith({ foo: true });
       });
       
-      it("listens to selection changes in the graph collection", function () {
+      it('listens to selection changes in the graph collection', function () {
         var view = new Component({
           graph: graph,
           collection: collection
         });
-        expect(collection.on.argsForCall[0][0]).toEqual('change:selected');
+        expect(view.collection.on.argsForCall[0][0]).toEqual('change:selected');
       });
     });
     
-    describe("render", function () {
-      var componentWrapper, wrapper, view
-      beforeEach(function() {
+    describe('render', function () {
+      var componentWrapper, wrapper, view;
+      beforeEach(function () {
         componentWrapper = {
           classed: jasmine.createSpy()
         };
@@ -104,14 +104,14 @@ function (Component, d3) {
         });
       });
       
-      it("creates a group element for the component", function () {
+      it('creates a group element for the component', function () {
         view.render();
         expect(wrapper.append).toHaveBeenCalledWith('g');
         expect(view.componentWrapper).toBe(componentWrapper);
         expect(componentWrapper.classed).not.toHaveBeenCalled();
       });
       
-      it("creates a group element for the component with a class", function () {
+      it('creates a group element for the component with a class', function () {
         view.classed = 'foo';
         view.render();
         expect(wrapper.append).toHaveBeenCalledWith('g');

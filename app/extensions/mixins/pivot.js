@@ -66,11 +66,11 @@ define(function () {
     },
 
     positionToFraction: function (pos) {
-      if (typeof pos == 'number') {
+      if (typeof pos === 'number') {
         return Math.min(Math.max(pos, 0), 1);
       }
 
-      if (typeof pos == 'string') {
+      if (typeof pos === 'string') {
         // percentage value
         var matches = pos.match(/(-?\d+)\%/);
         var fraction;
@@ -90,7 +90,7 @@ define(function () {
           right: 1
         }[pos];
 
-        return (typeof fraction == 'undefined') ? null : fraction;
+        return (typeof fraction === 'undefined') ? null : fraction;
       }
 
       return null;

@@ -40,7 +40,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
 
     getPageTitle: function () {
       var items = this.getPageTitleItems().filter(function (el) {
-        return el != null;
+        return el !== null;
       });
       if (items.length <= 1) {
         items.push('Performance');
@@ -57,7 +57,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
 
     getBreadcrumbs: function () {
       var breadcrumbs = this.getBreadcrumbCrumbs().filter(function (el) {
-        return el != null;
+        return el !== null;
       });
       return {'breadcrumbs': breadcrumbs};
     },
@@ -72,10 +72,10 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
         {
           head: headTemplate(baseContext),
           bodyEnd: this.bodyEndTemplate(baseContext),
-          topOfPage: "",
+          topOfPage: '',
           pageTitle: this.getPageTitle(),
-          bodyClasses: "",
-          headerClass: "with-proposition",
+          bodyClasses: '',
+          headerClass: 'with-proposition',
           propositionHeader: navigationTemplate,
           cookieMessage: cookieMessageTemplate(),
           footerTop: footerTopTemplate(),

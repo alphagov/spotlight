@@ -13,13 +13,13 @@ define([
     requiresSvg: false,
 
     id: function () {
-      return this.model.get("slug") || this.model.get("module-type");
+      return this.model.get('slug') || this.model.get('module-type');
     },
-        
-    initialize: function(options) {
+
+    initialize: function (options) {
       if (isClient) {
         this.viewClass = ModuleView;
-      } else if (options.raw != null) {
+      } else if (options.raw) {
         this.viewClass = RawView;
       } else if (options.dashboard) {
         this.viewClass = ModuleView;

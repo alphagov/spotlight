@@ -4,24 +4,24 @@ define([
 ],
 function (Line, Collection) {
   
-  describe("Line Component", function () {
-    var el, wrapper, collection, view, line0_colour, line1_colour, line0_colour_rgb, line1_colour_rgb;
+  describe('Line Component', function () {
+    var el, wrapper, collection, view, lineColour0, lineColour1, lineColour0RGB, lineColour1RGB;
 
     var matchesColour = function (str, line) {
       if (line === 0) {
-        return (str === line0_colour) || (str === line0_colour_rgb);
+        return (str === lineColour0) || (str === lineColour0RGB);
       } else if (line === 1) {
-        return (str === line1_colour) || (str === line1_colour_rgb);
+        return (str === lineColour1) || (str === lineColour1RGB);
       }
       return false;
     };
 
-    beforeEach(function() {
-      line0_colour = "#097f96";
-      line1_colour = "#d14836";
-      line0_colour_rgb = "rgb(9, 127, 150)";
-      line1_colour_rgb = "rgb(209, 72, 54)";
-      el = $('<div><style type="text/css">.line0 {stroke: '+line0_colour+';}.line1 {stroke: '+line1_colour+';}</style></div>').appendTo($('body'));
+    beforeEach(function () {
+      lineColour0 = '#097f96';
+      lineColour1 = '#d14836';
+      lineColour0RGB = 'rgb(9, 127, 150)';
+      lineColour1RGB = 'rgb(209, 72, 54)';
+      el = $('<div><style type="text/css">.line0 {stroke: ' + lineColour0 + ';}.line1 {stroke: ' + lineColour1 + ';}</style></div>').appendTo($('body'));
       wrapper = Line.prototype.d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
         {
@@ -64,16 +64,16 @@ function (Line, Collection) {
           return group.get('values').at(index).get(attr);
         }
       });
-      spyOn(Line.prototype, "onChangeSelected");
+      spyOn(Line.prototype, 'onChangeSelected');
     });
 
-    afterEach(function() {
+    afterEach(function () {
       el.remove();
     });
 
-    describe("render", function() {
+    describe('render', function () {
 
-      it("requires an 'x' definition", function() {
+      it('requires an "x" definition', function () {
         expect(function () {
           var view = new Line({
             wrapper: wrapper,
@@ -83,7 +83,7 @@ function (Line, Collection) {
         }).toThrow();
       });
 
-      it("requires an 'y' definition", function() {
+      it('requires an "y" definition', function () {
         expect(function () {
           var view = new Line({
             wrapper: wrapper,
@@ -93,21 +93,21 @@ function (Line, Collection) {
         }).toThrow();
       });
 
-      it("renders paths for each group in the collection in reverse order with sections for each point in the timeseries", function() {
+      it('renders paths for each group in the collection in reverse order with sections for each point in the timeseries', function () {
         view.render();
 
         expect(wrapper.select('g.group:nth-child(1) path').attr('d')).toEqual('M1,3L4,6L7,9L10,11L12,13');
         expect(wrapper.select('g.group:nth-child(2) path').attr('d')).toEqual('M1,2L4,5L7,8L9,10L11,12');
       });
 
-      it("renders multiple paths when there are gaps in the data", function() {
+      it('renders multiple paths when there are gaps in the data', function () {
         collection.at(0).get('values').at(2).set('b', null);
         view.render();
 
         expect(wrapper.select('g.group:nth-child(2) path').attr('d')).toEqual('M1,2L4,5M9,10L11,12');
       });
 
-      it("highlights the current selection", function () {
+      it('highlights the current selection', function () {
         view.render();
 
         expect(view.onChangeSelected).toHaveBeenCalledWith(
@@ -116,7 +116,7 @@ function (Line, Collection) {
       });
     });
 
-    describe("onChangeSelected", function () {
+    describe('onChangeSelected', function () {
 
       var hasClass = function (selector, className) {
         var selection = view.componentWrapper.selectAll(selector);
@@ -135,23 +135,9 @@ function (Line, Collection) {
         });
         return eachItemHasClass;
       };
-      var hasColour = function (selector, colour) {
-        var selection = view.componentWrapper.selectAll(selector);
-        var eachItemHasColour = true;
-        selection.each(function () {
-          if (!eachItemHasColour) {
-            return;
-          }
-          var itemHasColour = d3.select(this).attr('stroke') == colour
-          if (!itemHasColour) {
-            eachItemHasColour = false;
-          }
-        });
-        return eachItemHasColour;
-      };
 
-      describe("when encompassStack is true", function (){
-        it("highlights the selected group and the following line, dims the other groups and sets the following line colour to that of the selected", function () {
+      describe('when encompassStack is true', function () {
+        it('highlights the selected group and the following line, dims the other groups and sets the following line colour to that of the selected', function () {
           view.encompassStack = true;
           view.render();
           view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
@@ -178,8 +164,8 @@ function (Line, Collection) {
           expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 0)).toBeTruthy;
         });
       });
-      describe("when encompassStack is not set", function (){
-        it("highlights the selected group and dims the other groups", function () {
+      describe('when encompassStack is not set', function () {
+        it('highlights the selected group and dims the other groups', function () {
           view.render();
           view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
           expect(hasClass('path.line0', 'selected')).toBe(false);
@@ -205,7 +191,7 @@ function (Line, Collection) {
         });
       });
 
-      it("highlights the selected group and dims the other groups and their line terminators", function () {
+      it('highlights the selected group and dims the other groups and their line terminators', function () {
         collection.at(0).get('values').at(3).set('b', null);
         collection.at(1).get('values').at(3).set('c', null);
 
@@ -234,32 +220,32 @@ function (Line, Collection) {
         expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
       });
 
-      describe("when encompassStack is true", function (){
-        beforeEach(function(){
-          var y = function (group, groupIndex, model, index) {
+      describe('when encompassStack is true', function () {
+        beforeEach(function () {
+          var y = function (group, groupIndex) {
             return groupIndex * 100;
           };
-          var x = function (group, groupIndex, model, index) {
+          var x = function (group, groupIndex) {
             return groupIndex * 50;
           };
           view.y = y;
           view.x = x;
           view.encompassStack = true;
           view.drawCursorLine = true;
-          view.renderCursorLine = function(){return null;};
+          view.renderCursorLine = function () { return null; };
         });
-        it("renders a selection indicator on the selected item and the one after using the class of the first and joins them by line", function () {
+        it('renders a selection indicator on the selected item and the one after using the class of the first and joins them by line', function () {
           view.render();
           view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
           expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
-          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0]
+          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0];
           expect(circles.length).toEqual(2);
-          expect($(circles[0]).attr("cx")).toEqual('100');
-          expect($(circles[0]).attr("cy")).toEqual('200');
-          expect($(circles[1]).attr("cx")).toEqual('50');
-          expect($(circles[1]).attr("cy")).toEqual('100');
-          expect($(circles[0]).attr("class")).toEqual($(circles[1]).attr("class"));
+          expect($(circles[0]).attr('cx')).toEqual('100');
+          expect($(circles[0]).attr('cy')).toEqual('200');
+          expect($(circles[1]).attr('cx')).toEqual('50');
+          expect($(circles[1]).attr('cy')).toEqual('100');
+          expect($(circles[0]).attr('class')).toEqual($(circles[1]).attr('class'));
 
           var overlayCursorLine = view.componentWrapper.select('line.selectedIndicator.cursorLine.overlay');
           expect(overlayCursorLine.attr('x1')).toEqual('50');
@@ -269,12 +255,12 @@ function (Line, Collection) {
           expect(matchesColour(overlayCursorLine.style('stroke'), 1)).toBeTruthy;
         });
       });
-      describe("when encompassStack is true", function (){
-        it("renders a selection indicator on the selected item and not the one after", function () {
-          var y = function (group, groupIndex, model, index) {
+      describe('when encompassStack is true', function () {
+        it('renders a selection indicator on the selected item and not the one after', function () {
+          var y = function (group, groupIndex) {
             return groupIndex * 100;
           };
-          var x = function (group, groupIndex, model, index) {
+          var x = function (group, groupIndex) {
             return groupIndex * 50;
           };
           view.y = y;
@@ -283,14 +269,14 @@ function (Line, Collection) {
           view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
 
           expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
-          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0]
+          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0];
           expect(circles.length).toEqual(1);
-          expect($(circles[0]).attr("cx")).toEqual('50');
-          expect($(circles[0]).attr("cy")).toEqual('100');
+          expect($(circles[0]).attr('cx')).toEqual('50');
+          expect($(circles[0]).attr('cy')).toEqual('100');
         });
       });
 
-      it("doesn't renders a selection indicator for missing data item", function () {
+      it('doesn\'t renders a selection indicator for missing data item', function () {
         view.render();
         collection.at(1).get('values').at(1).set('c', null);
         view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
@@ -299,9 +285,9 @@ function (Line, Collection) {
       });
     });
 
-    describe("getDistanceAndClosestModel", function () {
+    describe('getDistanceAndClosestModel', function () {
 
-      it("calculates distance to an interpolated position between points and picks closest model", function () {
+      it('calculates distance to an interpolated position between points and picks closest model', function () {
         var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 2.5,
           y: -3
@@ -323,7 +309,7 @@ function (Line, Collection) {
         expect(res.index).toEqual(2);
       });
 
-      it("calculates NaN distance to a line when the x is off the scale", function () {
+      it('calculates NaN distance to a line when the x is off the scale', function () {
         var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 50,
           y: -3
@@ -335,7 +321,7 @@ function (Line, Collection) {
         expect(res.index).toEqual(4);
       });
 
-      it("calculates distance to an interpolated position between points and picks closest model that is not null", function () {
+      it('calculates distance to an interpolated position between points and picks closest model that is not null', function () {
         collection.at(0).get('values').at(1).set('b', null);
         var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 2.5,
@@ -355,12 +341,12 @@ function (Line, Collection) {
       });
 
 
-      it("selected the first point when no other points have a value", function() {
+      it('selected the first point when no other points have a value', function () {
         collection.at(0).get('values').at(1).set('b', null);
         collection.at(0).get('values').at(2).set('b', null);
         collection.at(0).get('values').at(3).set('b', null);
         collection.at(0).get('values').at(4).set('b', null);
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 7,
           y: 2
         });
@@ -369,43 +355,43 @@ function (Line, Collection) {
         expect(res.index).toEqual(0);
       });
 
-      it("selected the null point when there is a gap in the data and allowMissingData is true", function() {
+      it('selected the null point when there is a gap in the data and allowMissingData is true', function () {
         collection.at(0).get('values').at(2).set('b', null);
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
+        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 5.49,
           y: 2
-        }, {allowMissingData: true})
+        }, {allowMissingData: true});
         expect(res.index).toEqual(1);
         expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 5.5,
           y: 2
-        }, {allowMissingData: true})
+        }, {allowMissingData: true});
         expect(res.index).toEqual(2);
         expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 7.99,
           y: 2
-        }, {allowMissingData: true})
+        }, {allowMissingData: true});
         expect(res.index).toEqual(2);
         expect(isNaN(res.diff)).toEqual(false);
         res = view.getDistanceAndClosestModel(collection.at(0), 0, {
           x: 8,
           y: 2
-        }, {allowMissingData: true})
+        }, {allowMissingData: true});
         expect(res.index).toEqual(3);
         expect(isNaN(res.diff)).toEqual(false);
       });
 
     });
 
-    describe("onHover", function () {
+    describe('onHover', function () {
 
-      beforeEach(function() {
-        spyOn(collection, "selectItem");
+      beforeEach(function () {
+        spyOn(collection, 'selectItem');
       });
 
-      it("selects the closest item in the closest group", function () {
+      it('selects the closest item in the closest group', function () {
         view.onHover({
           x: 7,
           y: 8
@@ -413,7 +399,7 @@ function (Line, Collection) {
         expect(collection.selectItem).toHaveBeenCalledWith(0, 2);
       });
 
-      it("keeps the current group when possible", function () {
+      it('keeps the current group when possible', function () {
         view.collection.selectedIndex = 1;
         view.onHover({
           x: 7,
@@ -422,7 +408,7 @@ function (Line, Collection) {
         expect(collection.selectItem).toHaveBeenCalledWith(1, 2);
       });
 
-      it("optionally toggles selection when the new item is the currently selected item", function () {
+      it('optionally toggles selection when the new item is the currently selected item', function () {
         view.collection.selectedIndex = 0;
         view.collection.selectedItem = view.collection.at(0);
         view.collection.at(0).get('values').selectItem(2);

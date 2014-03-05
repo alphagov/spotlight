@@ -4,16 +4,16 @@ define([
   'extensions/models/model'
 ],
 function (Dashboard, Controller, Model) {
-  describe("Dashboard", function () {
-    describe("render", function () {
+  describe('Dashboard', function () {
+    describe('render', function () {
 
       var model;
-      beforeEach(function() {
-        spyOn(Controller.prototype, "render");
+      beforeEach(function () {
+        spyOn(Controller.prototype, 'render');
         model = new Model();
       });
 
-      it("renders immediately when there are no modules", function () {
+      it('renders immediately when there are no modules', function () {
         var controller = new Dashboard({
           model: model
         });
@@ -21,7 +21,7 @@ function (Dashboard, Controller, Model) {
         expect(Controller.prototype.render).toHaveBeenCalled();
       });
 
-      it("renders modules and then renders itself when all modules are ready", function () {
+      it('renders modules and then renders itself when all modules are ready', function () {
 
         var Module1 = Controller.extend({
           render: jasmine.createSpy()

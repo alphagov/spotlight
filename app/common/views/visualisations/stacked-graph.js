@@ -45,17 +45,17 @@ function (Graph) {
 
       if (this.model && this.model.get('one-hundred-percent')) {
         yAxisOptions = {
-          tickFormat: function(){
-            return function(d){
-              return d * 100 + "%";
+          tickFormat: function () {
+            return function (d) {
+              return d * 100 + '%';
             };
           }
         };
-        tooltipFormat = function(d){
-          return Math.round(d * 100) + "%";
+        tooltipFormat = function (d) {
+          return Math.round(d * 100) + '%';
         };
       } else {
-        tooltipFormat = function(d){
+        tooltipFormat = function (d) {
           return this.formatNumericLabel(d);
         };
       }
@@ -81,9 +81,9 @@ function (Graph) {
 
     getConfigNames: function () {
       var axisConfig = 'week';
-      if(this.collection.options.axisPeriod){
+      if (this.collection.options.axisPeriod) {
         axisConfig = this.collection.options.axisPeriod;
-      } else if (this.collection.query.get('period')){
+      } else if (this.collection.query.get('period')) {
         axisConfig = this.collection.query.get('period');
       }
       return ['stack', axisConfig];

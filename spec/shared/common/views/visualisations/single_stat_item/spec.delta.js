@@ -5,7 +5,7 @@ define([
 ],
 function (DeltaView, Model, Collection) {
   describe('DeltaView', function () {
-  
+
     var collection, view;
     beforeEach(function () {
       collection = new Collection();
@@ -14,7 +14,7 @@ function (DeltaView, Model, Collection) {
         title: 'test',
         values: new Collection([
           {
-            _start_at: collection.getMoment("2012-09-01T00:00:00+00:00"),
+            _start_at: collection.getMoment('2012-09-01T00:00:00+00:00'),
             a: 1,
             b: 2,
             c: null,
@@ -22,7 +22,7 @@ function (DeltaView, Model, Collection) {
             e: 5
           },
           {
-            _start_at: collection.getMoment("2013-09-01T00:00:00+00:00"),
+            _start_at: collection.getMoment('2013-09-01T00:00:00+00:00'),
             a: 0.5,
             b: 4,
             c: 6,
@@ -31,7 +31,7 @@ function (DeltaView, Model, Collection) {
           }
         ])
       } ]);
-    
+
       view = new DeltaView({
         collection: collection,
         stat: {
@@ -40,9 +40,9 @@ function (DeltaView, Model, Collection) {
         },
         valueAttr: 'a'
       });
-      
+
     });
-  
+
     it('renders sample data', function () {
 
       jasmine.renderView(view, function () {
@@ -51,7 +51,7 @@ function (DeltaView, Model, Collection) {
       });
 
     });
-  
+
     it('correctly applies increase and decrease classes to the number', function () {
 
       jasmine.renderView(view, function () {
@@ -82,7 +82,7 @@ function (DeltaView, Model, Collection) {
 
     });
 
-     it('correctly applies no-change classes to the number, based on the value displayed', function () {
+    it('correctly applies no-change classes to the number, based on the value displayed', function () {
 
       var testNoChangeCollection = new Collection();
       testNoChangeCollection.reset([ {
@@ -90,7 +90,7 @@ function (DeltaView, Model, Collection) {
         title: 'test',
         values: new Collection([
           {
-            _start_at: collection.getMoment("2012-09-01T00:00:00+00:00"),
+            _start_at: collection.getMoment('2012-09-01T00:00:00+00:00'),
             a: 1,
             b: 2,
             c: null,
@@ -98,7 +98,7 @@ function (DeltaView, Model, Collection) {
             e: 5
           },
           {
-            _start_at: collection.getMoment("2013-09-01T00:00:00+00:00"),
+            _start_at: collection.getMoment('2013-09-01T00:00:00+00:00'),
             a: 0.9999999,
             b: 4,
             c: 6,
@@ -130,7 +130,7 @@ function (DeltaView, Model, Collection) {
     });
 
     it('does not show a delta if the denominator is zero', function () {
-      
+
       collection.first().get('values').first().set('a', 0);
       jasmine.renderView(view, function () {
         expect(view.$el.find('span')).toHaveClass('no-data');

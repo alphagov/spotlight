@@ -3,9 +3,9 @@ define([
   'extensions/collections/timeseries'
 ],
 function (Group, Timeseries) {
-  describe("Group", function () {
-    describe("parse", function () {
-      it("converts `values` into a time series", function () {
+  describe('Group', function () {
+    describe('parse', function () {
+      it('converts `values` into a time series', function () {
         var group = new Group([
           {
             foo: 'bar',
@@ -16,8 +16,8 @@ function (Group, Timeseries) {
               }
             ]
           }
-        ], {parse: true})
-        
+        ], {parse: true});
+
         expect(group.get('values') instanceof Timeseries).toBe(true);
       });
     });

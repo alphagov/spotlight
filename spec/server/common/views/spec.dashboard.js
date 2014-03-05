@@ -3,10 +3,10 @@ define([
   'extensions/models/model'
 ],
 function (DashboardView, Model) {
-  describe("DashboardView", function () {
+  describe('DashboardView', function () {
 
     var view, model;
-    beforeEach(function() {
+    beforeEach(function () {
       model = new Model({
         foo: 'bar'
       });
@@ -20,9 +20,9 @@ function (DashboardView, Model) {
       ];
     });
 
-    describe("getContent", function () {
+    describe('getContent', function () {
 
-      it("render content template with model data and module content", function () {
+      it('render content template with model data and module content', function () {
         var result = view.getContent();
         expect(result).toEqual('rendered');
         var context = view.contentTemplate.argsForCall[0][0];
@@ -31,8 +31,8 @@ function (DashboardView, Model) {
       });
     });
 
-    describe("getPageTitle", function () {
-      it("calculates page title from title and strapline", function () {
+    describe('getPageTitle', function () {
+      it('calculates page title from title and strapline', function () {
         model.set({
           title: 'Title',
           'strapline': 'Strapline'
@@ -40,7 +40,7 @@ function (DashboardView, Model) {
         expect(view.getPageTitle()).toEqual('Title - Strapline - GOV.UK');
       });
 
-      it("calculates page title from title alone", function () {
+      it('calculates page title from title alone', function () {
         model.set({
           title: 'Title'
         });

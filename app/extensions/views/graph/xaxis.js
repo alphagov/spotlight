@@ -19,8 +19,8 @@ function (d3, Axis) {
         this.ellipsifyaxes();
       }
     },
-    ellipsifyaxes: function() {
 
+    ellipsifyaxes: function () {
       // Manually add ellipses to x-axis labels if they are longer than the
       // space allocated for each data item.
       // We do this by hand with D3, because SVG text elements don't support
@@ -29,10 +29,10 @@ function (d3, Axis) {
       if (!this.svg) {
         this.svg = d3.select('svg'); // For unit tests.
       }
-      var svgWidth = this.svg.style('width').replace('px','');
+      var svgWidth = this.svg.style('width').replace('px', '');
       var blockWidth = svgWidth / this.collection.first().get('values').length;
 
-      labels.each(function() {
+      labels.each(function () {
 
         if (d3.select(this).attr('original-text') === null) {
           d3.select(this).attr('original-length-px', this.getComputedTextLength());
@@ -45,7 +45,7 @@ function (d3, Axis) {
         if (textLength > (blockWidth)) {
           var percentTooLong = blockWidth / textLength;
           var lastChar = (text.length * percentTooLong) - 3;
-          d3.select(this).text(text.substring(0,lastChar) + "…");
+          d3.select(this).text(text.substring(0, lastChar) + '…');
         } else {
           d3.select(this).text(text);
         }
@@ -61,7 +61,7 @@ function (d3, Axis) {
       var ticks = this.componentWrapper.selectAll('.tick');
       ticks.classed('selected', false);
 
-      if (indexSelected != null) {
+      if (_.isNumber(indexSelected)) {
         d3.select(ticks[0][indexSelected]).classed('selected', true);
       }
     },
@@ -73,7 +73,7 @@ function (d3, Axis) {
           return [d3.time.hour.utc, 6];
         },
         tickFormat: function () {
-          return _.bind(function (d, index) {
+          return _.bind(function (d) {
             var date = this.getMoment(d);
             if (date.hours() === 0) {
               return 'midnight';
@@ -91,7 +91,7 @@ function (d3, Axis) {
           return [d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
-          return _.bind(function (d, index) {
+          return _.bind(function (d) {
             return this.getMoment(d).format('D MMM');
           }, this);
         }
@@ -102,7 +102,7 @@ function (d3, Axis) {
           return [d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
-          return _.bind(function (d, index) {
+          return _.bind(function (d) {
             return this.getMoment(d).format('D MMM');
           }, this);
         }
@@ -113,10 +113,10 @@ function (d3, Axis) {
           return [d3.time.month.utc, 1];
         },
         tickFormat: function () {
-          return _.bind(function (d, index) {
+          return _.bind(function (d) {
             var val = this.getMoment(d).format('MMM');
             if (d.getMonth() === 0) {
-              val += " " + this.getMoment(d).format('YYYY');
+              val += ' ' + this.getMoment(d).format('YYYY');
             }
             return val;
           }, this);

@@ -17,7 +17,7 @@ function (Graph) {
       }
       return ['stack', axisConfig];
     },
-    
+
     components: function () {
       return [
         { view: this.sharedComponents.xaxis },

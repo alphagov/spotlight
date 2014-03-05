@@ -2,19 +2,19 @@ define([
   'require',
   './component'
 ],
-function(require, Component) {
+function (require, Component) {
   /**
    * Renders multiple data series as blocks of 'interleaved' bars. Each block
    * contains one value from each series.
    */
   var InterleavedBar = Component.extend({
-    
+
     blockMarginFraction: 0.2,
     barMarginFraction: 0.05,
     align: 'left',
 
     offsetText: -8,
-    
+
     classed: 'bar',
 
     x: function (group, groupIndex, model, index) {
@@ -33,8 +33,8 @@ function(require, Component) {
     y0: function () {
       return 0;
     },
-    
-    barWidth: function (group, groupIndex, model, index) {
+
+    barWidth: function () {
       var numGroups = this.collection.length;
       var numBarSpaces = numGroups - 1;
       var blockWidth = this.blockWidth.apply(this, arguments);
@@ -47,13 +47,13 @@ function(require, Component) {
 
     render: function () {
       Component.prototype.render.apply(this, arguments);
-      
+
       var selection = this.componentWrapper.selectAll('g.group')
           .data(this.collection.models);
       selection.exit().remove();
 
-      var enterSelection = selection.enter().append('g').attr('class', 'group');
-      
+      selection.enter().append('g').attr('class', 'group');
+
       var that = this;
       selection.each(function (group, groupIndex) {
         var segmentSelection = that.d3.select(this).selectAll('g.segment')
@@ -65,7 +65,7 @@ function(require, Component) {
         if (that.text) {
           enterSegmentSelection.append('text');
         }
-        
+
         segmentSelection.each(function (model, i) {
           that.updateSegment.call(that, groupIndex, d3.select(this), model, i);
         }, this);
@@ -134,7 +134,7 @@ function(require, Component) {
     onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
       this.componentWrapper.selectAll('g.segment').classed('selected', false);
 
-      if (indexSelected == null) {
+      if (indexSelected === null) {
         return;
       }
 
@@ -174,14 +174,14 @@ function(require, Component) {
           }
         }, this);
       }, this);
-      
+
       if (e.toggle) {
         this.collection.selectItem(best.groupIndex, best.index, { toggle: true });
       } else {
         this.collection.selectItem(best.groupIndex, best.index);
       }
     }
-    
+
   });
 
   return InterleavedBar;

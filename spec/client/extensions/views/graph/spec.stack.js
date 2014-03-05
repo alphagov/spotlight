@@ -3,9 +3,9 @@ define([
   'extensions/collections/matrix'
 ],
 function (Stack, Collection) {
-  describe("Stack component", function () {
+  describe('Stack component', function () {
     var el, wrapper, collection, layers, stack;
-    beforeEach(function() {
+    beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
       wrapper = Stack.prototype.d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
@@ -46,14 +46,14 @@ function (Stack, Collection) {
       layers = stack(collection.models.slice().reverse());
     });
     
-    afterEach(function() {
+    afterEach(function () {
       el.remove();
     });
     
-    describe("render", function() {
+    describe('render', function () {
 
       var view;
-      beforeEach(function() {
+      beforeEach(function () {
         view = new Stack({
           interactive: false,
           wrapper: wrapper,
@@ -76,7 +76,7 @@ function (Stack, Collection) {
         });
       });
       
-      it("renders a stack consisting of a stroked path and a filled path for each item in the collection", function() {
+      it('renders a stack consisting of a stroked path and a filled path for each item in the collection', function () {
         view.render();
         var group1 = wrapper.selectAll('g.group:nth-child(1)');
         expect(group1.selectAll('path.line').attr('d')).toEqual('M1.5,6L5.5,14L9.5,22L12.5,28L15.5,34');
@@ -86,7 +86,7 @@ function (Stack, Collection) {
         expect(group2.selectAll('path.stack').attr('d')).toEqual('M1.5,10L5.5,26L9.5,42L12.5,54L15.5,66L15.5,34L12.5,28L9.5,22L5.5,14L1.5,6Z');
       });
 
-      it("renders multiple paths when there are gaps in the data", function() {
+      it('renders multiple paths when there are gaps in the data', function () {
         collection.at(0).get('values').at(2).set('b', null);
         collection.at(1).get('values').at(2).set('b', null);
         view.graph.layers = stack(collection.models.slice().reverse());
@@ -99,7 +99,7 @@ function (Stack, Collection) {
         expect(group2.selectAll('path.stack').attr('d')).toEqual('M1.5,10L5.5,26L5.5,14L1.5,6ZM12.5,54L15.5,66L15.5,34L12.5,28Z');
       });
 
-      it("renders multiple paths when there are gaps in the data and when using custom stack properties", function() {
+      it('renders multiple paths when there are gaps in the data and when using custom stack properties', function () {
         collection.at(0).get('values').at(2).set('b', null);
         collection.at(1).get('values').at(2).set('b', null);
         view.graph.stackYProperty = 'yCustom';
@@ -120,7 +120,7 @@ function (Stack, Collection) {
         expect(group2.selectAll('path.stack').attr('d')).toEqual('M1.5,10L5.5,26L5.5,14L1.5,6ZM12.5,54L15.5,66L15.5,34L12.5,28Z');
       });
 
-      it("ensures that elements are rendered in correct order after an element was selected", function () {
+      it('ensures that elements are rendered in correct order after an element was selected', function () {
         // correct rendering order for stack is from bottom to top
         view.render();
         expect(wrapper.select('g.group:nth-child(1) path.line').attr('class')).toContain('line1');
@@ -139,13 +139,13 @@ function (Stack, Collection) {
 
     });
 
-    describe("onHover", function () {
+    describe('onHover', function () {
 
       var collection;
       var view;
       var layers;
       var stack;
-      beforeEach(function() {
+      beforeEach(function () {
         collection = new Collection([
           {
             // group 0
@@ -174,7 +174,7 @@ function (Stack, Collection) {
           .values(function (group) {
             return group.get('values').models;
           })
-          .y(function (model, index) {
+          .y(function (model) {
             return model.get('y');
           });
         layers = stack(collection.models.slice().reverse());
@@ -191,57 +191,57 @@ function (Stack, Collection) {
               return y;
             }
           },
-          x: function (group, groupIndex, model, index) {
+          x: function (group, groupIndex, model) {
             return model.get('x');
           },
-          y: function (group, groupIndex, model, index) {
+          y: function (group, groupIndex, model) {
             return model.get('y');
           },
-          y0: function (group, groupIndex, model, index) {
+          y0: function (group, groupIndex, model) {
             return model.y0;
           }
         });
         view.render();
 
-        spyOn(collection, "selectItem");
+        spyOn(collection, 'selectItem');
       });
 
-      it("selects the group the user is hovering over and the closest model in that group", function () {
+      it('selects the group the user is hovering over and the closest model in that group', function () {
         view.onHover({ x: 1, y: 2 });
         expect(collection.selectItem.mostRecentCall.args).toEqual([0, 0]);
         view.onHover({ x: 1, y: 4 });
         expect(collection.selectItem.mostRecentCall.args).toEqual([1, 0]);
       });
 
-      it("selects no group is the x position is after the end of the graph", function () {
+      it('selects no group is the x position is after the end of the graph', function () {
         view.onHover({ x: 50, y: 2 });
         expect(collection.selectItem.mostRecentCall.args).toEqual([null, 4]);
       });
 
-      it("selects the first group and the closest model in that group when the user hovers above the topmost area", function () {
+      it('selects the first group and the closest model in that group when the user hovers above the topmost area', function () {
         view.onHover({ x: 1, y: -200 });
         expect(collection.selectItem).toHaveBeenCalledWith(0, 0);
       });
 
-      it("selects the last group and the closest model in that group when the user hovers below the bottommost area", function () {
+      it('selects the last group and the closest model in that group when the user hovers below the bottommost area', function () {
         view.onHover({ x: 1, y: 200 });
         expect(collection.selectItem).toHaveBeenCalledWith(1, 0);
       });
 
-      it("optionally toggles selection when the new item is the currently selected item", function () {
+      it('optionally toggles selection when the new item is the currently selected item', function () {
         view.collection.selectItem(1, 0);
         view.onHover({ x: 1, y: 200, toggle: true });
         expect(collection.getCurrentSelection().selectedGroup).toBeFalsy();
         expect(collection.getCurrentSelection().selectedModel).toBeFalsy();
       });
 
-      it("optionally selects all items at a given position but not the group", function () {
+      it('optionally selects all items at a given position but not the group', function () {
         view.selectGroup = false;
         view.onHover({ x: 1, y: 3 });
         expect(collection.selectItem.mostRecentCall.args).toEqual([null, 0]);
       });
 
-      it("selects closest point when hovering over missing data and missing data is not allowed", function() {
+      it('selects closest point when hovering over missing data and missing data is not allowed', function () {
         var missingDataIndex = 2;
 
         collection.at(0).get('values').at(missingDataIndex).set('y', null);
@@ -251,7 +251,7 @@ function (Stack, Collection) {
         expect(collection.selectItem.mostRecentCall.args).toEqual([0, 3]);
       });
 
-      it("selects missing data index when missing data is allowed", function() {
+      it('selects missing data index when missing data is allowed', function () {
         var missingDataIndex = 2;
 
         collection.at(0).get('values').at(missingDataIndex).set('y', null);
@@ -262,7 +262,7 @@ function (Stack, Collection) {
         expect(collection.selectItem.mostRecentCall.args[1]).toEqual(missingDataIndex);
       });
 
-      it("calls selectItem with selectGroupIndex null when diff and dist are NaN", function() {
+      it('calls selectItem with selectGroupIndex null when diff and dist are NaN', function () {
         var closestModelDetails = {dist: NaN, diff: NaN, index: 1};
         spyOn(view, 'getDistanceAndClosestModel').andReturn(closestModelDetails);
         var selectItem = jasmine.createSpy('selectItem');

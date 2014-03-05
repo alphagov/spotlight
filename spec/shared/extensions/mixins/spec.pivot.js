@@ -2,29 +2,29 @@ define([
   'extensions/mixins/pivot'
 ],
 function (Pivot) {
-  describe("Pivot", function () {
+  describe('Pivot', function () {
 
-    describe("applyPivot", function() {
+    describe('applyPivot', function () {
 
       var params, basePos, calloutEl;
-      beforeEach(function() {
+      beforeEach(function () {
         basePos = {
           x: 400,
           y: 400
-        }
+        };
 
         params = {
-          content:'test',
+          content: 'test',
           callback: jasmine.createSpy()
         };
 
         calloutEl = {
           width: jasmine.createSpy().andReturn(30),
           height: jasmine.createSpy().andReturn(20)
-        }
+        };
       });
 
-      it("aligns the callout to the bottom left corner", function() {
+      it('aligns the callout to the bottom left corner', function () {
         var pivot = {
           horizontal: 'left',
           vertical: 'bottom',
@@ -36,7 +36,7 @@ function (Pivot) {
         expect(pos.y).toEqual(380);
       });
 
-      it("aligns the callout to the top right corner", function() {
+      it('aligns the callout to the top right corner', function () {
         var pivot = {
           horizontal: 'right',
           vertical: 'top',
@@ -48,7 +48,7 @@ function (Pivot) {
         expect(pos.y).toEqual(400);
       });
 
-      it("aligns the callout to the bottom left corner with offset", function() {
+      it('aligns the callout to the bottom left corner with offset', function () {
         var pivot = {
           horizontal: 'left',
           vertical: 'bottom',
@@ -62,7 +62,7 @@ function (Pivot) {
         expect(pos.y).toEqual(392);
       });
 
-      it("aligns the callout to the top right corner with offset", function() {
+      it('aligns the callout to the top right corner with offset', function () {
         var pivot = {
           horizontal: 'right',
           vertical: 'top',
@@ -76,9 +76,9 @@ function (Pivot) {
         expect(pos.y).toEqual(412);
       });
 
-      describe("contrain to bounds", function() {
+      describe('contrain to bounds', function () {
         var pivot;
-        beforeEach(function() {
+        beforeEach(function () {
           pivot = {
             horizontal: 'left',
             vertical: 'bottom',
@@ -90,7 +90,7 @@ function (Pivot) {
           };
         });
 
-        it("reverses horizontal direction if it overflows the bounds element", function() {
+        it('reverses horizontal direction if it overflows the bounds element', function () {
           var bounds = {
             width: 442,
             height: 500
@@ -100,7 +100,7 @@ function (Pivot) {
           expect(pos.y).toEqual(392);
         });
 
-        it("does not reverse horizontal direction if it does not overflow the bounds element", function() {
+        it('does not reverse horizontal direction if it does not overflow the bounds element', function () {
           var bounds = {
             width: 443,
             height: 500
@@ -110,7 +110,7 @@ function (Pivot) {
           expect(pos.y).toEqual(392);
         });
 
-        it("reverses vertical direction if it overflows the bounds element", function() {
+        it('reverses vertical direction if it overflows the bounds element', function () {
           var bounds = {
             width: 443,
             height: 403
@@ -120,7 +120,7 @@ function (Pivot) {
           expect(pos.y).toEqual(388);
         });
 
-        it("does not reverse vertical direction if it does overflow the bounds element", function() {
+        it('does not reverse vertical direction if it does overflow the bounds element', function () {
           var bounds = {
             width: 443,
             height: 448
@@ -133,53 +133,53 @@ function (Pivot) {
 
     });
 
-    describe("positionToFraction", function() {
+    describe('positionToFraction', function () {
 
       var positionToFraction = Pivot.positionToFraction;
 
-      it("converts logical CSS positions to fractions", function() {
+      it('converts logical CSS positions to fractions', function () {
         expect(positionToFraction('top')).toEqual(0);
         expect(positionToFraction('left')).toEqual(0);
-        expect(positionToFraction('centre')).toEqual(.5);
-        expect(positionToFraction('center')).toEqual(.5);
-        expect(positionToFraction('middle')).toEqual(.5);
+        expect(positionToFraction('centre')).toEqual(0.5);
+        expect(positionToFraction('center')).toEqual(0.5);
+        expect(positionToFraction('middle')).toEqual(0.5);
         expect(positionToFraction('bottom')).toEqual(1);
         expect(positionToFraction('right')).toEqual(1);
         expect(positionToFraction('foo')).toBe(null);
       });
 
-      it("converts percentage values to fractions", function() {
+      it('converts percentage values to fractions', function () {
         expect(positionToFraction('0%')).toEqual(0);
-        expect(positionToFraction('50%')).toEqual(.5);
+        expect(positionToFraction('50%')).toEqual(0.5);
         expect(positionToFraction('100%')).toEqual(1);
-        expect(positionToFraction('11%')).toEqual(.11);
+        expect(positionToFraction('11%')).toEqual(0.11);
       });
 
-      it("limits the range of percentages to fractions", function() {
+      it('limits the range of percentages to fractions', function () {
         expect(positionToFraction('-30%')).toEqual(0);
         expect(positionToFraction('101%')).toEqual(1);
       });
 
-      it("limits the range of numbers to fractions", function() {
+      it('limits the range of numbers to fractions', function () {
         expect(positionToFraction(-1)).toEqual(0);
         expect(positionToFraction(1.3)).toEqual(1);
       });
 
-      it("leaves fractions untouched", function() {
+      it('leaves fractions untouched', function () {
         expect(positionToFraction(0)).toEqual(0);
-        expect(positionToFraction(.4)).toEqual(.4);
-        expect(positionToFraction(.8)).toEqual(.8);
+        expect(positionToFraction(0.4)).toEqual(0.4);
+        expect(positionToFraction(0.8)).toEqual(0.8);
         expect(positionToFraction(1)).toEqual(1);
       });
     });
 
 
-    describe("offsetFromTopLeft", function() {
-      beforeEach(function() {
-        spyOn(Pivot, "positionToFraction").andCallThrough();
+    describe('offsetFromTopLeft', function () {
+      beforeEach(function () {
+        spyOn(Pivot, 'positionToFraction').andCallThrough();
       });
 
-      it("returns the offset from the top left corner", function() {
+      it('returns the offset from the top left corner', function () {
         var point = Pivot.offsetFromTopLeft(400, 300, 'left', 'top');
         expect(point.x).toEqual(0);
         expect(point.y).toEqual(0);

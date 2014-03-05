@@ -14,31 +14,32 @@ function (Graph) {
     components: function () {
       return [
         { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis, options: {
+        { view: this.sharedComponents.yaxis,
+          options: {
             tickFormat: function () {
               return function (d) {
                 return ResponseTimeGraph.prototype.formatDuration(d, 's', 2);
               };
             }
           }
-        },
-        {
-          view: this.sharedComponents.stack,
-          options: {
-            drawCursorLine: true,
-            allowMissingData: true
-          }
-        },
-        {
-          view: this.sharedComponents.tooltip,
-          options: {
-            formatValue: function (value) {
-              return this.formatDuration(value, 's', 2);
+          },
+          {
+            view: this.sharedComponents.stack,
+            options: {
+              drawCursorLine: true,
+              allowMissingData: true
             }
-          }
-        },
-        { view: this.sharedComponents.hover }
-      ];
+          },
+          {
+            view: this.sharedComponents.tooltip,
+            options: {
+              formatValue: function (value) {
+                return this.formatDuration(value, 's', 2);
+              }
+            }
+          },
+          { view: this.sharedComponents.hover }
+        ];
     }
 
   });

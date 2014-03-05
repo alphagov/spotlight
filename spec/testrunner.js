@@ -9,7 +9,7 @@ require(['app/config.js'], function (requireConfig) {
     var htmlReporter = new jasmine.HtmlReporter();
     jasmineEnv.addReporter(htmlReporter);
 
-    jasmineEnv.specFilter = function(spec) {
+    jasmineEnv.specFilter = function (spec) {
       return htmlReporter.specFilter(spec);
     };
 

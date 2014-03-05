@@ -3,7 +3,7 @@ define([
   'extensions/collections/collection',
   'extensions/collections/matrix'
 ],
-  function (AvailiabilityCollection, Collection, MatrixCollection) {
+  function (AvailiabilityCollection) {
     describe('AvailiabilityCollection', function () {
       var availabilityData = {'data': [
         {

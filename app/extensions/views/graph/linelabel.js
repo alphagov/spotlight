@@ -90,11 +90,11 @@ function (Component) {
       return events;
     },
 
-    renderValuePercentage: function (value, percentage){
+    renderValuePercentage: function (value, percentage) {
       var data = [],
-          summary = "";
+          summary = '';
 
-      if (value === null && percentage == null) {
+      if (value === null && !percentage) {
         return '<span class="no-data">(no data)</span>';
       }
 
@@ -102,14 +102,14 @@ function (Component) {
         data.push(this.formatNumericLabel(value));
       }
       if (percentage) {
-        if(this.graph.model && this.graph.model.get('one-hundred-percent')){
+        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
           data.unshift(this.formatPercentage(percentage));
         } else {
           data.push(this.formatPercentage(percentage));
         }
       }
-      summary = '<span class="value">'+ data.shift() +'</span>';
-      summary += ( data.length ? ' <span class="percentage">(' + data.shift() + ')</span>' : '');
+      summary = '<span class="value">' + data.shift() + '</span>';
+      summary += (data.length ? ' <span class="percentage">(' + data.shift() + ')</span>' : '');
       return summary;
     },
 
@@ -121,12 +121,12 @@ function (Component) {
         return;
       }
 
-      var summary = "<span class='title'>Total</span>";
+      var summary = '<span class="title">Total</span>';
 
       if (this.showValues) {
         var attr = this.graph.valueAttr,
             selected = this.collection.getCurrentSelection(),
-            value = "";
+            value = '';
 
         if (selected.selectedModel) {
           value = this.collection.sum(attr, null, selected.selectedModelIndex);
@@ -142,7 +142,7 @@ function (Component) {
       }
 
       if (this.showTimePeriod) {
-        summary += "<span class='timeperiod'>" + this.renderTimePeriod() + "</span>";
+        summary += '<span class="timeperiod">' + this.renderTimePeriod() + '</span>';
       }
 
       var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
@@ -159,13 +159,12 @@ function (Component) {
       var that = this;
 
       var labelWrapper = this.figcaption.selectAll('ol').data(['one-wrapper']);
-      labelWrapper.enter().append('ol').classed('squares', function (d, i) {
+      labelWrapper.enter().append('ol').classed('squares', function () {
         return that.showSquare;
       }).classed('has-links', function () {
         return that.attachLinks;
       });
 
-      var numLabels = this.collection.models.length;
       var selection = labelWrapper.selectAll('li')
         .data(this.collection.models);
       var enterSelection = selection.enter().append('li');
@@ -176,14 +175,14 @@ function (Component) {
 
       if (this.attachLinks) {
         enterSelection.append('a');
-        selection.selectAll('a').attr('href', function (group, groupIndex) {
+        selection.selectAll('a').attr('href', function (group) {
           return group.get('href');
         });
         enterSelection.append('span');
         selection.selectAll('span').attr('class', 'meta');
       }
 
-      selection.each(function(group, i) {
+      selection.each(function (group, i) {
         that.setLabelContent.call(that, that.d3.select(this), group, i);
       });
 
@@ -254,7 +253,7 @@ function (Component) {
     },
 
     setLabelContent: function (selection, group, groupIndex) {
-      var labelTitle = "<span class='label-title'>" + group.get('title') + "</span>",
+      var labelTitle = '<span class="label-title">' + group.get('title') + '</span>',
           labelMeta = '';
 
       if (this.showValues) {
@@ -277,8 +276,8 @@ function (Component) {
         }
       }
 
-      if (group.get('timeshift')){
-        labelMeta += '<span class="percentage">('+ group.get('timeshift')+' '+this.collection.options.period+'s ago)</span>';
+      if (group.get('timeshift')) {
+        labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
       }
 
       if (this.attachLinks) {
@@ -299,14 +298,14 @@ function (Component) {
         .data(this.positions);
       selection.enter().append('line');
 
-      selection.each(function (d) {
+      selection.each(function () {
         d3.select(this)
           .attr('x1', -that.offset + that.linePaddingInner)
           .attr('x2', -that.linePaddingOuter)
-          .attr('y1', function(d) {
+          .attr('y1', function (d) {
             return d.ideal;
           })
-          .attr('y2', function(d) {
+          .attr('y2', function (d) {
             return d.min;
           })
           .classed('crisp', function (d) {
@@ -315,7 +314,7 @@ function (Component) {
       });
     },
 
-    renderTimePeriod: function() {
+    renderTimePeriod: function () {
       var period = this.period || this.collection.query.get('period') || 'week',
           numPeriods = this.collection.at(0).get('values').length,
           selection = this.collection.getCurrentSelection();
@@ -335,7 +334,7 @@ function (Component) {
       }
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
+    onChangeSelected: function (groupSelected, groupIndexSelected) {
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
@@ -343,20 +342,20 @@ function (Component) {
         return groupIndexSelected === groupIndex;
       });
       labels.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected != null && groupIndexSelected !== groupIndex;
+        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
       });
       lines.classed('selected', function (group, groupIndex) {
         return groupIndexSelected === groupIndex;
       });
       lines.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected != null && groupIndexSelected !== groupIndex;
+        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
       });
     },
 
     onHover: function (e) {
       var y = e.y;
       var bestIndex, bestDistance = Infinity;
-      _.each(this.positions, function(elem, index) {
+      _.each(this.positions, function (elem, index) {
         var yLabel = Math.floor(elem.min) + 0.5;
         var distance = Math.abs(yLabel - y);
         if (distance < bestDistance) {
@@ -364,7 +363,7 @@ function (Component) {
           bestIndex = index;
         }
       });
-      if (e.toggle && bestIndex == this.collection.selectedIndex) {
+      if (e.toggle && bestIndex === this.collection.selectedIndex) {
         this.collection.selectItem(null);
       } else {
         this.collection.selectItem(bestIndex);
@@ -384,7 +383,7 @@ function (Component) {
      * @returns {Array} Item placement solution. Each entry contains a 'min' property defining the item's positions.
      */
     calcPositions: function (items, bounds) {
-      var sumSize = _.reduce(items, function(memo, item){
+      var sumSize = _.reduce(items, function (memo, item) {
         return memo + item.size;
       }, 0);
 
@@ -420,10 +419,10 @@ function (Component) {
         item = _.extend({}, item);
         item.index = index;
         item.min = Math.max(curMax, item.ideal);
-        if (item.absoluteLowestMin != null) {
+        if (_.isNumber(item.absoluteLowestMin)) {
           item.min = Math.max(item.min, item.absoluteLowestMin);
         }
-        if (item.absoluteHighestMin != null) {
+        if (_.isNumber(item.absoluteHighestMin)) {
           item.min = Math.min(item.min, item.absoluteHighestMin);
         }
         curMax = item.max = item.min + item.size;
@@ -444,10 +443,10 @@ function (Component) {
         var targetDist = anchor.dist * 0.9;
 
         anchor.min = anchor.ideal + targetDist;
-        if (anchor.absoluteLowestMin != null) {
+        if (_.isNumber(anchor.absoluteLowestMin)) {
           anchor.min = Math.max(anchor.min, anchor.absoluteLowestMin);
         }
-        if (anchor.absoluteHighestMin != null) {
+        if (_.isNumber(anchor.absoluteHighestMin)) {
           anchor.min = Math.min(anchor.min, anchor.absoluteHighestMin);
         }
         anchor.dist = anchor.min - anchor.ideal;

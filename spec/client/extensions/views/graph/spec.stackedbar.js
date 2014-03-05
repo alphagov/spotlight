@@ -3,9 +3,9 @@ define([
   'extensions/collections/collection'
 ],
   function (StackedBar, Collection) {
-    describe("StackedBarComponent", function () {
-      
-      describe("render", function () {
+    describe('StackedBarComponent', function () {
+
+      describe('render', function () {
         var d3 = StackedBar.prototype.d3;
 
         var el, wrapper, collection, view;
@@ -14,19 +14,19 @@ define([
           wrapper = d3.select(el[0]).append('svg').append('g');
           collection = new Collection([
             {
-              testAttr:'b',
+              testAttr: 'b',
               values: new Collection([
-                { a:1, b:2, name: "one"},
-                { a:4, b:5, name: "two"},
-                { a:7, b:8, name: "three"}
+                { a: 1, b: 2, name: 'one'},
+                { a: 4, b: 5, name: 'two'},
+                { a: 7, b: 8, name: 'three'}
               ])
             },
             {
-              testAttr:'c',
+              testAttr: 'c',
               values: new Collection([
-                { a:11, b:12, name: "four"},
-                { a:14, b:15, name: "five"},
-                { a:17, b:18, name: "six"}
+                { a: 11, b: 12, name: 'four'},
+                { a: 14, b: 15, name: 'five'},
+                { a: 17, b: 18, name: 'six'}
               ])
             }
           ]);
@@ -34,13 +34,13 @@ define([
             .values(function (group) {
               return group.get('values').models;
             })
-            .y(function (model, index) {
+            .y(function (model) {
               return model.get('b');
             });
-          layers = stack(collection.models.slice());
+          var layers = stack(collection.models.slice());
           view = new StackedBar({
-            wrapper:wrapper,
-            collection:collection,
+            wrapper: wrapper,
+            collection: collection,
             graph: {
               layers: layers,
               getXPos: function (groupIndex, modelIndex) {
@@ -56,10 +56,10 @@ define([
                 return model.y0;
               }
             },
-            barWidth: function(model, i) {
+            barWidth: function () {
               return 10;
             },
-            scales:{
+            scales: {
               x: function (v) {
                 return v * 2;
               },
@@ -74,7 +74,7 @@ define([
           el.remove();
         });
 
-        it("renders centre-aligned segments by default for each model in each series", function () {
+        it('renders centre-aligned segments by default for each model in each series', function () {
           view.render();
 
           var segments = view.componentWrapper.selectAll('g.segment');
@@ -85,8 +85,8 @@ define([
             expect(d3.select(this).selectAll('line')[0].length).toEqual(1);
             expect(d3.select(this).selectAll('text')[0].length).toEqual(0);
           });
-          
-          
+
+
           var group1 = d3.select('g.group:nth-child(1)');
           var segment1 = group1.select('g.segment:nth-child(1)');
           expect(segment1.select('rect').attr('x')).toEqual('-3');
@@ -119,7 +119,7 @@ define([
           expect(segment3.select('line').attr('x2')).toEqual('19');
         });
 
-        it("renders left-aligned segments for each model in each series", function () {
+        it('renders left-aligned segments for each model in each series', function () {
           view.align = 'left';
           view.render();
 
@@ -131,8 +131,8 @@ define([
             expect(d3.select(this).selectAll('line')[0].length).toEqual(1);
             expect(d3.select(this).selectAll('text')[0].length).toEqual(0);
           });
-          
-          
+
+
           var group1 = d3.select('g.group:nth-child(1)');
           var segment1 = group1.select('g.segment:nth-child(1)');
           expect(segment1.select('rect').attr('x')).toEqual('2');
@@ -165,7 +165,7 @@ define([
           expect(segment3.select('line').attr('x2')).toEqual('24');
         });
 
-        it("renders right-aligned segments for each model in each series", function () {
+        it('renders right-aligned segments for each model in each series', function () {
           view.align = 'right';
           view.render();
 
@@ -177,8 +177,8 @@ define([
             expect(d3.select(this).selectAll('line')[0].length).toEqual(1);
             expect(d3.select(this).selectAll('text')[0].length).toEqual(0);
           });
-          
-          
+
+
           var group1 = d3.select('g.group:nth-child(1)');
           var segment1 = group1.select('g.segment:nth-child(1)');
           expect(segment1.select('rect').attr('x')).toEqual('-8');
@@ -211,9 +211,9 @@ define([
           expect(segment3.select('line').attr('x2')).toEqual('14');
         });
 
-        it("renders segments with text labels for each model in each series", function () {
-          view.text = function(model, i) {
-            return 'foo ' + model.get('name')
+        it('renders segments with text labels for each model in each series', function () {
+          view.text = function (model) {
+            return 'foo ' + model.get('name');
           };
           view.offsetText = -20;
           view.render();
@@ -240,13 +240,11 @@ define([
           expect(d3.select('g.segment:nth-child(3) text').text()).toEqual('foo three');
         });
 
-        it("renders with a simulated inner stroke for each model in each series", function () {
+        it('renders with a simulated inner stroke for each model in each series', function () {
 
           view.strokeAlign = 'inner';
-          spyOn(view, "getStrokeWidth").andReturn(2);
+          spyOn(view, 'getStrokeWidth').andReturn(2);
           view.render();
-
-          var segments = view.componentWrapper.selectAll('g.segment');
 
           var group1 = d3.select('g.group:nth-child(1)');
           var segment1 = group1.select('g.segment:nth-child(1)');
@@ -280,8 +278,8 @@ define([
           expect(segment3.select('line').attr('x2')).toEqual('19');
         });
 
-        describe("onChangeSelected", function () {
-          it("marks segment as selected", function () {
+        describe('onChangeSelected', function () {
+          it('marks segment as selected', function () {
             view.render();
             var group1 = d3.select('g.group:nth-child(1)');
             var group2 = d3.select('g.group:nth-child(2)');

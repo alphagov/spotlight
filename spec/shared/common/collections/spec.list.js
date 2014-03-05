@@ -3,7 +3,7 @@ define([
   'extensions/collections/collection',
   'extensions/collections/matrix'
 ],
-function (ListCollection, Collection, MatrixCollection) {
+function (ListCollection, Collection) {
   describe('ListCollection', function () {
 
     beforeEach(function () {

@@ -17,9 +17,9 @@ function (template, View, Tabs, UptimeNumber, UptimeGraph,
       '.uptime-graph': {view: UptimeGraph},
       '.response-time': {view: ResponseTimeNumber},
       '.response-time-graph': {view: ResponseTimeGraph},
-      "#availability-nav": {
+      '#availability-nav': {
         view: Tabs,
-        options: function (){
+        options: function () {
           return {
             model: this.collection.query,
             attr: this.model.get('tabbed_attr'),

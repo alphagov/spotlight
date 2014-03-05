@@ -629,8 +629,8 @@ function (Collection, Model, Backbone) {
       it('can handle both array args and rest args', function () {
         var expected = [[1, 2], [3, 4]];
 
-        expect(collection.getTableRows(['a','b'])).toEqual(expected);
-        expect(collection.getTableRows('a','b')).toEqual(expected);
+        expect(collection.getTableRows(['a', 'b'])).toEqual(expected);
+        expect(collection.getTableRows('a', 'b')).toEqual(expected);
       });
     });
   });

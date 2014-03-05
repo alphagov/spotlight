@@ -3,12 +3,12 @@ define([
   'extensions/models/model'
 ],
 function (Callout, Model) {
-  describe("Callout Component", function () {
+  describe('Callout Component', function () {
     
-    describe("onChangeSelected", function () {
+    describe('onChangeSelected', function () {
       
       var callout, model, group;
-      beforeEach(function() {
+      beforeEach(function () {
 
         group = new Model({
           title: 'test title'
@@ -19,16 +19,16 @@ function (Callout, Model) {
           a: 20,
           b: 30,
           c: 'foo'
-        })
+        });
         callout = new Callout({
           getHeader: jasmine.createSpy().andReturn('test header'),
           collection: { on: jasmine.createSpy() },
           graph: {
             scaleFactor: jasmine.createSpy(),
-            getXPos: function (groupIndex, modelIndex) {
+            getXPos: function () {
               return model.get('a');
             },
-            getYPos: function (groupIndex, modelIndex) {
+            getYPos: function () {
               return model.get('b');
             },
             valueAttr: 'a'
@@ -46,23 +46,23 @@ function (Callout, Model) {
             top: 20
           }
         });
-        spyOn(callout, "renderContent").andCallThrough();
+        spyOn(callout, 'renderContent').andCallThrough();
         callout.render();
       });
       
-      it("hides when only a group but no item is selected", function () {
+      it('hides when only a group but no item is selected', function () {
         callout.onChangeSelected('group', 1, null, null);
         expect(callout.calloutEl).toHaveClass('performance-hidden');
         expect(callout.renderContent).not.toHaveBeenCalled();
       });
       
-      it("hides when all items at a specific position are selected", function () {
+      it('hides when all items at a specific position are selected', function () {
         callout.onChangeSelected(null, null, 'model', 1);
         expect(callout.calloutEl).toHaveClass('performance-hidden');
         expect(callout.renderContent).not.toHaveBeenCalled();
       });
       
-      it("renders a callout at the correct position when graph is not scaled", function () {
+      it('renders a callout at the correct position when graph is not scaled', function () {
         callout.graph.scaleFactor.andReturn(1);
         callout.onChangeSelected(group, 1, model, 2);
         expect(callout.renderContent).toHaveBeenCalledWith(
@@ -73,8 +73,8 @@ function (Callout, Model) {
         expect(callout.calloutEl.css('top')).toEqual('43px'); // right margin + result of y() + offsetY
       });
       
-      it("renders a callout at the correct position when graph is scaled", function () {
-        callout.graph.scaleFactor.andReturn(.5);
+      it('renders a callout at the correct position when graph is scaled', function () {
+        callout.graph.scaleFactor.andReturn(0.5);
         callout.onChangeSelected(group, 1, model, 2);
         expect(callout.renderContent).toHaveBeenCalledWith(
           callout.calloutEl, group, 1, model, 2

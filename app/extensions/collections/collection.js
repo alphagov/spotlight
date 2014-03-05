@@ -48,21 +48,21 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
 
     instantiateParts: function (models, options) {
       delete options.collections;
-      this.collectionInstances = _.map(this.collections, function (classRef) {
-        if (classRef.collection) {
-          return new classRef.collection(
-            models, _.extend({}, classRef.options, options)
+      this.collectionInstances = _.map(this.collections, function (ClassRef) {
+        if (ClassRef.collection) {
+          return new ClassRef.collection(
+            models, _.extend({}, ClassRef.options, options)
           );
         } else {
-          return new classRef(models, options);
+          return new ClassRef(models, options);
         }
       });
     },
 
     createQueryModel: function () {
-      var queryParams = _.extend({}, this.prop("defaultQueryParams"), this.prop("queryParams"));
+      var queryParams = _.extend({}, this.prop('defaultQueryParams'), this.prop('queryParams'));
       this.query = new Query(queryParams);
-      this.query.on("change", function () { this.fetch(); }, this);
+      this.query.on('change', function () { this.fetch(); }, this);
     },
 
     /**
@@ -71,7 +71,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
      * @param {String} prop Name of object property or method.
      * @param {Object} [obj=this] Object to inspect.
      */
-    prop: function(prop, obj) {
+    prop: function (prop, obj) {
       obj = obj || this;
       return _.isFunction(obj[prop]) ? obj[prop].call(obj) : obj[prop];
     },
@@ -139,7 +139,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
     defaultQueryParams: function () {
       var params = {};
       if (this.filterBy) {
-        params.filter_by = _.map(this.filterBy, function(value, key) {
+        params.filter_by = _.map(this.filterBy, function (value, key) {
           return key + ':' + value;
         });
 
@@ -153,7 +153,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
     /**
      * Constructs a Backdrop query for the current environment
      */
-    url: function() {
+    url: function () {
       // add query parameters
       var params = _.clone(this.query.attributes);
 
@@ -169,7 +169,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
         'data-type': this['data-type']
       });
 
-      return base +'?' + $.param(params, true);
+      return base + '?' + $.param(params, true);
     },
 
     /**
@@ -209,24 +209,24 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
         var res = 0;
 
         // special cases - nulls are always lower than an actual value
-        if (aVal == null && bVal == null) {
+        if (aVal === null && bVal === null) {
           // no point comparing two null values,
           // allow fallback to other comparator
           return null;
         }
-        else if (bVal == null) {
+        else if (bVal === null) {
           return -1;
         }
-        else if (aVal == null) {
+        else if (aVal === null) {
           return 1;
         }
 
         // normal sort behaviour, sorts by numbers or alphabetically
         if (typeof aVal === 'string') {
-            aVal = aVal.toLowerCase();
+          aVal = aVal.toLowerCase();
         }
         if (typeof bVal === 'string') {
-            bVal = bVal.toLowerCase();
+          bVal = bVal.toLowerCase();
         }
 
         if (aVal < bVal) {
@@ -235,7 +235,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
           res = 1;
         }
         if (descending) {
-            res *= -1;
+          res *= -1;
         }
         return res;
       };
@@ -247,15 +247,15 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
      * @param {Object} [options={}] Options
      * @param {Boolean} [options.silent=false] Suppress `change:selected` event
      */
-    selectItem: function(index, options) {
+    selectItem: function (index, options) {
       if (index === this.selectedIndex) {
         return;
       }
-      var model = (index == null) ? null : this.models[index];
+      var model = (index === null) ? null : this.models[index];
       this.selectedItem = model;
       this.selectedIndex = index;
       if (!options || !options.silent) {
-        this.trigger("change:selected", model, index);
+        this.trigger('change:selected', model, index);
       }
     },
 

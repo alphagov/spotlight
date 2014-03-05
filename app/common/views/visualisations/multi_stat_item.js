@@ -10,33 +10,33 @@ function (View, HeadlineItemView, DeltaItemView, SparklineView, template) {
   var MultiStatItemView = View.extend({
 
     template: template,
-    templateContext: function() { 
-      
+    templateContext: function () {
+
       var currentDate = null, startDate = null, timePeriodValue = null, timePeriod = null;
       if (this.collection.first().get('values').length > 1) {
         currentDate = this.collection.first().get('values').last().get('_start_at');
         startDate = this.collection.first().get('values').first().get('_start_at');
         if (currentDate.diff(startDate, 'days') > 365) {
           timePeriodValue = 'year';
-        } else if (currentDate.diff(startDate, 'days') > 31) { 
+        } else if (currentDate.diff(startDate, 'days') > 31) {
           timePeriodValue = 'month';
-        } else { 
+        } else {
           timePeriodValue = 'day';
-        }   
-        timePeriod = currentDate.diff(startDate, timePeriodValue);   
-        timePeriodValue += (timePeriod > 1) ? "s" : "";  
+        }
+        timePeriod = currentDate.diff(startDate, timePeriodValue);
+        timePeriodValue += (timePeriod > 1) ? 's' : '';
       }
-   
+
       return _.extend(
         View.prototype.templateContext.apply(this, arguments),
-        { 
-          title: this.stat.title, 
-          timePeriod: timePeriod, 
+        {
+          title: this.stat.title,
+          timePeriod: timePeriod,
           timePeriodValue: timePeriodValue
         }
       );
     },
-    
+
     views: function () {
       var views = {
         '.single-stat-headline': {

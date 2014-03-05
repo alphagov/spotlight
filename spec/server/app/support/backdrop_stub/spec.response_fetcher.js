@@ -1,7 +1,7 @@
 define(['app/support/backdrop_stub/response_fetcher.js', 'lodash', 'fs', 'path'],
 function (ResponseFetcher, _, fs, path) {
 
-  var stub_mappings = [
+  var stubMappings = [
     { 'key': {'service': 'licensing', 'api_name': 'monitoring'}, 'file':  'licensing_availability_response.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'licenceUrlSlug:application-to-licence-a-street-collection'}, 'file':  'application-to-licence-a-street-collection.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1', 'group_by': 'licenceUrlSlug'}, 'file':  'licensing_top_5_licenses.json'},
@@ -33,35 +33,35 @@ function (ResponseFetcher, _, fs, path) {
     { 'key': {'api_name': 'realtime'}, 'file':  'licensing_realtime.json'}
   ];
 
-  describe("fetch json", function () {
+  describe('fetch json', function () {
 
-    _.each(stub_mappings, function (mapping) {
-      describe("when there is a mapped json response", function () {
-        it("responds with " + mapping.file, function () {
-          var response_fetcher = new ResponseFetcher;
-          var json_response = fs.readFileSync(path.join('app/support/backdrop_stub/responses', mapping.file));
-          var request = { param: function(key) {
+    _.each(stubMappings, function (mapping) {
+      describe('when there is a mapped json response', function () {
+        it('responds with ' + mapping.file, function () {
+          var responseFetcher = new ResponseFetcher();
+          var jsonResponse = fs.readFileSync(path.join('app/support/backdrop_stub/responses', mapping.file));
+          var request = { param: function (key) {
             return mapping.key[key];
           } };
 
-          expect(response_fetcher.fetchJson(request)).toEqual(JSON.parse(json_response));
+          expect(responseFetcher.fetchJson(request)).toEqual(JSON.parse(jsonResponse));
         });
       });
     });
 
-    describe("when there no mapped json response", function () {
+    describe('when there no mapped json response', function () {
 
-      it("respond with the relevant json file", function () {
-        var response_fetcher = new ResponseFetcher;
+      it('respond with the relevant json file', function () {
+        var responseFetcher = new ResponseFetcher();
         var params = {
           'service': 'blagh',
           'api_name': 'nonsense'
         };
-        var request = { param: function(key) {
+        var request = { param: function (key) {
           return params[key];
         } };
 
-        expect(response_fetcher.fetchJson(request)).toEqual(null);
+        expect(responseFetcher.fetchJson(request)).toEqual(null);
       });
 
     });

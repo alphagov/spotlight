@@ -16,6 +16,7 @@ function (Model) {
   var Query = Model.extend({
 
     set: function (attrs, options) {
+      var key;
       if (!_.isObject(attrs)) {
         key = attrs;
         (attrs = {})[key] = options;

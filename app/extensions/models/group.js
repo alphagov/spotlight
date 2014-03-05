@@ -3,7 +3,7 @@ define([
   'extensions/collections/timeseries'
 ],
 function (Model, Timeseries) {
-  
+
   var Group = Model.extend({
 
     parse: function (data) {
@@ -13,6 +13,6 @@ function (Model, Timeseries) {
       return data;
     }
   });
-  
+
   return Group;
 });

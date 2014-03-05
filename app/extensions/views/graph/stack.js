@@ -42,15 +42,15 @@ function (require, Line, Component) {
 
       var yScale = this.scales.y;
 
-      var hasYValue = function(model) {
+      var hasYValue = function (model) {
         return model[yProperty] !== null;
       };
 
-      var getY = function (model, index) {
+      var getY = function (model) {
         return yScale(model[yProperty] + model[y0Property]);
       };
 
-      var getY0 = function (model, index) {
+      var getY0 = function (model) {
         return yScale(model[y0Property]);
       };
 
@@ -65,22 +65,21 @@ function (require, Line, Component) {
         .x(getX)
         .y(getY);
 
-      var graph = this.graph;
       var maxGroupIndex = this.collection.length - 1;
 
-      selectionStacks.enter().append("g").attr('class', 'group').append('path')
-          .attr("class", function (group, index) {
-            return 'stack stack' + (maxGroupIndex-index) + ' ' + group.get('id');
-          });
-      selectionStacks.select('path').attr("d", function(group, groupIndex) {
+      selectionStacks.enter().append('g').attr('class', 'group').append('path')
+        .attr('class', function (group, index) {
+          return 'stack stack' + (maxGroupIndex - index) + ' ' + group.get('id');
+        });
+      selectionStacks.select('path').attr('d', function (group) {
         return area(group.get('values').models);
       });
 
-      selectionLines.enter().append("g").attr('class', 'group').append('path')
-          .attr("class", function (group, index) {
-            return 'line line' + (maxGroupIndex-index) + ' ' + group.get('id');
-          });
-      selectionLines.select('path').attr("d", function(group, groupIndex) {
+      selectionLines.enter().append('g').attr('class', 'group').append('path')
+        .attr('class', function (group, index) {
+          return 'line line' + (maxGroupIndex - index) + ' ' + group.get('id');
+        });
+      selectionLines.select('path').attr('d', function (group) {
         return line(group.get('values').models);
       });
 
@@ -94,7 +93,7 @@ function (require, Line, Component) {
       }, this);
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
+    onChangeSelected: function (groupSelected, groupIndexSelected) {
       Line.prototype.onChangeSelected.apply(this, arguments);
       this.collection.each(function (group, groupIndex) {
         var selected = (groupIndexSelected === groupIndex);
@@ -126,7 +125,7 @@ function (require, Line, Component) {
           group, i, point, { allowMissingData: this.allowMissingData }
         );
 
-        if(isNaN(distanceAndClosestModel.diff)){
+        if (isNaN(distanceAndClosestModel.diff)) {
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
           break;
