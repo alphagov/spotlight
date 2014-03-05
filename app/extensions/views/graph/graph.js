@@ -10,7 +10,7 @@ define([
   './hover',
   './callout',
   './tooltip',
-  'extensions/views/graph.table'
+  'extensions/views/graph/table'
 ],
 function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, GraphTable) {
 

@@ -1,6 +1,6 @@
 define([
   'extensions/views/graph/graph',
-  'extensions/views/graph.table',
+  'extensions/views/graph/table',
   'extensions/collections/collection',
   'extensions/models/model',
   'd3'

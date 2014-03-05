@@ -1,6 +1,6 @@
 define([
-  './table',
-  './hideShow'
+  'extensions/views/table',
+  'extensions/views/hideShow'
 ],
 function (Table, HideShow) {
   return Table.extend({
