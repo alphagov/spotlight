@@ -1,0 +1,33 @@
+{
+  "module-type": "grouped_timeseries",
+  "title": "Tax disc and SORN – breakdown",
+  "description": "Vehicle licensing applications per month broken down by service",
+  "data-group": "vehicle-licensing",
+  "data-type": "volumetrics",
+  "category": "service",
+  "period": "month",
+  "value-attr": "volume:sum",
+  "show-line-labels": true,
+  "use_stack": true,
+  "info": [
+    "Data source: DVLA database",
+    "Shows the monthly number of successful applications to renew a <span class='group0'>tax disc</span> and the number of <span class='group1'>SORNs</span> received."
+  ],
+  "line-label-links": true,
+  "series": [
+    {
+      "id": "tax-disc",
+      "title": "Tax disc",
+      "href": "/performance/tax-disc"
+    },
+    {
+      "id": "sorn",
+      "title": "SORN",
+      "href": "/performance/sorn"
+    }
+  ],
+  "page-type": "module",
+  "dashboard-title": "Vehicle licensing",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "vehicle-licensing"
+}

@@ -1,0 +1,37 @@
+{
+  "module-type": "grouped_timeseries",
+  "title": "Digital, Post Office and DVLA centre – breakdown",
+  "description": "Vehicle licensing per month broken down by <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+  "data-group": "vehicle-licensing",
+  "data-type": "volumetrics",
+  "category": "channel",
+  "period": "month",
+  "value-attr": "volume:sum",
+  "show-line-labels": true,
+  "use_stack": true,
+  "info": [
+    "Data source: DVLA database",
+    "The number of successful tax disc renewals and SORNs received, broken down by <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+    "Digital and automated phone: applications made online or using the automated telephone service",
+    "Post Office: applications made at a Post Office branch",
+    "DVLA centre: applications made at local DVLA centres"
+  ],
+  "series": [
+    {
+      "id": "fully-digital",
+      "title": "Digital and automated phone"
+    },
+    {
+      "id": "assisted-digital",
+      "title": "Post Office"
+    },
+    {
+      "id": "manual",
+      "title": "DVLA centre"
+    }
+  ],
+  "page-type": "module",
+  "dashboard-title": "Vehicle licensing",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "vehicle-licensing"
+}
