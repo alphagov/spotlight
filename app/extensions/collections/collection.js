@@ -266,18 +266,15 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
       };
     },
 
-    getDataByTableFormat: function () {
-      var table = [];
-
-      _.each(this.models, function (model, index) {
-        if (index === 0) {
-          table.push(_.keys(model.attributes));
-        }
-
-        table.push(_.map(model.attributes, function (val) { return val; }));
+    getTableRows: function (keys) {
+      if (arguments.length !== 1 || !(keys instanceof Array)) {
+        keys = [].slice.apply(arguments);
+      }
+      return this.map(function (model) {
+        return _.map(keys, function (key) {
+          return model.get(key);
+        });
       });
-
-      return table;
     }
   });
 

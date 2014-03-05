@@ -8,18 +8,15 @@ function (View) {
       var collection = this.collection = options.collection;
 
       this.valueAttr = options.valueAttr;
+      this.axes = collection.options.axes;
 
       View.prototype.initialize.apply(this, arguments);
 
       collection.on('reset add remove sync', this.render, this);
-
-      this.$table = $('<table></table>');
-
-      this.prepareTable();
-      this.render();
     },
 
     prepareTable: function () {
+      this.$table = $('<table></table>');
       this.$table.appendTo(this.$el);
     },
 
@@ -51,42 +48,67 @@ function (View) {
       }
     },
 
-    // Example Input
-    // [[date, no-dig, dig], ['01/02/01', 'meh', 'meh meh']]
-    //
-    // Example Render
-    // <table>
-    //   <tr>
-    //     <th scope="col">date</th>
-    //     <th scope="col">no-dig</th>
-    //     <th scope="col">dig</th>
-    //   </tr>
-    //   <tr>
-    //     <td>01/02/01</td>
-    //     <td>meh</td>
-    //     <td>meh meh</td>
-    //   </tr>
-    // </table>
-
     render: function () {
-      this.$table.empty();
-      _.each(this.collection.getDataByTableFormat(this.valueAttr), function (row, rowIndex) {
+      if (this.$table) {
+        this.$table.empty();
+      } else {
+        this.prepareTable();
+      }
+      this.renderHead();
+      this.renderBody();
+    },
 
-        this.row = this.renderEl('tr', this.$table);
+    renderHead: function () {
+      var $thead = this.renderEl('thead', this.$table);
+      var $row = this.renderEl('tr', $thead);
 
-        _.each(row, function (cel) {
-          var elName = 'td',
-              attr,
-              celValue = (cel === null || cel === undefined) ? 'no data' : cel;
+      _.each(this.getColumns(), function (column) {
+        this.renderEl('th', $row, column.label, { scope: 'col' });
+      }, this);
 
-          if (rowIndex === 0) {
-            elName = 'th';
-            attr = {scope: 'col'};
+    },
+
+    renderBody: function () {
+      var keys = _.pluck(this.getColumns(), 'key');
+      var $tbody = this.renderEl('tbody', this.$table);
+      _.each(this.collection.getTableRows(keys), function (row, rowIndex) {
+
+        var $row = this.renderEl('tr', $tbody);
+        var renderCell = this.renderCell.bind(this, 'td', $row);
+
+        _.each(row, function (cell, index) {
+          if (_.isArray(cell)) { // pulling data from multiple nested collections
+            _.each(cell, function (datapoint, columnIndex) {
+              // only render the first column for the first collection
+              if (columnIndex > 0 || index === 0) { renderCell(datapoint); }
+            });
+          } else {
+            renderCell(cell);
           }
-          this.renderEl(elName, this.row, celValue, attr);
-        }, this);
+        });
 
       }, this);
+    },
+
+    renderCell: function (tag, parent, content, attrs) {
+      content = (content === null || content === undefined) ? 'no data' : content;
+      this.renderEl(tag, parent, content, attrs);
+    },
+
+    getColumns: function () {
+      var cols = [];
+      if (this.axes) {
+        cols = _.map(this.axes.y, function (axis) {
+          return _.extend({
+            key: this.valueAttr
+          }, axis);
+        }, this);
+        if (this.axes.x) {
+          cols.unshift(this.axes.x);
+        }
+      }
+      return cols;
     }
+
   });
 });

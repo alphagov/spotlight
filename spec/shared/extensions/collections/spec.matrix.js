@@ -442,31 +442,39 @@ function (MatrixCollection, Collection, Group) {
 
       });
 
-
-      describe('getDataByTableFormat', function () {
+      describe('getTableRows', function () {
         var collection;
         beforeEach(function () {
           collection = new MatrixCollection([{}, {}]);
           collection.at(0).set('values', new Collection([
-            { a: 1, b: 2 },
-            { a: 3, b: 4 }
+            { a: 1, b: 3 },
+            { a: 2, b: 4 }
           ]));
           collection.at(1).set('values', new Collection([
-            { a: 5, b: 6 },
-            { a: 7, b: null }
+            { a: 1, b: 5 },
+            { a: 2, b: null }
           ]));
         });
 
-        it('returns an array', function () {
-          expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
+        it('returns an array of arrays', function () {
+          expect(_.isArray(collection.getTableRows('a', 'b'))).toEqual(true);
+          expect(_.isArray(collection.getTableRows('a', 'b')[0])).toEqual(true);
+          expect(_.isArray(collection.getTableRows('a', 'b')[1])).toEqual(true);
         });
 
-        it('sorts the array by tabular format', function () {
-          var expected = [['a', 'b'], [1, 2], [3, 4], [5, 6], [7, null]];
+        it('returns single dimensional array when top-level collection has only one entry', function () {
+          collection.pop();
+          expect(collection.getTableRows('a')).toEqual([[1], [2]]);
+        });
 
-          expect(collection.getDataByTableFormat()).toEqual(expected);
+        it('can handle both array args and rest args', function () {
+          var expected = [[[1, 3], [1, 5]], [[2, 4], [2, null]]];
+
+          expect(collection.getTableRows(['a', 'b'])).toEqual(expected);
+          expect(collection.getTableRows('a', 'b')).toEqual(expected);
         });
       });
+
     });
 
   });

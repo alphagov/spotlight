@@ -9,7 +9,9 @@ function (Table, View, $) {
       var table = new Table({
           collection: {
             on: jasmine.createSpy(),
-            getDataByTableFormat: jasmine.createSpy()
+            options: {
+              axes: {}
+            }
           }
         });
 
@@ -19,37 +21,50 @@ function (Table, View, $) {
     describe('initialize', function () {
       var table;
       beforeEach(function () {
-        spyOn(Table.prototype, 'render');
-        spyOn(Table.prototype, 'prepareTable');
         table = new Table({
           collection: {
             on: jasmine.createSpy(),
-            getDataByTableFormat: function () {}
+            options: { axes: {} }
           }
         });
       });
 
-      it('calls prepareTable', function () {
-        expect(Table.prototype.prepareTable).toHaveBeenCalled();
-      });
-
-      it('calls render', function () {
-        expect(Table.prototype.render).toHaveBeenCalled();
-      });
     });
 
     describe('render', function () {
       var table;
       beforeEach(function () {
+        spyOn(Table.prototype, 'prepareTable').andCallThrough();
         spyOn(Table.prototype, 'renderEl').andCallThrough();
         table = new Table({
           collection: {
             on: jasmine.createSpy(),
-            getDataByTableFormat: function () {
-              return [['date', 'another', 'last'], ['01/02/01', 'foo', null]];
+            options: { axes: {
+              x: {
+                label: 'date'
+              },
+              y: [
+                { label: 'another' },
+                { label: 'last' }
+              ]
+            } },
+            getTableRows: function () {
+              return [['01/02/01', 'foo', null]];
             }
           }
         });
+      });
+
+      it('calls prepareTable if table property is not set', function () {
+        table.render();
+        expect(Table.prototype.prepareTable).toHaveBeenCalled();
+      });
+
+      it('does not call prepareTable if it has previously been called', function () {
+        table.prepareTable();
+        Table.prototype.prepareTable.reset();
+        table.render();
+        expect(Table.prototype.prepareTable).not.toHaveBeenCalled();
       });
 
       it('will call renderEl with "no data" when a row has null values', function () {
@@ -83,7 +98,7 @@ function (Table, View, $) {
           expect(context.html()).toBe('<th>0</th>');
         });
 
-        it('renders attributs', function () {
+        it('renders attributes', function () {
           var context = $('<tr>');
           table.renderEl('th', context, 'test heading', {scope: 'col'});
 
@@ -120,9 +135,13 @@ function (Table, View, $) {
 
       it('renders a table', function () {
         table.render();
-
         expect(table.$table.html())
-          .toBe('<tbody><tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr><tr><td>01/02/01</td><td>foo</td><td>no data</td></tr></tbody>');
+          .toBe('<thead>' +
+                  '<tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr>' +
+                '</thead>' +
+                '<tbody>' +
+                  '<tr><td>01/02/01</td><td>foo</td><td>no data</td></tr>' +
+                '</tbody>');
       });
     });
   });

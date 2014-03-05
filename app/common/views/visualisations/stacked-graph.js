@@ -5,10 +5,11 @@ function (Graph) {
   var StackedGraph = Graph.extend({
 
     initialize: function (options) {
-      Graph.prototype.initialize.apply(this, arguments);
+      options = options || {};
       if (this.model && this.model.get('value-attr')) {
-        this.valueAttr = this.model.get('value-attr');
+        options.valueAttr = this.model.get('value-attr');
       }
+      Graph.prototype.initialize.apply(this, arguments);
     },
 
     interactiveFunction: function (e) {
@@ -18,7 +19,7 @@ function (Graph) {
         return e.slice % 3 !== 2;
       }
     },
-    
+
     components: function () {
       var labelComponent, labelOptions, stackOptions, yAxisOptions, tooltipFormat;
 
@@ -88,6 +89,6 @@ function (Graph) {
       return ['stack', axisConfig];
     }
   });
-  
+
   return StackedGraph;
 });

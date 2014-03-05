@@ -5,7 +5,7 @@ define([
 function (Table, HideShow) {
   return Table.extend({
     initialize: function () {
-      if (this.collection.options.axisLabels) {
+      if (this.collection.options.axes) {
         this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
         Table.prototype.initialize.apply(this, arguments);
@@ -19,8 +19,11 @@ function (Table, HideShow) {
       }
     },
     prepareTable: function () {
-      this.$table.appendTo(this.$toggleContainer);
-      this.$toggleContainer.insertAfter(this.$el);
+      if (this.collection.options.axes) {
+        this.$table = $('<table/>');
+        this.$table.appendTo(this.$toggleContainer);
+        this.$toggleContainer.insertAfter(this.$el);
+      }
     }
   });
 });
