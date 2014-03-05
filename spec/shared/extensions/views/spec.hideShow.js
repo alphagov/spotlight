@@ -5,7 +5,10 @@ define([
 ],
 function (HideShow, View, $) {
   describe('HideShow', function () {
-    var hideShow, $el;
+    var hideShow, $el,
+      event = {
+        preventDefault: jasmine.createSpy()
+      };
     beforeEach(function () {
       var $reveal = $('<div>thing to show</div>').hide();
       $el = $('<div></div>');
@@ -71,20 +74,25 @@ function (HideShow, View, $) {
         expect(hideShow.$reveal.is(':visible')).toEqual(false);
         expect(hideShow.$handle.text()).toEqual('Show the thing.');
 
-        hideShow.showHide();
+        hideShow.showHide(event);
 
         expect(hideShow.$reveal.is(':visible')).toEqual(true);
         expect(hideShow.$handle.text()).toEqual('Hide the thing.');
       });
 
       it('hides the $reveal item when its shown and updates the handle text', function () {
-        hideShow.showHide();
+        hideShow.showHide(event);
         expect(hideShow.$reveal.is(':visible')).toEqual(true);
         expect(hideShow.$handle.text()).toEqual('Hide the thing.');
 
-        hideShow.showHide();
+        hideShow.showHide(event);
         expect(hideShow.$reveal.is(':visible')).toEqual(false);
         expect(hideShow.$handle.text()).toEqual('Show the thing.');
+      });
+
+      it('prevents default on the javascript event', function () {
+        hideShow.showHide(event);
+        expect(event.preventDefault).toHaveBeenCalled();
       });
     });
   });

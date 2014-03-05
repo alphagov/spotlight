@@ -6,7 +6,7 @@ define([
       options = options || {};
       this.showLabel = options.showLabel;
       this.hideLabel = options.hideLabel;
-      this.shown = false;
+      this.$reveal = options.$reveal;
       this.className = options.className || '';
 
       View.prototype.initialize.apply(this, arguments);
@@ -27,17 +27,15 @@ define([
       this.$handle.insertBefore(this.$reveal);
     },
 
-    showHide: function () {
-      if (this.shown) {
+    showHide: function (e) {
+      if (this.$reveal.is(':visible')) {
         this.$reveal.hide();
         this.$handle.text(this.showLabel);
-        this.shown = false;
       } else {
         this.$reveal.show();
         this.$handle.text(this.hideLabel);
-        this.shown = true;
       }
-      return false;
+      e.preventDefault();
     }
   });
 });
