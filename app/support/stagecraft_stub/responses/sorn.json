@@ -9,7 +9,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
-      "strapline": "Average score of satisfied responses",
+      "description": "Average score of satisfied responses",
       "data-group": "vehicle-licensing",
       "data-type": "customer-satisfaction",
       "info": [
