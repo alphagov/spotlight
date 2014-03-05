@@ -137,10 +137,11 @@
     {
       "slug": "users-at-each-stage",
       "module-type": "journey",
-      "title": "Completion at each stage",
+      "title": "Users at each stage",
+      "description": "Number of users who completed important stages of the transaction last week",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each step.",
+        "The total number of users who arrived at each stage of the application process.",
         "Number of users is measured using the count of unique events from each step."
       ],
       "data-group": "student-finance",
@@ -174,10 +175,6 @@
         {
           "id": "confirm",
           "title": "Confirm"
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted"
         }
       ]
     },
@@ -219,15 +216,15 @@
       "series": [
         {
           "id": "mobile",
-          "title": "Desktop"
-        },
-        {
-          "id": "tablet",
           "title": "Mobile"
         },
         {
-          "id": "desktop",
+          "id": "tablet",
           "title": "Tablet"
+        },
+        {
+          "id": "desktop",
+          "title": "Desktop"
         }
       ]
     },

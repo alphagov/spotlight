@@ -20,15 +20,15 @@
   "series": [
     {
       "id": "mobile",
-      "title": "Desktop"
-    },
-    {
-      "id": "tablet",
       "title": "Mobile"
     },
     {
-      "id": "desktop",
+      "id": "tablet",
       "title": "Tablet"
+    },
+    {
+      "id": "desktop",
+      "title": "Desktop"
     }
   ],
   "dashboard-title": "Apply for student finance",
