@@ -15,7 +15,6 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
       return {
         matchingAttribute: this.model.get('matching-attribute'),
         axes: _.merge({
-          x: {},
           y: []
         }, this.model.get('axes'))
       };
