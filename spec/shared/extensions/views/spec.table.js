@@ -41,18 +41,19 @@ function (Table, View, $) {
             on: jasmine.createSpy(),
             options: { axes: {
               x: {
-                label: 'date'
+                label: 'date',
+                key: 'timestamp'
               },
               y: [
                 { label: 'another' },
                 { label: 'last' }
               ]
             } },
-            getTableRows: function () {
-              return [['01/02/01', 'foo', null]];
-            }
-          }
+            getTableRows: function () {}
+          },
+          valueAttr: 'value'
         });
+        spyOn(table.collection, 'getTableRows').andReturn([['01/02/01', 'foo', null]]);
       });
 
       it('calls prepareTable if table property is not set', function () {
@@ -70,6 +71,11 @@ function (Table, View, $) {
       it('will call renderEl with "no data" when a row has null values', function () {
         table.render();
         expect(Table.prototype.renderEl.mostRecentCall.args[2]).toEqual('no data');
+      });
+
+      it('will call collection.getTableRows with the column keys', function () {
+        table.render();
+        expect(table.collection.getTableRows).toHaveBeenCalledWith(['timestamp', 'value', 'value']);
       });
 
       describe('renderEl', function () {
@@ -133,6 +139,23 @@ function (Table, View, $) {
         });
       });
 
+      describe('getColumns', function () {
+        it('returns an array of consolidated axes data', function () {
+          expect(table.getColumns()).toEqual([
+                { key: 'timestamp', label: 'date' },
+                { key: 'value', label: 'another' },
+                { key: 'value', label: 'last' }
+            ]);
+        });
+        it('filters columns based on y-axis keys', function () {
+          table.collection.options.axes.y[1].key = 'differentKey';
+          expect(table.getColumns()).toEqual([
+                { key: 'timestamp', label: 'date' },
+                { key: 'value', label: 'another' }
+            ]);
+        });
+      });
+
       it('renders a table', function () {
         table.render();
         expect(table.$table.html())
@@ -143,6 +166,7 @@ function (Table, View, $) {
                   '<tr><td>01/02/01</td><td>foo</td><td>no data</td></tr>' +
                 '</tbody>');
       });
+
     });
   });
 });

@@ -14,13 +14,18 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
     collectionOptions: function () {
       return {
         axes: _.merge({
-          "x": {
-            "label": "Time",
-            "key": "_timestamp"
+          x: {
+            label: 'Time',
+            key: '_timestamp'
           },
-          "y": [
+          y: [
             {
-              "label": "Service Availability"
+              label: 'Page load time',
+              key: 'avgresponse'
+            },
+            {
+              label: 'Uptime',
+              key: 'uptimeFraction'
             }
           ]
         }, this.model.get('axes'))

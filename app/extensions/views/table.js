@@ -99,15 +99,17 @@ function (View) {
       var cols = [];
       if (this.axes) {
         cols = _.map(this.axes.y, function (axis) {
-          return _.extend({
-            key: this.valueAttr
-          }, axis);
+          if (!axis.key || axis.key === this.valueAttr) {
+            return _.extend({
+              key: this.valueAttr
+            }, axis);
+          }
         }, this);
         if (this.axes.x) {
           cols.unshift(this.axes.x);
         }
       }
-      return cols;
+      return _.filter(cols);
     }
 
   });

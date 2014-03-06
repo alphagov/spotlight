@@ -66,38 +66,6 @@ function (MatrixCollection) {
       } else {
         return total / values.length;
       }
-    },
-
-    getDataByTableFormat: function (valueAttr) {
-      if (this.options.axes) {
-        var allTables = [],
-          availabilityTitle = {
-            avgresponse: 'Page load time',
-            uptimeFraction: 'Uptime'
-          },
-          formatDate = (this.options.valueAttr === 'hour') ? 'h:mm:ss a' : 'D MMMM',
-          dateKey = this.options.axes.x.key,
-          attributeTitle = availabilityTitle[valueAttr] || this.options.axes.y.label,
-          valueAttribute = valueAttr || this.options.axes.y.key,
-          tableHeadings = [];
-
-        tableHeadings.push(this.options.axes.x.label, attributeTitle);
-
-        allTables.push(tableHeadings);
-
-        _.each(this.models[0].get('values').models, function (model) {
-          var tableRow = [];
-          tableRow[0] = this.getMoment(model.get(dateKey))
-            .format(formatDate);
-          tableRow[1] = model.get(valueAttribute);
-
-          allTables.push(tableRow);
-        }, this);
-
-        return allTables;
-      }
-
-      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });
