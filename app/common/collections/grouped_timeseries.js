@@ -69,49 +69,6 @@ function (MatrixCollection) {
                         });
                       })
                      .value();
-    },
-
-    getDataByTableFormat: function () {
-      if (this.options.axes && this.options.period) {
-        var allTables = [],
-          dateRow = this.options.axes.x.label + ' (' + this.options.period + ')',
-          dateKey = this.options.axes.x.key,
-          seriesList = this.options.axes.y,
-          tableHeadings = [];
-
-        tableHeadings.push(dateRow);
-
-        _.each(seriesList, function (series) {
-          tableHeadings.push(series.label);
-        });
-
-        allTables.push(tableHeadings);
-
-        _.each(this.models, function (collectionOfCollections, index) {
-          var series = seriesList[index],
-              collection = collectionOfCollections.get('values');
-
-          if (collection.length && index === 0) {
-            _.each(collection.models, function (model) {
-              var tableRow = new Array(series.length);
-              tableRow[0] = this.getMoment(model.get(dateKey))
-                .format(this.periods[this.options.period].format.longhand);
-              tableRow[1] = model.get(series.key);
-
-              allTables.push(tableRow);
-            }, this);
-          } else {
-            _.each(collection.models, function (model, modelIndex) {
-              var tableRow = allTables[modelIndex + 1];
-              tableRow[index + 1] = model.get(series.key);
-            });
-          }
-        }, this);
-
-        return allTables;
-      }
-
-      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });

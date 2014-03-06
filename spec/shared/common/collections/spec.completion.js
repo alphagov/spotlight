@@ -149,54 +149,5 @@ function (CompletionCollection, Collection, MatrixCollection) {
         _end: 12
       });
     });
-
-    describe('getDataByTableFormat', function () {
-      var collection;
-      beforeEach(function () {
-        spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
-        collection = new CompletionCollection({}, {
-          denominatorMatcher: 'start',
-          numeratorMatcher: 'done'
-        });
-        collection.options.axes = {
-          x: {
-            label: 'Date of completion',
-            key: 'a'
-          },
-          y: [
-            {
-              label: 'Completion Percentage',
-              key: 'b'
-            }
-          ]
-        };
-        collection.period = 'month'
-        collection.at(0).set('values', new Collection([
-          { a: '2012-08-01T00:00:00+00:00', b: 0.215 },
-          { a: '2014-01-30T11:32:02+00:00', b: 0.408 }
-        ]));
-      });
-
-      it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axes;
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
-      });
-
-      it('will not call the MatrixCollection if axis is set', function () {
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
-      });
-
-      it('returns an array', function () {
-        expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
-      });
-
-      it('sorts the array by tabular format with the correct timestamp format and raw percentage data', function () {
-        var expected = [['Date of completion (month)', 'Completion Percentage'], ['August 2012', 0.215], ['January 2014', 0.408]];
-
-        expect(collection.getDataByTableFormat()).toEqual(expected);
-      });
-    });
   });
 });

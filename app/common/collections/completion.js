@@ -82,33 +82,6 @@ function (MatrixCollection, Collection, Group, Query) {
       };
 
       return _.extend(this.defaultCollectionAttrs(collectionAttrs), collectionAttrs);
-    },
-
-    getDataByTableFormat: function () {
-      if (this.options.axes && this.period) {
-        var allTables = [],
-          dateRow = this.options.axes.x.label + ' (' + this.period + ')',
-          dateKey = this.options.axes.x.key,
-          seriesData = this.options.axes.y[0].key,
-          tableHeadings = [];
-
-        tableHeadings.push(dateRow, this.options.axes.y[0].label);
-
-        allTables.push(tableHeadings);
-
-        _.each(this.models[0].get('values').models, function (model) {
-          var tableRow = [];
-          tableRow[0] = this.getMoment(model.get(dateKey))
-            .format(this.periods[this.period].format.longhand);
-          tableRow[1] = model.get(seriesData);
-
-          allTables.push(tableRow);
-        }, this);
-
-        return allTables;
-      }
-
-      return MatrixCollection.prototype.getDataByTableFormat.apply(this, arguments);
     }
 
   });

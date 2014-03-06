@@ -321,59 +321,5 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       });
     });
 
-    describe('getDataByTableFormat', function () {
-      var collection;
-      beforeEach(function () {
-        spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
-        collection = new GroupedTimeseries([{}, {}]);
-        collection.options.axes = {
-          x: {
-            label: 'Date of transaction',
-            key: 'a'
-          },
-          y: [
-            {
-              label: "col a title",
-              key: "b"
-            },
-            {
-              label: "col b title",
-              key: "b"
-            }
-          ]
-        };
-        collection.options.period = 'month';
-        collection.at(0).set('values', new Collection([
-          { a: '2012-08-01T00:00:00+00:00', b: 2 },
-          { a: '2012-09-01T00:00:00+00:00', b: 4 }
-        ]));
-        collection.at(1).set('values', new Collection([
-          { a: '2012-08-01T00:00:00+00:00', b: 6 },
-          { a: '2012-09-01T00:00:00+00:00', b: null }
-        ]));
-      });
-
-      it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axes;
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
-      });
-
-      it('will not call the MatrixCollection if axis is set', function () {
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
-      });
-
-      it('returns an array', function () {
-        expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
-      });
-
-      it('sorts the array by tabular format', function () {
-        var expected = [['Date of transaction (month)', 'col a title', 'col b title'], ['August 2012', 2, 6], ['September 2012', 4, null]];
-
-        expect(collection.getDataByTableFormat()).toEqual(expected);
-      });
-    });
-
   });
 });
