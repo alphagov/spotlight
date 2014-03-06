@@ -20,8 +20,7 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
           },
           "y": [
             {
-              "label": "Service Availability",
-              "key": "avgresponse"
+              "label": "Service Availability"
             }
           ]
         }, this.model.get('axes'))
