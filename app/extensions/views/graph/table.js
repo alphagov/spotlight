@@ -10,12 +10,6 @@ function (Table, HideShow) {
 
         Table.prototype.initialize.apply(this, arguments);
 
-        this.toggleTable = new HideShow({
-          $reveal: this.$table,
-          $el: this.$toggleContainer,
-          showLabel: 'Show the data for this graph.',
-          hideLabel: 'Hide the data for this graph.'
-        });
       }
     },
     prepareTable: function () {
@@ -23,6 +17,12 @@ function (Table, HideShow) {
         this.$table = $('<table/>');
         this.$table.appendTo(this.$toggleContainer);
         this.$toggleContainer.insertAfter(this.$el);
+        this.toggleTable = new HideShow({
+          $reveal: this.$table,
+          $el: this.$toggleContainer,
+          showLabel: 'Show the data for this graph.',
+          hideLabel: 'Hide the data for this graph.'
+        });
       }
     }
   });
