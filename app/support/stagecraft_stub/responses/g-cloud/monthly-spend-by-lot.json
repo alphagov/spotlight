@@ -16,20 +16,20 @@
   "axes": {
     "y": [
       {
-        "label": "Cloud Support Services (CSS)",
-        "categoryId": "Specialist cloud services"
+        "categoryId": "Cloud Support Services (CSS)",
+        "label": "Specialist cloud services"
       },
       {
-        "label": "Cloud Software as a Service (SaaS)",
-        "categoryId": "Cloud Software as a Service"
+        "categoryId": "Cloud Software as a Service (SaaS)",
+        "label": "Cloud Software as a Service"
       },
       {
-        "label": "Cloud Infrastructure as a Service (IaaS)",
-        "categoryId": "Cloud Infrastructure as a Service"
+        "categoryId": "Cloud Infrastructure as a Service (IaaS)",
+        "label": "Cloud Infrastructure as a Service"
       },
       {
-        "label": "Cloud Platform as a Service (PaaS)",
-        "categoryId": "Cloud Platform as a Service"
+        "categoryId": "Cloud Platform as a Service (PaaS)",
+        "label": "Cloud Platform as a Service"
       }
     ]
   },
