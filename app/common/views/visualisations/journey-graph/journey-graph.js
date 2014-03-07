@@ -28,7 +28,7 @@ function (Graph, XAxis, Bar, Callout, Hover) {
     },
 
     getYPos: function (groupIndex, modelIndex) {
-      return this.configs.overlay.getYPos.apply(this, arguments);
+      return this.configs.overlay.getYPos.apply(this, arguments) || 0;
     },
 
     calcXScale: function () {

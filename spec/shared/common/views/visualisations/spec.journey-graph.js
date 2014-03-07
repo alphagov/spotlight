@@ -62,9 +62,13 @@ function (JourneyGraph, JourneyCollection, Collection) {
         expect(graph.calcYScale().domain()).toEqual([0, 1]);
       });
 
-      it('', function () {});
+    });
 
-
+    describe('getYPos', function () {
+      it('returns 0 if model data is undefined', function () {
+        spyOn(graph.configs.overlay, 'getYPos');
+        expect(graph.getYPos(0, 0)).toEqual(0);
+      });
     });
 
   });
