@@ -40,7 +40,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
 
     getPageTitle: function () {
       var items = this.getPageTitleItems().filter(function (el) {
-        return el !== null;
+        return _.isString(el);
       });
       if (items.length <= 1) {
         items.push('Performance');
