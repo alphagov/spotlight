@@ -43,7 +43,17 @@
          { "id": "fully-digital", "title": "Digital and automated phone" },
          { "id": "assisted-digital", "title": "Post Office" },
          { "id": "manual", "title": "DVLA centre" }
-      ]
+      ],
+      "axis-labels": {
+        "x": {
+          "label": "Date of application",
+          "key": "_start_at"
+        },
+        "y": {
+          "label": "Number of applications",
+          "key": "volume:sum"
+        }
+      }
     },
     {
       "slug": "service-availability",
