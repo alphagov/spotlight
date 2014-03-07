@@ -21,7 +21,8 @@ body.raw {
   #content {
     h1,
     h2,
-    aside.more-info {
+    aside.more-info,
+    nav {
       display: none;
     }
 
@@ -37,9 +38,5 @@ body.raw {
 
   .multi_stats .sparkline-graph figure.graph .graph-wrapper {
     width: 180px;
-  }
-
-  .availability #availability-nav {
-    display:none;
   }
 }
