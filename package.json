@@ -51,6 +51,7 @@
     "grunt-shell": "0.6.1",
     "jshint": "2.4.3",
     "jsonschema": "0.4.0",
-    "supervisor": "0.5.6"
+    "supervisor": "0.5.6",
+    "jshint-stylish": "0.1.5"
   }
 }

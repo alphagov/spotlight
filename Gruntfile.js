@@ -114,10 +114,8 @@ module.exports = function (grunt) {
     jshint: {
       files: ['app/**/*.js', 'app/support/**/*.json'],
       options: {
-        ignores: ['app/vendor/**'],
-        eqnull: true,
-        es3: true,
-        es5: false
+        reporter: require('jshint-stylish'),
+        jshintrc: true
       }
     },
     // Creates a single big JS file
