@@ -25,21 +25,25 @@
     "y": [
       {
         "label": "Started",
-        "categoryId": "started"
-      },
-      {
-        "label": "Submitted",
-        "categoryId": "submitted"
-      },
-      {
-        "label": "Started",
         "categoryId": "started",
-        "timeshift": 52
+        "format": "integer"
       },
       {
         "label": "Submitted",
         "categoryId": "submitted",
-        "timeshift": 52
+        "format": "integer"
+      },
+      {
+        "label": "Started",
+        "categoryId": "started",
+        "timeshift": 52,
+        "format": "integer"
+      },
+      {
+        "label": "Submitted",
+        "categoryId": "submitted",
+        "timeshift": 52,
+        "format": "integer"
       }
     ]
   },

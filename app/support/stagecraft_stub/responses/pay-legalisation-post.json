@@ -62,9 +62,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "pay-legalisation-post:start", "label": "Start"},
-          {"journeyId": "pay-legalisation-post:confirm", "label": "Confirm"},
-          {"journeyId": "pay-legalisation-post:done", "label": "Done"}
+          {"journeyId": "pay-legalisation-post:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-legalisation-post:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-legalisation-post:done", "label": "Done", "format": "integer"}
         ]
       }
     },

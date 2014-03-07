@@ -36,22 +36,26 @@
         "y": [
           {
             "label": "GOV.UK",
-            "categoryId": "govuk_visitors"
+            "categoryId": "govuk_visitors",
+            "format": "integer"
           },
           {
             "label": "GOV.UK",
             "categoryId": "govuk_visitors",
-            "timeshift": 52
+            "timeshift": 52,
+            "format": "integer"
           },
           {
             "label": "Directgov",
             "categoryId": "directgov_visitors",
-            "timeshift": 52
+            "timeshift": 52,
+            "format": "integer"
           },
           {
             "label": "Business Link",
             "categoryId": "businesslink_visitors",
-            "timeshift": 52
+            "timeshift": 52,
+            "format": "integer"
           }
         ]
       }
@@ -152,15 +156,18 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop"
+            "categoryId": "desktop",
+            "format": "integer"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile"
+            "categoryId": "mobile",
+            "format": "integer"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet"
+            "categoryId": "tablet",
+            "format": "integer"
           }
         ]
       }

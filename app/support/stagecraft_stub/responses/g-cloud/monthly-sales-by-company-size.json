@@ -17,19 +17,23 @@
     "y": [
       {
         "label": "Total",
-        "categoryId": "Total"
+        "categoryId": "Total",
+        "format": "currency"
       },
       {
         "label": "Small and medium enterprises",
-        "categoryId": "Small and medium enterprises"
+        "categoryId": "Small and medium enterprises",
+        "format": "currency"
       },
       {
         "label": "Large enterprises",
-        "categoryId": "Large enterprises"
+        "categoryId": "Large enterprises",
+        "format": "currency"
       },
       {
         "label": "Not yet classified",
-        "categoryId": "Unknown"
+        "categoryId": "Unknown",
+        "format": "currency"
       }
     ]
   },

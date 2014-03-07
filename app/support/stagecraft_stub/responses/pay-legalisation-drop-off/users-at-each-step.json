@@ -13,15 +13,18 @@
     "y": [
       {
         "journeyId": "pay-legalisation-drop-off:start",
-        "label": "Start"
+        "label": "Start",
+        "format": "integer"
       },
       {
         "journeyId": "pay-legalisation-drop-off:confirm",
-        "label": "Confirm"
+        "label": "Confirm",
+        "format": "integer"
       },
       {
         "journeyId": "pay-legalisation-drop-off:done",
-        "label": "Done"
+        "label": "Done",
+        "format": "integer"
       }
     ]
   },

@@ -13,15 +13,18 @@
     "y": [
       {
         "journeyId": "deposit-foreign-marriage:start",
-        "label": "Start"
+        "label": "Start",
+        "format": "integer"
       },
       {
         "journeyId": "deposit-foreign-marriage:confirm",
-        "label": "Confirm"
+        "label": "Confirm",
+        "format": "integer"
       },
       {
         "journeyId": "deposit-foreign-marriage:done",
-        "label": "Done"
+        "label": "Done",
+        "format": "integer"
       }
     ]
   },

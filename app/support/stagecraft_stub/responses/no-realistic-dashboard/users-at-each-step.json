@@ -10,17 +10,20 @@
       {
         "journeyId": "deposit-foreign-marriage:start",
         "label": "Start",
-        "key": "uniqueEvents"
+        "key": "uniqueEvents",
+        "format": "integer"
       },
       {
         "journeyId": "deposit-foreign-marriage:confirm",
         "label": "Confirm",
-        "key": "uniqueEvents"
+        "key": "uniqueEvents",
+        "format": "integer"
       },
       {
         "journeyId": "deposit-foreign-marriage:done",
         "label": "Done",
-        "key": "uniqueEvents"
+        "key": "uniqueEvents",
+        "format": "integer"
       }
     ]
   },

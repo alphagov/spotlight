@@ -24,14 +24,16 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         matchingAttribute: this.model.get('matching-attribute'),
         tabbedAttr: this.model.get('tabbed_attr'),
         axes: _.merge({
-          "x": {
-            "label": "Date of completion",
-            "key": "_start_at"
+          x: {
+            label: 'Date of completion',
+            key: '_start_at',
+            format: 'date'
           },
-          "y": [
+          y: [
             {
-              "label": "Completion percentage",
-              "key": "completion"
+              label: 'Completion percentage',
+              key: 'completion',
+              format: 'percent'
             }
           ]
         }, this.model.get('axes'))

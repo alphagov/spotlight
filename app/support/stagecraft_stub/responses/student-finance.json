@@ -38,21 +38,25 @@
         "y": [
           {
             "label": "Started",
-            "categoryId": "started"
-          },
-          {
-            "label": "Submitted",
-            "categoryId": "submitted"
-          },
-          {
-            "label": "Started",
             "categoryId": "started",
-            "timeshift": 52
+            "format": "integer"
           },
           {
             "label": "Submitted",
             "categoryId": "submitted",
-            "timeshift": 52
+            "format": "integer"
+          },
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "timeshift": 52,
+            "format": "integer"
+          },
+          {
+            "label": "Submitted",
+            "categoryId": "submitted",
+            "timeshift": 52,
+            "format": "integer"
           }
         ]
       }
@@ -81,21 +85,25 @@
         "y": [
           {
             "label": "Paper",
-            "categoryId": "paper"
-          },
-          {
-            "label": "Digital",
-            "categoryId": "digital"
-          },
-          {
-            "label": "Paper",
             "categoryId": "paper",
-            "timeshift": 52
+            "format": "integer"
           },
           {
             "label": "Digital",
             "categoryId": "digital",
-            "timeshift": 52
+            "format": "integer"
+          },
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "timeshift": 52,
+            "format": "integer"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "digital",
+            "timeshift": 52,
+            "format": "integer"
           }
         ]
       }
@@ -155,35 +163,43 @@
         "y": [
           {
             "journeyId": "about-you",
-            "label": "About you"
+            "label": "About you",
+            "format": "integer"
           },
           {
             "journeyId": "previous-study",
-            "label": "About your previous studies"
+            "label": "About your previous studies",
+            "format": "integer"
           },
           {
             "journeyId": "course-and-fees",
-            "label": "Course and fees"
+            "label": "Course and fees",
+            "format": "integer"
           },
           {
             "journeyId": "living-costs",
-            "label": "Living costs"
+            "label": "Living costs",
+            "format": "integer"
           },
           {
             "journeyId": "financial-info",
-            "label": "Financial info"
+            "label": "Financial info",
+            "format": "integer"
           },
           {
             "journeyId": "additional-info",
-            "label": "Additional info"
+            "label": "Additional info",
+            "format": "integer"
           },
           {
             "journeyId": "confirm",
-            "label": "Confirm"
+            "label": "Confirm",
+            "format": "integer"
           },
           {
             "journeyId": "submitted",
-            "label": "Submitted"
+            "label": "Submitted",
+            "format": "integer"
           }
         ]
       }
@@ -227,15 +243,18 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "mobile"
+            "categoryId": "mobile",
+            "format": "integer"
           },
           {
             "label": "Mobile",
-            "categoryId": "tablet"
+            "categoryId": "tablet",
+            "format": "integer"
           },
           {
             "label": "Tablet",
-            "categoryId": "desktop"
+            "categoryId": "desktop",
+            "format": "integer"
           }
         ]
       }

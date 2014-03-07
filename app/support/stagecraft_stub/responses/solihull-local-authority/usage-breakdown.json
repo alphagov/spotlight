@@ -18,11 +18,13 @@
     "y": [
       {
         "label": "Digital",
-        "categoryId": "Digital"
+        "categoryId": "Digital",
+        "format": "integer"
       },
       {
         "label": "Non Digital",
-        "categoryId": "NonDigital"
+        "categoryId": "NonDigital",
+        "format": "integer"
       }
     ]
   },

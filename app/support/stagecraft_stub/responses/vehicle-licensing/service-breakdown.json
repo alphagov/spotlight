@@ -16,8 +16,18 @@
   "line-label-links": true,
   "axes": {
     "y": [
-       { "categoryId": "tax-disc", "label": "Tax disc", "href": "/performance/tax-disc" },
-       { "categoryId": "sorn", "label": "SORN", "href": "/performance/sorn" }
+      {
+        "categoryId": "tax-disc",
+        "label": "Tax disc",
+        "href": "/performance/tax-disc",
+        "format": "integer"
+      },
+      {
+        "categoryId": "sorn",
+        "label": "SORN",
+        "href": "/performance/sorn",
+        "format": "integer"
+      }
     ]
   },
   "page-type": "module",

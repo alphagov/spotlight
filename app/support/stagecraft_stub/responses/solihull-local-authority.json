@@ -33,15 +33,18 @@
         "y": [
           {
             "label": "Phone",
-            "categoryId": "Phone"
+            "categoryId": "Phone",
+            "format": "integer"
           },
           {
             "label": "Face to face",
-            "categoryId": "FaceToFace"
+            "categoryId": "FaceToFace",
+            "format": "integer"
           },
           {
             "label": "Other",
-            "categoryId": "Other"
+            "categoryId": "Other",
+            "format": "integer"
           }
         ]
       }
@@ -67,11 +70,13 @@
         "y": [
           {
             "label": "Digital",
-            "categoryId": "Digital"
+            "categoryId": "Digital",
+            "format": "integer"
           },
           {
             "label": "Non Digital",
-            "categoryId": "NonDigital"
+            "categoryId": "NonDigital",
+            "format": "integer"
           }
         ]
       }

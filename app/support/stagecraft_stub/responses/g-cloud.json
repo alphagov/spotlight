@@ -40,19 +40,23 @@
          "y": [
            {
              "label": "Total",
-             "categoryId": "Total"
+             "categoryId": "Total",
+             "format": "currency"
            },
            {
              "label": "Small and medium enterprises",
-             "categoryId": "Small and medium enterprises"
+             "categoryId": "Small and medium enterprises",
+             "format": "currency"
            },
            {
              "label": "Large enterprises",
-             "categoryId": "Large enterprises"
+             "categoryId": "Large enterprises",
+             "format": "currency"
            },
            {
              "label": "Not yet classified",
-             "categoryId": "Unknown"
+             "categoryId": "Unknown",
+             "format": "currency"
            }
          ]
       },
@@ -84,19 +88,23 @@
          "y": [
            {
              "label": "Total",
-             "categoryId": "Total"
+             "categoryId": "Total",
+             "format": "currency"
            },
            {
              "label": "Small and medium enterprises",
-             "categoryId": "Small and medium enterprises"
+             "categoryId": "Small and medium enterprises",
+             "format": "currency"
            },
            {
              "label": "Large enterprises",
-             "categoryId": "Large enterprises"
+             "categoryId": "Large enterprises",
+             "format": "currency"
            },
            {
              "label": "Not yet classified",
-             "categoryId": "Unknown"
+             "categoryId": "Unknown",
+             "format": "currency"
            }
          ]
       },
@@ -151,27 +159,33 @@
           "y": [
             {
               "label": "Total",
-              "categoryId": "Total"
+              "categoryId": "Total",
+              "format": "currency"
             },
             {
               "label": "Central government",
-              "categoryId": "Central government"
+              "categoryId": "Central government",
+              "format": "currency"
             },
             {
               "label": "Other wider public sector",
-              "categoryId": "Other wider public sector"
+              "categoryId": "Other wider public sector",
+              "format": "currency"
             },
             {
               "label": "Local government",
-              "categoryId": "Local government"
+              "categoryId": "Local government",
+              "format": "currency"
             },
             {
               "label": "Unknown",
-              "categoryId": "Not yet classified"
+              "categoryId": "Not yet classified",
+              "format": "currency"
             },
             {
               "label": "Not for profit",
-              "categoryId": "Not for profit"
+              "categoryId": "Not for profit",
+              "format": "currency"
             }
           ]
       },
@@ -198,19 +212,23 @@
          "y": [
            {
              "categoryId": "Cloud Support Services (CSS)",
-             "label": "Specialist cloud services"
+             "label": "Specialist cloud services",
+             "format": "currency"
            },
            {
              "categoryId": "Cloud Software as a Service (SaaS)",
-             "label": "Cloud Software as a Service"
+             "label": "Cloud Software as a Service",
+             "format": "currency"
            },
            {
              "categoryId": "Cloud Infrastructure as a Service (IaaS)",
-             "label": "Cloud Infrastructure as a Service"
+             "label": "Cloud Infrastructure as a Service",
+             "format": "currency"
            },
            {
              "categoryId": "Cloud Platform as a Service (PaaS)",
-             "label": "Cloud Platform as a Service"
+             "label": "Cloud Platform as a Service",
+             "format": "currency"
            }
          ]
       },

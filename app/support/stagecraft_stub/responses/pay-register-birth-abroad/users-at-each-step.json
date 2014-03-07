@@ -13,15 +13,18 @@
     "y": [
       {
         "journeyId": "pay-register-birth-abroad:start",
-        "label": "Start"
+        "label": "Start",
+        "format": "integer"
       },
       {
         "journeyId": "pay-register-birth-abroad:confirm",
-        "label": "Confirm"
+        "label": "Confirm",
+        "format": "integer"
       },
       {
         "journeyId": "pay-register-birth-abroad:done",
-        "label": "Done"
+        "label": "Done",
+        "format": "integer"
       }
     ]
   },

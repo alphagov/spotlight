@@ -22,12 +22,14 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         axes: _.merge({
           x: {
             label: 'Date of Application',
-            key: '_start_at'
+            key: '_start_at',
+            format: 'date'
           },
           y: [
             {
               label: 'Number of applications',
-              key: 'uniqueEvents'
+              key: 'uniqueEvents',
+              format: 'integer'
             }
           ]
         }, this.model.get('axes')),

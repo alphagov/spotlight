@@ -23,15 +23,18 @@
     "y": [
       {
         "categoryId": "fully-digital",
-        "label": "Digital and automated phone"
+        "label": "Digital and automated phone",
+        "format": "integer"
       },
       {
         "categoryId": "assisted-digital",
-        "label": "Post Office"
+        "label": "Post Office",
+        "format": "integer"
       },
       {
         "categoryId": "manual",
-        "label": "DVLA centre"
+        "label": "DVLA centre",
+        "format": "integer"
       }
     ]
   },

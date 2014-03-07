@@ -13,15 +13,18 @@
     "y": [
       {
         "journeyId": "pay-foreign-marriage-certificates:start",
-        "label": "Start"
+        "label": "Start",
+        "format": "integer"
       },
       {
         "journeyId": "pay-foreign-marriage-certificates:confirm",
-        "label": "Confirm"
+        "label": "Confirm",
+        "format": "integer"
       },
       {
         "journeyId": "pay-foreign-marriage-certificates:done",
-        "label": "Done"
+        "label": "Done",
+        "format": "integer"
       }
     ]
   },

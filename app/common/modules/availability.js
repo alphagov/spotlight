@@ -16,16 +16,19 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
         axes: _.merge({
           x: {
             label: 'Time',
-            key: '_timestamp'
+            key: '_timestamp',
+            format: 'date'
           },
           y: [
             {
               label: 'Page load time',
-              key: 'avgresponse'
+              key: 'avgresponse',
+              format: 'duration'
             },
             {
               label: 'Uptime',
-              key: 'uptimeFraction'
+              key: 'uptimeFraction',
+              format: 'percent'
             }
           ]
         }, this.model.get('axes'))

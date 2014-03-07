@@ -62,9 +62,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "deposit-foreign-marriage:start", "label": "Start"},
-          {"journeyId": "deposit-foreign-marriage:confirm", "label": "Confirm"},
-          {"journeyId": "deposit-foreign-marriage:done", "label": "Done"}
+          {"journeyId": "deposit-foreign-marriage:start", "label": "Start", "format": "integer"},
+          {"journeyId": "deposit-foreign-marriage:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "deposit-foreign-marriage:done", "label": "Done", "format": "integer"}
         ]
       }
     },

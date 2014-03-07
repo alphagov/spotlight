@@ -24,21 +24,25 @@
     "y": [
       {
         "label": "Paper",
-        "categoryId": "paper"
-      },
-      {
-        "label": "Digital",
-        "categoryId": "digital"
-      },
-      {
-        "label": "Paper",
         "categoryId": "paper",
-        "timeshift": 52
+        "format": "integer"
       },
       {
         "label": "Digital",
         "categoryId": "digital",
-        "timeshift": 52
+        "format": "integer"
+      },
+      {
+        "label": "Paper",
+        "categoryId": "paper",
+        "timeshift": 52,
+        "format": "integer"
+      },
+      {
+        "label": "Digital",
+        "categoryId": "digital",
+        "timeshift": 52,
+        "format": "integer"
       }
     ]
   },

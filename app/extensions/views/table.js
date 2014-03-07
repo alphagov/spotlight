@@ -1,8 +1,10 @@
 define([
-  './view'
+  './view',
+  'extensions/mixins/formatters'
 ],
-function (View) {
-  return View.extend({
+function (View, Formatters) {
+
+  var TableView = View.extend({
     initialize: function (options) {
       options = options || {};
       var collection = this.collection = options.collection;
@@ -25,7 +27,7 @@ function (View) {
       if (context) {
         element = $('<' + elementName + '></' + elementName + '>');
         if (value && value !== null || value !== undefined) {
-          element.text(this.formatValueForTable(value));
+          element.text(value);
         }
         if (attr) {
           element.attr(attr);
@@ -37,7 +39,7 @@ function (View) {
 
     // TODO: This should live in a common formatter as this also lives in other places.
     // It should probably be controlled by some central config for formatting in the module setup json.
-    formatValueForTable: function (value) {
+    formatValue: function (value) {
       if (this.valueAttr === 'avgresponse' && typeof value === 'number') {
         return this.formatDuration(value, 's', 2);
       }
@@ -69,10 +71,10 @@ function (View) {
     },
 
     renderBody: function () {
-      var keys = _.pluck(this.getColumns(), 'key');
+      var columns = this.getColumns();
+      var keys = _.pluck(columns, 'key');
       var $tbody = this.renderEl('tbody', this.$table);
-      _.each(this.collection.getTableRows(keys), function (row, rowIndex) {
-
+      _.each(this.collection.getTableRows(keys), function (row) {
         var $row = this.renderEl('tr', $tbody);
         var renderCell = this.renderCell.bind(this, 'td', $row);
 
@@ -80,19 +82,24 @@ function (View) {
           if (_.isArray(cell)) { // pulling data from multiple nested collections
             _.each(cell, function (datapoint, columnIndex) {
               // only render the first column for the first collection
-              if (columnIndex > 0 || index === 0) { renderCell(datapoint); }
+              if (columnIndex > 0 || index === 0) {
+                renderCell(datapoint, columns[index + columnIndex]);
+              }
             });
           } else {
-            renderCell(cell);
+            renderCell(cell, columns[index]);
           }
         });
 
       }, this);
     },
 
-    renderCell: function (tag, parent, content, attrs) {
+    renderCell: function (tag, parent, content, column) {
+      if (column.format) {
+        content = this.format(content, column.format);
+      }
       content = (content === null || content === undefined) ? 'no data' : content;
-      this.renderEl(tag, parent, content, attrs);
+      this.renderEl(tag, parent, content);
     },
 
     getColumns: function () {
@@ -113,4 +120,8 @@ function (View) {
     }
 
   });
+
+  _.extend(TableView.prototype, Formatters);
+
+  return TableView;
 });

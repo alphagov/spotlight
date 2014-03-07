@@ -62,9 +62,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "pay-legalisation-drop-off:start", "label": "Start"},
-          {"journeyId": "pay-legalisation-drop-off:confirm", "label": "Confirm"},
-          {"journeyId": "pay-legalisation-drop-off:done", "label": "Done"}
+          {"journeyId": "pay-legalisation-drop-off:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-legalisation-drop-off:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-legalisation-drop-off:done", "label": "Done", "format": "integer"}
         ]
       }
     },

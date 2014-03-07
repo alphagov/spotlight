@@ -41,11 +41,13 @@
         "y": [
           {
             "label": "Paper form",
-            "categoryId": "ca_clerical_received"
+            "categoryId": "ca_clerical_received",
+            "format": "integer"
           },
           {
             "label": "Digital",
-            "categoryId": "ca_e_claims_received"
+            "categoryId": "ca_e_claims_received",
+            "format": "integer"
           }
         ]
       }
@@ -98,10 +100,10 @@
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
-          {"journeyId": "about-you", "label": "About you"},
-          {"journeyId": "care-you-provide", "label": "About the care you provide"},
-          {"journeyId": "other-money", "label": "Other money"},
-          {"journeyId": "consent-and-declaration", "label": "Consent and declaration"}
+          {"journeyId": "about-you", "label": "About you", "format": "integer"},
+          {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
+          {"journeyId": "other-money", "label": "Other money", "format": "integer"},
+          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"}
         ]
       }
     },

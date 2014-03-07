@@ -14,19 +14,23 @@
     "y": [
       {
         "journeyId": "about-you",
-        "label": "About you"
+        "label": "About you",
+        "format": "integer"
       },
       {
         "journeyId": "care-you-provide",
-        "label": "About the care you provide"
+        "label": "About the care you provide",
+        "format": "integer"
       },
       {
         "journeyId": "other-money",
-        "label": "Other money"
+        "label": "Other money",
+        "format": "integer"
       },
       {
         "journeyId": "consent-and-declaration",
-        "label": "Consent and declaration"
+        "label": "Consent and declaration",
+        "format": "integer"
       }
     ]
   },

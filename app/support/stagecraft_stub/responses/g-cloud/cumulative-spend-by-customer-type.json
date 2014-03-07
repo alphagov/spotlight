@@ -17,27 +17,33 @@
     "y": [
       {
         "label": "Total",
-        "categoryId": "Total"
+        "categoryId": "Total",
+        "format": "currency"
       },
       {
         "label": "Central government",
-        "categoryId": "Central government"
+        "categoryId": "Central government",
+        "format": "currency"
       },
       {
         "label": "Other wider public sector",
-        "categoryId": "Other wider public sector"
+        "categoryId": "Other wider public sector",
+        "format": "currency"
       },
       {
         "label": "Local government",
-        "categoryId": "Local government"
+        "categoryId": "Local government",
+        "format": "currency"
       },
       {
-        "label": "Not yet classified",
-        "categoryId": "Unknown"
+        "label": "Unknown",
+        "categoryId": "Not yet classified",
+        "format": "currency"
       },
       {
         "label": "Not for profit",
-        "categoryId": "Not for profit"
+        "categoryId": "Not for profit",
+        "format": "currency"
       }
     ]
   },

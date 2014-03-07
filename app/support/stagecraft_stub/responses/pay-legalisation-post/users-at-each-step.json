@@ -13,15 +13,18 @@
     "y": [
       {
         "journeyId": "pay-legalisation-post:start",
-        "label": "Start"
+        "label": "Start",
+        "format": "integer"
       },
       {
         "journeyId": "pay-legalisation-post:confirm",
-        "label": "Confirm"
+        "label": "Confirm",
+        "format": "integer"
       },
       {
         "journeyId": "pay-legalisation-post:done",
-        "label": "Done"
+        "label": "Done",
+        "format": "integer"
       }
     ]
   },

@@ -17,15 +17,18 @@
     "y": [
       {
         "label": "Phone",
-        "categoryId": "Phone"
+        "categoryId": "Phone",
+        "format": "integer"
       },
       {
         "label": "Face to face",
-        "categoryId": "FaceToFace"
+        "categoryId": "FaceToFace",
+        "format": "integer"
       },
       {
         "label": "Other",
-        "categoryId": "Other"
+        "categoryId": "Other",
+        "format": "integer"
       }
     ]
   },

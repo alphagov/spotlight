@@ -19,11 +19,13 @@
     "y": [
       {
         "label": "Completed",
-        "categoryId": "completed"
+        "categoryId": "completed",
+        "format": "integer"
       },
       {
         "label": "Started",
-        "categoryId": "started"
+        "categoryId": "started",
+        "format": "integer"
       }
     ]
   },

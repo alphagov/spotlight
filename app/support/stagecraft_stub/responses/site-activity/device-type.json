@@ -20,15 +20,18 @@
     "y": [
       {
         "label": "Desktop",
-        "categoryId": "desktop"
+        "categoryId": "desktop",
+        "format": "integer"
       },
       {
         "label": "Mobile",
-        "categoryId": "mobile"
+        "categoryId": "mobile",
+        "format": "integer"
       },
       {
         "label": "Tablet",
-        "categoryId": "tablet"
+        "categoryId": "tablet",
+        "format": "integer"
       }
     ]
   },

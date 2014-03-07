@@ -81,17 +81,20 @@
           {
             "journeyId": "deposit-foreign-marriage:start",
             "label": "Start",
-            "key": "uniqueEvents"
+            "key": "uniqueEvents",
+            "format": "integer"
           },
           {
             "journeyId": "deposit-foreign-marriage:confirm",
             "label": "Confirm",
-            "key": "uniqueEvents"
+            "key": "uniqueEvents",
+            "format": "integer"
           },
           {
             "journeyId": "deposit-foreign-marriage:done",
             "label": "Done",
-            "key": "uniqueEvents"
+            "key": "uniqueEvents",
+            "format": "integer"
           }
         ]
       }
@@ -166,12 +169,12 @@
         {
           "title": "Median size of mortgage",
           "attr": "median_advance_sterling",
-          "format": "£{{ value }}"
+          "format": "currency"
         },
         {
           "title": "Median advance",
           "attr": "median_percentage_advance",
-          "format": "{{ value }}%"
+          "format": "percent"
         }
       ]
     },
@@ -191,19 +194,23 @@
         "y": [
           {
             "label": "England",
-            "categoryId": "England"
+            "categoryId": "England",
+            "format": "integer"
           },
           {
             "label": "Scotland",
-            "categoryId": "Scotland"
+            "categoryId": "Scotland",
+            "format": "integer"
           },
           {
             "label": "Wales",
-            "categoryId": "Wales"
+            "categoryId": "Wales",
+            "format": "integer"
           },
           {
             "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland"
+            "categoryId": "Northern_Ireland",
+            "format": "integer"
           }
         ]
       },
@@ -228,11 +235,13 @@
         "y": [
           {
             "label": "Completed",
-            "categoryId": "completed"
+            "categoryId": "completed",
+            "format": "integer"
           },
           {
             "label": "Started",
-            "categoryId": "started"
+            "categoryId": "started",
+            "format": "integer"
           }
         ]
       },

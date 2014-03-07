@@ -149,7 +149,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         return this.magnitudes.unit;
     },
 
-    format: function (value, magnitude, decimalPlaces, currency) {
+    formatNumber: function (value, magnitude, decimalPlaces, currency) {
        var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
        if (currency) {
          val = currency.prefix + val + currency.suffix;
@@ -184,7 +184,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value))? 0 : 1;
       }
 
-      var format = this.format;
+      var format = this.formatNumber;
       var currency_entry = (currency) ? this.currencies[currency] : null;
       return function(value) {
         if (value === 0) return "0";
