@@ -28,6 +28,10 @@ body.raw {
     .visualisation {
       float: left;
       width: 960px;
+
+      .table-toggle {
+        display: none;
+      }
     }
   }
 
