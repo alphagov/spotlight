@@ -267,7 +267,7 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
     },
 
     getTableRows: function (keys) {
-      if (arguments.length !== 1 || !(keys instanceof Array)) {
+      if (arguments.length !== 1 || !(_.isArray(keys))) {
         keys = [].slice.apply(arguments);
       }
       return this.map(function (model) {

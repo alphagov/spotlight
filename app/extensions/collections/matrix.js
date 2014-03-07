@@ -120,7 +120,7 @@ function (require, Collection, Group) {
     },
 
     getTableRows: function (keys) {
-      if (arguments.length !== 1 || !(keys instanceof Array)) {
+      if (arguments.length !== 1 || !(_.isArray(keys))) {
         keys = [].slice.apply(arguments);
       }
       keys = _.unique(keys);
