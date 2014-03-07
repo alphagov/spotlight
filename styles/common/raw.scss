@@ -25,12 +25,9 @@ body.raw {
     }
 
     .visualisation {
-      float:left;
+      float: left;
+      width: 960px;
     }
-  }
-
-  .visualisation {
-    width: 960px;
   }
 
   .multi_stats .sparkline-graph figure.graph .graph-wrapper {
