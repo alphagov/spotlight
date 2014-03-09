@@ -1,9 +1,12 @@
 define([
+  'd3loader!',
   './axis'
 ],
-function (Axis) {
+function (d3, Axis) {
 
   var XAxis = Axis.extend({
+
+    d3: d3,
 
     classed: 'x-axis',
     position: 'bottom',
@@ -65,7 +68,10 @@ function (Axis) {
 
     configs: {
       hour: {
-        ticks: [d3.time.hour.utc, 6],
+        ticks: function () {
+          var d3 = this.d3;
+          return [d3.time.hour.utc, 6];
+        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             var date = this.getMoment(d);
@@ -80,7 +86,10 @@ function (Axis) {
         }
       },
       day: {
-        ticks: [d3.time.mondays.utc, 1],
+        ticks: function () {
+          var d3 = this.d3;
+          return [d3.time.mondays.utc, 1];
+        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -88,7 +97,10 @@ function (Axis) {
         }
       },
       week: {
-        ticks: [d3.time.mondays.utc, 1],
+        ticks: function () {
+          var d3 = this.d3;
+          return [d3.time.mondays.utc, 1];
+        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             return this.getMoment(d).format('D MMM');
@@ -96,7 +108,10 @@ function (Axis) {
         }
       },
       month: {
-        ticks: [d3.time.month.utc, 1],
+        ticks: function () {
+          var d3 = this.d3;
+          return [d3.time.month.utc, 1];
+        },
         tickFormat: function () {
           return _.bind(function (d, index) {
             var val = this.getMoment(d).format('MMM');
