@@ -142,8 +142,14 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             pagePerThingDirectory = path.join(stagecraftStubDirectory, dashboardSlug);
 
         _.each(dashboardData.modules, function (module) {
-          var moduleOnDisk = JSON.parse(fs.readFileSync(path.join(pagePerThingDirectory, module.slug + '.json'), 'utf8')),
-              moduleSlug = module.slug;
+          var moduleOnDisk = {},
+              moduleSlug = module.slug,
+              moduleJsonPath = path.join(pagePerThingDirectory, module.slug + '.json');
+
+          if (fs.existsSync(moduleJsonPath)) {
+            moduleOnDisk = JSON.parse(fs.readFileSync(moduleJsonPath, 'utf8'));
+          }
+
           delete module.slug;
           delete module['page-type'];
           module = _.extend(module, {
