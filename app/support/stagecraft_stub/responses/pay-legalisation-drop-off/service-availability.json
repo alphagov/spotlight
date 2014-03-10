@@ -1,6 +1,12 @@
 {
   "module-type": "availability",
   "title": "Service availability",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Legalise documents using the premium service"
+  },
   "description": "",
   "data-group": "pay-legalisation-drop-off",
   "data-type": "monitoring",

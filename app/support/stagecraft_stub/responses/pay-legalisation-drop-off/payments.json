@@ -2,6 +2,12 @@
   "module-type": "completion_numbers",
   "title": "Payments",
   "description": "",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Legalise documents using the premium service"
+  },
   "data-group": "pay-legalisation-drop-off",
   "data-type": "journey",
   "info": [
