@@ -1,6 +1,12 @@
 {
   "module-type": "completion_numbers",
   "title": "Payments",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Deposit foreign marriage or civil partnership certificates"
+  },
   "description": "",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
