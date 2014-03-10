@@ -11,6 +11,10 @@
     position: absolute;
     bottom: 5px;
     left: 12em;
+
+    .change {
+      @include core-24($tabular-numbers: true);
+    }
   }
 
   @media(max-width: 850px) {
