@@ -1,4 +1,10 @@
 {
+  "department": {
+    "title": "Solihull Local Authority"
+  },
+  "service": {
+    "title": "Waste collections"
+  },
   "module-type": "completion_rate",
   "title": "Digital take-up",
   "data-group": "solihull-local-authority",
