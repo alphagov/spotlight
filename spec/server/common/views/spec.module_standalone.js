@@ -135,10 +135,25 @@ function (StandaloneView, Collection, Model, View) {
         ]);
       });
 
-      it('adds policy as a crumb when Stagecraft returns the necessary properties', function () {
+      it('adds department, agency and service as a crumb when Stagecraft returns the necessary properties', function () {
         model.set({
           'dashboard-title': 'Parent dashboard',
-          'department': { 'title': 'A policy'}
+          'department': { 'title': 'A department'},
+          'agency': { 'title': 'An agency'},
+          'service': { 'title': 'A service'}
+        });
+        expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
+          {path: '/performance', title: 'Performance'},
+          {title: 'A department'},
+          {title: 'An agency'},
+          {title: 'A service'}
+        ]);
+      });
+
+      it('adds policy/other as a crumb when Stagecraft returns the necessary properties', function () {
+        model.set({
+          'dashboard-title': 'Parent dashboard',
+          'other': { 'title': 'A policy'}
         });
         expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
           {path: '/performance', title: 'Performance'},

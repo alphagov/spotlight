@@ -114,12 +114,12 @@ function (DashboardView, Model) {
 
       it('calculates correct tagline for policies', function () {
         model.set({
-          policy: {
+          other: {
             title: 'Housing',
             tagline: 'The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.'
           }
         });
-        view.dashboardType = 'policy';
+        view.dashboardType = 'other';
         expect(view.getTagline()).toEqual('The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.');
       });
 
