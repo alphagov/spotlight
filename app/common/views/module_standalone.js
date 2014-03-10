@@ -32,14 +32,21 @@ function (GovUkView, Module) {
       var crumbs = [
         {path: '/performance', title: 'Performance'}
       ];
-      var crumbNames = ['department', 'agency', 'service', 'policy'];
-      _.each(crumbNames, function (cn) {
-        if (this.model.get(cn)) {
-          crumbs.push({
-            'title': this.model.get(cn).title
-          });
-        }
-      }, this);
+      if (this.model.get('dashboard-slug') && this.model.get('dashboard-title')) {
+        crumbs.push({
+          path: '/performance/' + this.model.get('dashboard-slug'),
+          title: this.model.get('dashboard-title')
+        });
+      } else {
+        var crumbNames = ['department', 'agency', 'service', 'policy'];
+        _.each(crumbNames, function (cn) {
+          if (this.model.get(cn)) {
+            crumbs.push({
+              'title': this.model.get(cn).title
+            });
+          }
+        }, this);
+      }
       return crumbs;
     }
   });
