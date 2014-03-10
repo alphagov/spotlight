@@ -5,7 +5,15 @@
   "description": "",
   "dashboard-title": "Register as a waste carrier, broker or dealer",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "waste-carrier-or-broker-registration",
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs"
+  },
+  "agency": {
+    "title": "Environment Agency"
+  },
+  "service": {
+    "title": "Register as a waste carrier, broker or dealer"
+  },
   "info": [
     "Data source: Pingdom",
     "Page load time measures the time taken for a sample page within the service to load.",
