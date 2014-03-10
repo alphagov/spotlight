@@ -2,9 +2,6 @@
   "module-type": "grouped_timeseries",
   "title": "Building starts and completions",
   "description": "How many residential builds have been started and completed",
-  "policy": {
-    "title": "Housing"
-  },
   "data-group": "housing-policy",
   "data-type": "dwellings",
   "use_stack": false,
