@@ -11,6 +11,10 @@
     position: absolute;
     bottom: 5px;
     left: 12em;
+
+    .change {
+      font-size: 24px;
+    }
   }
 
   @media(max-width: 850px) {
