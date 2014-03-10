@@ -18,19 +18,23 @@
     "y": [
       {
         "label": "England",
-        "categoryId": "England"
+        "categoryId": "England",
+        "format": "integer"
       },
       {
         "label": "Scotland",
-        "categoryId": "Scotland"
+        "categoryId": "Scotland",
+        "format": "integer"
       },
       {
         "label": "Wales",
-        "categoryId": "Wales"
+        "categoryId": "Wales",
+        "format": "integer"
       },
       {
         "label": "Northern Ireland",
-        "categoryId": "Northern_Ireland"
+        "categoryId": "Northern_Ireland",
+        "format": "integer"
       }
     ]
   },

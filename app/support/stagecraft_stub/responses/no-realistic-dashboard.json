@@ -134,7 +134,7 @@
       "module-type": "completion_numbers",
       "title": "Applications",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
+      "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
         "Info text line 1",
@@ -148,7 +148,7 @@
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
+      "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
         "Info text line 1",
@@ -169,12 +169,12 @@
         {
           "title": "Median size of mortgage",
           "attr": "median_advance_sterling",
-          "format": "currency"
+          "format": "£{{ value }}"
         },
         {
           "title": "Median advance",
           "attr": "median_percentage_advance",
-          "format": "percent"
+          "format": "{{ value }}%"
         }
       ]
     },

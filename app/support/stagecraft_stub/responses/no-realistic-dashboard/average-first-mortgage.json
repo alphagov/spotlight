@@ -9,12 +9,12 @@
     {
       "title": "Median size of mortgage",
       "attr": "median_advance_sterling",
-      "format": "currency"
+      "format": "£{{ value }}"
     },
     {
       "title": "Median advance",
       "attr": "median_percentage_advance",
-      "format": "percent"
+      "format": "{{ value }}%"
     }
   ],
   "page-type": "module",
