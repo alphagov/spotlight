@@ -2,6 +2,12 @@
   "module-type": "availability",
   "title": "Service availability",
   "description": "",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Certificates to get married abroad"
+  },
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "monitoring",
   "info": [
