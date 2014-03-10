@@ -2,20 +2,20 @@
   "module-type": "journey",
   "title": "Users at each step",
   "description": "Number of users who completed important stages of the transaction last week",
-  "data-group": "deposit-foreign-marriage",
+  "data-group": "pay-legalisation-post",
   "data-type": "journey",
   "matching-attribute": "eventCategory",
   "steps": [
     {
-      "id": "deposit-foreign-marriage:start",
+      "id": "pay-legalisation-post:start",
       "title": "Start"
     },
     {
-      "id": "deposit-foreign-marriage:confirm",
+      "id": "pay-legalisation-post:confirm",
       "title": "Confirm"
     },
     {
-      "id": "deposit-foreign-marriage:done",
+      "id": "pay-legalisation-post:done",
       "title": "Done"
     }
   ],

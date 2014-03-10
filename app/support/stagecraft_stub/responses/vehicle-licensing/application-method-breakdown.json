@@ -30,6 +30,16 @@
       "title": "DVLA centre"
     }
   ],
+  "axis-labels": {
+    "x": {
+      "label": "Date of application",
+      "key": "_start_at"
+    },
+    "y": {
+      "label": "Number of applications",
+      "key": "volume:sum"
+    }
+  },
   "page-type": "module",
   "dashboard-title": "Vehicle licensing",
   "dashboard-strapline": "Service dashboard",
