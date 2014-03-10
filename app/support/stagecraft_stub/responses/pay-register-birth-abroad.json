@@ -1,9 +1,18 @@
 {
   "slug": "pay-register-birth-abroad",
   "page-type": "dashboard",
-  "title": "Payment to register a birth abroad in the UK",
+  "dashboardType": "transaction",
   "strapline": "Service dashboard",
-  "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you're eligible to register the birth of a British national abroad.",
+  "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you're eligible to register the birth of a British national abroad.",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Register a birth abroad in the UK"
+  },
+  "transaction": {
+    "title": "payments"
+  },
   "modules": [
     {
       "slug": "live-service-usage",
