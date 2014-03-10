@@ -29,8 +29,8 @@ function (GovUkView, contentTemplate) {
 
     getTagline: function () {
       var tagline;
-      if (this.dashboardType === 'policy') {
-        tagline = this.model.get('policy').tagline;
+      if (this.dashboardType === 'other') {
+        tagline = this.model.get('other').tagline;
       } else {
         tagline = 'This dashboard shows information about how ';
         if (this.dashboardType === 'transaction') {

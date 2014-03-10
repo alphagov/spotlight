@@ -38,7 +38,7 @@ function (GovUkView, Module) {
           title: this.model.get('dashboard-title')
         });
       } else {
-        var crumbNames = ['department', 'agency', 'service', 'policy'];
+        var crumbNames = ['department', 'agency', 'service', 'other'];
         _.each(crumbNames, function (cn) {
           if (this.model.get(cn)) {
             crumbs.push({
