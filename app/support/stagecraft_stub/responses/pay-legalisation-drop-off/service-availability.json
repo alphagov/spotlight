@@ -4,7 +4,12 @@
   "title": "Service availability",
   "dashboard-title": "Pay to legalise documents using the premium service",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-legalisation-drop-off",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Legalise documents using the premium service"
+  },
   "description": "",
   "data-group": "pay-legalisation-drop-off",
   "data-type": "monitoring",
