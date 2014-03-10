@@ -8,12 +8,13 @@ define([
   'common/modules/journey',
   'common/modules/list',
   'common/modules/multi_stats',
+  'common/modules/table',
   'common/modules/user_satisfaction',
   'common/modules/visitors-realtime'
 ],
 function (DashboardController, ErrorController,
   AvailabilityModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
-  JourneyModule, ListModule, MultiStatsModule, UserSatisfactionModule, VisitorsRealtimeModule) {
+  JourneyModule, ListModule, MultiStatsModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
 
   var ControllerMap = {
     dashboard: DashboardController,
@@ -26,6 +27,7 @@ function (DashboardController, ErrorController,
       'journey': JourneyModule,
       'list': ListModule,
       'multi_stats': MultiStatsModule,
+      'table': TableModule,
       'user_satisfaction': UserSatisfactionModule,
       'realtime': VisitorsRealtimeModule
     }

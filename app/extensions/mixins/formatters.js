@@ -42,24 +42,24 @@ define([
     },
 
     percent: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0
-      }, options);
+      });
       return formatters.number(value * 100, options) + '%';
     },
 
     integer: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0
-      }, options);
+      });
       return formatters.number(value, options);
     },
 
     number: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0,
         commas: true
-      }, options);
+      });
       if (!isNaN(Number(value))) {
         value = Number(value);
         if (typeof options.dps === 'number') {

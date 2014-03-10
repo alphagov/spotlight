@@ -4,21 +4,16 @@ define([
 function (MatrixCollection) {
   var ListCollection = MatrixCollection.extend({
 
-    queryParams: function () {
-      return {
-        'sort_by': this.options.sortBy,
-        'limit': this.options.limit
-      };
-    },
-
     initialize: function (models, options) {
-      MatrixCollection.prototype.initialize.apply(this, arguments);
-
       // this is delibrately not allowing empty strings
       // as this is an undesirable title or id
       if (!options || !options.title || !options.id) {
         throw new Error('Both "title" and "id" are required options for a ListCollection instance');
       }
+
+      this.queryParams = options.queryParams || {};
+
+      MatrixCollection.prototype.initialize.apply(this, arguments);
 
       if (isClient && _.isNumber(this.options.updateInterval)) {
         clearInterval(this.timer);

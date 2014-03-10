@@ -1,7 +1,6 @@
 define([
   'common/collections/list',
-  'extensions/collections/collection',
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ],
 function (ListCollection, Collection) {
   describe('ListCollection', function () {
@@ -12,36 +11,50 @@ function (ListCollection, Collection) {
       spyOn(Collection.prototype, 'fetch');
     });
 
-    it('if sortBy and limit are passed as options they are applied', function () {
-      var collection = new ListCollection(
-        { 'data' : [] },
-        { id: 'a', title: 'a',
-          'limit': 60,
-          'sortBy': '_timestamp:descending' }
-      );
-      var params = collection.queryParams();
-      expect(params['sort_by']).toEqual('_timestamp:descending');
-      expect(params.limit).toEqual(60);
+    describe('queryParams', function () {
+      it('if sortBy and limit are passed as options they are applied', function () {
+        var collection = new ListCollection(
+          { 'data' : [] },
+          {
+            id: 'a',
+            title: 'a',
+            queryParams: {
+              limit: 60,
+              sort_by: '_timestamp:descending'
+            }
+          }
+        );
+        expect(collection.prop('queryParams').sort_by).toEqual('_timestamp:descending');
+        expect(collection.prop('queryParams').limit).toEqual(60);
+      });
+
+      it('if sortBy and limit are passed as options they are applied', function () {
+        var collection = new ListCollection(
+          {
+            data : []
+          },
+          {
+            queryParams: {
+              sort_by: '_timestamp:descending'
+            },
+            id: 'a',
+            title: 'a'
+          }
+        );
+        expect(collection.prop('queryParams').sort_by).toEqual('_timestamp:descending');
+        expect(collection.prop('queryParams').limit).toBe(undefined);
+      });
+
+      it('if neither sortBy and limit are passed as options there are no query params', function () {
+        var collection = new ListCollection(
+          { 'data' : [] },
+          { id: 'a', title: 'a' }
+        );
+        expect(collection.prop('queryParams')).toEqual({});
+      });
+
     });
 
-    it('if neither sortBy and limit are passed as options there are no query params', function () {
-      var collection = new ListCollection(
-        { 'data' : [] },
-        { id: 'a', title: 'a' }
-      );
-      expect(collection.queryParams()).toEqual({});
-    });
-
-    it('if sortBy and limit are passed as options they are applied', function () {
-      var collection = new ListCollection(
-        { 'data' : [] },
-        { 'sortBy': '_timestamp:descending',
-          id: 'a', title: 'a' }
-      );
-      var params = collection.queryParams();
-      expect(params['sort_by']).toEqual('_timestamp:descending');
-      expect(params.limit).toBe(undefined);
-    });
 
     it('parses strings that look like numbers into numbers', function () {
       var collection = new ListCollection({

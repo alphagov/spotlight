@@ -112,33 +112,6 @@ function (Table, View, $) {
         });
       });
 
-      xdescribe('formatValueForTable', function () {
-        it('formats the value for uptimeFraction', function () {
-          table.valueAttr = 'uptimeFraction';
-          expect(table.formatValueForTable(0.2)).toEqual('20%');
-        });
-
-        it('formats the value for completion', function () {
-          table.valueAttr = 'completion';
-          expect(table.formatValueForTable(0.2)).toEqual('20%');
-        });
-
-        it('formats the value for avgresponse', function () {
-          table.valueAttr = 'avgresponse';
-          expect(table.formatValueForTable(2100)).toEqual('2.1s');
-        });
-
-        it('doesnt format when valueAttr is undefined', function () {
-          table.valueAttr = undefined;
-          expect(table.formatValueForTable(2100)).toEqual(2100);
-        });
-
-        it('doesnt format when valueAttr is not a number', function () {
-          table.valueAttr = 'avgresponse';
-          expect(table.formatValueForTable('2100')).toEqual('2100');
-        });
-      });
-
       describe('getColumns', function () {
         it('returns an array of consolidated axes data', function () {
           expect(table.getColumns()).toEqual([
