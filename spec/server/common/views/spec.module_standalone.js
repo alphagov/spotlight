@@ -108,6 +108,18 @@ function (StandaloneView, Collection, Model, View) {
     });
 
     describe('Standalone module breadcrumbs', function () {
+
+      it('adds the parent dashboard as a crumb when Stagecraft returns the necessary properties', function () {
+        model.set({
+          'dashboard-title': 'Parent dashboard',
+          'dashboard-slug': 'parent-dashboard'
+        });
+        expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
+          {path: '/performance', title: 'Performance'},
+          {path: '/performance/parent-dashboard', title: 'Parent dashboard'}
+        ]);
+      });
+
       it('adds department, agency and service as a crumb when Stagecraft returns the necessary properties', function () {
         model.set({
           'dashboard-title': 'Parent dashboard',
@@ -123,7 +135,7 @@ function (StandaloneView, Collection, Model, View) {
         ]);
       });
 
-      it("adds policy as a crumb when Stagecraft returns the necessary properties", function () {
+      it('adds policy as a crumb when Stagecraft returns the necessary properties', function () {
         model.set({
           'dashboard-title': 'Parent dashboard',
           'department': { 'title': 'A policy'}
