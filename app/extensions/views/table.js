@@ -37,19 +37,6 @@ function (View, Formatters) {
       return element;
     },
 
-    // TODO: This should live in a common formatter as this also lives in other places.
-    // It should probably be controlled by some central config for formatting in the module setup json.
-    formatValue: function (value) {
-      if (this.valueAttr === 'avgresponse' && typeof value === 'number') {
-        return this.formatDuration(value, 's', 2);
-      }
-      if (this.valueAttr === 'uptimeFraction' || this.valueAttr === 'completion' && typeof value === 'number') {
-        return this.formatPercentage(value);
-      } else {
-        return value;
-      }
-    },
-
     render: function () {
       if (this.$table) {
         this.$table.empty();
