@@ -1,30 +1,49 @@
 <header>
-  <h1>
-    {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
-    {{ title }}
-  </h1>
-  {{# tagline }}
-    <p class="tagline {{# related_pages_title }}with-related-pages{{/ related_pages_title }}">
-      {{{ tagline }}}
+
+  <div class="{{# relatedPages }}with-related-pages{{/ relatedPages }}">
+
+    <h1>
+      {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
+      {{ header }}
+    </h1>
+
+    <p class="tagline">
+    {{{ tagline }}}
     </p>
-  {{/ tagline }}
-  {{# related_pages_title }}
+
+  </div>
+
+  {{# relatedPages }}
+
     <aside class='related-pages' role='complementary'>
-      <h3 class='popover-link'>{{ related_pages_title }}</h3>
-      <ul class="items">
-        {{# related_pages }}
-        <li>
-          <h3>
+
+      {{# relatedPages.transaction }}
+      <div class="related-transaction">
+        <h3>Visit this service</h3>
+        <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
+      </div>
+      {{/ relatedPages.transaction }}
+
+      {{# relatedPages.other.length }}
+      <div class="related-other">
+        <h3>Find out more</h3>
+        <ul class="items">
+          {{# relatedPages.other }}
+          <li>
             <a href="{{ url }}">{{ title }}</a>
-          </h3>
-          {{# metadata }}
-          <span class="metadata">{{{ metadata }}}</span>
-          {{/ metadata }}
-        </li>
-        {{/ related_pages }}
-      </ul>
+            {{# metadata }}
+            <span class="metadata">{{{ metadata }}}</span>
+            {{/ metadata }}
+          </li>
+          {{/ relatedPages.other }}
+        </ul>
+      </div>
+      {{/ relatedPages.other.length }}
+
     </aside>
-  {{/ related_pages_title }}
+
+  {{/ relatedPages }}
+
 </header>
 
 {{{ modules }}}
