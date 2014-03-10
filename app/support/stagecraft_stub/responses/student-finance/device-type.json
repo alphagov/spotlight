@@ -1,5 +1,4 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "How people access the service",
   "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
@@ -17,20 +16,26 @@
     "Data source: Google Analytics",
     "Student Loans Company"
   ],
-  "series": [
-    {
-      "id": "mobile",
-      "title": "Mobile"
-    },
-    {
-      "id": "tablet",
-      "title": "Tablet"
-    },
-    {
-      "id": "desktop",
-      "title": "Desktop"
-    }
-  ],
+  "axes": {
+    "y": [
+      {
+        "label": "Desktop",
+        "categoryId": "mobile",
+        "format": "integer"
+      },
+      {
+        "label": "Mobile",
+        "categoryId": "tablet",
+        "format": "integer"
+      },
+      {
+        "label": "Tablet",
+        "categoryId": "desktop",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
   "dashboard-title": "Apply for student finance",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "student-finance"

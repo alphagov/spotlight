@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Cumulative sales by company size",
   "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
-  "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public sector purchasing dashboard",
-  "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "use_stack": false,
@@ -17,17 +13,47 @@
     "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
     "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
-  "series": [
-    { "id": "Total", "title": "Total" },
-    { "id": "Small and medium enterprises", "title": "Small and medium enterprises" },
-    { "id": "Large enterprises", "title": "Large enterprises" },
-    { "id": "Unknown", "title": "Not yet classified" }
-   ],
+  "axes": {
+    "y": [
+      {
+        "label": "Total",
+        "categoryId": "Total",
+        "format": "currency"
+      },
+      {
+        "label": "Small and medium enterprises",
+        "categoryId": "Small and medium enterprises",
+        "format": "currency"
+      },
+      {
+        "label": "Large enterprises",
+        "categoryId": "Large enterprises",
+        "format": "currency"
+      },
+      {
+        "label": "Not yet classified",
+        "categoryId": "Unknown",
+        "format": "currency"
+      }
+    ]
+  },
   "show-line-labels": true,
   "tabs": [
-    {"id": "cumulative_spend:sum", "name": "Total spend", "currency": "gbp"},
-    {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
+    {
+      "id": "cumulative_spend:sum",
+      "name": "Total spend",
+      "currency": "gbp"
+    },
+    {
+      "id": "cumulative_count:sum",
+      "name": "Contracts awarded",
+      "currrency": null
+    }
   ],
   "tabbed_attr": "collect",
-  "show-total-lines": true
+  "show-total-lines": true,
+  "page-type": "module",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "Public sector purchasing dashboard",
+  "dashboard-slug": "g-cloud"
 }

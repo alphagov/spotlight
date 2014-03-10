@@ -14,6 +14,8 @@ function (View, SparklineView, template) {
     labelTag: '.stat-description',
     graphLabelTag: '.sparkline-title',
 
+    valueAttr: 'unique_visitors',
+
     initialize: function (options) {
       options = options || {};
 
@@ -32,8 +34,6 @@ function (View, SparklineView, template) {
       }
 
       this.collection.on(events, this.render, this);
-
-      this.selectionValueAttr = 'unique_visitors';
 
       this.currentVisitors = this.getCurrentVisitors();
 
@@ -77,7 +77,7 @@ function (View, SparklineView, template) {
 
     getCurrentVisitors: function () {
       if (this.collection && this.collection.length && this.collection.first().get('values').length) {
-        var val = this.collection.first().get('values').last().get(this.selectionValueAttr);
+        var val = this.collection.first().get('values').last().get(this.valueAttr);
         val = Math.round(val);
         this.currentVisitors = val;
         return val;
@@ -105,7 +105,7 @@ function (View, SparklineView, template) {
           view: SparklineView,
           options: function () {
             return {
-              valueAttr: this.selectionValueAttr,
+              valueAttr: this.valueAttr,
               period: 'hour',
               showStartAndEndTicks: true
             };
@@ -169,7 +169,7 @@ function (View, SparklineView, template) {
 
     getValueSelected: function (selection) {
       if (selection.selectedModel) {
-        var val = selection.selectedModel.get(this.selectionValueAttr);
+        var val = selection.selectedModel.get(this.valueAttr);
         val = Math.round(val);
         this.currentVisitors = val;
         return val;

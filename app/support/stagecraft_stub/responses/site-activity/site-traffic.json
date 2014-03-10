@@ -1,8 +1,4 @@
 {
-  "dashboard-title": "Activity on GOV.UK",
-  "dashboard-strapline": "Performance",
-  "dashboard-slug": "site-activity",
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "Site traffic",
   "description": "Unique visitors to GOV.UK over the past year, compared with the previous year",
@@ -15,11 +11,38 @@
   "value-attr": "visitors:sum",
   "show-line-labels": true,
   "use_stack": false,
-  "info": [ "Data source: Google Analytics" ],
-  "series": [
-    { "id": "govuk_visitors", "title": "GOV.UK" },
-    { "id": "govuk_visitors", "title": "GOV.UK", "timeshift": 52 },
-    { "id": "directgov_visitors", "title": "Directgov", "timeshift": 52 },
-    { "id": "businesslink_visitors", "title": "Business Link", "timeshift": 52 }
-  ]
+  "info": [
+    "Data source: Google Analytics"
+  ],
+  "axes": {
+    "y": [
+      {
+        "label": "GOV.UK",
+        "categoryId": "govuk_visitors",
+        "format": "integer"
+      },
+      {
+        "label": "GOV.UK",
+        "categoryId": "govuk_visitors",
+        "timeshift": 52,
+        "format": "integer"
+      },
+      {
+        "label": "Directgov",
+        "categoryId": "directgov_visitors",
+        "timeshift": 52,
+        "format": "integer"
+      },
+      {
+        "label": "Business Link",
+        "categoryId": "businesslink_visitors",
+        "timeshift": 52,
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Activity on GOV.UK",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "site-activity"
 }

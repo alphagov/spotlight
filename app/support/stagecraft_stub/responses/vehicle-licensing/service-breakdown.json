@@ -14,18 +14,22 @@
     "Shows the monthly number of successful applications to renew a <span class='group0'>tax disc</span> and the number of <span class='group1'>SORNs</span> received."
   ],
   "line-label-links": true,
-  "series": [
-    {
-      "id": "tax-disc",
-      "title": "Tax disc",
-      "href": "/performance/tax-disc"
-    },
-    {
-      "id": "sorn",
-      "title": "SORN",
-      "href": "/performance/sorn"
-    }
-  ],
+  "axes": {
+    "y": [
+      {
+        "categoryId": "tax-disc",
+        "label": "Tax disc",
+        "href": "/performance/tax-disc",
+        "format": "integer"
+      },
+      {
+        "categoryId": "sorn",
+        "label": "SORN",
+        "href": "/performance/sorn",
+        "format": "integer"
+      }
+    ]
+  },
   "page-type": "module",
   "dashboard-title": "Vehicle licensing",
   "dashboard-strapline": "Service dashboard",

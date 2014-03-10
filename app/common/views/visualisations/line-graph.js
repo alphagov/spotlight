@@ -5,17 +5,11 @@ function (Graph) {
   var LineGraph = Graph.extend({
 
     initialize: function (options) {
+      options = options || {};
+      options.valueAttr = this.model.get('value-attr');
       Graph.prototype.initialize.apply(this, arguments);
+    },
 
-      this.valueAttr = this.model.get('value-attr');
-    },
-    
-    render: function (options) {
-      this.valueAttr = this.collection.options.valueAttr; 
-      
-      Graph.prototype.render.apply(this, arguments);
-    },
-    
     components: function () {
       return [
         { view: this.sharedComponents.xaxis },
@@ -33,7 +27,7 @@ function (Graph) {
         { view: this.sharedComponents.hover }
       ];
     },
-    
+
     getConfigNames: function () {
       var axisConfig = 'week';
       if(this.collection.options.axisPeriod){
@@ -47,4 +41,3 @@ function (Graph) {
 
   return LineGraph;
 });
-

@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "journey",
   "title": "Users at each step",
   "description": "Number of users who completed important steps of the transaction last week",
-  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "deposit-foreign-marriage",
   "info": [
     "Data source: Google Analytics",
     "The total number of users who arrived at each step.",
@@ -13,9 +9,27 @@
   ],
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
-  "steps": [
-    {"id": "deposit-foreign-marriage:start", "title": "Start"},
-    {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
-    {"id": "deposit-foreign-marriage:done", "title": "Done"}
-  ]
+  "axes": {
+    "y": [
+      {
+        "journeyId": "deposit-foreign-marriage:start",
+        "label": "Start",
+        "format": "integer"
+      },
+      {
+        "journeyId": "deposit-foreign-marriage:confirm",
+        "label": "Confirm",
+        "format": "integer"
+      },
+      {
+        "journeyId": "deposit-foreign-marriage:done",
+        "label": "Done",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "deposit-foreign-marriage"
 }

@@ -34,26 +34,32 @@
         "Started: applications in progress",
         "Submitted: applications submitted"
       ],
-      "series": [
-        {
-          "id": "started",
-          "title": "Started"
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted"
-        },
-        {
-          "id": "started",
-          "title": "Started",
-          "timeshift": 52
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted",
-          "timeshift": 52
-        }
-      ]
+      "axes": {
+        "y": [
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "format": "integer"
+          },
+          {
+            "label": "Submitted",
+            "categoryId": "submitted",
+            "format": "integer"
+          },
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "timeshift": 52,
+            "format": "integer"
+          },
+          {
+            "label": "Submitted",
+            "categoryId": "submitted",
+            "timeshift": 52,
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "usage-breakdown",
@@ -75,26 +81,32 @@
         "Data source: SLC database",
         "Shows the number of applications, broken down by channel"
       ],
-      "series": [
-        {
-          "id": "paper",
-          "title": "Paper"
-        },
-        {
-          "id": "digital",
-          "title": "Digital"
-        },
-        {
-          "id": "paper",
-          "title": "Paper",
-          "timeshift": 52
-        },
-        {
-          "id": "digital",
-          "title": "Digital",
-          "timeshift": 52
-        }
-      ]
+      "axes": {
+        "y": [
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "format": "integer"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "digital",
+            "format": "integer"
+          },
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "timeshift": 52,
+            "format": "integer"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "digital",
+            "timeshift": 52,
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",
@@ -147,36 +159,50 @@
       "data-group": "student-finance",
       "data-type": "journey",
       "matching-attribute": "eventLabel",
-      "steps": [
-        {
-          "id": "about-you",
-          "title": "About you"
-        },
-        {
-          "id": "previous-study",
-          "title": "About your previous studies"
-        },
-        {
-          "id": "course-and-fees",
-          "title": "Course and fees"
-        },
-        {
-          "id": "living-costs",
-          "title": "Living costs"
-        },
-        {
-          "id": "financial-info",
-          "title": "Financial info"
-        },
-        {
-          "id": "additional-info",
-          "title": "Additional info"
-        },
-        {
-          "id": "confirm",
-          "title": "Confirm"
-        }
-      ]
+      "axes": {
+        "y": [
+          {
+            "journeyId": "about-you",
+            "label": "About you",
+            "format": "integer"
+          },
+          {
+            "journeyId": "previous-study",
+            "label": "About your previous studies",
+            "format": "integer"
+          },
+          {
+            "journeyId": "course-and-fees",
+            "label": "Course and fees",
+            "format": "integer"
+          },
+          {
+            "journeyId": "living-costs",
+            "label": "Living costs",
+            "format": "integer"
+          },
+          {
+            "journeyId": "financial-info",
+            "label": "Financial info",
+            "format": "integer"
+          },
+          {
+            "journeyId": "additional-info",
+            "label": "Additional info",
+            "format": "integer"
+          },
+          {
+            "journeyId": "confirm",
+            "label": "Confirm",
+            "format": "integer"
+          },
+          {
+            "journeyId": "submitted",
+            "label": "Submitted",
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "site-traffic",
@@ -213,20 +239,25 @@
         "Data source: Google Analytics",
         "Student Loans Company"
       ],
-      "series": [
-        {
-          "id": "mobile",
-          "title": "Mobile"
-        },
-        {
-          "id": "tablet",
-          "title": "Tablet"
-        },
-        {
-          "id": "desktop",
-          "title": "Desktop"
-        }
-      ]
+      "axes": {
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "tablet",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "desktop",
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "service-availability",

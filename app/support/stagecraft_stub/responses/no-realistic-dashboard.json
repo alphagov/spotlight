@@ -76,11 +76,28 @@
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
       "matching-attribute": "eventCategory",
-      "steps": [
-        {"id": "deposit-foreign-marriage:start", "title": "Start"},
-        {"id": "deposit-foreign-marriage:confirm", "title": "Confirm"},
-        {"id": "deposit-foreign-marriage:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {
+            "journeyId": "deposit-foreign-marriage:start",
+            "label": "Start",
+            "key": "uniqueEvents",
+            "format": "integer"
+          },
+          {
+            "journeyId": "deposit-foreign-marriage:confirm",
+            "label": "Confirm",
+            "key": "uniqueEvents",
+            "format": "integer"
+          },
+          {
+            "journeyId": "deposit-foreign-marriage:done",
+            "label": "Done",
+            "key": "uniqueEvents",
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "service-availability",
@@ -117,7 +134,7 @@
       "module-type": "completion_numbers",
       "title": "Applications",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
+      "data-group": "pay-foreign-marriage-certificates",
       "data-type": "journey",
       "info": [
         "Info text line 1",
@@ -125,30 +142,22 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "axis-labels": {
-        "x": {
-          "label": "Date of Application",
-          "key": "_start_at"
-        },
-        "y": {
-          "label": "Number of applications",
-          "key": "uniqueEvents"
-        }
-      }
+      "matching-attribute": "eventCategory"
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
+      "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
         "Info text line 1",
         "Info text line 2"
       ],
-      "denominator-matcher": "start$",
-      "numerator-matcher": "done$"
+      "denominator-matcher": "about-you$",
+      "numerator-matcher": "consent-and-declaration$",
+      "matching-attribute": "eventLabel"
     },
     {
       "slug": "average-first-mortgage",
@@ -183,12 +192,30 @@
       "category": "geography",
       "period": "month",
       "filter-by": ["key:residential_property_transactions"],
-      "series": [
-        { "id": "England", "title": "England" },
-        { "id": "Scotland", "title": "Scotland" },
-        { "id": "Wales", "title": "Wales" },
-        { "id": "Northern_Ireland", "title": "Northern Ireland" }
-      ],
+      "axes": {
+        "y": [
+          {
+            "label": "England",
+            "categoryId": "England",
+            "format": "integer"
+          },
+          {
+            "label": "Scotland",
+            "categoryId": "Scotland",
+            "format": "integer"
+          },
+          {
+            "label": "Wales",
+            "categoryId": "Wales",
+            "format": "integer"
+          },
+          {
+            "label": "Northern Ireland",
+            "categoryId": "Northern_Ireland",
+            "format": "integer"
+          }
+        ]
+      },
       "show-line-labels": true
     },
     {
@@ -206,10 +233,20 @@
       "info": [
         "Source: National House-Building Council (NHBC)"
       ],
-      "series": [
-        { "id": "completed", "title": "Completed" },
-        { "id": "started", "title": "Started" }
-      ],
+      "axes": {
+        "y": [
+          {
+            "label": "Completed",
+            "categoryId": "completed",
+            "format": "integer"
+          },
+          {
+            "label": "Started",
+            "categoryId": "started",
+            "format": "integer"
+          }
+        ]
+      },
       "show-line-labels": true
     }
   ]

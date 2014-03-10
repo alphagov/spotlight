@@ -17,8 +17,7 @@ function (Graph, GraphTable, Collection, Model, d3) {
       spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
         collection: {
-          on: jasmine.createSpy(),
-          getDataByTableFormat: jasmine.createSpy()
+          on: jasmine.createSpy()
         }
       });
       expect(view.d3).toBe(d3);

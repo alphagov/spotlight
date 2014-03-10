@@ -1,5 +1,4 @@
 {
-  "page-type": "module",
   "module-type": "journey",
   "title": "Users at each step",
   "description": "Number of users who completed important steps of the transaction last week",
@@ -8,16 +7,35 @@
     "The total number of users who arrived at each step.",
     "Number of users is measured using the count of unique events from each step."
   ],
-  "dashboard-title": "Carer's Allowance",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "carers-allowance",
   "data-group": "carers-allowance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",
-  "steps": [
-    {"id": "about-you", "title": "About you"},
-    {"id": "care-you-provide", "title": "About the care you provide"},
-    {"id": "other-money", "title": "Other money"},
-    {"id": "consent-and-declaration", "title": "Consent and declaration"}
-  ]
+  "axes": {
+    "y": [
+      {
+        "journeyId": "about-you",
+        "label": "About you",
+        "format": "integer"
+      },
+      {
+        "journeyId": "care-you-provide",
+        "label": "About the care you provide",
+        "format": "integer"
+      },
+      {
+        "journeyId": "other-money",
+        "label": "Other money",
+        "format": "integer"
+      },
+      {
+        "journeyId": "consent-and-declaration",
+        "label": "Consent and declaration",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Carer's Allowance",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "carers-allowance"
 }

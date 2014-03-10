@@ -609,24 +609,29 @@ function (Collection, Model, Backbone) {
       });
     });
 
-    describe('getDataByTableFormat', function () {
-        var collection;
-        beforeEach(function () {
-          collection = new Collection([
-            { a: 1, b: 2 },
-            { a: 3, b: 4 }
-          ]);
-        });
-
-        it('returns an array', function () {
-          expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
-        });
-
-        it('sorts the array by tabular format', function () {
-          var expected = [['a', 'b'], [1, 2], [3, 4]];
-
-          expect(collection.getDataByTableFormat()).toEqual(expected);
-        });
+    describe('getTableRows', function () {
+      var collection;
+      beforeEach(function () {
+        collection = new Collection([
+          { a: 1, b: 2, c: 'foo' },
+          { a: 3, b: 4, c: 'bar' }
+        ]);
       });
+
+      it('returns an array', function () {
+        expect(_.isArray(collection.getTableRows('a', 'b'))).toEqual(true);
+      });
+
+      it('returns empty rows if no arguments are provided', function () {
+        expect(collection.getTableRows()).toEqual([[], []]);
+      });
+
+      it('can handle both array args and rest args', function () {
+        var expected = [[1, 2], [3, 4]];
+
+        expect(collection.getTableRows(['a','b'])).toEqual(expected);
+        expect(collection.getTableRows('a','b')).toEqual(expected);
+      });
+    });
   });
 });

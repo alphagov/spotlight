@@ -1,30 +1,22 @@
 define([
   'extensions/controllers/module',
   'common/collections/journey',
-  'common/views/visualisations/conversion-graph/conversion-graph'
+  'common/views/visualisations/journey-graph/journey-graph'
 ],
-function (ModuleController, JourneyCollection, ConversionGraph) {
+function (ModuleController, JourneyCollection, JourneyGraph) {
   var JourneyModule = ModuleController.extend({
     className: 'journey',
-    visualisationClass: ConversionGraph,
+    visualisationClass: JourneyGraph,
     collectionClass: JourneyCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
 
     collectionOptions: function () {
       return {
-        steps: this.model.get('steps'),
         matchingAttribute: this.model.get('matching-attribute'),
-        axisLabels: _.merge({
-          "x": {
-            "label": "Title",
-            "key": "title"
-          },
-          "y": {
-            "label": "Users at step",
-            "key": "uniqueEvents"
-          }
-        }, this.model.get('axis-labels'))
+        axes: _.merge({
+          y: []
+        }, this.model.get('axes'))
       };
     }
   });

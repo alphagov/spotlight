@@ -119,23 +119,30 @@ function (require, Collection, Group) {
       return res;
     },
 
-    getDataByTableFormat: function () {
-      var allTables = [];
-
-      _.each(this.models, function (collectionOfCollections, index) {
-        var collection = collectionOfCollections.get('values');
-
-        if (collection.length) {
-          if (collection.length > 0 && index === 0) {
-            allTables.push(_.keys(collection.models[0].attributes));
-          }
-          _.each(collection.models, function (model) {
-            allTables.push(_.map(model.attributes, function (val) { return val; }));
+    getTableRows: function (keys) {
+      if (arguments.length !== 1 || !(_.isArray(keys))) {
+        keys = [].slice.apply(arguments);
+      }
+      keys = _.unique(keys);
+      var rows = [];
+      // if there's only one collection, behave as the single-dimensional case
+      if (this.length === 1) {
+        rows = this.at(0).get('values').getTableRows(keys);
+      } else {
+        // get an array of rows for each collection
+        var columns = this.map(function (model) {
+          return model.get('values').getTableRows(keys);
+        });
+        // map array of columns into array of rows
+        if (columns.length) {
+          _.each(columns[0], function (row, i) {
+            rows.push(_.map(columns, function (col) {
+              return col[i];
+            }));
           });
         }
-      });
-
-      return allTables;
+      }
+      return rows;
     },
 
     at: function (groupIndex, index) {
@@ -198,6 +205,21 @@ function (require, Collection, Group) {
       }
     },
 
+    max: function (attr) {
+      var groupMaximums = this.map(function (group) {
+        var values = group.get('values'),
+          max;
+
+        if (values.length) {
+          max = values.max(function (model) {
+            return model.get(attr) || 0;
+          }).get(attr);
+        }
+        return max;
+      }, this);
+      return Math.max.apply(Math, groupMaximums);
+    },
+
     onGroupChangeSelected: function (group, groupIndex, model, index) {
       if (index === null) {
         group = null;
@@ -209,5 +231,3 @@ function (require, Collection, Group) {
 
   return MatrixCollection;
 });
-
-

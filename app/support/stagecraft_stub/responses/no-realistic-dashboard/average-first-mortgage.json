@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "multi_stats",
   "title": "Average first mortgage",
   "description": "A range of factors indicative of the state of the housing market for first-time buyers",
-  "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "housing-policy",
   "data-type": "first-time-buyer",
   "period": "month",
@@ -20,5 +16,9 @@
       "attr": "median_percentage_advance",
       "format": "{{ value }}%"
     }
-  ]
+  ],
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
 }

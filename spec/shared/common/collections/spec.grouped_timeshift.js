@@ -11,9 +11,20 @@ function (GroupedTimeshiftCollection, Query) {
         valueAttr: 'value',
         period: 'week',
         category: 'group',
-        seriesList: [
-          { id: 'one', title: 'One', timeshift: 1 }
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+              "timeshift": 1
+            }
+          ]
+        }
       });
 
       var queryParams = collection.queryParams();
@@ -44,11 +55,32 @@ function (GroupedTimeshiftCollection, Query) {
     it('should work out the duration of a graph based on a maximum timeshift', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week',
-        seriesList: [
-          { id: 'one', title: 'One', timeshift: 4 },
-          { id: 'two', title: 'Two', timeshift: 5 },
-          { id: 'thr', title: 'Thr', timeshift: 6 },
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+              "timeshift": 4
+            },
+            {
+              "label": "Two",
+              "categoryId": "two",
+              "key": "value:sum",
+              "timeshift": 5
+            },
+            {
+              "label": "Thr",
+              "categoryId": "thr",
+              "key": "value:sum",
+              "timeshift": 6
+            }
+          ]
+        }
       });
 
       expect(collection.duration()).toBe(weekDuration + 6);
@@ -148,11 +180,30 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        seriesList: [
-          { id: 'one', title: 'One' },
-          { id: 'one', title: 'One', timeshift: 2 },
-          { id: 'two', title: 'Two' }
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+            },
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+              "timeshift": 2
+            },
+            {
+              "label": "Two",
+              "categoryId": "two",
+              "key": "value:sum",
+            }
+          ]
+        }
       });
 
       var parsed = collection.parse(response);
@@ -167,12 +218,35 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        seriesList: [
-          { id: 'one', title: 'One' },
-          { id: 'one', title: 'One', timeshift: 2 },
-          { id: 'two', title: 'Two' },
-          { id: 'three', title: 'Three' }
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+            },
+            {
+              "label": "One",
+              "categoryId": "one",
+              "key": "value:sum",
+              "timeshift": 2
+            },
+            {
+              "label": "Two",
+              "categoryId": "two",
+              "key": "value:sum",
+            },
+            {
+              "label": "Three",
+              "categoryId": "three",
+              "key": "value:sum",
+            }
+          ]
+        }
       });
 
       var parsed = collection.parse(response);
@@ -188,9 +262,19 @@ function (GroupedTimeshiftCollection, Query) {
         period: 'week',
         category: 'key',
         duration: 2,
-        seriesList: [
-          { id: 'three', title: 'Three' }
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "Three",
+              "categoryId": "three",
+              "key": "value:sum",
+            }
+          ]
+        }
       });
 
       var parsed = collection.parse(response);

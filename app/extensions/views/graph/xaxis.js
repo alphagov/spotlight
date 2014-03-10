@@ -16,10 +16,10 @@ function (d3, Axis) {
     render: function () {
       Axis.prototype.render.apply(this, arguments);
       if (this.useEllipses) {
-        this.ellipsifyAxisLabels();
+        this.ellipsifyaxes();
       }
     },
-    ellipsifyAxisLabels: function() {
+    ellipsifyaxes: function() {
 
       // Manually add ellipses to x-axis labels if they are longer than the
       // space allocated for each data item.

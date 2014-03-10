@@ -306,6 +306,9 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         });
         component.render();
       }, this);
+      if (this.table) {
+        this.table.render();
+      }
     },
 
     configs: {

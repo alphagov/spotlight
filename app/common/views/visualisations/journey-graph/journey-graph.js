@@ -6,10 +6,10 @@ define([
   'extensions/views/graph/hover'
 ],
 function (Graph, XAxis, Bar, Callout, Hover) {
-  var ConversionGraph = Graph.extend({
+  var JourneyGraph = Graph.extend({
 
-    valueAttr: 'uniqueEventsNormalised',
-    
+    valueAttr: 'uniqueEvents',
+
     components: function () {
       return [
         { view: XAxis },
@@ -28,9 +28,9 @@ function (Graph, XAxis, Bar, Callout, Hover) {
     },
 
     getYPos: function (groupIndex, modelIndex) {
-      return this.configs.overlay.getYPos.apply(this, arguments);
+      return this.configs.overlay.getYPos.apply(this, arguments) || 0;
     },
-    
+
     calcXScale: function () {
       var xScale = this.d3.scale.linear();
       var count = this.collection.at(0).get('values').length;
@@ -39,17 +39,17 @@ function (Graph, XAxis, Bar, Callout, Hover) {
       xScale.range([halfBarWidth + 1, this.innerWidth - halfBarWidth - 1]);
       return xScale;
     },
-    
+
     calcYScale: function () {
       var collection = this.collection;
       var d3 = this.d3;
-
+      var max = this.collection.max(this.valueAttr) || 1;
       var yScale = this.d3.scale.linear();
-      yScale.domain([0, 1]);
+      yScale.domain([0, max]);
       yScale.range([this.innerHeight, 0]);
       return yScale;
     }
   });
-  
-  return ConversionGraph;
+
+  return JourneyGraph;
 });

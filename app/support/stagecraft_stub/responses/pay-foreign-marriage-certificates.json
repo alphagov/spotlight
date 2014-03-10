@@ -60,11 +60,13 @@
       ],
       "data-group": "pay-foreign-marriage-certificates",
       "data-type": "journey",
-      "steps": [
-        {"id": "pay-foreign-marriage-certificates:start", "title": "Start"},
-        {"id": "pay-foreign-marriage-certificates:confirm", "title": "Confirm"},
-        {"id": "pay-foreign-marriage-certificates:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

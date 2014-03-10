@@ -13,16 +13,25 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
-        axisLabels: _.merge({
-          "x": {
-            "label": "Time",
-            "key": "_timestamp"
+        axes: _.merge({
+          x: {
+            label: 'Time',
+            key: '_timestamp',
+            format: 'date'
           },
-          "y": {
-            "label": "Service Availability",
-            "key": "avgresponse"
-          }
-        }, this.model.get('axis-labels'))
+          y: [
+            {
+              label: 'Page load time',
+              key: 'avgresponse',
+              format: 'duration'
+            },
+            {
+              label: 'Uptime',
+              key: 'uptimeFraction',
+              format: 'percent'
+            }
+          ]
+        }, this.model.get('axes'))
       };
     }
   });

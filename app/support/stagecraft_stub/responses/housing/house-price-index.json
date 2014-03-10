@@ -1,27 +1,66 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "House price index (HPI)",
   "description": "Average HPIs by nations and regions (100 = February 2002)",
-  "dashboard-title": "Housing",
-  "dashboard-strapline": "Policy dashboard",
-  "dashboard-slug": "housing",
   "data-group": "housing-policy",
   "data-type": "house-price-index",
   "use_stack": false,
   "value-attr": "value:mean",
   "category": "geography",
   "period": "quarter",
-  "filter-by": ["key:house_price_index"],
+  "filter-by": [
+    "key:house_price_index"
+  ],
   "info": [
     "Source: Office of National Statistics (ONS)"
   ],
-  "series": [
-     { "id": "Scotland", "title": "Scotland" },
-     { "id": "Wales", "title": "Wales" },
-     { "id": "London", "title": "London" },
-     { "id": "England", "title": "England" },
-     { "id": "Northern_Ireland", "title": "Northern Ireland" }
-   ],
-  "show-line-labels": true
+  "axes": {
+    "y": [
+      {
+        "label": "Scotland",
+        "categoryId": "Scotland",
+        "format": {
+          "type": "number",
+          "dps": 1
+        }
+      },
+      {
+        "label": "Wales",
+        "categoryId": "Wales",
+        "format": {
+          "type": "number",
+          "dps": 1
+        }
+      },
+      {
+        "label": "London",
+        "categoryId": "London",
+        "format": {
+          "type": "number",
+          "dps": 1
+        }
+      },
+      {
+        "label": "England",
+        "categoryId": "England",
+        "format": {
+          "type": "number",
+          "dps": 1
+        }
+      },
+      {
+        "label": "Northern Ireland",
+        "categoryId": "Northern_Ireland",
+        "format": {
+          "type": "number",
+          "dps": 1
+        }
+      }
+    ]
+  },
+  "show-line-labels": true,
+  "page-type": "module",
+  "dashboard-title": "Housing",
+  "dashboard-strapline": "Policy dashboard",
+  "dashboard-slug": "housing"
 }

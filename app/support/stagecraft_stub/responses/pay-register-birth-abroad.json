@@ -60,11 +60,13 @@
       ],
       "data-group": "pay-register-birth-abroad",
       "data-type": "journey",
-      "steps": [
-        {"id": "pay-register-birth-abroad:start", "title": "Start"},
-        {"id": "pay-register-birth-abroad:confirm", "title": "Confirm"},
-        {"id": "pay-register-birth-abroad:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "pay-register-birth-abroad:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-register-birth-abroad:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-register-birth-abroad:done", "label": "Done", "format": "integer"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

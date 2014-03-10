@@ -136,11 +136,29 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         valueAttr: 'some:value',
         category: 'some-category',
         period: 'month',
-        seriesList: [
-          { id: 'abc', title: 'ABC' },
-          { id: 'def', title: 'DEF' },
-          { id: 'xyz', title: 'XYZ' }
-        ]
+        axes: {
+          x: {
+            "label": "Date",
+            "key": "_start_at"
+          },
+          y: [
+            {
+              "label": "ABC",
+              "categoryId": "abc",
+              "key": "value:sum"
+            },
+            {
+              "label": "DEF",
+              "categoryId": "def",
+              "key": "value:sum"
+            },
+            {
+              "label": "XYZ",
+              "categoryId": "xyz",
+              "key": "value:sum"
+            }
+          ]
+        }
       });
       collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
@@ -199,12 +217,34 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'abc', title: 'ABC' },
-            { id: 'def', title: 'DEF' },
-            { id: 'xyz', title: 'XYZ' },
-            { id: 'ghi', title: 'GHI' }
-          ]
+          axes: {
+            x: {
+              "label": "Date",
+              "key": "_start_at"
+            },
+            y: [
+              {
+                "label": "ABC",
+                "categoryId": "abc",
+                "key": "value:sum"
+              },
+              {
+                "label": "DEF",
+                "categoryId": "def",
+                "key": "value:sum"
+              },
+              {
+                "label": "XYZ",
+                "categoryId": "xyz",
+                "key": "value:sum"
+              },
+              {
+                "label": "GHI",
+                "categoryId": "ghi",
+                "key": "value:sum"
+              }
+            ]
+          }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
@@ -218,9 +258,19 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'ghi', title: 'GHI' }
-          ]
+          axes: {
+            x: {
+              "label": "Date",
+              "key": "_start_at"
+            },
+            y: [
+              {
+                "label": "GHI",
+                "categoryId": "ghi",
+                "key": "value:sum"
+              }
+            ]
+          }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
@@ -234,12 +284,33 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           valueAttr: 'some:value',
           category: 'some-category',
           period: 'month',
-          seriesList: [
-            { id: 'Total', title: 'Total' },
-            { id: 'abc', title: 'ABC' },
-            { id: 'def', title: 'DEF' },
-            { id: 'xyz', title: 'XYZ' }
-          ],
+          axes: {
+            x: {
+              label: "Date",
+              key: "_start_at"
+            },
+            y: [
+              {
+                label: "Total",
+                categoryId: "Total"
+              },
+              {
+                label: "ABC",
+                categoryId: "abc",
+                key: "value:sum"
+              },
+              {
+                label: "DEF",
+                categoryId: "def",
+                key: "value:sum"
+              },
+              {
+                label: "XYZ",
+                categoryId: "xyz",
+                key: "value:sum"
+              }
+            ]
+          },
           'show-total-lines': true
         });
         totalCollection.options.showTotalLines = true;
@@ -247,59 +318,6 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         var parsed = totalCollection.parse(response);
         expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithTotal));
 
-      });
-    });
-
-    describe('getDataByTableFormat', function () {
-      var collection;
-      beforeEach(function () {
-        spyOn(MatrixCollection.prototype, 'getDataByTableFormat');
-        collection = new GroupedTimeseries([{}, {}]);
-        collection.options.axisLabels = {
-          'x': {
-            'label': 'Date of transaction',
-            'key': 'a'
-          },
-          'y': {
-            'label': 'Number of residential transactions',
-            'key': 'b'
-          }
-        };
-        collection.options.period = 'month';
-        collection.options.seriesList = [{
-          'title': 'col a title'
-        }, {
-          'title': 'col b title'
-        }];
-        collection.at(0).set('values', new Collection([
-          { a: '2012-08-01T00:00:00+00:00', b: 2 },
-          { a: '2012-09-01T00:00:00+00:00', b: 4 }
-        ]));
-        collection.at(1).set('values', new Collection([
-          { a: '2012-08-01T00:00:00+00:00', b: 6 },
-          { a: '2012-09-01T00:00:00+00:00', b: null }
-        ]));
-      });
-
-      it('calls the MatrixCollection getDataByTableFormat if no axis data is set', function () {
-        delete collection.options.axisLabels;
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).toHaveBeenCalled();
-      });
-
-      it('will not call the MatrixCollection if axis is set', function () {
-        collection.getDataByTableFormat();
-        expect(MatrixCollection.prototype.getDataByTableFormat).not.toHaveBeenCalled();
-      });
-
-      it('returns an array', function () {
-        expect(_.isArray(collection.getDataByTableFormat())).toEqual(true);
-      });
-
-      it('sorts the array by tabular format', function () {
-        var expected = [['Date of transaction (month)', 'col a title', 'col b title'], ['August 2012', 2, 6], ['September 2012', 4, null]];
-
-        expect(collection.getDataByTableFormat()).toEqual(expected);
       });
     });
 

@@ -60,11 +60,13 @@
       ],
       "data-group": "pay-legalisation-post",
       "data-type": "journey",
-      "steps": [
-        {"id": "pay-legalisation-post:start", "title": "Start"},
-        {"id": "pay-legalisation-post:confirm", "title": "Confirm"},
-        {"id": "pay-legalisation-post:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "pay-legalisation-post:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-legalisation-post:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-legalisation-post:done", "label": "Done", "format": "integer"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

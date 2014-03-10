@@ -19,20 +19,25 @@
     "Post Office: applications made at a Post Office branch",
     "DVLA centre: applications made at local DVLA centres"
   ],
-  "series": [
-    {
-      "id": "fully-digital",
-      "title": "Digital and automated phone"
-    },
-    {
-      "id": "assisted-digital",
-      "title": "Post Office"
-    },
-    {
-      "id": "manual",
-      "title": "DVLA centre"
-    }
-  ],
+  "axes": {
+    "y": [
+      {
+        "categoryId": "fully-digital",
+        "label": "Digital and automated phone",
+        "format": "integer"
+      },
+      {
+        "categoryId": "assisted-digital",
+        "label": "Post Office",
+        "format": "integer"
+      },
+      {
+        "categoryId": "manual",
+        "label": "DVLA centre",
+        "format": "integer"
+      }
+    ]
+  },
   "page-type": "module",
   "dashboard-title": "Tax disc",
   "dashboard-strapline": "Service dashboard",

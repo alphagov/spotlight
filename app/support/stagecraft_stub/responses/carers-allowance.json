@@ -37,10 +37,20 @@
         "Digital: applications made online",
         "Paper form: applications made using a paper form"
       ],
-      "series": [
-         { "id": "ca_clerical_received", "title": "Paper form" },
-         { "id": "ca_e_claims_received", "title": "Digital" }
-      ]
+      "axes": {
+        "y": [
+          {
+            "label": "Paper form",
+            "categoryId": "ca_clerical_received",
+            "format": "integer"
+          },
+          {
+            "label": "Digital",
+            "categoryId": "ca_e_claims_received",
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",
@@ -88,12 +98,14 @@
       "data-group": "carers-allowance",
       "data-type": "journey",
       "matching-attribute": "eventLabel",
-      "steps": [
-        {"id": "about-you", "title": "About you"},
-        {"id": "care-you-provide", "title": "About the care you provide"},
-        {"id": "other-money", "title": "Other money"},
-        {"id": "consent-and-declaration", "title": "Consent and declaration"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "about-you", "label": "About you", "format": "integer"},
+          {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
+          {"journeyId": "other-money", "label": "Other money", "format": "integer"},
+          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

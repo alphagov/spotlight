@@ -60,11 +60,13 @@
       ],
       "data-group": "pay-register-death-abroad",
       "data-type": "journey",
-      "steps": [
-        {"id": "pay-register-death-abroad:start", "title": "Start"},
-        {"id": "pay-register-death-abroad:confirm", "title": "Confirm"},
-        {"id": "pay-register-death-abroad:done", "title": "Done"}
-      ]
+      "axes": {
+        "y": [
+          {"journeyId": "pay-register-death-abroad:start", "label": "Start", "format": "integer"},
+          {"journeyId": "pay-register-death-abroad:confirm", "label": "Confirm", "format": "integer"},
+          {"journeyId": "pay-register-death-abroad:done", "label": "Done", "format": "integer"}
+        ]
+      }
     },
     {
       "slug": "service-availability",

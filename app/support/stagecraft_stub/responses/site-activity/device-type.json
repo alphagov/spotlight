@@ -1,5 +1,4 @@
 {
-  "page-type": "module",
   "module-type": "grouped_timeseries",
   "title": "How people access GOV.UK",
   "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
@@ -17,11 +16,26 @@
     "Data source: Google Analytics",
     "Desktop category includes traffic from desktops and laptops"
   ],
-  "series": [
-     { "id": "desktop", "title": "Desktop" },
-     { "id": "mobile", "title": "Mobile" },
-     { "id": "tablet", "title": "Tablet" }
-  ],
+  "axes": {
+    "y": [
+      {
+        "label": "Desktop",
+        "categoryId": "desktop",
+        "format": "integer"
+      },
+      {
+        "label": "Mobile",
+        "categoryId": "mobile",
+        "format": "integer"
+      },
+      {
+        "label": "Tablet",
+        "categoryId": "tablet",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
   "dashboard-title": "Activity on GOV.UK",
   "dashboard-strapline": "Performance",
   "dashboard-slug": "site-activity"

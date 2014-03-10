@@ -5,20 +5,28 @@
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
   "matching-attribute": "eventCategory",
-  "steps": [
-    {
-      "id": "deposit-foreign-marriage:start",
-      "title": "Start"
-    },
-    {
-      "id": "deposit-foreign-marriage:confirm",
-      "title": "Confirm"
-    },
-    {
-      "id": "deposit-foreign-marriage:done",
-      "title": "Done"
-    }
-  ],
+  "axes": {
+    "y": [
+      {
+        "journeyId": "deposit-foreign-marriage:start",
+        "label": "Start",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "deposit-foreign-marriage:confirm",
+        "label": "Confirm",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "deposit-foreign-marriage:done",
+        "label": "Done",
+        "key": "uniqueEvents",
+        "format": "integer"
+      }
+    ]
+  },
   "page-type": "module",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",

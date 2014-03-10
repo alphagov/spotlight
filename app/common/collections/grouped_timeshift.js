@@ -24,9 +24,10 @@ function (MatrixCollection, Query) {
     },
 
     duration: function () {
-      var maxTimeshift = _.max(this.options.seriesList, function (series) {
-        return series.timeshift;
-      });
+      var seriesList = this.options.axes && this.options.axes.y,
+          maxTimeshift = _.max(seriesList, function (series) {
+            return series.timeshift;
+          });
       return maxTimeshift.timeshift + this.standardDuration();
     },
 
@@ -49,30 +50,32 @@ function (MatrixCollection, Query) {
       var startOffset = this.duration() - this.standardDuration();
       var standardDateValues = data[0].values.slice(startOffset);
 
-      var matchedSeries = _.chain(this.options.seriesList)
+      var matchedSeries = _.chain(this.options.axes.y)
                            .filter(function (series) {
                               return _.find(data, function (d) {
-                                return d[this.options.category] === series.id;
+                                return d[this.options.category] === series.categoryId;
                               }, this);
                             }, this)
                            .map(function (series) {
                               var dataSeries = _.find(data, function (d) {
-                                return d[this.options.category] === series.id;
+                                return d[this.options.category] === series.categoryId;
                               }, this);
 
                               var start = startOffset;
-                              var id = series.id;
+                              var id = series.categoryId;
 
                               if (series.timeshift) {
-                                id = series.id + series.timeshift;
+                                id = series.categoryId + series.timeshift;
                                 start = startOffset - series.timeshift;
                               }
                               var end = start + this.standardDuration();
 
-                              return _.extend({}, series, {
+                              return {
                                 id: id,
+                                title: series.label,
+                                timeshift: series.timeshift,
                                 values: dataSeries.values.slice(start, end)
-                              });
+                              };
 
                             }, this)
                            .value();

@@ -1,8 +1,4 @@
 {
-  "page-type": "module",
-  "dashboard-title": "Solihull missed waste collection",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "solihull-local-authority",
   "module-type": "grouped_timeseries",
   "title": "Transactions by channel",
   "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">digital</span> and <span class=\"group3\">other</span>.",
@@ -17,10 +13,27 @@
     "Data source: CSV extract",
     "Shows the number of missed waste collections, broken down by channel"
   ],
-  "series": [
-    { "id": "Phone", "title": "Phone" },
-    { "id": "FaceToFace", "title": "Face to face" },
-    { "id": "Digital", "title": "Digital" },
-    { "id": "Other", "title": "Other" }
-  ]
+  "axes": {
+    "y": [
+      {
+        "label": "Phone",
+        "categoryId": "Phone",
+        "format": "integer"
+      },
+      {
+        "label": "Face to face",
+        "categoryId": "FaceToFace",
+        "format": "integer"
+      },
+      {
+        "label": "Other",
+        "categoryId": "Other",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Solihull missed waste collection",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "solihull-local-authority"
 }

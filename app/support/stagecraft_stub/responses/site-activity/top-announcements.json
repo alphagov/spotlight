@@ -2,9 +2,8 @@
   "module-type": "list",
   "title": "Top announcements",
   "description": "Most pageviews in past seven days",
-  "info": [
-    "Data source: Google Analytics",
-    "The press releases and news on GOV.UK with the most pageviews in the past seven days."
+  "classes": [
+    "cols2"
   ],
   "data-group": "govuk",
   "data-type": "most_viewed_news",
