@@ -7,6 +7,12 @@
     "The total number of users who arrived at each stage of the application process.",
     "Number of users is measured using the count of unique events from each step."
   ],
+  "department": {
+    "title": "Department for Education"
+  },
+  "service": {
+    "title": "Student finance"
+  },
   "data-group": "student-finance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",

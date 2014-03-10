@@ -4,7 +4,12 @@
   "title": "Digital take-up",
   "dashboard-title": "Apply for student finance",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "student-finance",
+  "department": {
+    "title": "Department for Education"
+  },
+  "service": {
+    "title": "Student finance"
+  },
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
   "filter-by": ["country:england", "application_type:full-time application"],
