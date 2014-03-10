@@ -6,6 +6,12 @@
   "data-type": "weekly-claims",
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service dashboard",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "service": {
+    "title": "Carer's Allowance"
+  },
   "category": "key",
   "period": "week",
   "value-attr": "value:sum",
