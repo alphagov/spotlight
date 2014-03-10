@@ -24,5 +24,13 @@
   "page-type": "module",
   "dashboard-title": "Tax disc",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "tax-disc"
+  "department": {
+    "title": "Department for Transport"
+  },
+  "agency": {
+    "title": "DVLA"
+  },
+  "service": {
+    "title": "Tax disc"
+  }
 }
