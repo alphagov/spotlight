@@ -1,6 +1,7 @@
 body.raw {
   #skiplink-container,
   #global-cookie-message,
+  #performance-platform-colour-bar,
   #global-header,
   #global-breadcrumb,
   #footer,
@@ -20,24 +21,22 @@ body.raw {
   #content {
     h1,
     h2,
-    aside.more-info {
+    aside.more-info,
+    nav {
       display: none;
     }
 
     .visualisation {
-      float:left;
-    }
-  }
+      float: left;
+      width: 960px;
 
-  .visualisation {
-    width: 960px;
+      .table-toggle {
+        display: none;
+      }
+    }
   }
 
   .multi_stats .sparkline-graph figure.graph .graph-wrapper {
     width: 180px;
-  }
-
-  .availability #availability-nav {
-    display:none;
   }
 }
