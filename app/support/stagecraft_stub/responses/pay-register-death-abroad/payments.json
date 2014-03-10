@@ -2,6 +2,12 @@
   "module-type": "completion_numbers",
   "title": "Payments",
   "description": "",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Register a death abroad"
+  },
   "data-group": "pay-register-death-abroad",
   "data-type": "journey",
   "info": [

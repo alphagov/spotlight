@@ -2,6 +2,12 @@
   "module-type": "journey",
   "title": "Users at each step",
   "description": "Number of users who completed important steps of the transaction last week",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Register a death abroad"
+  },
   "info": [
     "Data source: Google Analytics",
     "The total number of users who arrived at each step.",
