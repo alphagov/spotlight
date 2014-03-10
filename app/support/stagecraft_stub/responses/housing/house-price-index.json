@@ -2,6 +2,9 @@
   "module-type": "grouped_timeseries",
   "title": "House price index (HPI)",
   "description": "Average HPIs by nations and regions (100 = February 2002)",
+  "policy": {
+    "title": "Housing"
+  },
   "data-group": "housing-policy",
   "data-type": "house-price-index",
   "use_stack": false,
