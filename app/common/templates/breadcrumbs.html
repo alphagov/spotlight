@@ -2,7 +2,17 @@
 <div id="global-breadcrumb">
   <ol class="group" role="breadcrumbs">
     {{# breadcrumbs }}
-    <li><a href="{{ path }}">{{ title }}</a></li>
+    <li>
+    {{# path }}
+    <a href="{{ path }}">
+    {{/ path }}
+    <span title="{{ original_title }}">
+    {{ title }}
+    </span>
+    {{# path }}
+    </a>
+    {{/ path }}
+    </li>
     {{/ breadcrumbs }}
   </ol>
 </div>

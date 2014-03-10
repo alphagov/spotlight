@@ -59,6 +59,12 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
       var breadcrumbs = this.getBreadcrumbCrumbs().filter(function (el) {
         return el !== null;
       });
+      breadcrumbs = _.each(breadcrumbs, function (b) {
+        b.original_title = b.title;
+        if (b.title.length > 35) {
+          b.title = b.title.substring(0, 32) + '…';
+        }
+      });
       return {'breadcrumbs': breadcrumbs};
     },
 
