@@ -34,7 +34,7 @@ function (GovUkView, contentTemplate) {
       } else {
         tagline = 'This dashboard shows information about how ';
         if (this.dashboardType === 'transaction') {
-          tagline += 'the <strong>' + this.model.get('service').title + ' ';
+          tagline += 'the <strong>' + this.model.get('service').title + ': ';
           tagline += this.model.get('transaction').title + '</strong> service is';
         } else if (this.dashboardType === 'service') {
           tagline += 'the <strong>' + this.model.get('service').title;
@@ -52,7 +52,7 @@ function (GovUkView, contentTemplate) {
     getPageHeader: function () {
       var header;
       if (this.dashboardType === 'transaction') {
-        header = this.model.get('service').title + ' ';
+        header = this.model.get('service').title + ': ';
         header += this.model.get('transaction').title;
       } else {
         header = this.model.get(this.dashboardType).title;
