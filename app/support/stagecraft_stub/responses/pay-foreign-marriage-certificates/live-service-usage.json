@@ -5,7 +5,12 @@
   "description": "Live number of users on any page within the service",
   "dashboard-title": "Payment for certificates to get married abroad",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-foreign-marriage-certificates",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Certificates to get married abroad"
+  },
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."

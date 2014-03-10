@@ -4,7 +4,12 @@
   "title": "Payments",
   "dashboard-title": "Payment for certificates to get married abroad",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-foreign-marriage-certificates",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Certificates to get married abroad"
+  },
   "description": "",
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",
