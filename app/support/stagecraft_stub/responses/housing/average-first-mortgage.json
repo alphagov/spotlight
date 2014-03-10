@@ -5,7 +5,9 @@
   "description": "A range of factors indicative of the state of the housing market for first-time buyers",
   "dashboard-title": "Housing",
   "dashboard-strapline": "Policy dashboard",
-  "dashboard-slug": "housing",
+  "policy": {
+    "title": "Housing"
+  },
   "data-group": "housing-policy",
   "data-type": "first-time-buyer",
   "period": "quarter",
