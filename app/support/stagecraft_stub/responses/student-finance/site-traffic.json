@@ -15,5 +15,10 @@
   "matching-attribute": "dataType",
   "dashboard-title": "Apply for student finance",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "student-finance"
+  "department": {
+    "title": "Department for Education"
+  },
+  "service": {
+    "title": "Student finance"
+  }
 }
