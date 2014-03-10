@@ -4,7 +4,12 @@
   "title": "Completion rate",
   "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "deposit-foreign-marriage",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
+  "service": {
+    "title": "Deposit foreign marriage or civil partnership certificates"
+  },
   "description": "",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
