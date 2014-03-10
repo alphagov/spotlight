@@ -1,11 +1,12 @@
 {
   "slug": "no-realistic-dashboard",
   "page-type": "dashboard",
-  "title": "Non-Realistic Data Stub",
+  "dashboardType": "department",
   "strapline": "Performance",
-  "tagline": "This is a tagline (this is not real data).",
-  "related_pages_title": "Housing policies",
-  "related_pages": [
+  "department": {
+    "title": "Non-Realistic Data Stub"
+  },
+  "relatedPages": [
     {
       "title": "Helping people to buy a home",
       "url": "https://www.gov.uk/government/policies/helping-people-to-buy-a-home",
