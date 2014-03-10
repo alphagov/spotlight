@@ -57,7 +57,7 @@ function (DashboardView, Model) {
           }
         });
         view.dashboardType = 'transaction';
-        expect(view.getPageHeader()).toEqual('Carer\'s Allowance applications');
+        expect(view.getPageHeader()).toEqual('Carer\'s Allowance: applications');
       });
 
     });
@@ -109,7 +109,7 @@ function (DashboardView, Model) {
           }
         });
         view.dashboardType = 'transaction';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance applications</strong> service is currently performing.');
+        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance: applications</strong> service is currently performing.');
       });
 
       it('calculates correct tagline for policies', function () {
