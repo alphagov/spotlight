@@ -2,6 +2,12 @@
   "module-type": "availability",
   "title": "Service availability",
   "description": "",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "service": {
+    "title": "Carer's Allowance"
+  },
   "data-group": "carers-allowance",
   "data-type": "monitoring",
   "info": [
