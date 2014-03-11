@@ -10,7 +10,7 @@ function (PageConfig, StagecraftApiClient) {
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
       model: model,
-      raw: req.query.raw,
+      raw: _.has(req.query, 'raw'),
       url: req.originalUrl
     });
 

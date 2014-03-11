@@ -25,7 +25,7 @@ function (processRequest, Model, Controller, View) {
           get: get
         },
         query: {
-          raw: 'true'
+          raw: ''
         },
         originalUrl: 'test url',
         route: {}
@@ -99,7 +99,7 @@ function (processRequest, Model, Controller, View) {
         expect(model.get('backdropUrl')).toEqual('//testBackdrop/');
         expect(model.get('environment')).toEqual('development');
         expect(controller.model).toBe(model);
-        expect(controller.raw).toEqual('true');
+        expect(controller.raw).toEqual(true);
         expect(controller.url).toEqual('test url');
         expect(controller.render).toHaveBeenCalled();
       });
