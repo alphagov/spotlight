@@ -123,6 +123,17 @@ function (CompletionCollection, Collection, MatrixCollection) {
       expect(collection.defaultCollectionAttrs).toHaveBeenCalled();
     });
 
+    it('should handle an empty data response', function () {
+      var collection = new CompletionCollection({}, {}),
+          response = {data: []},
+          parsedResponse = {values: [], _start: null, _end: null};
+
+      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+
+      expect(collection.parse(response)).toEqual(parsedResponse);
+    });
+
     it('should allow matcher to be a regex', function () {
       var collection = new CompletionCollection({}, {
         denominatorMatcher: 'start',
