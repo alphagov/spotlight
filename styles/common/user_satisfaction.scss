@@ -3,30 +3,34 @@
   overflow: hidden;
   position: relative;
 
-  .stat { 
+  .stat {
     float: left;
   }
 
-  .delta { 
+  .delta {
     position: absolute;
     bottom: 5px;
     left: 12em;
+
+    .change {
+      @include core-24($tabular-numbers: true);
+    }
   }
 
   @media(max-width: 850px) {
 
-	  .delta { 
+	  .delta {
 	    left: 9em;
 	  }
-	
+
   }
 
   @media(max-width: 640px) {
 
-	  .delta { 
+	  .delta {
 	    left: 8em;
 	    bottom: 2px;
 	  }
-	
+
   }
 }
