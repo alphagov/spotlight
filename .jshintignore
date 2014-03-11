@@ -4,16 +4,16 @@
 *.sublime*
 *.sh
 *.scss
-*.json
+**/*.html
 package.json
+assets/**
 node_modules/**
 vendor/**
 public/**
 config/**
-support/**
 spec/helpers/**
 app/vendor/**
-app/support/**
+app/support/**/*.js
 tools/**
 features/**
 styles/**
@@ -21,3 +21,5 @@ Gemfile*
 LICENSE
 _SpecRunner.html
 spec/requirejs-setup.js
+spec/module-schema.json
+spec/client/preprocessors/transparent.gif
