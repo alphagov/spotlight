@@ -98,7 +98,7 @@ function (View, Formatters) {
       var cols = [];
       if (this.axes) {
         cols = _.map(this.axes.y, function (axis) {
-          if (!axis.key || axis.key === this.valueAttr) {
+          if (!axis.key || !this.valueAttr || axis.key === this.valueAttr) {
             return _.extend({
               key: this.valueAttr
             }, axis);

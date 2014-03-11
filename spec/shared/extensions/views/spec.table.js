@@ -45,8 +45,8 @@ function (Table, View, $) {
                 key: 'timestamp'
               },
               y: [
-                { label: 'another' },
-                { label: 'last' }
+                { label: 'another', key: 'value' },
+                { label: 'last', key: 'value' }
               ]
             } },
             getTableRows: function () {},
@@ -126,6 +126,14 @@ function (Table, View, $) {
           expect(table.getColumns()).toEqual([
               { key: 'timestamp', label: 'date' },
               { key: 'value', label: 'another' }
+            ]);
+        });
+        it('does not filter if table has no valueAttr defined', function () {
+          delete table.valueAttr;
+          expect(table.getColumns()).toEqual([
+              { key: 'timestamp', label: 'date' },
+              { key: 'value', label: 'another' },
+              { key: 'value', label: 'last' }
             ]);
         });
       });
