@@ -113,12 +113,18 @@
       "query-params": {
         "filter_by": "eventAction:help.inline",
         "group_by": "eventDestination",
-        "collect": "uniqueEvents:sum"
+        "collect": "uniqueEvents:sum",
+        "period": "week",
+        "duration": 1
       },
       "axes": {
         "x": {
           "label": "Description",
-          "key": "eventDestination"
+          "key": "eventDestination",
+          "format": {
+            "type": "sentence",
+            "uppercase": ["lpa","bacs"]
+          }
         },
         "y": [
           {
