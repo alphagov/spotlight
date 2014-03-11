@@ -133,7 +133,9 @@
             "format": "integer"
           }
         ]
-      }
+      },
+      "sort-by": "uniqueEvents:sum",
+      "sort-order": "descending"
     },
     {
       "slug": "service-availability",
