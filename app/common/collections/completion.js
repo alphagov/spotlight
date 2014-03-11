@@ -41,8 +41,6 @@ function (MatrixCollection, Collection, Group, Query) {
     },
 
     parse: function (response) {
-      this.data = response.data;
-
       // refresh value attribute to work with tabbed interface
       this.setValueAttribute(this.options);
 
