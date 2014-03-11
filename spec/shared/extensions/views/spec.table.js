@@ -49,7 +49,8 @@ function (Table, View, $) {
                 { label: 'last' }
               ]
             } },
-            getTableRows: function () {}
+            getTableRows: function () {},
+            sortByAttr: function () {}
           },
           valueAttr: 'value'
         });
@@ -136,6 +137,21 @@ function (Table, View, $) {
           expect(table.format).toHaveBeenCalledWith(10, 'percent');
           expect(table.renderEl).toHaveBeenCalledWith('td', null, '10%');
         });
+      });
+
+      it('sorts table rows', function () {
+        spyOn(table.collection, 'sortByAttr');
+        table.sortBy = 'value';
+        table.sortOrder = 'descending';
+        table.render();
+        expect(table.collection.sortByAttr).toHaveBeenCalledWith('value', true);
+
+        table.collection.sortByAttr.reset();
+
+        table.sortBy = 'timestamp';
+        table.sortOrder = 'ascending';
+        table.render();
+        expect(table.collection.sortByAttr).toHaveBeenCalledWith('timestamp', false);
       });
 
       it('renders a table', function () {

@@ -17,7 +17,15 @@ function (ModuleController, TableView, Collection) {
         queryParams: this.model.get('query-params'),
         axes: this.model.get('axes')
       };
+    },
+
+    visualisationOptions: function () {
+      return {
+        sortBy: this.model.get('sort-by'),
+        sortOrder: this.model.get('sort-order') || 'descending'
+      };
     }
+
   });
 
   return TableModule;

@@ -30,8 +30,9 @@ function (View, template) {
         return {};
       }
       return {
-        '.visualisation': function () {
-          return this.visualisationClass;
+        '.visualisation': {
+          view: this.visualisationClass,
+          options: this.visualisationOptions
         }
       };
     },

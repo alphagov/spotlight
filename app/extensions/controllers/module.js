@@ -41,6 +41,7 @@ define([
     viewOptions: function () {
       var options = {
         visualisationClass: this.visualisationClass,
+        visualisationOptions: this.visualisationOptions,
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,
