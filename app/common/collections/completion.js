@@ -41,14 +41,16 @@ function (MatrixCollection, Collection, Group, Query) {
     },
 
     parse: function (response) {
-      this.data = response.data;
-
       // refresh value attribute to work with tabbed interface
       this.setValueAttribute(this.options);
 
-      var values = [];
-      var dataTotals = { start: null, end: null };
-      var periods = response.data[0].values ? response.data[0].values.length : 0;
+      var periods = 0,
+          values = [],
+          dataTotals = { start: null, end: null };
+
+      if (response.data && response.data.length > 0 && response.data[0].values) {
+        periods = response.data[0].values.length;
+      }
 
       _.times(periods, function (i) {
         var totals = _.reduce(response.data, function (memo, d) {
