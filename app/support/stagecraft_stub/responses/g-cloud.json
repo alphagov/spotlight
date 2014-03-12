@@ -137,7 +137,17 @@
         {"id": "count:sum", "name": "Contracts awarded"}
       ],
       "tabbed_attr": "collect",
-      "category": "sme_large"
+      "category": "sme_large",
+      "axes": {
+        "x": {
+          "label": "Date of sales"
+        },
+        "y": [
+          {
+            "label": "Percentage of sales to SMEs"
+          }
+        ]
+      }
     },
     {
       "slug": "cumulative-spend-by-customer-type",

@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "completion_rate",
   "title": "Proportion of sales from small and medium enterprises",
   "description": "The proportion of sales allocated to SMEs each month",
-  "dashboard-title": "G-Cloud",
-  "dashboard-strapline": "Public sector purchasing dashboard",
-  "dashboard-slug": "g-cloud",
   "data-group": "gcloud",
   "data-type": "sales",
   "info": [
@@ -18,9 +14,29 @@
   "value-attribute": "monthly_spend:sum",
   "period": "month",
   "tabs": [
-    {"id": "monthly_spend:sum", "name": "Total spend"},
-    {"id": "count:sum", "name": "Contracts awarded"}
+    {
+      "id": "monthly_spend:sum",
+      "name": "Total spend"
+    },
+    {
+      "id": "count:sum",
+      "name": "Contracts awarded"
+    }
   ],
   "tabbed_attr": "collect",
-  "category": "sme_large"
+  "category": "sme_large",
+  "axes": {
+    "x": {
+      "label": "Date of sales"
+    },
+    "y": [
+      {
+        "label": "Percentage of sales to SMEs"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "G-Cloud",
+  "dashboard-strapline": "Public sector purchasing dashboard",
+  "dashboard-slug": "g-cloud"
 }
