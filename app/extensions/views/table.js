@@ -71,16 +71,7 @@ function (View, Formatters) {
         var renderCell = this.renderCell.bind(this, 'td', $row);
 
         _.each(row, function (cell, index) {
-          if (_.isArray(cell)) { // pulling data from multiple nested collections
-            _.each(cell, function (datapoint, columnIndex) {
-              // only render the first column for the first collection
-              if (columnIndex > 0 || index === 0) {
-                renderCell(datapoint, columns[index + columnIndex]);
-              }
-            });
-          } else {
-            renderCell(cell, columns[index]);
-          }
+          renderCell(cell, columns[index]);
         });
 
       }, this);

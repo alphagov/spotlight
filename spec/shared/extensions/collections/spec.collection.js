@@ -619,7 +619,7 @@ function (Collection, Model, Backbone) {
       });
 
       it('returns an array', function () {
-        expect(_.isArray(collection.getTableRows('a', 'b'))).toEqual(true);
+        expect(_.isArray(collection.getTableRows(['a', 'b']))).toEqual(true);
       });
 
       it('returns empty rows if no arguments are provided', function () {
@@ -630,7 +630,11 @@ function (Collection, Model, Backbone) {
         var expected = [[1, 2], [3, 4]];
 
         expect(collection.getTableRows(['a', 'b'])).toEqual(expected);
-        expect(collection.getTableRows('a', 'b')).toEqual(expected);
+      });
+
+      it('returns composite keys for an axis', function () {
+        expect(collection.getTableRows([['a', 'c'], 'b']))
+          .toEqual([[[1, 'foo'], 2], [[3, 'bar'], 4]]);
       });
 
       describe('processors', function () {

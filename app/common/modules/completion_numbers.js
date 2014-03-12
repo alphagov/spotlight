@@ -22,8 +22,8 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         axes: _.merge({
           x: {
             label: 'Date of Application',
-            key: '_start_at',
-            format: 'date'
+            key: ['_start_at', '_end_at'],
+            format: 'dateRange'
           },
           y: [
             {

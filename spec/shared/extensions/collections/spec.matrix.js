@@ -447,31 +447,36 @@ function (MatrixCollection, Collection, Group) {
         beforeEach(function () {
           collection = new MatrixCollection([{}, {}]);
           collection.at(0).set('values', new Collection([
-            { a: 1, b: 3 },
-            { a: 2, b: 4 }
+            { a: 1, b: 3, c: 'foo1' },
+            { a: 2, b: 4, c: 'foo2' }
           ]));
           collection.at(1).set('values', new Collection([
-            { a: 1, b: 5 },
-            { a: 2, b: null }
+            { a: 1, b: 5, c: 'foo3' },
+            { a: 2, b: null, c: 'foo4' }
           ]));
         });
 
         it('returns an array of arrays', function () {
-          expect(_.isArray(collection.getTableRows('a', 'b'))).toEqual(true);
-          expect(_.isArray(collection.getTableRows('a', 'b')[0])).toEqual(true);
-          expect(_.isArray(collection.getTableRows('a', 'b')[1])).toEqual(true);
+          expect(_.isArray(collection.getTableRows(['a', 'b']))).toEqual(true);
+          expect(_.isArray(collection.getTableRows(['a', 'b'])[0])).toEqual(true);
+          expect(_.isArray(collection.getTableRows(['a', 'b'])[1])).toEqual(true);
         });
 
         it('returns single dimensional array when top-level collection has only one entry', function () {
           collection.pop();
-          expect(collection.getTableRows('a')).toEqual([[1], [2]]);
+          expect(collection.getTableRows(['a'])).toEqual([[1], [2]]);
         });
 
-        it('can handle both array args and rest args', function () {
-          var expected = [[[1, 3], [1, 5]], [[2, 4], [2, null]]];
+        it('can handle array args', function () {
+          var expected = [[1, 3, 5], [2, 4, null]];
 
           expect(collection.getTableRows(['a', 'b'])).toEqual(expected);
-          expect(collection.getTableRows('a', 'b')).toEqual(expected);
+        });
+
+        it('can handle composite keys', function () {
+          var expected = [[[1, 'foo1'], 3, 5], [[2, 'foo2'], 4, null]];
+
+          expect(collection.getTableRows([['a', 'c'], 'b'])).toEqual(expected);
         });
       });
 

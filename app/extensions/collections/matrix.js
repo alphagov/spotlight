@@ -120,9 +120,6 @@ function (require, Collection, Group) {
     },
 
     getTableRows: function (keys) {
-      if (arguments.length !== 1 || !(_.isArray(keys))) {
-        keys = [].slice.apply(arguments);
-      }
       keys = _.unique(keys);
       var rows = [];
       // if there's only one collection, behave as the single-dimensional case
@@ -136,9 +133,12 @@ function (require, Collection, Group) {
         // map array of columns into array of rows
         if (columns.length) {
           _.each(columns[0], function (row, i) {
-            rows.push(_.map(columns, function (col) {
-              return col[i];
-            }));
+            var rowToAdd = [],
+                rowParts = _.map(columns, function (col, colIndex) {
+                  return colIndex === 0 ? col[i] : col[i].slice(1);
+                });
+
+            rows.push(rowToAdd.concat.apply(rowToAdd, rowParts));
           });
         }
       }

@@ -18,6 +18,11 @@ define([
       return date.format(options.format);
     },
 
+    dateRange: function (value, options) {
+      return formatters.date(value[0], options) + ' to ' +
+        formatters.date(value[1], options);
+    },
+
     duration: function (value, options) {
       _.defaults(options, {
         unit: 'ms',
