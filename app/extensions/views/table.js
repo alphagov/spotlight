@@ -78,11 +78,18 @@ function (View, Formatters) {
     },
 
     renderCell: function (tag, parent, content, column) {
+      var className = '';
+
       if (column.format) {
         content = this.format(content, column.format);
+        className = _.isString(column.format) ? column.format : column.format.type;
       }
+
       content = (content === null || content === undefined) ? 'no data' : content;
-      this.renderEl(tag, parent, content);
+
+      this.renderEl(tag, parent, content, {
+        'class': className
+      });
     },
 
     getColumns: function () {

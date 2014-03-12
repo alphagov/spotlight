@@ -22,6 +22,10 @@ table {
     border: dotted 1px #b8c6cc;
   }
 
+  .currency, .percent, .integer, .number {
+    text-align: right;
+  }
+
   tr:nth-child(even) td {
     background: #fff;
   }
