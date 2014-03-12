@@ -63,12 +63,12 @@ function (GovUkView, View, Model) {
       expect(content.indexOf('breadcrumb')).toEqual(-1);
     });
 
-    it("adds ellipses to very long breadcrumbs", function () {
+    it('adds ellipses to very long breadcrumbs', function () {
       var ellipsisView = new GovUkView({
         model: model,
       });
 
-      spyOn(ellipsisView, 'template').andReturn('rendered')
+      spyOn(ellipsisView, 'template').andReturn('rendered');
       spyOn(ellipsisView, 'getBreadcrumbCrumbs').andReturn([
         {'path': '/performance', 'title': 'Performance'},
         {'path': '/url', 'title': 'A very very very very very very very long department name'}
