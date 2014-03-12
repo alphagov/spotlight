@@ -36,8 +36,8 @@
         "format": "currency"
       },
       {
-        "label": "Unknown",
-        "categoryId": "Not yet classified",
+        "label": "Not yet classified",
+        "categoryId": "Unknown",
         "format": "currency"
       },
       {
