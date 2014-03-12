@@ -20,8 +20,7 @@ function (ModuleController, ListView, ListCollection) {
       return {
         'id': 'list',
         'title': 'List',
-        'sortBy': this.model.get('sort-by'),
-        'limit': this.model.get('limit'),
+        'queryParams': this.model.get('query-params'),
         'labelAttr': this.model.get('label-attr'),
         'labelRegex': this.model.get('label-regex'),
         'linkAttr': this.model.get('link-attr'),

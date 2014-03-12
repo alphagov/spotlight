@@ -11,6 +11,7 @@ function (GovUkView, Module) {
         model: this.model,
         collection: this.collection,
         visualisationClass: this.visualisationClass,
+        visualisationOptions: this.visualisationOptions,
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,

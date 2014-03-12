@@ -477,5 +477,33 @@ function (MatrixCollection, Collection, Group) {
 
     });
 
+    describe('sortByAttr', function () {
+
+      var collection;
+      beforeEach(function () {
+        collection = new MatrixCollection([{}, {}]);
+        collection.at(0).set('values', new Collection([
+          { a: 5, b: 1 },
+          { a: 4, b: 2 }
+        ]));
+        collection.at(1).set('values', new Collection([
+          { a: 1, b: 2 },
+          { a: 2, b: 1 }
+        ]));
+      });
+
+      it('sorts child collections', function () {
+
+        spyOn(Collection.prototype, 'sortByAttr');
+
+        collection.sortByAttr('a', true, {});
+
+        expect(collection.at(0).get('values').sortByAttr).toHaveBeenCalledWith('a', true, {});
+        expect(collection.at(1).get('values').sortByAttr).toHaveBeenCalledWith('a', true, {});
+
+      });
+
+    });
+
   });
 });

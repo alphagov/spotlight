@@ -226,7 +226,14 @@ function (require, Collection, Group) {
         groupIndex = null;
       }
       this.trigger('change:selected', group, groupIndex, model, index);
+    },
+
+    sortByAttr: function (attr, descending, options) {
+      this.each(function (model) {
+        model.get('values').sortByAttr(attr, descending, options);
+      });
     }
+
   });
 
   return MatrixCollection;

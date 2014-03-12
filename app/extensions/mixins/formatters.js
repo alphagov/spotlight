@@ -5,7 +5,7 @@ define([
 
     time: function (value, options) {
       _.defaults(options, {
-        format: 'hh:mma'
+        format: 'h:mma'
       });
       return formatters.date(value, options);
     },
@@ -30,46 +30,73 @@ define([
       } else if (options.unit === 'm') {
         divisor = 60000;
       }
-      return formatters.number(value / divisor) + options.unit;
+      return formatters.number(value / divisor, options) + options.unit;
     },
 
     currency: function (value, options) {
       _.defaults(options, {
         symbol: '£',
-        dps: 0
+        pence: false
       });
+      options.dps = options.fixed = (options.pence ? 2 : 0);
       return options.symbol + formatters.number(value, options);
     },
 
     percent: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0
-      }, options);
+      });
       return formatters.number(value * 100, options) + '%';
     },
 
     integer: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0
-      }, options);
+      });
       return formatters.number(value, options);
     },
 
     number: function (value, options) {
-      options = _.extend({
+      _.defaults(options, {
         dps: 0,
         commas: true
-      }, options);
+      });
       if (!isNaN(Number(value))) {
         value = Number(value);
         if (typeof options.dps === 'number') {
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
         }
+        if (options.fixed && typeof options.fixed === 'number') {
+          value = value.toFixed(options.fixed);
+        }
         if (options.commas) {
           value = utils.commas(value);
         }
       }
+      return value.toString();
+    },
+
+    sentence: function (value, options) {
+      _.defaults(options, {
+        separator: /-/g,
+        uppercase: []
+      });
+
+      // break into words
+      value = value.replace(options.separator, ' ');
+      // uppercase thing that should always be uppercase
+      options.uppercase.push('i');
+      var ucregex = new RegExp('\\b(' + options.uppercase.join('|') + ')\\b', 'g');
+      value = value.replace(ucregex, function (s) {
+        return s.toUpperCase();
+      });
+      // look for questions
+      if (value.match(/^(can|how|what|why|where|who|when|is)\b/)) {
+        value = value + '?';
+      }
+      // uppercase first letter
+      value = value.charAt(0).toUpperCase() + value.slice(1);
       return value;
     }
 
@@ -77,11 +104,11 @@ define([
 
   var utils = {
     commas: function (value) {
-      value = value.toString();
+      value = value.toString().split('.');
       var pattern = /(-?\d+)(\d{3})/;
-      while (pattern.test(value))
-        value = value.replace(pattern, '$1,$2');
-      return value;
+      while (pattern.test(value[0]))
+        value[0] = value[0].replace(pattern, '$1,$2');
+      return value.join('.');
     }
   };
 

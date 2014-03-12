@@ -105,6 +105,8 @@ moduleSchemas.multi_stats = moduleSchemas.common;
 
 moduleSchemas.list = moduleSchemas.common;
 
+moduleSchemas.table = moduleSchemas.common;
+
 moduleSchemas.user_satisfaction = moduleSchemas.common;
 
 var validationResult = {},
