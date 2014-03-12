@@ -255,7 +255,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build:common', [
     'copy:vendor',
     'copy:govuk_template',
-    'jshint',
     'clean',
     'copy:assets'
   ]);
