@@ -2,13 +2,16 @@
   "module-type": "list",
   "title": "Top announcements",
   "description": "Most pageviews in past seven days",
-  "classes": [
-    "cols2"
+  "info": [
+    "Data source: Google Analytics",
+    "The press releases and news on GOV.UK with the most pageviews in the past seven days."
   ],
   "data-group": "govuk",
   "data-type": "most_viewed_news",
-  "sort-by": "pageviews:descending",
-  "limit": 10,
+  "query-params": {
+    "sort_by": "pageviews:descending",
+    "limit": 10
+  },
   "label-attr": "pageTitle",
   "label-regex": "^(.*?)(?:\\s-\\s(?:News stories\\s-\\s|Press releases\\s-\\s)?GOV.UK)?$",
   "link-attr": "pagePath",

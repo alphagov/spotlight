@@ -9,8 +9,10 @@
   ],
   "data-group": "govuk",
   "data-type": "trending",
-  "sort-by": "percent_change:descending",
-  "limit": 10,
+  "query-params": {
+    "sort_by": "percent_change:descending",
+    "limit": 10
+  },
   "label-attr": "pageTitle",
   "label-regex": "^(.*)\\s-[^-]+$",
   "link-attr": "pagePath",

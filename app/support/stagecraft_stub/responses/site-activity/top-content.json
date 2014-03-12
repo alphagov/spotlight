@@ -2,13 +2,16 @@
   "module-type": "list",
   "title": "Top content",
   "description": "Most pageviews in past seven days",
-  "classes": [
-    "cols2"
+  "info": [
+    "Data source: Google Analytics",
+    "The content on GOV.UK with the most pageviews in the past seven days."
   ],
   "data-group": "govuk",
   "data-type": "most_viewed",
-  "sort-by": "pageviews:descending",
-  "limit": 10,
+  "query-params": {
+    "sort_by": "pageviews:descending",
+    "limit": 10
+  },
   "label-attr": "pageTitle",
   "label-regex": "^(.*)\\s-[^-]+$",
   "link-attr": "pagePath",

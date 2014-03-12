@@ -2,13 +2,16 @@
   "module-type": "list",
   "title": "Top policies",
   "description": "Most pageviews in past seven days",
-  "classes": [
-    "cols2"
+  "info": [
+    "Data source: Google Analytics",
+    "The policies on GOV.UK with the most pageviews in the past seven days."
   ],
   "data-group": "govuk",
   "data-type": "most_viewed_policies",
-  "sort-by": "pageviews:descending",
-  "limit": 10,
+  "query-params": {
+    "sort_by": "pageviews:descending",
+    "limit": 10
+  },
   "label-attr": "pageTitle",
   "label-regex": "^(.*?)(?:\\s-\\s(?:Policy\\s-\\s|Policies\\s-\\s)?GOV.UK)?$",
   "link-attr": "pagePath",
