@@ -4,11 +4,11 @@ define([
 ],
 function (Component, Pivot) {
   var Callout = Component.extend({
-    
+
     events: {
       'mousemove': 'onMouseMove'
     },
-    
+
     horizontal: 'right',
     vertical: 'bottom',
     xOffset: -7,
@@ -34,9 +34,9 @@ function (Component, Pivot) {
       }
       this.renderContent(el, group, groupIndex, model, index);
       el.removeClass('performance-hidden');
-      
+
       var scaleFactor = this.graph.scaleFactor();
-      
+
       var basePos = {
         x: this.x(group, groupIndex, model, index) * scaleFactor,
         y: this.y(group, groupIndex, model, index) * scaleFactor
@@ -62,26 +62,26 @@ function (Component, Pivot) {
         top: pos.y + this.margin.top * scaleFactor
       });
     },
-    
+
     x: function (group, groupIndex, model, index) {
       return this.scales.x(this.graph.getXPos(groupIndex, index));
     },
-    
+
     y: function (group, groupIndex, model, index) {
       return this.scales.y(this.graph.getYPos(groupIndex, index));
     },
-    
-    onMouseMove: function (e) {
+
+    onMouseMove: function () {
       return false;
     },
 
-    getHeader: function (el, group, groupIndex, model, index) {
+    getHeader: function (el, group, groupIndex, model) {
       var period = this.graph.collection.query.get('period') || 'week';
       return this.formatPeriod(model, period);
     },
 
-    renderContent: function (el, group, groupIndex, model, index) {
-      
+    renderContent: function (el, group, groupIndex, model) {
+
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
 
       var value = this.formatNumericLabel(

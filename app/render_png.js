@@ -10,15 +10,15 @@ function (http, url) {
       for (var i in screenshot.headers) {
         res.setHeader(i, screenshot.headers[i]);
       }
-      screenshot.on("data", function(chunk) {
+      screenshot.on('data', function (chunk) {
         res.write(chunk);
       });
-      screenshot.on("end", function () {
+      screenshot.on('end', function () {
         res.end();
       });
     }).on('error', function (e) {
       res.status(500);
-      res.send("Got error: " + e.message);
+      res.send('Got error: ' + e.message);
     });
   };
 
@@ -35,7 +35,7 @@ function (http, url) {
       '&clipSelector=.visualisation',
       '&url=',
       renderPng.screenshotTargetUrl,
-      url.replace(/.png|\?raw/g, "?raw")
+      url.replace(/.png|\?raw/g, '?raw')
     ].join('');
   };
 

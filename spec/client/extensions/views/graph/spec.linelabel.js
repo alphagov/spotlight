@@ -4,11 +4,11 @@ define([
 ],
 function (LineLabel, Collection) {
 
-  describe("LineLabel Component", function () {
-    describe("rendering tests", function () {
+  describe('LineLabel Component', function () {
+    describe('rendering tests', function () {
 
       var el, wrapper, lineLabel, collection;
-      beforeEach(function() {
+      beforeEach(function () {
         var TestCollection = Collection.extend({
           parse: function (response) {
             return response;
@@ -18,10 +18,14 @@ function (LineLabel, Collection) {
         collection = new TestCollection();
         collection.reset([
           { y: 30, yLabel: 30, title: 'Title 1', id: 'id1', href: '/link1', values: [
-            { _count: 10 }, { _count: 20 }, { _count: 30, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
+            { _count: 10 },
+            { _count: 20 },
+            { _count: 30, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
           ] },
           { y: 80, yLabel: 80, title: 'Title 2', id: 'id2', href: '/link2', values: [
-            { _count: 60 }, { _count: 70 }, { _count: 80, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
+            { _count: 60 },
+            { _count: 70 },
+            { _count: 80, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
           ] }
         ], {parse: true});
 
@@ -52,15 +56,15 @@ function (LineLabel, Collection) {
           { ideal: 30, min: 30, size: 20 },
           { ideal: 80, min: 80, size: 30 }
         ];
-        spyOn(lineLabel, "setLabelPositions");
+        spyOn(lineLabel, 'setLabelPositions');
       });
 
-      afterEach(function() {
+      afterEach(function () {
         el.remove();
       });
 
-      describe("render", function () {
-        it("renders a label with text and line", function () {
+      describe('render', function () {
+        it('renders a label with text and line', function () {
           lineLabel.render();
           var textLabels = lineLabel.$el.find('figcaption li');
           expect(textLabels.length).toEqual(2);
@@ -82,14 +86,14 @@ function (LineLabel, Collection) {
           expect(lineLabelElement.attr('aria-hidden')).toEqual('true');
         });
 
-        it("renders a label with squares", function () {
+        it('renders a label with squares', function () {
           lineLabel.showSquare = true;
           lineLabel.render();
 
           expect(lineLabel.$el.find('figcaption ol')).toHaveClass('squares');
         });
 
-        it("does not render links, values, percentages or timeperiods by default", function () {
+        it('does not render links, values, percentages or timeperiods by default', function () {
           lineLabel.render();
           expect(lineLabel.$el.find('figcaption li a').length).toEqual(0);
           expect(lineLabel.$el.find('figcaption li span.value').length).toEqual(0);
@@ -97,7 +101,7 @@ function (LineLabel, Collection) {
           expect(lineLabel.$el.find('figcaption .summary span.timeperiod').length).toEqual(0);
         });
 
-        it("renders links when enabled", function () {
+        it('renders links when enabled', function () {
           lineLabel.attachLinks = true;
           lineLabel.render();
           expect(lineLabel.$el.find('figcaption ol')).toHaveClass('has-links');
@@ -108,7 +112,7 @@ function (LineLabel, Collection) {
           expect(links.eq(1).attr('href')).toEqual('/link2');
         });
 
-        it("renders a label with additional value text when enabled", function () {
+        it('renders a label with additional value text when enabled', function () {
           lineLabel.showValues = true;
           lineLabel.render();
 
@@ -120,7 +124,7 @@ function (LineLabel, Collection) {
           expect(label2.find('span.value')).toHaveText('210');
         });
 
-        it("renders links and additional value text when selected", function () {
+        it('renders links and additional value text when selected', function () {
           lineLabel.attachLinks = true;
           lineLabel.showValues = true;
           lineLabel.render();
@@ -133,7 +137,7 @@ function (LineLabel, Collection) {
           expect(spanValues.length).toEqual(2);
         });
 
-        it("renders a label with additional value text and percentage when enabled", function () {
+        it('renders a label with additional value text and percentage when enabled', function () {
           lineLabel.showValues = true;
           lineLabel.showValuesPercentage = true;
           lineLabel.render();
@@ -144,7 +148,7 @@ function (LineLabel, Collection) {
           expect(label2.find('span.percentage')).toHaveText('(78%)');
         });
 
-        it("renders a summary label when enabled", function () {
+        it('renders a summary label when enabled', function () {
           lineLabel.showSummary = true;
           lineLabel.showValues = true;
           lineLabel.showValuesPercentage = true;
@@ -155,7 +159,7 @@ function (LineLabel, Collection) {
           expect(summary.find('span.percentage')).toHaveText('(100%)');
         });
 
-        it("renders a time period label when enabled", function () {
+        it('renders a time period label when enabled', function () {
           lineLabel.showSummary = true;
           lineLabel.showTimePeriod = true;
           lineLabel.render();
@@ -164,9 +168,9 @@ function (LineLabel, Collection) {
         });
       });
 
-      describe("event handling", function () {
+      describe('event handling', function () {
         var el, wrapper, lineLabel, options;
-        beforeEach(function() {
+        beforeEach(function () {
 
           el = $('<div></div>').appendTo($('body'));
           wrapper = LineLabel.prototype.d3.select(el[0]).append('svg').append('g');
@@ -190,15 +194,15 @@ function (LineLabel, Collection) {
             ],
             rendered: true
           };
-          spyOn(LineLabel.prototype, "setLabelPositions");
+          spyOn(LineLabel.prototype, 'setLabelPositions');
         });
 
-        afterEach(function() {
+        afterEach(function () {
           el.remove();
         });
 
-        describe("events", function () {
-          it("listens for mousemove events for links on non-touch devices", function () {
+        describe('events', function () {
+          it('listens for mousemove events for links on non-touch devices', function () {
             LineLabel.prototype.modernizr = { touch: false };
             lineLabel = new LineLabel(options);
             lineLabel.render();
@@ -209,7 +213,7 @@ function (LineLabel, Collection) {
             expect(collection.selectedIndex).toBe(null);
           });
 
-          it("listens for touchstart events for links on touch devices", function () {
+          it('listens for touchstart events for links on touch devices', function () {
             LineLabel.prototype.modernizr = { touch: true };
             lineLabel = new LineLabel(options);
             lineLabel.render();
@@ -222,7 +226,7 @@ function (LineLabel, Collection) {
         });
       });
 
-      describe("onChangeSelected", function () {
+      describe('onChangeSelected', function () {
         var hasClass = function (selection, className) {
           return _.contains(
             selection.attr('class').split(' '),
@@ -230,7 +234,7 @@ function (LineLabel, Collection) {
           );
         };
 
-        it("marks selected label and line as selected and others as not selected", function () {
+        it('marks selected label and line as selected and others as not selected', function () {
           lineLabel.render();
           var littleLines = wrapper.select('.labels');
           var labels = lineLabel.$el.find('figcaption ol li');
@@ -263,7 +267,7 @@ function (LineLabel, Collection) {
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
         });
 
-        it("displays the values for the current selection", function () {
+        it('displays the values for the current selection', function () {
           lineLabel.showValues = true;
           lineLabel.showValuesPercentage = true;
           lineLabel.showSummary = true;
@@ -291,7 +295,7 @@ function (LineLabel, Collection) {
           expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(78%)');
         });
 
-        it("displays (no data) when the current selection is null", function () {
+        it('displays (no data) when the current selection is null', function () {
           collection.at(0).get('values').at(2).set('_count', null);
           lineLabel.showValues = true;
           lineLabel.showValuesPercentage = true;
@@ -319,7 +323,7 @@ function (LineLabel, Collection) {
           expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(88%)');
         });
 
-        it("displays (no data) for all items when the current selection is null", function () {
+        it('displays (no data) for all items when the current selection is null', function () {
           collection.at(0).get('values').at(2).set('_count', null);
           collection.at(1).get('values').at(2).set('_count', null);
           lineLabel.showValues = true;
@@ -344,20 +348,20 @@ function (LineLabel, Collection) {
         });
       });
 
-      describe("onHover", function () {
-        beforeEach(function() {
-          spyOn(collection, "selectItem");
+      describe('onHover', function () {
+        beforeEach(function () {
+          spyOn(collection, 'selectItem');
           lineLabel.render();
         });
 
-        it("selects the closest label", function () {
+        it('selects the closest label', function () {
           lineLabel.onHover({ x: null, y: 54 });
           expect(collection.selectItem).toHaveBeenCalledWith(0);
           lineLabel.onHover({ x: null, y: 56 });
           expect(collection.selectItem).toHaveBeenCalledWith(1);
         });
 
-        it("unselects when the closest label is already selected and the toggle option is used", function () {
+        it('unselects when the closest label is already selected and the toggle option is used', function () {
           lineLabel.onHover({ x: null, y: 54, toggle: true });
           expect(collection.selectItem).toHaveBeenCalledWith(0);
           collection.selectedIndex = 0;
@@ -368,10 +372,10 @@ function (LineLabel, Collection) {
 
     });
 
-    describe("setLabelPositions", function() {
+    describe('setLabelPositions', function () {
       var el, wrapper, lineLabel, graph, collection,
           figcaption, labelWrapper, selection, enterSelection;
-      beforeEach(function() {
+      beforeEach(function () {
         collection = new Collection([
           {
             id: 'a',
@@ -439,17 +443,17 @@ function (LineLabel, Collection) {
         selection = labelWrapper.selectAll('li').data(collection.models);
         enterSelection = selection.enter().append('li').attr('style', 'display:block;height:20px;position:absolute;');
 
-        spyOn(lineLabel, "calcPositions").andReturn([
+        spyOn(lineLabel, 'calcPositions').andReturn([
           { min: 20 },
           { min: 30 }
         ]);
       });
 
-      afterEach(function() {
+      afterEach(function () {
         el.remove();
       });
 
-      it("positions labels vertically so they do not collide", function() {
+      it('positions labels vertically so they do not collide', function () {
         lineLabel.applyConfig('overlay');
         lineLabel.setLabelPositions(figcaption.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
@@ -471,7 +475,7 @@ function (LineLabel, Collection) {
         expect($(wrapper.selectAll('li')[0][1]).prop('style').top).toEqual('30px');
       });
 
-      it("uses the last non-null value for positioning in overlay configuration", function() {
+      it('uses the last non-null value for positioning in overlay configuration', function () {
         collection.at(0).get('values').last().set('_count', null);
         collection.at(1).get('values').last().set('_count', null);
         lineLabel.applyConfig('overlay');
@@ -492,7 +496,7 @@ function (LineLabel, Collection) {
         });
       });
 
-      it("positions labels closest to the centre of the area in stack configuration", function() {
+      it('positions labels closest to the centre of the area in stack configuration', function () {
         lineLabel.applyConfig('stack');
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
@@ -514,7 +518,7 @@ function (LineLabel, Collection) {
         expect($(wrapper.selectAll('li')[0][1]).prop('style').top).toEqual('30px');
       });
 
-      it("uses the last non-null value for positioning in stack configuration", function() {
+      it('uses the last non-null value for positioning in stack configuration', function () {
         collection.at(0).get('values').last().set('_count', null);
         collection.at(1).get('values').last().set('_count', null);
 
@@ -538,9 +542,9 @@ function (LineLabel, Collection) {
 
     });
 
-    describe("renderLines", function() {
+    describe('renderLines', function () {
       var el, componentWrapper, lineLabel;
-      beforeEach(function() {
+      beforeEach(function () {
         lineLabel = new LineLabel({
           interactive: false,
           collection: {
@@ -566,11 +570,11 @@ function (LineLabel, Collection) {
         lineLabel.componentWrapper = componentWrapper;
       });
 
-      afterEach(function() {
+      afterEach(function () {
         el.remove();
       });
 
-      it("renders lines to connect last items with labels", function() {
+      it('renders lines to connect last items with labels', function () {
         lineLabel.renderLines();
         var line1 = d3.select(componentWrapper.selectAll('line')[0][0]);
         var line2 = d3.select(componentWrapper.selectAll('line')[0][1]);
@@ -584,7 +588,7 @@ function (LineLabel, Collection) {
         expect(parseFloat(line2.attr('y2'))).toEqual(80);
       });
 
-      it("displays straight lines with 'crisp' option", function() {
+      it('displays straight lines with "crisp" option', function () {
         lineLabel.renderLines();
         var line1 = d3.select(componentWrapper.selectAll('line')[0][0]);
         var line2 = d3.select(componentWrapper.selectAll('line')[0][1]);
@@ -593,10 +597,10 @@ function (LineLabel, Collection) {
       });
     });
 
-    describe("calcPositions", function() {
+    describe('calcPositions', function () {
 
       var line;
-      beforeEach(function() {
+      beforeEach(function () {
         line = new LineLabel({
           interactive: false,
           collection: {
@@ -605,7 +609,7 @@ function (LineLabel, Collection) {
         });
       });
 
-      it("places non-adjacent items at their ideal positions when possible", function() {
+      it('places non-adjacent items at their ideal positions when possible', function () {
         var initial = [
           { ideal:  0, size: 10 },
           { ideal: 40, size: 20 },
@@ -617,7 +621,7 @@ function (LineLabel, Collection) {
         expect(result[2].min).toEqual(80);
       });
 
-      it("places adjacent items at their ideal positions when possible", function() {
+      it('places adjacent items at their ideal positions when possible', function () {
         var initial = [
           { ideal:  0, size: 10 },
           { ideal: 10, size: 20 },
@@ -629,7 +633,7 @@ function (LineLabel, Collection) {
         expect(result[2].min).toEqual(30);
       });
 
-      it("places items as close to their ideal positions as possible", function() {
+      it('places items as close to their ideal positions as possible', function () {
         var initial = [
           { ideal:  5, size: 10 },
           { ideal: 10, size: 20 },
@@ -641,7 +645,7 @@ function (LineLabel, Collection) {
         expect(Math.round(result[2].min)).toEqual(30);
       });
 
-      it("places multiple clusters of items as close to their ideal positions as possible", function() {
+      it('places multiple clusters of items as close to their ideal positions as possible', function () {
         var initial = [
           { ideal:  4, size: 10 },
           { ideal: 10, size: 20 },
@@ -655,7 +659,7 @@ function (LineLabel, Collection) {
         expect(Math.round(result[3].min)).toEqual(48);
       });
 
-      it("keeps items within minimum bounds", function() {
+      it('keeps items within minimum bounds', function () {
         var initial = [
           { ideal:  5, size: 10 },
           { ideal: 10, size: 20 },
@@ -668,7 +672,7 @@ function (LineLabel, Collection) {
         expect(Math.round(result[2].min)).toEqual(35);
       });
 
-      it("keeps items within minimum bounds", function() {
+      it('keeps items within minimum bounds', function () {
         var initial = [
           { ideal:  5, size: 10 },
           { ideal: 10, size: 20 },
@@ -681,7 +685,7 @@ function (LineLabel, Collection) {
         expect(Math.round(result[2].min)).toEqual(20);
       });
 
-      it("overlaps items as necessary if available space is not sufficient", function () {
+      it('overlaps items as necessary if available space is not sufficient', function () {
         var initial = [
           { ideal:  5, size: 10 },
           { ideal: 10, size: 20 },

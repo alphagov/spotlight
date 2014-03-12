@@ -15,11 +15,11 @@ function (View, HeadlineItemView, DeltaItemView, template) {
 
       var valueAttr = this.collection.options.valueAttr;
       var percentAttr = valueAttr + '_percent';
- 
+
       this.stat = {
         'attr': percentAttr
       };
-      
+
       this.collection.first().get('values').each(function (d) {
         var val = d.get(valueAttr);
         var percent = this.getScoreAsPercentage(val);
@@ -33,7 +33,7 @@ function (View, HeadlineItemView, DeltaItemView, template) {
       return (maxScore - score) / (maxScore - minScore);
     },
 
-    
+
     views: function () {
       return {
         '.single-stat-headline': {

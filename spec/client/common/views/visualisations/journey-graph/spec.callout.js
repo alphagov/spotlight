@@ -4,9 +4,9 @@ define([
   'extensions/models/model'
 ],
 function (JourneyCallout, Collection, Model) {
-  describe("JourneyCallout", function () {
+  describe('JourneyCallout', function () {
 
-    describe("rendering", function () {
+    describe('rendering', function () {
       var d3 = JourneyCallout.prototype.d3;
 
       var el, wrapper, collection, view;
@@ -16,16 +16,16 @@ function (JourneyCallout, Collection, Model) {
         collection = new Collection([
           {
             values: new Collection([
-              { title: 'Stage 1', uniqueEvents:20 },
-              { title: 'Stage 2', uniqueEvents:15 },
-              { title: 'Stage 3', uniqueEvents:10 }
+              { title: 'Stage 1', uniqueEvents: 20 },
+              { title: 'Stage 2', uniqueEvents: 15 },
+              { title: 'Stage 3', uniqueEvents: 10 }
             ])
           },
           {
             values: new Collection([
-              { title: 'Stage 1', uniqueEvents:25 },
-              { title: 'Stage 2', uniqueEvents:20 },
-              { title: 'Stage 3', uniqueEvents:15 }
+              { title: 'Stage 1', uniqueEvents: 25 },
+              { title: 'Stage 2', uniqueEvents: 20 },
+              { title: 'Stage 3', uniqueEvents: 15 }
             ])
           }
         ]);
@@ -38,8 +38,8 @@ function (JourneyCallout, Collection, Model) {
           end_at: collection.getMoment('2013-06-10T00:00:00+00:00')
         });
         view = new JourneyCallout({
-          wrapper:wrapper,
-          collection:collection,
+          wrapper: wrapper,
+          collection: collection,
           blockMarginFraction: 0.2,
           barMarginFraction: 0.2,
           graph: {
@@ -52,7 +52,7 @@ function (JourneyCallout, Collection, Model) {
             bottom: 30,
             left: 40
           },
-          scales:{
+          scales: {
             x: function (v) {
               return v * 20;
             }
@@ -64,7 +64,7 @@ function (JourneyCallout, Collection, Model) {
         el.remove();
       });
 
-      it("creates a callout with information about the currently selected item", function () {
+      it('creates a callout with information about the currently selected item', function () {
         view.render();
 
         view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
@@ -98,7 +98,7 @@ function (JourneyCallout, Collection, Model) {
                                                 '<dt>Percentage relative to start:</dt><dd>60%</dd>');
       });
 
-      it("positions an arrow element to point to the currently selected model", function () {
+      it('positions an arrow element to point to the currently selected model', function () {
         view.render();
 
         view.onChangeSelected(collection.at(0), 0, collection.at(0).get('values').at(0), 0);
@@ -120,7 +120,7 @@ function (JourneyCallout, Collection, Model) {
         expect(view.$el.find('.arrow').css('left')).toEqual('95px');
       });
 
-      it("positions an arrow element to point to the currently selected model when there is only one series", function () {
+      it('positions an arrow element to point to the currently selected model when there is only one series', function () {
         collection.pop();
 
         view.render();

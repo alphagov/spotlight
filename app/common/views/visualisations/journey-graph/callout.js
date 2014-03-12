@@ -34,7 +34,7 @@ function (Callout) {
       return x;
     },
 
-    y: function (group, groupIndex, model, index) {
+    y: function () {
       return 0;
     },
 
@@ -42,7 +42,7 @@ function (Callout) {
       return this.calloutEl.find('.arrow');
     },
 
-    renderContent: function (el, group, groupIndex, model, index) {
+    renderContent: function (el, group, groupIndex, model) {
 
       var attr = this.graph.valueAttr;
 
@@ -67,11 +67,11 @@ function (Callout) {
       var body = $('<dl>').html([
         '<dt>Number of users:</dt>',
         '<dd>',
-          this.formatNumericLabel(val),
+        this.formatNumericLabel(val),
         '</dd>',
         '<dt>Percentage relative to start:</dt>',
         '<dd>',
-          this.formatPercentage(val / max),
+        this.formatPercentage(val / max),
         '</dd>'
       ].join(''));
 

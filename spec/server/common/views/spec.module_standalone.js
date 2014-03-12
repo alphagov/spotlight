@@ -5,10 +5,10 @@ define([
   'extensions/views/view'
 ],
 function (StandaloneView, Collection, Model, View) {
-  describe("StandaloneView", function () {
+  describe('StandaloneView', function () {
 
     var standaloneView, model, collection;
-    beforeEach(function() {
+    beforeEach(function () {
       var Visualisation = View.extend({
         render: function () {
           this.$el.html('test content');
@@ -26,14 +26,14 @@ function (StandaloneView, Collection, Model, View) {
       });
     });
 
-    describe("getContent", function () {
-      it("renders a module", function () {
+    describe('getContent', function () {
+      it('renders a module', function () {
         var content = standaloneView.getContent();
         expect(content).toContain('class="testclass"');
         expect(content).toContain('<div class="visualisation">test content</div>');
       });
 
-      it("renders a module with a fallback element", function () {
+      it('renders a module with a fallback element', function () {
         jasmine.serverOnly(function () {
           var Visualisation = View.extend({
             render: function () {
@@ -60,7 +60,7 @@ function (StandaloneView, Collection, Model, View) {
         });
       });
 
-      it("renders h1 and h2 elements as required for accessibility", function () {
+      it('renders h1 and h2 elements as required for accessibility', function () {
         jasmine.serverOnly(function () {
           var Visualisation = View.extend({
             render: function () {
@@ -69,7 +69,7 @@ function (StandaloneView, Collection, Model, View) {
           });
           var model = new Model();
           model.set('page-type', 'module');
-          model.set('description', 'my description')
+          model.set('description', 'my description');
           var collection = new Collection();
           var standaloneView = new StandaloneView({
             visualisationClass: Visualisation,
@@ -89,8 +89,8 @@ function (StandaloneView, Collection, Model, View) {
 
     });
 
-    describe("getPageTitle", function () {
-      it("calculates page title from title and dashboard information", function () {
+    describe('getPageTitle', function () {
+      it('calculates page title from title and dashboard information', function () {
         model.set({
           title: 'Title',
           'dashboard-title': 'Dashboard',
@@ -99,7 +99,7 @@ function (StandaloneView, Collection, Model, View) {
         expect(standaloneView.getPageTitle()).toEqual('Title - Dashboard - Strapline - GOV.UK');
       });
 
-      it("calculates page title from title alone", function () {
+      it('calculates page title from title alone', function () {
         model.set({
           title: 'Title'
         });
@@ -107,8 +107,8 @@ function (StandaloneView, Collection, Model, View) {
       });
     });
 
-    describe("Standalone module breadcrumbs", function () {
-      it("adds the parent dashboard as a crumb when Stagecraft returns the necessary properties", function () {
+    describe('Standalone module breadcrumbs', function () {
+      it('adds the parent dashboard as a crumb when Stagecraft returns the necessary properties', function () {
         model.set({
           'dashboard-title': 'Parent dashboard',
           'dashboard-slug': 'parent-dashboard'
@@ -119,7 +119,7 @@ function (StandaloneView, Collection, Model, View) {
         ]);
       });
 
-      it("leaves just a PP crumb when Stagecraft doesn't return enough data", function () {
+      it('leaves just a PP crumb when Stagecraft doesn\'t return enough data', function () {
         model.set({
           'dashboard-title': 'Parent dashboard without a slug',
         });

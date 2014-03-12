@@ -14,17 +14,15 @@ var define,
     requirejsOrig = require('requirejs'),
     ostring = Object.prototype.toString,
     path = require('path'),
-    isArray = function(it){
+    baseUrl,
+    isArray = function (it) {
       return ostring.call(it) === '[object Array]';
     },
-    isFunction = function(it){
-      return ostring.call(it) === '[object Function]';
-    },
-    requirejs = function(deps, callback){
+    requirejs = function (deps, callback) {
       var retVal;
 
-      if(!isArray(deps) && typeof deps !== 'string'){
-        if(isArray(callback)){
+      if (!isArray(deps) && typeof deps !== 'string') {
+        if (isArray(callback)) {
           retVal = requirejsOrig(deps, callback, arguments[2]);
         } else {
           retVal = requirejsOrig(deps, [], callback);
@@ -48,24 +46,24 @@ backbone.$ = require('jquery');
 
 global._ = require('lodash');
 
-for(var key in requirejsOrig) {
+for (var key in requirejsOrig) {
   requirejs[key] = requirejsOrig[key];
 }
 
-requirejs.config = function(config){
+requirejs.config = function (config) {
   var alteredConfig = {};
 
-  for(var key in config) {
+  for (var key in config) {
     alteredConfig[key] = config[key];
   }
 
-  if(alteredConfig.baseUrl){
+  if (alteredConfig.baseUrl) {
     var base = baseUrl.replace(/\\/g, '/'),
         splitUrl = alteredConfig.baseUrl.replace(/\\/g, '/').split('/'),
         index = 0;
 
-    for(; index < splitUrl.length; index++){
-      if(splitUrl[index] === '..'){
+    for (index = 0; index < splitUrl.length; index++) {
+      if (splitUrl[index] === '..') {
         base = path.dirname(base);
       } else {
         base += '/' + splitUrl[index];

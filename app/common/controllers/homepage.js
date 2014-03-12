@@ -10,7 +10,7 @@ function (Backbone, PageConfig, Controller, HomepageView) {
     viewClass: HomepageView
   });
 
-  var homepage = function (req, res, next) {
+  var homepage = function (req, res) {
     var model = new Backbone.Model();
 
     model.set(PageConfig.commonConfig(req));
@@ -21,26 +21,26 @@ function (Backbone, PageConfig, Controller, HomepageView) {
         {
           title: 'C',
           services: [
-            {name: "Carer's Allowance", slug: "carers-allowance"}
+            {name: 'Carer\'s Allowance', slug: 'carers-allowance'}
           ]
         },
         {
           title: 'D',
           services: [
-            {name: "Deposit foreign marriage or civil partnership certificates", slug: "deposit-foreign-marriage"}
+            {name: 'Deposit foreign marriage or civil partnership certificates', slug: 'deposit-foreign-marriage'}
           ]
         },
         {
           title: 'G',
           services: [
-            {name: "G-Cloud", slug: "g-cloud"}
+            {name: 'G-Cloud', slug: 'g-cloud'}
           ]
         },
         {
           title: 'L',
           services: [
-            {name: "Lasting Power of Attorney", slug: "lasting-power-of-attorney"},
-            {name: "Licensing", slug: "licensing"}
+            {name: 'Lasting Power of Attorney', slug: 'lasting-power-of-attorney'},
+            {name: 'Licensing', slug: 'licensing'}
           ]
         }
       ],
@@ -66,13 +66,13 @@ function (Backbone, PageConfig, Controller, HomepageView) {
         {
           title: 'T',
           services: [
-            {name: "Tax disc", slug: "tax-disc"}
+            {name: 'Tax disc', slug: 'tax-disc'}
           ]
         },
         {
           title: 'Service groups',
           services: [
-            {name: "Vehicle licensing", slug: "vehicle-licensing"}
+            {name: 'Vehicle licensing', slug: 'vehicle-licensing'}
           ]
         }
       ]

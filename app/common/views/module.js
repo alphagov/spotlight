@@ -8,7 +8,7 @@ function (View, template) {
     template: template,
     tagName: 'section',
 
-    ariaId: function() {
+    ariaId: function () {
       function safeId(s) {
         if (s.indexOf(' ') === -1) {
           return s;
@@ -18,7 +18,7 @@ function (View, template) {
       return safeId(this.model.get('title') + '-heading');
     },
 
-    attributes: function() {
+    attributes: function () {
       return {
         'aria-labelledby': this.ariaId(),
         'role': 'region'
@@ -30,7 +30,7 @@ function (View, template) {
         return {};
       }
       return {
-        ".visualisation": function() {
+        '.visualisation': function () {
           return this.visualisationClass;
         }
       };

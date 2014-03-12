@@ -23,7 +23,7 @@ function (Model, ControllerMap) {
     fetch: function (options) {
       options = _.extend({}, options, {
         validate: true,
-        error: _.bind(function(model, xhr, options) {
+        error: _.bind(function (model, xhr) {
           this.set('controller', this.controllers.error);
           this.set('status', xhr.status);
           this.set('errorText', xhr.responseText);

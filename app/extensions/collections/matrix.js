@@ -104,7 +104,7 @@ function (require, Collection, Group) {
             selectedModel: groupValues.selectedItem
           });
         }
-      } else if (this.selectedSlice != null) {
+      } else if (_.isNumber(this.selectedSlice)) {
         var selectedSlice = this.selectedSlice;
         return {
           selectedGroupIndex: null,
@@ -146,7 +146,7 @@ function (require, Collection, Group) {
     },
 
     at: function (groupIndex, index) {
-      if (index != null) {
+      if (_.isNumber(index)) {
         return this.at(groupIndex).get('values').at(index);
       } else {
         return Collection.prototype.at.call(this, groupIndex);
@@ -174,11 +174,11 @@ function (require, Collection, Group) {
     },
 
     sum: function (attr, groupIndex, index) {
-      if (groupIndex != null && index != null) {
+      if (_.isNumber(groupIndex) && _.isNumber(index)) {
         return this.at(groupIndex, index).get(attr);
-      } else if (groupIndex != null) {
+      } else if (_.isNumber(groupIndex)) {
         return this.groupSum(attr, groupIndex);
-      } else if (index != null) {
+      } else if (_.isNumber(index)) {
         return this.itemSum(attr, index);
       } else {
         return this.reduce(function (memo, group, groupIndex) {
@@ -192,13 +192,13 @@ function (require, Collection, Group) {
     },
 
     fraction: function (attr, groupIndex, index) {
-      if (groupIndex != null && index != null) {
+      if (_.isNumber(groupIndex) && _.isNumber(index)) {
         var itemSum = this.sum(attr, null, index);
         var value = this.at(groupIndex, index).get(attr) || 0;
         return value / itemSum;
-      } else if (groupIndex != null) {
+      } else if (_.isNumber(groupIndex)) {
         return this.sum(attr, groupIndex) / this.sum(attr);
-      } else if (index != null) {
+      } else if (_.isNumber(index)) {
         return this.sum(attr, null, index) / this.sum(attr);
       } else {
         return 1;

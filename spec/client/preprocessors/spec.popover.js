@@ -1,39 +1,39 @@
 define([
   'client/preprocessors/popover'
 ], function (applyModuleActions) {
-  describe('Module actions', function() {
+  describe('Module actions', function () {
 
     var originalModernizr = applyModuleActions.Modernizr;
     var moreInfoLink;
     var ul;
 
-    beforeEach(function() {
+    beforeEach(function () {
       $('body').append($('<section><aside class="more-info" id="module1"><span class="popover-link"></span><ul><li><a>'));
       moreInfoLink = $('.popover-link');
       ul = $('.more-info ul');
     });
 
-    describe('touch behaviour', function() {
+    describe('touch behaviour', function () {
 
-      beforeEach(function() {
+      beforeEach(function () {
         applyModuleActions.Modernizr = {
           touch: true
         };
       });
 
-      afterEach(function() {
+      afterEach(function () {
         applyModuleActions.Modernizr = originalModernizr;
         $('.more-info').remove();
       });
 
-      it('should show a callout on touch', function() {
+      it('should show a callout on touch', function () {
         applyModuleActions();
         expect(ul).not.toHaveClass('js-clicked');
         moreInfoLink.trigger('touchend');
         expect(ul).toHaveClass('js-clicked');
       });
 
-      it('should toggle the callout on repeated touches', function() {
+      it('should toggle the callout on repeated touches', function () {
         applyModuleActions();
         expect(ul).not.toHaveClass('js-clicked');
         moreInfoLink.trigger('touchend');
@@ -42,7 +42,7 @@ define([
         expect(ul).not.toHaveClass('js-clicked');
       });
 
-      it("should close the callout when the user touches somewhere else on the page", function () {
+      it('should close the callout when the user touches somewhere else on the page', function () {
         applyModuleActions();
         moreInfoLink.trigger('touchend');
         expect(ul).toHaveClass('js-clicked');
@@ -50,7 +50,7 @@ define([
         expect(ul).not.toHaveClass('js-clicked');
       });
 
-      it("should close other open callouts on touch", function () {
+      it('should close other open callouts on touch', function () {
         $('body').append($('<section><aside class="more-info" id="module2"><span class="popover-link"></span><ul><li>'));
         applyModuleActions();
 
@@ -63,8 +63,8 @@ define([
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });
 
-      describe("when the target is not an anchor", function () {
-        it("should not close the callout when the user touches the info box", function () {
+      describe('when the target is not an anchor', function () {
+        it('should not close the callout when the user touches the info box', function () {
           applyModuleActions();
           moreInfoLink.trigger('touchend');
           expect(ul).toHaveClass('js-clicked');
@@ -76,8 +76,8 @@ define([
           expect(ul).not.toHaveClass('js-clicked');
         });
       });
-      describe("when the target is an anchor", function () {
-        it("should not close the callout when the user touches the info box", function () {
+      describe('when the target is an anchor', function () {
+        it('should not close the callout when the user touches the info box', function () {
           applyModuleActions();
           moreInfoLink.trigger('touchend');
           expect(ul).toHaveClass('js-clicked');
@@ -88,27 +88,27 @@ define([
 
     });
 
-    describe("non-touch behaviour", function () {
+    describe('non-touch behaviour', function () {
 
-      beforeEach(function() {
+      beforeEach(function () {
         applyModuleActions.Modernizr = {
           touch: false
         };
       });
 
-      afterEach(function() {
+      afterEach(function () {
         applyModuleActions.Modernizr = originalModernizr;
         $('.more-info').remove();
       });
 
-      it('should show a callout on click', function() {
+      it('should show a callout on click', function () {
         applyModuleActions();
         expect(ul).not.toHaveClass('js-clicked');
         moreInfoLink.trigger('click');
         expect(ul).toHaveClass('js-clicked');
       });
 
-      it('should toggle the callout on repeated clicks', function() {
+      it('should toggle the callout on repeated clicks', function () {
         applyModuleActions();
         expect(ul).not.toHaveClass('js-clicked');
         moreInfoLink.trigger('click');
@@ -117,7 +117,7 @@ define([
         expect(ul).not.toHaveClass('js-clicked');
       });
 
-      it("should close the callout when the user clicks somewhere else on the page", function () {
+      it('should close the callout when the user clicks somewhere else on the page', function () {
         applyModuleActions();
         moreInfoLink.trigger('click');
         expect(ul).toHaveClass('js-clicked');
@@ -125,7 +125,7 @@ define([
         expect(ul).not.toHaveClass('js-clicked');
       });
 
-      it("should close other open callouts on click", function () {
+      it('should close other open callouts on click', function () {
         $('body').append($('<section><aside class="more-info" id="module2"><span class="popover-link"></span><ul><li>'));
         applyModuleActions();
 
@@ -138,8 +138,8 @@ define([
         expect($('#module2 ul')).toHaveClass('js-clicked');
       });
 
-      describe("when the target is not an anchor", function () {
-        it("should not close the callout when the user clicks the info box", function () {
+      describe('when the target is not an anchor', function () {
+        it('should not close the callout when the user clicks the info box', function () {
           applyModuleActions();
           moreInfoLink.trigger('click');
           expect(ul).toHaveClass('js-clicked');
@@ -152,8 +152,8 @@ define([
         });
       });
 
-      describe("when the target is an anchor", function () {
-        it("should not close the callout when the user clicks the info box", function () {
+      describe('when the target is an anchor', function () {
+        it('should not close the callout when the user clicks the info box', function () {
           applyModuleActions();
           moreInfoLink.trigger('click');
           expect(ul).toHaveClass('js-clicked');

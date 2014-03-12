@@ -10,7 +10,7 @@ function (PageConfig, StagecraftApiClient) {
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
       model: model,
-      raw: req.query.raw,
+      raw: _.has(req.query, 'raw'),
       url: req.originalUrl
     });
 
@@ -23,7 +23,7 @@ function (PageConfig, StagecraftApiClient) {
     return controller;
   };
 
-  var setup = function (req, res, next) {
+  var setup = function (req, res) {
     var model = setup.getStagecraftApiClient();
 
     model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';

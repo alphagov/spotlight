@@ -2,7 +2,7 @@ define([
   'common/collections/journey',
   'extensions/collections/collection',
   'extensions/collections/matrix'
-], function (JourneyCollection, Collection, MatrixCollection) {
+], function (JourneyCollection, Collection) {
   describe('JourneyCollection', function () {
     describe('getTableRows', function () {
       var collection;

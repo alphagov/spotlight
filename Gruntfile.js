@@ -1,4 +1,4 @@
-var extend = require("xtend");
+var extend = require('xtend');
 
 var getRequirejsConfig = function () {
   var requirejsConfig;
@@ -9,9 +9,9 @@ var getRequirejsConfig = function () {
 
   return extend(requirejsConfig, {
     baseUrl: 'app',
-    name: "client",
+    name: 'client',
     waitSeconds: 60,
-    include: ["vendor/almond"],
+    include: ['vendor/almond'],
     deps: [
       'client',
       'client/client_bootstrap'
@@ -24,12 +24,12 @@ var getRequirejsConfig = function () {
 var requirejsConfig = getRequirejsConfig();
 
 
-module.exports = function(grunt) {
-  "use strict";
+module.exports = function (grunt) {
+  'use strict';
 
   grunt.initConfig({
     // Removes the contents of the public directory
-    clean: ["public/"],
+    clean: ['public/'],
     // Builds Sass in development and production
     sass: {
       development: {
@@ -82,18 +82,18 @@ module.exports = function(grunt) {
     jasmine_node: {
       useHelpers: true,
       specFolders: [
-        "./spec/shared",
-        "./spec/server"
+        './spec/shared',
+        './spec/server'
       ],
-      projectRoot: "./spec/",
+      projectRoot: './spec/',
       options: {
-        specNameMatcher: "spec\..*", // load only specs containing specNameMatcher
-        match: ".*",
-        useRequireJs: "spec/requirejs-setup.js",
+        specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+        match: '.*',
+        useRequireJs: 'spec/requirejs-setup.js',
         forceExit: true,
         jUnit: {
           report: false,
-          savePath : "./build/reports/jasmine/",
+          savePath : './build/reports/jasmine/',
           useDotNotation: true,
           consolidate: true
         }
@@ -101,36 +101,34 @@ module.exports = function(grunt) {
     },
     // Sets up Cucumber feature tests
     cucumber: {
-        test: {
-            features: 'features/'
-        },
-        options: {
-            prefix: 'bundle exec',
-            format: 'progress',
-            tags: ['~@wip']
-        }
+      test: {
+        features: 'features/'
+      },
+      options: {
+        prefix: 'bundle exec',
+        format: 'progress',
+        tags: ['~@wip']
+      }
     },
     // Lints our JavaScript
     jshint: {
-      files: ["app/**/*.js", "app/support/**/*.json"],
+      files: ['**'],
       options: {
-        ignores: ['app/vendor/**'],
-        eqnull: true,
-        es3: true,
-        es5: false
+        reporter: require('jshint-stylish'),
+        jshintrc: true
       }
     },
     // Creates a single big JS file
     requirejs: {
       production: {
         options: extend({}, requirejsConfig, {
-          out: "public/javascripts/spotlight.js",
+          out: 'public/javascripts/spotlight.js',
           d3: true
         })
       },
       'production-no-d3': {
         options: extend({}, requirejsConfig, {
-          out: "public/javascripts/spotlight-no-d3.js",
+          out: 'public/javascripts/spotlight-no-d3.js',
           d3: false
         })
       }

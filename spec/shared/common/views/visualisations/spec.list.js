@@ -39,7 +39,7 @@ function (ListView, ListCollection) {
 
     });
 
-    it('should escape labels properly', function() {
+    it('should escape labels properly', function () {
 
       var collection = new ListCollection({
         'data': [

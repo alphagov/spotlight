@@ -10,7 +10,7 @@ function (Backbone, PageConfig, Controller, PrototypesView) {
     viewClass: PrototypesView
   });
 
-  var prototypes = function (req, res, next) {
+  var prototypes = function (req, res) {
     var model = new Backbone.Model();
 
     model.set(PageConfig.commonConfig(req));

@@ -1,9 +1,9 @@
 define([
-    'backbone',
-    'extensions/mixins/date-functions',
-    'modernizr',
-    'jquery',
-    'lodash'
+  'backbone',
+  'extensions/mixins/date-functions',
+  'modernizr',
+  'jquery',
+  'lodash'
 ],
 function (Backbone, DateFunctions, Modernizr, $, _) {
   var View = Backbone.View.extend({
@@ -47,12 +47,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       };
     },
 
-    removeSubviews: function (options) {
+    removeSubviews: function () {
       _.invoke(this.viewInstances, 'remove');
       this.viewInstances = {};
     },
 
-    renderSubviews: function (options) {
+    renderSubviews: function () {
 
       var viewsDefinition = this.views;
       if (_.isFunction(viewsDefinition)) {
@@ -66,16 +66,16 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           return;
         }
 
-        var view,
+        var View,
             options = this.defaultSubviewOptions();
 
         $el.empty();
         options.$el = $el;
 
         if (typeof definition === 'function') {
-          view = definition.call(this);
+          View = definition.call(this);
         } else if (_.isObject(definition)) {
-          view = definition.view;
+          View = definition.view;
           if (_.isFunction(definition.options)) {
             _.extend(options, definition.options.call(this));
           } else {
@@ -86,7 +86,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           return;
         }
 
-        var instance = instances[selector] = new view(options);
+        var instance = instances[selector] = new View(options);
         instance.render({
           context: this.templateContext()
         });
@@ -132,29 +132,29 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     magnitudes: {
-      billion:  {value: 1e9, suffix: "b" },
-      million:  {value: 1e6, suffix: "m" },
-      thousand: {value: 1e3, suffix: "k" },
-      unit:     {value: 1,   suffix: ""  }
+      billion:  {value: 1e9, suffix: 'b' },
+      million:  {value: 1e6, suffix: 'm' },
+      thousand: {value: 1e3, suffix: 'k' },
+      unit:     {value: 1,   suffix: ''  }
     },
 
     currencies: {
-      gbp: { prefix: "£", suffix: "" }
+      gbp: { prefix: '£', suffix: '' }
     },
 
     magnitudeFor: function (value) {
-        if (value >= 1e9) return this.magnitudes.billion;
-        if (value >= 1e6) return this.magnitudes.million;
-        if (value >= 1e3) return this.magnitudes.thousand;
-        return this.magnitudes.unit;
+      if (value >= 1e9) return this.magnitudes.billion;
+      if (value >= 1e6) return this.magnitudes.million;
+      if (value >= 1e3) return this.magnitudes.thousand;
+      return this.magnitudes.unit;
     },
 
     formatNumber: function (value, magnitude, decimalPlaces, currency) {
-       var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
-       if (currency) {
-         val = currency.prefix + val + currency.suffix;
-       }
-       return val;
+      var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
+      if (currency) {
+        val = currency.prefix + val + currency.suffix;
+      }
+      return val;
     },
 
     /**
@@ -168,10 +168,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      */
     numberListFormatter: function (values, currency) {
       function isAnExactMultipleOf(magnitude) {
-        return function(n) { return n % magnitude === 0; };
+        return function (n) { return n % magnitude === 0; };
       }
 
-      var max = values.reduce(function(a,b) {return a > b ? a : b;});
+      var max = values.reduce(function (a, b) {return a > b ? a : b; });
       var magnitude = this.magnitudeFor(max);
       var decimalPlaces;
       if (max === magnitude.value) {
@@ -181,14 +181,14 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
           decimalPlaces = 1;
         }
       } else {
-        decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value))? 0 : 1;
+        decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value)) ? 0 : 1;
       }
 
       var format = this.formatNumber;
-      var currency_entry = (currency) ? this.currencies[currency] : null;
-      return function(value) {
-        if (value === 0) return "0";
-        return format(value, magnitude, decimalPlaces, currency_entry);
+      var currencyEntry = (currency) ? this.currencies[currency] : null;
+      return function (value) {
+        if (value === 0) return '0';
+        return format(value, magnitude, decimalPlaces, currencyEntry);
       };
     },
 
@@ -201,10 +201,10 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * @param minimumTickCount
      * @return {Object}
      */
-    calculateLinearTicks: function(extent, minimumTickCount) {
+    calculateLinearTicks: function (extent, minimumTickCount) {
 
       if (extent[0] >= extent[1]) {
-        throw new Error("Upper bound must be larger than lower.");
+        throw new Error('Upper bound must be larger than lower.');
       }
       var targetTickCount = (minimumTickCount === 1) ? minimumTickCount : minimumTickCount - 1,
           span = extent[1] - extent[0],
@@ -255,9 +255,9 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * If we can relax these two reasons, the algorithm can become much simpler.
      * See for example View.prototype.format for a simpler alternative.
      */
-    formatNumericLabel: function(value, currency) {
+    formatNumericLabel: function (value, currency) {
       if (value === null) return null;
-      if (value === 0) return "0";
+      if (value === 0) return '0';
 
       /*
        * Return the appropriate magnitude (m, k, unit) for rounding a number.
@@ -270,7 +270,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * rounded to 499,000 and formatted as 499k; 499,500 will be rounded
        * as 500,000 and formatted as 0.50m.
        */
-      var magnitudeOf = function(number) {
+      var magnitudeOf = function (number) {
         if (Math.abs(number) >= 999500000) return View.prototype.magnitudes.billion;
         if (Math.abs(number) >= 999500) return View.prototype.magnitudes.million;
         if (Math.abs(number) >= 999.5) return View.prototype.magnitudes.thousand;
@@ -282,7 +282,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
        * Numbers less than 100 times the magnitude -> 1 decimal digits: NN.Nx
        * Numbers 100 times the magnitude or more   -> no decimal digits: NNNx
        */
-      var decimalDigits = function(number, magnitude) {
+      var decimalDigits = function (number, magnitude) {
         if (Math.abs(number) < magnitude.value * 10) return (currency) ? 1 : 2;
         if (Math.abs(number) < magnitude.value * 100) return (currency) ? 0 : 1;
         return 0;
@@ -322,12 +322,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       var value = Math.abs(100 * fraction).toFixed(numDecimals);
       if (showSigns) {
         if (fraction > 0) {
-          value = "+" + value;
+          value = '+' + value;
         } else if (fraction < 0) {
-          value = "−" + value;
+          value = '−' + value;
         }
       }
-      value += "%";
+      value += '%';
       return value;
     },
 
@@ -335,7 +335,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       var start = model.get('_start_at') || model.get('start_at');
       var end = model.get('_end_at') || model.get('end_at');
 
-      if(model.get('_original_start_at')){
+      if (model.get('_original_start_at')) {
         start = this.getMoment(model.get('_original_start_at'));
         end = this.getMoment(model.get('_original_end_at'));
       }
@@ -391,7 +391,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
       var formattedNumber, formatString;
 
       var millisecondsToSeconds = function (t) {
-        return t/1000;
+        return t / 1000;
       };
 
       milliseconds = Math.round(milliseconds);
@@ -429,7 +429,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
      * @param {String} prop Name of object property or method.
      * @param {Object} [obj=this] Object to inspect.
      */
-    prop: function(prop, obj) {
+    prop: function (prop, obj) {
       obj = obj || this;
       return _.isFunction(obj[prop]) ? obj[prop].call(obj) : obj[prop];
     }

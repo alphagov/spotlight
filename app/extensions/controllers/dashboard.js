@@ -41,7 +41,7 @@ define([
         this.moduleInstances.push(module);
 
         module.once('ready', _.bind(function () {
-          this.remaining = this.remaining -1;
+          this.remaining = this.remaining - 1;
 
           if (this.remaining === 0) {
             Controller.prototype.render.call(this, options);

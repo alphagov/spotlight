@@ -1,10 +1,10 @@
 var requirejs = require('requirejs');
 
 //Config for libraries accessible and require js
-var app_config = requirejs('./config');
-app_config.baseUrl = 'app/';
-app_config.nodeRequire = require;
-requirejs.config(app_config);
+var appConfig = requirejs('./config');
+appConfig.baseUrl = 'app/';
+appConfig.nodeRequire = require;
+requirejs.config(appConfig);
 
 //Command line args
 var argv = require('optimist').argv;
@@ -14,9 +14,10 @@ var environment = process.env.NODE_ENV || argv.env || 'development';
 
 //- setting server $ stuff
 var backbone = require('backbone'),
-    XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-var $ = global.$ = backbone.$ = global.jQuery = require('jquery');
+global.$ = backbone.$ = global.jQuery = require('jquery');
+
 $.support.cors = true;
 
 $.ajaxSettings.xhr = function () {
@@ -33,7 +34,7 @@ global.logger = requirejs('logger');
 
 //App stuff
 
-if(environment.match(/^development/)){
+if (environment.match(/^development/)) {
   environment = 'development';
 }
 
@@ -43,8 +44,8 @@ var http = require('http'),
 var rootDir = path.join(__dirname, '..');
 var app = requirejs('appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
-var server = http.createServer(app).listen(app.get('port'), function(){
-  global.logger.info("Express server listening on port " + app.get('port'));
+var server = http.createServer(app).listen(app.get('port'), function () {
+  global.logger.info('Express server listening on port ' + app.get('port'));
 });
 
 exports = module.exports = server;

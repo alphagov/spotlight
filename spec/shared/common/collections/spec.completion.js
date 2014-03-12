@@ -1,9 +1,7 @@
 define([
-  'common/collections/completion',
-  'extensions/collections/collection',
-  'extensions/collections/matrix'
+  'common/collections/completion'
 ],
-function (CompletionCollection, Collection, MatrixCollection) {
+function (CompletionCollection) {
   describe('Completion collection', function () {
     var mockResponse = {
       'data': [
@@ -58,7 +56,7 @@ function (CompletionCollection, Collection, MatrixCollection) {
       ]
     };
 
-    it('should use options in query params', function() {
+    it('should use options in query params', function () {
       var collection = new CompletionCollection({}, {
         valueAttr: 'one',
         period: 'month',
@@ -75,7 +73,7 @@ function (CompletionCollection, Collection, MatrixCollection) {
       expect(collection.url()).toContain('tabbing=tabid');
     });
 
-    it('should use default query params', function() {
+    it('should use default query params', function () {
       var collection = new CompletionCollection({}, {});
 
       expect(collection.url()).toContain('period=week');
@@ -83,7 +81,7 @@ function (CompletionCollection, Collection, MatrixCollection) {
       expect(collection.url()).toContain('group_by=eventCategory');
     });
 
-    it('should update value attribute on parse', function() {
+    it('should update value attribute on parse', function () {
       var collection = new CompletionCollection({}, { valueAttr: 'one' });
       collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
       collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });

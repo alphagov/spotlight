@@ -2,10 +2,10 @@ define([
   'render_png'
 ],
 function (renderPng) {
-  describe("renderPng", function () {
-    describe("getScreenshotPath", function () {
+  describe('renderPng', function () {
+    describe('getScreenshotPath', function () {
 
-      it("creates the URL for the screenshot service call", function () {
+      it('creates the URL for the screenshot service call', function () {
         renderPng.screenshotServiceUrl = 'http://screenshotservice';
         renderPng.screenshotTargetUrl = 'http://spotlight';
         var url = '/test/path.png';

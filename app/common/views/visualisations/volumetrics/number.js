@@ -7,7 +7,7 @@ function (SingleStatView) {
     changeOnSelected: true,
     labelPrefix: '',
 
-    formatValue: function(value) {
+    formatValue: function (value) {
       return this.formatNumericLabel(value);
     },
 
@@ -16,21 +16,21 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
-      var periodLabel = this.model.get('period') || "week";
-      var events = this.collection.at(0).get("weeks"),
-          unavailableEvents = events.total - events.available,
-          label = [
-            this.labelPrefix,
-            'last',
-            events.total,
-            this.pluralise(periodLabel, events.total)
-          ];
+      var periodLabel = this.model.get('period') || 'week';
+      var events = this.collection.at(0).get('weeks'),
+        unavailableEvents = events.total - events.available,
+        label = [
+          this.labelPrefix,
+          'last',
+          events.total,
+          this.pluralise(periodLabel, events.total)
+        ];
 
       if (unavailableEvents > 0) {
         label = label.concat([
-          "<span class='unavailable'>(" + unavailableEvents,
+          '<span class="unavailable">(' + unavailableEvents,
           this.pluralise(periodLabel, unavailableEvents),
-          "unavailable)</span>"
+          'unavailable)</span>'
         ]);
       }
 
@@ -41,20 +41,19 @@ function (SingleStatView) {
       var val;
       if (selection.selectedGroupIndex !== null) {
         val = selection.selectedModel.get(this.selectionValueAttr);
-      } else { 
+      } else {
         val = null;
       }
       return this.formatValue(val);
     },
 
     getLabelSelected: function (selection) {
-      var val;
       if (selection.selectedGroupIndex !== null) {
         return this.formatPeriod(selection.selectedModel, 'week');
-      } else { 
+      } else {
         return '';
       }
-      
+
     }
   });
 

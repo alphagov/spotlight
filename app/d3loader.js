@@ -1,5 +1,5 @@
 define({
-  load: function(name, req, onLoad, config) {
+  load: function (name, req, onLoad, config) {
     var browserSupportsD3 = function () {
       return !$('.lte-ie8').length;
     };

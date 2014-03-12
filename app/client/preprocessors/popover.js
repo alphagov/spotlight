@@ -9,15 +9,15 @@ define([
     } else {
       eventName = 'click';
     }
-    $('section, main').on(eventName, '.popover-link', function(e) {
-      var close = function(e) {
+    $('section, main').on(eventName, '.popover-link', function () {
+      var close = function () {
         item.removeClass('js-clicked');
         $('body').off(eventName, close);
         $(this).next('ul').off(eventName, preventBubbling);
       };
 
-      var preventBubbling = function(e) {
-        if(!$(e.target).is('a')){
+      var preventBubbling = function (e) {
+        if (!$(e.target).is('a')) {
           return false;
         }
       };

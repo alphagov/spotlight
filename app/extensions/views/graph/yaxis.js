@@ -11,7 +11,7 @@ function (require, Axis) {
     orient: 'left',
     initialize: function () {
       Axis.prototype.initialize.apply(this, arguments);
-      if (this.graph.numYTicks != null) {
+      if (this.graph.numYTicks !== null) {
         this.ticks = this.graph.numYTicks;
       }
     },

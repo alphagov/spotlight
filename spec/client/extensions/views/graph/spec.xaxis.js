@@ -3,15 +3,15 @@ define([
   'extensions/collections/collection'
 ],
 function (XAxis, Collection) {
-  describe("XAxisComponent", function () {
+  describe('XAxisComponent', function () {
 
     var el, wrapper;
-    beforeEach(function() {
+    beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
       wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g');
     });
 
-    afterEach(function() {
+    afterEach(function () {
       el.remove();
     });
 
@@ -49,8 +49,8 @@ function (XAxis, Collection) {
       return view;
     }
 
-    describe("'hour' configuration", function () {
-      it("shows 5 ticks for midnight, 6am, midday, 6pm and midnight", function () {
+    describe('"hour" configuration', function () {
+      it('shows 5 ticks for midnight, 6am, midday, 6pm and midnight', function () {
         var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00');
 
         view.render();
@@ -65,8 +65,8 @@ function (XAxis, Collection) {
       });
     });
 
-    describe("'day' configuration", function () {
-      it("shows tick and label each Monday", function () {
+    describe('"day" configuration', function () {
+      it('shows tick and label each Monday', function () {
         var view = viewForConfig('day', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
         view.render();
 
@@ -79,8 +79,8 @@ function (XAxis, Collection) {
       });
     });
 
-    describe("'week' configuration", function () {
-      it("shows tick and label each Monday", function () {
+    describe('"week" configuration', function () {
+      it('shows tick and label each Monday', function () {
         var view = viewForConfig('week', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
         view.render();
 
@@ -93,8 +93,8 @@ function (XAxis, Collection) {
       });
     });
 
-    describe("'month' configuration", function () {
-      it("shows tick and label each month", function () {
+    describe('"month" configuration', function () {
+      it('shows tick and label each month', function () {
         var view = viewForConfig('month', '2012-01-05T00:00:00+00:00', '2013-12-05T00:00:00+01:00');
         view.render();
 
@@ -109,8 +109,8 @@ function (XAxis, Collection) {
     });
 
 
-    describe("any configuration", function () {
-      it("renders ellipses for smaller screens", function () {
+    describe('any configuration', function () {
+      it('renders ellipses for smaller screens', function () {
         var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', true);
 
         XAxis.prototype.d3.select(el[0]).select('svg').style('width', '400px');

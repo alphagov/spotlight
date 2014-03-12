@@ -11,7 +11,7 @@ function (Component) {
 
     // Not implemented; override in configuration or subclass
     getScale: function () {
-      throw('No scale defined.');
+      throw ('No scale defined.');
     },
 
     render: function () {
@@ -24,14 +24,14 @@ function (Component) {
         .orient(this.orient);
 
       _.each(['ticks', 'tickValues', 'tickFormat', 'tickPadding', 'tickSize'], function (id) {
-        if (this[id] != null) {
+        if (this[id]) {
           var args = _.isFunction(this[id]) ? this[id]() : this[id];
           axis[id].apply(this, _.isArray(args) ? args : [args]);
         }
       }, this);
 
       this.componentWrapper
-        .attr("transform", this.getTransform())
+        .attr('transform', this.getTransform())
         .call(axis);
 
       // re-order elements to ensure odd/even CSS logic behaves as expected
@@ -44,13 +44,13 @@ function (Component) {
       var offsetX = this.offsetX || 0;
       var offsetY = this.offsetY || 0;
 
-      if (this.position == 'right') {
+      if (this.position === 'right') {
         offsetX += this.graph.innerWidth;
       } else if (this.position === 'bottom') {
         offsetY += this.graph.innerHeight;
       }
 
-      return "translate(" + offsetX + "," + offsetY + ")";
+      return 'translate(' + offsetX + ',' + offsetY + ')';
     }
 
   });

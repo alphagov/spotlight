@@ -3,31 +3,31 @@ define([
   'extensions/controllers/dashboard'
 ],
 function (bootstrap, DashboardController) {
-  describe("client bootstrap", function () {
+  describe('client bootstrap', function () {
 
     var config;
-    beforeEach(function() {
-      spyOn(DashboardController.prototype, "render");
+    beforeEach(function () {
+      spyOn(DashboardController.prototype, 'render');
       config = {
         'page-type': 'dashboard'
       };
     });
 
-    it("instantiates a controller from config data", function () {
+    it('instantiates a controller from config data', function () {
       var controller = bootstrap(config);
 
       expect(controller instanceof DashboardController).toBe(true);
       expect(controller.render).toHaveBeenCalled();
     });
 
-    it("executes page preprocessors", function () {
+    it('executes page preprocessors', function () {
       var originalPreprocessors = bootstrap.preprocessors;
       bootstrap.preprocessors = [
         jasmine.createSpy(),
         jasmine.createSpy()
       ];
 
-      var controller = bootstrap(config);
+      bootstrap(config);
       expect(bootstrap.preprocessors[0]).toHaveBeenCalled();
       expect(bootstrap.preprocessors[1]).toHaveBeenCalled();
 

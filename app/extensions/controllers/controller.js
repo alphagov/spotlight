@@ -2,7 +2,7 @@ define([
   'backbone'
 ], function (Backbone) {
 
-  var Controller = function(options) {
+  var Controller = function (options) {
     options = options || {};
     _.extend(this, options);
     this.initialize.call(this, options);
@@ -10,21 +10,21 @@ define([
 
   _.extend(Controller.prototype, Backbone.Events, {
 
-    initialize: function (options) {},
+    initialize: function () {},
 
     viewOptions: function () {},
     collectionOptions: function () {},
 
     renderView: function (options) {
       options = _.extend({}, this.viewOptions(), options);
-      
+
       if (!this.view) {
         this.view = new this.viewClass(options);
       }
 
       var view = this.view;
       view.render();
-      
+
       this.html = view.html || view.$el[0].outerHTML;
       this.trigger('ready');
     },
@@ -46,7 +46,7 @@ define([
       }
 
       if (this.collection) {
-        this.collection.once('sync reset error', function() {
+        this.collection.once('sync reset error', function () {
           this.renderView({
             collection: this.collection,
             model: this.model

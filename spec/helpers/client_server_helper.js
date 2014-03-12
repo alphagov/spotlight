@@ -1,7 +1,7 @@
 var obj;
 if (typeof window === 'object') {
   window.isClient = false;
-  window.isServer = false;  
+  window.isServer = false;
   obj = window;
 }
 if (typeof global === 'object') {

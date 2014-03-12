@@ -4,10 +4,10 @@ define([
 ],
 function (Tooltip, Model) {
 
-  describe("Tooltip", function () {
+  describe('Tooltip', function () {
 
-    describe("onChangeSelected", function () {
-      var el, tooltip, wrapper, model;
+    describe('onChangeSelected', function () {
+      var el, tooltip, wrapper, model, model2;
       beforeEach(function () {
         el = $('<div></div>').appendTo($('body'));
         wrapper = Tooltip.prototype.d3.select(el[0]).append('svg').append('g');
@@ -15,24 +15,24 @@ function (Tooltip, Model) {
         tooltip = new Tooltip({
           el: el,
           wrapper: wrapper,
-          collection: { on: jasmine.createSpy(), fraction: function(){ return "101";} },
+          collection: { on: jasmine.createSpy(), fraction: function () { return '101'; } },
           graph: {
-            valueAttr: "modelValue"
+            valueAttr: 'modelValue'
           },
           constrainToBounds: false,
-          x: function (group, groupIndex, model, index) {
-            if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+          x: function (group, groupIndex, model) {
+            if (Object.prototype.toString.call(model) === '[object Array]') {
               model = model[0];
             }
             return model.get('x');
           },
-          y: function (group, groupIndex, model, index) {
-            if( Object.prototype.toString.call( model ) === '[object Array]' ) {
+          y: function (group, groupIndex, model) {
+            if (Object.prototype.toString.call(model) === '[object Array]') {
               model = model[0];
             }
             return model.get('y');
           },
-          textWidth: function() {
+          textWidth: function () {
             return model.get('textWidth');
           }
         });
@@ -56,7 +56,7 @@ function (Tooltip, Model) {
         el.remove();
       });
 
-      it("renders nothing if the value is the sum of an array of models and noTotal set", function (){
+      it('renders nothing if the value is the sum of an array of models and noTotal set', function () {
         tooltip.noTotal = true;
         tooltip.render();
 
@@ -68,7 +68,7 @@ function (Tooltip, Model) {
         expect(wrapper.select('text.tooltip-text')[0][0]).toBeFalsy();
         expect(wrapper.select('text.tooltip-stroke')[0][0]).toBeFalsy();
       });
-      it("renders the sum of values if the model is an array of models", function (){
+      it('renders the sum of values if the model is an array of models', function () {
         tooltip.render();
 
         tooltip.onChangeSelected(null, null, model, 1);
@@ -76,18 +76,18 @@ function (Tooltip, Model) {
         expect(wrapper.select('text.tooltip-stroke')[0][0]).not.toBeFalsy();
 
         tooltip.onChangeSelected(null, null, [model, model2], 1);
-        expect(wrapper.select('text.tooltip-text').text()).toEqual("961");
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("961");
+        expect(wrapper.select('text.tooltip-text').text()).toEqual('961');
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('961');
       });
-      it("renders no data if the value comes from an array of models which all have null data", function (){
-        model = new Model({
+      it('renders no data if the value comes from an array of models which all have null data', function () {
+        var model = new Model({
           x: 110,
           y: 120,
           textWidth: 100,
           modelValue: null
         });
 
-        model2 = new Model({
+        var model2 = new Model({
           x: 110,
           y: 120,
           textWidth: 100,
@@ -96,38 +96,38 @@ function (Tooltip, Model) {
         tooltip.render();
         tooltip.onChangeSelected(null, null, [model, model2], 1);
 
-        expect(wrapper.select('text.tooltip-text').text()).toEqual("(no data)");
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("(no data)");
+        expect(wrapper.select('text.tooltip-text').text()).toEqual('(no data)');
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('(no data)');
       });
-      it("renders fraction of the selected model on one hundred percent graph", function (){
+      it('renders fraction of the selected model on one hundred percent graph', function () {
         tooltip.render();
 
         tooltip.graph.model = {
-          get: function(arg){
-            if(arg === 'one-hundred-percent'){
+          get: function (arg) {
+            if (arg === 'one-hundred-percent') {
               return true;
             }
             return false;
           }
-        }
-        spyOn(tooltip.collection, "fraction").andReturn('101');
+        };
+        spyOn(tooltip.collection, 'fraction').andReturn('101');
         tooltip.onChangeSelected(null, 2, model, 3);
-        expect(wrapper.select('text.tooltip-text').text()).toEqual("101");
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("101");
+        expect(wrapper.select('text.tooltip-text').text()).toEqual('101');
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('101');
         expect(tooltip.collection.fraction).toHaveBeenCalledWith(tooltip.graph.valueAttr, 2, 3);
       });
 
-      it("renders a tooltip at the position with offsets", function () {
+      it('renders a tooltip at the position with offsets', function () {
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-text').text()).toEqual("84");
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("84");
-        expect(wrapper.select('text.tooltip-text').attr('transform')).toEqual("translate(3, 102)");
-        expect(wrapper.select('text.tooltip-stroke').attr('transform')).toEqual("translate(3, 102)");
+        expect(wrapper.select('text.tooltip-text').text()).toEqual('84');
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('84');
+        expect(wrapper.select('text.tooltip-text').attr('transform')).toEqual('translate(3, 102)');
+        expect(wrapper.select('text.tooltip-stroke').attr('transform')).toEqual('translate(3, 102)');
       });
 
-      it("hides the tooltip when unselected", function () {
+      it('hides the tooltip when unselected', function () {
         tooltip.render();
 
         tooltip.onChangeSelected(null, null, model, 1);
@@ -139,43 +139,43 @@ function (Tooltip, Model) {
         expect(wrapper.select('text.tooltip-stroke')[0][0]).toBeFalsy();
       });
 
-      it("displays (no data) when data is null", function () {
+      it('displays (no data) when data is null', function () {
         model.set('modelValue', null);
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("(no data)");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('(no data)');
       });
 
-      it("displays the value returned by getValue", function () {
-        tooltip.getValue = function (group, groupIndex, model, index) {
+      it('displays the value returned by getValue', function () {
+        tooltip.getValue = function () {
           return 'foo';
         };
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("foo");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('foo');
       });
 
-      it("formats using formatValue when there's data", function () {
+      it('formats using formatValue when there\'s data', function () {
         tooltip.formatValue = function (value) {
-          return "The value is " + value + "!";
+          return 'The value is ' + value + '!';
         };
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("The value is 84!");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('The value is 84!');
       });
 
-      it("formats using formatMissingValue when data is null", function () {
+      it('formats using formatMissingValue when data is null', function () {
         tooltip.formatMissingValue = function () {
-          return "There's no value here";
+          return 'There\'s no value here';
         };
         model.set('modelValue', null);
         tooltip.render();
         tooltip.onChangeSelected(null, null, model, 1);
 
-        expect(wrapper.select('text.tooltip-stroke').text()).toEqual("There's no value here");
+        expect(wrapper.select('text.tooltip-stroke').text()).toEqual('There\'s no value here');
       });
 
     });

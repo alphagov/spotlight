@@ -16,7 +16,7 @@ function (View) {
       this.collection.on('reset sync error', this.render, this);
     },
 
-    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel, selectIndex) {
+    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
       if (selectModel) {
         this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
       }
@@ -43,7 +43,7 @@ function (View) {
 
       var content = null;
       if (value === null) {
-        content = "<span class='no-data'>(no data)</span>";
+        content = '<span class="no-data">(no data)</span>';
       } else if (this.valueTag) {
         content = '<' + this.valueTag + '>' + value + '</' + this.valueTag + '>';
       } else {

@@ -6,12 +6,12 @@ define([
 ],
   function (ResponseTimeNumber, Collection, AvailabilityCollection, Model) {
 
-    describe("ResponseTimeNumber", function () {
+    describe('ResponseTimeNumber', function () {
 
       var availabilityOptions = {
         checkName: 'anything',
-        "data-group": "anything",
-        "data-type": "monitoring",
+        'data-group': 'anything',
+        'data-type': 'monitoring',
         parse: true
       };
 
@@ -27,27 +27,27 @@ define([
         return new CollectionWithPeriod();
       }
 
-      describe("getLabel", function() {
-        it("display label for last 24 hours", function () {
+      describe('getLabel', function () {
+        it('display label for last 24 hours', function () {
           var view = new ResponseTimeNumber({
             collection: collectionForPeriod('hour')
           });
 
-          expect(view.getLabel()).toEqual("mean for the last 24 hours");
+          expect(view.getLabel()).toEqual('mean for the last 24 hours');
         });
 
-        it("display label for last 30 days", function () {
+        it('display label for last 30 days', function () {
           var view = new ResponseTimeNumber({
             collection: collectionForPeriod('day')
           });
 
-          expect(view.getLabel()).toEqual("mean for the last 30 days");
+          expect(view.getLabel()).toEqual('mean for the last 30 days');
         });
 
-        it("should display (no data) when there is no data available", function () {
-          var availabilityData = { "data": [
+        it('should display (no data) when there is no data available', function () {
+          var availabilityData = { 'data': [
             {
-              "avgresponse:mean": null
+              'avgresponse:mean': null
             }
           ]};
           var collection = new AvailabilityCollection(availabilityData, availabilityOptions);
@@ -55,13 +55,13 @@ define([
             collection: collection
           });
 
-          expect(view.getValue()).toEqual("<span class='no-data'>(no data)</span>");
+          expect(view.getValue()).toEqual('<span class="no-data">(no data)</span>');
         });
       });
 
 
-      describe("getLabelSelected", function () {
-        it("display hour range and day for hour query", function () {
+      describe('getLabelSelected', function () {
+        it('display hour range and day for hour query', function () {
           var view = new ResponseTimeNumber({
             collection: collectionForPeriod('hour')
           });
@@ -73,7 +73,7 @@ define([
           expect(view.getLabelSelected({ selectedModel: selection })).toEqual('1am to 2am,<br>18 June 2013');
         });
 
-        it("display only date for day query", function () {
+        it('display only date for day query', function () {
           var view = new ResponseTimeNumber({
             collection: collectionForPeriod('day')
           });
@@ -85,13 +85,13 @@ define([
           expect(view.getLabelSelected({ selectedModel: selection })).toEqual('Friday <span class="fulldate">17 May 2013</span>');
         });
 
-        it("should display (no data) when the selected data is unavailable", function () {
-          var availabilityData = { "data": [
+        it('should display (no data) when the selected data is unavailable', function () {
+          var availabilityData = { 'data': [
             {
-              "avgresponse:mean": 123
+              'avgresponse:mean': 123
             },
             {
-              "avgresponse:mean": null
+              'avgresponse:mean': null
             }
           ]};
           var collection = new AvailabilityCollection(availabilityData, availabilityOptions);
@@ -101,7 +101,7 @@ define([
           collection.selectItem(0, 1);
           var selection = collection.getCurrentSelection();
 
-          expect(view.getValueSelected(selection)).toEqual("<span class='no-data'>(no data)</span>");
+          expect(view.getValueSelected(selection)).toEqual('<span class="no-data">(no data)</span>');
         });
 
       });

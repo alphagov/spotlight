@@ -44,25 +44,25 @@ function (VisitorsRealtimeView, Collection) {
         describe('onChangeSelected', function () {
 
           it('should not listen change:selected when changeOnSelected is false', function () {
-              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
-              spyOn(VisitorsRealtimeView.prototype, 'render');
-              view = new VisitorsRealtimeView({
-                collection: collection,
-                changeOnSelected: false
-              });
-              collection.trigger('change:selected');
+            spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+            spyOn(VisitorsRealtimeView.prototype, 'render');
+            view = new VisitorsRealtimeView({
+              collection: collection,
+              changeOnSelected: false
+            });
+            collection.trigger('change:selected');
 
-              expect(view.onChangeSelected).not.toHaveBeenCalled();
+            expect(view.onChangeSelected).not.toHaveBeenCalled();
           });
 
           it('should listen change:selected by default', function () {
-              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
-              spyOn(VisitorsRealtimeView.prototype, 'render');
+            spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+            spyOn(VisitorsRealtimeView.prototype, 'render');
 
-              view.initialize();
+            view.initialize();
 
-              collection.trigger('change:selected');
-              expect(view.onChangeSelected).toHaveBeenCalled();
+            collection.trigger('change:selected');
+            expect(view.onChangeSelected).toHaveBeenCalled();
           });
 
         });
@@ -70,15 +70,15 @@ function (VisitorsRealtimeView, Collection) {
         describe('render', function () {
 
           it('should call onChangeSelected', function () {
-              spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
-              view.initialize();
-              VisitorsRealtimeView.prototype.onChangeSelected.reset();
+            spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
+            view.initialize();
+            VisitorsRealtimeView.prototype.onChangeSelected.reset();
 
-              expect(view.onChangeSelected).not.toHaveBeenCalled();
+            expect(view.onChangeSelected).not.toHaveBeenCalled();
 
-              view.render();
+            view.render();
 
-              expect(view.onChangeSelected).toHaveBeenCalled();
+            expect(view.onChangeSelected).toHaveBeenCalled();
           });
 
         });

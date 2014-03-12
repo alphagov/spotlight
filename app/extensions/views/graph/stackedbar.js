@@ -2,7 +2,7 @@ define([
   'require',
   './interleavedbar'
 ],
-function(require, InterleavedBarComponent) {
+function (require, InterleavedBarComponent) {
   var StackedBarComponent = InterleavedBarComponent.extend({
     
     align: 'centre',

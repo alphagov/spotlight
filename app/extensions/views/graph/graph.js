@@ -191,10 +191,11 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       var maxWidth = this.pxToValue($svg.css('max-width'));
       var maxHeight = this.pxToValue($svg.css('max-height'));
       var minHeight = this.pxToValue($svg.css('min-height'));
-      if (maxWidth != null && maxHeight != null) {
+
+      if (_.isNumber(maxWidth) && _.isNumber(maxHeight)) {
         var aspectRatio = maxWidth / maxHeight;
         height = width / aspectRatio;
-        if (minHeight != null) {
+        if (_.isNumber(minHeight)) {
           height = Math.max(height, minHeight);
         }
       } else {
@@ -363,12 +364,12 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
             .values(function (group) {
               return group.get('values').models;
             })
-            .y(function (model, index) {
+            .y(function (model) {
               return model.get(valueAttr);
             });
 
-          if (this.isOneHundredPercent()){
-            stack.offset(function(data) {
+          if (this.isOneHundredPercent()) {
+            stack.offset(function (data) {
               var lineCount = data.length,
                   lineLength = data[0].length,
                   i, j, sumOfYValues, y0 = [];

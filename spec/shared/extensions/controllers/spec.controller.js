@@ -5,20 +5,20 @@ define([
   'extensions/collections/collection'
 ],
 function (Controller, View, Model, Collection) {
-  describe("Controller", function () {
-    describe("render", function () {
+  describe('Controller', function () {
+    describe('render', function () {
 
       var model;
-      beforeEach(function() {
+      beforeEach(function () {
         model = new Model({
           'data-type': 'foo-type',
           'data-group': 'bar-group'
         });
-        spyOn(Controller.prototype, "renderView");
-        spyOn(Collection.prototype, "fetch");
+        spyOn(Controller.prototype, 'renderView');
+        spyOn(Collection.prototype, 'fetch');
       });
 
-      it("waits for collection data to be available and then renders view", function () {
+      it('waits for collection data to be available and then renders view', function () {
         var controller = new Controller({
           model: model,
           viewClass: View,
@@ -36,7 +36,7 @@ function (Controller, View, Model, Collection) {
         expect(controller.renderView).toHaveBeenCalled();
       });
 
-      it("waits for collection data and renders view on error", function () {
+      it('waits for collection data and renders view on error', function () {
         var controller = new Controller({
           model: model,
           viewClass: View,
@@ -60,7 +60,7 @@ function (Controller, View, Model, Collection) {
         expect(controller.renderView).toHaveBeenCalled();
       });
 
-      it("immediately renders the view when there is no collection", function () {
+      it('immediately renders the view when there is no collection', function () {
         var controller = new Controller({
           model: model,
           viewClass: View
@@ -70,7 +70,7 @@ function (Controller, View, Model, Collection) {
         expect(controller.renderView).toHaveBeenCalled();
       });
 
-      it("render view on init on the server", function () {
+      it('render view on init on the server', function () {
         jasmine.serverOnly(function () {
           var controller = new Controller({
             model: model,
@@ -84,7 +84,7 @@ function (Controller, View, Model, Collection) {
         });
       });
 
-      it("does not render view on init on the client by default", function () {
+      it('does not render view on init on the client by default', function () {
         jasmine.clientOnly(function () {
           var controller = new Controller({
             model: model,
@@ -103,7 +103,7 @@ function (Controller, View, Model, Collection) {
         });
       });
 
-      it("renders view on init on the client when configured", function () {
+      it('renders view on init on the client when configured', function () {
         jasmine.clientOnly(function () {
           var controller = new Controller({
             model: model,
@@ -120,11 +120,11 @@ function (Controller, View, Model, Collection) {
 
     });
     
-    describe("renderView", function () {
+    describe('renderView', function () {
 
       var controller, model;
-      beforeEach(function() {
-        spyOn(View.prototype, "render");
+      beforeEach(function () {
+        spyOn(View.prototype, 'render');
         model = new Model({
           'data-type': 'foo-type',
           'data-group': 'bar-group'
@@ -146,13 +146,13 @@ function (Controller, View, Model, Collection) {
         });
       });
 
-      it("instantiates the view class and renders the content", function () {
+      it('instantiates the view class and renders the content', function () {
         controller.renderView();
         expect(controller.html).toEqual('<div>content</div>');
         expect(controller.view.foo).toEqual('bar');
       });
 
-      it("triggers a 'ready' event", function () {
+      it('triggers a "ready" event', function () {
         var triggered = false;
         controller.once('ready', function () {
           triggered = true;

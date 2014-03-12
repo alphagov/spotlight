@@ -2,7 +2,7 @@ define([
   'backbone'
 ], function (Backbone) {
 
-  var mapRecursive = function(object, func) {
+  var mapRecursive = function (object, func) {
     var recur = function (object) {
       if (_.isArray(object)) {
         return _.map(object, recur);
@@ -50,7 +50,7 @@ define([
       if (success) success(escaped, status, xhr);
     };
     var error = options.error;
-    options.error = function(xhr, status, thrown) {
+    options.error = function (xhr, status, thrown) {
       that.loading = false;
       if (error) error(xhr, status, thrown);
     };

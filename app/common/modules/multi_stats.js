@@ -10,10 +10,10 @@ function (ModuleController, MultiStatsView, MultiStatsCollection) {
     collectionClass: MultiStatsCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
-    
-    collectionOptions: function() { 
-      return { 
-        stats: this.model.get('stats'), 
+
+    collectionOptions: function () {
+      return {
+        stats: this.model.get('stats'),
         period: this.model.get('period')
       };
     }
