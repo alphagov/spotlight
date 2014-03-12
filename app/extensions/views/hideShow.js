@@ -29,13 +29,22 @@ define([
 
     showHide: function (e) {
       if (this.$reveal.is(':visible')) {
-        this.$reveal.hide();
-        this.$handle.text(this.showLabel);
+        this.hide();
       } else {
-        this.$reveal.show();
-        this.$handle.text(this.hideLabel);
+        this.show();
       }
       e.preventDefault();
+    },
+
+    show: function () {
+      this.$reveal.show();
+      this.$handle.text(this.hideLabel);
+    },
+
+    hide: function () {
+      this.$reveal.hide();
+      this.$handle.text(this.showLabel);
     }
+
   });
 });
