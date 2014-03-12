@@ -7,6 +7,9 @@ span.group4 { color: $data-colour-5; }
 span.group5 { color: $data-colour-6; }
 
 .table-toggle {
+  a {
+    line-height: 2.5em;
+  }
   table {
     .js-enabled & {
       display: none;
