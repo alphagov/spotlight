@@ -79,6 +79,22 @@ function (Table, View, $) {
         expect(table.collection.getTableRows).toHaveBeenCalledWith(['timestamp', 'value', 'value']);
       });
 
+      it('will call floatHeaders on the client-side', function () {
+        jasmine.clientOnly(function () {
+          spyOn(table, 'floatHeaders');
+          table.render();
+          expect(table.floatHeaders).toHaveBeenCalled();
+        });
+      });
+
+      it('will not call floatHeaders on the server-side', function () {
+        jasmine.serverOnly(function () {
+          spyOn(table, 'floatHeaders');
+          table.render();
+          expect(table.floatHeaders).not.toHaveBeenCalled();
+        });
+      });
+
       describe('renderHead', function () {
         it('will append the timeshift duration to the column header', function () {
           var timeshiftedTable = new Table({
@@ -210,7 +226,37 @@ function (Table, View, $) {
                   '<tr><td class="">01/02/01</td><td class="">foo</td><td class="">no data</td></tr>' +
                 '</tbody>');
       });
-
     });
+
+    describe('floatHeaders', function () {
+
+      var table;
+
+      beforeEach(function () {
+        table = new Table({
+          collection: {
+            on: jasmine.createSpy(),
+            options: { axes: {
+              x: { label: 'date', key: 'timestamp' },
+              y: [{ label: 'another', key: 'value' }]
+            } }
+          },
+          valueAttr: 'value'
+        });
+      });
+
+      it('adds a class of floated-header to the table element on the client-side', function () {
+        jasmine.clientOnly(function () {
+          var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
+              tableBody = '<tbody><tr><td>Item1</td><td>Item2</td></tr></tbody>';
+
+          table.$table = $('<table>' + tableHeader + tableBody + '</table>');
+          table.floatHeaders();
+
+          expect(table.$table.attr('class')).toEqual('floated-header');
+        });
+      });
+    });
+
   });
 });
