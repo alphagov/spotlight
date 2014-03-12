@@ -1,10 +1,6 @@
 {
-  "page-type": "module",
   "module-type": "completion_numbers",
   "title": "Payments",
-  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "deposit-foreign-marriage",
   "description": "",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",
@@ -14,5 +10,19 @@
   ],
   "denominator-matcher": "start$",
   "numerator-matcher": "done$",
-  "matching-attribute": "eventCategory"
+  "matching-attribute": "eventCategory",
+  "axes": {
+    "x": {
+      "label": "Date of Payment"
+    },
+    "y": [
+      {
+        "label": "Number of payments"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "deposit-foreign-marriage"
 }

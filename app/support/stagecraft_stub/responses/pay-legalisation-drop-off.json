@@ -30,7 +30,17 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "eventCategory",
+      "axes": {
+        "x": {
+          "label": "Date of Payment"
+        },
+        "y": [
+          {
+            "label": "Number of payments"
+          }
+        ]
+      }
     },
     {
       "slug": "completion-rate",
