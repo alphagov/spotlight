@@ -632,6 +632,72 @@ function (Collection, Model, Backbone) {
         expect(collection.getTableRows(['a', 'b'])).toEqual(expected);
         expect(collection.getTableRows('a', 'b')).toEqual(expected);
       });
+
+      describe('processors', function () {
+
+        beforeEach(function () {
+          collection = new Collection([
+            { a: 1, b: 2, 'sum(c)': 'foo' },
+            { a: 3, b: 4, 'sum(c)': 'bar' }
+          ]);
+        });
+
+        describe('getProcessors', function () {
+
+          it('parses keys into processor objects', function () {
+            expect(collection.getProcessors(['sum(a)'])).toEqual([{ fn: 'sum', key: 'a' }]);
+          });
+
+          it('does not return keys which have data', function () {
+            expect(collection.getProcessors(['sum(c)'])).toEqual([]);
+            expect(collection.getProcessors(['sum(a)', 'sum(c)'])).toEqual([{ fn: 'sum', key: 'a' }]);
+          });
+
+        });
+
+        describe('applyProcessors', function () {
+
+          var toString;
+
+          beforeEach(function () {
+            toString = jasmine.createSpy('toString').andCallFake(function (val) {
+              return val.toString();
+            });
+            collection.processors.toString = function () {
+              return toString;
+            };
+            spyOn(collection.processors, 'toString').andCallThrough();
+          });
+
+          it('gets processors', function () {
+            spyOn(collection, 'getProcessors').andReturn([]);
+            collection.applyProcessors(['toString(a)']);
+            expect(collection.getProcessors).toHaveBeenCalledWith(['toString(a)']);
+          });
+
+          it('sets processed properties on models', function () {
+            collection.applyProcessors(['toString(a)']);
+            expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
+          });
+
+          it('calls processor methods with value as arguments', function () {
+            collection.applyProcessors(['toString(a)']);
+            expect(toString.calls.length).toEqual(2);
+            expect(toString.calls[0].args).toEqual([1]);
+            expect(toString.calls[1].args).toEqual([3]);
+          });
+
+          it('calls processor factory method once with context of the collection and an argument of the key', function () {
+            collection.applyProcessors(['toString(a)']);
+            expect(collection.processors.toString.calls.length).toEqual(1);
+            expect(collection.processors.toString.calls[0].object).toEqual(collection);
+            expect(collection.processors.toString.calls[0].args).toEqual(['a']);
+          });
+
+        });
+
+      });
+
     });
   });
 });

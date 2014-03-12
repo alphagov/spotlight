@@ -83,6 +83,11 @@
             "label": "Volume last week",
             "key": "count:sum",
             "format": "integer"
+          },
+          {
+            "label": "Percentage of total errors",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
           }
         ]
       },

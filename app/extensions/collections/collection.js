@@ -2,12 +2,13 @@ define([
   'backbone',
   'extensions/mixins/safesync',
   'extensions/mixins/date-functions',
+  'extensions/mixins/collection-processors',
   'extensions/models/model',
   'extensions/models/query',
   'jquery',
   'Mustache'
 ],
-function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
+function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustache) {
   // get base URL for Backdrop instance (with trailing slash if missing)
   var backdropUrl;
   if (isServer) {
@@ -270,12 +271,48 @@ function (Backbone, SafeSync, DateFunctions, Model, Query, $, Mustache) {
       if (arguments.length !== 1 || !(_.isArray(keys))) {
         keys = [].slice.apply(arguments);
       }
+      this.applyProcessors(keys);
+
       return this.map(function (model) {
         return _.map(keys, function (key) {
           return model.get(key);
         });
       });
-    }
+    },
+
+    applyProcessors: function (keys) {
+      var processors = this.getProcessors(keys);
+      _.each(processors, function (processor) {
+        if (_.isFunction(this.processors[processor.fn])) {
+          var fn = this.processors[processor.fn].call(this, processor.key);
+          if (_.isFunction(fn)) {
+            this.each(function (model) {
+              var value = fn.call(this, model.get(processor.key));
+              model.set(processor.fn + '(' + processor.key + ')', value);
+            }, this);
+          } else {
+            throw new Error('collection processor did not return a function');
+          }
+        }
+      }, this);
+    },
+
+    getProcessors: function (keys) {
+      var processors = [];
+      _.each(keys, function (key) {
+        var match = key.match(/(\w+)\((.+)\)/);
+        if (match && !_.any(this.pluck(key))) {
+          processors.push({
+            fn: match[1],
+            key: match[2]
+          });
+        }
+      }, this);
+      return processors;
+    },
+
+    processors: Processors
+
   });
 
   _.extend(Collection.prototype, SafeSync, DateFunctions);
