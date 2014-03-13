@@ -283,6 +283,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
     },
 
     applyProcessors: function (keys) {
+      keys = _.flatten(keys);
       var processors = this.getProcessors(keys);
       _.each(processors, function (processor) {
         if (_.isFunction(this.processors[processor.fn])) {

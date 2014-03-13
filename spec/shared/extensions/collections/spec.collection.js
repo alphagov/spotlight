@@ -698,6 +698,11 @@ function (Collection, Model, Backbone) {
             expect(collection.processors.toString.calls[0].args).toEqual(['a']);
           });
 
+          it('can handle arrays of keys', function () {
+            collection.applyProcessors([['a', 'toString(a)']]);
+            expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
+          });
+
         });
 
       });
