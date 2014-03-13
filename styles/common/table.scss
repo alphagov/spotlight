@@ -2,6 +2,7 @@ table {
   margin-top: 1em;
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #a1acb2;
 
   &.floated-header {
     thead {
@@ -15,6 +16,18 @@ table {
     }
   }
 
+  tbody {
+    tr {
+      &:first-of-type td {
+        border-top: none;
+      }
+
+      &:last-of-type td {
+        border-bottom: none;
+      }
+    }
+  }
+
   th, td {
     @include core-16($tabular-numbers: true);
     padding: 0.7em 1em 0.7em 1em;
@@ -23,15 +36,30 @@ table {
   th {
     text-align: left;
     font-weight: bold;
-    border: solid 1px #a1acb2;
     background-color: #dee0e2;
     color: #0b0c0c;
     line-height: 1.25em;
+
+    border-bottom: 1px solid #a1acb2;
+    border-right: 1px solid #a1acb2;
+
+    &:last-of-type {
+      border-right: none;
+    }
   }
 
   td {
     background: #eaedef;
+
     border: dotted 1px #b8c6cc;
+
+    &:first-of-type {
+      border-left: none;
+    }
+
+    &:last-of-type {
+      border-right: none;
+    }
   }
 
   .currency, .percent, .integer, .number {
