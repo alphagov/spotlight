@@ -5,6 +5,10 @@
 
   .stat {
     float: left;
+
+    strong {
+      margin-bottom: 3px;
+    }
   }
 
   .delta {
@@ -23,6 +27,10 @@
 	    left: 9em;
 	  }
 
+    .stat strong {
+      margin-bottom: 8px;
+    }
+
   }
 
   @media(max-width: 640px) {
@@ -31,6 +39,10 @@
 	    left: 8em;
 	    bottom: 2px;
 	  }
+
+    .stat strong {
+      margin-bottom: 5px;
+    }
 
   }
 }
