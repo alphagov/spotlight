@@ -16,8 +16,8 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
         axes: _.merge({
           x: {
             label: 'Time',
-            key: ['_start_at', '_end_at'],
-            format: 'dateRange'
+            key: '_timestamp',
+            format: 'date'
           },
           y: [
             {
