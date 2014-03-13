@@ -3,13 +3,10 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
-  "dashboard-title": "Payment to register a death abroad",
+  "dashboard-title": "Pay to register a death abroad",
   "dashboard-strapline": "Service dashboard",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Register a death abroad"
   },
   "data-group": "pay-register-death-abroad",
   "data-type": "journey",

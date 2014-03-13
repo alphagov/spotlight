@@ -7,9 +7,6 @@
   "department": {
     "title": "Department for Education"
   },
-  "service": {
-    "title": "Student finance"
-  },
   "category": "channel",
   "filter-by": [
     "country:england",

@@ -7,9 +7,6 @@
   "department": {
     "title": "Department for Education"
   },
-  "service": {
-    "title": "Student finance"
-  },
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
   "filter-by": ["country:england", "application_type:full-time application"],

@@ -7,9 +7,6 @@
   "department": {
     "title": "Department for Education"
   },
-  "service": {
-    "title": "Student finance"
-  },
   "category": "stage",
   "filter-by": [
     "country:england",

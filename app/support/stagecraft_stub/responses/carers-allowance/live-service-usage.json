@@ -10,9 +10,6 @@
   "department": {
     "title": "Department for Work and Pensions"
   },
-  "service": {
-    "title": "Carer's Allowance"
-  },
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service dashboard",
   "data-group": "carers-allowance",

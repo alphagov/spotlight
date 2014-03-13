@@ -3,13 +3,10 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
-  "dashboard-title": "Payment to register a birth abroad in the UK",
+  "dashboard-title": "Pay to register a birth abroad in the UK",
   "dashboard-strapline": "Service dashboard",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Register a birth abroad in the UK"
   },
   "data-group": "pay-register-birth-abroad",
   "data-type": "journey",

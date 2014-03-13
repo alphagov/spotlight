@@ -3,13 +3,10 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "",
-  "dashboard-title": "Payment for certificates to get married abroad",
+  "dashboard-title": "Pay for certificates to get married abroad",
   "dashboard-strapline": "Service dashboard",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Certificates to get married abroad"
   },
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",

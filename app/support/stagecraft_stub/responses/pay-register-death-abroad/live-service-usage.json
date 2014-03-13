@@ -3,13 +3,10 @@
   "module-type": "realtime",
   "title": "Live service usage",
   "description": "Live number of users on any page within the service",
-  "dashboard-title": "Payment to register a death abroad",
+  "dashboard-title": "Pay to register a death abroad",
   "dashboard-strapline": "Service dashboard",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Register a death abroad"
   },
   "info": [
     "Data source: Google Analytics",
