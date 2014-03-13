@@ -3,6 +3,18 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 
+  &.floated-header {
+    thead {
+      display: block;
+    }
+
+    tbody {
+      display: block;
+      max-height: 28em;
+      overflow: scroll;
+    }
+  }
+
   th, td {
     @include core-16($tabular-numbers: true);
     padding: 0.7em 1em 0.7em 1em;
