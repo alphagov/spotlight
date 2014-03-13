@@ -37,27 +37,12 @@ function (DashboardView, Model) {
 
     describe('getPageHeader', function () {
 
-      it('calculates correct page header for services', function () {
-        model.set({
-          service: {
-            title: 'Carer\'s Allowance'
-          }
-        });
-        view.dashboardType = 'service';
-        expect(view.getPageHeader()).toEqual('Carer\'s Allowance');
-      });
-
       it('calculates correct page header for transactions', function () {
         model.set({
-          service: {
-            title: 'Carer\'s Allowance'
-          },
-          transaction: {
-            title: 'applications'
-          }
+          title: 'Carer\'s Allowance'
         });
         view.dashboardType = 'transaction';
-        expect(view.getPageHeader()).toEqual('Carer\'s Allowance: applications');
+        expect(view.getPageHeader()).toEqual('Carer\'s Allowance');
       });
 
     });
@@ -68,9 +53,7 @@ function (DashboardView, Model) {
       it('calculates correct tagline for departments', function () {
         model.set({
           dashboardType: 'department',
-          department: {
-            title: 'Department for Work and Pensions'
-          }
+          title: 'Department for Work and Pensions'
         });
         view.dashboardType = 'department';
         expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Department for Work and Pensions</strong> are currently performing.');
@@ -78,38 +61,21 @@ function (DashboardView, Model) {
 
       it('calculates correct tagline for agencies', function () {
         model.set({
-          agency: {
-            title: 'Pensions Ombudsman'
-          }
+          title: 'Pensions Ombudsman'
         });
         view.dashboardType = 'agency';
         expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Pensions Ombudsman</strong> are currently performing.');
       });
 
-      it('calculates correct tagline for services', function () {
-        model.set({
-          service: {
-            title: 'Carer\'s Allowance'
-          },
-          transaction: {
-            title: 'applications'
-          }
-        });
-        view.dashboardType = 'service';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
-      });
-
       it('calculates correct tagline for transactions', function () {
         model.set({
-          service: {
-            title: 'Carer\'s Allowance'
-          },
+          title: 'Carer\'s Allowance',
           transaction: {
             title: 'applications'
           }
         });
         view.dashboardType = 'transaction';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance: applications</strong> service is currently performing.');
+        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
       });
 
       it('calculates correct tagline for policies', function () {
@@ -129,10 +95,8 @@ function (DashboardView, Model) {
 
       it('calculates page title from title and strapline', function () {
         model.set({
-          service: {
-            title: 'Title'
-          },
-          'strapline': 'Service dashboard'
+          title: 'Title',
+          strapline: 'Service dashboard'
         });
         view.dashboardType = 'service';
         expect(view.getPageTitle()).toEqual('Title - Service dashboard - GOV.UK');
@@ -140,9 +104,7 @@ function (DashboardView, Model) {
 
       it('calculates page title from title alone', function () {
         model.set({
-          service: {
-            title: 'Title'
-          }
+          title: 'Title'
         });
         view.dashboardType = 'service';
         expect(view.getPageTitle()).toEqual('Title - Performance - GOV.UK');
@@ -177,37 +139,16 @@ function (DashboardView, Model) {
         ]);
       });
 
-      it('calculates correct crumbs for services, including agency if defined', function () {
-        model.set({
-          department: {
-            title: 'Department for Work and Pensions'
-          },
-          agency: {
-            title: 'Pensions Ombudsman'
-          }
-        });
-        view.dashboardType = 'service';
-        expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'},
-          {'title': 'Department for Work and Pensions'},
-          {'title': 'Pensions Ombudsman'}
-        ]);
-      });
-
       it('calculates correct crumbs for transactions', function () {
         model.set({
           department: {
             title: 'Department for Work and Pensions'
-          },
-          service: {
-            title: 'Carer\'s Allowance'
           }
         });
         view.dashboardType = 'transaction';
         expect(view.getBreadcrumbCrumbs()).toEqual([
           {'path': '/performance', 'title': 'Performance'},
-          {'title': 'Department for Work and Pensions'},
-          {'title': 'Carer\'s Allowance'}
+          {'title': 'Department for Work and Pensions'}
         ]);
       });
 

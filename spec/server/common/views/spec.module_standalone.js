@@ -120,33 +120,16 @@ function (StandaloneView, Collection, Model, View) {
         ]);
       });
 
-      it('adds department, agency and service as a crumb when Stagecraft returns the necessary properties', function () {
+      it('adds department and agency as crumbs when Stagecraft returns the necessary properties', function () {
         model.set({
           'dashboard-title': 'Parent dashboard',
           'department': { 'title': 'A department'},
-          'agency': { 'title': 'An agency'},
-          'service': { 'title': 'A service'}
+          'agency': { 'title': 'An agency'}
         });
         expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
           {path: '/performance', title: 'Performance'},
           {title: 'A department'},
-          {title: 'An agency'},
-          {title: 'A service'}
-        ]);
-      });
-
-      it('adds department, agency and service as a crumb when Stagecraft returns the necessary properties', function () {
-        model.set({
-          'dashboard-title': 'Parent dashboard',
-          'department': { 'title': 'A department'},
-          'agency': { 'title': 'An agency'},
-          'service': { 'title': 'A service'}
-        });
-        expect(standaloneView.getBreadcrumbCrumbs()).toEqual([
-          {path: '/performance', title: 'Performance'},
-          {title: 'A department'},
-          {title: 'An agency'},
-          {title: 'A service'}
+          {title: 'An agency'}
         ]);
       });
 

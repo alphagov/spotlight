@@ -34,14 +34,11 @@ function (GovUkView, contentTemplate) {
       } else {
         tagline = 'This dashboard shows information about how ';
         if (this.dashboardType === 'transaction') {
-          tagline += 'the <strong>' + this.model.get('service').title + ': ';
-          tagline += this.model.get('transaction').title + '</strong> service is';
-        } else if (this.dashboardType === 'service') {
-          tagline += 'the <strong>' + this.model.get('service').title;
+          tagline += 'the <strong>' + this.model.get('title');
           tagline += '</strong> service is';
         } else if ((this.dashboardType === 'agency') || (this.dashboardType === 'department')) {
           tagline += 'selected services run by the <strong>';
-          tagline += this.model.get(this.dashboardType).title;
+          tagline += this.model.get('title');
           tagline += '</strong> are';
         }
         tagline += ' currently performing.';
@@ -50,14 +47,7 @@ function (GovUkView, contentTemplate) {
     },
 
     getPageHeader: function () {
-      var header;
-      if (this.dashboardType === 'transaction') {
-        header = this.model.get('service').title + ': ';
-        header += this.model.get('transaction').title;
-      } else {
-        header = this.model.get(this.dashboardType).title;
-      }
-      return header;
+      return this.model.get('title');
     },
 
     getPageTitleItems: function () {
@@ -78,15 +68,6 @@ function (GovUkView, contentTemplate) {
         crumbs.push({
           'title': this.model.get('department').title
         });
-      } else if (this.dashboardType === 'service') {
-        crumbs.push({
-          'title': this.model.get('department').title
-        });
-        if (this.model.get('agency')) {
-          crumbs.push({
-            'title': this.model.get('agency').title
-          });
-        }
       } else if (this.dashboardType === 'transaction') {
         crumbs.push({
           'title': this.model.get('department').title
@@ -96,9 +77,6 @@ function (GovUkView, contentTemplate) {
             'title': this.model.get('agency').title
           });
         }
-        crumbs.push({
-          'title': this.model.get('service').title
-        });
       }
       return crumbs;
     }
