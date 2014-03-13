@@ -19,6 +19,9 @@ define([
     },
 
     dateRange: function (value, options) {
+      _.defaults(options, {
+        format: 'D MMM YYYY'
+      });
       return formatters.date(value[0], options) + ' to ' +
         formatters.date(value[1], options);
     },

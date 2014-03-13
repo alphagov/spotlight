@@ -86,7 +86,7 @@ define([
         var range = [new Date('2014-03-11T03:00:00.000Z'),
                      new Date('2014-03-12T03:00:00.000Z')];
         expect(Formatters.format(range, 'dateRange'))
-          .toEqual('11 March 2014 to 12 March 2014');
+          .toEqual('11 Mar 2014 to 12 Mar 2014');
       });
 
       it('outputs a range with the custom date formatting', function () {
