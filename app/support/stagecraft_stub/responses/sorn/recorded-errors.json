@@ -1,0 +1,41 @@
+{
+  "module-type": "table",
+  "title": "Recorded errors",
+  "description": "Errors generated during the online application process last week",
+  "data-group": "vehicle-licensing",
+  "data-type": "failures",
+  "query-params": {
+    "filter_by": "type:sorn",
+    "group_by": "reason",
+    "collect": [
+      "count:sum",
+      "description:set"
+    ],
+    "period": "week",
+    "duration": 1
+  },
+  "axes": {
+    "x": {
+      "label": "Description",
+      "key": "description:set"
+    },
+    "y": [
+      {
+        "label": "Volume last week",
+        "key": "count:sum",
+        "format": "integer"
+      },
+      {
+        "label": "Percentage of total errors",
+        "key": "percentOfTotal(count:sum)",
+        "format": "percent"
+      }
+    ]
+  },
+  "sort-by": "count:sum",
+  "sort-order": "descending",
+  "page-type": "module",
+  "dashboard-title": "Statutory Off Road Notification",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "sorn"
+}
