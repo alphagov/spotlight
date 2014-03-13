@@ -14,6 +14,14 @@
     "Data is collated via monthly returns from suppliers on the G-Cloud framework"
   ],
   "axes": {
+    "x": {
+      "label": "Date",
+      "key": "_start_at",
+      "format": {
+        "type": "date",
+        "format": "MMMM YYYY"
+      }
+    },
     "y": [
       {
         "label": "Total",

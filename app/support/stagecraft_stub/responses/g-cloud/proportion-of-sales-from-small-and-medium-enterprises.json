@@ -27,7 +27,11 @@
   "category": "sme_large",
   "axes": {
     "x": {
-      "label": "Date of sales"
+      "label": "Date of sales",
+      "format": {
+        "type": "date",
+        "format": "MMMM YYYY"
+      }
     },
     "y": [
       {

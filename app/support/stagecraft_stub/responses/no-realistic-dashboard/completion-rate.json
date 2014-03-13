@@ -8,8 +8,9 @@
     "Info text line 1",
     "Info text line 2"
   ],
-  "denominator-matcher": "start$",
-  "numerator-matcher": "done$",
+  "denominator-matcher": "about-you$",
+  "numerator-matcher": "consent-and-declaration$",
+  "matching-attribute": "eventLabel",
   "page-type": "module",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",

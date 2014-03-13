@@ -15,6 +15,17 @@
     "Source: Office of National Statistics (ONS)"
   ],
   "axes": {
+    "x": {
+      "label": "Date",
+      "key": [
+        "_start_at",
+        "_end_at"
+      ],
+      "format": {
+        "type": "dateRange",
+        "format": "MMM YYYY"
+      }
+    },
     "y": [
       {
         "label": "Scotland",
