@@ -3,8 +3,8 @@
   "page-type": "dashboard",
   "dashboardType": "other",
   "strapline": "Policy dashboard",
+  "title": "Housing",
   "other": {
-    "title": "Housing",
     "tagline": "The government is helping local councils and developers work with local communities to plan and build better places to live for everyone. This includes building affordable housing, improving the quality of rented housing, helping more people to buy a home and providing housing support for vulnerable people."
   },
   "relatedPages": {

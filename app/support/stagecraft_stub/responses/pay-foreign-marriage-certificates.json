@@ -3,15 +3,10 @@
   "page-type": "dashboard",
   "dashboardType": "transaction",
   "strapline": "Service dashboard",
+  "title": "Pay for certificates to get married abroad",
   "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) for documents you need to get married abroad.",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Certificates to get married abroad"
-  },
-  "transaction": {
-    "title": "payments"
   },
   "modules": [
     {

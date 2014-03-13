@@ -3,18 +3,13 @@
   "page-type": "dashboard",
   "dashboardType": "transaction",
   "strapline": "Service dashboard",
+  "title": "Register as a waste carrier, broker or dealer",
   "description": "Businesses need to register if they transport waste regularly (or some types of waste as a one off). They also need to register if they buy, sell or dispose of waste – or arrange for someone else to do so.",
   "department": {
     "title": "Department for Environment, Food and Rural Affairs"
   },
   "agency": {
     "title": "Environment Agency"
-  },
-  "service": {
-    "title": "Register as a waste carrier, broker or dealer"
-  },
-  "transaction": {
-    "title": "applications"
   },
   "modules": [
     {

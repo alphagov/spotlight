@@ -4,17 +4,12 @@
   "dashboardType": "transaction",
   "strapline": "Service dashboard",
   "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>. <abbr title='Statutory Off Road Notification'>SORN</abbr>s must be made for a registered vehicle that is not being used on the road, and which has been taxed since 31 January 1998.",
+  "title": "Statutory Off Road Notification",
   "department": {
     "title": "Department for Transport"
   },
   "agency": {
     "title": "DVLA"
-  },
-  "service": {
-    "title": "Statutory Off Road Notification"
-  },
-  "transaction": {
-    "title": "applications"
   },
   "modules": [
     {

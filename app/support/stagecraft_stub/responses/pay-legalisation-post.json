@@ -3,15 +3,10 @@
   "page-type": "dashboard",
   "dashboardType": "transaction",
   "strapline": "Service dashboard",
+  "title": "Pay to get documents legalised by post",
   "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government.",
   "department": {
     "title": "Foreign and Commonwealth Office"
-  },
-  "service": {
-    "title": "Legalise documents by post"
-  },
-  "transaction": {
-    "title": "payments"
   },
   "modules": [
     {

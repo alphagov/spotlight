@@ -3,15 +3,10 @@
   "page-type": "dashboard",
   "dashboardType": "transaction",
   "strapline": "Service dashboard",
+  "title": "Apply for student finance",
   "description": "Full-time higher education for England only",
   "department": {
     "title": "Department for Education"
-  },
-  "service": {
-    "title": "Student finance"
-  },
-  "transaction": {
-    "title": "applications"
   },
   "relatedPages": {
     "transaction": {

@@ -3,8 +3,8 @@
   "page-type": "dashboard",
   "dashboardType": "other",
   "strapline": "Performance",
+  "title": "Activity on GOV.UK",
   "other": {
-    "title": "Activity on GOV.UK",
     "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, based on data from Google Analytics."
   },
   "modules": [

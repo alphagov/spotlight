@@ -3,8 +3,8 @@
   "page-type": "dashboard",
   "dashboardType": "other",
   "strapline": "Public sector purchasing dashboard",
+  "title": "G-Cloud",
   "other": {
-    "title": "G-Cloud",
     "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of sales via small and medium sized enterprises (SMEs)."
   },
   "relatedPages": {
