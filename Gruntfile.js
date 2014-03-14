@@ -90,7 +90,6 @@ module.exports = function (grunt) {
         specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
         match: '.*',
         useRequireJs: 'spec/requirejs-setup.js',
-        forceExit: true,
         jUnit: {
           report: false,
           savePath : './build/reports/jasmine/',
@@ -276,14 +275,14 @@ module.exports = function (grunt) {
   grunt.registerTask('test:all', [
     'copy:vendor',
     'copy:govuk_template',
-    'jshint',
     'clean',
     'copy:assets',
     'sass:development',
     'digest',
-    'cucumber',
     'jasmine',
-    'jasmine_node'
+    'jasmine_node',
+    'jshint',
+    'cucumber'
   ]);
 
   // Default task
@@ -294,4 +293,3 @@ module.exports = function (grunt) {
   ]);
 
 };
-
