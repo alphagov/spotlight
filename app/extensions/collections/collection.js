@@ -268,19 +268,22 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
     },
 
     getTableRows: function (keys) {
-      if (arguments.length !== 1 || !(_.isArray(keys))) {
-        keys = [].slice.apply(arguments);
-      }
       this.applyProcessors(keys);
-
       return this.map(function (model) {
         return _.map(keys, function (key) {
-          return model.get(key);
+          var value;
+          if (_.isArray(key)) {
+            value = _.map(key, model.get.bind(model));
+          } else {
+            value = model.get(key);
+          }
+          return value;
         });
       });
     },
 
     applyProcessors: function (keys) {
+      keys = _.flatten(keys);
       var processors = this.getProcessors(keys);
       _.each(processors, function (processor) {
         if (_.isFunction(this.processors[processor.fn])) {

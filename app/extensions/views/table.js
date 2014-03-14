@@ -11,6 +11,7 @@ function (View, Formatters) {
 
       this.valueAttr = options.valueAttr;
       this.axes = collection.options.axes;
+      this.period = collection.options.period;
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -52,7 +53,13 @@ function (View, Formatters) {
       var $row = this.renderEl('tr', $thead);
 
       _.each(this.getColumns(), function (column) {
-        this.renderEl('th', $row, column.label, { scope: 'col' });
+        var label = column.label;
+
+        if (column.timeshift) {
+          label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
+        }
+
+        this.renderEl('th', $row, label, { scope: 'col' });
       }, this);
 
     },
@@ -71,27 +78,25 @@ function (View, Formatters) {
         var renderCell = this.renderCell.bind(this, 'td', $row);
 
         _.each(row, function (cell, index) {
-          if (_.isArray(cell)) { // pulling data from multiple nested collections
-            _.each(cell, function (datapoint, columnIndex) {
-              // only render the first column for the first collection
-              if (columnIndex > 0 || index === 0) {
-                renderCell(datapoint, columns[index + columnIndex]);
-              }
-            });
-          } else {
-            renderCell(cell, columns[index]);
-          }
+          renderCell(cell, columns[index]);
         });
 
       }, this);
     },
 
     renderCell: function (tag, parent, content, column) {
+      var className = '';
+
       if (column.format) {
         content = this.format(content, column.format);
+        className = _.isString(column.format) ? column.format : column.format.type;
       }
+
       content = (content === null || content === undefined) ? 'no data' : content;
-      this.renderEl(tag, parent, content);
+
+      this.renderEl(tag, parent, content, {
+        'class': className
+      });
     },
 
     getColumns: function () {

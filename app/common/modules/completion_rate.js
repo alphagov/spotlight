@@ -26,8 +26,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         axes: _.merge({
           x: {
             label: 'Date of completion',
-            key: '_start_at',
-            format: 'date'
+            key: ['_start_at', '_end_at'],
+            format: 'dateRange'
           },
           y: [
             {

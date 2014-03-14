@@ -18,6 +18,19 @@ define([
       return date.format(options.format);
     },
 
+    dateRange: function (value, options) {
+      _.defaults(options, {
+        format: 'D MMM YYYY',
+        subtract: 'day'
+      });
+      // avoid overlapping at the ends of a range i.e. 1 Mar-1 Apr => 1 Mar-31 Mar
+      if (options.subtract) {
+        value[1] = moment(value[1]).subtract(options.subtract, 1);
+      }
+      return formatters.date(value[0], options) + ' to ' +
+        formatters.date(value[1], options);
+    },
+
     duration: function (value, options) {
       _.defaults(options, {
         unit: 'ms',

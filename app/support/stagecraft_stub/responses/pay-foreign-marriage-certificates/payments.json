@@ -1,10 +1,6 @@
 {
-  "page-type": "module",
   "module-type": "completion_numbers",
   "title": "Payments",
-  "dashboard-title": "Payment for certificates to get married abroad",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-foreign-marriage-certificates",
   "description": "",
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",
@@ -14,5 +10,19 @@
   ],
   "denominator-matcher": "start$",
   "numerator-matcher": "done$",
-  "matching-attribute": "eventCategory"
+  "matching-attribute": "eventCategory",
+  "axes": {
+    "x": {
+      "label": "Date of Payment"
+    },
+    "y": [
+      {
+        "label": "Number of payments"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Payment for certificates to get married abroad",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "pay-foreign-marriage-certificates"
 }

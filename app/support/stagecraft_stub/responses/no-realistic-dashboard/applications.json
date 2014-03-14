@@ -2,7 +2,7 @@
   "module-type": "completion_numbers",
   "title": "Applications",
   "description": "",
-  "data-group": "carers-allowance",
+  "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",
   "info": [
     "Info text line 1",
@@ -10,6 +10,7 @@
   ],
   "denominator-matcher": "start$",
   "numerator-matcher": "done$",
+  "matching-attribute": "eventCategory",
   "page-type": "module",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",

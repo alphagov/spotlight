@@ -18,6 +18,14 @@
     "Paper form: applications made using a paper form"
   ],
   "axes": {
+    "x": {
+      "label": "Date",
+      "key": [
+        "_start_at",
+        "_end_at"
+      ],
+      "format": "dateRange"
+    },
     "y": [
       {
         "label": "Paper form",

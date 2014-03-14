@@ -242,17 +242,17 @@
       "axes": {
         "y": [
           {
-            "label": "Desktop",
+            "label": "Mobile",
             "categoryId": "mobile",
             "format": "integer"
           },
           {
-            "label": "Mobile",
+            "label": "Tablet",
             "categoryId": "tablet",
             "format": "integer"
           },
           {
-            "label": "Tablet",
+            "label": "Desktop",
             "categoryId": "desktop",
             "format": "integer"
           }

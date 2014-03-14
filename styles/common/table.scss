@@ -5,7 +5,7 @@ table {
 
   th, td {
     @include core-16($tabular-numbers: true);
-    padding: 0.7em 0.5em 0.7em 1em;
+    padding: 0.7em 1em 0.7em 1em;
   }
 
   th {
@@ -20,6 +20,10 @@ table {
   td {
     background: #eaedef;
     border: dotted 1px #b8c6cc;
+  }
+
+  .currency, .percent, .integer, .number {
+    text-align: right;
   }
 
   tr:nth-child(even) td {

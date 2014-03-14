@@ -79,6 +79,25 @@ function (Table, View, $) {
         expect(table.collection.getTableRows).toHaveBeenCalledWith(['timestamp', 'value', 'value']);
       });
 
+      describe('renderHead', function () {
+        it('will append the timeshift duration to the column header', function () {
+          var timeshiftedTable = new Table({
+            collection: {
+              on: jasmine.createSpy(),
+              options: {
+                period: 'week',
+                axes: {
+                  x: { label: 'date', key: 'timestamp' },
+                  y: [ { label: 'column', key: 'value', timeshift: 52 } ]
+                }
+              }
+            }
+          });
+          timeshiftedTable.renderHead();
+          expect(table.renderEl).toHaveBeenCalledWith('th', undefined, 'column (52 weeks ago)', { scope: 'col' });
+        });
+      });
+
       describe('renderEl', function () {
         it('does nothing with no context', function () {
           expect(table.renderEl('tr')).toBe(undefined);
@@ -143,7 +162,26 @@ function (Table, View, $) {
           spyOn(table, 'format').andReturn('10%');
           table.renderCell('td', null, 10, { format: 'percent' });
           expect(table.format).toHaveBeenCalledWith(10, 'percent');
-          expect(table.renderEl).toHaveBeenCalledWith('td', null, '10%');
+          expect(table.renderEl).toHaveBeenCalledWith('td', null, '10%', { 'class': 'percent' });
+        });
+
+        it('it adds a class if a formatter is defined', function () {
+          spyOn(table, 'format').andReturn('10');
+          table.renderCell('td', null, 10, { format: 'integer' });
+          expect(table.format).toHaveBeenCalledWith(10, 'integer');
+          expect(table.renderEl).toHaveBeenCalledWith('td', null, '10', { 'class': 'integer' });
+        });
+
+        it('it adds a class if a formatter is defined', function () {
+          spyOn(table, 'format').andReturn('10');
+          table.renderCell('td', null, 10, { format: { type: 'integer' } });
+          expect(table.format).toHaveBeenCalledWith(10, { type: 'integer' });
+          expect(table.renderEl).toHaveBeenCalledWith('td', null, '10', { 'class': 'integer' });
+        });
+
+        it('it doesnt add a class if no formater', function () {
+          table.renderCell('td', null, 10, { });
+          expect(table.renderEl).toHaveBeenCalledWith('td', null, 10, { 'class': '' });
         });
       });
 
@@ -169,7 +207,7 @@ function (Table, View, $) {
                   '<tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr>' +
                 '</thead>' +
                 '<tbody>' +
-                  '<tr><td>01/02/01</td><td>foo</td><td>no data</td></tr>' +
+                  '<tr><td class="">01/02/01</td><td class="">foo</td><td class="">no data</td></tr>' +
                 '</tbody>');
       });
 

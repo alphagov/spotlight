@@ -43,7 +43,10 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
           x: {
             label: 'Date',
             key: '_start_at',
-            format: 'date'
+            format: {
+              type: 'date',
+              format: 'MMMM YYYY'
+            }
           },
           y: []
         }, this.model.get('axes'))

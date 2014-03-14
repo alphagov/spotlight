@@ -8,9 +8,9 @@
     "Data source: CSV update",
     "Digital take-up measures digital transactions as a percentage of the total."
   ],
-  "end-matcher": "^Digital$",
-  "start-matcher": ".*",
-  "matching-attribute": "digital",
+  "numerator-matcher": "^Digital$",
+  "denominator-matcher": ".*",
+  "matching-attribute": "channel",
   "value-attribute": "count:sum",
   "page-type": "module",
   "dashboard-title": "Solihull missed waste collection",
