@@ -152,6 +152,11 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             moduleOnDisk = JSON.parse(fs.readFileSync(moduleJsonPath, 'utf8'));
           }
 
+          if (!fs.existsSync(pagePerThingDirectory)) {
+            console.log('->', 'page-per-thing directory does not exist - creating', pagePerThingDirectory);
+            fs.mkdirSync(pagePerThingDirectory);
+          }
+
           delete module.slug;
           delete module['page-type'];
           module = _.extend(module, {
