@@ -1,0 +1,42 @@
+{
+  "module-type": "grouped_timeseries",
+  "title": "Applications breakdown",
+  "description": "Tax disc applications per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+  "data-group": "lasting-power-of-attorney",
+  "data-type": "volumes",
+  "category": "key",
+  "period": "week",
+  "value-attr": "value:sum",
+  "show-line-labels": true,
+  "use_stack": true,
+  "group-mapping": {
+    "property_and_financial_digital_applications": "digital",
+    "health_and_welfare_digital_applications": "digital",
+    "property_and_financial_paper_applications": "non-digital",
+    "health_and_welfare_paper_applications": "non-digital"
+  },
+  "info": [
+    "Data source: Office of the Public Guardian",
+    "Paper form applications include all applications made using the traditional paper based forms.",
+    "Digital applications include applications created using the Lasting Power of Attorney digital service.",
+    "Applications are counted at point of receipt."
+  ],
+  "axes": {
+    "y": [
+      {
+        "categoryId": "non-digital",
+        "label": "Paper form",
+        "format": "integer"
+      },
+      {
+        "categoryId": "digital",
+        "label": "Digital",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Lasting Power of Attorney",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "lasting-power-of-attorney"
+}
