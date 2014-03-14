@@ -14,7 +14,7 @@ Capybara.default_driver = :poltergeist
 Capybara.app_host = "http://localhost:#{APP_PORT}"
 Capybara.server_port = APP_PORT
 Capybara.run_server = false
-Capybara.default_wait_time = 7
+Capybara.default_wait_time = 30
 
 $server = IO.popen("node app/server.js --env development_cucumber -p #{APP_PORT}")
 $server.gets
