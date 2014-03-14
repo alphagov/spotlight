@@ -10,7 +10,7 @@ function (GovUkView, contentTemplate) {
 
       GovUkView.prototype.initialize.apply(this, arguments);
 
-      this.dashboardType = this.model.get('dashboardType');
+      this.dashboardType = this.model.get('dashboard-type');
     },
 
     getContent: function () {

@@ -1,7 +1,7 @@
 {
   "slug": "student-finance",
   "page-type": "dashboard",
-  "dashboardType": "transaction",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Apply for student finance",
   "description": "Full-time higher education for England only",

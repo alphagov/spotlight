@@ -9,7 +9,7 @@ function (DashboardView, Model) {
     beforeEach(function () {
       model = new Model({
         foo: 'bar',
-        dashboardType: 'service',
+        dashboard-type: 'service',
         service: {
           'title': 'Carer\'s Allowance'
         }
@@ -41,7 +41,7 @@ function (DashboardView, Model) {
         model.set({
           title: 'Carer\'s Allowance'
         });
-        view.dashboardType = 'transaction';
+        view.dashboard-type = 'transaction';
         expect(view.getPageHeader()).toEqual('Carer\'s Allowance');
       });
 
@@ -52,10 +52,10 @@ function (DashboardView, Model) {
 
       it('calculates correct tagline for departments', function () {
         model.set({
-          dashboardType: 'department',
+          dashboard-type: 'department',
           title: 'Department for Work and Pensions'
         });
-        view.dashboardType = 'department';
+        view.dashboard-type = 'department';
         expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Department for Work and Pensions</strong> are currently performing.');
       });
 
@@ -63,7 +63,7 @@ function (DashboardView, Model) {
         model.set({
           title: 'Pensions Ombudsman'
         });
-        view.dashboardType = 'agency';
+        view.dashboard-type = 'agency';
         expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Pensions Ombudsman</strong> are currently performing.');
       });
 
@@ -74,7 +74,7 @@ function (DashboardView, Model) {
             title: 'applications'
           }
         });
-        view.dashboardType = 'transaction';
+        view.dashboard-type = 'transaction';
         expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
       });
 
@@ -85,7 +85,7 @@ function (DashboardView, Model) {
             tagline: 'The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.'
           }
         });
-        view.dashboardType = 'other';
+        view.dashboard-type = 'other';
         expect(view.getTagline()).toEqual('The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.');
       });
 
@@ -98,7 +98,7 @@ function (DashboardView, Model) {
           title: 'Title',
           strapline: 'Service dashboard'
         });
-        view.dashboardType = 'service';
+        view.dashboard-type = 'service';
         expect(view.getPageTitle()).toEqual('Title - Service dashboard - GOV.UK');
       });
 
@@ -106,7 +106,7 @@ function (DashboardView, Model) {
         model.set({
           title: 'Title'
         });
-        view.dashboardType = 'service';
+        view.dashboard-type = 'service';
         expect(view.getPageTitle()).toEqual('Title - Performance - GOV.UK');
       });
     });
@@ -115,12 +115,12 @@ function (DashboardView, Model) {
 
       it('calculates correct crumbs for departments', function () {
         model.set({
-          dashboardType: 'department',
+          dashboard-type: 'department',
           department: {
             title: 'Department for Work and Pensions'
           }
         });
-        view.dashboardType = 'department';
+        view.dashboard-type = 'department';
         expect(view.getBreadcrumbCrumbs()).toEqual([
           {'path': '/performance', 'title': 'Performance'}
         ]);
@@ -132,7 +132,7 @@ function (DashboardView, Model) {
             title: 'Department for Work and Pensions'
           }
         });
-        view.dashboardType = 'agency';
+        view.dashboard-type = 'agency';
         expect(view.getBreadcrumbCrumbs()).toEqual([
           {'path': '/performance', 'title': 'Performance'},
           {'title': 'Department for Work and Pensions'}
@@ -145,7 +145,7 @@ function (DashboardView, Model) {
             title: 'Department for Work and Pensions'
           }
         });
-        view.dashboardType = 'transaction';
+        view.dashboard-type = 'transaction';
         expect(view.getBreadcrumbCrumbs()).toEqual([
           {'path': '/performance', 'title': 'Performance'},
           {'title': 'Department for Work and Pensions'}
@@ -159,7 +159,7 @@ function (DashboardView, Model) {
             tagline: 'The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.'
           }
         });
-        view.dashboardType = 'policy';
+        view.dashboard-type = 'policy';
         expect(view.getBreadcrumbCrumbs()).toEqual([
           {'path': '/performance', 'title': 'Performance'}
         ]);

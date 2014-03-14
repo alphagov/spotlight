@@ -1,7 +1,7 @@
 {
   "slug": "solihull-local-authority",
   "page-type": "dashboard",
-  "dashboardType": "transaction",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Solihull missed waste collections",
   "description": "Solihull Local Authority",

@@ -1,7 +1,7 @@
 {
   "slug": "deposit-foreign-marriage",
   "page-type": "dashboard",
-  "dashboardType": "transaction",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Deposit foreign marriage or civil partnership certificates",
   "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",

@@ -1,7 +1,7 @@
 {
   "slug": "g-cloud",
   "page-type": "dashboard",
-  "dashboardType": "other",
+  "dashboard-type": "other",
   "strapline": "Public sector purchasing dashboard",
   "title": "G-Cloud",
   "other": {
