@@ -1,0 +1,40 @@
+{
+  "module-type": "table",
+  "title": "Help usage",
+  "description": "How often help buttons in the transaction were used last week",
+  "data-group": "lasting-power-of-attorney",
+  "data-type": "journey",
+  "query-params": {
+    "filter_by": "eventAction:help.inline",
+    "group_by": "eventDestination",
+    "collect": "uniqueEvents:sum",
+    "period": "week",
+    "duration": 1
+  },
+  "axes": {
+    "x": {
+      "label": "Description",
+      "key": "eventDestination",
+      "format": {
+        "type": "sentence",
+        "uppercase": [
+          "lpa",
+          "bacs"
+        ]
+      }
+    },
+    "y": [
+      {
+        "label": "Usage last week",
+        "key": "uniqueEvents:sum",
+        "format": "integer"
+      }
+    ]
+  },
+  "sort-by": "uniqueEvents:sum",
+  "sort-order": "descending",
+  "page-type": "module",
+  "dashboard-title": "Lasting Power of Attorney",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "lasting-power-of-attorney"
+}
