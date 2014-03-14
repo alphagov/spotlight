@@ -39,6 +39,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         showTotalLines: this.model.get('show-total-lines'),
         duration: this.model.get('duration'),
         axisPeriod: this.model.get('axis-period'),
+        groupMapping: this.model.get('group-mapping'),
         axes: _.merge({
           x: {
             label: 'Date',
