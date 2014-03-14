@@ -13,7 +13,9 @@ function (Component) {
     events: function () {
       if (this.modernizr.touch) {
         return {
-          'touchstart .hover': 'onTouchStart'
+          'touchstart .hover' : 'onTouchStart',
+          'touchend .hover'   : 'onTouchEnd',
+          'touchmove .hover'  : 'onTouchMove'
         };
       } else {
         return {
@@ -59,17 +61,29 @@ function (Component) {
     },
 
     onTouchStart: function (e) {
-      var touch = e.originalEvent.touches[0];
-      var offset = this.graph.graphWrapper.offset();
-      var scaleFactor = this.graph.scaleFactor();
-      var x = (touch.pageX - offset.left) / scaleFactor - this.margin.left;
-      var y = (touch.pageY - offset.top) / scaleFactor - this.margin.top;
+      var touch = e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : e;
+      this.startX = this.endX = touch.pageX;
+      this.startY = this.endY = touch.pageY;
+    },
 
-      this.attachBodyListener('touchstart');
-      this.selectPoint(x, y, {
-        toggle: true
-      });
-      return false;
+    onTouchMove: function (e) {
+      var touch = e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : e;
+      this.endX = touch.pageX;
+      this.endY = touch.pageY;
+    },
+
+    onTouchEnd: function () {
+      if ((this.startX === this.endX) && this.startY === this.endY) {
+        var offset = this.graph.graphWrapper.offset();
+        var scaleFactor = this.graph.scaleFactor();
+        var x = (this.endX - offset.left) / scaleFactor - this.margin.left;
+        var y = (this.endY - offset.top) / scaleFactor - this.margin.top;
+
+        this.attachBodyListener('touchstart');
+        this.selectPoint(x, y, {
+          toggle: true
+        });
+      }
     },
 
     /**
