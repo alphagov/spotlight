@@ -156,6 +156,38 @@ function (ListView, ListCollection) {
 
     });
 
+    it('should not use label if labelRegex match fails', function () {
+
+      var collection = new ListCollection({
+        'data': [
+          { 'pageTitle': 'foo - GOV.UK',
+            'pagePath': '/foo' },
+          { 'pageTitle': 'bar',
+            'pagePath': '/bar' }
+        ]
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'labelRegex': '^(.*)\\s-[^-]+$',
+        'linkAttr': 'pagePath'
+      });
+
+      var view = new ListView({
+        collection: collection
+      });
+
+      jasmine.renderView(view, function () {
+        var listItems = view.$el.find('li');
+
+        expect(listItems.length).toEqual(2);
+        expect(listItems.first().text().trim()).toEqual('foo');
+        expect(listItems.last().text().trim()).toEqual('bar');
+      });
+
+    });
+
   });
 
 });

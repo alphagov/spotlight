@@ -18,6 +18,7 @@ app/support/**/*.js
 tools/**
 features/**
 styles/**
+log/**
 Gemfile*
 LICENSE
 _SpecRunner.html
