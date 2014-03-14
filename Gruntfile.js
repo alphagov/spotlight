@@ -90,7 +90,6 @@ module.exports = function (grunt) {
         specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
         match: '.*',
         useRequireJs: 'spec/requirejs-setup.js',
-        forceExit: true,
         jUnit: {
           report: false,
           savePath : './build/reports/jasmine/',
