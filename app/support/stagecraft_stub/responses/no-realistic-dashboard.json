@@ -1,8 +1,9 @@
 {
   "slug": "no-realistic-dashboard",
   "page-type": "dashboard",
-  "dashboardType": "transaction",
+  "dashboard-type": "transaction",
   "strapline": "Performance",
+  "title": "Non-Realistic Data Stub",
   "department": {
     "title": "Non-Realistic Data Stub"
   },
@@ -30,7 +31,6 @@
       }
     ]
   },
-  "title": "Non-Realistic Data Stub",
   "modules": [
     {
       "slug": "live-service-usage",
