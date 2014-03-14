@@ -11,6 +11,7 @@ function (View, Formatters) {
 
       this.valueAttr = options.valueAttr;
       this.axes = collection.options.axes;
+      this.period = collection.options.period;
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -52,7 +53,13 @@ function (View, Formatters) {
       var $row = this.renderEl('tr', $thead);
 
       _.each(this.getColumns(), function (column) {
-        this.renderEl('th', $row, column.label, { scope: 'col' });
+        var label = column.label;
+
+        if (column.timeshift) {
+          label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
+        }
+
+        this.renderEl('th', $row, label, { scope: 'col' });
       }, this);
 
     },

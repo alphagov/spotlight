@@ -79,6 +79,25 @@ function (Table, View, $) {
         expect(table.collection.getTableRows).toHaveBeenCalledWith(['timestamp', 'value', 'value']);
       });
 
+      describe('renderHead', function () {
+        it('will append the timeshift duration to the column header', function () {
+          var timeshiftedTable = new Table({
+            collection: {
+              on: jasmine.createSpy(),
+              options: {
+                period: 'week',
+                axes: {
+                  x: { label: 'date', key: 'timestamp' },
+                  y: [ { label: 'column', key: 'value', timeshift: 52 } ]
+                }
+              }
+            }
+          });
+          timeshiftedTable.renderHead();
+          expect(table.renderEl).toHaveBeenCalledWith('th', undefined, 'column (52 weeks ago)', { scope: 'col' });
+        });
+      });
+
       describe('renderEl', function () {
         it('does nothing with no context', function () {
           expect(table.renderEl('tr')).toBe(undefined);

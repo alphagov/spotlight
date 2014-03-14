@@ -40,19 +40,19 @@
             "format": "integer"
           },
           {
-            "label": "GOV.UK (52 weeks ago)",
+            "label": "GOV.UK",
             "categoryId": "govuk_visitors",
             "timeshift": 52,
             "format": "integer"
           },
           {
-            "label": "Directgov (52 weeks ago)",
+            "label": "Directgov",
             "categoryId": "directgov_visitors",
             "timeshift": 52,
             "format": "integer"
           },
           {
-            "label": "Business Link (52 weeks ago)",
+            "label": "Business Link",
             "categoryId": "businesslink_visitors",
             "timeshift": 52,
             "format": "integer"
