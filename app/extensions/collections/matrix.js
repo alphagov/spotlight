@@ -133,12 +133,11 @@ function (require, Collection, Group) {
         // map array of columns into array of rows
         if (columns.length) {
           _.each(columns[0], function (row, i) {
-            var rowToAdd = [],
-                rowParts = _.map(columns, function (col, colIndex) {
-                  return colIndex === 0 ? col[i] : col[i].slice(1);
-                });
-
-            rows.push(rowToAdd.concat.apply(rowToAdd, rowParts));
+            var rowParts = _.map(columns, function (col, colIndex) {
+              return colIndex === 0 ? col[i] : col[i].slice(1);
+            });
+            // use concat.apply to flatten the array of arrays of arrays by one level
+            rows.push([].concat.apply([], rowParts));
           });
         }
       }
