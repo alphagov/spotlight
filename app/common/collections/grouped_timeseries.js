@@ -63,7 +63,8 @@ function (MatrixCollection) {
 
                         return _.extend({
                           id: series.categoryId,
-                          title: series.label
+                          title: series.label,
+                          href: series.href
                         }, {
                           values: dataSeries.values
                         });
