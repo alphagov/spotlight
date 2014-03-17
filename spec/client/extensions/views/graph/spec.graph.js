@@ -17,7 +17,10 @@ function (Graph, GraphTable, Collection, Model, d3) {
       spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
         collection: {
-          on: jasmine.createSpy()
+          on: jasmine.createSpy(),
+          options: {
+            axes: true
+          }
         }
       });
       expect(view.d3).toBe(d3);
@@ -67,6 +70,28 @@ function (Graph, GraphTable, Collection, Model, d3) {
         });
         spyOn(TestGraph.prototype, 'render');
         spyOn(TestGraph.prototype, 'prepareGraphArea');
+      });
+
+      it('only creates a table if options.axis is present', function () {
+        spyOn(Graph.prototype, 'prepareGraphArea');
+        var graph = new TestGraph({
+          collection: {
+            on: jasmine.createSpy(),
+            options: {
+              axes: true
+            }
+          }
+        });
+        expect(graph.table).toBeDefined();
+
+        graph = new TestGraph({
+          collection: {
+            on: jasmine.createSpy(),
+            options: {
+            }
+          }
+        });
+        expect(graph.table).toBeUndefined();
       });
 
       it('re-renders when collection resets', function () {

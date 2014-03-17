@@ -84,7 +84,9 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.scales = {};
       this.margin = {};
 
-      this.table = new GraphTable(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
+      if (this.collection.options.axes) {
+        this.table = new GraphTable(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
+      }
 
       // initialize graph components
       var componentInstances = this.componentInstances = [];
