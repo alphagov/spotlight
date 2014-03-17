@@ -11,11 +11,13 @@
   "tabs": [
     {
       "id": "day",
-      "name": "30 days"
+      "name": "30 days",
+      "format": "date"
     },
     {
       "id": "hour",
-      "name": "24 hours"
+      "name": "24 hours",
+      "format": "time"
     }
   ],
   "tabbed_attr": "period",

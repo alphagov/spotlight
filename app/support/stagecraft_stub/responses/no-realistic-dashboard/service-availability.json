@@ -1,11 +1,7 @@
 {
-  "page-type": "module",
   "module-type": "availability",
   "title": "Service availability",
   "description": "",
-  "dashboard-title": "Non-Realistic Data Stub",
-  "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard",
   "data-group": "deposit-foreign-marriage",
   "data-type": "monitoring",
   "info": [
@@ -13,8 +9,20 @@
     "Info text line 2"
   ],
   "tabs": [
-    {"id": "day", "name": "30 days"},
-    {"id": "hour", "name": "24 hours"}
+    {
+      "id": "day",
+      "name": "30 days",
+      "format": "date"
+    },
+    {
+      "id": "hour",
+      "name": "24 hours",
+      "format": "time"
+    }
   ],
-  "tabbed_attr": "period"
+  "tabbed_attr": "period",
+  "page-type": "module",
+  "dashboard-title": "Non-Realistic Data Stub",
+  "dashboard-strapline": "Performance",
+  "dashboard-slug": "no-realistic-dashboard"
 }
