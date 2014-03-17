@@ -161,6 +161,14 @@
         "Desktop category includes traffic from desktops and laptops"
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
         "y": [
           {
             "label": "Desktop",
