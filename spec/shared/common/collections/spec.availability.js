@@ -130,5 +130,25 @@ define([
         expect(data.values[0].total).toEqual(null);
         expect(data.values[0].uptimeFraction).toEqual(null);
       });
+
+      it('should update axes format options if tabs change', function () {
+        var collection = new AvailiabilityCollection(availabilityData, _.extend({
+          tabs: [ { id: 'foo', format: 'date' }, { id: 'bar', format: 'time' } ],
+          tabbedAttr: 'key',
+          axes: {
+            x: {
+              format: 'date'
+            }
+          }
+        }, options));
+
+        collection.query.set('key', 'bar');
+        expect(collection.options.axes.x.format).toEqual('time');
+
+        collection.query.set('key', 'foo');
+        expect(collection.options.axes.x.format).toEqual('date');
+
+      });
+
     });
   });
