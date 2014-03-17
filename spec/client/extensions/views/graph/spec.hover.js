@@ -12,6 +12,8 @@ function (Hover) {
         graphWrapper = $('<div class="graph-wrapper"></div>');
         spyOn(Hover.prototype, 'onMouseMove');
         spyOn(Hover.prototype, 'onTouchStart');
+        spyOn(Hover.prototype, 'onTouchMove');
+        spyOn(Hover.prototype, 'onTouchEnd');
       });
 
       it('listens to mousemove events in mouse environments', function () {
@@ -33,24 +35,67 @@ function (Hover) {
         });
       });
 
-      it('listens to touchstart events in touch environments', function () {
-        var component = new Hover({
-          modernizr: { touch: true },
-          collection: {
-            on: jasmine.createSpy(),
-            selectItem: jasmine.createSpy()
-          },
-          graph: { on: jasmine.createSpy(),
-                   graphWrapper: graphWrapper}
-        });
-        graphWrapper.appendTo(component.$el);
-        component.render();
+      describe('touch events', function () {
+        it('binds to touchstart', function () {
+          var component = new Hover({
+            modernizr: { touch: true },
+            collection: {
+              on: jasmine.createSpy(),
+              selectItem: jasmine.createSpy()
+            },
+            graph: { on: jasmine.createSpy(),
+                     graphWrapper: graphWrapper}
+          });
+          graphWrapper.appendTo(component.$el);
+          component.render();
 
-        jasmine.renderView(component, function () {
-          component.$el.find('.hover').trigger('touchstart');
-          expect(component.onTouchStart).toHaveBeenCalled();
-          expect(component.onMouseMove).not.toHaveBeenCalled();
+          jasmine.renderView(component, function () {
+            component.$el.find('.hover').trigger('touchstart');
+            expect(component.onTouchStart).toHaveBeenCalled();
+            expect(component.onMouseMove).not.toHaveBeenCalled();
+          });
         });
+
+        it('binds to touchmove', function () {
+          var component = new Hover({
+            modernizr: { touch: true },
+            collection: {
+              on: jasmine.createSpy(),
+              selectItem: jasmine.createSpy()
+            },
+            graph: { on: jasmine.createSpy(),
+                     graphWrapper: graphWrapper}
+          });
+          graphWrapper.appendTo(component.$el);
+          component.render();
+
+          jasmine.renderView(component, function () {
+            component.$el.find('.hover').trigger('touchmove');
+            expect(component.onTouchMove).toHaveBeenCalled();
+            expect(component.onMouseMove).not.toHaveBeenCalled();
+          });
+        });
+
+        it('binds to touchend', function () {
+          var component = new Hover({
+            modernizr: { touch: true },
+            collection: {
+              on: jasmine.createSpy(),
+              selectItem: jasmine.createSpy()
+            },
+            graph: { on: jasmine.createSpy(),
+                     graphWrapper: graphWrapper}
+          });
+          graphWrapper.appendTo(component.$el);
+          component.render();
+
+          jasmine.renderView(component, function () {
+            component.$el.find('.hover').trigger('touchend');
+            expect(component.onTouchEnd).toHaveBeenCalled();
+            expect(component.onMouseMove).not.toHaveBeenCalled();
+          });
+        });
+
       });
     });
 
@@ -112,20 +157,76 @@ function (Hover) {
       });
 
       describe('onTouchStart', function () {
+        it('records the start x/y touch position', function () {
+          component.onTouchStart({
+            originalEvent: {
+              targetTouches: [{
+                pageX: 150,
+                pageY: 200
+              }]
+            }
+          });
+          expect(component.startX).toEqual(150);
+          expect(component.startY).toEqual(200);
+          expect(component.endX).toEqual(150);
+          expect(component.endY).toEqual(200);
+        });
+      });
+
+      describe('onTouchMove', function () {
+        it('updates the end x/y touch position', function () {
+          component.onTouchStart({
+            originalEvent: {
+              targetTouches: [{
+                pageX: 150,
+                pageY: 150
+              }]
+            }
+          });
+
+          expect(component.startX).toEqual(150);
+          expect(component.startY).toEqual(150);
+          expect(component.endX).toEqual(150);
+          expect(component.endY).toEqual(150);
+
+
+          component.onTouchMove({
+            originalEvent: {
+              targetTouches: [{
+                pageX: 200,
+                pageY: 200
+              }]
+            }
+          });
+
+          expect(component.startX).toEqual(150);
+          expect(component.startY).toEqual(150);
+          expect(component.endX).toEqual(200);
+          expect(component.endY).toEqual(200);
+        });
+      });
+
+      describe('onTouchEnd', function () {
+        it('does nothing if start and end x/y are not the same', function () {
+          component.startX = 299;
+          component.startY = 299;
+          component.endX = 300;
+          component.endY = 300;
+          component.onTouchEnd();
+          expect(component.selectPoint).not.toHaveBeenCalled();
+        });
+
         it('calculates the touch position when the graph is not scaled', function () {
           spyOn(graphWrapper, 'offset').andReturn({
             left: 200,
             top: 200
           });
           component.graph.scaleFactor.andReturn(1);
-          component.onTouchStart({
-            originalEvent: {
-              touches: [{
-                pageX: 300,
-                pageY: 300
-              }]
-            }
-          });
+          component.startX = 300;
+          component.startY = 300;
+          component.endX = 300;
+          component.endY = 300;
+          component.onTouchEnd();
           expect(component.selectPoint).toHaveBeenCalledWith(90, 80, { toggle: true });
         });
 
@@ -135,14 +236,11 @@ function (Hover) {
             top: 100
           });
           component.graph.scaleFactor.andReturn(0.5);
-          component.onTouchStart({
-            originalEvent: {
-              touches: [{
-                pageX: 150,
-                pageY: 150
-              }]
-            }
-          });
+          component.startX = 150;
+          component.startY = 150;
+          component.endX = 150;
+          component.endY = 150;
+          component.onTouchEnd();
           expect(component.selectPoint).toHaveBeenCalledWith(90, 80, { toggle: true });
         });
       });
