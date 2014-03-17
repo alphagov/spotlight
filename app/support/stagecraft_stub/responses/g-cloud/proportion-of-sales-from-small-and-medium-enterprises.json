@@ -31,7 +31,8 @@
       "format": {
         "type": "date",
         "format": "MMMM YYYY"
-      }
+      },
+      "key": "_start_at"
     },
     "y": [
       {
