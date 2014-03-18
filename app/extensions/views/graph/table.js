@@ -17,8 +17,8 @@ function (Table, HideShow) {
       this.toggleTable = new HideShow({
         $reveal: this.$table,
         $el: this.$toggleContainer,
-        showLabel: 'Show the data for this graph.',
-        hideLabel: 'Hide the data for this graph.'
+        showLabel: 'Show the data for the ' + this.model.get('title').toLowerCase() + ' graph',
+        hideLabel: 'Hide the data for the ' + this.model.get('title').toLowerCase() + ' graph'
       });
     },
 
