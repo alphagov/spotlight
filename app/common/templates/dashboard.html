@@ -47,3 +47,91 @@
 </header>
 
 {{{ modules }}}
+
+{{# hasFooter }}
+<footer>
+
+  <div class="cols2 footer-left">
+
+  {{# description }}
+  <div class="footer-text description">{{{ description }}}</div>
+  {{/ description }}
+
+  {{# service }}
+  <h3>Part of:</h3>
+  <div class="footer-text service">{{ service.title }}</div>
+  {{/ service }}
+
+  {{# agency }}
+  <h3>Agency:</h3>
+  <div class="footer-text agency">{{ agency.title }}</div>
+  {{/ agency }}
+
+  {{# department }}
+  <h3>Department:</h3>
+  <div class="footer-text department">{{ department.title }}</div>
+  {{/ department }}
+
+  {{# customer-type }}
+  <h3>User:</h3>
+  <div class="footer-text user">{{ customer-type }}</div>
+  {{/ customer-type }}
+
+  {{# business-model }}
+  <h3>Service costs paid by:</h3>
+  <div class="footer-text service-costs">{{ business-model }}</div>
+  {{/ business-model }}
+
+  </div>
+
+  <div class="cols2">
+
+    {{# relatedPages }}
+
+    <aside class='related-pages' role='complementary'>
+
+      {{# relatedPages.transaction }}
+      <div class="related-transaction">
+        <h3>Visit this service</h3>
+        <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
+      </div>
+      {{/ relatedPages.transaction }}
+
+      {{# relatedPages.other.length }}
+      <div class="related-other">
+        <h3>Find out more</h3>
+        <ul class="items">
+          {{# relatedPages.other }}
+          <li>
+            <a href="{{ url }}">{{ title }}</a>
+            {{# metadata }}
+            <span class="metadata">{{{ metadata }}}</span>
+            {{/ metadata }}
+          </li>
+          {{/ relatedPages.other }}
+        </ul>
+      </div>
+      {{/ relatedPages.other.length }}
+
+    </aside>
+
+  {{/ relatedPages }}
+
+  {{# description-extra }}
+  <p>{{{ description-extra }}}</p>
+  {{/ description-extra }}
+
+  {{# costs }}
+  <h4>Notes on costs</h4>
+  <p>{{{ costs }}}</p>
+  {{/ costs }}
+
+  {{# other-notes }}
+  <h4>Other notes</h4>
+  <p>{{{ other-notes }}}</p>
+  {{/ other-notes }}
+
+  </div>
+</footer>
+{{/ hasFooter }}
+
