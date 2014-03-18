@@ -7,11 +7,11 @@ matrix:
     - node_js: "0.11"
 before_install:
   - rvm use 1.9.3
-  - gem install bundler
+  - travis_retry gem install bundler
 install:
-  - bundle install
-  - npm install -g grunt-cli@0.1.9
-  - npm install
+  - travis_retry bundle install
+  - travis_retry npm install -g grunt-cli@0.1.9
+  - travis_retry npm install
 notifications:
   email: false
 cache:
