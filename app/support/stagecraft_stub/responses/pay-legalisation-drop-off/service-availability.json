@@ -1,6 +1,9 @@
 {
   "module-type": "availability",
   "title": "Service availability",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "description": "",
   "data-group": "pay-legalisation-drop-off",
   "data-type": "monitoring",

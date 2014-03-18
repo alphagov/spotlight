@@ -3,9 +3,11 @@
   "module-type": "realtime",
   "title": "Live service usage",
   "description": "Live number of users on any page within the service",
-  "dashboard-title": "Payment to register a birth abroad in the UK",
+  "dashboard-title": "Pay to register a birth abroad in the UK",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "pay-register-birth-abroad",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "info": [
     "Data source: Google Analytics",
     "Shows the estimated number of users currently accessing the service on GOV.UK."

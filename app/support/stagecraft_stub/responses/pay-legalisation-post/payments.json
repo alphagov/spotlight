@@ -2,6 +2,9 @@
   "module-type": "completion_numbers",
   "title": "Payments",
   "description": "",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "data-group": "pay-legalisation-post",
   "data-type": "journey",
   "info": [

@@ -7,10 +7,10 @@ Feature: Dashboard
     When I go to /performance/no-realistic-dashboard
      And I wait for the page to be fully loaded
     Then I can report an error for the current page
-     And I see "1" crumb in the breadcrumb trail
+     And I see "2" crumbs in the breadcrumb trail
      And I see the title "Non-Realistic Data Stub"
      And I see the strapline "Performance"
-     And I see the tagline "(this is not real data)"
+     And I see the tagline "This dashboard shows information about how the Non-Realistic Data Stub service is currently performing."
     Then I should see the "related-pages" information for "no-realistic-dashboard"
     Then I should see the "realtime" module for "no-realistic-dashboard" data
     Then I should see the "journey" module for "no-realistic-dashboard" data

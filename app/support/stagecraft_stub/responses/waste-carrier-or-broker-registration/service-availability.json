@@ -4,6 +4,12 @@
   "description": "",
   "data-group": "waste-carriers-registration",
   "data-type": "monitoring",
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs"
+  },
+  "agency": {
+    "title": "Environment Agency"
+  },
   "info": [
     "Data source: Pingdom",
     "Page load time measures the time taken for a sample page within the service to load.",

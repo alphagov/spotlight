@@ -1,9 +1,29 @@
 {
   "slug": "carers-allowance",
   "page-type": "dashboard",
-  "title": "Carer's Allowance",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "tagline": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person being cared for must receive a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate, or Armed Forces Independence Payment.",
+  "title": "Carer's Allowance",
+  "description": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person being cared for must receive a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate, or Armed Forces Independence Payment.",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Apply for Carer's Allowance",
+      "url" : "https://www.gov.uk/apply-carers-allowance"
+    },
+    "other": [
+      {
+        "title": "Carer's Allowance",
+        "url": "https://www.gov.uk/carers-allowance"
+      },
+      {
+        "title": "Carer's Allowance paper forms",
+        "url": "https://www.gov.uk/government/publications/carers-allowance-claim-form"
+      }
+    ]
+  },
   "modules": [
     {
       "slug": "live-service-usage",

@@ -4,6 +4,9 @@
   "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
+  "department": {
+    "title": "Department for Education"
+  },
   "category": "channel",
   "filter-by": [
     "country:england",

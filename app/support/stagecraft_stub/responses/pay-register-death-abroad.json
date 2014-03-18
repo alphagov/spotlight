@@ -1,9 +1,13 @@
 {
   "slug": "pay-register-death-abroad",
   "page-type": "dashboard",
-  "title": "Payment to register a death abroad",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
+  "title": "Pay to register a death abroad",
+  "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "modules": [
     {
       "slug": "live-service-usage",

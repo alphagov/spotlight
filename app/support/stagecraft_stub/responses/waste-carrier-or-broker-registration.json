@@ -1,9 +1,16 @@
 {
   "slug": "waste-carrier-or-broker-registration",
   "page-type": "dashboard",
-  "title": "Register as a waste carrier, broker or dealer",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "tagline": "Businesses need to register if they transport waste regularly (or some types of waste as a one off). They also need to register if they buy, sell or dispose of waste – or arrange for someone else to do so.",
+  "title": "Register as a waste carrier, broker or dealer",
+  "description": "Businesses need to register if they transport waste regularly (or some types of waste as a one off). They also need to register if they buy, sell or dispose of waste – or arrange for someone else to do so.",
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs"
+  },
+  "agency": {
+    "title": "Environment Agency"
+  },
   "modules": [
     {
       "slug": "live-service-usage",

@@ -1,4 +1,7 @@
 {
+  "department": {
+    "title": "Solihull Local Authority"
+  },
   "module-type": "grouped_timeseries",
   "title": "Transactions by channel",
   "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">digital</span> and <span class=\"group3\">other</span>.",

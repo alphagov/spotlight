@@ -7,6 +7,9 @@
     "The total number of users who arrived at each step.",
     "Number of users is measured using the count of unique events from each step."
   ],
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
   "data-group": "carers-allowance",
   "data-type": "journey",
   "matching-attribute": "eventLabel",

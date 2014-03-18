@@ -1,17 +1,13 @@
 {
   "slug": "solihull-local-authority",
   "page-type": "dashboard",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "title": "Solihull missed waste collection",
-  "tagline": "Solihull Local Authority",
-  "related_pages_title": "Visit the site",
-  "related_pages": [
-    {
-      "title": "Report a missed waste collection",
-      "url": "https://ww2.solihull.gov.uk/iForms/MissedCollection/",
-      "metadata": ""
-    }
-  ],
+  "title": "Solihull missed waste collections",
+  "description": "Solihull Local Authority",
+  "department": {
+    "title": "Solihull Local Authority"
+  },
   "modules": [
     {
       "slug": "missed-collections-by-channel",

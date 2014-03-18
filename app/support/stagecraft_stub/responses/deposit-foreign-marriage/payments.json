@@ -1,6 +1,9 @@
 {
   "module-type": "completion_numbers",
   "title": "Payments",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "description": "",
   "data-group": "deposit-foreign-marriage",
   "data-type": "journey",

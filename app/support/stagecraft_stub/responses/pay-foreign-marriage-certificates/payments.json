@@ -1,6 +1,9 @@
 {
   "module-type": "completion_numbers",
   "title": "Payments",
+  "department": {
+    "title": "Foreign and Commonwealth Office"
+  },
   "description": "",
   "data-group": "pay-foreign-marriage-certificates",
   "data-type": "journey",

@@ -44,7 +44,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<div id="performance-platform-colour-bar" role="presentation"></div> <div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li><a href="&#x2F;performance">Performance</a></li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> <div class="performance-platform-outer"> test_content report_a_problem </div> </main> </div>');
+      expect(content).toEqual('<div id="performance-platform-colour-bar" role="presentation"></div> <div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li> <a href="&#x2F;performance"> <span title="Performance"> Performance </span> </a> </li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> <div class="performance-platform-outer"> test_content report_a_problem </div> </main> </div>');
     });
 
     it('doesn\'t display the breadcrumb wrapper if there are no breadcrumbs', function () {
@@ -62,5 +62,25 @@ function (GovUkView, View, Model) {
 
       expect(content.indexOf('breadcrumb')).toEqual(-1);
     });
+
+    it('adds ellipses to very long breadcrumbs', function () {
+      var ellipsisView = new GovUkView({
+        model: model,
+      });
+
+      spyOn(ellipsisView, 'template').andReturn('rendered');
+      spyOn(ellipsisView, 'getBreadcrumbCrumbs').andReturn([
+        {'path': '/performance', 'title': 'Performance'},
+        {'path': '/url', 'title': 'A very very very very very very very long department name'}
+      ]);
+
+      ellipsisView.render();
+
+      var context = ellipsisView.template.argsForCall[0][0];
+      var content = context.content.replace(/\s+/g, ' ').trim();
+
+      expect(content).toContain('A very very very very very very …');
+    });
+
   });
 });

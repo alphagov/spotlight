@@ -1,6 +1,9 @@
 {
   "module-type": "availability",
   "title": "Service availability",
+  "department": {
+    "title": "Department for Education"
+  },
   "data-group": "student-finance",
   "data-type": "monitoring",
   "info": [

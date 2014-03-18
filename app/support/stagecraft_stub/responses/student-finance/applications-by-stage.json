@@ -4,6 +4,9 @@
   "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
+  "department": {
+    "title": "Department for Education"
+  },
   "category": "stage",
   "filter-by": [
     "country:england",

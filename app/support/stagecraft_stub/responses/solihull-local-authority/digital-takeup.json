@@ -1,4 +1,7 @@
 {
+  "department": {
+    "title": "Solihull Local Authority"
+  },
   "module-type": "completion_rate",
   "title": "Digital take-up",
   "data-group": "solihull-local-authority",

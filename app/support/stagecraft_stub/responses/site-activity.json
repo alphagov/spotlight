@@ -1,9 +1,12 @@
 {
   "slug": "site-activity",
   "page-type": "dashboard",
+  "dashboard-type": "other",
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
-  "tagline": "Web performance data for all of GOV.UK, including site traffic and availability.",
+  "other": {
+    "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, based on data from Google Analytics."
+  },
   "modules": [
     {
       "slug": "live-service-usage",
