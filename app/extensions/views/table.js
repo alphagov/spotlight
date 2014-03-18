@@ -40,6 +40,7 @@ function (View, Formatters) {
     render: function () {
       if (this.$table) {
         this.$table.empty();
+        this.$table.removeClass('floated-header');
       } else {
         this.prepareTable();
       }
