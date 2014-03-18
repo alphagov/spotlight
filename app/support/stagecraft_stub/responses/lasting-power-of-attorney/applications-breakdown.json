@@ -1,7 +1,7 @@
 {
   "module-type": "grouped_timeseries",
   "title": "Applications breakdown",
-  "description": "Tax disc applications per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+  "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
   "data-group": "lasting-power-of-attorney",
   "data-type": "volumes",
   "category": "key",
