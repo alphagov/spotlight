@@ -57,6 +57,18 @@ function (Table, View, $) {
         spyOn(table.collection, 'getTableRows').andReturn([['01/02/01', 'foo', null]]);
       });
 
+      it('empties the table if $table exists and removes class', function () {
+        spyOn(table, 'renderHead');
+        spyOn(table, 'renderBody');
+        table.$table = $('<table><tr><td>test table value</td></tr></table>');
+        table.$table.addClass('floated-header');
+
+        table.render();
+
+        expect(table.$table.html()).toEqual('');
+        expect(table.$table.hasClass('floated-header')).toBe(false);
+      });
+
       it('calls prepareTable if table property is not set', function () {
         table.render();
         expect(Table.prototype.prepareTable).toHaveBeenCalled();
