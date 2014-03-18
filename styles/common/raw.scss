@@ -44,4 +44,15 @@ body.raw {
     top: 98px;
     right: 90px;
   }
+
+  // Scrolling tables
+  table.floated-header {
+    thead {
+      display: table-header-group;
+    }
+
+    tbody {
+      display: table-row-group;
+    }
+  }
 }

@@ -70,29 +70,42 @@ function (HideShow, View, $) {
     });
 
     describe('showHide', function () {
-      it('shows the $reveal item when its hidden and updates the handle text', function () {
-        expect(hideShow.$reveal.is(':visible')).toEqual(false);
-        expect(hideShow.$handle.text()).toEqual('Show the thing.');
-
-        hideShow.showHide(event);
-
-        expect(hideShow.$reveal.is(':visible')).toEqual(true);
-        expect(hideShow.$handle.text()).toEqual('Hide the thing.');
+      beforeEach(function () {
+        spyOn(hideShow, 'show');
+        spyOn(hideShow, 'hide');
       });
 
-      it('hides the $reveal item when its shown and updates the handle text', function () {
+      it('calls the show method when the item is hidden', function () {
+        hideShow.$reveal.hide();
         hideShow.showHide(event);
-        expect(hideShow.$reveal.is(':visible')).toEqual(true);
-        expect(hideShow.$handle.text()).toEqual('Hide the thing.');
+        expect(hideShow.show).toHaveBeenCalled();
+      });
 
+      it('calls the hide method when the item is shown', function () {
+        hideShow.$reveal.show();
         hideShow.showHide(event);
-        expect(hideShow.$reveal.is(':visible')).toEqual(false);
-        expect(hideShow.$handle.text()).toEqual('Show the thing.');
+        expect(hideShow.hide).toHaveBeenCalled();
       });
 
       it('prevents default on the javascript event', function () {
         hideShow.showHide(event);
         expect(event.preventDefault).toHaveBeenCalled();
+      });
+    });
+
+    describe('show', function () {
+      it('it shows the element and changes the text handle', function () {
+        hideShow.show();
+        expect(hideShow.$reveal.is(':visible')).toEqual(true);
+        expect(hideShow.$handle.text()).toEqual('Hide the thing.');
+      });
+    });
+
+    describe('hide', function () {
+      it('it hides the element and changes the text handle', function () {
+        hideShow.hide();
+        expect(hideShow.$reveal.is(':visible')).toEqual(false);
+        expect(hideShow.$handle.text()).toEqual('Show the thing.');
       });
     });
   });

@@ -7,8 +7,8 @@ function (ModuleController, TableView, Collection) {
   var TableModule = ModuleController.extend({
     visualisationClass: TableView,
     collectionClass: Collection,
-    clientRenderOnInit: false,
-    requiresSvg: false,
+    clientRenderOnInit: true,
+    requiresSvg: true,
 
     collectionOptions: function () {
       return {
