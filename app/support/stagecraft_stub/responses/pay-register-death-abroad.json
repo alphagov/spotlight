@@ -8,6 +8,12 @@
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
+  "relatedPages": {
+    "transaction": {
+        "title": "Register a death abroad",
+        "url": "https://www.gov.uk/register-a-death"
+    }
+  },
   "modules": [
     {
       "slug": "live-service-usage",

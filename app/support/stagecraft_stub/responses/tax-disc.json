@@ -11,6 +11,12 @@
   "agency": {
     "title": "DVLA"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Renew a tax disc",
+      "url": "https://www.gov.uk/tax-disc"
+      }
+  },
   "modules": [
     {
       "slug": "applications-breakdown",
