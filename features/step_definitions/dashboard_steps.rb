@@ -21,9 +21,7 @@ def section_values
     "related-pages" => {
       "no-realistic-dashboard" => [
         "Helping people to buy a home",
-        "Increasing the number of available homes",
-        "Improving the rented housing sector",
-        "Providing housing support for older and vulnerable people"
+        "Increasing the number of available homes"
       ]
     }
   }
