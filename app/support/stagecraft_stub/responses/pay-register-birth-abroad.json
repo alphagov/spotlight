@@ -8,6 +8,12 @@
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
+  "relatedPages": {
+    "transaction": {
+        "title": "Register a birth abroad",
+        "url": "https://www.gov.uk/register-a-birth"
+    }
+  },
   "modules": [
     {
       "slug": "live-service-usage",

@@ -11,6 +11,12 @@
   "agency": {
     "title": "Environment Agency"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Register as a waste carrier, broker or dealer (England and Wales)",
+      "url": "https://www.gov.uk/waste-carrier-or-broker-registration"
+      }
+  },
   "modules": [
     {
       "slug": "live-service-usage",

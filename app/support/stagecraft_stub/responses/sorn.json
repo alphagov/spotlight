@@ -11,6 +11,12 @@
   "agency": {
     "title": "DVLA"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Make a SORN (Statutory Off Road Notification)",
+      "url": "https://www.gov.uk/register-sorn-statutory-off-road-notification"
+      }
+  },
   "modules": [
     {
       "slug": "user-satisfaction",

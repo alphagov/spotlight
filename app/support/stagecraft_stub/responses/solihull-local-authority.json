@@ -8,6 +8,18 @@
   "department": {
     "title": "Solihull Local Authority"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Report a missed collection",
+      "url": "https://ww2.solihull.gov.uk/iForms/MissedCollection/"
+    },
+    "other": [
+      {
+        "title": "Rubbish and recycling in Solihull",
+        "url": "http://www.solihull.gov.uk/wasteandrecycling"
+      }
+    ]
+  },
   "modules": [
     {
       "slug": "missed-collections-by-channel",
