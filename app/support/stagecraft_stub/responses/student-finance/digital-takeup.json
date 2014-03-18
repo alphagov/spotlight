@@ -1,21 +1,23 @@
 {
   "page-type": "module",
+  "dashboard-title": "Student finance: applications",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
   "module-type": "completion_rate",
   "title": "Digital take-up",
-  "dashboard-title": "Apply for student finance",
-  "dashboard-strapline": "Service dashboard",
   "department": {
     "title": "Department for Education"
   },
+  "description": "The number of new digital submitted applications versus new paper form submitted applications in a given week",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
-  "filter-by": ["country:england", "application_type:full-time application"],
+  "filter-by": ["country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
   "period": "week",
   "axis-period": "month",
   "duration": 52,
   "info": [
-    "Data source: SLC Database",
-    "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
+    "Data source: Student Loans Company",
+    "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
   ],
   "numerator-matcher": "digital",
   "denominator-matcher": "[paper|digital]",

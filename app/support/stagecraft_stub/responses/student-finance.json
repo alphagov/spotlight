@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "title": "Apply for student finance",
+  "title": "Student finance: applications",
   "description": "Full-time higher education for England only",
   "department": {
     "title": "Department for Education"
@@ -17,14 +17,14 @@
   },
   "modules": [
     {
-      "slug": "applications-by-stage",
+      "slug": "applications-by-stage-2014-2015",
       "module-type": "grouped_timeseries",
-      "title": "Applications at each stage of completion",
-      "description": "Applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current academic year",
+      "title": "Applications at each stage of completion - 2014/15",
+      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the 2014/15 academic year",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "stage",
-      "filter-by": ["country:england", "application_type:full-time application"],
+      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital", "academic_year:2014/15"],
       "period": "week",
       "axis-period": "month",
       "duration": 52,
@@ -32,33 +32,57 @@
       "show-line-labels": true,
       "use_stack": false,
       "info": [
-        "Data source: SLC database",
-        "Shows the number of applications, broken down by stage",
-        "Started: applications in progress",
-        "Submitted: applications submitted"
+        "Data source: Student Loans Company",
+        "Shows the number of new Student Finance England full-time higher education digital channel applications for the 2014/15 academic year, broken down by stage",
+        "Started - 2014/15: applications started and in progress",
+        "Submitted - 2014/15: applications submitted for processing"
       ],
       "axes": {
         "y": [
           {
-            "label": "Started",
+            "label": "Started - 2014/15",
             "categoryId": "started",
             "format": "integer"
           },
           {
-            "label": "Submitted",
+            "label": "Submitted - 2014/15",
             "categoryId": "submitted",
             "format": "integer"
-          },
+          }
+        ]
+      }
+    },
+    {
+      "slug": "applications-by-stage-2013-2014",
+      "module-type": "grouped_timeseries",
+      "title": "Applications at each stage of completion - 2013/14",
+      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the 2013/14 academic year",
+      "data-group": "student-finance",
+      "data-type": "transactions-by-channel",
+      "category": "stage",
+      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital", "academic_year:2013/14"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "count:sum",
+      "show-line-labels": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Student Loans Company",
+        "Shows the number of new Student Finance England full-time higher education digital channel applications for the 2013/14 academic year, broken down by stage",
+        "Started - 2013/14: applications started and in progress",
+        "Submitted - 2013/14: applications submitted for processing"
+      ],
+      "axes": {
+        "y": [
           {
-            "label": "Started",
+            "label": "Started - 2013/14",
             "categoryId": "started",
-            "timeshift": 52,
             "format": "integer"
           },
           {
-            "label": "Submitted",
+            "label": "Submitted - 2013/14",
             "categoryId": "submitted",
-            "timeshift": 52,
             "format": "integer"
           }
         ]
@@ -68,11 +92,11 @@
       "slug": "usage-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Usage breakdown",
-      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
+      "description": "New <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications submitted over the last 12 months",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "channel",
-      "filter-by": ["country:england", "application_type:full-time application"],
+      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
       "period": "week",
       "axis-period": "month",
       "duration": 52,
@@ -81,8 +105,8 @@
       "show-total-lines": true,
       "use_stack": true,
       "info": [
-        "Data source: SLC database",
-        "Shows the number of applications, broken down by channel"
+        "Data source: Student Loans Company",
+        "Shows the number of new Student Finance England full-time higher education applications submitted over the last 12 months (including 2013/14 and 2014/15 academic years), broken down by channel"
       ],
       "axes": {
         "y": [
@@ -95,18 +119,6 @@
             "label": "Digital",
             "categoryId": "digital",
             "format": "integer"
-          },
-          {
-            "label": "Paper",
-            "categoryId": "paper",
-            "timeshift": 52,
-            "format": "integer"
-          },
-          {
-            "label": "Digital",
-            "categoryId": "digital",
-            "timeshift": 52,
-            "format": "integer"
           }
         ]
       }
@@ -115,15 +127,16 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
+      "description": "The number of new digital submitted applications versus new paper form submitted applications in a given week",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "filter-by": ["country:england", "application_type:full-time application"],
+      "filter-by": ["country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
       "period": "week",
       "axis-period": "month",
       "duration": 52,
       "info": [
-        "Data source: SLC Database",
-        "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels."
+        "Data source: Student Loans Company",
+        "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
       ],
       "numerator-matcher": "digital",
       "denominator-matcher": "[paper|digital]",
@@ -134,15 +147,16 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
+      "description": "The number of new digital submitted applications versus digital started applications in a given week",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "filter-by": ["country:england", "application_type:full-time application"],
+      "filter-by": ["country:england", "application_type:full-time application", "new_or_continuing:new"],
       "period": "week",
       "axis-period": "month",
       "duration": 52,
       "info": [
-        "Data source: SLC Database",
-        "Completion rate measures the percentage of started applications that were subsequently submitted."
+        "Data source: Student Loans Company",
+        "Completion rate measures the percentage of digital applications that were started versus submitted in a given week"
       ],
       "denominator-matcher": "started",
       "numerator-matcher": "submitted",
@@ -153,14 +167,15 @@
       "slug": "users-at-each-stage",
       "module-type": "journey",
       "title": "Users at each stage",
-      "description": "Number of users who completed important stages of the transaction last week",
+      "description": "Number of digital channel users who started key stages of the transaction last week",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each stage of the application process.",
-        "Number of users is measured using the count of unique events from each step."
+        "The total number of users who arrived at each stage of the application process",
+        "Number of users is measured using the count of unique events from each step"
       ],
       "data-group": "student-finance",
       "data-type": "journey",
+      "filter-by": ["eventAction:full-time-higher-education-england"],
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
@@ -198,11 +213,6 @@
             "journeyId": "confirm",
             "label": "Confirm",
             "format": "integer"
-          },
-          {
-            "journeyId": "submitted",
-            "label": "Submitted",
-            "format": "integer"
           }
         ]
       }
@@ -211,7 +221,7 @@
       "slug": "site-traffic",
       "module-type": "completion_numbers",
       "title": "Site traffic",
-      "description": "",
+      "description": "Total number of unique site visits per week",
       "data-group": "student-finance",
       "data-type": "site-traffic",
       "value-attribute": "visitors:sum",
@@ -240,7 +250,7 @@
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "Student Loans Company"
+        "Desktop category includes traffic from desktops and laptops"
       ],
       "axes": {
         "y": [
@@ -270,8 +280,8 @@
       "data-type": "monitoring",
       "info": [
         "Data source: Pingdom",
-        "Page load time measures the time taken for a sample page within the service to load.",
-        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+        "Page load time measures the time taken for a sample page within the service to load",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available"
       ],
       "tabs": [
         {"id": "day", "name": "30 days", "format": "date"},

@@ -1,0 +1,42 @@
+{
+  "module-type": "grouped_timeseries",
+  "title": "Applications at each stage of completion - 2013/14",
+  "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the 2013/14 academic year",
+  "data-group": "student-finance",
+  "data-type": "transactions-by-channel",
+  "category": "stage",
+  "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital", "academic_year:2013/14"],
+  "period": "week",
+  "axis-period": "month",
+  "duration": 52,
+  "value-attr": "count:sum",
+  "show-line-labels": true,
+  "use_stack": false,
+  "info": [
+    "Data source: Student Loans Company",
+    "Shows the number of new Student Finance England full-time higher education digital channel applications for the 2013/14 academic year, broken down by stage",
+    "Started - 2013/14: applications started and in progress",
+    "Submitted - 2013/14: applications submitted for processing"
+  ],
+  "axes": {
+    "y": [
+      {
+        "label": "Started - 2013/14",
+        "categoryId": "started",
+        "format": "integer"
+      },
+      {
+        "label": "Submitted - 2013/14",
+        "categoryId": "submitted",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Student finance: applications",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
+  "department": {
+    "title": "Department for Education"
+  }
+}
