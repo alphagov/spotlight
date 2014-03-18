@@ -11,14 +11,15 @@ function (Table, HideShow) {
     },
 
     prepareTable: function () {
+      var label = 'Table view of ' + this.model.get('title').toLowerCase() + ' data';
       this.$table = $('<table/>');
       this.$table.appendTo(this.$toggleContainer);
       this.$toggleContainer.insertAfter(this.$el);
       this.toggleTable = new HideShow({
         $reveal: this.$table,
         $el: this.$toggleContainer,
-        showLabel: 'Show the data for the ' + this.model.get('title').toLowerCase() + ' graph',
-        hideLabel: 'Hide the data for the ' + this.model.get('title').toLowerCase() + ' graph'
+        showLabel: label,
+        hideLabel: label
       });
     },
 
