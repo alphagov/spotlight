@@ -1,0 +1,36 @@
+#content {
+  footer {
+    clear: both;
+    overflow: hidden;
+    margin-top: 1em;
+    padding-top: 2em;
+    width: 100%;
+    border-top: 1px solid #ccc;
+
+    .footer-text {
+      @include bold-24($tabular-numbers: true);
+    }
+
+    .related-pages {
+      margin-bottom: 30px;
+    }
+
+    .footer-left h3 {
+      margin-top: 20px;
+    }
+
+    h3 {
+      @include core-16($tabular-numbers: true);
+    }
+
+    h4 {
+      @include bold-16($tabular-numbers: true);
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+  }
+}

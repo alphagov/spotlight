@@ -1,45 +1,47 @@
 #content {
-  header {
-    .related-pages {
-      float: right;
-      margin-left: 25px;
-      width: 300px / 960px * 100%; // 31.25%
+
+  header .related-pages {
+    float: right;
+    margin-left: 25px;
+    width: 300px / 960px * 100%; // 31.25%
+  }
+
+  .related-pages {
+
+    h3 {
+      @include core-16($tabular-numbers: true);
+    }
+
+    .related-transaction a {
+      @include bold-24($tabular-numbers: true);
+    }
+
+    .related-other {
 
       h3 {
-        @include core-16;
+        margin-top: 20px;
       }
 
-      .related-transaction a {
-        @include bold-24;
-      }
+      ul.items {
+        margin: 0;
+        padding-left: 0px;
 
-      .related-other {
+        li {
+          display: block;
+          overflow: hidden;
+          margin: 7px 0;
+          line-height: 1;
 
-        h3 {
-          margin-top: 20px;
-        }
+          a {
+            @include bold-16($tabular-numbers: true);
+          }
 
-        ul.items {
-          margin: 0;
-          padding-left: 0px;
-
-          li {
-            display: block;
-            overflow: hidden;
-            margin: 7px 0;
-            line-height: 1;
-
-            a {
-              @include bold-16;
-            }
-
-            .metadata {
-              @include core-14;
-            }
+          .metadata {
+            @include core-14($tabular-numbers: true);
           }
         }
-
       }
+
     }
   }
 }
@@ -47,7 +49,7 @@
 @media (max-width: 640px) {
   body {
 
-    #content header .related-pages {
+    #content .related-pages {
       position: relative;
       float: none;
       margin-left: 0;
