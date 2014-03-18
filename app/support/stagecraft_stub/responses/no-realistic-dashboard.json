@@ -5,7 +5,13 @@
   "strapline": "Performance",
   "title": "Non-Realistic Data Stub",
   "department": {
-    "title": "Non-Realistic Data Stub"
+    "title": "Non-Realistic Department"
+  },
+  "agency": {
+    "title": "Non-Realistic Agency"
+  },
+  "service": {
+    "title": "Non-Realistic Service"
   },
   "relatedPages": {
     "transaction": {
@@ -25,6 +31,12 @@
       }
     ]
   },
+  "description": "A description of the Non-Realistic Data Stub service, just one sentence long.",
+  "customer-type": "Individuals",
+  "business-model": "Department budget",
+  "description-extra": "Some more description about the Non-Realistic Data Stub.",
+  "costs": "Notes on costs, sometimes quite lengthy, go here.",
+  "other-notes": "And finally, other notes go here.",
   "modules": [
     {
       "slug": "live-service-usage",

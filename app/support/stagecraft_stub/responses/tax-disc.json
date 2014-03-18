@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "description": "Tax disc is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='sorn'>SORN (Statutory Off Road Notification)</a>. This service is provided by the DVLA to relicense vehicles that are kept on public roads. This service does not include first vehicle registrations.",
+  "description": "This service is provided by the DVLA to relicense vehicles that are kept on public roads.",
   "title": "Tax disc",
   "department": {
     "title": "Department for Transport"
@@ -17,6 +17,10 @@
       "url": "https://www.gov.uk/tax-disc"
       }
   },
+  "description-extra": "Tax disc is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='sorn'>SORN (Statutory Off Road Notification)</a>. This service does not include first vehicle registrations.",
+  "customer-type": "Individuals",
+  "business-model": "Fiscal",
+  "other-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "live-service-usage",

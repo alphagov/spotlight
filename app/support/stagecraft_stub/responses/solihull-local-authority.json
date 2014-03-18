@@ -4,7 +4,6 @@
   "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Solihull missed waste collections",
-  "description": "Solihull Local Authority",
   "department": {
     "title": "Solihull Local Authority"
   },
@@ -20,6 +19,9 @@
       }
     ]
   },
+  "description": "Solihull Council provides an online service for residents to report missed waste collections.",
+  "customer-type": "Individuals",
+  "business-model": "Department budget",
   "modules": [
     {
       "slug": "missed-collections-by-channel",
