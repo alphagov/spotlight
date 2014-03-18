@@ -1,10 +1,6 @@
 {
-  "page-type": "module",
   "module-type": "availability",
   "title": "Service availability",
-  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
-  "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "deposit-foreign-marriage",
   "description": "",
   "data-group": "deposit-foreign-marriage",
   "data-type": "monitoring",
@@ -14,8 +10,20 @@
     "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
   ],
   "tabs": [
-    {"id": "day", "name": "30 days"},
-    {"id": "hour", "name": "24 hours"}
+    {
+      "id": "day",
+      "name": "30 days",
+      "format": "date"
+    },
+    {
+      "id": "hour",
+      "name": "24 hours",
+      "format": "time"
+    }
   ],
-  "tabbed_attr": "period"
+  "tabbed_attr": "period",
+  "page-type": "module",
+  "dashboard-title": "Deposit foreign marriage or civil partnership certificates",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "deposit-foreign-marriage"
 }

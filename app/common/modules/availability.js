@@ -13,6 +13,8 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
+        tabs: this.model.get('tabs'),
+        tabbedAttr: this.model.get('tabbed_attr'),
         axes: _.merge({
           x: {
             label: 'Time',

@@ -10,7 +10,6 @@ function (View, Formatters) {
       var collection = this.collection = options.collection;
 
       this.valueAttr = options.valueAttr;
-      this.axes = collection.options.axes;
       this.period = collection.options.period;
 
       View.prototype.initialize.apply(this, arguments);
@@ -107,17 +106,18 @@ function (View, Formatters) {
     },
 
     getColumns: function () {
-      var cols = [];
-      if (this.axes) {
-        cols = _.map(this.axes.y, function (axis) {
+      var cols = [],
+        axes = this.collection.options.axes;
+      if (axes) {
+        cols = _.map(axes.y, function (axis) {
           if (!axis.key || !this.valueAttr || axis.key === this.valueAttr) {
             return _.extend({
               key: this.valueAttr
             }, axis);
           }
         }, this);
-        if (this.axes.x) {
-          cols.unshift(this.axes.x);
+        if (axes.x) {
+          cols.unshift(axes.x);
         }
       }
       return _.filter(cols);
