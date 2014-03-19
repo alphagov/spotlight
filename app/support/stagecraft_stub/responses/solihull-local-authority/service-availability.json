@@ -1,6 +1,9 @@
 {
   "module-type": "availability",
   "title": "Service availability",
+  "department": {
+    "title": "Solihull Local Authority"
+  },
   "data-group": "solihull-local-authority",
   "data-type": "monitoring",
   "info": [
@@ -22,7 +25,7 @@
   ],
   "tabbed_attr": "period",
   "page-type": "module",
-  "dashboard-title": "Solihull missed waste collection",
+  "dashboard-title": "Solihull missed waste collections",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "solihull-local-authority"
 }

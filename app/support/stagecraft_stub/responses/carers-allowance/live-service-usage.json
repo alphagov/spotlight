@@ -12,6 +12,7 @@
   },
   "dashboard-title": "Carer's Allowance",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "carers-allowance",
   "data-group": "carers-allowance",
   "data-type": "realtime"
 }

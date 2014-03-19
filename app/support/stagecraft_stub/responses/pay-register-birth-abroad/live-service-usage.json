@@ -5,6 +5,7 @@
   "description": "Live number of users on any page within the service",
   "dashboard-title": "Pay to register a birth abroad in the UK",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "pay-register-birth-abroad",
   "department": {
     "title": "Foreign and Commonwealth Office"
   },

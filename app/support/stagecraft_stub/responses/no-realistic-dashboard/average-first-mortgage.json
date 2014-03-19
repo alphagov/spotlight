@@ -20,5 +20,8 @@
   "page-type": "module",
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",
-  "dashboard-slug": "no-realistic-dashboard"
+  "dashboard-slug": "no-realistic-dashboard",
+  "department": {
+    "title": "Non-Realistic Data Stub"
+  }
 }

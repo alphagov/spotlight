@@ -6,6 +6,9 @@
   "dashboard-title": "Non-Realistic Data Stub",
   "dashboard-strapline": "Performance",
   "dashboard-slug": "no-realistic-dashboard",
+  "department": {
+    "title": "Non-Realistic Data Stub"
+  },
   "info": [
     "Info text line 1",
     "Info text line 2"
