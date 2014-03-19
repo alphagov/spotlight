@@ -8,8 +8,9 @@ span.group5 { color: $data-colour-6; }
 
 .table-toggle {
   a {
-    font-size: 14px;
+    @include core-14;
   }
+
   table {
     .js-enabled & {
       display: none;
