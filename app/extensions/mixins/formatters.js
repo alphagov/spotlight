@@ -51,7 +51,9 @@ define([
         symbol: '£',
         pence: false
       });
-      options.dps = options.fixed = (options.pence ? 2 : 0);
+      if (options.pence) {
+        options.dps = options.fixed = (options.pence ? 2 : 0);
+      }
       return options.symbol + formatters.number(value, options);
     },
 
@@ -74,8 +76,14 @@ define([
         dps: 0,
         commas: true
       });
+      var suffix;
       if (!isNaN(Number(value))) {
         value = Number(value);
+        if (options.magnitude) {
+          var parsed = utils.magnitude(value);
+          suffix = parsed.suffix;
+          value = parsed.value;
+        }
         if (typeof options.dps === 'number') {
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
@@ -85,6 +93,9 @@ define([
         }
         if (options.commas) {
           value = utils.commas(value);
+        }
+        if (suffix) {
+          value = value + suffix;
         }
       }
       return value.toString();
@@ -122,6 +133,25 @@ define([
       while (pattern.test(value[0]))
         value[0] = value[0].replace(pattern, '$1,$2');
       return value.join('.');
+    },
+
+    magnitude: function (value) {
+      var magnitudes = {
+        thousand: {value: 1e3, suffix: 'k' },
+        million:  {value: 1e6, suffix: 'm' },
+        billion:  {value: 1e9, suffix: 'b' }
+      };
+      var suffix, parsed = value;
+      _.each(magnitudes, function (mag) {
+        if (value > mag.value) {
+          suffix = mag.suffix;
+          parsed = value / mag.value;
+        }
+      });
+      return {
+        value: parsed,
+        suffix: suffix
+      };
     }
   };
 
