@@ -33,10 +33,6 @@ var dashboardSchema = {
         'Public sector purchasing dashboard'
       ]
     },
-    'tagline': {
-      'type': 'string',
-      'required': true
-    },
     'modules': {
       'type': 'array',
       'minItems': 1,
@@ -165,6 +161,18 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             'dashboard-strapline': dashboardData.strapline,
             'dashboard-slug': dashboardSlug
           });
+
+          if (dashboardData.department) {
+            module = _.extend(module, {
+              'department': dashboardData.department
+            });
+          }
+
+          if (dashboardData.agency) {
+            module = _.extend(module, {
+              'agency': dashboardData.agency
+            });
+          }
 
           delete module.classes; // We don't care about the classes property on the page-per-thing pages
 
