@@ -1,0 +1,64 @@
+{
+  "module-type": "journey",
+  "title": "Stages of making an LPA",
+  "description": "Number of users at stages a user goes through whilst making an LPA. Some stages may be repeated or returned to, as indicated by higher numbers.",
+  "info": [
+    "Data source: Google Analytics",
+    "Stages are in the order a user would see them as they progress through the transaction.",
+    "Shows significant stages only.",
+    "Number of users is measured using the count of unique events from each stage."
+  ],
+  "data-group": "lasting-power-of-attorney",
+  "data-type": "journey",
+  "matching-attribute": "eventLabel",
+  "axes": {
+    "y": [
+      {
+        "journeyId": "user/login",
+        "label": "Login",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/lpa-type",
+        "label": "Choose LPA type",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/donor",
+        "label": "Add donor details",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/attorneys",
+        "label": "Create attorneys",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/certificate-provider",
+        "label": "Choose certificate provider",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/review",
+        "label": "Review LPA",
+        "key": "uniqueEvents",
+        "format": "integer"
+      },
+      {
+        "journeyId": "create/complete",
+        "label": "LPA PDF complete",
+        "key": "uniqueEvents",
+        "format": "integer"
+      }
+    ]
+  },
+  "page-type": "module",
+  "dashboard-title": "Lasting Power of Attorney",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "lasting-power-of-attorney"
+}

@@ -319,6 +319,49 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithTotal));
 
       });
+
+      it('groups categories together if mappings are provided', function () {
+        collection.options.groupMapping = {
+          def: 'abc'
+        };
+
+        var output = collection.parse(response);
+
+        expect(output.length).toEqual(2);
+
+        expect(output[0]).toEqual({
+          'id': 'abc',
+          'title': 'ABC',
+          'values': [
+            {
+              '_end_at': '2012-09-01T00:00:00+00:00',
+              'some:value': 9,
+              '_start_at': '2012-08-01T00:00:00+00:00'
+            },
+            {
+              '_end_at': '2012-10-01T00:00:00+00:00',
+              'some:value': 14,
+              '_start_at': '2012-09-01T00:00:00+00:00'
+            }
+          ]
+        });
+        expect(output[1]).toEqual({
+          'id': 'xyz',
+          'title': 'XYZ',
+          'values': [
+            {
+              '_end_at': '2012-09-01T00:00:00+00:00',
+              'some:value': 3,
+              '_start_at': '2012-08-01T00:00:00+00:00'
+            },
+            {
+              '_end_at': '2012-10-01T00:00:00+00:00',
+              '_start_at': '2012-09-01T00:00:00+00:00'
+            }
+          ]
+        });
+      });
+
     });
 
   });
