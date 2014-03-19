@@ -2,6 +2,12 @@
   "module-type": "completion_rate",
   "title": "Completion rate",
   "description": "Proportion of people who completed both parts of the digital service, 'Make an LPA' and 'Register an LPA'",
+  "info": [
+    "Data source: Google Analytics",
+    "Completion rate measures the proportion of people who started an application and were able to complete it.",
+    "It is calculated as percentage of unique visitors who arrived at the final page of the digital service out of those who arrived at the 'Choose LPA type' page.",
+    "After using the digital service, users have further offline steps to complete, which this does not measure."
+  ],
   "data-group": "lasting-power-of-attorney",
   "data-type": "journey",
   "denominator-matcher": "create/lpa-type$",
