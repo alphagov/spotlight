@@ -314,6 +314,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       return processors;
     },
 
+    parse: function (response) {
+      return response.data;
+    },
+
     processors: Processors
 
   });

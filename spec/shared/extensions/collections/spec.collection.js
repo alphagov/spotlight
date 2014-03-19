@@ -708,5 +708,18 @@ function (Collection, Model, Backbone) {
       });
 
     });
+
+    describe('parse', function () {
+
+      it('returns `data` property of response', function () {
+
+        var collection = new Collection();
+
+        expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
+
+      });
+
+    });
+
   });
 });
