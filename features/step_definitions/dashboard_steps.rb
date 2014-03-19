@@ -10,9 +10,14 @@ Then(/^I see the tagline "(.*?)"$/) do |expected_tagline|
   page.find("#content header .tagline").should have_content(expected_tagline)
 end
 
+Then(/^I see the footer "(.*?)" section "(.*?)"$/) do |section, expected_tagline|
+  page.find("#content footer").should have_content(expected_tagline)
+end
+
 Then(/^I should see the "(.*?)" information for "(.*?)"$/) do |section, service|
   section_values[section][service].each do |text|
-    page.find(".#{section}").should have_content(text)
+    page.find("#content header .#{section}").should have_content(text)
+    page.find("#content footer .#{section}").should have_content(text)
   end
 end
 
