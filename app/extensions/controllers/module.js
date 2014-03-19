@@ -18,6 +18,9 @@ define([
 
     className: function () {
       var classes = this.model.get('classes');
+      if (classes && !_.isArray(classes)) {
+        classes = [classes];
+      }
       return [this.model.get('module-type')].concat(classes || []).join(' ');
     },
 

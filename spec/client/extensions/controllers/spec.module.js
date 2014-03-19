@@ -61,6 +61,17 @@ function (ModuleController, Model) {
 
       });
 
+
+      it('includes any classes defined on the model', function () {
+
+        moduleController.model.set('classes', ['foo', 'bar']);
+        expect(moduleController.className()).toEqual('availability foo bar');
+
+        moduleController.model.set('classes', 'baz');
+        expect(moduleController.className()).toEqual('availability baz');
+
+      });
+
     });
 
   });
