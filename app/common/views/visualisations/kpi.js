@@ -14,7 +14,7 @@ function (View, Formatters, template) {
         previous = this.collection.at(1),
         valueAttr = this.model.get('valueAttr'),
         dateFormat = { type: 'date', format: 'MMM YYYY' };
-      
+
       return {
         value: this.format(current.get(valueAttr), this.model.get('format')),
         period: {
