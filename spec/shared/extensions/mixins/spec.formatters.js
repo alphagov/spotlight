@@ -210,6 +210,41 @@ define([
         expect(Formatters.format(0.12345, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1235');
       });
 
+      describe('magnitude', function () {
+        describe('thousands', function () {
+          it('doesn\'t add "k" to 1000', function () {
+            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
+          });
+
+          it('adds "k" to numbers of a thousand that are greater than 1000', function () {
+            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1k');
+            expect(Formatters.format(1100, { type: 'number', magnitude: true, dps: 1  })).toEqual('1.1k');
+          });
+        });
+
+        describe('millions', function () {
+          it('doesn\'t add "m" to 1000000', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1,000k');
+          });
+
+          it('adds "k" to numbers of a million that are greater than 1000000', function () {
+            expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
+            expect(Formatters.format(1100000, { type: 'number', magnitude: true, dps: 1  })).toEqual('1.1m');
+          });
+        });
+
+        describe('billions', function () {
+          it('doesn\'t add "b" to 1000000000', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1,000m');
+          });
+
+          it('adds "b" to numbers of a billion that are greater than 1000000000', function () {
+            expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1b');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, dps: 1  })).toEqual('1.1b');
+          });
+        });
+      });
+
     });
 
     describe('sentence', function () {
