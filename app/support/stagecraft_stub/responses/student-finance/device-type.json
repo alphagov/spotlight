@@ -14,7 +14,7 @@
   "use_stack": true,
   "info": [
     "Data source: Google Analytics",
-    "Student Loans Company"
+    "Desktop category includes traffic from desktops and laptops"
   ],
   "axes": {
     "y": [
@@ -36,8 +36,9 @@
     ]
   },
   "page-type": "module",
-  "dashboard-title": "Apply for student finance",
+  "dashboard-title": "Student finance: applications",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
   "department": {
     "title": "Department for Education"
   }

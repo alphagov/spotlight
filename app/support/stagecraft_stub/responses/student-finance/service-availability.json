@@ -8,8 +8,8 @@
   "data-type": "monitoring",
   "info": [
     "Data source: Pingdom",
-    "Page load time measures the time taken for a sample page within the service to load.",
-    "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+    "Page load time measures the time taken for a sample page within the service to load",
+    "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available"
   ],
   "tabs": [
     {
@@ -25,7 +25,7 @@
   ],
   "tabbed_attr": "period",
   "page-type": "module",
-  "dashboard-title": "Apply for student finance",
+  "dashboard-title": "Student finance: applications",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "student-finance"
 }

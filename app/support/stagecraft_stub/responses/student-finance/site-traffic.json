@@ -2,7 +2,7 @@
   "page-type": "module",
   "module-type": "completion_numbers",
   "title": "Site traffic",
-  "description": "",
+  "description": "Total number of unique site visits per week",
   "data-group": "student-finance",
   "data-type": "site-traffic",
   "value-attribute": "visitors:sum",
@@ -13,8 +13,9 @@
   "denominator-matcher": "student_finance_site_traffic",
   "numerator-matcher": "student_finance_site_traffic",
   "matching-attribute": "dataType",
-  "dashboard-title": "Apply for student finance",
+  "dashboard-title": "Student finance: applications",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
   "department": {
     "title": "Department for Education"
   }

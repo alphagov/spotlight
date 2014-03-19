@@ -1,17 +1,14 @@
 {
   "module-type": "grouped_timeseries",
   "title": "Usage breakdown",
-  "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> applications for the current academic year",
+  "description": "New <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications submitted over the last 12 months",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
   "department": {
     "title": "Department for Education"
   },
   "category": "channel",
-  "filter-by": [
-    "country:england",
-    "application_type:full-time application"
-  ],
+  "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
   "period": "week",
   "axis-period": "month",
   "duration": 52,
@@ -20,8 +17,8 @@
   "show-total-lines": true,
   "use_stack": true,
   "info": [
-    "Data source: SLC database",
-    "Shows the number of applications, broken down by channel"
+    "Data source: Student Loans Company",
+    "Shows the number of new Student Finance England full-time higher education applications submitted over the last 12 months (including 2013/14 and 2014/15 academic years), broken down by channel"
   ],
   "axes": {
     "y": [
@@ -34,23 +31,11 @@
         "label": "Digital",
         "categoryId": "digital",
         "format": "integer"
-      },
-      {
-        "label": "Paper",
-        "categoryId": "paper",
-        "timeshift": 52,
-        "format": "integer"
-      },
-      {
-        "label": "Digital",
-        "categoryId": "digital",
-        "timeshift": 52,
-        "format": "integer"
       }
     ]
   },
   "page-type": "module",
-  "dashboard-title": "Apply for student finance",
+  "dashboard-title": "Student finance: applications",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "student-finance"
 }

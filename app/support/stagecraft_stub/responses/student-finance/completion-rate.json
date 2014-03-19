@@ -2,20 +2,22 @@
   "page-type": "module",
   "module-type": "completion_rate",
   "title": "Completion rate",
-  "dashboard-title": "Apply for student finance",
+  "dashboard-title": "Student finance: applications",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "student-finance",
   "department": {
     "title": "Department for Education"
   },
+  "description": "The number of new digital submitted applications versus digital started applications in a given week",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
-  "filter-by": ["country:england", "application_type:full-time application"],
+  "filter-by": ["country:england", "application_type:full-time application", "new_or_continuing:new"],
   "period": "week",
   "axis-period": "month",
   "duration": 52,
   "info": [
-    "Data source: SLC Database",
-    "Completion rate measures the percentage of started applications that were subsequently submitted."
+    "Data source: Student Loans Company",
+    "Completion rate measures the percentage of digital applications that were started versus submitted in a given week"
   ],
   "denominator-matcher": "started",
   "numerator-matcher": "submitted",
