@@ -5,7 +5,6 @@ define([
 ],
 function (ModuleController, AvailabilityView, AvailabilityCollection) {
   var AvailabilityModule = ModuleController.extend({
-    className: 'availability',
     visualisationClass: AvailabilityView,
     collectionClass: AvailabilityCollection,
     clientRenderOnInit: true,

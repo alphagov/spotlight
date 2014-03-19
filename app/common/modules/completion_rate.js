@@ -5,7 +5,6 @@ define([
 ],
 function (ModuleController, CompletionRateView, CompletionRateCollection) {
   var CompletionRateModule = ModuleController.extend({
-    className: 'completion_rate',
     visualisationClass: CompletionRateView,
     collectionClass: CompletionRateCollection,
     clientRenderOnInit: true,

@@ -5,7 +5,6 @@ define([
 ],
 function (ModuleController, MultiStatsView, MultiStatsCollection) {
   var MultiStatsModule = ModuleController.extend({
-    className: 'multi_stats',
     visualisationClass: MultiStatsView,
     collectionClass: MultiStatsCollection,
     clientRenderOnInit: true,

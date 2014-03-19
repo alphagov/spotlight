@@ -5,12 +5,6 @@ define([
 ],
 function (ModuleController, VisitorsRealtimeView, ListCollection) {
   var VisitorsRealtimeModule = ModuleController.extend({
-
-    className: function () {
-      var classes = this.model.get('classes');
-      return ['realtime'].concat(classes || []).join(' ');
-    },
-
     visualisationClass: VisitorsRealtimeView,
     collectionClass: ListCollection,
     clientRenderOnInit: true,

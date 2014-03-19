@@ -16,6 +16,11 @@ define([
       return this.model.get('slug') || this.model.get('module-type');
     },
 
+    className: function () {
+      var classes = this.model.get('classes');
+      return [this.model.get('module-type')].concat(classes || []).join(' ');
+    },
+
     initialize: function (options) {
       if (isClient) {
         this.viewClass = ModuleView;

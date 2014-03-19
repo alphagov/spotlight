@@ -23,7 +23,6 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         this.collectionClass = GroupedTimeseriesCollection;
       }
     },
-    className: 'grouped_timeseries',
     visualisationClass: GroupedTimeseriesView,
     clientRenderOnInit: true,
     requiresSvg: true,

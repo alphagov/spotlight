@@ -5,7 +5,6 @@ define([
 ],
 function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) {
   var CompletionNumbersModule = ModuleController.extend({
-    className: 'completion_numbers',
     visualisationClass: CompletionNumbersView,
     collectionClass: CompletionNumbersCollection,
     clientRenderOnInit: true,
