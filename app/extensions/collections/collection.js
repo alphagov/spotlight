@@ -32,7 +32,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       options = options || {};
       this.options = options;
 
-      _.each(['filterBy', 'collections', 'data-type', 'data-group'], function (prop) {
+      _.each(['filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
         if (options[prop]) {
           this[prop] = options[prop];
         }

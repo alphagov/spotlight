@@ -11,8 +11,6 @@ function (MatrixCollection) {
         throw new Error('Both "title" and "id" are required options for a ListCollection instance');
       }
 
-      this.queryParams = options.queryParams || {};
-
       MatrixCollection.prototype.initialize.apply(this, arguments);
 
       if (isClient && _.isNumber(this.options.updateInterval)) {

@@ -45,14 +45,6 @@ function (ListCollection, Collection) {
         expect(collection.prop('queryParams').limit).toBe(undefined);
       });
 
-      it('if neither sortBy and limit are passed as options there are no query params', function () {
-        var collection = new ListCollection(
-          { 'data' : [] },
-          { id: 'a', title: 'a' }
-        );
-        expect(collection.prop('queryParams')).toEqual({});
-      });
-
     });
 
 
