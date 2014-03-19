@@ -1,0 +1,48 @@
+.kpi .visualisation {
+
+  overflow: hidden;
+  position: relative;
+
+  .stat {
+    float: left;
+
+    strong {
+      margin-bottom: 3px;
+    }
+  }
+
+  .delta {
+    position: absolute;
+    bottom: 5px;
+    left: 18em;
+
+    .change {
+      @include core-24($tabular-numbers: true);
+    }
+  }
+
+  @media(max-width: 850px) {
+
+      .delta {
+        left: 9em;
+      }
+
+    .stat strong {
+      margin-bottom: 8px;
+    }
+
+  }
+
+  @media(max-width: 640px) {
+
+      .delta {
+        left: 8em;
+        bottom: 2px;
+      }
+
+    .stat strong {
+      margin-bottom: 5px;
+    }
+
+  }
+}

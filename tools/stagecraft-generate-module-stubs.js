@@ -105,6 +105,8 @@ moduleSchemas.table = moduleSchemas.common;
 
 moduleSchemas.user_satisfaction = moduleSchemas.common;
 
+moduleSchemas.kpi = moduleSchemas.common;
+
 var validationResult = {},
     stagecraftStubDirectory = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses');
 
