@@ -5,6 +5,7 @@
   "description": "Live number of users on any page within the service",
   "dashboard-title": "Pay to legalise documents using the premium service",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "pay-legalisation-drop-off",
   "department": {
     "title": "Foreign and Commonwealth Office"
   },

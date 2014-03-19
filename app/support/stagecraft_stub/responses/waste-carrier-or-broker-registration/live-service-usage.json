@@ -5,6 +5,7 @@
   "description": "Users currently using the transaction",
   "dashboard-title": "Register as a waste carrier, broker or dealer",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "waste-carrier-or-broker-registration",
   "department": {
     "title": "Department for Environment, Food and Rural Affairs"
   },

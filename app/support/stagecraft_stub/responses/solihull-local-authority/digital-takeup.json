@@ -1,9 +1,9 @@
 {
+  "module-type": "completion_rate",
+  "title": "Digital take-up",
   "department": {
     "title": "Solihull Local Authority"
   },
-  "module-type": "completion_rate",
-  "title": "Digital take-up",
   "data-group": "solihull-local-authority",
   "data-type": "transactions-by-channel",
   "period": "week",
@@ -16,7 +16,7 @@
   "matching-attribute": "channel",
   "value-attribute": "count:sum",
   "page-type": "module",
-  "dashboard-title": "Solihull missed waste collection",
+  "dashboard-title": "Solihull missed waste collections",
   "dashboard-strapline": "Service dashboard",
   "dashboard-slug": "solihull-local-authority"
 }

@@ -9,6 +9,7 @@
     "title": "Department for Education"
   },
   "description": "The number of new digital submitted applications versus digital started applications in a given week",
+  "dashboard-slug": "student-finance",
   "data-group": "student-finance",
   "data-type": "transactions-by-channel",
   "filter-by": ["country:england", "application_type:full-time application", "new_or_continuing:new"],

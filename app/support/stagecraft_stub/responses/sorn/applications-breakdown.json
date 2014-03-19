@@ -41,5 +41,11 @@
   "page-type": "module",
   "dashboard-title": "Statutory Off Road Notification",
   "dashboard-strapline": "Service dashboard",
-  "dashboard-slug": "sorn"
+  "dashboard-slug": "sorn",
+  "department": {
+    "title": "Department for Transport"
+  },
+  "agency": {
+    "title": "DVLA"
+  }
 }

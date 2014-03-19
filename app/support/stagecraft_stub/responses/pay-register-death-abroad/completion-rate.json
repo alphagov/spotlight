@@ -5,6 +5,7 @@
   "description": "",
   "dashboard-title": "Pay to register a death abroad",
   "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "pay-register-death-abroad",
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
