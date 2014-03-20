@@ -196,8 +196,17 @@ module.exports = function (grunt) {
         tasks: ['jasmine:spotlight:build']
       }
     },
-    // Supervises the node process in development
     shell: {
+      // Generates the page-per-thing module JSON stubs
+      generate_module_stubs: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: false
+        },
+        command: 'node tools/stagecraft-generate-module-stubs.js'
+      },
+      // Supervises the node process in development
       supervisor: {
         options: {
           stdout: true,
@@ -255,7 +264,8 @@ module.exports = function (grunt) {
     'copy:vendor',
     'copy:govuk_template',
     'clean',
-    'copy:assets'
+    'copy:assets',
+    'shell:generate_module_stubs'
   ]);
 
   grunt.registerTask('build:development', [
@@ -277,6 +287,7 @@ module.exports = function (grunt) {
     'copy:govuk_template',
     'clean',
     'copy:assets',
+    'shell:generate_module_stubs',
     'sass:development',
     'digest',
     'jasmine',

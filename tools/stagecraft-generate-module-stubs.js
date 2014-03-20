@@ -115,6 +115,12 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
   }
 
   _.each(files, function (filename) {
+
+    // If the file doesn't end in .json, don't process it
+    if (filename.indexOf('.json') === -1) {
+      return;
+    }
+
     if (filename === 'services.json' || filename === 'unimplemented-page-type.json') {
       return;
     }
@@ -197,4 +203,6 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
       }
     });
   });
+
+  console.log('Finished processing module stubs');
 });
