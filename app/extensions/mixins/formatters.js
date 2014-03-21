@@ -84,9 +84,12 @@ define([
           suffix = parsed.suffix;
           value = parsed.value;
         }
-        if (typeof options.dps === 'number') {
+        if (typeof options.dps === 'number' && typeof options.sigfigs !== 'number') {
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
+        } else if (typeof options.sigfigs === 'number') {
+          var divisor = Math.pow(10, Math.ceil(Math.log(value) / Math.LN10) - options.sigfigs);
+          value = divisor * Math.round(value / divisor);
         }
         if (options.fixed && typeof options.fixed === 'number') {
           value = value.toFixed(options.fixed);
