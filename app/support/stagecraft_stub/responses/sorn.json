@@ -76,7 +76,7 @@
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "cost_per_transaction",
-      "format": { "type": "currency", "dps": 2 }
+      "format": { "type": "currency", "pence": true }
     },
     {
       "slug": "live-service-usage",
