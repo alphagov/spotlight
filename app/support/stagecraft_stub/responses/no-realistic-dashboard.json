@@ -50,7 +50,7 @@
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "dps": 2 }
+      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },
     {
       "slug": "total-cost",
@@ -64,7 +64,7 @@
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "dps": 2 }
+      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
     {
       "slug": "digital-take-up",
