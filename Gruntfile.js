@@ -37,6 +37,7 @@ module.exports = function (grunt) {
           'public/stylesheets/spotlight.css': 'styles/index.scss'
         },
         options: {
+          compass: true,
           loadPath: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
@@ -55,6 +56,7 @@ module.exports = function (grunt) {
           }
         ],
         options: {
+          compass: true,
           loadPath: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],

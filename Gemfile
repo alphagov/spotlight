@@ -13,4 +13,6 @@ group :test do
   gem 'sauce-connect', '3.2.0'
 end
 
-gem 'sass', '3.2.12'
+gem 'json', '1.8.0'
+gem 'compass', '0.12.4'
+gem 'sass', '3.2.17'
