@@ -11,7 +11,7 @@ function (Table, HideShow) {
     },
 
     prepareTable: function () {
-      var label = 'Table view of ' + this.model.get('title').toLowerCase() + ' data';
+      var label = 'Table view of “' + this.model.get('title') + '” data';
       this.$table = $('<table/>');
       this.$table.appendTo(this.$toggleContainer);
       this.$toggleContainer.insertAfter(this.$el);

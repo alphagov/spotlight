@@ -32,8 +32,8 @@ function (GraphTable, HideShowView, Model, Collection) {
       });
 
       it('sets toggle labels based on model title', function () {
-        expect(table.toggleTable.showLabel).toEqual('Table view of some title data');
-        expect(table.toggleTable.hideLabel).toEqual('Table view of some title data');
+        expect(table.toggleTable.showLabel).toEqual('Table view of “Some title” data');
+        expect(table.toggleTable.hideLabel).toEqual('Table view of “Some title” data');
       });
 
     });
