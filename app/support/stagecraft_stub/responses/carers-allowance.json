@@ -44,7 +44,6 @@
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
-      "dashboard-title": "Carer's Allowance",
       "dashboard-strapline": "Service dashboard",
       "category": "key",
       "period": "week",
@@ -82,7 +81,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "",
-      "dashboard-title": "Carer's Allowance",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "info": [
