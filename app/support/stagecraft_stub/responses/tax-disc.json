@@ -74,6 +74,26 @@
       }
     },
     {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "",
+      "data-group": "vehicle-licensing",
+      "data-type": "volumetrics",
+      "info": [
+        "Data source: DVLA database",
+        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+      ],
+      "numerator-matcher": "^fully-digital$",
+      "denominator-matcher": "^fully-digital|assisted-digital|manual$",
+      "matching-attribute": "channel",
+      "value-attribute": "volume:sum",
+      "period": "month",
+      "query-params": {
+        "filter_by": "service:tax-disc"
+      }
+    },
+    {
       "slug": "recorded-errors",
       "module-type": "table",
       "title": "Recorded errors",
