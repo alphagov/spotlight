@@ -6,11 +6,11 @@
       width: 300px / 960px * 100%; // 31.25%
 
       h3 {
-        @include core-16($tabular-numbers: true);
+        @include core-16;
       }
 
       .related-transaction a {
-        @include bold-24($tabular-numbers: true);
+        @include bold-24;
       }
 
       .related-other {
@@ -30,11 +30,11 @@
             line-height: 1;
 
             a {
-              @include bold-16($tabular-numbers: true);
+              @include bold-16;
             }
 
             .metadata {
-              @include core-14($tabular-numbers: true);
+              @include core-14;
             }
           }
         }
