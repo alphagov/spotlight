@@ -8,12 +8,12 @@
     display: inline-block;
 
     h1 {
-      @include bold-48($tabular-numbers: true);
+      @include bold-48;
       width: 100%;
       display: inline-block;
 
       span.strapline {
-        @include core-27($tabular-numbers: true);
+        @include core-27;
         display: block;
         margin-bottom: 5px;
 
