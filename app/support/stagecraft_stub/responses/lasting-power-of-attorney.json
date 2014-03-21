@@ -1,9 +1,22 @@
 {
   "slug": "lasting-power-of-attorney",
   "page-type": "dashboard",
-  "title": "Lasting Power of Attorney",
+  "dashboard-type": "transaction",
   "strapline": "Service dashboard",
-  "tagline": "Figures for the service to make a <strong>lasting power of attorney (LPA)</strong> – a legal document that lets you appoint someone, known as an 'attorney', to make decisions on your behalf. Figures include applications made via both digital and paper form channels.",
+  "title": "Lasting Power of Attorney",
+  "description": "Figures for the service to make a <strong>lasting power of attorney (LPA)</strong> - a legal document that lets you appoint someone, known as an 'attorney', to make decisions on your behalf. Figures include applications made via both digital and paper form channels.",
+  "department": {
+     "title": "Ministry of Justice"
+  },
+  "agency": {
+     "title": "Office of the Public Guardian"
+  },
+   "relatedPages": {
+    "transaction": {
+      "title": "Apply for Lasting Power of Attorney",
+      "url" : "https://www.gov.uk/power-of-attorney/overview"
+    }
+  },
   "modules": [
     {
       "slug": "applications-breakdown",
