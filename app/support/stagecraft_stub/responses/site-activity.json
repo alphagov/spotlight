@@ -75,10 +75,10 @@
       "slug": "top-content",
       "module-type": "list",
       "title": "Top content",
-      "description": "Most pageviews in past seven days",
+      "description": "Most pageviews in past 7 days",
       "info": [
         "Data source: Google Analytics",
-        "The content on GOV.UK with the most pageviews in the past seven days."
+        "The content on GOV.UK with the most pageviews in the past 7 days."
       ],
       "classes": ["cols2"],
       "data-group": "govuk",
@@ -98,7 +98,7 @@
       "description": "Largest percentage increase in pageviews week-on-week",
       "info": [
         "Data source: Google Analytics",
-        "Based on percentage increase between total pageviews in past seven days and total pageviews in previous seven days. Low pageviews in either period are rounded up to a set threshold.",
+        "Based on percentage increase between total pageviews in past 7 days and total pageviews in previous 7 days. Low pageviews in either period are rounded up to a set threshold.",
         "Excludes search results, help pages, the Service Design Manual, the Performance Platform, policies, and transformation projects."
       ],
       "classes": ["cols2"],
@@ -116,10 +116,10 @@
       "slug": "top-policies",
       "module-type": "list",
       "title": "Top policies",
-      "description": "Most pageviews in past seven days",
+      "description": "Most pageviews in past 7 days",
       "info": [
         "Data source: Google Analytics",
-        "The policies on GOV.UK with the most pageviews in the past seven days."
+        "The policies on GOV.UK with the most pageviews in the past 7 days."
       ],
       "classes": ["cols2"],
       "data-group": "govuk",
@@ -136,10 +136,10 @@
       "slug": "top-announcements",
       "module-type": "list",
       "title": "Top announcements",
-      "description": "Most pageviews in past seven days",
+      "description": "Most pageviews in past 7 days",
       "info": [
         "Data source: Google Analytics",
-        "The press releases and news on GOV.UK with the most pageviews in the past seven days."
+        "The press releases and news on GOV.UK with the most pageviews in the past 7 days."
       ],
       "classes": ["cols2"],
       "data-group": "govuk",
