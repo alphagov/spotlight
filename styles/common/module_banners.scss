@@ -46,7 +46,7 @@
 
         p {
           background-color: $mellow-red-25;
-          background-image: url(../images/warning.png);
+          background-image: image-url('images/warning.png');
         }
 
         &:after {
