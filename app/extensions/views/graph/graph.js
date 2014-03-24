@@ -89,11 +89,11 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }
 
       // initialize graph components
-      var componentInstances = this.componentInstances = [];
+      this.componentInstances = [];
       var defaultComponentOptions = this.getDefaultComponentOptions();
       _.each(this.prop('components'), function (definition) {
         var options = _.extend({}, defaultComponentOptions, definition.options);
-        componentInstances.push(new definition.view(options));
+        this.componentInstances.push(new definition.view(options));
       }, this);
 
       if (isClient) {
