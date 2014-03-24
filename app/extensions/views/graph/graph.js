@@ -314,6 +314,14 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }
     },
 
+    remove: function () {
+      if (this.table) {
+        this.table.remove();
+      }
+      _.invoke(this.componentInstances, 'remove');
+      return View.prototype.remove.apply(this, arguments);
+    },
+
     configs: {
       hour: scaleByTimestamp,
       day: scaleByStartDate,

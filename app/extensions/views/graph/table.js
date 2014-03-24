@@ -29,6 +29,13 @@ function (Table, HideShow) {
       this.toggleTable.show();
       Table.prototype.floatHeaders.apply(this, arguments);
       this.toggleTable.hide();
+    },
+
+    remove: function () {
+      if (this.toggleTable) {
+        this.toggleTable.remove();
+      }
+      return Table.prototype.remove.apply(this, arguments);
     }
   });
 });
