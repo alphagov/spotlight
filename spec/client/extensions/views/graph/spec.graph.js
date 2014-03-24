@@ -126,6 +126,15 @@ function (Graph, GraphTable, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
+      it('does not render if it has been removed', function () {
+        var graph = new TestGraph({
+          collection: collection
+        });
+        graph.remove();
+        collection.trigger('reset');
+        expect(graph.render).not.toHaveBeenCalled();
+      });
+
       it('prepares the graph area', function () {
         var graph = new TestGraph({
           collection: collection

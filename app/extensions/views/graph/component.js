@@ -21,7 +21,7 @@ function (View, d3) {
         this.graph.on('hover', this.onHover, this);
       }
 
-      this.collection.on('change:selected', this.onChangeSelected, this);
+      this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
     },
 
     moveToFront: function (el) {

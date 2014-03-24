@@ -11,9 +11,9 @@ function (View) {
       View.prototype.initialize.apply(this, arguments);
 
       if (this.changeOnSelected) {
-        this.collection.on('change:selected', this.onChangeSelected, this);
+        this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
       }
-      this.collection.on('reset sync error', this.render, this);
+      this.listenTo(this.collection, 'reset sync error', this.render, this);
     },
 
     onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {

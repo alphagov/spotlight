@@ -77,7 +77,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       View.prototype.initialize.apply(this, arguments);
 
       var collection = this.collection = options.collection;
-      collection.on('reset add remove sync', this.render, this);
+      this.listenTo(collection, 'reset add remove sync', this.render);
 
       this.prepareGraphArea();
 
