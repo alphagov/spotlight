@@ -8,6 +8,7 @@ function (Table, HideShow) {
       this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
       Table.prototype.initialize.apply(this, arguments);
+      this.stopListening(this.collection, 'reset add remove sync', this.render);
     },
 
     prepareTable: function () {
