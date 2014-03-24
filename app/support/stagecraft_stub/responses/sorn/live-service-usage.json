@@ -1,0 +1,21 @@
+{
+  "module-type": "realtime",
+  "title": "Users on start page",
+  "description": "Users currently on the GOV.UK start page for the service",
+  "info": [
+    "Data source: Google Analytics",
+    "Shows the estimated number of users currently on the GOV.UK start page for the service."
+  ],
+  "data-group": "sorn",
+  "data-type": "realtime",
+  "page-type": "module",
+  "dashboard-title": "Statutory Off Road Notification",
+  "dashboard-strapline": "Service dashboard",
+  "dashboard-slug": "sorn",
+  "department": {
+    "title": "Department for Transport"
+  },
+  "agency": {
+    "title": "DVLA"
+  }
+}

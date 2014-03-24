@@ -19,6 +19,33 @@
   },
   "modules": [
     {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Users on start page",
+      "description": "Users currently on the GOV.UK start page for the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently on the GOV.UK start page for the service."
+      ],
+      "data-group": "tax-disc",
+      "data-type": "realtime",
+      "classes": ["cols2"]
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "vehicle-licensing",
+      "data-type": "customer-satisfaction",
+      "info": [
+        "Data source: DVLA database",
+        "User satisfaction is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "value-attribute": "satisfaction_tax_disc",
+      "classes": ["cols2"]
+    },
+    {
       "slug": "applications-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",

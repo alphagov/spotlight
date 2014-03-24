@@ -8,9 +8,9 @@ span.group5 { color: $data-colour-6; }
 
 .table-toggle {
   a {
-    line-height: 2.5em;
-    font-size: 14px;
+    @include core-14;
   }
+
   table {
     .js-enabled & {
       display: none;
@@ -487,7 +487,7 @@ figure.graph {
       display:none;
     }
 
-    .y-axis .tick:nth-child(odd) text { 
+    .y-axis .tick:nth-child(odd) text {
 	    font-size: 12px;
      }
 
