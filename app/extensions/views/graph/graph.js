@@ -97,7 +97,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }, this);
 
       if (isClient) {
-        $(window).on('resize', _.bind(this.render, this));
+        $(window).on('resize.' + this.cid, _.bind(this.render, this));
       }
     },
 
@@ -319,6 +319,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         this.table.remove();
       }
       _.invoke(this.componentInstances, 'remove');
+      $(window).off('resize.' + this.cid);
       return View.prototype.remove.apply(this, arguments);
     },
 
