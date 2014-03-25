@@ -60,7 +60,19 @@ function (Collection, Model, Backbone) {
         expect(collection.queryParams).toEqual({ foo: 'bar' });
 
       });
-  
+
+      it('does not overwrite pre-existing queryParams method', function () {
+        var ExtendedCollection = Collection.extend({
+          queryParams: function () {}
+        });
+
+        var collection = new ExtendedCollection([], {
+          queryParams: { foo: 'bar' }
+        });
+        expect(collection.queryParams).not.toEqual({ foo: 'bar' });
+
+      });
+
     });
 
     describe('prop', function () {
