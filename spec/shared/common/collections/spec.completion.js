@@ -81,6 +81,16 @@ function (CompletionCollection) {
       expect(collection.url()).toContain('group_by=eventCategory');
     });
 
+    it('should recognise query parameters passed in from the module', function () {
+      var collection = new CompletionCollection({}, {
+        queryParams: {
+          'filter_by': 'foo:bar'
+        }
+      });
+
+      expect(collection.url()).toContain('filter_by=foo%3Abar');
+    });
+
     it('should update value attribute on parse', function () {
       var collection = new CompletionCollection({}, { valueAttr: 'one' });
       collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });

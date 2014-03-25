@@ -37,4 +37,12 @@
       }
     }
   }
+
+  // Hide the sparkline when the realtime module is part of a 2-column layout
+  // because there isn't really enough room for it.
+  &.cols2 {
+    .sparkline {
+      display: none;
+    }
+  }
 }

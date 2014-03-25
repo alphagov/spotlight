@@ -37,6 +37,8 @@ function (MatrixCollection, Collection, Group, Query) {
         params[this.options.tabbedAttr] = this.options.tabs[0].id;
       }
 
+      params = _.extend(params, (this.options.queryParams || {}));
+
       return params;
     },
 
