@@ -33,6 +33,8 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         valueAttr: this.model.get('value-attr'),
         category: this.model.get('category'),
         period: this.model.get('period'),
+        startAt: this.model.get('start-at'),
+        endAt: this.model.get('end-at'),
         currency: this.model.get('currency'),
         seriesList: this.model.get('series'),
         filterBy: this.model.get('filter-by'),
