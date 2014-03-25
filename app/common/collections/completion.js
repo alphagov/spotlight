@@ -15,6 +15,8 @@ function (MatrixCollection, Collection, Group, Query) {
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
       this.period = options.period || 'week';
+      this.start_at = options.startAt || null;
+      this.end_at = options.endAt || null;
       this.axisPeriod = options.axisPeriod || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
 
@@ -30,7 +32,9 @@ function (MatrixCollection, Collection, Group, Query) {
         collect: this.valueAttr,
         duration: this.duration,
         group_by: this.matchingAttribute,
-        period: this.period
+        period: this.period,
+        start_at: this.start_at,
+        end_at: this.end_at
       };
 
       if (this.options && this.options.tabbedAttr) {
