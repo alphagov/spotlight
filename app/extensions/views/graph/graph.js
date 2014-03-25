@@ -77,7 +77,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       View.prototype.initialize.apply(this, arguments);
 
       var collection = this.collection = options.collection;
-      collection.on('reset add remove sync', this.render, this);
+      this.listenTo(collection, 'reset add remove sync', this.render);
 
       this.prepareGraphArea();
 
@@ -89,15 +89,15 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }
 
       // initialize graph components
-      var componentInstances = this.componentInstances = [];
+      this.componentInstances = [];
       var defaultComponentOptions = this.getDefaultComponentOptions();
       _.each(this.prop('components'), function (definition) {
         var options = _.extend({}, defaultComponentOptions, definition.options);
-        componentInstances.push(new definition.view(options));
+        this.componentInstances.push(new definition.view(options));
       }, this);
 
       if (isClient) {
-        $(window).on('resize', _.bind(this.render, this));
+        $(window).on('resize.' + this.cid, _.bind(this.render, this));
       }
     },
 
@@ -312,6 +312,16 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       if (this.table) {
         this.table.render();
       }
+    },
+
+    remove: function () {
+      if (this.table) {
+        this.table.remove();
+      }
+      _.invoke(this.componentInstances, 'remove');
+      this.componentInstances = [];
+      $(window).off('resize.' + this.cid);
+      return View.prototype.remove.apply(this, arguments);
     },
 
     configs: {

@@ -21,19 +21,15 @@ function (View, SparklineView, template) {
 
       View.prototype.initialize.apply(this, arguments);
 
-      var events = '';
-
-      if (isClient) {
-        events += 'sync';
-      }
-
       this.changeOnSelected = options.changeOnSelected || this.changeOnSelected;
 
       if (this.changeOnSelected) {
-        this.collection.on('change:selected', this.onChangeSelected, this);
+        this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
       }
 
-      this.collection.on(events, this.render, this);
+      if (isClient) {
+        this.listenTo(this.collection, 'sync', this.render, this);
+      }
 
       this.currentVisitors = this.getCurrentVisitors();
 

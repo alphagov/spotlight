@@ -46,7 +46,7 @@ define([
       }
 
       if (this.collection) {
-        this.collection.once('sync reset error', function () {
+        this.listenToOnce(this.collection, 'sync reset error', function () {
           this.renderView({
             collection: this.collection,
             model: this.model

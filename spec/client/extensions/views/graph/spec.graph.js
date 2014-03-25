@@ -3,9 +3,10 @@ define([
   'extensions/views/graph/table',
   'extensions/collections/collection',
   'extensions/models/model',
+  'extensions/views/view',
   'd3'
 ],
-function (Graph, GraphTable, Collection, Model, d3) {
+function (Graph, GraphTable, Collection, Model, View, d3) {
 
   describe('Graph', function () {
 
@@ -44,8 +45,14 @@ function (Graph, GraphTable, Collection, Model, d3) {
       var collection, TestGraph, testComponent1, testComponent2;
       beforeEach(function () {
         collection = new Collection();
-        testComponent1 = jasmine.createSpy();
-        testComponent2 = jasmine.createSpy();
+        testComponent1 = View.extend({
+          initialize: jasmine.createSpy(),
+          remove: jasmine.createSpy()
+        });
+        testComponent2 = View.extend({
+          initialize: jasmine.createSpy(),
+          remove: jasmine.createSpy()
+        });
         TestGraph = Graph.extend({
           components: [
             {
@@ -126,6 +133,15 @@ function (Graph, GraphTable, Collection, Model, d3) {
         expect(graph.render).toHaveBeenCalled();
       });
 
+      it('does not render if it has been removed', function () {
+        var graph = new TestGraph({
+          collection: collection
+        });
+        graph.remove();
+        collection.trigger('reset');
+        expect(graph.render).not.toHaveBeenCalled();
+      });
+
       it('prepares the graph area', function () {
         var graph = new TestGraph({
           collection: collection
@@ -137,11 +153,11 @@ function (Graph, GraphTable, Collection, Model, d3) {
         var graph = new TestGraph({
           collection: collection
         });
-        expect(testComponent1).toHaveBeenCalledWith({
+        expect(testComponent1.prototype.initialize).toHaveBeenCalledWith({
           a: 'b',    // default option
           foo: 'bar' // component option
         });
-        expect(testComponent2).toHaveBeenCalledWith({
+        expect(testComponent2.prototype.initialize).toHaveBeenCalledWith({
           a: 'c',    // overridden default option
           foo: 'baz' // component option
         });
@@ -405,6 +421,68 @@ function (Graph, GraphTable, Collection, Model, d3) {
         expect(component1.render).toHaveBeenCalled();
         expect(component2.render).toHaveBeenCalled();
       });
+    });
+
+    describe('remove', function () {
+
+      var TestGraph, TestComponent1, TestComponent2;
+      beforeEach(function () {
+        TestComponent1 = View.extend({
+          initialize: jasmine.createSpy(),
+          remove: jasmine.createSpy()
+        });
+        TestComponent2 = View.extend({
+          initialize: jasmine.createSpy(),
+          remove: jasmine.createSpy()
+        });
+        TestGraph = Graph.extend({
+          components: [
+            {
+              view: TestComponent1,
+              options: {
+                foo: 'bar'
+              }
+            },
+            {
+              view: TestComponent2,
+              options: {
+                foo: 'baz',
+                a: 'c'
+              }
+            }
+          ],
+          getDefaultComponentOptions: function () {
+            return {
+              a: 'b'
+            };
+          }
+        });
+      });
+
+      it('removes component instances', function () {
+        var graph = new TestGraph({
+          collection: new Collection()
+        });
+        graph.remove();
+        expect(TestComponent1.prototype.remove).toHaveBeenCalled();
+        expect(TestComponent2.prototype.remove).toHaveBeenCalled();
+      });
+
+      it('removes table if it exists', function () {
+        spyOn(GraphTable.prototype, 'remove');
+        var graph = new TestGraph({
+          collection: {
+            on: function () {},
+            off: function () {},
+            options: {
+              axes: true
+            }
+          }
+        });
+        graph.remove();
+        expect(graph.table.remove).toHaveBeenCalled();
+      });
+
     });
 
     describe('scaleFactor', function () {

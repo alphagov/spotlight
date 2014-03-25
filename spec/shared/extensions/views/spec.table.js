@@ -1,18 +1,14 @@
 define([
   'extensions/views/table',
   'extensions/views/view',
+  'extensions/collections/collection',
   'jquery'
 ],
-function (Table, View, $) {
+function (Table, View, Collection, $) {
   describe('Table', function () {
     it('inherits from View', function () {
       var table = new Table({
-          collection: {
-            on: jasmine.createSpy(),
-            options: {
-              axes: {}
-            }
-          }
+          collection: new Collection()
         });
 
       expect(table instanceof View).toBe(true);
@@ -21,12 +17,36 @@ function (Table, View, $) {
     describe('initialize', function () {
       var table;
       beforeEach(function () {
+        spyOn(Table.prototype, 'render');
         table = new Table({
-          collection: {
-            on: jasmine.createSpy(),
-            options: { axes: {} }
-          }
+          collection: new Collection()
         });
+      });
+
+      it('renders on collection reset', function () {
+        table.collection.trigger('reset');
+        expect(table.render).toHaveBeenCalled();
+      });
+
+      it('renders on collection add', function () {
+        table.collection.trigger('add');
+        expect(table.render).toHaveBeenCalled();
+      });
+
+      it('renders on collection remove', function () {
+        table.collection.trigger('remove');
+        expect(table.render).toHaveBeenCalled();
+      });
+
+      it('renders on collection sync', function () {
+        table.collection.trigger('sync');
+        expect(table.render).toHaveBeenCalled();
+      });
+
+      it('does not render if it has been removed', function () {
+        table.remove();
+        table.collection.trigger('reset');
+        expect(table.render).not.toHaveBeenCalled();
       });
 
     });

@@ -8,6 +8,7 @@ function (Table, HideShow) {
       this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
       Table.prototype.initialize.apply(this, arguments);
+      this.stopListening(this.collection, 'reset add remove sync', this.render);
     },
 
     prepareTable: function () {
@@ -29,6 +30,13 @@ function (Table, HideShow) {
       this.toggleTable.show();
       Table.prototype.floatHeaders.apply(this, arguments);
       this.toggleTable.hide();
+    },
+
+    remove: function () {
+      if (this.toggleTable) {
+        this.toggleTable.remove();
+      }
+      return Table.prototype.remove.apply(this, arguments);
     }
   });
 });
