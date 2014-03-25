@@ -4,10 +4,13 @@
   "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Pay to legalise documents using the premium service",
-  "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised' – this means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
+  "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised'.",
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
+  "customer-type": "Businesses",
+  "business-model": "Service users",
+  "description-extra": "Legalisation means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
   "modules": [
     {
       "slug": "live-service-usage",

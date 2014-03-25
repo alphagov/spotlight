@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "strapline": "Service dashboard",
   "title": "Carer's Allowance",
-  "description": "Carer’s Allowance is a benefit to help people who care for a disabled person for 35 hours or more each week. The person being cared for must receive a qualifying benefit, eg Personal Independence Payment, Disability Living Allowance at the middle or highest rate, or Armed Forces Independence Payment.",
+  "description": "Carer's Allowance (CA) is a regular payment for carers to help look after someone with substantial caring needs - involving at least 35 hours a week.",
   "department": {
     "title": "Department for Work and Pensions"
   },
@@ -24,6 +24,10 @@
       }
     ]
   },
+  "customer-type": "Individuals",
+  "business-model": "Department budget",
+  "costs": "Costs cover many interactions with people and third parties, such as medical professionals, across the duration of their claim. It includes medical reviews, contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and handling appeals against decisions made. It also includes the making of payments and queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "other-notes": "The number of transactions given is the annual average of the number of claims that have been maintained from October 2012 to September 2013.<br>The data covers the maintaining of existing claims after initial eligibility and amount due have been established.",
   "modules": [
     {
       "slug": "live-service-usage",
