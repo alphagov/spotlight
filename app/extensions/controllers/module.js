@@ -21,7 +21,7 @@ define([
       if (classes && !_.isArray(classes)) {
         classes = [classes];
       }
-      return [this.model.get('module-type')].concat(classes || []).join(' ');
+      return ['module', this.model.get('module-type')].concat(classes || []).join(' ');
     },
 
     initialize: function (options) {

@@ -44,11 +44,11 @@ function (ModuleController, Model) {
 
         moduleController.model.set('module-type', 'availability');
 
-        expect(moduleController.className()).toEqual('availability');
+        expect(moduleController.className()).toEqual('module availability');
 
         moduleController.model.set('module-type', 'grouped-timeseries');
 
-        expect(moduleController.className()).toEqual('grouped-timeseries');
+        expect(moduleController.className()).toEqual('module grouped-timeseries');
 
       });
 
@@ -57,7 +57,7 @@ function (ModuleController, Model) {
 
         moduleController.model.set('classes', ['foo', 'bar']);
 
-        expect(moduleController.className()).toEqual('availability foo bar');
+        expect(moduleController.className()).toEqual('module availability foo bar');
 
       });
 
@@ -65,10 +65,10 @@ function (ModuleController, Model) {
       it('includes any classes defined on the model', function () {
 
         moduleController.model.set('classes', ['foo', 'bar']);
-        expect(moduleController.className()).toEqual('availability foo bar');
+        expect(moduleController.className()).toEqual('module availability foo bar');
 
         moduleController.model.set('classes', 'baz');
-        expect(moduleController.className()).toEqual('availability baz');
+        expect(moduleController.className()).toEqual('module availability baz');
 
       });
 

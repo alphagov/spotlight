@@ -1,6 +1,11 @@
 #content {
-  section {
+  section.module {
     min-height: 210px;
+
+    &.cols2 {
+      width: 50%;
+      margin-left: 0;
+    }
   }
 
   h2 {
