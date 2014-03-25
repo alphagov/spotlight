@@ -60,6 +60,8 @@ function (CompletionCollection) {
       var collection = new CompletionCollection({}, {
         valueAttr: 'one',
         period: 'month',
+        'start-at': '2014-01-10T00:00:00+00:00',
+        'end-at': '2014-03-10T00:00:00+00:00',
         matchingAttribute: 'two',
         tabbedAttr: 'tabbing',
         tabs: [
@@ -68,6 +70,8 @@ function (CompletionCollection) {
       });
 
       expect(collection.url()).toContain('period=month');
+      expect(collection.url()).toContain('start_at=2013-03-01T00%3A00%3A00%2B00%3A00');
+      expect(collection.url()).toContain('end_at=2014-03-01T00%3A00%3A00%2B00%3A00');
       expect(collection.url()).toContain('collect=one');
       expect(collection.url()).toContain('group_by=two');
       expect(collection.url()).toContain('tabbing=tabid');
