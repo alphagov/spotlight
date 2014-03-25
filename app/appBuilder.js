@@ -26,8 +26,7 @@ function (express, fs, path, winston, requirejs) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         app.use(express.compress());
-        app.use('/assets', express['static'](path.join(rootDir, 'public')));
-        app.use('/assets/images', express['static'](path.join(rootDir, 'public')));
+        app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
 
         if (environment === 'development') {
           global.logger.debug('Winston is logging in development');
