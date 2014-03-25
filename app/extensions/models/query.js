@@ -24,17 +24,25 @@ function (Model) {
       }
       options = options || {};
       var period = attrs.period ? this.periods[attrs.period] : null;
+
       if (period) {
-        var endAt = period.boundary(this.getMoment());
-        endAt.subtract(getAndDelete(attrs, 'ago', 0), period.unit);
-        var duration = getAndDelete(attrs, 'duration', null) || period.duration;
-        var startAt = endAt.clone().subtract(
-          duration, period.unit
-        );
-        _.extend(attrs, {
-          end_at: endAt,
-          start_at: startAt
-        });
+        var duration = getAndDelete(attrs, 'duration', null);
+        var ago = getAndDelete(attrs, 'ago', 0);
+        attrs.start_at = attrs.start_at ? this.moment(attrs.start_at) : null;
+        attrs.end_at = attrs.end_at ? this.moment(attrs.end_at) : null;
+
+        if (_.isNull(attrs.end_at)) {
+          var endAt = period.boundary(this.getMoment());
+          endAt.subtract(ago, period.unit);
+          attrs.end_at = endAt;
+        }
+        if (_.isNull(attrs.start_at)) {
+          duration = duration || period.duration;
+          var startAt = attrs.end_at.clone().subtract(
+            duration, period.unit
+          );
+          attrs.start_at = startAt;
+        }
       }
 
       Model.prototype.set.call(this, attrs, options);

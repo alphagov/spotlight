@@ -17,6 +17,8 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
         valueAttr: this.model.get('value-attribute'),
         category: this.model.get('category'),
         period: this.model.get('period'),
+        startAt: this.model.get('start-at'),
+        endAt: this.model.get('end-at'),
         queryParams: this.model.get('query-params'),
         axisPeriod: this.model.get('axis-period'),
         duration: this.model.get('duration'),
