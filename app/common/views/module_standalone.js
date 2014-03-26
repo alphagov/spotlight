@@ -50,6 +50,7 @@ function (GovUkView, Module) {
       }
       return crumbs;
     }
+
   });
 
   return ModuleStandaloneView;

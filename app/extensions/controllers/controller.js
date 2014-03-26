@@ -39,7 +39,6 @@ define([
           'data-group': this.model.get('data-group')
         }, this.collectionOptions()));
       }
-
       if (isClient && options.init && !this.clientRenderOnInit) {
         // Do not render on init when rendering in client
         this.trigger('ready');

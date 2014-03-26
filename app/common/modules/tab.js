@@ -33,9 +33,9 @@ function (ModuleController, TabView) {
         [this.tabs[this.model.get('activeIndex')]],
         this.model,
         { dashboard: true },
-        _.bind(function (tab) {
+        _.bind(function () {
           return {
-            el: this.view.getVisualisation().getModuleElementBySlug(tab.get('slug'))
+            el: this.view.$('section').eq(this.model.get('activeIndex'))
           };
         }, this),
         function () { }

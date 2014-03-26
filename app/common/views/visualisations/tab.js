@@ -42,18 +42,6 @@ function (View, template) {
     render: function () {
       View.prototype.render.apply(this, arguments);
       this.setActiveTab();
-    },
-
-    getModuleElementBySlug: function (slug) {
-      var tabs = this.tabs,
-          tabIndex;
-
-      for (tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
-        if (tabs[tabIndex].slug === slug) break;
-      }
-
-      var element = this.$el.find('section').eq(tabIndex);
-      return element;
     }
 
   });

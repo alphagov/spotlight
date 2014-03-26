@@ -65,23 +65,6 @@ function (TabView, Model) {
       });
     });
 
-    it('should get the section for module', function () {
-      var view = new TabView({
-        tabs: [
-          { title: 'Tab 1', slug: '1' },
-          { title: 'Tab 2', slug: '2' }
-        ],
-        model: new Model({ activeIndex: 0 })
-      });
-
-      jasmine.renderView(view, function () {
-        var sections = view.$el.find('section');
-
-        expect(sections.index(view.getModuleElementBySlug('2'))).toBe(1);
-        expect(sections.index(view.getModuleElementBySlug('1'))).toBe(0);
-      });
-    });
-
   });
 
 });
