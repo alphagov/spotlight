@@ -5,7 +5,7 @@ define([
 
   describe('TabModule', function () {
 
-    it('should render the tabs when the module is ready', function() {
+    it('should render the tabs when the module is ready', function () {
 
       var fooRender = jasmine.createSpy('fooRender'),
           fooModule = jasmine.createSpy('fooModule')
@@ -18,18 +18,18 @@ define([
                                      once: function () {} });
 
       var controllerMap = {
-            modules: {
-              foo: fooModule,
-              bar: barModule
-            }
-          },
-          config = new Model({ tabs: [{ 'module-type': 'foo' }] });
+        modules: {
+            foo: fooModule,
+            bar: barModule
+          }
+        },
+        config = new Model({ tabs: [{ 'module-type': 'foo' }] });
 
       var tabModule = new TabModule({
-            dashboard: true,
-            model: config,
-            controllerMap: controllerMap
-          });
+          dashboard: true,
+          model: config,
+          controllerMap: controllerMap
+        });
 
       tabModule.render();
 

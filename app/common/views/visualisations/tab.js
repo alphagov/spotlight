@@ -19,7 +19,7 @@ function (View, template) {
     template: template,
     templateContext: function () {
       return {
-        tabs: this.tabs 
+        tabs: this.tabs
       };
     },
 
@@ -47,13 +47,13 @@ function (View, template) {
       this.setActiveTab(this.activeIndex);
     },
 
-    getModuleElementBySlug: function(slug) {
-      var tabs = this.tabs
+    getModuleElementBySlug: function (slug) {
+      var tabs = this.tabs,
           tabIndex;
 
       console.log('getModuleElementBySlug', slug, tabs);
 
-      for (var tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
+      for (tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
         if (tabs[tabIndex].slug === slug) break;
       }
 

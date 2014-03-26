@@ -55,7 +55,7 @@ function (View, template) {
       );
     },
 
-    getVisualisation: function() {
+    getVisualisation: function () {
       return this.viewInstances['.visualisation'];
     }
   });

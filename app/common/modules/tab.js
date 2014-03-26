@@ -9,10 +9,9 @@ function (ModuleController, TabView) {
     clientRenderOnInit: true,
     requiresSvg: false,
 
-    initialize: function(options) {
+    initialize: function (options) {
       // for tests we want to be able to inject a custom controller map
-      var controllerMap = options.controllerMap || 
-                              require('controller_map');
+      var controllerMap = options.controllerMap || require('controller_map');
 
       this.tabs = _.map(this.model.get('tabs'), function (tab) {
         tab.controller = this.getControllerForModule(tab, controllerMap);

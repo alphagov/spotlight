@@ -80,7 +80,7 @@ function (Controller, View, Model, Collection) {
           model,
           {},
           renderOptionsSpy,
-          function() { }
+          function () { }
         );
 
         expect(instances[0] instanceof Module).toBe(true);
@@ -112,7 +112,7 @@ function (Controller, View, Model, Collection) {
           collectionClass: Collection
         });
         controller.render();
-        
+
         expect(controller.renderView).not.toHaveBeenCalled();
         expect(controller.collection instanceof Collection).toBe(true);
         expect(controller.collection.options['data-type']).toEqual('foo-type');
@@ -135,7 +135,7 @@ function (Controller, View, Model, Collection) {
           }
         });
         controller.render();
-        
+
         expect(controller.renderView).not.toHaveBeenCalled();
         expect(controller.collection instanceof Collection).toBe(true);
         expect(controller.collection.options['data-type']).toEqual('foo-type');
@@ -218,7 +218,7 @@ function (Controller, View, Model, Collection) {
       });
 
     });
-    
+
     describe('renderView', function () {
 
       var controller, model;

@@ -1,8 +1,7 @@
 define([
   'extensions/controllers/controller',
-  'common/views/dashboard',
-  'extensions/models/model'
-], function (Controller, DashboardView, Model) {
+  'common/views/dashboard'
+], function (Controller, DashboardView) {
 
   var DashboardController = Controller.extend({
 
@@ -23,7 +22,7 @@ define([
       options = options || {};
 
       this.moduleInstances = this.renderModules(
-        this.modules, 
+        this.modules,
         this.model,
         {
           dashboard: true,
