@@ -9,13 +9,14 @@ define([
   'common/modules/kpi',
   'common/modules/list',
   'common/modules/multi_stats',
+  'common/modules/tab',
   'common/modules/table',
   'common/modules/user_satisfaction',
   'common/modules/visitors-realtime'
 ],
 function (DashboardController, ErrorController,
   AvailabilityModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
-  JourneyModule, KPIModule, ListModule, MultiStatsModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
+  JourneyModule, KPIModule, ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
 
   var ControllerMap = {
     dashboard: DashboardController,
@@ -29,6 +30,7 @@ function (DashboardController, ErrorController,
       'kpi': KPIModule,
       'list': ListModule,
       'multi_stats': MultiStatsModule,
+      'tab': TabModule,
       'table': TableModule,
       'user_satisfaction': UserSatisfactionModule,
       'realtime': VisitorsRealtimeModule
