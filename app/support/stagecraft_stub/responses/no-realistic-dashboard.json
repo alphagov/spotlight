@@ -291,6 +291,7 @@
       "module-type": "tab",
       "title": "Some tabs with graphs",
       "description": "",
+      "activeIndex": 0,
       "tabs": [
         {
           "slug": "stacked_categories",

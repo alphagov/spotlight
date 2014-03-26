@@ -18,7 +18,8 @@ function (ModuleController, TabView) {
         return tab;
       }, this);
 
-      this.on('ready', _.bind(this.renderTabs, this));
+      this.on('ready', this.renderTabs, this);
+      this.listenTo(this.model, 'change:activeIndex', this.renderTabs, this);
 
       ModuleController.prototype.initialize.apply(this, arguments);
     },
@@ -29,7 +30,7 @@ function (ModuleController, TabView) {
 
     renderTabs: function () {
       this.renderModules(
-        this.tabs,
+        [this.tabs[this.model.get('activeIndex')]],
         this.model,
         { dashboard: true },
         _.bind(function (tab) {
