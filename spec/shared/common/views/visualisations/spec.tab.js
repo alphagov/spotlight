@@ -1,7 +1,8 @@
 define([
-  'common/views/visualisations/tab'
+  'common/views/visualisations/tab',
+  'extensions/models/model'
 ],
-function (TabView) {
+function (TabView, Model) {
 
   describe('TabView', function () {
 
@@ -10,7 +11,8 @@ function (TabView) {
         tabs: [
           { title: 'Tab 1' },
           { title: 'Tab 2' }
-        ]
+        ],
+        model: new Model({ activeIndex: 0 })
       });
 
       jasmine.renderView(view, function () {
@@ -27,7 +29,8 @@ function (TabView) {
         tabs: [
           { title: 'Tab 1' },
           { title: 'Tab 2' }
-        ]
+        ],
+        model: new Model({ activeIndex: 0 })
       });
 
       jasmine.renderView(view, function () {
@@ -50,7 +53,8 @@ function (TabView) {
         tabs: [
           { title: 'Tab 1' },
           { title: 'Tab 2' }
-        ]
+        ],
+        model: new Model({ activeIndex: 0 })
       });
 
       jasmine.renderView(view, function () {
@@ -66,7 +70,8 @@ function (TabView) {
         tabs: [
           { title: 'Tab 1', slug: '1' },
           { title: 'Tab 2', slug: '2' }
-        ]
+        ],
+        model: new Model({ activeIndex: 0 })
       });
 
       jasmine.renderView(view, function () {

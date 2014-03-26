@@ -14,18 +14,18 @@ function (ModuleController, TabView) {
       var controllerMap = options.controllerMap || require('controller_map');
 
       this.tabs = _.map(this.model.get('tabs'), function (tab) {
-        tab.controller = this.getControllerForModule(tab, controllerMap);
+        tab.controller = controllerMap.modules[tab['module-type']];
         return tab;
       }, this);
 
       this.on('ready', this.renderTabs, this);
+
+      if (!this.model.has('activeIndex')) {
+        this.model.set('activeIndex', 0);
+      }
       this.listenTo(this.model, 'change:activeIndex', this.renderTabs, this);
 
       ModuleController.prototype.initialize.apply(this, arguments);
-    },
-
-    getControllerForModule: function (module, controllerMap) {
-      return controllerMap.modules[module['module-type']];
     },
 
     renderTabs: function () {
