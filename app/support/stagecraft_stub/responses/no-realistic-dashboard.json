@@ -287,81 +287,89 @@
       ]
     },
     {
-      "slug": "stacked_categories",
-      "module-type": "grouped_timeseries",
-      "title": "Categories in a stack",
+      "slug": "tab_things",
+      "module-type": "tab",
+      "title": "Some tabs with graphs",
       "description": "",
-      "data-group": "housing-policy",
-      "data-type": "residential-transactions",
-      "use_stack": true,
-      "value-attr": "value:sum",
-      "category": "geography",
-      "period": "month",
-      "filter-by": ["key:residential_property_transactions"],
-      "axes": {
-        "y": [
-          {
-            "label": "England",
-            "categoryId": "England",
-            "format": "integer"
+      "tabs": [
+        {
+          "slug": "stacked_categories",
+          "module-type": "grouped_timeseries",
+          "title": "Categories in a stack",
+          "description": "A nested description inside of a tabbed module",
+          "data-group": "housing-policy",
+          "data-type": "residential-transactions",
+          "use_stack": true,
+          "value-attr": "value:sum",
+          "category": "geography",
+          "period": "month",
+          "filter-by": ["key:residential_property_transactions"],
+          "axes": {
+            "y": [
+              {
+                "label": "England",
+                "categoryId": "England",
+                "format": "integer"
+              },
+              {
+                "label": "Scotland",
+                "categoryId": "Scotland",
+                "format": "integer"
+              },
+              {
+                "label": "Wales",
+                "categoryId": "Wales",
+                "format": "integer"
+              },
+              {
+                "label": "Northern Ireland",
+                "categoryId": "Northern_Ireland",
+                "format": "integer"
+              }
+            ]
           },
-          {
-            "label": "Scotland",
-            "categoryId": "Scotland",
-            "format": "integer"
-          },
-          {
-            "label": "Wales",
-            "categoryId": "Wales",
-            "format": "integer"
-          },
-          {
-            "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland",
-            "format": "integer"
-          }
-        ]
-      },
-      "show-line-labels": true
-    },
-    {
-      "slug": "starts_completions",
-      "module-type": "grouped_timeseries",
-      "title": "Categories as lines",
-      "description": "",
-      "data-group": "housing-policy",
-      "data-type": "dwellings",
-      "use_stack": false,
-      "value-attr": "value:sum",
-      "category": "type",
-      "period": "quarter",
-      "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
-      "info": [
-        "Source: National House-Building Council (NHBC)"
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "MMM YYYY"
-          }
+          "show-line-labels": true
         },
-        "y": [
-          {
-            "label": "Completed",
-            "categoryId": "completed",
-            "format": "integer"
+        {
+          "slug": "starts_completions",
+          "module-type": "grouped_timeseries",
+          "title": "Categories as lines",
+          "description": "",
+          "data-group": "housing-policy",
+          "data-type": "dwellings",
+          "use_stack": false,
+          "value-attr": "value:sum",
+          "category": "type",
+          "period": "quarter",
+          "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+          "info": [
+            "Source: National House-Building Council (NHBC)"
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": ["_start_at", "_end_at"],
+              "format": {
+                "type": "dateRange",
+                "format": "MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Completed",
+                "categoryId": "completed",
+                "format": "integer"
+              },
+              {
+                "label": "Started",
+                "categoryId": "started",
+                "format": "integer"
+              }
+            ]
           },
-          {
-            "label": "Started",
-            "categoryId": "started",
-            "format": "integer"
-          }
-        ]
-      },
-      "show-line-labels": true
+          "show-line-labels": true
+        }
+      ]
     }
   ]
 }
