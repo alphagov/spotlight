@@ -1,6 +1,7 @@
 define([
-  'backbone'
-], function (Backbone) {
+  'backbone',
+  'extensions/models/model'
+], function (Backbone, Model) {
 
   var Controller = function (options) {
     options = options || {};
@@ -45,20 +46,50 @@ define([
         return;
       }
 
+      var renderViewOptions = _.merge({
+        collection: this.collection,
+        model: this.model,
+      }, options);
+
       if (this.collection) {
         this.listenToOnce(this.collection, 'sync reset error', function () {
-          this.renderView({
-            collection: this.collection,
-            model: this.model
-          });
+          this.renderView(renderViewOptions);
         }, this);
 
         this.collection.fetch();
       } else {
-        this.renderView({
-          model: this.model
-        });
+        this.renderView(renderViewOptions);
       }
+    },
+
+    renderModules: function (modules, parentModel, moduleOptions, renderOptions, callback) {
+      var remaining = modules.length;
+
+      if (remaining === 0) {
+        callback();
+        return;
+      }
+
+      return _.map(modules, function (definition) {
+        var model = new Model(definition);
+        model.set('parent', parentModel);
+
+        var module = new definition.controller(
+          _.merge({ model: model }, moduleOptions)
+        );
+
+        module.once('ready', _.bind(function () {
+          remaining = remaining - 1;
+
+          if (remaining === 0) {
+            callback();
+          }
+        }, this));
+
+        module.render(_.isFunction(renderOptions) ? renderOptions(model) : renderOptions);
+
+        return module;
+      }, this);
     }
   });
 

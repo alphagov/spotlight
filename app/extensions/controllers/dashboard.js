@@ -10,7 +10,6 @@ define([
 
     initialize: function () {
       this.modules = this.model.get('modules') || [];
-      this.remaining = this.modules.length;
       this.moduleInstances = [];
     },
 
@@ -23,33 +22,16 @@ define([
     render: function (options) {
       options = options || {};
 
-      if (this.remaining === 0) {
-        Controller.prototype.render.call(this, options);
-        return;
-      }
-
-      _.each(this.modules, function (definition) {
-        var model = new Model(definition);
-        model.set('parent', this.model);
-
-        var module = new definition.controller({
-          model: model,
+      this.moduleInstances = this.renderModules(
+        this.modules, 
+        this.model,
+        {
           dashboard: true,
           url: this.url
-        });
-
-        this.moduleInstances.push(module);
-
-        module.once('ready', _.bind(function () {
-          this.remaining = this.remaining - 1;
-
-          if (this.remaining === 0) {
-            Controller.prototype.render.call(this, options);
-          }
-        }, this));
-
-        module.render({ init: options.init });
-      }, this);
+        },
+        { init: options.init },
+        Controller.prototype.render.bind(this, options)
+      );
     }
   });
 
