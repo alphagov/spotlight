@@ -53,6 +53,10 @@ function (View, template) {
           fallbackUrl: this.url + '.png'
         }
       );
+    },
+
+    getVisualisation: function() {
+      return this.viewInstances['.visualisation'];
     }
   });
 

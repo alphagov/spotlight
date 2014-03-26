@@ -105,5 +105,16 @@ function (ModuleView, Collection, Model, View) {
       moduleView.render();
       expect(getContent()).toEqual('<section aria-labelledby="A-Title-heading" role="region" class="testclass"><h2 id="A-Title-heading">A Title</h2><div class="visualisation">test content</div></section>');
     });
+
+    describe('getVisualisation', function () {
+      it('should let you get at the visualisation view', function () {
+        moduleView.render();
+        expect(moduleView.getVisualisation().$el.hasClass('visualisation')).toBe(true);
+      });
+
+      it('should return undefined if not rendered', function () {
+        expect(moduleView.getVisualisation()).toBe(undefined);
+      });
+    });
   });
 });
