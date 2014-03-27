@@ -1,5 +1,5 @@
 {
-  "assetPath": "/assets/",
+  "assetPath": "/spotlight/",
   "port": 3057,
   "backdropUrl": "http://www.perfplat.dev/data/{{ data-group }}/{{ data-type }}",
   "screenshotTargetUrl": "http://spotlight.perfplat.dev",
