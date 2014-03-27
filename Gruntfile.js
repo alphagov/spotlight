@@ -40,7 +40,8 @@ module.exports = function (grunt) {
           includePaths: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
-          style: 'nested'
+          style: 'nested',
+          sourceComments: 'map'
         }
       },
       production: {
