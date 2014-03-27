@@ -65,16 +65,16 @@ automatically restart the server and recompile Sass.
 
 Tests are divided into ones that work on both client and server (`test/spec/shared`), ones that are server-only (`test/spec/server`) and ones that are client-only (`test/spec/client`).
 
-`grunt test:all` runs all three of these tests in sequence:
+`grunt test:all` runs all three of these tests, as well as linting the codebase:
 
-- `grunt jasmine_node` executes shared and server Jasmine tests in Node.js.
-- `grunt jasmine` executes shared and client Jasmine tests in PhantomJS.
-- `grunt cucumber` executes Cucumber features through PhantomJS.
+- `grunt jasmine_node` executes shared and server Jasmine tests in Node.js
+- `grunt jasmine` executes shared and client Jasmine tests in PhantomJS
+- `grunt cucumber` executes Cucumber features through PhantomJS
 
 `bundle exec cucumber --profile sauce` executes Cucumber features through
 SauceLabs (there's no Grunt task for this yet).
 
-#### Browser ####
+#### In the browser ####
 
 When the app is running in development mode, Jasmine tests for shared
 components are available at `/tests`. The specrunner gets automatically
@@ -87,25 +87,11 @@ app or run `grunt jasmine:spotlight:build`.
 
 #### Debugging locally ####
 
-Install node-inspector on your VM with `sudo npm install -g node-inspector@0.5.0`
+Install node-inspector where the app runs with `sudo npm install -g node-inspector@0.5.0`
 and run it with `node-inspector`.
 
-On the VM:
-
-Start the app with `node --debug app/server.js`.
-
-Visit `http://spotlight.perfplat.dev:8080/debug` to view the console.
-
-Or on your machine
-
-Start the app with:
-
-```
-node app/server.js \
---env=development_no_vm
-```
-
-Visit `http://localhost:8080/debug` to view the console.
+Start the app with `node --debug app/server.js` and visit `http://spotlight.perfplat.dev:8080/debug`
+to view the console.
 
 ### Production ###
 

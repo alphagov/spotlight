@@ -17,8 +17,7 @@ We have a [JavaScript style guide][jsstyle]. The most important things to note a
 2. JavaScript filenames should be lowercase and use underscores rather than hyphens
 3. URLs should contain hyphens rather than underscores
 
-Please use `npm run lint` to ensure you haven't introduced any additional lint. We're
-trying to get rid of it.
+We lint our code as part of our build and test process (`npm run lint`).
 
 [jsstyle]: https://github.com/alphagov/styleguides/blob/master/js.md
 
@@ -28,5 +27,4 @@ Keys in JSON objects should be obvious. Don't worry about keeping them short to 
 point that they're unreadable, compression will take care of that. They should be
 lowercase words separated by hyphens.
 
-If you're creating JSON stubs for Stagecraft, make use of the Stagecraft linter in
-the `tools` directory to ensure your JSON is consistent.
+Module-level JSON for Stagecraft is generated as part of the build process.
