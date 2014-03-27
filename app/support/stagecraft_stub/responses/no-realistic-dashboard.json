@@ -162,7 +162,8 @@
         {"id": "day", "name": "30 days", "format": "date"},
         {"id": "hour", "name": "24 hours", "format": "time"}
       ],
-      "tabbed_attr": "period"
+      "tabbed_attr": "period",
+      "end-at": "2013-10-27T12:00:00+00:00"
     },
     {
       "slug": "user-satisfaction",
@@ -190,7 +191,8 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "eventCategory",
+      "end-at": "2014-02-20T12:00:00+00:00"
     },
     {
       "slug": "completion-rate",
