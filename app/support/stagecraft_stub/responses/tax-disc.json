@@ -30,7 +30,7 @@
       "data-type": "spreadsheet",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:dft-replace-tax-disc", "type:seasonally-adjusted"],
+        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "number_of_transactions",
@@ -44,7 +44,7 @@
       "data-type": "spreadsheet",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:dft-replace-tax-disc", "type:seasonally-adjusted"],
+        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "total_cost",
@@ -58,7 +58,7 @@
       "data-type": "spreadsheet",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:dft-replace-tax-disc", "type:seasonally-adjusted"],
+        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "digital_takeup",
@@ -72,7 +72,7 @@
       "data-type": "spreadsheet",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:dft-replace-tax-disc", "type:seasonally-adjusted"],
+        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
       "valueAttr": "cost_per_transaction",
