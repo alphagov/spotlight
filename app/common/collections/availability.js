@@ -5,10 +5,12 @@ function (MatrixCollection) {
   var AvailabilityCollection = MatrixCollection.extend({
 
     queryParams: function () {
-      return {
+      var params = {
         period: 'day',
         collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']
       };
+      params.end_at = this.options.endAt || null;
+      return params;
     },
 
     initialize: function () {

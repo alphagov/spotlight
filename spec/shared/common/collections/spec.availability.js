@@ -32,11 +32,13 @@ define([
           new AvailiabilityCollection(null, {
             checkName: 'mycheck',
             'data-group': 'something-something-fco',
-            'data-type': 'monitoring'
+            'data-type': 'monitoring',
+            'endAt': '2012-04-01T00:00:00+00:00'
           });
         var params = collection.queryParams();
         expect(params.period).toEqual('day');
         expect(params.collect).toEqual(['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']);
+        expect(params.end_at).toEqual('2012-04-01T00:00:00+00:00');
       });
 
       it('should provide percentage of uptime for all models', function () {

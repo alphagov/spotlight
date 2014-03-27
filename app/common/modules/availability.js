@@ -15,6 +15,7 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
       return {
         tabs: this.model.get('tabs'),
         tabbedAttr: this.model.get('tabbed_attr'),
+        endAt: this.model.get('end-at'),
         axes: _.merge({
           x: {
             label: 'Time',
