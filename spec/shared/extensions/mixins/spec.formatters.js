@@ -215,6 +215,8 @@ define([
         expect(Formatters.format(1234, { type: 'number', sigfigs: 3 })).toEqual('1,230');
         expect(Formatters.format(1234, { type: 'number', sigfigs: 2 })).toEqual('1,200');
         expect(Formatters.format(1234, { type: 'number', sigfigs: 1 })).toEqual('1,000');
+        //to capture 428*0.1 === 42.800000000000004 :)
+        expect(Formatters.format(42.82216, { type: 'number', sigfigs: 3 })).toEqual('42.8');
       });
 
       it('rounds to specified number of significant figures even if decimal places are also defined', function () {
