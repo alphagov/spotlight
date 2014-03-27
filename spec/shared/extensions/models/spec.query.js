@@ -186,6 +186,20 @@ function (Query) {
         expect(query.get('end_at').format()).toEqual('2014-01-01T00:00:00+00:00');
       });
 
+      it('resets the start date correctly when the period is changed', function () {
+        var query = new Query({
+          foo: 'bar',
+          period: 'day',
+          end_at: '2014-01-01T00:00:00+00:00'
+        });
+        expect(query.get('foo')).toEqual('bar');
+        expect(query.get('start_at').format()).toEqual('2013-12-02T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2014-01-01T00:00:00+00:00');
+        query.set({ 'period': 'hour' });
+        expect(query.get('start_at').format()).toEqual('2013-12-31T00:00:00+00:00');
+        expect(query.get('end_at').format()).toEqual('2014-01-01T00:00:00+00:00');
+      });
+
     });
   });
 });

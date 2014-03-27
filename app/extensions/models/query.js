@@ -25,6 +25,15 @@ function (Model) {
       options = options || {};
       var period = attrs.period ? this.periods[attrs.period] : null;
 
+      // Use existing attributes where available. But if the
+      // period has changed, reset the start date attribute.
+      // This is important for the tabbed availability module.
+      var existingAttrs = _.clone(this.attributes);
+      if (attrs.period && existingAttrs.period && (existingAttrs.period !== attrs.period)) {
+        attrs.start_at = null;
+      }
+      attrs = _.extend(existingAttrs, attrs);
+
       if (period) {
         var duration = getAndDelete(attrs, 'duration', null);
         var ago = getAndDelete(attrs, 'ago', 0);
