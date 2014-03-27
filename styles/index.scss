@@ -1,3 +1,8 @@
+// Set the path that's used in the govuk_frontend_toolkit and in elsewhere in our Sass
+// to compile file-url attributes properly.
+@import '_url-helpers';
+$path: '/spotlight/stylesheets/';
+
 @import
   // govuk_frontend_toolkit
   '_colours',
