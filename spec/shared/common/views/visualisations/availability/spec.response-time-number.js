@@ -12,6 +12,7 @@ define([
         checkName: 'anything',
         'data-group': 'anything',
         'data-type': 'monitoring',
+        period: 'day',
         parse: true
       };
 

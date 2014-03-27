@@ -13,18 +13,6 @@ function (MatrixCollection) {
       return params;
     },
 
-    initialize: function () {
-      MatrixCollection.prototype.initialize.apply(this, arguments);
-      this.query.on('change:' + this.options.tabbedAttr, function (model, value) {
-        var activeTab = _.find(this.options.tabs, function (tab) {
-          return tab.id === value;
-        });
-        if (activeTab && activeTab.format) {
-          this.options.axes.x.format = activeTab.format;
-        }
-      }, this);
-    },
-
     parse: function (response) {
       var data = response.data;
       _.each(data, function (d) {
