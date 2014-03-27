@@ -15,8 +15,7 @@
   "scripts": {
     "test": "grunt test:all",
     "start": "grunt",
-    "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}",
-    "lint-branch": "LINTFILES=$(git diff --name-status master..HEAD | grep ^[AM].*js$ | sed -E 's/^[AM[:space:]]+([^[:space:]]+.js)$/\\1/g') npm run-script lint"
+    "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}"
   },
   "dependencies": {
     "backbone": "1.1.0",
