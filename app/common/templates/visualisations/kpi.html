@@ -2,15 +2,15 @@
     <p class="single-stat-headline impact-number">
         {{#hasValue}}<strong>{{value}}</strong>{{/hasValue}}
         {{^hasValue}}<strong class="no-data">no data</strong>{{/hasValue}}
-        {{period.start}} to {{period.end}}
+        {{#previousPeriod}}{{period.start}} to {{period.end}}{{/previousPeriod}}
     </p>
 </div>
 
-{{#hasValue}}
+{{#previousPeriod}}
     <div class="delta">
         <div class="single-stat-delta">
             <span class="change impact-number {{sgn}}">{{change}}</span>
             {{previousPeriod.start}} to {{previousPeriod.end}}
         </div>
     </div>
-{{/hasValue}}
+{{/previousPeriod}}
