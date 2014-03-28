@@ -7,8 +7,6 @@ function (ModuleController, KPIView, Collection) {
   return ModuleController.extend({
     visualisationClass: KPIView,
     collectionClass: Collection,
-    clientRenderOnInit: true,
-    requiresSvg: true,
 
     collectionOptions: function () {
       return {
