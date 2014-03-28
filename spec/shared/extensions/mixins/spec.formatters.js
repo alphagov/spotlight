@@ -210,6 +210,66 @@ define([
         expect(Formatters.format(0.12345, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1235');
       });
 
+      it('rounds to specified number of significant figures', function () {
+        expect(Formatters.format(1234, { type: 'number', sigfigs: 4 })).toEqual('1,234');
+        expect(Formatters.format(1234, { type: 'number', sigfigs: 3 })).toEqual('1,230');
+        expect(Formatters.format(1234, { type: 'number', sigfigs: 2 })).toEqual('1,200');
+        expect(Formatters.format(1234, { type: 'number', sigfigs: 1 })).toEqual('1,000');
+        //to capture 428*0.1 === 42.800000000000004 :)
+        expect(Formatters.format(42.82216, { type: 'number', sigfigs: 3 })).toEqual('42.8');
+      });
+
+      it('rounds to specified number of significant figures even if decimal places are also defined', function () {
+        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 4 })).toEqual('1,234');
+        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 3 })).toEqual('1,230');
+        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 2 })).toEqual('1,200');
+        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 1 })).toEqual('1,000');
+      });
+
+      describe('magnitude', function () {
+        describe('thousands', function () {
+          it('doesn\'t add "k" to 1000', function () {
+            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
+          });
+
+          it('adds "k" to numbers of a thousand that are greater than 1000', function () {
+            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1k');
+            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1k');
+            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1k');
+            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1k');
+            expect(Formatters.format(1120, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12k');
+          });
+        });
+
+        describe('millions', function () {
+          it('doesn\'t add "m" to 1000000', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1,000k');
+          });
+
+          it('adds "m" to numbers of a million that are greater than 1000000', function () {
+            expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
+            expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1m');
+            expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1m');
+            expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1m');
+            expect(Formatters.format(1120000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12m');
+          });
+        });
+
+        describe('billions', function () {
+          it('doesn\'t add "b" to 1000000000', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1,000m');
+          });
+
+          it('adds "b" to numbers of a billion that are greater than 1000000000', function () {
+            expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1b');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1b');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1b');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1b');
+            expect(Formatters.format(1120000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12b');
+          });
+        });
+      });
+
     });
 
     describe('sentence', function () {

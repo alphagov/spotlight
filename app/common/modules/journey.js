@@ -5,7 +5,6 @@ define([
 ],
 function (ModuleController, JourneyCollection, JourneyGraph) {
   var JourneyModule = ModuleController.extend({
-    className: 'journey',
     visualisationClass: JourneyGraph,
     collectionClass: JourneyCollection,
     clientRenderOnInit: true,

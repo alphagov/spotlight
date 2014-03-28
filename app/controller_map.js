@@ -6,6 +6,7 @@ define([
   'common/modules/completion_rate',
   'common/modules/grouped_timeseries',
   'common/modules/journey',
+  'common/modules/kpi',
   'common/modules/list',
   'common/modules/multi_stats',
   'common/modules/table',
@@ -14,7 +15,7 @@ define([
 ],
 function (DashboardController, ErrorController,
   AvailabilityModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
-  JourneyModule, ListModule, MultiStatsModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
+  JourneyModule, KPIModule, ListModule, MultiStatsModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
 
   var ControllerMap = {
     dashboard: DashboardController,
@@ -25,6 +26,7 @@ function (DashboardController, ErrorController,
       'completion_rate': CompletionRateModule,
       'grouped_timeseries': GroupedTimeseriesModule,
       'journey': JourneyModule,
+      'kpi': KPIModule,
       'list': ListModule,
       'multi_stats': MultiStatsModule,
       'table': TableModule,

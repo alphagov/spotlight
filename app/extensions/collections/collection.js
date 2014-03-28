@@ -32,8 +32,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       options = options || {};
       this.options = options;
 
-      _.each(['filterBy', 'collections', 'data-type', 'data-group'], function (prop) {
-        if (options[prop]) {
+      _.each(['filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
+        if (options[prop] && !this[prop]) {
           this[prop] = options[prop];
         }
       }, this);
@@ -312,6 +312,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         }
       }, this);
       return processors;
+    },
+
+    parse: function (response) {
+      return response.data;
     },
 
     processors: Processors

@@ -6,11 +6,6 @@ define([
 function (ModuleController, ListView, ListCollection) {
 
   var ListModule = ModuleController.extend({
-    className: function () {
-      var classes = this.model.get('classes');
-
-      return ['list'].concat(classes || []).join(' ');
-    },
     visualisationClass: ListView,
     collectionClass: ListCollection,
     clientRenderOnInit: false,

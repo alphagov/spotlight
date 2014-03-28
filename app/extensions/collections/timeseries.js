@@ -12,6 +12,10 @@ function (Collection) {
       var startAt = model.get('_start_at');
 
       return +((startAt !== undefined) ? startAt : model.get('_timestamp'));
+    },
+
+    parse: function (response) {
+      return response;
     }
 
   });

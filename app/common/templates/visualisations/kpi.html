@@ -1,0 +1,16 @@
+<div class="stat">
+    <p class="single-stat-headline impact-number">
+        {{#hasValue}}<strong>{{value}}</strong>{{/hasValue}}
+        {{^hasValue}}<strong class="no-data">no data</strong>{{/hasValue}}
+        {{period.start}} to {{period.end}}
+    </p>
+</div>
+
+{{#hasValue}}
+    <div class="delta">
+        <div class="single-stat-delta">
+            <span class="change impact-number {{sgn}}">{{change}}</span>
+            {{previousPeriod.start}} to {{previousPeriod.end}}
+        </div>
+    </div>
+{{/hasValue}}

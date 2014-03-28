@@ -1,0 +1,72 @@
+#content .kpi {
+
+  min-height:180px;
+
+  .visualisation {
+
+    overflow: hidden;
+    position: relative;
+
+    .stat {
+      strong {
+        margin-bottom: 3px;
+        display: inline-block;
+        padding-right: 10px;
+      }
+      .no-data {
+        @include bold-80($tabular-numbers: true) ;
+        color: $grey-2;
+        font-weight: normal;
+      }
+    }
+
+    .delta {
+      .change {
+        @include core-24($tabular-numbers: true);
+      }
+    }
+
+    @media(max-width: 850px) {
+
+        .delta {
+          left: 9em;
+        }
+
+      .stat strong {
+        margin-bottom: 8px;
+      }
+
+    }
+
+    @media(max-width: 640px) {
+
+        .delta {
+          left: 8em;
+          bottom: 2px;
+        }
+
+      .stat strong {
+        margin-bottom: 5px;
+      }
+
+    }
+  }
+}
+
+@include media(desktop) {
+  #content .kpi {
+
+    &.cols2 {
+      width: 480px / 960px * 100%;
+      margin-left: 0;
+      float: left;
+      clear: none;
+      margin-right: 0;
+
+      &:nth-of-type(2) {
+        margin-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+}

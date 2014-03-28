@@ -320,7 +320,9 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }
       _.invoke(this.componentInstances, 'remove');
       this.componentInstances = [];
-      $(window).off('resize.' + this.cid);
+      if (isClient) {
+        $(window).off('resize.' + this.cid);
+      }
       return View.prototype.remove.apply(this, arguments);
     },
 

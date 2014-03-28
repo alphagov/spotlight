@@ -51,6 +51,28 @@ function (Collection, Model, Backbone) {
         expect(collection.collectionInstances[0].options.foo).toEqual('bar');
         expect(collection.collectionInstances[1].options.foo).toEqual('baz');
       });
+  
+      it('sets queryParams option to `this` if defined', function () {
+
+        var collection = new Collection([], {
+          queryParams: { foo: 'bar' }
+        });
+        expect(collection.queryParams).toEqual({ foo: 'bar' });
+
+      });
+
+      it('does not overwrite pre-existing queryParams method', function () {
+        var ExtendedCollection = Collection.extend({
+          queryParams: function () {}
+        });
+
+        var collection = new ExtendedCollection([], {
+          queryParams: { foo: 'bar' }
+        });
+        expect(collection.queryParams).not.toEqual({ foo: 'bar' });
+
+      });
+
     });
 
     describe('prop', function () {
@@ -708,5 +730,18 @@ function (Collection, Model, Backbone) {
       });
 
     });
+
+    describe('parse', function () {
+
+      it('returns `data` property of response', function () {
+
+        var collection = new Collection();
+
+        expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
+
+      });
+
+    });
+
   });
 });
