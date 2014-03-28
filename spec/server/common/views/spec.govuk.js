@@ -38,7 +38,7 @@ function (GovUkView, View, Model) {
       expect(view.html).toEqual('rendered');
 
       var context = view.template.argsForCall[0][0];
-      expect(context.head.trim().indexOf('<link href="/testAssetPath/stylesheets/spotlight-cachebust.css" media="screen" rel="stylesheet" type="text/css">')).not.toBe(-1);
+      expect(context.head.trim().indexOf('<link href="/testAssetPath/stylesheets/spotlight-cachebust.css" media="all" rel="stylesheet" type="text/css">')).not.toBe(-1);
       expect(context.head.trim().indexOf('google-analytics.com')).not.toBe(-1);
       expect(context.bodyEnd).toEqual('body_end');
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
