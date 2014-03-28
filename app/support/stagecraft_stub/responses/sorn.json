@@ -20,7 +20,6 @@
   "description-extra": "This transactional service is for declaring that your vehicle is not being driven on the roads – a Statutory Off Road Notification. <abbr title='Statutory Off Road Notification'>SORN</abbr>s must be made for a registered vehicle that is not being used on the road, and which has been taxed since 31 January 1998.",
   "customer-type": "Individuals",
   "business-model": "Department budget",
-  "other-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "live-service-usage",
