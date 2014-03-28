@@ -12,5 +12,3 @@ group :test do
   gem 'sauce-cucumber', '3.2.0'
   gem 'sauce-connect', '3.2.0'
 end
-
-gem 'sass', '3.2.12'

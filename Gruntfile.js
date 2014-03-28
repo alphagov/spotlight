@@ -37,10 +37,11 @@ module.exports = function (grunt) {
           'public/stylesheets/spotlight.css': 'styles/index.scss'
         },
         options: {
-          loadPath: [
+          includePaths: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
-          style: 'nested'
+          style: 'nested',
+          sourceComments: 'map'
         }
       },
       production: {
@@ -55,11 +56,10 @@ module.exports = function (grunt) {
           }
         ],
         options: {
-          loadPath: [
+          includePaths: [
             'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
           ],
-          style: 'compressed',
-          bundleExec: true
+          outputStyle: 'compressed'
         }
       }
     },
@@ -243,10 +243,10 @@ module.exports = function (grunt) {
     'grunt-jasmine-node-coverage',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
-    'grunt-contrib-sass',
     'grunt-contrib-requirejs',
     'grunt-digest',
     'grunt-rcukes',
+    'grunt-sass',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-shell',
