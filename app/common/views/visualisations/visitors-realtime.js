@@ -82,18 +82,6 @@ function (View, SparklineView, template) {
       }
     },
 
-    templateContext: function () {
-      var numberOfVisitors = null;
-      if (this.currentVisitors) {
-        numberOfVisitors = Math.round(this.currentVisitors);
-      }
-
-      return _.extend(
-        View.prototype.templateContext.apply(this, arguments),
-        { numberOfVisitors: numberOfVisitors }
-      );
-    },
-
     views: function () {
       var views = {};
       if (this.collection && this.collection.length && this.collection.first().get('values').length > 1 && this.sparkline) {
