@@ -246,7 +246,7 @@ define([
             expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1,000k');
           });
 
-          it('adds "k" to numbers of a million that are greater than 1000000', function () {
+          it('adds "m" to numbers of a million that are greater than 1000000', function () {
             expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1m');
