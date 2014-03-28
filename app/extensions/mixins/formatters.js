@@ -52,7 +52,7 @@ define([
         pence: false
       });
       if (options.pence) {
-        options.dps = options.fixed = (options.pence ? 2 : 0);
+        options.dps = options.fixed = 2;
       }
       return options.symbol + formatters.number(value, options);
     },
