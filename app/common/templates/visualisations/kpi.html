@@ -2,7 +2,7 @@
     <p class="single-stat-headline impact-number">
         {{#hasValue}}<strong>{{value}}</strong>{{/hasValue}}
         {{^hasValue}}<strong class="no-data">no data</strong>{{/hasValue}}
-        {{#previousPeriod}}{{period.start}} to {{period.end}}{{/previousPeriod}}
+        {{#period}}{{period.start}} to {{period.end}}{{/period}}
     </p>
 </div>
 
