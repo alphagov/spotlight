@@ -27,5 +27,4 @@ Feature: Dashboard
     Then I should see the "completion_rate" module for "no-realistic-dashboard" data
     Then I should see the "completion_numbers" module for "no-realistic-dashboard" data
     Then I should see the "multi_stats" module for "no-realistic-dashboard" data
-    Then I should see the "stacked_categories" module for "no-realistic-dashboard" data
-    Then I should see the "starts_completions" module for "no-realistic-dashboard" data
+    Then I should see the "tab_things-stacked_categories" module for "no-realistic-dashboard" data
