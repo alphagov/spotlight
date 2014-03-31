@@ -186,7 +186,6 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             fs.mkdirSync(pagePerThingDirectory);
           }
 
-          delete module.slug;
           delete module['page-type'];
           module = _.extend(module, {
             'page-type': 'module',

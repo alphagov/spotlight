@@ -8,6 +8,21 @@ function (View, template) {
     template: template,
     tagName: 'section',
 
+    initialize: function (options) {
+      View.prototype.initialize.apply(this, arguments);
+      // apply default attributes to elements
+      if (options.el) {
+        var attrs = _.extend({}, _.result(this, 'attributes'));
+        if (this.id) {
+          attrs.id = _.result(this, 'id');
+        }
+        this.$el.attr(attrs);
+        if (this.className) {
+          this.$el.addClass(_.result(this, 'className'));
+        }
+      }
+    },
+
     ariaId: function () {
       function safeId(s) {
         if (s.indexOf(' ') === -1) {
@@ -15,7 +30,7 @@ function (View, template) {
         }
         return s.replace(/ /g, '-');
       }
-      return safeId(this.model.get('title') + '-heading');
+      return safeId(this.model.get('slug') + '-heading');
     },
 
     attributes: function () {

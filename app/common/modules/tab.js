@@ -15,6 +15,9 @@ function (ModuleController, TabView) {
 
       this.tabs = _.map(this.model.get('tabs'), function (tab) {
         tab.controller = controllerMap.modules[tab['module-type']];
+        if (isServer) {
+          tab.slug = this.model.get('slug') + '-' + tab.slug;
+        }
         return tab;
       }, this);
 
