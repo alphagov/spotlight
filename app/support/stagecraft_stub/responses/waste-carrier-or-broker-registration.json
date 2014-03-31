@@ -34,6 +34,44 @@
       "data-type": "realtime"
     },
     {
+      "slug": "registrations-over-time",
+      "module-type": "grouped_timeseries",
+      "title": "Registrations over time",
+      "description": "<span class='group0'>Total</span> and <span class='group1'>call centre</span> registrations over the last 9 weeks.",
+      "data-group": "waste-carriers-registration",
+      "data-type": "transactions-by-channel",
+      "info": [
+        "Data source: Waste Carriers service"
+      ],
+      "category": "channel",
+      "period": "week",
+      "duration": 9,
+      "value-attr": "count:sum",
+      "show-line-labels": true,
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Total",
+            "categoryId": "waste_new_reg_all",
+            "format": "integer"
+          },
+          {
+            "label": "Call centre",
+            "categoryId": "waste_new_reg_ad",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "service-availability",
       "module-type": "availability",
       "title": "Service availability",
