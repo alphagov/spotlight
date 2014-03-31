@@ -192,26 +192,6 @@ function (VisitorsRealtimeView, Collection) {
 
     });
 
-    it('renders nothing when theres no data', function () {
-      var testView, testCollection;
-      testCollection = new Collection();
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([])
-      } ]);
-      testView = new VisitorsRealtimeView({
-        collection: testCollection
-      });
-      jasmine.serverOnly(function () {
-        testView.sparkline = false;
-      });
-
-      jasmine.renderView(testView, function () {
-        expect(testView.$el.find('div').length).toEqual(0);
-      });
-    });
-
     describe('getValue', function () {
       it('should return the right value', function () {
         var returnValue = view.getValue();
