@@ -52,17 +52,6 @@ define([
       });
     });
 
-    it('should render all the tabs when the module is ready on the server', function () {
-      jasmine.serverOnly(function () {
-        tabModule.render();
-
-        expect(fooModule).toHaveBeenCalled();
-        expect(fooRender.mostRecentCall.args[0].el).toBeUndefined();
-        expect(barModule).toHaveBeenCalled();
-        expect(barRender.mostRecentCall.args[0].el).toBeUndefined();
-      });
-    });
-
     it('should render the tabs when the activeIndex changes', function () {
       jasmine.clientOnly(function () {
         tabModule.render();

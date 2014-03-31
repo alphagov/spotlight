@@ -32,20 +32,19 @@ function (ModuleController, TabView) {
     },
 
     renderTabs: function () {
-      var tabs = isClient ? [this.tabs[this.model.get('activeIndex')]] : this.tabs;
+      if (isServer) {
+        return;
+      }
+      var tab = this.tabs[this.model.get('activeIndex')];
 
       this.renderModules(
-        tabs,
+        [tab],
         this.model,
         { dashboard: true },
         _.bind(function () {
-          if (isClient) {
-            return {
-              el: this.view.$('section').eq(this.model.get('activeIndex'))
-            };
-          } else {
-            return {};
-          }
+          return {
+            el: this.view.$('section').eq(this.model.get('activeIndex'))
+          };
         }, this),
         function () { }
       );
