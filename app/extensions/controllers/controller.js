@@ -78,8 +78,7 @@ define([
         );
 
         module.once('ready', _.bind(function () {
-          remaining = remaining - 1;
-
+          remaining--;
           if (remaining === 0) {
             callback();
           }
