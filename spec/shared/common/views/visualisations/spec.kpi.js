@@ -67,6 +67,14 @@ define([
         expect(kpi.$('.delta').length).toEqual(0);
       });
 
+      it('does not add delta section if only one value present', function () {
+        kpi.collection.reset([
+          { value: 1100 }
+        ]);
+        kpi.render();
+        expect(kpi.$('.delta').length).toEqual(0);
+      });
+
     });
 
   });
