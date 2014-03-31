@@ -184,29 +184,29 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       });
 
       it('creates element to measure size of inner graph area', function () {
-        expect(graph.el.find('.inner').length).toEqual(1);
+        expect(graph.$el.find('.inner').length).toEqual(1);
       });
 
       it('creates empty SVG element', function () {
-        var svg = graph.el.find('svg');
+        var svg = graph.$el.find('svg');
         expect(svg.length).toEqual(1);
       });
 
       it('renders an SVG element with correct WAI-ARIA attributes', function () {
-        var svg = graph.el.find('svg');
+        var svg = graph.$el.find('svg');
         expect(svg.attr('role')).toEqual('presentation');
         expect(svg.attr('aria-hidden')).toEqual('true');
       });
 
       it('creates wrapper element', function () {
-        var wrapper = graph.el.find('svg g.wrapper');
+        var wrapper = graph.$el.find('svg g.wrapper');
         expect(wrapper.length).toEqual(1);
       });
 
       describe('when the models "show-line-labels" attribute is not falsy', function () {
         it('creates a figure with the class graph', function () {
-          expect(graph.el.find('figure.graph').length).toEqual(1);
-          expect(graph.el.find('figure.graph.graph-with-labels').length).toEqual(0);
+          expect(graph.$el.find('figure.graph').length).toEqual(1);
+          expect(graph.$el.find('figure.graph.graph-with-labels').length).toEqual(0);
         });
       });
       describe('when the models "show-line-labels" attribute is not falsy', function () {
@@ -219,7 +219,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
             collection: new Collection(),
             model: model
           });
-          expect(graph.el.find('figure.graph.graph-with-labels').length).toEqual(1);
+          expect(graph.$el.find('figure.graph.graph-with-labels').length).toEqual(1);
         });
       });
     });
@@ -303,7 +303,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         withGraphStyle('max-width: 200px; max-height:100px;');
         graph.resize();
 
-        var svg = graph.el.find('svg');
+        var svg = graph.$el.find('svg');
         expect(svg.length).toEqual(1);
         expect(svg.attr('width')).toEqual('100%');
         expect(svg.attr('height')).toEqual('100%');
