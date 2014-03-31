@@ -279,7 +279,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
      * Applies current configuration, then renders components in defined order
      */
     render: function () {
-      if (isServer) {
+      if (isServer || !this.isVisible()) {
         return;
       }
 
@@ -324,6 +324,11 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         $(window).off('resize.' + this.cid);
       }
       return View.prototype.remove.apply(this, arguments);
+    },
+
+    // allow stubbing of visiblity for testing
+    isVisible: function () {
+      return this.$el.is(':visible');
     },
 
     configs: {

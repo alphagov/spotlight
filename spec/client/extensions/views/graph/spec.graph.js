@@ -12,6 +12,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
     beforeEach(function () {
       spyOn(GraphTable.prototype, 'initialize');
+      spyOn(Graph.prototype, 'isVisible').andReturn(true);
     });
 
     it('keeps a reference to d3 library', function () {
