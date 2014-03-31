@@ -17,6 +17,8 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         matchingAttribute: this.model.get('matching-attribute'),
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period'),
+        startAt: this.model.get('start-at'),
+        endAt: this.model.get('end-at'),
         axisPeriod: this.model.get('axis-period'),
         axes: _.merge({
           x: {

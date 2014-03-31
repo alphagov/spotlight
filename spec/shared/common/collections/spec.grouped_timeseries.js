@@ -136,6 +136,8 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         valueAttr: 'some:value',
         category: 'some-category',
         period: 'month',
+        'start-at': '2014-01-10T00:00:00+00:00',
+        'end-at': '2014-03-10T00:00:00+00:00',
         axes: {
           x: {
             'label': 'Date',
@@ -186,6 +188,8 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         expect(collection.url()).toContain('some-group');
         expect(collection.url()).toContain('some-type');
         expect(collection.url()).toContain('period=month');
+        expect(collection.url()).toContain('start_at=2013-03-01T00%3A00%3A00%2B00%3A00');
+        expect(collection.url()).toContain('end_at=2014-03-01T00%3A00%3A00%2B00%3A00');
         expect(collection.url()).toContain('group_by=some-category');
         expect(collection.url()).toContain('collect=some%3Avalue');
         expect(collection.url()).not.toContain('filter_by');

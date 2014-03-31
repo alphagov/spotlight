@@ -1,26 +1,13 @@
 {
   "slug": "deposit-foreign-marriage",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "other",
   "strapline": "Service dashboard",
   "title": "Deposit foreign marriage or civil partnership certificates",
-  "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office.",
-  "department": {
-    "title": "Foreign and Commonwealth Office"
+  "other": {
+    "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office. <strong>This transaction ceased to exist on 30 December 2013. Figures shown here are historical data.</strong>"
   },
   "modules": [
-    {
-      "slug": "live-service-usage",
-      "module-type": "realtime",
-      "title": "Live service usage",
-      "description": "Live number of users on any page within the service",
-      "info": [
-        "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service on GOV.UK."
-      ],
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "realtime"
-    },
     {
       "slug": "payments",
       "module-type": "completion_numbers",
@@ -44,7 +31,8 @@
             "label": "Number of payments"
           }
         ]
-      }
+      },
+      "end-at": "2013-12-30T00:00:00+00:00"
     },
     {
       "slug": "completion-rate",
@@ -60,27 +48,8 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
-    },
-    {
-      "slug": "users-at-each-step",
-      "module-type": "journey",
-      "title": "Users at each step",
-      "description": "Number of users who completed important steps of the transaction last week",
-      "info": [
-        "Data source: Google Analytics",
-        "The total number of users who arrived at each step.",
-        "Number of users is measured using the count of unique events from each step."
-      ],
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "journey",
-      "axes": {
-        "y": [
-          {"journeyId": "deposit-foreign-marriage:start", "label": "Start", "format": "integer"},
-          {"journeyId": "deposit-foreign-marriage:confirm", "label": "Confirm", "format": "integer"},
-          {"journeyId": "deposit-foreign-marriage:done", "label": "Done", "format": "integer"}
-        ]
-      }
+      "matching-attribute": "eventCategory",
+      "end-at": "2013-12-30T00:00:00+00:00"
     },
     {
       "slug": "service-availability",
@@ -98,7 +67,8 @@
         {"id": "day", "name": "30 days", "format": "date"},
         {"id": "hour", "name": "24 hours", "format": "time"}
       ],
-      "tabbed_attr": "period"
+      "tabbed_attr": "period",
+      "end-at": "2013-12-30T00:00:00+00:00"
     }
   ]
 }

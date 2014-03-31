@@ -70,7 +70,9 @@
         {"id": "cumulative_count:sum", "name": "Contracts awarded", "currrency": null}
       ],
       "tabbed_attr": "collect",
-      "show-total-lines": true
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "monthly-sales-by-company-size",
@@ -118,7 +120,9 @@
         {"id": "count:sum", "name": "Contracts awarded", "currrency": null}
       ],
       "tabbed_attr": "collect",
-      "show-total-lines": true
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "proportion-of-sales-from-small-and-medium-enterprises",
@@ -156,7 +160,9 @@
             "label": "Percentage of sales to SMEs"
           }
         ]
-      }
+      },
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "cumulative-spend-by-customer-type",
@@ -217,7 +223,9 @@
         ]
       },
       "show-line-labels": true,
-      "show-total-lines": true
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "monthly-spend-by-lot",
@@ -267,7 +275,9 @@
           }
         ]
       },
-      "show-line-labels": true
+      "show-line-labels": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     }
   ]
 }

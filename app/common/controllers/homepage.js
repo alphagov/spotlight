@@ -25,12 +25,6 @@ function (Backbone, PageConfig, Controller, HomepageView) {
           ]
         },
         {
-          title: 'D',
-          services: [
-            {name: 'Deposit foreign marriage or civil partnership certificates', slug: 'deposit-foreign-marriage'}
-          ]
-        },
-        {
           title: 'G',
           services: [
             {name: 'G-Cloud', slug: 'g-cloud'}
