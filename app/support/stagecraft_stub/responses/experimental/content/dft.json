@@ -1,0 +1,313 @@
+{
+  "slug": "DFT-content-dashboard",
+  "page-type": "dashboard",
+  "strapline": "Content Dashboard",
+  "title": "Department for Transport (DFT)",
+  "tagline": "Web performance data for the Department for Transport, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>",
+  "relatedPages": {
+    "transaction": {
+      "title": "Department for Transport",
+      "url" : "https://www.gov.uk/government/organisations/department-for-transport"
+    },
+    "other": [
+      {
+        "title": "DFT policies",
+        "url": "https://www.gov.uk/government/policies?departments%5B%5D=department-for-transport"
+      },
+      {
+        "title": "DFT publications",
+        "url": "https://www.gov.uk/government/publications?departments%5B%5D=department-for-transport"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "slug": "traffic-to-department-content",
+      "module-type": "completion_numbers",
+      "title": "Traffic to department content",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "traffic-count",
+      "filter_by": "department:department-for-transport",
+      "info": [
+      ],
+      "denominator-matcher": "department-for-transport",
+      "numerator-matcher": "department-for-transport",
+      "matching-attribute": "department",
+      "value-attribute": "visitors:sum",
+      "period": "week",
+      "axes": {
+        "x": {
+          "label": "Date"
+        },
+        "y": [
+          {
+            "label": "Number of visitors"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "department-content-pageviews",
+      "module-type": "completion_numbers",
+      "title": "(TODO: Pageviews, tab with the above)",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "pageviews-count",
+      "filter_by": "department:department-for-transport",
+      "info": [
+      ],
+      "denominator-matcher": "department-for-transport",
+      "numerator-matcher": "department-for-transport",
+      "matching-attribute": "department",
+      "value-attribute": "pageviews:sum",
+      "period": "week",
+      "axes": {
+        "x": {
+          "label": "Date"
+        },
+        "y": [
+          {
+            "label": "Number of visitors"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "how-users-access-the-service",
+      "module-type": "grouped_timeseries",
+      "title": "How users access the service",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "data-group": "gov_uk_content",
+      "data-type": "devices-count",
+      "filter-by": "department:department-for-transport",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "pageviews:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "new-visitors-vs-returning-visitors",
+      "module-type": "grouped_timeseries",
+      "title": "New visitors vs returning visitors",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "data-group": "gov_uk_content",
+      "data-type": "new_returning-count",
+      "filter-by": "department:department-for-transport",
+      "category": "visitorType",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "entrances:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "New Visitor",
+            "categoryId": "New Visitor",
+            "format": "integer"
+          },
+          {
+            "label": "Returning Visitor",
+            "categoryId": "Returning Visitor",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "most-popular-content",
+      "module-type": "table",
+      "title": "Most popular content",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "top-count",
+      "filter-by": "department:department-for-transport",
+      "query-params": {
+        "filter_by": "type:tax-disc",
+        "group_by": "reason",
+        "collect": ["count:sum", "description:set"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Department",
+          "key": "description:set"
+        },
+        "y": [
+          {
+            "label": "Visits",
+            "key": "count:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of visits",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "count:sum",
+      "sort-order": "descending"
+    },
+    {
+      "slug": "top-department-referrers",
+      "module-type": "table",
+      "title": "Top department referrers",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "top-count",
+      "filter-by": "department:department-for-transport",
+      "query-params": {
+        "filter_by": "type:tax-disc",
+        "group_by": "reason",
+        "collect": ["count:sum", "description:set"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Department",
+          "key": "description:set"
+        },
+        "y": [
+          {
+            "label": "Visits",
+            "key": "count:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of visits",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "count:sum",
+      "sort-order": "descending"
+    },
+    {
+      "slug": "total-feedback-received",
+      "module-type": "completion_rate",
+      "title": "Total feedback received",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "visitors-count",
+      "filter-by": "department:department-for-transport",
+      "info": [
+      ],
+      "denominator-matcher": ".*$",
+      "numerator-matcher": "^Small",
+      "matching-attribute": "sme_large",
+      "value-attribute": "monthly_spend:sum",
+      "period": "month",
+      "tabs": [
+        {"id": "monthly_spend:sum", "name": "Unique visits"},
+        {"id": "count:sum", "name": "Unique pageviews"}
+      ],
+      "tabbed_attr": "collect",
+      "category": "sme_large",
+      "axes": {
+        "x": {
+          "label": "Date of sales",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
+          },
+          "key": "_start_at"
+        },
+        "y": [
+          {
+            "label": "Percentage of sales to SMEs"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "most-commented-pages",
+      "module-type": "table",
+      "title": "Most commented pages",
+      "description": "",
+      "data-group": "gov_uk_content",
+      "data-type": "top-count",
+      "filter-by": "department:department-for-transport",
+      "query-params": {
+        "filter_by": "type:tax-disc",
+        "group_by": "reason",
+        "collect": ["count:sum", "description:set"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Department",
+          "key": "description:set"
+        },
+        "y": [
+          {
+            "label": "Visits",
+            "key": "count:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of visits",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "count:sum",
+      "sort-order": "descending"
+    }
+  ]
+}
