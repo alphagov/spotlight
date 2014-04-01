@@ -136,8 +136,8 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
         valueAttr: 'some:value',
         category: 'some-category',
         period: 'month',
-        'start-at': '2014-01-10T00:00:00+00:00',
-        'end-at': '2014-03-10T00:00:00+00:00',
+        startAt: '2014-01-10T00:00:00+00:00',
+        endAt: '2014-03-10T00:00:00+00:00',
         axes: {
           x: {
             'label': 'Date',
@@ -182,17 +182,17 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       expect(durationCollection.url()).not.toContain('duration');
     });
 
-
     describe('url', function () {
+      /* global decodeURIComponent */
       it('should query backdrop with the correct url for the config', function () {
-        expect(collection.url()).toContain('some-group');
-        expect(collection.url()).toContain('some-type');
-        expect(collection.url()).toContain('period=month');
-        expect(collection.url()).toContain('start_at=2013-03-01T00%3A00%3A00%2B00%3A00');
-        expect(collection.url()).toContain('end_at=2014-03-01T00%3A00%3A00%2B00%3A00');
-        expect(collection.url()).toContain('group_by=some-category');
-        expect(collection.url()).toContain('collect=some%3Avalue');
-        expect(collection.url()).not.toContain('filter_by');
+        expect(decodeURIComponent(collection.url())).toContain('some-group');
+        expect(decodeURIComponent(collection.url())).toContain('some-type');
+        expect(decodeURIComponent(collection.url())).toContain('period=month');
+        expect(decodeURIComponent(collection.url())).toContain('start_at=2014-01-10T00:00:00+00:00');
+        expect(decodeURIComponent(collection.url())).toContain('end_at=2014-03-10T00:00:00+00:00');
+        expect(decodeURIComponent(collection.url())).toContain('group_by=some-category');
+        expect(decodeURIComponent(collection.url())).toContain('collect=some:value');
+        expect(decodeURIComponent(collection.url())).not.toContain('filter_by');
       });
 
       it('should contain filters', function () {
