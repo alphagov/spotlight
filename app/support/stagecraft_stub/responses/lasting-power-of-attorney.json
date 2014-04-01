@@ -50,6 +50,23 @@
       }
     },
     {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "",
+      "data-group": "lasting-power-of-attorney",
+      "data-type": "volumes",
+      "info": [
+        "Data source: Office of the Public Guardian",
+        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+      ],
+      "numerator-matcher": "^[a-z_]*_digital_applications$",
+      "denominator-matcher": "^[a-z_]*_applications$",
+      "matching-attribute": "key",
+      "value-attribute": "value:sum",
+      "period": "week"
+    },
+    {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
