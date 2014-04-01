@@ -23,53 +23,58 @@
   "modules": [
     {
       "slug": "traffic-to-department-content",
-      "module-type": "completion_numbers",
+      "module-type": "tab",
       "title": "Traffic to department content",
-      "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "traffic-count",
-      "info": [
-      ],
-      "denominator-matcher": "department-for-transport",
-      "numerator-matcher": "department-for-transport",
-      "matching-attribute": "department",
-      "value-attribute": "visitors:sum",
-      "period": "week",
-      "axes": {
-        "x": {
-          "label": "Date"
-        },
-        "y": [
-          {
-            "label": "Number of visitors"
+      "tabs": [
+        {
+          "module-type": "completion_numbers",
+          "title": "Unique visits",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "traffic-count",
+          "info": [
+          ],
+          "denominator-matcher": "department-for-transport",
+          "numerator-matcher": "department-for-transport",
+          "matching-attribute": "department",
+          "value-attribute": "visitors:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
           }
-        ]
-      }
-    },
-    {
-      "slug": "department-content-pageviews",
-      "module-type": "completion_numbers",
-      "title": "(TODO: Pageviews, tab with the above)",
-      "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "pageviews-count",
-      "info": [
-      ],
-      "denominator-matcher": "department-for-transport",
-      "numerator-matcher": "department-for-transport",
-      "matching-attribute": "department",
-      "value-attribute": "pageviews:sum",
-      "period": "week",
-      "axes": {
-        "x": {
-          "label": "Date"
         },
-        "y": [
-          {
-            "label": "Number of visitors"
+        {
+          "module-type": "completion_numbers",
+          "title": "Unique pageviews",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "pageviews-count",
+          "info": [
+          ],
+          "denominator-matcher": "department-for-transport",
+          "numerator-matcher": "department-for-transport",
+          "matching-attribute": "department",
+          "value-attribute": "pageviews:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
           }
-        ]
-      }
+        }
+      ]
     },
     {
       "slug": "how-users-access-the-service",
@@ -120,12 +125,76 @@
       }
     },
     {
+      "slug": "most-popular-content",
+      "module-type": "tab",
+      "title": "Most popular content",
+      "description": "",
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-pages",
+          "title": "All pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "news-pages",
+          "title": "News pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-news-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "publications",
+          "title": "Publications",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-publications-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "consulations",
+          "title": "Consulations",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-consultations-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "policies",
+          "title": "Policies",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-policy-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "speeches",
+          "title": "Speeches",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-speeches-count"
+        },
+        {
+          "module-type": "table",
+          "slug": "collections",
+          "title": "Collections",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-collections-count"
+        }
+      ]
+    },
+    {
       "slug": "new-visitors-vs-returning-visitors",
       "module-type": "grouped_timeseries",
       "title": "New visitors vs returning visitors",
       "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
       "data-group": "gov-uk-content",
-      "data-type": "new_returning-count",
+      "data-type": "new-returning-count",
       "filter-by": "department:department-for-transport",
       "category": "visitorType",
       "period": "week",
@@ -163,76 +232,36 @@
       }
     },
     {
-      "slug": "most-popular-content",
-      "module-type": "table",
-      "title": "Most popular content",
-      "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "top-count",
-      "filter-by": "department:department-for-transport",
-      "query-params": {
-        "filter_by": "type:tax-disc",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
-        "duration": 1
-      },
-      "axes": {
-        "x": {
-          "label": "Department",
-          "key": "description:set"
-        },
-        "y": [
-          {
-            "label": "Visits",
-            "key": "count:sum",
-            "format": "integer"
-          },
-          {
-            "label": "Percentage of visits",
-            "key": "percentOfTotal(count:sum)",
-            "format": "percent"
-          }
-        ]
-      },
-      "sort-by": "count:sum",
-      "sort-order": "descending"
-    },
-    {
+      "module-type": "tab",
       "slug": "top-department-referrers",
-      "module-type": "table",
       "title": "Top department referrers",
       "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "top-count",
-      "filter-by": "department:department-for-transport",
-      "query-params": {
-        "filter_by": "type:tax-disc",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
-        "duration": 1
-      },
-      "axes": {
-        "x": {
-          "label": "Department",
-          "key": "description:set"
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-referrers",
+          "title": "All referrers",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "PLACEHOLDER"
         },
-        "y": [
-          {
-            "label": "Visits",
-            "key": "count:sum",
-            "format": "integer"
-          },
-          {
-            "label": "Percentage of visits",
-            "key": "percentOfTotal(count:sum)",
-            "format": "percent"
-          }
-        ]
-      },
-      "sort-by": "count:sum",
-      "sort-order": "descending"
+        {
+          "module-type": "table",
+          "slug": "news-pages",
+          "title": "Search terms",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "PLACEHOLDER"
+        },
+        {
+          "module-type": "table",
+          "slug": "social-media",
+          "title": "Social media",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "PLACEHOLDER"
+        }
+      ]
     },
     {
       "slug": "total-feedback-received",
