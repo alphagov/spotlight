@@ -6,7 +6,7 @@ function (MatrixCollection) {
 
     queryParams: function () {
       var params = {
-        period: 'day',
+        period: this.options.period || 'day',
         collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']
       };
       params.end_at = this.options.endAt || null;
