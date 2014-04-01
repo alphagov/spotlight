@@ -2,6 +2,7 @@ define([
   'common/collections/completion'
 ],
 function (CompletionCollection) {
+  /* global decodeURIComponent */
   describe('Completion collection', function () {
     var mockResponse = {
       'data': [
@@ -60,8 +61,8 @@ function (CompletionCollection) {
       var collection = new CompletionCollection({}, {
         valueAttr: 'one',
         period: 'month',
-        'start-at': '2014-01-10T00:00:00+00:00',
-        'end-at': '2014-03-10T00:00:00+00:00',
+        startAt: '2014-01-10T00:00:00+00:00',
+        endAt: '2014-03-10T00:00:00+00:00',
         matchingAttribute: 'two',
         tabbedAttr: 'tabbing',
         tabs: [
@@ -69,20 +70,20 @@ function (CompletionCollection) {
         ]
       });
 
-      expect(collection.url()).toContain('period=month');
-      expect(collection.url()).toContain('start_at=2013-03-01T00%3A00%3A00%2B00%3A00');
-      expect(collection.url()).toContain('end_at=2014-03-01T00%3A00%3A00%2B00%3A00');
-      expect(collection.url()).toContain('collect=one');
-      expect(collection.url()).toContain('group_by=two');
-      expect(collection.url()).toContain('tabbing=tabid');
+      expect(decodeURIComponent(collection.url())).toContain('period=month');
+      expect(decodeURIComponent(collection.url())).toContain('start_at=2014-01-10T00:00:00+00:00');
+      expect(decodeURIComponent(collection.url())).toContain('end_at=2014-03-10T00:00:00+00:00');
+      expect(decodeURIComponent(collection.url())).toContain('collect=one');
+      expect(decodeURIComponent(collection.url())).toContain('group_by=two');
+      expect(decodeURIComponent(collection.url())).toContain('tabbing=tabid');
     });
 
     it('should use default query params', function () {
       var collection = new CompletionCollection({}, {});
 
-      expect(collection.url()).toContain('period=week');
-      expect(collection.url()).toContain('collect=uniqueEvents%3Asum');
-      expect(collection.url()).toContain('group_by=eventCategory');
+      expect(decodeURIComponent(collection.url())).toContain('period=week');
+      expect(decodeURIComponent(collection.url())).toContain('collect=uniqueEvents:sum');
+      expect(decodeURIComponent(collection.url())).toContain('group_by=eventCategory');
     });
 
     it('should recognise query parameters passed in from the module', function () {
