@@ -205,21 +205,54 @@
     },
     {
       "slug": "service-availability",
-      "module-type": "availability",
+      "module-type": "tab",
       "title": "Service availability",
-      "description": "",
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "monitoring",
-      "info": [
-        "Info text line 1",
-        "Info text line 2"
-      ],
       "tabs": [
-        {"id": "day", "name": "30 days", "format": "date"},
-        {"id": "hour", "name": "24 hours", "format": "time"}
-      ],
-      "tabbed_attr": "period",
-      "end-at": "2013-10-27T12:00:00+00:00"
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "carers-allowance",
+          "data-type": "monitoring",
+          "period": "day",
+          "info": [
+            "Data source: Pingdom",
+            "Page load time measures the time taken for a sample page within the service to load.",
+            "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          },
+          "end-at": "2013-10-27T12:00:00+00:00"
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "carers-allowance",
+          "data-type": "monitoring",
+          "period": "hour",
+          "info": [
+            "Data source: Pingdom",
+            "Page load time measures the time taken for a sample page within the service to load.",
+            "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+          ],
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          },
+          "end-at": "2013-10-27T12:00:00+00:00"
+        }
+      ]
     },
     {
       "slug": "user-satisfaction",
@@ -287,81 +320,89 @@
       ]
     },
     {
-      "slug": "stacked_categories",
-      "module-type": "grouped_timeseries",
-      "title": "Categories in a stack",
+      "slug": "tab_things",
+      "module-type": "tab",
+      "title": "Some tabs with graphs",
       "description": "",
-      "data-group": "housing-policy",
-      "data-type": "residential-transactions",
-      "use_stack": true,
-      "value-attr": "value:sum",
-      "category": "geography",
-      "period": "month",
-      "filter-by": ["key:residential_property_transactions"],
-      "axes": {
-        "y": [
-          {
-            "label": "England",
-            "categoryId": "England",
-            "format": "integer"
+      "tabs": [
+        {
+          "slug": "stacked_categories",
+          "module-type": "grouped_timeseries",
+          "title": "Categories in a stack",
+          "description": "A nested description inside of a tabbed module",
+          "data-group": "housing-policy",
+          "data-type": "residential-transactions",
+          "use_stack": true,
+          "value-attr": "value:sum",
+          "category": "geography",
+          "period": "month",
+          "filter-by": ["key:residential_property_transactions"],
+          "axes": {
+            "y": [
+              {
+                "label": "England",
+                "categoryId": "England",
+                "format": "integer"
+              },
+              {
+                "label": "Scotland",
+                "categoryId": "Scotland",
+                "format": "integer"
+              },
+              {
+                "label": "Wales",
+                "categoryId": "Wales",
+                "format": "integer"
+              },
+              {
+                "label": "Northern Ireland",
+                "categoryId": "Northern_Ireland",
+                "format": "integer"
+              }
+            ]
           },
-          {
-            "label": "Scotland",
-            "categoryId": "Scotland",
-            "format": "integer"
-          },
-          {
-            "label": "Wales",
-            "categoryId": "Wales",
-            "format": "integer"
-          },
-          {
-            "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland",
-            "format": "integer"
-          }
-        ]
-      },
-      "show-line-labels": true
-    },
-    {
-      "slug": "starts_completions",
-      "module-type": "grouped_timeseries",
-      "title": "Categories as lines",
-      "description": "",
-      "data-group": "housing-policy",
-      "data-type": "dwellings",
-      "use_stack": false,
-      "value-attr": "value:sum",
-      "category": "type",
-      "period": "quarter",
-      "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
-      "info": [
-        "Source: National House-Building Council (NHBC)"
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "MMM YYYY"
-          }
+          "show-line-labels": true
         },
-        "y": [
-          {
-            "label": "Completed",
-            "categoryId": "completed",
-            "format": "integer"
+        {
+          "slug": "starts_completions",
+          "module-type": "grouped_timeseries",
+          "title": "Categories as lines",
+          "description": "",
+          "data-group": "housing-policy",
+          "data-type": "dwellings",
+          "use_stack": false,
+          "value-attr": "value:sum",
+          "category": "type",
+          "period": "quarter",
+          "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+          "info": [
+            "Source: National House-Building Council (NHBC)"
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": ["_start_at", "_end_at"],
+              "format": {
+                "type": "dateRange",
+                "format": "MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Completed",
+                "categoryId": "completed",
+                "format": "integer"
+              },
+              {
+                "label": "Started",
+                "categoryId": "started",
+                "format": "integer"
+              }
+            ]
           },
-          {
-            "label": "Started",
-            "categoryId": "started",
-            "format": "integer"
-          }
-        ]
-      },
-      "show-line-labels": true
+          "show-line-labels": true
+        }
+      ]
     }
   ]
 }

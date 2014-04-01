@@ -1,11 +1,10 @@
 define([
   'tpl!common/templates/visualisations/categories.html',
   'extensions/views/view',
-  'extensions/views/tabs',
   'common/views/visualisations/stacked-graph',
   'common/views/visualisations/line-graph'
 ],
-function (template, View, Tabs, StackedGraph, LineGraph) {
+function (template, View, StackedGraph, LineGraph) {
   var CategoriesView = View.extend({
     template: template,
 
@@ -13,29 +12,14 @@ function (template, View, Tabs, StackedGraph, LineGraph) {
       var useStack = this.model.get('use_stack'),
           graph = useStack ? StackedGraph : LineGraph;
 
-      var val = {
-          '.categories': {
-            view: graph,
-            options: {
-              'currency': this.model.get('currency')
-            }
+      return {
+        '.categories': {
+          view: graph,
+          options: {
+            'currency': this.model.get('currency')
           }
-        };
-
-      if (this.model && this.model.get('tabbed_attr')) {
-        val['#categories-nav'] = {
-          view: Tabs,
-          options: function () {
-            return {
-              model: this.collection.query,
-              attr: this.model.get('tabbed_attr'),
-              tabs: this.model.get('tabs')
-            };
-          }
-        };
-      }
-
-      return val;
+        }
+      };
 
     }
   });

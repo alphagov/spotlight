@@ -84,6 +84,29 @@ moduleSchemas.common = {
   }
 };
 
+moduleSchemas.tabs = {
+  'id': '/ModuleCommon',
+  'type': 'object',
+  'properties': {
+    'page-type': {
+      'type': 'string',
+      'required': true,
+      'enum': ['module']
+    },
+    'module-type': {
+      'type': 'string',
+      'required': true
+    },
+    'title': {
+      'type': 'string',
+      'required': true
+    },
+    'description': {
+      'type': 'string'
+    }
+  }
+};
+
 moduleSchemas.realtime = moduleSchemas.common;
 
 moduleSchemas.grouped_timeseries = _.extend(moduleSchemas.common,
@@ -100,6 +123,8 @@ moduleSchemas.availability = moduleSchemas.common;
 moduleSchemas.multi_stats = moduleSchemas.common;
 
 moduleSchemas.list = moduleSchemas.common;
+
+moduleSchemas.tab = moduleSchemas.tabs;
 
 moduleSchemas.table = moduleSchemas.common;
 
@@ -161,7 +186,6 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
             fs.mkdirSync(pagePerThingDirectory);
           }
 
-          delete module.slug;
           delete module['page-type'];
           module = _.extend(module, {
             'page-type': 'module',

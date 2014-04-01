@@ -1,5 +1,5 @@
 .visualisation nav {
-  ul {
+  ul, ol {
 
     margin-top: 14px;
     border-bottom: 1px solid $grey-2;
@@ -17,7 +17,6 @@
         text-decoration: underline;
       }
       &.active {
-        padding: 9px 16px 7px 16px;
         margin-bottom: -1px;
         background-color: $white;
         border: 1px solid $grey-2;
@@ -25,6 +24,9 @@
         cursor: default;
         &:hover {
           text-decoration: none;
+        }
+        a {
+          padding: 9px 16px 7px 16px;
         }
       }
       a {
@@ -41,5 +43,17 @@
       height: 0;
       overflow: hidden;
     }
+  }
+}
+
+#content .visualisation section {
+  display: none;
+  border-top: 0;
+  margin-top: 0;
+  &.active {
+    display: block;
+  }
+  h2 {
+    display: none;
   }
 }

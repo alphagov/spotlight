@@ -42,16 +42,9 @@ def values
         raw: "//ul/li//p[@class='change impact-number increase']"
       }
     },
-    'stacked_categories' => {
+    'tab_things-stacked_categories' => {
       'no-realistic-dashboard' => {
         title: 'Categories in a stack',
-        description: '',
-        raw: "//*[name()='svg']"
-      }
-    },
-    'starts_completions' => {
-      'no-realistic-dashboard' => {
-        title: 'Categories as lines',
         description: '',
         raw: "//*[name()='svg']"
       }

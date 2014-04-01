@@ -11,9 +11,13 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     modernizr: Modernizr,
 
     initialize: function (options) {
-      _.extend(this, options);
+      options = options || {};
       this.viewInstances = {};
       Backbone.View.prototype.initialize.apply(this, arguments);
+      var el = options.el;
+      delete options.el;
+      _.extend(this, options);
+      options.el = el;
     },
 
     render: function (options) {
