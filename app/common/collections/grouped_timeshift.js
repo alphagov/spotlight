@@ -1,8 +1,11 @@
 define([
   'extensions/collections/matrix',
-  'extensions/models/query'
+  'extensions/models/query',
+  'moment-timezone'
 ],
-function (MatrixCollection, Query) {
+function (MatrixCollection, Query, moment) {
+
+  var format = 'YYYY-MM-DD[T]HH:mm:ss';
 
   var GroupedTimeshiftCollection = MatrixCollection.extend({
     queryParams: function () {
@@ -14,6 +17,10 @@ function (MatrixCollection, Query) {
       };
       if (this.options.filterBy) {
         params.filter_by = this.options.filterBy;
+      }
+      if (this.options.startAt) {
+        params.start_at = moment(this.options.startAt).subtract(this.options.period, this.timeshift()).format(format);
+        params.duration = this.standardDuration();
       }
       return params;
     },

@@ -35,21 +35,49 @@ function (GroupedTimeshiftCollection, Query) {
       expect(queryParams.duration).toBe(weekDuration + 1); // standard duration plus timeshift for a week graph
     });
 
-    it('should calculate standard duration', function () {
+    it('should offset the start_at param by the timeshift', function () {
+      var collection = new GroupedTimeshiftCollection([], {
+        valueAttr: 'value',
+        period: 'week',
+        category: 'group',
+        startAt: '2014-04-02T00:00:00',
+        axes: {
+          x: {
+            'label': 'Date',
+            'key': '_start_at'
+          },
+          y: [
+            {
+              'label': 'One',
+              'categoryId': 'one',
+              'key': 'value:sum',
+              'timeshift': 1
+            }
+          ]
+        }
+      });
+
+      var queryParams = collection.queryParams();
+
+      expect(queryParams.start_at).toBe('2014-03-26T00:00:00');
+      expect(queryParams.duration).toBe(weekDuration);
+    });
+
+    it('should calculate duration', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week'
       });
 
-      expect(collection.standardDuration()).toBe(weekDuration);
+      expect(collection.duration()).toBe(weekDuration);
     });
 
-    it('should allow for a custom standard duration', function () {
+    it('should allow for a custom duration', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week',
         duration: 29
       });
 
-      expect(collection.standardDuration()).toBe(29);
+      expect(collection.duration()).toBe(29);
     });
 
     it('should work out the duration of a graph based on a maximum timeshift', function () {
