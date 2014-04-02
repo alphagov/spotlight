@@ -22,3 +22,4 @@ _SpecRunner.html
 app/vendor/d3.js
 app/vendor/backbone.js
 app/vendor/moment-timezone.js
+app/vendor/lodash.js
