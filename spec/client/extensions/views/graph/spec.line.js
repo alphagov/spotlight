@@ -3,7 +3,7 @@ define([
   'extensions/collections/collection'
 ],
 function (Line, Collection) {
-  
+
   describe('Line Component', function () {
     var el, wrapper, collection, view, lineColour0, lineColour1, lineColour0RGB, lineColour1RGB;
 
@@ -234,6 +234,13 @@ function (Line, Collection) {
         expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
       });
 
+      it('adds custom classes to collection indicators', function () {
+        collection.at(0).set('className', 'custom-class');
+        view.render();
+        view.onChangeSelected.originalValue.call(view, collection.at(0), 1, null, null);
+        expect(hasClass('.selectedIndicator', 'custom-class')).toBe(true);
+      });
+
       describe('when encompassStack is true', function () {
         beforeEach(function () {
           var y = function (group, groupIndex) {
@@ -431,5 +438,5 @@ function (Line, Collection) {
       });
     });
   });
-  
+
 });

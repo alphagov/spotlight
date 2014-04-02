@@ -181,8 +181,13 @@ function (Component) {
     },
 
     renderSelectionPoint: function (groupIndexSelected, x, y) {
+      var className = 'selectedIndicator line' + groupIndexSelected;
+      var model = this.collection.at(groupIndexSelected);
+      if (model.get('className')) {
+        className += (' ' + model.get('className'));
+      }
       this.componentWrapper.append('circle').attr({
-        'class': 'selectedIndicator line' + groupIndexSelected,
+        'class': className,
         cx: x,
         cy: y,
         r: 4
