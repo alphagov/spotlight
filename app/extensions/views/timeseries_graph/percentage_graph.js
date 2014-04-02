@@ -1,8 +1,7 @@
 define([
-  'require',
   'extensions/views/graph/graph'
 ],
-function (require, Graph) {
+function (Graph) {
   var PercentageGraph = Graph.extend({
 
     getConfigNames: function () {
