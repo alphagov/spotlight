@@ -141,7 +141,11 @@
         ]
       },
       "sort-by": "count:sum",
-      "sort-order": "descending"
+      "sort-order": "descending",
+      "info": [
+        "<li>Data source: <abbr title='Driver and Vehicle Licensing Agency'>DVLA</abbr> database</li>",
+        "<li>More than one error may be logged per user.</li>"
+      ]
     },
     {
       "slug": "service-availability",
