@@ -120,6 +120,8 @@ moduleSchemas.journey = moduleSchemas.common;
 
 moduleSchemas.availability = moduleSchemas.common;
 
+moduleSchemas.comparison = moduleSchemas.common;
+
 moduleSchemas.multi_stats = moduleSchemas.common;
 
 moduleSchemas.list = moduleSchemas.common;

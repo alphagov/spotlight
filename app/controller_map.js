@@ -2,6 +2,7 @@ define([
   'extensions/controllers/dashboard',
   'common/controllers/error',
   'common/modules/availability',
+  'common/modules/comparison',
   'common/modules/completion_numbers',
   'common/modules/completion_rate',
   'common/modules/grouped_timeseries',
@@ -15,7 +16,8 @@ define([
   'common/modules/visitors-realtime'
 ],
 function (DashboardController, ErrorController,
-  AvailabilityModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
+
+  AvailabilityModule, ComparisonModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
   JourneyModule, KPIModule, ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule, VisitorsRealtimeModule) {
 
   var ControllerMap = {
@@ -23,6 +25,7 @@ function (DashboardController, ErrorController,
     error: ErrorController,
     modules: {
       'availability': AvailabilityModule,
+      'comparison': ComparisonModule,
       'completion_numbers': CompletionNumbersModule,
       'completion_rate': CompletionRateModule,
       'grouped_timeseries': GroupedTimeseriesModule,
