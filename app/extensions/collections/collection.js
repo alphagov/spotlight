@@ -52,7 +52,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       this.collectionInstances = _.map(this.collections, function (ClassRef) {
         if (ClassRef.collection) {
           return new ClassRef.collection(
-            models, _.extend({}, ClassRef.options, options)
+            models, _.extend({}, options, ClassRef.options)
           );
         } else {
           return new ClassRef(models, options);

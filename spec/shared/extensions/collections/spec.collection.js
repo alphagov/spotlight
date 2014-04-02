@@ -31,6 +31,7 @@ function (Collection, Model, Backbone) {
         var Part1 = Collection.extend({});
         var Part2 = Collection.extend({});
         var collection = new Collection([], {
+          foo: 'wrong',
           collections: [
             {
               collection: Part1,
