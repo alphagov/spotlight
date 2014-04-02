@@ -17,10 +17,13 @@ function (Component) {
       .defined(function (model, index) { return getY(model, index) !== null; });
 
     var renderLine = function () {
-      var timeshift = group.get('timeshift') ? ' timeshift' : '';
+      var className = group.get('timeshift') ? ' timeshift' : '';
+      if (group.get('className')) {
+        className += (' ' + group.get('className'));
+      }
       selection.select('path')
         .attr('d', line(group.get('values').models))
-        .attr('class', 'line line' + groupIndex + ' ' + group.get('id') + timeshift);
+        .attr('class', 'line line' + groupIndex + ' ' + group.get('id') + className);
     };
 
     var renderTerminators = function () {
@@ -33,7 +36,7 @@ function (Component) {
 
         if (showTerminator) {
           selection.append('circle')
-            .attr('class', 'terminator line' + groupIndex)
+            .attr('class', 'terminator line' + groupIndex + (group.get('className') ? ' ' + group.get('className') : ''))
             .attr('cx', getX(model, index))
             .attr('cy', getY(model, index))
             .attr('r', 1.5);

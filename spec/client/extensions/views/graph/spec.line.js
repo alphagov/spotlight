@@ -25,6 +25,7 @@ function (Line, Collection) {
       wrapper = Line.prototype.d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
         {
+          id: 'lineId0',
           testAttr: 'b',
           values: new Collection([
             { a: 1, b: 2},
@@ -35,6 +36,7 @@ function (Line, Collection) {
           ])
         },
         {
+          id: 'lineId1',
           testAttr: 'c',
           values: new Collection([
             { a: 1, b: 3, c: 3},
@@ -113,6 +115,18 @@ function (Line, Collection) {
         expect(view.onChangeSelected).toHaveBeenCalledWith(
           collection.at(0), 0, { a: 1 }, 2
         );
+      });
+
+      it('adds custom classes', function () {
+        collection.at(0).set('className', 'foo');
+        view.render();
+        expect(wrapper.select('g.group:nth-child(2) path').attr('class')).toEqual('line line0 lineId0 foo');
+      });
+
+      it('adds timeshift classes', function () {
+        collection.at(0).set('timeshift', 52);
+        view.render();
+        expect(wrapper.select('g.group:nth-child(2) path').attr('class')).toEqual('line line0 lineId0 timeshift');
       });
     });
 

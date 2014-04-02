@@ -87,6 +87,9 @@ figure.graph {
   .line4 { stroke: $data-colour-5; }
   .line5 { stroke: $data-colour-6; }
 
+  .compare-group0 { stroke: $data-colour-1; }
+  .compare-group1 { stroke: $data-colour-2; }
+
   .line.timeshift { stroke-dasharray: 5, 10; }
 
   .not-selected {
@@ -96,6 +99,9 @@ figure.graph {
     &.line3 { stroke: mix($data-colour-4, $white, 50%); }
     &.line4 { stroke: mix($data-colour-5, $white, 50%); }
     &.line5 { stroke: mix($data-colour-6, $white, 50%); }
+
+    &.compare-group0 { stroke: mix($data-colour-1, $white, 50%); }
+    &.compare-group1 { stroke: mix($data-colour-2, $white, 50%); }
   }
 
   .stack0 { fill: mix($data-colour-1, $white, 25%); }
@@ -285,6 +291,22 @@ figure.graph {
           &.label3.not-selected:before { border-color: mix($data-colour-4, $white, 50%) }
           &.label4.not-selected:before { border-color: mix($data-colour-5, $white, 50%) }
           &.label5.not-selected:before { border-color: mix($data-colour-6, $white, 50%) }
+
+          &.compare-group0:before { background-color: mix($data-colour-1, $white, 25%); }
+          &.compare-group1:before { background-color: mix($data-colour-2, $white, 25%); }
+          &.compare-group0:before { border-color: $data-colour-1; }
+          &.compare-group1:before { border-color: $data-colour-2; }
+
+          &.compare-group0.selected:before { background-color: mix($data-colour-1, $white, 50%); }
+          &.compare-group1.selected:before { background-color: mix($data-colour-2, $white, 50%); }
+
+          &.compare-group0.not-selected:before { background-color: mix($data-colour-1, $white, 10%) }
+          &.compare-group1.not-selected:before { background-color: mix($data-colour-2, $white, 10%) }
+
+          &.compare-group0.not-selected:before { border-color: mix($data-colour-1, $white, 50%) }
+          &.compare-group1.not-selected:before { border-color: mix($data-colour-2, $white, 50%) }
+
+          &.timeshift:before { border-style: dashed; }
 
           &:before {
             border:2px solid white;

@@ -170,7 +170,14 @@ function (Component) {
       var enterSelection = selection.enter().append('li');
 
       selection.attr('class', function (model, index) {
-        return 'label' + index;
+        var classes = ['label' + index];
+        if (model.get('className')) {
+          classes.push(model.get('className'));
+        }
+        if (model.get('timeshift')) {
+          classes.push('timeshift');
+        }
+        return classes.join(' ');
       });
 
       if (this.attachLinks) {
