@@ -49,6 +49,13 @@
         width: 100%;
       }
     }
+
+    .visualisation {
+      // This fixes an issue on the page-per-thing page when both tabs and "more info" are present.
+      // http://www.quirksmode.org/css/clearing.html#link3
+      overflow: auto;
+      width: 100%;
+    }
   }
 
   @media (max-width: 640px) {

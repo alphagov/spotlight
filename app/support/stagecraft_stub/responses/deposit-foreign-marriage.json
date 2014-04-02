@@ -55,6 +55,11 @@
       "slug": "service-availability",
       "module-type": "tab",
       "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
       "tabs": [
         {
           "title": "30 days",
@@ -64,11 +69,6 @@
           "data-group": "deposit-foreign-marriage",
           "data-type": "monitoring",
           "period": "day",
-          "info": [
-            "Data source: Pingdom",
-            "Page load time measures the time taken for a sample page within the service to load.",
-            "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
-          ],
           "axes": {
             "x": {
               "label": "Date",
@@ -86,11 +86,6 @@
           "data-group": "deposit-foreign-marriage",
           "data-type": "monitoring",
           "period": "hour",
-          "info": [
-            "Data source: Pingdom",
-            "Page load time measures the time taken for a sample page within the service to load.",
-            "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
-          ],
           "axes": {
             "x": {
               "label": "Time",
