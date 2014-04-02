@@ -1,0 +1,19 @@
+{
+  "slug": "view-driving-record",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Service dashboard",
+  "title": "View driving record",
+  "description": "",
+  "department": {
+    "title": "Driver and Vehicle Licensing Agency"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "View your driving licence information",
+      "url" : "/view-driving-licence"
+    }
+  },
+  "modules": [
+  ]
+}
