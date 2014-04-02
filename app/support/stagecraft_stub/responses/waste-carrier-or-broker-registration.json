@@ -57,7 +57,7 @@
       "slug": "registrations-over-time",
       "module-type": "grouped_timeseries",
       "title": "Registrations over time",
-      "description": "<span class='group0'>Total</span> and <span class='group1'>call centre</span> registrations over the last 9 weeks.",
+      "description": "<span class='group0'>Total</span>, <span class='group1'>digital</span> and <span class='group2'>call centre</span> registrations over the last 9 weeks.",
       "data-group": "waste-carriers-registration",
       "data-type": "transactions-by-channel",
       "info": [
@@ -84,8 +84,13 @@
             "format": "integer"
           },
           {
+            "label": "Digital",
+            "categoryId": "waste_new_reg_digital_user",
+            "format": "integer"
+          },
+          {
             "label": "Call centre",
-            "categoryId": "waste_new_reg_ad",
+            "categoryId": "waste_new_reg_assisted",
             "format": "integer"
           }
         ]
