@@ -44,14 +44,14 @@
     "grunt-contrib-requirejs": "0.4.3",
     "grunt-contrib-watch": "0.6.1",
     "grunt-digest": "0.1.2",
-    "grunt-jasmine-node-coverage": "0.1.6",
+    "grunt-jasmine-node-coverage": "0.1.8",
     "grunt-rcukes": "0.0.5",
-    "grunt-sass": "0.12.0",
+    "grunt-sass": "0.12.1",
     "grunt-shell": "0.6.4",
-    "jshint": "2.4.4",
+    "jshint": "2.5.0",
+    "jshint-stylish": "0.1.5",
     "jsonschema": "0.4.0",
     "node-sass": "0.8.4",
-    "supervisor": "0.5.7",
-    "jshint-stylish": "0.1.5"
+    "supervisor": "0.5.7"
   }
 }
