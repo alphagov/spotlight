@@ -17,3 +17,8 @@ _SpecRunner.html
 *.log.json
 
 /config/config.development_personal.json
+
+# These are copied in from the grunt task copy:vendor
+app/vendor/d3.js
+app/vendor/backbone.js
+app/vendor/moment-timezone.js
