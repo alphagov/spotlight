@@ -8,6 +8,12 @@
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Pay for certificates to get married abroad",
+      "url" : "https://www.gov.uk/pay-foreign-marriage-certificates"
+    }
+  },
   "modules": [
     {
       "slug": "live-service-usage",

@@ -8,6 +8,12 @@
   "department": {
     "title": "Foreign and Commonwealth Office"
   },
+  "relatedPages": {
+    "transaction": {
+      "title": "Pay to legalise documents using the premium service",
+      "url" : "https://www.gov.uk/legalisation-premium-service"
+    }
+  },
   "customer-type": "Businesses",
   "business-model": "Service users",
   "description-extra": "Legalisation means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government. This premium service is only available for registered businesses.",
