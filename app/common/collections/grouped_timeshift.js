@@ -6,13 +6,16 @@ function (MatrixCollection, Query) {
 
   var GroupedTimeshiftCollection = MatrixCollection.extend({
     queryParams: function () {
-      return {
+      var params = {
         collect: this.options.valueAttr,
         period: this.options.period,
         group_by: this.options.category,
-        filter_by: this.options.filterBy ? this.options.filterBy : [],
         duration: this.duration()
       };
+      if (this.options.filterBy) {
+        params.filter_by = this.options.filterBy;
+      }
+      return params;
     },
 
     standardDuration: function () {
