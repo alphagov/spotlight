@@ -97,6 +97,22 @@
       }
     },
     {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "",
+      "data-group": "waste-carriers-registration",
+      "data-type": "transactions-by-channel",
+      "info": [
+        "Data source: Waste Carriers service"
+      ],
+      "numerator-matcher": "^waste_new_reg_digital_user$",
+      "denominator-matcher": "^waste_new_reg_all$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "period": "week"
+    },
+    {
       "slug": "service-availability",
       "module-type": "tab",
       "title": "Service availability",
