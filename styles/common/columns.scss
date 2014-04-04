@@ -9,6 +9,11 @@
     margin-left: 30px / 960px * 100%;
   }
 
+  #content section.module.cols2 {
+    width: 480px / 960px * 100%;
+    margin-left: 0;
+  }
+
   .cols2:first-of-type,
   #content section.cols2:first-of-type,
   #content article.cols2:first-of-type {
