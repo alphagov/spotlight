@@ -18,7 +18,6 @@ app/support/**/*.js
 tools/**
 styles/**
 log/**
-Gemfile*
 LICENSE
 _SpecRunner.html
 spec/requirejs-setup.js

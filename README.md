@@ -20,7 +20,6 @@ Once you've got a machine that has the required system-level dependencies, you c
 application dependencies with:
 
 ```bash
-bundle install
 npm install
 ```
 
@@ -35,7 +34,7 @@ As a bonus, this will let you test the image fallbacks using the [screenshot-as-
 
 ```bash
 cd /var/apps/pp-development
-bundle install
+bundle install # install bowler
 bowl performance
 ```
 
@@ -105,5 +104,3 @@ to view the console.
 [![Dependency Status](https://david-dm.org/alphagov/spotlight.png)](https://david-dm.org/alphagov/spotlight)
 
 [![devDependency Status](https://david-dm.org/alphagov/spotlight/dev-status.png)](https://david-dm.org/alphagov/spotlight#info=devDependencies)
-
-[![Dependency Status](https://gemnasium.com/alphagov/spotlight.png)](https://gemnasium.com/alphagov/spotlight)
