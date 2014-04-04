@@ -8,6 +8,10 @@ h2 {
 
 p {
   @include core-16($tabular-numbers: true);
+
+  &.lede, &.lead {
+    @include core-24;
+  }
 }
 
 a[rel="external"] {

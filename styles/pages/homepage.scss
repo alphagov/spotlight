@@ -5,16 +5,6 @@
     margin-top: 1.5em;
     padding-bottom: 0;
     border: none;
-
-    p {
-      @include core-24;
-      margin-top: 1.6em;
-      width: 100%;
-
-      @include media(desktop) {
-        width: 65.625%;
-      }
-    }
   }
 
   section {
