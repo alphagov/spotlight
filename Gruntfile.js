@@ -98,17 +98,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Sets up Cucumber feature tests
-    cucumber: {
-      test: {
-        features: 'features/'
-      },
-      options: {
-        prefix: 'bundle exec',
-        format: 'progress',
-        tags: ['~@wip']
-      }
-    },
     // Lints our JavaScript
     jshint: {
       files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js'],
@@ -254,7 +243,6 @@ module.exports = function (grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-requirejs',
     'grunt-digest',
-    'grunt-rcukes',
     'grunt-sass',
     'grunt-contrib-copy',
     'grunt-contrib-watch',

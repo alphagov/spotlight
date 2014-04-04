@@ -16,7 +16,6 @@ spec/helpers/**
 app/vendor/**
 app/support/**/*.js
 tools/**
-features/**
 styles/**
 log/**
 Gemfile*

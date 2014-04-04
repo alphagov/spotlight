@@ -69,10 +69,9 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 
 - `grunt jasmine_node` executes shared and server Jasmine tests in Node.js
 - `grunt jasmine` executes shared and client Jasmine tests in PhantomJS
-- `grunt cucumber` executes Cucumber features through PhantomJS
+- `grunt shell:cheapseats` executes feature tests using [cheapseats][]
 
-`bundle exec cucumber --profile sauce` executes Cucumber features through
-SauceLabs (there's no Grunt task for this yet).
+[cheapseats]: https://github.com/alphagov/cheapseats
 
 #### In the browser ####
 

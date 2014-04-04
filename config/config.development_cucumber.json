@@ -1,6 +1,0 @@
-{
-  "assetPath": "/spotlight/",
-  "port": 7070,
-  "backdropUrl": "http://localhost:7070/backdrop-stub/{{ data-group }}/{{ data-type }}",
-  "govukHost": "spotlight.test.gov.uk"
-}
