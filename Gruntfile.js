@@ -197,6 +197,15 @@ module.exports = function (grunt) {
       }
     },
     shell: {
+      // Runs cheapseats tests
+      cheapseats: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: 'node ./node_modules/cheapseats/index.js --standalone --path ./'
+      },
       // Generates the page-per-thing module JSON stubs
       generate_module_stubs: {
         options: {
@@ -293,7 +302,7 @@ module.exports = function (grunt) {
     'jasmine',
     'jasmine_node',
     'jshint',
-    'cucumber'
+    'shell:cheapseats'
   ]);
 
   // Default task
