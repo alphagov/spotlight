@@ -79,6 +79,27 @@ function (LineLabel, Collection) {
           expect(lines[0].length).toEqual(2);
         });
 
+        it('adds custom classes to line labels', function () {
+          collection.at(0).set('className', 'foo');
+          collection.at(1).set('className', 'bar');
+          lineLabel.render();
+
+          var textLabels = lineLabel.$el.find('figcaption li');
+
+          expect(textLabels.eq(0).prop('class')).toEqual('label0 foo');
+          expect(textLabels.eq(1).prop('class')).toEqual('label1 bar');
+        });
+
+        it('adds timeshift class to line labels for timeshifted lines', function () {
+          collection.at(0).set('timeshift', 52);
+          lineLabel.render();
+
+          var textLabels = lineLabel.$el.find('figcaption li');
+
+          expect(typeof textLabels.eq(0).prop('class')).toEqual('string');
+          expect(textLabels.eq(0).prop('class')).toEqual('label0 timeshift');
+        });
+
         it('renders a label with correct WAI-ARIA attributes', function () {
           lineLabel.render();
           var lineLabelElement = lineLabel.$el.find('figcaption');

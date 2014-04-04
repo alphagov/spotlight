@@ -20,16 +20,18 @@
   "description-extra": "The service also ensures they receive their payments, maintain their account and make repayments. The service varies across the devolved administrations: customers in England receive the full service from SLC; in Wales and Northern Ireland the service is delivered with the support of local authority partners; in Scotland it is delivered in partnership with SAAS.",
   "modules": [
     {
-      "slug": "applications-by-stage-2014-2015",
-      "module-type": "grouped_timeseries",
-      "title": "Applications at each stage of completion - 2014/15",
-      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the 2014/15 academic year",
+      "slug": "comparison-of-applications-by-stage",
+      "module-type": "comparison",
+      "title": "Applications at each stage of completion",
+      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the academic year",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "stage",
-      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital", "academic_year:2014/15"],
+      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital"],
+      "comparison": ["academic_year:2014/15", "academic_year:2013/14"],
       "period": "week",
       "axis-period": "month",
+      "start-at": "2014-01-01T00:00:00",
       "duration": 52,
       "value-attr": "count:sum",
       "show-line-labels": true,
@@ -41,52 +43,37 @@
         "Submitted - 2014/15: applications submitted for processing"
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "format": "dateRange",
+          "key": ["_start_at", "_end_at"]
+        },
         "y": [
           {
             "label": "Started - 2014/15",
             "categoryId": "started",
+            "comparison": "academic_year:2014/15",
             "format": "integer"
           },
           {
             "label": "Submitted - 2014/15",
             "categoryId": "submitted",
+            "comparison": "academic_year:2014/15",
             "format": "integer"
-          }
-        ]
-      }
-    },
-    {
-      "slug": "applications-by-stage-2013-2014",
-      "module-type": "grouped_timeseries",
-      "title": "Applications at each stage of completion - 2013/14",
-      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the 2013/14 academic year",
-      "data-group": "student-finance",
-      "data-type": "transactions-by-channel",
-      "category": "stage",
-      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital", "academic_year:2013/14"],
-      "period": "week",
-      "axis-period": "month",
-      "duration": 52,
-      "value-attr": "count:sum",
-      "show-line-labels": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education digital channel applications for the 2013/14 academic year, broken down by stage",
-        "Started - 2013/14: applications started and in progress",
-        "Submitted - 2013/14: applications submitted for processing"
-      ],
-      "axes": {
-        "y": [
+          },
           {
             "label": "Started - 2013/14",
             "categoryId": "started",
-            "format": "integer"
+            "comparison": "academic_year:2013/14",
+            "format": "integer",
+            "timeshift": 52
           },
           {
             "label": "Submitted - 2013/14",
             "categoryId": "submitted",
-            "format": "integer"
+            "comparison": "academic_year:2013/14",
+            "format": "integer",
+            "timeshift": 52
           }
         ]
       }

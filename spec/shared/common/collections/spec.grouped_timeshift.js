@@ -35,21 +35,49 @@ function (GroupedTimeshiftCollection, Query) {
       expect(queryParams.duration).toBe(weekDuration + 1); // standard duration plus timeshift for a week graph
     });
 
-    it('should calculate standard duration', function () {
+    it('should offset the start_at param by the timeshift', function () {
+      var collection = new GroupedTimeshiftCollection([], {
+        valueAttr: 'value',
+        period: 'week',
+        category: 'group',
+        startAt: '2014-04-02T00:00:00',
+        axes: {
+          x: {
+            'label': 'Date',
+            'key': '_start_at'
+          },
+          y: [
+            {
+              'label': 'One',
+              'categoryId': 'one',
+              'key': 'value:sum',
+              'timeshift': 1
+            }
+          ]
+        }
+      });
+
+      var queryParams = collection.queryParams();
+
+      expect(queryParams.start_at).toBe('2014-03-26T00:00:00');
+      expect(queryParams.duration).toBe(weekDuration);
+    });
+
+    it('should calculate duration', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week'
       });
 
-      expect(collection.standardDuration()).toBe(weekDuration);
+      expect(collection.duration()).toBe(weekDuration);
     });
 
-    it('should allow for a custom standard duration', function () {
+    it('should allow for a custom duration', function () {
       var collection = new GroupedTimeshiftCollection([], {
         period: 'week',
         duration: 29
       });
 
-      expect(collection.standardDuration()).toBe(29);
+      expect(collection.duration()).toBe(29);
     });
 
     it('should work out the duration of a graph based on a maximum timeshift', function () {
@@ -87,37 +115,81 @@ function (GroupedTimeshiftCollection, Query) {
     });
 
     it('should apply standard dates to a set of values', function () {
+      var collection = new GroupedTimeshiftCollection([], {
+        period: 'week',
+        duration: 2
+      });
       var seriesList = [
         { values: [
-          { _start_at: 'a', _end_at: 'b' },
-          { _start_at: 'b', _end_at: 'c' },
-          { _start_at: 'c', _end_at: 'd' }
-        ] },
+          { _start_at: '2014-01-01T00:00:00', _end_at: '2014-01-08T00:00:00' },
+          { _start_at: '2014-01-08T00:00:00', _end_at: '2014-01-15T00:00:00' }
+        ], timeshift: 2 },
         { values: [
-          { _start_at: 'd', _end_at: 'e' },
-          { _start_at: 'e', _end_at: 'f' },
-          { _start_at: 'f', _end_at: 'g' }
-        ] },
-      ];
-      var standardValues = [
-        { _start_at: 'd', _end_at: 'e' },
-        { _start_at: 'e', _end_at: 'f' },
-        { _start_at: 'f', _end_at: 'g' }
+          { _start_at: '2013-01-01T00:00:00', _end_at: '2013-01-08T00:00:00' },
+          { _start_at: '2013-01-08T00:00:00', _end_at: '2013-01-15T00:00:00' }
+        ], timeshift: 4 },
       ];
       var expectedList = [
         { values: [
-            { _original_start_at: 'a', _original_end_at: 'b', _start_at: 'd', _end_at: 'e' },
-            { _original_start_at: 'b', _original_end_at: 'c', _start_at: 'e', _end_at: 'f' },
-            { _original_start_at: 'c', _original_end_at: 'd', _start_at: 'f', _end_at: 'g' }
+            { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00',
+              _original_start_at: '2014-01-01T00:00:00', _original_end_at: '2014-01-08T00:00:00' },
+            { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00',
+              _original_start_at: '2014-01-08T00:00:00', _original_end_at: '2014-01-15T00:00:00' }
+          ], timeshift: 2 },
+          { values: [
+            { _start_at: '2013-01-29T00:00:00', _end_at: '2013-02-05T00:00:00',
+              _original_start_at: '2013-01-01T00:00:00', _original_end_at: '2013-01-08T00:00:00' },
+            { _start_at: '2013-02-05T00:00:00', _end_at: '2013-02-12T00:00:00',
+              _original_start_at: '2013-01-08T00:00:00', _original_end_at: '2013-01-15T00:00:00' }
+          ], timeshift: 4 },
+        ];
+      var output = collection.applyStandardDates(seriesList);
+      _.each(output, function (series, i) {
+        _.each(series.values, function (dataPoint, j) {
+          expect(dataPoint).toEqual(expectedList[i].values[j]);
+        });
+      });
+      expect(output).toEqual(expectedList);
+
+    });
+
+    it('should fill in missing values to match the duration', function () {
+      var collection = new GroupedTimeshiftCollection([], {
+        period: 'week',
+        duration: 4,
+        valueAttr: 'value'
+      });
+      var seriesList = [
+        { values: [
+          { _start_at: '2014-01-01T00:00:00', _end_at: '2014-01-08T00:00:00', value: 1 },
+          { _start_at: '2014-01-08T00:00:00', _end_at: '2014-01-15T00:00:00', value: 1 }
+        ] },
+        { values: [
+          { _start_at: '2013-01-01T00:00:00', _end_at: '2013-01-08T00:00:00', value: 1 },
+          { _start_at: '2013-01-08T00:00:00', _end_at: '2013-01-15T00:00:00', value: 1 }
+        ] },
+      ];
+      var expectedList = [
+        { values: [
+            { _start_at: '2014-01-01T00:00:00', _end_at: '2014-01-08T00:00:00', value: 1 },
+            { _start_at: '2014-01-08T00:00:00', _end_at: '2014-01-15T00:00:00', value: 1 },
+            { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', value: null },
+            { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', value: null }
           ] },
           { values: [
-            { _original_start_at: 'd', _original_end_at: 'e', _start_at: 'd', _end_at: 'e' },
-            { _original_start_at: 'e', _original_end_at: 'f', _start_at: 'e', _end_at: 'f' },
-            { _original_start_at: 'f', _original_end_at: 'g', _start_at: 'f', _end_at: 'g' }
+            { _start_at: '2013-01-01T00:00:00', _end_at: '2013-01-08T00:00:00', value: 1 },
+            { _start_at: '2013-01-08T00:00:00', _end_at: '2013-01-15T00:00:00', value: 1 },
+            { _start_at: '2013-01-15T00:00:00', _end_at: '2013-01-22T00:00:00', value: null },
+            { _start_at: '2013-01-22T00:00:00', _end_at: '2013-01-29T00:00:00', value: null }
           ] },
         ];
-
-      expect(GroupedTimeshiftCollection.prototype.applyStandardDates(seriesList, standardValues)).toEqual(expectedList);
+      var output = collection.applyStandardDates(seriesList);
+      _.each(output, function (series, i) {
+        _.each(series.values, function (dataPoint, j) {
+          expect(dataPoint).toEqual(expectedList[i].values[j]);
+        });
+      });
+      expect(output).toEqual(expectedList);
     });
 
     describe('parse', function () {
@@ -129,19 +201,19 @@ function (GroupedTimeshiftCollection, Query) {
               {
                 key: 'one',
                 values: [
-                  { _start_at: 'a', _end_at: 'b', value: 1 },
-                  { _start_at: 'b', _end_at: 'c', value: 2 },
-                  { _start_at: 'c', _end_at: 'd', value: 3 },
-                  { _start_at: 'd', _end_at: 'e', value: 4 }
+                  { _start_at: '2014-01-01T00:00:00', _end_at: '2014-01-08T00:00:00', value: 1 },
+                  { _start_at: '2014-01-08T00:00:00', _end_at: '2014-01-15T00:00:00', value: 2 },
+                  { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', value: 3 },
+                  { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', value: 4 }
                 ]
               },
               {
                 key: 'two',
                 values: [
-                  { _start_at: 'a', _end_at: 'b', value: 5 },
-                  { _start_at: 'b', _end_at: 'c', value: 6 },
-                  { _start_at: 'c', _end_at: 'd', value: 7 },
-                  { _start_at: 'd', _end_at: 'e', value: 8 }
+                  { _start_at: '2014-01-01T00:00:00', _end_at: '2014-01-08T00:00:00', value: 5 },
+                  { _start_at: '2014-01-08T00:00:00', _end_at: '2014-01-15T00:00:00', value: 6 },
+                  { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', value: 7 },
+                  { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', value: 8 }
                 ]
               }
             ]
@@ -151,23 +223,23 @@ function (GroupedTimeshiftCollection, Query) {
             id: 'one',
             title: 'One',
             values: [
-              { _start_at: 'c', _end_at: 'd', value: 3, _original_start_at: 'c', _original_end_at: 'd' },
-              { _start_at: 'd', _end_at: 'e', value: 4, _original_start_at: 'd', _original_end_at: 'e' }
+              { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', value: 3 },
+              { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', value: 4 }
             ]
           }, {
             id: 'one2',
             title: 'One',
             timeshift: 2,
             values: [
-              { _start_at: 'c', _end_at: 'd', value: 1, _original_start_at: 'a', _original_end_at: 'b' },
-              { _start_at: 'd', _end_at: 'e', value: 2, _original_start_at: 'b', _original_end_at: 'c' }
+              { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', _original_start_at: '2014-01-01T00:00:00', _original_end_at: '2014-01-08T00:00:00', value: 1 },
+              { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', _original_start_at: '2014-01-08T00:00:00', _original_end_at: '2014-01-15T00:00:00', value: 2 },
             ]
           }, {
             id: 'two',
             title: 'Two',
             values: [
-              { _start_at: 'c', _end_at: 'd', value: 7, _original_start_at: 'c', _original_end_at: 'd' },
-              { _start_at: 'd', _end_at: 'e', value: 8, _original_start_at: 'd', _original_end_at: 'e' }
+              { _start_at: '2014-01-15T00:00:00', _end_at: '2014-01-22T00:00:00', value: 7 },
+              { _start_at: '2014-01-22T00:00:00', _end_at: '2014-01-29T00:00:00', value: 8 }
             ]
           }];
         });
