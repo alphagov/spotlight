@@ -7,6 +7,18 @@
     border-bottom: 5px solid $primary-colour;
     display: inline-block;
 
+    @include media(desktop) {
+      main {
+        width: 62.5%; //600px
+        float: left;
+        margin-right: 6.25%; // 60px
+      }
+      aside {
+        width: 31.25%; //300px
+        float: left;
+      }
+    }
+
     h1 {
       @include bold-48;
       width: 100%;
@@ -26,7 +38,12 @@
       display: block;
       margin: 1em 0 -1em 0;
       padding: 0.5em 0 1em 0;
+    }
 
+    aside {
+      h2 {
+        @include bold-19;
+      }
     }
 
     .with-related-pages {
