@@ -98,17 +98,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Sets up Cucumber feature tests
-    cucumber: {
-      test: {
-        features: 'features/'
-      },
-      options: {
-        prefix: 'bundle exec',
-        format: 'progress',
-        tags: ['~@wip']
-      }
-    },
     // Lints our JavaScript
     jshint: {
       files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js'],
@@ -197,6 +186,15 @@ module.exports = function (grunt) {
       }
     },
     shell: {
+      // Runs cheapseats tests
+      cheapseats: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: 'node ./node_modules/cheapseats/index.js --standalone --path ./'
+      },
       // Generates the page-per-thing module JSON stubs
       generate_module_stubs: {
         options: {
@@ -245,7 +243,6 @@ module.exports = function (grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-requirejs',
     'grunt-digest',
-    'grunt-rcukes',
     'grunt-sass',
     'grunt-contrib-copy',
     'grunt-contrib-watch',
@@ -293,7 +290,7 @@ module.exports = function (grunt) {
     'jasmine',
     'jasmine_node',
     'jshint',
-    'cucumber'
+    'shell:cheapseats'
   ]);
 
   // Default task

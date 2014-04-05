@@ -20,7 +20,6 @@ Once you've got a machine that has the required system-level dependencies, you c
 application dependencies with:
 
 ```bash
-bundle install
 npm install
 ```
 
@@ -35,7 +34,7 @@ As a bonus, this will let you test the image fallbacks using the [screenshot-as-
 
 ```bash
 cd /var/apps/pp-development
-bundle install
+bundle install # install bowler
 bowl performance
 ```
 
@@ -69,10 +68,9 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 
 - `grunt jasmine_node` executes shared and server Jasmine tests in Node.js
 - `grunt jasmine` executes shared and client Jasmine tests in PhantomJS
-- `grunt cucumber` executes Cucumber features through PhantomJS
+- `grunt shell:cheapseats` executes feature tests using [cheapseats][]
 
-`bundle exec cucumber --profile sauce` executes Cucumber features through
-SauceLabs (there's no Grunt task for this yet).
+[cheapseats]: https://github.com/alphagov/cheapseats
 
 #### In the browser ####
 
@@ -106,5 +104,3 @@ to view the console.
 [![Dependency Status](https://david-dm.org/alphagov/spotlight.png)](https://david-dm.org/alphagov/spotlight)
 
 [![devDependency Status](https://david-dm.org/alphagov/spotlight/dev-status.png)](https://david-dm.org/alphagov/spotlight#info=devDependencies)
-
-[![Dependency Status](https://gemnasium.com/alphagov/spotlight.png)](https://gemnasium.com/alphagov/spotlight)

@@ -16,10 +16,8 @@ spec/helpers/**
 app/vendor/**
 app/support/**/*.js
 tools/**
-features/**
 styles/**
 log/**
-Gemfile*
 LICENSE
 _SpecRunner.html
 spec/requirejs-setup.js

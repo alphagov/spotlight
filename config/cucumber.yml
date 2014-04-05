@@ -1,2 +1,0 @@
-default: features
-sauce: features CUCUMBER_PROFILE=sauce
