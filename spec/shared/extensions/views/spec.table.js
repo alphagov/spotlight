@@ -127,6 +127,11 @@ function (Table, View, Collection, $) {
         });
       });
 
+      it('does not crash if no data is provided', function () {
+        table.collection.getTableRows.andReturn([[]]);
+        expect(_.bind(table.render, table)).not.toThrow();
+      });
+
       describe('renderHead', function () {
         it('will append the timeshift duration to the column header', function () {
           var timeshiftedTable = new Table({

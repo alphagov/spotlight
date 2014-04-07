@@ -125,12 +125,15 @@ function (View, Formatters) {
     },
 
     floatHeaders: function () {
-      var headers = this.$table.find('thead th');
+      var headers = this.$table.find('thead th'),
+          body = this.$table.find('tbody td');
 
-      _.each(headers, function (th, index) {
-        th.width = th.offsetWidth;
-        this.$table.find('tbody td')[index].width = th.offsetWidth;
-      }, this);
+      if (body.length) {
+        _.each(headers, function (th, index) {
+          th.width = th.offsetWidth;
+          body[index].width = th.offsetWidth;
+        }, this);
+      }
 
       this.$table.addClass('floated-header');
     }
