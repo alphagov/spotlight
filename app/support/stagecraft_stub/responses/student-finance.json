@@ -101,13 +101,13 @@
       "axes": {
         "y": [
           {
-            "label": "Paper",
-            "categoryId": "paper",
+            "label": "Digital",
+            "categoryId": "digital",
             "format": "integer"
           },
           {
-            "label": "Digital",
-            "categoryId": "digital",
+            "label": "Paper",
+            "categoryId": "paper",
             "format": "integer"
           }
         ]
