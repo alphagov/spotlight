@@ -27,7 +27,7 @@
       "slug": "missed-collections-by-channel",
       "module-type": "grouped_timeseries",
       "title": "Transactions by channel",
-      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">face to face</span>, <span class=\"group2\">digital</span> and <span class=\"group3\">other</span>.",
+      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>.",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",
       "category": "channel",
@@ -42,13 +42,13 @@
       "axes": {
         "y": [
           {
-            "label": "Digital",
-            "categoryId": "Digital",
+            "label": "Phone",
+            "categoryId": "Phone",
             "format": "integer"
           },
           {
-            "label": "Phone",
-            "categoryId": "Phone",
+            "label": "Digital",
+            "categoryId": "Digital",
             "format": "integer"
           },
           {
@@ -68,7 +68,7 @@
       "slug": "usage-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Usage breakdown",
-      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">Non Digital</span> transactions",
+      "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> transactions",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",
       "category": "digital",
@@ -84,13 +84,13 @@
       "axes": {
         "y": [
           {
-            "label": "Digital",
-            "categoryId": "Digital",
+            "label": "Non-digital",
+            "categoryId": "NonDigital",
             "format": "integer"
           },
           {
-            "label": "Non Digital",
-            "categoryId": "NonDigital",
+            "label": "Digital",
+            "categoryId": "Digital",
             "format": "integer"
           }
         ]
