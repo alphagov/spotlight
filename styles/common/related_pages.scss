@@ -16,6 +16,20 @@
       @include bold-24;
     }
 
+    .improve-dashboard {
+      margin-top: 30px;
+
+      h3 {
+        @include core-16;
+        font-weight: bold;
+      }
+
+      p {
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+    }
+
     .related-other {
 
       h3 {
