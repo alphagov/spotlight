@@ -82,32 +82,32 @@
       "slug": "usage-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Usage breakdown",
-      "description": "New <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications submitted over the last 12 months",
+      "description": "Submitted <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications for 2014/15",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "channel",
-      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
+      "filter-by": ["academic_year:2014/15", "province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "start-at": "2014-01-01T00:00:00",
       "value-attr": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
       "use_stack": true,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education applications submitted over the last 12 months (including 2013/14 and 2014/15 academic years), broken down by channel"
+        "Shows the number of new Student Finance England full-time higher education applications submitted for the 2014/15 academic year, broken down by channel"
       ],
       "axes": {
         "y": [
           {
-            "label": "Paper",
-            "categoryId": "paper",
+            "label": "Digital",
+            "categoryId": "digital",
             "format": "integer"
           },
           {
-            "label": "Digital",
-            "categoryId": "digital",
+            "label": "Paper",
+            "categoryId": "paper",
             "format": "integer"
           }
         ]
@@ -117,13 +117,13 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "The number of new digital submitted applications versus new paper form submitted applications in a given week",
+      "description": "The percentage of applications for 2014/15 made online",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "filter-by": ["country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
+      "filter-by": ["academic_year:2014/15", "country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "start-at": "2014-01-01T00:00:00",
       "info": [
         "Data source: Student Loans Company",
         "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
@@ -137,13 +137,13 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "The number of new digital submitted applications versus digital started applications in a given week",
+      "description": "The percentage of online applications for 2014/15 that were successfully completed",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
-      "filter-by": ["country:england", "application_type:full-time application", "new_or_continuing:new"],
+      "filter-by": ["academic_year:2014/15", "country:england", "application_type:full-time application", "new_or_continuing:new"],
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "start-at": "2014-01-01T00:00:00",
       "info": [
         "Data source: Student Loans Company",
         "Completion rate measures the percentage of digital applications that were started versus submitted in a given week"
@@ -176,7 +176,7 @@
           },
           {
             "journeyId": "previous-study",
-            "label": "About your previous studies",
+            "label": "Previous studies",
             "format": "integer"
           },
           {
@@ -227,13 +227,11 @@
       "slug": "device-type",
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
-      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
+      "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
       "data-group": "student-finance",
       "data-type": "device-usage",
       "category": "deviceCategory",
       "period": "week",
-      "axis-period": "month",
-      "duration": 52,
       "value-attr": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,

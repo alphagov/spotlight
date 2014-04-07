@@ -19,6 +19,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.end_at = options.endAt || null;
       this.axisPeriod = options.axisPeriod || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
+      this.filterBy = options.filterBy || [];
 
       MatrixCollection.prototype.initialize.apply(this, arguments);
     },
@@ -34,7 +35,8 @@ function (MatrixCollection, Collection, Group, Query) {
         group_by: this.matchingAttribute,
         period: this.period,
         start_at: this.start_at,
-        end_at: this.end_at
+        end_at: this.end_at,
+        filter_by: this.filterBy
       };
 
       if (this.options && this.options.tabbedAttr) {

@@ -67,7 +67,8 @@ function (CompletionCollection) {
         tabbedAttr: 'tabbing',
         tabs: [
           { id: 'tabid' }
-        ]
+        ],
+        filterBy: ['new_or_continuing:new', 'channel:digital']
       });
 
       expect(decodeURIComponent(collection.url())).toContain('period=month');
@@ -76,6 +77,7 @@ function (CompletionCollection) {
       expect(decodeURIComponent(collection.url())).toContain('collect=one');
       expect(decodeURIComponent(collection.url())).toContain('group_by=two');
       expect(decodeURIComponent(collection.url())).toContain('tabbing=tabid');
+      expect(decodeURIComponent(collection.url())).toContain('filter_by=new_or_continuing:new&filter_by=channel:digital');
     });
 
     it('should use default query params', function () {
