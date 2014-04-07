@@ -2,7 +2,6 @@
   margin-bottom: 0.25em;
 
   strong {
-    color: $primary-colour;
     @include bold-80($tabular-numbers: true) ;
     margin-bottom: -0.1em;
     display: block;
