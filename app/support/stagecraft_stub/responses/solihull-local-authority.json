@@ -42,6 +42,11 @@
       "axes": {
         "y": [
           {
+            "label": "Digital",
+            "categoryId": "Digital",
+            "format": "integer"
+          },
+          {
             "label": "Phone",
             "categoryId": "Phone",
             "format": "integer"
