@@ -35,7 +35,7 @@
     "uglify-js": "2.4.0"
   },
   "devDependencies": {
-    "cheapseats": "git://github.com/alphagov/cheapseats",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats",
     "grunt": "0.4.4",
     "grunt-concurrent": "0.5.0",
     "grunt-contrib-clean": "0.5.0",
