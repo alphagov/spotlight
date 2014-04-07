@@ -82,21 +82,21 @@
       "slug": "usage-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Usage breakdown",
-      "description": "New <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications submitted over the last 12 months",
+      "description": "Submitted <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications for 2014/15",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "channel",
-      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
+      "filter-by": ["academic_year:2014/15", "province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "start-at": "2014-01-01T00:00:00",
       "value-attr": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
       "use_stack": true,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education applications submitted over the last 12 months (including 2013/14 and 2014/15 academic years), broken down by channel"
+        "Shows the number of new Student Finance England full-time higher education applications submitted for the 2014/15 academic year, broken down by channel"
       ],
       "axes": {
         "y": [
