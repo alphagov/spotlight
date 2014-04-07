@@ -176,7 +176,7 @@
           },
           {
             "journeyId": "previous-study",
-            "label": "About your previous studies",
+            "label": "Previous studies",
             "format": "integer"
           },
           {
