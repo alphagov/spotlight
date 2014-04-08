@@ -15,7 +15,12 @@ function (View, Formatters, template) {
         previous = this.collection.at(1),
         valueAttr = this.model.get('valueAttr'),
         format = this.model.get('format') || 'number',
-        dateFormat = { type: 'date', format: 'MMM YYYY' };
+        dateFormat = { type: 'date', format: 'MMM YYYY' },
+        datePeriod = this.model.get('date-period');
+
+      if (datePeriod && datePeriod === 'week') {
+        dateFormat.format = 'D MMM YYYY';
+      }
 
       var config = {
         hasValue: current.get(valueAttr) !== null && current.get(valueAttr) !== undefined,

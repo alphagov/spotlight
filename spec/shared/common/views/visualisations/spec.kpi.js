@@ -28,6 +28,26 @@ define([
         expect(kpi.$('.single-stat-headline strong').text()).toEqual('£1,100');
       });
 
+      it('formats date period', function () {
+        var dateKpi = new KPIView({
+          model: new Model({
+            valueAttr: 'value',
+            format: 'currency',
+            'date-period': 'week'
+          }),
+          collection: new Collection([
+            {
+              value: 1100,
+              _timestamp: '2014-03-24T00:00:00+00:00',
+              end_at: '2014-03-30T00:00:00+00:00'
+            },
+            { value: 1000 }
+          ])
+        });
+        dateKpi.render();
+        expect(dateKpi.$('.single-stat-headline').text()).toContain('24 Mar 2014 to 30 Mar 2014');
+      });
+
       it('loads property from model valueAttr', function () {
         kpi.collection.at(0).set('foo', 2);
         kpi.collection.at(1).set('foo', 2);
