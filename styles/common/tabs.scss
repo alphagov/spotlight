@@ -6,7 +6,7 @@
     padding-left: 0;
     
     li {
-      @include core-16($tabular-numbers: true) ;
+      @include bold-16($tabular-numbers: true) ;
       border: 4px solid $white;
       background-color: $grey-3;
       list-style: none;
@@ -26,13 +26,13 @@
           text-decoration: none;
         }
         a {
+          color: $text-colour;
           padding: 9px 16px 7px 16px;
         }
       }
       a {
         padding: 6px 16px 2px 13px;
         text-decoration: none;
-        color: $text-colour;
         display:block;
       }
     }

@@ -22,28 +22,11 @@
     float: left;
     width: 100%;
     position: relative;
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
     padding-top: 1em;
 
     border-top: 1px solid $grey-2;
-
-    // For the first section on the page, reset the border and the margin.
-    // Do the same for the 2nd section, providing it has a cols2 class.
-    // Do the same for 2nd,3rd section with a cols3 class.
-    &:nth-of-type(1) {
-      border-top: 0;
-      margin-top: 0;
-    }
-
-    @include media(desktop) {
-      &:nth-of-type(2).cols2,
-      &:nth-of-type(2).cols3,
-      &:nth-of-type(3).cols3, {
-        border-top: 0;
-        margin-top: 0;
-      }
-    }
 
     &.half-width {
       width:48.5%;
@@ -90,7 +73,7 @@
 .performance-platform-outer {
   margin: 0 30px;
 
-  padding: 2em 0 0;
+  padding: 25px 0 0;
 
   @media (max-width: 640px) {
     margin-left: 15px;

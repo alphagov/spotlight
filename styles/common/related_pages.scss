@@ -1,11 +1,5 @@
 #content {
 
-  header .related-pages {
-    float: right;
-    margin-left: 25px;
-    width: 300px / 960px * 100%; // 31.25%
-  }
-
   .related-pages {
 
     h3 {
@@ -43,7 +37,7 @@
         li {
           display: block;
           overflow: hidden;
-          margin: 7px 0;
+          margin: 5px 0;
           line-height: 1;
 
           a {
@@ -61,27 +55,20 @@
 }
 
 @media (max-width: 640px) {
-  body {
 
-    #content .related-pages {
-      position: relative;
-      float: none;
-      margin-left: 0;
-      width: 90%;
-      margin-top: 25px;
+  #content .related-pages {
+    position: relative;
+    float: none;
+    margin-left: 0;
+    width: 90%;
+    margin-top: 25px;
 
-      .related-transaction {
-        margin-top: 10px;
+    .related-transaction {
+      margin-top: 10px;
+    }
 
-        a {
-          @include bold-16;
-        }
-      }
-
-      .related-other h3 {
-        margin-top: 10px;
-      }
-
+    .related-other h3 {
+      margin-top: 10px;
     }
 
   }

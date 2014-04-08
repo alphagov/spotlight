@@ -1,5 +1,5 @@
 body {
-  font-family: $NTA-Light-Tabular;
+  // font-family: $NTA-Light-Tabular;
 }
 
 h2 {
@@ -40,6 +40,10 @@ a[rel="external"] {
 
     h2.dashboard, h3 {
       @include core-16($tabular-numbers: true);
+    }
+
+    h3 {
+      margin-top: 5px;
     }
 
     .double-decker-graph h3 {
