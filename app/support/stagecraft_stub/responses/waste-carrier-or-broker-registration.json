@@ -42,6 +42,27 @@
       "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },
     {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per digital transaction",
+      "description": "Average for digital transactions",
+      "data-group": "waste-carriers-registration",
+      "data-type": "cost-per-transaction",
+      "date-period": "week",
+      "classes": "cols2",
+      "query-params": {
+        "filter_by": [
+          "channel:cost_per_transaction_digital"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "count",
+      "format": {
+        "type": "currency",
+        "dps": 2
+      }
+    },
+    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
