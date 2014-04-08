@@ -2,7 +2,7 @@
   "slug": "solihull-local-authority",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "strapline": "Service dashboard",
+  "strapline": "Dashboard",
   "title": "Solihull missed waste collections",
   "department": {
     "title": "Solihull Local Authority"
@@ -24,9 +24,9 @@
   "business-model": "Department budget",
   "modules": [
     {
-      "slug": "missed-collections-by-channel",
+      "slug": "volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Transactions by channel",
+      "title": "Missed collections breakdown",
       "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>.",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",

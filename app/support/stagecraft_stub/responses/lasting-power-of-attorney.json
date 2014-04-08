@@ -2,8 +2,8 @@
   "slug": "lasting-power-of-attorney",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "strapline": "Service dashboard",
-  "title": "Lasting Power of Attorney",
+  "strapline": "Dashboard",
+  "title": "Lasting Power of Attorney registrations",
   "description": "Figures for the service to make a <strong>lasting power of attorney (LPA)</strong> - a legal document that lets you appoint someone, known as an 'attorney', to make decisions on your behalf. Figures include applications made via both digital and paper form channels.",
   "department": {
      "title": "Ministry of Justice"
@@ -19,10 +19,10 @@
   },
   "modules": [
     {
-      "slug": "applications-breakdown",
+      "slug": "volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Applications breakdown",
-      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
+      "title": "Registrations breakdown",
+      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> registrations over time",
       "data-group": "lasting-power-of-attorney",
       "data-type": "volumes",
       "category": "key",

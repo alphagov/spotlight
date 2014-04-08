@@ -2,7 +2,7 @@
   "slug": "vehicle-licensing",
   "page-type": "dashboard",
   "dashboard-type": "other",
-  "strapline": "Service dashboard",
+  "strapline": "Dashboard",
   "title": "Vehicle licensing",
   "other": {
     "tagline": "Vehicle licensing covers <a href='tax-disc'>tax disc</a> relicensing and <a href='sorn'><abbr title='Statutory Off Road Notification'>SORN</abbr> (Statutory Off Road Notification)</a>, two services provided by <abbr title='Driver and Vehicle Licensing Agency'>DVLA</abbr>. Does not include first registrations."
