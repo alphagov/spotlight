@@ -118,6 +118,7 @@ function (Component) {
       this.summaryHeight = 0;
 
       if (!this.showSummary) {
+        this.overlapLabelTop = 0;
         return;
       }
 
