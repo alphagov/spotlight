@@ -22,6 +22,10 @@ function (View, Formatters, template) {
         dateFormat.format = 'D MMM YYYY';
       }
 
+      if (!current) {
+        return {};
+      }
+
       var config = {
         hasValue: current.get(valueAttr) !== null && current.get(valueAttr) !== undefined,
         value: this.format(current.get(valueAttr), format),
