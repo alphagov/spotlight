@@ -2,6 +2,14 @@
 
   min-height:180px;
 
+  .impact-number strong {
+    @include bold-48($tabular-numbers: true);
+  }
+
+  .period {
+    margin-top: 5px;
+  }
+
   .visualisation {
 
     overflow: hidden;
@@ -14,7 +22,7 @@
         padding-right: 10px;
       }
       .no-data {
-        @include bold-80($tabular-numbers: true) ;
+        @include bold-48($tabular-numbers: true);
         color: $grey-2;
         font-weight: normal;
       }
