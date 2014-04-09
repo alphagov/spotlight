@@ -28,7 +28,7 @@
       "title": "Transactions per year",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
@@ -42,7 +42,7 @@
       "title": "Total cost",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
@@ -51,26 +51,12 @@
       "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
     {
-      "slug": "digital-take-up",
-      "module-type": "kpi",
-      "title": "Digital take-up",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
-      "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
-      "valueAttr": "digital_takeup",
-      "format": "percent"
-    },
-    {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
@@ -88,7 +74,8 @@
         "Shows the estimated number of users currently on the GOV.UK start page for the service."
       ],
       "data-group": "sorn",
-      "data-type": "realtime"
+      "data-type": "realtime",
+      "classes": "cols2"
     },
     {
       "slug": "user-satisfaction",
@@ -101,7 +88,8 @@
         "Data source: DVLA database",
         "User satisfaction is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "value-attribute": "satisfaction_sorn"
+      "value-attribute": "satisfaction_sorn",
+      "classes": "cols2"
     },
     {
       "slug": "applications-breakdown",

@@ -28,7 +28,7 @@
       "title": "Transactions per year",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
@@ -42,7 +42,7 @@
       "title": "Total cost",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
@@ -51,26 +51,12 @@
       "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
     {
-      "slug": "digital-take-up",
-      "module-type": "kpi",
-      "title": "Digital take-up",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
-      "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
-      "valueAttr": "digital_takeup",
-      "format": "percent"
-    },
-    {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
-      "classes": "cols2",
+      "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
