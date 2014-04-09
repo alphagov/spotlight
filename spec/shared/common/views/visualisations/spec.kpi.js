@@ -45,7 +45,7 @@ define([
           ])
         });
         dateKpi.render();
-        expect(dateKpi.$('.single-stat-headline').text()).toContain('24 Mar 2014 to 30 Mar 2014');
+        expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 30 Mar 2014');
       });
 
       it('fails gracefully if there is no data', function () {
