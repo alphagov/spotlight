@@ -23,6 +23,18 @@ function (View, SparklineView, template) {
 
       this.changeOnSelected = options.changeOnSelected || this.changeOnSelected;
 
+      // If we have more than 24 hours' worth of data, crop the excess.
+      if (this.collection && this.collection.length && this.collection.first().get('values').length) {
+        var latestDate = this.collection.first().get('values').first().get('_timestamp');
+        var startDate = this.collection.first().get('values').last().get('_timestamp');
+        if (startDate.diff(latestDate, 'hours') > 24) {
+          var values = this.collection.first().get('values').filter(function (i) {
+            return (i.get('_timestamp').diff(latestDate, 'hours') <= 24);
+          });
+          this.collection.first().get('values').reset(values);
+        }
+      }
+
       if (this.changeOnSelected) {
         this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
       }
