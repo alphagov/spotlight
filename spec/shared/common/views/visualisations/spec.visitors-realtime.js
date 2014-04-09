@@ -39,6 +39,45 @@ function (VisitorsRealtimeView, Collection) {
 
     describe('initialize', function () {
 
+      it('discards data that is more than 24 hours old', function () {
+
+        var testView, testCollection;
+        testCollection = new Collection();
+        var testData = [
+          {
+            '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
+            'unique_visitors': 3
+          },
+          {
+            '_timestamp': collection.getMoment('2002-03-01T00:03:00+00:00'),
+            'unique_visitors': 1
+          },
+          {
+            '_timestamp': collection.getMoment('2002-03-02T00:12:00+00:00'),
+            'unique_visitors': 1
+          },
+          {
+            '_timestamp': collection.getMoment('2002-03-02T01:06:00+00:00'),
+            'unique_visitors': 1
+          }
+        ];
+        testCollection.reset([ {
+          id: 'test',
+          title: 'test',
+          values: new Collection(testData)
+        } ]);
+        testView = new VisitorsRealtimeView({
+          collection: testCollection
+        });
+        jasmine.serverOnly(function () {
+          testView.sparkline = false;
+        });
+
+        jasmine.renderView(testView, function () {
+          expect(testCollection.first().get('values').length).toEqual(3);
+        });
+      });
+
       describe('collection events', function () {
 
         describe('onChangeSelected', function () {
