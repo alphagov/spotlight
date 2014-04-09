@@ -31,4 +31,8 @@
   .cols3:first-of-type {
     margin-left: 0;
   }
+
+  .cols3.add3 {
+    width: (300px / 960px * 100%) * 2;
+  }
 }

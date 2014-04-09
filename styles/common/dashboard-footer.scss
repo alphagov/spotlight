@@ -7,16 +7,18 @@
     width: 100%;
     border-top: 1px solid $grey-2;
 
-    .footer-text {
+    .footer-text, .description {
       @include bold-24($tabular-numbers: true);
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .description {
+      margin-bottom: 20px;
     }
 
     .related-pages {
       margin-bottom: 30px;
-    }
-
-    .footer-left h3 {
-      margin-top: 20px;
     }
 
     h3 {

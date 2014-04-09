@@ -51,87 +51,102 @@
 {{# hasFooter }}
 <footer>
 
-  <div class="cols2 footer-left">
-
   {{# description }}
-  <div class="footer-text">{{{ description }}}</div>
+  <div class="row">
+    <p class="description">{{{ description }}}</p>
+  </div>
   {{/ description }}
 
-  {{# service }}
-  <h3>Part of:</h3>
-  <div class="footer-text">{{ service.title }}</div>
-  {{/ service }}
+  <div class="row">
+    <div class="cols3 footer-left">
 
-  {{# agency }}
-  <h3>Agency:</h3>
-  <div class="footer-text">{{ agency.title }}</div>
-  {{/ agency }}
+      {{# relatedPages }}
 
-  {{# department }}
-  <h3>Department:</h3>
-  <div class="footer-text">{{ department.title }}</div>
-  {{/ department }}
+      <aside class='related-pages' role='complementary'>
 
-  {{# customer-type }}
-  <h3>User:</h3>
-  <div class="footer-text">{{ customer-type }}</div>
-  {{/ customer-type }}
+        {{# relatedPages.transaction }}
+        <div class="related-transaction">
+          <h3>Visit this service</h3>
+          <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
+        </div>
+        {{/ relatedPages.transaction }}
 
-  {{# business-model }}
-  <h3>Service costs paid by:</h3>
-  <div class="footer-text">{{ business-model }}</div>
-  {{/ business-model }}
+        {{# relatedPages.other.length }}
+        <div class="related-other">
+          <h3>Find out more</h3>
+          <ul class="items">
+            {{# relatedPages.other }}
+            <li>
+              <a href="{{ url }}">{{ title }}</a>
+              {{# metadata }}
+              <span class="metadata">{{{ metadata }}}</span>
+              {{/ metadata }}
+            </li>
+            {{/ relatedPages.other }}
+          </ul>
+        </div>
+        {{/ relatedPages.other.length }}
+
+        {{# relatedPages.improve-dashboard-message }}
+        <div class="improve-dashboard">
+          <h3>Improve this dashboard</h3>
+          <p>If you work on this service, we can help you add more data to this dashboard.</p>
+          <p>Email <a href="mailto:performance@digital.cabinet-office.gov.uk">performance@digital.cabinet-office.gov.uk</a></p>
+        </div>
+        {{/ relatedPages.improve-dashboard-message }}
+
+      </aside>
+
+      {{/ relatedPages }}
+
+    </div>
+
+    <div class="cols3 add3">
+
+      {{# service }}
+      <h3>Part of:</h3>
+      <p class="footer-text">{{ service.title }}</p>
+      {{/ service }}
+
+      {{# agency }}
+      <h3>Agency:</h3>
+      <p class="footer-text">{{ agency.title }}</p>
+      {{/ agency }}
+
+      {{# department }}
+      <h3>Department:</h3>
+      <p class="footer-text">{{ department.title }}</p>
+      {{/ department }}
+
+      {{# customer-type }}
+      <h3>User:</h3>
+      <p class="footer-text">{{ customer-type }}</p>
+      {{/ customer-type }}
+
+      {{# business-model }}
+      <h3>Service costs paid by:</h3>
+      <p class="footer-text">{{ business-model }}</p>
+      {{/ business-model }}
+
+
+      {{# description-extra }}
+      <p>{{{ description-extra }}}</p>
+      {{/ description-extra }}
+
+      {{# costs }}
+      <h4>Notes on costs</h4>
+      <p>{{{ costs }}}</p>
+      {{/ costs }}
+
+      {{# other-notes }}
+      <h4>Other notes</h4>
+      <p>{{{ other-notes }}}</p>
+      {{/ other-notes }}
+
+    </div>
 
   </div>
 
-  <div class="cols2">
-
-    {{# relatedPages }}
-
-    <aside class='related-pages' role='complementary'>
-
-      {{# relatedPages.transaction }}
-      <div class="related-transaction">
-        <h3>Visit this service</h3>
-        <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
-      </div>
-      {{/ relatedPages.transaction }}
-
-      {{# relatedPages.other.length }}
-      <div class="related-other">
-        <h3>Find out more</h3>
-        <ul class="items">
-          {{# relatedPages.other }}
-          <li>
-            <a href="{{ url }}">{{ title }}</a>
-            {{# metadata }}
-            <span class="metadata">{{{ metadata }}}</span>
-            {{/ metadata }}
-          </li>
-          {{/ relatedPages.other }}
-        </ul>
-      </div>
-      {{/ relatedPages.other.length }}
-
-    </aside>
-
-    {{/ relatedPages }}
-
-    {{# description-extra }}
-    <p>{{{ description-extra }}}</p>
-    {{/ description-extra }}
-
-    {{# costs }}
-    <h4>Notes on costs</h4>
-    <p>{{{ costs }}}</p>
-    {{/ costs }}
-
-    {{# other-notes }}
-    <h4>Other notes</h4>
-    <p>{{{ other-notes }}}</p>
-    {{/ other-notes }}
-
-  </div>
 </footer>
 {{/ hasFooter }}
 

@@ -15,7 +15,8 @@
     "transaction": {
       "title": "Renew a tax disc",
       "url": "https://www.gov.uk/tax-disc"
-      }
+    },
+    "improve-dashboard-message": true
   },
   "description-extra": "Tax disc is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='sorn'>SORN (Statutory Off Road Notification)</a>. This service does not include first vehicle registrations.",
   "customer-type": "Individuals",

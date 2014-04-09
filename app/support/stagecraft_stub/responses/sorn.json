@@ -15,7 +15,8 @@
     "transaction": {
       "title": "Make a SORN (Statutory Off Road Notification)",
       "url": "https://www.gov.uk/register-sorn-statutory-off-road-notification"
-      }
+    },
+    "improve-dashboard-message": true
   },
   "description-extra": "This transactional service is for declaring that your vehicle is not being driven on the roads – a Statutory Off Road Notification. <abbr title='Statutory Off Road Notification'>SORN</abbr>s must be made for a registered vehicle that is not being used on the road, and which has been taxed since 31 January 1998.",
   "customer-type": "Individuals",
