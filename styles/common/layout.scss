@@ -30,14 +30,16 @@
 
     // For the first section on the page, reset the border and the margin.
     // Do the same for the 2nd section, providing it has a cols2 class.
-    // Currently we only support 2-column modules at the top of the page.
+    // Do the same for 2nd,3rd section with a cols3 class.
     &:nth-of-type(1) {
       border-top: 0;
       margin-top: 0;
     }
 
     @include media(desktop) {
-      &:nth-of-type(2).cols2 {
+      &:nth-of-type(2).cols2,
+      &:nth-of-type(2).cols3,
+      &:nth-of-type(3).cols3, {
         border-top: 0;
         margin-top: 0;
       }
