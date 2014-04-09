@@ -48,6 +48,18 @@ define([
         expect(dateKpi.$('.single-stat-headline').text()).toContain('24 Mar 2014 to 30 Mar 2014');
       });
 
+      it('fails gracefully if there is no data', function () {
+        var dateKpi = new KPIView({
+          model: new Model({
+            valueAttr: 'value',
+            format: 'currency'
+          }),
+          collection: new Collection([])
+        });
+        dateKpi.render();
+        expect(dateKpi.$('.single-stat-headline').text().trim()).toEqual('no data');
+      });
+
       it('loads property from model valueAttr', function () {
         kpi.collection.at(0).set('foo', 2);
         kpi.collection.at(1).set('foo', 2);
