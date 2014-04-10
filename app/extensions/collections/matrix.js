@@ -231,6 +231,12 @@ function (require, Collection, Group) {
       this.each(function (model) {
         model.get('values').sortByAttr(attr, descending, options);
       });
+    },
+
+    isEmpty: function () {
+      return this.all(function (model) {
+        return model.get('values').isEmpty();
+      });
     }
 
   });

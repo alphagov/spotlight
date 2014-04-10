@@ -347,10 +347,11 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
       var graph;
       beforeEach(function () {
-        spyOn(Graph.prototype, 'prepareGraphArea');
+        spyOn(Graph.prototype, 'prepareGraphArea').andCallThrough();
         graph = new Graph({
           collection: new Collection()
         });
+        spyOn(graph.collection, 'isEmpty').andReturn(false);
         spyOn(graph, 'resizeWithCalloutHidden');
       });
 
@@ -422,6 +423,13 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         expect(component1.render).toHaveBeenCalled();
         expect(component2.render).toHaveBeenCalled();
       });
+
+      it('renders a "no data" message if no data is provided', function () {
+        graph.collection.isEmpty.andReturn(true);
+        graph.render();
+        expect(graph.figure.text()).toContain('(no data)');
+      });
+
     });
 
     describe('remove', function () {

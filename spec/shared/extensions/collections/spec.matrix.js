@@ -510,5 +510,30 @@ function (MatrixCollection, Collection, Group) {
 
     });
 
+    describe('isEmpty', function () {
+
+      var collection;
+      beforeEach(function () {
+        collection = new MatrixCollection([{}, {}]);
+        collection.at(0).set('values', new Collection([]));
+        collection.at(1).set('values', new Collection([]));
+      });
+
+      it('returns true if all of the child collections are empty', function () {
+        expect(collection.isEmpty()).toEqual(true);
+      });
+
+      it('returns true if the collection itself if empty', function () {
+        collection.reset();
+        expect(collection.isEmpty()).toEqual(true);
+      });
+
+      it('returns false if any of the child collections are non-empty', function () {
+        collection.at(0).get('values').add({ foo: 1});
+        expect(collection.isEmpty()).toEqual(false);
+      });
+
+    });
+
   });
 });

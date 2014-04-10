@@ -10,9 +10,10 @@ define([
   './hover',
   './callout',
   './tooltip',
+  './missing-data',
   'extensions/views/graph/table'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, GraphTable) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData, GraphTable) {
 
   var scaleFromStartAndEndDates = {
 
@@ -280,6 +281,13 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
      */
     render: function () {
       if (isServer || !this.isVisible()) {
+        return;
+      }
+      if (this.collection.isEmpty()) {
+        this.missingData = new MissingData({
+          el: this.figure
+        });
+        this.missingData.render();
         return;
       }
 
