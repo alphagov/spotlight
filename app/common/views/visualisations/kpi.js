@@ -1,9 +1,8 @@
 define([
   'extensions/views/view',
-  'extensions/mixins/formatters',
   'stache!common/templates/visualisations/kpi'
 ],
-function (View, Formatters, template) {
+function (View, template) {
 
   return View.extend({
 
@@ -52,9 +51,7 @@ function (View, Formatters, template) {
       }
 
       return config;
-    },
-
-    format: Formatters.format
+    }
 
   });
 

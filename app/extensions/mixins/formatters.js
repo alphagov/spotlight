@@ -58,10 +58,18 @@ define([
     },
 
     percent: function (value, options) {
+      if (isNaN(Number(value))) {
+        return value;
+      }
       _.defaults(options, {
-        dps: 0
+        dps: 0,
+        sign: false
       });
-      return formatters.number(value * 100, options) + '%';
+      var formatted = formatters.number(value * 100, options) + '%';
+      if (options.sign && value > 0) {
+        formatted = '+' + formatted;
+      }
+      return formatted;
     },
 
     integer: function (value, options) {

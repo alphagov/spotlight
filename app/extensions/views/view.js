@@ -1,11 +1,12 @@
 define([
   'backbone',
   'extensions/mixins/date-functions',
+  'extensions/mixins/formatters',
   'modernizr',
   'jquery',
   'lodash'
 ],
-function (Backbone, DateFunctions, Modernizr, $, _) {
+function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
   var View = Backbone.View.extend({
 
     modernizr: Modernizr,
@@ -318,21 +319,12 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
     },
 
     formatPercentage: function (fraction, numDecimals, showSigns) {
-      if (isNaN(fraction) || !_.isNumber(fraction)) {
-        return fraction;
-      }
-      numDecimals = numDecimals || 0;
-      showSigns = showSigns || false;
-      var value = Math.abs(100 * fraction).toFixed(numDecimals);
-      if (showSigns) {
-        if (fraction > 0) {
-          value = '+' + value;
-        } else if (fraction < 0) {
-          value = '-' + value;
-        }
-      }
-      value += '%';
-      return value;
+      return this.format(fraction, {
+        type: 'percent',
+        fixed: numDecimals,
+        dps: numDecimals || 0,
+        sign: showSigns
+      });
     },
 
     formatPeriod: function (model, period) {
@@ -440,6 +432,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
   });
 
   _.extend(View.prototype, DateFunctions);
+  _.extend(View.prototype, Formatters);
 
   return View;
 });
