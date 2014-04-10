@@ -299,6 +299,10 @@ module.exports = function (grunt) {
     'shell:cheapseats'
   ]);
 
+  grunt.registerTask('cheapseats', [
+    'shell:cheapseats'
+  ]);
+
   // Default task
   grunt.registerTask('default', [
     'build:development',
