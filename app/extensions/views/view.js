@@ -328,7 +328,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
         if (fraction > 0) {
           value = '+' + value;
         } else if (fraction < 0) {
-          value = '−' + value;
+          value = '-' + value;
         }
       }
       value += '%';
