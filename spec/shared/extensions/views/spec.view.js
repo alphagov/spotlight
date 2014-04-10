@@ -477,7 +477,12 @@ function (View, Model, Backbone, _) {
     });
 
     describe('formatPercentage', function () {
-      var format = View.prototype.formatPercentage;
+      var format;
+
+      beforeEach(function () {
+        var view = new View();
+        format = view.formatPercentage.bind(view);
+      });
 
       it('formats a number as percentage string with no decimals', function () {
         expect(format(0.011)).toEqual('1%');
@@ -492,7 +497,7 @@ function (View, Model, Backbone, _) {
       it('formats signed input with the correct sign', function () {
         expect(format(0.011, 2, false)).toEqual('1.10%');
         expect(format(1, 2, true)).toEqual('+100.00%');
-        expect(format(-1, 0, true)).toEqual('−100%');
+        expect(format(-1, 0, true)).toEqual('-100%');
         expect(format(0, 3, true)).toEqual('0.000%');
       });
 

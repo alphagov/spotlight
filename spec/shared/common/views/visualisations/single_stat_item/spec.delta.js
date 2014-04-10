@@ -46,7 +46,7 @@ function (DeltaView, Model, Collection) {
     it('renders sample data', function () {
 
       jasmine.renderView(view, function () {
-        expect(view.$el.find('.change')).toHaveText('−50.00%');
+        expect(view.$el.find('.change')).toHaveText('-50.00%');
         expect(view.$el.text()).toContain('Sep 2012');
       });
 
@@ -140,7 +140,7 @@ function (DeltaView, Model, Collection) {
     it('does show a delta if the numerator is zero', function () {
       collection.first().get('values').last().set('a', 0);
       jasmine.renderView(view, function () {
-        expect(view.$el.find('.change').text()).toContain('−100.00%');
+        expect(view.$el.find('.change').text()).toContain('-100.00%');
       });
     });
 
@@ -182,7 +182,7 @@ function (DeltaView, Model, Collection) {
       });
 
       jasmine.renderView(testView, function () {
-        expect(testView.$el.find('.change')).toHaveText('−50.00%');
+        expect(testView.$el.find('.change')).toHaveText('-50.00%');
         expect(testView.$el.text()).toContain('Sep 2012');
       });
 
@@ -227,7 +227,7 @@ function (DeltaView, Model, Collection) {
       });
 
       jasmine.renderView(testView, function () {
-        expect(testView.$el.find('.change')).toHaveText('−50.00%');
+        expect(testView.$el.find('.change')).toHaveText('-50.00%');
         expect(testView.$el.text()).toContain('Aug 2013');
       });
 

@@ -1,8 +1,7 @@
 define([
-  './view',
-  'extensions/mixins/formatters'
+  './view'
 ],
-function (View, Formatters) {
+function (View) {
 
   var TableView = View.extend({
     initialize: function (options) {
@@ -139,8 +138,6 @@ function (View, Formatters) {
     }
 
   });
-
-  _.extend(TableView.prototype, Formatters);
 
   return TableView;
 });
