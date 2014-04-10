@@ -9,6 +9,74 @@
   },
   "modules": [
     {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols2",
+      "query-params": {
+        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "number_of_transactions",
+      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols2",
+      "query-params": {
+        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "total_cost",
+      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+    },
+    {
+      "slug": "digital-take-up",
+      "module-type": "kpi",
+      "title": "Digital take-up",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols2",
+      "query-params": {
+        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "digital_takeup",
+      "format": "percent"
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols2",
+      "query-params": {
+        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "cost_per_transaction",
+      "format": { "type": "currency", "pence": true }
+    },
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "deposit-foreign-marriage",
+      "data-type": "realtime"
+    },
+    {
       "slug": "payments",
       "module-type": "completion_numbers",
       "title": "Payments",

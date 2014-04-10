@@ -1,6 +1,14 @@
-#content .kpi {
+#content section.kpi {
 
-  min-height:180px;
+  min-height:160px;
+
+  .impact-number strong {
+    @include bold-48($tabular-numbers: true);
+  }
+
+  .period {
+    margin-top: 5px;
+  }
 
   .visualisation {
 
@@ -14,7 +22,6 @@
         padding-right: 10px;
       }
       .no-data {
-        @include bold-80($tabular-numbers: true) ;
         color: $grey-2;
         font-weight: normal;
       }
@@ -26,30 +33,42 @@
       }
     }
 
-    @media(max-width: 850px) {
+  }
 
-        .delta {
-          left: 9em;
-        }
+  @media(max-width: 850px) {
 
-      .stat strong {
-        margin-bottom: 8px;
-      }
-
+    .delta {
+      left: 9em;
     }
 
-    @media(max-width: 640px) {
+    .stat strong {
+      margin-bottom: 8px;
+    }
 
-        .delta {
-          left: 8em;
-          bottom: 2px;
-        }
+  }
 
-      .stat strong {
-        margin-bottom: 5px;
+  @media(max-width: 640px) {
+
+    .delta {
+      left: 8em;
+      bottom: 2px;
+    }
+
+    .stat strong {
+      margin-bottom: 5px;
+    }
+
+    &.cols3 {
+      .stat strong,
+      .stat strong.no-data {
+        font-size: 48px;
       }
-
     }
   }
 }
 
+@media(max-width: 640px) {
+  #content section.kpi.cols3 .stat strong {
+    font-size: 48px;
+  }
+}

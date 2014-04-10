@@ -20,6 +20,8 @@
     margin-left: 0;
   }
 
+  #content section.cols3,
+  #content article.cols3,
   .cols3 {
     width: 300px / 960px * 100%;
     float: left;
@@ -28,7 +30,9 @@
     margin-left: 30px / 960px * 100%;
   }
 
-  .cols3:first-of-type {
+  .cols3:first-of-type,
+  #content section.cols3:first-of-type,
+  #content article.cols3:first-of-type {
     margin-left: 0;
   }
 
