@@ -28,7 +28,7 @@ function (View, Formatters, template) {
 
       var config = {
         hasValue: current.get(valueAttr) !== null && current.get(valueAttr) !== undefined,
-        value: this.format(current.get(valueAttr), format),
+        value: this.format(current.get(valueAttr), format)
       };
 
       if (current.get('_timestamp') && current.get('end_at')) {
@@ -40,14 +40,20 @@ function (View, Formatters, template) {
         });
       }
 
-      if (config.hasValue && previous) {
+      if (previous && previous.get(valueAttr)) {
         _.extend(config, {
-          change: this.format(current.get(valueAttr) / previous.get(valueAttr) - 1, { type: 'percent', dps: 2 }),
-          sgn: current.get(valueAttr) / previous.get(valueAttr) > 1 ? 'increase' : 'decrease',
           previousPeriod: {
+            value: this.format(previous.get(valueAttr), format),
             start: this.format(previous.get('_timestamp'), dateFormat),
             end: this.format(previous.get('end_at'), dateFormat)
           }
+        });
+      }
+
+      if (config.hasValue && previous) {
+        _.extend(config, {
+          change: this.format(current.get(valueAttr) / previous.get(valueAttr) - 1, { type: 'percent', dps: 2 }),
+          sgn: current.get(valueAttr) / previous.get(valueAttr) > 1 ? 'increase' : 'decrease'
         });
       }
 

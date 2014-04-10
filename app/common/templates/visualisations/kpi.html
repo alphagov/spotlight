@@ -9,7 +9,10 @@
 {{#previousPeriod}}
     <div class="delta">
         <div class="single-stat-delta">
-            <span class="change impact-number {{sgn}}">{{change}}</span>
+            <span class="change impact-number {{sgn}}">
+              {{#hasValue}}{{change}}{{/hasValue}}
+              {{^hasValue}}{{previousPeriod.value}}{{/hasValue}}
+            </span>
             {{previousPeriod.start}} to {{previousPeriod.end}}
         </div>
     </div>

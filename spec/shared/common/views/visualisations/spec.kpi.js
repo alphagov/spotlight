@@ -76,7 +76,7 @@ define([
       it('applies default formatting of `number` if none is provided', function () {
         kpi.model.unset('format');
         kpi.render();
-        expect(kpi.$('.delta .change').text()).toEqual('10%');
+        expect(kpi.$('.delta .change').text().trim()).toEqual('10%');
         expect(kpi.$('.delta .change').hasClass('increase')).toBe(true);
         expect(kpi.$('.delta .change').hasClass('decrease')).toBe(false);
       });
@@ -105,6 +105,20 @@ define([
         ]);
         kpi.render();
         expect(kpi.$('.delta').length).toEqual(0);
+      });
+
+      it('renders data in the delta section if the latest data point is empty but the penultimate data point is not', function () {
+        kpi.collection.reset([
+          {},
+          {
+            value: 1100,
+            _timestamp: '2014-03-01T00:00:00+00:00',
+            end_at: '2014-04-01T00:00:00+00:00'
+          }
+        ]);
+        kpi.render();
+        expect(kpi.$('.delta').text()).toContain('£1,100');
+        expect(kpi.$('.delta').text()).toContain('Mar 2014 to Apr 2014');
       });
 
     });
