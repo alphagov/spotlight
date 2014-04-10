@@ -126,7 +126,7 @@
       "title": "Monthly sales by company size",
       "tabs": [
         {
-          "slug": "contracts-awarded",
+          "slug": "total-spend",
           "module-type": "grouped_timeseries",
           "title": "Total-spend",
           "description": "Total sales each month, showing the division between SMEs and larger enterprises",
