@@ -15,5 +15,42 @@
     }
   },
   "modules": [
+    {
+      "slug": "digital-transactions",
+      "module-type": "grouped_timeseries",
+      "title": "Digital Transactions",
+      "description": "Transactions by <span class=\"group0\">driving licence number</span> and <span class=\"group1\">personal details</span> over time.",
+      "data-group": "view-driving-record",
+      "data-type": "digital-transactions",
+      "dashboard-strapline": "Service dashboard",
+      "category": "pagePath",
+      "period": "week",
+      "value-attr": "visitors:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Driving Licence Number",
+            "categoryId": "/driving-record/viewbydln",
+            "format": "integer"
+          },
+          {
+            "label": "Personal Details",
+            "categoryId": "/driving-record/viewbypersonaldetails",
+            "format": "integer"
+          }
+        ]
+      }
+    }
   ]
 }
