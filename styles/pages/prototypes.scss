@@ -57,20 +57,4 @@
       @include core-24;
     }
   }
-
-  #main-project {
-    img {
-      @include media(tablet) {
-        float: left;
-        width: 630px / 960px * 100%;
-      }
-    }
-
-    div {
-      @include media(tablet) {
-        float: right;
-        width: 300px / 960px * 100%;
-      }
-    }
-  }
 }
