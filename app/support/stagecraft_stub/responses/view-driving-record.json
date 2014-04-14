@@ -65,6 +65,129 @@
       }
     },
     {
+      "slug": "log-in",
+      "module-type": "tab",
+      "title": "How users log in to the service",
+      "description": "Transactions by <span class=\"group0\">driving licence number</span> and <span class=\"group1\">personal details</span> over time.",
+      "dashboard-strapline": "Service dashboard",
+      "tabs": [
+        {
+          "slug": "user",
+          "title": "User log in",
+          "module-type": "grouped_timeseries",
+          "data-group": "view-driving-record",
+          "data-type": "digital-transactions",
+          "category": "pagePath",
+          "period": "week",
+          "value-attr": "visitors:sum",
+          "show-line-labels": true,
+          "use_stack": true,
+          "one-hundred-percent": true,
+          "info": [
+            "Data source: Google Analytics",
+            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": ["_start_at", "_end_at"],
+              "format": "dateRange"
+            },
+            "y": [
+              {
+                "label": "Driving Licence Number",
+                "categoryId": "dln",
+                "format": "integer"
+              },
+              {
+                "label": "Personal Details",
+                "categoryId": "personal-details",
+                "format": "integer"
+              }
+            ]
+          },
+          "group-mapping": {
+            "/driving-record/viewbydln": "dln",
+            "/driving-record/licence-number/error": "dln",
+            "/driving-record/viewbypersonaldetails": "personal-details",
+            "/driving-record/personal-details/error": "personal-details"
+          }
+        },
+        {
+          "slug": "dln",
+          "title": "Driving licence number log in",
+          "module-type": "grouped_timeseries",
+          "data-group": "view-driving-record",
+          "data-type": "digital-transactions",
+          "category": "pagePath",
+          "period": "week",
+          "value-attr": "visitors:sum",
+          "show-line-labels": true,
+          "use_stack": true,
+          "one-hundred-percent": true,
+          "info": [
+            "Data source: Google Analytics",
+            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": ["_start_at", "_end_at"],
+              "format": "dateRange"
+            },
+            "y": [
+              {
+                "label": "Success",
+                "categoryId": "/driving-record/viewbydln",
+                "format": "integer"
+              },
+              {
+                "label": "Error",
+                "categoryId": "/driving-record/licence-number/error",
+                "format": "integer"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "personal-details",
+          "title": "Personal details log in",
+          "module-type": "grouped_timeseries",
+          "data-group": "view-driving-record",
+          "data-type": "digital-transactions",
+          "category": "pagePath",
+          "period": "week",
+          "value-attr": "visitors:sum",
+          "show-line-labels": true,
+          "use_stack": true,
+          "one-hundred-percent": true,
+          "info": [
+            "Data source: Google Analytics",
+            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": ["_start_at", "_end_at"],
+              "format": "dateRange"
+            },
+            "y": [
+              {
+                "label": "Success",
+                "categoryId": "/driving-record/viewbypersonaldetails",
+                "format": "integer"
+              },
+              {
+                "label": "Error",
+                "categoryId": "/driving-record/personal-details/error",
+                "format": "integer"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "slug": "service-availability",
       "module-type": "tab",
       "title": "Service availability",
