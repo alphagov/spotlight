@@ -379,12 +379,12 @@ function (MatrixCollection, Collection, Group) {
         beforeEach(function () {
           collection = new MatrixCollection([{}, {}]);
           collection.at(0).set('values', new Collection([
-            { a: 1, b: 2 },
-            { a: 3, b: 4 }
+            { a: 1, b: 2, c: 0 },
+            { a: 3, b: 4, c: 0 }
           ]));
           collection.at(1).set('values', new Collection([
-            { a: 5, b: 6 },
-            { a: 7, b: null }
+            { a: 5, b: 6, c: 0 },
+            { a: 7, b: null, c: 0 }
           ]));
         });
 
@@ -406,6 +406,11 @@ function (MatrixCollection, Collection, Group) {
         it('calculates the fraction for a given attribute for a specific item in a specific group', function () {
           expect(collection.fraction('a', 1, 1)).toBeCloseTo(0.70, 0.01);
           expect(collection.fraction('b', 1, 1)).toEqual(0);
+        });
+
+        it('returns null if sum is zero', function () {
+          expect(collection.fraction('c', 1, 1)).toBeNull();
+          expect(collection.fraction('d', 1, 1)).toBeNull();
         });
       });
 

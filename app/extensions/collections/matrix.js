@@ -191,17 +191,21 @@ function (require, Collection, Group) {
     },
 
     fraction: function (attr, groupIndex, index) {
-      if (_.isNumber(groupIndex) && _.isNumber(index)) {
-        var itemSum = this.sum(attr, null, index);
-        var value = this.at(groupIndex, index).get(attr) || 0;
-        return value / itemSum;
-      } else if (_.isNumber(groupIndex)) {
-        return this.sum(attr, groupIndex) / this.sum(attr);
-      } else if (_.isNumber(index)) {
-        return this.sum(attr, null, index) / this.sum(attr);
-      } else {
-        return 1;
-      }
+      var getFraction = function () {
+        if (_.isNumber(groupIndex) && _.isNumber(index)) {
+          var itemSum = this.sum(attr, null, index);
+          var value = this.at(groupIndex, index).get(attr) || 0;
+          return value / itemSum;
+        } else if (_.isNumber(groupIndex)) {
+          return this.sum(attr, groupIndex) / this.sum(attr);
+        } else if (_.isNumber(index)) {
+          return this.sum(attr, null, index) / this.sum(attr);
+        } else {
+          return 1;
+        }
+      };
+      var fraction = getFraction.call(this);
+      return isNaN(fraction) ? null : fraction;
     },
 
     max: function (attr) {
