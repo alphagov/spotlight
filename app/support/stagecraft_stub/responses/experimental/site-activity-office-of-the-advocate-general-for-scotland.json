@@ -1,0 +1,610 @@
+{
+  "slug": "OAG-content-dashboard",
+  "page-type": "dashboard",
+  "strapline": "Content Dashboard",
+  "title": "Office of the Advocate General for Scotland (OAG)",
+  "tagline": "Web performance data for the Office of the Advocate General for Scotland, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>",
+  "relatedPages": {
+    "transaction": {
+      "title": "Office of the Advocate General for Scotland",
+      "url" : "https://www.gov.uk/government/organisations/office-of-the-advocate-general-for-scotland"
+    },
+    "other": [
+      {
+        "title": "OAG policies",
+        "url": "https://www.gov.uk/government/policies?departments%5B%5D=office-of-the-advocate-general-for-scotland"
+      },
+      {
+        "title": "OAG publications",
+        "url": "https://www.gov.uk/government/publications?departments%5B%5D=office-of-the-advocate-general-for-scotland"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "slug": "traffic-to-department-content",
+      "module-type": "tab",
+      "title": "Traffic to department content",
+      "tabs": [
+        {
+          "module-type": "completion_numbers",
+          "title": "Unique visits",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "traffic-count",
+          "info": [
+          ],
+          "denominator-matcher": "office-of-the-advocate-general-for-scotland",
+          "numerator-matcher": "office-of-the-advocate-general-for-scotland",
+          "matching-attribute": "department",
+          "value-attribute": "visitors:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
+          }
+        },
+        {
+          "module-type": "completion_numbers",
+          "title": "Unique pageviews",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "pageviews-count",
+          "info": [
+          ],
+          "denominator-matcher": "office-of-the-advocate-general-for-scotland",
+          "numerator-matcher": "office-of-the-advocate-general-for-scotland",
+          "matching-attribute": "department",
+          "value-attribute": "pageviews:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "most-popular-content",
+      "module-type": "tab",
+      "title": "Most popular content",
+      "description": "",
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-pages",
+          "title": "All pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "news-pages",
+          "title": "News pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-news-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "publications",
+          "title": "Publications",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-publications-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "consulations",
+          "title": "Consulations",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-consultations-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "policies",
+          "title": "Policies",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-policy-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "speeches",
+          "title": "Speeches",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-speeches-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "collections",
+          "title": "Collections",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-collections-count",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page Title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        }
+      ]
+    },
+    {
+      "slug": "how-users-access-the-service",
+      "module-type": "grouped_timeseries",
+      "title": "How users access the service",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "data-group": "gov-uk-content",
+      "data-type": "devices-count",
+      "filter-by": "department:office-of-the-advocate-general-for-scotland",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "pageviews:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "new-visitors-vs-returning-visitors",
+      "module-type": "grouped_timeseries",
+      "title": "New visitors vs returning visitors",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "data-group": "gov-uk-content",
+      "data-type": "new-returning-count",
+      "filter-by": "department:office-of-the-advocate-general-for-scotland",
+      "category": "visitorType",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attr": "entrances:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "New Visitor",
+            "categoryId": "New Visitor",
+            "format": "integer"
+          },
+          {
+            "label": "Returning Visitor",
+            "categoryId": "Returning Visitor",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "module-type": "tab",
+      "slug": "top-department-referrers",
+      "title": "Top department referrers",
+      "description": "",
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-referrers",
+          "title": "All referrers",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "referrers-rate",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "sourceMedium",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Source medium",
+              "key": "sourceMedium"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": "percent"
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "search-terms",
+          "title": "Search terms",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "organic-rate",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "keyword",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Keyword",
+              "key": "keyword"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": "percent"
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "social-media",
+          "title": "Social media",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "social-rate",
+          "query-params": {
+            "filter_by": "department:office-of-the-advocate-general-for-scotland",
+            "group_by": "socialNetwork",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Social Network",
+              "key": "socialNetwork"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": "percent"
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        }
+      ]
+    },
+    {
+      "slug": "total-feedback-received",
+      "module-type": "completion_rate",
+      "title": "Total feedback received",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "visitors-count",
+      "filter-by": "department:office-of-the-advocate-general-for-scotland",
+      "info": [
+      ],
+      "denominator-matcher": ".*$",
+      "numerator-matcher": "^Small",
+      "matching-attribute": "sme_large",
+      "value-attribute": "monthly_spend:sum",
+      "period": "month",
+      "tabs": [
+        {"id": "monthly_spend:sum", "name": "Unique visits"},
+        {"id": "count:sum", "name": "Unique pageviews"}
+      ],
+      "tabbed_attr": "collect",
+      "category": "sme_large",
+      "axes": {
+        "x": {
+          "label": "Date of sales",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
+          },
+          "key": "_start_at"
+        },
+        "y": [
+          {
+            "label": "Percentage of sales to SMEs"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "most-commented-pages",
+      "module-type": "table",
+      "title": "Most commented pages",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "top-count",
+      "filter-by": "department:office-of-the-advocate-general-for-scotland",
+      "query-params": {
+        "filter_by": "type:tax-disc",
+        "group_by": "reason",
+        "collect": ["count:sum", "description:set"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Department",
+          "key": "description:set"
+        },
+        "y": [
+          {
+            "label": "Visits",
+            "key": "count:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of visits",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "count:sum",
+      "sort-order": "descending"
+    }
+  ]
+}
