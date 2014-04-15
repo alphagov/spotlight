@@ -14,6 +14,8 @@ function (Graph) {
         axisConfig = this.collection.options.axisPeriod;
       } else if (this.collection.query.get('period')) {
         axisConfig = this.collection.query.get('period');
+      } else if (this.model.get('period')) {
+        axisConfig = this.model.get('period');
       }
       return ['stack', axisConfig];
     },

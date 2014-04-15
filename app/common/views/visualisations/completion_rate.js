@@ -8,23 +8,28 @@ function (template, View, VolumetricsNumberView, CompletionGraphView) {
   var CompletionRateView = View.extend({
     template: template,
 
-    views: {
-      '#volumetrics-completion-selected': {
-        view: VolumetricsNumberView,
-        options: {
-          valueAttr: 'totalCompletion',
-          selectionValueAttr: 'completion',
-          formatValue: function (value) {
-            return this.formatPercentage(value);
+    valueAttr: 'completion',
+    totalAttr: 'totalCompletion',
+
+    views: function () {
+      return {
+        '#volumetrics-completion-selected': {
+          view: VolumetricsNumberView,
+          options: {
+            valueAttr: this.totalAttr,
+            selectionValueAttr: this.valueAttr,
+            formatValue: function (value) {
+              return this.format(value, 'percent');
+            }
+          }
+        },
+        '#volumetrics-completion': {
+          view: CompletionGraphView,
+          options: {
+            valueAttr: this.valueAttr
           }
         }
-      },
-      '#volumetrics-completion': {
-        view: CompletionGraphView,
-        options: {
-          valueAttr: 'completion'
-        }
-      }
+      };
     }
   });
 
