@@ -15,6 +15,18 @@
     }
   },
   "modules": [
+      {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "view-driving-record",
+      "data-type": "realtime"
+    },
     {
       "slug": "digital-transactions",
       "module-type": "grouped_timeseries",
@@ -51,6 +63,50 @@
           }
         ]
       }
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "view-driving-record",
+          "data-type": "monitoring",
+          "period": "day",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "view-driving-record",
+          "data-type": "monitoring",
+          "period": "hour",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          }
+        }
+      ]
     }
   ]
 }
