@@ -20,8 +20,8 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period') || 'day',
-        duration: this.model.get('duration') || 63,
-        trim: this.model.get('trim') || 8,
+        duration: this.model.get('duration') || 30,
+        trim: this.model.get('trim') || true,
         axes: _.merge({
           x: {
             label: 'Date',
