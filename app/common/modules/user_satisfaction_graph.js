@@ -21,7 +21,21 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period') || 'day',
         duration: this.model.get('duration') || 63,
-        trim: this.model.get('trim') || 8
+        trim: this.model.get('trim') || 8,
+        axes: _.merge({
+          x: {
+            label: 'Date',
+            key: '_start_at',
+            format: 'date'
+          },
+          y: [
+            {
+              label: this.model.get('title'),
+              key: 'rating',
+              format: 'percent'
+            }
+          ]
+        }, this.model.get('axes'))
       };
     },
     visualisationOptions: function () {
