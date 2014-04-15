@@ -744,5 +744,33 @@ function (Collection, Model, Backbone) {
 
     });
 
+    describe('trim', function () {
+
+      it('removes empty items from the start of the array', function () {
+        var collection = new Collection([], { valueAttr: 'value' });
+        var input = [
+            { value: null },
+            { value: 'foo' }
+          ];
+        collection.trim(input);
+        expect(input).toEqual([ { value: 'foo' } ]);
+      });
+
+      it('keeps a minimum number of elements', function () {
+        var collection = new Collection([], { valueAttr: 'value' });
+        var input = [
+            { value: null },
+            { value: null },
+            { value: null },
+            { value: null },
+            { value: 'foo' },
+            { value: 'foo' }
+          ];
+        collection.trim(input, 5);
+        expect(input.length).toEqual(5);
+      });
+
+    });
+
   });
 });

@@ -318,6 +318,13 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       return response.data;
     },
 
+    trim: function (values, min) {
+      var minlength = (typeof min === 'number') ? min : 0;
+      while (values.length > minlength && values[0][this.options.valueAttr] === null) {
+        values.shift();
+      }
+    },
+
     processors: Processors
 
   });
