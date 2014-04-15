@@ -14,7 +14,7 @@ define([
         id: 'done',
         title: 'Done',
         mean: available > 0 ? collection._end / available : null,
-        weeks: {
+        periods: {
           total: collection.values.length,
           available: available
         }

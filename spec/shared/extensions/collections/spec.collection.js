@@ -52,7 +52,7 @@ function (Collection, Model, Backbone) {
         expect(collection.collectionInstances[0].options.foo).toEqual('bar');
         expect(collection.collectionInstances[1].options.foo).toEqual('baz');
       });
-  
+
       it('sets queryParams option to `this` if defined', function () {
 
         var collection = new Collection([], {

@@ -33,7 +33,7 @@ function (CompletionNumbersCollection) {
         id: 'done',
         title: 'Done',
         mean: 5,
-        weeks: { total: 2, available: 1 }
+        periods: { total: 2, available: 1 }
       };
       expect(CompletionNumbersCollection.prototype.defaultCollectionAttrs(input)).toEqual(expected);
     });
@@ -48,7 +48,7 @@ function (CompletionNumbersCollection) {
         id: 'done',
         title: 'Done',
         mean: null,
-        weeks: { total: 2, available: 0 }
+        periods: { total: 2, available: 0 }
       };
       expect(CompletionNumbersCollection.prototype.defaultCollectionAttrs(input)).toEqual(expected);
     });

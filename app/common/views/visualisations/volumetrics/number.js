@@ -16,8 +16,8 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
-      var periodLabel = this.model.get('period') || 'week';
-      var events = this.collection.at(0).get('weeks'),
+      var periodLabel = this.getPeriod();
+      var events = this.collection.at(0).get('periods'),
         unavailableEvents = events.total - events.available,
         label = [
           this.labelPrefix,
@@ -49,11 +49,14 @@ function (SingleStatView) {
 
     getLabelSelected: function (selection) {
       if (selection.selectedGroupIndex !== null) {
-        return this.formatPeriod(selection.selectedModel, 'week');
+        return this.formatPeriod(selection.selectedModel, this.getPeriod());
       } else {
         return '';
       }
+    },
 
+    getPeriod: function () {
+      return this.model.get('period') || 'week';
     }
   });
 
