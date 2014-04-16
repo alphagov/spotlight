@@ -46,7 +46,10 @@ function (ModuleController, TabView) {
             el: this.view.$('section').eq(this.model.get('activeIndex'))
           };
         }, this),
-        function () { }
+        _.bind(function () {
+          var height = this.view.$('section').eq(this.model.get('activeIndex')).height();
+          this.view.$('section').css('min-height', height);
+        }, this)
       );
     },
 
