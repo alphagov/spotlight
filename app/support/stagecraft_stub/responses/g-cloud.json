@@ -61,11 +61,6 @@
                "label": "Large enterprises",
                "categoryId": "Large enterprises",
                "format": "currency"
-              },
-              {
-               "label": "Not yet classified",
-               "categoryId": "Unknown",
-               "format": "currency"
               }
             ]
           },
@@ -104,11 +99,6 @@
               {
                "label": "Large enterprises",
                "categoryId": "Large enterprises",
-               "format": "integer"
-              },
-              {
-               "label": "Not yet classified",
-               "categoryId": "Unknown",
                "format": "integer"
               }
             ]
@@ -157,11 +147,6 @@
                  "label": "Large enterprises",
                  "categoryId": "Large enterprises",
                  "format": "currency"
-               },
-               {
-                 "label": "Not yet classified",
-                 "categoryId": "Unknown",
-                 "format": "currency"
                }
              ]
           },
@@ -200,11 +185,6 @@
                {
                  "label": "Large enterprises",
                  "categoryId": "Large enterprises",
-                 "format": "integer"
-               },
-               {
-                 "label": "Not yet classified",
-                 "categoryId": "Unknown",
                  "format": "integer"
                }
              ]
