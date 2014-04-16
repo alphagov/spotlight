@@ -22,47 +22,6 @@
   "business-model": "Service user",
   "modules": [
     {
-      "slug": "cumulative-registrations",
-      "module-type": "kpi",
-      "title": "Total registrations",
-      "description": "Total registrations by waste carriers, brokers and dealers",
-      "data-group": "waste-carriers-registration",
-      "data-type": "transactions-by-channel",
-      "classes": "cols2",
-      "query-params": {
-      "filter_by": ["channel:waste_new_reg_all"],
-        "group_by": "channel",
-        "collect":"count:sum"
-      },
-      "info": [
-        "Data source: Environment Agency",
-        "Total number of registrations completed since the service began in 16 December 2013."
-      ],
-      "valueAttr": "count:sum",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
-    },
-    {
-      "slug": "cost-per-transaction",
-      "module-type": "kpi",
-      "title": "Cost per digital transaction",
-      "description": "Average for digital transactions",
-      "data-group": "waste-carriers-registration",
-      "data-type": "cost-per-transaction",
-      "date-period": "week",
-      "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "channel:cost_per_transaction_digital"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
-      "valueAttr": "count",
-      "format": {
-        "type": "currency",
-        "dps": 2
-      }
-    },
-    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
