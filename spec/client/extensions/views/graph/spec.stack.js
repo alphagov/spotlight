@@ -45,11 +45,11 @@ function (Stack, Collection) {
         });
       layers = stack(collection.models.slice().reverse());
     });
-    
+
     afterEach(function () {
       el.remove();
     });
-    
+
     describe('render', function () {
 
       var view;
@@ -75,7 +75,7 @@ function (Stack, Collection) {
           }
         });
       });
-      
+
       it('renders a stack consisting of a stroked path and a filled path for each item in the collection', function () {
         view.render();
         var group1 = wrapper.selectAll('g.group:nth-child(1)');
