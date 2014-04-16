@@ -145,6 +145,20 @@
       }
     },
     {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "lasting-power-of-attorney",
+      "data-type": "customer-satisfaction",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
+    },
+    {
       "slug": "help-usage",
       "module-type": "table",
       "title": "Help usage",
