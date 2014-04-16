@@ -122,7 +122,7 @@ function (require, Line, Component) {
         var group = this.collection.models[i];
         var distanceAndClosestModel = this.getDistanceAndClosestModel(group, i, point);
 
-        if (isNaN(distanceAndClosestModel.diff)) {
+        if (typeof distanceAndClosestModel.diff === 'undefined') {
           selectedGroupIndex = null;
           selectedItemIndex = distanceAndClosestModel.index;
           break;
