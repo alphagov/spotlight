@@ -226,86 +226,42 @@ function (Component) {
      * @param {Object} point Coordinates to calculate distance from
      * @param {Number} point.x x-coordinate
      * @param {Number} point.y y-coordinate
-     * @param {Object} [options={}] Options
-     * @param {Boolean} [options.allowMissingData=false] Accept data points with null value
      */
-    getDistanceAndClosestModel: function (group, groupIndex, point, options) {
-      options = _.extend({
-        allowMissingData: false
-      }, options);
-
-      var lineCollection = group.get('values');
-
-      // find indices right and left of point
-      var leftIndexStart = lineCollection.length - 1;
-      var rightIndexStart = 0;
-      for (var a = 0; a < lineCollection.length; a++) {
-        if (this.x(group, groupIndex, lineCollection.at(a), a) >= point.x) {
-          rightIndexStart = a;
-          leftIndexStart = a - 1;
-          break;
+    getDistanceAndClosestModel: function (group, groupIndex, point) {
+      var left, right, closest;
+      _.each(group.get('values'), function (model, i) {
+        var d = {
+          index: i,
+          x: this.x(group, groupIndex, model, i),
+          y: this.y(group, groupIndex, model, i)
+        };
+        if (d.x <= point.x) {
+          left = d;
+        } else if (!right) {
+          right = d;
         }
-      }
+      }, this);
 
-      // search for valid models. when not allowing nulls, search for models
-      // with non-null values
-      var leftIndex, rightIndex;
-      for (var b = leftIndexStart; b >= 0; b--) {
-        if (options.allowMissingData || this.y(group, groupIndex, lineCollection.at(b), b) !== null) {
-          leftIndex = b;
-          break;
-        }
-      }
-      for (var c = rightIndexStart; c < lineCollection.length; c++) {
-        if (options.allowMissingData || this.y(group, groupIndex, lineCollection.at(c), c) !== null) {
-          rightIndex = c;
-          break;
-        }
-      }
-
-      var left = lineCollection.at(leftIndex);
-      var right = lineCollection.at(rightIndex);
-      if (!left && !right) {
-        return;
-      } else if (!left) {
-        left = right;
-        leftIndex = rightIndex;
+      if (!left) {
+        closest = {
+          index: 0
+        };
       } else if (!right) {
-        right = left;
-        rightIndex = leftIndex;
-      }
-
-      var distLeft = Math.abs(point.x - this.x(group, groupIndex, left, leftIndex));
-      var distRight = Math.abs(this.x(group, groupIndex, right, rightIndex) - point.x);
-
-      var diff, dist;
-      if (leftIndex + 1 < lineCollection.length) {
-        var weight = distLeft / (distLeft + distRight) || 0;
-        var leftY = this.y(group, groupIndex, left, leftIndex);
-        var rightY;
-        for (var i = rightIndex; i < group.get('values').length; i++) {
-          rightY = this.y(group, groupIndex, right, i);
-          if (rightY !== null) {
-            break;
-          }
-        }
-        var y = this.d3.interpolate(leftY, rightY)(weight);
-        diff = point.y - y;
-        dist = Math.abs(diff);
+        closest = left;
       } else {
-        //because NaN < 1 == false but null < 1 == true
-        //and I don't want to get into refactoring line and its use of this method
-        diff = NaN;
-        dist = NaN;
+        if (point.x > (right.x + left.x) / 2) {
+          closest = right;
+        } else {
+          closest = left;
+        }
+        if (closest.y) {
+          var intY = this.d3.interpolate(left.y, right.y)((point.x - left.x) / (right.x - left.x));
+          closest.diff = point.y - intY;
+          closest.dist = Math.abs(closest.diff);
+        }
       }
 
-      var bestIndex = distLeft < distRight ? leftIndex : rightIndex;
-
-      return {
-        dist: dist,
-        diff: diff,
-        index: bestIndex
-      };
+      return closest;
     },
 
     /**
