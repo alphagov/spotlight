@@ -29,7 +29,7 @@ function (Component, Pivot) {
     },
 
     getValue: function (group, groupIndex, model, index) {
-      if (Object.prototype.toString.call(model) === '[object Array]') {
+      if (_.isArray(model)) {
         var noData = true;
         var sum = _.reduce(model, function (sum, model) {
           var value = model.get(this.graph.valueAttr);
