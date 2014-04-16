@@ -56,13 +56,13 @@ function (VolumetricsNumberView, View, Collection, Model) {
         prefix = 'Some prefix';
         subject.labelPrefix = prefix;
       });
-      
-      describe('when there are unavailableWeeks', function () {
+
+      describe('when there are unavailable periods', function () {
         beforeEach(function () {
           fakeModel = {
             get: function (key) {
               return {
-                weeks: {
+                periods: {
                   total: 12,
                   available: 10
                 }
@@ -74,20 +74,20 @@ function (VolumetricsNumberView, View, Collection, Model) {
         it('should return the appropriately formatted label', function () {
           expect(subject.getLabel()).toEqual(prefix + ' last 12 weeks <span class="unavailable">(2 weeks unavailable)</span>');
         });
-        
+
         it('should return the appropriately formatted label for arbitrary periods', function () {
           subject.model.set('period', 'month');
           expect(subject.getLabel()).toEqual(prefix + ' last 12 months <span class="unavailable">(2 months unavailable)</span>');
         });
-        
+
       });
-      
-      describe('when there are not unavailableWeeks', function () {
+
+      describe('when there are not unavailable periods', function () {
         beforeEach(function () {
           fakeModel = {
             get: function (key) {
               return {
-                weeks: {
+                periods: {
                   total: 12,
                   available: 12
                 }
@@ -99,14 +99,14 @@ function (VolumetricsNumberView, View, Collection, Model) {
         it('should return the appropriately formatted label', function () {
           expect(subject.getLabel()).toEqual(prefix + ' last 12 weeks');
         });
-        
+
         it('should return the appropriately formatted label for arbitrary periods', function () {
           subject.model.set('period', 'month');
           expect(subject.getLabel()).toEqual(prefix + ' last 12 months');
         });
-        
+
       });
-      
+
     });
 
     describe('getValueSelected', function () {

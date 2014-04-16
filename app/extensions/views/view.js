@@ -1,11 +1,12 @@
 define([
   'backbone',
   'extensions/mixins/date-functions',
+  'extensions/mixins/formatters',
   'modernizr',
   'jquery',
   'lodash'
 ],
-function (Backbone, DateFunctions, Modernizr, $, _) {
+function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
   var View = Backbone.View.extend({
 
     modernizr: Modernizr,
@@ -440,6 +441,7 @@ function (Backbone, DateFunctions, Modernizr, $, _) {
   });
 
   _.extend(View.prototype, DateFunctions);
+  _.extend(View.prototype, Formatters);
 
   return View;
 });

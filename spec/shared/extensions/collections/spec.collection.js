@@ -52,7 +52,7 @@ function (Collection, Model, Backbone) {
         expect(collection.collectionInstances[0].options.foo).toEqual('bar');
         expect(collection.collectionInstances[1].options.foo).toEqual('baz');
       });
-  
+
       it('sets queryParams option to `this` if defined', function () {
 
         var collection = new Collection([], {
@@ -740,6 +740,34 @@ function (Collection, Model, Backbone) {
 
         expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
 
+      });
+
+    });
+
+    describe('trim', function () {
+
+      it('removes empty items from the start of the array', function () {
+        var collection = new Collection([], { valueAttr: 'value' });
+        var input = [
+            { value: null },
+            { value: 'foo' }
+          ];
+        collection.trim(input);
+        expect(input).toEqual([ { value: 'foo' } ]);
+      });
+
+      it('keeps a minimum number of elements', function () {
+        var collection = new Collection([], { valueAttr: 'value' });
+        var input = [
+            { value: null },
+            { value: null },
+            { value: null },
+            { value: null },
+            { value: 'foo' },
+            { value: 'foo' }
+          ];
+        collection.trim(input, 5);
+        expect(input.length).toEqual(5);
       });
 
     });

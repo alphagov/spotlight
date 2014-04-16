@@ -132,6 +132,8 @@ moduleSchemas.table = moduleSchemas.common;
 
 moduleSchemas.user_satisfaction = moduleSchemas.common;
 
+moduleSchemas.user_satisfaction_graph = moduleSchemas.common;
+
 moduleSchemas.kpi = moduleSchemas.common;
 
 var validationResult = {},

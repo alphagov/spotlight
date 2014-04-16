@@ -13,7 +13,7 @@ define([
         id: 'completion',
         title: 'Completion rate',
         totalCompletion: collection._start > 0 ? (collection._end / collection._start) : null,
-        weeks: {
+        periods: {
           total: collection.values.length,
           available: _.filter(collection.values, function (v) { return v.get('completion') !== null; }).length
         }

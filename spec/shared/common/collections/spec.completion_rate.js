@@ -35,7 +35,7 @@ function (CompletionRateCollection) {
         id: 'completion',
         title: 'Completion rate',
         totalCompletion: 0.5,
-        weeks: { total: 2, available: 1 }
+        periods: { total: 2, available: 1 }
       };
       expect(CompletionRateCollection.prototype.defaultCollectionAttrs(input)).toEqual(expected);
     });
@@ -50,7 +50,7 @@ function (CompletionRateCollection) {
         id: 'completion',
         title: 'Completion rate',
         totalCompletion: null,
-        weeks: { total: 2, available: 1 }
+        periods: { total: 2, available: 1 }
       };
       expect(CompletionRateCollection.prototype.defaultCollectionAttrs(input)).toEqual(expected);
     });
