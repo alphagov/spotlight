@@ -310,7 +310,7 @@
             "format": "currency"
           },
           {
-            "label": "Other wider public sector",
+            "label": "Wider public sector",
             "categoryId": "Other wider public sector",
             "format": "currency"
           },
@@ -320,7 +320,7 @@
             "format": "currency"
           },
           {
-            "label": "Not yet classified",
+            "label": "Other",
             "categoryId": "Unknown",
             "format": "currency"
           },
