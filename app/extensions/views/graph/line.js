@@ -229,7 +229,7 @@ function (Component) {
      */
     getDistanceAndClosestModel: function (group, groupIndex, point) {
       var left, right, closest;
-      _.each(group.get('values'), function (model, i) {
+      group.get('values').each(function (model, i) {
         var d = {
           index: i,
           x: this.x(group, groupIndex, model, i),
