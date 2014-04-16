@@ -394,17 +394,19 @@ function (MatrixCollection, Collection, Group) {
         });
 
         it('calculates the fraction for a given attribute for all items in a specific group', function () {
-          expect(collection.fraction('a', 1)).toBeCloseTo(0.75, 0.01);
-          expect(collection.fraction('b', 1)).toBeCloseTo(0.60, 0.01);
+          expect(collection.fraction('a', 1)).toBeCloseTo(0.75, 5);
+          expect(collection.fraction('b', 1)).toBeCloseTo(0.5, 5);
         });
 
         it('calculates the fraction for a given attribute for a specific item in all groups', function () {
-          expect(collection.fraction('a', null, 1)).toBeCloseTo(0.625, 0.01);
-          expect(collection.fraction('b', null, 1)).toBeCloseTo(0.33, 0.01);
+          expect(collection.fraction('a', null, 1)).toBeCloseTo(0.625, 5);
+          expect(collection.fraction('b', null, 1)).toBeCloseTo(0.33333, 5);
         });
 
         it('calculates the fraction for a given attribute for a specific item in a specific group', function () {
-          expect(collection.fraction('a', 1, 1)).toBeCloseTo(0.70, 0.01);
+          expect(collection.fraction('a', 1, 0)).toBeCloseTo(0.83333, 5);
+          expect(collection.fraction('a', 1, 1)).toBeCloseTo(0.70, 5);
+          expect(collection.fraction('b', 1, 0)).toBeCloseTo(0.75, 5);
           expect(collection.fraction('b', 1, 1)).toEqual(0);
         });
 
