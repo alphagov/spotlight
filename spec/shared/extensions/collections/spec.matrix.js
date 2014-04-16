@@ -379,12 +379,12 @@ function (MatrixCollection, Collection, Group) {
         beforeEach(function () {
           collection = new MatrixCollection([{}, {}]);
           collection.at(0).set('values', new Collection([
-            { a: 1, b: 2, c: 0 },
-            { a: 3, b: 4, c: 0 }
+            { a: 1, b: 2, c: 0, d: 0 },
+            { a: 3, b: 4, c: 0, d: 0 }
           ]));
           collection.at(1).set('values', new Collection([
-            { a: 5, b: 6, c: 0 },
-            { a: 7, b: null, c: 0 }
+            { a: 5, b: 6, c: 0, d: 10 },
+            { a: 7, b: null, c: 0, d: 10 }
           ]));
         });
 
@@ -412,7 +412,12 @@ function (MatrixCollection, Collection, Group) {
 
         it('returns null if sum is zero', function () {
           expect(collection.fraction('c', 1, 1)).toBeNull();
-          expect(collection.fraction('d', 1, 1)).toBeNull();
+          expect(collection.fraction('notathing', 1, 1)).toBeNull();
+        });
+
+        it('returns zero for zero values with a positiive sum', function () {
+          expect(collection.fraction('d', 0, 0)).toEqual(0);
+          expect(collection.fraction('d', 0, 1)).toEqual(0);
         });
       });
 
