@@ -189,8 +189,8 @@
         },
         {
           "module-type": "table",
-          "slug": "consulations",
-          "title": "Consulations",
+          "slug": "consultations",
+          "title": "Consultations",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-consultations-count",
@@ -535,37 +535,25 @@
     },
     {
       "slug": "total-feedback-received",
-      "module-type": "completion_rate",
+      "module-type": "completion_numbers",
       "title": "Total feedback received",
       "description": "",
       "data-group": "gov-uk-content",
-      "data-type": "visitors-count",
-      "filter-by": "department:department-for-communities-and-local-government",
+      "data-type": "feedback-count",
       "info": [
       ],
-      "denominator-matcher": ".*$",
-      "numerator-matcher": "^Small",
-      "matching-attribute": "sme_large",
-      "value-attribute": "monthly_spend:sum",
+      "denominator-matcher": "dclg",
+      "numerator-matcher": "dclg",
+      "matching-attribute": "organisation_acronym",
+      "value-attribute": "comment_count:sum",
       "period": "month",
-      "tabs": [
-        {"id": "monthly_spend:sum", "name": "Unique visits"},
-        {"id": "count:sum", "name": "Unique pageviews"}
-      ],
-      "tabbed_attr": "collect",
-      "category": "sme_large",
       "axes": {
         "x": {
-          "label": "Date of sales",
-          "format": {
-            "type": "date",
-            "format": "MMMM YYYY"
-          },
-          "key": "_start_at"
+          "label": "Date"
         },
         "y": [
           {
-            "label": "Percentage of sales to SMEs"
+            "label": "Comment Count"
           }
         ]
       }
@@ -576,34 +564,28 @@
       "title": "Most commented pages",
       "description": "",
       "data-group": "gov-uk-content",
-      "data-type": "top-count",
-      "filter-by": "department:department-for-communities-and-local-government",
+      "data-type": "top-urls",
       "query-params": {
-        "filter_by": "type:tax-disc",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
+        "filter_by": "organisation_acronym:dclg",
+        "group_by": "url",
+        "collect": ["comment_count:sum"],
+        "period": "month",
         "duration": 1
       },
       "axes": {
         "x": {
-          "label": "Department",
-          "key": "description:set"
+          "label": "URL",
+          "key": "url"
         },
         "y": [
           {
-            "label": "Visits",
-            "key": "count:sum",
+            "label": "Total comments",
+            "key": "comment_count:sum",
             "format": "integer"
-          },
-          {
-            "label": "Percentage of visits",
-            "key": "percentOfTotal(count:sum)",
-            "format": "percent"
           }
         ]
       },
-      "sort-by": "count:sum",
+      "sort-by": "comment_count:sum",
       "sort-order": "descending"
     }
   ]
