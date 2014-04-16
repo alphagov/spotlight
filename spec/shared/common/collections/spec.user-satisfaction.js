@@ -1,8 +1,7 @@
 define([
-  'common/collections/user-satisfaction',
-  'extensions/collections/collection'
+  'common/collections/user-satisfaction'
 ],
-function (UserSatisfactionCollection, Collection) {
+function (UserSatisfactionCollection) {
   describe('UserSatisfactionCollection', function () {
 
     var collection;
