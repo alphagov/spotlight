@@ -22,7 +22,7 @@ function (Graph) {
         { view: this.sharedComponents.yaxis },
         {
           view: this.sharedComponents.stack,
-          options: { allowMissingData: true, drawCursorLine: true }
+          options: { drawCursorLine: true }
         },
         { view: this.sharedComponents.hover }
       ];

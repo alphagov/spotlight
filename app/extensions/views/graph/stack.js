@@ -7,7 +7,6 @@ function (require, Line, Component) {
   var Stack = Line.extend({
 
     selectGroup: true,
-    allowMissingData: false,
 
     render: function () {
       Component.prototype.render.apply(this, arguments);
@@ -121,9 +120,7 @@ function (require, Line, Component) {
       var selectedGroupIndex, selectedItemIndex;
       for (var i = this.collection.length - 1; i >= 0; i--) {
         var group = this.collection.models[i];
-        var distanceAndClosestModel = this.getDistanceAndClosestModel(
-          group, i, point, { allowMissingData: this.allowMissingData }
-        );
+        var distanceAndClosestModel = this.getDistanceAndClosestModel(group, i, point);
 
         if (isNaN(distanceAndClosestModel.diff)) {
           selectedGroupIndex = null;

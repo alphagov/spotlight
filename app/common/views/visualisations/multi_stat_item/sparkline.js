@@ -22,8 +22,7 @@ function (Graph) {
     components: function () {
       var val = [
         {
-          view: this.sharedComponents.line,
-          options: { allowMissingData: true }
+          view: this.sharedComponents.line
         },
         { view: this.sharedComponents.hover }
       ];
