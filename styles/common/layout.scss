@@ -28,20 +28,6 @@
 
     border-top: 1px solid $grey-2;
 
-    &.half-width {
-      width:48.5%;
-      margin-left:3%;
-      clear:none;
-      &.row-start {
-        margin-left:0%;
-      }
-
-      .lte-ie8 & {
-        margin-left: 0%;
-        width: 100%;
-      }
-    }
-
     .visualisation {
       // This fixes an issue on the page-per-thing page when both tabs and "more info" are present.
       // http://www.quirksmode.org/css/clearing.html#link3
@@ -51,18 +37,7 @@
   }
 
   @media (max-width: 640px) {
-
     padding: 0;
-
-    section {
-      &.half-width {
-        width: 100%;
-
-        & ~ .half-width {
-          margin-left:0;
-        }
-      }
-    }
   }
 }
 
