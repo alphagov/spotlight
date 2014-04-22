@@ -141,13 +141,13 @@ define([
 
     magnitude: function (value) {
       var magnitudes = {
-        thousand: {value: 1e3, suffix: 'k' },
+        thousand: {value: 1e3, suffix: 'k', limit: 1e4 },
         million:  {value: 1e6, suffix: 'm' },
         billion:  {value: 1e9, suffix: 'bn' }
       };
       var suffix, parsed = value;
       _.each(magnitudes, function (mag) {
-        if (value > mag.value) {
+        if (value >= (mag.limit || mag.value)) {
           suffix = mag.suffix;
           parsed = value / mag.value;
         }

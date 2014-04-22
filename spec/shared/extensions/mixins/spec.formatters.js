@@ -234,16 +234,13 @@ define([
 
       describe('magnitude', function () {
         describe('thousands', function () {
-          it('doesn\'t add "k" to 1000', function () {
-            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
-          });
 
-          it('adds "k" to numbers of a thousand that are greater than 1000', function () {
-            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1k');
-            expect(Formatters.format(1120, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12k');
+          it('adds "k" to numbers of a thousand that are greater than or equal to 10,000', function () {
+            expect(Formatters.format(10000, { type: 'number', magnitude: true  })).toEqual('10k');
+            expect(Formatters.format(10001, { type: 'number', magnitude: true  })).toEqual('10k');
+            expect(Formatters.format(11000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('10k');
+            expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('11k');
+            expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('11.2k');
           });
         });
 
