@@ -254,13 +254,12 @@ function (Component) {
         } else {
           closest = left;
         }
-        if (closest.y) {
+        if (_.isNumber(closest.y)) {
           var intY = this.d3.interpolate(left.y, right.y)((point.x - left.x) / (right.x - left.x));
           closest.diff = point.y - intY;
           closest.dist = Math.abs(closest.diff);
         }
       }
-
       return closest;
     },
 

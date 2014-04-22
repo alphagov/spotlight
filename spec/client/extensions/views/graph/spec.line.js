@@ -389,6 +389,14 @@ function (Line, Collection) {
         expect(res.index).toEqual(3);
       });
 
+      it('can handle zero y-values (bugfix)', function () {
+        collection.at(0).get('values').at(0).set('b', 3);
+        collection.at(0).get('values').at(1).set('b', 0);
+        var res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 2 });
+        expect(res.dist).toEqual(1);
+        expect(res.diff).toEqual(1);
+      });
+
     });
 
     describe('onHover', function () {
