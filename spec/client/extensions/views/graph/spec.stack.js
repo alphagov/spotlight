@@ -45,11 +45,11 @@ function (Stack, Collection) {
         });
       layers = stack(collection.models.slice().reverse());
     });
-    
+
     afterEach(function () {
       el.remove();
     });
-    
+
     describe('render', function () {
 
       var view;
@@ -75,7 +75,7 @@ function (Stack, Collection) {
           }
         });
       });
-      
+
       it('renders a stack consisting of a stroked path and a filled path for each item in the collection', function () {
         view.render();
         var group1 = wrapper.selectAll('g.group:nth-child(1)');
@@ -241,30 +241,18 @@ function (Stack, Collection) {
         expect(collection.selectItem.mostRecentCall.args).toEqual([null, 0]);
       });
 
-      it('selects closest point when hovering over missing data and missing data is not allowed', function () {
+      it('selects missing data index', function () {
         var missingDataIndex = 2;
 
         collection.at(0).get('values').at(missingDataIndex).set('y', null);
         collection.at(1).get('values').at(missingDataIndex).set('y', null);
 
-        view.onHover({ x: 3.1, y: missingDataIndex });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0, 3]);
-      });
-
-      it('selects missing data index when missing data is allowed', function () {
-        var missingDataIndex = 2;
-
-        collection.at(0).get('values').at(missingDataIndex).set('y', null);
-        collection.at(1).get('values').at(missingDataIndex).set('y', null);
-
-        view.allowMissingData = true;
         view.onHover({ x: 3.1, y: missingDataIndex });
         expect(collection.selectItem.mostRecentCall.args[1]).toEqual(missingDataIndex);
       });
 
-      it('calls selectItem with selectGroupIndex null when diff and dist are NaN', function () {
-        var closestModelDetails = {dist: NaN, diff: NaN, index: 1};
-        spyOn(view, 'getDistanceAndClosestModel').andReturn(closestModelDetails);
+      it('calls selectItem with selectGroupIndex null when diff and dist are undefined', function () {
+        spyOn(view, 'getDistanceAndClosestModel').andReturn({ index: 1 });
         var selectItem = jasmine.createSpy('selectItem');
         view.collection.selectItem = selectItem;
         view.onHover({ x: 3.1, y: 2 });

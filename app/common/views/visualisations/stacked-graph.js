@@ -35,7 +35,6 @@ function (Graph) {
         stackOptions = {
           selectGroup: true,
           encompassStack: true,
-          allowMissingData: true,
           drawCursorLine: true,
           interactive: this.interactiveFunction
         };

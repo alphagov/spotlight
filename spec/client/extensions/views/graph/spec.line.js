@@ -308,100 +308,93 @@ function (Line, Collection) {
 
     describe('getDistanceAndClosestModel', function () {
 
-      it('calculates distance to an interpolated position between points and picks closest model', function () {
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 2.5,
-          y: -3
-        }, {
-          allowMissingData: true
-        });
-        expect(res.dist).toEqual(6.5);
-        expect(res.diff).toEqual(-6.5);
-        expect(res.index).toEqual(1);
+      /*
+      DATA:
+      { a: 1, b: 2},
+      { a: 4, b: 5},
+      { a: 7, b: 8},
+      { a: 9, b: 10},
+      { a: 11, b: 12}
+      */
 
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 7,
-          y: 8
-        }, {
-          allowMissingData: true
-        });
-        expect(res.dist).toEqual(0);
-        expect(res.diff).toEqual(0);
-        expect(res.index).toEqual(2);
-      });
-
-      it('calculates NaN distance to a line when the x is off the scale', function () {
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 50,
-          y: -3
-        }, {
-          allowMissingData: true
-        });
-        expect(isNaN(res.dist)).toEqual(true);
-        expect(isNaN(res.diff)).toEqual(true);
-        expect(res.index).toEqual(4);
-      });
-
-      it('calculates distance to an interpolated position between points and picks closest model that is not null', function () {
-        collection.at(0).get('values').at(1).set('b', null);
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 2.5,
-          y: 2
-        });
-        expect(res.dist).toEqual(1.5);
-        expect(res.diff).toEqual(-1.5);
+      it('picks closest model', function () {
+        var res;
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 3 });
         expect(res.index).toEqual(0);
 
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 7,
-          y: 8
-        });
-        expect(res.dist).toEqual(0);
-        expect(res.diff).toEqual(0);
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 8 });
+        expect(res.index).toEqual(1);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 7, y: 8 });
         expect(res.index).toEqual(2);
       });
 
+      it('interpolates y-value at mouse x-position', function () {
+        var res;
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 3 });
+        expect(res.diff).toEqual(0);
+        expect(res.dist).toEqual(0);
 
-      it('selected the first point when no other points have a value', function () {
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 5 });
+        expect(res.diff).toEqual(2);
+        expect(res.dist).toEqual(2);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 1 });
+        expect(res.diff).toEqual(-2);
+        expect(res.dist).toEqual(2);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 3 });
+        expect(res.diff).toEqual(-1);
+        expect(res.dist).toEqual(1);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 5 });
+        expect(res.diff).toEqual(1);
+        expect(res.dist).toEqual(1);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 1 });
+        expect(res.diff).toEqual(-3);
+        expect(res.dist).toEqual(3);
+      });
+
+      it('does not return diff or dist values when the x is off the scale', function () {
+        var res;
+        // off to the right
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 50, y: -3 });
+        expect(res.dist).toBeUndefined();
+        expect(res.diff).toBeUndefined();
+        expect(res.index).toEqual(4);
+
+        // off to the left
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: -50, y: -3 });
+        expect(res.dist).toBeUndefined();
+        expect(res.diff).toBeUndefined();
+        expect(res.index).toEqual(0);
+      });
+
+      it('does not return diff or dist values when closest model has a null value', function () {
+        collection.at(0).get('values').at(0).set('b', null);
         collection.at(0).get('values').at(1).set('b', null);
-        collection.at(0).get('values').at(2).set('b', null);
         collection.at(0).get('values').at(3).set('b', null);
         collection.at(0).get('values').at(4).set('b', null);
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 7,
-          y: 2
-        });
-        expect(res.dist).toEqual(0);
-        expect(res.diff).toEqual(0);
-        expect(res.index).toEqual(0);
+
+        var res;
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 4, y: 2 });
+        expect(res.dist).toBeUndefined();
+        expect(res.diff).toBeUndefined();
+        expect(res.index).toEqual(1);
+
+        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 9, y: 2 });
+        expect(res.dist).toBeUndefined();
+        expect(res.diff).toBeUndefined();
+        expect(res.index).toEqual(3);
       });
 
-      it('selected the null point when there is a gap in the data and allowMissingData is true', function () {
-        collection.at(0).get('values').at(2).set('b', null);
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 5.49,
-          y: 2
-        }, {allowMissingData: true});
-        expect(res.index).toEqual(1);
-        expect(isNaN(res.diff)).toEqual(false);
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 5.5,
-          y: 2
-        }, {allowMissingData: true});
-        expect(res.index).toEqual(2);
-        expect(isNaN(res.diff)).toEqual(false);
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 7.99,
-          y: 2
-        }, {allowMissingData: true});
-        expect(res.index).toEqual(2);
-        expect(isNaN(res.diff)).toEqual(false);
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, {
-          x: 8,
-          y: 2
-        }, {allowMissingData: true});
-        expect(res.index).toEqual(3);
-        expect(isNaN(res.diff)).toEqual(false);
+      it('can handle zero y-values (bugfix)', function () {
+        collection.at(0).get('values').at(0).set('b', 3);
+        collection.at(0).get('values').at(1).set('b', 0);
+        var res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 2 });
+        expect(res.dist).toEqual(1);
+        expect(res.diff).toEqual(1);
       });
 
     });
