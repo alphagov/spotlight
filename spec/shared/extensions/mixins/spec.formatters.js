@@ -245,11 +245,9 @@ define([
         });
 
         describe('millions', function () {
-          it('doesn\'t add "m" to 1000000', function () {
-            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1,000k');
-          });
 
-          it('adds "m" to numbers of a million that are greater than 1000000', function () {
+          it('adds "m" to numbers of a million that are greater than or equal to 1000000', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1m');
             expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1m');
@@ -259,11 +257,9 @@ define([
         });
 
         describe('billions', function () {
-          it('doesn\'t add "b" to 1000000000', function () {
-            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1,000m');
-          });
 
           it('adds "bn" to numbers of a billion that are greater than 1000000000', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1bn');
             expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1bn');
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1bn');
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1bn');
