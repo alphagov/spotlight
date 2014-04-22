@@ -23,6 +23,48 @@
   "business-model": "Department budget",
   "modules": [
     {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "number_of_transactions",
+      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "total_cost",
+      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+        "sort_by": "_timestamp:descending"
+      },
+      "valueAttr": "cost_per_transaction",
+      "format": { "type": "currency", "pence": true }
+    },
+    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Users on start page",
