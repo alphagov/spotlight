@@ -1,4 +1,6 @@
 .journey figure.graph {
+  margin-bottom: 1em;
+
   svg {
     max-height: 200px;
     min-height: 100px;
@@ -32,8 +34,12 @@
 
   .callout {
     position:relative;
-    width:100%;
-    margin-top: 1.2em;
+    width: 98%;
+    margin: 1.2em 1%;
+
+    @media (max-width: 640px) {
+      margin: 1.2em auto;
+    }
 
     .date {
       float:right;
@@ -70,6 +76,7 @@
     .arrow {
       height:20px;
       margin-top:-40px;
+      margin-left: -1%;
       position:absolute;
       overflow:hidden;
               transform: scaleX(2);
