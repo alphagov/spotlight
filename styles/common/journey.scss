@@ -5,6 +5,16 @@
   }
 
   .x-axis {
+    .tick {
+      &:nth-child(even) text {
+        display: block;
+      }
+
+      line {
+        display: none;
+      }
+    }
+
     .selected text {
       font-weight:bold;
     }
@@ -23,7 +33,7 @@
   .callout {
     position:relative;
     width:100%;
-    margin-top:12px;
+    margin-top: 1.2em;
 
     .date {
       float:right;
@@ -94,14 +104,6 @@
           filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=3);
         }
       }
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .journey figure {
-    .x-axis .tick:nth-child(even) text {
-      display: block;
     }
   }
 }
