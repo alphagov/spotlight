@@ -243,12 +243,6 @@ function (View, Model, Backbone) {
           expect(formatter(200)).toBe('£0.2k');
         });
 
-        it('should format with currency suffix if required', function () {
-          View.prototype.currencies['cny'] = { 'prefix': '', 'suffix': ' CNY' };
-          var formatter = View.prototype.numberListFormatter([0, 1000], 'cny');
-          expect(formatter(200)).toBe('0.2k CNY');
-        });
-
       });
 
       describe('when labels go over 1,000,000', function () {
