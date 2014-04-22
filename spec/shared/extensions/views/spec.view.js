@@ -279,7 +279,8 @@ function (View, Model, Backbone) {
 
     describe('formatNumericLabel', function () {
 
-      var formatNumericLabel = View.prototype.formatNumericLabel;
+      var view = new View();
+      var formatNumericLabel = view.formatNumericLabel.bind(view);
 
       it('should handle null input, when missing data', function () {
         expect(formatNumericLabel(null)).toBe(null);
