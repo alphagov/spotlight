@@ -98,29 +98,10 @@
   }
 }
 
-@media (max-width: 800px) {
-  .conversion-graph {
-    .bar text {
-      font-size:0.875em;
-    }
-  }
-}
-
 @media (max-width: 640px) {
   .journey figure {
     .x-axis .tick:nth-child(even) text {
       display: block;
-    }
-  }
-}
-
-
-@media (max-width: 320px) {
-
-  .journey figure {
-    .x-axis text {
-      font-size:8px;
-      font-size:0.8rem;
     }
   }
 }
