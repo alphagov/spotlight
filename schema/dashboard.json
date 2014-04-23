@@ -1,0 +1,37 @@
+{
+  "id": "/Dashboard",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "page-type": {
+      "type": "string",
+      "required": true,
+      "enum": ["dashboard"]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "strapline": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "Service dashboard",
+        "Performance",
+        "Policy dashboard",
+        "Public sector purchasing dashboard"
+      ]
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      },
+      "uniqueItems": true
+    }
+  }
+}

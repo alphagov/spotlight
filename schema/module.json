@@ -1,0 +1,32 @@
+{
+  "id": "/ModuleCommon",
+  "type": "object",
+  "properties": {
+    "module-type": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "info": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "data-group": {
+      "type": "string",
+      "required": true
+    },
+    "data-type": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

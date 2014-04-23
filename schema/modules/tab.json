@@ -1,0 +1,22 @@
+{
+  "id": "/ModuleTab",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "tabs": {
+      "type": "array",
+      "required": true,
+      "minItems": 2
+    }
+  }
+}
