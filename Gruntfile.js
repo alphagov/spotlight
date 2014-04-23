@@ -100,7 +100,7 @@ module.exports = function (grunt) {
     },
     // Lints our JavaScript
     jshint: {
-      files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js'],
+      files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/*.js'],
       options: {
         reporter: require('jshint-stylish'),
         jshintrc: true
@@ -293,6 +293,10 @@ module.exports = function (grunt) {
     'requirejs:production',
     'requirejs:production-no-d3',
     'digest'
+  ]);
+
+  grunt.registerTask('test:stubs', [
+    'shell:validate_module_stubs'
   ]);
 
   grunt.registerTask('test:all', [
