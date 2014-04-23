@@ -1,12 +1,13 @@
 $primary-colour: #097F96;
-$primary-colour-text: darken($primary-colour, 7%);
 
-$data-colour-1: $primary-colour;
-$data-colour-2: #112684;  //blue-purple
-$data-colour-3: #D6007D;  //magenta
-$data-colour-4: #662E91;  //purple
-$data-colour-5: #5E7F00;  //light green
-$data-colour-6: #005C37;  //dark green
+$data-colour-1: $primary-colour; // Performance Platform blue
+$data-colour-2: #112684;         // Dark blue
+$data-colour-3: #D6007D;         // Rose
+$data-colour-4: #662E91;         // Purple
+$data-colour-5: #5E7F00;         // Olive
+$data-colour-6: #005C37;         // Forest green
 
 $positive-colour: #74B74A;
 $negative-colour: #BF1E2D;
+
+$graph-axis-grey: #444;

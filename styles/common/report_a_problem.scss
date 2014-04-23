@@ -1,4 +1,4 @@
-// Copied from static project
+// Copied from alphagov/static because we currently copy the whole report a problem form from GOV.UK
 
 .report-a-problem-toggle{
 
@@ -55,8 +55,8 @@
       display: block;
       @include core-19();
       margin: 0 0 1em 0;
-      background-color: #f8f8f8;
-      border: 1px inset #bfc1c3;
+      background-color: $grey-4;
+      border: 1px inset $grey-2;
       padding: 0.3em 0 0.1em 0.4em;
       width: 95%;
 
