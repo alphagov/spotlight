@@ -6,6 +6,12 @@ var fs = require('fs'),
 
 require('colors');
 
+var blacklist = [
+  'services.json',
+  'unimplemented-page-type.json',
+  'no-realistic-dashboard.json'
+]
+
 var Validator = jsonschema.Validator,
     v = new Validator();
 
@@ -28,7 +34,7 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
       return Q.resolve({ ignored: true });
     }
 
-    if (filename === 'services.json' || filename === 'unimplemented-page-type.json') {
+    if (blacklist.indexOf(filename) !== -1) {
       return Q.resolve({ ignored: true });
     }
 
