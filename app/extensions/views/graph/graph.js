@@ -372,7 +372,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
             return d3.max(group.get('values').models, function (value) {
               return value.get(valueAttr);
             });
-          });
+          }) || 1;
 
           var yScale = this.d3.scale.linear();
           var yMin = this.getYMin || 0;
