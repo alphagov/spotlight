@@ -52,6 +52,12 @@ function (Backbone, PageConfig, Controller, HomepageView) {
       ],
       [
         {
+          title: 'R',
+          services: [
+            {name: 'Register as a waste carrier, broker or dealer', slug: 'waste-carrier-or-broker-registration'}
+          ]
+        },
+        {
           title: 'S',
           services: [
             {name: 'SORN (Statutory Off Road Notification)', slug: 'sorn'}
