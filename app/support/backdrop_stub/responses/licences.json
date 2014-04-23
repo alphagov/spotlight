@@ -1,5 +1,5 @@
 {
-  "bucket": "licensing",
+  "data_set": "licensing",
   "query": {
     "group_by": "licenceUrlSlug",
     "collect": ["licenceName"]
