@@ -19,8 +19,8 @@ function generateModules(file) {
     dashboardData = JSON.parse(dashboardData);
 
     // The dashboard file is valid
-    var dashboardSlug = file.replace('.json', ''),
-        pagePerThingDirectory = dashboardSlug;
+    var pagePerThingDirectory = file.replace('.json', ''),
+        dashboardSlug = path.basename(pagePerThingDirectory);
 
     _.each(dashboardData.modules, function (module) {
       var moduleOnDisk = {},
@@ -61,8 +61,8 @@ function generateModules(file) {
       // Create a page-per-thing JSON file based on the slug:
       if (!_.isEqual(moduleOnDisk, module)) {
         // Write out modules if the calculated module differs from the module on disk
-        console.log('->', dashboardSlug, moduleSlug, 'is different on disk, rewriting it.');
-        var pathToPagePerThing = path.join(dashboardSlug, moduleSlug + '.json');
+        console.log('->', pagePerThingDirectory, moduleSlug, 'is different on disk, rewriting it.');
+        var pathToPagePerThing = path.join(pagePerThingDirectory, moduleSlug + '.json');
         fs.writeFileSync(pathToPagePerThing, JSON.stringify(module, null, 2) + '\n');
       }
 
@@ -74,8 +74,6 @@ glob(stagecraftStubGlob, function (err, files) {
   if (err) {
     throw err;
   }
-
-  console.log(files);
 
   _.each(files, function (file) {
     if (!ignoreFileRegexp.test(file)) generateModules(file);
