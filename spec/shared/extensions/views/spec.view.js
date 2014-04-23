@@ -383,8 +383,6 @@ function (View, Model, Backbone) {
         createTests(0,   20,   1, function (i) { return i.toString(); });
         createTests(500, 600,  1, function (i) { return i.toString(); });
         createTests(980, 999,  1, function (i) { return i.toString(); });
-        createTests(1000,   1100,    1,    function (i) { return (Math.round(i / 10) / 100).toPrecision(3) + 'k'; });
-        createTests(9400,   10000,   10,   function (i) { return (Math.round(i / 10) / 100).toPrecision(3) + 'k'; });
         createTests(10000,  11500,   10,   function (i) { return (Math.round(i / 100) / 10).toPrecision(3) + 'k'; });
         createTests(50450,  50500,   10,   function (i) { return (Math.round(i / 100) / 10).toPrecision(3) + 'k'; });
         createTests(100000, 101000,  10,   function (i) { return Math.round(i / 1000).toPrecision(3) + 'k'; });
