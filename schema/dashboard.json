@@ -6,6 +6,11 @@
       "type": "string",
       "required": true
     },
+    "dashboard-type": {
+      "type": "string",
+      "required": true,
+      "enum": ["transaction", "agency", "department", "other"]
+    },
     "page-type": {
       "type": "string",
       "required": true,
@@ -14,6 +19,36 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "department": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "relatedPages": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "oneOf": [
+            { "$ref": "#/definitions/page" }
+          ]
+        },
+        "improve-dashboard-message": {
+          "type": "boolean"
+        },
+        "other": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/page" }
+            ]
+          }
+        }
+      }
     },
     "strapline": {
       "type": "string",
@@ -32,6 +67,22 @@
         "type": "object"
       },
       "uniqueItems": true
+    }
+  },
+  "definitions": {
+    "page": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "required": true,
+          "pattern": "^(http(s)?://|/)[a-zA-Z0-9/\\-\\.]+$"
+        }
+      }
     }
   }
 }
