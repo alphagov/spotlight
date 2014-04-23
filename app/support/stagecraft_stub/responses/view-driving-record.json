@@ -11,7 +11,7 @@
   "relatedPages": {
     "transaction": {
       "title": "View your driving licence information",
-      "url" : "/view-driving-licence"
+      "url" : "https://www.gov.uk/view-driving-licence"
     }
   },
   "modules": [

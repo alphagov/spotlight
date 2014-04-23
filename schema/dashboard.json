@@ -33,9 +33,7 @@
       "type": "object",
       "properties": {
         "transaction": {
-          "oneOf": [
-            { "$ref": "#/definitions/page" }
-          ]
+          "$ref": "#/definitions/link"
         },
         "improve-dashboard-message": {
           "type": "boolean"
@@ -43,9 +41,7 @@
         "other": {
           "type": "array",
           "items": {
-            "oneOf": [
-              { "$ref": "#/definitions/page" }
-            ]
+            "$ref": "#/definitions/link"
           }
         }
       }
@@ -70,7 +66,7 @@
     }
   },
   "definitions": {
-    "page": {
+    "link": {
       "type": "object",
       "properties": {
         "title": {
@@ -80,7 +76,7 @@
         "url": {
           "type": "string",
           "required": true,
-          "pattern": "^(http(s)?://|/)[a-zA-Z0-9/\\-\\.]+$"
+          "format": "uri"
         }
       }
     }
