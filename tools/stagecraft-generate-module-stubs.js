@@ -1,7 +1,8 @@
 var fs = require('fs'),
     path = require('path'),
     jsonschema = require('jsonschema'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    glob = require('glob');
 
 var Validator = jsonschema.Validator,
     v = new Validator();
@@ -30,7 +31,8 @@ var dashboardSchema = {
         'Service dashboard',
         'Performance',
         'Policy dashboard',
-        'Public sector purchasing dashboard'
+        'Public sector purchasing dashboard',
+        'Content dashboard'
       ]
     },
     'modules': {
@@ -137,102 +139,98 @@ moduleSchemas.user_satisfaction_graph = moduleSchemas.common;
 moduleSchemas.kpi = moduleSchemas.common;
 
 var validationResult = {},
-    stagecraftStubDirectory = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses');
+    stagecraftStubGlob = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses', '{experimental/*.json,*.json}'),
+    ignoreFileRegexp = /services\.json|unimplemented-page-type\.json/;
 
-// Iterate over every dashboard file
-fs.readdir(stagecraftStubDirectory, function (err, files) {
+function generateModules(file) {
+  fs.readFile(file, 'utf8', function (err, dashboardData) {
+    if (err) {
+      if (err.code === 'EISDIR') {
+        return;
+      } else {
+        throw err;
+      }
+    }
+
+    dashboardData = JSON.parse(dashboardData);
+    validationResult = v.validate(dashboardData, dashboardSchema);
+
+    if (validationResult.errors.length > 0) {
+      console.log('===== Error while linting', file, '=====');
+      console.log(validationResult.errors);
+    } else {
+      // The dashboard file is valid
+      var dashboardSlug = file.replace('.json', ''),
+          pagePerThingDirectory = dashboardSlug;
+
+      _.each(dashboardData.modules, function (module) {
+        var moduleOnDisk = {},
+            moduleSlug = module.slug,
+            moduleJsonPath = path.join(pagePerThingDirectory, module.slug + '.json');
+
+        if (fs.existsSync(moduleJsonPath)) {
+          moduleOnDisk = JSON.parse(fs.readFileSync(moduleJsonPath, 'utf8'));
+        }
+
+        if (!fs.existsSync(pagePerThingDirectory)) {
+          console.log('->', 'page-per-thing directory does not exist - creating', pagePerThingDirectory);
+          fs.mkdirSync(pagePerThingDirectory);
+        }
+
+        delete module['page-type'];
+        module = _.extend(module, {
+          'page-type': 'module',
+          'dashboard-title': dashboardData.title,
+          'dashboard-strapline': dashboardData.strapline,
+          'dashboard-slug': dashboardSlug
+        });
+
+        if (dashboardData.department) {
+          module = _.extend(module, {
+            'department': dashboardData.department
+          });
+        }
+
+        if (dashboardData.agency) {
+          module = _.extend(module, {
+            'agency': dashboardData.agency
+          });
+        }
+
+        delete module.classes; // We don't care about the classes property on the page-per-thing pages
+
+        // Validate it against a schema based on module-type
+        var moduleType = module['module-type'];
+        validationResult = v.validate(module, moduleSchemas[moduleType]);
+
+        if (validationResult.errors.length > 0) {
+          console.log('===== Error linting "' + module.title + '" in', file, '=====');
+          console.log(validationResult.errors);
+        } else {
+          // Create a page-per-thing JSON file based on the slug:
+          if (!_.isEqual(moduleOnDisk, module)) {
+            // Write out modules if the calculated module differs from the module on disk
+            console.log('->', dashboardSlug, moduleSlug, 'is different on disk, rewriting it.');
+            var pathToPagePerThing = path.join(dashboardSlug, moduleSlug + '.json');
+            fs.writeFileSync(pathToPagePerThing, JSON.stringify(module, null, 2) + '\n');
+          }
+        }
+
+      });
+    }
+  });
+}
+
+glob(stagecraftStubGlob, function(err, files) {
   if (err) {
     throw err;
   }
 
-  _.each(files, function (filename) {
+  console.log(files);
 
-    // If the file doesn't end in .json, don't process it
-    if (filename.indexOf('.json') === -1) {
-      return;
-    }
-
-    if (filename === 'services.json' || filename === 'unimplemented-page-type.json') {
-      return;
-    }
-
-    fs.readFile(path.join(stagecraftStubDirectory, filename), 'utf8', function (err, dashboardData) {
-      if (err) {
-        if (err.code === 'EISDIR') {
-          return;
-        } else {
-          throw err;
-        }
-      }
-
-      dashboardData = JSON.parse(dashboardData);
-      validationResult = v.validate(dashboardData, dashboardSchema);
-
-      if (validationResult.errors.length > 0) {
-        console.log('===== Error while linting', filename, '=====');
-        console.log(validationResult.errors);
-      } else {
-        // The dashboard file is valid
-        var dashboardSlug = filename.replace('.json', ''),
-            pagePerThingDirectory = path.join(stagecraftStubDirectory, dashboardSlug);
-
-        _.each(dashboardData.modules, function (module) {
-          var moduleOnDisk = {},
-              moduleSlug = module.slug,
-              moduleJsonPath = path.join(pagePerThingDirectory, module.slug + '.json');
-
-          if (fs.existsSync(moduleJsonPath)) {
-            moduleOnDisk = JSON.parse(fs.readFileSync(moduleJsonPath, 'utf8'));
-          }
-
-          if (!fs.existsSync(pagePerThingDirectory)) {
-            console.log('->', 'page-per-thing directory does not exist - creating', pagePerThingDirectory);
-            fs.mkdirSync(pagePerThingDirectory);
-          }
-
-          delete module['page-type'];
-          module = _.extend(module, {
-            'page-type': 'module',
-            'dashboard-title': dashboardData.title,
-            'dashboard-strapline': dashboardData.strapline,
-            'dashboard-slug': dashboardSlug
-          });
-
-          if (dashboardData.department) {
-            module = _.extend(module, {
-              'department': dashboardData.department
-            });
-          }
-
-          if (dashboardData.agency) {
-            module = _.extend(module, {
-              'agency': dashboardData.agency
-            });
-          }
-
-          delete module.classes; // We don't care about the classes property on the page-per-thing pages
-
-          // Validate it against a schema based on module-type
-          var moduleType = module['module-type'];
-          validationResult = v.validate(module, moduleSchemas[moduleType]);
-
-          if (validationResult.errors.length > 0) {
-            console.log('===== Error linting "' + module.title + '" in', filename, '=====');
-            console.log(validationResult.errors);
-          } else {
-            // Create a page-per-thing JSON file based on the slug:
-            if (!_.isEqual(moduleOnDisk, module)) {
-              // Write out modules if the calculated module differs from the module on disk
-              console.log('->', dashboardSlug, moduleSlug, 'is different on disk, rewriting it.');
-              var pathToPagePerThing = path.join(stagecraftStubDirectory, dashboardSlug, moduleSlug + '.json');
-              fs.writeFileSync(pathToPagePerThing, JSON.stringify(module, null, 2) + '\n');
-            }
-          }
-
-        });
-      }
-    });
+  _.each(files, function(file) {
+    if (!ignoreFileRegexp.test(file)) generateModules(file);
   });
 
-  console.log('Finished processing module stubs');
 });
+
