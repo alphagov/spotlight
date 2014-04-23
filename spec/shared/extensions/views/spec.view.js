@@ -217,10 +217,10 @@ function (View, Model, Backbone) {
         });
       });
 
-      describe('when all label are lower than 1,000,000', function () {
+      describe('when all label are lower than 1,000,000 and greater than 10,000', function () {
         it('should format all labels as thousands', function () {
-          var formatter = View.prototype.numberListFormatter([0, 1000, 2000, 3000]);
-          expect(formatter(2000)).toBe('2k');
+          var formatter = View.prototype.numberListFormatter([0, 10000, 20000, 30000]);
+          expect(formatter(20000)).toBe('20k');
         });
 
         it('should format with decimals if any label requires it', function () {
@@ -308,10 +308,16 @@ function (View, Model, Backbone) {
         expect(formatNumericLabel(99.96)).toBe('100');
       });
 
-      it('should display numbers from 1000 to 999499 as fractions of 1k', function () {
-        expect(formatNumericLabel(1000)).toBe('1.00k');
-        expect(formatNumericLabel(1005)).toBe('1.01k');
-        expect(formatNumericLabel(1006)).toBe('1.01k');
+      it('should display numbers from 1,000 to 9,949 as whole numbers', function () {
+        expect(formatNumericLabel(1000)).toBe('1,000');
+        expect(formatNumericLabel(1005)).toBe('1,005');
+        expect(formatNumericLabel(1006)).toBe('1,006');
+      });
+
+      it('should display numbers from 10,000 to 999,499 as fractions of 1k', function () {
+        expect(formatNumericLabel(10000)).toBe('10.0k');
+        expect(formatNumericLabel(10005)).toBe('10.0k');
+        expect(formatNumericLabel(10006)).toBe('10.0k');
         expect(formatNumericLabel(100000)).toBe('100k');
         expect(formatNumericLabel(234568)).toBe('235k');
         expect(formatNumericLabel(500000)).toBe('500k');
@@ -347,17 +353,18 @@ function (View, Model, Backbone) {
         expect(formatNumericLabel(-1.234)).toBe('-1.23');
         expect(formatNumericLabel(-12.34)).toBe('-12.3');
         expect(formatNumericLabel(-123.4)).toBe('-123');
-        expect(formatNumericLabel(-1234)).toBe('-1.23k');
+        expect(formatNumericLabel(-1234)).toBe('-1,234');
+        expect(formatNumericLabel(-12345)).toBe('-12.3k');
       });
 
-      it('should display currency symbols, with fewer decimal places', function () {
+      it('should display currency symbols', function () {
         expect(formatNumericLabel(null, 'gbp')).toBe(null);
-        expect(formatNumericLabel(0.00, 'gbp')).toBe('0');
+        expect(formatNumericLabel(0, 'gbp')).toBe('£0');
         expect(formatNumericLabel(100, 'gbp')).toBe('£100');
         expect(formatNumericLabel(12.34, 'gbp')).toBe('£12');
         expect(formatNumericLabel(777, 'gbp')).toBe('£777');
         expect(formatNumericLabel(995001, 'gbp')).toBe('£995k');
-        expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.0b');
+        expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.00b');
       });
 
       describe('generative tests', function () {

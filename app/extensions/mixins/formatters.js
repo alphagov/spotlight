@@ -82,33 +82,47 @@ define([
     },
 
     number: function (value, options) {
-      _.defaults(options, {
-        dps: 0,
-        commas: true
-      });
-      var suffix;
+      var defaults = {
+        commas: true,
+        sigfigs: 3
+      };
+
+      _.defaults(options, defaults);
+
+      var suffix, minus;
+
       if (!isNaN(Number(value))) {
         value = Number(value);
+        if (value < 0) {
+          value = Math.abs(value);
+          minus = true;
+        }
         if (options.magnitude) {
           var parsed = utils.magnitude(value);
           suffix = parsed.suffix;
           value = parsed.value;
         }
-        if (typeof options.dps === 'number' && typeof options.sigfigs !== 'number') {
+        if (typeof options.sigfigs === 'number' && typeof options.dps === 'undefined') {
+          options.dps = Math.min(Math.max(Math.ceil(options.sigfigs - 1 - utils.log10(value)), 0), options.sigfigs - 1);
+        }
+        if (typeof options.dps === 'number') {
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
-        } else if (typeof options.sigfigs === 'number' && value !== 0) {
-          var divisor = Math.pow(10, Math.ceil(Math.log(value) / Math.LN10) - options.sigfigs);
-          value = Math.round(value / divisor) / (1 / divisor); // floating point wtf
         }
-        if (options.fixed && typeof options.fixed === 'number') {
-          value = value.toFixed(options.fixed);
+        if (suffix && options.pad && options.dps > 0) {
+          options.fixed = options.dps;
+        }
+        if (typeof options.fixed === 'number') {
+          value = utils.pad(value, options.fixed);
         }
         if (options.commas) {
           value = utils.commas(value);
         }
         if (suffix) {
           value = value + suffix;
+        }
+        if (minus && value !== '0') {
+          value = '-' + value;
         }
       }
       return value.toString();
@@ -140,6 +154,11 @@ define([
   };
 
   var utils = {
+
+    log10: function (value) {
+      return Math.log(Math.abs(value)) / Math.LN10;
+    },
+
     commas: function (value) {
       value = value.toString().split('.');
       var pattern = /(-?\d+)(\d{3})/;
@@ -156,7 +175,7 @@ define([
       };
       var suffix, parsed = value;
       _.each(magnitudes, function (mag) {
-        if (value >= (mag.limit || mag.value)) {
+        if (value >= (mag.limit || mag.value) * 0.9995) {
           suffix = mag.suffix;
           parsed = value / mag.value;
         }
@@ -165,6 +184,23 @@ define([
         value: parsed,
         suffix: suffix
       };
+    },
+
+    pad: function (value, places, str) {
+      value = value + '';
+      str = str || '0';
+      var pieces = value.split('.');
+      if (places === 0) {
+        return pieces[0];
+      } else {
+        if (pieces.length === 1) {
+          pieces.push('');
+        }
+        while (pieces[1].length < places) {
+          pieces[1] += str;
+        }
+        return pieces.join('.');
+      }
     }
   };
 

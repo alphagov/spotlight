@@ -264,22 +264,44 @@ define([
           it('adds "k" to numbers of a thousand that are greater than or equal to 10,000', function () {
             expect(Formatters.format(10000, { type: 'number', magnitude: true  })).toEqual('10k');
             expect(Formatters.format(10001, { type: 'number', magnitude: true  })).toEqual('10k');
-            expect(Formatters.format(11000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('10k');
             expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('11k');
             expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('11.2k');
           });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(11110, { type: 'number', magnitude: true  })).toEqual('11.1k');
+            expect(Formatters.format(111100, { type: 'number', magnitude: true  })).toEqual('111k');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(11000, { type: 'number', magnitude: true, pad: true  })).toEqual('11.0k');
+          });
+
         });
 
         describe('millions', function () {
 
           it('adds "m" to numbers of a million that are greater than or equal to 1000000', function () {
             expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1m');
-            expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
+            expect(Formatters.format(1000001, { type: 'number', magnitude: true })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1m');
             expect(Formatters.format(1120000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12m');
           });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(1111000, { type: 'number', magnitude: true  })).toEqual('1.11m');
+            expect(Formatters.format(11110000, { type: 'number', magnitude: true  })).toEqual('11.1m');
+            expect(Formatters.format(111100000, { type: 'number', magnitude: true  })).toEqual('111m');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00m');
+            expect(Formatters.format(10000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0m');
+            expect(Formatters.format(100000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100m');
+          });
+
         });
 
         describe('billions', function () {
@@ -292,6 +314,19 @@ define([
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1bn');
             expect(Formatters.format(1120000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12bn');
           });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(1111000000, { type: 'number', magnitude: true  })).toEqual('1.11b');
+            expect(Formatters.format(11110000000, { type: 'number', magnitude: true  })).toEqual('11.1b');
+            expect(Formatters.format(111100000000, { type: 'number', magnitude: true  })).toEqual('111b');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00b');
+            expect(Formatters.format(10000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0b');
+            expect(Formatters.format(100000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100b');
+          });
+
         });
       });
 

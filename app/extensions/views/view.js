@@ -136,30 +136,8 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       escape: 27
     },
 
-    magnitudes: {
-      billion:  {value: 1e9, suffix: 'b' },
-      million:  {value: 1e6, suffix: 'm' },
-      thousand: {value: 1e3, suffix: 'k' },
-      unit:     {value: 1,   suffix: ''  }
-    },
-
     currencies: {
       gbp: { prefix: '£', suffix: '' }
-    },
-
-    magnitudeFor: function (value) {
-      if (value >= 1e9) return this.magnitudes.billion;
-      if (value >= 1e6) return this.magnitudes.million;
-      if (value >= 1e3) return this.magnitudes.thousand;
-      return this.magnitudes.unit;
-    },
-
-    formatNumber: function (value, magnitude, decimalPlaces, currency) {
-      var val = (value / magnitude.value).toFixed(decimalPlaces || 0).toString() + magnitude.suffix;
-      if (currency) {
-        val = currency.prefix + val + currency.suffix;
-      }
-      return val;
     },
 
     /**
@@ -172,29 +150,10 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
      * @return {Function}
      */
     numberListFormatter: function (values, currency) {
-      function isAnExactMultipleOf(magnitude) {
-        return function (n) { return n % magnitude === 0; };
-      }
-
-      var max = values.reduce(function (a, b) {return a > b ? a : b; });
-      var magnitude = this.magnitudeFor(max);
-      var decimalPlaces;
-      if (max === magnitude.value) {
-        if ((values.length === 2) && (values[0] === 0) && (values[1] === 1)) {
-          decimalPlaces = 0;
-        } else {
-          decimalPlaces = 1;
-        }
-      } else {
-        decimalPlaces = values.every(isAnExactMultipleOf(magnitude.value)) ? 0 : 1;
-      }
-
-      var format = this.formatNumber;
       var currencyEntry = (currency) ? this.currencies[currency] : null;
       return function (value) {
-        if (value === 0) return '0';
-        return format(value, magnitude, decimalPlaces, currencyEntry);
-      };
+        return this.formatNumericLabel(value, currencyEntry);
+      }.bind(this);
     },
 
     /**
@@ -225,78 +184,32 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
      * See for example View.prototype.format for a simpler alternative.
      */
     formatNumericLabel: function (value, currency) {
-      if (value === null) return null;
-      if (value === 0) return '0';
-
-      /*
-       * Return the appropriate magnitude (m, k, unit) for rounding a number.
-       *
-       * Thresholds are picked so that number are formatted with the closest
-       * magnitude. So for example magnitudeOf(500,000) returns magnitudes.million,
-       * and not magnitudes.thousand, so that it is formatted as 0.50m rather
-       * than 500k. The actual threshold is 499,500, because digits after the
-       * 3rd most significant are rounded; this means that 499,499 will be
-       * rounded to 499,000 and formatted as 499k; 499,500 will be rounded
-       * as 500,000 and formatted as 0.50m.
-       */
-      var magnitudeOf = function (number) {
-        if (Math.abs(number) >= 999500000) return View.prototype.magnitudes.billion;
-        if (Math.abs(number) >= 999500) return View.prototype.magnitudes.million;
-        if (Math.abs(number) >= 999.5) return View.prototype.magnitudes.thousand;
-        return View.prototype.magnitudes.unit;
+      var props = {
+        type: 'number',
+        magnitude: true,
+        pad: true
       };
-
-      /*
-       * Numbers less than  10 times the magnitude -> 2 decimal digits: N.NNx
-       * Numbers less than 100 times the magnitude -> 1 decimal digits: NN.Nx
-       * Numbers 100 times the magnitude or more   -> no decimal digits: NNNx
-       */
-      var decimalDigits = function (number, magnitude) {
-        if (Math.abs(number) < magnitude.value * 10) return (currency) ? 1 : 2;
-        if (Math.abs(number) < magnitude.value * 100) return (currency) ? 0 : 1;
-        return 0;
-      };
-
-      var magnitude = magnitudeOf(value);
-      var digits = decimalDigits(value, magnitude, currency);
-      var roundingFactor = Math.pow(10, digits);
-
-      var roundedValue = Math.round(value * roundingFactor / magnitude.value) / roundingFactor;
-
-      if (magnitude === View.prototype.magnitudes.unit) {
-        // Render only significant decimal digits: 1.5 -> 1.5
-        // NOTE: Why are we formatting decimal digits differently for numbers below 1000?
-        var val = roundedValue.toString() + magnitude.suffix;
-        if (currency) {
-          var c = View.prototype.currencies[currency];
-          val = c.prefix + val + c.suffix;
-        }
-        return val;
-      }
-      // Render a fixed number of decimal digits: 1,500 -> 1.50k
-      var v = roundedValue.toFixed(digits) + magnitude.suffix;
       if (currency) {
-        var curr = View.prototype.currencies[currency];
-        v = curr.prefix + v + curr.suffix;
+        props.type = 'currency';
+        props.symbol = currency.symbol;
       }
-      return v;
+      return this.format(value, props);
     },
 
     formatPercentage: function (fraction, numDecimals, showSigns) {
-      if (isNaN(fraction) || !_.isNumber(fraction)) {
-        return fraction;
-      }
-      numDecimals = numDecimals || 0;
-      showSigns = showSigns || false;
-      var value = Math.abs(100 * fraction).toFixed(numDecimals);
+      var value = this.format(fraction, {
+        type: 'percent',
+        dps: numDecimals,
+        fixed: numDecimals
+      });
       if (showSigns) {
         if (fraction > 0) {
           value = '+' + value;
         } else if (fraction < 0) {
-          value = '−' + value;
+          // replace hyphens with unicode minus symbol
+          value = value.replace('-', '−');
         }
       }
-      value += '%';
       return value;
     },
 
