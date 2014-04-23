@@ -121,17 +121,26 @@ define([
 
     describe('currency', function () {
 
+      it('always returns £0 for zero input', function () {
+        expect(Formatters.format(0, 'currency')).toEqual('£0');
+        expect(Formatters.format(0, { type: 'currency', pence: true })).toEqual('£0');
+      });
+
+      it('formats values less than 10 with pence', function () {
+        expect(Formatters.format(0.567, 'currency')).toEqual('£0.57');
+        expect(Formatters.format(5.67, 'currency')).toEqual('£5.67');
+        expect(Formatters.format(15.67, 'currency')).toEqual('£16');
+      });
+
       it('returns formatted number with pound symbol', function () {
-        expect(Formatters.format(0.567, 'currency')).toEqual('£1');
-        expect(Formatters.format(5.67, 'currency')).toEqual('£6');
         expect(Formatters.format(567, 'currency')).toEqual('£567');
         expect(Formatters.format(1234, 'currency')).toEqual('£1,234');
         expect(Formatters.format(12345, 'currency')).toEqual('£12,345');
       });
 
       it('returns formatted number with symbol option if provided', function () {
-        expect(Formatters.format(0.567, { type: 'currency', symbol: '$' })).toEqual('$1');
-        expect(Formatters.format(5.67, { type: 'currency', symbol: '$' })).toEqual('$6');
+        expect(Formatters.format(0.567, { type: 'currency', symbol: '$' })).toEqual('$0.57');
+        expect(Formatters.format(5.67, { type: 'currency', symbol: '$' })).toEqual('$5.67');
         expect(Formatters.format(567, { type: 'currency', symbol: '$' })).toEqual('$567');
         expect(Formatters.format(1234, { type: 'currency', symbol: '$' })).toEqual('$1,234');
         expect(Formatters.format(12345, { type: 'currency', symbol: '$' })).toEqual('$12,345');
@@ -178,8 +187,25 @@ define([
 
     describe('number', function () {
 
+      it('rounds numbers < 10 to 2 dp by default', function () {
+        expect(Formatters.format(0.1234, 'number')).toEqual('0.12');
+        expect(Formatters.format(1.1234, 'number')).toEqual('1.12');
+        expect(Formatters.format(10.1234, 'number')).toEqual('10.1');
+      });
+
+      it('rounds numbers > 10 && < 100 to 1 dp by default', function () {
+        expect(Formatters.format(12.34, 'number')).toEqual('12.3');
+        expect(Formatters.format(23.45, 'number')).toEqual('23.5');
+        expect(Formatters.format(34.56, 'number')).toEqual('34.6');
+      });
+
+      it('rounds > 100 to nearest integer by default', function () {
+        expect(Formatters.format(123.34, 'number')).toEqual('123');
+        expect(Formatters.format(234.45, 'number')).toEqual('234');
+        expect(Formatters.format(345.56, 'number')).toEqual('346');
+      });
+
       it('returns number rounded to decimal places specified', function () {
-        expect(Formatters.format(0.1234, 'number')).toEqual('0');
         expect(Formatters.format(0.1234, { type: 'number', dps: 1 })).toEqual('0.1');
         expect(Formatters.format(0.1234, { type: 'number', dps: 2 })).toEqual('0.12');
         expect(Formatters.format(0.1234, { type: 'number', dps: 3 })).toEqual('0.123');
@@ -207,7 +233,6 @@ define([
       });
 
       it('pads with zeroes if fixed options is passed', function () {
-        expect(Formatters.format(0, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.0000');
         expect(Formatters.format(0.1, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1000');
         expect(Formatters.format(0.12, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1200');
         expect(Formatters.format(0.123, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1230');

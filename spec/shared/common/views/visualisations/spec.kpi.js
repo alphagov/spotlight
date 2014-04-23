@@ -80,11 +80,11 @@ define([
       });
 
       it('loads property from model value attribute', function () {
-        kpi.collection.at(0).set('foo', 2);
-        kpi.collection.at(1).set('foo', 2);
+        kpi.collection.at(0).set('foo', 2.5);
+        kpi.collection.at(1).set('foo', 2.5);
         kpi.model.set('value-attribute', 'foo');
         kpi.render();
-        expect(kpi.$('.single-stat-headline strong').text()).toEqual('£2');
+        expect(kpi.$('.single-stat-headline strong').text()).toEqual('£2.50');
       });
 
       it('adds a percentage change', function () {
