@@ -100,7 +100,7 @@ module.exports = function (grunt) {
     },
     // Lints our JavaScript
     jshint: {
-      files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js'],
+      files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/*.js'],
       options: {
         reporter: require('jshint-stylish'),
         jshintrc: true
