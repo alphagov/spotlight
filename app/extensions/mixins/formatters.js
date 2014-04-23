@@ -49,10 +49,17 @@ define([
     currency: function (value, options) {
       _.defaults(options, {
         symbol: '£',
-        pence: false
+        pence: value < 10
       });
       if (options.pence) {
         options.dps = options.fixed = 2;
+      } else {
+        value = Math.round(value);
+      }
+      if (value === 0) {
+        return options.symbol + '0';
+      } else {
+        return options.symbol + formatters.number(value, options);
       }
       return options.symbol + formatters.number(value, options);
     },
