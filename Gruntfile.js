@@ -210,6 +210,15 @@ module.exports = function (grunt) {
         },
         command: 'node tools/stagecraft-generate-module-stubs.js'
       },
+      // Generates the page-per-thing module JSON stubs
+      validate_module_stubs: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: 'node tools/validate-stubs.js'
+      },
       // Supervises the node process in development
       supervisor: {
         options: {
@@ -268,6 +277,7 @@ module.exports = function (grunt) {
     'copy:govuk_template',
     'clean',
     'copy:assets',
+    'shell:validate_module_stubs',
     'shell:generate_module_stubs'
   ]);
 
@@ -290,6 +300,7 @@ module.exports = function (grunt) {
     'copy:govuk_template',
     'clean',
     'copy:assets',
+    'shell:validate_module_stubs',
     'shell:generate_module_stubs',
     'sass:development',
     'digest',
