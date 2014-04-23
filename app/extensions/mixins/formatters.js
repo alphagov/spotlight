@@ -61,10 +61,12 @@ define([
       } else {
         return options.symbol + formatters.number(value, options);
       }
-      return options.symbol + formatters.number(value, options);
     },
 
     percent: function (value, options) {
+      if (isNaN(Number(value))) {
+        return value;
+      }
       _.defaults(options, {
         dps: 0,
         normalisation: 1.0

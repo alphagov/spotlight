@@ -392,7 +392,8 @@ function (View, Model, Backbone) {
     });
 
     describe('formatPercentage', function () {
-      var format = View.prototype.formatPercentage;
+      var view = new View();
+      var format = view.formatPercentage.bind(view);
 
       it('formats a number as percentage string with no decimals', function () {
         expect(format(0.011)).toEqual('1%');
