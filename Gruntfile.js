@@ -295,6 +295,10 @@ module.exports = function (grunt) {
     'digest'
   ]);
 
+  grunt.registerTask('test:stubs', [
+    'shell:validate_module_stubs'
+  ]);
+
   grunt.registerTask('test:all', [
     'copy:vendor',
     'copy:govuk_template',
