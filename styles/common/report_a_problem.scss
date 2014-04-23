@@ -13,14 +13,13 @@
 }
 
 #content .report-a-problem-container {
+  clear: both;
+  margin: 3em 0 2em 0;
+  max-width: 38em;
 
   .js-enabled & {
     display: none;
   }
-
-  clear: both;
-  margin: 3em 0 2em 0;
-  max-width: 38em;
 
   h2 {
     @include core-24();
