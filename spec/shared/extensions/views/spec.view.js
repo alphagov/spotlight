@@ -330,6 +330,7 @@ function (View, Model, Backbone) {
         expect(formatNumericLabel(1010000)).toBe('1.01m');
         expect(formatNumericLabel(1220000)).toBe('1.22m');
         expect(formatNumericLabel(9099000)).toBe('9.10m');
+        expect(formatNumericLabel(19099000)).toBe('19.1m');
         expect(formatNumericLabel(100000000)).toBe('100m');
         expect(formatNumericLabel(234568234)).toBe('235m');
         expect(formatNumericLabel(999499499)).toBe('999m');
