@@ -12,7 +12,8 @@ function (InterleavedBar) {
       return x1 - x0;
     },
     text: function (model) {
-      return this.formatNumericLabel(model.get(this.graph.valueAttr) || 0);
+      var value = model.get(this.graph.valueAttr);
+      return (!_.isNull(value)) ? this.formatNumericLabel(value) : '(no data)';
     }
   });
 
