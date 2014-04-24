@@ -13,7 +13,7 @@ function (View, Formatters, template) {
 
       var current = this.collection.at(0),
         previous = this.collection.at(1),
-        valueAttr = this.model.get('valueAttr'),
+        valueAttr = this.model.get('value-attribute'),
         format = this.model.get('format') || 'number',
         dateFormat = { type: 'date', format: 'MMM YYYY' },
         datePeriod = this.model.get('date-period');

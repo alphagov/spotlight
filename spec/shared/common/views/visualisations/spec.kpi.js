@@ -11,7 +11,7 @@ define([
     beforeEach(function () {
       kpi = new KPIView({
         model: new Model({
-          valueAttr: 'value',
+          'value-attribute': 'value',
           format: 'currency'
         }),
         collection: new Collection([
@@ -60,10 +60,10 @@ define([
         expect(dateKpi.$('.single-stat-headline').text().trim()).toEqual('no data');
       });
 
-      it('loads property from model valueAttr', function () {
+      it('loads property from model value attribute', function () {
         kpi.collection.at(0).set('foo', 2);
         kpi.collection.at(1).set('foo', 2);
-        kpi.model.set('valueAttr', 'foo');
+        kpi.model.set('value-attribute', 'foo');
         kpi.render();
         expect(kpi.$('.single-stat-headline strong').text()).toEqual('£2');
       });

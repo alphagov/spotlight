@@ -27,7 +27,7 @@
         "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
-      "valueAttr": "number_of_transactions",
+      "value-attribute": "number_of_transactions",
       "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },
     {
@@ -41,7 +41,7 @@
         "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
-      "valueAttr": "total_cost",
+      "value-attribute": "total_cost",
       "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
     {
@@ -55,7 +55,7 @@
         "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
         "sort_by": "_timestamp:descending"
       },
-      "valueAttr": "cost_per_transaction",
+      "value-attribute": "cost_per_transaction",
       "format": { "type": "currency", "pence": true }
     },
     {
