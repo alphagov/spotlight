@@ -42,6 +42,10 @@ a[rel="external"] {
       @include core-16($tabular-numbers: true);
     }
 
+    h3 {
+      margin-top: 5px;
+    }
+
     .double-decker-graph h3 {
       @include bold-19($tabular-numbers: true);
     }

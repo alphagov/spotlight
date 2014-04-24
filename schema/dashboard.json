@@ -50,6 +50,7 @@
       "type": "string",
       "required": true,
       "enum": [
+        "Dashboard",
         "Service dashboard",
         "Performance",
         "Policy dashboard",

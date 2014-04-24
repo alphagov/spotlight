@@ -2,9 +2,9 @@
   "slug": "sorn",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "strapline": "Service dashboard",
+  "strapline": "Dashboard",
   "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>.",
-  "title": "Statutory Off Road Notification",
+  "title": "SORN (Statutory Off Road Notification) applications",
   "department": {
     "title": "Department for Transport"
   },
@@ -92,7 +92,7 @@
       "classes": "cols2"
     },
     {
-      "slug": "applications-breakdown",
+      "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "SORN applications per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",

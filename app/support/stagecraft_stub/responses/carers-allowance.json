@@ -2,8 +2,8 @@
   "slug": "carers-allowance",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "strapline": "Service dashboard",
-  "title": "Carer's Allowance",
+  "strapline": "Dashboard",
+  "title": "Carer's Allowance applications",
   "description": "Carer's Allowance (CA) is a regular payment for carers to help look after someone with substantial caring needs - involving at least 35 hours a week.",
   "department": {
     "title": "Department for Work and Pensions"
@@ -41,9 +41,9 @@
       "data-type": "realtime"
     },
     {
-      "slug": "claims-breakdown",
+      "slug": "volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Claims breakdown",
+      "title": "Applications breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",

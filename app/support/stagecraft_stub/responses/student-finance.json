@@ -2,14 +2,14 @@
   "slug": "student-finance",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "strapline": "Service dashboard",
-  "title": "Apply for student finance",
+  "strapline": "Dashboard",
+  "title": "Student finance applications",
   "department": {
     "title": "Department for Education"
   },
   "relatedPages": {
     "transaction": {
-      "title": "Apply online for student finance for higher education",
+      "title": "Apply for student finance",
       "url": "https://www.gov.uk/apply-online-for-student-finance",
       "metadata": ""
     }
@@ -79,9 +79,9 @@
       }
     },
     {
-      "slug": "usage-breakdown",
+      "slug": "volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Usage breakdown",
+      "title": "Applications breakdown",
       "description": "Submitted <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications for 2014/15",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
