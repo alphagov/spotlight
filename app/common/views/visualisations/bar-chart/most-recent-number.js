@@ -10,10 +10,10 @@ function (SingleStatView) {
       return this.formatNumericLabel(value);
     },
 
-    getFirstNonNullValueInCollection: function() {
+    getFirstNonNullValueInCollection: function () {
       var values = this.collection.first().get('values');
       values = values.last(values.length).reverse();
-      var firstMatch = _.find(values, function (value){
+      var firstMatch = _.find(values, function (value) {
         return !_.isNull(value.get(this.valueAttr));
       }, this);
       return firstMatch;

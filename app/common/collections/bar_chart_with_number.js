@@ -16,14 +16,14 @@ function (MatrixCollection, Collection, Group) {
       MatrixCollection.prototype.initialize.apply(this, arguments);
     },
 
-    parse: function(response) {
+    parse: function (response) {
 
       var MAX_LENGTH = 5;
       if (response.data.length > MAX_LENGTH) {
         response.data = response.data.slice(-MAX_LENGTH);
       }
 
-      _.each(response.data, function(d) {
+      _.each(response.data, function (d) {
         if (!d._start_at) {
           d._start_at = d['_' + this.axisPeriod + '_start_at'];
         }

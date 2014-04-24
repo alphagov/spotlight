@@ -2,10 +2,10 @@ define([
   'common/views/visualisations/bar-chart/xaxis',
   'extensions/collections/collection'
 ],
-function (XAxis,Collection) {
-  describe('Bar chart XAxisComponent',function () {
+function (XAxis, Collection) {
+  describe('Bar chart XAxisComponent', function () {
 
-    var el,wrapper;
+    var el, wrapper;
     beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
       wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g');
@@ -55,15 +55,15 @@ function (XAxis,Collection) {
       return view;
     }
 
-    describe('ticks',function () {
-      it('display formatted periods when axisPeriod is set',function () {
+    describe('ticks', function () {
+      it('display formatted periods when axisPeriod is set', function () {
         var view = createView();
         view.axisPeriod = 'quarter';
 
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
-        expect(view.tickValues()).toEqual([[0,1,2]]);
+        expect(view.tickValues()).toEqual([[0, 1, 2]]);
         expect(wrapper.selectAll('.tick')[0].length).toEqual(3);
 
         expect(d3.select(ticks[0]).text()).toEqual('Jan to Mar 2014');
@@ -71,13 +71,13 @@ function (XAxis,Collection) {
         expect(d3.select(ticks[2]).text()).toEqual('July to Sep 2014');
       });
 
-      it('display titles when axisPeriod is not set',function () {
+      it('display titles when axisPeriod is not set', function () {
         var view = createView();
 
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
-        expect(view.tickValues()).toEqual([[0,1,2]]);
+        expect(view.tickValues()).toEqual([[0, 1, 2]]);
         expect(wrapper.selectAll('.tick')[0].length).toEqual(3);
 
         expect(d3.select(ticks[0]).text()).toEqual('step 1');

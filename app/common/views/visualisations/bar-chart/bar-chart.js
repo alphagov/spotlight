@@ -8,7 +8,7 @@ function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({
     numYTicks: 3,
 
-    initialize: function() {
+    initialize: function () {
       this.valueAttr = this.collection.options.valueAttr || 'uniqueEvents';
       this.axisPeriod = this.collection.options.axisPeriod;
 
