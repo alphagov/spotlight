@@ -30,7 +30,7 @@ function (http, url) {
   renderPng.getScreenshotPath = function (url) {
     return [
       renderPng.screenshotServiceUrl,
-      '?readyExpression=!!document.querySelector(".ready")',
+      '?readyExpression=!!document.querySelector(".loaded")',
       '&forwardCacheHeaders=true',
       '&clipSelector=.visualisation',
       '&url=',

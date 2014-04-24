@@ -80,6 +80,7 @@ define([
         module.once('ready', _.bind(function () {
           remaining--;
           if (remaining === 0) {
+            this.trigger('loaded');
             callback();
           }
         }, this));

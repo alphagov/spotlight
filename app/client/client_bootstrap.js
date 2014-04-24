@@ -25,6 +25,9 @@ function (StagecraftApiClient, _, Modernizr) {
     controller.on('ready', function () {
       $('body').addClass('ready');
     });
+    controller.on('loaded', function () {
+      $('body').addClass('loaded');
+    });
     controller.render({ init: true });
     return controller;
   };

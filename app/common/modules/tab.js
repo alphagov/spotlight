@@ -7,7 +7,7 @@ function (ModuleController, TabView) {
   var TabModule = ModuleController.extend({
     visualisationClass: TabView,
     clientRenderOnInit: true,
-    requiresSvg: false,
+    requiresSvg: true,
 
     initialize: function (options) {
       // for tests we want to be able to inject a custom controller map
