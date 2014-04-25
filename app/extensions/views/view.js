@@ -345,11 +345,18 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         end = this.getMoment(model.get('_original_end_at'));
       }
 
+      if (start) {
+        start = this.getMoment(start);
+      }
+      if (end) {
+        end = this.getMoment(end);
+      }
+
       switch (period) {
         case 'week': // fall through; we're formatting weeks same as days
         case 'day':
           if (end) {
-            end = this.getMoment(end).subtract(1, 'days');
+            end = end.subtract(1, 'days');
             if (start.diff(end)) {
               if (start.month() !== end.month()) {
                 return start.format('D MMM') + ' to ' + end.format('D MMM YYYY');
@@ -362,7 +369,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         case 'month':
         case 'quarter':
           if (end) {
-            end = this.getMoment(end).subtract(1, 'months');
+            end = end.subtract(1, 'months');
             if (start.diff(end)) {
               if (start.year() !== end.year()) {
                 return start.format('MMM YYYY') + ' to ' + end.format('MMM YYYY');

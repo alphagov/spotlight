@@ -2,6 +2,7 @@ define([
   'extensions/controllers/dashboard',
   'common/controllers/error',
   'common/modules/availability',
+  'common/modules/bar_chart_with_number',
   'common/modules/comparison',
   'common/modules/completion_numbers',
   'common/modules/completion_rate',
@@ -18,14 +19,17 @@ define([
 ],
 function (DashboardController, ErrorController,
 
-  AvailabilityModule, ComparisonModule, CompletionNumbersModule, CompletionRateModule, GroupedTimeseriesModule,
-  JourneyModule, KPIModule, ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule, UserSatisfactionGraphModule, VisitorsRealtimeModule) {
+  AvailabilityModule, BarChartWithNumberModule, ComparisonModule, CompletionNumbersModule,
+  CompletionRateModule, GroupedTimeseriesModule, JourneyModule, KPIModule,
+  ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule,
+  UserSatisfactionGraphModule, VisitorsRealtimeModule) {
 
   var ControllerMap = {
     dashboard: DashboardController,
     error: ErrorController,
     modules: {
       'availability': AvailabilityModule,
+      'bar_chart_with_number': BarChartWithNumberModule,
       'comparison': ComparisonModule,
       'completion_numbers': CompletionNumbersModule,
       'completion_rate': CompletionRateModule,

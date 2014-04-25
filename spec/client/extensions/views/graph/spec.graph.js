@@ -785,6 +785,13 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
             expect(graph.calcYScale().tickValueList)
                 .toEqual([0, 20, 40, 60, 80, 100, 120]);
           });
+
+          it('still sets a scale for the domain (rather than throwing an error) when all data in the dataset is null', function () {
+            collection.at(0).get('values').each(function (model) { model.set('_count', null); });
+            collection.at(1).get('values').each(function (model) { model.set('_count', null); });
+            collection.at(2).get('values').each(function (model) { model.set('_count', null); });
+            expect(graph.calcYScale().domain()).toEqual([0, 6]);
+          });
         });
       });
 

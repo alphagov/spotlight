@@ -186,7 +186,39 @@ figure.graph {
     }
 
     text {
+      @include core-19($tabular-numbers: true) ;
       text-anchor: middle;
+    }
+
+    rect {
+      stroke-width: 2px;
+      &.stack0 { stroke: mix($data-colour-1, $white, 25%); }
+      &.stack1 { stroke: mix($data-colour-2, $white, 25%); }
+      &.stack2 { stroke: mix($data-colour-3, $white, 25%); }
+      &.stack3 { stroke: mix($data-colour-4, $white, 25%); }
+      &.stack4 { stroke: mix($data-colour-5, $white, 25%); }
+      &.stack5 { stroke: mix($data-colour-6, $white, 25%); }
+    }
+
+    .selected {
+      rect {
+        &.stack0 { stroke: $data-colour-1; }
+        &.stack1 { stroke: $data-colour-2; }
+        &.stack2 { stroke: $data-colour-3; }
+        &.stack3 { stroke: $data-colour-4; }
+        &.stack4 { stroke: $data-colour-5; }
+        &.stack5 { stroke: $data-colour-6; }
+      }
+    }
+    .selected {
+
+      text {
+        font-weight: bold;
+      }
+
+      line {
+        stroke-width:4px;
+      }
     }
   }
 

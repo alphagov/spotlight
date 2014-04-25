@@ -1,20 +1,20 @@
 define([
-  'common/views/visualisations/journey-graph/journey-graph',
+  'common/views/visualisations/bar-chart/bar-chart',
   'common/collections/journey',
   'extensions/collections/collection'
 ],
-function (JourneyGraph, JourneyCollection, Collection) {
+function (BarChart, JourneyCollection, Collection) {
 
-  describe('JourneyGraph', function () {
+  describe('BarChart', function () {
     var graph;
 
     beforeEach(function () {
-      graph = new JourneyGraph({
+      graph = new BarChart({
         collection: new JourneyCollection([{}])
       });
     });
-    describe('calcXScale', function () {
 
+    describe('calcXScale', function () {
       it('sets the domain to the number of steps', function () {
 
         graph.collection.at(0).set('values', new Collection([
@@ -31,13 +31,10 @@ function (JourneyGraph, JourneyCollection, Collection) {
           { uniqueEvents: 100 }
         ]));
         expect(graph.calcXScale().domain()).toEqual([0, 3]);
-
       });
-
-
     });
-    describe('calcYScale', function () {
 
+    describe('calcYScale', function () {
       it('sets the domain to the range of the data', function () {
         graph.collection.at(0).set('values', new Collection([
           { uniqueEvents: 300 },
@@ -61,7 +58,6 @@ function (JourneyGraph, JourneyCollection, Collection) {
         graph.collection.at(0).set('values', new Collection([]));
         expect(graph.calcYScale().domain()).toEqual([0, 1]);
       });
-
     });
 
     describe('getYPos', function () {
