@@ -219,6 +219,15 @@ module.exports = function (grunt) {
         },
         command: 'node tools/validate-stubs.js'
       },
+      // Generates the page-per-thing module JSON stubs
+      validate_module_stubs_experimental: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: 'node tools/validate-stubs.js --experimental'
+      },
       // Supervises the node process in development
       supervisor: {
         options: {
@@ -297,6 +306,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:stubs', [
     'shell:validate_module_stubs'
+  ]);
+
+  grunt.registerTask('test:stubs:experimental', [
+    'shell:validate_module_stubs_experimental'
   ]);
 
   grunt.registerTask('test:all', [
