@@ -97,9 +97,9 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
       console.log(err);
     });
     var allLength = succeeded + failed.length;
-    console.log('\n' + allLength + ' schema' + ((allLength !== 1) ? 's' : '') + ' validated');
-    console.log((succeeded + ' schema' + ((succeeded !== 1) ? 's' : '') + ' passed').green);
-    console.log((failed.length + ' schema' + ((failed.length !== 1) ? 's' : '') + ' failed').red + '\n');
+    console.log('\n' + allLength + ' stub' + ((allLength !== 1) ? 's' : '') + ' tested');
+    console.log((succeeded + ' stub' + ((succeeded !== 1) ? 's' : '') + ' passed').green);
+    console.log((failed.length + ' stub' + ((failed.length !== 1) ? 's' : '') + ' failed').red + '\n');
     process.exit(failed.length > 0);
   });
 });
