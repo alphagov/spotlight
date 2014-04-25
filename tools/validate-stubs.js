@@ -96,9 +96,10 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
     failed.forEach(function (err) {
       console.log(err);
     });
-    console.log('\n' + (succeeded + failed.length) + ' schema validated');
-    console.log((succeeded + ' schema passed').green);
-    console.log((failed.length + ' schema failed').red + '\n');
+    var allLength = succeeded + failed.length;
+    console.log('\n' + allLength + ' schema' + ((allLength !== 1) ? 's' : '') + ' validated');
+    console.log((succeeded + ' schema' + ((succeeded !== 1) ? 's' : '') + ' passed').green);
+    console.log((failed.length + ' schema' + ((failed.length !== 1) ? 's' : '') + ' failed').red + '\n');
     process.exit(failed.length > 0);
   });
 });
