@@ -3,7 +3,7 @@
   min-height:160px;
 
   .impact-number strong {
-    @include bold-48($tabular-numbers: true);
+    @include bold-48();
   }
 
   .period {
@@ -29,7 +29,7 @@
 
     .delta {
       .change {
-        @include core-24($tabular-numbers: true);
+        @include core-24();
       }
     }
 

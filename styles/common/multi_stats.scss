@@ -2,8 +2,8 @@
 
 	list-style-type: none;
 	padding: 0;
-	
-	li { 
+
+	li {
 	  float: left;
 	  width: 50%;
 	  margin-top: 10px;
@@ -11,83 +11,83 @@
 	  position: relative;
   }
 
-  div { 
+  div {
     float: left;
   }
 
-  p.impact-number, p.stat-description { 
+  p.impact-number, p.stat-description {
     margin-bottom: 0;
     clear: both;
-    @include core-16($tabular-numbers: true);
+    @include core-16();
 	  strong {
-	    @include bold-36($tabular-numbers: true);
+	    @include bold-36();
 	  }
   }
 
-  p.impact-number { 
+  p.impact-number {
     margin-top: 8px;
   }
 
-  .delta { 
+  .delta {
     position: absolute;
     bottom: 0;
     left: 8em;
-    @include core-16($tabular-numbers: true);
-    
-    span.no-data { 
+    @include core-16();
+
+    span.no-data {
       display: block;
     }
   }
 
-  .sparkline { 
+  .sparkline {
     position: absolute;
     bottom: 0;
     right: 0;
     left: 13em;
-		p.stat-description { 
+		p.stat-description {
 	    padding-left: 10px;
 	  }
   }
 
-  .sparkline-graph { 
+  .sparkline-graph {
     float: none;
     clear: both;
   }
- 
+
   @media(max-width: 880px) {
 
-		li { 
+		li {
 		  width: 100%;
 	  }
-	  .delta { 
+	  .delta {
 	    left: 12em;
 	  }
-		.sparkline { 
+		.sparkline {
 	    left: 20em;
 	  }
-	
+
   }
 
   @media(max-width: 640px) {
 
-	  .delta { 
+	  .delta {
 	    left: 9em;
 	  }
-		.sparkline { 
+		.sparkline {
 	    left: 14em;
 	  }
-	
+
   }
 
   @media(max-width: 500px) {
 
-	  .delta { 
+	  .delta {
 	    left: 8em;
 	  }
-		.sparkline { 
+		.sparkline {
 	    left: 12em;
 	  }
-	
+
   }
 
 }

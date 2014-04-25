@@ -3,11 +3,11 @@
     padding-top:1em;
     width: 12.3em;
     float:left;
-    @include core-16($tabular-numbers: true);
+    @include core-16();
     color: $black;
 
     strong {
-      @include bold-48($tabular-numbers: true);
+      @include bold-48();
       margin-bottom:-.1em;
       display:block
 
@@ -18,7 +18,7 @@
     clear:both;
     height:0;
     margin:0;
-    @include bold-19($tabular-numbers: true) ;
+    @include bold-19() ;
   }
 
   h1 {

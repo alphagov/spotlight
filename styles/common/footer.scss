@@ -35,7 +35,7 @@ $grey-6: #a1acb2;
     }
 
     ul {
-      @include core-16($tabular-numbers: true);
+      @include core-16();
       list-style: none;
 
       border: 1px solid $grey-6;

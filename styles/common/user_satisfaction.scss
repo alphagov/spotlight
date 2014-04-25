@@ -17,7 +17,7 @@
     left: 12em;
 
     .change {
-      @include core-24($tabular-numbers: true);
+      @include core-24();
     }
   }
 

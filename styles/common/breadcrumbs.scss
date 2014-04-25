@@ -28,7 +28,7 @@
     }
 
     li {
-      @include core-16($tabular-numbers: true);
+      @include core-16();
       background-image: file-url('images/separator.png');
       background-position: 100% 50%;
       background-repeat: no-repeat;

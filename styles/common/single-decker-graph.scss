@@ -3,7 +3,7 @@
     float:left;
     width: 12.3em;
     strong {
-      @include bold-48($tabular-numbers: true);
+      @include bold-48();
     }
   }
 
@@ -16,7 +16,7 @@
     clear:both;
     height:0;
     margin:0;
-    @include bold-19($tabular-numbers: true) ;
+    @include bold-19() ;
   }
 
   h1 {

@@ -4,9 +4,9 @@
     margin-top: 14px;
     border-bottom: 1px solid $grey-2;
     padding-left: 0;
-    
+
     li {
-      @include bold-16($tabular-numbers: true) ;
+      @include bold-16() ;
       border: 4px solid $white;
       background-color: $grey-3;
       list-style: none;

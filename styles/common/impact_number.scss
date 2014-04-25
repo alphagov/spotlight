@@ -2,19 +2,19 @@
   margin-bottom: 0.25em;
 
   strong {
-    @include bold-80($tabular-numbers: true) ;
+    @include bold-80();
     margin-bottom: -0.1em;
     display: block;
 
     @media (max-width: 850px) {
-      @include bold-48($tabular-numbers: true);
+      @include bold-48();
     }
 
     @media (max-width: 640px) {
       // Revert back to default impact number size for small screen sizes.
       // GOV.UK frontend toolkit rule decreases font size automatically
       // for small screens.
-      @include bold-80($tabular-numbers: true);
+      @include bold-80();
     }
   }
 
@@ -24,7 +24,7 @@
 
   .no-data {
     color: $grey-1;
-    @include core-24($tabular-numbers: true);
+    @include core-24();
     display: block;
     margin-bottom: 0.6em;
 

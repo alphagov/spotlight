@@ -1,13 +1,9 @@
-body {
-  font-family: $NTA-Light-Tabular;
-}
-
 h2 {
   @include core-19;
 }
 
 p {
-  @include core-16($tabular-numbers: true);
+  @include core-16();
 
   &.lede, &.lead {
     @include core-24;
@@ -39,7 +35,7 @@ a[rel="external"] {
     }
 
     h2.dashboard, h3 {
-      @include core-16($tabular-numbers: true);
+      @include core-16();
     }
 
     h3 {
@@ -47,7 +43,7 @@ a[rel="external"] {
     }
 
     .double-decker-graph h3 {
-      @include bold-19($tabular-numbers: true);
+      @include bold-19();
     }
   }
 }
