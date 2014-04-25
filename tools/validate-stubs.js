@@ -47,6 +47,33 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
         }
       }
 
+      var validateModule = function (module) {
+        var moduleDefer = Q.defer();
+        var schema;
+        try {
+          schema = require('../schema/modules/' + module['module-type']);
+        } catch (e) {
+          schema = require('../schema/module');
+        }
+
+        var result = v.validate(module, schema);
+
+        if (result.errors.length > 0) {
+          result.errors.forEach(function (err) {
+            err.filename = filename;
+            err.module = module.slug + ' - ' + module['module-type'];
+          });
+          moduleDefer.reject(result.errors);
+        } else {
+          if (module['module-type'] === 'tab') {
+            return Q.all(_.map(module.tabs, validateModule));
+          } else {
+            moduleDefer.resolve();
+          }
+        }
+        return moduleDefer.promise;
+      };
+
       dashboardData = JSON.parse(dashboardData);
       var result = v.validate(dashboardData, dashboardSchema);
       if (result.errors.length > 0) {
@@ -55,34 +82,13 @@ fs.readdir(stagecraftStubDirectory, function (err, files) {
         });
         defer.reject(result.errors);
       } else {
-
-        return Q.all(_.map(dashboardData.modules, function (module) {
-          var moduleDefer = Q.defer();
-          var schema;
-          try {
-            schema = require('../schema/modules/' + module['module-type']);
-          } catch (e) {
-            schema = require('../schema/module');
-          }
-
-          var result = v.validate(module, schema);
-
-          if (result.errors.length > 0) {
-            result.errors.forEach(function (err) {
-              err.filename = filename;
-              err.module = module.slug + ' - ' + module['module-type'];
-            });
-            moduleDefer.reject(result.errors);
-          } else {
-            moduleDefer.resolve();
-          }
-          return moduleDefer.promise;
-        })).then(defer.resolve, defer.reject);
-
+        return Q.all(_.map(dashboardData.modules, validateModule))
+          .then(defer.resolve, defer.reject);
       }
     });
 
     return defer.promise;
+    
   })).then(function (results) {
     var failed = [],
         succeeded = 0;
