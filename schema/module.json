@@ -2,6 +2,10 @@
   "id": "/ModuleCommon",
   "type": "object",
   "properties": {
+    "slug": {
+      "type": "string",
+      "required": true
+    },
     "module-type": {
       "type": "string",
       "required": true
