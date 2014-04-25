@@ -3,18 +3,27 @@
     clear: both;
     overflow: hidden;
     margin: 1em 0 4em 0;
-    padding-top: 2em;
+    padding-top: 1.5em;
     width: 100%;
     border-top: 1px solid $grey-2;
 
     .footer-text, .description {
       @include bold-24($tabular-numbers: true);
       margin-top: 0;
-      margin-bottom: 5px;
+      margin-bottom: 20px;
     }
 
     .description {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
+      width: 62.5%; //600px
+    }
+
+    .footer-left {
+      padding-right: 30px;
+    }
+
+    .footer-right {
+      width: 48.4375% //465px
     }
 
     .related-pages {
@@ -23,15 +32,11 @@
 
     h3 {
       @include core-16($tabular-numbers: true);
+      margin-bottom: 5px;
     }
 
     h4 {
       @include bold-16($tabular-numbers: true);
-    }
-
-    p {
-      font-size: 14px;
-      line-height: 20px;
     }
 
   }
