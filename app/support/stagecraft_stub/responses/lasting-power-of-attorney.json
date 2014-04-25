@@ -27,7 +27,7 @@
       "data-type": "volumes",
       "category": "key",
       "period": "week",
-      "value-attr": "value:sum",
+      "value-attribute": "value:sum",
       "show-line-labels": true,
       "use_stack": true,
       "group-mapping": {

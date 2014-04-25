@@ -29,7 +29,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
     collectionOptions: function () {
       return {
         tabs: this.model.get('tabs'),
-        valueAttr: this.model.get('value-attr'),
+        valueAttr: this.model.get('value-attribute'),
         category: this.model.get('category'),
         period: this.model.get('period'),
         startAt: this.model.get('start-at'),

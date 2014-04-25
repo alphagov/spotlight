@@ -32,7 +32,7 @@
       "data-type": "transactions-by-channel",
       "category": "channel",
       "period": "week",
-      "value-attr": "count:sum",
+      "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": false,
       "info": [
@@ -73,7 +73,7 @@
       "data-type": "transactions-by-channel",
       "category": "digital",
       "period": "week",
-      "value-attr": "count:sum",
+      "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
       "cumulative": true,

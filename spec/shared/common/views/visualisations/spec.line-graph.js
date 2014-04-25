@@ -20,7 +20,7 @@ function (LineGraph, Graph, Collection, Model) {
 
     var graph,
       model = new Model({
-        'value-attr': 'someAttr'
+        'value-attribute': 'someAttr'
       });
 
     beforeEach(function () {

@@ -64,7 +64,7 @@
       "dashboard-strapline": "Service dashboard",
       "category": "key",
       "period": "week",
-      "value-attr": "value:sum",
+      "value-attribute": "value:sum",
       "show-line-labels": true,
       "use_stack": true,
       "info": [

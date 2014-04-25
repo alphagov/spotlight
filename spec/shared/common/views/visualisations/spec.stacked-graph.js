@@ -25,7 +25,7 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
     beforeEach(function () {
       spyOn(Graph.prototype, 'initialize').andCallThrough();
       var model = new Model({
-        'value-attr': 'someAttr'
+        'value-attribute': 'someAttr'
       });
       graph = new StackedGraph({
         collection: new Collection(),

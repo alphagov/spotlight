@@ -6,7 +6,7 @@ function (Graph) {
 
     initialize: function (options) {
       options = options || {};
-      options.valueAttr = this.model.get('value-attr');
+      options.valueAttr = this.model.get('value-attribute');
       Graph.prototype.initialize.apply(this, arguments);
     },
 
