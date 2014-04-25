@@ -48,8 +48,7 @@
       }
     },
     "value-attribute": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "definitions": {
@@ -61,7 +60,6 @@
           "required": true
         },
         "key": {
-          "required": true,
           "oneOf": [
             {
               "type": "string"
