@@ -97,10 +97,10 @@ to view the console.
 
 `NODE_ENV=production node app/server.js` to run the app in production mode.
 
-## Status ##
+## App status ##
 
-[![Build Status](https://travis-ci.org/alphagov/spotlight.png?branch=master)](https://travis-ci.org/alphagov/spotlight)
+![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
 
-[![Dependency Status](https://david-dm.org/alphagov/spotlight.png)](https://david-dm.org/alphagov/spotlight)
+[![Build status](https://travis-ci.org/alphagov/spotlight.svg?branch=master)](https://travis-ci.org/alphagov/spotlight)
 
-[![devDependency Status](https://david-dm.org/alphagov/spotlight/dev-status.png)](https://david-dm.org/alphagov/spotlight#info=devDependencies)
+[![Dependency status](https://gemnasium.com/alphagov/spotlight.svg)](https://gemnasium.com/alphagov/spotlight)
