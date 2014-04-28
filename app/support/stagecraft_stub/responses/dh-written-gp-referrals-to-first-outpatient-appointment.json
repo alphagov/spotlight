@@ -11,11 +11,6 @@
   "agency": {
     "title": "NHS England"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "Written GP referrals to first outpatient appointment"
-    }
-  },
   "customer-type": "Citizen",
   "business-model": "Fiscal",
   "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/nhs_england?title=Service data for Written GP referrals to first outpatient appointment&body=Dear NHS England,%0A%0APlease provide the following data for the Written GP referrals to first outpatient appointment service, covering the period October 2012 to September 2013:%0A%0A - cost per transaction (please follow Treasury guidelines on what to take into account in measuring service costs (https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/212123/Managing_Public_Money_AA_v2_-_chapters_annex_web.pdf, annex 6.1) should be followed%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",

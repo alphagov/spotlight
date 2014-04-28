@@ -11,11 +11,6 @@
   "agency": {
     "title": "Home Office"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "Passenger arrivals at the border"
-    }
-  },
   "description-extra": "This service is carried out by Border Force officers and includes checks of identity and nationality plus any further checks deemed necessary and appropriate.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",

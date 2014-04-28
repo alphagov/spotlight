@@ -11,11 +11,6 @@
   "agency": {
     "title": "HM Revenue and Customs"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "Customs transactions"
-    }
-  },
   "description-extra": "These services include:\n* Customs Handling of Import Export Freight (CHIEF)\n* Import Control System (ICS)\n* National Export System (NES)\n* National Transit\n* Excise Movement Control Service (EMCS)",
   "customer-type": "Business",
   "business-model": "Fiscal",

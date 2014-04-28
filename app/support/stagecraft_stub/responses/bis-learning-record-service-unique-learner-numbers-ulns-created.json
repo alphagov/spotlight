@@ -14,7 +14,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Learning Record Service: unique learner numbers (ULNs) created",
-      "url": "http://www.learningrecordsservice.org.uk/products/lrs/"
+      "url": "https://www.gov.uk/government/publications/lrs-unique-learner-numbers"
     }
   },
   "description-extra": "The transactions counted here include the total number of ULNs created, which consists of batch uploads and individually created ULNs. ",

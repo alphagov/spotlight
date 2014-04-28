@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
   "description": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions. ",
-  "title": "Other document filing (filing transactions)",
+  "title": "Companies House: other document filing",
   "department": {
     "title": "Department for Business, Innovation and Skills"
   },
@@ -13,7 +13,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Other document filing (filing transactions)",
+      "title": "Companies House: other document filing",
       "url": "http://www.companieshouse.gov.uk/"
     }
   },

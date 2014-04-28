@@ -11,11 +11,6 @@
   "agency": {
     "title": "HM Revenue and Customs"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "HMRC: transactions handled by email (KANA)"
-    }
-  },
   "description-extra": " In future data releases, transactions completed through KANA will be reallocated to the relevant services.",
   "customer-type": "Business",
   "business-model": "Fiscal",

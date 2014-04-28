@@ -11,11 +11,6 @@
   "agency": {
     "title": "HM Revenue and Customs"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "VAT transactions"
-    }
-  },
   "description-extra": "Value added tax (VAT) is charged on most goods and services that VAT-registered businesses provide in the UK. ",
   "customer-type": "Business",
   "business-model": "Fiscal",

@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
   "description": "All limited companies and limited liability partnerships must file their annual accounts so they're publically available. ",
-  "title": "Accounts filing",
+  "title": "Company accounts filed",
   "department": {
     "title": "Department for Business, Innovation and Skills"
   },
@@ -13,7 +13,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Accounts filing",
+      "title": "Company accounts filed",
       "url": "http://www.gov.uk/file-your-company-accounts-and-tax-return"
     }
   },

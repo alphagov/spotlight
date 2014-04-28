@@ -11,11 +11,6 @@
   "agency": {
     "title": "Driver and Vehicle Licensing Agency"
   },
-  "relatedPages": {
-    "transaction": {
-      "title": "Destroyed or damaged vehicles reported"
-    }
-  },
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
   "costs-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",

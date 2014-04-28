@@ -44,10 +44,12 @@ googleAuth.on(GoogleClientLogin.events.login, function(){
         addField(row.department, output.department, 'title');
         output.agency = {};
         addField(row.agencybody, output.agency, 'title');
-        output.relatedPages = {};
-        output.relatedPages.transaction = {};
-        addField(row.nameofservice, output.relatedPages.transaction, 'title');
-        addField(row.url, output.relatedPages.transaction, 'url');
+        if (!_.isObject(row.url)) {
+          output.relatedPages = {};
+          output.relatedPages.transaction = {};
+          addField(row.nameofservice, output.relatedPages.transaction, 'title');
+          addField(row.url, output.relatedPages.transaction, 'url');
+        }
         addField(row.description2, output, 'description-extra');
         addField(row.customertype, output, 'customer-type');
         addField(row.businessmodel, output, 'business-model');

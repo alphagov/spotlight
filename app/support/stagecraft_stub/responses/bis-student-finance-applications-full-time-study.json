@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
   "description": "Providing UK students with funding, making sure they maintain their account and repay loans.",
-  "title": "Student finance: applications (full-time study)",
+  "title": "Student finance: applications for full-time study",
   "department": {
     "title": "Department for Business, Innovation and Skills"
   },
@@ -13,7 +13,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Student finance: applications (full-time study)",
+      "title": "Student finance: applications for full-time study",
       "url": "http://www.gov.uk/apply-online-for-student-finance"
     }
   },

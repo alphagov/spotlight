@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
   "description": "The national online recruitment system for apprenticeships in England.",
-  "title": "Apprenticeship vacancies: applications ",
+  "title": "Apprenticeships: applications for vacancies",
   "department": {
     "title": "Department for Business, Innovation and Skills"
   },
@@ -13,7 +13,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Apprenticeship vacancies: applications ",
+      "title": "Apprenticeships: applications for vacancies",
       "url": "http://www.gov.uk/apply-apprenticeship"
     }
   },
