@@ -18,15 +18,10 @@ module.exports = {
           type: 'boolean'
         },
         period: {
-          type: 'string',
-          required: true,
-          enum: [
-            'hour',
-            'day',
-            'week',
-            'month',
-            'quarter'
-          ]
+          $ref: '#/definitions/period'
+        },
+        'value-attribute': {
+          required: true
         },
         'show-line-labels': {
           type: 'boolean'
