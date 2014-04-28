@@ -1,9 +1,12 @@
 {
-  "slug": "BIS-content-dashboard",
+  "slug": "site-activity-department-for-business-innovation-skills",
   "page-type": "dashboard",
-  "strapline": "Content Dashboard",
+  "dashboard-type": "other",
+  "strapline": "Content dashboard",
   "title": "Department for Business, Innovation & Skills (BIS)",
-  "tagline": "Web performance data for the Department for Business, Innovation & Skills, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>",
+  "other": {
+    "tagline": "Web performance data for the Department for Business, Innovation & Skills, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>"
+  },
   "relatedPages": {
     "transaction": {
       "title": "Department for Business, Innovation & Skills",
@@ -24,15 +27,19 @@
     {
       "slug": "traffic-to-department-content",
       "module-type": "tab",
-      "title": "Traffic to department content",
+      "title": "Traffic to content",
       "tabs": [
         {
           "module-type": "completion_numbers",
-          "title": "Unique visits",
+          "title": "Visitors",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "traffic-count",
           "info": [
+            "Data source: Google Analytics",
+            "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
           "denominator-matcher": "department-for-business-innovation-skills",
           "numerator-matcher": "department-for-business-innovation-skills",
@@ -52,7 +59,7 @@
         },
         {
           "module-type": "completion_numbers",
-          "title": "Unique pageviews",
+          "title": "Pageviews",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "pageviews-count",
@@ -80,7 +87,13 @@
       "slug": "most-popular-content",
       "module-type": "tab",
       "title": "Most popular content",
-      "description": "",
+      "description": "Visitors arriving over the last week",
+      "info":[
+        "Data source: Google Analytics",
+        "These show pageviews and unique pageviews to the 10 most popular pages over the last full week (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted.‘Unique Pageviews’ is the number of visits during which the specified page was viewed at least once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "table",
@@ -332,22 +345,23 @@
     {
       "slug": "how-users-access-the-service",
       "module-type": "grouped_timeseries",
-      "title": "How users access the service",
-      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "title": "Devices used to access the content",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "devices-count",
       "filter-by": "department:department-for-business-innovation-skills",
       "category": "deviceCategory",
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "duration": 9,
       "value-attribute": "pageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "Desktop category includes traffic from desktops and laptops"
+        "This shows the number and percentage of visits made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -380,22 +394,24 @@
     {
       "slug": "new-visitors-vs-returning-visitors",
       "module-type": "grouped_timeseries",
-      "title": "New visitors vs returning visitors",
-      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "title": "New and returning visitors",
+      "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "new-returning-count",
       "filter-by": "department:department-for-business-innovation-skills",
       "category": "visitorType",
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
+      "duration": 9,
       "value-attribute": "entrances:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "Desktop category includes traffic from desktops and laptops"
+        "This shows the number and percentage of visits made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
+        "Returning visitors are those who have previously visited any part of GOV.UK. ",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -423,13 +439,19 @@
     {
       "module-type": "tab",
       "slug": "top-department-referrers",
-      "title": "Top department referrers",
-      "description": "",
+      "title": "Sources of visitors",
+      "description": "Visitors arriving over the last week",
+      "info": ["Data source: Google Analytics",
+      "This shows the number of entrances to departmental content and their bounce rate for the last full week (Monday to Sunday).",
+      "‘Sources’ is a mix of search engines (‘organic’), other websites (‘referral’) and other sources that Google Analytics cannot attribute (‘(none)’). ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
+      "The bounce rate is the percentage of visits where a user arrived on the entrance page and then left the site without interacting with the page or visiting any other pages.",
+      "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "table",
-          "slug": "all-referrers",
-          "title": "All referrers",
+          "slug": "all-sources",
+          "title": "All sources",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "referrers-rate",
@@ -442,7 +464,7 @@
           },
           "axes": {
             "x": {
-              "label": "Source medium",
+              "label": "Source of user",
               "key": "sourceMedium"
             },
             "y": [
@@ -565,6 +587,10 @@
       "description": "",
       "data-group": "gov-uk-content",
       "data-type": "top-urls",
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+      ],
       "query-params": {
         "filter_by": "organisation_acronym:bis",
         "group_by": "url",
