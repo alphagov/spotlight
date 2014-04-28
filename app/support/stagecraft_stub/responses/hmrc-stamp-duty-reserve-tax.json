@@ -1,7 +1,7 @@
 {
   "slug": "hmrc-stamp-duty-reserve-tax",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Stamp Duty Reserve Tax (SDRT) is paid on electronic 'paperless' share transactions, which is how most shares are bought.",
   "title": "Stamp Duty Reserve Tax transactions",

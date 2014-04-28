@@ -1,7 +1,7 @@
 {
   "slug": "defra-cattle-tracing-system-movements",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The Cattle Tracing System (CTS) is used by the British Cattle Movement Service to record the births, movements and deaths of cattle to help disease control.",
   "title": "Cattle Tracing System: movements",

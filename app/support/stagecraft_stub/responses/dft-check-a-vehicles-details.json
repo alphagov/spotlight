@@ -1,7 +1,7 @@
 {
   "slug": "dft-check-a-vehicles-details",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Requests for a vehicle's tax details from police, trading standards, insurance and congestion charging officials.",
   "title": "Tax disc: checks by third-parties",

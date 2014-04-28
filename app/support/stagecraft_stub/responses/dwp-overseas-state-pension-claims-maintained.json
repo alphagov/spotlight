@@ -1,7 +1,7 @@
 {
   "slug": "dwp-overseas-state-pension-claims-maintained",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Overseas State Pension (IPC SP) is a regular payment for people who reach State Pension age and are resident overseas.",
   "title": "State Pension: existing overseas claims",

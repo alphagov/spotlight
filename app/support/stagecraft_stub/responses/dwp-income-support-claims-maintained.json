@@ -1,7 +1,7 @@
 {
   "slug": "dwp-income-support-claims-maintained",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Income Support is paid to people on a low or zero income.",
   "title": "Income Support: existing claims",

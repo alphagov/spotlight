@@ -1,7 +1,7 @@
 {
   "slug": "dwp-jobseekers-allowance-jsa-new-claims",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Jobseekers Allowance (JSA) is the main benefit for people who are out of work and seeking employment.",
   "title": "Jobseeker's Allowance (JSA): new claims",

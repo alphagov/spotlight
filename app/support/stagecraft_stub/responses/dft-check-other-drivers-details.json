@@ -1,7 +1,7 @@
 {
   "slug": "dft-check-other-drivers-details",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Checking a driver's entitlement to drive by a third party with the driver's permission.",
   "title": "Driving licences: third-party checks",

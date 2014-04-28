@@ -1,7 +1,7 @@
 {
   "slug": "home-office-passenger-arrivals-at-border",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Full checks on all individuals entering the UK.",
   "title": "Passenger arrivals at the border",

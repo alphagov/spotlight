@@ -1,7 +1,7 @@
 {
   "slug": "dft-amend-driving-licence-details",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Changes of address or other details on a driving licence.",
   "title": "Driving licence: changes",

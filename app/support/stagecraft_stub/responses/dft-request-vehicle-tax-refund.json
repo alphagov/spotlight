@@ -1,7 +1,7 @@
 {
   "slug": "dft-request-vehicle-tax-refund",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Requests for Vehicle Excise Duty refunds.",
   "title": "Tax disc: refunds",

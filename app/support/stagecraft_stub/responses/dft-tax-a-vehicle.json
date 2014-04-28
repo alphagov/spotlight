@@ -1,7 +1,7 @@
 {
   "slug": "dft-tax-a-vehicle",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Applications for new car tax discs.",
   "title": "Tax disc renewals",

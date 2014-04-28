@@ -1,7 +1,7 @@
 {
   "slug": "dft-renew-driving-licence",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Driving licence renewals.",
   "title": "Driving licence renewals",

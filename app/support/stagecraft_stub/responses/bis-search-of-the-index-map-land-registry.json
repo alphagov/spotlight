@@ -1,7 +1,7 @@
 {
   "slug": "bis-search-of-the-index-map-land-registry",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "title": "Searches for title numbers of unregistered land",
   "department": {

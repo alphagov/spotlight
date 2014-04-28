@@ -1,7 +1,7 @@
 {
   "slug": "defra-fishing-rod-licences-applications",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Successful applications for fishing rod licences.",
   "title": "Fishing rod licences: applications",

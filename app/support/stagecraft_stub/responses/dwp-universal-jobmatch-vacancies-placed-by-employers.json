@@ -1,7 +1,7 @@
 {
   "slug": "dwp-universal-jobmatch-vacancies-placed-by-employers",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Employers can use Universal Jobmatch to create an account, advertise jobs online and automatically match them to suitable jobseekers.",
   "title": "Universal Jobmatch: vacancies placed by employers",

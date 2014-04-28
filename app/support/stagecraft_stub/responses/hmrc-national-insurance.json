@@ -1,7 +1,7 @@
 {
   "slug": "hmrc-national-insurance",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "National Insurance (NI) is paid by people to contribute to paid by individuals towards the entitlement of certain state benefits, including retirement pension.",
   "title": "National Insurance transactions",

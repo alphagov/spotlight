@@ -1,7 +1,7 @@
 {
   "slug": "hmrc-pay-as-you-earn-paye",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Pay As You Earn (PAYE) including Electronic Data Interchange (EDI) is the amount of income tax collected by employers on behalf of the government from employees.",
   "title": "PAYE transactions",

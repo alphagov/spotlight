@@ -1,7 +1,7 @@
 {
   "slug": "home-office-visas-immigration-applications",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Applications by foreign nationals for visas to reside in the UK on a temporary or permanent basis.",
   "title": "Visa applications",

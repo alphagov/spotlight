@@ -1,7 +1,7 @@
 {
   "slug": "dft-request-statutory-off-road-notice-sorn",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Requests for Statutory Off Road Notification (SORN) information.",
   "title": "SORN (statutory off-road notification) applications",

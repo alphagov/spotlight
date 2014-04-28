@@ -1,7 +1,7 @@
 {
   "slug": "dwp-pension-credit-claims-maintained",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Pension Credit is an income-related benefit paid to people of State Pension age.",
   "title": "Pension Credit: existing claims",

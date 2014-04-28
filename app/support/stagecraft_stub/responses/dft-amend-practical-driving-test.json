@@ -1,7 +1,7 @@
 {
   "slug": "dft-amend-practical-driving-test",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Changes to the date or test centre for practical driving or riding tests.",
   "title": "Practical driving tests: changes to bookings",

@@ -1,7 +1,7 @@
 {
   "slug": "home-office-enhanced-criminal-records-checks",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Applications for Disclosure and Barring Service (DBS) checks, which are needed for certain jobs like those involving working with children or vulnerable adults.",
   "title": "Enhanced criminal records checks",

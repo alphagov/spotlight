@@ -1,7 +1,7 @@
 {
   "slug": "co-signing-an-e-petition",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "title": "Signing an e-petition",
   "department": {

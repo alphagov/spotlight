@@ -1,7 +1,7 @@
 {
   "slug": "dwp-disability-living-allowance-dla-claims-maintained",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Disability Living Allowance (DLA) is a regular payment  for disabled children and adults who need help with the extra costs caused by a disability.",
   "title": "Disability Living Allowance (DLA): existing claims",

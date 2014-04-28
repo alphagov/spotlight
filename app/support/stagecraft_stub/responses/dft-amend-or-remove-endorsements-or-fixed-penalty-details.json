@@ -1,9 +1,9 @@
 {
   "slug": "dft-amend-or-remove-endorsements-or-fixed-penalty-details",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
-  "description": "Applications for new licences to remove expired fixed penalty points (endorsements).",
+  "description": "Changes to fixed penalty points and endorsements on driving licences.",
   "title": "Fixed penalties and endorsements changed or removed",
   "department": {
     "title": "Department for Transport"

@@ -1,7 +1,7 @@
 {
   "slug": "moj-legal-aid-applications-criminal-cases",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Legal aid help for people accused of a criminal offence.",
   "title": "Legal aid applications: criminal cases",

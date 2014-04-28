@@ -1,7 +1,7 @@
 {
   "slug": "dwp-employment-support-allowance-esa-new-claims",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Employment and Support Allowance (ESA) is the main benefit for people who are sick or disabled and is based on  either National Insurance (NI) contributions or low income.",
   "title": "Employment and Support Allowance (ESA): new claims",

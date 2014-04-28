@@ -1,7 +1,7 @@
 {
   "slug": "home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Ordering an official copy of a certificate, including birth, adoption, marriage, civil partnership and death certificates.",
   "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",

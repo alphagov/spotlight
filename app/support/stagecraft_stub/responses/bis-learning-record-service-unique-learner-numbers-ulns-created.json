@@ -1,7 +1,7 @@
 {
   "slug": "bis-learning-record-service-unique-learner-numbers-ulns-created",
   "page-type": "dashboard",
-  "dashboard-type": "transaction",
+  "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The Learning Records Service is a register of learners which education providers use to create or collect a unique learner number (ULN) for anyone over the age of 14 in UK education and training.",
   "title": "Learning Record Service: unique learner numbers (ULNs) created",
