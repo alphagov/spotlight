@@ -1,0 +1,103 @@
+{
+  "slug": "defra-cattle-tracing-system-movements",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "The CTS system is used by the British Cattle Movement Service to record the births, movements and deaths of cattle to aid disease control. <br>The online service enables customers to see details of passport applications and movements; view all births, movements and deaths reported in the last six months; see calving histories for their animals; and send information to the British Cattle Movement Service to help resolve problems.<br>The transactions volume relates to the number of separate movements recorded in the system.",
+  "title": "Cattle Tracing System: movements",
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs"
+  },
+  "agency": {
+    "title": "Rural Payments Agency"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Cattle Tracing System: movements",
+      "url": "https://www.gov.uk/cattle-tracing-online"
+    }
+  },
+  "description-extra": "The Cattle Tracing System (CTS) is used by the British Cattle Movement Service to record the births, movements and deaths of cattle to help disease control. <br/>The CTS lets users see:\n\n- details of passport applications and movements\n- all births, movements and deaths reported in the last 6 months\n- calving histories for their animals\n\nUsers can send information to the British Cattle Movement Service to help resolve problems.\n\n",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-cattle-tracing-system-movements",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-cattle-tracing-system-movements",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-cattle-tracing-system-movements",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-cattle-tracing-system-movements",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

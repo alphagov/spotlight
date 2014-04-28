@@ -1,0 +1,103 @@
+{
+  "slug": "bis-search-of-whole-land-registry",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "A person who wishes to protect a transaction for value, such as purchase, lease or charge, may make an official search of whole with priority against either the whole or part of a registered title or pending first registration. <br>The effect of the official search with priority is to “freeze” the title to allow the application to be lodged. This protected application takes priority over other applications lodged within the priority period.",
+  "title": "Search of whole (Land Registry)",
+  "department": {
+    "title": "Department for Business, Innovation and Skills"
+  },
+  "agency": {
+    "title": "Land Registry"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Search of whole (Land Registry)",
+      "url": "https://www.gov.uk/search-property-information-land-registry"
+    }
+  },
+  "description-extra": "undefined<br/>",
+  "customer-type": "Business",
+  "business-model": "Cost recovery",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-search-of-whole-land-registry",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-search-of-whole-land-registry",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-search-of-whole-land-registry",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-search-of-whole-land-registry",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

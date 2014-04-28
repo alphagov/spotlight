@@ -1,0 +1,102 @@
+{
+  "slug": "hmrc-debt-management",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "Debt Management involves the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts and is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
+  "title": "Debt collection transactions",
+  "department": {
+    "title": "HM Revenue and Customs"
+  },
+  "agency": {
+    "title": "HM Revenue and Customs"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Debt collection transactions"
+    }
+  },
+  "description-extra": "Debt Management is the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts.<br/>The service is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-debt-management",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-debt-management",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-debt-management",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-debt-management",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

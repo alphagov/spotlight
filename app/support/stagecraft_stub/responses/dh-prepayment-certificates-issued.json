@@ -1,0 +1,103 @@
+{
+  "slug": "dh-prepayment-certificates-issued",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "NHS Prepayment certificates allow patients to reduce the cost of prescription charges by paying a set fee for either 3- or 12-month cover. Prescriptions are then issued to the patient free of charge at the point of dispensing. ",
+  "title": "Prepayment certificates issued",
+  "department": {
+    "title": "Department of Health"
+  },
+  "agency": {
+    "title": "Department of Health"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Prepayment certificates issued",
+      "url": "http://www.nhsbsa.nhs.uk/1127.aspx"
+    }
+  },
+  "description-extra": "Advance payments for 3 or 12 months of prescriptions.<br/>NHS prescriptions are issued to patients with prepayment certificates free of charge at the point of dispensing. ",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-prepayment-certificates-issued",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-prepayment-certificates-issued",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-prepayment-certificates-issued",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-prepayment-certificates-issued",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

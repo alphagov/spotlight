@@ -1,0 +1,102 @@
+{
+  "slug": "hmrc-customs",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "The data relates to customs transactions which have been submitted through a number of services, including: Customs Handling of Import Export Freight (CHIEF), Import Control System (ICS), National Export System (NES), National Transit, and Excise Movement Control Service (EMCS).",
+  "title": "Customs transactions",
+  "department": {
+    "title": "HM Revenue and Customs"
+  },
+  "agency": {
+    "title": "HM Revenue and Customs"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Customs transactions"
+    }
+  },
+  "description-extra": "The data relates to customs transactions which have been submitted through a number of services.<br/>These services include:\n* Customs Handling of Import Export Freight (CHIEF)\n* Import Control System (ICS)\n* National Export System (NES)\n* National Transit\n* Excise Movement Control Service (EMCS)",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-customs",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-customs",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-customs",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-customs",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

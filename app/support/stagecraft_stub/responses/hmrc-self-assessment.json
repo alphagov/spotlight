@@ -1,0 +1,103 @@
+{
+  "slug": "hmrc-self-assessment",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "Self assessment is the process for the self-employed, higher earners and those with more complicated affairs that cannot be serviced through the PAYE system to calculate their tax liability and declare any income tax due. Self assessment transactions include form submissions, amended submissions and registrations. The online service also provides a view of customers liabilities and payments and designatory information.",
+  "title": "Self Assessment transactions",
+  "department": {
+    "title": "HM Revenue and Customs"
+  },
+  "agency": {
+    "title": "HM Revenue and Customs"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Self Assessment transactions",
+      "url": "http://www.gov.uk/file-your-self-assessment-tax-return"
+    }
+  },
+  "description-extra": "Self Assessment transactions include form submissions, amended submissions and registrations.<br/>Self Assessment is the process for the self-employed, higher earners and those with more complicated affairs that cannot be serviced through the PAYE system to calculate their tax liability and declare any income tax due. The online service provides a view of customers' liabilities and payments and designatory information.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-self-assessment",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-self-assessment",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-self-assessment",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-self-assessment",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

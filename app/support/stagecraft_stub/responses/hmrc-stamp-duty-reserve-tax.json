@@ -1,0 +1,103 @@
+{
+  "slug": "hmrc-stamp-duty-reserve-tax",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "Stamp Duty Reserve Tax (SDRT) is paid on electronic 'paperless' share transactions, which is how most shares are bought. When you buy shares using a paper stock transfer form you pay Stamp Duty rather than SDRT.",
+  "title": "Stamp Duty Reserve Tax transactions",
+  "department": {
+    "title": "HM Revenue and Customs"
+  },
+  "agency": {
+    "title": "HM Revenue and Customs"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Stamp Duty Reserve Tax transactions",
+      "url": "http://www.hmrc.gov.uk/sdrt/intro/basics.htm"
+    }
+  },
+  "description-extra": "Stamp Duty Reserve Tax (SDRT) is paid on electronic 'paperless' share transactions, which is how most shares are bought. <br/>When you buy shares using a paper stock transfer form you pay Stamp Duty rather than SDRT.",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-stamp-duty-reserve-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-stamp-duty-reserve-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-stamp-duty-reserve-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-stamp-duty-reserve-tax",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

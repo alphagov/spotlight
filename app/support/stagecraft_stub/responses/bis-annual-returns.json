@@ -1,0 +1,103 @@
+{
+  "slug": "bis-annual-returns",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "The Annual Return is a statutory requirement of the Companies Act and applies to all Companies and LLPs.  This provides the public with a synopsis of the company every year and includes information on Directors, shareholders, Company type, and SIC codes.   ",
+  "title": "Annual returns",
+  "department": {
+    "title": "Department for Business, Innovation and Skills"
+  },
+  "agency": {
+    "title": "Companies House"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Annual returns",
+      "url": "http://www.gov.uk/file-an-annual-return-with-companies-house"
+    }
+  },
+  "description-extra": "All companies must send an annual return to Companies House so information on their directors, shareholders, company type and SIC codes is publically available.<br/>",
+  "customer-type": "Business",
+  "business-model": "Cost recovery",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

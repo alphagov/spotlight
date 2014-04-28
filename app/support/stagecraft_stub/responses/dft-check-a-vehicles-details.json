@@ -1,0 +1,103 @@
+{
+  "slug": "dft-check-a-vehicles-details",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "This transactional service includes requests for vehicle details from police, trading standards, insurance and congestion charging officials.",
+  "title": "Tax disc: checks by third-parties",
+  "department": {
+    "title": "Department for Transport"
+  },
+  "agency": {
+    "title": "Driver and Vehicle Licensing Agency"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Tax disc: checks by third-parties",
+      "url": "https://www.gov.uk/check-vehicle-tax"
+    }
+  },
+  "description-extra": "Requests for a vehicle's tax details from police, trading standards, insurance and congestion charging officials.<br/>",
+  "customer-type": "Citizen",
+  "business-model": "Cost recovery",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-check-a-vehicles-details",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-check-a-vehicles-details",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-check-a-vehicles-details",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-check-a-vehicles-details",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "bis-learning-record-service-unique-learner-numbers-ulns-created",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "The Learning Records Service portal is an internet-based register of learners which enables education providers to collect or generate a unique learner number (ULN) for anyone over the age of 14 in UK education and training. <br>The transactions counted here include the total number of ULNs created, which consists of batch uploads and individual manually created ULNs. ",
+  "title": "Learning Record Service: unique learner numbers (ULNs) created",
+  "department": {
+    "title": "Department for Business, Innovation and Skills"
+  },
+  "agency": {
+    "title": "Skills Funding Agency"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Learning Record Service: unique learner numbers (ULNs) created",
+      "url": "http://www.learningrecordsservice.org.uk/products/lrs/"
+    }
+  },
+  "description-extra": "The Learning Records Service is a register of learners which education providers use to create or collect a unique learner number (ULN) for anyone over the age of 14 in UK education and training.<br/>The transactions counted here include the total number of ULNs created, which consists of batch uploads and individually created ULNs. ",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-learning-record-service-unique-learner-numbers-ulns-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-learning-record-service-unique-learner-numbers-ulns-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-learning-record-service-unique-learner-numbers-ulns-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-learning-record-service-unique-learner-numbers-ulns-created",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

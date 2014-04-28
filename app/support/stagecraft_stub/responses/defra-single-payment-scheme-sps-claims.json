@@ -1,0 +1,103 @@
+{
+  "slug": "defra-single-payment-scheme-sps-claims",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "The Single Payment Scheme is the flagship scheme for distributing about £2 billion of EU Common Agricultural Funds to farmers in England. Claims are submitted annually and annual payments are now largely based on the hectares of land claimed. Claim payments range from £10 to over £1m. The online service enables customers to submit claims, update customer details and monitor progress of their claim through to payment.",
+  "title": "Single Payment Scheme (SPS) claims",
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs"
+  },
+  "agency": {
+    "title": "Rural Payments Agency"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Single Payment Scheme (SPS) claims",
+      "url": "http://www.gov.uk/single-payment-scheme-online"
+    }
+  },
+  "description-extra": "Claims are submitted annually and annual payments are largely based on the hectares of land claimed. <br/>The Single Payment Scheme distributes about £2 billion of EU Common Agricultural Funds to farmers in England each year. The service lets users submit claims, update their details and track progress of their claims through to payment.",
+  "customer-type": "Business",
+  "business-model": "Fiscal",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-single-payment-scheme-sps-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-single-payment-scheme-sps-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-single-payment-scheme-sps-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-single-payment-scheme-sps-claims",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}
