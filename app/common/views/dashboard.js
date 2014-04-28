@@ -31,7 +31,7 @@ function (GovUkView, contentTemplate) {
 
     getTagline: function () {
       var tagline = '';
-      if (this.dashboardType === 'transaction') {
+      if (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction') {
         tagline = 'This dashboard shows information about how ' +
                   'the <strong>' + this.model.get('title') +
                   '</strong> service is currently performing.';
