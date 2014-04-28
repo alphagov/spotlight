@@ -114,6 +114,21 @@ googleAuth.on(GoogleClientLogin.events.login, function(){
           }
         });
 
+        //add digital-take-up
+        output.modules.push({
+          'slug': 'digital-take-up-per-quater',
+          'module-type': 'bar_chart_with_number',
+          'title': 'Digital Take-up',
+          'description': 'Digital take-up for each quater',
+          'data-group': 'transactions-explorer',
+          'data-type': 'spreadsheet',
+          'value-attribute': 'digital_takeup',
+          'axis-period': 'quarter',
+          'query-params': {
+            'filter_by': ['service_id:' + output.slug, 'type:quarterly']
+          }
+        });
+
         fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
       });
 
