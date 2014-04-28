@@ -9,7 +9,7 @@
     "title": "Department for Business, Innovation and Skills"
   },
   "agency": {
-    "title": "National Apprenticeship Service"
+    "title": "Skills Funding Agency"
   },
   "relatedPages": {
     "transaction": {
@@ -109,6 +109,9 @@
       "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
       "query-params": {
         "filter_by": [
           "service_id:bis-apprenticeship-vacancies-applications",

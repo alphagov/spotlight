@@ -109,6 +109,9 @@
       "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
       "query-params": {
         "filter_by": [
           "service_id:dwp-attendance-allowance-claims-maintained",

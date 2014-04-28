@@ -107,6 +107,9 @@
       "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
       "query-params": {
         "filter_by": [
           "service_id:dh-written-gp-referrals-to-first-outpatient-appointment",

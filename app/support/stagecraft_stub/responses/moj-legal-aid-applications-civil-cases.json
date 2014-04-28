@@ -106,6 +106,9 @@
       "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
       "query-params": {
         "filter_by": [
           "service_id:moj-legal-aid-applications-civil-cases",
