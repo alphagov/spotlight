@@ -271,6 +271,49 @@ define([
         expect(collection.at(0).get('step')).toEqual('example:downloadFormPage');
         expect(collection.at(0).get('uniqueEvents')).toEqual(50000);
       });
+
+      it('should fill in missing data points with 0', function () {
+        var models = [
+          {eventCategory: 'example:downloadFormPage', uniqueEvents: 50000},
+          {eventCategory: 'example:submitApplicationPage', uniqueEvents: 25000},
+          {eventCategory: 'example:end'}
+        ];
+        var collection = new TestCollection();
+        var output = collection.parse({ data: models });
+
+        expect(output[0].uniqueEvents).toEqual(50000);
+        expect(output[1].uniqueEvents).toEqual(25000);
+        expect(output[2].uniqueEvents).toEqual(0);
+      });
+
+      it('should fill in missing data points with 0 when custom valueAttr is specified', function () {
+        var models = [
+          {eventCategory: 'example:downloadFormPage', value: 50000},
+          {eventCategory: 'example:submitApplicationPage', value: 25000},
+          {eventCategory: 'example:end'}
+        ];
+        var collection = new TestCollection([], { valueAttr: 'value' });
+        var output = collection.parse({ data: models });
+
+        expect(output[0].value).toEqual(50000);
+        expect(output[1].value).toEqual(25000);
+        expect(output[2].value).toEqual(0);
+      });
+
+      it('should not fill in missing data points with 0 if all are missing', function () {
+        var models = [
+          {eventCategory: 'example:downloadFormPage'},
+          {eventCategory: 'example:submitApplicationPage'},
+          {eventCategory: 'example:end'}
+        ];
+        var collection = new TestCollection();
+        var output = collection.parse({ data: models });
+
+        expect(output[0].uniqueEvents).toBeUndefined();
+        expect(output[1].uniqueEvents).toBeUndefined();
+        expect(output[2].uniqueEvents).toBeUndefined();
+      });
+
     });
   });
 });
