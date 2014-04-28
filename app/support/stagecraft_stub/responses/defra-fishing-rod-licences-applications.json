@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Successful applications for fishing rod licences. A valid Environment Agency rod licence is required if you are aged 12 or over and fish for salmon, trout, freshwater fish, smelt or eel in England (except the River Tweed), Wales, and the Border Esk and its tributaries in Scotland. The licence gives you the right to use a fishing rod and line, but does not give you a right to fish.",
+  "description": "Successful applications for fishing rod licences.  ",
   "title": "Fishing rod licences: applications",
   "department": {
     "title": "Department for Environment, Food and Rural Affairs"
@@ -17,7 +17,7 @@
       "url": "http://www.gov.uk/buy-a-uk-fishing-rod-licence"
     }
   },
-  "description-extra": "Successful applications for fishing rod licences.  <br/>Licences are for using a fishing rod and line for salmon, trout, freshwater fish, smelt or eel in England (except the River Tweed), Wales, and the Border Esk and its tributaries in Scotland. ",
+  "description-extra": "Licences are for using a fishing rod and line for salmon, trout, freshwater fish, smelt or eel in England (except the River Tweed), Wales, and the Border Esk and its tributaries in Scotland. ",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
   "modules": [
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-fishing-rod-licences-applications",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

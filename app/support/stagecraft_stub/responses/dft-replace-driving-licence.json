@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "This transactional service includes duplicate driving licences to replace those that have been lost or stolen.",
+  "description": "Applications to replace lost, stolen, damaged or destroyed driving licences.",
   "title": "Driving licence replacements",
   "department": {
     "title": "Department for Transport"
@@ -17,9 +17,9 @@
       "url": "https://www.gov.uk/apply-online-to-replace-a-driving-licence"
     }
   },
-  "description-extra": "Applications to replace lost, stolen, damaged or destroyed driving licences.<br/>",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-replace-driving-licence",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

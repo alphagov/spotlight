@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Registration of all other documents apart from accounts, annual returns and other fee bearing transactions. The many documents in this category can be filed by any limited liability entity, and fulfil a company's statutory registration obligations under the Companies Act and other legislation. Document filings can range from information provided by several thousand companies a year to a transaction filed by a company once in 5-10 years.",
+  "description": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions. ",
   "title": "Other document filing (filing transactions)",
   "department": {
     "title": "Department for Business, Innovation and Skills"
@@ -17,9 +17,9 @@
       "url": "http://www.companieshouse.gov.uk/"
     }
   },
-  "description-extra": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions. <br/>",
   "customer-type": "Business",
   "business-model": "Cost recovery",
+  "costs": "An annual fee is attached to the annual return. The annual fee covers the registration costs of annual returns, accounts filing and all other document filing for Limited Liability Companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-other-document-filing-filing-transactions",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

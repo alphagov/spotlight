@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "To keep getting Jobseeker's Allowance (JSA) or National Insurance (NI) contribution credits, claimants normally have to attend a Jobcentre every two weeks to 'sign on'. Part of this process is designed to ensure they have been looking for work by reviewing their jobsearch activity. (The benefit aspect of the service is covered under 'JSA: claims maintained'.)",
+  "description": "Claimants normally have to attend a Jobcentre every 2 weeks to 'sign on' so they keep getting Jobseeker's Allowance (JSA) or National Insurance (NI) contribution credits.",
   "title": "Jobsearch reviews (signing on)",
   "department": {
     "title": "Department for Work and Pensions"
@@ -17,9 +17,11 @@
       "url": "https://www.gov.uk/moving-from-benefits-to-work"
     }
   },
-  "description-extra": "Claimants normally have to attend a Jobcentre every 2 weeks to 'sign on' so they keep getting Jobseeker's Allowance (JSA) or National Insurance (NI) contribution credits.<br/>This process is designed to make sure claimants have been looking for work by reviewing their jobsearch activity.",
+  "description-extra": "This process is designed to make sure claimants have been looking for work by reviewing their jobsearch activity.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Costs cover arranging reviews, talking with claimants about what they have done to look for work, identifying any additional support needed, referring to vacancies, referring to Advisers, and maintaining the individual's jobsearch record. The costs exclude any action arising during the review that relates to benefit, such as taking signatures or a change in circumstances; these are covered under 'JSA: claims maintained'.<br>The costs are for the financial year 2012/13. They are aggregated and averaged to give a cost per intervention and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual number of jobsearch reviews undertaken.<br>Not all reviews are for people claiming JSA. Jobsearch reviews are also provided for people attending in support of their claim for NI credits of contributions only.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-jobsearch-reviews-signing-on",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

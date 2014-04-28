@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Construction Industry Scheme (CIS) sets out the rules for how payments to subcontractors for construction work must be handled by contractors in the construction industry. The volume of transactions includes form submissions, amended submissions and registrations.",
+  "description": "Construction Industry Scheme sets out the rules for how payments to construction work subcontractors must be handled by contractors.",
   "title": "Construction Industry Scheme transactions",
   "department": {
     "title": "HM Revenue and Customs"
@@ -17,9 +17,10 @@
       "url": "http://www.hmrc.gov.uk/cis/"
     }
   },
-  "description-extra": "Construction Industry Scheme sets out the rules for how payments to construction work subcontractors must be handled by contractors.<br/>The volume of transactions includes form submissions, amended submissions and registrations.",
+  "description-extra": "The volume of transactions includes form submissions, amended submissions and registrations.",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development and 2011-12 data have been updated with a more accurate reflection of volumes and costs. Changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-construction-industry-scheme",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

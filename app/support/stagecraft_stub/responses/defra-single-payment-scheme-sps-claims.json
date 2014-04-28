@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "The Single Payment Scheme is the flagship scheme for distributing about £2 billion of EU Common Agricultural Funds to farmers in England. Claims are submitted annually and annual payments are now largely based on the hectares of land claimed. Claim payments range from £10 to over £1m. The online service enables customers to submit claims, update customer details and monitor progress of their claim through to payment.",
+  "description": "Claims are submitted annually and annual payments are largely based on the hectares of land claimed. ",
   "title": "Single Payment Scheme (SPS) claims",
   "department": {
     "title": "Department for Environment, Food and Rural Affairs"
@@ -17,9 +17,11 @@
       "url": "http://www.gov.uk/single-payment-scheme-online"
     }
   },
-  "description-extra": "Claims are submitted annually and annual payments are largely based on the hectares of land claimed. <br/>The Single Payment Scheme distributes about £2 billion of EU Common Agricultural Funds to farmers in England each year. The service lets users submit claims, update their details and track progress of their claims through to payment.",
+  "description-extra": "The Single Payment Scheme distributes about £2 billion of EU Common Agricultural Funds to farmers in England each year. The service lets users submit claims, update their details and track progress of their claims through to payment.",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs": "This figure is based on the Defra/RPA methodology. It is the final 2012-13 figure after audit of the agency’s accounts compared to the target Defra/RPA cost per Single Payment Scheme claim figure of £727 that was reported in the RPA Business Plan for 2011-12.",
+  "costs-notes": "The Single Payment Scheme has fewer than 750,000 transactions per year, but is included with high-volume transactions because it has an exceptionally high departmental spend.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:defra-single-payment-scheme-sps-claims",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "To provide students in the UK with the funding they require, and to ensure they receive their payments, maintain their account and make repayments. The service varies across the devolved administrations: customers in England receive the full service from SLC; in Wales and Northern Ireland the service is delivered with the support of local authority partners; in Scotland it is delivered in partnership with SAAS.",
+  "description": "Providing UK students with funding, making sure they maintain their account and repay loans.",
   "title": "Student finance: applications (full-time study)",
   "department": {
     "title": "Department for Business, Innovation and Skills"
@@ -17,9 +17,10 @@
       "url": "http://www.gov.uk/apply-online-for-student-finance"
     }
   },
-  "description-extra": "Providing UK students with funding, making sure they maintain their account and repay loans.<br/>The service is provided by different organisations for each country in the UK:\n- England -  the Student Loans Company\n- Scotland - Student Awards Agency for Scotland\n- Wales and Northern Ireland - local authorities",
+  "description-extra": "The service is provided by different organisations for each country in the UK:\n- England -  the Student Loans Company\n- Scotland - Student Awards Agency for Scotland\n- Wales and Northern Ireland - local authorities",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "The cost shown represents the total cost for all aspects of processing a student finance application within the associated service level agreements, including mail handling (incoming & outgoing), staff processing time (including exceptions handling), customer advice (telephone, IAG etc) and subsequent payment (up to 9 per applicant per annum). <br>This 'transaction' involves several interactions with various third parties to, for example, validate identity and eligibility in line with government funding regulations and fraud avoidance strategies, data sharing with HEIs and UCAS and confirming attendance. <br>The costs of these various interactions are aggregated and averaged to give a cost per application and this is presented on a fully absorbed basis.<br><br>Analysis is continuing to refine this cost at both the service level (ie what is a full time cost or a part time cost) and at the digital/non-digital level.  The transactional costs quoted are therefore approximate and subject to refinement as this work progresses.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-student-finance-applications-full-time-study",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

@@ -17,9 +17,10 @@
       "url": "https://www.gov.uk/buy-sell-your-home/stamp-duty-land-tax"
     }
   },
-  "description-extra": "Stamp Duty Land Tax (SDLT) is payable on the purchase or transfer of property or land in the UK where the amount paid is above a certain threshold.<br/>",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
+  "costs-notes": "Transactions include form submissions and amended submissions. The transaction is defined as each incoming customer contact within a process, counted by the channel used to make that contact. The post figures includes all types received including returns filed manually as well as post for general or technical queries. Telephone contact relates to all calls received.\n",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-stamp-duty-land-tax",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

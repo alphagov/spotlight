@@ -17,9 +17,10 @@
       "url": "https://www.gov.uk/attendance-allowance"
     }
   },
-  "description-extra": "Attendance Allowance is a regular payment for people  aged 65 or over who need help with personal care because they are physically or mentally disabled.<br/>",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Costs cover many interactions with people and third parties such, as medical professionals, across the duration of the claim. It includes medical reviews, contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealings with appeals against decisions made. It also includes the making of payments and any queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual average of the number of claims maintained.<br>The data covers the maintenance of existing claims after initial eligibility and amount due have been established.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-attendance-allowance-claims-maintained",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

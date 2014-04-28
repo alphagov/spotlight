@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Applying for a new, renewed, replacement, updated or extended passport.",
+  "description": "Applications for a new, renewed, replacement, updated or extended passport.",
   "title": "Passport applications",
   "department": {
     "title": "Home Office"
@@ -17,9 +17,10 @@
       "url": "http://www.gov.uk/apply-renew-passport"
     }
   },
-  "description-extra": "Applications for a new, renewed, replacement, updated or extended passport.<br/>",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs": "This is the unit cost for producing and issuing a passport. This is a cost recovery funded service, the average cost does not align with individual passport fees as it is an aggregation of the differing volumes and channel pricing structures for the various passport types produced by IPS.",
+  "costs-notes": "This includes all passport types: jumbo, standard, adult, child, first time, renewals, replacement, fast track and premium.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-passport-applications",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

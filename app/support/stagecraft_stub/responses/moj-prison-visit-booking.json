@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Prison visit booking is the service through which social visitors and legal professionals can arrange a time to meet with a specific prisoner. The service must match the visitor and prisoner to the available capacity for visits, balancing convenience for the visitor with the need for efficiency and security.",
+  "description": "Arrange meetings between prisoners and social visitors or legal professionals.",
   "title": "Prison visit booking",
   "department": {
     "title": "Ministry of Justice"
@@ -16,9 +16,11 @@
       "title": "Prison visit booking"
     }
   },
-  "description-extra": "Arrange meetings between prisoners and social visitors or legal professionals.<br/>The service must match the visitor and prisoner to the available capacity for visits, balancing convenience for the visitor with the need for efficiency and security.",
+  "description-extra": "The service must match the visitor and prisoner to the available capacity for visits, balancing convenience for the visitor with the need for efficiency and security.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Cost-per-transaction data is based on estimates of the cost of back office support for prison visit booking and the cost of time spent by staff on prison wings supporting applications by prisoners to book visits.",
+  "costs-notes": "<div class='application-notice help-notice'><p><br>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-prison-visit-booking",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

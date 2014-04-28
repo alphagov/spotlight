@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Border Force officers must carry out full checks on all individuals entering the UK. This includes checks of identity and nationality plus any further checks which a Border Force officer deems necessary and appropriate.",
+  "description": "Full checks on all individuals entering the UK. ",
   "title": "Passenger arrivals at the border",
   "department": {
     "title": "Home Office"
@@ -16,9 +16,10 @@
       "title": "Passenger arrivals at the border"
     }
   },
-  "description-extra": "Full checks on all individuals entering the UK. <br/>This service is carried out by Border Force officers and includes checks of identity and nationality plus any further checks deemed necessary and appropriate.",
+  "description-extra": "This service is carried out by Border Force officers and includes checks of identity and nationality plus any further checks deemed necessary and appropriate.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Cost represents the cost per passenger processed at the UK border using a full cost allocation model including direct costs, overheads and corporate costs. The cost per passenger is calculated on an annual basis, once all costs and overheads are known. Jan-Dec 2012 figures calculated using financial year 2011-2012 cost data. Apr 2012-Mar 2013, Jul 2012-Jun 2013, Oct 2012-Sep 2013 and Jan 2013-Dec 2013 figures calculated using financial year 2012-2013 cost data.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-passenger-arrivals-at-border",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "The Choose and Book service lets you choose your hospital or clinic and book your first appointment.",
+  "description": "Bookings, changes and cancellations by patients for their first outpatient appointment in a hospital or clinic.",
   "title": "Choose and Book",
   "department": {
     "title": "Department of Health"
@@ -17,7 +17,7 @@
       "url": "http://www.chooseandbook.nhs.uk/"
     }
   },
-  "description-extra": "Bookings, changes and cancellations by patients for their first outpatient appointment in a hospital or clinic.<br/>Patients use Choose and Book, a national electronic referral service, to select the place, date and time of their appointment.",
+  "description-extra": "Patients use Choose and Book, a national electronic referral service, to select the place, date and time of their appointment.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
   "modules": [
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-choose-book",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

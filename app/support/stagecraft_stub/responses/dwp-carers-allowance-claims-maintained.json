@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Carers Allowance (CA) is a regular payment for carers to help look after someone with substantial caring needs - involving at least 35 hours a week.",
+  "description": "Carers Allowance (CA) is a regular payment for carers who help look after someone with substantial caring needs for at least 35 hours a week.",
   "title": "Carer's Allowance: existing claims",
   "department": {
     "title": "Department for Work and Pensions"
@@ -17,9 +17,10 @@
       "url": "https://www.gov.uk/carers-allowance"
     }
   },
-  "description-extra": "Carers Allowance (CA) is a regular payment for carers who help look after someone with substantial caring needs for at least 35 hours a week.<br/>",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Costs cover many interactions with people and third parties, such as medical professionals, across the duration of their claim. It includes medical reviews, contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and handling appeals against decisions made. It also includes the making of payments and queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual average of the number of claims maintained.<br>The data covers the maintaining of existing claims after initial eligibility and amount due have been established.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-carers-allowance-claims-maintained",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

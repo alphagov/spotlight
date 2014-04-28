@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Service aimed at learner drivers to allow the booking and fee payment for a practical driving test.",
+  "description": "Book and pay for a practical driving test.",
   "title": "Practical driving test bookings",
   "department": {
     "title": "Department for Transport"
@@ -17,7 +17,7 @@
       "url": "https://www.gov.uk/book-practical-driving-test"
     }
   },
-  "description-extra": "Book and pay for a practical driving test.<br/>This service includes booking and paying for riding tests and approved driving instructor (ADI) part 2 and 3 tests.",
+  "description-extra": "This service includes booking and paying for riding tests and approved driving instructor (ADI) part 2 and 3 tests.",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
   "modules": [
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-book-practical-driving-test",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

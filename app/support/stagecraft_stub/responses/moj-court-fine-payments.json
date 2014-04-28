@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Fines are the most common sentence passed out in criminal courts. Courts can also impose fines for driving offences, not paying a fixed penalty notice, and not having a TV licence.",
+  "description": "Fine payments in England and Wales by credit or debit card. ",
   "title": "Court fine payments   ",
   "department": {
     "title": "Ministry of Justice"
@@ -17,9 +17,10 @@
       "url": "http://www.gov.uk/pay-court-fine-online"
     }
   },
-  "description-extra": "Fine payments in England and Wales by credit or debit card. <br/>Users must have their 'Notice of Fine' to complete the transaction. This service can’t be used to pay fixed penalty or parking fines.",
+  "description-extra": "Users must have their 'Notice of Fine' to complete the transaction. This service can’t be used to pay fixed penalty or parking fines.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs-notes": "<div class='application-notice help-notice'><p>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-court-fine-payments",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

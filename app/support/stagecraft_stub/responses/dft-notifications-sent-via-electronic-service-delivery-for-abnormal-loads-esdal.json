@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Notification service for abnormal loads on the strategic roads network in England",
+  "description": "Notification service for hauliers transporting abnormal loads on roads in England.",
   "title": "Electronic Service Delivery for Abnormal Loads (ESDAL): notifications",
   "department": {
     "title": "Department for Transport"
@@ -17,9 +17,11 @@
       "url": "http://www.highways.gov.uk/business/31855.aspx"
     }
   },
-  "description-extra": "Notification service for hauliers transporting abnormal loads on roads in England.<br/>Police, road and bridge authorities man­age these noti­fi­ca­tions using the Electronic Service Delivery for Abnormal Loads (ESDAL).",
+  "description-extra": "Police, road and bridge authorities man­age these noti­fi­ca­tions using the Electronic Service Delivery for Abnormal Loads (ESDAL).",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Transactional cost data is not currently available.",
+  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/highways_agency?title=Service data for Electronic Service Delivery for Abnormal Loads (ESDAL): notifications&body=Dear Highways Agency,%0A%0APlease provide the following data for the Electronic Service Delivery for Abnormal Loads (ESDAL): notifications service, covering the period October 2012 to September 2013:%0A%0A - cost per transaction (please follow Treasury guidelines on what to take into account in measuring service costs (https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/212123/Managing_Public_Money_AA_v2_-_chapters_annex_web.pdf, annex 6.1) should be followed%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-notifications-sent-via-electronic-service-delivery-for-abnormal-loads-esdal",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Overseas State Pension (IPC SP) is a regular payment for people who reach State Pension age and are resident overseas. It is based on National Insurance (NI) contributions. ",
+  "description": "Overseas State Pension (IPC SP) is a regular payment for people who reach State Pension age and are resident overseas.",
   "title": "State Pension: existing overseas claims",
   "department": {
     "title": "Department for Work and Pensions"
@@ -17,9 +17,11 @@
       "url": "https://www.gov.uk/state-pension-if-you-retire-abroad"
     }
   },
-  "description-extra": "Overseas State Pension (IPC SP) is a regular payment for people who reach State Pension age and are resident overseas.<br/>IPC SP is based on National Insurance (NI) contributions",
+  "description-extra": "IPC SP is based on National Insurance (NI) contributions",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "Costs cover interactions with people drawing State Pension overseas across the duration of their claim.  It includes contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealing with appeals against decisions made. It also includes the making of payments and handling queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim. The cost of the job search aspect of fortnightly signing is excluded and is covered under 'Jobsearch reviews'.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual average of the number of claims by UK nationals resident overseas that have been maintained.<br>The data covers the maintenance of existing claims after the initial eligibility and amount due have been established.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-overseas-state-pension-claims-maintained",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

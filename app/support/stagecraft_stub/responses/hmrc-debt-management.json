@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Debt Management involves the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts and is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
+  "description": "Debt Management is the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts.",
   "title": "Debt collection transactions",
   "department": {
     "title": "HM Revenue and Customs"
@@ -16,9 +16,10 @@
       "title": "Debt collection transactions"
     }
   },
-  "description-extra": "Debt Management is the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts.<br/>The service is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
+  "description-extra": "The service is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs-notes": "<div class='application-notice help-notice'><p>Contact <a href=\"mailto:richard.moss@hmrc.gsi.gov.uk\">Richard Moss</a> for data for this service.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-debt-management",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

@@ -3,7 +3,6 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Payments for Healthy Start food vouchers which have been accepted by retailers.",
   "title": "Healthy Start reimbursements",
   "department": {
     "title": "Department of Health"
@@ -17,9 +16,9 @@
       "url": "http://www.healthystart.nhs.uk/"
     }
   },
-  "description-extra": "undefined<br/>",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/dh?title=Service data for Healthy Start reimbursements&body=Dear Department of Health,%0A%0APlease provide the following data for the Healthy Start reimbursements service, covering the period October 2012 to September 2013:%0A%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +90,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-healthy-start-reimbursements",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

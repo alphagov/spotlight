@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "KANA is a software product used to process external emails from customers on a variety of subjects. In future data releases, transactions completed through KANA will be reallocated to the relevant services.",
+  "description": "KANA is a software product used to process customers' emails on a variety of subjects.",
   "title": "HMRC: transactions handled by email (KANA)",
   "department": {
     "title": "HM Revenue and Customs"
@@ -16,9 +16,10 @@
       "title": "HMRC: transactions handled by email (KANA)"
     }
   },
-  "description-extra": "KANA is a software product used to process customers' emails on a variety of subjects.<br/> In future data releases, transactions completed through KANA will be reallocated to the relevant services.",
+  "description-extra": " In future data releases, transactions completed through KANA will be reallocated to the relevant services.",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-kana",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

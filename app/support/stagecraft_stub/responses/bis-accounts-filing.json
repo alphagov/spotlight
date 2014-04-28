@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "The accounts are an annual statutory filing requirements of all limited companies and LLPs. They provide the public with accounts information. The costs of filing accounts is recovered through the Annual Fee attached to the Annual Return.  ",
+  "description": "All limited companies and limited liability partnerships must file their annual accounts so they're publically available. ",
   "title": "Accounts filing",
   "department": {
     "title": "Department for Business, Innovation and Skills"
@@ -17,9 +17,9 @@
       "url": "http://www.gov.uk/file-your-company-accounts-and-tax-return"
     }
   },
-  "description-extra": "All limited companies and limited liability partnerships must file their annual accounts so they're publically available. <br/>",
   "customer-type": "Business",
   "business-model": "Cost recovery",
+  "costs": "An annual fee is attached to the annual return. The annual fee covers the registration costs of annual returns, accounts filing and all other document filing for Limited Liability Companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-accounts-filing",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

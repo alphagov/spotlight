@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Agent Authorisation is a system used by tax agents, advisers or accountants for authority to deal with HMRC on behalf of an individual or a business. Transactions include registrations, licence requests and authorisations.",
+  "description": "Agent Authorisation is a system used by tax agents, advisers and accountants for authority to deal with HMRC on behalf of an individual or a business. ",
   "title": "HMRC agent authorisations",
   "department": {
     "title": "HM Revenue and Customs"
@@ -16,9 +16,10 @@
       "title": "HMRC agent authorisations"
     }
   },
-  "description-extra": "Agent Authorisation is a system used by tax agents, advisers and accountants for authority to deal with HMRC on behalf of an individual or a business. <br/>Transactions include registrations, licence requests and authorisations.",
+  "description-extra": "Transactions include registrations, licence requests and authorisations.",
   "customer-type": "Business",
   "business-model": "Fiscal",
+  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-agent-authorisation",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

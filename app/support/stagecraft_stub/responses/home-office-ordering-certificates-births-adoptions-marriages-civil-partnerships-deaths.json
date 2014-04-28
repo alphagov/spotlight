@@ -3,7 +3,6 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Ordering an official copy of a certificate, including birth, adoption, marriage, civil partnership and death certificates.",
   "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
   "department": {
     "title": "Home Office"
@@ -17,9 +16,10 @@
       "url": "https://www.gov.uk/order-copy-birth-death-marriage-certificate"
     }
   },
-  "description-extra": "undefined<br/>Applicants need to register on the General Register Office (GRO) website to order a copy of a birth, adoption, death, marriage or civil partnership certificate in England and Wales. Certificates cost £9.25. ",
+  "description-extra": "Applicants need to register on the General Register Office (GRO) website to order a copy of a birth, adoption, death, marriage or civil partnership certificate in England and Wales. Certificates cost £9.25. ",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

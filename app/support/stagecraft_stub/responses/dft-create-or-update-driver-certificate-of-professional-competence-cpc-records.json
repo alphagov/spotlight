@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "This transactional service includes updating a drivers Certificate of Professional Competence details.",
+  "description": "Update records of candidates who have completed a Driver Certificate of Professional Competence (CPC) periodic training course. ",
   "title": "Create or update driver Certificate of Professional Competence (CPC) records",
   "department": {
     "title": "Department for Transport"
@@ -17,9 +17,11 @@
       "url": "https://www.gov.uk/record-driver-cpc-training-you-deliver"
     }
   },
-  "description-extra": "Update records of candidates who have completed a Driver Certificate of Professional Competence (CPC) periodic training course. <br/>Only approved training centres can create or update CPC records.",
+  "description-extra": "Only approved training centres can create or update CPC records.",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
+  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/dvla?title=Service data for Create or update driver Certificate of Professional Competence (CPC) records&body=Dear Driver and Vehicle Licensing Agency,%0A%0APlease provide the following data for the Create or update driver Certificate of Professional Competence (CPC) records service, covering the period October 2012 to September 2013:%0A%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-create-or-update-driver-certificate-of-professional-competence-cpc-records",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

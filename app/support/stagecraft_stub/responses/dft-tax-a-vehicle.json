@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "This transactional service includes paying Vehicle Excise Duty.",
+  "description": "Applications for new car tax discs.",
   "title": "Tax disc renewals",
   "department": {
     "title": "Department for Transport"
@@ -17,9 +17,10 @@
       "url": "https://www.gov.uk/tax-disc"
     }
   },
-  "description-extra": "Applications for new car tax discs.<br/>The total number of applications for Vehicle Excise Duty (VED), also known as vehicle tax, car tax and road tax.",
+  "description-extra": "The total number of applications for Vehicle Excise Duty (VED), also known as vehicle tax, car tax and road tax.",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +92,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-tax-a-vehicle",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

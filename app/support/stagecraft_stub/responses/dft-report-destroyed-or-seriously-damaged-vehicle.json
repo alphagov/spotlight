@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "This transactional service includes informing DVLA that a vehicle has been destroyed or seriously damaged.",
+  "description": "Reporting a destroyed or seriously damaged vehicle to DVLA .",
   "title": "Destroyed or damaged vehicles reported",
   "department": {
     "title": "Department for Transport"
@@ -16,9 +16,9 @@
       "title": "Destroyed or damaged vehicles reported"
     }
   },
-  "description-extra": "Reporting a destroyed or seriously damaged vehicle to DVLA .<br/>",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
+  "costs-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -90,6 +90,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dft-report-destroyed-or-seriously-damaged-vehicle",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

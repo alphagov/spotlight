@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "The Annual Return is a statutory requirement of the Companies Act and applies to all Companies and LLPs.  This provides the public with a synopsis of the company every year and includes information on Directors, shareholders, Company type, and SIC codes.   ",
+  "description": "All companies must send an annual return to Companies House so information on their directors, shareholders, company type and SIC codes is publically available.",
   "title": "Annual returns",
   "department": {
     "title": "Department for Business, Innovation and Skills"
@@ -17,9 +17,9 @@
       "url": "http://www.gov.uk/file-an-annual-return-with-companies-house"
     }
   },
-  "description-extra": "All companies must send an annual return to Companies House so information on their directors, shareholders, company type and SIC codes is publically available.<br/>",
   "customer-type": "Business",
   "business-model": "Cost recovery",
+  "costs": "An annual fee is attached to the annual return. The annual fee covers the registration costs of annual returns, accounts filing and all other document filing for Limited Liability Companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +91,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

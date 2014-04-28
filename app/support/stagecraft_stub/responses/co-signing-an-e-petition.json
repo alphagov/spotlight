@@ -3,7 +3,6 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Users can create an e-petition about anything that the government is responsible for and, if it gets at least 100,000 signatures, it will be considered for debate in the House of Commons.",
   "title": "Signing an e-petition",
   "department": {
     "title": "Cabinet Office"
@@ -17,9 +16,9 @@
       "url": "https://www.gov.uk/petition-government"
     }
   },
-  "description-extra": "undefined<br/>",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "The costs for this service also cover 'Creating an e-petition'. The given cost per transaction is rounded up to the nearest penny.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +90,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:co-signing-an-e-petition",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

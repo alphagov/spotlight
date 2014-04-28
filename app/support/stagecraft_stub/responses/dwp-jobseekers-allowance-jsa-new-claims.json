@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Jobseekers Allowance (JSA) is the main benefit for people who are out of work and seeking employment. It is based on  either National Insurance (NI) contributions or low income.",
+  "description": "Jobseekers Allowance (JSA) is the main benefit for people who are out of work and seeking employment. ",
   "title": "Jobseeker's Allowance (JSA): new claims",
   "department": {
     "title": "Department for Work and Pensions"
@@ -17,9 +17,11 @@
       "url": "https://www.dwpe-services.direct.gov.uk/portal/page/portal/jsaol/lp"
     }
   },
-  "description-extra": "Jobseekers Allowance (JSA) is the main benefit for people who are out of work and seeking employment. <br/>JSA is based on either National Insurance (NI) contributions or low income.",
+  "description-extra": "JSA is based on either National Insurance (NI) contributions or low income.",
   "customer-type": "Citizen",
   "business-model": "Fiscal",
+  "costs": "New claims involve several interactions with the applicant and third parties such as ex-employers to, for example, assemble evidence to validate identity and eligibility in line with benefit regulations and fraud avoidance strategies, issue NI numbers if the applicant does not have one, and deal with any appeals against the decisions made.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of processing an application up to the point that payments commence. The ongoing costs of maintaining the claim after this point have been separately shown against the transaction type 'JSA: claims maintained'.<br>The costs of these various interactions are aggregated and averaged to give a cost per application and this is presented on a fully absorbed basis but excluding investment (change) costs. DWP is introducing changes to improve the accuracy of  IT cost apportionment.",
+  "costs-notes": "The number of transactions given is the annual number of applications processed, whether successful or not.<br>It covers new applications for JSA from initial enquiry through to the claim commencing payment.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -91,6 +93,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-jobseekers-allowance-jsa-new-claims",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [

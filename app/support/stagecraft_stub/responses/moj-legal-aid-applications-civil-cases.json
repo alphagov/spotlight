@@ -16,8 +16,8 @@
       "title": "Legal aid applications: civil cases"
     }
   },
-  "description-extra": "Applications for legal aid for a civil problem like divorce or avoiding eviction.<br/>",
   "customer-type": "Citizen",
+  "costs-notes": "<div class='application-notice help-notice'><p>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -89,6 +89,22 @@
       "data-group": "transactions-explorer",
       "data-type": "spreadsheet",
       "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-legal-aid-applications-civil-cases",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [
