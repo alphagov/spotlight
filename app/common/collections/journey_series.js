@@ -20,6 +20,7 @@ define([
     },
 
     parse: function (response) {
+      var valueAttr = this.options.valueAttr || 'uniqueEvents';
       var data = _.map(this.axes.y, function (step) {
         return _.extend({
           title: step.label,
@@ -28,6 +29,15 @@ define([
           return this.getStep(responseStep) === step.journeyId;
         }, this));
       }, this);
+
+      var hasData = _.any(data, function (m) {
+        return m[valueAttr] !== undefined;
+      });
+      if (hasData) {
+        _.each(data, function (m) {
+          m[valueAttr] = m[valueAttr] || 0;
+        });
+      }
 
       return data;
     },
