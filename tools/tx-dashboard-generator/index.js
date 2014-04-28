@@ -29,7 +29,7 @@ googleAuth.on(GoogleClientLogin.events.login, function(){
 
         function addField(value, obj, key) {
           if (!_.isObject(value)) {
-            obj[key] = value;
+            obj[key] = value.trim();
           }
         }
 

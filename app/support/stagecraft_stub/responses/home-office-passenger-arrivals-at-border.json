@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Full checks on all individuals entering the UK. ",
+  "description": "Full checks on all individuals entering the UK.",
   "title": "Passenger arrivals at the border",
   "department": {
     "title": "Home Office"

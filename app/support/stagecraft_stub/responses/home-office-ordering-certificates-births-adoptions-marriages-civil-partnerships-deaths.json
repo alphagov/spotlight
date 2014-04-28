@@ -3,6 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
+  "description": "Ordering an official copy of a certificate, including birth, adoption, marriage, civil partnership and death certificates.",
   "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
   "department": {
     "title": "Home Office"
@@ -16,7 +17,6 @@
       "url": "https://www.gov.uk/order-copy-birth-death-marriage-certificate"
     }
   },
-  "description-extra": "Applicants need to register on the General Register Office (GRO) website to order a copy of a birth, adoption, death, marriage or civil partnership certificate in England and Wales. Certificates cost £9.25. ",
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
   "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",

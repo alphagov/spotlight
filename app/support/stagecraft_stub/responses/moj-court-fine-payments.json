@@ -3,8 +3,8 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Fine payments in England and Wales by credit or debit card. ",
-  "title": "Court fine payments   ",
+  "description": "Fine payments in England and Wales by credit or debit card.",
+  "title": "Court fine payments",
   "department": {
     "title": "Ministry of Justice"
   },
@@ -13,7 +13,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Court fine payments   ",
+      "title": "Court fine payments",
       "url": "http://www.gov.uk/pay-court-fine-online"
     }
   },

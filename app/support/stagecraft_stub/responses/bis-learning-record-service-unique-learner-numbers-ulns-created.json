@@ -17,7 +17,7 @@
       "url": "https://www.gov.uk/government/publications/lrs-unique-learner-numbers"
     }
   },
-  "description-extra": "The transactions counted here include the total number of ULNs created, which consists of batch uploads and individually created ULNs. ",
+  "description-extra": "The transactions counted here include the total number of ULNs created, which consists of batch uploads and individually created ULNs.",
   "customer-type": "Business",
   "business-model": "Fiscal",
   "costs": "SFA are currently unable to provide a breakdown of batch uploads and individual manually created ULNs, but are investigating this with a view to providing data on costs.",

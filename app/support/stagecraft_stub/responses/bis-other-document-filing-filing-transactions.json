@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions. ",
+  "description": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions.",
   "title": "Companies House: other document filing",
   "department": {
     "title": "Department for Business, Innovation and Skills"
