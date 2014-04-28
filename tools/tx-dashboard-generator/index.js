@@ -38,7 +38,7 @@ googleAuth.on(GoogleClientLogin.events.login, function(){
         output['page-type'] = 'dashboard';
         output['dashboard-type'] = 'transaction';
         output.strapline = 'Dashboard';
-        addField(row.descriptionofservice, output, 'description');
+        addField(row.description1, output, 'description');
         addField(row.nameofservice, output, 'title');
         output.department = {};
         addField(row.department, output.department, 'title');
@@ -48,15 +48,11 @@ googleAuth.on(GoogleClientLogin.events.login, function(){
         output.relatedPages.transaction = {};
         addField(row.nameofservice, output.relatedPages.transaction, 'title');
         addField(row.url, output.relatedPages.transaction, 'url');
-        addField(row.description1, output, 'description-extra');
-        if (row.description2) {
-          output['description-extra'] += '<br/>';
-          if (!_.isObject(row.description2)) {
-            output['description-extra'] += row.description2;
-          }
-        }
+        addField(row.description2, output, 'description-extra');
         addField(row.customertype, output, 'customer-type');
         addField(row.businessmodel, output, 'business-model');
+        addField(row.notesoncosts, output, 'costs');
+        addField(row.othernotes, output, 'costs-notes');
         output.modules = [];
 
         //add kpi modules
