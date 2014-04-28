@@ -30,20 +30,20 @@ function (GovUkView, contentTemplate) {
     },
 
     getTagline: function () {
-      var tagline;
-      if (this.dashboardType === 'other') {
+      var tagline = '';
+      if (this.dashboardType === 'transaction') {
+        tagline = 'This dashboard shows information about how ' +
+                  'the <strong>' + this.model.get('title') +
+                  '</strong> service is currently performing.';
+      } else if ((this.dashboardType === 'agency') || (this.dashboardType === 'department')) {
+        tagline = 'This dashboard shows information about how ' +
+                  'selected services run by the <strong>' +
+                  this.model.get('title') +
+                  '</strong> are currently performing.';
+      } else if (this.dashboardType === 'other') {
         tagline = this.model.get('other').tagline;
-      } else {
-        tagline = 'This dashboard shows information about how ';
-        if (this.dashboardType === 'transaction') {
-          tagline += 'the <strong>' + this.model.get('title');
-          tagline += '</strong> service is';
-        } else if ((this.dashboardType === 'agency') || (this.dashboardType === 'department')) {
-          tagline += 'selected services run by the <strong>';
-          tagline += this.model.get('title');
-          tagline += '</strong> are';
-        }
-        tagline += ' currently performing.';
+      } else if (this.model.get('tagline')) {
+        tagline = this.model.get('tagline');
       }
       return tagline;
     },
