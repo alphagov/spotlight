@@ -59,9 +59,10 @@ define([
 
     percent: function (value, options) {
       _.defaults(options, {
-        dps: 0
+        dps: 0,
+        normalisation: 1.0
       });
-      return formatters.number(value * 100, options) + '%';
+      return formatters.number(value * 100 / options.normalisation, options) + '%';
     },
 
     integer: function (value, options) {
