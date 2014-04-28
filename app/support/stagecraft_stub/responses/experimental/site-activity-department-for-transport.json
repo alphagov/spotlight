@@ -476,7 +476,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
@@ -511,7 +514,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
@@ -546,7 +552,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
