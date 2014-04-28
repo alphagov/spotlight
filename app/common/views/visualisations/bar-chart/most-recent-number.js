@@ -7,6 +7,9 @@ function (SingleStatView) {
     changeOnSelected: true,
 
     formatValue: function (value) {
+      if (this.formatType === 'percent') {
+        return this.formatPercentage(value);
+      }
       return this.formatNumericLabel(value);
     },
 

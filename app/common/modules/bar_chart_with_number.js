@@ -12,10 +12,12 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
 
     collectionOptions: function () {
       var valueAttr = this.model.get('value-attribute');
+      var format = this.model.get('format') || {};
       return {
         queryParams: this.model.get('query-params'),
         valueAttr: valueAttr,
         axisPeriod: this.model.get('axis-period'),
+        format: format,
         axes: _.merge({
           x: {
             label: 'Dates',
@@ -26,7 +28,7 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
             {
               label: 'Number of applications',
               key: valueAttr,
-              format: 'integer'
+              format: format.type || 'integer'
             }
           ]
         }, this.model.get('axes'))

@@ -6,11 +6,13 @@ define([
 ],
 function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({
+    minYDomainExtent: 1,
     numYTicks: 3,
 
-    initialize: function () {
-      this.valueAttr = this.collection.options.valueAttr || 'uniqueEvents';
-      this.axisPeriod = this.collection.options.axisPeriod;
+    initialize: function (options) {
+      this.valueAttr = options.valueAttr || 'uniqueEvents';
+      this.axisPeriod = options.axisPeriod;
+      this.formatType = options.formatType;
 
       Graph.prototype.initialize.apply(this, arguments);
     },
@@ -23,7 +25,16 @@ function (Graph, XAxis, Bar, Hover) {
             axisPeriod: this.axisPeriod
           }
         },
-        { view: this.sharedComponents.yaxis },
+        {
+          view: this.sharedComponents.yaxis,
+          options: (this.formatType === 'percent') ? {
+            tickFormat: function () {
+              return function (d) {
+                return Math.round(100 * d) + '%';
+              };
+            }
+          } : {}
+        },
         { view: Bar },
         { view: Hover }
       ];
