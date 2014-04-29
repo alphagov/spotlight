@@ -6,10 +6,6 @@ function (SingleStatView) {
 
     changeOnSelected: true,
 
-    formatValue: function (value) {
-      return this.formatNumericLabel(value);
-    },
-
     getFirstNonNullValueInCollection: function () {
       var values = this.collection.first().get('values');
       values = values.last(values.length).reverse();
@@ -21,7 +17,9 @@ function (SingleStatView) {
 
     getValue: function () {
       var firstMatch = this.getFirstNonNullValueInCollection();
-      return firstMatch ? this.formatValue(firstMatch.get(this.valueAttr)) : this.formatValue(null);
+
+      var value = firstMatch ? firstMatch.get(this.valueAttr) : null;
+      return this.format(value, this.formatOptions);
     },
 
     getLabel: function () {
@@ -36,7 +34,7 @@ function (SingleStatView) {
       } else {
         val = null;
       }
-      return this.formatValue(val);
+      return this.format(val, this.formatOptions);
     },
 
     getLabelSelected: function (selection) {

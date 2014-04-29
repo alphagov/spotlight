@@ -12,18 +12,21 @@ function (template, View, BarChart, MostRecentNumberView) {
 
     views: function () {
       var valueAttr = this.collection.options.valueAttr;
+      var formatOptions = this.collection.options.format;
       return {
         '#most-recent-number': {
           view: MostRecentNumberView,
           options: {
-            valueAttr: valueAttr
+            valueAttr: valueAttr,
+            formatOptions: formatOptions
           }
         },
         '#bar': {
           view: BarChart,
           options: {
             valueAttr: valueAttr,
-            axisPeriod: this.collection.options.axisPeriod
+            axisPeriod: this.collection.options.axisPeriod,
+            formatOptions: formatOptions
           }
         }
       };

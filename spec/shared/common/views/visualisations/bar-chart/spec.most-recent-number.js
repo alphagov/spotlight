@@ -12,36 +12,42 @@ define([
         {
           '_start_at': '2014-01-01T00:00:00+00:00',
           '_end_at': '2014-04-01T00:00:00+00:00',
-          'number_of_transactions': 971867
+          'number_of_transactions': 971867,
+          'digital_takeup': 0.63
         },
         {
           '_start_at': '2014-04-01T00:00:00+00:00',
           '_end_at': '2014-07-01T00:00:00+00:00',
-          'number_of_transactions': 1022777
+          'number_of_transactions': 1022777,
+          'digital_takeup': 0.78
         }
       ];
       var incompleteData = [
         {
           '_start_at': '2014-01-01T00:00:00+00:00',
           '_end_at': '2014-04-01T00:00:00+00:00',
-          'number_of_transactions': 971867
+          'number_of_transactions': 971867,
+          'digital_takeup': 0.63
         },
         {
           '_start_at': '2014-04-01T00:00:00+00:00',
           '_end_at': '2014-07-01T00:00:00+00:00',
-          'number_of_transactions': null
+          'number_of_transactions': null,
+          'digital_takeup': null
         }
       ];
       var nullData = [
         {
           '_start_at': '2014-01-01T00:00:00+00:00',
           '_end_at': '2014-04-01T00:00:00+00:00',
-          'number_of_transactions': null
+          'number_of_transactions': null,
+          'digital_takeup': null
         },
         {
           '_start_at': '2014-04-01T00:00:00+00:00',
           '_end_at': '2014-07-01T00:00:00+00:00',
-          'number_of_transactions': null
+          'number_of_transactions': null,
+          'digital_takeup': null
         }
       ];
 
@@ -57,12 +63,13 @@ define([
           model: model
         });
         view.valueAttr = 'number_of_transactions';
+        view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
       });
 
       describe('getValue', function () {
 
         it('displays value for most recent period if available', function () {
-          expect(view.getValue()).toEqual('1.02m');
+          expect(view.getValue()).toEqual('1m');
         });
 
         it('displays value for earlier period if most recent period not available', function () {
@@ -73,7 +80,14 @@ define([
             collection: collection
           });
           view.valueAttr = 'number_of_transactions';
+          view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
           expect(view.getValue()).toEqual('972k');
+        });
+
+        it('displays percentage values when percent option is set', function () {
+          view.valueAttr = 'digital_takeup';
+          view.formatOptions = { 'type': 'percent' };
+          expect(view.getValue()).toEqual('78%');
         });
 
         it('displays (no data) when there is no data available', function () {
@@ -84,6 +98,7 @@ define([
             collection: collection
           });
           view.valueAttr = 'number_of_transactions';
+          view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
           view.render();
 
           expect(view.$el.html()).toEqual('<span class="no-data">(no data)</span>');
@@ -101,11 +116,29 @@ define([
             collection: collection
           });
           view.valueAttr = 'number_of_transactions';
+          view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
 
           var selection = new Model();
           selection.set('number_of_transactions', 1000000);
 
-          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1.00m');
+          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1,000k');
+        });
+
+        it('displays percentage values when percent option is set', function () {
+
+          collection.reset([ {
+            values: new Collection(data)
+          } ]);
+          view = new MostRecentNumber({
+            collection: collection
+          });
+          view.valueAttr = 'digital_takeup';
+          view.formatOptions = { 'type': 'percent' };
+
+          var selection = new Model();
+          selection.set('digital_takeup', 0.87);
+
+          expect(view.getValueSelected({ selectedModel: selection })).toEqual('87%');
         });
 
         it('should select null when the selected model has no data available', function () {
@@ -131,6 +164,7 @@ define([
             collection: collection
           });
           view.valueAttr = 'number_of_transactions';
+          view.formatOptions = { 'format': { 'type': 'integer' }};
           view.render();
 
           expect(view.$el.html()).toEqual('<span class="no-data">(no data)</span>');

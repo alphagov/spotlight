@@ -10,7 +10,8 @@ function (BarChart, JourneyCollection, Collection) {
 
     beforeEach(function () {
       graph = new BarChart({
-        collection: new JourneyCollection([{}])
+        collection: new JourneyCollection([{}]),
+        formatOptions: { 'type': 'integer', 'magnitude': 'true' }
       });
     });
 

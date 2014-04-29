@@ -112,6 +112,16 @@ function (BarChartWithNumberCollection) {
       expect(collection.parse(response)).toEqual(parsedResponse);
     });
 
+    it('should not blow up when the response is undefined', function () {
+      var collection = new BarChartWithNumberCollection({}, {});
+      collection.valueAttr = 'unknown';
+
+      var responseCopy = _.clone(mockResponse, true);
+      var result = collection.parse(responseCopy);
+
+      expect(result.values[0].get(collection.valueAttr)).toBeDefined();
+    });
+
   });
 
 });

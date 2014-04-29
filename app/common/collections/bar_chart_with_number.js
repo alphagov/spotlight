@@ -27,6 +27,9 @@ function (MatrixCollection, Collection, Group) {
         if (!d._start_at) {
           d._start_at = d['_' + this.axisPeriod + '_start_at'];
         }
+        if (_.isUndefined(d[this.valueAttr])) {
+          d[this.valueAttr] = null;
+        }
       }, this);
 
       var collectionAttrs = {

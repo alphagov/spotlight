@@ -13,8 +13,10 @@ function (InterleavedBar) {
     },
     text: function (model) {
       var value = model.get(this.graph.valueAttr);
-      return (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) ?
-         '(no data)' : this.formatNumericLabel(value);
+      if (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) {
+        return '(no data)';
+      }
+      return this.format(value, this.collection.options.format);
     }
   });
 

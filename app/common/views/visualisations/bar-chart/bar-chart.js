@@ -6,16 +6,19 @@ define([
 ],
 function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({
+    minYDomainExtent: 1,
     numYTicks: 3,
 
-    initialize: function () {
-      this.valueAttr = this.collection.options.valueAttr || 'uniqueEvents';
-      this.axisPeriod = this.collection.options.axisPeriod;
+    initialize: function (options) {
+      this.valueAttr = options.valueAttr || 'uniqueEvents';
+      this.axisPeriod = options.axisPeriod;
+      this.formatOptions = options.formatOptions;
 
       Graph.prototype.initialize.apply(this, arguments);
     },
 
     components: function () {
+      var that = this;
       return [
         {
           view: XAxis,
@@ -23,7 +26,16 @@ function (Graph, XAxis, Bar, Hover) {
             axisPeriod: this.axisPeriod
           }
         },
-        { view: this.sharedComponents.yaxis },
+        {
+          view: this.sharedComponents.yaxis,
+          options: (this.formatOptions.type === 'percent') ? {
+            tickFormat: function () {
+              return function (d) {
+                return that.format(d, that.formatOptions);
+              };
+            }
+          } : {}
+        },
         { view: Bar },
         { view: Hover }
       ];

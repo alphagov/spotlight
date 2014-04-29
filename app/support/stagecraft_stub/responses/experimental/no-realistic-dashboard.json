@@ -78,7 +78,7 @@
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "digital_takeup",
-      "format": "percent"
+      "format": { "type": "percent" }
     },
     {
       "slug": "cost-per-transaction",
@@ -106,6 +106,20 @@
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
       }
+    },
+    {
+      "slug": "digital-takeup-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital takeup per quarter",
+      "description": "Percentage digital takeup each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
+      },
+      "format": { "type": "percent"}
     },
     {
       "slug": "live-service-usage",

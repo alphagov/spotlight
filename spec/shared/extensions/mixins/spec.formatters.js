@@ -215,11 +215,12 @@ define([
         expect(Formatters.format(0.12345, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1235');
       });
 
-      it('rounds to specified number of significant figures', function () {
+      it('rounds to specified number of significant figures, except in the case of zero', function () {
         expect(Formatters.format(1234, { type: 'number', sigfigs: 4 })).toEqual('1,234');
         expect(Formatters.format(1234, { type: 'number', sigfigs: 3 })).toEqual('1,230');
         expect(Formatters.format(1234, { type: 'number', sigfigs: 2 })).toEqual('1,200');
         expect(Formatters.format(1234, { type: 'number', sigfigs: 1 })).toEqual('1,000');
+        expect(Formatters.format(0, { type: 'number', sigfigs: 3 })).toEqual('0');
         //to capture 428*0.1 === 42.800000000000004 :)
         expect(Formatters.format(42.82216, { type: 'number', sigfigs: 3 })).toEqual('42.8');
       });
