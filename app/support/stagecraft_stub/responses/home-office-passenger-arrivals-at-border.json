@@ -95,16 +95,23 @@
       }
     },
     {
-      "slug": "digital-take-up-per-quater",
+      "slug": "digital-take-up-per-quarter",
       "module-type": "bar_chart_with_number",
       "title": "Digital take-up",
-      "description": "Digital take-up for each quater",
+      "description": "Digital take-up rates each quarter",
       "data-group": "transactional-services",
       "data-type": "summaries",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "format": {
-        "type": "percentage"
+        "type": "percent"
+      },
+      "axes": {
+        "y": [
+          {
+            "label": "Percentage digital take-up"
+          }
+        ]
       },
       "query-params": {
         "filter_by": [
