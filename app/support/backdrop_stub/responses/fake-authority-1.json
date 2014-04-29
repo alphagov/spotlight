@@ -1,5 +1,5 @@
 {
-    "bucket": "licensify",
+    "data_set": "licensify",
     "query": {
         "group_by": "authorityUrlSlug",
         "filter_by": "authorityUrlSlug:fake-authority-1",
