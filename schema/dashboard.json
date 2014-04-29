@@ -9,7 +9,7 @@
     "dashboard-type": {
       "type": "string",
       "required": true,
-      "enum": ["transaction", "agency", "department", "other"]
+      "enum": ["transaction", "high-volume-transaction", "agency", "department", "other"]
     },
     "page-type": {
       "type": "string",
