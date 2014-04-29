@@ -4,7 +4,7 @@ define(['extensions/models/model', 'lodash', 'fs', 'path'], function (Model, _, 
   var ResponseFetcher = Model.extend({
 
     stubMappings: [
-      { 'key': {'service': 'transactions-explorer', 'api_name': 'spreadsheet'}, 'file': 'kpi.json'},
+      { 'key': {'service': 'transactional-services', 'api_name': 'summaries'}, 'file': 'kpi.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_residential_transactions.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_residential_transactions_quarterly.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'house-price-index', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_house_price_index_quarterly.json'},
