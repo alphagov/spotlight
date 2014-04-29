@@ -54,6 +54,16 @@ function (Bar, Collection, Model) {
 
       });
 
+      it('should display 10% if the percent option is set', function () {
+        var model = new Model({ val: 0.1 }),
+            bar = new Bar({ graph: graph, collection: new Collection({},
+              { 'format': { 'type': 'percent' }
+            }) });
+
+        expect(bar.text(model)).toEqual('10%');
+
+      });
+
     });
 
   });

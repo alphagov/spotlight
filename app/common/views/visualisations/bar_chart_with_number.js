@@ -16,14 +16,16 @@ function (template, View, BarChart, MostRecentNumberView) {
         '#most-recent-number': {
           view: MostRecentNumberView,
           options: {
-            valueAttr: valueAttr
+            valueAttr: valueAttr,
+            formatType: this.collection.options.format.type
           }
         },
         '#bar': {
           view: BarChart,
           options: {
             valueAttr: valueAttr,
-            axisPeriod: this.collection.options.axisPeriod
+            axisPeriod: this.collection.options.axisPeriod,
+            formatType: this.collection.options.format.type
           }
         }
       };
