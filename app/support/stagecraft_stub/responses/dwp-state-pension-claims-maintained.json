@@ -26,8 +26,8 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
@@ -47,8 +47,8 @@
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
@@ -68,8 +68,8 @@
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
@@ -89,8 +89,8 @@
       "module-type": "bar_chart_with_number",
       "title": "Transactions per quarter",
       "description": "Total number of transactions each quarter",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
       "query-params": {
@@ -103,10 +103,10 @@
     {
       "slug": "digital-take-up-per-quater",
       "module-type": "bar_chart_with_number",
-      "title": "Digital Take-up",
+      "title": "Digital take-up",
       "description": "Digital take-up for each quater",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "format": {

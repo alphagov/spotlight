@@ -26,8 +26,8 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
@@ -40,8 +40,8 @@
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
@@ -54,8 +54,8 @@
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols3",
       "query-params": {
         "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],

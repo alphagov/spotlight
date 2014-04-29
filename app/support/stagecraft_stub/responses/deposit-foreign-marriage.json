@@ -12,8 +12,8 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
       "classes": "cols2",
       "query-params": {
         "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
