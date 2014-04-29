@@ -211,6 +211,15 @@ module.exports = function (grunt) {
         command: 'node tools/stagecraft-generate-module-stubs.js'
       },
       // Generates the page-per-thing module JSON stubs
+      generate_services_list: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: 'node tools/generate-services-list.js'
+      },
+      // Generates the page-per-thing module JSON stubs
       validate_module_stubs: {
         options: {
           failOnError: true,
@@ -287,7 +296,8 @@ module.exports = function (grunt) {
     'clean',
     'copy:assets',
     'shell:validate_module_stubs',
-    'shell:generate_module_stubs'
+    'shell:generate_module_stubs',
+    'shell:generate_services_list'
   ]);
 
   grunt.registerTask('build:development', [
@@ -319,6 +329,7 @@ module.exports = function (grunt) {
     'copy:assets',
     'shell:validate_module_stubs',
     'shell:generate_module_stubs',
+    'shell:generate_services_list',
     'sass:development',
     'digest',
     'jasmine',
