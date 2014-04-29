@@ -28,6 +28,12 @@
       "slug": "traffic-to-department-content",
       "module-type": "tab",
       "title": "Traffic to content",
+      "info":[
+        "Data source: Google Analytics",
+        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "completion_numbers",
@@ -76,7 +82,7 @@
             },
             "y": [
               {
-                "label": "Number of visitors"
+                "label": "Number of pageviews"
               }
             ]
           }
@@ -87,7 +93,7 @@
       "slug": "most-popular-content",
       "module-type": "tab",
       "title": "Most popular content",
-      "description": "Visitors arriving over the last week",
+      "description": "Visitors arriving over the last week.",
       "info":[
         "Data source: Google Analytics",
         "These show pageviews and unique pageviews to the 10 most popular pages over the last full week (Monday to Sunday).",
@@ -111,7 +117,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -146,7 +152,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -181,7 +187,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -216,7 +222,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -251,7 +257,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -286,7 +292,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -321,7 +327,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -360,7 +366,7 @@
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "This shows the number and percentage of visits made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
+        "This shows the number and percentage of entrances made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
         "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
       "axes": {
@@ -424,13 +430,13 @@
         },
         "y": [
           {
-            "label": "New Visitor",
-            "categoryId": "New Visitor",
+            "label": "New visitors",
+            "categoryId": "New visitors",
             "format": "integer"
           },
           {
-            "label": "Returning Visitor",
-            "categoryId": "Returning Visitor",
+            "label": "Returning visitors",
+            "categoryId": "Returning visitors",
             "format": "integer"
           }
         ]
@@ -440,7 +446,7 @@
       "module-type": "tab",
       "slug": "top-department-referrers",
       "title": "Sources of visitors",
-      "description": "Visitors arriving over the last week",
+      "description": "Visitors arriving over the last week.",
       "info": ["Data source: Google Analytics",
       "This shows the number of entrances to departmental content and their bounce rate for the last full week (Monday to Sunday).",
       "‘Sources’ is a mix of search engines (‘organic’), other websites (‘referral’) and other sources that Google Analytics cannot attribute (‘(none)’). ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
@@ -571,7 +577,8 @@
       "description": "",
       "data-group": "gov-uk-content",
       "data-type": "feedback-count",
-      "info": [
+      "info": ["Data source: GOV.UK anonymous feedback",
+      "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
       ],
       "denominator-matcher": "dclg",
       "numerator-matcher": "dclg",
@@ -584,7 +591,7 @@
         },
         "y": [
           {
-            "label": "Comment Count"
+            "label": "Comment count"
           }
         ]
       }
