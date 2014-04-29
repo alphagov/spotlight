@@ -25,7 +25,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
       rimraf('./dashboards', function () {
         fs.mkdirSync('./dashboards');
 
-        _.each(spreadsheet, function (row, index) {
+        _.each(spreadsheet, function (row) {
 
           function addField(value, obj, key) {
             if (!_.isObject(value)) {
