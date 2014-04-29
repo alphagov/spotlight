@@ -158,6 +158,11 @@ define([
         expect(Formatters.format(1, { type: 'percent', dps: 1 })).toEqual('100%');
       });
 
+      it('returns formatted number normalised to the given value', function () {
+        expect(Formatters.format(50, { type: 'percent', normalisation: 100 })).toEqual('50%');
+        expect(Formatters.format(100, { type: 'percent', normalisation: 100 })).toEqual('100%');
+      });
+
     });
 
     describe('integer', function () {
