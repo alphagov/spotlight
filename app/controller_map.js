@@ -15,18 +15,20 @@ define([
   'common/modules/table',
   'common/modules/user_satisfaction',
   'common/modules/user_satisfaction_graph',
-  'common/modules/visitors-realtime'
+  'common/modules/visitors-realtime',
+  'client/controllers/services'
 ],
 function (DashboardController, ErrorController,
 
   AvailabilityModule, BarChartWithNumberModule, ComparisonModule, CompletionNumbersModule,
   CompletionRateModule, GroupedTimeseriesModule, JourneyModule, KPIModule,
   ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule,
-  UserSatisfactionGraphModule, VisitorsRealtimeModule) {
+  UserSatisfactionGraphModule, VisitorsRealtimeModule, ServicesController) {
 
   var ControllerMap = {
     dashboard: DashboardController,
     error: ErrorController,
+    services: ServicesController,
     modules: {
       'availability': AvailabilityModule,
       'bar_chart_with_number': BarChartWithNumberModule,
