@@ -5,8 +5,7 @@ var fs = require('fs'),
     Q = require('q');
 
 var stagecraftStubDir = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses'),
-    stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json'),
-    ignoreFileRegexp = /services\.json|unimplemented-page-type\.json/;
+    stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json');
 
 var services = [];
 
@@ -15,6 +14,7 @@ function readModule(file) {
   fs.readFile(file, 'utf8', function (err, dashboardData) {
     if (err) {
       if (err.code === 'EISDIR') {
+        defer.resolve();
         return;
       } else {
         defer.reject(err);
@@ -23,7 +23,9 @@ function readModule(file) {
     }
 
     dashboardData = JSON.parse(dashboardData);
-    services.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type'));
+    if (dashboardData['page-type'] === 'dashboard') {
+      services.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type'));
+    }
     defer.resolve();
 
   });
@@ -36,9 +38,7 @@ glob(stagecraftStubGlob, function (err, files) {
     throw err;
   }
   Q.all(_.map(files, function (file) {
-    if (!ignoreFileRegexp.test(file)) {
-      return readModule(file);
-    }
+    return readModule(file);
   })).then(function () {
     console.log('Writing ' + services.length + ' services into services.json');
     fs.writeFileSync(stagecraftStubDir + '/services.json', JSON.stringify({ items: services }, null, 2) + '\n');
