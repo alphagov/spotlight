@@ -42,7 +42,7 @@ var http = require('http'),
     path = require('path');
 
 var rootDir = path.join(__dirname, '..');
-var app = requirejs('appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
+var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
 var server = http.createServer(app).listen(app.get('port'), function () {
   global.logger.info('Express server listening on port ' + app.get('port'));
