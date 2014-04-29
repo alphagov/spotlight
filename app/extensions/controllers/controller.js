@@ -15,6 +15,7 @@ define([
 
     viewOptions: function () {},
     collectionOptions: function () {},
+    collectionData: function () { return []; },
 
     renderView: function (options) {
       options = _.extend({}, this.viewOptions(), options);
@@ -34,7 +35,7 @@ define([
       options = options || {};
 
       if (this.collectionClass && !this.collection) {
-        this.collection = new this.collectionClass([], _.extend({
+        this.collection = new this.collectionClass(this.collectionData(), _.extend({
           'data-type': this.model.get('data-type'),
           'data-group': this.model.get('data-group')
         }, this.collectionOptions()));
@@ -50,7 +51,7 @@ define([
         model: this.model,
       }, options);
 
-      if (this.collection) {
+      if (this.collection && this.collection.isEmpty()) {
         this.listenToOnce(this.collection, 'sync reset error', function () {
           this.renderView(renderViewOptions);
         }, this);
