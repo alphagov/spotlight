@@ -101,7 +101,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'format': { 'type': 'currency', 'pence': true }
           });
 
-          //add transactions per quater
+          //add transactions per quarter
           output.modules.push({
             'slug': 'transactions-per-quarter',
             'module-type': 'bar_chart_with_number',
@@ -118,10 +118,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
 
           //add digital-take-up
           output.modules.push({
-            'slug': 'digital-take-up-per-quater',
+            'slug': 'digital-take-up-per-quarter',
             'module-type': 'bar_chart_with_number',
-            'title': 'Digital Take-up',
-            'description': 'Digital take-up for each quater',
+            'title': 'Digital take-up',
+            'description': 'Digital take-up rates each quarter',
             'data-group': 'transactions-explorer',
             'data-type': 'spreadsheet',
             'value-attribute': 'digital_takeup',
