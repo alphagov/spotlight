@@ -121,7 +121,7 @@ define([
           expect(view.getValueSelected({ selectedModel: selection })).toEqual('1.00m');
         });
 
-         it('displays percentage values when percent option is set', function () {
+        it('displays percentage values when percent option is set', function () {
 
           collection.reset([ {
             values: new Collection(data)
