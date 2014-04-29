@@ -17,15 +17,15 @@
     left: 12em;
 
     .change {
-      @include core-24($tabular-numbers: true);
+      @include core-24();
     }
   }
 
   @media(max-width: 850px) {
 
-	  .delta {
-	    left: 9em;
-	  }
+    .delta {
+      left: 9em;
+    }
 
     .stat strong {
       margin-bottom: 8px;
@@ -35,10 +35,10 @@
 
   @media(max-width: 640px) {
 
-	  .delta {
-	    left: 8em;
-	    bottom: 2px;
-	  }
+    .delta {
+      left: 8em;
+      bottom: 2px;
+    }
 
     .stat strong {
       margin-bottom: 5px;

@@ -34,7 +34,7 @@ figure.graph {
   }
 
   text {
-    @include core-16($tabular-numbers: true) ;
+    @include core-16($tabular-numbers: true);
 
     @media (max-width: 320px) {
       font-size: 9px;
@@ -186,7 +186,7 @@ figure.graph {
     }
 
     text {
-      @include core-19($tabular-numbers: true) ;
+      @include core-19() ;
       text-anchor: middle;
     }
 
@@ -226,11 +226,17 @@ figure.graph {
     vector-effect: non-scaling-stroke;
   }
 
-  .x-axis line {
-    fill: none;
-    stroke: #444;
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
+  .x-axis {
+    line {
+      fill: none;
+      stroke: #444;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
+
+    .tick text {
+      @include core-16();
+    }
   }
 
   .hover {
@@ -246,7 +252,7 @@ figure.graph {
 
   .legend {
     position: absolute;
-    @include core-16($tabular-numbers: true);
+    @include core-16();
     top: -24px;
     right: 0;
     width: 200px;
@@ -286,6 +292,7 @@ figure.graph {
       list-style: none;
       margin: 0;
       padding: 0;
+      @include core-16($tabular-numbers: true);
 
       &.squares {
         li {
@@ -415,7 +422,7 @@ figure.graph {
     background-color: $grey-4;
     width:200px;
     @include box-shadow(0px 0px 3px 1px rgba(0, 0, 0, 0.35));
-    @include core-16($tabular-numbers: true);
+    @include core-16();
     h3 {
       font-weight:700;
       margin:0;
@@ -542,7 +549,7 @@ figure.graph {
     }
 
     .y-axis .tick:nth-child(odd) text {
-	    font-size: 12px;
+      font-size: 12px;
      }
 
     .line {
@@ -555,7 +562,7 @@ figure.graph {
     }
 
     .callout {
-      @include core-16($tabular-numbers: true);
+      @include core-16();
       margin-top:.5em;
       position:static;
       max-width:240px;

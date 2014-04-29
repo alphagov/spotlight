@@ -8,7 +8,7 @@
     border-top: 1px solid $grey-2;
 
     .footer-text, .description {
-      @include bold-24($tabular-numbers: true);
+      @include bold-24();
       margin-top: 0;
       margin-bottom: 20px;
     }
@@ -31,12 +31,12 @@
     }
 
     h3 {
-      @include core-16($tabular-numbers: true);
+      @include core-16();
       margin-bottom: 5px;
     }
 
     h4 {
-      @include bold-16($tabular-numbers: true);
+      @include bold-16();
     }
 
   }
