@@ -1,0 +1,122 @@
+{
+  "slug": "bis-annual-returns",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "All companies must send an annual return to Companies House so information on their directors, shareholders, company type and SIC codes is publically available.",
+  "title": "Company annual returns filed",
+  "department": {
+    "title": "Department for Business, Innovation and Skills"
+  },
+  "agency": {
+    "title": "Companies House"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Company annual returns filed",
+      "url": "http://www.gov.uk/file-an-annual-return-with-companies-house"
+    }
+  },
+  "customer-type": "Business",
+  "business-model": "Cost recovery",
+  "costs": "An annual fee is attached to the annual return. The annual fee covers the registration costs of annual returns, accounts filing and all other document filing for Limited Liability Companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

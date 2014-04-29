@@ -1,0 +1,122 @@
+{
+  "slug": "home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Ordering an official copy of a certificate, including birth, adoption, marriage, civil partnership and death certificates.",
+  "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
+  "department": {
+    "title": "Home Office"
+  },
+  "agency": {
+    "title": "HM Passport Office"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
+      "url": "https://www.gov.uk/order-copy-birth-death-marriage-certificate"
+    }
+  },
+  "customer-type": "Citizen",
+  "business-model": "Cost recovery",
+  "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "dwp-social-fund-grants-loans",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "title": "Social Fund Grants and Loans",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "agency": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Social Fund Grants and Loans",
+      "url": "https://www.gov.uk/crisis-loans"
+    }
+  },
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Grants and loans can involve several interactions with both the applicant and third parties. The costs are for the financial year 2012/13 and represent the total cost for all aspects of processing an application from end to end. <br>Processes include validating identity and eligibility, compliance checks, the investigation of potential fraud and error, and appeals against decisions made. It also includes the making of payments and any queries about non-receipt<br>The costs of these various interactions are aggregated and averaged to give a cost per application and this is presented on a fully absorbed basis but excluding investment (change) costs. DWP is introducing changes to improve the accuracy of  IT cost apportionment.",
+  "costs-notes": "Covers applications processed for Crisis Loans, Budgeting Loans, Community Care, Funeral and Maternity Grants, whether successful or not.<br> Note: Crisis loans and Community Care grants ceased to be available from April 2013",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-social-fund-grants-loans",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-social-fund-grants-loans",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-social-fund-grants-loans",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-social-fund-grants-loans",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-social-fund-grants-loans",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

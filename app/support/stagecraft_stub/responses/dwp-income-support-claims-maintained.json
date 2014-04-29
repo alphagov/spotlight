@@ -1,0 +1,124 @@
+{
+  "slug": "dwp-income-support-claims-maintained",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Income Support is paid to people on a low or zero income.",
+  "title": "Income Support: existing claims",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "agency": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Income Support: existing claims",
+      "url": "https://www.gov.uk/income-support/overview"
+    }
+  },
+  "description-extra": "People who are working less than 16 hours a week, haven’t signed on as unemployed or are a lone parent or carer can claim Income Support.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Maintaining claims involves many interactions, including contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and appeals against decisions made. It also includes the making of payments and any queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence, including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained, and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual average of the number of claims maintained.<br>This data covers the maintenance of existing claims after initial eligibility and amount due have been established.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-income-support-claims-maintained",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-income-support-claims-maintained",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-income-support-claims-maintained",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-income-support-claims-maintained",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-income-support-claims-maintained",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

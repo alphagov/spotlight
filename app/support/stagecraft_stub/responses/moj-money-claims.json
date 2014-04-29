@@ -1,0 +1,123 @@
+{
+  "slug": "moj-money-claims",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Money claims are a way of taking legal action against a person or business who owes money, to demand repayment.",
+  "title": "Money claims",
+  "department": {
+    "title": "Ministry of Justice"
+  },
+  "agency": {
+    "title": "HM Courts & Tribunals Service"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Money claims",
+      "url": "http://www.gov.uk/make-money-claim-online"
+    }
+  },
+  "description-extra": "Most claims are undefended, and only a small minority end up in a court hearing.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs-notes": "<div class='application-notice help-notice'><p>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-money-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-money-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-money-claims",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-money-claims",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:moj-money-claims",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

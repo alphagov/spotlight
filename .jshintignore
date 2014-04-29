@@ -8,6 +8,7 @@
 package.json
 assets/**
 node_modules/**
+**/node_modules/**
 vendor/**
 public/**
 config/**
@@ -15,7 +16,6 @@ lib/**
 spec/helpers/**
 app/vendor/**
 app/support/**/*.js
-tools/**
 styles/**
 log/**
 LICENSE

@@ -1,0 +1,124 @@
+{
+  "slug": "dwp-universal-jobmatch-jobseeker-accounts-created",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Jobseekers can upload CVs on Universal Jobmatch to help them find full or part-time jobs in Great Britain and abroad.",
+  "title": "Universal Jobmatch: Jobseeker accounts created",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "agency": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Universal Jobmatch: Jobseeker accounts created",
+      "url": "https://www.gov.uk/jobsearch"
+    }
+  },
+  "description-extra": "The service has operated since November 2012.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "This process is part of Jobsearch Advice service and all the costs are already included in the unit cost of Adviser Interventions (jobsearch advice) \nThe costs for 2012/13 included the costs of its predecessors, Employer Direct, National Email Team, Jobseeker Direct Online.",
+  "costs-notes": "The volumes cover the number of new accounts created by jobseekers on the Universal Jobmatch (UJ) service. These are accounts jobseekers have created for themselves on the UJ service which will enable them to save preferred job search criteria, receive automated notifications of job vacancies matching their criteria, upload and store CVs, and enable their details to be searchable by DWP staff and employers.<br>This type of internal management information does not form part of the official statistics outputs that are released by the Department in accordance with the UK Statistics Authority’s Code of Practice.<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/dwp?title=Service data for Universal Jobmatch: vacancies placed by employers&body=Dear Department for Work and Pensions,%0A%0APlease provide the following data for the Universal Jobmatch: vacancies placed by employers service, covering the period October 2012 to September 2013:%0A%0A - cost per transaction (please follow Treasury guidelines on what to take into account in measuring service costs (https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/212123/Managing_Public_Money_AA_v2_-_chapters_annex_web.pdf, annex 6.1) should be followed%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the October 2012 to September 2013 data which has not been provided for this service.</p></div>",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-universal-jobmatch-jobseeker-accounts-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-universal-jobmatch-jobseeker-accounts-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-universal-jobmatch-jobseeker-accounts-created",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-universal-jobmatch-jobseeker-accounts-created",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-universal-jobmatch-jobseeker-accounts-created",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

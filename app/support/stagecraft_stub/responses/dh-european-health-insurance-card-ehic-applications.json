@@ -1,0 +1,124 @@
+{
+  "slug": "dh-european-health-insurance-card-ehic-applications",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Applications for European Health Insurance Cards.",
+  "title": "European Health Insurance Card (EHIC): applications",
+  "department": {
+    "title": "Department of Health"
+  },
+  "agency": {
+    "title": "Department of Health"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "European Health Insurance Card (EHIC): applications",
+      "url": "https://www.ehic.org.uk/"
+    }
+  },
+  "description-extra": "The EHIC replaced the E111 in 2006. An EHIC lets patients get state healthcare in Europe at a reduced cost or sometimes free.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Average cost per transaction includes the following costs:<br> - Staff: estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - Overheads: includes all the related administrative expenditure including EHIC management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are not included<br> - Printing and distribution: includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail<br><br>Costs relating to the production, distribution and promotion of EHIC application forms and the processing of medical expenses claims are not included. The Department for Work and Pensions are responsible for these costs.",
+  "costs-notes": "Figures have been calculated based on number of applications processed rather than on the number of cards issued. More than one card may be issued per application. An EHIC is valid for five years.<br>EHIC applications can be made online, by post or by telephone, but the following applicants can only apply by post:<br><br>1) Dependants of a citizen working in the UK, who live in an EU member state<br>2) Pensioners or persons who are in receipt of long-term benefit from the UK who live in an EU member state<br>3) Non- European Economic Area (EEA) nationals.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-european-health-insurance-card-ehic-applications",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-european-health-insurance-card-ehic-applications",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-european-health-insurance-card-ehic-applications",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-european-health-insurance-card-ehic-applications",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dh-european-health-insurance-card-ehic-applications",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

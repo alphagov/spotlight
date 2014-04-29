@@ -1,0 +1,123 @@
+{
+  "slug": "dwp-adviser-interventions-jobsearch-advice",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Jobcentre Plus advisers provide information, advice and support to jobseekers, including referral to any of the Labour Market programmes.",
+  "title": "Job search adviser interventions",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "agency": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Job search adviser interventions",
+      "url": "https://www.gov.uk/moving-from-benefits-to-work"
+    }
+  },
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Advisers provide support not just to clients on JSA, but also those in receipt of other benefits like ESA and Income Support. Interventions may last from a few minutes to over an hour. Costs cover arranging appointments, issuing invitations, conducting the interviews, referring to vacancies, following up and maintaining the person's labour market record. The costs also include advising about and referring to Labour Market programmes  such as the Work Programme, Access to Work and training programmes, but not the cost of the programmes themselves.<br>The costs are for the financial year 2012/13. They are aggregated and averaged to give a cost per intervention and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual number of advisory interviews of any type undertaken.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-adviser-interventions-jobsearch-advice",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-adviser-interventions-jobsearch-advice",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-adviser-interventions-jobsearch-advice",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-adviser-interventions-jobsearch-advice",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-adviser-interventions-jobsearch-advice",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

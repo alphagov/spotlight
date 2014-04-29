@@ -1,0 +1,124 @@
+{
+  "slug": "hmrc-tax-credits",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Tax Credits are payments from the government to people who are either responsible for at least 1 child or on a low income.",
+  "title": "Tax Credits transactions",
+  "department": {
+    "title": "HM Revenue and Customs"
+  },
+  "agency": {
+    "title": "HM Revenue and Customs"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Tax Credits transactions",
+      "url": "http://www.hmrc.gov.uk/taxcredits/"
+    }
+  },
+  "description-extra": "Universal Credit will eventually replace Tax Credits.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Costs data has been excluded as the service will be incorporated in Universal Credit.",
+  "costs-notes": "Transactions include registrations, form submissions, customer letters, change of circumstance notifications and telephone contacts. <div class='application-notice help-notice'><p>Contact <a href=\"mailto:richard.moss@hmrc.gsi.gov.uk\">Richard Moss</a> for data on this service.</p></div>",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax-credits",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax-credits",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax-credits",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax-credits",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax-credits",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "dwp-child-maintenance",
+  "page-type": "dashboard",
+  "dashboard-type": "high-volume-transaction",
+  "strapline": "Dashboard",
+  "description": "Child maintenance is financial support to a child’s everyday living costs when the parents have separated.",
+  "title": "Child Maintenance transactions",
+  "department": {
+    "title": "Department for Work and Pensions"
+  },
+  "agency": {
+    "title": "Department for Work and Pensions"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Child Maintenance transactions",
+      "url": "https://www.gov.uk/child-maintenance"
+    }
+  },
+  "description-extra": "Child maintenance can be arranged through the Child Support Agency (CSA) or Child Maintenance Service.",
+  "customer-type": "Citizen",
+  "business-model": "Fiscal",
+  "costs": "Costs cover any interactions with people paying or receiving Child Maintenance.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of processing and maintaining an application, including those of terminating the claim. It includes legal enquiries, enforcement of court orders, contacts about changes of circumstances or compliance checks that could affect eligibility, debt enforcement, complaints and appeals against decisions made. It also includes the collecting and making of payments and queries about non-receipt.<br>The costs of these various interactions are aggregated and averaged to give a cost per child supported and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "costs-notes": "The number of transactions given is the annual number of applications processed, whether successful or not.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-child-maintenance",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-child-maintenance",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-child-maintenance",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    },
+    {
+      "slug": "transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-child-maintenance",
+          "type:quarterly"
+        ]
+      }
+    },
+    {
+      "slug": "digital-take-up-per-quater",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital Take-up",
+      "description": "Digital take-up for each quater",
+      "data-group": "transactions-explorer",
+      "data-type": "spreadsheet",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percentage"
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:dwp-child-maintenance",
+          "type:quarterly"
+        ]
+      }
+    }
+  ]
+}
