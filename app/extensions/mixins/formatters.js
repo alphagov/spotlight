@@ -88,7 +88,7 @@ define([
         if (typeof options.dps === 'number' && typeof options.sigfigs !== 'number') {
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
-        } else if (typeof options.sigfigs === 'number') {
+        } else if (typeof options.sigfigs === 'number' && value !== 0) {
           var divisor = Math.pow(10, Math.ceil(Math.log(value) / Math.LN10) - options.sigfigs);
           value = Math.round(value / divisor) / (1 / divisor); // floating point wtf
         }
