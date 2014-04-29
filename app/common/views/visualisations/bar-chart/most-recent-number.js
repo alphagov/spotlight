@@ -17,7 +17,9 @@ function (SingleStatView) {
 
     getValue: function () {
       var firstMatch = this.getFirstNonNullValueInCollection();
-      return firstMatch ? this.format(firstMatch.get(this.valueAttr), this.formatOptions) : this.format(null, this.formatOptions);
+
+      var value = firstMatch ? firstMatch.get(this.valueAttr) : null;
+      return this.format(value, this.formatOptions);
     },
 
     getLabel: function () {

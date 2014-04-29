@@ -15,12 +15,11 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
       var options = {
         queryParams: this.model.get('query-params'),
         valueAttr: valueAttr,
-        axisPeriod: this.model.get('axis-period'),
-        format: _.merge({
-          type: 'integer',
-          magnitude: true
-        }, this.model.get('format'))
+        axisPeriod: this.model.get('axis-period')
       };
+      options.format = this.model.get('format') ||
+        { type: 'integer', magnitude: true, sigfigs: 3 };
+
       options.axes = _.merge({
           x: {
             label: 'Dates',
@@ -31,7 +30,7 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
             {
               label: 'Number of applications',
               key: valueAttr,
-              format: options.format.type
+              format: options.format
             }
           ]
         }, this.model.get('axes'));
