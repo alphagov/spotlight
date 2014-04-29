@@ -152,6 +152,20 @@ function (DashboardView, Model) {
         ]);
       });
 
+
+      it('calculates correct crumbs for high-volume transactions', function () {
+        model.set({
+          department: {
+            title: 'Department for Work and Pensions'
+          }
+        });
+        view.dashboardType = 'high-volume-transaction';
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          {'path': '/performance', 'title': 'Performance'},
+          {'title': 'Department for Work and Pensions'}
+        ]);
+      });
+
       it('calculates correct crumbs for policies', function () {
         model.set({
           policy: {

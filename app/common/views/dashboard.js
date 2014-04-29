@@ -70,7 +70,7 @@ function (GovUkView, contentTemplate) {
         crumbs.push({
           'title': this.model.get('department').title
         });
-      } else if (this.dashboardType === 'transaction') {
+      } else if (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction') {
         crumbs.push({
           'title': this.model.get('department').title
         });
