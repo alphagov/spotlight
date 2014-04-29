@@ -4,7 +4,7 @@ var fs = require('fs'),
     glob = require('glob'),
     Q = require('q');
 
-var stagecraftStubDir = path.resolve(__dirname, '..', 'app', 'support', 'stagecraft_stub', 'responses'),
+var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/responses'),
     stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json');
 
 var services = [];
