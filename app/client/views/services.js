@@ -2,7 +2,7 @@ define([
   'extensions/views/view',
   'common/views/filtered_list'
 ],
-function (View, ListView) {
+function (View, FilteredListView) {
   return View.extend({
 
     events: _.extend({
@@ -12,7 +12,7 @@ function (View, ListView) {
     views: function () {
       return {
         '#services-list': {
-          view: ListView
+          view: FilteredListView
         }
       };
     },

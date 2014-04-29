@@ -2,9 +2,9 @@ define([
   'extensions/controllers/controller',
   'common/collections/filtered_list',
   'client/views/services'
-], function (Controller, ListCollection, ServicesView) {
+], function (Controller, FilteredListCollection, ServicesView) {
   return Controller.extend({
-    collectionClass: ListCollection,
+    collectionClass: FilteredListCollection,
     viewClass: ServicesView,
     clientRenderOnInit: true,
     renderView: function (options) {
