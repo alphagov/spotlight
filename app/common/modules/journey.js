@@ -13,6 +13,10 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
     collectionOptions: function () {
       return {
         matchingAttribute: this.model.get('matching-attribute'),
+        format: {
+          type: 'integer',
+          magnitude: true
+        },
         axes: _.merge({
           y: []
         }, this.model.get('axes'))

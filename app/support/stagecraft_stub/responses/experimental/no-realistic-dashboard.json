@@ -78,7 +78,7 @@
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "digital_takeup",
-      "format": "percent"
+      "format": { "type": "percent" }
     },
     {
       "slug": "cost-per-transaction",

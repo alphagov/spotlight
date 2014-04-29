@@ -16,9 +16,7 @@ function (InterleavedBar) {
       if (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) {
         return '(no data)';
       }
-      var format = this.collection.options.format || {};
-      return (format.type === 'percent') ?
-          this.formatPercentage(value) : this.formatNumericLabel(value);
+      return this.format(value, this.collection.options.format);
     }
   });
 

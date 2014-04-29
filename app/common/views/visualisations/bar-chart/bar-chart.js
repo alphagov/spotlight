@@ -12,12 +12,13 @@ function (Graph, XAxis, Bar, Hover) {
     initialize: function (options) {
       this.valueAttr = options.valueAttr || 'uniqueEvents';
       this.axisPeriod = options.axisPeriod;
-      this.formatType = options.formatType;
+      this.formatOptions = options.formatOptions;
 
       Graph.prototype.initialize.apply(this, arguments);
     },
 
     components: function () {
+      var that = this;
       return [
         {
           view: XAxis,
@@ -27,10 +28,10 @@ function (Graph, XAxis, Bar, Hover) {
         },
         {
           view: this.sharedComponents.yaxis,
-          options: (this.formatType === 'percent') ? {
+          options: (this.formatOptions.type === 'percent') ? {
             tickFormat: function () {
               return function (d) {
-                return Math.round(100 * d) + '%';
+                return that.format(d, that.formatOptions);
               };
             }
           } : {}

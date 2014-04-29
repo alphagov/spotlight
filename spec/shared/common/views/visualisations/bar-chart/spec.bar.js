@@ -40,7 +40,9 @@ function (Bar, Collection, Model) {
 
       it('should display 0 if 0', function () {
         var model = new Model({ val: 0 }),
-            bar = new Bar({ graph: graph, collection: new Collection() });
+            bar = new Bar({ graph: graph, collection: new Collection({},
+              { 'format': { 'type': 'integer' }
+            }) });
 
         expect(bar.text(model)).toEqual('0');
 
@@ -48,7 +50,9 @@ function (Bar, Collection, Model) {
 
       it('should display 10 if 10', function () {
         var model = new Model({ val: 10 }),
-            bar = new Bar({ graph: graph, collection: new Collection() });
+            bar = new Bar({ graph: graph, collection: new Collection({},
+              { 'format': { 'type': 'integer' }
+            }) });
 
         expect(bar.text(model)).toEqual('10');
 

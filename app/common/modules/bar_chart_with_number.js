@@ -12,13 +12,16 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
 
     collectionOptions: function () {
       var valueAttr = this.model.get('value-attribute');
-      var format = this.model.get('format') || {};
-      return {
+      var options = {
         queryParams: this.model.get('query-params'),
         valueAttr: valueAttr,
         axisPeriod: this.model.get('axis-period'),
-        format: format,
-        axes: _.merge({
+        format: _.merge({
+          type: 'integer',
+          magnitude: true
+        }, this.model.get('format'))
+      };
+      options.axes = _.merge({
           x: {
             label: 'Dates',
             key: ['_start_at', 'end_at'],
@@ -28,11 +31,11 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
             {
               label: 'Number of applications',
               key: valueAttr,
-              format: format.type || 'integer'
+              format: options.format.type
             }
           ]
-        }, this.model.get('axes'))
-      };
+        }, this.model.get('axes'));
+      return options;
     }
   });
 

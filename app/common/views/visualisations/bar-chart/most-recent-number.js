@@ -6,13 +6,6 @@ function (SingleStatView) {
 
     changeOnSelected: true,
 
-    formatValue: function (value) {
-      if (this.formatType === 'percent') {
-        return this.formatPercentage(value);
-      }
-      return this.formatNumericLabel(value);
-    },
-
     getFirstNonNullValueInCollection: function () {
       var values = this.collection.first().get('values');
       values = values.last(values.length).reverse();
@@ -24,7 +17,7 @@ function (SingleStatView) {
 
     getValue: function () {
       var firstMatch = this.getFirstNonNullValueInCollection();
-      return firstMatch ? this.formatValue(firstMatch.get(this.valueAttr)) : this.formatValue(null);
+      return firstMatch ? this.format(firstMatch.get(this.valueAttr), this.formatOptions) : this.format(null, this.formatOptions);
     },
 
     getLabel: function () {
@@ -39,7 +32,7 @@ function (SingleStatView) {
       } else {
         val = null;
       }
-      return this.formatValue(val);
+      return this.format(val, this.formatOptions);
     },
 
     getLabelSelected: function (selection) {
