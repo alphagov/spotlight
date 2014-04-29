@@ -1,8 +1,0 @@
-{
-    "bucket": "licensify",
-    "query": {
-        "group_by": "authorityUrlSlug",
-        "collect": ["authorityName"]
-    },
-    "data": []
-}

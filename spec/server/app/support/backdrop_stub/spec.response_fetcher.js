@@ -3,12 +3,8 @@ function (ResponseFetcher, _, fs, path) {
 
   var stubMappings = [
     { 'key': {'service': 'licensing', 'api_name': 'monitoring'}, 'file':  'licensing_availability_response.json'},
-    { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'licenceUrlSlug:application-to-licence-a-street-collection'}, 'file':  'application-to-licence-a-street-collection.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1', 'group_by': 'licenceUrlSlug'}, 'file':  'licensing_top_5_licenses.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1', 'period': 'week'}, 'file':  'licensing_top.json'},
-    { 'key': {'service': 'licensing', 'api_name': 'application', 'filter_by': 'authorityUrlSlug:fake-authority-1'}, 'file':  'fake-authority-1.json'},
-    { 'key': {'service': 'licensing', 'api_name': 'application', 'group_by': 'authorityUrlSlug'}, 'file':  'authorities.json'},
-    { 'key': {'service': 'licensing', 'api_name': 'application', 'group_by': 'licenceUrlSlug'}, 'file':  'licences.json'},
     { 'key': {'service': 'licensing', 'api_name': 'application'}, 'file':  'licensing_applications.json'},
     { 'key': {'filter_by': 'dataType:licensing_overview_journey'}, 'file':  'licensing_overview_journey.json'},
     { 'key': {'service': 'pay-legalisation-post', 'api_name': 'journey'}, 'file':  'fco_overview_journey.json'},
