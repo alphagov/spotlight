@@ -24,7 +24,7 @@ function (GovUkView, contentTemplate) {
       context.dashboardType = this.dashboardType;
       context.tagline = this.getTagline();
 
-      context.hasFooter = (this.dashboardType === 'transaction');
+      context.hasFooter = (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction');
 
       return this.contentTemplate(context);
     },
