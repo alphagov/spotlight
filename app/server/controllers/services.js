@@ -9,11 +9,10 @@ var Collection = requirejs('common/collections/filtered_list');
 var PageConfig = requirejs('page_config');
 
 module.exports = function (req, res) {
-
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Services',
     'page-type': 'services',
-    'filter': '',
+    'filter': req.query.filter || '',
     'data': services.items
   }));
 
