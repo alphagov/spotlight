@@ -431,12 +431,12 @@
         "y": [
           {
             "label": "New visitors",
-            "categoryId": "New visitors",
+            "categoryId": "New Visitor",
             "format": "integer"
           },
           {
             "label": "Returning visitors",
-            "categoryId": "Returning visitors",
+            "categoryId": "Returning Visitor",
             "format": "integer"
           }
         ]
