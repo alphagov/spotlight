@@ -4,135 +4,78 @@ $grey-6: #a1acb2;
 
 #footer {
   .footer-categories {
-    font-size: 0;
-    float: left;
+    @extend %contain-floats;
 
-    border: 1px solid $grey-6;
-    border-width: 0 0 1px 0;
-
-    margin-bottom: 30px;
-    padding: 0 0 60px 0;
-
-    width: 100%;
-
-    @include media-down(mobile) {
-      padding: 20px 0;
+    @include media(tablet){
+      padding: 0 0 30px;
     }
 
-    .footer-explore {
-      float: left;
+    .footer-explore,
+    .footer-inside-government {
+      @include media(tablet){
+        float: left;
+        width: 66.66%;
+        padding-bottom: 60px;
+      }
 
-      margin-right: 7%;
-      width: 62%;
+      h2 {
+        margin: 0 15px;
 
-      @include media-down(mobile) {
-        display: block;
+        @include media(tablet) {
+          padding: 0 0 20px;
+          border-bottom: 1px solid $grey-6;
+        }
+      }
+    }
 
-        margin: 0 0 30px 0;
+    hr {
+      clear: both;
+      margin: 0 15px 30px;
+      border: 1px solid $grey-6;
+      border-width: 1px 0 0 0;
 
-        width: 100%;
+      @include media(tablet){
+        margin-bottom: 0;
       }
     }
 
     ul {
-      @include core-16();
+      @include core-16;
       list-style: none;
 
-      border: 1px solid $grey-6;
-      border-width: 1px 0 0 0;
+      padding: 10px 0 0;
+      margin: 0 15px 30px;
 
-      margin: 20px 0 0 0;
-
-      padding: 20px 0 0 0;
-
-      min-height: 210px;
-
-      vertical-align: top;
-
-      @include media-down(mobile) {
-        border-width: 0;
-        min-height: 0;
+      @include media(tablet){
+        padding: 20px 0 0;
+        margin: 0 15px;
+      }
+      @include ie-lte(7){
+        padding: 0; // for some reason IE6-7 gives the ul padding to each of the floated children
       }
 
       li {
         display: block;
+        margin-bottom: 5px;
 
-        float: left;
-        clear: left;
-
-        margin: 0 0 15px 0;
-
-        width: 45.5%;
-
-        &:nth-child(even) {
-          float: right;
-          clear: none;
+        @include media(tablet){
+          float: left;
+          margin: 15px 0 0 0;
+          width: 50%;
         }
-
-        @include ie-lte(8) {
-          display: inline;
-          min-height: 1.5em;
-          clear: none;
-        }
-
-        @include ie(6) {
-          height: 1.5em;
-        }
-
-        @include media-down(mobile) {
-          float: none;
-          width: 100%;
-          margin-left: 0;
-
-          &:nth-child(even) {
-            float: none;
-          }
-
-          &:first-child,
-          &:nth-child(2) {
-            border-top: none;
-            padding-top: 0;
-          }
-        }
-      }
-
-      @include ie(6) {
-        border-top: none;
-        zoom: 1;
       }
     }
 
     .footer-inside-government {
-      float: left;
-      width: 31%;
-
-      ul {
-        margin-right: 0;
-
-        @include media-down(mobile) {
-          margin: 20px 0 0 0;
-
-          width: 100%;
-        }
-
-        li {
-          margin-right: 0;
-          width: 100%;
-
-          &:nth-child(even) {
-            float: none;
-            clear: none;
-          }
-        }
+      @include media(tablet){
+        float: left;
+        width: 33.33%;
       }
 
-      @include media-down(mobile) {
-        width: 100%;
-        display: block;
-        padding: 0;
-        margin: 0;
-        border: none;
-        min-height: 0;
+      ul {
+        li {
+          width: 100%;
+        }
       }
     }
   }

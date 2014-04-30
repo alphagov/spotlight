@@ -82,6 +82,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
           pageTitle: this.getPageTitle(),
           bodyClasses: '',
           headerClass: 'with-proposition',
+          htmlLang: 'en',
           propositionHeader: navigationTemplate,
           cookieMessage: cookieMessageTemplate(),
           footerTop: footerTopTemplate(),
