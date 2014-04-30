@@ -128,7 +128,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'axis-period': 'quarter',
             'format': { 'type': 'percent' },
             'axes': {
-              'y': [{'label': 'Percentage digital takeup'}]
+              'y': [{'label': 'Percentage digital take-up'}]
             },
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:quarterly']
