@@ -1,0 +1,634 @@
+{
+  "slug": "site-activity-driver-and-vehicle-standards-agency",
+  "page-type": "dashboard",
+  "dashboard-type": "other",
+  "strapline": "Content dashboard",
+  "title": "Driver & Vehicle Standards Agency (DVSA)",
+  "other": {
+    "tagline": "Web performance data for the Driver & Vehicle Standards Agency, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>'View site activity for all GOV.UK.</a>"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Driver & Vehicle Standards Agency",
+      "url" : "https://www.gov.uk/government/organisations/driver-and-vehicle-standards-agency"
+    },
+    "other": [
+      {
+        "title": "DVSA policies",
+        "url": "https://www.gov.uk/government/policies?departments%5B%5D=driver-and-vehicle-standards-agency"
+      },
+      {
+        "title": "DVSA publications",
+        "url": "https://www.gov.uk/government/publications?departments%5B%5D=driver-and-vehicle-standards-agency"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "slug": "traffic-to-department-content",
+      "module-type": "tab",
+      "title": "Traffic to content",
+      "info":[
+        "Data source: Google Analytics",
+        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "tabs": [
+        {
+          "module-type": "completion_numbers",
+          "title": "Visitors",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "traffic-count",
+          "info": [
+            "Data source: Google Analytics",
+            "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+          ],
+          "denominator-matcher": "driver-and-vehicle-standards-agency",
+          "numerator-matcher": "driver-and-vehicle-standards-agency",
+          "matching-attribute": "department",
+          "value-attribute": "visitors:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
+          }
+        },
+        {
+          "module-type": "completion_numbers",
+          "title": "Pageviews",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "pageviews-count",
+          "info": [
+          ],
+          "denominator-matcher": "driver-and-vehicle-standards-agency",
+          "numerator-matcher": "driver-and-vehicle-standards-agency",
+          "matching-attribute": "department",
+          "value-attribute": "pageviews:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of pageviews"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "most-popular-content",
+      "module-type": "tab",
+      "title": "Most popular content",
+      "description": "Visitors arriving over the last week.",
+      "info":[
+        "Data source: Google Analytics",
+        "These show pageviews and unique pageviews to the 10 most popular pages over the last full week (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted.‘Unique Pageviews’ is the number of visits during which the specified page was viewed at least once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-pages",
+          "title": "All pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "news-pages",
+          "title": "News pages",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-news-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "publications",
+          "title": "Publications",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-publications-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "consultations",
+          "title": "Consultations",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-consultations-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Pageviews",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "policies",
+          "title": "Policies",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-policy-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Pageviews",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "speeches",
+          "title": "Speeches",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-speeches-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "collections",
+          "title": "Collections",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "top-collections-count",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "pageTitle",
+            "collect": ["pageviews:sum", "uniquePageviews:sum"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Page title",
+              "key": "pageTitle"
+            },
+            "y": [
+              {
+                "label": "Page views",
+                "key": "pageviews:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Unique pageviews",
+                "key": "uniquePageviews:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "sort-by": "uniquePageviews:sum",
+          "sort-order": "descending"
+        }
+      ]
+    },
+    {
+      "slug": "how-users-access-the-service",
+      "module-type": "grouped_timeseries",
+      "title": "Devices used to access the content",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+      "data-group": "gov-uk-content",
+      "data-type": "devices-count",
+      "filter-by": "department:driver-and-vehicle-standards-agency",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 9,
+      "value-attribute": "pageviews:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "This shows the number and percentage of entrances made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "new-visitors-vs-returning-visitors",
+      "module-type": "grouped_timeseries",
+      "title": "New and returning visitors",
+      "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
+      "data-group": "gov-uk-content",
+      "data-type": "new-returning-count",
+      "filter-by": "department:driver-and-vehicle-standards-agency",
+      "category": "visitorType",
+      "period": "week",
+      "axis-period": "month",
+      "duration": 9,
+      "value-attribute": "entrances:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "This shows the number and percentage of entrances made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
+        "Returning visitors are those who have previously visited any part of GOV.UK. ",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "New visitors",
+            "categoryId": "New Visitor",
+            "format": "integer"
+          },
+          {
+            "label": "Returning visitors",
+            "categoryId": "Returning Visitor",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "module-type": "tab",
+      "slug": "top-department-referrers",
+      "title": "Sources of visitors",
+      "description": "Visitors arriving over the last week.",
+      "info": ["Data source: Google Analytics",
+      "This shows the number of entrances to departmental content and their bounce rate for the last full week (Monday to Sunday).",
+      "‘Sources’ is a mix of search engines (‘organic’), other websites (‘referral’) and other sources that Google Analytics cannot attribute (‘(none)’). ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
+      "The bounce rate is the percentage of visits where a user arrived on the entrance page and then left the site without interacting with the page or visiting any other pages.",
+      "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-sources",
+          "title": "All sources",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "referrers-rate",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "sourceMedium",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Source of user",
+              "key": "sourceMedium"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "search-terms",
+          "title": "Search terms",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "organic-rate",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "keyword",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Keyword",
+              "key": "keyword"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        },
+        {
+          "module-type": "table",
+          "slug": "social-media",
+          "title": "Social media",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "social-rate",
+          "query-params": {
+            "filter_by": "department:driver-and-vehicle-standards-agency",
+            "group_by": "socialNetwork",
+            "collect": ["entrances:sum", "visitBounceRate"],
+            "period": "week",
+            "duration": 1
+          },
+          "axes": {
+            "x": {
+              "label": "Social Network",
+              "key": "socialNetwork"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-by": "entrances:sum",
+          "sort-order": "descending"
+        }
+      ]
+    },
+    {
+      "slug": "total-feedback-received",
+      "module-type": "completion_numbers",
+      "title": "Total feedback received",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "feedback-count",
+      "info": ["Data source: GOV.UK anonymous feedback",
+      "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+      ],
+      "denominator-matcher": "dvsa",
+      "numerator-matcher": "dvsa",
+      "matching-attribute": "organisation_acronym",
+      "value-attribute": "comment_count:sum",
+      "period": "month",
+      "axes": {
+        "x": {
+          "label": "Date"
+        },
+        "y": [
+          {
+            "label": "Comment count"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "most-commented-pages",
+      "module-type": "table",
+      "title": "Most commented pages",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "top-urls",
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+      ],
+      "query-params": {
+        "filter_by": "organisation_acronym:dvsa",
+        "group_by": "url",
+        "collect": ["comment_count:sum"],
+        "period": "month",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "URL",
+          "key": "url"
+        },
+        "y": [
+          {
+            "label": "Total comments",
+            "key": "comment_count:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-by": "comment_count:sum",
+      "sort-order": "descending"
+    }
+  ]
+}
