@@ -26,13 +26,42 @@ function (DashboardView, Model) {
 
     describe('getContent', function () {
 
-      it('render content template with model data and module content', function () {
+      it('renders a content template with model data and module content', function () {
         var result = view.getContent();
         expect(result).toEqual('rendered');
         var context = view.contentTemplate.argsForCall[0][0];
         expect(context.foo).toEqual('bar');
         expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
       });
+
+      it('displays a footer on detailed dashboards', function () {
+        model.set('dashboard-type', 'transaction');
+        var transactionView = new DashboardView({
+          model: model,
+          contentTemplate: jasmine.createSpy()
+        });
+        transactionView.getContent();
+        var context = transactionView.contentTemplate.argsForCall[0][0];
+        expect(context.hasFooter).toEqual(true);
+      });
+
+      it('displays a footer on high volume dashboards', function () {
+        model.set('dashboard-type', 'high-volume-transaction');
+        var highVolumeView = new DashboardView({
+          model: model,
+          contentTemplate: jasmine.createSpy()
+        });
+        highVolumeView.getContent();
+        var context = highVolumeView.contentTemplate.argsForCall[0][0];
+        expect(context.hasFooter).toEqual(true);
+      });
+
+      it('does not display a footer by default', function () {
+        view.getContent();
+        var context = view.contentTemplate.argsForCall[0][0];
+        expect(context.hasFooter).toEqual(false);
+      });
+
     });
 
     describe('getPageHeader', function () {
