@@ -1,25 +1,25 @@
 {
-  "slug": "site-activity-department-for-education",
+  "slug": "site-activity-uk-export-finance",
   "page-type": "dashboard",
   "dashboard-type": "other",
   "strapline": "Content dashboard",
-  "title": "Department for Education (DfE)",
+  "title": "UK Export Finance (UKEF)",
   "other": {
-    "tagline": "Web performance data for the Department for Education, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View site activity for all GOV.UK.</a>"
+    "tagline": "Web performance data for the UK Export Finance, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View site activity for all GOV.UK.</a>"
   },
   "relatedPages": {
     "transaction": {
-      "title": "Department for Education",
-      "url" : "https://www.gov.uk/government/organisations/department-for-education"
+      "title": "UK Export Finance",
+      "url" : "https://www.gov.uk/government/organisations/uk-export-finance"
     },
     "other": [
       {
-        "title": "DfE policies",
-        "url": "https://www.gov.uk/government/policies?departments%5B%5D=department-for-education"
+        "title": "UKEF policies",
+        "url": "https://www.gov.uk/government/policies?departments%5B%5D=uk-export-finance"
       },
       {
-        "title": "DfE publications",
-        "url": "https://www.gov.uk/government/publications?departments%5B%5D=department-for-education"
+        "title": "UKEF publications",
+        "url": "https://www.gov.uk/government/publications?departments%5B%5D=uk-export-finance"
       }
     ]
   },
@@ -47,8 +47,8 @@
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
-          "denominator-matcher": "department-for-education",
-          "numerator-matcher": "department-for-education",
+          "denominator-matcher": "uk-export-finance",
+          "numerator-matcher": "uk-export-finance",
           "matching-attribute": "department",
           "value-attribute": "visitors:sum",
           "period": "week",
@@ -71,8 +71,8 @@
           "data-type": "pageviews-count",
           "info": [
           ],
-          "denominator-matcher": "department-for-education",
-          "numerator-matcher": "department-for-education",
+          "denominator-matcher": "uk-export-finance",
+          "numerator-matcher": "uk-export-finance",
           "matching-attribute": "department",
           "value-attribute": "pageviews:sum",
           "period": "week",
@@ -109,7 +109,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -144,7 +144,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-news-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -179,7 +179,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-publications-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -214,7 +214,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-consultations-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -249,7 +249,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-policy-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -284,7 +284,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-speeches-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -319,7 +319,7 @@
           "data-group": "gov-uk-content",
           "data-type": "top-collections-count",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "pageTitle",
             "collect": ["pageviews:sum", "uniquePageviews:sum"],
             "period": "week",
@@ -355,7 +355,7 @@
       "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "devices-count",
-      "filter-by": "department:department-for-education",
+      "filter-by": "department:uk-export-finance",
       "category": "deviceCategory",
       "period": "week",
       "axis-period": "month",
@@ -404,7 +404,7 @@
       "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "new-returning-count",
-      "filter-by": "department:department-for-education",
+      "filter-by": "department:uk-export-finance",
       "category": "visitorType",
       "period": "week",
       "axis-period": "month",
@@ -462,7 +462,7 @@
           "data-group": "gov-uk-content",
           "data-type": "referrers-rate",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "sourceMedium",
             "collect": ["entrances:sum", "visitBounceRate"],
             "period": "week",
@@ -500,7 +500,7 @@
           "data-group": "gov-uk-content",
           "data-type": "organic-rate",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "keyword",
             "collect": ["entrances:sum", "visitBounceRate"],
             "period": "week",
@@ -538,7 +538,7 @@
           "data-group": "gov-uk-content",
           "data-type": "social-rate",
           "query-params": {
-            "filter_by": "department:department-for-education",
+            "filter_by": "department:uk-export-finance",
             "group_by": "socialNetwork",
             "collect": ["entrances:sum", "visitBounceRate"],
             "period": "week",
@@ -580,8 +580,8 @@
       "info": ["Data source: GOV.UK anonymous feedback",
       "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
       ],
-      "denominator-matcher": "dfe",
-      "numerator-matcher": "dfe",
+      "denominator-matcher": "ukef",
+      "numerator-matcher": "ukef",
       "matching-attribute": "organisation_acronym",
       "value-attribute": "comment_count:sum",
       "period": "month",
@@ -608,7 +608,7 @@
         "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
       ],
       "query-params": {
-        "filter_by": "organisation_acronym:dfe",
+        "filter_by": "organisation_acronym:ukef",
         "group_by": "url",
         "collect": ["comment_count:sum"],
         "period": "month",
