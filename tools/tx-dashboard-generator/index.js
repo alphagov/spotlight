@@ -3,13 +3,14 @@ var GoogleSpreadsheets = require('google-spreadsheets');
 var _ = require('underscore');
 var fs = require('fs');
 var rimraf = require('rimraf');
+var googleCredentials = require('./config.json');
 
-var googleAuth = new GoogleClientLogin({
+var googleAuth = new GoogleClientLogin(_.extend({
   email: 'email@digital.cabinet-office.gov.uk',
   password: 'password',
   service: 'spreadsheets',
   accountType: GoogleClientLogin.accountTypes.google
-});
+}, googleCredentials));
 
 googleAuth.on(GoogleClientLogin.events.login, function () {
   GoogleSpreadsheets.rows({
