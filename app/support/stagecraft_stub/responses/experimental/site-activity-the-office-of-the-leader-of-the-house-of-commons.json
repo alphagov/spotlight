@@ -1,9 +1,12 @@
 {
-  "slug": "OLHC-content-dashboard",
+  "slug": "site-activity-the-office-of-the-leader-of-the-house-of-commons",
   "page-type": "dashboard",
-  "strapline": "Content Dashboard",
+  "dashboard-type": "other",
+  "strapline": "Content dashboard",
   "title": "Office of the Leader of the House of Commons (OLHC)",
-  "tagline": "Web performance data for the Office of the Leader of the House of Commons, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>",
+  "other": {
+    "tagline": "Web performance data for the Office of the Leader of the House of Commons, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>'View site activity for all GOV.UK.</a>"
+  },
   "relatedPages": {
     "transaction": {
       "title": "Office of the Leader of the House of Commons",
@@ -24,15 +27,25 @@
     {
       "slug": "traffic-to-department-content",
       "module-type": "tab",
-      "title": "Traffic to department content",
+      "title": "Traffic to content",
+      "info":[
+        "Data source: Google Analytics",
+        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "completion_numbers",
-          "title": "Unique visits",
+          "title": "Visitors",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "traffic-count",
           "info": [
+            "Data source: Google Analytics",
+            "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
           "denominator-matcher": "the-office-of-the-leader-of-the-house-of-commons",
           "numerator-matcher": "the-office-of-the-leader-of-the-house-of-commons",
@@ -52,7 +65,7 @@
         },
         {
           "module-type": "completion_numbers",
-          "title": "Unique pageviews",
+          "title": "Pageviews",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "pageviews-count",
@@ -69,7 +82,7 @@
             },
             "y": [
               {
-                "label": "Number of visitors"
+                "label": "Number of pageviews"
               }
             ]
           }
@@ -80,7 +93,13 @@
       "slug": "most-popular-content",
       "module-type": "tab",
       "title": "Most popular content",
-      "description": "",
+      "description": "Visitors arriving over the last week.",
+      "info":[
+        "Data source: Google Analytics",
+        "These show pageviews and unique pageviews to the 10 most popular pages over the last full week (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted.‘Unique Pageviews’ is the number of visits during which the specified page was viewed at least once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "table",
@@ -98,7 +117,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -133,7 +152,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -168,7 +187,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -189,8 +208,8 @@
         },
         {
           "module-type": "table",
-          "slug": "consulations",
-          "title": "Consulations",
+          "slug": "consultations",
+          "title": "Consultations",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-consultations-count",
@@ -203,12 +222,12 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -238,12 +257,12 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -273,7 +292,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -308,7 +327,7 @@
           },
           "axes": {
             "x": {
-              "label": "Page Title",
+              "label": "Page title",
               "key": "pageTitle"
             },
             "y": [
@@ -332,22 +351,23 @@
     {
       "slug": "how-users-access-the-service",
       "module-type": "grouped_timeseries",
-      "title": "How users access the service",
-      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "title": "Devices used to access the content",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "devices-count",
       "filter-by": "department:the-office-of-the-leader-of-the-house-of-commons",
       "category": "deviceCategory",
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
-      "value-attr": "pageviews:sum",
+      "duration": 9,
+      "value-attribute": "pageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "Desktop category includes traffic from desktops and laptops"
+        "This shows the number and percentage of entrances made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -380,22 +400,24 @@
     {
       "slug": "new-visitors-vs-returning-visitors",
       "module-type": "grouped_timeseries",
-      "title": "New visitors vs returning visitors",
-      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
+      "title": "New and returning visitors",
+      "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "new-returning-count",
       "filter-by": "department:the-office-of-the-leader-of-the-house-of-commons",
       "category": "visitorType",
       "period": "week",
       "axis-period": "month",
-      "duration": 52,
-      "value-attr": "entrances:sum",
+      "duration": 9,
+      "value-attribute": "entrances:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "Desktop category includes traffic from desktops and laptops"
+        "This shows the number and percentage of entrances made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
+        "Returning visitors are those who have previously visited any part of GOV.UK. ",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -408,12 +430,12 @@
         },
         "y": [
           {
-            "label": "New Visitor",
+            "label": "New visitors",
             "categoryId": "New Visitor",
             "format": "integer"
           },
           {
-            "label": "Returning Visitor",
+            "label": "Returning visitors",
             "categoryId": "Returning Visitor",
             "format": "integer"
           }
@@ -423,13 +445,19 @@
     {
       "module-type": "tab",
       "slug": "top-department-referrers",
-      "title": "Top department referrers",
-      "description": "",
+      "title": "Sources of visitors",
+      "description": "Visitors arriving over the last week.",
+      "info": ["Data source: Google Analytics",
+      "This shows the number of entrances to departmental content and their bounce rate for the last full week (Monday to Sunday).",
+      "‘Sources’ is a mix of search engines (‘organic’), other websites (‘referral’) and other sources that Google Analytics cannot attribute (‘(none)’). ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
+      "The bounce rate is the percentage of visits where a user arrived on the entrance page and then left the site without interacting with the page or visiting any other pages.",
+      "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
       "tabs": [
         {
           "module-type": "table",
-          "slug": "all-referrers",
-          "title": "All referrers",
+          "slug": "all-sources",
+          "title": "All sources",
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "referrers-rate",
@@ -442,7 +470,7 @@
           },
           "axes": {
             "x": {
-              "label": "Source medium",
+              "label": "Source of user",
               "key": "sourceMedium"
             },
             "y": [
@@ -454,7 +482,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
@@ -489,7 +520,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
@@ -524,7 +558,10 @@
               {
                 "label": "Bounce rate",
                 "key": "visitBounceRate",
-                "format": "percent"
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
               }
             ]
           },
@@ -535,37 +572,26 @@
     },
     {
       "slug": "total-feedback-received",
-      "module-type": "completion_rate",
+      "module-type": "completion_numbers",
       "title": "Total feedback received",
       "description": "",
       "data-group": "gov-uk-content",
-      "data-type": "visitors-count",
-      "filter-by": "department:the-office-of-the-leader-of-the-house-of-commons",
-      "info": [
+      "data-type": "feedback-count",
+      "info": ["Data source: GOV.UK anonymous feedback",
+      "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
       ],
-      "denominator-matcher": ".*$",
-      "numerator-matcher": "^Small",
-      "matching-attribute": "sme_large",
-      "value-attribute": "monthly_spend:sum",
+      "denominator-matcher": "olhc",
+      "numerator-matcher": "olhc",
+      "matching-attribute": "organisation_acronym",
+      "value-attribute": "comment_count:sum",
       "period": "month",
-      "tabs": [
-        {"id": "monthly_spend:sum", "name": "Unique visits"},
-        {"id": "count:sum", "name": "Unique pageviews"}
-      ],
-      "tabbed_attr": "collect",
-      "category": "sme_large",
       "axes": {
         "x": {
-          "label": "Date of sales",
-          "format": {
-            "type": "date",
-            "format": "MMMM YYYY"
-          },
-          "key": "_start_at"
+          "label": "Date"
         },
         "y": [
           {
-            "label": "Percentage of sales to SMEs"
+            "label": "Comment count"
           }
         ]
       }
@@ -576,34 +602,32 @@
       "title": "Most commented pages",
       "description": "",
       "data-group": "gov-uk-content",
-      "data-type": "top-count",
-      "filter-by": "department:the-office-of-the-leader-of-the-house-of-commons",
+      "data-type": "top-urls",
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+      ],
       "query-params": {
-        "filter_by": "type:tax-disc",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
+        "filter_by": "organisation_acronym:olhc",
+        "group_by": "url",
+        "collect": ["comment_count:sum"],
+        "period": "month",
         "duration": 1
       },
       "axes": {
         "x": {
-          "label": "Department",
-          "key": "description:set"
+          "label": "URL",
+          "key": "url"
         },
         "y": [
           {
-            "label": "Visits",
-            "key": "count:sum",
+            "label": "Total comments",
+            "key": "comment_count:sum",
             "format": "integer"
-          },
-          {
-            "label": "Percentage of visits",
-            "key": "percentOfTotal(count:sum)",
-            "format": "percent"
           }
         ]
       },
-      "sort-by": "count:sum",
+      "sort-by": "comment_count:sum",
       "sort-order": "descending"
     }
   ]

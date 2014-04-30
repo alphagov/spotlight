@@ -5,7 +5,7 @@
   "strapline": "Content dashboard",
   "title": "Home Office (HO)",
   "other": {
-    "tagline": "Web performance data for the Home Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View GOV.UK site activity</a>"
+    "tagline": "Web performance data for the Home Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>'View site activity for all GOV.UK.</a>"
   },
   "relatedPages": {
     "transaction": {
@@ -227,7 +227,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -262,7 +262,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -352,7 +352,7 @@
       "slug": "how-users-access-the-service",
       "module-type": "grouped_timeseries",
       "title": "Devices used to access the content",
-      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over the last 9 weeks.",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
       "data-group": "gov-uk-content",
       "data-type": "devices-count",
       "filter-by": "department:home-office",
@@ -415,7 +415,7 @@
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "This shows the number and percentage of visits made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
+        "This shows the number and percentage of entrances made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
         "Returning visitors are those who have previously visited any part of GOV.UK. ",
         "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
