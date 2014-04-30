@@ -5,7 +5,7 @@
   "strapline": "Content dashboard",
   "title": "The Deputy Prime Minister's Office (ODPM)",
   "other": {
-    "tagline": "Web performance data for the The Deputy Prime Minister's Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>'View site activity for all GOV.UK.</a>"
+    "tagline": "Web performance data for the The Deputy Prime Minister's Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View site activity for all GOV.UK.</a>"
   },
   "relatedPages": {
     "transaction": {

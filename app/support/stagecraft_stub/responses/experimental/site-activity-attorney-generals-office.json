@@ -5,7 +5,7 @@
   "strapline": "Content dashboard",
   "title": "Attorney General's Office (AGO)",
   "other": {
-    "tagline": "Web performance data for the Attorney General's Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>'View site activity for all GOV.UK.</a>"
+    "tagline": "Web performance data for the Attorney General's Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View site activity for all GOV.UK.</a>"
   },
   "relatedPages": {
     "transaction": {
