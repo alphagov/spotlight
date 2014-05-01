@@ -32,7 +32,6 @@ function generateModules(file) {
       }
 
       if (!fs.existsSync(pagePerThingDirectory)) {
-        console.log('->', 'page-per-thing directory does not exist - creating', pagePerThingDirectory);
         fs.mkdirSync(pagePerThingDirectory);
       }
 
@@ -58,10 +57,8 @@ function generateModules(file) {
 
       delete module.classes; // We don't care about the classes property on the page-per-thing pages
 
-      // Create a page-per-thing JSON file based on the slug:
+      // Create a page-per-thing JSON file for each module based on the slug:
       if (!_.isEqual(moduleOnDisk, module)) {
-        // Write out modules if the calculated module differs from the module on disk
-        console.log('->', pagePerThingDirectory, moduleSlug, 'is different on disk, rewriting it.');
         var pathToPagePerThing = path.join(pagePerThingDirectory, moduleSlug + '.json');
         fs.writeFileSync(pathToPagePerThing, JSON.stringify(module, null, 2) + '\n');
       }
@@ -80,4 +77,3 @@ glob(stagecraftStubGlob, function (err, files) {
   });
 
 });
-
