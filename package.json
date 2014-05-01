@@ -47,7 +47,7 @@
     "grunt-contrib-requirejs": "0.4.3",
     "grunt-contrib-watch": "0.6.1",
     "grunt-digest": "0.1.2",
-    "grunt-jasmine-node-coverage": "0.1.8",
+    "grunt-jasmine-node": "0.2.1",
     "grunt-sass": "0.12.1",
     "grunt-shell": "0.6.4",
     "jshint": "2.5.0",
