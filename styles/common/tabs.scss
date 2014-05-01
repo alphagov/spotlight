@@ -7,12 +7,12 @@
 
     li {
       @include bold-16() ;
-      border: 4px solid $white;
+      border: 3px solid $white;
       background-color: $grey-3;
       list-style: none;
       float: left;
       cursor: pointer;
-      min-width: 10em;
+      min-width: 8em;
       &:hover {
         text-decoration: underline;
       }
@@ -20,6 +20,7 @@
         margin-bottom: -1px;
         background-color: $white;
         border: 1px solid $grey-2;
+        margin-right: 2px;
         border-bottom: 0;
         cursor: default;
         &:hover {
