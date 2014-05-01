@@ -27,7 +27,8 @@ function (View, Formatters) {
       if (context) {
         element = $('<' + elementName + '></' + elementName + '>');
         if (value && value !== null || value !== undefined) {
-          element.text(value);
+          //fix double escaping of html entities.
+          element.text($('<div />').html(value).text());
         }
         if (attr) {
           element.attr(attr);

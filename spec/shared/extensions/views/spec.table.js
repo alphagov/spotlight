@@ -254,10 +254,11 @@ function (Table, View, Collection, $) {
       });
 
       it('renders a table', function () {
+        table.collection.options.axes.y[0].label = 'another &amp; another';
         table.render();
         expect(table.$table.html())
           .toBe('<thead>' +
-                  '<tr><th scope="col">date</th><th scope="col">another</th><th scope="col">last</th></tr>' +
+                  '<tr><th scope="col">date</th><th scope="col">another &amp; another</th><th scope="col">last</th></tr>' +
                 '</thead>' +
                 '<tbody>' +
                   '<tr><td class="">01/02/01</td><td class="">foo</td><td class="">no data</td></tr>' +
