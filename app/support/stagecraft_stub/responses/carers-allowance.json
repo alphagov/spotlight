@@ -41,20 +41,6 @@
       "data-type": "realtime"
     },
     {
-      "slug": "user-satisfaction",
-      "module-type": "user_satisfaction_graph",
-      "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
-      "data-group": "apply-carers-allowance",
-      "data-type": "customer-satisfaction",
-      "info": [
-        "Data source: GOV.UK user feedback database",
-        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
-      ],
-      "period": "day",
-      "value-attribute": "rating"
-    },
-    {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
@@ -108,6 +94,20 @@
       "numerator-matcher": "ca_e_claims_received$",
       "matching-attribute": "key",
       "value-attribute": "value:sum"
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "apply-carers-allowance",
+      "data-type": "customer-satisfaction",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
     },
     {
       "slug": "completion-rate",
