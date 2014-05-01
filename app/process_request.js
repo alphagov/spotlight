@@ -1,47 +1,46 @@
-define([
-  'page_config',
-  'stagecraft_api_client'
-],
-function (PageConfig, StagecraftApiClient) {
+var requirejs = require('requirejs');
 
-  var renderContent = function (req, res, model) {
-    model.set(PageConfig.commonConfig(req));
+var PageConfig = requirejs('page_config');
+var StagecraftApiClient = requirejs('stagecraft_api_client');
 
-    var ControllerClass = model.get('controller');
-    var controller = new ControllerClass({
-      model: model,
-      raw: _.has(req.query, 'raw'),
-      url: req.originalUrl
-    });
 
-    controller.once('ready', function () {
-      res.send(controller.html);
-    });
+var renderContent = function (req, res, model) {
+  model.set(PageConfig.commonConfig(req));
 
-    controller.render({ init: true });
+  var ControllerClass = model.get('controller');
+  var controller = new ControllerClass({
+    model: model,
+    raw: _.has(req.query, 'raw'),
+    url: req.originalUrl
+  });
 
-    return controller;
-  };
+  controller.once('ready', function () {
+    res.send(controller.html);
+  });
 
-  var setup = function (req, res) {
-    var model = setup.getStagecraftApiClient();
+  controller.render({ init: true });
 
-    model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
+  return controller;
+};
 
-    model.on('sync error', function () {
-      model.off();
-      res.status(model.get('status'));
-      setup.renderContent(req, res, model);
-    });
+var setup = function (req, res) {
+  var model = setup.getStagecraftApiClient();
 
-    model.setPath(req.url);
-  };
+  model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
 
-  setup.getStagecraftApiClient = function () {
-    return new StagecraftApiClient();
-  };
+  model.on('sync error', function () {
+    model.off();
+    res.status(model.get('status'));
+    setup.renderContent(req, res, model);
+  });
 
-  setup.renderContent = renderContent;
+  model.setPath(req.url);
+};
 
-  return setup;
-});
+setup.getStagecraftApiClient = function () {
+  return new StagecraftApiClient();
+};
+
+setup.renderContent = renderContent;
+
+module.exports = setup;

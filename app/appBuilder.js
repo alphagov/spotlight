@@ -70,7 +70,7 @@ module.exports = {
 
     app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
 
-    app.use('/performance/', requirejs('process_request'));
+    app.use('/performance/', require('./process_request'));
 
     app.get('/_status', require('./healthcheck_controller'));
 
