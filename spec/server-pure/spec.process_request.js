@@ -1,4 +1,5 @@
 var requirejs = require('requirejs');
+var _ = require('lodash');
 
 var processRequest = require('../../app/process_request');
 
