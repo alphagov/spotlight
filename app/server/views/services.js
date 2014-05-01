@@ -1,10 +1,12 @@
 var requirejs = require('requirejs');
+var path = require('path');
+
+var templater = require('../mixins/templater');
 
 var BaseView = requirejs('common/views/govuk');
 var ListView = requirejs('common/views/filtered_list');
-var template = requirejs('tpl!server/templates/services.html');
 
-module.exports = BaseView.extend({
+module.exports = BaseView.extend(templater).extend({
 
   getPageTitle: function () {
     return 'Services - GOV.UK';
@@ -26,7 +28,7 @@ module.exports = BaseView.extend({
 
     list.render();
 
-    return template({
+    return this.loadTemplate(path.resolve(__dirname, '../templates/services.html'), {
       list: list.html
     });
 
