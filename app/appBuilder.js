@@ -60,7 +60,7 @@ module.exports = {
       res.redirect(301, '/performance');
     });
 
-    app.get('*.png', requirejs('render_png'));
+    app.get('*.png', require('./render_png'));
 
     app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
