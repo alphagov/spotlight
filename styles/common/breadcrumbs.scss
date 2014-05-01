@@ -5,7 +5,7 @@
   margin:0 auto;
   z-index: 50;
 
-  @include media-down(mobile) {
+  @include media(mobile) {
     padding: 0 1em 0.75em;
   }
 
@@ -23,7 +23,7 @@
       width: 900px;
     }
 
-    @include media-down(mobile) {
+    @include media(mobile) {
       margin: 0;
     }
 
