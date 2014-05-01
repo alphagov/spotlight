@@ -8,3 +8,7 @@ requirejs.config({
 });
 
 requirejs.config(requirejs('config'));
+
+global._ = require('lodash');
+global.isServer = true;
+global.config = {};
