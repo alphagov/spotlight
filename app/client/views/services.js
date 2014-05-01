@@ -5,9 +5,9 @@ define([
 function (View, FilteredListView) {
   return View.extend({
 
-    events: _.extend({
+    events: _.extend({}, View.prototype.events, {
       'keyup #filter': 'filter'
-    }, View.prototype.events),
+    }),
 
     views: function () {
       return {
