@@ -103,7 +103,7 @@ module.exports = function (grunt) {
       },
       server: {
         verbose: false,
-        src: './spec/helpers',
+        src: './spec/server-pure',
         options: {
           specFolders: [
             './spec/server-pure'
