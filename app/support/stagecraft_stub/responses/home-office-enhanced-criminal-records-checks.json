@@ -22,7 +22,7 @@
   "customer-type": "Citizen",
   "business-model": "Fees and charges",
   "costs": "Cost of processing a paid DBS check application is based on 21% of the application figure shown above being free of charge. Used for cost recovery purposes. (As stated in annual accounts note 22). DBS is not yet able to separate cost of paper and digital application.",
-  "costs-notes": "DBS was formed from the former Criminal Records Bureau (CRB) and the Independent Safeguarding Authority (ISA) in December 2012.<br>The start point of all data periods shown for this service is December 2012.",
+  "other-notes": "DBS was formed from the former Criminal Records Bureau (CRB) and the Independent Safeguarding Authority (ISA) in December 2012.<br>The start point of all data periods shown for this service is December 2012.",
   "modules": [
     {
       "slug": "transactions-per-year",

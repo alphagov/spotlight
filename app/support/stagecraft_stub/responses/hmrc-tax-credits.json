@@ -22,7 +22,7 @@
   "customer-type": "Citizen",
   "business-model": "Taxpayers",
   "costs": "Costs data has been excluded as the service will be incorporated in Universal Credit.",
-  "costs-notes": "Transactions include registrations, form submissions, customer letters, change of circumstance notifications and telephone contacts.",
+  "other-notes": "Transactions include registrations, form submissions, customer letters, change of circumstance notifications and telephone contacts.",
   "modules": [
     {
       "slug": "transactions-per-year",

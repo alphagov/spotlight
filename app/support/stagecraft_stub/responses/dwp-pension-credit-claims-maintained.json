@@ -22,7 +22,7 @@
   "customer-type": "Citizen",
   "business-model": "Taxpayers",
   "costs": "Maintaining claims involves many interactions with people across the duration of their claim.  It includes contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealing with appeals against decisions made. It also includes the fortnightly making of payments and queries about non-receipt.<br>The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of maintaining an application after the point that payments commence, including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
-  "costs-notes": "The number of transactions given is the annual average of the number of claims maintained.",
+  "other-notes": "The number of transactions given is the annual average of the number of claims maintained.",
   "modules": [
     {
       "slug": "transactions-per-year",

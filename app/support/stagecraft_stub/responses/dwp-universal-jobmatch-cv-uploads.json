@@ -22,7 +22,7 @@
   "customer-type": "Citizen",
   "business-model": "Taxpayers",
   "costs": "This process is part of Jobsearch Advice service and all the costs are already included in the unit cost of Adviser Interventions (jobsearch advice) \nThe costs for 2012 to 2013 included the costs of its predecessors, Employer Direct, National Email Team, Jobseeker Direct Online.",
-  "costs-notes": "The number of transactions relates to the number of CVs uploaded to the Universal Jobmatch service by jobseekers holding an account. (Note: only five CVs can be stored at any one time in a jobseeker's account, but these can be overwritten any number of times.)<br>This type of internal management information does not form part of the official statistics outputs that are released by the Department in accordance with the UK Statistics Authority’s Code of Practice.",
+  "other-notes": "The number of transactions relates to the number of CVs uploaded to the Universal Jobmatch service by jobseekers holding an account. (Note: only five CVs can be stored at any one time in a jobseeker's account, but these can be overwritten any number of times.)<br>This type of internal management information does not form part of the official statistics outputs that are released by the Department in accordance with the UK Statistics Authority’s Code of Practice.",
   "modules": [
     {
       "slug": "transactions-per-year",

@@ -21,7 +21,7 @@
   "description-extra": "The service was introduced in November 2012.",
   "customer-type": "Business",
   "costs": "This process is part of Jobsearch Advice service and all the costs are already included in the unit cost of Adviser Interventions (jobsearch advice) \nThe costs for 2012 to 2013 included the costs of its predecessors, Employer Direct, National Email Team, Jobseeker Direct Online.",
-  "costs-notes": "The number of transactions given covers the number of job vacancies entered onto the Universal Jobmatch service by employers. A vacancy relates to a job role and there may be one or more 'openings' related to a vacancy. <br>The total volume includes vacancies notified to UJ's predecessor services which were then entered onto the new service. This type of internal management information does not form part of the official statistics outputs that are released by the Department in accordance with the UK Statistics Authority’s Code of Practice.",
+  "other-notes": "The number of transactions given covers the number of job vacancies entered onto the Universal Jobmatch service by employers. A vacancy relates to a job role and there may be one or more 'openings' related to a vacancy. <br>The total volume includes vacancies notified to UJ's predecessor services which were then entered onto the new service. This type of internal management information does not form part of the official statistics outputs that are released by the Department in accordance with the UK Statistics Authority’s Code of Practice.",
   "modules": [
     {
       "slug": "transactions-per-year",

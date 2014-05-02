@@ -22,7 +22,7 @@
   "customer-type": "Business",
   "business-model": "Taxpayers",
   "costs": "This figure is based on the Defra/Rural Payments Agency (RPA) methodology. It is the final 2012 to 2013 figure after audit of the agency’s accounts compared to the target Defra/RPA cost per Single Payment Scheme claim figure of £727 that was reported in the RPA Business Plan for 2011 to 2012.",
-  "costs-notes": "The Single Payment Scheme has fewer than 750,000 transactions per year, but is included with high-volume transactions because it has an exceptionally high departmental spend.",
+  "other-notes": "The Single Payment Scheme has fewer than 750,000 transactions per year, but is included with high-volume transactions because it has an exceptionally high departmental spend.",
   "modules": [
     {
       "slug": "transactions-per-year",
