@@ -53,12 +53,25 @@ function (Collection) {
         expect(output.count).toEqual(5);
       });
 
-      it('filters input based on string matching', function () {
+      it('filters input based on string matching of a single character', function () {
         var output = collection.alphabetise('C');
         expect(output.count).toEqual(3);
         expect(output.C).toEqual([
           { title: 'Chicken' },
           { title: 'Cow' }
+        ]);
+        expect(output.D).toEqual([
+          { title: 'Duck' }
+        ]);
+        expect(output.P).toBeUndefined();
+        expect(output.S).toBeUndefined();
+      });
+
+      it('filters input based on string matching of multiple characters', function () {
+        var output = collection.alphabetise('ck');
+        expect(output.count).toEqual(2);
+        expect(output.C).toEqual([
+          { title: 'Chicken' },
         ]);
         expect(output.D).toEqual([
           { title: 'Duck' }
