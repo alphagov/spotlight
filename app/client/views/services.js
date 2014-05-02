@@ -9,6 +9,13 @@ function (View, FilteredListView) {
       'keyup #filter': 'filter'
     }),
 
+    initialize: function () {
+      View.prototype.initialize.apply(this, arguments);
+      if (this.$('#filter').val()) {
+        this.filter();
+      }
+    },
+
     views: function () {
       return {
         '#services-list': {
@@ -17,8 +24,8 @@ function (View, FilteredListView) {
       };
     },
 
-    filter: function (e) {
-      this.model.set('filter', $(e.target).val());
+    filter: function () {
+      this.model.set('filter', this.$('#filter').val());
     }
 
   });
