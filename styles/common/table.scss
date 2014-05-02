@@ -2,7 +2,7 @@ table {
   margin-top: 1em;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #a1acb2;
+  border: 1px solid darken($grey-2, 10%);
 
   &.floated-header {
     thead {
@@ -36,12 +36,12 @@ table {
   th {
     text-align: left;
     font-weight: bold;
-    background-color: #dee0e2;
-    color: #0b0c0c;
+    background-color: $grey-3;
+    color: $black;
     line-height: 1.25em;
 
-    border-bottom: 1px solid #a1acb2;
-    border-right: 1px solid #a1acb2;
+    border-bottom: 1px solid darken($grey-2, 10%);
+    border-right: 1px solid darken($grey-2, 10%);
 
     &:last-of-type {
       border-right: none;
@@ -49,9 +49,9 @@ table {
   }
 
   td {
-    background: #eaedef;
+    background: mix($grey-3, $grey-4, 50%);
 
-    border: dotted 1px #b8c6cc;
+    border: dotted 1px $grey-2;
 
     &:first-of-type {
       border-left: none;
@@ -67,6 +67,6 @@ table {
   }
 
   tr:nth-child(even) td {
-    background: #fff;
+    background: $white;
   }
 }

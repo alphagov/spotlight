@@ -1,6 +1,6 @@
-// Copied from static project
+// Styles copied from alphagov/static because we currently copy the footer links themselves from GOV.UK.
+// The copied styles have been modified to remove references to $grey-6 and use darken($grey-2, 10%) instead.
 
-$grey-6: #a1acb2;
 
 #footer {
   .footer-categories {
@@ -23,7 +23,7 @@ $grey-6: #a1acb2;
 
         @include media(tablet) {
           padding: 0 0 20px;
-          border-bottom: 1px solid $grey-6;
+          border-bottom: 1px solid darken($grey-2, 10%);
         }
       }
     }
@@ -31,7 +31,7 @@ $grey-6: #a1acb2;
     hr {
       clear: both;
       margin: 0 15px 30px;
-      border: 1px solid $grey-6;
+      border: 1px solid darken($grey-2, 10%);
       border-width: 1px 0 0 0;
 
       @include media(tablet){

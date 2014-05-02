@@ -8,7 +8,7 @@
   ol li {
     counter-increment: no-dot-counter;
     list-style: none;
-    *list-style-type: decimal;
+    *list-style-type: decimal; // IE 7 and below
     overflow:hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -12,11 +12,11 @@ span.group5 { color: $data-colour-6; }
   }
 
   table {
+    padding-bottom: 1em;
+
     .js-enabled & {
       display: none;
     }
-
-    padding-bottom: 1em;
   }
 }
 
@@ -142,7 +142,7 @@ figure.graph {
   }
 
   .selectedIndicator {
-    fill: white;
+    fill: $white;
     vector-effect: non-scaling-stroke;
     stroke-width: 4px;
     stroke-linecap: round;
@@ -150,7 +150,7 @@ figure.graph {
   }
 
   .selectedIndicator.cursorLine {
-    stroke: black;
+    stroke: $black;
     stroke-width: 1px;
     shape-rendering: crispEdges;
   }
@@ -229,7 +229,7 @@ figure.graph {
   .x-axis {
     line {
       fill: none;
-      stroke: #444;
+      stroke: $graph-axis-grey;
       stroke-width: 1px;
       shape-rendering: crispEdges;
     }
@@ -247,7 +247,7 @@ figure.graph {
     right: 0;
     bottom: 0;
     opacity: 0;
-    background: white;
+    background: $white;
   }
 
   .legend {
@@ -296,6 +296,8 @@ figure.graph {
 
       &.squares {
         li {
+          margin-left: 18px;
+
           &.label0:before { background-color: mix($data-colour-1, $white, 25%); }
           &.label1:before { background-color: mix($data-colour-2, $white, 25%); }
           &.label2:before { background-color: mix($data-colour-3, $white, 25%); }
@@ -348,7 +350,7 @@ figure.graph {
           &.timeshift:before { border-style: dashed; }
 
           &:before {
-            border:2px solid white;
+            border: 2px solid $white;
             float:left;
             display:block;
             content:'';
@@ -357,8 +359,6 @@ figure.graph {
             margin-left:-18px;
             margin-top:1px;
           }
-
-          margin-left: 18px;
         }
       }
 
@@ -375,9 +375,9 @@ figure.graph {
         }
 
         &.not-selected {
-          color: mix(#0b0c0c, $white, 25%);
+          color: mix($black, $white, 25%);
           .percentage{
-            color: mix(#0b0c0c, $white, 25%);
+            color: mix($black, $white, 25%);
           }
         }
 
@@ -392,7 +392,7 @@ figure.graph {
   .labels {
     line {
       fill: none;
-      stroke: #444;
+      stroke: $graph-axis-grey;
       stroke-width: 1px;
       vector-effect: non-scaling-stroke;
 
@@ -401,7 +401,7 @@ figure.graph {
       }
 
       &.not-selected {
-        stroke: mix(#444, $white, 50%);
+        stroke: mix($graph-axis-grey, $white, 50%);
       }
 
       &.crisp {
