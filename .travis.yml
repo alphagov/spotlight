@@ -16,3 +16,4 @@ cache:
 branches:
   except:
     - release
+    - /^release_[0-9]+$/
