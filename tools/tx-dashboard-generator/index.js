@@ -59,7 +59,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           addField(row.customertype, output, 'customer-type');
           addField(row.businessmodel, output, 'business-model');
           addField(row.notesoncosts, output, 'costs');
-          addField(row.othernotes, output, 'costs-notes');
+          addField(row.othernotes, output, 'other-notes');
           output.modules = [];
 
           //add kpi modules
