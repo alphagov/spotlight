@@ -1,0 +1,11 @@
+<header>
+  <h1>Services</h1>
+  <h2>Services providing performance data to GOV.UK</h2>
+</header>
+<form id="filter-wrapper" class="services" method="get" action="">
+  <label for="filter">Find a service named:</label>
+  <input id="filter" placeholder="Example: Licensing" name="filter" />
+</form>
+<section id="services-list" class="entity-type">
+  <%= list %>
+</section>

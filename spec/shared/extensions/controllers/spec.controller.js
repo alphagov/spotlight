@@ -217,6 +217,53 @@ function (Controller, View, Model, Collection) {
         });
       });
 
+      it('sets collection data if it is defined', function () {
+        var controller = new Controller({
+          model: model,
+          viewClass: View,
+          collectionClass: Collection,
+          clientRenderOnInit: true
+        });
+        spyOn(controller, 'collectionData').andReturn([
+          { value: 1 },
+          { value: 2 }
+        ]);
+        controller.render({ init: true });
+        expect(controller.collection.length).toEqual(2);
+        expect(controller.collection.at(0).toJSON()).toEqual({ value: 1 });
+        expect(controller.collection.at(1).toJSON()).toEqual({ value: 2 });
+      });
+
+      it('renders view immediately if data is defined', function () {
+        var controller = new Controller({
+          model: model,
+          viewClass: View,
+          collectionClass: Collection,
+          clientRenderOnInit: true
+        });
+        spyOn(controller, 'collectionData').andReturn([
+          { value: 1 },
+          { value: 2 }
+        ]);
+        controller.render({ init: true });
+        expect(controller.renderView).toHaveBeenCalled();
+      });
+
+      it('does not fetch collection data if it is defined', function () {
+        var controller = new Controller({
+          model: model,
+          viewClass: View,
+          collectionClass: Collection,
+          clientRenderOnInit: true
+        });
+        spyOn(controller, 'collectionData').andReturn([
+          { value: 1 },
+          { value: 2 }
+        ]);
+        controller.render({ init: true });
+        expect(Collection.prototype.fetch).not.toHaveBeenCalled();
+      });
+
     });
 
     describe('renderView', function () {

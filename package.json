@@ -33,7 +33,8 @@
     "winston": "0.7.3",
     "xmlhttprequest": "1.6.0",
     "xtend": "2.2.0",
-    "glob": "3.2.9"
+    "glob": "3.2.9",
+    "mustache": "0.8.1"
   },
   "devDependencies": {
     "cheapseats": "git+https://github.com/alphagov/cheapseats",
@@ -47,7 +48,7 @@
     "grunt-contrib-requirejs": "0.4.3",
     "grunt-contrib-watch": "0.6.1",
     "grunt-digest": "0.1.2",
-    "grunt-jasmine-node-coverage": "0.1.8",
+    "grunt-jasmine-node": "0.2.1",
     "grunt-sass": "0.12.1",
     "grunt-shell": "0.6.4",
     "jshint": "2.5.0",

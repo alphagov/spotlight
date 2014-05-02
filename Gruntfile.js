@@ -80,24 +80,48 @@ module.exports = function (grunt) {
     },
     // Sets up server-side Jasmine node tests
     jasmine_node: {
-      useHelpers: true,
-      specFolders: [
-        './spec/shared',
-        './spec/server'
-      ],
-      projectRoot: './spec/',
-      options: {
-        specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
-        match: '.*',
-        useRequireJs: 'spec/requirejs-setup.js',
-        jUnit: {
-          report: false,
-          savePath : './build/reports/jasmine/',
-          useDotNotation: true,
-          consolidate: true
+      legacy: {
+        verbose: false,
+        src: './spec/helpers',
+        options: {
+          specFolders: [
+            './spec/shared',
+            './spec/server'
+          ],
+          useHelpers: true,
+          specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          match: '.*',
+          useRequireJs: 'spec/requirejs-setup.js',
+          verbose: false,
+          jUnit: {
+            report: false,
+            savePath : './build/reports/jasmine/',
+            useDotNotation: true,
+            consolidate: true
+          }
         }
-      }
+      },
+      server: {
+        verbose: false,
+        src: './spec/server-pure',
+        options: {
+          specFolders: [
+            './spec/server-pure'
+          ],
+          useHelpers: true,
+          specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          match: '.*',
+          verbose: false,
+          jUnit: {
+            report: false,
+            savePath : './build/reports/jasmine/',
+            useDotNotation: true,
+            consolidate: true
+          }
+        }
+      },
     },
+    // Sets up server-side Jasmine node tests
     // Lints our JavaScript
     jshint: {
       files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/**/*.js'],
@@ -271,7 +295,7 @@ module.exports = function (grunt) {
   // Load external module tasks
   [
     'grunt-contrib-jasmine',
-    'grunt-jasmine-node-coverage',
+    'grunt-jasmine-node',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-requirejs',

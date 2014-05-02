@@ -1,7 +1,3 @@
-define(function () {
-
-  return function (request, response) {
-    response.send({status: 'ok'});
-  };
-
-});
+module.exports = function (request, response) {
+  response.send({status: 'ok'});
+};
