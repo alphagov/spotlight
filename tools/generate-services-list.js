@@ -7,7 +7,13 @@ var fs = require('fs'),
 var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/responses'),
     stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json');
 
-var services = [];
+var services = [
+  {
+    slug: 'licensing',
+    title: 'Licensing',
+    'dashboard-type': 'transaction'
+  }
+];
 
 function readModule(file) {
   var defer = Q.defer();
