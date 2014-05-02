@@ -26,252 +26,118 @@
   "modules": [
     {
       "slug": "cumulative-sales-by-company-size",
-      "module-type": "tab",
+      "module-type": "grouped_timeseries",
       "title": "Cumulative sales by company size",
-      "tabs": [
-        {
-          "slug": "total-spend",
-          "title": "Total spend",
-          "module-type": "grouped_timeseries",
-          "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "use_stack": false,
-          "value-attribute": "cumulative_spend:sum",
-          "category": "sme_large",
-          "period": "month",
-          "currency": "gbp",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "axes": {
-            "y": [
-              {
-               "label": "Total",
-               "categoryId": "Total",
-               "format": "currency"
-              },
-              {
-               "label": "Small and medium enterprises",
-               "categoryId": "Small and medium enterprises",
-               "format": "currency"
-              },
-              {
-               "label": "Large enterprises",
-               "categoryId": "Large enterprises",
-               "format": "currency"
-              }
-            ]
+      "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "use_stack": false,
+      "value-attribute": "cumulative_spend:sum",
+      "category": "sme_large",
+      "period": "month",
+      "currency": "gbp",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "axes": {
+        "y": [
+          {
+           "label": "Total",
+           "categoryId": "Total",
+           "format": "currency"
           },
-          "show-line-labels": true,
-          "show-total-lines": true,
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
-        },
-        {
-          "slug": "contracts-awarded",
-          "module-type": "grouped_timeseries",
-          "title": "Contracts awarded",
-          "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "use_stack": false,
-          "value-attribute": "cumulative_count:sum",
-          "category": "sme_large",
-          "period": "month",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "axes": {
-            "y": [
-              {
-               "label": "Total",
-               "categoryId": "Total",
-               "format": "integer"
-              },
-              {
-               "label": "Small and medium enterprises",
-               "categoryId": "Small and medium enterprises",
-               "format": "integer"
-              },
-              {
-               "label": "Large enterprises",
-               "categoryId": "Large enterprises",
-               "format": "integer"
-              }
-            ]
+          {
+           "label": "Small and medium enterprises",
+           "categoryId": "Small and medium enterprises",
+           "format": "currency"
           },
-          "show-line-labels": true,
-          "show-total-lines": true,
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
-        }
-      ]
+          {
+           "label": "Large enterprises",
+           "categoryId": "Large enterprises",
+           "format": "currency"
+          }
+        ]
+      },
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "monthly-sales-by-company-size",
-      "module-type": "tab",
+      "module-type": "grouped_timeseries",
       "title": "Monthly sales by company size",
-      "tabs": [
-        {
-          "slug": "total-spend",
-          "module-type": "grouped_timeseries",
-          "title": "Total-spend",
-          "description": "Total sales each month, showing the division between SMEs and larger enterprises",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "use_stack": false,
-          "value-attribute": "monthly_spend:sum",
-          "category": "sme_large",
-          "period": "month",
-          "currency": "gbp",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "axes": {
-             "y": [
-               {
-                 "label": "Total",
-                 "categoryId": "Total",
-                 "format": "currency"
-               },
-               {
-                 "label": "Small and medium enterprises",
-                 "categoryId": "Small and medium enterprises",
-                 "format": "currency"
-               },
-               {
-                 "label": "Large enterprises",
-                 "categoryId": "Large enterprises",
-                 "format": "currency"
-               }
-             ]
-          },
-          "show-line-labels": true,
-          "show-total-lines": true,
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
-        },
-        {
-          "slug": "contracts-awarded",
-          "module-type": "grouped_timeseries",
-          "title": "Contracts awarded",
-          "description": "Total sales each month, showing the division between SMEs and larger enterprises",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "use_stack": false,
-          "value-attribute": "count:sum",
-          "category": "sme_large",
-          "period": "month",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "axes": {
-             "y": [
-               {
-                 "label": "Total",
-                 "categoryId": "Total",
-                 "format": "integer"
-               },
-               {
-                 "label": "Small and medium enterprises",
-                 "categoryId": "Small and medium enterprises",
-                 "format": "integer"
-               },
-               {
-                 "label": "Large enterprises",
-                 "categoryId": "Large enterprises",
-                 "format": "integer"
-               }
-             ]
-          },
-          "show-line-labels": true,
-          "show-total-lines": true,
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
-        }
-      ]
+      "description": "Total sales each month, showing the division between SMEs and larger enterprises",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "use_stack": false,
+      "value-attribute": "monthly_spend:sum",
+      "category": "sme_large",
+      "period": "month",
+      "currency": "gbp",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "axes": {
+         "y": [
+           {
+             "label": "Total",
+             "categoryId": "Total",
+             "format": "currency"
+           },
+           {
+             "label": "Small and medium enterprises",
+             "categoryId": "Small and medium enterprises",
+             "format": "currency"
+           },
+           {
+             "label": "Large enterprises",
+             "categoryId": "Large enterprises",
+             "format": "currency"
+           }
+         ]
+      },
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "proportion-of-sales-from-small-and-medium-enterprises",
-      "module-type": "tab",
+      "module-type": "completion_rate",
       "title": "Proportion of sales from small and medium enterprises",
-      "tabs": [
-        {
-          "slug": "total-spend",
-          "module-type": "completion_rate",
-          "title": "Total spend",
-          "description": "The proportion of sales allocated to SMEs each month",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "denominator-matcher": ".*$",
-          "numerator-matcher": "^Small",
-          "matching-attribute": "sme_large",
-          "value-attribute": "monthly_spend:sum",
-          "period": "month",
-          "category": "sme_large",
-          "axes": {
-            "x": {
-              "label": "Date of sales",
-              "format": {
-                "type": "date",
-                "format": "MMMM YYYY"
-              },
-              "key": "_start_at"
-            },
-            "y": [
-              {
-                "label": "Percentage of sales to SMEs"
-              }
-            ]
+      "description": "The proportion of sales allocated to SMEs each month",
+      "data-group": "gcloud",
+      "data-type": "sales",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "denominator-matcher": ".*$",
+      "numerator-matcher": "^Small",
+      "matching-attribute": "sme_large",
+      "value-attribute": "monthly_spend:sum",
+      "period": "month",
+      "category": "sme_large",
+      "axes": {
+        "x": {
+          "label": "Date of sales",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
           },
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
+          "key": "_start_at"
         },
-        {
-          "slug": "contracts-awarded",
-          "module-type": "completion_rate",
-          "title": "Contracts awarded",
-          "description": "The proportion of sales allocated to SMEs each month",
-          "data-group": "gcloud",
-          "data-type": "sales",
-          "info": [
-            "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-            "Data is collated via monthly returns from suppliers on the G-Cloud framework"
-          ],
-          "denominator-matcher": ".*$",
-          "numerator-matcher": "^Small",
-          "matching-attribute": "sme_large",
-          "value-attribute": "count:sum",
-          "period": "month",
-          "category": "sme_large",
-          "axes": {
-            "x": {
-              "label": "Date of sales",
-              "format": {
-                "type": "date",
-                "format": "MMMM YYYY"
-              },
-              "key": "_start_at"
-            },
-            "y": [
-              {
-                "label": "Percentage of sales to SMEs"
-              }
-            ]
-          },
-          "start-at": "2012-04-01T00:00:00+00:00",
-          "axis-period": "quarter"
-        }
-      ]
+        "y": [
+          {
+            "label": "Percentage of sales to SMEs"
+          }
+        ]
+      },
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
     },
     {
       "slug": "cumulative-spend-by-customer-type",
