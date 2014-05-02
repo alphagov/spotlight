@@ -59,6 +59,7 @@
       "enum": [
         "Dashboard",
         "Service dashboard",
+        "Content dashboard",
         "Performance",
         "Policy dashboard",
         "Public sector purchasing dashboard"
