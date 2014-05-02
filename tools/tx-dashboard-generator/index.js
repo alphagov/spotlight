@@ -47,8 +47,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           output.agency = {};
           addField(row.agencybody, output.agency, 'title');
           addField(row.agencyabbr, output.agency, 'abbr');
+          output.relatedPages = {
+            'improve-dashboard-message': true
+          };
           if (!_.isObject(row.url)) {
-            output.relatedPages = {};
             output.relatedPages.transaction = {};
             addField(row.nameofservice, output.relatedPages.transaction, 'title');
             addField(row.url, output.relatedPages.transaction, 'url');
