@@ -3,7 +3,8 @@
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
-  "title": "Organ donor register: registrations",
+  "description": "Registrations by people wishing to donate their organs after they die.",
+  "title": "Organ donor registrations",
   "department": {
     "title": "Department of Health"
   },
@@ -11,14 +12,14 @@
     "title": "NHS Blood and Transplant"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
-      "title": "Organ donor register: registrations",
+      "title": "Organ donor registrations",
       "url": "http://www.organdonation.nhs.uk/"
     }
   },
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/nhsbt?title=Service data for Organ donor register: registrations&body=Dear NHS Blood and Transplant,%0A%0APlease provide the following data for the Organ donor register: registrations service, covering the period October 2012 to September 2013:%0A%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "transactions-per-year",

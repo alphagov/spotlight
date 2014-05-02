@@ -3,6 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
+  "description": "The basic State Pension is a regular payment for people resident in the UK who reach State Pension age, and is based on National Insurance (NI) contributions.",
   "title": "State Pension: existing claims",
   "department": {
     "title": "Department for Work and Pensions"
@@ -11,6 +12,7 @@
     "title": "Department for Work and Pensions"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "State Pension: existing claims",
       "url": "https://www.gov.uk/state-pension/how-to-claim"
@@ -18,8 +20,8 @@
   },
   "description-extra": "Claimants normally get a letter 4 months before they reach State Pension age, telling them how to claim their pension.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Maintaining claims involves many interactions with people drawing State Pension in the UK across the duration of their claim. It includes contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealing with any appeals against decisions made. It also includes the making of payments and queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "business-model": "Taxpayers",
+  "costs": "Maintaining claims involves many interactions with people drawing State Pension in the UK across the duration of their claim. It includes contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealing with any appeals against decisions made. It also includes the making of payments and queries about non-receipt.<br>The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
   "costs-notes": "The number of transactions given is the annual average of the number of claims by UK residents.<br>This data covers the maintaining of existing claims for UK residents after initial eligibility and amount due have been established.",
   "modules": [
     {

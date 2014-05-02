@@ -12,15 +12,16 @@
     "title": "Rural Payments Agency"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Single Payment Scheme (SPS) claims",
-      "url": "http://www.gov.uk/single-payment-scheme-online"
+      "url": "https://www.gov.uk/single-payment-scheme-online"
     }
   },
   "description-extra": "The Single Payment Scheme distributes about £2 billion of EU Common Agricultural Funds to farmers in England each year. The service lets users submit claims, update their details and track progress of their claims through to payment.",
   "customer-type": "Business",
-  "business-model": "Fiscal",
-  "costs": "This figure is based on the Defra/RPA methodology. It is the final 2012-13 figure after audit of the agency’s accounts compared to the target Defra/RPA cost per Single Payment Scheme claim figure of £727 that was reported in the RPA Business Plan for 2011-12.",
+  "business-model": "Taxpayers",
+  "costs": "This figure is based on the Defra/Rural Payments Agency (RPA) methodology. It is the final 2012 to 2013 figure after audit of the agency’s accounts compared to the target Defra/RPA cost per Single Payment Scheme claim figure of £727 that was reported in the RPA Business Plan for 2011 to 2012.",
   "costs-notes": "The Single Payment Scheme has fewer than 750,000 transactions per year, but is included with high-volume transactions because it has an exceptionally high departmental spend.",
   "modules": [
     {

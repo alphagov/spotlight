@@ -12,14 +12,15 @@
     "title": "Environment Agency"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Fishing rod licences: applications",
-      "url": "http://www.gov.uk/buy-a-uk-fishing-rod-licence"
+      "url": "https://www.gov.uk/buy-a-uk-fishing-rod-licence"
     }
   },
   "description-extra": "Licences are for using a fishing rod and line for salmon, trout, freshwater fish, smelt or eel in England (except the River Tweed), Wales, and the Border Esk and its tributaries in Scotland.",
   "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+  "business-model": "Fees and charges",
   "modules": [
     {
       "slug": "transactions-per-year",

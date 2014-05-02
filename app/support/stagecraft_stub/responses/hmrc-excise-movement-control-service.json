@@ -12,6 +12,7 @@
     "title": "HM Revenue and Customs"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Excise Movement Control Service transactions",
       "url": "http://www.hmrc.gov.uk/emcs/"

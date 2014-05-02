@@ -11,8 +11,10 @@
   "agency": {
     "title": "Legal Aid Agency"
   },
+  "relatedPages": {
+    "improve-dashboard-message": true
+  },
   "customer-type": "Citizen",
-  "costs-notes": "<div class='application-notice help-notice'><p>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",

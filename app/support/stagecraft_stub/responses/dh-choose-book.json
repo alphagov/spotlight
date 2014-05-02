@@ -12,6 +12,7 @@
     "title": "NHS England"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Choose and Book",
       "url": "http://www.chooseandbook.nhs.uk/"
@@ -19,7 +20,7 @@
   },
   "description-extra": "Patients use Choose and Book, a national electronic referral service, to select the place, date and time of their appointment.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "transactions-per-year",

@@ -12,13 +12,14 @@
     "title": "HM Passport Office"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
       "url": "https://www.gov.uk/order-copy-birth-death-marriage-certificate"
     }
   },
   "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+  "business-model": "Fees and charges",
   "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
   "modules": [
     {

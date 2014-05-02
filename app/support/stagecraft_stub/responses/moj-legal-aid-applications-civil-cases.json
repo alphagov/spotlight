@@ -3,16 +3,25 @@
   "page-type": "dashboard",
   "dashboard-type": "transaction",
   "strapline": "Dashboard",
-  "description": "Applications for legal aid for a civil problem like divorce or avoiding eviction.",
-  "title": "Legal aid applications: civil cases",
+  "description": "Vehicles should display a current vehicle licence (tax disc) as proof of payment of Vehicle Excise Duty (VED).",
+  "title": "Tax disc renewals",
   "department": {
     "title": "Ministry of Justice"
   },
   "agency": {
     "title": "Legal Aid Agency"
   },
+  "relatedPages": {
+    "improve-dashboard-message": true,
+    "transaction": {
+      "title": "Tax disc renewals",
+      "url": "https://www.gov.uk/tax-disc"
+    }
+  },
+  "description-extra": "Vehicle Excise Duty (also known as vehicle tax, car tax and road tax) must be paid for most types of vehicle to be used or parked on public roads.",
   "customer-type": "Citizen",
-  "costs-notes": "<div class='application-notice help-notice'><p>This transactional data, provided by the Ministry of Justice, is all that is available at the present time. Performance data for some services is currently not collected as the systems were not originally designed to do so, and will be addressed as these services are digitally redeveloped in line with the commitments within our digital strategy.<br>Contact <a href=\"mailto:digital@justice.gsi.gov.uk\">digital@justice.gsi.gov.uk</a> for enquiries about the MoJ Digital Strategy.</p></div>",
+  "business-model": "Fees and charges",
+  "costs-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [
     {
       "slug": "transactions-per-year",
