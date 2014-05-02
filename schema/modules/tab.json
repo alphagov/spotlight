@@ -16,7 +16,15 @@
     "tabs": {
       "type": "array",
       "required": true,
-      "minItems": 2
+      "minItems": 2,
+      "items": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
     }
   }
 }
