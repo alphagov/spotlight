@@ -6,17 +6,15 @@
   "description": "Requests for a vehicle's tax details from police, trading standards, insurance and congestion charging officials.",
   "title": "Tax disc: checks by third-parties",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driver and Vehicle Licensing Agency"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
-    "improve-dashboard-message": true,
-    "transaction": {
-      "title": "Tax disc: checks by third-parties",
-      "url": "https://www.gov.uk/check-vehicle-tax"
-    }
+    "improve-dashboard-message": true
   },
   "customer-type": "Citizen",
   "business-model": "Fees and charges",

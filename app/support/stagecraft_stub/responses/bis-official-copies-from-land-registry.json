@@ -6,10 +6,12 @@
   "description": "An official copy of a register or title plan represents a true record of entries in the register and extent of the registered title at a specific date and time. It is admissible as evidence in court proceedings as if it were the original.",
   "title": "Land Registry: requests for official copies of records",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Land Registry"
+    "title": "Land Registry",
+    "abbr": "HMLR"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

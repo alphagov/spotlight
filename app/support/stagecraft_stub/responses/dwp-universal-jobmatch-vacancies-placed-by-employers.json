@@ -6,10 +6,12 @@
   "description": "Employers can use Universal Jobmatch to create an account, advertise jobs online and automatically match them to suitable jobseekers.",
   "title": "Universal Jobmatch: vacancies placed by employers",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

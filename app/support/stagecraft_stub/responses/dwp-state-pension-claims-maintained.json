@@ -6,10 +6,12 @@
   "description": "The basic State Pension is a regular payment for people resident in the UK who reach State Pension age, and is based on National Insurance (NI) contributions.",
   "title": "State Pension: existing claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

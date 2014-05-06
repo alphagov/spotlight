@@ -6,10 +6,12 @@
   "description": "Tax Credits are payments from the government to people who are either responsible for at least 1 child or on a low income.",
   "title": "Tax Credits transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

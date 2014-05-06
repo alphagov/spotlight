@@ -6,10 +6,12 @@
   "description": "Advance payments for 3 or 12 months of prescriptions.",
   "title": "Prepayment certificates issued",
   "department": {
-    "title": "Department of Health"
+    "title": "Department of Health",
+    "abbr": "DH"
   },
   "agency": {
-    "title": "Department of Health"
+    "title": "Department of Health",
+    "abbr": "DH"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

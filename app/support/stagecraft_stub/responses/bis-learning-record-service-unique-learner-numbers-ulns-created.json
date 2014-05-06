@@ -6,7 +6,8 @@
   "description": "The Learning Records Service is a register of learners which education providers use to create or collect a unique learner number (ULN) for anyone over the age of 14 in UK education and training.",
   "title": "Learning Record Service: unique learner numbers (ULNs) created",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
     "title": "Skills Funding Agency"

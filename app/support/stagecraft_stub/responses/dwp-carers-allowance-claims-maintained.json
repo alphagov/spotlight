@@ -6,10 +6,12 @@
   "description": "Carers Allowance (CA) is a regular payment for carers who help look after someone with substantial caring needs for at least 35 hours a week.",
   "title": "Carer's Allowance: existing claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

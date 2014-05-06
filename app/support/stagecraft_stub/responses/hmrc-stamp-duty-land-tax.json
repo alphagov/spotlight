@@ -6,10 +6,12 @@
   "description": "Stamp Duty Land Tax (SDLT) is payable on the purchase or transfer of property or land in the UK where the amount paid is above a certain threshold.",
   "title": "Stamp Duty Land Tax transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

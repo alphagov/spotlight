@@ -6,10 +6,12 @@
   "description": "Requests to update the register by conveyancers acting on behalf of their clients, or by the public. Includes transfers of ownership.",
   "title": "Land Registry: updates to the register",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Land Registry"
+    "title": "Land Registry",
+    "abbr": "HMLR"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

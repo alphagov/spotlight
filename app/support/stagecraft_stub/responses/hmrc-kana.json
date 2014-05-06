@@ -6,10 +6,12 @@
   "description": "KANA is a software product used to process customers' emails on a variety of subjects.",
   "title": "HMRC transactions handled by email (KANA)",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true

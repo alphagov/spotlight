@@ -6,10 +6,12 @@
   "description": "Requests for vehicle details by their owners.",
   "title": "Tax disc: checks made by individuals",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driver and Vehicle Licensing Agency"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

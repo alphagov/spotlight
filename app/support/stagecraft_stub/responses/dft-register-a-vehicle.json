@@ -6,10 +6,12 @@
   "description": "Register a car or any other vehicle.",
   "title": "Vehicle registrations",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driver and Vehicle Licensing Agency"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

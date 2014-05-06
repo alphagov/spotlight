@@ -6,10 +6,12 @@
   "description": "Book and pay for a theory driving test.",
   "title": "Driving theory test bookings",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driving Standards Agency"
+    "title": "Driving Standards Agency",
+    "abbr": "DSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

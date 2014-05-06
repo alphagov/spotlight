@@ -6,10 +6,12 @@
   "description": "Applications for European Health Insurance Cards.",
   "title": "European Health Insurance Card (EHIC): applications",
   "department": {
-    "title": "Department of Health"
+    "title": "Department of Health",
+    "abbr": "DH"
   },
   "agency": {
-    "title": "Department of Health"
+    "title": "Department of Health",
+    "abbr": "DH"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

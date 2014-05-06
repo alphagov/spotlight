@@ -6,10 +6,12 @@
   "description": "Arrange meetings between prisoners and social visitors or legal professionals.",
   "title": "Prison visit booking",
   "department": {
-    "title": "Ministry of Justice"
+    "title": "Ministry of Justice",
+    "abbr": "MoJ"
   },
   "agency": {
-    "title": "National Offender Management Service"
+    "title": "National Offender Management Service",
+    "abbr": "NOMS"
   },
   "relatedPages": {
     "improve-dashboard-message": true

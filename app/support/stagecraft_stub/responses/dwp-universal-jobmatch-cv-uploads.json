@@ -6,10 +6,12 @@
   "description": "Jobseekers can create an account on Universal Jobmatch to search for full or part-time jobs in Great Britain and abroad.",
   "title": "Universal Jobmatch: CV uploads",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

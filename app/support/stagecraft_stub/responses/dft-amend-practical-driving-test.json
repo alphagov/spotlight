@@ -6,10 +6,12 @@
   "description": "Changes to the date or test centre for practical driving or riding tests.",
   "title": "Practical driving test: changes to bookings",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driving Standards Agency"
+    "title": "Driving Standards Agency",
+    "abbr": "DSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

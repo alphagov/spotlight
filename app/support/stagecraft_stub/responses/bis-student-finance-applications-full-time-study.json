@@ -6,10 +6,12 @@
   "description": "Providing UK students with funding, making sure they maintain their account and repay loans.",
   "title": "Student finance: applications for full-time study",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Student Loans Company"
+    "title": "Student Loans Company",
+    "abbr": "SLC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
