@@ -64,7 +64,7 @@ module.exports = {
 
     app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
 
-    app.get('/performance', requirejs('./common/controllers/homepage'));
+    app.get('/performance', require('./server/controllers/homepage'));
 
     app.get('/performance/services', require('./server/controllers/services'));
 

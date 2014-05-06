@@ -30,7 +30,7 @@ function readModule(file) {
 
     dashboardData = JSON.parse(dashboardData);
     if (dashboardData['page-type'] === 'dashboard') {
-      services.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type'));
+      services.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
     }
     defer.resolve();
 

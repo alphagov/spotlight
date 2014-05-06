@@ -16,6 +16,12 @@ function (Collection) {
         }
       });
       return groups;
+    },
+    filterDashboards: function () {
+      var types = _.toArray(arguments);
+      return _.map(this.filter(function (service) {
+        return types.indexOf(service.get('dashboard-type')) > -1 && service.get('on-homepage') !== false;
+      }), function (m) { return m.toJSON(); });
     }
   });
 });
