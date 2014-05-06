@@ -100,7 +100,10 @@
           "service_id:dwp-universal-jobmatch-cv-uploads",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Work and Pensions"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

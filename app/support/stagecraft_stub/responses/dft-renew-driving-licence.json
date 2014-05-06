@@ -99,7 +99,10 @@
           "service_id:dft-renew-driving-licence",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Transport"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

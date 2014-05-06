@@ -99,7 +99,10 @@
           "service_id:dft-register-a-vehicle",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Transport"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

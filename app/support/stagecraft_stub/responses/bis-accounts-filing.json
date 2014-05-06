@@ -98,7 +98,10 @@
           "service_id:bis-accounts-filing",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Business, Innovation and Skills"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

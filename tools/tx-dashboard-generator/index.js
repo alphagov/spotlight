@@ -118,7 +118,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'axis-period': 'quarter',
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:quarterly']
-            }
+            },
+            'info': [
+              'Data source: ' + row.department
+            ]
           });
 
           //add digital-take-up

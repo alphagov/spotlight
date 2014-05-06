@@ -100,7 +100,10 @@
           "service_id:dwp-pension-credit-claims-maintained",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Work and Pensions"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",
