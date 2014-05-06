@@ -143,7 +143,7 @@ define([
       var magnitudes = {
         thousand: {value: 1e3, suffix: 'k' },
         million:  {value: 1e6, suffix: 'm' },
-        billion:  {value: 1e9, suffix: 'b' }
+        billion:  {value: 1e9, suffix: 'bn' }
       };
       var suffix, parsed = value;
       _.each(magnitudes, function (mag) {

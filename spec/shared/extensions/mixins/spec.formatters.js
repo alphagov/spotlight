@@ -266,12 +266,12 @@ define([
             expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1,000m');
           });
 
-          it('adds "b" to numbers of a billion that are greater than 1000000000', function () {
-            expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1b');
-            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1b');
-            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1b');
-            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1b');
-            expect(Formatters.format(1120000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12b');
+          it('adds "bn" to numbers of a billion that are greater than 1000000000', function () {
+            expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1bn');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1bn');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1bn');
+            expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1bn');
+            expect(Formatters.format(1120000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12bn');
           });
         });
       });
