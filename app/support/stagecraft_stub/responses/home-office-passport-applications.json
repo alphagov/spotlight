@@ -12,15 +12,16 @@
     "title": "HM Passport Office"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Passport applications",
-      "url": "http://www.gov.uk/apply-renew-passport"
+      "url": "https://www.gov.uk/apply-renew-passport"
     }
   },
   "customer-type": "Citizen",
-  "business-model": "Cost recovery",
-  "costs": "This is the unit cost for producing and issuing a passport. This is a cost recovery funded service, the average cost does not align with individual passport fees as it is an aggregation of the differing volumes and channel pricing structures for the various passport types produced by IPS.",
-  "costs-notes": "This includes all passport types: jumbo, standard, adult, child, first time, renewals, replacement, fast track and premium.",
+  "business-model": "Fees and charges",
+  "costs": "This is the unit cost for producing and issuing a passport. Although this is a cost-recovery funded service, the average cost does not align with individual passport fees as it's an aggregation of the differing volumes and channel pricing structures for the various passport types produced by HM Passport Office.",
+  "other-notes": "This includes all passport types: jumbo, standard, adult, child, first time, renewals, replacement, fast track and premium.",
   "modules": [
     {
       "slug": "transactions-per-year",

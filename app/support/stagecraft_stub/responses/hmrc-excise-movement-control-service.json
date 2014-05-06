@@ -12,12 +12,13 @@
     "title": "HM Revenue and Customs"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Excise Movement Control Service transactions",
       "url": "http://www.hmrc.gov.uk/emcs/"
     }
   },
-  "costs-notes": "The data covers online transactions for amendments or movements of goods, and confirmation of receipt of goods. Payment transactions are excluded.",
+  "other-notes": "The data covers online transactions for amendments or movements of goods, and confirmation of receipt of goods. Payment transactions are excluded.",
   "modules": [
     {
       "slug": "transactions-per-year",

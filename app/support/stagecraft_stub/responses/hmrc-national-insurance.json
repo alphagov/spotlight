@@ -12,6 +12,7 @@
     "title": "HM Revenue and Customs"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "National Insurance transactions",
       "url": "https://www.gov.uk/national-insurance/overview"
@@ -19,7 +20,7 @@
   },
   "description-extra": "A proportion of NI contributions also helps fund the National Health Service.",
   "customer-type": "Business",
-  "business-model": "Fiscal",
+  "business-model": "Taxpayers",
   "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development and 2011-12 data have been updated with a more accurate reflection of volumes and costs. Changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
   "modules": [
     {

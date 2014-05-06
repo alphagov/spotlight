@@ -12,6 +12,7 @@
     "title": "Driver and Vehicle Licensing Agency"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Tax disc: refunds",
       "url": "https://www.gov.uk/apply-for-tax-disc-refund-form-v14"
@@ -19,9 +20,8 @@
   },
   "description-extra": "Applications using form V14 for tax disc refunds for cars, HGVs, motorcycles, and any other type of vehicle that has a tax disc.",
   "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+  "business-model": "Fees and charges",
   "costs": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
-  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/dvla?title=Service data for Tax disc: refunds&body=Dear Driver and Vehicle Licensing Agency,%0A%0APlease provide the following data for the Tax disc: refunds service, covering the period October 2012 to September 2013:%0A%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
   "modules": [
     {
       "slug": "transactions-per-year",

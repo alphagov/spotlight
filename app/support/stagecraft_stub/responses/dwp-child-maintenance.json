@@ -12,6 +12,7 @@
     "title": "Department for Work and Pensions"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Child Maintenance transactions",
       "url": "https://www.gov.uk/child-maintenance"
@@ -19,9 +20,9 @@
   },
   "description-extra": "Child maintenance can be arranged through the Child Support Agency (CSA) or Child Maintenance Service.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Costs cover any interactions with people paying or receiving Child Maintenance.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of processing and maintaining an application, including those of terminating the claim. It includes legal enquiries, enforcement of court orders, contacts about changes of circumstances or compliance checks that could affect eligibility, debt enforcement, complaints and appeals against decisions made. It also includes the collecting and making of payments and queries about non-receipt.<br>The costs of these various interactions are aggregated and averaged to give a cost per child supported and this is presented on a fully absorbed basis but excluding investment (change) costs.",
-  "costs-notes": "The number of transactions given is the annual number of applications processed, whether successful or not.",
+  "business-model": "Taxpayers",
+  "costs": "Costs cover any interactions with people paying or receiving Child Maintenance.<br>The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of processing and maintaining an application, including those of terminating the claim. It includes legal enquiries, enforcement of court orders, contacts about changes of circumstances or compliance checks that could affect eligibility, debt enforcement, complaints and appeals against decisions made. It also includes the collecting and making of payments and queries about non-receipt.<br>The costs of these various interactions are aggregated and averaged to give a cost per child supported and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "other-notes": "The number of transactions given is the annual number of applications processed, whether successful or not.",
   "modules": [
     {
       "slug": "transactions-per-year",

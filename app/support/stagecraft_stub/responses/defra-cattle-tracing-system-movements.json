@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The Cattle Tracing System (CTS) is used by the British Cattle Movement Service to record the births, movements and deaths of cattle to help disease control.",
-  "title": "Cattle Tracing System: movements",
+  "title": "Cattle Tracing Scheme: cattle births, deaths and movements",
   "department": {
     "title": "Department for Environment, Food and Rural Affairs"
   },
@@ -12,15 +12,15 @@
     "title": "Rural Payments Agency"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
-      "title": "Cattle Tracing System: movements",
+      "title": "Cattle Tracing Scheme: cattle births, deaths and movements",
       "url": "https://www.gov.uk/cattle-tracing-online"
     }
   },
-  "description-extra": "The CTS lets users see:\n\n- details of passport applications and movements\n- all births, movements and deaths reported in the last 6 months\n- calving histories for their animals\n\nUsers can send information to the British Cattle Movement Service to help resolve problems.",
+  "description-extra": "The CTS lets users see: details of passport applications and movements; all births, movements and deaths reported in the last 6 months; calving histories for their animals.",
   "customer-type": "Business",
-  "business-model": "Fiscal",
-  "costs": "The total costs for this service have been aligned with the Single Payment Scheme methodology. For the 2010/11 and 2011/12 financial years the equivalent costs were £1.31 and £1.30 respectively.",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "transactions-per-year",

@@ -12,15 +12,16 @@
     "title": "Department for Work and Pensions"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Job search adviser interventions",
       "url": "https://www.gov.uk/moving-from-benefits-to-work"
     }
   },
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Advisers provide support not just to clients on JSA, but also those in receipt of other benefits like ESA and Income Support. Interventions may last from a few minutes to over an hour. Costs cover arranging appointments, issuing invitations, conducting the interviews, referring to vacancies, following up and maintaining the person's labour market record. The costs also include advising about and referring to Labour Market programmes  such as the Work Programme, Access to Work and training programmes, but not the cost of the programmes themselves.<br>The costs are for the financial year 2012/13. They are aggregated and averaged to give a cost per intervention and this is presented on a fully absorbed basis but excluding investment (change) costs.",
-  "costs-notes": "The number of transactions given is the annual number of advisory interviews of any type undertaken.",
+  "business-model": "Taxpayers",
+  "costs": "Advisers provide support not just to clients on JSA, but also those in receipt of other benefits like ESA and Income Support. Interventions may last from a few minutes to over an hour. Costs cover arranging appointments, issuing invitations, conducting the interviews, referring to vacancies, following up and maintaining the person's labour market record. The costs also include advising about and referring to Labour Market programmes like the Work Programme, Access to Work and training programmes, but not the cost of the programmes themselves.<br>The costs are for the financial year 2012 to 2013. They are aggregated and averaged to give a cost per intervention and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "other-notes": "The number of transactions given is the annual number of advisory interviews of any type undertaken.",
   "modules": [
     {
       "slug": "transactions-per-year",

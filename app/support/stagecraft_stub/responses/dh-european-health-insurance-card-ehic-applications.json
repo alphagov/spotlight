@@ -12,6 +12,7 @@
     "title": "Department of Health"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "European Health Insurance Card (EHIC): applications",
       "url": "https://www.ehic.org.uk/"
@@ -19,9 +20,9 @@
   },
   "description-extra": "The EHIC replaced the E111 in 2006. An EHIC lets patients get state healthcare in Europe at a reduced cost or sometimes free.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Average cost per transaction includes the following costs:<br> - Staff: estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - Overheads: includes all the related administrative expenditure including EHIC management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are not included<br> - Printing and distribution: includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail<br><br>Costs relating to the production, distribution and promotion of EHIC application forms and the processing of medical expenses claims are not included. The Department for Work and Pensions are responsible for these costs.",
-  "costs-notes": "Figures have been calculated based on number of applications processed rather than on the number of cards issued. More than one card may be issued per application. An EHIC is valid for five years.<br>EHIC applications can be made online, by post or by telephone, but the following applicants can only apply by post:<br><br>1) Dependants of a citizen working in the UK, who live in an EU member state<br>2) Pensioners or persons who are in receipt of long-term benefit from the UK who live in an EU member state<br>3) Non- European Economic Area (EEA) nationals.",
+  "business-model": "Taxpayers",
+  "costs": "Average cost per transaction includes:<br> - staff - estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - overheads - includes all the related administrative expenditure including EHIC management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are excluded<br> - printing and distribution - includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail<br><br>Costs relating to the production, distribution and promotion of EHIC application forms and the processing of medical expenses claims are excluded. The Department for Work and Pensions is responsible for these costs.",
+  "other-notes": "Figures have been calculated based on number of applications processed rather than on the number of cards issued. More than one card may be issued per application. An EHIC is valid for five years.<br>EHIC applications can be made online, by post or by telephone, but the following applicants can only apply by post:<br><br>1) Dependants of a citizen working in the UK, who live in an EU member state<br>2) Pensioners or persons who are in receipt of long-term benefit from the UK who live in an EU member state<br>3) Non- European Economic Area (EEA) nationals.",
   "modules": [
     {
       "slug": "transactions-per-year",

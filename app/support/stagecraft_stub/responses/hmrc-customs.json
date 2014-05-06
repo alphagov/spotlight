@@ -11,11 +11,14 @@
   "agency": {
     "title": "HM Revenue and Customs"
   },
-  "description-extra": "These services include:\n* Customs Handling of Import Export Freight (CHIEF)\n* Import Control System (ICS)\n* National Export System (NES)\n* National Transit\n* Excise Movement Control Service (EMCS)",
+  "relatedPages": {
+    "improve-dashboard-message": true
+  },
+  "description-extra": "These services include:<br>\n- Customs Handling of Import Export Freight (CHIEF)<br>\n- Import Control System (ICS)<br>\n- National Export System (NES)<br>\n- National Transit<br>\n- Excise Movement Control Service (EMCS)",
   "customer-type": "Business",
-  "business-model": "Fiscal",
-  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011-12 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
-  "costs-notes": "The transaction is defined as each customer contact, both in-coming and out-going (counted individually), within a process.  This is counted by the channel used to make that contact.  We are using an estimate from a sample where a physical count is not available.  The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts.  It excludes the cost of compliance and enforcement activity. Transactions include declarations and telephone contacts.",
+  "business-model": "Taxpayers",
+  "costs": "1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011 to 2012 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to maintain the digital service may alter the cost balance, with additional depreciation charges increasing online cost.",
+  "other-notes": "The transaction is defined as each customer contact, both in-coming and out-going (counted individually), within a process.  This is counted by the channel used to make that contact.  We are using an estimate from a sample where a physical count is not available.  The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts.  It excludes the cost of compliance and enforcement activity. Transactions include declarations and telephone contacts.",
   "modules": [
     {
       "slug": "transactions-per-year",

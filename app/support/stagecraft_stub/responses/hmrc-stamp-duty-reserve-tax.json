@@ -12,6 +12,7 @@
     "title": "HM Revenue and Customs"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Stamp Duty Reserve Tax transactions",
       "url": "http://www.hmrc.gov.uk/sdrt/intro/basics.htm"
@@ -19,9 +20,9 @@
   },
   "description-extra": "When you buy shares using a paper stock transfer form you pay Stamp Duty rather than SDRT.",
   "customer-type": "Business",
-  "business-model": "Fiscal",
+  "business-model": "Taxpayers",
   "costs": "1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/other activity where business units mix both. <br>4. Additional IT investment to facilitate digital may alter the cost balance, with additional depreciation charges increasing online cost.",
-  "costs-notes": "Transactions included are share purchase submissions and amended submissions. The transaction is defined as each incoming customer contact within a process, counted by the channel used to make that contact. The post figures include all types received including returns filed manually as well as post for general or technical queries.  Telephone contact relates to all calls received.",
+  "other-notes": "Transactions included are share purchase submissions and amended submissions. The transaction is defined as each incoming customer contact within a process, counted by the channel used to make that contact. The post figures include all types received including returns filed manually as well as post for general or technical queries.  Telephone contact relates to all calls received.",
   "modules": [
     {
       "slug": "transactions-per-year",

@@ -12,14 +12,16 @@
     "title": "Companies House"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Companies House: other document filing",
       "url": "http://www.companieshouse.gov.uk/"
     }
   },
+  "description-extra": "The many documents in this category can be filed by any limited liability entity, and fulfil a company's statutory registration obligations. Document filings can range from information provided by several thousand companies a year to a transaction filed by a company once in 10 years.",
   "customer-type": "Business",
-  "business-model": "Cost recovery",
-  "costs": "An annual fee is attached to the annual return. The annual fee covers the registration costs of annual returns, accounts filing and all other document filing for Limited Liability Companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
+  "business-model": "Fees and charges",
+  "costs": "Filing an annual return incurs a fee which covers registration costs, accounts filing and all other document filing for limited liability companies, where these services do not have separate fees. <br>The published cost per transaction is a cost per transaction for these product groups, and the overall cost is heavily influenced by the level of electronic take up per transaction type.",
   "modules": [
     {
       "slug": "transactions-per-year",

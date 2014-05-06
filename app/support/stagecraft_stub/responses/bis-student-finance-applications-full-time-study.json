@@ -12,15 +12,16 @@
     "title": "Student Loans Company"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Student finance: applications for full-time study",
-      "url": "http://www.gov.uk/apply-online-for-student-finance"
+      "url": "https://www.gov.uk/apply-online-for-student-finance"
     }
   },
-  "description-extra": "The service is provided by different organisations for each country in the UK:\n- England -  the Student Loans Company\n- Scotland - Student Awards Agency for Scotland\n- Wales and Northern Ireland - local authorities",
+  "description-extra": "The service is provided by different organisations for each country in the UK:<br>\n- England – the Student Loans Company<br>\n- Scotland – Student Awards Agency for Scotland<br>\n- Wales and Northern Ireland – local authorities",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "The cost shown represents the total cost for all aspects of processing a student finance application within the associated service level agreements, including mail handling (incoming & outgoing), staff processing time (including exceptions handling), customer advice (telephone, IAG etc) and subsequent payment (up to 9 per applicant per annum). <br>This 'transaction' involves several interactions with various third parties to, for example, validate identity and eligibility in line with government funding regulations and fraud avoidance strategies, data sharing with HEIs and UCAS and confirming attendance. <br>The costs of these various interactions are aggregated and averaged to give a cost per application and this is presented on a fully absorbed basis.<br><br>Analysis is continuing to refine this cost at both the service level (ie what is a full time cost or a part time cost) and at the digital/non-digital level.  The transactional costs quoted are therefore approximate and subject to refinement as this work progresses.",
+  "business-model": "Taxpayers",
+  "costs": "The total cost for all aspects of processing a student finance application including: mail handling, staff processing time, customer advice, subsequent payment (up to 9 per applicant per annum), identity assurance, data sharing with higher education institutions and UCAS. The transactional costs quoted are approximate and subject to refinement.",
   "modules": [
     {
       "slug": "transactions-per-year",

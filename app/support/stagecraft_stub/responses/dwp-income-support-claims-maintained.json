@@ -12,6 +12,7 @@
     "title": "Department for Work and Pensions"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Income Support: existing claims",
       "url": "https://www.gov.uk/income-support/overview"
@@ -19,9 +20,9 @@
   },
   "description-extra": "People who are working less than 16 hours a week, haven’t signed on as unemployed or are a lone parent or carer can claim Income Support.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Maintaining claims involves many interactions, including contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and appeals against decisions made. It also includes the making of payments and any queries about non-receipt.<br>The costs are for the financial year 2012/13 and represent the total cost for all aspects of maintaining an application after the point that payments commence, including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained, and this is presented on a fully absorbed basis but excluding investment (change) costs.",
-  "costs-notes": "The number of transactions given is the annual average of the number of claims maintained.<br>This data covers the maintenance of existing claims after initial eligibility and amount due have been established.",
+  "business-model": "Taxpayers",
+  "costs": "Maintaining claims involves many interactions, including contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and appeals against decisions made. It also includes the making of payments and any queries about non-receipt.<br>The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of maintaining an application after the point that payments commence, including those of terminating the claim.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained, and this is presented on a fully absorbed basis but excluding investment (change) costs.",
+  "other-notes": "The number of transactions given is the annual average of the number of claims maintained.<br>This data covers the maintenance of existing claims after initial eligibility and amount due have been established.",
   "modules": [
     {
       "slug": "transactions-per-year",

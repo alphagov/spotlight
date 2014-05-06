@@ -11,10 +11,12 @@
   "agency": {
     "title": "HM Revenue and Customs"
   },
+  "relatedPages": {
+    "improve-dashboard-message": true
+  },
   "description-extra": "The service is carried out by post, telephone or face to face. Debt Management requires a high degree of personal intervention.",
   "customer-type": "Business",
-  "business-model": "Fiscal",
-  "costs-notes": "<div class='application-notice help-notice'><p>Contact <a href=\"mailto:richard.moss@hmrc.gsi.gov.uk\">Richard Moss</a> for data for this service.</p></div>",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "transactions-per-year",

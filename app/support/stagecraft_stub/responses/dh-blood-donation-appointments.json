@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Making appointments with NHS Blood and Transplant (NHSBT) to donate blood.",
-  "title": "Blood donation: appointments",
+  "title": "Blood donation appointments",
   "department": {
     "title": "Department of Health"
   },
@@ -12,15 +12,15 @@
     "title": "NHS Blood and Transplant"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
-      "title": "Blood donation: appointments",
+      "title": "Blood donation appointments",
       "url": "http://www.blood.co.uk/"
     }
   },
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "Appointments can be made online, via the national call centre (NCC) or at a session/donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session;  if appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations. Digital costs and details will be published once the portal is live and in full use.",
-  "costs-notes": "<div class='application-notice help-notice'><p>Make a <a href=\"https://www.whatdotheyknow.com/new/nhsbt?title=Service data for Blood donation: appointments&body=Dear NHS Blood and Transplant,%0A%0APlease provide the following data for the Blood donation: appointments service, covering the period October 2012 to September 2013:%0A%0A - cost per transaction (please follow Treasury guidelines on what to take into account in measuring service costs (https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/212123/Managing_Public_Money_AA_v2_-_chapters_annex_web.pdf, annex 6.1) should be followed%0A - annual volume of transactions completed digitally%0A%0A%0AYours faithfully,%0A%0A&tags=GDS transactional services costs\">Freedom of information (FOI) request</a> for the Oct 2012-Sep 2013 data which has not been provided for this service.</p></div>",
+  "business-model": "Taxpayers",
+  "costs": "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations.",
   "modules": [
     {
       "slug": "transactions-per-year",

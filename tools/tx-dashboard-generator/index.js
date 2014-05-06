@@ -47,8 +47,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           output.agency = {};
           addField(row.agencybody, output.agency, 'title');
           addField(row.agencyabbr, output.agency, 'abbr');
+          output.relatedPages = {
+            'improve-dashboard-message': true
+          };
           if (!_.isObject(row.url)) {
-            output.relatedPages = {};
             output.relatedPages.transaction = {};
             addField(row.nameofservice, output.relatedPages.transaction, 'title');
             addField(row.url, output.relatedPages.transaction, 'url');
@@ -57,7 +59,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           addField(row.customertype, output, 'customer-type');
           addField(row.businessmodel, output, 'business-model');
           addField(row.notesoncosts, output, 'costs');
-          addField(row.othernotes, output, 'costs-notes');
+          addField(row.othernotes, output, 'other-notes');
           output.modules = [];
 
           //add kpi modules

@@ -12,6 +12,7 @@
     "title": "Department of Health"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Prepayment certificates issued",
       "url": "http://www.nhsbsa.nhs.uk/1127.aspx"
@@ -19,9 +20,9 @@
   },
   "description-extra": "NHS prescriptions are issued to patients with prepayment certificates free of charge at the point of dispensing.",
   "customer-type": "Citizen",
-  "business-model": "Fiscal",
-  "costs": "The administration of prepayment certificates, medical exemption certificates (MEDEX) and maternity exemption (MATEX) certificates is a single process, and the cost of administering each service has therefore been apportioned based on application volumes.<br>Average cost per transaction include the following costs:<br> - Postage: estimate of cost incurred for use of a postal service; this figure does not include the cost of stationery<br> - Staff: estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - Overheads: includes all related administrative expenditure including management, information technology maintenance and estates. Capital expenditure, including IT development costs and depreciation, are not included.<br> - Printing and distribution: includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail",
-  "costs-notes": "The number of transactions includes all transactions processed including those where the customer has received a refund at a later date due to a change in their circumstances.",
+  "business-model": "Taxpayers",
+  "costs": "The administration of prepayment certificates, medical exemption certificates (MEDEX) and maternity exemption (MATEX) certificates is a single process, and the cost of administering each service has therefore been apportioned based on application volumes.<br>Average cost per transaction includes:<br> - postage - estimate of cost incurred for use of a postal service; this figure does not include the cost of stationery<br> - staff -estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - overheads - includes all related administrative expenditure including management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are excluded.<br> - printing and distribution - includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail.",
+  "other-notes": "The number of transactions includes all transactions processed including those where the customer has received a refund at a later date due to a change in their circumstances.",
   "modules": [
     {
       "slug": "transactions-per-year",

@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Book and pay for a practical driving test.",
-  "title": "Practical driving test bookings",
+  "title": "Practical driving test: bookings",
   "department": {
     "title": "Department for Transport"
   },
@@ -12,14 +12,14 @@
     "title": "Driving Standards Agency"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
-      "title": "Practical driving test bookings",
+      "title": "Practical driving test: bookings",
       "url": "https://www.gov.uk/book-practical-driving-test"
     }
   },
-  "description-extra": "This service includes booking and paying for riding tests and approved driving instructor (ADI) part 2 and 3 tests.",
   "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+  "business-model": "Fees and charges",
   "modules": [
     {
       "slug": "transactions-per-year",
