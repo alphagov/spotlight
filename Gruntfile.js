@@ -21,6 +21,12 @@ var getRequirejsConfig = function () {
   });
 };
 
+var addArgs = function (cmd) {
+  return function () {
+    return [cmd].concat([].slice.apply(arguments)).join(' ');
+  };
+};
+
 var requirejsConfig = getRequirejsConfig();
 
 
@@ -223,7 +229,7 @@ module.exports = function (grunt) {
           stderr: true,
           stdout: true
         },
-        command: 'node ./node_modules/cheapseats/index.js --standalone --path ./'
+        command: addArgs('node ./node_modules/cheapseats/index.js --standalone --path ./')
       },
       // Generates the page-per-thing module JSON stubs
       generate_module_stubs: {
@@ -250,16 +256,7 @@ module.exports = function (grunt) {
           stderr: true,
           stdout: true
         },
-        command: 'node tools/validate-stubs.js'
-      },
-      // Generates the page-per-thing module JSON stubs
-      validate_module_stubs_experimental: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: 'node tools/validate-stubs.js --experimental'
+        command: addArgs('node tools/validate-stubs.js')
       },
       // Supervises the node process in development
       supervisor: {
@@ -343,7 +340,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test:stubs:experimental', [
-    'shell:validate_module_stubs_experimental'
+    'shell:validate_module_stubs:--experimental'
   ]);
 
   grunt.registerTask('test:all', [
@@ -364,6 +361,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('cheapseats', [
     'shell:cheapseats'
+  ]);
+
+  grunt.registerTask('cheapseats:experimental', [
+    'shell:cheapseats:--experimental'
   ]);
 
   // Default task
