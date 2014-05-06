@@ -82,6 +82,63 @@ function (Collection) {
 
     });
 
+    describe('filterDashboards', function () {
+
+      var data = [
+        { title: 'Sheep', 'dashboard-type': 'transaction' },
+        { title: 'Cow', 'dashboard-type': 'high-volume-transaction' },
+        { title: 'Pig', 'dashboard-type': 'service-group' },
+        { title: 'Chicken', 'dashboard-type': 'transaction' },
+        { title: 'Duck', 'dashboard-type': 'transaction' }
+      ];
+
+      beforeEach(function () {
+        collection.reset(data);
+      });
+
+      it('filters the collection to only the dashboard types provided', function () {
+        var output;
+        output = collection.filterDashboards('service-group');
+        expect(output).toEqual([
+          { title: 'Pig', 'dashboard-type': 'service-group' }
+        ]);
+
+        output = collection.filterDashboards('transaction');
+        expect(output).toEqual([
+          { title: 'Chicken', 'dashboard-type': 'transaction' },
+          { title: 'Duck', 'dashboard-type': 'transaction' },
+          { title: 'Sheep', 'dashboard-type': 'transaction' }
+        ]);
+      });
+
+      it('handles multiple values', function () {
+        var output;
+        output = collection.filterDashboards('service-group');
+        expect(output).toEqual([
+          { title: 'Pig', 'dashboard-type': 'service-group' }
+        ]);
+
+        output = collection.filterDashboards('transaction', 'service-group');
+        expect(output).toEqual([
+          { title: 'Chicken', 'dashboard-type': 'transaction' },
+          { title: 'Duck', 'dashboard-type': 'transaction' },
+          { title: 'Pig', 'dashboard-type': 'service-group' },
+          { title: 'Sheep', 'dashboard-type': 'transaction' }
+        ]);
+      });
+
+      it('filters out services with "on-homepage" set to false', function () {
+        collection.at(0).set('on-homepage', false);
+        var output = collection.filterDashboards('transaction', 'service-group');
+        expect(output).toEqual([
+          { title: 'Duck', 'dashboard-type': 'transaction' },
+          { title: 'Pig', 'dashboard-type': 'service-group' },
+          { title: 'Sheep', 'dashboard-type': 'transaction' }
+        ]);
+      });
+
+    });
+
 
   });
 });
