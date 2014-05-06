@@ -17,23 +17,11 @@ function (Collection) {
       });
       return groups;
     },
-    columns: function (n) {
-      var services = this.filter(function (service) {
-        return service.get('dashboard-type') !== 'high-volume-transaction';
+    filterDashboards: function () {
+      var types = _.toArray(arguments);
+      return this.filter(function (service) {
+        return types.indexOf(service.get('dashboard-type')) > -1;
       });
-      var num = Math.ceil(services.length / n);
-      var output = [[]];
-      var col = 0;
-
-      _.each(services, function (service) {
-        if (output[col].length === num) {
-          col++;
-        }
-        output[col] = output[col] || [];
-        output[col].push(service.toJSON());
-      });
-
-      return [output];
     }
   });
 });

@@ -18,7 +18,9 @@ module.exports = BaseView.extend(templater).extend({
   getContent: function () {
 
     return this.loadTemplate(path.resolve(__dirname, '../templates/homepage.html'), _.extend({}, {
-      collection: this.collection
+      services: this.collection.filterDashboards('transaction', 'other'),
+      serviceGroups: this.collection.filterDashboards('service-group'),
+      highVolumeServices: this.collection.filterDashboards('high-volume-transaction')
     }, this.model.toJSON()));
 
   }
