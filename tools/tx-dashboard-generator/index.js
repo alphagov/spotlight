@@ -43,8 +43,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           addField(row.nameofservice, output, 'title');
           output.department = {};
           addField(row.department, output.department, 'title');
+          addField(row.abbr, output.department, 'abbr');
           output.agency = {};
           addField(row.agencybody, output.agency, 'title');
+          addField(row.agencyabbr, output.agency, 'abbr');
           if (!_.isObject(row.url)) {
             output.relatedPages = {};
             output.relatedPages.transaction = {};
