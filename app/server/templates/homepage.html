@@ -26,7 +26,7 @@
       <div class="cols3 service-listing">
         <ul>
           <% _.each(services, function (service, i) { %>
-            <li><a href='/performance/<%= service.get('slug') %>'><%= service.get('title') %></a></li>
+            <li><a href="/performance/<%= service.slug %>"><%= service.title %></a></li>
             <% if (i + 1 === Math.ceil((services.length + serviceGroups.length) / 2)) { %>
               </ul>
             </div>
@@ -41,7 +41,7 @@
             <dd>
               <ol>
                 <% _.each(serviceGroups, function (service, i) { %>
-                  <li><a href="/performance/<%= service.get('slug') %>"><%= service.get('title') %></a></li>
+                  <li><a href="/performance/<%= service.slug %>"><%= service.title %></a></li>
                 <% }); %>
               </ol>
             </dd>

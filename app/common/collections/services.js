@@ -19,9 +19,9 @@ function (Collection) {
     },
     filterDashboards: function () {
       var types = _.toArray(arguments);
-      return this.filter(function (service) {
+      return _.map(this.filter(function (service) {
         return types.indexOf(service.get('dashboard-type')) > -1 && service.get('on-homepage') !== false;
-      });
+      }), function (m) { return m.toJSON(); });
     }
   });
 });
