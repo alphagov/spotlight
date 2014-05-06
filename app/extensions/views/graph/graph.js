@@ -102,6 +102,43 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.innerEl = $('<div class="inner"></div>');
       this.innerEl.appendTo(graphWrapper);
 
+      var datePickerHtml = '<div id="datePicker" style="margin: 5px 0; width: 100%; ';
+      datePickerHtml += ' border-bottom: 1px dotted #ccc; padding: 5px 0">Show data for: ';
+      datePickerHtml += '<input type="date" id="dateFrom" /> to ';
+      datePickerHtml += '<input type="date" id="dateTo" /> ';
+      datePickerHtml += '<span class="warning" style="color: red"></span>';
+      datePickerHtml += '</div>';
+      this.datePickerEl = $(datePickerHtml);
+      if (this.model && this.model.get('slug')) {
+        var slug = this.model.get('slug');
+        var header = $('section#' + slug + ' h2.dashboard');
+        if (header.length === 0) {
+          header = $('section#' + slug + ' h1');
+        }
+        header.after(datePickerHtml);
+
+        if (this.collection.query.get('start_at')) {
+          var startAt = this.collection.query.get('start_at').format('YYYY-MM-DD');
+          var endAt = this.collection.query.get('end_at').format('YYYY-MM-DD');
+          $('#dateFrom').val(startAt);
+          $('#dateTo').val(endAt);
+
+          var that = this;
+          $('#dateFrom, #dateTo').on('change', function () {
+            $('#datePicker .warning').text('');
+            var dateFrom = that.collection.getMoment($('#dateFrom').val());
+            var dateTo = that.collection.getMoment($('#dateTo').val());
+            if (dateFrom >= dateTo) {
+              $('#datePicker .warning').text('Start date must be before end date');
+              return false;
+            }
+            that.collection.query.set('start_at', dateFrom);
+            that.collection.query.set('end_at', dateTo);
+            that.render();
+          });
+        }
+      }
+
       var svg = this.svg = this.d3.select(graphWrapper[0]).append('svg');
 
       // Apply attributes to SVGs so that they're ignored by screenreaders.
