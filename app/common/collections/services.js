@@ -16,6 +16,24 @@ function (Collection) {
         }
       });
       return groups;
+    },
+    columns: function (n) {
+      var services = this.filter(function (service) {
+        return service.get('dashboard-type') !== 'high-volume-transaction';
+      });
+      var num = Math.ceil(services.length / n);
+      var output = [[]];
+      var col = 0;
+
+      _.each(services, function (service) {
+        if (output[col].length === num) {
+          col++;
+        }
+        output[col] = output[col] || [];
+        output[col].push(service.toJSON());
+      });
+
+      return [output];
     }
   });
 });

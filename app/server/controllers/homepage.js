@@ -1,9 +1,9 @@
-var requirejs = require('requirejs');
 var Backbone = require('backbone');
+var requirejs = require('requirejs');
 
 var services = require('../../support/stagecraft_stub/responses/services');
 
-var View = require('../views/services');
+var View = require('../views/homepage');
 
 var Collection = requirejs('common/collections/services');
 var PageConfig = requirejs('page_config');
@@ -11,8 +11,7 @@ var PageConfig = requirejs('page_config');
 module.exports = function (req, res) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Services',
-    'page-type': 'services',
-    'filter': req.query.filter || '',
+    'page-type': 'homepage',
     'data': services.items
   }));
 

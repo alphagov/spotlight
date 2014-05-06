@@ -19,20 +19,15 @@
     <h2>Detailed dashboards</h2>
     <p>Services providing detailed performance data to GOV.UK</p>
 
-    <% _.each(detailedDashboardColumns, function (column) { %>
+    <% _.each(collection.columns(2), function (column) { %>
       <div class="cols3 service-listing">
-        <dl>
-          <% _.each(column, function (group) { %>
-            <dt class='<%= group.sanitised_title %>'><%= group.title %></dt>
-            <dd>
-              <ol>
-                <% _.each(group.services, function (service) { %>
-                  <li><a href='/performance/<%= service.slug %>'><%= service.name %></a></li>
-                <% }); %>
-              </ol>
-            </dd>
-          <% }); %>
-        </dl>
+        <% _.each(column, function (group, key) { %>
+          <ol>
+            <% _.each(group, function (service) { %>
+              <li><a href='/performance/<%= service.slug %>'><%= service.title %></a></li>
+            <% }); %>
+          </ol>
+        <% }); %>
       </div>
     <% }); %>
   </section>

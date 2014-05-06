@@ -1,5 +1,5 @@
 define([
-  'common/collections/filtered_list'
+  'common/collections/services'
 ],
 function (Collection) {
   describe('Filtered List Collection', function () {

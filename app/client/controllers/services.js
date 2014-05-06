@@ -1,6 +1,6 @@
 define([
   'extensions/controllers/controller',
-  'common/collections/filtered_list',
+  'common/collections/services',
   'client/views/services'
 ], function (Controller, FilteredListCollection, ServicesView) {
   return Controller.extend({
