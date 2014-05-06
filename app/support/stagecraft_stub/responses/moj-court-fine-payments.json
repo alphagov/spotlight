@@ -98,7 +98,10 @@
           "service_id:moj-court-fine-payments",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Ministry of Justice"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

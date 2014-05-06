@@ -94,7 +94,10 @@
           "service_id:hmrc-payments-made-by-hmrc-banking",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

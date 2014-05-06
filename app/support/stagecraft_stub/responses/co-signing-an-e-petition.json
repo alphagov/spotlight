@@ -98,7 +98,10 @@
           "service_id:co-signing-an-e-petition",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Cabinet Office"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

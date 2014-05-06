@@ -99,7 +99,10 @@
           "service_id:hmrc-construction-industry-scheme",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

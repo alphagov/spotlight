@@ -98,7 +98,10 @@
           "service_id:dft-amend-driving-licence-details",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Transport"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

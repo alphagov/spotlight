@@ -99,7 +99,10 @@
           "service_id:dwp-adviser-interventions-jobsearch-advice",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Work and Pensions"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

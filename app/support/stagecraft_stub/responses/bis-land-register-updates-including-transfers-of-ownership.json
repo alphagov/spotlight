@@ -98,7 +98,10 @@
           "service_id:bis-land-register-updates-including-transfers-of-ownership",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Business, Innovation and Skills"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",

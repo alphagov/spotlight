@@ -98,7 +98,10 @@
           "service_id:dh-choose-book",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department of Health"
+      ]
     },
     {
       "slug": "digital-take-up-per-quarter",
