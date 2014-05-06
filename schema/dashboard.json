@@ -12,6 +12,7 @@
       "enum": [
         "transaction",
         "high-volume-transaction",
+        "service-group",
         "agency",
         "department",
         "content",
