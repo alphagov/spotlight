@@ -1,0 +1,89 @@
+{
+  "slug": "bis-payment-of-patent-renewal-fee-f12",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "strapline": "Dashboard",
+  "description": "Renewals of patent intellectual property rights.",
+  "title": "Payment of patent renewal fee (F12)",
+  "department": {
+    "title": "Department for Business, Innovation and Skills"
+  },
+  "agency": {
+    "title": "Intellectual Property Office"
+  },
+  "relatedPages": {
+    "improve-dashboard-message": true,
+    "transaction": {
+      "title": "Payment of patent renewal fee (F12)",
+      "url": "http://www.ipo.gov.uk/types/patent/p-manage/p-renew.htm"
+    }
+  },
+  "description-extra": "A patent must be renewed on the 4th anniversary of its filing to remain valid. Patents must then be renewed annually for up to 20 years after its initial filing to keep it valid.",
+  "customer-type": "Business",
+  "business-model": "Fees and charges",
+  "costs": "These costs are based on our fee charges data produced for 2010 to 2011 and exclude policy cost.",
+  "modules": [
+      {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-payment-of-patent-renewal-fee-f12",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-payment-of-patent-renewal-fee-f12",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:bis-payment-of-patent-renewal-fee-f12",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
+    }
+  ]
+}
