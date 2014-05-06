@@ -68,7 +68,6 @@
     dd {
       margin: 0 0 0.75em 0;
       padding: 0;
-      border-bottom: 1px solid $grey-3;
     }
 
     li {
@@ -77,6 +76,9 @@
 
       &:first-child {
         border-top: none;
+      }
+      &:last-child {
+        border-bottom: 1px solid $grey-3;
       }
     }
 
