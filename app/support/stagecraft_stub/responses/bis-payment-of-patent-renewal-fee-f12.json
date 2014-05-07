@@ -84,6 +84,86 @@
         "type": "currency",
         "pence": true
       }
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Renewals breakdown",
+      "description": "Renewals made using <span class=\"group2\">bulk software</span>, <span class=\"group1\">paper</span> and <span class=\"group0\">online</span> over the last year",
+      "data-group": "patent-renewal",
+      "data-type": "transactions-by-channel",
+      "dashboard-strapline": "Service dashboard",
+      "category": "channel",
+      "period": "month",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": false,
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Online",
+            "categoryId": "digital",
+            "format": "integer"
+          },
+          {
+            "label": "Paper",
+            "categoryId": "paper",
+            "format": "integer"
+          },
+          {
+            "label": "Bulk software",
+            "categoryId": "file-upload",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "data-group": "patent-renewal",
+      "data-type": "transactions-by-channel",
+      "denominator-matcher": "paper",
+      "numerator-matcher": "^digital$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "period": "month",
+      "info": [
+        "Data source: Intellectual Property Office",
+        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+      ]
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "renew-patent",
+      "data-type": "customer-satisfaction",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "data-group": "patent-renewal",
+      "data-type": "journey-completion",
+      "denominator-matcher": "start$",
+      "numerator-matcher": "finished$",
+      "matching-attribute": "stage",
+      "value-attribute": "count:sum",
+      "period": "month"
     }
   ]
 }
