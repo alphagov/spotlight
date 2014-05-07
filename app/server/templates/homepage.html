@@ -21,16 +21,16 @@
       <h3>Reporting regularly</h3>
       <p class="count"><%= services.length + serviceGroups.length %></p>
     </div>
-    <div>
+    <div class="cols3 add3">
       <p>Services providing regularly updated, detailed data to GOV.UK</p>
-      <div class="cols3 service-listing">
+      <div class="cols2 service-listing">
         <ul>
           <% _.each(services, function (service, i) { %>
             <li><a href="/performance/<%= service.slug %>"><%= service.title %></a></li>
             <% if (i + 1 === Math.ceil((services.length + serviceGroups.length) / 2)) { %>
               </ul>
             </div>
-            <div class="cols3 service-listing">
+            <div class="cols2 service-listing">
               <ul>
             <% } %>
           <% }); %>
@@ -55,32 +55,51 @@
       <h3>Reporting quarterly</h3>
       <p class="count"><%= highVolumeServices.length %></p>
     </div>
-    <p>Services providing quarterly data to GOV.UK</p>
-    <p><a href="/performance/services"><strong>View all services</strong></a></p>
+    <div class="cols3 add3">
+      <p>Services providing quarterly data to GOV.UK</p>
+      <p><a href="/performance/services"><strong>View all services</strong></a></p>
+    </div>
+  </section>
+  <section>
+    <h2>GOV.UK activity dashboards</h2>
+    <div class="cols3 service-listing">
+      <h3>Activity dashboards</h3>
+      <p class="count"><%= contentDashboards.length + 1 %></p>
+    </div>
+    <div class="cols3 add3">
+      <p>Web traffic on our site, including a look at how our content is being used.</p>
+      <p><a href="/performance/site-activity"><strong>GOV.UK site activity overview</strong></a></p>
+      <h3 class="underline">Department activity dashboards</h3>
+      <div class="cols2 service-listing">
+        <ul>
+          <% _.each(contentDashboards, function (contentDashboard, i) { %>
+            <li><a href="/performance/<%= contentDashboard.slug %>"><%= contentDashboard.title %></a></li>
+            <% if (i + 1 === Math.ceil(contentDashboards.length / 2)) { %>
+              </ul>
+            </div>
+            <div class="cols2 service-listing">
+              <ul>
+            <% } %>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <div>
-    <section class="cols2 service-listing">
-      <h2>Transactions Explorer</h2>
-      <p>An overview of all transaction-based services the government provides.</p>
-      <ul>
-        <li><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">All services</a></li>
-        <li><a href="/performance/transactions-explorer/high-volume-services/by-transactions-per-year/descending">High-volume services</a></li>
-      </ul>
-      <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
-        <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>" width='465' height='223'>
-      </a>
-    </section>
-
-    <section class="cols2 service-listing">
-      <h2>Activity on GOV.UK</h2>
-      <p>Web performance data for all of GOV.UK, including site traffic and availability.</p>
-      <ul>
-        <li><a href="/performance/site-activity">Activity on GOV.UK</a></li>
-      </ul>
-      <!-- GOV.UK realtime module goes here -->
-    </section>
-  </div>
+  <section class="service-listing">
+    <h2>Transactions Explorer</h2>
+    <div class="row">
+      <div class="cols3">
+        <p>An overview of all transaction-based services the government provides.</p>
+        <p><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">View all services</a></p>
+      </div>
+      <div class="cols3 add3">
+        <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
+          <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>">
+        </a>
+      </div>
+    </div>
+  </section>
 
   <section>
     <h2>Further information</h2>

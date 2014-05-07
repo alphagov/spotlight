@@ -23,6 +23,9 @@
     h3 {
       @include bold-19;
       margin-top: 1em;
+      &.underline {
+        border-bottom: 1px solid $grey-3;
+      }
     }
 
     p, dl, ul {
@@ -32,6 +35,10 @@
     p {
       margin: 0.2em 0 1em 0;
     }
+  }
+
+  a strong {
+    @include bold-24;
   }
 
   article {
@@ -86,7 +93,6 @@
 
   img {
     display: block;
-    max-width: 100%;
-    margin-top: 1.579em;
+    width: 100%;
   }
 }
