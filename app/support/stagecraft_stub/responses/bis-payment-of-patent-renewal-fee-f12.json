@@ -89,7 +89,7 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
-      "description": "Renewals made using <span class=\"group2\">bulk software</span>, <span class=\"group1\">paper</span> and <span class=\"group0\">online</span> over the last year",
+      "description": "Renewals made using <span class=\"group1\">bulk software</span>, <span class=\"group2\">paper</span> and <span class=\"group3\">online</span> over the last year",
       "data-group": "patent-renewal",
       "data-type": "transactions-by-channel",
       "dashboard-strapline": "Service dashboard",
@@ -112,8 +112,8 @@
             "format": "integer"
           },
           {
-            "label": "Online",
-            "categoryId": "digital",
+            "label": "Bulk software",
+            "categoryId": "file-upload",
             "format": "integer"
           },
           {
@@ -122,8 +122,8 @@
             "format": "integer"
           },
           {
-            "label": "Bulk software",
-            "categoryId": "file-upload",
+            "label": "Online",
+            "categoryId": "digital",
             "format": "integer"
           }
         ]
