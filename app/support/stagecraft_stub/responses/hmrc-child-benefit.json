@@ -6,10 +6,12 @@
   "description": "Child Benefit is a payment made to parents or guardians to help with the cost of raising a child.",
   "title": "Child Benefit transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

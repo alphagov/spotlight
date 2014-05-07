@@ -6,10 +6,12 @@
   "description": "Notification service for hauliers transporting abnormal loads on roads in England.",
   "title": "Electronic Service Delivery for Abnormal Loads (ESDAL): notifications",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Highways Agency"
+    "title": "Highways Agency",
+    "abbr": "HA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

@@ -6,10 +6,12 @@
   "description": "Income Support is paid to people on a low or zero income.",
   "title": "Income Support: existing claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

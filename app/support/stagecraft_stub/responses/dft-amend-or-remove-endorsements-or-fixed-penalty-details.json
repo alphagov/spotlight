@@ -6,10 +6,12 @@
   "description": "Changes to fixed penalty points and endorsements on driving licences.",
   "title": "Fixed penalties and endorsements changed or removed",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-    "title": "Driver and Vehicle Licensing Agency"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

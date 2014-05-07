@@ -4,17 +4,19 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Child maintenance is financial support to a child’s everyday living costs when the parents have separated.",
-  "title": "Child Maintenance transactions",
+  "title": "Child maintenance transactions",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Child Maintenance transactions",
+      "title": "Child maintenance transactions",
       "url": "https://www.gov.uk/child-maintenance"
     }
   },

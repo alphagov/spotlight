@@ -6,10 +6,12 @@
   "description": "Disability Living Allowance (DLA) is a regular payment  for disabled children and adults who need help with the extra costs caused by a disability.",
   "title": "Disability Living Allowance (DLA): existing claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

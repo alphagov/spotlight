@@ -6,10 +6,12 @@
   "description": "Self Assessment transactions include form submissions, amended submissions and registrations.",
   "title": "Self Assessment transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

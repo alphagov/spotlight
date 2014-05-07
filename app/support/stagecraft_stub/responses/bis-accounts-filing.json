@@ -6,7 +6,8 @@
   "description": "All limited companies and limited liability partnerships must file their annual accounts so they're publicly available.",
   "title": "Company accounts filed",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
     "title": "Companies House"

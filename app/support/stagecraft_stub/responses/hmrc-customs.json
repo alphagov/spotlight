@@ -6,10 +6,12 @@
   "description": "The data relates to customs transactions which have been submitted through a number of services.",
   "title": "Customs transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true

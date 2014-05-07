@@ -6,10 +6,12 @@
   "description": "The national online recruitment system for apprenticeships in England.",
   "title": "Apprenticeships: applications for vacancies",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Skills Funding Agency"
+    "title": "Skills Funding Agency",
+    "abbr": "NAS"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

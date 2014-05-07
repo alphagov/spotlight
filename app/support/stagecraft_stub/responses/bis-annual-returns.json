@@ -6,7 +6,8 @@
   "description": "All companies must send an annual return to Companies House so information on their directors, shareholders, company type and SIC codes is publically available.",
   "title": "Company annual returns filed",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
     "title": "Companies House"

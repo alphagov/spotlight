@@ -6,10 +6,12 @@
   "description": "Claimants normally have to attend a Jobcentre every 2 weeks to 'sign on' so they keep getting Jobseeker's Allowance (JSA) or National Insurance (NI) contribution credits.",
   "title": "Jobsearch reviews (signing on)",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

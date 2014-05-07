@@ -6,10 +6,12 @@
   "description": "Users can create an e-petition about anything that the government is responsible for and, if it gets at least 100,000 signatures, it will be considered for debate in the House of Commons.",
   "title": "Signing an e-petition",
   "department": {
-    "title": "Cabinet Office"
+    "title": "Cabinet Office",
+    "abbr": "CO"
   },
   "agency": {
-    "title": "Government Digital Service"
+    "title": "Government Digital Service",
+    "abbr": "GDS"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

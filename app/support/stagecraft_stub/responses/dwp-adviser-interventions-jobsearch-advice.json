@@ -6,10 +6,12 @@
   "description": "Jobcentre Plus advisers provide information, advice and support to jobseekers, including referral to any of the Labour Market programmes.",
   "title": "Job search adviser interventions",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

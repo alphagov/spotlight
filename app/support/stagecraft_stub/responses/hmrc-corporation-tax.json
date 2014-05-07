@@ -6,10 +6,12 @@
   "description": "Corporation Tax (CT) is charged in the UK on the profits made by companies, and on the profits of permanent establishments of non-UK resident companies and associations that trade in the EU.",
   "title": "Corporation Tax transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

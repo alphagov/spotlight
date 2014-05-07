@@ -6,7 +6,8 @@
   "description": "Applications by foreign nationals for visas to reside in the UK on a temporary or permanent basis.",
   "title": "Visa applications",
   "department": {
-    "title": "Home Office"
+    "title": "Home Office",
+    "abbr": "Home Office"
   },
   "agency": {
     "title": "Home Office"

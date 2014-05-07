@@ -6,10 +6,12 @@
   "description": "Ordering an official copy of a certificate, including birth, adoption, marriage, civil partnership and death certificates.",
   "title": "Birth, adoption, death, marriage and civil partnership certificates ordered",
   "department": {
-    "title": "Home Office"
+    "title": "Home Office",
+    "abbr": "Home Office"
   },
   "agency": {
-    "title": "HM Passport Office"
+    "title": "HM Passport Office",
+    "abbr": "HMPO"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

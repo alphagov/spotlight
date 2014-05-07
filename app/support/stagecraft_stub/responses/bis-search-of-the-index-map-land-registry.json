@@ -6,10 +6,12 @@
   "description": "The purpose of a search of the index map is to find out whether or not land is registered and, if so, to obtain the title number. Any person may apply for an official search of the index map.",
   "title": "Searches for title numbers of unregistered land",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Land Registry"
+    "title": "Land Registry",
+    "abbr": "HMLR"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

@@ -6,10 +6,12 @@
   "description": "Payments to customers either electronically or by post from HMRC.",
   "title": "Payments made by HMRC",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true

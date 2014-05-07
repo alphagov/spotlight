@@ -6,7 +6,8 @@
   "description": "Full checks on all individuals entering the UK.",
   "title": "Passenger arrivals at the border",
   "department": {
-    "title": "Home Office"
+    "title": "Home Office",
+    "abbr": "Home Office"
   },
   "agency": {
     "title": "Home Office"

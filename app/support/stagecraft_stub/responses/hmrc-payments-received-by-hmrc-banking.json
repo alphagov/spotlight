@@ -6,10 +6,12 @@
   "description": "Customer payments made electronically, by cheque or by cash to HMRC.",
   "title": "Payments received by HMRC",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true

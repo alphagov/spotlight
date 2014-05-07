@@ -4,17 +4,19 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The Cattle Tracing System (CTS) is used by the British Cattle Movement Service to record the births, movements and deaths of cattle to help disease control.",
-  "title": "Cattle Tracing Scheme: cattle births, deaths and movements",
+  "title": "Cattle Tracing System: cattle births, deaths and movements",
   "department": {
-    "title": "Department for Environment, Food and Rural Affairs"
+    "title": "Department for Environment, Food and Rural Affairs",
+    "abbr": "Defra"
   },
   "agency": {
-    "title": "Rural Payments Agency"
+    "title": "Rural Payments Agency",
+    "abbr": "RPA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Cattle Tracing Scheme: cattle births, deaths and movements",
+      "title": "Cattle Tracing System: cattle births, deaths and movements",
       "url": "https://www.gov.uk/cattle-tracing-online"
     }
   },

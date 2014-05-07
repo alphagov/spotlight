@@ -6,10 +6,12 @@
   "description": "Jobseekers Allowance (JSA) is the main benefit for people who are out of work and seeking employment.",
   "title": "Jobseeker's Allowance: existing claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

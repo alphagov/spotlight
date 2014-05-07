@@ -6,10 +6,12 @@
   "description": "National Insurance (NI) is paid by people to contribute to paid by individuals towards the entitlement of certain state benefits, including retirement pension.",
   "title": "National Insurance transactions",
   "department": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "agency": {
-    "title": "HM Revenue and Customs"
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

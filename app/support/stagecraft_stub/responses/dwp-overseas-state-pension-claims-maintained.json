@@ -6,10 +6,12 @@
   "description": "Overseas State Pension (IPC SP) is a regular payment for people who reach State Pension age and are resident overseas.",
   "title": "State Pension: existing overseas claims",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

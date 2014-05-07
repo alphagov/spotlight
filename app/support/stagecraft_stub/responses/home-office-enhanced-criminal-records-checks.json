@@ -6,10 +6,12 @@
   "description": "Applications for Disclosure and Barring Service (DBS) checks, which are needed for certain jobs like those involving working with children or vulnerable adults.",
   "title": "Enhanced criminal records checks",
   "department": {
-    "title": "Home Office"
+    "title": "Home Office",
+    "abbr": "Home Office"
   },
   "agency": {
-    "title": "Disclosure and Barring Service"
+    "title": "Disclosure and Barring Service",
+    "abbr": "DBS"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

@@ -6,10 +6,12 @@
   "description": "The Social Fund supplies a range of grants and loans to people in special need of financial help.",
   "title": "Social Fund grants and loans",
   "department": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "agency": {
-    "title": "Department for Work and Pensions"
+    "title": "Department for Work and Pensions",
+    "abbr": "DWP"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

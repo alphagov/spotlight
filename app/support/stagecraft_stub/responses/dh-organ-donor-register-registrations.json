@@ -6,10 +6,12 @@
   "description": "Registrations by people wishing to donate their organs after they die.",
   "title": "Organ donor registrations",
   "department": {
-    "title": "Department of Health"
+    "title": "Department of Health",
+    "abbr": "DH"
   },
   "agency": {
-    "title": "NHS Blood and Transplant"
+    "title": "NHS Blood and Transplant",
+    "abbr": "NHSBT"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
