@@ -1,22 +1,23 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
 
-var services = require('../../support/stagecraft_stub/responses/services');
+var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
 
 var View = require('../views/services');
 
-var Collection = requirejs('common/collections/services');
+var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
 module.exports = function (req, res) {
-  var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
+  var services = new DashboardCollection(dashboards.items).filterDashboards(DashboardCollection.SERVICES),
+      model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Services',
     'page-type': 'services',
     'filter': req.query.filter || '',
-    'data': services.items
+    'data': services
   }));
 
-  var collection = new Collection(services.items);
+  var collection = new DashboardCollection(services);
 
   var view = new View({
     model: model,

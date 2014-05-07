@@ -1,5 +1,5 @@
 define([
-  'common/collections/services'
+  'common/collections/dashboards'
 ],
 function (Collection) {
   describe('Filtered List Collection', function () {
@@ -124,6 +124,14 @@ function (Collection) {
           { title: 'Duck', 'dashboard-type': 'transaction' },
           { title: 'Pig', 'dashboard-type': 'service-group' },
           { title: 'Sheep', 'dashboard-type': 'transaction' }
+        ]);
+      });
+
+      it('handles an array as the first argument', function () {
+        var output;
+        output = collection.filterDashboards(['service-group']);
+        expect(output).toEqual([
+          { title: 'Pig', 'dashboard-type': 'service-group' }
         ]);
       });
 

@@ -18,10 +18,12 @@ function (Collection) {
       return groups;
     },
     filterDashboards: function () {
-      var types = _.toArray(arguments);
+      var types = _.isArray(arguments[0]) ? arguments[0] : _.toArray(arguments);
       return _.map(this.filter(function (service) {
         return types.indexOf(service.get('dashboard-type')) > -1;
       }), function (m) { return m.toJSON(); });
     }
+  }, {
+    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group']
   });
 });
