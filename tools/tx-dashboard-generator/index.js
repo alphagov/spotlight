@@ -12,6 +12,10 @@ var googleAuth = new GoogleClientLogin(_.extend({
   accountType: GoogleClientLogin.accountTypes.google
 }, googleCredentials));
 
+var redirects = ['source,destination'],
+  txUrl = '/performance/transactions-explorer/service-details/',
+  spotlightUrl = '/performance/';
+
 googleAuth.on(GoogleClientLogin.events.login, function () {
   GoogleSpreadsheets.rows({
     key: '0AiLXeWvTKFmBdFpxdEdHUWJCYnVMS0lnUHJDelFVc0E',
@@ -144,11 +148,15 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           });
 
           fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
+
+          redirects.push([txUrl + row.slug, spotlightUrl + row.slug].join());
         });
 
+        fs.writeFileSync('./redirects.csv', redirects.join('\n'));
 
       });
     });
 });
+
 
 googleAuth.login();
