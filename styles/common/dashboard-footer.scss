@@ -14,6 +14,7 @@
     }
 
     .description {
+      @include core-24();
       margin-bottom: 40px;
       width: 62.5%; //600px
     }
