@@ -45,7 +45,10 @@
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Data source: Department for Work and Pensions"
+      ]
     },
     {
       "slug": "total-cost",
@@ -66,7 +69,13 @@
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "This process is part of Jobsearch Advice service and all the costs are already included in the unit cost of Adviser Interventions (jobsearch advice) \nThe costs for 2012 to 2013 included the costs of its predecessors, Employer Direct, National Email Team, Jobseeker Direct Online.",
+        "<br />",
+        "Data source: Department for Work and Pensions",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
     },
     {
       "slug": "cost-per-transaction",
@@ -86,7 +95,13 @@
       "format": {
         "type": "currency",
         "pence": true
-      }
+      },
+      "info": [
+        "This process is part of Jobsearch Advice service and all the costs are already included in the unit cost of Adviser Interventions (jobsearch advice) \nThe costs for 2012 to 2013 included the costs of its predecessors, Employer Direct, National Email Team, Jobseeker Direct Online.",
+        "<br />",
+        "Data source: Department for Work and Pensions",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
     },
     {
       "slug": "transactions-per-quarter",
@@ -131,7 +146,11 @@
           "service_id:dwp-universal-jobmatch-cv-uploads",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Work and Pensions",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ]
     }
   ]
 }

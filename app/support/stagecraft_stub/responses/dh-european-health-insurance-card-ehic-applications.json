@@ -45,7 +45,10 @@
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Data source: Department of Health"
+      ]
     },
     {
       "slug": "total-cost",
@@ -66,7 +69,13 @@
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Average cost per transaction includes:<br> - staff - estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - overheads - includes all the related administrative expenditure including EHIC management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are excluded<br> - printing and distribution - includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail<br><br>Costs relating to the production, distribution and promotion of EHIC application forms and the processing of medical expenses claims are excluded. The Department for Work and Pensions is responsible for these costs.",
+        "<br />",
+        "Data source: Department of Health",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
     },
     {
       "slug": "cost-per-transaction",
@@ -86,7 +95,13 @@
       "format": {
         "type": "currency",
         "pence": true
-      }
+      },
+      "info": [
+        "Average cost per transaction includes:<br> - staff - estimated cost of salaries, pensions and National Insurance contributions for staff directly involved in the process<br> - overheads - includes all the related administrative expenditure including EHIC management, information technology maintenance and estates; capital expenditure, including IT development costs and depreciation, are excluded<br> - printing and distribution - includes internal printing costs, cost of stationery, cards, card personalisation, printing of carrier letters, and sorting of mail<br><br>Costs relating to the production, distribution and promotion of EHIC application forms and the processing of medical expenses claims are excluded. The Department for Work and Pensions is responsible for these costs.",
+        "<br />",
+        "Data source: Department of Health",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
     },
     {
       "slug": "transactions-per-quarter",
@@ -131,7 +146,11 @@
           "service_id:dh-european-health-insurance-card-ehic-applications",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department of Health",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ]
     }
   ]
 }

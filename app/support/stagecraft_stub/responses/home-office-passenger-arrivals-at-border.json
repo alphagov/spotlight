@@ -39,7 +39,10 @@
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Data source: Home Office"
+      ]
     },
     {
       "slug": "total-cost",
@@ -60,7 +63,13 @@
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Cost represents the cost per passenger processed at the UK border using a full cost allocation model including direct costs, overheads and corporate costs. The cost per passenger is calculated on an annual basis, once all costs and overheads are known. Jan-Dec 2012 figures calculated using financial year 2011-2012 cost data. Apr 2012-Mar 2013, Jul 2012-Jun 2013, Oct 2012-Sep 2013 and Jan 2013-Dec 2013 figures calculated using financial year 2012-2013 cost data.",
+        "<br />",
+        "Data source: Home Office",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
     },
     {
       "slug": "cost-per-transaction",
@@ -80,7 +89,13 @@
       "format": {
         "type": "currency",
         "pence": true
-      }
+      },
+      "info": [
+        "Cost represents the cost per passenger processed at the UK border using a full cost allocation model including direct costs, overheads and corporate costs. The cost per passenger is calculated on an annual basis, once all costs and overheads are known. Jan-Dec 2012 figures calculated using financial year 2011-2012 cost data. Apr 2012-Mar 2013, Jul 2012-Jun 2013, Oct 2012-Sep 2013 and Jan 2013-Dec 2013 figures calculated using financial year 2012-2013 cost data.",
+        "<br />",
+        "Data source: Home Office",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
     },
     {
       "slug": "transactions-per-quarter",
@@ -125,7 +140,11 @@
           "service_id:home-office-passenger-arrivals-at-border",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Home Office",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ]
     }
   ]
 }

@@ -66,6 +66,62 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           addField(row.othernotes, output, 'other-notes');
           output.modules = [];
 
+          var totalCost = {
+            'slug': 'total-cost',
+            'module-type': 'kpi',
+            'title': 'Total cost',
+            'data-group': 'transactional-services',
+            'data-type': 'summaries',
+            'classes': 'cols3',
+            'query-params': {
+              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
+              'sort_by': '_timestamp:descending'
+            },
+            'value-attribute': 'total_cost',
+            'format': { 'type': 'currency', 'magnitude': true, 'sigfigs': 3 }
+          };
+
+          var costPerTrans = {
+            'slug': 'cost-per-transaction',
+            'module-type': 'kpi',
+            'title': 'Cost per transaction',
+            'data-group': 'transactional-services',
+            'data-type': 'summaries',
+            'classes': 'cols3',
+            'query-params': {
+              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
+              'sort_by': '_timestamp:descending'
+            },
+            'value-attribute': 'cost_per_transaction',
+            'format': { 'type': 'currency', 'pence': true }
+          };
+
+          if (!_.isObject(row.notesoncosts)) {
+            totalCost.info = [
+              row.notesoncosts,
+              '<br />',
+              'Data source: ' + row.department,
+              'Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur.'
+            ];
+
+            costPerTrans.info = [
+              row.notesoncosts,
+              '<br />',
+              'Data source: ' + row.department,
+              '<a href="https://www.gov.uk/service-manual/measurement/cost-per-transaction.html">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included.'
+            ];
+          } else {
+            totalCost.info = [
+              'Data source: ' + row.department,
+              'Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur.'
+            ];
+
+            costPerTrans.info = [
+              'Data source: ' + row.department,
+              '<a href="https://www.gov.uk/service-manual/measurement/cost-per-transaction.html">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included.'
+            ];
+          }
+
           //add kpi modules
           output.modules.push({
             'slug': 'transactions-per-year',
@@ -79,36 +135,11 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
               'sort_by': '_timestamp:descending'
             },
             'value-attribute': 'number_of_transactions',
-            'format': { 'type': 'number', 'magnitude': true, 'sigfigs': 3 }
-          },
-          {
-            'slug': 'total-cost',
-            'module-type': 'kpi',
-            'title': 'Total cost',
-            'data-group': 'transactional-services',
-            'data-type': 'summaries',
-            'classes': 'cols3',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
-              'sort_by': '_timestamp:descending'
-            },
-            'value-attribute': 'total_cost',
-            'format': { 'type': 'currency', 'magnitude': true, 'sigfigs': 3 }
-          },
-          {
-            'slug': 'cost-per-transaction',
-            'module-type': 'kpi',
-            'title': 'Cost per transaction',
-            'data-group': 'transactional-services',
-            'data-type': 'summaries',
-            'classes': 'cols3',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
-              'sort_by': '_timestamp:descending'
-            },
-            'value-attribute': 'cost_per_transaction',
-            'format': { 'type': 'currency', 'pence': true }
-          });
+            'format': { 'type': 'number', 'magnitude': true, 'sigfigs': 3 },
+            'info': [
+              'Data source: ' + row.department
+            ]
+          }, totalCost, costPerTrans);
 
           //add transactions per quarter
           output.modules.push({
@@ -144,7 +175,11 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             },
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:quarterly']
-            }
+            },
+            'info': [
+              'Data source: ' + row.department,
+              '<a href="https://www.gov.uk/service-manual/measurement/digital-takeup.html">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels.'
+            ]
           });
 
           fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
