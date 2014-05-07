@@ -127,16 +127,6 @@ function (Collection) {
         ]);
       });
 
-      it('filters out services with "on-homepage" set to false', function () {
-        collection.at(0).set('on-homepage', false);
-        var output = collection.filterDashboards('transaction', 'service-group');
-        expect(output).toEqual([
-          { title: 'Duck', 'dashboard-type': 'transaction' },
-          { title: 'Pig', 'dashboard-type': 'service-group' },
-          { title: 'Sheep', 'dashboard-type': 'transaction' }
-        ]);
-      });
-
     });
 
 
