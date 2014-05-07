@@ -4,7 +4,7 @@ var path = require('path');
 var templater = require('../mixins/templater');
 
 var BaseView = requirejs('common/views/govuk');
-var ListView = requirejs('common/views/filtered_list');
+var FilterdListView = requirejs('common/views/filtered_list');
 
 module.exports = BaseView.extend(templater).extend({
 
@@ -21,7 +21,7 @@ module.exports = BaseView.extend(templater).extend({
 
   getContent: function () {
 
-    var list = new ListView({
+    var list = new FilterdListView({
       model: this.model,
       collection: this.collection
     });

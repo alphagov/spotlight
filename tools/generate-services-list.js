@@ -7,7 +7,7 @@ var fs = require('fs'),
 var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/responses'),
     stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json');
 
-var services = [
+var dashboards = [
   {
     slug: 'licensing',
     title: 'Licensing',
@@ -30,7 +30,7 @@ function readModule(file) {
 
     dashboardData = JSON.parse(dashboardData);
     if (dashboardData['page-type'] === 'dashboard') {
-      services.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
+      dashboards.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
     }
     defer.resolve();
 
@@ -46,8 +46,8 @@ glob(stagecraftStubGlob, function (err, files) {
   Q.all(_.map(files, function (file) {
     return readModule(file);
   })).then(function () {
-    console.log('Writing ' + services.length + ' services into services.json');
-    fs.writeFileSync(stagecraftStubDir + '/services.json', JSON.stringify({ items: services }, null, 2) + '\n');
+    console.log('Writing ' + dashboards.length + ' dashboards into dashboards.json');
+    fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards }, null, 2) + '\n');
   });
 
 });
