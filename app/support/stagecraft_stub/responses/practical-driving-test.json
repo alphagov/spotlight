@@ -14,10 +14,10 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "other": [
-			{
-			  "title": "Book your official practical driving or riding test",
-			  "url" : "https://www.gov.uk/book-practical-driving-test"
-			},
+      {
+        "title": "Book your official practical driving or riding test",
+        "url" : "https://www.gov.uk/book-practical-driving-test"
+      },
       {
         "title": "Change the date of your practical driving or riding test",
         "url": "https://www.gov.uk/change-date-practical-driving-test"
