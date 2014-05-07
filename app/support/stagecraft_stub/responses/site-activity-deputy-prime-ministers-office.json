@@ -6,7 +6,7 @@
   "strapline": "Content dashboard",
   "title": "The Deputy Prime Minister's Office (ODPM)",
   "other": {
-    "tagline": "Web performance data for the The Deputy Prime Minister's Office, including site traffic and availability. <a href='http://www.gov.uk/performance/site-activity'>View site activity for all GOV.UK.</a>"
+    "tagline": "Web performance data for The Deputy Prime Minister's Office. including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
   },
   "relatedPages": {
     "transaction": {
@@ -73,6 +73,10 @@
           "data-group": "gov-uk-content",
           "data-type": "pageviews-count",
           "info": [
+            "Data source: Google Analytics",
+            "Weekly data for the last 9 full weeks (Monday to Sunday).",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
           ],
           "denominator-matcher": "deputy-prime-ministers-office",
           "numerator-matcher": "deputy-prime-ministers-office",
@@ -99,9 +103,9 @@
       "description": "Visitors arriving over the last week.",
       "info":[
         "Data source: Google Analytics",
-        "These show pageviews and unique pageviews to the 10 most popular pages over the last full week (Monday to Sunday).",
-        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted.‘Unique Pageviews’ is the number of visits during which the specified page was viewed at least once.",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+        "The 10 most popular pages over the last full week (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. ‘Unique pageviews’ is the number of visits during which the specified page was viewed at least once.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
       ],
       "tabs": [
         {
@@ -125,7 +129,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -160,7 +164,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -195,7 +199,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -300,7 +304,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -335,7 +339,7 @@
             },
             "y": [
               {
-                "label": "Page views",
+                "label": "Pageviews",
                 "key": "pageviews:sum",
                 "format": "integer"
               },
@@ -361,7 +365,7 @@
       "filter-by": "department:deputy-prime-ministers-office",
       "category": "deviceCategory",
       "period": "week",
-      "axis-period": "month",
+      "axis-period": "week",
       "duration": 9,
       "value-attribute": "pageviews:sum",
       "show-line-labels": true,
@@ -369,8 +373,8 @@
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "This shows the number and percentage of entrances made by three categories of device - desktop, tablet and mobile. The metrics are weekly visits for the last 9 full weeks (Monday to Sunday).",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -410,7 +414,7 @@
       "filter-by": "department:deputy-prime-ministers-office",
       "category": "visitorType",
       "period": "week",
-      "axis-period": "month",
+      "axis-period": "week",
       "duration": 9,
       "value-attribute": "entrances:sum",
       "show-line-labels": true,
@@ -418,9 +422,8 @@
       "use_stack": true,
       "info": [
         "Data source: Google Analytics",
-        "This shows the number and percentage of entrances made by new and returning visitors. The metrics are weekly visits for the last 9 complete weeks (Monday to Sunday).",
-        "Returning visitors are those who have previously visited any part of GOV.UK. ",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+        "Visits to GOV.UK which include the department’s content. Returning visitors are those who have previously visited any part of GOV.UK. Weekly for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "axes": {
         "x": {
@@ -450,11 +453,12 @@
       "slug": "top-department-referrers",
       "title": "Sources of visitors",
       "description": "Visitors arriving over the last week.",
-      "info": ["Data source: Google Analytics",
-      "This shows the number of entrances to departmental content and their bounce rate for the last full week (Monday to Sunday).",
-      "‘Sources’ is a mix of search engines (‘organic’), other websites (‘referral’) and other sources that Google Analytics cannot attribute (‘(none)’). ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
-      "The bounce rate is the percentage of visits where a user arrived on the entrance page and then left the site without interacting with the page or visiting any other pages.",
-      "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      "info": [
+        "Data source: Google Analytics",
+        "Entrances to departmental content and bounce rate for the last full week (Monday to Sunday).",
+        "‘Sources’ shows search engine and website referrals to GOV.UK. ‘Search terms’ shows the keywords used by visitors in Google, Bing etc. that sent them on a visit to GOV.UK that included departmental content. The majority of keywords are being hidden by search engines and are displayed as ‘(not provided)’. Visitors from social media tend to be under-counted by Google Analytics.",
+        "The bounce rate is the percentage of visits where a user arrived on the entrance page and then left the site without interacting with the page or visiting any other pages.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "tabs": [
         {
@@ -580,8 +584,10 @@
       "description": "",
       "data-group": "gov-uk-content",
       "data-type": "feedback-count",
-      "info": ["Data source: GOV.UK anonymous feedback",
-      "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "A count of anonymous comments made on departmental pages in a calendar month.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "denominator-matcher": "dpmo",
       "numerator-matcher": "dpmo",
@@ -608,7 +614,8 @@
       "data-type": "top-urls",
       "info": [
         "Data source: GOV.UK anonymous feedback",
-        "The data is a count of anonymous comments made on departmental pages in a calendar month. These metrics only include the content in the departments and policy section of the site."
+        "Pages receiving the most comments in a calendar month.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "query-params": {
         "filter_by": "organisation_acronym:dpmo",
