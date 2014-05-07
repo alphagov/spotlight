@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The purpose of a search of the index map is to find out whether or not land is registered and, if so, to obtain the title number. Any person may apply for an official search of the index map.",
-  "title": "Searches for title numbers of unregistered land",
+  "title": "Searches for title numbers",
   "department": {
     "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
@@ -16,7 +16,7 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Searches for title numbers of unregistered land",
+      "title": "Searches for title numbers",
       "url": "http://www.landregistry.gov.uk/professional/business-e-services"
     }
   },
@@ -43,7 +43,10 @@
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Data source: Department for Business, Innovation and Skills"
+      ]
     },
     {
       "slug": "total-cost",
@@ -64,7 +67,13 @@
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
-      }
+      },
+      "info": [
+        "Applications can be received via different channels, requiring different processes and may contain multiple transactions. The published cost per transaction is therefore an average cost, including apportioned overheads, based on Land Registry’s 2011/12 published accounts.",
+        "<br />",
+        "Data source: Department for Business, Innovation and Skills",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
     },
     {
       "slug": "cost-per-transaction",
@@ -84,7 +93,13 @@
       "format": {
         "type": "currency",
         "pence": true
-      }
+      },
+      "info": [
+        "Applications can be received via different channels, requiring different processes and may contain multiple transactions. The published cost per transaction is therefore an average cost, including apportioned overheads, based on Land Registry’s 2011/12 published accounts.",
+        "<br />",
+        "Data source: Department for Business, Innovation and Skills",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
     },
     {
       "slug": "transactions-per-quarter",
@@ -129,7 +144,11 @@
           "service_id:bis-search-of-the-index-map-land-registry",
           "type:quarterly"
         ]
-      }
+      },
+      "info": [
+        "Data source: Department for Business, Innovation and Skills",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ]
     }
   ]
 }
