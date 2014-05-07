@@ -200,7 +200,7 @@
       "description": "",
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-	    "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a a booking and were able to complete it.",
@@ -222,7 +222,7 @@
       ],
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-	    "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
