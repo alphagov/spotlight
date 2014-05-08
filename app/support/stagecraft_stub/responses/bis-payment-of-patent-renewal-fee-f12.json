@@ -86,10 +86,22 @@
       }
     },
     {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "bis-payment-of-patent-renewal-fee-f12",
+      "data-type": "realtime"
+    },
+    {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
-      "description": "Renewals made using <span class=\"group2\">bulk software</span>, <span class=\"group1\">paper</span> and <span class=\"group0\">online</span> over the last year",
+      "description": "Renewals made using <span class=\"group1\">bulk software</span>, <span class=\"group2\">paper</span> and <span class=\"group3\">online</span> over the last year",
       "data-group": "patent-renewal",
       "data-type": "transactions-by-channel",
       "dashboard-strapline": "Service dashboard",
@@ -112,8 +124,8 @@
             "format": "integer"
           },
           {
-            "label": "Online",
-            "categoryId": "digital",
+            "label": "Bulk software",
+            "categoryId": "file-upload",
             "format": "integer"
           },
           {
@@ -122,8 +134,8 @@
             "format": "integer"
           },
           {
-            "label": "Bulk software",
-            "categoryId": "file-upload",
+            "label": "Online",
+            "categoryId": "digital",
             "format": "integer"
           }
         ]
@@ -170,6 +182,50 @@
       "matching-attribute": "stage",
       "value-attribute": "count:sum",
       "period": "month"
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "bis-payment-of-patent-renewal-fee-f12",
+          "data-type": "monitoring",
+          "period": "day",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "bis-payment-of-patent-renewal-fee-f12",
+          "data-type": "monitoring",
+          "period": "hour",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          }
+        }
+      ]
     }
   ]
 }
