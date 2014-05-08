@@ -32,6 +32,25 @@ define([
         var dateKpi = new KPIView({
           model: new Model({
             valueAttr: 'value',
+            format: 'currency'
+          }),
+          collection: new Collection([
+            {
+              value: 1100,
+              _timestamp: '2014-03-24T00:00:00+00:00',
+              end_at: '2014-03-30T00:00:00+00:00'
+            },
+            { value: 1000 }
+          ])
+        });
+        dateKpi.render();
+        expect(dateKpi.$('.period').text()).toEqual('Mar 2014 to Feb 2014');
+      });
+
+      it('formats date period for week', function () {
+        var dateKpi = new KPIView({
+          model: new Model({
+            valueAttr: 'value',
             format: 'currency',
             'date-period': 'week'
           }),
@@ -45,7 +64,7 @@ define([
           ])
         });
         dateKpi.render();
-        expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 30 Mar 2014');
+        expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 29 Mar 2014');
       });
 
       it('fails gracefully if there is no data', function () {
@@ -118,7 +137,7 @@ define([
         ]);
         kpi.render();
         expect(kpi.$('.delta').text()).toContain('£1,100');
-        expect(kpi.$('.delta').text()).toContain('Mar 2014 to Apr 2014');
+        expect(kpi.$('.delta').text()).toContain('Mar 2014 to Mar 2014');
       });
 
     });

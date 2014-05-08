@@ -3,7 +3,7 @@
         {{#hasValue}}<strong>{{value}}</strong>{{/hasValue}}
         {{^hasValue}}<strong class="no-data">no data</strong>{{/hasValue}}
     </p>
-    {{#period}}<p class="period">{{period.start}} to {{period.end}}</p>{{/period}}
+    {{#period}}<p class="period">{{period}}</p>{{/period}}
 </div>
 
 {{#previousPeriod}}
@@ -13,7 +13,7 @@
               {{#hasValue}}{{change}}{{/hasValue}}
               {{^hasValue}}{{previousPeriod.value}}{{/hasValue}}
             </span>
-            {{previousPeriod.start}} to {{previousPeriod.end}}
+            {{previousPeriod.period}}
         </div>
     </div>
 {{/previousPeriod}}

@@ -15,11 +15,12 @@ function (View, Formatters, template) {
         previous = this.collection.at(1),
         valueAttr = this.model.get('value-attribute'),
         format = this.model.get('format') || 'number',
-        dateFormat = { type: 'date', format: 'MMM YYYY' },
+        dateFormat = { type: 'dateRange', format: 'MMM YYYY', subtract: 'months'},
         datePeriod = this.model.get('date-period');
 
       if (datePeriod && datePeriod === 'week') {
         dateFormat.format = 'D MMM YYYY';
+        delete dateFormat.subtract;
       }
 
       if (!current) {
@@ -33,19 +34,22 @@ function (View, Formatters, template) {
 
       if (current.get('_timestamp') && current.get('end_at')) {
         _.extend(config, {
-          period: {
-            start: this.format(current.get('_timestamp'), dateFormat),
-            end: this.format(current.get('end_at'), dateFormat)
+          period: this.format([
+              current.get('_timestamp'),
+              current.get('end_at')
+            ], dateFormat)
           }
-        });
+        );
       }
 
       if (previous && previous.get(valueAttr)) {
         _.extend(config, {
           previousPeriod: {
-            value: this.format(previous.get(valueAttr), format),
-            start: this.format(previous.get('_timestamp'), dateFormat),
-            end: this.format(previous.get('end_at'), dateFormat)
+            period: this.format([
+              previous.get('_timestamp'),
+              previous.get('end_at')
+            ], dateFormat),
+            value: this.format(previous.get(valueAttr), format)
           }
         });
       }
