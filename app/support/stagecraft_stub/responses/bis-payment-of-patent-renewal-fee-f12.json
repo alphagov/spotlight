@@ -86,6 +86,18 @@
       }
     },
     {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "bis-payment-of-patent-renewal-fee-f12",
+      "data-type": "realtime"
+    },
+    {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
