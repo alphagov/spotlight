@@ -45,6 +45,10 @@
       margin-bottom: 8px;
     }
 
+    .delta {
+        @include core-16();
+    }
+
   }
 
   @media(max-width: 640px) {
