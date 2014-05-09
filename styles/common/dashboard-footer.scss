@@ -7,19 +7,20 @@
     width: 100%;
     border-top: 1px solid $grey-2;
 
-    .footer-text, .description {
-      @include bold-24();
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
     .description {
       @include core-24();
+      margin-top: 0;
       margin-bottom: 40px;
 
       @include media(desktop) {
         width: (600px / $govuk-page-width) * 100%;
       }
+    }
+
+    .footer-text {
+      @include bold-24();
+      margin-top: 0;
+      margin-bottom: 20px;
     }
 
     .footer-left {
