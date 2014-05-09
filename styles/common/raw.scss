@@ -28,7 +28,7 @@ body.raw {
 
     .visualisation {
       float: left;
-      width: 960px;
+      width: $govuk-page-width;
 
       .table-toggle {
         display: none;
