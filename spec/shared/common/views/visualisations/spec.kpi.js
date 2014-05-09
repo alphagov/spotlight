@@ -126,6 +126,24 @@ define([
         expect(kpi.$('.delta').length).toEqual(0);
       });
 
+      it('has a no-change class if the data is unchanged', function () {
+        kpi.collection.reset([
+          { value: 1100 },
+          { value: 1100 }
+        ]);
+        kpi.render();
+        expect(kpi.$('.delta .change').hasClass('no-change')).toBe(true);
+      });
+
+      it('does not attempt to calculate the delta if the previous value is zero', function () {
+        kpi.collection.reset([
+          { value: 1100 },
+          { value: 0 }
+        ]);
+        kpi.render();
+        expect(kpi.$('.delta').length).toEqual(0);
+      });
+
       it('renders data in the delta section if the latest data point is empty but the penultimate data point is not', function () {
         kpi.collection.reset([
           {},
