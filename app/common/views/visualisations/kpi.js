@@ -54,10 +54,18 @@ function (View, Formatters, template) {
         });
       }
 
-      if (config.hasValue && previous) {
+      if (config.hasValue && previous && previous.get(valueAttr)) {
+        var sgn;
+        if (current.get(valueAttr) / previous.get(valueAttr) > 1) {
+          sgn = 'increase';
+        } else if (current.get(valueAttr) / previous.get(valueAttr) < 1) {
+          sgn = 'decrease';
+        } else {
+          sgn = 'no-change';
+        }
         _.extend(config, {
           change: this.format(current.get(valueAttr) / previous.get(valueAttr) - 1, { type: 'percent', dps: 2 }),
-          sgn: current.get(valueAttr) / previous.get(valueAttr) > 1 ? 'increase' : 'decrease'
+          sgn: sgn
         });
       }
 
