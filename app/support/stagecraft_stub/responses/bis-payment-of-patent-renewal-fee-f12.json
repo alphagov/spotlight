@@ -89,10 +89,10 @@
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
-      "description": "Live number of users on any page within the service",
+      "description": "Live number of users on the GOV.UK start page for the service",
       "info": [
         "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service on GOV.UK."
+        "Shows users currently on the GOV.UK start page for the service."
       ],
       "data-group": "bis-payment-of-patent-renewal-fee-f12",
       "data-type": "realtime"
@@ -101,7 +101,14 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
-      "description": "Renewals made using <span class=\"group1\">bulk software</span>, <span class=\"group2\">paper</span> and <span class=\"group3\">online</span> over the last year",
+      "description": "Renewals made using <span class=\"group0\">online</span>, using <span class=\"group1\">bulk software</span>, and using <span class=\"group2\">paper</span> over the last year",
+      "info": [
+        "Data source: IPO database",
+        "Shows the number of patent renewals, broken down by channel",
+        "Online: Renewals made using the online service",
+        "Bulk software: Renewals made using the bulk electronic filing method",
+        "Paper form: applications made using paper form and those received by fax"
+      ],
       "data-group": "patent-renewal",
       "data-type": "transactions-by-channel",
       "dashboard-strapline": "Service dashboard",
@@ -109,8 +116,7 @@
       "period": "month",
       "value-attribute": "count:sum",
       "show-line-labels": true,
-      "use_stack": false,
-      "show-total-lines": true,
+      "use_stack": true,
       "axes": {
         "x": {
           "label": "Date",
@@ -119,8 +125,8 @@
         },
         "y": [
           {
-            "label": "Total",
-            "categoryId": "Total",
+            "label": "Online",
+            "categoryId": "digital",
             "format": "integer"
           },
           {
@@ -131,11 +137,6 @@
           {
             "label": "Paper",
             "categoryId": "paper",
-            "format": "integer"
-          },
-          {
-            "label": "Online",
-            "categoryId": "digital",
             "format": "integer"
           }
         ]
@@ -148,13 +149,13 @@
       "data-group": "patent-renewal",
       "data-type": "transactions-by-channel",
       "denominator-matcher": ".+",
-      "numerator-matcher": "^digital$",
+      "numerator-matcher": "(file-upload|digital)",
       "matching-attribute": "channel",
       "value-attribute": "count:sum",
       "period": "month",
       "info": [
         "Data source: Intellectual Property Office",
-        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+        "Digital take-up measures the percentage of completed monthly renewals that are made through online and bulk software versus non-digital channels."
       ]
     },
     {
@@ -181,7 +182,11 @@
       "numerator-matcher": "finished$",
       "matching-attribute": "stage",
       "value-attribute": "count:sum",
-      "period": "month"
+      "period": "month",
+      "info": [
+        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as the percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ]
     },
     {
       "slug": "service-availability",
