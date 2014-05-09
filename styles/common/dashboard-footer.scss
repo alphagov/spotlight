@@ -16,7 +16,10 @@
     .description {
       @include core-24();
       margin-bottom: 40px;
-      width: 62.5%; //600px
+
+      @include media(desktop) {
+        width: (600px / $govuk-page-width) * 100%;
+      }
     }
 
     .footer-left {
@@ -24,7 +27,9 @@
     }
 
     .footer-right {
-      width: 48.4375% //465px
+      @include media(desktop) {
+        width: (465px / $govuk-page-width) * 100%;
+      }
     }
 
     .related-pages {
