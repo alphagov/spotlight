@@ -44,6 +44,12 @@ module.exports = {
         app.use('/tests', function (req, res) {
           res.sendfile(path.join(rootDir, '_SpecRunner.html'));
         });
+
+        // We use Sass sourcemaps in development. When you click a Sass filename from in
+        // your browser, it will attempt to GET the file from /styles
+        app.use('/styles', function (req, res) {
+          res.sendfile(path.join(rootDir, req.originalUrl));
+        });
       } else {
         global.logger.add(winston.transports.File, {
           filename: 'log/spotlight.log.json',
