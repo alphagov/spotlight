@@ -1,4 +1,4 @@
 *
 !.gitignore
 !*.json
-services.json
+dashboards.json

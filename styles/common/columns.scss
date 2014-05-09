@@ -20,14 +20,17 @@
     margin-left: 0;
   }
 
+  $third_width: 300px / 960px * 100%;
+  $third_margin: 30px / 960px * 100%;
+
   #content section.cols3,
   #content article.cols3,
   .cols3 {
-    width: 300px / 960px * 100%;
+    width: $third_width;
     float: left;
     clear: none;
     margin-right: 0;
-    margin-left: 30px / 960px * 100%;
+    margin-left: $third_margin;
   }
 
   .cols3:first-of-type,
@@ -37,6 +40,6 @@
   }
 
   .cols3.add3 {
-    width: (300px / 960px * 100%) * 2;
+    width: $third_width * 2 + $third_margin;
   }
 }
