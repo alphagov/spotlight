@@ -37,14 +37,14 @@ define([
           collection: new Collection([
             {
               value: 1100,
-              _timestamp: '2014-03-24T00:00:00+00:00',
-              end_at: '2014-03-30T00:00:00+00:00'
+              _timestamp: '2014-01-01T00:00:00+00:00',
+              end_at: '2015-01-01T00:00:00+00:00'
             },
             { value: 1000 }
           ])
         });
         dateKpi.render();
-        expect(dateKpi.$('.period').text()).toEqual('Mar 2014 to Feb 2014');
+        expect(dateKpi.$('.period').text()).toEqual('Jan 2014 to Dec 2014');
       });
 
       it('formats date period for week', function () {
@@ -58,13 +58,13 @@ define([
             {
               value: 1100,
               _timestamp: '2014-03-24T00:00:00+00:00',
-              end_at: '2014-03-30T00:00:00+00:00'
+              end_at: '2014-03-31T00:00:00+00:00'
             },
             { value: 1000 }
           ])
         });
         dateKpi.render();
-        expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 29 Mar 2014');
+        expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 30 Mar 2014');
       });
 
       it('fails gracefully if there is no data', function () {
