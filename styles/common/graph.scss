@@ -188,6 +188,10 @@ figure.graph {
     text {
       @include core-19() ;
       text-anchor: middle;
+
+      @media (max-width: 640px) {
+        font-size: 9px;
+      }
     }
 
     rect {
@@ -236,6 +240,10 @@ figure.graph {
 
     .tick text {
       @include core-16();
+
+      @media (max-width: 640px) {
+        font-size: 9px;
+      }
     }
   }
 
