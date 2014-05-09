@@ -17,7 +17,9 @@ var getRequirejsConfig = function () {
       'client/client_bootstrap'
     ],
     wrap: true,
-    optimize: 'uglify'
+    optimize: 'uglify2',
+    generateSourceMaps: true,
+    preserveLicenseComments: false
   });
 };
 
