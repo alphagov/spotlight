@@ -10,11 +10,11 @@
   }
 
   @include ie(6) {
-    width: 960px;
+    width: $govuk-page-width;
   }
 
   ol {
-    max-width: 960px;
+    max-width: $govuk-page-width;
     margin: 0 30px;
     padding: 0.75em 0;
 
