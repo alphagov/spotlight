@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "The purpose of a search of the index map is to find out whether or not land is registered and, if so, to obtain the title number. Any person may apply for an official search of the index map.",
-  "title": "Searches for title numbers",
+  "title": "Land Registry: searches for title numbers",
   "department": {
     "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
@@ -16,7 +16,7 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Searches for title numbers",
+      "title": "Land Registry: searches for title numbers",
       "url": "http://www.landregistry.gov.uk/professional/business-e-services"
     }
   },

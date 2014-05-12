@@ -10,8 +10,7 @@
     "abbr": "BIS"
   },
   "agency": {
-    "title": "Skills Funding Agency",
-    "abbr": "NAS"
+    "title": "Skills Funding Agency"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
@@ -21,7 +20,7 @@
     }
   },
   "description-extra": "Users aged 16 or above can apply for apprenticeship vacancies.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "The cost also covers the Apprenticeship vacancies: applications service, as the costs can't currently be separated.",
   "modules": [

@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Users can create an e-petition about anything that the government is responsible for and, if it gets at least 100,000 signatures, it will be considered for debate in the House of Commons.",
-  "title": "Signing an e-petition",
+  "title": "e-petition signatures",
   "department": {
     "title": "Cabinet Office",
     "abbr": "CO"
@@ -16,11 +16,11 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Signing an e-petition",
+      "title": "e-petition signatures",
       "url": "https://www.gov.uk/petition-government"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "The costs for this service also cover 'Creating an e-petition'. The given cost per transaction is rounded up to the nearest penny.",
   "modules": [

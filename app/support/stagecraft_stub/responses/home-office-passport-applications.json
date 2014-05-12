@@ -20,7 +20,7 @@
       "url": "https://www.gov.uk/apply-renew-passport"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Fees and charges",
   "costs": "This is the unit cost for producing and issuing a passport. Although this is a cost-recovery funded service, the average cost does not align with individual passport fees as it's an aggregation of the differing volumes and channel pricing structures for the various passport types produced by HM Passport Office.",
   "other-notes": "This includes all passport types: jumbo, standard, adult, child, first time, renewals, replacement, fast track and premium.",

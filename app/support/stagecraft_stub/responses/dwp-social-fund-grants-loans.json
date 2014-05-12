@@ -9,21 +9,17 @@
     "title": "Department for Work and Pensions",
     "abbr": "DWP"
   },
-  "agency": {
-    "title": "Department for Work and Pensions",
-    "abbr": "DWP"
-  },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
       "title": "Social Fund grants and loans",
-      "url": "https://www.gov.uk/crisis-loans"
+      "url": "https://www.gov.uk/budgeting-loans"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Grants and loans can involve several interactions with both the applicant and third parties. The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of processing an application from end to end. <br>Processes include validating identity and eligibility, compliance checks, the investigation of potential fraud and error, and appeals against decisions made. It also includes the making of payments and any queries about non-receipt<br>The costs of these various interactions are aggregated and averaged to give a cost per application and this is presented on a fully absorbed basis but excluding investment (change) costs. The Department for Work and Pensions is introducing changes to improve the accuracy of  IT cost apportionment.",
-  "other-notes": "Covers applications processed for Crisis Loans, Budgeting Loans, Community Care, Funeral and Maternity Grants, whether successful or not.<br> Note: Crisis loans and Community Care grants ceased to be available from April 2013",
+  "other-notes": "Covers applications processed for Crisis Loans, Budgeting Loans, Community Care, Funeral and Maternity Grants, whether successful or not.<br> Note: Crisis loans and Community Care grants are no longer available in England, Scotland or Wales.",
   "modules": [
     {
       "slug": "transactions-per-year",
