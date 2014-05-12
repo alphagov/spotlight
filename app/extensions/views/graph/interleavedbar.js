@@ -13,7 +13,7 @@ function (require, Component) {
     barMarginFraction: 0.05,
     align: 'left',
 
-    offsetText: -8,
+    offsetText: -6,
 
     classed: 'bar',
 
