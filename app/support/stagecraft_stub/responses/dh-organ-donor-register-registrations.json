@@ -20,7 +20,7 @@
       "url": "http://www.organdonation.nhs.uk/"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "modules": [
     {

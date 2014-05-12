@@ -20,7 +20,7 @@
     }
   },
   "description-extra": "Patients use Choose and Book, a national electronic referral service, to select the place, date and time of their appointment.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "modules": [
     {

@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "Requests for vehicle details by their owners.",
-  "title": "Tax disc: checks made by individuals",
+  "title": "Vehicle tax: checks made by individuals",
   "department": {
     "title": "Department for Transport",
     "abbr": "DfT"
@@ -16,11 +16,11 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Tax disc: checks made by individuals",
+      "title": "Vehicle tax: checks made by individuals",
       "url": "https://www.gov.uk/check-vehicle-tax"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Fees and charges",
   "other-notes": "The volume and cost data presented here is subject to change as the method of calculation is refined. Until it has been through a formal assurance process, care should be taken in using the data to support analysis of DVLA business.",
   "modules": [

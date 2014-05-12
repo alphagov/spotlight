@@ -21,7 +21,7 @@
     }
   },
   "description-extra": "Users must have their 'Notice of Fine' to complete the transaction. This service can’t be used to pay fixed penalty or parking fines.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "modules": [
     {

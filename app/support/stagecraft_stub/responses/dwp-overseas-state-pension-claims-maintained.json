@@ -9,10 +9,6 @@
     "title": "Department for Work and Pensions",
     "abbr": "DWP"
   },
-  "agency": {
-    "title": "Department for Work and Pensions",
-    "abbr": "DWP"
-  },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
@@ -21,7 +17,7 @@
     }
   },
   "description-extra": "IPC SP is based on National Insurance (NI) contributions",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Costs cover interactions with people drawing State Pension overseas across the duration of their claim.  It includes contacts about changes of circumstances or compliance checks that could affect eligibility, the investigation of potential fraud and error, and dealing with appeals against decisions made. It also includes the making of payments and handling queries about non-receipt.<br>The costs are for the financial year 2012 to 2013 and represent the total cost for all aspects of maintaining an application after the point that payments commence including those of terminating the claim. The cost of the job search aspect of fortnightly signing is excluded and is covered under 'Jobsearch reviews'.<br>The costs of these various interactions are aggregated and averaged to give a cost per claim maintained and this is presented on a fully absorbed basis but excluding investment (change) costs.",
   "other-notes": "The number of transactions given is the annual average of the number of claims by UK nationals resident overseas that have been maintained.<br>The data covers the maintenance of existing claims after the initial eligibility and amount due have been established.",

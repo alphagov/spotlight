@@ -21,7 +21,7 @@
     }
   },
   "description-extra": "Most claims are undefended, and only a small minority end up in a court hearing.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "modules": [
     {

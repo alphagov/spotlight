@@ -4,7 +4,7 @@
   "dashboard-type": "high-volume-transaction",
   "strapline": "Dashboard",
   "description": "A person who wishes to protect a transaction for value, such as purchase, lease or charge, may make an official search of whole with priority against either the whole or part of a registered title or pending first registration.",
-  "title": "Land Registry: search of whole register",
+  "title": "Land Registry: searches of whole register",
   "department": {
     "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
@@ -16,7 +16,7 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Land Registry: search of whole register",
+      "title": "Land Registry: searches of whole register",
       "url": "https://www.gov.uk/search-property-information-land-registry"
     }
   },
