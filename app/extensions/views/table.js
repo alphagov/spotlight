@@ -81,15 +81,25 @@ function (View, Formatters) {
         this.collection.sortByAttr(this.sortBy, this.sortOrder === 'descending');
       }
 
-      _.each(this.collection.getTableRows(keys), function (row) {
+      var rows = this.collection.getTableRows(keys);
+
+      if (rows.length > 0) {
+        _.each(rows, function (row) {
+          var $row = this.renderEl('tr', $tbody);
+          var renderCell = this.renderCell.bind(this, 'td', $row);
+
+          _.each(row, function (cell, index) {
+            renderCell(cell, columns[index]);
+          });
+
+        }, this);
+      } else {
         var $row = this.renderEl('tr', $tbody);
-        var renderCell = this.renderCell.bind(this, 'td', $row);
-
-        _.each(row, function (cell, index) {
-          renderCell(cell, columns[index]);
-        });
-
-      }, this);
+        this.renderEl('td', $row, 'No data available');
+        for (var i = 0; i < keys.length - 1; i++) {
+          this.renderEl('td', $row, '&ndash;');
+        }
+      }
     },
 
     renderCell: function (tag, parent, content, column) {

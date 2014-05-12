@@ -77,6 +77,16 @@ function (Table, View, Collection, $) {
         spyOn(table.collection, 'getTableRows').andReturn([['01/02/01', 'foo', null]]);
       });
 
+      it('renders no data if there are no rows', function () {
+        table.collection.getTableRows.andReturn([]);
+        table.render();
+
+        expect(table.$el.find('tbody tr').length).toBe(1);
+        expect(table.$el.find('tbody td').map(function (i, el) {
+          return el.innerHTML;
+        })).toBe(['No data available', '&ndash;', '&ndash;']);
+      });
+
       it('empties the table if $table exists and removes class', function () {
         spyOn(table, 'renderHead');
         spyOn(table, 'renderBody');
