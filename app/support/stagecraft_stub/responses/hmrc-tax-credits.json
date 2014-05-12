@@ -9,19 +9,15 @@
     "title": "HM Revenue and Customs",
     "abbr": "HMRC"
   },
-  "agency": {
-    "title": "HM Revenue and Customs",
-    "abbr": "HMRC"
-  },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
       "title": "Tax Credits transactions",
-      "url": "http://www.hmrc.gov.uk/taxcredits/"
+      "url": "https://www.gov.uk/browse/benefits/tax-credits"
     }
   },
   "description-extra": "Universal Credit will eventually replace Tax Credits.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Costs data has been excluded as the service will be incorporated in Universal Credit.",
   "other-notes": "Transactions include registrations, form submissions, customer letters, change of circumstance notifications and telephone contacts.",

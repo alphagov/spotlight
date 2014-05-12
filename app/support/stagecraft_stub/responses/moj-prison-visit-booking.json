@@ -17,7 +17,7 @@
     "improve-dashboard-message": true
   },
   "description-extra": "The service must match the visitor and prisoner to the available capacity for visits, balancing convenience for the visitor with the need for efficiency and security.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Cost-per-transaction data is based on estimates of the cost of back office support for prison visit booking and the cost of time spent by staff on prison wings supporting applications by prisoners to book visits.",
   "modules": [

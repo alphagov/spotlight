@@ -21,7 +21,7 @@
     }
   },
   "description-extra": "Police, road and bridge authorities manage these notifications using the Electronic Service Delivery for Abnormal Loads (ESDAL).",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Transactional cost data is not currently available.",
   "modules": [

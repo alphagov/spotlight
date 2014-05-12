@@ -48,9 +48,11 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           output.department = {};
           addField(row.department, output.department, 'title');
           addField(row.abbr, output.department, 'abbr');
-          output.agency = {};
-          addField(row.agencybody, output.agency, 'title');
-          addField(row.agencyabbr, output.agency, 'abbr');
+          if (row.agencybody !== row.department) {
+            output.agency = {};
+            addField(row.agencybody, output.agency, 'title');
+            addField(row.agencyabbr, output.agency, 'abbr');
+          }
           output.relatedPages = {
             'improve-dashboard-message': true
           };

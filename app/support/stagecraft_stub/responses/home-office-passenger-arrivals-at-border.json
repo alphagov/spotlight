@@ -9,14 +9,11 @@
     "title": "Home Office",
     "abbr": "Home Office"
   },
-  "agency": {
-    "title": "Home Office"
-  },
   "relatedPages": {
     "improve-dashboard-message": true
   },
   "description-extra": "This service is carried out by Border Force officers and includes checks of identity and nationality plus any further checks deemed necessary and appropriate.",
-  "customer-type": "Citizen/ Foreign national",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Cost represents the cost per passenger processed at the UK border using a full cost allocation model including direct costs, overheads and corporate costs. The cost per passenger is calculated on an annual basis, once all costs and overheads are known. Jan-Dec 2012 figures calculated using financial year 2011-2012 cost data. Apr 2012-Mar 2013, Jul 2012-Jun 2013, Oct 2012-Sep 2013 and Jan 2013-Dec 2013 figures calculated using financial year 2012-2013 cost data.",
   "modules": [

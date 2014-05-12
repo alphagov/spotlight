@@ -20,7 +20,7 @@
       "url": "http://www.blood.co.uk/"
     }
   },
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Taxpayers",
   "costs": "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations.",
   "modules": [

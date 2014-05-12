@@ -21,7 +21,7 @@
     }
   },
   "description-extra": "Licences are for using a fishing rod and line for salmon, trout, freshwater fish, smelt or eel in England (except the River Tweed), Wales, and the Border Esk and its tributaries in Scotland.",
-  "customer-type": "Citizen",
+  "customer-type": "Individuals",
   "business-model": "Fees and charges",
   "modules": [
     {
