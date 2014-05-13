@@ -11,6 +11,9 @@
           <% _.each(list, function (item) { %>
             <li>
               <a href="/performance/<%= item.slug %>"><%= item.title %></a>
+              <% if (item.department) { %>
+              <abbr title="<%= item.department.title %>" class="department"><%= item.department.abbr %></abbr>
+              <% } %>
             </li>
           <% }) %>
         </ol>

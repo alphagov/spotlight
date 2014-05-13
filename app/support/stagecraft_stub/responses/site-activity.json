@@ -4,6 +4,10 @@
   "dashboard-type": "content",
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
+  "department": {
+    "title": "Cabinet Office",
+    "abbr": "CO"
+  },
   "tagline": "Web traffic on <a href=\"https://www.gov.uk\">our site</a>, based on data from Google Analytics.",
   "modules": [
     {

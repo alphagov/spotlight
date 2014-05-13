@@ -6,7 +6,8 @@
   "title": "Register a birth abroad: payments",
   "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you're eligible to register the birth of a British national abroad.",
   "department": {
-    "title": "Foreign and Commonwealth Office"
+    "title": "Foreign and Commonwealth Office",
+    "abbr": "FCO"
   },
   "relatedPages": {
     "transaction": {

@@ -65,6 +65,11 @@
           li {
             border-bottom: 1px solid $grey-3;
             padding:.3em 0;
+
+            .department {
+              float: right;
+              color: $grey-1;
+            }
           }
         }
       }

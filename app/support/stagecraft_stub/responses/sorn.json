@@ -6,7 +6,8 @@
   "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>.",
   "title": "SORN (Statutory Off Road Notification) applications",
   "department": {
-    "title": "Department for Transport"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
     "title": "DVLA"

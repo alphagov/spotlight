@@ -6,7 +6,12 @@
   "title": "View driving record",
   "description": "",
   "department": {
-    "title": "Driver and Vehicle Licensing Agency"
+     "title": "Department for Transport",
+     "abbr": "DfT"
+  },
+  "agency": {
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "transaction": {
