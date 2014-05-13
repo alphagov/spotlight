@@ -8,7 +8,7 @@
     border-top: 1px solid $grey-2;
 
     .description {
-      @include core-24();
+      @include bold-24();
       margin-top: 0;
       margin-bottom: 40px;
 
