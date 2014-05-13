@@ -2,6 +2,7 @@
   "slug": "dwp-attendance-allowance-claims-maintained",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Attendance Allowance is a regular payment for people  aged 65 or over who need help with personal care because they are physically or mentally disabled.",
   "title": "Attendance Allowance: existing claims",

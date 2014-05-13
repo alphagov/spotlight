@@ -2,6 +2,7 @@
   "slug": "dft-amend-vehicle-registration-details",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Name and address changes to V5C vehicle registration certificates (log books).",
   "title": "Vehicle registration certificates: changes",

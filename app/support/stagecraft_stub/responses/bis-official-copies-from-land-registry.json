@@ -2,6 +2,7 @@
   "slug": "bis-official-copies-from-land-registry",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "An official copy of a register or title plan represents a true record of entries in the register and extent of the registered title at a specific date and time. It is admissible as evidence in court proceedings as if it were the original.",
   "title": "Land Registry: requests for official copies of records",

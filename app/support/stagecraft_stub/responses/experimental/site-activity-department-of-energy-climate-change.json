@@ -2,6 +2,7 @@
   "slug": "site-activity-department-of-energy-climate-change",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Department of Energy & Climate Change (DECC)",
   "other": {

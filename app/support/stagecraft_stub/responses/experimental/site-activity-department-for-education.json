@@ -2,6 +2,7 @@
   "slug": "site-activity-department-for-education",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Department for Education (DfE)",
   "other": {

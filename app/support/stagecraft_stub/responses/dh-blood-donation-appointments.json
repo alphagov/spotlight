@@ -2,6 +2,7 @@
   "slug": "dh-blood-donation-appointments",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Making appointments with NHS Blood and Transplant (NHSBT) to donate blood.",
   "title": "Blood donation appointments",

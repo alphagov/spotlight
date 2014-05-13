@@ -2,6 +2,7 @@
   "slug": "bis-accounts-filing",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "All limited companies and limited liability partnerships must file their annual accounts so they're publicly available.",
   "title": "Company accounts filed",

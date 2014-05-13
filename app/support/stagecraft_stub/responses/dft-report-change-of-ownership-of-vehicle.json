@@ -2,6 +2,7 @@
   "slug": "dft-report-change-of-ownership-of-vehicle",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Telling DVLA that a vehicle has changed owner.",
   "title": "Vehicle registration: changes of ownership",

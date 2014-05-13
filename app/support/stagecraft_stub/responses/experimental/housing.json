@@ -2,6 +2,7 @@
   "slug": "housing",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Policy dashboard",
   "title": "Housing",
   "other": {

@@ -2,6 +2,7 @@
   "slug": "view-driving-record",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": false,
   "strapline": "Dashboard",
   "title": "View driving record",
   "description": "",

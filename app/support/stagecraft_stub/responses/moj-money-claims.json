@@ -2,6 +2,7 @@
   "slug": "moj-money-claims",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Money claims are a way of taking legal action against a person or business who owes money, to demand repayment.",
   "title": "Money claims",

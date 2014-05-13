@@ -2,6 +2,7 @@
   "slug": "site-activity-ministry-of-defence",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Ministry of Defence (MOD)",
   "other": {

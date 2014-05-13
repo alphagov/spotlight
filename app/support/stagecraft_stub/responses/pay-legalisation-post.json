@@ -2,6 +2,7 @@
   "slug": "pay-legalisation-post",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Document legalisation payments",
   "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to get a UK public document 'legalised'.",

@@ -2,6 +2,7 @@
   "slug": "sorn",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>.",
   "title": "SORN (Statutory Off Road Notification) applications",

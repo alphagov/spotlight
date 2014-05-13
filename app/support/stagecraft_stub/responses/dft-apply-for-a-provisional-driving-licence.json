@@ -2,6 +2,7 @@
   "slug": "dft-apply-for-a-provisional-driving-licence",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Applications for a provisional driving licence.",
   "title": "Provisional driving licence applications",

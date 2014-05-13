@@ -2,6 +2,7 @@
   "slug": "no-realistic-dashboard",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": false,
   "strapline": "Performance",
   "title": "Non-Realistic Data Stub",
   "department": {

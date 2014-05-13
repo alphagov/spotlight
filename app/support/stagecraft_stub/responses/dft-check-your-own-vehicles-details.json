@@ -2,6 +2,7 @@
   "slug": "dft-check-your-own-vehicles-details",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Requests for vehicle details by their owners.",
   "title": "Vehicle tax: checks made by individuals",

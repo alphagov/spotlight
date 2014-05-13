@@ -2,6 +2,7 @@
   "slug": "site-activity",
   "page-type": "dashboard",
   "dashboard-type": "content",
+  "published": true,
   "strapline": "Performance",
   "title": "Activity on GOV.UK",
   "department": {

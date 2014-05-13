@@ -2,6 +2,7 @@
   "slug": "hmrc-debt-management",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Debt Management is the collection of outstanding amounts of unpaid taxes, overpayment of benefits and other debts.",
   "title": "Debt collection transactions",

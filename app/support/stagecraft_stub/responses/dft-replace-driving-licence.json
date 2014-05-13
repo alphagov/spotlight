@@ -2,6 +2,7 @@
   "slug": "dft-replace-driving-licence",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Applications to replace lost, stolen, damaged or destroyed driving licences.",
   "title": "Driving licences: replacements",

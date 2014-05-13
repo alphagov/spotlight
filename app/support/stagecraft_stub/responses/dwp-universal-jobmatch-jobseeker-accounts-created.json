@@ -2,6 +2,7 @@
   "slug": "dwp-universal-jobmatch-jobseeker-accounts-created",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Jobseekers can upload CVs on Universal Jobmatch to help them find full or part-time jobs in Great Britain and abroad.",
   "title": "Universal Jobmatch: jobseeker accounts created",

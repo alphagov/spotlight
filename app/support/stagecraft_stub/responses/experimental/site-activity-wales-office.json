@@ -2,6 +2,7 @@
   "slug": "site-activity-wales-office",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Wales Office (WO)",
   "other": {

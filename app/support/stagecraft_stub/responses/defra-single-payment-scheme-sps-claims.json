@@ -2,6 +2,7 @@
   "slug": "defra-single-payment-scheme-sps-claims",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Claims are submitted annually and annual payments are largely based on the hectares of land claimed.",
   "title": "Single Payment Scheme (SPS) claims",

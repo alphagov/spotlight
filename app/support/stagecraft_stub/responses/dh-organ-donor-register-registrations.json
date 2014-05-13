@@ -2,6 +2,7 @@
   "slug": "dh-organ-donor-register-registrations",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Registrations by people wishing to donate their organs after they die.",
   "title": "Organ donor registrations",

@@ -2,6 +2,7 @@
   "slug": "hmrc-self-assessment",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Self Assessment transactions include form submissions, amended submissions and registrations.",
   "title": "Self Assessment transactions",

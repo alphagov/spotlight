@@ -2,6 +2,7 @@
   "slug": "waste-carrier-or-broker-registration",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Waste carrier registration",
   "description": "Businesses need to register as waste carriers if they transport waste regularly.",

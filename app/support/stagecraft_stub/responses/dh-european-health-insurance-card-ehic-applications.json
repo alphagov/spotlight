@@ -2,6 +2,7 @@
   "slug": "dh-european-health-insurance-card-ehic-applications",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Applications for European Health Insurance Cards.",
   "title": "European Health Insurance Card (EHIC): applications",

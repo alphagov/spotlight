@@ -2,6 +2,7 @@
   "slug": "dh-written-gp-referrals-to-first-outpatient-appointment",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Written referrals from General Practitioners (GPs) for outpatients' first doctor's or dentist's appointments.",
   "title": "Written GP referrals to first outpatient appointment",

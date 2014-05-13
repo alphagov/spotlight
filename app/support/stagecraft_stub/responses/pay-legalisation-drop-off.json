@@ -2,6 +2,7 @@
   "slug": "pay-legalisation-drop-off",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Document legalisation (premium) payments",
   "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to use the premium service to get a UK public document 'legalised'.",

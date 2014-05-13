@@ -2,6 +2,7 @@
   "slug": "site-activity-hm-treasury",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "HM Treasury (HMT)",
   "other": {

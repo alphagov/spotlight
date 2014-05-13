@@ -2,6 +2,7 @@
   "slug": "dft-register-a-vehicle",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Register a car or any other vehicle.",
   "title": "Vehicle registrations",

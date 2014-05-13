@@ -2,6 +2,7 @@
   "slug": "bis-search-of-the-index-map-land-registry",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "The purpose of a search of the index map is to find out whether or not land is registered and, if so, to obtain the title number. Any person may apply for an official search of the index map.",
   "title": "Land Registry: searches for title numbers",

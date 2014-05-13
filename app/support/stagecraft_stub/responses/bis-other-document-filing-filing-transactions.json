@@ -2,6 +2,7 @@
   "slug": "bis-other-document-filing-filing-transactions",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Registration of all documents apart from accounts, annual returns and other fee-bearing transactions.",
   "title": "Companies House: other document filing",
