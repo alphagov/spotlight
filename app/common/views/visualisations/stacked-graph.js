@@ -7,7 +7,7 @@ function (Graph, LineLabel) {
 
     initialize: function (options) {
       options = options || {};
-      if (this.model && this.model.get('value-attribute')) {
+      if (!options.valueAttr && this.model && this.model.get('value-attribute')) {
         options.valueAttr = this.model.get('value-attribute');
       }
       Graph.prototype.initialize.apply(this, arguments);

@@ -31,6 +31,17 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
           valueAttr: 'someAttr'
         }));
       });
+      it('does not overwrite existing valueAttr option', function () {
+        var model = new Model({
+          'value-attribute': 'someAttr'
+        });
+        var graph = new StackedGraph({
+          collection: new Collection(),
+          model: model,
+          valueAttr: 'value'
+        });
+        expect(graph.valueAttr).toEqual('value');
+      });
     });
 
     describe('interactiveFunction', function () {
