@@ -363,8 +363,8 @@ module.exports = function (grunt) {
     'shell:cheapseats'
   ]);
 
-  grunt.registerTask('cheapseats:experimental', [
-    'shell:cheapseats:--experimental'
+  grunt.registerTask('cheapseats:unpublished', [
+    'shell:cheapseats:--unpublished'
   ]);
 
   // Default task
