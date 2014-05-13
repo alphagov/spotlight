@@ -17,7 +17,7 @@ function (Graph) {
     },
 
     getConfigNames: function () {
-      return ['overlay', this.period || 'month'];
+      return [this.period || 'month'];
     },
 
     components: function () {

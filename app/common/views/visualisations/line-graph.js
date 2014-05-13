@@ -35,7 +35,7 @@ function (Graph) {
       } else if (this.collection.query.get('period')) {
         axisConfig = this.collection.query.get('period');
       }
-      return ['overlay', axisConfig];
+      return [axisConfig];
     }
   });
 

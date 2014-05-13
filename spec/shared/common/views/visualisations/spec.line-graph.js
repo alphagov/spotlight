@@ -44,7 +44,7 @@ function (LineGraph, Graph, Collection, Model) {
 
     describe('getConfigNames', function () {
       it('returns configuration for week by default', function () {
-        expect(graph.getConfigNames()).toEqual(['overlay', 'week']);
+        expect(graph.getConfigNames()).toEqual(['week']);
       });
 
       it('returns configuration for day when query period is for day', function () {
@@ -53,14 +53,14 @@ function (LineGraph, Graph, Collection, Model) {
           collection: collectionForPeriod('day')
         });
 
-        expect(graph.getConfigNames()).toEqual(['overlay', 'day']);
+        expect(graph.getConfigNames()).toEqual(['day']);
       });
 
       it('returns configuration for when axis period is set', function () {
         var collection = new Collection([], { axisPeriod: 'month' });
         var graph = new LineGraph({ model: model, collection: collection });
 
-        expect(graph.getConfigNames()).toEqual(['overlay', 'month']);
+        expect(graph.getConfigNames()).toEqual(['month']);
       });
     });
   });
