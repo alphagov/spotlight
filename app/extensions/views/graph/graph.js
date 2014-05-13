@@ -346,19 +346,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       month: scaleByStartDate,
       quarter: scaleByStartDate,
 
-      ymin: {
-        initialize: function () {
-          var d3 = this.d3;
-          var valueAttr = this.valueAttr;
-          var min = d3.min(this.collection.models, function (group) {
-            return d3.min(group.get('values').models, function (value) {
-              return value.get(valueAttr);
-            });
-          });
-          this.getYMin = min;
-        }
-      },
-
       overlay: {
         getYPos: function (groupIndex, modelIndex) {
           var group = this.collection.at(groupIndex);
@@ -375,8 +362,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           }) || 1;
 
           var yScale = this.d3.scale.linear();
-          var yMin = this.getYMin || 0;
-          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
+          var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           yScale.domain(tickValues.extent);
           yScale.rangeRound([this.innerHeight, 0]);
           yScale.tickValueList = tickValues.values;
@@ -464,8 +450,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           }
           var max = d3.max(sums);
           var yScale = this.d3.scale.linear();
-          var yMin = this.getYMin || 0;
-          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
+          var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
           if (this.isOneHundredPercent()) {
             yScale.domain([0, 1]);
           } else {

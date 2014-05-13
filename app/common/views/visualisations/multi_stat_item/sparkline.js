@@ -13,10 +13,11 @@ function (Graph) {
       this.period = options.period;
       this.showTooltip = options.showTooltip;
       this.showStartAndEndTicks = options.showStartAndEndTicks;
+
     },
 
     getConfigNames: function () {
-      return ['overlay', this.period || 'month', 'ymin'];
+      return ['overlay', this.period || 'month'];
     },
 
     components: function () {
