@@ -8,7 +8,7 @@ var fs = require('fs'),
 require('colors');
 
 var blacklist = [
-  'services.json',
+  'dashboards.json',
   'unimplemented-page-type.json',
   'no-realistic-dashboard.json'
 ];
