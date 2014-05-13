@@ -201,19 +201,6 @@ function (Component) {
       return this.graph.getYPos(groupIndex, index);
     },
 
-    configs: {
-      'stack': {
-        getYIdeal: function (groupIndex, index) {
-          var y = this.graph.getYPos(groupIndex, index);
-          if (y === null) {
-            return null;
-          }
-          var y0 = this.graph.getY0Pos(groupIndex, index);
-          return (y + y0) / 2;
-        }
-      }
-    },
-
     /**
      * Positions labels as close as possible to y position of last data point
      * @param {Selection} selection d3 selection to operate on

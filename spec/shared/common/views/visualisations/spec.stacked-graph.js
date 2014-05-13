@@ -2,7 +2,7 @@ define([
   'common/views/visualisations/stacked-graph',
   'extensions/collections/collection',
   'extensions/views/graph/stack',
-  'extensions/views/graph/linelabel',
+  'extensions/views/graph/stacked-linelabel',
   'extensions/views/graph/callout',
   'extensions/views/graph/graph',
   'extensions/models/model'

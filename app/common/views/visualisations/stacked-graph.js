@@ -1,7 +1,8 @@
 define([
-  'extensions/views/graph/graph'
+  'extensions/views/graph/graph',
+  'extensions/views/graph/stacked-linelabel'
 ],
-function (Graph) {
+function (Graph, LineLabel) {
   var StackedGraph = Graph.extend({
 
     initialize: function (options) {
@@ -24,7 +25,7 @@ function (Graph) {
       var labelComponent, labelOptions, stackOptions, yAxisOptions, tooltipFormat;
 
       if (this.showLineLabels()) {
-        labelComponent = this.sharedComponents.linelabel;
+        labelComponent = LineLabel;
         labelOptions = {
           showValues: true,
           showValuesPercentage: true,
