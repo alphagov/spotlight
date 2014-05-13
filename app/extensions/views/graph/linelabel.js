@@ -197,12 +197,11 @@ function (Component) {
       this.setLabelPositions(selection);
     },
 
+    getYIdeal: function (groupIndex, index) {
+      return this.graph.getYPos(groupIndex, index);
+    },
+
     configs: {
-      'overlay': {
-        getYIdeal: function (groupIndex, index) {
-          return this.graph.getYPos(groupIndex, index);
-        }
-      },
       'stack': {
         getYIdeal: function (groupIndex, index) {
           var y = this.graph.getYPos(groupIndex, index);

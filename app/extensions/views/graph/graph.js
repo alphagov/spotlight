@@ -190,7 +190,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     getConfigNames: function () {
-      return ['overlay'];
+      return [];
     },
 
     /**
@@ -399,30 +399,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       week: scaleByStartDate,
       month: scaleByStartDate,
       quarter: scaleByStartDate,
-
-      overlay: {
-        getYPos: function (groupIndex, modelIndex) {
-          var group = this.collection.at(groupIndex);
-          var model = group.get('values').at(modelIndex);
-          return model.get(this.valueAttr);
-        },
-        calcYScale: function () {
-          var d3 = this.d3;
-          var valueAttr = this.valueAttr;
-          var max = d3.max(this.collection.models, function (group) {
-            return d3.max(group.get('values').models, function (value) {
-              return value.get(valueAttr);
-            });
-          }) || 1;
-
-          var yScale = this.d3.scale.linear();
-          var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
-          yScale.domain(tickValues.extent);
-          yScale.rangeRound([this.innerHeight, 0]);
-          yScale.tickValueList = tickValues.values;
-          return yScale;
-        }
-      },
 
       stack: {
         initialize: function () {

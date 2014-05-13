@@ -397,13 +397,9 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         expect(function () { graph.render(); }).toThrow();
 
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
-        expect(function () { graph.render(); }).toThrow();
-
-        graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         expect(function () { graph.render(); }).not.toThrow();
 
         expect(graph.scales.x).toEqual('test x scale');
-        expect(graph.scales.y).toEqual('test y scale');
       });
 
       it('renders component instances', function () {
@@ -606,6 +602,144 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
           expect(function () { Graph.prototype.calculateLinearTicks([0, 0], 5); })
               .toThrow(new Error('Upper bound must be larger than lower.'));
         });
+      });
+    });
+
+    describe('calcYScale', function () {
+
+      var collection, graph;
+      beforeEach(function () {
+
+        collection = new Collection();
+
+        collection.reset([
+          {
+            id: 'total',
+            title: 'Total applications',
+            values: new Collection([
+              {
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
+                _count: 90,
+                alternativeValue: 444
+              },
+              {
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
+                _count: 100,
+                alternativeValue: 333
+              },
+              {
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
+                _count: 114,
+                alternativeValue: 222
+              }
+            ])
+          },
+          {
+            id: 'westminster',
+            title: 'Westminster',
+            values: new Collection([
+              {
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
+                _count: 1,
+                alternativeValue: 100
+              },
+              {
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
+                _count: 6,
+                alternativeValue: 99
+              },
+              {
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
+                _count: 11,
+                alternativeValue: 98
+              }
+            ])
+          },
+          {
+            id: 'croydon',
+            title: 'Croydon',
+            values: new Collection([
+              {
+                _start_at: collection.getMoment('2013-01-14').startOf('day'),
+                _end_at: collection.getMoment('2013-01-21').startOf('day'),
+                _count: 2,
+                alternativeValue: 80
+              },
+              {
+                _start_at: collection.getMoment('2013-01-21').startOf('day'),
+                _end_at: collection.getMoment('2013-01-28').startOf('day'),
+                _count: 7,
+                alternativeValue: 87
+              },
+              {
+                _start_at: collection.getMoment('2013-01-28').startOf('day'),
+                _end_at: collection.getMoment('2013-02-04').startOf('day'),
+                _count: 12,
+                alternativeValue: 23
+              }
+            ])
+          }
+        ]);
+        collection.getCurrentSelection = jasmine.createSpy().andReturn({});
+        graph = new Graph({
+          collection: collection
+        });
+        graph.innerWidth = 444;
+        graph.innerHeight = 333;
+      });
+
+      it('scales domain to a minimum value of 6 to avoid extreme line jumps on graph and duplicate y axis values', function () {
+        collection.at(0).get('values').each(function (model) { model.set('_count', 1); });
+        collection.at(1).get('values').each(function (model) { model.set('_count', 1); });
+        collection.at(2).get('values').each(function (model) { model.set('_count', 1); });
+        expect(graph.calcYScale().domain()).toEqual([0, 6]);
+
+        collection.at(0).get('values').each(function (model) { model.set('_count', 2); });
+        collection.at(1).get('values').each(function (model) { model.set('_count', 2); });
+        collection.at(2).get('values').each(function (model) { model.set('_count', 2); });
+        expect(graph.calcYScale().domain()).toEqual([0, 6]);
+
+        collection.at(0).get('values').each(function (model) { model.set('_count', 5); });
+        collection.at(1).get('values').each(function (model) { model.set('_count', 5); });
+        collection.at(2).get('values').each(function (model) { model.set('_count', 5); });
+        expect(graph.calcYScale().domain()).toEqual([0, 6]);
+      });
+
+      it('scales domain from 0 to nice value above max value by default', function () {
+        expect(graph.calcYScale().domain()).toEqual([0, 120]);
+      });
+
+      it('scales domain from 0 to nice value above max value by default when an alternative value attribute is used', function () {
+        graph.valueAttr = 'alternativeValue';
+        expect(graph.calcYScale().domain()).toEqual([0, 500]);
+      });
+
+      it('scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used', function () {
+        graph.valueAttr = 'alternativeValue';
+        graph.applyConfig('stack');
+        expect(graph.calcYScale().domain()).toEqual([0, 700]);
+      });
+
+      it('scales range to inner height', function () {
+        expect(graph.calcYScale().range()).toEqual([333, 0]);
+      });
+
+      it('sets the tick values correctly', function () {
+        expect(graph.calcYScale().tickValueList)
+            .toEqual([0, 20, 40, 60, 80, 100, 120]);
+      });
+
+      it('still sets a scale for the domain (rather than throwing an error) when all data in the dataset is null', function () {
+        collection.at(0).get('values').each(function (model) { model.set('_count', null); });
+        collection.at(1).get('values').each(function (model) { model.set('_count', null); });
+        collection.at(2).get('values').each(function (model) { model.set('_count', null); });
+        expect(graph.calcYScale().domain()).toEqual([0, 6]);
       });
     });
 
@@ -822,63 +956,6 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
           it('scales range to inner width', function () {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
-          });
-        });
-      });
-
-      describe('overlay', function () {
-
-        beforeEach(function () {
-          graph.applyConfig('overlay');
-        });
-
-        describe('calcYScale', function () {
-          it('scales domain to a minimum value of 6 to avoid extreme line jumps on graph and duplicate y axis values', function () {
-            collection.at(0).get('values').each(function (model) { model.set('_count', 1); });
-            collection.at(1).get('values').each(function (model) { model.set('_count', 1); });
-            collection.at(2).get('values').each(function (model) { model.set('_count', 1); });
-            expect(graph.calcYScale().domain()).toEqual([0, 6]);
-
-            collection.at(0).get('values').each(function (model) { model.set('_count', 2); });
-            collection.at(1).get('values').each(function (model) { model.set('_count', 2); });
-            collection.at(2).get('values').each(function (model) { model.set('_count', 2); });
-            expect(graph.calcYScale().domain()).toEqual([0, 6]);
-
-            collection.at(0).get('values').each(function (model) { model.set('_count', 5); });
-            collection.at(1).get('values').each(function (model) { model.set('_count', 5); });
-            collection.at(2).get('values').each(function (model) { model.set('_count', 5); });
-            expect(graph.calcYScale().domain()).toEqual([0, 6]);
-          });
-
-          it('scales domain from 0 to nice value above max value by default', function () {
-            expect(graph.calcYScale().domain()).toEqual([0, 120]);
-          });
-
-          it('scales domain from 0 to nice value above max value by default when an alternative value attribute is used', function () {
-            graph.valueAttr = 'alternativeValue';
-            expect(graph.calcYScale().domain()).toEqual([0, 500]);
-          });
-
-          it('scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used', function () {
-            graph.valueAttr = 'alternativeValue';
-            graph.applyConfig('stack');
-            expect(graph.calcYScale().domain()).toEqual([0, 700]);
-          });
-
-          it('scales range to inner height', function () {
-            expect(graph.calcYScale().range()).toEqual([333, 0]);
-          });
-
-          it('sets the tick values correctly', function () {
-            expect(graph.calcYScale().tickValueList)
-                .toEqual([0, 20, 40, 60, 80, 100, 120]);
-          });
-
-          it('still sets a scale for the domain (rather than throwing an error) when all data in the dataset is null', function () {
-            collection.at(0).get('values').each(function (model) { model.set('_count', null); });
-            collection.at(1).get('values').each(function (model) { model.set('_count', null); });
-            collection.at(2).get('values').each(function (model) { model.set('_count', null); });
-            expect(graph.calcYScale().domain()).toEqual([0, 6]);
           });
         });
       });

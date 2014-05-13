@@ -1,10 +1,9 @@
 define([
   'extensions/views/view',
   'extensions/models/model',
-  'backbone',
-  'lodash'
+  'backbone'
 ],
-function (View, Model, Backbone, _) {
+function (View, Model, Backbone) {
   describe('View', function () {
     it('inherits from Backbone.View', function () {
       var view = new View();
