@@ -166,13 +166,67 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       throw 'No x scale defined.';
     },
 
-    // Not implemented; override in configuration or subclass
     calcYScale: function () {
-      throw 'No y scale defined.';
+      var d3 = this.d3;
+      var valueAttr = this.valueAttr;
+      var max = d3.max(this.collection.models, function (group) {
+        return d3.max(group.get('values').models, function (value) {
+          return value.get(valueAttr);
+        });
+      }) || 1;
+
+      var yScale = this.d3.scale.linear();
+      var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
+      yScale.domain(tickValues.extent);
+      yScale.rangeRound([this.innerHeight, 0]);
+      yScale.tickValueList = tickValues.values;
+      return yScale;
+    },
+
+    getYPos: function (groupIndex, modelIndex) {
+      var group = this.collection.at(groupIndex);
+      var model = group.get('values').at(modelIndex);
+      return model.get(this.valueAttr);
     },
 
     getConfigNames: function () {
       return ['overlay'];
+    },
+
+    /**
+     * Returns an object describing evenly spaced, nice tick values given an extent and a minimum tick count.
+     * The returned object will include the values, extent and step of the ticks.
+     * The extent may be extended to include the next nice tick value.
+     *
+     * @param extent
+     * @param minimumTickCount
+     * @return {Object}
+     */
+    calculateLinearTicks: function (extent, minimumTickCount) {
+
+      if (extent[0] >= extent[1]) {
+        throw new Error('Upper bound must be larger than lower.');
+      }
+      var targetTickCount = (minimumTickCount === 1) ? minimumTickCount : minimumTickCount - 1,
+          span = extent[1] - extent[0],
+          step = Math.pow(10, Math.floor(Math.log(span / targetTickCount) / Math.LN10)),
+          err = targetTickCount / span * step;
+
+      // Filter ticks to get closer to the desired count.
+      if (err <= 0.15) step *= 10;
+      else if (err <= 0.35) step *= 5;
+      else if (err <= 0.75) step *= 2;
+
+      // Round start and stop values to step interval.
+      var first = Math.floor(extent[0] / step) * step,
+          last = Math.ceil(extent[1] / step) * step,
+          lastInclusive = last + step / 2;
+
+      return {
+        values: _.range(first, lastInclusive, step),
+        extent: [first, last],
+        step: step
+      };
     },
 
     pxToValue: function (cssVal) {
