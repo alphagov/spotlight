@@ -4,10 +4,6 @@ define([
 function (PercentageGraph) {
   var UptimeGraph = PercentageGraph.extend({
 
-    getConfigNames: function () {
-      return [this.collection.query.get('period')];
-    },
-
     // use custom properties for stack calculation because
     // ResponseTimeGraph and UptimeGraph are sharing the same
     // Collection

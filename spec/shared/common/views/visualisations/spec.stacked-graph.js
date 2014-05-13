@@ -134,31 +134,6 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
       });
     });
 
-    describe('getConfigNames', function () {
-      it('returns configuration for week by default', function () {
-        expect(graph.getConfigNames()).toEqual(['week']);
-      });
-
-      it('returns configuration for day when query period is for day', function () {
-        var graph = new StackedGraph({
-          collection: new Collection([], {
-            queryParams: {
-              period: 'day'
-            }
-          })
-        });
-
-        expect(graph.getConfigNames()).toEqual(['day']);
-      });
-
-      it('returns configuration for when axis period is set', function () {
-        var collection = new Collection([], { axisPeriod: 'month' });
-        var graph = new StackedGraph({ collection: collection });
-
-        expect(graph.getConfigNames()).toEqual(['month']);
-      });
-    });
-
     describe('getYPos', function () {
       describe('if there is nothing at the index', function () {
         describe('if there is something at the previous index', function () {

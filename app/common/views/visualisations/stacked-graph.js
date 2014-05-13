@@ -124,16 +124,6 @@ function (Graph, LineLabel) {
 
     encompassStack: true,
 
-    getConfigNames: function () {
-      var axisConfig = 'week';
-      if (this.collection.options.axisPeriod) {
-        axisConfig = this.collection.options.axisPeriod;
-      } else if (this.collection.query.get('period')) {
-        axisConfig = this.collection.query.get('period');
-      }
-      return [axisConfig];
-    },
-
     getYPos: function (groupIndex, modelIndex) {
       if (!this.collection.at(groupIndex)) {
         if (this.collection.at(groupIndex - 1) && this.encompassStack) {

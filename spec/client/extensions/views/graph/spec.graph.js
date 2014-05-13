@@ -356,7 +356,6 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       });
 
       it('sets the currency on render, if defined', function () {
-        spyOn(graph, 'applyConfig');
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.collection.options = {
@@ -367,45 +366,14 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       });
 
       it('resizes the graph', function () {
-        spyOn(graph, 'applyConfig');
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         graph.render();
         expect(graph.resizeWithCalloutHidden).toHaveBeenCalled();
       });
 
-      it('applies configurations to graph', function () {
-        spyOn(graph, 'applyConfig');
-        spyOn(graph, 'getConfigNames').andReturn(['foo', 'bar']);
-        graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
-        graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
-        graph.render();
-        expect(graph.applyConfig).toHaveBeenCalledWith('foo');
-        expect(graph.applyConfig).toHaveBeenCalledWith('bar');
-      });
-
-      it('requires a configuration for the y dimension', function () {
-        expect(function () {
-          graph.render();
-        }).toThrow();
-      });
-
-      it('requires x and y scale implementation s', function () {
-        graph.getConfigNames = function () {
-          return [];
-        };
-        expect(function () { graph.render(); }).toThrow();
-
-        graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
-        expect(function () { graph.render(); }).not.toThrow();
-
-        expect(graph.scales.x).toEqual('test x scale');
-      });
 
       it('renders component instances', function () {
-        graph.getConfigNames = function () {
-          return [];
-        };
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
         var component1 = {
@@ -835,21 +803,22 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
       function sharedSpecsForScalingBetweenStartAndEndDates(period) {
         describe('calcXScale', function () {
+          beforeEach(function () {
+            spyOn(graph, 'getPeriod').andReturn(period);
+          });
           it('scales domain from start entry start date to end entry start date', function () {
-            graph.applyConfig(period);
             var domain = graph.calcXScale().domain();
             expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
             expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
           });
 
           it('scales range to inner width', function () {
-            graph.applyConfig(period);
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
         describe('getXPos', function () {
           beforeEach(function () {
-            graph.applyConfig(period);
+            spyOn(graph, 'getPeriod').andReturn(period);
             spyOn(graph, 'modelToDate').andReturn(123);
           });
           describe('groupIndex is set', function () {
@@ -938,7 +907,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
           graph.collection = new Collection([{
             values: new Collection(values)
           }]);
-          graph.applyConfig('hour');
+          spyOn(graph, 'getPeriod').andReturn('hour');
         });
 
         describe('calcXScale', function () {

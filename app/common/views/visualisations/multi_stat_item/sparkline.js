@@ -9,15 +9,13 @@ function (Graph) {
 
     initialize: function (options) {
       Graph.prototype.initialize.apply(this, arguments);
-
       this.period = options.period;
       this.showTooltip = options.showTooltip;
       this.showStartAndEndTicks = options.showStartAndEndTicks;
-
     },
 
-    getConfigNames: function () {
-      return [this.period || 'month'];
+    getPeriod: function () {
+      return this.period || 'hour';
     },
 
     components: function () {

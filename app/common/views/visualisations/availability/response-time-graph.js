@@ -7,10 +7,6 @@ function (Graph) {
     valueAttr: 'avgresponse',
     numYTicks: 3,
 
-    getConfigNames: function () {
-      return [this.collection.query.get('period')];
-    },
-
     components: function () {
       return [
         { view: this.sharedComponents.xaxis },

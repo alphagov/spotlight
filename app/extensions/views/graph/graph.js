@@ -15,44 +15,6 @@ define([
 ],
 function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData, GraphTable) {
 
-  var scaleFromStartAndEndDates = {
-
-    getModel: function (groupIndex, modelIndex) {
-      if (!this.collection.at(groupIndex) && this.encompassStack) {
-        return this.collection.at(groupIndex - 1, modelIndex);
-      } else {
-        return this.collection.at(groupIndex, modelIndex);
-      }
-    },
-
-    getXPos: function (groupIndex, modelIndex) {
-      groupIndex = groupIndex || 0;
-      var model = this.getModel(groupIndex, modelIndex);
-      return this.modelToDate(model);
-    },
-    calcXScale: function () {
-      var total = this.collection.first().get('values'),
-          start = this.modelToDate(total.first()).toDate(),
-          end = this.modelToDate(total.last()).toDate();
-
-      return this.d3.time.scale()
-              .domain([start, end])
-              .range([0, this.innerWidth]);
-    }
-  };
-
-  var scaleByStartDate = _.extend({}, scaleFromStartAndEndDates, {
-    modelToDate: function (model) {
-      return this.getMoment(model.get('_start_at'));
-    }
-  });
-
-  var scaleByTimestamp = _.extend({}, scaleFromStartAndEndDates, {
-    modelToDate: function (model) {
-      return this.getMoment(model.get('_timestamp'));
-    }
-  });
-
   var Graph = View.extend({
 
     d3: d3,
@@ -161,9 +123,39 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return $(this.svg.node()).width() / this.width;
     },
 
-    // Not implemented; override in configuration or subclass
+    getModel: function (groupIndex, modelIndex) {
+      if (!this.collection.at(groupIndex) && this.encompassStack) {
+        return this.collection.at(groupIndex - 1, modelIndex);
+      } else {
+        return this.collection.at(groupIndex, modelIndex);
+      }
+    },
+
+    modelToDate: function (model) {
+      var prop = this.getPeriod() === 'hour' ? '_timestamp' : '_start_at';
+      return this.getMoment(model.get(prop));
+    },
+
+    getXPos: function (groupIndex, modelIndex) {
+      groupIndex = groupIndex || 0;
+      var model = this.getModel(groupIndex, modelIndex);
+      return this.modelToDate(model);
+    },
+
+    getYPos: function (groupIndex, modelIndex) {
+      var group = this.collection.at(groupIndex);
+      var model = group.get('values').at(modelIndex);
+      return model.get(this.valueAttr);
+    },
+
     calcXScale: function () {
-      throw 'No x scale defined.';
+      var total = this.collection.first().get('values'),
+          start = this.modelToDate(total.first()).toDate(),
+          end = this.modelToDate(total.last()).toDate();
+
+      return this.d3.time.scale()
+              .domain([start, end])
+              .range([0, this.innerWidth]);
     },
 
     calcYScale: function () {
@@ -183,14 +175,16 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return yScale;
     },
 
-    getYPos: function (groupIndex, modelIndex) {
-      var group = this.collection.at(groupIndex);
-      var model = group.get('values').at(modelIndex);
-      return model.get(this.valueAttr);
-    },
-
-    getConfigNames: function () {
-      return [];
+    getPeriod: function () {
+      var period = 'week';
+      if (this.collection && this.collection.options.axisPeriod) {
+        period = this.collection.options.axisPeriod;
+      } else if (this.collection && this.collection.query.get('period')) {
+        period = this.collection.query.get('period');
+      } else if (this.model && this.model.get('period')) {
+        period = this.model.get('period');
+      }
+      return period;
     },
 
     /**
@@ -288,24 +282,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       ].join(''));
     },
 
-    applyConfig: function (name) {
-      var config = this.configs[name];
-      if (!config) {
-        return;
-      }
-
-      if (config.initialize) {
-        config.initialize.call(this);
-      }
-
-      _.each(config, function (value, key) {
-        if (key === 'initialize') {
-          return;
-        }
-        this[key] = value;
-      }, this);
-    },
-
     /**
      * The linelabel figcaption is positioned on top of the graph
      * at small screen sizes using position static.
@@ -353,22 +329,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       this.resizeWithCalloutHidden();
 
-      var configNames = this.getConfigNames();
-      if (_.isString(configNames)) {
-        configNames = [configNames];
-      }
-
-      _.each(configNames, function (configName) {
-        this.applyConfig(configName);
-      }, this);
-
       this.scales.x = this.calcXScale();
       this.scales.y = this.calcYScale();
 
       _.each(this.componentInstances, function (component) {
-        _.each(configNames, function (configName) {
-          component.applyConfig(configName);
-        });
         component.render();
       }, this);
       if (this.table) {
@@ -391,15 +355,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     // allow stubbing of visiblity for testing
     isVisible: function () {
       return this.$el.is(':visible');
-    },
-
-    configs: {
-      hour: scaleByTimestamp,
-      day: scaleByStartDate,
-      week: scaleByStartDate,
-      month: scaleByStartDate,
-      quarter: scaleByStartDate,
-
     }
   });
 

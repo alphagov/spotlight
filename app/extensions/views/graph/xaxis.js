@@ -66,6 +66,20 @@ function (d3, Axis) {
       }
     },
 
+    ticks: function () {
+      var period = this.graph.getPeriod();
+      if (this.configs[period]) {
+        return this.configs[period].ticks.call(this);
+      }
+    },
+
+    tickFormat: function () {
+      var period = this.graph.getPeriod();
+      if (this.configs[period]) {
+        return this.configs[period].tickFormat.call(this);
+      }
+    },
+
     configs: {
       hour: {
         ticks: function () {

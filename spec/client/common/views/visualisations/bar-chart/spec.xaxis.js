@@ -48,7 +48,8 @@ function (XAxis, Collection) {
         },
         graph: {
           innerWidth: 0,
-          innerHeight: 0
+          innerHeight: 0,
+          getPeriod: jasmine.createSpy().andReturn('quarter')
         }
       });
 

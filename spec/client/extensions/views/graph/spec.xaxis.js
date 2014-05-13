@@ -41,10 +41,12 @@ function (XAxis, Collection) {
         },
         graph: {
           innerWidth: 0,
-          innerHeight: 0
+          innerHeight: 0,
+          getPeriod: function () {
+            return config;
+          }
         }
       });
-      view.applyConfig(config);
 
       return view;
     }

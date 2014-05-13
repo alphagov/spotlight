@@ -475,7 +475,6 @@ function (LineLabel, Collection) {
       });
 
       it('positions labels vertically so they do not collide', function () {
-        lineLabel.applyConfig('overlay');
         lineLabel.setLabelPositions(figcaption.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
@@ -499,7 +498,6 @@ function (LineLabel, Collection) {
       it('uses the last non-null value for positioning in overlay configuration', function () {
         collection.at(0).get('values').last().set('_count', null);
         collection.at(1).get('values').last().set('_count', null);
-        lineLabel.applyConfig('overlay');
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
