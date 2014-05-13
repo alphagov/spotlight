@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/graph'
+  'common/views/visualisations/stacked-graph'
 ],
 function (Graph) {
   var VolumetricsGraph = Graph.extend({
@@ -13,7 +13,7 @@ function (Graph) {
       } else if (this.collection.query.get('period')) {
         axisConfig = this.collection.query.get('period');
       }
-      return ['stack', axisConfig];
+      return [axisConfig];
     },
 
     components: function () {

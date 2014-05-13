@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/graph'
+  'common/views/visualisations/stacked-graph'
 ],
 function (Graph) {
   var VolumetricsCompletionGraph = Graph.extend({
@@ -17,7 +17,7 @@ function (Graph) {
       } else if (this.model.get('period')) {
         axisConfig = this.model.get('period');
       }
-      return ['stack', axisConfig];
+      return [axisConfig];
     },
 
     components: function () {

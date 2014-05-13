@@ -1,11 +1,11 @@
 define([
-  'extensions/views/graph/graph'
+  'common/views/visualisations/stacked-graph'
 ],
 function (Graph) {
   var PercentageGraph = Graph.extend({
 
     getConfigNames: function () {
-      return ['stack', this.collection.query.get('period') || 'week'];
+      return [this.collection.query.get('period') || 'week'];
     },
 
     minYDomainExtent: 1,

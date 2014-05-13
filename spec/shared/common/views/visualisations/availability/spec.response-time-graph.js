@@ -4,7 +4,7 @@ define([
 ],
   function (Graph, Collection) {
 
-    describe('configuration', function () {
+    describe('Response Time Graph', function () {
 
       function collectionForPeriod(period) {
         var CollectionWithPeriod =  Collection.extend({
@@ -23,7 +23,7 @@ define([
           collection: collectionForPeriod('hour')
         });
 
-        expect(view.getConfigNames()).toEqual(['stack', 'hour']);
+        expect(view.getConfigNames()).toEqual(['hour']);
       });
 
       it('returns configuration for day when query period is for day', function () {
@@ -31,7 +31,7 @@ define([
           collection: collectionForPeriod('day')
         });
 
-        expect(view.getConfigNames()).toEqual(['stack', 'day']);
+        expect(view.getConfigNames()).toEqual(['day']);
       });
 
     });
