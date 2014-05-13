@@ -625,23 +625,23 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       });
 
 
-      function sharedSpecsForScalingBetweenStartAndEndDates() {
+      function sharedSpecsForScalingBetweenStartAndEndDates(period) {
         describe('calcXScale', function () {
           it('scales domain from start entry start date to end entry start date', function () {
-            graph.applyConfig('day');
+            graph.applyConfig(period);
             var domain = graph.calcXScale().domain();
             expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
             expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
           });
 
           it('scales range to inner width', function () {
-            graph.applyConfig('day');
+            graph.applyConfig(period);
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
         });
         describe('getXPos', function () {
           beforeEach(function () {
-            graph.applyConfig('day');
+            graph.applyConfig(period);
             spyOn(graph, 'modelToDate').andReturn(123);
           });
           describe('groupIndex is set', function () {
@@ -700,11 +700,19 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       }
 
       describe('day', function () {
-        sharedSpecsForScalingBetweenStartAndEndDates();
+        sharedSpecsForScalingBetweenStartAndEndDates('day');
       });
 
       describe('week', function () {
-        sharedSpecsForScalingBetweenStartAndEndDates();
+        sharedSpecsForScalingBetweenStartAndEndDates('week');
+      });
+
+      describe('month', function () {
+        sharedSpecsForScalingBetweenStartAndEndDates('month');
+      });
+
+      describe('quarter', function () {
+        sharedSpecsForScalingBetweenStartAndEndDates('quarter');
       });
 
       describe('hour', function () {
