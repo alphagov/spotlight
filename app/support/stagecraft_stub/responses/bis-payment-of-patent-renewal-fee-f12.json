@@ -6,10 +6,12 @@
   "description": "Renewals of patent intellectual property rights.",
   "title": "Payment of patent renewal fee (F12)",
   "department": {
-    "title": "Department for Business, Innovation and Skills"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Intellectual Property Office"
+    "title": "Intellectual Property Office",
+    "abbr": "IPO"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

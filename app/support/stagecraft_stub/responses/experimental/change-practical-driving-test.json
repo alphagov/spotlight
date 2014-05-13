@@ -6,10 +6,13 @@
   "title": "Change a practical driving test (public users)",
   "description": "Figures for the service for the public to <strong>change, including cancel, a practical driving test</strong>. Figures include applications made via digital, phone and postal channels.<br><br> More performance information for the practical driving test can be found <a href='/performance/practical-driving-test' rel='external'>here</a>",
   "department": {
-     "title": "Department for Transport"
+     "title": "Department for Transport",
+     "abbr": "DfT"
   },
   "agency": {
-     "title": "Driver and Vehicle Standards Agency"
+     "title": "Driver and Vehicle Standards Agency",
+     "abbr": "DVSA"
+
   },
   "relatedPages": {
     "improve-dashboard-message": true,

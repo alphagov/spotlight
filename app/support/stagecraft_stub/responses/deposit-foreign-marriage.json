@@ -4,6 +4,10 @@
   "dashboard-type": "other",
   "strapline": "Dashboard",
   "title": "Deposit foreign marriage or civil partnership certificates",
+  "department": {
+    "title": "Foreign and Commonwealth Office",
+    "abbr": "FCO"
+  },
   "other": {
     "tagline": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) to deposit a foreign marriage or civil partnership certificate at the General Registry Office. <strong>This transaction ceased to exist on 30 December 2013. Figures shown here are historical data.</strong>"
   },

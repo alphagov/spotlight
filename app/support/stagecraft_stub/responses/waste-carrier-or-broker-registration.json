@@ -6,10 +6,12 @@
   "title": "Waste carrier registration",
   "description": "Businesses need to register as waste carriers if they transport waste regularly.",
   "department": {
-    "title": "Department for Environment, Food and Rural Affairs"
+    "title": "Department for Environment, Food and Rural Affairs",
+    "abbr": "Defra"
   },
   "agency": {
-    "title": "Environment Agency"
+    "title": "Environment Agency",
+    "abbr": "EA"
   },
   "relatedPages": {
     "transaction": {

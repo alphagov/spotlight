@@ -6,10 +6,12 @@
   "title": "Lasting Power of Attorney registrations",
   "description": "Figures for the service to make a <strong>lasting power of attorney (LPA)</strong> - a legal document that lets you appoint someone, known as an 'attorney', to make decisions on your behalf. Figures include applications made via both digital and paper form channels.",
   "department": {
-     "title": "Ministry of Justice"
+     "title": "Ministry of Justice",
+     "abbr": "MoJ"
   },
   "agency": {
-     "title": "Office of the Public Guardian"
+     "title": "Office of the Public Guardian",
+     "abbr": "OPG"
   },
   "relatedPages": {
     "transaction": {

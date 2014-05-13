@@ -4,6 +4,10 @@
   "dashboard-type": "service-group",
   "strapline": "Dashboard",
   "title": "Vehicle licensing",
+  "department": {
+    "title": "Department for Transport",
+    "abbr": "DfT"
+  },
   "tagline": "Vehicle licensing covers <a href='tax-disc'>tax disc</a> relicensing and <a href='sorn'><abbr title='Statutory Off Road Notification'>SORN</abbr> (Statutory Off Road Notification)</a>, two services provided by <abbr title='Driver and Vehicle Licensing Agency'>DVLA</abbr>. Does not include first registrations.",
   "modules": [
     {

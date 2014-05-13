@@ -6,10 +6,12 @@
   "title": "Practical driving test (public users)",
   "description": "This dashboard provides additional information for the :<br><a href='/performance/book-practical-driving-test' rel='external'>Book a practical driving test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Change the date of your practical driving or riding test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Cancel your practical driving or riding test</a> dashboard",
   "department": {
-     "title": "Department for Transport"
+     "title": "Department for Transport",
+     "abbr": "DfT"
   },
   "agency": {
-     "title": "Driver and Vehicle Standards Agency"
+     "title": "Driver and Vehicle Standards Agency",
+     "abbr": "DVSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
