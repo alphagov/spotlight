@@ -5,7 +5,7 @@ var fs = require('fs'),
     Q = require('q');
 
 var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/responses'),
-    stagecraftStubGlob = path.resolve(stagecraftStubDir, '*.json');
+    stagecraftStubGlob = path.resolve(stagecraftStubDir, '**/*.json');
 
 var dashboards = [
   {
@@ -29,7 +29,7 @@ function readModule(file) {
     }
 
     dashboardData = JSON.parse(dashboardData);
-    if (dashboardData['page-type'] === 'dashboard') {
+    if (dashboardData['page-type'] === 'dashboard' && dashboardData['published']) {
       dashboards.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
     }
     defer.resolve();

@@ -42,6 +42,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           output.slug = row.slug;
           output['page-type'] = 'dashboard';
           output['dashboard-type'] = 'high-volume-transaction';
+          output['published'] = true;
           output.strapline = 'Dashboard';
           addField(row.description1, output, 'description');
           addField(row.nameofservice, output, 'title');
