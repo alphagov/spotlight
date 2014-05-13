@@ -2,6 +2,7 @@
   "slug": "hmrc-construction-industry-scheme",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Construction Industry Scheme sets out the rules for how payments to construction work subcontractors must be handled by contractors.",
   "title": "Construction Industry Scheme transactions",

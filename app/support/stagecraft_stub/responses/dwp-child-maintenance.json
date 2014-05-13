@@ -2,6 +2,7 @@
   "slug": "dwp-child-maintenance",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Child maintenance is financial support to a child’s everyday living costs when the parents have separated.",
   "title": "Child maintenance transactions",

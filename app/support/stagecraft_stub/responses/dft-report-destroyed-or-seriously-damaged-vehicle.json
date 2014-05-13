@@ -2,6 +2,7 @@
   "slug": "dft-report-destroyed-or-seriously-damaged-vehicle",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Reporting a destroyed or seriously damaged vehicle to DVLA.",
   "title": "Destroyed or damaged vehicles reported",

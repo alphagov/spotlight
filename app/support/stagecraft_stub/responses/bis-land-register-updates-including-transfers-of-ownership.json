@@ -2,6 +2,7 @@
   "slug": "bis-land-register-updates-including-transfers-of-ownership",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Requests to update the register by conveyancers acting on behalf of their clients, or by the public. Includes transfers of ownership.",
   "title": "Land Registry: updates to the register",

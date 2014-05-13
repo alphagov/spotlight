@@ -2,6 +2,7 @@
   "slug": "site-activity-department-for-transport",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Department for Transport (DFT)",
   "other": {

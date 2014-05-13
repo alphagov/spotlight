@@ -2,6 +2,7 @@
   "slug": "hmrc-payments-received-by-hmrc-banking",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Customer payments made electronically, by cheque or by cash to HMRC.",
   "title": "Payments received by HMRC",

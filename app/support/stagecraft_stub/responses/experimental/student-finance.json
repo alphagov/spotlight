@@ -2,6 +2,7 @@
   "slug": "student-finance",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": false,
   "strapline": "Dashboard",
   "title": "Student finance applications",
   "department": {

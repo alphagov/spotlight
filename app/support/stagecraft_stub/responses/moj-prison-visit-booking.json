@@ -2,6 +2,7 @@
   "slug": "moj-prison-visit-booking",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Arrange meetings between prisoners and social visitors or legal professionals.",
   "title": "Prison visit booking",

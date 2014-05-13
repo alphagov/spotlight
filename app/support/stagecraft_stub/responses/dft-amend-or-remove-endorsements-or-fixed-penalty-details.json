@@ -2,6 +2,7 @@
   "slug": "dft-amend-or-remove-endorsements-or-fixed-penalty-details",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Changes to fixed penalty points and endorsements on driving licences.",
   "title": "Driving licences: fixed penalties and endorsements changed or removed",

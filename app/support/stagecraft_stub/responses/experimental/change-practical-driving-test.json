@@ -2,6 +2,7 @@
   "slug": "change-practical-driving-test",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": false,
   "strapline": "Dashboard",
   "title": "Change a practical driving test (public users)",
   "description": "Figures for the service for the public to <strong>change, including cancel, a practical driving test</strong>. Figures include applications made via digital, phone and postal channels.<br><br> More performance information for the practical driving test can be found <a href='/performance/practical-driving-test' rel='external'>here</a>",

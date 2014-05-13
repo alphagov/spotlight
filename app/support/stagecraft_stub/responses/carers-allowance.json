@@ -2,6 +2,7 @@
   "slug": "carers-allowance",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Carer's Allowance applications",
   "description": "Carer's Allowance (CA) is a regular payment for carers to help look after someone with substantial caring needs - involving at least 35 hours a week.",

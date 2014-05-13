@@ -2,6 +2,7 @@
   "slug": "bis-search-of-whole-land-registry",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "A person who wishes to protect a transaction for value, such as purchase, lease or charge, may make an official search of whole with priority against either the whole or part of a registered title or pending first registration.",
   "title": "Land Registry: searches of whole register",

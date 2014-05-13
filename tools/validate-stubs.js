@@ -3,51 +3,44 @@ var fs = require('fs'),
     jsonschema = require('jsonschema'),
     _ = require('lodash'),
     Q = require('q'),
-    argh = require('argh').argv;
+    argh = require('argh').argv,
+    glob = require('glob');
 
 require('colors');
 
-var blacklist = [
-  'dashboards.json',
-  'unimplemented-page-type.json',
-  'no-realistic-dashboard.json'
-];
+var blacklistRegexp = /(dashboards|unimplemented-page-type|no-realistic-dashboard).json$/;
 
 var Validator = jsonschema.Validator,
     v = new Validator();
 
 var dashboardSchema = require('../schema/dashboard');
 
-var stagecraftStubDirectory = path.resolve(__dirname, '../app/support/stagecraft_stub/responses');
+var stagecraftStubGlob = path.resolve(__dirname, '../app/support/stagecraft_stub/responses/**/*.json');
 
-var testDirectory = function (dir, subdir) {
-
-  subdir = subdir || '';
+var testDirectory = function (fileGlob) {
 
   var defer = Q.defer();
 
   // Iterate over every dashboard file
-  fs.readdir(path.join(dir, subdir), function (err, files) {
+  glob(fileGlob, function (err, files) {
     if (err) {
       throw err;
     }
 
-    Q.allSettled(_.map(files, function (filename) {
+    Q.allSettled(_.map(files, function (file) {
 
       var dashboardDefer = Q.defer();
 
       // If the file doesn't end in .json, don't process it
-      if (filename.indexOf('.json') === -1) {
+      if (file.indexOf('.json') === -1) {
         return Q.resolve({ ignored: true });
       }
 
-      if (blacklist.indexOf(filename) !== -1) {
+      if (blacklistRegexp.test(file)) {
         return Q.resolve({ ignored: true });
       }
 
-      filename = path.join(subdir, filename);
-
-      fs.readFile(path.join(dir, filename), 'utf8', function (err, dashboardData) {
+      fs.readFile(file, 'utf8', function (err, dashboardData) {
         if (err) {
           if (err.code === 'EISDIR') {
             return;
@@ -69,7 +62,7 @@ var testDirectory = function (dir, subdir) {
 
           if (result.errors.length > 0) {
             result.errors.forEach(function (err) {
-              err.filename = filename;
+              err.filename = file;
               err.module = module.slug + ' - ' + module['module-type'];
             });
             moduleDefer.reject(result.errors);
@@ -84,10 +77,17 @@ var testDirectory = function (dir, subdir) {
         };
 
         dashboardData = JSON.parse(dashboardData);
+
+        if (dashboardData['page-type'] !== 'dashboard') {
+          return dashboardDefer.resolve({ ignored: true });
+        } else if (!dashboardData['published'] && !argh.unpublished) {
+          return dashboardDefer.resolve({ ignored: true });
+        }
+
         var result = v.validate(dashboardData, dashboardSchema);
         if (result.errors.length > 0) {
           result.errors.forEach(function (err) {
-            err.filename = filename;
+            err.filename = file;
           });
           dashboardDefer.reject(result.errors);
         } else {
@@ -97,10 +97,10 @@ var testDirectory = function (dir, subdir) {
       });
 
       return dashboardDefer.promise.then(function (a) {
-        console.log(('✔ ' + filename).green);
+        if (a.ignored === undefined) console.log(('✔ ' + file).green);
         return a;
       }, function (e) {
-        console.log(('✘ ' + filename).red);
+        console.log(('✘ ' + file).red);
         throw e;
       });
 
@@ -128,14 +128,8 @@ var parseResults = function (results) {
   });
 };
 
-testDirectory(stagecraftStubDirectory)
+testDirectory(stagecraftStubGlob)
   .then(parseResults)
-  .then(function () {
-    if (argh.experimental) {
-      return testDirectory(stagecraftStubDirectory, 'experimental')
-        .then(parseResults);
-    }
-  })
   .then(function () {
     var allLength = succeeded + failed.length;
     console.log('\n' + allLength + ' stub' + ((allLength !== 1) ? 's' : '') + ' tested');

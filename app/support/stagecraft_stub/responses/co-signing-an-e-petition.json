@@ -2,6 +2,7 @@
   "slug": "co-signing-an-e-petition",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Users can create an e-petition about anything that the government is responsible for and, if it gets at least 100,000 signatures, it will be considered for debate in the House of Commons.",
   "title": "e-petition signatures",

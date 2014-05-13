@@ -2,6 +2,7 @@
   "slug": "dft-notifications-sent-via-electronic-service-delivery-for-abnormal-loads-esdal",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Notification service for hauliers transporting abnormal loads on roads in England.",
   "title": "Electronic Service Delivery for Abnormal Loads (ESDAL): notifications",

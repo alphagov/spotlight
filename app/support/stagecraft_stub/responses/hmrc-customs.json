@@ -2,6 +2,7 @@
   "slug": "hmrc-customs",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "The data relates to customs transactions which have been submitted through a number of services.",
   "title": "Customs transactions",

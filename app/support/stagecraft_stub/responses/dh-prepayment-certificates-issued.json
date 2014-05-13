@@ -2,6 +2,7 @@
   "slug": "dh-prepayment-certificates-issued",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Advance payments for 3 or 12 months of prescriptions.",
   "title": "Prescriptions: prepayment certificates issued",

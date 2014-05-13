@@ -2,6 +2,7 @@
   "slug": "hmrc-agent-authorisation",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Agent Authorisation is a system used by tax agents, advisers and accountants for authority to deal with HMRC on behalf of an individual or a business.",
   "title": "HMRC agent authorisations",

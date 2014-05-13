@@ -2,6 +2,7 @@
   "slug": "site-activity-department-for-work-pensions",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "Department for Work and Pensions (DWP)",
   "other": {

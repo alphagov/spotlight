@@ -2,6 +2,7 @@
   "slug": "dh-choose-book",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Bookings, changes and cancellations by patients for their first outpatient appointment in a hospital or clinic.",
   "title": "Choose and Book",

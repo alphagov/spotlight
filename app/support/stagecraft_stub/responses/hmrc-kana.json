@@ -2,6 +2,7 @@
   "slug": "hmrc-kana",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "KANA is a software product used to process customers' emails on a variety of subjects.",
   "title": "HMRC transactions handled by email (KANA)",

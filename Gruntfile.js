@@ -339,8 +339,8 @@ module.exports = function (grunt) {
     'shell:validate_module_stubs'
   ]);
 
-  grunt.registerTask('test:stubs:experimental', [
-    'shell:validate_module_stubs:--experimental'
+  grunt.registerTask('test:stubs:unpublished', [
+    'shell:validate_module_stubs:--unpublished'
   ]);
 
   grunt.registerTask('test:all', [
@@ -363,8 +363,8 @@ module.exports = function (grunt) {
     'shell:cheapseats'
   ]);
 
-  grunt.registerTask('cheapseats:experimental', [
-    'shell:cheapseats:--experimental'
+  grunt.registerTask('cheapseats:unpublished', [
+    'shell:cheapseats:--unpublished'
   ]);
 
   // Default task

@@ -2,6 +2,7 @@
   "slug": "dwp-social-fund-grants-loans",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "The Social Fund supplies a range of grants and loans to people in special need of financial help.",
   "title": "Social Fund grants and loans",

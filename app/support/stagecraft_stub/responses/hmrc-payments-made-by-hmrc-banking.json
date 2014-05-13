@@ -2,6 +2,7 @@
   "slug": "hmrc-payments-made-by-hmrc-banking",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Payments to customers either electronically or by post from HMRC.",
   "title": "Payments made by HMRC",

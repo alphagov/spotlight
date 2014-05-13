@@ -2,6 +2,7 @@
   "slug": "bis-payment-of-patent-renewal-fee-f12",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Renewals of patent intellectual property rights.",
   "title": "Payment of patent renewal fee (F12)",

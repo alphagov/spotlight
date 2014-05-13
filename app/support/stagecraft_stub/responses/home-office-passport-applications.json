@@ -2,6 +2,7 @@
   "slug": "home-office-passport-applications",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
+  "published": true,
   "strapline": "Dashboard",
   "description": "Applications for a new, renewed, replacement, updated or extended passport.",
   "title": "Passport applications",

@@ -2,6 +2,7 @@
   "slug": "vehicle-licensing",
   "page-type": "dashboard",
   "dashboard-type": "service-group",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Vehicle licensing",
   "department": {

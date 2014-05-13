@@ -2,6 +2,7 @@
   "slug": "site-activity-hm-prison-service",
   "page-type": "dashboard",
   "dashboard-type": "other",
+  "published": false,
   "strapline": "Content dashboard",
   "title": "HM Prison Service (HMPS)",
   "other": {
