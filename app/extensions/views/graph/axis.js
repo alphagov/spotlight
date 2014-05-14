@@ -24,7 +24,7 @@ function (Component) {
         .orient(this.orient);
 
       _.each(['ticks', 'tickValues', 'tickFormat', 'tickPadding', 'tickSize'], function (id) {
-        if (this[id]) {
+        if (this[id] !== undefined) {
           var args = _.isFunction(this[id]) ? this[id]() : this[id];
           axis[id].apply(this, _.isArray(args) ? args : [args]);
         }

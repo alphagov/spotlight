@@ -159,27 +159,34 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     calcYScale: function () {
+      var max = this.maxValue();
+
       var yScale = this.d3.scale.linear();
-      var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
-      yScale.domain(tickValues.extent);
+      if (max) {
+        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
+        yScale.domain(tickValues.extent);
+        yScale.tickValueList = tickValues.values;
+      }
       yScale.rangeRound([this.innerHeight, 0]);
-      yScale.tickValueList = tickValues.values;
       return yScale;
     },
 
     maxValue: function () {
       var d3 = this.d3;
       var valueAttr = this.valueAttr;
-      var max = d3.max(this.collection.toJSON(), function (group) {
+      return d3.max(this.collection.toJSON(), function (group) {
         return d3.max(group.values.toJSON(), function (value) {
           return value[valueAttr];
         });
-      }) || 1;
-      return max;
+      });
     },
 
     minValue: function () {
       return 0;
+    },
+
+    hasData: function () {
+      return this.maxValue() !== undefined;
     },
 
     getPeriod: function () {

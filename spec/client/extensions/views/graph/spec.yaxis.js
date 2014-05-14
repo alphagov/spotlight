@@ -94,6 +94,25 @@ function (YAxis, Graph, Collection) {
       });
     });
 
+    describe('ticks', function () {
+
+      it('returns the graph numYTicks by default', function () {
+        var view = viewForValues(0, 10, true, 10);
+        view.graph.numYTicks = 10;
+        expect(view.ticks()).toEqual(10);
+
+        view.graph.numYTicks = 5;
+        expect(view.ticks()).toEqual(5);
+      });
+
+      it('returns zero if the graph has no data', function () {
+        var view = viewForValues(0, 10, true, 10);
+        spyOn(view.graph, 'hasData').andReturn(false);
+        expect(view.ticks()).toEqual(0);
+      });
+
+    });
+
 
   });
 });
