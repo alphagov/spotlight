@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-driver-and-vehicle-standards-agency",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "Driver & Vehicle Standards Agency (DVSA)",
   "other": {

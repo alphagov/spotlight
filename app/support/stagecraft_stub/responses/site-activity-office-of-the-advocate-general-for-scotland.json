@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-office-of-the-advocate-general-for-scotland",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "Office of the Advocate General for Scotland (OAG)",
   "other": {

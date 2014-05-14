@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-hm-revenue-customs",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "HM Revenue & Customs (HMRC)",
   "other": {

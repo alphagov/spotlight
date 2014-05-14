@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-foreign-commonwealth-office",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "Foreign & Commonwealth Office (FCO)",
   "other": {

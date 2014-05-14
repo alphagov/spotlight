@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-home-office",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "Home Office (HO)",
   "other": {

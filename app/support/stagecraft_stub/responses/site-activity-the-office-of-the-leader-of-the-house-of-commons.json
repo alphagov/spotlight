@@ -1,8 +1,8 @@
 {
   "slug": "site-activity-the-office-of-the-leader-of-the-house-of-commons",
   "page-type": "dashboard",
-  "dashboard-type": "other",
-  "published": false,
+  "dashboard-type": "content",
+  "published": true,
   "strapline": "Content dashboard",
   "title": "Office of the Leader of the House of Commons (OLHC)",
   "other": {
