@@ -20,7 +20,7 @@
       {{# relatedPages.transaction }}
       <div class="related-transaction">
         <h3>Visit this service</h3>
-        <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
+        <a href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
       </div>
       {{/ relatedPages.transaction }}
 
@@ -30,7 +30,7 @@
         <ul class="items">
           {{# relatedPages.other }}
           <li>
-            <a href="{{ url }}">{{ title }}</a>
+            <a href="{{{ url }}}">{{ title }}</a>
             {{# metadata }}
             <span class="metadata">{{{ metadata }}}</span>
             {{/ metadata }}
@@ -67,7 +67,7 @@
         {{# relatedPages.transaction }}
         <div class="related-transaction">
           <h3>Visit this service</h3>
-          <a href="{{ relatedPages.transaction.url }}">{{ relatedPages.transaction.title }}</a>
+          <a href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
         </div>
         {{/ relatedPages.transaction }}
 
@@ -77,7 +77,7 @@
           <ul class="items">
             {{# relatedPages.other }}
             <li>
-              <a href="{{ url }}">{{ title }}</a>
+              <a href="{{{ url }}}">{{ title }}</a>
               {{# metadata }}
               <span class="metadata">{{{ metadata }}}</span>
               {{/ metadata }}
