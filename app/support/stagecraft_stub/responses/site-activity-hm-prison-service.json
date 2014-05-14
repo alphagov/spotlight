@@ -6,7 +6,7 @@
   "strapline": "Content dashboard",
   "title": "HM Prison Service (HMPS)",
   "other": {
-    "tagline": "Web performance data for HM Prison Service. including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
+    "tagline": "Web performance data for HM Prison Service. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
   },
   "relatedPages": {
     "transaction": {

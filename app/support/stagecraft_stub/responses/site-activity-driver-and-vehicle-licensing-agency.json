@@ -6,7 +6,7 @@
   "strapline": "Content dashboard",
   "title": "Driver & Vehicle Licensing Agency (DVLA)",
   "other": {
-    "tagline": "Web performance data for Driver & Vehicle Licensing Agency. including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
+    "tagline": "Web performance data for Driver & Vehicle Licensing Agency. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
   },
   "relatedPages": {
     "transaction": {

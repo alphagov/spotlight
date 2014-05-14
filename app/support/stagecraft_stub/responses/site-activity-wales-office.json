@@ -6,7 +6,7 @@
   "strapline": "Content dashboard",
   "title": "Wales Office (WO)",
   "other": {
-    "tagline": "Web performance data for Wales Office. including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
+    "tagline": "Web performance data for Wales Office. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>."
   },
   "relatedPages": {
     "transaction": {
