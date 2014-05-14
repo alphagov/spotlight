@@ -70,7 +70,7 @@
     {
       "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Users on start page",
+      "title": "Live service usage",
       "description": "Users currently on the GOV.UK start page for the service",
       "info": [
         "Data source: Google Analytics",
@@ -84,7 +84,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
       "data-group": "vehicle-licensing",
       "data-type": "customer-satisfaction",
       "info": [
@@ -126,7 +126,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of renewals made using the digital service",
       "data-group": "vehicle-licensing",
       "data-type": "volumetrics",
       "info": [

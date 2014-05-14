@@ -109,7 +109,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "",
+      "description": "Proportion of users who start and complete their payment using the digital service",
       "data-group": "pay-legalisation-post",
       "data-type": "journey",
       "info": [

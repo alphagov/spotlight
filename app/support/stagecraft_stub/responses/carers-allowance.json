@@ -75,7 +75,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of applications made using the digital service",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "info": [
@@ -91,7 +91,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
       "data-group": "apply-carers-allowance",
       "data-type": "customer-satisfaction",
       "info": [
@@ -105,7 +105,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "",
+      "description": "Proportion of users who start and complete their application using the digital service",
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [

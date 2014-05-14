@@ -124,7 +124,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of registrations made using the digital service",
       "data-group": "waste-carriers-registration",
       "data-type": "transactions-by-channel",
       "info": [

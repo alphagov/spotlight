@@ -58,7 +58,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of LPA registrations made using the digital service",
       "data-group": "lasting-power-of-attorney",
       "data-type": "volumes",
       "info": [
@@ -75,7 +75,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "Proportion of people who completed both parts of the digital service, 'Make an LPA' and 'Register an LPA'",
+      "description": "Proportion of users who start and complete both parts of the digital service, 'Make an LPA' and 'Register an LPA'",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
