@@ -128,7 +128,7 @@ function (DashboardView, Model) {
           strapline: 'Service dashboard'
         });
         view.dashboardType = 'service';
-        expect(view.getPageTitle()).toEqual('Title - Service dashboard - GOV.UK');
+        expect(view.getPageTitle()).toEqual('Service dashboard - Title - GOV.UK');
       });
 
       it('calculates page title from title alone', function () {
