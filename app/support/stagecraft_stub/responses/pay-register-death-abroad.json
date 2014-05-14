@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "title": "Register a death abroad: payments",
-  "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) if you register the death of a British national abroad.",
+  "description": "If you have a foreign death certificate for your relative, you can apply to register the birth with the UK authorities. This is optional.",
   "department": {
     "title": "Foreign and Commonwealth Office",
     "abbr": "FCO"
@@ -17,7 +17,7 @@
     }
   },
   "customer-type": "Individuals",
-  "business-model": "Department budget",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "transactions-per-year",

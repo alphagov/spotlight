@@ -4,14 +4,15 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>.",
   "title": "SORN (Statutory Off Road Notification) applications",
+  "description": "If you have a vehicle that you're not driving or parking on public roads, you can avoid paying tax and insurance by making a Statutory Off Road Notification (SORN).",
   "department": {
     "title": "Department for Transport",
     "abbr": "DfT"
   },
   "agency": {
-    "title": "DVLA"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "transaction": {

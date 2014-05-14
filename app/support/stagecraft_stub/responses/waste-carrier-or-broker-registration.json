@@ -22,7 +22,7 @@
   },
   "description-extra": "Businesses also need to register if carrying some types of waste as a one off. In addition, businesses need to register if they buy, sell or dispose of waste – or arrange for someone else to do so.",
   "customer-type": "Businesses",
-  "business-model": "Service user",
+  "business-model": "Fees and charges",
   "modules": [
     {
       "slug": "cumulative-registrations",

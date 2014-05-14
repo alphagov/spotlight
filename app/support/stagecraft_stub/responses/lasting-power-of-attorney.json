@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "title": "Lasting Power of Attorney registrations",
-  "description": "Figures for the service to make a <strong>lasting power of attorney (LPA)</strong> - a legal document that lets you appoint someone, known as an 'attorney', to make decisions on your behalf. Figures include applications made via both digital and paper form channels.",
+  "description": "Lasting power of attorney (LPA) is a powerful legal document that lets you appoint someone to make decisions on your behalf.",
   "department": {
      "title": "Ministry of Justice",
      "abbr": "MoJ"
@@ -20,6 +20,8 @@
       "url" : "https://www.gov.uk/power-of-attorney/overview"
     }
   },
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
   "modules": [
     {
       "slug": "volumetrics",

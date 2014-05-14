@@ -4,8 +4,8 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "description": "Renewals of patent intellectual property rights.",
-  "title": "Payment of patent renewal fee (F12)",
+  "title": "Patent renewals",
+  "description": "To protect your intellectual property, you must renew your patents on the 4th anniversary of the filing date and every year after that.",
   "department": {
     "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
@@ -17,8 +17,8 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Payment of patent renewal fee (F12)",
-      "url": "http://www.ipo.gov.uk/types/patent/p-manage/p-renew.htm"
+      "title": "Renew a patent",
+      "url": "https://www.gov.uk/renew-patent"
     }
   },
   "description-extra": "A patent must be renewed on the 4th anniversary of its filing to remain valid. Patents must then be renewed annually for up to 20 years after its initial filing to keep it valid.",
@@ -29,7 +29,7 @@
       {
       "slug": "transactions-per-year",
       "module-type": "kpi",
-      "title": "Transactions per year",
+      "title": "Renewals per year",
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
@@ -71,7 +71,7 @@
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
-      "title": "Cost per transaction",
+      "title": "Cost per renewal",
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",

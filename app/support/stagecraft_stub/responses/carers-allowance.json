@@ -15,20 +15,10 @@
       "title": "Apply for Carer's Allowance",
       "url" : "https://www.gov.uk/apply-carers-allowance"
     },
-    "improve-dashboard-message": true,
-    "other": [
-      {
-        "title": "Carer's Allowance",
-        "url": "https://www.gov.uk/carers-allowance"
-      },
-      {
-        "title": "Carer's Allowance paper forms",
-        "url": "https://www.gov.uk/government/publications/carers-allowance-claim-form"
-      }
-    ]
+    "improve-dashboard-message": true
   },
   "customer-type": "Individuals",
-  "business-model": "Department budget",
+  "business-model": "Taxpayers",
   "modules": [
     {
       "slug": "live-service-usage",
