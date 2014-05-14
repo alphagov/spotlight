@@ -92,11 +92,11 @@ function (StandaloneView, Collection, Model, View) {
     describe('getPageTitle', function () {
       it('calculates page title from title and dashboard information', function () {
         model.set({
-          title: 'Title',
-          'dashboard-title': 'Dashboard',
+          'title': 'Title',
+          'dashboard-title': 'Dashboard title',
           'dashboard-strapline': 'Strapline'
         });
-        expect(standaloneView.getPageTitle()).toEqual('Title - Dashboard - Strapline - GOV.UK');
+        expect(standaloneView.getPageTitle()).toEqual('Strapline - Title - Dashboard title - GOV.UK');
       });
 
       it('calculates page title from title alone', function () {

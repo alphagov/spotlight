@@ -54,11 +54,11 @@ function (GovUkView, contentTemplate) {
 
     getPageTitleItems: function () {
       var items = [];
-      items.push(this.getPageHeader());
       var strapline = this.model.get('strapline');
       if (strapline) {
         items.push(strapline);
       }
+      items.push(this.getPageHeader());
       return items;
     },
 

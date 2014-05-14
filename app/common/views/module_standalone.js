@@ -23,9 +23,9 @@ function (GovUkView, Module) {
 
     getPageTitleItems: function () {
       return [
+        this.model.get('dashboard-strapline'),
         this.model.get('title'),
-        this.model.get('dashboard-title'),
-        this.model.get('dashboard-strapline')
+        this.model.get('dashboard-title')
       ];
     },
 
