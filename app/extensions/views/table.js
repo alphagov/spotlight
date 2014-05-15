@@ -95,10 +95,7 @@ function (View, Formatters) {
         }, this);
       } else {
         var $row = this.renderEl('tr', $tbody);
-        this.renderEl('td', $row, 'No data available');
-        for (var i = 0; i < keys.length - 1; i++) {
-          this.renderEl('td', $row, '&ndash;');
-        }
+        this.renderEl('td', $row, 'No data available', { colspan: keys.length });
       }
     },
 
@@ -139,14 +136,14 @@ function (View, Formatters) {
       var headers = this.$table.find('thead th'),
           body = this.$table.find('tbody td');
 
-      if (body.length) {
+      if (body.length > headers.length) {
         _.each(headers, function (th, index) {
           th.width = th.offsetWidth;
           body[index].width = th.offsetWidth;
         }, this);
+        this.$table.addClass('floated-header');
       }
 
-      this.$table.addClass('floated-header');
     }
 
   });

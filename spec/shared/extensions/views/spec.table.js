@@ -82,9 +82,8 @@ function (Table, View, Collection, $) {
         table.render();
 
         expect(table.$el.find('tbody tr').length).toBe(1);
-        expect(table.$el.find('tbody td').map(function (i, el) {
-          return el.innerHTML;
-        })).toBe(['No data available', '&ndash;', '&ndash;']);
+        expect(table.$el.find('tbody td').length).toBe(1);
+        expect(table.$el.find('tbody td').text()).toEqual('No data available');
       });
 
       it('empties the table if $table exists and removes class', function () {
@@ -293,15 +292,27 @@ function (Table, View, Collection, $) {
         });
       });
 
-      it('adds a class of floated-header to the table element on the client-side', function () {
+      it('adds a class of floated-header to the table element on the client-side when table body has more cells than the header', function () {
         jasmine.clientOnly(function () {
           var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
-              tableBody = '<tbody><tr><td>Item1</td><td>Item2</td></tr></tbody>';
+              tableBody = '<tbody><tr><td>Item1</td><td>Item2</td></tr><tr><td>Item1</td><td>Item2</td></tr></tbody>';
 
           table.$table = $('<table>' + tableHeader + tableBody + '</table>');
           table.floatHeaders();
 
           expect(table.$table.attr('class')).toEqual('floated-header');
+        });
+      });
+
+      it('doesnt a class of floated-header to the table element on the client-side when the table body has "no data"', function () {
+        jasmine.clientOnly(function () {
+          var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
+              tableBody = '<tbody><tr><td>No data available</td></tr></tbody>';
+
+          table.$table = $('<table>' + tableHeader + tableBody + '</table>');
+          table.floatHeaders();
+
+          expect(table.$table.attr('class')).toNotEqual('floated-header');
         });
       });
     });
