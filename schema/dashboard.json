@@ -38,6 +38,10 @@
         "title": {
           "type": "string",
           "required": true
+        },
+        "abbr": {
+          "type": "string",
+          "required": true
         }
       }
     },

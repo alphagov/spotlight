@@ -80,6 +80,36 @@ function (Collection) {
         expect(output.S).toBeUndefined();
       });
 
+      it('filters input based on string matching against department title', function () {
+
+        collection.reset([
+          { title: 'Foo', department: { title: 'Department of Things', abbr: 'DoT' } },
+          { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
+        ]);
+
+        var output = collection.alphabetise('thing');
+        expect(output.count).toEqual(1);
+        expect(output.F).toEqual([
+          { title: 'Foo', department: { title: 'Department of Things', abbr: 'DoT' } }
+        ]);
+
+      });
+
+      it('filters input based on string matching against department abbreviation', function () {
+
+        collection.reset([
+          { title: 'Foo', department: { title: 'Department of Things', abbr: 'DoT' } },
+          { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
+        ]);
+
+        var output = collection.alphabetise('doos');
+        expect(output.count).toEqual(1);
+        expect(output.B).toEqual([
+          { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
+        ]);
+
+      });
+
     });
 
     describe('filterDashboards', function () {
