@@ -16,10 +16,6 @@ span.alpha-tag {
   }
 }
 
-#performance-platform-colour-bar {
-  margin: 0 auto;
-  height: 0;
-  max-width: $govuk-page-width;
-
-  border-top: 10px solid $primary-colour;
+#global-header-bar .header-bar {
+  background-color: $primary-colour;
 }
