@@ -1,4 +1,4 @@
-var fs = require('fs'),
+var fs = require('graceful-fs'),
     path = require('path'),
     _ = require('lodash'),
     glob = require('glob'),

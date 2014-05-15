@@ -22,19 +22,20 @@
     "backbone": "1.1.0",
     "d3": "3.3.7",
     "express": "3.5.1",
+    "glob": "3.2.9",
     "govuk_frontend_toolkit": "0.46.1",
     "govuk_template_mustache": "0.7.1",
+    "graceful-fs": "^2.0.3",
     "jquery": "1.8.3",
     "lodash": "2.4.1",
     "moment-timezone": "0.0.3",
+    "mustache": "0.8.1",
     "optimist": "0.6.1",
     "requirejs": "2.1.11",
     "uglify-js": "2.4.13",
     "winston": "0.7.3",
     "xmlhttprequest": "1.6.0",
-    "xtend": "2.2.0",
-    "glob": "3.2.9",
-    "mustache": "0.8.1"
+    "xtend": "2.2.0"
   },
   "devDependencies": {
     "cheapseats": "git+https://github.com/alphagov/cheapseats",
