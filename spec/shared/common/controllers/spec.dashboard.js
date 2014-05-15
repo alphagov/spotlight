@@ -1,9 +1,13 @@
 define([
   'extensions/controllers/dashboard',
   'extensions/controllers/controller',
-  'extensions/models/model'
+  'extensions/models/model',
+  'common/views/dashboard',
+  'common/views/dashboards/content',
+  'common/views/dashboards/transaction',
+  'common/views/dashboards/department',
 ],
-function (Dashboard, Controller, Model) {
+function (Dashboard, Controller, Model, DashboardView, ContentDashboardView, TransactionDashboardView, DeptDashboardView) {
   describe('Dashboard', function () {
     describe('render', function () {
 
@@ -11,6 +15,48 @@ function (Dashboard, Controller, Model) {
       beforeEach(function () {
         spyOn(Controller.prototype, 'render');
         model = new Model();
+      });
+
+      it('sets viewClass according to dashboard type', function () {
+
+        var controller;
+
+        model.set('dashboard-type', 'transaction');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(TransactionDashboardView);
+
+        model.set('dashboard-type', 'high-volume-transaction');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(TransactionDashboardView);
+
+        model.set('dashboard-type', 'department');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(DeptDashboardView);
+
+        model.set('dashboard-type', 'agency');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(DeptDashboardView);
+
+        model.set('dashboard-type', 'content');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(ContentDashboardView);
+
+        model.set('dashboard-type', 'other');
+        controller = new Dashboard({
+          model: model
+        });
+        expect(controller.viewClass).toEqual(DashboardView);
+
       });
 
       it('renders immediately when there are no modules', function () {

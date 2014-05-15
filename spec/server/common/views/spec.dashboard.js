@@ -1,8 +1,11 @@
 define([
   'common/views/dashboard',
+  'common/views/dashboards/content',
+  'common/views/dashboards/transaction',
+  'common/views/dashboards/department',
   'extensions/models/model'
 ],
-function (DashboardView, Model) {
+function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDashboardView, Model) {
   describe('DashboardView', function () {
 
     var view, model;
@@ -11,7 +14,7 @@ function (DashboardView, Model) {
         foo: 'bar',
         'dashboard-type': 'service',
         service: {
-          'title': 'Carer\'s Allowance'
+          title: 'Carer\'s Allowance'
         }
       });
       view = new DashboardView({
@@ -19,8 +22,8 @@ function (DashboardView, Model) {
         contentTemplate: jasmine.createSpy().andReturn('rendered')
       });
       view.moduleInstances = [
-        { html: '<div>module 1</div>'},
-        { html: '<div>module 2</div>'}
+        { html: '<div>module 1</div>' },
+        { html: '<div>module 2</div>' }
       ];
     });
 
@@ -32,28 +35,6 @@ function (DashboardView, Model) {
         var context = view.contentTemplate.argsForCall[0][0];
         expect(context.foo).toEqual('bar');
         expect(context.modules).toEqual('<div>module 1</div><div>module 2</div>');
-      });
-
-      it('displays a footer on detailed dashboards', function () {
-        model.set('dashboard-type', 'transaction');
-        var transactionView = new DashboardView({
-          model: model,
-          contentTemplate: jasmine.createSpy()
-        });
-        transactionView.getContent();
-        var context = transactionView.contentTemplate.argsForCall[0][0];
-        expect(context.hasFooter).toEqual(true);
-      });
-
-      it('displays a footer on high volume dashboards', function () {
-        model.set('dashboard-type', 'high-volume-transaction');
-        var highVolumeView = new DashboardView({
-          model: model,
-          contentTemplate: jasmine.createSpy()
-        });
-        highVolumeView.getContent();
-        var context = highVolumeView.contentTemplate.argsForCall[0][0];
-        expect(context.hasFooter).toEqual(true);
       });
 
       it('does not display a footer by default', function () {
@@ -79,35 +60,12 @@ function (DashboardView, Model) {
 
     describe('getTagline', function () {
 
-      it('calculates correct tagline for departments', function () {
-        model.set({
-          'dashboard-type': 'department',
-          title: 'Department for Work and Pensions'
-        });
-        view.dashboardType = 'department';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Department for Work and Pensions</strong> are currently performing.');
+      it('returns the tagline property from the model', function () {
+        model.set('tagline', 'Tagline set on model');
+        expect(view.getTagline()).toEqual('Tagline set on model');
       });
 
-      it('calculates correct tagline for agencies', function () {
-        model.set({
-          title: 'Pensions Ombudsman'
-        });
-        view.dashboardType = 'agency';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Pensions Ombudsman</strong> are currently performing.');
-      });
-
-      it('calculates correct tagline for transactions', function () {
-        model.set({
-          title: 'Carer\'s Allowance',
-          transaction: {
-            title: 'applications'
-          }
-        });
-        view.dashboardType = 'transaction';
-        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
-      });
-
-      it('calculates correct tagline for policies', function () {
+      it('for dashboards of type "other" supports nested tagline property', function () {
         model.set({
           other: {
             title: 'Housing',
@@ -142,58 +100,7 @@ function (DashboardView, Model) {
 
     describe('getBreadcrumbCrumbs', function () {
 
-      it('calculates correct crumbs for departments', function () {
-        model.set({
-          'dashboard-type': 'department',
-          department: {
-            title: 'Department for Work and Pensions'
-          }
-        });
-        view.dashboardType = 'department';
-        expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'}
-        ]);
-      });
 
-      it('calculates correct crumbs for agencies', function () {
-        model.set({
-          department: {
-            title: 'Department for Work and Pensions'
-          }
-        });
-        view.dashboardType = 'agency';
-        expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'},
-          {'title': 'Department for Work and Pensions'}
-        ]);
-      });
-
-      it('calculates correct crumbs for transactions', function () {
-        model.set({
-          department: {
-            title: 'Department for Work and Pensions'
-          }
-        });
-        view.dashboardType = 'transaction';
-        expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'},
-          {'title': 'Department for Work and Pensions'}
-        ]);
-      });
-
-
-      it('calculates correct crumbs for high-volume transactions', function () {
-        model.set({
-          department: {
-            title: 'Department for Work and Pensions'
-          }
-        });
-        view.dashboardType = 'high-volume-transaction';
-        expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'},
-          {'title': 'Department for Work and Pensions'}
-        ]);
-      });
 
       it('calculates correct crumbs for policies', function () {
         model.set({
@@ -204,9 +111,158 @@ function (DashboardView, Model) {
         });
         view.dashboardType = 'policy';
         expect(view.getBreadcrumbCrumbs()).toEqual([
-          {'path': '/performance', 'title': 'Performance'}
+          { path: '/performance', title: 'Performance' }
         ]);
       });
+    });
+
+  });
+
+  describe('ContentDashboardView', function () {
+
+    var view, model;
+    beforeEach(function () {
+      model = new Model({
+        foo: 'bar',
+        'dashboard-type': 'content',
+        title: 'Content Dashboard'
+      });
+      view = new ContentDashboardView({
+        model: model,
+        contentTemplate: jasmine.createSpy().andReturn('rendered')
+      });
+    });
+
+    describe('getBreadcrumbCrumbs', function () {
+
+      it('returns the default breadcrumbs with page title', function () {
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Activity on GOV.UK' },
+          { title: 'Content Dashboard'}
+        ]);
+      });
+
+      it('does not add the title if it is also "Activity on GOV.UK"', function () {
+        model.set('title', 'Activity on GOV.UK');
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Activity on GOV.UK' }
+        ]);
+      });
+
+    });
+
+  });
+
+  describe('TransactionDashboardView', function () {
+
+    var view, model;
+    beforeEach(function () {
+      model = new Model({
+        foo: 'bar',
+        'dashboard-type': 'transaction',
+        title: 'Carer\'s Allowance'
+      });
+      view = new TransactionDashboardView({
+        model: model,
+        contentTemplate: jasmine.createSpy().andReturn('rendered')
+      });
+    });
+
+    describe('getContent', function () {
+
+      it('displays a footer on detailed dashboards', function () {
+        view.getContent();
+        var context = view.contentTemplate.argsForCall[0][0];
+        expect(context.hasFooter).toEqual(true);
+      });
+
+    });
+
+    describe('getTagline', function () {
+
+      it('returns the correct tagline', function () {
+        expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
+      });
+
+    });
+
+    describe('getBreadcrumbCrumbs', function () {
+
+      it('calculates correct crumbs for transactions', function () {
+        model.set({
+          department: {
+            title: 'Department for Work and Pensions'
+          }
+        });
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Department for Work and Pensions' }
+        ]);
+      });
+
+      it('includes agency when defined', function () {
+        model.set({
+          department: {
+            title: 'Department for Work and Pensions'
+          },
+          agency: {
+            title: 'Agency Name'
+          }
+        });
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Department for Work and Pensions' },
+          { title: 'Agency Name'}
+        ]);
+      });
+
+    });
+
+  });
+
+  describe('DeptDashboardView', function () {
+
+    var view, model;
+    beforeEach(function () {
+      model = new Model({
+        foo: 'bar',
+        'dashboard-type': 'department',
+        title: 'Department for Work and Pensions',
+        department: {
+          title: 'Department for Work and Pensions'
+        }
+      });
+      view = new DeptDashboardView({
+        model: model,
+        contentTemplate: jasmine.createSpy().andReturn('rendered')
+      });
+    });
+
+    describe('getTagline', function () {
+
+      it('returns the correct tagline', function () {
+        expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Department for Work and Pensions</strong> are currently performing.');
+      });
+
+    });
+
+    describe('getBreadcrumbCrumbs', function () {
+
+      it('calculates correct crumbs for departments', function () {
+        model.set({
+          'dashboard-type': 'department',
+          department: {
+            title: 'Department for Work and Pensions'
+          }
+        });
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Department for Work and Pensions' }
+        ]);
+      });
+
     });
 
   });

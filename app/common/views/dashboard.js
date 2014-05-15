@@ -14,6 +14,11 @@ function (GovUkView, contentTemplate) {
     },
 
     getContent: function () {
+      var context = this.getContext();
+      return this.contentTemplate(context);
+    },
+
+    getContext: function () {
       var context = this.model.toJSON();
 
       context.modules = _.map(this.moduleInstances, function (module) {
@@ -23,27 +28,15 @@ function (GovUkView, contentTemplate) {
       context.header = this.getPageHeader();
       context.dashboardType = this.dashboardType;
       context.tagline = this.getTagline();
+      context.hasFooter = false;
 
-      context.hasFooter = (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction');
-
-      return this.contentTemplate(context);
+      return context;
     },
 
     getTagline: function () {
-      var tagline = '';
-      if (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction') {
-        tagline = 'This dashboard shows information about how ' +
-                  'the <strong>' + this.model.get('title') +
-                  '</strong> service is currently performing.';
-      } else if ((this.dashboardType === 'agency') || (this.dashboardType === 'department')) {
-        tagline = 'This dashboard shows information about how ' +
-                  'selected services run by the <strong>' +
-                  this.model.get('title') +
-                  '</strong> are currently performing.';
-      } else if (this.dashboardType === 'other') {
-        tagline = this.model.get('other').tagline;
-      } else if (this.model.get('tagline')) {
-        tagline = this.model.get('tagline');
+      var tagline = this.model.get('tagline');
+      if (this.dashboardType === 'other') {
+        tagline = tagline || this.model.get('other').tagline;
       }
       return tagline;
     },
@@ -66,20 +59,6 @@ function (GovUkView, contentTemplate) {
       var crumbs = [
         {'path': '/performance', 'title': 'Performance'}
       ];
-      if (this.dashboardType === 'agency') {
-        crumbs.push({
-          'title': this.model.get('department').title
-        });
-      } else if (this.dashboardType === 'transaction' || this.dashboardType === 'high-volume-transaction') {
-        crumbs.push({
-          'title': this.model.get('department').title
-        });
-        if (this.model.get('agency')) {
-          crumbs.push({
-            'title': this.model.get('agency').title
-          });
-        }
-      }
       return crumbs;
     }
   });
