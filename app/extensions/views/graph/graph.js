@@ -161,9 +161,9 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     calcYScale: function () {
       var d3 = this.d3;
       var valueAttr = this.valueAttr;
-      var max = d3.max(this.collection.models, function (group) {
-        return d3.max(group.get('values').models, function (value) {
-          return value.get(valueAttr);
+      var max = d3.max(this.collection.toJSON(), function (group) {
+        return d3.max(group.values.toJSON(), function (value) {
+          return value[valueAttr];
         });
       }) || 1;
 
