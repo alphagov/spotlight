@@ -15,7 +15,7 @@ function (Graph) {
     },
 
     getPeriod: function () {
-      return this.period || 'hour';
+      return this.period || this.model.get('period') || 'hour';
     },
 
     components: function () {
