@@ -47,7 +47,7 @@ function (Graph) {
         return d3.min(group.values.toJSON(), function (value) {
           return value[valueAttr];
         });
-      }) || 1;
+      }) || 0;
       return min;
     },
 
