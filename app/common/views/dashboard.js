@@ -34,11 +34,7 @@ function (GovUkView, contentTemplate) {
     },
 
     getTagline: function () {
-      var tagline = this.model.get('tagline');
-      if (this.dashboardType === 'other') {
-        tagline = tagline || this.model.get('other').tagline;
-      }
-      return tagline;
+      return this.model.get('tagline');
     },
 
     getPageHeader: function () {

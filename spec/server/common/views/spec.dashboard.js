@@ -63,17 +63,8 @@ function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDas
       it('returns the tagline property from the model', function () {
         model.set('tagline', 'Tagline set on model');
         expect(view.getTagline()).toEqual('Tagline set on model');
-      });
-
-      it('for dashboards of type "other" supports nested tagline property', function () {
-        model.set({
-          other: {
-            title: 'Housing',
-            tagline: 'The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.'
-          }
-        });
-        view.dashboardType = 'other';
-        expect(view.getTagline()).toEqual('The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.');
+        model.set('tagline', 'Different tagline set on model');
+        expect(view.getTagline()).toEqual('Different tagline set on model');
       });
 
     });

@@ -9,9 +9,7 @@
     "title": "Cabinet Office",
     "abbr": "CO"
   },
-  "other": {
-    "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of sales via small and medium sized enterprises (SMEs)."
-  },
+  "tagline": "CloudStore is the online marketplace where suppliers offer their services to the public sector via the G-Cloud framework. Key metrics include the proportion of sales via small and medium sized enterprises (SMEs).",
   "relatedPages": {
     "other": [
       {
