@@ -66,9 +66,19 @@ module.exports = {
       res.redirect(301, '/performance');
     });
 
+    app.get('/_status', require('./healthcheck_controller'));
+
     app.get('*.png', require('./render_png'));
 
     app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
+
+    // Every route below this block is protected by basic authentication
+    // if the relevant environment variables are set.
+    if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
+      app.use(express.basicAuth(function (user, pass) {
+        return (user === process.env.BASIC_AUTH_USER && pass === process.env.BASIC_AUTH_PASS);
+      }));
+    }
 
     app.get('/performance', require('./server/controllers/homepage'));
 
@@ -77,8 +87,6 @@ module.exports = {
     app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
 
     app.use('/performance/', require('./process_request'));
-
-    app.get('/_status', require('./healthcheck_controller'));
 
     return app;
   }
