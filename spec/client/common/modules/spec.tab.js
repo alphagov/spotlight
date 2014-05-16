@@ -45,6 +45,8 @@ define([
       jasmine.clientOnly(function () {
         tabModule.render();
 
+        tabModule.trigger('ready');
+
         expect(fooModule).toHaveBeenCalled();
         expect(fooRender.mostRecentCall.args[0].el.is('section')).toBe(true);
         expect(barModule).not.toHaveBeenCalled();
@@ -56,12 +58,8 @@ define([
       jasmine.clientOnly(function () {
         tabModule.render();
 
-        fooModule.reset();
-        fooRender.reset();
-        barModule.reset();
-        barRender.reset();
-
         tabModule.model.set('activeIndex', 1);
+        tabModule.trigger('ready');
 
         expect(fooModule).not.toHaveBeenCalled();
         expect(fooRender).not.toHaveBeenCalled();

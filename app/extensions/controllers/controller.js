@@ -28,7 +28,9 @@ define([
       view.render();
 
       this.html = view.html || view.$el[0].outerHTML;
-      this.trigger('ready');
+      setTimeout(_.bind(function () {
+        this.trigger('ready');
+      }, this), 0);
     },
 
     render: function (options) {
