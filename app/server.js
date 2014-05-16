@@ -44,8 +44,10 @@ var http = require('http'),
 var rootDir = path.join(__dirname, '..');
 var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
-var server = http.createServer(app).listen(app.get('port'), function () {
-  global.logger.info('Express server listening on port ' + app.get('port'));
+var port = process.env.PORT || app.get('port');
+
+var server = http.createServer(app).listen(port, function () {
+  global.logger.info('Express server listening on port ' + port);
 });
 
 exports = module.exports = server;
