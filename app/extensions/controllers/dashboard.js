@@ -1,7 +1,10 @@
 define([
   'extensions/controllers/controller',
-  'common/views/dashboard'
-], function (Controller, DashboardView) {
+  'common/views/dashboard',
+  'common/views/dashboards/content',
+  'common/views/dashboards/transaction',
+  'common/views/dashboards/department'
+], function (Controller, DashboardView, ContentDashboardView, TransactionDashboardView, DeptDashboardView) {
 
   var DashboardController = Controller.extend({
 
@@ -10,6 +13,14 @@ define([
     initialize: function () {
       this.modules = this.model.get('modules') || [];
       this.moduleInstances = [];
+      var type = this.model.get('dashboard-type');
+      if (type === 'transaction' || type === 'high-volume-transaction') {
+        this.viewClass = TransactionDashboardView;
+      } else if (type === 'agency' || type === 'department') {
+        this.viewClass = DeptDashboardView;
+      } else if (type === 'content') {
+        this.viewClass = ContentDashboardView;
+      }
     },
 
     viewOptions: function () {
