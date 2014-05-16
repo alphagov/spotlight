@@ -213,7 +213,7 @@ function (require, Collection, Group) {
         var values = group.get('values'),
           max;
 
-        if (values.length) {
+        if (values && values.length) {
           max = values.max(function (model) {
             return model.get(attr) || 0;
           }).get(attr);

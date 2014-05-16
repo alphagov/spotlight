@@ -15,44 +15,6 @@ define([
 ],
 function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData, GraphTable) {
 
-  var scaleFromStartAndEndDates = {
-
-    getModel: function (groupIndex, modelIndex) {
-      if (!this.collection.at(groupIndex) && this.encompassStack) {
-        return this.collection.at(groupIndex - 1, modelIndex);
-      } else {
-        return this.collection.at(groupIndex, modelIndex);
-      }
-    },
-
-    getXPos: function (groupIndex, modelIndex) {
-      groupIndex = groupIndex || 0;
-      var model = this.getModel(groupIndex, modelIndex);
-      return this.modelToDate(model);
-    },
-    calcXScale: function () {
-      var total = this.collection.first().get('values'),
-          start = this.modelToDate(total.first()).toDate(),
-          end = this.modelToDate(total.last()).toDate();
-
-      return this.d3.time.scale()
-              .domain([start, end])
-              .range([0, this.innerWidth]);
-    }
-  };
-
-  var scaleByStartDate = _.extend({}, scaleFromStartAndEndDates, {
-    modelToDate: function (model) {
-      return this.getMoment(model.get('_start_at'));
-    }
-  });
-
-  var scaleByTimestamp = _.extend({}, scaleFromStartAndEndDates, {
-    modelToDate: function (model) {
-      return this.getMoment(model.get('_timestamp'));
-    }
-  });
-
   var Graph = View.extend({
 
     d3: d3,
@@ -161,18 +123,111 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return $(this.svg.node()).width() / this.width;
     },
 
-    // Not implemented; override in configuration or subclass
+    getModel: function (groupIndex, modelIndex) {
+      if (!this.collection.at(groupIndex) && this.encompassStack) {
+        return this.collection.at(groupIndex - 1, modelIndex);
+      } else {
+        return this.collection.at(groupIndex, modelIndex);
+      }
+    },
+
+    modelToDate: function (model) {
+      var prop = this.getPeriod() === 'hour' ? '_timestamp' : '_start_at';
+      return this.getMoment(model.get(prop));
+    },
+
+    getXPos: function (groupIndex, modelIndex) {
+      groupIndex = groupIndex || 0;
+      var model = this.getModel(groupIndex, modelIndex);
+      return this.modelToDate(model);
+    },
+
+    getYPos: function (groupIndex, modelIndex) {
+      var group = this.collection.at(groupIndex);
+      var model = group.get('values').at(modelIndex);
+      return model.get(this.valueAttr);
+    },
+
     calcXScale: function () {
-      throw 'No x scale defined.';
+      var total = this.collection.first().get('values'),
+          start = this.modelToDate(total.first()).toDate(),
+          end = this.modelToDate(total.last()).toDate();
+
+      return this.d3.time.scale()
+              .domain([start, end])
+              .range([0, this.innerWidth]);
     },
 
-    // Not implemented; override in configuration or subclass
     calcYScale: function () {
-      throw 'No y scale defined.';
+      var yScale = this.d3.scale.linear();
+      var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
+      yScale.domain(tickValues.extent);
+      yScale.rangeRound([this.innerHeight, 0]);
+      yScale.tickValueList = tickValues.values;
+      return yScale;
     },
 
-    getConfigNames: function () {
-      return ['overlay'];
+    maxValue: function () {
+      var d3 = this.d3;
+      var valueAttr = this.valueAttr;
+      var max = d3.max(this.collection.toJSON(), function (group) {
+        return d3.max(group.values.toJSON(), function (value) {
+          return value[valueAttr];
+        });
+      }) || 1;
+      return max;
+    },
+
+    minValue: function () {
+      return 0;
+    },
+
+    getPeriod: function () {
+      var period = 'week';
+      if (this.collection && this.collection.options.axisPeriod) {
+        period = this.collection.options.axisPeriod;
+      } else if (this.collection && this.collection.query.get('period')) {
+        period = this.collection.query.get('period');
+      } else if (this.model && this.model.get('period')) {
+        period = this.model.get('period');
+      }
+      return period;
+    },
+
+    /**
+     * Returns an object describing evenly spaced, nice tick values given an extent and a minimum tick count.
+     * The returned object will include the values, extent and step of the ticks.
+     * The extent may be extended to include the next nice tick value.
+     *
+     * @param extent
+     * @param minimumTickCount
+     * @return {Object}
+     */
+    calculateLinearTicks: function (extent, minimumTickCount) {
+
+      if (extent[0] >= extent[1]) {
+        throw new Error('Upper bound must be larger than lower.');
+      }
+      var targetTickCount = (minimumTickCount === 1) ? minimumTickCount : minimumTickCount - 1,
+          span = extent[1] - extent[0],
+          step = Math.pow(10, Math.floor(Math.log(span / targetTickCount) / Math.LN10)),
+          err = targetTickCount / span * step;
+
+      // Filter ticks to get closer to the desired count.
+      if (err <= 0.15) step *= 10;
+      else if (err <= 0.35) step *= 5;
+      else if (err <= 0.75) step *= 2;
+
+      // Round start and stop values to step interval.
+      var first = Math.floor(extent[0] / step) * step,
+          last = Math.ceil(extent[1] / step) * step,
+          lastInclusive = last + step / 2;
+
+      return {
+        values: _.range(first, lastInclusive, step),
+        extent: [first, last],
+        step: step
+      };
     },
 
     pxToValue: function (cssVal) {
@@ -234,24 +289,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       ].join(''));
     },
 
-    applyConfig: function (name) {
-      var config = this.configs[name];
-      if (!config) {
-        return;
-      }
-
-      if (config.initialize) {
-        config.initialize.call(this);
-      }
-
-      _.each(config, function (value, key) {
-        if (key === 'initialize') {
-          return;
-        }
-        this[key] = value;
-      }, this);
-    },
-
     /**
      * The linelabel figcaption is positioned on top of the graph
      * at small screen sizes using position static.
@@ -299,22 +336,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       this.resizeWithCalloutHidden();
 
-      var configNames = this.getConfigNames();
-      if (_.isString(configNames)) {
-        configNames = [configNames];
-      }
-
-      _.each(configNames, function (configName) {
-        this.applyConfig(configName);
-      }, this);
-
       this.scales.x = this.calcXScale();
       this.scales.y = this.calcYScale();
 
       _.each(this.componentInstances, function (component) {
-        _.each(configNames, function (configName) {
-          component.applyConfig(configName);
-        });
         component.render();
       }, this);
       if (this.table) {
@@ -337,145 +362,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     // allow stubbing of visiblity for testing
     isVisible: function () {
       return this.$el.is(':visible');
-    },
-
-    configs: {
-      hour: scaleByTimestamp,
-      day: scaleByStartDate,
-      week: scaleByStartDate,
-      month: scaleByStartDate,
-      quarter: scaleByStartDate,
-
-      ymin: {
-        initialize: function () {
-          var d3 = this.d3;
-          var valueAttr = this.valueAttr;
-          var min = d3.min(this.collection.models, function (group) {
-            return d3.min(group.get('values').models, function (value) {
-              return value.get(valueAttr);
-            });
-          });
-          this.getYMin = min;
-        }
-      },
-
-      overlay: {
-        getYPos: function (groupIndex, modelIndex) {
-          var group = this.collection.at(groupIndex);
-          var model = group.get('values').at(modelIndex);
-          return model.get(this.valueAttr);
-        },
-        calcYScale: function () {
-          var d3 = this.d3;
-          var valueAttr = this.valueAttr;
-          var max = d3.max(this.collection.models, function (group) {
-            return d3.max(group.get('values').models, function (value) {
-              return value.get(valueAttr);
-            });
-          }) || 1;
-
-          var yScale = this.d3.scale.linear();
-          var yMin = this.getYMin || 0;
-          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
-          yScale.domain(tickValues.extent);
-          yScale.rangeRound([this.innerHeight, 0]);
-          yScale.tickValueList = tickValues.values;
-          return yScale;
-        }
-      },
-
-      stack: {
-        initialize: function () {
-          var valueAttr = this.valueAttr;
-          var stack = this.d3.layout.stack()
-            .values(function (group) {
-              return group.get('values').models;
-            })
-            .y(function (model) {
-              return model.get(valueAttr);
-            });
-
-          if (this.isOneHundredPercent()) {
-            stack.offset(function (data) {
-              var lineCount = data.length,
-                  lineLength = data[0].length,
-                  i, j, sumOfYValues, y0 = [];
-
-              for (j = 0; j < lineLength; ++j) {
-                sumOfYValues = 0;
-                for (i = 0; i < lineCount; i++) {
-                  sumOfYValues += data[i][j][1];
-                }
-                for (i = 0; i < lineCount; i++) {
-                  if (sumOfYValues) {
-                    data[i][j][1] = data[i][j][1] / sumOfYValues;
-                  } else {
-                    data[i][j][1] = null;
-                  }
-                }
-              }
-              for (j = 0; j < lineLength; ++j) {
-                y0[j] = 0;
-              }
-              return y0;
-            });
-          }
-
-          if (this.outStack) {
-            stack.out(_.bind(this.outStack, this));
-          }
-
-          this.layers = stack(this.collection.models.slice().reverse());
-        },
-        getYPos: function (groupIndex, modelIndex) {
-          if (!this.collection.at(groupIndex)) {
-            if (this.collection.at(groupIndex - 1) && this.encompassStack) {
-              return 0;
-            } else {
-              return null;
-            }
-          }
-          var model = this.collection.at(groupIndex).get('values').at(modelIndex);
-          var yProperty = this.stackYProperty || 'y';
-          if (model[yProperty] === null) {
-            return null;
-          }
-          var y0Property = this.stackY0Property || 'y0';
-          return model[y0Property] + model[yProperty];
-        },
-        getY0Pos: function (groupIndex, modelIndex) {
-          var y0Property = this.stackY0Property || 'y0';
-          var model = this.collection.at(groupIndex).get('values').at(modelIndex);
-          return model[y0Property];
-        },
-        calcYScale: function () {
-          var d3 = this.d3;
-          var valueAttr = this.valueAttr;
-
-          var sumAtIndex = _.bind(function (i) {
-            return this.collection.reduce(function (memo, group) {
-              return memo + group.get('values').at(i).get(valueAttr);
-            }, 0);
-          }, this);
-
-          var sums = [];
-          for (var i = 0; i < this.collection.at(0).get('values').length; i++) {
-            sums.push(sumAtIndex(i));
-          }
-          var max = d3.max(sums);
-          var yScale = this.d3.scale.linear();
-          var yMin = this.getYMin || 0;
-          var tickValues = this.calculateLinearTicks([yMin, Math.max(max, this.minYDomainExtent)], this.numYTicks);
-          if (this.isOneHundredPercent()) {
-            yScale.domain([0, 1]);
-          } else {
-            yScale.domain(tickValues.extent);
-          }
-          yScale.rangeRound([this.innerHeight, 0]);
-          yScale.tickValueList = tickValues.values;
-          return yScale;
-        }
-      }
     }
   });
 

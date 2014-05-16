@@ -475,7 +475,6 @@ function (LineLabel, Collection) {
       });
 
       it('positions labels vertically so they do not collide', function () {
-        lineLabel.applyConfig('overlay');
         lineLabel.setLabelPositions(figcaption.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
@@ -499,7 +498,6 @@ function (LineLabel, Collection) {
       it('uses the last non-null value for positioning in overlay configuration', function () {
         collection.at(0).get('values').last().set('_count', null);
         collection.at(1).get('values').last().set('_count', null);
-        lineLabel.applyConfig('overlay');
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
@@ -512,50 +510,6 @@ function (LineLabel, Collection) {
         expect(lineLabel.scales.y).toHaveBeenCalledWith(5);
         expect(startPositions[1]).toEqual({
           ideal: 25, // yScale was applied to '_count' attribute of penultimate element in line 'b'
-          size: 20,
-          id: 'b'
-        });
-      });
-
-      it('positions labels closest to the centre of the area in stack configuration', function () {
-        lineLabel.applyConfig('stack');
-        lineLabel.setLabelPositions(wrapper.selectAll('li'));
-        expect(lineLabel.calcPositions).toHaveBeenCalled();
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
-        expect(lineLabel.scales.y).toHaveBeenCalledWith(3.5);
-        expect(startPositions[0]).toEqual({
-          ideal: 12.25, // centre of first area
-          size: 20,
-          id: 'a'
-        });
-        expect(lineLabel.scales.y).toHaveBeenCalledWith(7.5);
-        expect(startPositions[1]).toEqual({
-          ideal: 56.25, // centre of second area
-          size: 20,
-          id: 'b'
-        });
-
-        expect($(wrapper.selectAll('li')[0][0]).prop('style').top).toEqual('20px');
-        expect($(wrapper.selectAll('li')[0][1]).prop('style').top).toEqual('30px');
-      });
-
-      it('uses the last non-null value for positioning in stack configuration', function () {
-        collection.at(0).get('values').last().set('_count', null);
-        collection.at(1).get('values').last().set('_count', null);
-
-        lineLabel.applyConfig('stack');
-        lineLabel.setLabelPositions(wrapper.selectAll('li'));
-        expect(lineLabel.calcPositions).toHaveBeenCalled();
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
-        expect(lineLabel.scales.y).toHaveBeenCalledWith(2);
-        expect(startPositions[0]).toEqual({
-          ideal: 4, // centre of first area when using penultimate value
-          size: 20,
-          id: 'a'
-        });
-        expect(lineLabel.scales.y).toHaveBeenCalledWith(4.5);
-        expect(startPositions[1]).toEqual({
-          ideal: 20.25, // centre of second area when using penultimate value
           size: 20,
           id: 'b'
         });

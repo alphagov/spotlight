@@ -9,14 +9,13 @@ function (Graph) {
 
     initialize: function (options) {
       Graph.prototype.initialize.apply(this, arguments);
-
       this.period = options.period;
       this.showTooltip = options.showTooltip;
       this.showStartAndEndTicks = options.showStartAndEndTicks;
     },
 
-    getConfigNames: function () {
-      return ['overlay', this.period || 'month', 'ymin'];
+    getPeriod: function () {
+      return this.period || this.model.get('period') || 'hour';
     },
 
     components: function () {
@@ -39,7 +38,20 @@ function (Graph) {
       }
 
       return val;
-    }
+    },
+
+    minValue: function () {
+      var d3 = this.d3;
+      var valueAttr = this.valueAttr;
+      var min = d3.min(this.collection.toJSON(), function (group) {
+        return d3.min(group.values.toJSON(), function (value) {
+          return value[valueAttr];
+        });
+      }) || 0;
+      return min;
+    },
+
+
   });
 
   return Sparkline;

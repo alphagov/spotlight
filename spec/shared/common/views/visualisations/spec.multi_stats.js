@@ -1,13 +1,16 @@
 define([
   'common/views/visualisations/multi_stats',
+  'common/views/visualisations/multi_stat_item',
   'extensions/models/model',
   'extensions/collections/collection'
 ],
-function (MultiStatsView, Model, Collection) {
+function (MultiStatsView, MultiStatItem, Model, Collection) {
   describe('MultiStatsView', function () {
 
     var collection, view;
     beforeEach(function () {
+      spyOn(MultiStatItem.prototype, 'initialize').andCallThrough();
+      spyOn(MultiStatItem.prototype, 'render').andCallThrough();
       collection = new Collection();
       collection.reset([ {
         id: 'test',
@@ -72,6 +75,21 @@ function (MultiStatsView, Model, Collection) {
         expect(view.$el.find('ul li').length).toEqual(5);
       });
 
+    });
+
+    it('creates and renders a view for each stat', function () {
+      jasmine.renderView(view, function () {
+        expect(MultiStatItem.prototype.initialize.calls.length).toEqual(5);
+        expect(MultiStatItem.prototype.render.calls.length).toEqual(5);
+      });
+    });
+
+    it('passes model to item views', function () {
+      jasmine.renderView(view, function () {
+        _.each(MultiStatItem.prototype.initialize.calls, function (call) {
+          expect(call.args[0].model).toEqual(view.model);
+        });
+      });
     });
 
     it('has some of the expected content', function () {

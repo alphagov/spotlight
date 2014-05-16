@@ -19,9 +19,14 @@ function (BarChart, XAxis, Bar, Callout, Hover) {
       ];
     },
 
-    getConfigNames: function () {
-      return [];
+    calcYScale: function () {
+      var max = this.collection.max(this.valueAttr) || 1;
+      var yScale = this.d3.scale.linear();
+      yScale.domain([0, max]);
+      yScale.range([this.innerHeight, 0]);
+      return yScale;
     }
+
   });
 
   return JourneyGraph;

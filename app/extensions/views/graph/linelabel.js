@@ -197,22 +197,8 @@ function (Component) {
       this.setLabelPositions(selection);
     },
 
-    configs: {
-      'overlay': {
-        getYIdeal: function (groupIndex, index) {
-          return this.graph.getYPos(groupIndex, index);
-        }
-      },
-      'stack': {
-        getYIdeal: function (groupIndex, index) {
-          var y = this.graph.getYPos(groupIndex, index);
-          if (y === null) {
-            return null;
-          }
-          var y0 = this.graph.getY0Pos(groupIndex, index);
-          return (y + y0) / 2;
-        }
-      }
+    getYIdeal: function (groupIndex, index) {
+      return this.graph.getYPos(groupIndex, index);
     },
 
     /**

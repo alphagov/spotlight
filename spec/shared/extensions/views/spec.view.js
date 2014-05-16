@@ -1,10 +1,9 @@
 define([
   'extensions/views/view',
   'extensions/models/model',
-  'backbone',
-  'lodash'
+  'backbone'
 ],
-function (View, Model, Backbone, _) {
+function (View, Model, Backbone) {
   describe('View', function () {
     it('inherits from Backbone.View', function () {
       var view = new View();
@@ -276,86 +275,6 @@ function (View, Model, Backbone, _) {
         });
       });
 
-    });
-
-    describe('calculateLinearTicks', function () {
-      describe('extending the extent', function () {
-        it('should extend the top limit beyond the max', function () {
-          var ticks = View.prototype.calculateLinearTicks([0, 7000], 5);
-          expect(ticks.values).toEqual([0, 2000, 4000, 6000, 8000]);
-          expect(ticks.extent).toEqual([0, 8000]);
-          expect(ticks.step).toEqual(2000);
-        });
-
-        it('should extend the bottom limit beyond the minimum', function () {
-          var ticks = View.prototype.calculateLinearTicks([10, 8000], 5);
-          expect(ticks.values).toEqual([0, 2000, 4000, 6000, 8000]);
-          expect(ticks.extent).toEqual([0, 8000]);
-          expect(ticks.step).toEqual(2000);
-        });
-      });
-
-      describe('number of ticks', function () {
-        var extent = [0, 61241];
-        it('should increase the number of ticks if it allows nicer ticks', function () {
-          var ticks = View.prototype.calculateLinearTicks(extent, 2);
-          expect(ticks.values).toEqual([0, 50000, 100000]);
-        });
-        it('should not change the number of ticks if it does not need to', function () {
-          var ticks = View.prototype.calculateLinearTicks(extent, 3);
-          expect(ticks.values).toEqual([0, 50000, 100000]);
-        });
-        it('should decrease the number of ticks if it allows nicer ticks', function () {
-          var extent = [0, 4000];
-          var ticks = View.prototype.calculateLinearTicks(extent, 7);
-          expect(ticks.values).toEqual([0, 1000, 2000, 3000, 4000]);
-        });
-      });
-
-      // Because this function is designed to work with various and overlapping
-      describe('various ranges', function () {
-        it('should return valid ticks for 0-5 with 20 ticks', function () {
-          var ticks = View.prototype.calculateLinearTicks([0, 5], 20);
-          var expectations = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5];
-          _.each(ticks.values, function (value, index) {
-            expect(value).toBeCloseTo(expectations[index], 4);
-          });
-          expect(ticks.extent).toEqual([0, 5]);
-          expect(ticks.step).toEqual(0.2);
-        });
-
-        it('should return valid ticks for 0-1000 with 10 ticks', function () {
-          var ticks = View.prototype.calculateLinearTicks([0, 1000], 10);
-          expect(ticks.values).toEqual([0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
-          expect(ticks.extent).toEqual([0, 1000]);
-          expect(ticks.step).toEqual(100);
-        });
-
-        it('should return valid ticks for 0-8000 with 9 ticks', function () {
-          var ticks = View.prototype.calculateLinearTicks([0, 5000], 7);
-          expect(ticks.values).toEqual([0, 1000, 2000, 3000, 4000, 5000]);
-          expect(ticks.extent).toEqual([0, 5000]);
-          expect(ticks.step).toEqual(1000);
-        });
-
-        it('should return valid ticks for 900k-1m with 5 ticks', function () {
-          var ticks = View.prototype.calculateLinearTicks([9.5e5, 1e6], 5);
-          expect(ticks.values).toEqual([950000, 960000, 970000, 980000, 990000, 1000000]);
-          expect(ticks.extent).toEqual([950000, 1000000]);
-          expect(ticks.step).toEqual(10000);
-        });
-      });
-
-      describe('invalid argument handling', function () {
-        it('should raise an exception if lower bound is > upper bound', function () {
-          expect(function () { View.prototype.calculateLinearTicks([0, -1], 5); })
-              .toThrow(new Error('Upper bound must be larger than lower.'));
-        });
-        it('should raise an exception if lower bound is == upper bound', function () {
-          expect(function () { View.prototype.calculateLinearTicks([0, 0], 5); })
-              .toThrow(new Error('Upper bound must be larger than lower.'));
-        });
-      });
     });
 
     describe('formatNumericLabel', function () {

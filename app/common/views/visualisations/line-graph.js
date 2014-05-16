@@ -26,17 +26,8 @@ function (Graph) {
         { view: this.sharedComponents.callout },
         { view: this.sharedComponents.hover }
       ];
-    },
-
-    getConfigNames: function () {
-      var axisConfig = 'week';
-      if (this.collection.options.axisPeriod) {
-        axisConfig = this.collection.options.axisPeriod;
-      } else if (this.collection.query.get('period')) {
-        axisConfig = this.collection.query.get('period');
-      }
-      return ['overlay', axisConfig];
     }
+
   });
 
   return LineGraph;

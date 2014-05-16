@@ -20,7 +20,8 @@ function (View, MultiStatItem, template) {
             collection: this.collection,
             stat: d,
             el: el,
-            sparkline: this.sparkline
+            sparkline: this.sparkline,
+            model: this.model
           });
         view.render();
       }, this);

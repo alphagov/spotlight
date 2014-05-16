@@ -1,15 +1,11 @@
 define([
-  'extensions/views/graph/graph'
+  'common/views/visualisations/stacked-graph'
 ],
 function (Graph) {
   var ResponseTimeGraph = Graph.extend({
 
     valueAttr: 'avgresponse',
     numYTicks: 3,
-
-    getConfigNames: function () {
-      return ['stack', this.collection.query.get('period')];
-    },
 
     components: function () {
       return [

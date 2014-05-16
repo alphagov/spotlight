@@ -35,7 +35,6 @@ function (YAxis, Graph, Collection) {
         valueAttr: 'value',
         numYTicks: numTicks || 7
       });
-      graph.applyConfig('overlay');
       graph.innerWidth = 500;
       graph.innerHeight = 500;
 

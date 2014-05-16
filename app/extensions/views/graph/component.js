@@ -31,18 +31,6 @@ function (View, d3) {
       el.parentNode.appendChild(el);
     },
 
-    configs: {},
-
-    applyConfig: function (name) {
-      var config = this.configs[name];
-      if (!config) {
-        return;
-      }
-      _.each(config, function (value, key) {
-        this[key] = value;
-      }, this);
-    },
-
     render: function () {
       View.prototype.render.apply(this, arguments);
 
