@@ -7,7 +7,7 @@ function (DashboardView) {
     getBreadcrumbCrumbs: function () {
       var crumbs = DashboardView.prototype.getBreadcrumbCrumbs.apply(this, arguments);
 
-      if (this.model.get('title') !== 'Activity on GOV.UK') {
+      if (this.model.get('slug') !== 'site-activity') {
         crumbs.push({ title: 'Activity on GOV.UK' });
       }
 

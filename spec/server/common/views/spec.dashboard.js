@@ -143,7 +143,8 @@ function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDas
         ]);
       });
 
-      it('does not add the title if it is also "Activity on GOV.UK"', function () {
+      it('does not add the title again to top-level site-activity dashboard', function () {
+        model.set('slug', 'site-activity');
         model.set('title', 'Activity on GOV.UK');
         expect(view.getBreadcrumbCrumbs()).toEqual([
           { path: '/performance', title: 'Performance' },
