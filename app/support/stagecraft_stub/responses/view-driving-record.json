@@ -2,10 +2,10 @@
   "slug": "view-driving-record",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "View driving record",
-  "description": "",
+  "description": "Find out which vehicles you can drive, penalty points and when your licence expires.",
   "department": {
      "title": "Department for Transport",
      "abbr": "DfT"
