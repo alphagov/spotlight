@@ -59,9 +59,19 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
         this.componentInstances.push(new definition.view(options));
       }, this);
 
+            if (this.model && this.model.get('slug') &&
+          (this.model.get('page-type') === 'module') &&
+          (this.model.get('module-type') !== 'realtime') &&
+          (this.model.get('module-type') !== 'journey')) {
+        this.setDatePickers();
+      }
+
+
       if (isClient) {
         $(window).on('resize.' + this.cid, _.bind(this.render, this));
       }
+
+
     },
 
     /**
@@ -102,43 +112,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       this.innerEl = $('<div class="inner"></div>');
       this.innerEl.appendTo(graphWrapper);
 
-      var datePickerHtml = '<div id="datePicker" style="margin: 5px 0; width: 100%; ';
-      datePickerHtml += ' border-bottom: 1px dotted #ccc; padding: 5px 0">Show data for: ';
-      datePickerHtml += '<input type="date" id="dateFrom" /> to ';
-      datePickerHtml += '<input type="date" id="dateTo" /> ';
-      datePickerHtml += '<span class="warning" style="color: red"></span>';
-      datePickerHtml += '</div>';
-      this.datePickerEl = $(datePickerHtml);
-      if (this.model && this.model.get('slug')) {
-        var slug = this.model.get('slug');
-        var header = $('section#' + slug + ' h2.dashboard');
-        if (header.length === 0) {
-          header = $('section#' + slug + ' h1');
-        }
-        header.after(datePickerHtml);
-
-        if (this.collection.query.get('start_at')) {
-          var startAt = this.collection.query.get('start_at').format('YYYY-MM-DD');
-          var endAt = this.collection.query.get('end_at').format('YYYY-MM-DD');
-          $('#dateFrom').val(startAt);
-          $('#dateTo').val(endAt);
-
-          var that = this;
-          $('#dateFrom, #dateTo').on('change', function () {
-            $('#datePicker .warning').text('');
-            var dateFrom = that.collection.getMoment($('#dateFrom').val());
-            var dateTo = that.collection.getMoment($('#dateTo').val());
-            if (dateFrom >= dateTo) {
-              $('#datePicker .warning').text('Start date must be before end date');
-              return false;
-            }
-            that.collection.query.set('start_at', dateFrom);
-            that.collection.query.set('end_at', dateTo);
-            that.render();
-          });
-        }
-      }
-
       var svg = this.svg = this.d3.select(graphWrapper[0]).append('svg');
 
       // Apply attributes to SVGs so that they're ignored by screenreaders.
@@ -150,6 +123,138 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       this.wrapper = svg.append('g')
         .classed('wrapper', true);
+
+    },
+
+    setDatePickers: function () {
+
+      this.dateFormat = 'YYYY-MM-01T00:00:00+00:00';
+
+      // Add HTML to the page.
+      // TODO: Make this into a separate component and use a template.
+      var datePickerHtml = '<div id="datePicker" style="margin: 5px 0; width: 100%; ';
+      datePickerHtml += ' border-bottom: 1px dotted #ccc; padding: 5px 0">Show data for: ';
+      datePickerHtml += '<select id="dateFrom"></select> to ';
+      datePickerHtml += '<select id="dateTo"></select> ';
+      datePickerHtml += '<span class="warning" style="color: red"></span>';
+      datePickerHtml += '</div>';
+      this.datePickerEl = $(datePickerHtml);
+      var slug = this.model.get('slug');
+      var header = $('section#' + slug + ' h1');
+      header.after(datePickerHtml);
+
+      // Get the start and end dates from the query.
+      var queryStartDate = this.collection.query.get('start_at');
+      var queryEndDate = this.collection.query.get('end_at');
+
+      // Check for hash parameters, and re-render if necessary.
+      // TODO: Error handling
+      // TODO: Don't render graphs twice!
+      var hashParams = this.getHashParams();
+      var hashStart = hashParams.start;
+      var hashEnd = hashParams.end;
+      if (hashStart || hashEnd) {
+        if (hashStart && (hashStart !== queryStartDate.format('YYYY-MM-DD'))) {
+          queryStartDate = this.collection.getMoment(hashStart);
+          this.collection.query.set('start_at', queryStartDate);
+        }
+        if (hashEnd && (hashEnd !== queryEndDate.format('YYYY-MM-DD'))) {
+          queryEndDate = this.collection.getMoment(hashEnd);
+          this.collection.query.set('end_at', this.collection.getMoment(hashEnd));
+        }
+        this.render();
+      }
+
+      // Set up up the dropdown options. .
+      var optionsStart = this.collection.getMoment('2012-05-01');
+      var optionsEnd = this.collection.getMoment();
+      var dateOptions = '';
+      for (var i = this.collection.getMoment(optionsEnd); !this.collection.getMoment(i).isBefore(optionsStart); i.subtract('months', 1)) {
+        dateOptions += '<option value="' + i.format(this.dateFormat) + '">';
+        dateOptions += i.format('MMM YYYY');
+        dateOptions += '</option>';
+      }
+      $('#dateFrom').html(dateOptions);
+      $('#dateTo').html(dateOptions);
+
+      // Preset the dropdowns according to the dates shown on the graph.
+      if (queryStartDate) {
+        console.log('queryStartDate is set', queryStartDate.format(this.dateFormat));
+        $('#dateFrom').val(queryStartDate.format(this.dateFormat));
+      } else {
+        $('#dateFrom').val(optionsStart.format(this.dateFormat));
+      }
+      if (queryEndDate) {
+        $('#dateTo').val(queryEndDate.format(this.dateFormat));
+      } else {
+        $('#dateTo').val(optionsEnd.format(this.dateFormat));
+      }
+
+      // Set the axis period as appropriate.
+      this.resetAxisPeriod(queryStartDate, queryEndDate);
+
+      // Add event listeners.
+      var that = this;
+      window.onpopstate = function() {
+          that.updateGraphDates();
+      };
+      $('#dateFrom, #dateTo').on('change', function () {
+          that.updateGraphDates();
+      });
+
+    },
+
+    updateGraphDates: function() {
+        $('#datePicker .warning').text('');
+        var dateFrom = this.collection.getMoment($('#dateFrom').val());
+        var dateTo = this.collection.getMoment($('#dateTo').val());
+        if (dateFrom >= dateTo) {
+          $('#datePicker .warning').text('Start date must be earlier than end date');
+          return false;
+        }
+
+        this.resetAxisPeriod(dateFrom, dateTo);
+        this.collection.query.set('start_at', dateFrom);
+        this.collection.query.set('end_at', dateTo);
+        this.render();
+
+        this.setHashParams(dateFrom, dateTo);
+    },
+
+    getHashParams: function () {
+        var hash = window.location.hash.replace('#', '');
+        var params = {};
+        if (hash) {
+          var hashParams = hash.split('&');
+          _.each(hashParams, function(p) {
+            if (p.substring(0, 5) === 'from=') {
+              params.start = p.replace('from=', '');
+            }
+            if (p.substring(0, 3) === 'to=') {
+              params.end = p.replace('to=', '');
+            }
+          });
+        }
+        return params;
+    },
+
+    setHashParams: function(dateFrom, dateTo) {
+        var history = window.history;
+        var hashStr = '#from=' + dateFrom.format(this.dateFormat) + '&to=' + dateTo.format(this.dateFormat);
+        if (history && history.pushState) {
+          history.pushState(null, null, hashStr);
+        } else {
+          window.location.hash = hashStr;
+        }
+    },
+
+    resetAxisPeriod: function (start, end) {
+      var daysDiff = end.diff(start, 'days');
+      if (daysDiff > 90) {
+        this.collection.options.axisPeriod = 'month';
+      } else {
+        this.collection.options.axisPeriod = 'week';
+      }
     },
 
     /**
