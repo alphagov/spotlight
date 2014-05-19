@@ -18,9 +18,11 @@ function (DashboardView) {
 
     getBreadcrumbCrumbs: function () {
       var crumbs = DashboardView.prototype.getBreadcrumbCrumbs.apply(this, arguments);
-      crumbs.push({
-        'title': this.model.get('department').title
-      });
+      if (this.model.get('department')) {
+        crumbs.push({
+          'title': this.model.get('department').title
+        });
+      }
       if (this.model.get('agency')) {
         crumbs.push({
           'title': this.model.get('agency').title

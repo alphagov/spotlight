@@ -194,6 +194,25 @@ function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDas
         ]);
       });
 
+      it('fails gracefully when department is not set', function () {
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' }
+        ]);
+      });
+
+      it('includes department when defined', function () {
+        model.set({
+          department: {
+            title: 'Cabinet Office'
+          }
+        });
+
+        expect(view.getBreadcrumbCrumbs()).toEqual([
+          { path: '/performance', title: 'Performance' },
+          { title: 'Cabinet Office' }
+        ]);
+      });
+
       it('includes agency when defined', function () {
         model.set({
           department: {

@@ -298,12 +298,15 @@ function (Controller, View, Model, Collection) {
         expect(controller.view.foo).toEqual('bar');
       });
 
-      it('triggers a "ready" event', function () {
+      it('triggers a "ready" event asynchronously', function () {
+        jasmine.Clock.useMock();
         var triggered = false;
         controller.once('ready', function () {
           triggered = true;
         });
         controller.renderView();
+        expect(triggered).toBe(false);
+        jasmine.Clock.tick(1);
         expect(triggered).toBe(true);
       });
     });
