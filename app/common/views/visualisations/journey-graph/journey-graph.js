@@ -8,8 +8,6 @@ define([
 function (BarChart, XAxis, Bar, Callout, Hover) {
   var JourneyGraph = BarChart.extend({
 
-    valueAttr: 'uniqueEvents',
-
     components: function () {
       return [
         { view: XAxis },

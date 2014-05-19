@@ -59,6 +59,32 @@
           }
         }
       ]
+    },
+    {
+      "slug": "users-at-each-step",
+      "module-type": "journey",
+      "title": "Users at each step",
+      "value-attribute": "users",
+      "matching-attribute": "eventAction",
+      "description": "Number of users at stages a user goes through whilst applying for a visa. Some stages may be repeated or returned to, as indicated by higher numbers.",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
+      ],
+      "data-group": "tier-2-visit-visa",
+      "data-type": "journey",
+      "axes": {
+        "y": [
+          {"journeyId": "product", "label": "Apply now", "format": "integer"},
+          {"journeyId": "start", "label": "Confirm start", "format": "integer"},
+          {"journeyId": "application", "label": "Application", "format": "integer"},
+          {"journeyId": "documents", "label": "Documents", "format": "integer"},
+          {"journeyId": "declaration", "label": "Declaration", "format": "integer"},
+          {"journeyId": "pay", "label": "Pay", "format": "integer"},
+          {"journeyId": "download and print", "label": "Download and print", "format": "integer"}
+        ]
+      }
     }
   ]
 }
