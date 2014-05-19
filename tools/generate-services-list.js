@@ -16,39 +16,29 @@ var dashboards = [
 ];
 
 function readModule(file) {
-  var defer = Q.defer();
-  fs.readFile(file, 'utf8', function (err, dashboardData) {
-    if (err) {
-      if (err.code === 'EISDIR') {
-        defer.resolve();
-        return;
-      } else {
-        defer.reject(err);
-        throw err;
-      }
-    }
+  var dashboardData = fs.readFileSync(file, 'utf8');
 
-    dashboardData = JSON.parse(dashboardData);
-    if (dashboardData['page-type'] === 'dashboard' && dashboardData['published']) {
-      dashboards.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
-    }
-    defer.resolve();
+  dashboardData = JSON.parse(dashboardData);
+  if (dashboardData['page-type'] === 'dashboard' && dashboardData['published']) {
+    dashboards.push(_.pick(dashboardData, 'slug', 'title', 'department', 'agency', 'dashboard-type', 'on-homepage'));
+  }
 
-  });
-
-  return defer.promise;
+  return dashboardData;
 }
+
+var defer = Q.defer();
 
 glob(stagecraftStubGlob, function (err, files) {
   if (err) {
+    defer.reject(err);
     throw err;
   }
-  Q.all(_.map(files, function (file) {
-    return readModule(file);
-  })).then(function () {
-    console.log('Writing ' + dashboards.length + ' dashboards into dashboards.json');
-    fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards }, null, 2) + '\n');
+  _.each(files, function (file) {
+    readModule(file);
   });
-
+  console.log('Writing ' + dashboards.length + ' dashboards into dashboards.json');
+  fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards }, null, 2) + '\n');
+  defer.resolve();
 });
 
+module.exports = defer.promise;
