@@ -22,6 +22,12 @@ function (MatrixCollection, Collection, Group, Query) {
       this.filterBy = options.filterBy || [];
 
       MatrixCollection.prototype.initialize.apply(this, arguments);
+      if (!this.denominatorMatcher) {
+        throw new Error('denominatorMatcher option must be provided');
+      }
+      if (!this.numeratorMatcher) {
+        throw new Error('numeratorMatcher option must be provided');
+      }
     },
 
     setValueAttribute: function (options) {
