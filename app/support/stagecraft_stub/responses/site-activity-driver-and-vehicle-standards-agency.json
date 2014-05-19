@@ -587,6 +587,7 @@
         "A count of anonymous comments made on departmental pages in a calendar month.",
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
+      "default-value": 0,
       "denominator-matcher": "dvsa",
       "numerator-matcher": "dvsa",
       "matching-attribute": "organisation_acronym",
