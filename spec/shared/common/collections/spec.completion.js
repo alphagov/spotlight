@@ -4,58 +4,67 @@ define([
 function (CompletionCollection) {
   /* global decodeURIComponent */
   describe('Completion collection', function () {
-    var mockResponse = {
-      'data': [
-        {
-          'eventCategory': 'start',
-          'uniqueEvents:sum': 40.0,
-          'values': [
-            {
-              '_end_at': '2013-12-02T00:00:00+00:00',
-              '_start_at': '2013-11-25T00:00:00+00:00',
-              'uniqueEvents:sum': 15.0
-            },
-            {
-              '_end_at': '2013-12-09T00:00:00+00:00',
-              '_start_at': '2013-12-02T00:00:00+00:00',
-              'uniqueEvents:sum': 25.0
-            }
-          ]
-        },
-        {
-          'eventCategory': 'confirm',
-          'uniqueEvents:sum': 20.0,
-          'values': [
-            {
-              '_end_at': '2013-12-02T00:00:00+00:00',
-              '_start_at': '2013-11-25T00:00:00+00:00',
-              'uniqueEvents:sum': 8.0
-            },
-            {
-              '_end_at': '2013-12-09T00:00:00+00:00',
-              '_start_at': '2013-12-02T00:00:00+00:00',
-              'uniqueEvents:sum': 12.0
-            }
-          ]
-        },
-        {
-          'eventCategory': 'done',
-          'uniqueEvents:sum': 10.0,
-          'values': [
-            {
-              '_end_at': '2013-12-02T00:00:00+00:00',
-              '_start_at': '2013-11-25T00:00:00+00:00',
-              'uniqueEvents:sum': 10.0
-            },
-            {
-              '_end_at': '2013-12-09T00:00:00+00:00',
-              '_start_at': '2013-12-02T00:00:00+00:00',
-              'uniqueEvents:sum': null
-            }
-          ]
-        }
-      ]
-    };
+    var mockResponse;
+
+    beforeEach(function () {
+      mockResponse = {
+        data: [
+          {
+            eventCategory: 'start',
+            'uniqueEvents:sum': 40.0,
+            values: [
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                'uniqueEvents:sum': 15.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                'uniqueEvents:sum': 25.0
+              }
+            ]
+          },
+          {
+            eventCategory: 'confirm',
+            'uniqueEvents:sum': 20.0,
+            values: [
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                'uniqueEvents:sum': 8.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                'uniqueEvents:sum': 12.0
+              }
+            ]
+          },
+          {
+            eventCategory: 'done',
+            'uniqueEvents:sum': 10.0,
+            values: [
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                'uniqueEvents:sum': 10.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                'uniqueEvents:sum': null
+              }
+            ]
+          }
+        ]
+      };
+
+
+      CompletionCollection.prototype.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+      CompletionCollection.prototype.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
+
+    });
 
     it('should use options in query params', function () {
       var collection = new CompletionCollection({}, {
@@ -100,8 +109,6 @@ function (CompletionCollection) {
 
     it('should update value attribute on parse', function () {
       var collection = new CompletionCollection({}, { valueAttr: 'one' });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       expect(collection.valueAttr).toEqual('one');
       collection.options.valueAttr = 'two';
@@ -114,8 +121,6 @@ function (CompletionCollection) {
         denominatorMatcher: 'start',
         numeratorMatcher: 'done'
       });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       var result = collection.parse(mockResponse);
 
@@ -143,9 +148,6 @@ function (CompletionCollection) {
           response = {data: []},
           parsedResponse = {values: [], _start: null, _end: null};
 
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
-
       expect(collection.parse(response)).toEqual(parsedResponse);
     });
 
@@ -154,8 +156,6 @@ function (CompletionCollection) {
         denominatorMatcher: 'start',
         numeratorMatcher: '(confirm|done)'
       });
-      collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
-      collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       var result = collection.parse(mockResponse);
 
@@ -174,6 +174,36 @@ function (CompletionCollection) {
         _start: 25,
         _end: 12
       });
+    });
+
+    it('must handle zero values', function () {
+
+      _.each(mockResponse.data, function (dataset) {
+        _.each(dataset.values, function (datapoint) {
+          datapoint['uniqueEvents:sum'] = 0;
+        });
+      });
+      var collection = new CompletionCollection({}, {});
+      var result = collection.parse(mockResponse);
+
+      expect(result.values[0].get('_end')).toEqual(0);
+      expect(result.values[1].get('_end')).toEqual(0);
+
+    });
+
+    it('must handle null values', function () {
+
+      _.each(mockResponse.data, function (dataset) {
+        _.each(dataset.values, function (datapoint) {
+          datapoint['uniqueEvents:sum'] = null;
+        });
+      });
+      var collection = new CompletionCollection({}, {});
+      var result = collection.parse(mockResponse);
+
+      expect(result.values[0].get('_end')).toEqual(null);
+      expect(result.values[1].get('_end')).toEqual(null);
+
     });
   });
 });

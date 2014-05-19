@@ -59,10 +59,9 @@ function (MatrixCollection, Collection, Group, Query) {
       if (response.data && response.data.length > 0 && response.data[0].values) {
         periods = response.data[0].values.length;
       }
-
       _.times(periods, function (i) {
         var totals = _.reduce(response.data, function (memo, d) {
-          if (d.values[i][this.valueAttr] > 0) {
+          if (d.values[i][this.valueAttr] !== null) {
             if (d[this.matchingAttribute].match(this.denominatorMatcher) !== null) {
               memo.start += d.values[i][this.valueAttr];
             }
