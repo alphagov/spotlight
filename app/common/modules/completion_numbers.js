@@ -34,7 +34,8 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
             }
           ]
         }, this.model.get('axes')),
-        duration: this.model.get('duration')
+        duration: this.model.get('duration'),
+        defaultValue: this.model.get('default-value')
       };
     }
   });
