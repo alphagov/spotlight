@@ -57,6 +57,17 @@ function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDas
 
     });
 
+    describe('getMetaDescription', function () {
+
+      it('calculates correct meta description for transactions', function () {
+        model.set({
+          title: 'Carer\'s Allowance'
+        });
+        expect(view.getMetaDescription()).toEqual(null);
+      });
+
+    });
+
 
     describe('getTagline', function () {
 
@@ -168,6 +179,18 @@ function (DashboardView, ContentDashboardView, TransactionDashboardView, DeptDas
         view.getContent();
         var context = view.contentTemplate.argsForCall[0][0];
         expect(context.hasFooter).toEqual(true);
+      });
+
+    });
+
+    describe('getMetaDescription', function () {
+
+      it('calculates correct meta description', function () {
+        model.set({
+          title: 'Carer\'s Allowance'
+        });
+        view.dashboardType = 'transaction';
+        expect(view.getMetaDescription()).toEqual('View performance statistics for the \'Carer\'s Allowance\' service from the Performance Platform on GOV.UK');
       });
 
     });
