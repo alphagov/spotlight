@@ -22,6 +22,15 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
           y: []
         }, this.model.get('axes'))
       };
+    },
+
+    visualisationOptions: function () {
+      if (this.model.get('value-attribute')) {
+        return {
+          valueAttr: this.model.get('value-attribute')
+        };
+      }
+      return;
     }
   });
 
