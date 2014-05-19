@@ -49,6 +49,10 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
       return items.join(' - ');
     },
 
+    getMetaDescription: function () {
+      return null;
+    },
+
     getBreadcrumbCrumbs: function () {
       return [
         {'path': '/performance', 'title': 'Performance'}
@@ -76,7 +80,7 @@ function (View, headTemplate, bodyEndTemplate, navigationTemplate, breadcrumbsTe
         View.prototype.templateContext.apply(this, arguments),
         baseContext,
         {
-          head: headTemplate(baseContext),
+          head: headTemplate(_.extend(baseContext, { metaDescription: this.getMetaDescription() })),
           bodyEnd: this.bodyEndTemplate(baseContext),
           topOfPage: '',
           pageTitle: this.getPageTitle(),

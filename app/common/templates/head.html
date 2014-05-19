@@ -1,5 +1,9 @@
 <link href="<%= assetPath %>stylesheets/<%= assetDigest['spotlight.css'] %>" media="all" rel="stylesheet" type="text/css">
 
+<% if (metaDescription) { %>
+<meta name="description" content="<%= metaDescription %>">
+<% } %>
+
 <script id="ga-params" type="text/javascript">
   var GOVUK = GOVUK || {};
   GOVUK.Analytics = GOVUK.Analytics || {};
