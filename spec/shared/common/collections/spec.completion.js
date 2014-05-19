@@ -66,6 +66,24 @@ function (CompletionCollection) {
 
     });
 
+    it('throws if no denominatorMatcher is defined', function () {
+      var fn = function () {
+        return new CompletionCollection({}, {
+          numeratorMatcher: 'foo'
+        });
+      };
+      expect(fn).toThrow();
+    });
+
+    it('throws if no numeratorMatcher is defined', function () {
+      var fn = function () {
+        return new CompletionCollection({}, {
+          denominatorMatcher: 'foo'
+        });
+      };
+      expect(fn).toThrow();
+    });
+
     it('should use options in query params', function () {
       var collection = new CompletionCollection({}, {
         valueAttr: 'one',
@@ -77,7 +95,9 @@ function (CompletionCollection) {
         tabs: [
           { id: 'tabid' }
         ],
-        filterBy: ['new_or_continuing:new', 'channel:digital']
+        filterBy: ['new_or_continuing:new', 'channel:digital'],
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
       });
 
       expect(decodeURIComponent(collection.url())).toContain('period=month');
@@ -90,7 +110,10 @@ function (CompletionCollection) {
     });
 
     it('should use default query params', function () {
-      var collection = new CompletionCollection({}, {});
+      var collection = new CompletionCollection({}, {
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
+      });
 
       expect(decodeURIComponent(collection.url())).toContain('period=week');
       expect(decodeURIComponent(collection.url())).toContain('collect=uniqueEvents:sum');
@@ -101,14 +124,20 @@ function (CompletionCollection) {
       var collection = new CompletionCollection({}, {
         queryParams: {
           'filter_by': 'foo:bar'
-        }
+        },
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
       });
 
       expect(collection.url()).toContain('filter_by=foo%3Abar');
     });
 
     it('should update value attribute on parse', function () {
-      var collection = new CompletionCollection({}, { valueAttr: 'one' });
+      var collection = new CompletionCollection({}, {
+        valueAttr: 'one',
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
+      });
 
       expect(collection.valueAttr).toEqual('one');
       collection.options.valueAttr = 'two';
@@ -144,7 +173,10 @@ function (CompletionCollection) {
     });
 
     it('should handle an empty data response', function () {
-      var collection = new CompletionCollection({}, {}),
+      var collection = new CompletionCollection({}, {
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
+      }),
           response = {data: []},
           parsedResponse = {values: [], _start: null, _end: null};
 
@@ -183,9 +215,14 @@ function (CompletionCollection) {
           datapoint['uniqueEvents:sum'] = 0;
         });
       });
-      var collection = new CompletionCollection({}, {});
+      var collection = new CompletionCollection({}, {
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
+      });
       var result = collection.parse(mockResponse);
 
+      expect(result.values[0].get('_start')).toEqual(0);
+      expect(result.values[1].get('_start')).toEqual(0);
       expect(result.values[0].get('_end')).toEqual(0);
       expect(result.values[1].get('_end')).toEqual(0);
 
@@ -198,9 +235,14 @@ function (CompletionCollection) {
           datapoint['uniqueEvents:sum'] = null;
         });
       });
-      var collection = new CompletionCollection({}, {});
+      var collection = new CompletionCollection({}, {
+        denominatorMatcher: 'start',
+        numeratorMatcher: 'done'
+      });
       var result = collection.parse(mockResponse);
 
+      expect(result.values[0].get('_start')).toEqual(null);
+      expect(result.values[1].get('_start')).toEqual(null);
       expect(result.values[0].get('_end')).toEqual(null);
       expect(result.values[1].get('_end')).toEqual(null);
 
