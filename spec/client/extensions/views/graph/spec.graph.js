@@ -8,6 +8,87 @@ define([
 ],
 function (Graph, GraphTable, Collection, Model, View, d3) {
 
+  var defaultData;
+
+  beforeEach(function () {
+
+    defaultData = [
+      {
+        id: 'total',
+        title: 'Total applications',
+        values: new Collection([
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _count: 90,
+            alternativeValue: 444
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _count: 100,
+            alternativeValue: 333
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
+            _count: 114,
+            alternativeValue: 222
+          }
+        ])
+      },
+      {
+        id: 'westminster',
+        title: 'Westminster',
+        values: new Collection([
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _count: 1,
+            alternativeValue: 100
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _count: 6,
+            alternativeValue: 99
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
+            _count: 11,
+            alternativeValue: 98
+          }
+        ])
+      },
+      {
+        id: 'croydon',
+        title: 'Croydon',
+        values: new Collection([
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _count: 2,
+            alternativeValue: 80
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _count: 7,
+            alternativeValue: 87
+          },
+          {
+            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
+            _count: 12,
+            alternativeValue: 23
+          }
+        ])
+      }
+    ];
+
+  });
+
   describe('Graph', function () {
 
     beforeEach(function () {
@@ -580,80 +661,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
         collection = new Collection();
 
-        collection.reset([
-          {
-            id: 'total',
-            title: 'Total applications',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 90,
-                alternativeValue: 444
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 100,
-                alternativeValue: 333
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 114,
-                alternativeValue: 222
-              }
-            ])
-          },
-          {
-            id: 'westminster',
-            title: 'Westminster',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 1,
-                alternativeValue: 100
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 6,
-                alternativeValue: 99
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 11,
-                alternativeValue: 98
-              }
-            ])
-          },
-          {
-            id: 'croydon',
-            title: 'Croydon',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 2,
-                alternativeValue: 80
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 7,
-                alternativeValue: 87
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 12,
-                alternativeValue: 23
-              }
-            ])
-          }
-        ]);
+        collection.reset(defaultData);
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           collection: collection
@@ -697,12 +705,46 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
             .toEqual([0, 20, 40, 60, 80, 100, 120]);
       });
 
-      it('still sets a scale for the domain (rather than throwing an error) when all data in the dataset is null', function () {
+      it('does not set a tickValueList to the scale if all data is null', function () {
         collection.at(0).get('values').each(function (model) { model.set('_count', null); });
         collection.at(1).get('values').each(function (model) { model.set('_count', null); });
         collection.at(2).get('values').each(function (model) { model.set('_count', null); });
-        expect(graph.calcYScale().domain()).toEqual([0, 6]);
+        expect(graph.calcYScale().tickValueList).toBeUndefined();
       });
+    });
+
+    describe('hasData', function () {
+
+      var collection, graph;
+      beforeEach(function () {
+
+        collection = new Collection();
+
+        collection.reset(defaultData);
+        collection.getCurrentSelection = jasmine.createSpy().andReturn({});
+        graph = new Graph({
+          collection: collection
+        });
+        graph.innerWidth = 444;
+        graph.innerHeight = 333;
+      });
+
+      it('returns true when collection is non-empty', function () {
+        expect(graph.hasData()).toEqual(true);
+      });
+
+      it('returns false when collecion is empty', function () {
+        collection.reset([]);
+        expect(graph.hasData()).toEqual(false);
+      });
+
+      it('returns false when collection data is null', function () {
+        collection.at(0).get('values').each(function (model) { model.set('_count', null); });
+        collection.at(1).get('values').each(function (model) { model.set('_count', null); });
+        collection.at(2).get('values').each(function (model) { model.set('_count', null); });
+        expect(graph.hasData()).toEqual(false);
+      });
+
     });
 
     describe('configs', function () {
@@ -713,80 +755,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
 
         collection = new Collection();
 
-        collection.reset([
-          {
-            id: 'total',
-            title: 'Total applications',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 90,
-                alternativeValue: 444
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 100,
-                alternativeValue: 333
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 114,
-                alternativeValue: 222
-              }
-            ])
-          },
-          {
-            id: 'westminster',
-            title: 'Westminster',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 1,
-                alternativeValue: 100
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 6,
-                alternativeValue: 99
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 11,
-                alternativeValue: 98
-              }
-            ])
-          },
-          {
-            id: 'croydon',
-            title: 'Croydon',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 2,
-                alternativeValue: 80
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 7,
-                alternativeValue: 87
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 12,
-                alternativeValue: 23
-              }
-            ])
-          }
-        ]);
+        collection.reset(defaultData);
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           el: el,
