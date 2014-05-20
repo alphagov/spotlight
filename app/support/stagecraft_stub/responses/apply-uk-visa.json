@@ -85,6 +85,23 @@
           {"journeyId": "download and print", "label": "Download and print", "format": "integer"}
         ]
       }
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "tier-2-visit-visa",
+      "data-type": "journey",
+      "value-attribute": "users:sum",
+      "info": [
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "denominator-matcher": "product",
+      "numerator-matcher": "download and print",
+      "matching-attribute": "eventAction"
     }
   ]
 }
