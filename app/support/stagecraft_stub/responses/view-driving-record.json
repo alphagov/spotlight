@@ -28,7 +28,7 @@
       "description": "Live number of users on any page within the service",
       "info": [
         "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service on GOV.UK."
+        "Live number of users on any page within the service"
       ],
       "data-group": "view-driving-record",
       "data-type": "realtime"
