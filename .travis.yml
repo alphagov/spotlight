@@ -1,10 +1,6 @@
 language: node_js
 node_js:
-  - "0.11"
   - "0.10"
-matrix:
-  allow_failures:
-    - node_js: "0.11"
 install:
   - travis_retry npm install -g grunt-cli@0.1.9
   - travis_retry npm install
