@@ -343,7 +343,7 @@ module.exports = function (grunt) {
     'shell:validate_module_stubs:--unpublished'
   ]);
 
-  grunt.registerTask('test:all', [
+  grunt.registerTask('test:unit', [
     'copy:vendor',
     'copy:govuk_template',
     'clean',
@@ -355,7 +355,11 @@ module.exports = function (grunt) {
     'digest',
     'jasmine',
     'jasmine_node',
-    'jshint',
+    'jshint'
+  ]);
+
+  grunt.registerTask('test:all', [
+    'test:unit',
     'shell:cheapseats'
   ]);
 

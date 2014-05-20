@@ -38,7 +38,7 @@
     "xtend": "2.2.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#2853e5cee9699f12d0a74cf06388fdff4d844286",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#378c46508d3a3393cd9d78be01f86b77e30c82a4",
     "colors": "0.6.2",
     "grunt": "0.4.4",
     "grunt-concurrent": "0.5.0",
