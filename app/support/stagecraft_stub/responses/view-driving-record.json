@@ -28,7 +28,7 @@
       "description": "Live number of users on any page within the service",
       "info": [
         "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service on GOV.UK."
+        "Live number of users on any page within the service"
       ],
       "data-group": "view-driving-record",
       "data-type": "realtime"
@@ -91,7 +91,7 @@
           "one-hundred-percent": true,
           "info": [
             "Data source: Google Analytics",
-            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service and whether they were successful or received an error."
           ],
           "axes": {
             "x": {
@@ -133,7 +133,7 @@
           "one-hundred-percent": true,
           "info": [
             "Data source: Google Analytics",
-            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service."
+            "Shows the number of people using their Driving Licence Number or Personal Details to access the View driving record service and whether they were successful or received an error."
           ],
           "axes": {
             "x": {
