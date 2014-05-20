@@ -17,3 +17,5 @@ env:
   - TEST_CMD: shell:cheapseats:--range:0..70
   - TEST_CMD: shell:cheapseats:--range:71..
 script: "grunt $TEST_CMD"
+matrix:
+  fast_finish: true
