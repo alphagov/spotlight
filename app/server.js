@@ -1,4 +1,5 @@
 var requirejs = require('requirejs');
+var fs = require('graceful-fs');
 
 //Config for libraries accessible and require js
 var appConfig = requirejs('./config');
@@ -38,22 +39,32 @@ if (environment.match(/^development/)) {
   environment = 'development';
 }
 
-var http = require('http'),
-    path = require('path');
+if (!fs.existsSync('./support/stagecraft_stub/responses/dashboards.json')) {
+  require('../tools/generate-services-list').then(startServer);
+} else {
+  startServer();
+}
 
-var rootDir = path.join(__dirname, '..');
-var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
+function startServer() {
 
-var port = process.env.PORT || app.get('port');
+  var http = require('http'),
+      path = require('path');
 
-app.set('port', port);
+  var rootDir = path.join(__dirname, '..');
+  var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
-var server = http.createServer(app).listen(port, function () {
-  global.logger.info('Express server listening on port ' + port);
-});
+  var port = process.env.PORT || app.get('port');
 
-exports = module.exports = server;
+  app.set('port', port);
 
-exports.use = function () {
-  app.use.apply(app, arguments);
-};
+  var server = http.createServer(app).listen(port, function () {
+    global.logger.info('Express server listening on port ' + port);
+  });
+
+  exports = module.exports = server;
+
+  exports.use = function () {
+    app.use.apply(app, arguments);
+  };
+
+}
