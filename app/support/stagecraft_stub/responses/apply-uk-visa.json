@@ -17,6 +17,61 @@
   },
   "modules": [
     {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service.",
+      "info": [
+        "Data source: Google Analytics",
+        "Live number of users on any page within the service."
+      ],
+      "data-group": "tier-2-visit-visa",
+      "data-type": "realtime"
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "tier-2-visit-visa",
+      "data-type": "journey",
+      "value-attribute": "users:sum",
+      "info": [
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "denominator-matcher": "product",
+      "numerator-matcher": "download and print",
+      "matching-attribute": "eventAction"
+    },
+    {
+      "slug": "users-at-each-step",
+      "module-type": "journey",
+      "title": "Users at each step",
+      "value-attribute": "users",
+      "matching-attribute": "eventAction",
+      "description": "Number of users at stages a user goes through whilst applying for a visa. Some stages may be repeated or returned to, as indicated by higher numbers.",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
+      ],
+      "data-group": "tier-2-visit-visa",
+      "data-type": "journey",
+      "axes": {
+        "y": [
+          {"journeyId": "product", "label": "Apply now", "format": "integer"},
+          {"journeyId": "start", "label": "Confirm start", "format": "integer"},
+          {"journeyId": "application", "label": "Application", "format": "integer"},
+          {"journeyId": "documents", "label": "Documents", "format": "integer"},
+          {"journeyId": "declaration", "label": "Declaration", "format": "integer"},
+          {"journeyId": "pay", "label": "Pay", "format": "integer"},
+          {"journeyId": "download and print", "label": "Download and print", "format": "integer"}
+        ]
+      }
+    },
+    {
       "slug": "service-availability",
       "module-type": "tab",
       "title": "Service availability",
@@ -59,49 +114,6 @@
           }
         }
       ]
-    },
-    {
-      "slug": "users-at-each-step",
-      "module-type": "journey",
-      "title": "Users at each step",
-      "value-attribute": "users",
-      "matching-attribute": "eventAction",
-      "description": "Number of users at stages a user goes through whilst applying for a visa. Some stages may be repeated or returned to, as indicated by higher numbers.",
-      "info": [
-        "Data source: Google Analytics",
-        "The total number of users who arrived at each step.",
-        "Number of users is measured using the count of unique events from each step."
-      ],
-      "data-group": "tier-2-visit-visa",
-      "data-type": "journey",
-      "axes": {
-        "y": [
-          {"journeyId": "product", "label": "Apply now", "format": "integer"},
-          {"journeyId": "start", "label": "Confirm start", "format": "integer"},
-          {"journeyId": "application", "label": "Application", "format": "integer"},
-          {"journeyId": "documents", "label": "Documents", "format": "integer"},
-          {"journeyId": "declaration", "label": "Declaration", "format": "integer"},
-          {"journeyId": "pay", "label": "Pay", "format": "integer"},
-          {"journeyId": "download and print", "label": "Download and print", "format": "integer"}
-        ]
-      }
-    },
-    {
-      "slug": "completion-rate",
-      "module-type": "completion_rate",
-      "title": "Completion rate",
-      "description": "",
-      "data-group": "tier-2-visit-visa",
-      "data-type": "journey",
-      "value-attribute": "users:sum",
-      "info": [
-        "Data source: Google Analytics",
-        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
-        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
-      ],
-      "denominator-matcher": "product",
-      "numerator-matcher": "download and print",
-      "matching-attribute": "eventAction"
     }
   ]
 }
