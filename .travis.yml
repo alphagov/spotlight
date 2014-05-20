@@ -10,6 +10,5 @@ cache:
   directories:
     - node_modules
 branches:
-  except:
-    - release
-    - /^release_[0-9]+$/
+  only:
+    - master
