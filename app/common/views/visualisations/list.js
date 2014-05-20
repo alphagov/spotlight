@@ -14,21 +14,26 @@ function (View, template) {
           labelRegexString = this.collection.options.labelRegex,
           labelRegex = labelRegexString ? new RegExp(labelRegexString) : null;
 
-      var items = this.collection.first().get('values').map(function (item) {
-        var label = item.get(labelAttr),
-            labelRegexMatch = labelRegex ? labelRegex.exec(label) : null;
+      var data = this.collection.first();
+      var items;
 
-        if (labelRegexMatch) {
-          label = labelRegexMatch[1];
-        } else if (labelRegex && !labelRegexMatch) {
-          console.warn('[ListView] Label "' + label + '" does not match regex "' + labelRegexString + '"');
-        }
+      if (data) {
+        items = data.get('values').map(function (item) {
+          var label = item.get(labelAttr),
+              labelRegexMatch = labelRegex ? labelRegex.exec(label) : null;
 
-        return {
-          'label': label,
-          'link': linkAttr ? (urlRoot + item.get(linkAttr)) : null
-        };
-      }, this);
+          if (labelRegexMatch) {
+            label = labelRegexMatch[1];
+          } else if (labelRegex && !labelRegexMatch) {
+            console.warn('[ListView] Label "' + label + '" does not match regex "' + labelRegexString + '"');
+          }
+
+          return {
+            'label': label,
+            'link': linkAttr ? (urlRoot + item.get(linkAttr)) : null
+          };
+        }, this);
+      }
 
       return { 'items': items };
     }

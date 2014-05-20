@@ -39,6 +39,30 @@ function (ListView, ListCollection) {
 
     });
 
+    it('should show a nice "no data" message when there is no data', function () {
+
+      var collection = new ListCollection({
+        'data': []
+      }, {
+        'id': 'foo',
+        'title': 'foo',
+        'parse': 'true',
+        'labelAttr': 'pageTitle',
+        'linkAttr': 'pagePath'
+      });
+
+      var view = new ListView({
+        collection: collection
+      });
+
+      jasmine.renderView(view, function () {
+        var listItems = view.$el.find('li');
+
+        expect(listItems.length).toEqual(0);
+        expect(view.$el.html()).toContain('<span class="no-data">(no data)</span>');
+      });
+
+    });
     it('should escape labels properly', function () {
 
       var collection = new ListCollection({
