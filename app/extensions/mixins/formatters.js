@@ -34,7 +34,7 @@ define([
     duration: function (value, options) {
       _.defaults(options, {
         unit: 'ms',
-        dps: 0
+        pad: true
       });
 
       var divisor = 1;
@@ -42,6 +42,7 @@ define([
         divisor = 1000;
       } else if (options.unit === 'm') {
         divisor = 60000;
+        options.dps = 0;
       }
       return formatters.number(value / divisor, options) + options.unit;
     },
@@ -109,7 +110,7 @@ define([
           var magnitude = Math.pow(10, options.dps);
           value = Math.round(value * magnitude) / magnitude;
         }
-        if (suffix && options.pad && options.dps > 0) {
+        if ((suffix || !options.magnitude) && options.pad && options.dps > 0) {
           options.fixed = options.dps;
         }
         if (typeof options.fixed === 'number') {

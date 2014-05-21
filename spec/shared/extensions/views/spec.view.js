@@ -174,32 +174,6 @@ function (View, Model, Backbone) {
       });
     });
 
-    describe('formatDuration', function () {
-      describe('milliseconds', function () {
-        it('should return the number of milliseconds to a given precision followed by ms', function () {
-          var view = View.prototype;
-          expect(view.formatDuration(0, 'ms', 4)).toBe('0ms');
-          expect(view.formatDuration(2594, 'ms', 3)).toBe('2590ms');
-          expect(view.formatDuration(2594, 'ms', 4)).toBe('2594ms');
-          expect(view.formatDuration(2594, 'ms', 5)).toBe('2594ms');
-        });
-      });
-
-      describe('seconds', function () {
-        it('should return the number of seconds to a given precision followed by s', function () {
-          var view = View.prototype;
-          expect(view.formatDuration(0, 's', 3)).toBe('0s');
-          expect(view.formatDuration(246, 's', 3)).toBe('0.246s');
-          expect(view.formatDuration(358, 's', 2)).toBe('0.36s');
-          expect(view.formatDuration(4628, 's', 3)).toBe('4.63s');
-          expect(view.formatDuration(8849, 's', 2)).toBe('8.8s');
-          expect(view.formatDuration(372956, 's', 2)).toBe('370s');
-          expect(view.formatDuration(15428, 's', 3)).toBe('15.4s');
-          expect(view.formatDuration(15428, 's', 6)).toBe('15.428s');
-        });
-      });
-    });
-
     describe('numberListFormatter', function () {
 
       describe('in the special case where the values are 0 and 1', function () {
@@ -513,26 +487,6 @@ function (View, Model, Backbone) {
         expect(view.formatPeriod(model, 'quarter')).toEqual('July to Sep 2013');
       });
 
-    });
-
-    describe('numberToSignificantFigures', function () {
-      it('should round a positive number to a given number of sig figs', function () {
-        var view = View.prototype;
-        expect(view.numberToSignificantFigures(0, 4)).toBe(0);
-        expect(view.numberToSignificantFigures(0.35628, 3)).toBe(0.356);
-        expect(view.numberToSignificantFigures(12, 1)).toBe(10);
-        expect(view.numberToSignificantFigures(628, 3)).toBe(628);
-        expect(view.numberToSignificantFigures(2594, 3)).toBe(2590);
-        expect(view.numberToSignificantFigures(2594, 9)).toBe(2594);
-      });
-      it('should round a negative number to a given number of sig figs', function () {
-        var view = View.prototype;
-        expect(view.numberToSignificantFigures(-0.35628, 3)).toBe(-0.356);
-        expect(view.numberToSignificantFigures(-12, 1)).toBe(-10);
-        expect(view.numberToSignificantFigures(-628, 3)).toBe(-628);
-        expect(view.numberToSignificantFigures(-2594, 3)).toBe(-2590);
-        expect(view.numberToSignificantFigures(-2594, 9)).toBe(-2594);
-      });
     });
 
     describe('pluralise', function () {

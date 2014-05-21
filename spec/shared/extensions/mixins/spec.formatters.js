@@ -258,6 +258,18 @@ define([
         expect(Formatters.format(1.234, { type: 'number', dps: 3, sigfigs: 1 })).toEqual('1.234');
       });
 
+      describe('pad', function () {
+
+        it('adds extra zeros', function () {
+
+          expect(Formatters.format(1, { type: 'number', pad: true })).toEqual('1.00');
+          expect(Formatters.format(1.2, { type: 'number', pad: true })).toEqual('1.20');
+          expect(Formatters.format(1.2, { type: 'number', pad: true, sigfigs: 4 })).toEqual('1.200');
+
+        });
+
+      });
+
       describe('magnitude', function () {
         describe('thousands', function () {
 

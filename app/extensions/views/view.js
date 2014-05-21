@@ -270,49 +270,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
     },
 
     /**
-     * Formats a number of milliseconds as a given unit of time
-     * @param {Number} milliseconds Duration in milliseconds
-     * @param {String} unit Unit to format as (either ms or s)
-     * @param {Number} precision Number of significant figures to format to
-     */
-    formatDuration: function (milliseconds, unit, precision) {
-
-      var formattedNumber, formatString;
-
-      var millisecondsToSeconds = function (t) {
-        return t / 1000;
-      };
-
-      milliseconds = Math.round(milliseconds);
-
-      if (unit === 's') {
-        formattedNumber = View.prototype.numberToSignificantFigures(millisecondsToSeconds(milliseconds), precision);
-        formatString = 's';
-      } else {
-        formattedNumber = View.prototype.numberToSignificantFigures(milliseconds, precision);
-        formatString = 'ms';
-      }
-
-      return formattedNumber + formatString;
-
-    },
-
-    /**
-     * Rounds a number to a given number of significant figures
-     * @param {Number} value Number to round
-     * @param {Number} sigFigs Number of significant figures to round to
-     */
-    numberToSignificantFigures: function (value, sigFigs) {
-      if (value === 0) {
-        return 0;
-      } else {
-        var exponent = sigFigs - Math.floor(Math.log(Math.abs(value)) / Math.LN10) - 1;
-        var magnitude = Math.pow(10, exponent);
-        return Math.round(value * magnitude) / magnitude;
-      }
-    },
-
-    /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.
      * @param {String} prop Name of object property or method.
