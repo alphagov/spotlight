@@ -416,6 +416,29 @@ define([
 
     });
 
+    describe('plural', function () {
+
+      it('throws if no singular option provided', function () {
+        var fn = function () {
+          return Formatters.format(1, 'plural');
+        };
+        expect(fn).toThrow();
+      });
+
+      it('returns the singular term if the value is 1', function () {
+        expect(Formatters.format(1, { type: 'plural', singular: 'cat' })).toEqual('cat');
+      });
+
+      it('returns the singular term with an "s" if the value is > 1', function () {
+        expect(Formatters.format(2, { type: 'plural', singular: 'cat' })).toEqual('cats');
+      });
+
+      it('returns the plural term if defined and the value is > 1', function () {
+        expect(Formatters.format(2, { type: 'plural', singular: 'formula', plural: 'formulae' })).toEqual('formulae');
+      });
+
+    });
+
   });
 
 });

@@ -182,16 +182,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       }
     },
 
-    pluralise: function (singular, quantity, plural) {
-      if (quantity === 1) {
-        return singular;
-      } else if (plural) {
-        return plural;
-      } else {
-        return singular + 's';
-      }
-    },
-
     /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.

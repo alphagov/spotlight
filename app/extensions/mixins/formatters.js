@@ -163,6 +163,19 @@ define([
       // uppercase first letter
       value = value.charAt(0).toUpperCase() + value.slice(1);
       return value;
+    },
+
+    plural: function (value, options) {
+      if (typeof options.singular === 'undefined') {
+        throw new Error('singular option must be defined for plural formatter');
+      }
+      if (value === 1) {
+        return options.singular;
+      } else if (options.plural) {
+        return options.plural;
+      } else {
+        return options.singular + 's';
+      }
     }
 
   };

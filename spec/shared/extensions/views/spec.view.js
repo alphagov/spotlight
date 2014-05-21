@@ -341,31 +341,6 @@ function (View, Model, Backbone) {
 
     });
 
-    describe('pluralise', function () {
-      var pluralise = View.prototype.pluralise;
-
-      it('displays a string as singular when there is exactly one thing', function () {
-        expect(pluralise('foo', 1)).toEqual('foo');
-      });
-
-      it('displays a string as plural when there is no thing', function () {
-        expect(pluralise('foo', 0)).toEqual('foos');
-        expect(pluralise('foo', null)).toEqual('foos');
-        expect(pluralise('foo')).toEqual('foos');
-      });
-
-      it('displays a string as plural when there are multiple things', function () {
-        expect(pluralise('foo', 2)).toEqual('foos');
-        expect(pluralise('foo', 3)).toEqual('foos');
-        expect(pluralise('foo', 0.8)).toEqual('foos');
-      });
-
-      it('supports irregular pluralisation', function () {
-        expect(pluralise('foo', 1, 'fooos')).toEqual('foo');
-        expect(pluralise('foo', 2, 'fooos')).toEqual('fooos');
-      });
-    });
-
     describe('prop', function () {
       it('retrieves an object property', function () {
         var view = new View();

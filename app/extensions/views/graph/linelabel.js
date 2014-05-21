@@ -323,7 +323,7 @@ function (Component) {
         return [
           'last',
           numPeriods,
-          this.pluralise(period, numPeriods)
+          this.format(numPeriods, { type: 'plural', singular: period })
         ].join(' ');
       }
     },

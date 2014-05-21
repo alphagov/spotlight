@@ -16,20 +16,20 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
-      var periodLabel = this.getPeriod();
+      var period = this.getPeriod();
       var events = this.collection.at(0).get('periods'),
         unavailableEvents = events.total - events.available,
         label = [
           this.labelPrefix,
           'last',
           events.total,
-          this.pluralise(periodLabel, events.total)
+          this.format(events.total, { type: 'plural', singular: period })
         ];
 
       if (unavailableEvents > 0) {
         label = label.concat([
           '<span class="unavailable">(' + unavailableEvents,
-          this.pluralise(periodLabel, unavailableEvents),
+          this.format(unavailableEvents, { type: 'plural', singular: period }),
           'unavailable)</span>'
         ]);
       }
