@@ -69,7 +69,7 @@ define([
       describe('getValue', function () {
 
         it('displays value for most recent period if available', function () {
-          expect(view.getValue()).toEqual('1m');
+          expect(view.getValue()).toEqual('1.02m');
         });
 
         it('displays value for earlier period if most recent period not available', function () {

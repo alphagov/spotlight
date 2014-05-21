@@ -183,6 +183,10 @@ define([
         expect(Formatters.format(12345.67, 'integer')).toEqual('12,346');
       });
 
+      it('keeps decimal places on magnituded values', function () {
+        expect(Formatters.format(1234567, { type: 'integer', magnitude: true })).toEqual('1.23m');
+      });
+
     });
 
     describe('number', function () {

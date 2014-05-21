@@ -85,10 +85,7 @@ define([
     },
 
     integer: function (value, options) {
-      _.defaults(options, {
-        dps: 0
-      });
-      return formatters.number(value, options);
+      return formatters.number(Math.round(value), options);
     },
 
     number: function (value, options) {
@@ -231,6 +228,7 @@ define([
         type: formatter
       };
     }
+    formatter = _.clone(formatter);
     if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
       return formatters[formatter.type](value, formatter || {});
     } else {
