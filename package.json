@@ -20,26 +20,13 @@
   "dependencies": {
     "argh": "0.1.1",
     "backbone": "1.1.0",
+    "colors": "0.6.2",
     "d3": "3.3.7",
     "express": "3.5.1",
     "glob": "3.2.9",
     "govuk_frontend_toolkit": "0.46.1",
     "govuk_template_mustache": "0.8.0",
     "graceful-fs": "^2.0.3",
-    "jquery": "1.8.3",
-    "lodash": "2.4.1",
-    "moment-timezone": "0.0.3",
-    "mustache": "0.8.1",
-    "optimist": "0.6.1",
-    "requirejs": "2.1.11",
-    "uglify-js": "2.4.13",
-    "winston": "0.7.3",
-    "xmlhttprequest": "1.6.0",
-    "xtend": "2.2.0"
-  },
-  "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#378c46508d3a3393cd9d78be01f86b77e30c82a4",
-    "colors": "0.6.2",
     "grunt": "0.4.4",
     "grunt-concurrent": "0.5.0",
     "grunt-contrib-clean": "0.5.0",
@@ -52,11 +39,24 @@
     "grunt-jasmine-node": "0.2.1",
     "grunt-sass": "0.12.1",
     "grunt-shell": "0.6.4",
+    "jquery": "1.8.3",
     "jshint": "2.5.0",
     "jshint-stylish": "0.1.5",
     "jsonschema": "0.4.0",
+    "lodash": "2.4.1",
+    "moment-timezone": "0.0.3",
+    "mustache": "0.8.1",
     "node-sass": "0.8.4",
+    "optimist": "0.6.1",
     "q": "1.0.1",
+    "requirejs": "2.1.11",
+    "uglify-js": "2.4.13",
+    "winston": "0.7.3",
+    "xmlhttprequest": "1.6.0",
+    "xtend": "2.2.0"
+  },
+  "devDependencies": {
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#378c46508d3a3393cd9d78be01f86b77e30c82a4",
     "supervisor": "0.5.7"
   }
 }

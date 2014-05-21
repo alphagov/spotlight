@@ -97,6 +97,21 @@ to view the console.
 
 `NODE_ENV=production node app/server.js` to run the app in production mode.
 
+### Heroku ###
+
+If you want to deploy the app to Heroku, follow these instructions.
+
+The app runs on Heroku using [a custom buildpack for Grunt.js support][buildpack]:
+
+```bash
+heroku create spotlight-demo-feature --buildpack https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+heroku config:set NODE_ENV=development npm_config_production=false
+git push heroku your-branch-name:master
+heroku open
+```
+
+[buildpack]: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
+
 ## App status ##
 
 ![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
