@@ -191,6 +191,10 @@ define([
         expect(Formatters.format(0, 'number')).toEqual('0');
         expect(Formatters.format(0, { type: 'number', pad: true })).toEqual('0');
         expect(Formatters.format(0, { type: 'number', dps: 5, fixed: 5, pad: true })).toEqual('0');
+
+      });
+      it('returns "0" for numbers which round to zero', function () {
+        expect(Formatters.format(0.00001, { type: 'number', dps: 2 })).toEqual('0');
       });
 
       it('rounds numbers < 10 to 2 dp by default', function () {

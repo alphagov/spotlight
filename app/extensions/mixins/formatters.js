@@ -103,9 +103,6 @@ define([
 
       if (!isNaN(Number(value))) {
         value = Number(value);
-        if (value === 0) {
-          return '0';
-        }
         if (value < 0) {
           value = Math.abs(value);
           minus = true;
@@ -125,6 +122,9 @@ define([
         }
         if (typeof options.dps === 'number') {
           value = utils.roundToDps(value, options.dps);
+        }
+        if (value === 0) {
+          return '0';
         }
         if ((suffix || !options.magnitude) && options.pad && options.dps > 0) {
           options.fixed = options.dps;
