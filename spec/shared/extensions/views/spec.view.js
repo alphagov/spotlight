@@ -191,30 +191,30 @@ function (View, Model, Backbone) {
         });
       });
 
+      describe('when all label are lower than 10000', function () {
+        it('should format with decimals if any label requires it', function () {
+          var formatter = View.prototype.numberListFormatter([0, 500, 1000, 1500]);
+          expect(formatter(500)).toBe('500');
+          expect(formatter(1000)).toBe('1,000');
+          expect(formatter(1500)).toBe('1,500');
+        });
+      });
+
       describe('when all label are lower than 1,000,000 and greater than 10,000', function () {
         it('should format all labels as thousands', function () {
           var formatter = View.prototype.numberListFormatter([0, 10000, 20000, 30000]);
+          expect(formatter(0)).toBe('0');
+          expect(formatter(10000)).toBe('10k');
           expect(formatter(20000)).toBe('20k');
-        });
-
-        it('should format with decimals if any label requires it', function () {
-          var formatter = View.prototype.numberListFormatter([0, 500, 1000, 1500]);
-          expect(formatter(500)).toBe('0.5k');
-          expect(formatter(1000)).toBe('1.0k');
-          expect(formatter(1500)).toBe('1.5k');
-        });
-
-        it('should format with decimals when the max value matches the magnitude', function () {
-          var formatter = View.prototype.numberListFormatter([0, 1000]);
-          expect(formatter(200)).toBe('0.2k');
-          expect(formatter(400)).toBe('0.4k');
-          expect(formatter(800)).toBe('0.8k');
-          expect(formatter(1000)).toBe('1.0k');
+          expect(formatter(30000)).toBe('30k');
         });
 
         it('should format with currency prefix if required', function () {
           var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
-          expect(formatter(200)).toBe('£0.2k');
+          expect(formatter(200)).toBe('£200');
+
+          formatter = View.prototype.numberListFormatter([0, 100000], 'gbp');
+          expect(formatter(20000)).toBe('£20k');
         });
 
       });

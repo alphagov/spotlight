@@ -355,6 +355,18 @@ define([
           });
 
         });
+
+        describe('with magnitude object provided', function () {
+
+          it('uses option object to format', function () {
+            expect(Formatters.format(5000, { type: 'number', magnitude: { value: 1000, suffix: 'k' } })).toEqual('5k');
+            expect(Formatters.format(5000, { type: 'number', magnitude: { value: 1000, suffix: 'k' }, pad: true })).toEqual('5.00k');
+            expect(Formatters.format(100, { type: 'number', magnitude: { value: 1000, suffix: 'k' } })).toEqual('0.1k');
+            expect(Formatters.format(100, { type: 'number', magnitude: { value: 1000, suffix: 'k' }, pad: true })).toEqual('0.10k');
+          });
+
+        });
+
       });
 
     });

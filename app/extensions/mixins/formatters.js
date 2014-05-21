@@ -102,16 +102,20 @@ define([
           minus = true;
         }
         if (options.magnitude) {
-          var parsed = utils.magnitude(value);
-          suffix = parsed.suffix;
-          value = parsed.value;
+          var magnitude;
+          if (_.isObject(options.magnitude)) {
+            magnitude = options.magnitude;
+          } else {
+            magnitude = utils.magnitude(value);
+          }
+          suffix = magnitude.suffix;
+          value = value / magnitude.value;
         }
         if (typeof options.sigfigs === 'number' && typeof options.dps === 'undefined') {
           options.dps = Math.min(Math.max(Math.ceil(options.sigfigs - 1 - utils.log10(value)), 0), options.sigfigs - 1);
         }
         if (typeof options.dps === 'number') {
-          var magnitude = Math.pow(10, options.dps);
-          value = Math.round(value * magnitude) / magnitude;
+          value = utils.roundToDps(value, options.dps);
         }
         if ((suffix || !options.magnitude) && options.pad && options.dps > 0) {
           options.fixed = options.dps;
@@ -171,23 +175,27 @@ define([
       return value.join('.');
     },
 
+    roundToDps: function (value, dps) {
+      var magnitude = Math.pow(10, dps);
+      return Math.round(value * magnitude) / magnitude;
+    },
+
     magnitude: function (value) {
       var magnitudes = {
         thousand: {value: 1e3, suffix: 'k', limit: 1e4 },
         million:  {value: 1e6, suffix: 'm' },
         billion:  {value: 1e9, suffix: 'bn' }
       };
-      var suffix, parsed = value;
+      var ret = {
+        suffix: '',
+        value: 1
+      };
       _.each(magnitudes, function (mag) {
         if (value >= (mag.limit || mag.value) * 0.9995) {
-          suffix = mag.suffix;
-          parsed = value / mag.value;
+          ret = mag;
         }
       });
-      return {
-        value: parsed,
-        suffix: suffix
-      };
+      return ret;
     },
 
     pad: function (value, places, str) {
@@ -208,19 +216,48 @@ define([
     }
   };
 
-  return {
-    format: function (value, formatter) {
-      if (typeof formatter === 'string') {
-        formatter = {
-          type: formatter
-        };
-      }
-      if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
-        return formatters[formatter.type](value, formatter || {});
-      } else {
-        return value;
-      }
+  var format = function (value, formatter) {
+    if (typeof formatter === 'string') {
+      formatter = {
+        type: formatter
+      };
     }
+    if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
+      return formatters[formatter.type](value, formatter || {});
+    } else {
+      return value;
+    }
+  };
+
+  var numberListFormatter = function (values, currency) {
+
+    var max = Math.max.apply(Math, values);
+    var magnitude = utils.magnitude(max);
+    var props = {
+      type: 'number',
+      pad: true
+    };
+    if (currency) {
+      props.type = 'currency';
+    }
+    if (magnitude.value === 1) {
+      magnitude = true;
+    }
+    if (_.all(values, function (v) { return v % magnitude.value === 0; })) {
+      props.dps = 0;
+    } else if (_.all(values, function (v) { return v % (magnitude.value / 10) === 0; })) {
+      props.dps = 1;
+    }
+    props.magnitude = magnitude;
+    return _.bind(function (value) {
+      return this.format(value, props);
+    }, this);
+
+  };
+
+  return {
+    format: format,
+    numberListFormatter: numberListFormatter
   };
 
 });

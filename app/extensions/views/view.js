@@ -136,26 +136,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       escape: 27
     },
 
-    currencies: {
-      gbp: { prefix: '£', suffix: '' }
-    },
-
-    /**
-     * Returns a number formatting function whose actual format depends on the values passed as argument.
-     * The formatter can then be used to format all the number in the series applying the same format, regardless of the
-     * individual values. This is especially useful for graph axes, where a homogeneous formatting of the labels is
-     * required.
-     *
-     * @param values
-     * @return {Function}
-     */
-    numberListFormatter: function (values, currency) {
-      var currencyEntry = (currency) ? this.currencies[currency] : null;
-      return function (value) {
-        return this.formatNumericLabel(value, currencyEntry);
-      }.bind(this);
-    },
-
     /**
      * Format a number according to its magnitude.
      *
