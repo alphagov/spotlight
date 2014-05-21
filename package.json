@@ -56,7 +56,7 @@
     "xtend": "2.2.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#378c46508d3a3393cd9d78be01f86b77e30c82a4",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#fbb7e23bc6fbc4cc35504cd20cbb490f491e3449",
     "supervisor": "0.5.7"
   }
 }

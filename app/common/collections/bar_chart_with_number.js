@@ -18,9 +18,8 @@ function (MatrixCollection, Collection, Group) {
 
     parse: function (response) {
 
-      var MAX_LENGTH = 5;
-      if (response.data.length > MAX_LENGTH) {
-        response.data = response.data.slice(-MAX_LENGTH);
+      if (response.data.length > this.constructor.MAX_LENGTH) {
+        response.data = response.data.slice(-this.constructor.MAX_LENGTH);
       }
 
       _.each(response.data, function (d) {
@@ -39,7 +38,7 @@ function (MatrixCollection, Collection, Group) {
       return collectionAttrs;
     }
 
-  });
+  }, { 'MAX_LENGTH': 6});
 
   return BarChartWithNumberCollection;
 });
