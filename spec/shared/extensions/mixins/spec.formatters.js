@@ -105,10 +105,10 @@ define([
         expect(Formatters.format(1234, 'duration')).toEqual('1,234ms');
       });
 
-      it('returns seconds to 1d.p. if passed unit option of `s`', function () {
-        expect(Formatters.format(567, { type: 'duration', unit: 's' })).toEqual('1s');
-        expect(Formatters.format(1234, { type: 'duration', unit: 's' })).toEqual('1s');
-        expect(Formatters.format(12345, { type: 'duration', unit: 's' })).toEqual('12s');
+      it('returns values to 3 sigfigs by default', function () {
+        expect(Formatters.format(567, { type: 'duration', unit: 's' })).toEqual('0.57s');
+        expect(Formatters.format(1234, { type: 'duration', unit: 's' })).toEqual('1.23s');
+        expect(Formatters.format(12345, { type: 'duration', unit: 's' })).toEqual('12.3s');
       });
 
       it('returns values rounded to correct number of decimal places', function () {
@@ -277,6 +277,15 @@ define([
       });
 
       describe('magnitude', function () {
+
+        describe('numbers < 1000', function () {
+
+          it('does not pad with additional zeros', function () {
+            expect(Formatters.format(11, { type: 'number', magnitude: true, pad: true  })).toEqual('11');
+          });
+
+        });
+
         describe('thousands', function () {
 
           it('adds "k" to numbers of a thousand that are greater than or equal to 10,000', function () {

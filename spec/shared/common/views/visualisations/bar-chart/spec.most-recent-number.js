@@ -121,7 +121,7 @@ define([
           var selection = new Model();
           selection.set('number_of_transactions', 1000000);
 
-          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1,000k');
+          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1m');
         });
 
         it('displays percentage values when percent option is set', function () {
