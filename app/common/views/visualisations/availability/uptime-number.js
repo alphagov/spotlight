@@ -12,17 +12,17 @@ function (require, ResponseTimeNumberView) {
       if (isNaN(uptimeFraction)) {
         return '<span class="no-data">(no data)</span>';
       } else {
-        return this.formatPercentage(uptimeFraction);
+        return this.format(uptimeFraction, 'percent');
       }
     },
 
     getValueSelected: function (selection) {
       var model = selection.selectedModel;
-      var uptimeFraction = this.formatPercentage(model.get('uptimeFraction'));
+      var uptimeFraction = this.format(model.get('uptimeFraction'), 'percent');
       if (uptimeFraction === null) {
         return '<span class="no-data">(no data)</span>';
       } else {
-        return this.formatPercentage(uptimeFraction);
+        return this.format(uptimeFraction, 'percent');
       }
     }
   });

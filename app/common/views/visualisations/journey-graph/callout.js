@@ -71,7 +71,7 @@ function (Callout) {
         '</dd>',
         '<dt>Percentage relative to start:</dt>',
         '<dd>',
-        this.formatPercentage(val / max),
+        this.format(val / max, 'percent'),
         '</dd>'
       ].join(''));
 

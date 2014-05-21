@@ -176,23 +176,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       return this.format(value, props);
     },
 
-    formatPercentage: function (fraction, numDecimals, showSigns) {
-      var value = this.format(fraction, {
-        type: 'percent',
-        dps: numDecimals,
-        fixed: numDecimals
-      });
-      if (showSigns) {
-        if (fraction > 0) {
-          value = '+' + value;
-        } else if (fraction < 0) {
-          // replace hyphens with unicode minus symbol
-          value = value.replace('-', '−');
-        }
-      }
-      return value;
-    },
-
     formatPeriod: function (model, period) {
       var start = model.get('_start_at') || model.get('start_at');
       var end = model.get('_end_at') || model.get('end_at');

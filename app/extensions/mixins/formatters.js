@@ -72,7 +72,16 @@ define([
         dps: 0,
         normalisation: 1.0
       });
-      return formatters.number(value * 100 / options.normalisation, options) + '%';
+      var output = formatters.number(value * 100 / options.normalisation, options) + '%';
+      if (options.showSigns) {
+        if (value > 0) {
+          output = '+' + output;
+        } else if (value < 0) {
+          // replace hyphens with unicode minus symbol
+          output = output.replace('-', '−');
+        }
+      }
+      return output;
     },
 
     integer: function (value, options) {

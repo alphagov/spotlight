@@ -89,7 +89,7 @@ function (Component, Pivot) {
         this.graph.currency
       );
       if (this.showPercentage) {
-        value += ' (' + this.formatPercentage(model.get('fraction')) + ')';
+        value += ' (' + this.format(model.get('fraction'), 'percent') + ')';
       }
 
       var detail = $('<dl>').html([

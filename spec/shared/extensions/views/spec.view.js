@@ -370,35 +370,6 @@ function (View, Model, Backbone) {
       });
     });
 
-    describe('formatPercentage', function () {
-      var view = new View();
-      var format = view.formatPercentage.bind(view);
-
-      it('formats a number as percentage string with no decimals', function () {
-        expect(format(0.011)).toEqual('1%');
-        expect(format(1)).toEqual('100%');
-      });
-
-      it('formats a number as percentage string with set number of decimals', function () {
-        expect(format(0.011, 2)).toEqual('1.10%');
-        expect(format(1, 2)).toEqual('100.00%');
-      });
-
-      it('formats signed input with the correct sign', function () {
-        expect(format(0.011, 2, false)).toEqual('1.10%');
-        expect(format(1, 2, true)).toEqual('+100.00%');
-        expect(format(-1, 0, true)).toEqual('−100%');
-        expect(format(0, 3, true)).toEqual('0%');
-      });
-
-      it('does not try to format invalid inputs', function () {
-        expect(format(null)).toBe(null);
-        expect(format(undefined)).toBe(undefined);
-        expect(isNaN(format(NaN))).toBe(true);
-        expect(format('foo')).toBe('foo');
-      });
-    });
-
     describe('formatPeriod', function () {
       var view = new View();
 
