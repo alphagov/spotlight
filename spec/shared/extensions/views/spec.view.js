@@ -243,6 +243,12 @@ function (View, Model, Backbone) {
         });
       });
 
+      it('does not overwrite options (bugfix)', function () {
+        var fn = View.prototype.numberListFormatter([0, 5000000, 10000000, 15000000], 'gbp');
+        expect(fn(0)).toEqual('£0');
+        expect(fn(5000000)).toEqual('£5m');
+      });
+
     });
 
     describe('formatNumericLabel', function () {

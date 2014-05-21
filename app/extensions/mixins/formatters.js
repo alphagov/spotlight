@@ -259,7 +259,7 @@ define([
     }
     props.magnitude = magnitude;
     return _.bind(function (value) {
-      return this.format(value, props);
+      return this.format(value, _.clone(props));
     }, this);
 
   };
