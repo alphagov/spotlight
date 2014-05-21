@@ -114,9 +114,8 @@ function (View, SparklineView, template) {
     formatDate: function (d) {
       return [
         d.format('ha'),
-        ' ',
         d.format('D MMMM YYYY')
-      ].join('');
+      ].join(' ');
     },
 
     getValue: function () {
