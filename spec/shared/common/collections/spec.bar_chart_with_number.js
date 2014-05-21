@@ -88,16 +88,16 @@ function (BarChartWithNumberCollection) {
 
     });
 
-    it('should only use the last 5 elements from longer datasets', function () {
+    it('should only use the last N elements from longer datasets', function () {
       var collection = new BarChartWithNumberCollection({}, {});
       collection.defaultValueAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
       collection.defaultCollectionAttrs = jasmine.createSpy().andCallFake(function () { return {}; });
 
       var responseCopy = _.clone(mockResponse, true);
-      responseCopy.data = responseCopy.data.concat(responseCopy.data);
+      responseCopy.data = responseCopy.data.concat(responseCopy.data).concat(responseCopy.data[0]);
       var result = collection.parse(responseCopy);
 
-      expect(result.values.length).toEqual(5);
+      expect(result.values.length).toEqual(collection.constructor.MAX_LENGTH);
       expect(result.values[0].get('_start_at')).toEqual('2012-10-01T00:00:00+00:00');
     });
 
