@@ -163,7 +163,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       header.after(datePickerHtml);
 
       // Set up up the date options lists.
-      var optionsStart = this.collection.getMoment('2012-06-01');
+      var optionsStart = this.collection.getMoment('2012-04-01');
       var optionsEnd = this.collection.getMoment();
       var dateOptions = '';
       var loopStart = this.collection.getMoment(optionsEnd);
