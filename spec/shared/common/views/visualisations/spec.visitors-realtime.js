@@ -1,13 +1,14 @@
 define([
   'common/views/visualisations/visitors-realtime',
-  'extensions/collections/collection'
+  'common/collections/list',
+  'extensions/models/model'
 ],
 function (VisitorsRealtimeView, Collection) {
   describe('VisitorsRealtimeView', function () {
 
     var collection, view;
     beforeEach(function () {
-      collection = new Collection();
+      collection = new Collection([], { title: 'foo', id: 'bar' });
       var data = [
         {
           '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
@@ -18,11 +19,7 @@ function (VisitorsRealtimeView, Collection) {
           'unique_visitors': 100
         }
       ];
-      collection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection(data)
-      } ]);
+      collection.reset({ data: data }, { parse: true });
 
       view = new VisitorsRealtimeView({
         collection: collection
@@ -42,14 +39,10 @@ function (VisitorsRealtimeView, Collection) {
       it('discards data that is more than 24 hours old', function () {
 
         var testView, testCollection;
-        testCollection = new Collection();
+        testCollection = new Collection([], { title: 'foo', id: 'bar' });
         var testData = [
           {
-            '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
-            'unique_visitors': 3
-          },
-          {
-            '_timestamp': collection.getMoment('2002-03-01T00:03:00+00:00'),
+            '_timestamp': collection.getMoment('2002-03-02T01:06:00+00:00'),
             'unique_visitors': 1
           },
           {
@@ -57,15 +50,15 @@ function (VisitorsRealtimeView, Collection) {
             'unique_visitors': 1
           },
           {
-            '_timestamp': collection.getMoment('2002-03-02T01:06:00+00:00'),
+            '_timestamp': collection.getMoment('2002-03-01T01:07:00+00:00'),
             'unique_visitors': 1
+          },
+          {
+            '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
+            'unique_visitors': 3
           }
         ];
-        testCollection.reset([ {
-          id: 'test',
-          title: 'test',
-          values: new Collection(testData)
-        } ]);
+        testCollection.reset({ data: testData }, { parse: true });
         testView = new VisitorsRealtimeView({
           collection: testCollection
         });
@@ -75,6 +68,10 @@ function (VisitorsRealtimeView, Collection) {
 
         jasmine.renderView(testView, function () {
           expect(testCollection.first().get('values').length).toEqual(3);
+          // The collection should not include the oldest timestamp
+          expect(testCollection.first().get('values').some(function (model) {
+            return model.get('_timestamp').format() === testData[3]._timestamp.format();
+          })).toEqual(false);
         });
       });
 
@@ -142,7 +139,7 @@ function (VisitorsRealtimeView, Collection) {
     it('renders correct labels for data near now', function () {
 
       var testView, testCollection;
-      testCollection = new Collection();
+      testCollection = new Collection([], { title: 'foo', id: 'bar' });
 
       var testData = [
         {
@@ -154,11 +151,7 @@ function (VisitorsRealtimeView, Collection) {
           'unique_visitors': 5
         }
       ];
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection(testData)
-      } ]);
+      testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         collection: testCollection
       });
@@ -175,7 +168,7 @@ function (VisitorsRealtimeView, Collection) {
     it('renders singular labels if there is just one user', function () {
 
       var testView, testCollection;
-      testCollection = new Collection();
+      testCollection = new Collection([], { title: 'foo', id: 'bar' });
       var testData = [
         {
           '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
@@ -186,11 +179,7 @@ function (VisitorsRealtimeView, Collection) {
           'unique_visitors': 1
         }
       ];
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection(testData)
-      } ]);
+      testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         collection: testCollection
       });
@@ -206,18 +195,14 @@ function (VisitorsRealtimeView, Collection) {
     it('does not render a sparkline if there is only one data item', function () {
 
       var testView, testCollection;
-      testCollection = new Collection();
+      testCollection = new Collection([], { title: 'foo', id: 'bar' });
       var testData = [
         {
           '_timestamp': collection.getMoment('2002-03-01T00:00:00+00:00'),
           'unique_visitors': 3
         }
       ];
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection(testData)
-      } ]);
+      testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         collection: testCollection
       });

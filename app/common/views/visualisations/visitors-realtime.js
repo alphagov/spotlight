@@ -25,11 +25,11 @@ function (View, SparklineView, template) {
 
       // If we have more than 24 hours' worth of data, crop the excess.
       if (this.collection && this.collection.length && this.collection.first().get('values').length) {
-        var latestDate = this.collection.first().get('values').first().get('_timestamp');
-        var startDate = this.collection.first().get('values').last().get('_timestamp');
-        if (startDate.diff(latestDate, 'hours') > 24) {
+        var latestDate = this.collection.first().get('values').last().get('_timestamp');
+        var startDate = this.collection.first().get('values').first().get('_timestamp');
+        if (latestDate.diff(startDate, 'hours') > 24) {
           var values = this.collection.first().get('values').filter(function (i) {
-            return (i.get('_timestamp').diff(latestDate, 'hours') <= 24);
+            return latestDate.diff(i.get('_timestamp'), 'hours') <= 24;
           });
           this.collection.first().get('values').reset(values);
         }
