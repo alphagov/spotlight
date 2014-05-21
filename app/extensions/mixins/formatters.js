@@ -94,6 +94,9 @@ define([
 
       if (!isNaN(Number(value))) {
         value = Number(value);
+        if (value === 0) {
+          return '0';
+        }
         if (value < 0) {
           value = Math.abs(value);
           minus = true;

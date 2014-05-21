@@ -187,6 +187,12 @@ define([
 
     describe('number', function () {
 
+      it('always returns "0" for zero', function () {
+        expect(Formatters.format(0, 'number')).toEqual('0');
+        expect(Formatters.format(0, { type: 'number', pad: true })).toEqual('0');
+        expect(Formatters.format(0, { type: 'number', dps: 5, fixed: 5, pad: true })).toEqual('0');
+      });
+
       it('rounds numbers < 10 to 2 dp by default', function () {
         expect(Formatters.format(0.1234, 'number')).toEqual('0.12');
         expect(Formatters.format(1.1234, 'number')).toEqual('1.12');

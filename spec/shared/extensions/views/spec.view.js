@@ -388,7 +388,7 @@ function (View, Model, Backbone) {
         expect(format(0.011, 2, false)).toEqual('1.10%');
         expect(format(1, 2, true)).toEqual('+100.00%');
         expect(format(-1, 0, true)).toEqual('−100%');
-        expect(format(0, 3, true)).toEqual('0.000%');
+        expect(format(0, 3, true)).toEqual('0%');
       });
 
       it('does not try to format invalid inputs', function () {
