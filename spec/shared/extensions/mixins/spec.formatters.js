@@ -157,14 +157,18 @@ define([
 
     describe('percent', function () {
 
-      it('returns formatted number to 0d.ps with percent symbol', function () {
-        expect(Formatters.format(0.567, 'percent')).toEqual('57%');
+      it('returns formatted number to 1d.p with percent symbol', function () {
+        expect(Formatters.format(0.5678, 'percent')).toEqual('56.8%');
+      });
+
+      it('returns 0% and 100% to 0dps', function () {
+        expect(Formatters.format(0, 'percent')).toEqual('0%');
         expect(Formatters.format(1, 'percent')).toEqual('100%');
       });
 
       it('returns formatted number with percent symbol to dps specified', function () {
-        expect(Formatters.format(0.567, { type: 'percent', dps: 1 })).toEqual('56.7%');
-        expect(Formatters.format(1, { type: 'percent', dps: 1 })).toEqual('100%');
+        expect(Formatters.format(0.5678, { type: 'percent', dps: 2 })).toEqual('56.78%');
+        expect(Formatters.format(1, { type: 'percent', dps: 2 })).toEqual('100%');
       });
 
       it('returns formatted number normalised to the given value', function () {

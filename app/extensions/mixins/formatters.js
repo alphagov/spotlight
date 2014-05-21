@@ -69,10 +69,14 @@ define([
         return value;
       }
       _.defaults(options, {
-        dps: 0,
+        dps: 1,
         normalisation: 1.0
       });
-      var output = formatters.number(value * 100 / options.normalisation, options) + '%';
+      value = value * 100 / options.normalisation;
+      if (value === 0 || value === 100) {
+        options.dps = 0;
+      }
+      var output = formatters.number(value, options) + '%';
       if (options.showSigns) {
         if (value > 0) {
           output = '+' + output;
