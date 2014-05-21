@@ -72,6 +72,43 @@
       }
     },
     {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
+      "data-group": "tier-2-visit-visa",
+      "data-type": "devices",
+      "category": "deviceCategory",
+      "period": "week",
+      "value-attribute": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "y": [
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          },
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "service-availability",
       "module-type": "tab",
       "title": "Service availability",
