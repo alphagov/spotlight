@@ -86,7 +86,7 @@ module.exports = {
 
     app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
 
-    app.use('/performance/', require('./process_request'));
+    app.get('/performance/*', require('./process_request'));
 
     return app;
   }
