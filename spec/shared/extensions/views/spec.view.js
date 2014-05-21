@@ -317,8 +317,8 @@ function (View, Model, Backbone) {
       });
 
       it('should display numbers from 999500000 and above as fractions of 1b', function () {
-        expect(formatNumericLabel(1000000000)).toBe('1.00b');
-        expect(formatNumericLabel(25250000000)).toBe('25.3b');
+        expect(formatNumericLabel(1000000000)).toBe('1.00bn');
+        expect(formatNumericLabel(25250000000)).toBe('25.3bn');
       });
 
       it('should format negative numbers', function () {
@@ -338,7 +338,7 @@ function (View, Model, Backbone) {
         expect(formatNumericLabel(12.34, 'gbp')).toBe('£12');
         expect(formatNumericLabel(777, 'gbp')).toBe('£777');
         expect(formatNumericLabel(995001, 'gbp')).toBe('£995k');
-        expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.00b');
+        expect(formatNumericLabel(1000000000, 'gbp')).toBe('£1.00bn');
       });
 
       describe('generative tests', function () {

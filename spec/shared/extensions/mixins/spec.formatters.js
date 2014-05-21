@@ -328,15 +328,15 @@ define([
           });
 
           it('rounds to 3 significant figures by default', function () {
-            expect(Formatters.format(1111000000, { type: 'number', magnitude: true  })).toEqual('1.11b');
-            expect(Formatters.format(11110000000, { type: 'number', magnitude: true  })).toEqual('11.1b');
-            expect(Formatters.format(111100000000, { type: 'number', magnitude: true  })).toEqual('111b');
+            expect(Formatters.format(1111000000, { type: 'number', magnitude: true  })).toEqual('1.11bn');
+            expect(Formatters.format(11110000000, { type: 'number', magnitude: true  })).toEqual('11.1bn');
+            expect(Formatters.format(111100000000, { type: 'number', magnitude: true  })).toEqual('111bn');
           });
 
           it('pads out decimals with zeros if required', function () {
-            expect(Formatters.format(1000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00b');
-            expect(Formatters.format(10000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0b');
-            expect(Formatters.format(100000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100b');
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00bn');
+            expect(Formatters.format(10000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0bn');
+            expect(Formatters.format(100000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100bn');
           });
 
         });
