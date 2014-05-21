@@ -378,4 +378,8 @@ module.exports = function (grunt) {
     'concurrent'
   ]);
 
+  grunt.registerTask('heroku:development', [
+    'build:development'
+  ]);
+
 };
