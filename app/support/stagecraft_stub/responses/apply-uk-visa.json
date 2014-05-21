@@ -62,7 +62,7 @@
       "axes": {
         "y": [
           {"journeyId": "product", "label": "Apply now", "format": "integer"},
-          {"journeyId": "start", "label": "Confirm start", "format": "integer"},
+          {"journeyId": "start", "label": "Start", "format": "integer"},
           {"journeyId": "application", "label": "Application", "format": "integer"},
           {"journeyId": "documents", "label": "Documents", "format": "integer"},
           {"journeyId": "declaration", "label": "Declaration", "format": "integer"},
