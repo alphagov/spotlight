@@ -101,7 +101,7 @@ function (Graph, LineLabel) {
         };
       } else {
         tooltipFormat = function (d) {
-          return this.formatNumericLabel(d);
+          return this.format(d, { type: 'number', magnitude: true, pad: true });
         };
       }
 

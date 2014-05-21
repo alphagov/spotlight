@@ -67,7 +67,7 @@ function (Callout) {
       var body = $('<dl>').html([
         '<dt>Number of users:</dt>',
         '<dd>',
-        this.formatNumericLabel(val),
+        this.format(val, { type: 'number', magnitude: true, pad: true }),
         '</dd>',
         '<dt>Percentage relative to start:</dt>',
         '<dd>',

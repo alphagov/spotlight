@@ -54,7 +54,7 @@ function (SingleStatView, Mustache) {
       if (this.isPercent) {
         value = this.format(value, 'percent');
       } else {
-        value = this.formatNumericLabel(value);
+        value = this.format(value, { type: 'number', magnitude: true, pad: true });
       }
       if (stat.format) {
         return Mustache.render(

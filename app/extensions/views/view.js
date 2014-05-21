@@ -136,46 +136,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       escape: 27
     },
 
-    /**
-     * Format a number according to its magnitude.
-     *
-     * Numbers are rendered with a suffix indicating the magnitude
-     * and with at least 3 total digits.
-     *
-     * Examples:
-     *
-     * formatNumericLabel(    123) -> 123
-     * formatNumericLabel(   1234) -> 1.23k
-     * formatNumericLabel(  12345) -> 12.3k
-     * formatNumericLabel( 123456) -> 123k
-     * formatNumericLabel(1234567) -> 1.23m
-     * formatNumericLabel(1234567890) -> 1.23b
-     *
-     * This function is more complicated than one would think it need be for
-     * two reasons:
-     * - numbers in javascript are represented as IEEE 745 floating point, and
-     *   therefore they have approximation issues that make unpredictable the
-     *   rounding of limit numbers; this could be ignored, making the algorithm
-     *   simpler, if that level of accuracy is not required
-     * - numbers below 1000 show only meaningful decimal digits, while numbers
-     *   above 1000 always show the decimal digits; ex: 1 -> 1; 1000 -> 1.00k
-     *
-     * If we can relax these two reasons, the algorithm can become much simpler.
-     * See for example View.prototype.format for a simpler alternative.
-     */
-    formatNumericLabel: function (value, currency) {
-      var props = {
-        type: 'number',
-        magnitude: true,
-        pad: true
-      };
-      if (currency) {
-        props.type = 'currency';
-        props.symbol = currency.symbol;
-      }
-      return this.format(value, props);
-    },
-
     formatPeriod: function (model, period) {
       var start = model.get('_start_at') || model.get('start_at');
       var end = model.get('_end_at') || model.get('end_at');

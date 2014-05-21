@@ -83,11 +83,9 @@ function (Component, Pivot) {
     renderContent: function (el, group, groupIndex, model) {
 
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
+      var format = this.graph.currency ? 'currency' : 'integer';
+      var value = this.format(model.get(this.graph.valueAttr), { type: format, magnitude: true, pad: true });
 
-      var value = this.formatNumericLabel(
-        Math.floor(model.get(this.graph.valueAttr)),
-        this.graph.currency
-      );
       if (this.showPercentage) {
         value += ' (' + this.format(model.get('fraction'), 'percent') + ')';
       }

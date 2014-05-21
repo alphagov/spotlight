@@ -8,7 +8,7 @@ function (SingleStatView) {
     labelPrefix: '',
 
     formatValue: function (value) {
-      return this.formatNumericLabel(value);
+      return this.format(value, { type: 'number', magnitude: true, pad: true });
     },
 
     getValue: function () {

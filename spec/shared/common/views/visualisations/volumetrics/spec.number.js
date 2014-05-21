@@ -18,17 +18,17 @@ function (VolumetricsNumberView, View, Collection, Model) {
     });
 
     describe('formatValue', function () {
-      it('should call the view formatNumericLabel method with the value', function () {
-        spyOn(View.prototype, 'formatNumericLabel').andReturn('456');
+      it('should call the view format method with the value', function () {
+        spyOn(View.prototype, 'format').andReturn('456');
         var returnValue;
         returnValue = subject.formatValue('123');
-        expect(View.prototype.formatNumericLabel).toHaveBeenCalledWith('123');
+        expect(View.prototype.format).toHaveBeenCalledWith('123', { type: 'number', magnitude: true, pad: true });
         expect(returnValue).toEqual('456');
       });
     });
 
     describe('getValue', function () {
-      it('should call the view formatNumericLabel method with the appropriate collection model value', function () {
+      it('should call the view format method with the appropriate collection model value', function () {
         subject.valueAttr = 'someAttr';
         var fakeModel = {
           get: function (key) {
@@ -38,10 +38,10 @@ function (VolumetricsNumberView, View, Collection, Model) {
           }
         };
         spyOn(collection, 'at').andReturn(fakeModel);
-        spyOn(View.prototype, 'formatNumericLabel').andReturn('456');
+        spyOn(VolumetricsNumberView.prototype, 'formatValue').andReturn('456');
         var returnValue;
         returnValue = subject.getValue();
-        expect(View.prototype.formatNumericLabel).toHaveBeenCalledWith('123');
+        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith('123');
         expect(returnValue).toEqual('456');
       });
     });
@@ -110,7 +110,7 @@ function (VolumetricsNumberView, View, Collection, Model) {
     });
 
     describe('getValueSelected', function () {
-      it('should call the view formatNumericLabel method with the appropriate selectedModel attribute', function () {
+      it('should call the view format method with the appropriate selectedModel attribute', function () {
         subject.selectionValueAttr = 'someAttr';
         var fakeSelection = {
           selectedModel: {
@@ -121,10 +121,10 @@ function (VolumetricsNumberView, View, Collection, Model) {
             }
           }
         };
-        spyOn(View.prototype, 'formatNumericLabel').andReturn('456');
+        spyOn(View.prototype, 'format').andReturn('456');
         var returnValue;
         returnValue = subject.getValueSelected(fakeSelection);
-        expect(View.prototype.formatNumericLabel).toHaveBeenCalledWith('789');
+        expect(View.prototype.format).toHaveBeenCalledWith('789', { type : 'number', magnitude : true, pad : true });
         expect(returnValue).toEqual('456');
       });
     });

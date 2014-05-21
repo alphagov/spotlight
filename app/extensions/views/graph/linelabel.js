@@ -99,7 +99,7 @@ function (Component) {
       }
 
       if (value !== null) {
-        data.push(this.formatNumericLabel(value));
+        data.push(this.format(value, { type: 'number', magnitude: true, pad: true }));
       }
       if (percentage) {
         if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
