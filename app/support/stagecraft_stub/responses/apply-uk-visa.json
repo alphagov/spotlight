@@ -4,15 +4,16 @@
   "dashboard-type": "transaction",
   "published": false,
   "strapline": "Dashboard",
-  "title": "Apply for a UK visa",
+  "title": "Visa applications",
   "department": {
     "title": "Home Office",
     "abbr": "Home Office"
   },
+  "description": "Figures for the service to make a visa or immigration application. Figures shown only include applications made using our new online service. This service is in private Beta for a small number of users extending their 'Tier 2' visa using our priority service.",
   "relatedPages": {
     "transaction": {
-      "title": "Apply for a UK visa",
-      "url" : "https://www.gov.uk/apply-uk-visa"
+      "title": "Visa applications",
+      "url" : "https://www.gov.uk/tier-2-priority-applications"
     }
   },
   "modules": [
