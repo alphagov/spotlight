@@ -20,7 +20,8 @@ function (Table, HideShow) {
         $reveal: this.$table,
         $el: this.$toggleContainer,
         showLabel: label,
-        hideLabel: label
+        hideLabel: label,
+        isModule: (this.model.get('page-type') === 'module')
       });
     },
 
@@ -29,7 +30,9 @@ function (Table, HideShow) {
     floatHeaders: function () {
       this.toggleTable.show();
       Table.prototype.floatHeaders.apply(this, arguments);
-      this.toggleTable.hide();
+      if (!this.toggleTable.isModule) {
+        this.toggleTable.hide();
+      }
     },
 
     remove: function () {

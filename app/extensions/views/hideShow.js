@@ -8,6 +8,7 @@ define([
       this.hideLabel = options.hideLabel;
       this.$reveal = options.$reveal;
       this.className = options.className || '';
+      this.isModule = options.isModule;
 
       View.prototype.initialize.apply(this, arguments);
 
@@ -24,7 +25,9 @@ define([
         'href': '#',
         'text': this.showLabel
       });
-      this.$handle.insertBefore(this.$reveal);
+      if (!this.isModule) {
+        this.$handle.insertBefore(this.$reveal);
+      }
     },
 
     showHide: function (e) {

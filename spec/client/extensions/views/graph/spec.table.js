@@ -38,5 +38,31 @@ function (GraphTable, HideShowView, Model, Collection) {
 
     });
 
+    describe('floatHeaders', function () {
+
+      it('shows the table if the page type is a module', function () {
+        var shownTable = new GraphTable({
+          model: new Model({
+            'page-type': 'module'
+          }),
+          collection: new Collection()
+        });
+        shownTable.prepareTable();
+        shownTable.floatHeaders();
+        expect(shownTable.toggleTable.$reveal).toHaveCss({display: 'table'});
+      });
+
+      it('hides the table if the page type is not a module', function () {
+        var hiddenTable = new GraphTable({
+          model: new Model({}),
+          collection: new Collection()
+        });
+        hiddenTable.prepareTable();
+        hiddenTable.floatHeaders();
+        expect(hiddenTable.toggleTable.$reveal).toHaveCss({display: 'none'});
+      });
+
+    });
+
   });
 });
