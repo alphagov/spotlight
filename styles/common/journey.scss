@@ -74,14 +74,12 @@
     }
 
     .arrow {
+      @include scale(2, 1);
       height:20px;
       margin-top:-40px;
       margin-left: -1%;
       position:absolute;
       overflow:hidden;
-              transform: scale(2, 1); // FIXME: use the scale mixin from the
-          -ms-transform: scale(2, 1); //        frontend toolkit when it's released:
-      -webkit-transform: scale(2, 1); //        https://github.com/alphagov/govuk_frontend_toolkit/pull/106
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
       color: $grey-4;
       font-size:23px;
