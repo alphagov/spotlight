@@ -30,7 +30,8 @@ describe('processRequest middleware', function () {
         raw: ''
       },
       originalUrl: 'test url',
-      route: {}
+      route: {},
+      url: '/performance/carers-allowance'
     };
     res = {
       status: jasmine.createSpy(),
@@ -51,6 +52,11 @@ describe('processRequest middleware', function () {
       processRequest(req, res);
       expect(processRequest.getStagecraftApiClient).toHaveBeenCalled();
       expect(client.urlRoot).toEqual('http://localhost:1234/stagecraft-stub');
+    });
+
+    it('removes the /performance part of the slug when setting the path', function () {
+      processRequest(req, res);
+      expect(client.setPath).toHaveBeenCalledWith('/carers-allowance');
     });
 
     it('renders content when stagecraft data was received successfully', function () {

@@ -34,7 +34,7 @@ var setup = function (req, res) {
     setup.renderContent(req, res, model);
   });
 
-  model.setPath(req.url);
+  model.setPath(req.url.replace('/performance', ''));
 };
 
 setup.getStagecraftApiClient = function () {

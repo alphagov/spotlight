@@ -62,6 +62,13 @@ module.exports = {
 
     });
 
+    // If environment variables are set for basic authentication, protect
+    // everything under /performance. We don't want to protect things like
+    // /stagecraft-stub.
+    if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
+      app.get('/performance*', express.basicAuth(process.env.BASIC_AUTH_USER, process.env.BASIC_AUTH_PASS));
+    }
+
     app.get('/', function (req, res) {
       res.redirect(301, '/performance');
     });
@@ -72,21 +79,13 @@ module.exports = {
 
     app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
 
-    // Every route below this block is protected by basic authentication
-    // if the relevant environment variables are set.
-    if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
-      app.use(express.basicAuth(function (user, pass) {
-        return (user === process.env.BASIC_AUTH_USER && pass === process.env.BASIC_AUTH_PASS);
-      }));
-    }
-
     app.get('/performance', require('./server/controllers/homepage'));
 
     app.get('/performance/services', require('./server/controllers/services'));
 
     app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
 
-    app.use('/performance/', require('./process_request'));
+    app.get('/performance/*', require('./process_request'));
 
     return app;
   }
