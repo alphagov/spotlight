@@ -24,6 +24,16 @@
   <div class="visualisation"></div>
 <% } %>
 
+<% if (model.get('page-type') === 'module') { %>
+<aside class="more-info" role="complementary">
+  <h2>Download the data</h2>
+  <ul>
+    <li><a href="<%= jsonUrl %>">JSON</a></li>
+    <li><a href="<%= fallbackUrl %>">PNG</a></li>
+  </ul>
+</aside>
+<% } %>
+
 <% if (model.get('info') && model.get('page-type') === 'module') { %>
 <aside class="more-info" role="complementary">
   <h2>About the data</h2>

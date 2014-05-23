@@ -57,11 +57,15 @@ function (View, template) {
     },
 
     templateContext: function () {
+      if (this.collection) {
+        this.jsonUrl = this.collection.url();
+      }
       return _.extend(
         View.prototype.templateContext.call(this),
         {
           fallback: isServer && this.requiresSvg,
-          fallbackUrl: this.url + '.png'
+          fallbackUrl: this.url + '.png',
+          jsonUrl: this.jsonUrl
         }
       );
     }
