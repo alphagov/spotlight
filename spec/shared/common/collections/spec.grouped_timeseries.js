@@ -127,6 +127,61 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
       }
     ];
     var expectedWithTotal = totalSeries.concat(expected);
+    var expectedWithPercentages = [
+      {
+        'id': 'abc',
+        'title': 'ABC',
+        'values': [
+          {
+            '_end_at': '2012-09-01T00:00:00+00:00',
+            'some:value': 0.25,
+            '_start_at': '2012-08-01T00:00:00+00:00',
+            'some:value_original': 3
+          },
+          {
+            '_end_at': '2012-10-01T00:00:00+00:00',
+            'some:value': 0.2857142857142857,
+            '_start_at': '2012-09-01T00:00:00+00:00',
+            'some:value_original': 4,
+          }
+        ]
+      },
+      {
+        'id': 'def',
+        'title': 'DEF',
+        'values': [
+          {
+            '_end_at': '2012-09-01T00:00:00+00:00',
+            'some:value': 0.5,
+            '_start_at': '2012-08-01T00:00:00+00:00',
+            'some:value_original': 6
+          },
+          {
+            '_end_at': '2012-10-01T00:00:00+00:00',
+            'some:value': 0.7142857142857143,
+            '_start_at': '2012-09-01T00:00:00+00:00',
+            'some:value_original': 10
+          }
+        ]
+      },
+      {
+        'id': 'xyz',
+        'title': 'XYZ',
+        'values': [
+          {
+            '_end_at': '2012-09-01T00:00:00+00:00',
+            'some:value': 0.25,
+            '_start_at': '2012-08-01T00:00:00+00:00',
+            'some:value_original': 3
+          },
+          {
+            '_end_at': '2012-10-01T00:00:00+00:00',
+            '_start_at': '2012-09-01T00:00:00+00:00',
+            'some:value': null,
+          }
+        ]
+      }
+    ];
 
     var collection;
     beforeEach(function () {
@@ -364,6 +419,47 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             }
           ]
         });
+      });
+
+      it('calculates percentages if specified', function () {
+        var totalCollection = new GroupedTimeseries([], {
+          'data-type': 'some-type',
+          'data-group': 'some-group',
+          valueAttr: 'some:value',
+          category: 'some-category',
+          period: 'month',
+          axes: {
+            x: {
+              label: 'Date',
+              key: '_start_at'
+            },
+            y: [
+              {
+                label: 'ABC',
+                categoryId: 'abc',
+                key: 'value:sum'
+              },
+              {
+                label: 'DEF',
+                categoryId: 'def',
+                key: 'value:sum'
+              },
+              {
+                label: 'XYZ',
+                categoryId: 'xyz',
+                key: 'value:sum'
+              }
+            ]
+          },
+          'use_stack': false,
+          'one-hundred-percent': true
+        });
+        totalCollection.options.isOneHundredPercent = true;
+        totalCollection.options.useStack = false;
+
+        var parsed = totalCollection.parse(response);
+        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithPercentages));
+
       });
 
     });
