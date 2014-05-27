@@ -1,13 +1,9 @@
-var fs = require('fs'),
+var fs = require('graceful-fs'),
   _ = require('lodash');
 
-function readFile(path) {
+function readFile(path, callback) {
   var filePath = 'app/support/stagecraft_stub/responses/' + path + '.json';
-  if (fs.existsSync(filePath)) {
-    return fs.readFileSync(filePath);
-  } else {
-    return false;
-  }
+  fs.readFile(filePath, callback);
 }
 
 function parseParent(content, slug) {
@@ -52,23 +48,25 @@ function send404(res, filePath) {
 
 module.exports =  function (req, res) {
   var paramPath = req.params[0];
-  var content = readFile(paramPath);
-  if (content) {
-    res.send(JSON.parse(content));
-  } else {
-    paramPath = paramPath.split('/');
-    var slug = paramPath.pop();
-    var parentPath = paramPath.join('/');
-    var parentContent = readFile(parentPath);
-    if (parentContent) {
-      var moduleData = parseParent(parentContent, slug);
-      if (moduleData) {
-        res.send(moduleData);
-      } else {
-        send404(res, paramPath);
-      }
+  var content = readFile(paramPath, function (err, content) {
+    if (err) {
+      paramPath = paramPath.split('/');
+      var slug = paramPath.pop();
+      var parentPath = paramPath.join('/');
+      readFile(parentPath, function (err, parentContent) {
+        if (err) {
+          send404(res, paramPath);
+        } else {
+          var moduleData = parseParent(parentContent, slug);
+          if (moduleData) {
+            res.send(moduleData);
+          } else {
+            send404(res, paramPath);
+          }
+        }
+      });
     } else {
-      send404(res, paramPath);
+      res.send(JSON.parse(content));
     }
-  }
+  });
 };
