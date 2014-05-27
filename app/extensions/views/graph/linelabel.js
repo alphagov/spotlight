@@ -255,12 +255,15 @@ function (Component) {
             selected = this.collection.getCurrentSelection(),
             value = 0;
 
+        if (this.showValuesPercentage && this.isLineGraph) {
+          attr += '_original';
+        }
+
         if (selected.selectedModel) {
           value = this.collection.at(groupIndex, selected.selectedModelIndex).get(attr);
         } else {
           value = this.collection.sum(attr, groupIndex);
         }
-
 
         if (this.showValuesPercentage && value) {
           var fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex);
