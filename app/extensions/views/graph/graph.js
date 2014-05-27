@@ -164,7 +164,11 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       var yScale = this.d3.scale.linear();
       if (max) {
         var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
-        yScale.domain(tickValues.extent);
+        if (this.isOneHundredPercent()) {
+          yScale.domain([0, 1]);
+        } else {
+          yScale.domain(tickValues.extent);
+        }
         yScale.tickValueList = tickValues.values;
       }
       yScale.rangeRound([this.innerHeight, 0]);
