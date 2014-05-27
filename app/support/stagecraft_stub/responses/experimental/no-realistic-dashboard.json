@@ -46,10 +46,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "number_of_transactions",
       "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },
@@ -60,10 +58,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "total_cost",
       "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
@@ -74,10 +70,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "digital_takeup",
       "format": { "type": "percent" }
     },
@@ -88,10 +82,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "cost_per_transaction",
       "format": { "type": "currency", "pence": true }
     },
@@ -104,9 +96,7 @@
       "data-type": "summaries",
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
-      }
+      "filter-by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
     },
     {
       "slug": "digital-takeup-per-quarter",
@@ -117,9 +107,7 @@
       "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
-      },
+      "filter-by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"],
       "format": { "type": "percent"}
     },
     {
@@ -142,10 +130,8 @@
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "sort-by": "pageviews:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
       "link-attr": "pagePath"
@@ -158,10 +144,8 @@
       "classes": ["cols2", "up"],
       "data-group": "govuk",
       "data-type": "trending",
-      "query-params": {
-        "sort_by": "percent_change:descending",
-        "limit": 10
-      },
+      "sort-by": "percent_change:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
       "link-attr": "pagePath"
@@ -204,13 +188,11 @@
       "description": "Number of users who completed important stages of the transaction last week",
       "data-group": "lasting-power-of-attorney",
       "data-type": "journey",
-      "query-params": {
-        "filter_by": "eventAction:help.inline",
-        "group_by": "eventDestination",
-        "collect": "uniqueEvents:sum",
-        "period": "week",
-        "duration": 1
-      },
+      "filter-by": "eventAction:help.inline",
+      "group-by": "eventDestination",
+      "collect": "uniqueEvents:sum",
+      "period": "week",
+      "duration": 1,
       "axes": {
         "x": {
           "label": "Description",

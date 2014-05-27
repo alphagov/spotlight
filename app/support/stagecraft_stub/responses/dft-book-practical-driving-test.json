@@ -31,13 +31,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-book-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
@@ -55,13 +53,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-book-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
@@ -80,13 +76,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-book-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
@@ -106,12 +100,10 @@
       "data-type": "summaries",
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:quarterly"
-        ]
-      },
+      "filter-by": [
+        "service_id:dft-book-practical-driving-test",
+        "type:quarterly"
+      ],
       "info": [
         "Data source: Department for Transport"
       ]
@@ -135,12 +127,10 @@
           }
         ]
       },
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:quarterly"
-        ]
-      },
+      "filter-by": [
+        "service_id:dft-book-practical-driving-test",
+        "type:quarterly"
+      ],
       "info": [
         "Data source: Department for Transport",
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."

@@ -65,7 +65,30 @@ define([
       }
 
       return options;
+    },
+
+    queryParams: function () {
+      var params = [
+        'collect',
+        'duration',
+        'group_by',
+        'period',
+        'start_at',
+        'end_at',
+        'filter_by',
+        'sort_by',
+        'limit'
+      ];
+      var output = {};
+      _.each(params, function (param) {
+        var val = this.model.get(param.replace('_', '-'));
+        if (val !== undefined) {
+          output[param] = val;
+        }
+      }, this);
+      return output;
     }
+
   });
 
   return ModuleController;

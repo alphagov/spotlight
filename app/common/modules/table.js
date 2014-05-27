@@ -14,7 +14,7 @@ function (ModuleController, TableView, Collection) {
       return {
         id: 'list',
         title: 'List',
-        queryParams: this.model.get('query-params'),
+        queryParams: this.queryParams(),
         axes: this.model.get('axes')
       };
     },
