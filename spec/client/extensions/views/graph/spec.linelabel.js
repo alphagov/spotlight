@@ -18,14 +18,14 @@ function (LineLabel, Collection) {
         collection = new TestCollection();
         collection.reset([
           { y: 30, yLabel: 30, title: 'Title 1', id: 'id1', href: '/link1', values: [
-            { _count: 10 },
-            { _count: 20 },
-            { _count: 30, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
+            { _count: 10, _count_original: 10 },
+            { _count: 20, _count_original: 20 },
+            { _count: 30, _count_original: 30, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
           ] },
           { y: 80, yLabel: 80, title: 'Title 2', id: 'id2', href: '/link2', values: [
-            { _count: 60 },
-            { _count: 70 },
-            { _count: 80, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
+            { _count: 60, _count_original: 20 },
+            { _count: 70, _count_original: 50 },
+            { _count: 80, _count_original: 90, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
           ] }
         ], {parse: true});
 
@@ -167,6 +167,20 @@ function (LineLabel, Collection) {
           var label2 = labels.eq(1);
           expect(label1.find('span.percentage')).toHaveText('(22.2%)');
           expect(label2.find('span.percentage')).toHaveText('(77.8%)');
+        });
+
+        it('renders a label with additional value text and percentage for line graphs when enabled', function () {
+          lineLabel.showValues = true;
+          lineLabel.showValuesPercentage = true;
+          lineLabel.isLineGraph = true;
+          lineLabel.render();
+          var labels = lineLabel.$el.find('figcaption ol li');
+          var label1 = labels.eq(0);
+          var label2 = labels.eq(1);
+          expect(label1.find('span.value')).toHaveText('60');
+          expect(label2.find('span.value')).toHaveText('160');
+          expect(label1.find('span.percentage')).toHaveText('(27%)'); // 60/(60+160)
+          expect(label2.find('span.percentage')).toHaveText('(73%)'); // 160/(60+160)
         });
 
         it('renders a summary label when enabled', function () {
