@@ -696,6 +696,11 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         expect(graph.calcYScale().domain()).toEqual([0, 500]);
       });
 
+      it('scales domain from 0 to 1 when this is a percentage graph', function () {
+        graph.isOneHundredPercent = function() { return true; };
+        expect(graph.calcYScale().domain()).toEqual([0, 1]);
+      });
+
       it('scales range to inner height', function () {
         expect(graph.calcYScale().range()).toEqual([333, 0]);
       });
