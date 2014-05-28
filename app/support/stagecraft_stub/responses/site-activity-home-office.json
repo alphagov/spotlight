@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "Home Office (HO)",
-  "tagline": "Web performance data for Home Office. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for Home Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Home Office",

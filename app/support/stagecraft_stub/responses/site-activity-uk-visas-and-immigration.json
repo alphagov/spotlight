@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "UK Visas and Immigration (UKVI)",
-  "tagline": "Web performance data for UK Visas and Immigration. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for UK Visas and Immigration. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "UK Visas and Immigration",

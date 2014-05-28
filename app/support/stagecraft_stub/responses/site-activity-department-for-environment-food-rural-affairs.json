@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "Department for Environment, Food & Rural Affairs (Defra)",
-  "tagline": "Web performance data for Department for Environment, Food & Rural Affairs. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for Department for Environment, Food & Rural Affairs. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Department for Environment, Food & Rural Affairs",

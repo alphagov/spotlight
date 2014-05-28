@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "UK Export Finance (UKEF)",
-  "tagline": "Web performance data for UK Export Finance. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for UK Export Finance. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "UK Export Finance",

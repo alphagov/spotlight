@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "HM Revenue & Customs (HMRC)",
-  "tagline": "Web performance data for HM Revenue & Customs. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for HM Revenue & Customs. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "HM Revenue & Customs",

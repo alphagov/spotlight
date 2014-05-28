@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "Department for Work and Pensions (DWP)",
-  "tagline": "Web performance data for Department for Work and Pensions. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for Department for Work and Pensions. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Department for Work and Pensions",

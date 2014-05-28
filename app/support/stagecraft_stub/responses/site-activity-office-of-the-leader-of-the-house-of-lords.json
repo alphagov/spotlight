@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Content dashboard",
   "title": "Office of the Leader of the House of Lords (OLHL)",
-  "tagline": "Web performance data for Office of the Leader of the House of Lords. Including site traffic and availability. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "tagline": "Web performance data for Office of the Leader of the House of Lords. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Office of the Leader of the House of Lords",
