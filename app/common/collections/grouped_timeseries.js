@@ -56,7 +56,7 @@ function (MatrixCollection) {
     transformToPercentages: function (data) {
 
       var dataWithPercentages = _.clone(data);
-      var totalSeries = _.find(this.createTotals(data), function(series) {
+      var totalSeries = _.find(this.createTotals(data), function (series) {
         return series[this.category] === this.totalSeriesLabel;
       }, this);
 
