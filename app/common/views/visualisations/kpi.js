@@ -64,7 +64,7 @@ function (View, Formatters, template) {
           sgn = 'no-change';
         }
         _.extend(config, {
-          change: this.format(current.get(valueAttr) / previous.get(valueAttr) - 1, { type: 'percent', dps: 2 }),
+          change: this.format(current.get(valueAttr) / previous.get(valueAttr) - 1, { type: 'percent', dps: 2, pad: true, showSigns: true }),
           sgn: sgn
         });
       }

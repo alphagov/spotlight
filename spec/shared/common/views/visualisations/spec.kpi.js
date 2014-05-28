@@ -80,22 +80,22 @@ define([
       });
 
       it('loads property from model value attribute', function () {
-        kpi.collection.at(0).set('foo', 2);
-        kpi.collection.at(1).set('foo', 2);
+        kpi.collection.at(0).set('foo', 2.5);
+        kpi.collection.at(1).set('foo', 2.5);
         kpi.model.set('value-attribute', 'foo');
         kpi.render();
-        expect(kpi.$('.single-stat-headline strong').text()).toEqual('£2');
+        expect(kpi.$('.single-stat-headline strong').text()).toEqual('£2.50');
       });
 
-      it('adds a percentage change', function () {
+      it('formats headline number', function () {
         kpi.render();
         expect(kpi.$('.single-stat-headline strong').text()).toEqual('£1,100');
       });
 
-      it('applies default formatting of `number` if none is provided', function () {
+      it('adds a percentage change', function () {
         kpi.model.unset('format');
         kpi.render();
-        expect(kpi.$('.delta .change').text().trim()).toEqual('10%');
+        expect(kpi.$('.delta .change').text().trim()).toEqual('+10.00%');
         expect(kpi.$('.delta .change').hasClass('increase')).toBe(true);
         expect(kpi.$('.delta .change').hasClass('decrease')).toBe(false);
       });

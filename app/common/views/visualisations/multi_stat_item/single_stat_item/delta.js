@@ -60,12 +60,13 @@ function (SingleStatView) {
         previousValue = matchingValues.get(attr);
 
         if (previousValue) {
-          percentChange = (currentValue - previousValue) / previousValue;
-          var decimalPlaces = 2;
-          var displayedValue = percentChange.toFixed(decimalPlaces);
-          if ((displayedValue !== '-0.00') && (displayedValue !== '0.00')) {
-            percentChange = this.formatPercentage(percentChange, decimalPlaces, true);
-          } else {
+          percentChange = this.format((currentValue - previousValue) / previousValue, {
+            type: 'percent',
+            dps: 2,
+            pad: true,
+            showSigns: true
+          });
+          if (percentChange === '0%') {
             percentChange = 'no change';
           }
         }

@@ -34,7 +34,7 @@ define([
     duration: function (value, options) {
       _.defaults(options, {
         unit: 'ms',
-        dps: 0
+        pad: true
       });
 
       var divisor = 1;
@@ -42,6 +42,7 @@ define([
         divisor = 1000;
       } else if (options.unit === 'm') {
         divisor = 60000;
+        options.dps = 0;
       }
       return formatters.number(value / divisor, options) + options.unit;
     },
@@ -49,57 +50,97 @@ define([
     currency: function (value, options) {
       _.defaults(options, {
         symbol: '£',
-        pence: false
+        pence: value < 10
       });
       if (options.pence) {
         options.dps = options.fixed = 2;
+      } else {
+        value = Math.round(value);
       }
-      return options.symbol + formatters.number(value, options);
+      if (value === 0) {
+        return options.symbol + '0';
+      } else {
+        return options.symbol + formatters.number(value, options);
+      }
     },
 
     percent: function (value, options) {
+      if (isNaN(Number(value))) {
+        return value;
+      }
       _.defaults(options, {
-        dps: 0,
+        dps: 1,
         normalisation: 1.0
       });
-      return formatters.number(value * 100 / options.normalisation, options) + '%';
+      value = value * 100 / options.normalisation;
+      if (value === 0 || value === 100) {
+        options.dps = 0;
+      }
+      var output = formatters.number(value, options) + '%';
+      if (options.showSigns) {
+        if (value > 0) {
+          output = '+' + output;
+        } else if (value < 0) {
+          // replace hyphens with unicode minus symbol
+          output = output.replace('-', '−');
+        }
+      }
+      return output;
     },
 
     integer: function (value, options) {
-      _.defaults(options, {
-        dps: 0
-      });
-      return formatters.number(value, options);
+      return formatters.number(Math.round(value), options);
     },
 
     number: function (value, options) {
-      _.defaults(options, {
-        dps: 0,
-        commas: true
-      });
-      var suffix;
+      var defaults = {
+        commas: true,
+        sigfigs: 3
+      };
+
+      _.defaults(options, defaults);
+
+      var suffix, minus;
+
       if (!isNaN(Number(value))) {
         value = Number(value);
+        if (value < 0) {
+          value = Math.abs(value);
+          minus = true;
+        }
         if (options.magnitude) {
-          var parsed = utils.magnitude(value);
-          suffix = parsed.suffix;
-          value = parsed.value;
+          var magnitude;
+          if (_.isObject(options.magnitude)) {
+            magnitude = options.magnitude;
+          } else {
+            magnitude = utils.magnitude(value);
+          }
+          suffix = magnitude.suffix;
+          value = value / magnitude.value;
         }
-        if (typeof options.dps === 'number' && typeof options.sigfigs !== 'number') {
-          var magnitude = Math.pow(10, options.dps);
-          value = Math.round(value * magnitude) / magnitude;
-        } else if (typeof options.sigfigs === 'number' && value !== 0) {
-          var divisor = Math.pow(10, Math.ceil(Math.log(value) / Math.LN10) - options.sigfigs);
-          value = Math.round(value / divisor) / (1 / divisor); // floating point wtf
+        if (typeof options.sigfigs === 'number' && typeof options.dps === 'undefined') {
+          options.dps = Math.min(Math.max(Math.ceil(options.sigfigs - 1 - utils.log10(value)), 0), options.sigfigs - 1);
         }
-        if (options.fixed && typeof options.fixed === 'number') {
-          value = value.toFixed(options.fixed);
+        if (typeof options.dps === 'number') {
+          value = utils.roundToDps(value, options.dps);
+        }
+        if (value === 0) {
+          return '0';
+        }
+        if ((suffix || !options.magnitude) && options.pad && options.dps > 0) {
+          options.fixed = options.dps;
+        }
+        if (typeof options.fixed === 'number') {
+          value = utils.pad(value, options.fixed);
         }
         if (options.commas) {
           value = utils.commas(value);
         }
         if (suffix) {
           value = value + suffix;
+        }
+        if (minus && value !== '0') {
+          value = '-' + value;
         }
       }
       return value.toString();
@@ -126,11 +167,29 @@ define([
       // uppercase first letter
       value = value.charAt(0).toUpperCase() + value.slice(1);
       return value;
+    },
+
+    plural: function (value, options) {
+      if (typeof options.singular === 'undefined') {
+        throw new Error('singular option must be defined for plural formatter');
+      }
+      if (value === 1) {
+        return options.singular;
+      } else if (options.plural) {
+        return options.plural;
+      } else {
+        return options.singular + 's';
+      }
     }
 
   };
 
   var utils = {
+
+    log10: function (value) {
+      return Math.log(Math.abs(value)) / Math.LN10;
+    },
+
     commas: function (value) {
       value = value.toString().split('.');
       var pattern = /(-?\d+)(\d{3})/;
@@ -139,39 +198,90 @@ define([
       return value.join('.');
     },
 
+    roundToDps: function (value, dps) {
+      var magnitude = Math.pow(10, dps);
+      return Math.round(value * magnitude) / magnitude;
+    },
+
     magnitude: function (value) {
       var magnitudes = {
-        thousand: {value: 1e3, suffix: 'k' },
+        thousand: {value: 1e3, suffix: 'k', limit: 1e4 },
         million:  {value: 1e6, suffix: 'm' },
         billion:  {value: 1e9, suffix: 'bn' }
       };
-      var suffix, parsed = value;
+      var ret = {
+        suffix: '',
+        value: 1
+      };
       _.each(magnitudes, function (mag) {
-        if (value > mag.value) {
-          suffix = mag.suffix;
-          parsed = value / mag.value;
+        if (value >= (mag.limit || mag.value) * 0.9995) {
+          ret = mag;
         }
       });
-      return {
-        value: parsed,
-        suffix: suffix
-      };
+      return ret;
+    },
+
+    pad: function (value, places, str) {
+      value = value + '';
+      str = str || '0';
+      var pieces = value.split('.');
+      if (places === 0) {
+        return pieces[0];
+      } else {
+        if (pieces.length === 1) {
+          pieces.push('');
+        }
+        while (pieces[1].length < places) {
+          pieces[1] += str;
+        }
+        return pieces.join('.');
+      }
     }
   };
 
-  return {
-    format: function (value, formatter) {
-      if (typeof formatter === 'string') {
-        formatter = {
-          type: formatter
-        };
-      }
-      if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
-        return formatters[formatter.type](value, formatter || {});
-      } else {
-        return value;
-      }
+  var format = function (value, formatter) {
+    if (typeof formatter === 'string') {
+      formatter = {
+        type: formatter
+      };
     }
+    formatter = _.clone(formatter);
+    if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
+      return formatters[formatter.type](value, formatter || {});
+    } else {
+      return value;
+    }
+  };
+
+  var numberListFormatter = function (values, currency) {
+
+    var max = Math.max.apply(Math, values);
+    var magnitude = utils.magnitude(max);
+    var props = {
+      type: 'number',
+      pad: true
+    };
+    if (currency) {
+      props.type = 'currency';
+    }
+    if (magnitude.value === 1) {
+      magnitude = true;
+    }
+    if (_.all(values, function (v) { return v % magnitude.value === 0; })) {
+      props.dps = 0;
+    } else if (_.all(values, function (v) { return v % (magnitude.value / 10) === 0; })) {
+      props.dps = 1;
+    }
+    props.magnitude = magnitude;
+    return _.bind(function (value) {
+      return this.format(value, _.clone(props));
+    }, this);
+
+  };
+
+  return {
+    format: format,
+    numberListFormatter: numberListFormatter
   };
 
 });

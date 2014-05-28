@@ -13,9 +13,12 @@ function (Graph) {
         { view: this.sharedComponents.yaxis,
           options: {
             tickFormat: function () {
-              return function (d) {
-                return ResponseTimeGraph.prototype.formatDuration(d, 's', 2);
-              };
+              return _.bind(function (d) {
+                return this.format(d, {
+                  type: 'duration',
+                  unit: 's'
+                });
+              }, this);
             }
           }
           },
@@ -29,7 +32,10 @@ function (Graph) {
             view: this.sharedComponents.tooltip,
             options: {
               formatValue: function (value) {
-                return this.formatDuration(value, 's', 2);
+                return this.format(value, {
+                  type: 'duration',
+                  unit: 's'
+                });
               }
             }
           },

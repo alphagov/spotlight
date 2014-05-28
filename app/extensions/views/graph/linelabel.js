@@ -99,13 +99,13 @@ function (Component) {
       }
 
       if (value !== null) {
-        data.push(this.formatNumericLabel(value));
+        data.push(this.format(value, { type: 'number', magnitude: true, pad: true }));
       }
       if (percentage) {
         if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
-          data.unshift(this.formatPercentage(percentage));
+          data.unshift(this.format(percentage, 'percent'));
         } else {
-          data.push(this.formatPercentage(percentage));
+          data.push(this.format(percentage, 'percent'));
         }
       }
       summary = '<span class="value">' + data.shift() + '</span>';
@@ -323,7 +323,7 @@ function (Component) {
         return [
           'last',
           numPeriods,
-          this.pluralise(period, numPeriods)
+          this.format(numPeriods, { type: 'plural', singular: period })
         ].join(' ');
       }
     },

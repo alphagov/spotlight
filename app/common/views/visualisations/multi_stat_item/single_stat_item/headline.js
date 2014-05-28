@@ -52,9 +52,9 @@ function (SingleStatView, Mustache) {
         return null;
       }
       if (this.isPercent) {
-        value = this.formatPercentage(value);
+        value = this.format(value, 'percent');
       } else {
-        value = this.formatNumericLabel(value);
+        value = this.format(value, { type: 'number', magnitude: true, pad: true });
       }
       if (stat.format) {
         return Mustache.render(

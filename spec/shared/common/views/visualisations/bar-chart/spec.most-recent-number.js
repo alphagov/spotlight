@@ -69,7 +69,7 @@ define([
       describe('getValue', function () {
 
         it('displays value for most recent period if available', function () {
-          expect(view.getValue()).toEqual('1m');
+          expect(view.getValue()).toEqual('1.02m');
         });
 
         it('displays value for earlier period if most recent period not available', function () {
@@ -121,7 +121,7 @@ define([
           var selection = new Model();
           selection.set('number_of_transactions', 1000000);
 
-          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1,000k');
+          expect(view.getValueSelected({ selectedModel: selection })).toEqual('1m');
         });
 
         it('displays percentage values when percent option is set', function () {

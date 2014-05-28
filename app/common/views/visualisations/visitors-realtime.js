@@ -114,9 +114,8 @@ function (View, SparklineView, template) {
     formatDate: function (d) {
       return [
         d.format('ha'),
-        ' ',
         d.format('D MMMM YYYY')
-      ].join('');
+      ].join(' ');
     },
 
     getValue: function () {
@@ -138,8 +137,8 @@ function (View, SparklineView, template) {
             period = 'minute';
           }
           timePeriod = latestDate.diff(startDate, period);
-          timePeriodValue = this.pluralise(period, timePeriod);
-          var users = this.pluralise('user', this.currentVisitors);
+          timePeriodValue = this.format(timePeriod, { type: 'plural', singular: period });
+          var users = this.format(this.currentVisitors, { type: 'plural', singular: 'user' });
           if (this.moment().diff(latestDate, 'minutes') > 10) {
             var formattedDate = this.formatDate(latestDate);
             headlineLabel = [users, 'online at<br/>', formattedDate].join(' ');
@@ -180,7 +179,7 @@ function (View, SparklineView, template) {
 
       if (selection.selectedModel) {
         var timestamp = selection.selectedModel.get('_timestamp'),
-            users = this.pluralise('user', this.currentVisitors);
+            users = this.format(this.currentVisitors, { type: 'plural', singular: 'user' });
 
         headline = [
           users,

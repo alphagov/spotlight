@@ -105,10 +105,10 @@ define([
         expect(Formatters.format(1234, 'duration')).toEqual('1,234ms');
       });
 
-      it('returns seconds to 1d.p. if passed unit option of `s`', function () {
-        expect(Formatters.format(567, { type: 'duration', unit: 's' })).toEqual('1s');
-        expect(Formatters.format(1234, { type: 'duration', unit: 's' })).toEqual('1s');
-        expect(Formatters.format(12345, { type: 'duration', unit: 's' })).toEqual('12s');
+      it('returns values to 3 sigfigs by default', function () {
+        expect(Formatters.format(567, { type: 'duration', unit: 's' })).toEqual('0.57s');
+        expect(Formatters.format(1234, { type: 'duration', unit: 's' })).toEqual('1.23s');
+        expect(Formatters.format(12345, { type: 'duration', unit: 's' })).toEqual('12.3s');
       });
 
       it('returns values rounded to correct number of decimal places', function () {
@@ -121,17 +121,26 @@ define([
 
     describe('currency', function () {
 
+      it('always returns £0 for zero input', function () {
+        expect(Formatters.format(0, 'currency')).toEqual('£0');
+        expect(Formatters.format(0, { type: 'currency', pence: true })).toEqual('£0');
+      });
+
+      it('formats values less than 10 with pence', function () {
+        expect(Formatters.format(0.567, 'currency')).toEqual('£0.57');
+        expect(Formatters.format(5.67, 'currency')).toEqual('£5.67');
+        expect(Formatters.format(15.67, 'currency')).toEqual('£16');
+      });
+
       it('returns formatted number with pound symbol', function () {
-        expect(Formatters.format(0.567, 'currency')).toEqual('£1');
-        expect(Formatters.format(5.67, 'currency')).toEqual('£6');
         expect(Formatters.format(567, 'currency')).toEqual('£567');
         expect(Formatters.format(1234, 'currency')).toEqual('£1,234');
         expect(Formatters.format(12345, 'currency')).toEqual('£12,345');
       });
 
       it('returns formatted number with symbol option if provided', function () {
-        expect(Formatters.format(0.567, { type: 'currency', symbol: '$' })).toEqual('$1');
-        expect(Formatters.format(5.67, { type: 'currency', symbol: '$' })).toEqual('$6');
+        expect(Formatters.format(0.567, { type: 'currency', symbol: '$' })).toEqual('$0.57');
+        expect(Formatters.format(5.67, { type: 'currency', symbol: '$' })).toEqual('$5.67');
         expect(Formatters.format(567, { type: 'currency', symbol: '$' })).toEqual('$567');
         expect(Formatters.format(1234, { type: 'currency', symbol: '$' })).toEqual('$1,234');
         expect(Formatters.format(12345, { type: 'currency', symbol: '$' })).toEqual('$12,345');
@@ -148,14 +157,18 @@ define([
 
     describe('percent', function () {
 
-      it('returns formatted number to 0d.ps with percent symbol', function () {
-        expect(Formatters.format(0.567, 'percent')).toEqual('57%');
+      it('returns formatted number to 1d.p with percent symbol', function () {
+        expect(Formatters.format(0.5678, 'percent')).toEqual('56.8%');
+      });
+
+      it('returns 0% and 100% to 0dps', function () {
+        expect(Formatters.format(0, 'percent')).toEqual('0%');
         expect(Formatters.format(1, 'percent')).toEqual('100%');
       });
 
       it('returns formatted number with percent symbol to dps specified', function () {
-        expect(Formatters.format(0.567, { type: 'percent', dps: 1 })).toEqual('56.7%');
-        expect(Formatters.format(1, { type: 'percent', dps: 1 })).toEqual('100%');
+        expect(Formatters.format(0.5678, { type: 'percent', dps: 2 })).toEqual('56.78%');
+        expect(Formatters.format(1, { type: 'percent', dps: 2 })).toEqual('100%');
       });
 
       it('returns formatted number normalised to the given value', function () {
@@ -174,12 +187,43 @@ define([
         expect(Formatters.format(12345.67, 'integer')).toEqual('12,346');
       });
 
+      it('keeps decimal places on magnituded values', function () {
+        expect(Formatters.format(1234567, { type: 'integer', magnitude: true })).toEqual('1.23m');
+      });
+
     });
 
     describe('number', function () {
 
+      it('always returns "0" for zero', function () {
+        expect(Formatters.format(0, 'number')).toEqual('0');
+        expect(Formatters.format(0, { type: 'number', pad: true })).toEqual('0');
+        expect(Formatters.format(0, { type: 'number', dps: 5, fixed: 5, pad: true })).toEqual('0');
+
+      });
+      it('returns "0" for numbers which round to zero', function () {
+        expect(Formatters.format(0.00001, { type: 'number', dps: 2 })).toEqual('0');
+      });
+
+      it('rounds numbers < 10 to 2 dp by default', function () {
+        expect(Formatters.format(0.1234, 'number')).toEqual('0.12');
+        expect(Formatters.format(1.1234, 'number')).toEqual('1.12');
+        expect(Formatters.format(10.1234, 'number')).toEqual('10.1');
+      });
+
+      it('rounds numbers > 10 && < 100 to 1 dp by default', function () {
+        expect(Formatters.format(12.34, 'number')).toEqual('12.3');
+        expect(Formatters.format(23.45, 'number')).toEqual('23.5');
+        expect(Formatters.format(34.56, 'number')).toEqual('34.6');
+      });
+
+      it('rounds > 100 to nearest integer by default', function () {
+        expect(Formatters.format(123.34, 'number')).toEqual('123');
+        expect(Formatters.format(234.45, 'number')).toEqual('234');
+        expect(Formatters.format(345.56, 'number')).toEqual('346');
+      });
+
       it('returns number rounded to decimal places specified', function () {
-        expect(Formatters.format(0.1234, 'number')).toEqual('0');
         expect(Formatters.format(0.1234, { type: 'number', dps: 1 })).toEqual('0.1');
         expect(Formatters.format(0.1234, { type: 'number', dps: 2 })).toEqual('0.12');
         expect(Formatters.format(0.1234, { type: 'number', dps: 3 })).toEqual('0.123');
@@ -207,7 +251,6 @@ define([
       });
 
       it('pads with zeroes if fixed options is passed', function () {
-        expect(Formatters.format(0, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.0000');
         expect(Formatters.format(0.1, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1000');
         expect(Formatters.format(0.12, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1200');
         expect(Formatters.format(0.123, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1230');
@@ -215,65 +258,134 @@ define([
         expect(Formatters.format(0.12345, { type: 'number', fixed: 4, dps: 4 })).toEqual('0.1235');
       });
 
-      it('rounds to specified number of significant figures, except in the case of zero', function () {
-        expect(Formatters.format(1234, { type: 'number', sigfigs: 4 })).toEqual('1,234');
-        expect(Formatters.format(1234, { type: 'number', sigfigs: 3 })).toEqual('1,230');
-        expect(Formatters.format(1234, { type: 'number', sigfigs: 2 })).toEqual('1,200');
-        expect(Formatters.format(1234, { type: 'number', sigfigs: 1 })).toEqual('1,000');
-        expect(Formatters.format(0, { type: 'number', sigfigs: 3 })).toEqual('0');
-        //to capture 428*0.1 === 42.800000000000004 :)
-        expect(Formatters.format(42.82216, { type: 'number', sigfigs: 3 })).toEqual('42.8');
+      it('rounds decimal values to specified number of significant figures', function () {
+        expect(Formatters.format(1.234, { type: 'number', sigfigs: 4 })).toEqual('1.234');
+        expect(Formatters.format(1.234, { type: 'number', sigfigs: 3 })).toEqual('1.23');
+        expect(Formatters.format(1.234, { type: 'number', sigfigs: 2 })).toEqual('1.2');
+        expect(Formatters.format(1.234, { type: 'number', sigfigs: 1 })).toEqual('1');
       });
 
-      it('rounds to specified number of significant figures even if decimal places are also defined', function () {
-        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 4 })).toEqual('1,234');
-        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 3 })).toEqual('1,230');
-        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 2 })).toEqual('1,200');
-        expect(Formatters.format(1234, { type: 'number', dps: 3, sigfigs: 1 })).toEqual('1,000');
+      it('does not round integer values to significant figures', function () {
+        expect(Formatters.format(1234, { type: 'number', sigfigs: 2 })).toEqual('1,234');
+      });
+
+      it('ignores significant figures  if decimal places are also defined', function () {
+        expect(Formatters.format(1.234, { type: 'number', dps: 3, sigfigs: 4 })).toEqual('1.234');
+        expect(Formatters.format(1.234, { type: 'number', dps: 3, sigfigs: 3 })).toEqual('1.234');
+        expect(Formatters.format(1.234, { type: 'number', dps: 3, sigfigs: 2 })).toEqual('1.234');
+        expect(Formatters.format(1.234, { type: 'number', dps: 3, sigfigs: 1 })).toEqual('1.234');
+      });
+
+      describe('pad', function () {
+
+        it('adds extra zeros', function () {
+
+          expect(Formatters.format(1, { type: 'number', pad: true })).toEqual('1.00');
+          expect(Formatters.format(1.2, { type: 'number', pad: true })).toEqual('1.20');
+          expect(Formatters.format(1.2, { type: 'number', pad: true, sigfigs: 4 })).toEqual('1.200');
+
+        });
+
       });
 
       describe('magnitude', function () {
-        describe('thousands', function () {
-          it('doesn\'t add "k" to 1000', function () {
-            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
+
+        describe('numbers < 1000', function () {
+
+          it('does not pad with additional zeros', function () {
+            expect(Formatters.format(11, { type: 'number', magnitude: true, pad: true  })).toEqual('11');
           });
 
-          it('adds "k" to numbers of a thousand that are greater than 1000', function () {
-            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1k');
-            expect(Formatters.format(1100, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1k');
-            expect(Formatters.format(1120, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12k');
+        });
+
+        describe('thousands', function () {
+
+          it('does not add add "k" to numbers of a thousand that are less than to 10,000', function () {
+            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
+            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1,001');
+            expect(Formatters.format(1123.11, { type: 'number', magnitude: true  })).toEqual('1,123');
+            expect(Formatters.format(1123, { type: 'number', magnitude: true  })).toEqual('1,123');
           });
+
+          it('adds "k" to numbers of a thousand that are greater than or equal to 10,000', function () {
+            expect(Formatters.format(10000, { type: 'number', magnitude: true  })).toEqual('10k');
+            expect(Formatters.format(10001, { type: 'number', magnitude: true  })).toEqual('10k');
+            expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('11k');
+            expect(Formatters.format(11200, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('11.2k');
+          });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(11110, { type: 'number', magnitude: true  })).toEqual('11.1k');
+            expect(Formatters.format(111100, { type: 'number', magnitude: true  })).toEqual('111k');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(11000, { type: 'number', magnitude: true, pad: true  })).toEqual('11.0k');
+          });
+
         });
 
         describe('millions', function () {
-          it('doesn\'t add "m" to 1000000', function () {
-            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1,000k');
-          });
 
-          it('adds "m" to numbers of a million that are greater than 1000000', function () {
-            expect(Formatters.format(1000001, { type: 'number', magnitude: true  })).toEqual('1m');
+          it('adds "m" to numbers of a million that are greater than or equal to 1000000', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true })).toEqual('1m');
+            expect(Formatters.format(1000001, { type: 'number', magnitude: true })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1m');
             expect(Formatters.format(1100000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1m');
             expect(Formatters.format(1120000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12m');
           });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(1111000, { type: 'number', magnitude: true  })).toEqual('1.11m');
+            expect(Formatters.format(11110000, { type: 'number', magnitude: true  })).toEqual('11.1m');
+            expect(Formatters.format(111100000, { type: 'number', magnitude: true  })).toEqual('111m');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(1000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00m');
+            expect(Formatters.format(10000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0m');
+            expect(Formatters.format(100000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100m');
+          });
+
         });
 
         describe('billions', function () {
-          it('doesn\'t add "b" to 1000000000', function () {
-            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1,000m');
-          });
 
           it('adds "bn" to numbers of a billion that are greater than 1000000000', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true })).toEqual('1bn');
             expect(Formatters.format(1000000001, { type: 'number', magnitude: true  })).toEqual('1bn');
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 1  })).toEqual('1bn');
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 2  })).toEqual('1.1bn');
             expect(Formatters.format(1100000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.1bn');
             expect(Formatters.format(1120000000, { type: 'number', magnitude: true, sigfigs: 3  })).toEqual('1.12bn');
           });
+
+          it('rounds to 3 significant figures by default', function () {
+            expect(Formatters.format(1111000000, { type: 'number', magnitude: true  })).toEqual('1.11bn');
+            expect(Formatters.format(11110000000, { type: 'number', magnitude: true  })).toEqual('11.1bn');
+            expect(Formatters.format(111100000000, { type: 'number', magnitude: true  })).toEqual('111bn');
+          });
+
+          it('pads out decimals with zeros if required', function () {
+            expect(Formatters.format(1000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('1.00bn');
+            expect(Formatters.format(10000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('10.0bn');
+            expect(Formatters.format(100000000000, { type: 'number', magnitude: true, pad: true  })).toEqual('100bn');
+          });
+
         });
+
+        describe('with magnitude object provided', function () {
+
+          it('uses option object to format', function () {
+            expect(Formatters.format(5000, { type: 'number', magnitude: { value: 1000, suffix: 'k' } })).toEqual('5k');
+            expect(Formatters.format(5000, { type: 'number', magnitude: { value: 1000, suffix: 'k' }, pad: true })).toEqual('5.00k');
+            expect(Formatters.format(100, { type: 'number', magnitude: { value: 1000, suffix: 'k' } })).toEqual('0.1k');
+            expect(Formatters.format(100, { type: 'number', magnitude: { value: 1000, suffix: 'k' }, pad: true })).toEqual('0.10k');
+          });
+
+        });
+
       });
 
     });
@@ -311,6 +423,29 @@ define([
         expect(Formatters.format('where-is-it', 'sentence')).toEqual('Where is it?');
         expect(Formatters.format('is-it', 'sentence')).toEqual('Is it?');
         expect(Formatters.format('can-i-come', 'sentence')).toEqual('Can I come?');
+      });
+
+    });
+
+    describe('plural', function () {
+
+      it('throws if no singular option provided', function () {
+        var fn = function () {
+          return Formatters.format(1, 'plural');
+        };
+        expect(fn).toThrow();
+      });
+
+      it('returns the singular term if the value is 1', function () {
+        expect(Formatters.format(1, { type: 'plural', singular: 'cat' })).toEqual('cat');
+      });
+
+      it('returns the singular term with an "s" if the value is > 1', function () {
+        expect(Formatters.format(2, { type: 'plural', singular: 'cat' })).toEqual('cats');
+      });
+
+      it('returns the plural term if defined and the value is > 1', function () {
+        expect(Formatters.format(2, { type: 'plural', singular: 'formula', plural: 'formulae' })).toEqual('formulae');
       });
 
     });

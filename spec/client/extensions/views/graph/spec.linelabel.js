@@ -165,8 +165,8 @@ function (LineLabel, Collection) {
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
-          expect(label1.find('span.percentage')).toHaveText('(22%)');
-          expect(label2.find('span.percentage')).toHaveText('(78%)');
+          expect(label1.find('span.percentage')).toHaveText('(22.2%)');
+          expect(label2.find('span.percentage')).toHaveText('(77.8%)');
         });
 
         it('renders a summary label when enabled', function () {
@@ -302,18 +302,18 @@ function (LineLabel, Collection) {
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
           expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');
           expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(27%)');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(27.3%)');
           expect(figcaption.find('li').eq(1).find('.value')).toHaveText('80');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(73%)');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(72.7%)');
 
           collection.selectItem(null, null);
           expect(figcaption.find('.summary .value')).toHaveText('270');
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
           expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');
           expect(figcaption.find('li').eq(0).find('.value')).toHaveText('60');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(22%)');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(22.2%)');
           expect(figcaption.find('li').eq(1).find('.value')).toHaveText('210');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(78%)');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(77.8%)');
         });
 
         it('displays (no data) when the current selection is null', function () {
@@ -339,9 +339,9 @@ function (LineLabel, Collection) {
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
           expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');
           expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(13%)');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(12.5%)');
           expect(figcaption.find('li').eq(1).find('.value')).toHaveText('210');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(88%)');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(87.5%)');
         });
 
         it('displays (no data) for all items when the current selection is null', function () {
