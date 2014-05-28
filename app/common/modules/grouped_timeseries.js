@@ -27,7 +27,7 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
     clientRenderOnInit: true,
     requiresSvg: true,
     collectionOptions: function () {
-      var options = {
+      return {
         tabs: this.model.get('tabs'),
         valueAttr: this.model.get('value-attribute'),
         category: this.model.get('category'),
@@ -55,7 +55,6 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
           y: []
         }, this.model.get('axes'))
       };
-      return options;
     }
 
   });
