@@ -30,7 +30,7 @@
       "description": "Unique visitors to GOV.UK over the past year, compared with the previous year",
       "data-group": "govuk",
       "data-type": "visitors",
-      "category": "dataType",
+      "category": "website",
       "period": "week",
       "duration": 52,
       "axis-period": "month",
@@ -50,24 +50,24 @@
         "y": [
           {
             "label": "GOV.UK",
-            "categoryId": "govuk_visitors",
+            "categoryId": "govuk",
             "format": "integer"
           },
           {
             "label": "GOV.UK",
-            "categoryId": "govuk_visitors",
+            "categoryId": "govuk",
             "timeshift": 52,
             "format": "integer"
           },
           {
             "label": "Directgov",
-            "categoryId": "directgov_visitors",
+            "categoryId": "directgov",
             "timeshift": 52,
             "format": "integer"
           },
           {
             "label": "Business Link",
-            "categoryId": "businesslink_visitors",
+            "categoryId": "businesslink",
             "timeshift": 52,
             "format": "integer"
           }
