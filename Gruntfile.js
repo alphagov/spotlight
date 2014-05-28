@@ -232,15 +232,6 @@ module.exports = function (grunt) {
         command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot --standalone --path ./')
       },
       // Generates the page-per-thing module JSON stubs
-      generate_module_stubs: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: false
-        },
-        command: 'node tools/stagecraft-generate-module-stubs.js'
-      },
-      // Generates the page-per-thing module JSON stubs
       generate_services_list: {
         options: {
           failOnError: true,
@@ -317,7 +308,6 @@ module.exports = function (grunt) {
     'clean',
     'copy:assets',
     'shell:validate_module_stubs',
-    'shell:generate_module_stubs',
     'shell:generate_services_list'
   ]);
 
@@ -349,7 +339,6 @@ module.exports = function (grunt) {
     'clean',
     'copy:assets',
     'shell:validate_module_stubs',
-    'shell:generate_module_stubs',
     'shell:generate_services_list',
     'sass:development',
     'digest',
