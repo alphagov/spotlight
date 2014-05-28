@@ -300,6 +300,13 @@ define([
 
         describe('thousands', function () {
 
+          it('does not add add "k" to numbers of a thousand that are less than to 10,000', function () {
+            expect(Formatters.format(1000, { type: 'number', magnitude: true  })).toEqual('1,000');
+            expect(Formatters.format(1001, { type: 'number', magnitude: true  })).toEqual('1,001');
+            expect(Formatters.format(1123.11, { type: 'number', magnitude: true  })).toEqual('1,123');
+            expect(Formatters.format(1123, { type: 'number', magnitude: true  })).toEqual('1,123');
+          });
+
           it('adds "k" to numbers of a thousand that are greater than or equal to 10,000', function () {
             expect(Formatters.format(10000, { type: 'number', magnitude: true  })).toEqual('10k');
             expect(Formatters.format(10001, { type: 'number', magnitude: true  })).toEqual('10k');
