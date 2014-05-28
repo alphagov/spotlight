@@ -697,7 +697,7 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
       });
 
       it('scales domain from 0 to 1 when this is a percentage graph', function () {
-        graph.isOneHundredPercent = function() { return true; };
+        graph.isOneHundredPercent = function () { return true; };
         expect(graph.calcYScale().domain()).toEqual([0, 1]);
       });
 
