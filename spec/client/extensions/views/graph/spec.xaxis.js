@@ -5,17 +5,18 @@ define([
 function (XAxis, Collection) {
   describe('XAxisComponent', function () {
 
-    var el, wrapper;
+    var el, wrapper, svg;
     beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
-      wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g');
+      wrapper = d3.select(el[0]).append('svg').append('g');
+      svg = d3.select(el[0]).select('svg');
     });
 
     afterEach(function () {
       el.remove();
     });
 
-    function viewForConfig(config, startDate, endDate, useEllipses) {
+    function viewForConfig(config, startDate, endDate, useEllipses, wrapperEl) {
 
       var collection = new Collection();
       var start = collection.getMoment(startDate);
@@ -34,7 +35,7 @@ function (XAxis, Collection) {
 
       var view = new XAxis({
         collection: collection,
-        wrapper: wrapper,
+        wrapper: wrapperEl || wrapper,
         useEllipses: useEllipses,
         getScale: function () {
           return view.d3.time.scale().domain([start.toDate(), end.toDate()]);
@@ -111,16 +112,51 @@ function (XAxis, Collection) {
     });
 
 
-    describe('any configuration', function () {
-      it('renders ellipses for smaller screens', function () {
+    describe('ellipses', function () {
+      it('doesnt render ellipses if there is space to show the elements', function () {
         var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', true);
-
-        XAxis.prototype.d3.select(el[0]).select('svg').style('width', '400px');
+        svg.style('width', '1400px');
         view.render();
 
-        var ticks = wrapper.selectAll('.tick')[0];
-        expect(wrapper.selectAll('.tick')[0].length).toEqual(5);
-        expect(d3.select(ticks[0]).text()).toContain('…');
+        var ticks = view.wrapper.selectAll('.tick');
+        expect(ticks[0].length).toEqual(5);
+        expect(ticks[0][0].textContent).not.toContain('…');
+      });
+
+      it('renders ellipses for smaller screens', function () {
+        var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', true);
+        svg.style('width', '400px');
+        view.render();
+
+        var ticks = view.wrapper.selectAll('.tick');
+        expect(ticks[0].length).toEqual(5);
+        expect(ticks[0][0].textContent).toContain('…');
+      });
+
+      it('BUGFIX: only makes an ellipses for the view in question (not globally)', function () {
+        var view = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', true);
+        var el2 = $('<div></div>').appendTo($('body'));
+        var wrapper2 = XAxis.prototype.d3.select(el2[0]).append('svg').append('g');
+        var svg2 = d3.select(el2[0]).select('svg');
+        var view2 = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', false, wrapper2);
+
+        svg.style('width', '1400px');
+        svg.style('width', '400px');
+
+        console.log(view.wrapper.style());
+
+        view2.render();
+        view.render();
+
+        var ticks = view.wrapper.selectAll('.tick');
+        expect(ticks[0].length).toEqual(5);
+        expect(ticks[0][0].textContent).toContain('…');
+
+        var ticks2 = view2.wrapper.selectAll('.tick');
+        expect(ticks2[0].length).toEqual(5);
+        expect(ticks2[0][0].textContent).not.toContain('…');
+
+        el2.remove();
       });
     });
 
