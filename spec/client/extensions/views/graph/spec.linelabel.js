@@ -179,8 +179,8 @@ function (LineLabel, Collection) {
           var label2 = labels.eq(1);
           expect(label1.find('span.value')).toHaveText('60');
           expect(label2.find('span.value')).toHaveText('160');
-          expect(label1.find('span.percentage')).toHaveText('(27%)'); // 60/(60+160)
-          expect(label2.find('span.percentage')).toHaveText('(73%)'); // 160/(60+160)
+          expect(label1.find('span.percentage')).toHaveText('(27.3%)'); // 60/(60+160)
+          expect(label2.find('span.percentage')).toHaveText('(72.7%)'); // 160/(60+160)
         });
 
         it('renders a summary label when enabled', function () {
