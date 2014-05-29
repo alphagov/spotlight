@@ -140,10 +140,8 @@ function (XAxis, Collection) {
         var svg2 = d3.select(el2[0]).select('svg');
         var view2 = viewForConfig('hour', '2013-03-13T00:00:00+00:00', '2013-03-14T00:00:00+00:00', false, wrapper2);
 
-        svg.style('width', '1400px');
+        svg2.style('width', '1400px');
         svg.style('width', '400px');
-
-        console.log(view.wrapper.style());
 
         view2.render();
         view.render();

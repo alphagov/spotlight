@@ -80,8 +80,7 @@ function (d3, Axis) {
     configs: {
       hour: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.hour.utc, 6];
+          return [this.d3.time.hour.utc, 6];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -98,8 +97,7 @@ function (d3, Axis) {
       },
       day: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.mondays.utc, 1];
+          return [this.d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -109,8 +107,7 @@ function (d3, Axis) {
       },
       week: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.mondays.utc, 1];
+          return [this.d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -120,8 +117,7 @@ function (d3, Axis) {
       },
       month: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.month.utc, 1];
+          return [this.d3.time.month.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {
