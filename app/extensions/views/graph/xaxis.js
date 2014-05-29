@@ -25,11 +25,8 @@ function (d3, Axis) {
       // space allocated for each data item.
       // We do this by hand with D3, because SVG text elements don't support
       // CSS ellipsis styles or line breaks.
-      var labels = d3.selectAll('.x-axis .tick text');
-      if (!this.svg) {
-        this.svg = d3.select('svg'); // For unit tests.
-      }
-      var svgWidth = this.svg.style('width').replace('px', '');
+      var labels = this.wrapper.selectAll('.x-axis .tick text');
+      var svgWidth = $(this.wrapper[0]).parent().width();
       var blockWidth = svgWidth / this.collection.first().get('values').length;
 
       labels.each(function () {
