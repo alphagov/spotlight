@@ -43,6 +43,10 @@ function (UserSatisfaction, BarChart, JourneyCollection, Collection, Backbone) {
         expect(graph.components().hover).toBeUndefined();
       });
 
+      it('removes the yaxis component from the BarChart', function () {
+        expect(graph.components().yaxis).toBeUndefined();
+      });
+
       it('sets the xasis to not useEllipses', function () {
         expect(graph.components().xaxis.view.prototype.useEllipses).toEqual(false);
       });

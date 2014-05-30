@@ -13,6 +13,7 @@ function (BarChart) {
       var components = BarChart.prototype.components.apply(this, arguments);
 
       delete components.hover;
+      delete components.yaxis;
 
       components.xaxis.view = components.xaxis.view.extend({
         useEllipses: false
