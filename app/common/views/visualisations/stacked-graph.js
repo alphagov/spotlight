@@ -105,13 +105,13 @@ function (Graph, LineLabel) {
         };
       }
 
-      return [
-        { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis, options: yAxisOptions },
-        { view: this.sharedComponents.stack, options: stackOptions },
-        { view: labelComponent, options: labelOptions },
-        { view: this.sharedComponents.hover },
-        {
+      return {
+        xaxis: { view: this.sharedComponents.xaxis },
+        yaxis: { view: this.sharedComponents.yaxis, options: yAxisOptions },
+        stack: { view: this.sharedComponents.stack, options: stackOptions },
+        label: { view: labelComponent, options: labelOptions },
+        hover: { view: this.sharedComponents.hover },
+        tooltip: {
           view: this.sharedComponents.tooltip,
           options: {
             formatValue: tooltipFormat,
@@ -119,7 +119,7 @@ function (Graph, LineLabel) {
             noTotal: true
           }
         }
-      ];
+      };
     },
 
     encompassStack: true,

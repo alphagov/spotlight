@@ -7,15 +7,15 @@ function (Graph) {
     numYTicks: 3,
 
     components: function () {
-      return [
-        { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis },
-        {
+      return {
+        xaxis: { view: this.sharedComponents.xaxis },
+        yaxis: { view: this.sharedComponents.yaxis },
+        stack: {
           view: this.sharedComponents.stack,
           options: { drawCursorLine: true }
         },
-        { view: this.sharedComponents.hover }
-      ];
+        hover: { view: this.sharedComponents.hover }
+      };
     }
   });
 

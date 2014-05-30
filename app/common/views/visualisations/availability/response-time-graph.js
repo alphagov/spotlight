@@ -8,9 +8,12 @@ function (Graph) {
     numYTicks: 3,
 
     components: function () {
-      return [
-        { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis,
+      return {
+        xaxis: {
+          view: this.sharedComponents.xaxis
+        },
+        yaxis: {
+          view: this.sharedComponents.yaxis,
           options: {
             tickFormat: function () {
               return _.bind(function (d) {
@@ -21,26 +24,28 @@ function (Graph) {
               }, this);
             }
           }
-          },
-          {
-            view: this.sharedComponents.stack,
-            options: {
-              drawCursorLine: true
+        },
+        stack: {
+          view: this.sharedComponents.stack,
+          options: {
+            drawCursorLine: true
+          }
+        },
+        tooltip: {
+          view: this.sharedComponents.tooltip,
+          options: {
+            formatValue: function (value) {
+              return this.format(value, {
+                type: 'duration',
+                unit: 's'
+              });
             }
-          },
-          {
-            view: this.sharedComponents.tooltip,
-            options: {
-              formatValue: function (value) {
-                return this.format(value, {
-                  type: 'duration',
-                  unit: 's'
-                });
-              }
-            }
-          },
-          { view: this.sharedComponents.hover }
-        ];
+          }
+        },
+        hover: {
+          view: this.sharedComponents.hover
+        }
+      };
     }
 
   });
