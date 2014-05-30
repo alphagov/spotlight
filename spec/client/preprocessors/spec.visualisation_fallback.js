@@ -8,13 +8,13 @@ define([
     var el;
     beforeEach(function () {
       visualisationFallback.Modernizr = {};
-      el = $('<div class="visualisation-fallback" data-src="spec/client/preprocessors/transparent.gif">original content</div>');
+      el = $('<div class="visualisation-inner" data-src="spec/client/preprocessors/transparent.gif">original content</div>');
       $('body').append(el);
     });
 
     afterEach(function () {
       visualisationFallback.Modernizr = originalModernizr;
-      $('.visualisation-fallback').remove();
+      $('.visualisation-inner').remove();
     });
 
     it('does nothing when the browser supports SVG', function () {

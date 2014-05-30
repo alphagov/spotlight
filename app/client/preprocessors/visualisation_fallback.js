@@ -7,7 +7,7 @@ define([
       return;
     }
 
-    $('.visualisation-fallback').each(function () {
+    $('.visualisation-inner').each(function () {
       var img = $('<img/>').attr('src', $(this).data('src'));
       var $this = $(this);
       // insert image on load to work around IE6 display issues
