@@ -10,6 +10,7 @@ function (ModuleController, ListView, ListCollection) {
     collectionClass: ListCollection,
     clientRenderOnInit: false,
     requiresSvg: false,
+    hasTable: false,
 
     collectionOptions: function () {
       return {

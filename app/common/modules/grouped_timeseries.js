@@ -55,6 +55,13 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
           y: []
         }, this.model.get('axes'))
       };
+    },
+
+    visualisationOptions: function () {
+      return {
+        currency: this.model.get('currency'),
+        valueAttr: this.model.get('value-attribute')
+      };
     }
 
   });

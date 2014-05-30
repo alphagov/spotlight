@@ -9,6 +9,7 @@ function (ModuleController, MultiStatsView, MultiStatsCollection) {
     collectionClass: MultiStatsCollection,
     clientRenderOnInit: true,
     requiresSvg: true,
+    hasTable: false,
 
     collectionOptions: function () {
       return {

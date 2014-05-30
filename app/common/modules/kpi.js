@@ -7,6 +7,7 @@ function (ModuleController, KPIView, Collection) {
   return ModuleController.extend({
     visualisationClass: KPIView,
     collectionClass: Collection,
+    hasTable: false,
 
     collectionOptions: function () {
       return {

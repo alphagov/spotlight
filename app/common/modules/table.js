@@ -8,7 +8,8 @@ function (ModuleController, TableView, Collection) {
     visualisationClass: TableView,
     collectionClass: Collection,
     clientRenderOnInit: true,
-    requiresSvg: true,
+    requiresSvg: false,
+    hasTable: false,
 
     collectionOptions: function () {
       return {
