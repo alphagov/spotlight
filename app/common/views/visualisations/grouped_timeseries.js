@@ -16,7 +16,8 @@ function (template, View, StackedGraph, LineGraph) {
         '.categories': {
           view: graph,
           options: {
-            'currency': this.model.get('currency')
+            currency: this.currency,
+            valueAttr: this.valueAttr
           }
         }
       };

@@ -30,7 +30,7 @@ function (StandaloneView, Collection, Model, View) {
       it('renders a module', function () {
         var content = standaloneView.getContent();
         expect(content).toContain('class="testclass"');
-        expect(content).toContain('<div class="visualisation">test content</div>');
+        expect(content).toContain('<div class="visualisation-inner">test content</div>');
       });
 
       it('renders a module with a fallback element', function () {
@@ -56,7 +56,7 @@ function (StandaloneView, Collection, Model, View) {
           var content = standaloneView.getContent();
           content = content.replace(/>\s+?</g, '><');
           expect(content).toContain('class="testclass"');
-          expect(content).toContain('<div class="visualisation-fallback" data-src="/testurl.png"><noscript><img src="/testurl.png" /></noscript></div>');
+          expect(content).toContain('<div class="visualisation-inner" data-src="/testurl.png"><noscript><img src="/testurl.png" /></noscript></div>');
         });
       });
 

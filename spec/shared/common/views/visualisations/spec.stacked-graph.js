@@ -22,28 +22,6 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
       });
     });
 
-    describe('configuration', function () {
-      it('get the valueAttr from the model on initialize', function () {
-        expect(graph.valueAttr).toEqual('someAttr');
-      });
-      it('passes valueAttr option to base graph view', function () {
-        expect(Graph.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
-          valueAttr: 'someAttr'
-        }));
-      });
-      it('does not overwrite existing valueAttr option', function () {
-        var model = new Model({
-          'value-attribute': 'someAttr'
-        });
-        var graph = new StackedGraph({
-          collection: new Collection(),
-          model: model,
-          valueAttr: 'value'
-        });
-        expect(graph.valueAttr).toEqual('value');
-      });
-    });
-
     describe('interactiveFunction', function () {
       describe('if graph.lineLabelOnTop() is truthy', function () {
         beforeEach(function () {

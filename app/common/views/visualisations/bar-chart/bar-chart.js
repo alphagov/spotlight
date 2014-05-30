@@ -9,14 +9,6 @@ function (Graph, XAxis, Bar, Hover) {
     minYDomainExtent: 1,
     numYTicks: 3,
 
-    initialize: function (options) {
-      this.valueAttr = options.valueAttr || 'uniqueEvents';
-      this.axisPeriod = options.axisPeriod;
-      this.formatOptions = options.formatOptions || { type: 'integer' };
-
-      Graph.prototype.initialize.apply(this, arguments);
-    },
-
     components: function () {
       var that = this;
       return {

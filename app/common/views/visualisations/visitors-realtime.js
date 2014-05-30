@@ -14,8 +14,6 @@ function (View, SparklineView, template) {
     labelTag: '.stat-description',
     graphLabelTag: '.sparkline-title',
 
-    valueAttr: 'unique_visitors',
-
     initialize: function (options) {
       options = options || {};
 
