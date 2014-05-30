@@ -15,7 +15,8 @@ function (GovUkView, Module) {
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,
-        url: this.url
+        url: this.url,
+        hasTable: this.hasTable
       });
       module.render();
       return module.$el[0].outerHTML;

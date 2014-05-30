@@ -7,6 +7,8 @@ function (Table, HideShow) {
     initialize: function () {
       this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
+      this.isModule = (this.model.get('page-type') === 'module');
+
       Table.prototype.initialize.apply(this, arguments);
       this.stopListening(this.collection, 'reset add remove sync', this.render);
     },
@@ -15,13 +17,13 @@ function (Table, HideShow) {
       var label = 'Table view of “' + this.model.get('title') + '” data';
       this.$table = $('<table/>');
       this.$table.appendTo(this.$toggleContainer);
-      this.$toggleContainer.insertAfter(this.$el);
+      this.$toggleContainer.appendTo(this.$el);
       this.toggleTable = new HideShow({
         $reveal: this.$table,
         $el: this.$toggleContainer,
         showLabel: label,
         hideLabel: label,
-        isModule: (this.model.get('page-type') === 'module')
+        isModule: this.isModule
       });
     },
 
@@ -30,7 +32,7 @@ function (Table, HideShow) {
     floatHeaders: function () {
       this.toggleTable.show();
       Table.prototype.floatHeaders.apply(this, arguments);
-      if (!this.toggleTable.isModule) {
+      if (!this.isModule) {
         this.toggleTable.hide();
       }
     },
