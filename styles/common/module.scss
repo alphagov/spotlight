@@ -1,5 +1,29 @@
 #content {
   section.module {
     min-height: 190px;
+
+    .visualisation-inner {
+      width: 100%;
+      float: left;
+      clear: both;
+    }
+
+    .visualisation-table {
+      float: left;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      padding-right: 3em;
+
+      table {
+        margin-top: 0;
+      }
+    }
+
+    .visualisation-moreinfo {
+      min-width: 10em;
+      overflow: hidden;
+      margin-top: 2em;
+      display: inline-block;
+    }
   }
 }
