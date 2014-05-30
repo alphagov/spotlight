@@ -77,7 +77,7 @@ module.exports = {
 
     app.get('*.png', require('./render_png'));
 
-    app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
+    app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller')(global.config));
 
     app.get('/performance', require('./server/controllers/homepage'));
 

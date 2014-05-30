@@ -222,33 +222,6 @@ module.exports = function (grunt) {
       }
     },
     shell: {
-      // Runs cheapseats tests
-      cheapseats: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot --standalone --path ./')
-      },
-      // Generates the page-per-thing module JSON stubs
-      generate_services_list: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: 'node tools/generate-services-list.js'
-      },
-      // Generates the page-per-thing module JSON stubs
-      validate_module_stubs: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: addArgs('node tools/validate-stubs.js')
-      },
       // Supervises the node process in development
       supervisor: {
         options: {
@@ -307,8 +280,6 @@ module.exports = function (grunt) {
     'copy:govuk_template',
     'clean',
     'copy:assets',
-    'shell:validate_module_stubs',
-    'shell:generate_services_list'
   ]);
 
   grunt.registerTask('build:development', [
@@ -325,21 +296,11 @@ module.exports = function (grunt) {
     'digest'
   ]);
 
-  grunt.registerTask('test:stubs', [
-    'shell:validate_module_stubs'
-  ]);
-
-  grunt.registerTask('test:stubs:unpublished', [
-    'shell:validate_module_stubs:--unpublished'
-  ]);
-
   grunt.registerTask('test:unit', [
     'copy:vendor',
     'copy:govuk_template',
     'clean',
     'copy:assets',
-    'shell:validate_module_stubs',
-    'shell:generate_services_list',
     'sass:development',
     'digest',
     'jasmine',
@@ -349,15 +310,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:all', [
     'test:unit',
-    'shell:cheapseats'
-  ]);
-
-  grunt.registerTask('cheapseats', [
-    'shell:cheapseats'
-  ]);
-
-  grunt.registerTask('cheapseats:unpublished', [
-    'shell:cheapseats:--unpublished'
   ]);
 
   // Default task

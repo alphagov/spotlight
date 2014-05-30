@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 var requirejs = require('requirejs');
 
-var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
+var dashboards = require(require('path').join('../../../', global.config.stagecraftStubPath, 'all'));
 
 var View = require('../views/homepage');
 
