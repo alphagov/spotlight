@@ -38,13 +38,13 @@ function (ModuleView, Collection, Model, View) {
 
     it('renders a module', function () {
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
     it('renders a module with description', function () {
       model.set('description', 'Description');
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
     it('renders a module with description', function () {
@@ -53,21 +53,21 @@ function (ModuleView, Collection, Model, View) {
         slug: 'parentSlug'
       }));
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading"><a href="parentSlug/slug">A Title</a></h2><h3>Description</h3><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
     it('renders a module with description and info', function () {
       model.set('description', 'Description');
       model.set('info', ['Info line 1', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
     it('renders a module with description and info link', function () {
       model.set('description', 'Description');
       model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation">test content</div></section>');
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
     it('renders a standalone module with description and info link', function () {
@@ -90,7 +90,7 @@ function (ModuleView, Collection, Model, View) {
           .replace('&gt;', '>')
           .replace(' />', '/>');
 
-        expect(content).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation-fallback" data-src="/test/url.png"><noscript><img src="/test/url.png"/></noscript></div></section>');
+        expect(content).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner" data-src="/test/url.png"><noscript><img src="/test/url.png"/></noscript></div><div class="visualisation-moreinfo"></div></div></section>');
       });
     });
 
@@ -98,8 +98,16 @@ function (ModuleView, Collection, Model, View) {
       jasmine.clientOnly(function () {
         moduleView.requiresSvg = true;
         moduleView.render();
-        expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation">test content</div></section>');
+        expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
       });
+    });
+
+    it('renders a table when hasTable is true and there are axes on the collection', function () {
+      moduleView.hasTable = true;
+      var collectionWithAxes = new Collection({}, { 'axes': true });
+      moduleView.collection = collectionWithAxes;
+      moduleView.render();
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-table"><div class="table-toggle"><a class="" href="#">Table view of “A Title” data</a><table><thead><tr></tr></thead><tbody><tr></tr></tbody></table></div></div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
   });

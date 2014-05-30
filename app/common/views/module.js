@@ -1,8 +1,9 @@
 define([
   'extensions/views/view',
-  'tpl!common/templates/module.html'
+  'tpl!common/templates/module.html',
+  'extensions/views/graph/table'
 ],
-function (View, template) {
+function (View, template, GraphTable) {
 
   var ModuleView = View.extend({
     template: template,
@@ -10,6 +11,7 @@ function (View, template) {
 
     initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
+
       // apply default attributes to elements
       if (options.el) {
         var attrs = _.extend({}, _.result(this, 'attributes'));
@@ -41,15 +43,22 @@ function (View, template) {
     },
 
     views: function () {
+      var views = (this.hasTable && this.collection && this.collection.options && this.collection.options.axes) ? {
+        '.visualisation-table': {
+          view: GraphTable,
+          options: this.visualisationOptions
+        }
+      } : {};
       if (isServer && this.requiresSvg) {
-        return {};
+        return views;
       }
-      return {
-        '.visualisation': {
+
+      return _.extend(views, {
+        '.visualisation-inner': {
           view: this.visualisationClass,
           options: this.visualisationOptions
         }
-      };
+      });
     },
 
     render: function () {
@@ -64,8 +73,10 @@ function (View, template) {
         View.prototype.templateContext.call(this),
         {
           fallback: isServer && this.requiresSvg,
-          fallbackUrl: this.url + '.png',
-          jsonUrl: this.jsonUrl
+          fallbackUrl: this.url ? (this.url + '.png') : null,
+          jsonUrl: this.jsonUrl,
+          hasTable: this.hasTable,
+          offerPng: this.requiresSvg
         }
       );
     }
