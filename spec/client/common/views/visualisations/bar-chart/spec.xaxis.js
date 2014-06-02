@@ -5,7 +5,7 @@ define([
 function (XAxis, Collection) {
   describe('Bar chart XAxisComponent', function () {
 
-    var el, wrapper;
+    var el, wrapper, svg;
     beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
       wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g'),
