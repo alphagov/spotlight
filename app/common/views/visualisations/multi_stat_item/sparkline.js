@@ -30,7 +30,7 @@ function (Graph) {
         val.yaxis = {
           view: this.sharedComponents.yaxis,
           options: { showStartAndEndTicks: true }
-        }
+        };
 
         val.yaxisRight = {
           view: this.sharedComponents.yaxisRight,
