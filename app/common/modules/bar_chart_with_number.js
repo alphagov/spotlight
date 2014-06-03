@@ -39,7 +39,8 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
 
     visualisationOptions: function () {
       return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
-        valueAttr: 'uniqueEvents'
+        valueAttr: 'uniqueEvents',
+        formatOptions: this.model.get('format')
       });
     }
   });

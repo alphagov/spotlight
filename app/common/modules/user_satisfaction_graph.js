@@ -41,7 +41,8 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
     visualisationOptions: function () {
       return {
         totalAttr: 'totalRatings',
-        valueAttr: this.model.get('value-attribute')
+        valueAttr: this.model.get('value-attribute'),
+        formatOptions: this.model.get('format')
       };
     }
   });

@@ -8,6 +8,7 @@ function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({
     minYDomainExtent: 1,
     numYTicks: 3,
+    formatOptions: 'integer',
 
     components: function () {
       var that = this;
