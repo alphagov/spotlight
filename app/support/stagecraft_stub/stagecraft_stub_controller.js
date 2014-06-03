@@ -1,8 +1,9 @@
 var fs = require('graceful-fs'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  glob = require('glob'),
+  async = require('async');
 
-function parseParent(content, slug) {
-  var dashboardData = JSON.parse(content);
+function parseParent(dashboardData, slug) {
   var module = _.find(dashboardData.modules, function (module) {
     return module.slug === slug;
   });
@@ -41,35 +42,96 @@ function send404(res, filePath) {
   res.send({error: "No such stub exists: " + filePath});
 }
 
-module.exports =  function(config) {
+function loadRelated(basePath, callback) {
+  async.map([
+    basePath + '/departments.json',
+    basePath + '/business-models.json',
+    basePath + '/customer-types.json'
+  ], fs.readFile,
+  function(err, content) {
+    var json = content.map(JSON.parse.bind(JSON)),
+        related = { };
 
-  function readFile(path, callback) {
-    var filePath = require('path').join(config.stagecraftStubPath, path + '.json');
-    fs.readFile(filePath, callback);
+    related.departments = json[0];
+    related.businessModels = json[1];
+    related.customerTypes = json[2];
+
+    callback(null, related);
+  });
+}
+
+function enrichDashboard(related, dashboard) {
+  if (dashboard.department) {
+    dashboard.department =
+      related.departments[dashboard.department];
   }
 
-  return function (req, res) {
-    var paramPath = req.params[0];
-    var content = readFile(paramPath, function (err, content) {
-      if (err) {
-        paramPath = paramPath.split('/');
-        var slug = paramPath.pop();
-        var parentPath = paramPath.join('/');
-        readFile(parentPath, function (err, parentContent) {
-          if (err) {
-            send404(res, paramPath);
-          } else {
-            var moduleData = parseParent(parentContent, slug);
-            if (moduleData) {
-              res.send(moduleData);
-            } else {
-              send404(res, paramPath);
-            }
-          }
-        });
+  if (dashboard['customer-type']) {
+    dashboard['customer-type'] =
+      related.customerTypes[dashboard['customer-type']];
+  }
+
+  if (dashboard['business-model']) {
+    dashboard['business-model'] =
+      related.businessModels[dashboard['business-model']];
+  }
+
+  return dashboard;
+}
+
+function loadDashboards(basePath, callback) {
+  loadRelated(basePath, function(err, related) {
+    if (err) callback(err);
+    else {
+      var dashboardGlob = require('path').join(basePath, 'dashboards/**/*.json');
+      glob(dashboardGlob, function(err, files) {
+        if (err) callback(err);
+        else {
+          async.map(files, fs.readFile, function(err, results) {
+            var dashboardMap = results.map(JSON.parse.bind(JSON))
+                                      .map(enrichDashboard.bind(null, related))
+                                      .reduce(function(dashboards, dashboard) {
+                                        dashboards[dashboard.slug] = dashboard;
+                                        return dashboards;
+                                      }, { });
+
+            callback(null, dashboardMap);
+          });
+        }
+      });
+    }
+  });
+}
+
+module.exports =  function(config, callback) {
+
+  var dashboardGlob = require('path').join(
+          config.stagecraftStubPath, '../');
+
+  loadDashboards(dashboardGlob, function (err, dashboards) {
+    callback(function(req, res) {
+      var slug = req.params[0],
+          dashboard = dashboards[slug],
+          slugParts, parentSlug;
+
+      console.log(slug, dashboard);
+
+      if (!dashboard) {
+        slugParts = slug.split('/');
+        slug = slugParts.pop();
+        parentSlug = slugParts.join('/');
+
+        dashboard = dashboards[parentSlug];
+        console.log(parentSlug, dashboard);
+        if (!dashboard) send404(res, parentSlug + '/' + slug);
+        else {
+          module = parseParent(dashboard, slug);
+          if (module) res.send(module);
+          else send404(res, parentSlug + '/' + slug);
+        }
       } else {
-        res.send(JSON.parse(content));
+        res.send(dashboard);
       }
     });
-  };
+  });
 };

@@ -5,7 +5,7 @@ var winston = require('winston');
 var requirejs = require('requirejs');
 
 module.exports = {
-  getApp: function (environment, rootDir, requireBaseUrl) {
+  getApp: function (environment, rootDir, requireBaseUrl, callback) {
     var app;
     app = express();
     app.disable('x-powered-by');
@@ -77,8 +77,6 @@ module.exports = {
 
     app.get('*.png', require('./render_png'));
 
-    app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller')(global.config));
-
     app.get('/performance', require('./server/controllers/homepage'));
 
     app.get('/performance/services', require('./server/controllers/services'));
@@ -87,6 +85,9 @@ module.exports = {
 
     app.get('/performance/*', require('./process_request'));
 
-    return app;
+    require('./support/stagecraft_stub/stagecraft_stub_controller')(global.config, function(handler) {
+      app.get('/stagecraft-stub/*', handler);
+      callback(app);
+    });
   }
 };

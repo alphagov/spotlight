@@ -42,18 +42,15 @@ var http = require('http'),
     path = require('path');
 
 var rootDir = path.join(__dirname, '..');
-var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
+require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL, function(app) {
 
-var port = process.env.PORT || app.get('port');
+  var port = process.env.PORT || app.get('port');
 
-app.set('port', port);
+  app.set('port', port);
 
-var server = http.createServer(app).listen(port, function () {
-  global.logger.info('Express server listening on port ' + port);
+  http.createServer(app).listen(port, function () {
+    global.logger.info('Express server listening on port ' + port);
+  });
+
 });
 
-exports = module.exports = server;
-
-exports.use = function () {
-  app.use.apply(app, arguments);
-};
