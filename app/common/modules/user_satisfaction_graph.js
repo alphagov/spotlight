@@ -31,11 +31,37 @@ function (UserSatisfactionCollection) {
               label: this.model.get('title'),
               key: 'rating',
               format: 'percent'
+            },
+            {
+              label: 'Not satisfied',
+              key: 'rating_1:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Dissatisfied',
+              key: 'rating_2:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Neither satisfied or dissatisfied',
+              key: 'rating_3:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Satisfied',
+              key: 'rating_4:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Very satisfied',
+              key: 'rating_5:sum',
+              format: 'integer'
             }
           ]
         }, this.model.get('axes'))
       };
     },
+
     visualisationOptions: function () {
       return {
         totalAttr: 'totalRatings',

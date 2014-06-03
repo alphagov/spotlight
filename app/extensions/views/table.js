@@ -119,11 +119,9 @@ function (View, Formatters) {
         axes = this.collection.options.axes;
       if (axes) {
         cols = _.map(axes.y, function (axis) {
-          if (!axis.key || !this.valueAttr || axis.key === this.valueAttr) {
-            return _.extend({
-              key: this.valueAttr
-            }, axis);
-          }
+          return _.extend({
+            key: this.valueAttr
+          }, axis);
         }, this);
         if (axes.x) {
           cols.unshift(axes.x);
