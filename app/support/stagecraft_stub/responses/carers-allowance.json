@@ -86,8 +86,8 @@
     {
       "slug": "time-taken-to-complete-transaction",
       "module-type": "completion_numbers",
-      "title": "Time taken by successful applications",
-      "description": "The mean length of time taken (in seconds) for online users to complete an application.<br/>Data has been tracked since December 2013.",
+      "title": "Time taken to complete online application",
+      "description": "The mean length of time taken (in seconds) for online users to complete an application.<br/>Users who did not complete their application are not included in these statistics.<br/>Data has been tracked since December 2013.",
       "data-group": "carers-allowance",
       "data-type": "time-taken-to-complete",
       "info": [
@@ -102,6 +102,7 @@
       "value-attribute": "avgSessionDuration:sum",
       "start-at": "2013-10-01T00:00:00",
       "axis-period": "month",
+      "y-axis-format": "secondsToMinutes",
       "axes": {
         "x": {
           "label": "Date",

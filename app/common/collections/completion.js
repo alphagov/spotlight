@@ -20,6 +20,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.axisPeriod = options.axisPeriod || 'week';
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
       this.filterBy = options.filterBy || [];
+      this.yAxisFormat = options.yAxisFormat;
 
       MatrixCollection.prototype.initialize.apply(this, arguments);
       if (!this.denominatorMatcher) {
@@ -55,8 +56,19 @@ function (MatrixCollection, Collection, Group, Query) {
     },
 
     parse: function (response) {
+
       // refresh value attribute to work with tabbed interface
       this.setValueAttribute(this.options);
+
+      if (this.yAxisFormat === 'secondsToMinutes') {
+        if (response.data) {
+          _.each(response.data, function(j) {
+            _.each(j.values, function(k) {
+              k[this.valueAttr] = (!k[this.valueAttr]) ? k[this.valueAttr] : k[this.valueAttr] / 60;
+            }, this);
+          }, this);
+        }
+      }
 
       var periods = 0,
           values = [],

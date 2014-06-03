@@ -16,7 +16,8 @@ function (require, Axis) {
     },
     tickFormat: function () {
       if (this.scales.y.tickValueList) {
-        return this.numberListFormatter(this.scales.y.tickValueList, this.graph.currency);
+        var suffix = (this.yAxisFormat === 'secondsToMinutes') ? ' min' : null;
+        return this.numberListFormatter(this.scales.y.tickValueList, this.graph.currency, suffix);
       }
     },
     tickValues: function () {

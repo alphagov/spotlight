@@ -8,6 +8,9 @@ function (SingleStatView) {
     labelPrefix: '',
 
     formatValue: function (value) {
+      if (this.yAxisFormat === 'secondsToMinutes') {
+        return this.format(value, { type: 'customMins' });
+      }
       return this.format(value, { type: 'number', magnitude: true, pad: true });
     },
 

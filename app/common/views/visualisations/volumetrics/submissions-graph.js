@@ -9,7 +9,10 @@ function (Graph) {
     components: function () {
       return {
         xaxis: { view: this.sharedComponents.xaxis },
-        yaxis: { view: this.sharedComponents.yaxis },
+        yaxis: {
+          view: this.sharedComponents.yaxis,
+          options: { yAxisFormat: this.yAxisFormat }
+        },
         stack: {
           view: this.sharedComponents.stack,
           options: { drawCursorLine: true }

@@ -20,6 +20,7 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         startAt: this.model.get('start-at'),
         endAt: this.model.get('end-at'),
         axisPeriod: this.model.get('axis-period'),
+        yAxisFormat: this.model.get('y-axis-format'),
         axes: _.merge({
           x: {
             label: 'Date of Application',

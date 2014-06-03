@@ -47,6 +47,18 @@ define([
       return formatters.number(value / divisor, options) + options.unit;
     },
 
+    customMins: function (value) {
+      var str;
+      if (!value) {
+        str = 'no data';
+      } else {
+        var minutes = Math.floor(value);
+        var secs = Math.round((value % 1) * 60);
+        str = ((minutes !== 0) ? minutes + 'm ' : '') + secs + 's';
+      }
+      return str;
+    },
+
     currency: function (value, options) {
       _.defaults(options, {
         symbol: '£',
@@ -138,6 +150,9 @@ define([
         }
         if (suffix) {
           value = value + suffix;
+        }
+        if (options.suffix) {
+          value = value + options.suffix;
         }
         if (minus && value !== '0') {
           value = '-' + value;
@@ -253,7 +268,7 @@ define([
     }
   };
 
-  var numberListFormatter = function (values, currency) {
+  var numberListFormatter = function (values, currency, suffix) {
 
     var max = Math.max.apply(Math, values);
     var magnitude = utils.magnitude(max);
@@ -263,6 +278,9 @@ define([
     };
     if (currency) {
       props.type = 'currency';
+    }
+    if (suffix) {
+      props.suffix = suffix;
     }
     if (magnitude.value === 1) {
       magnitude = true;
