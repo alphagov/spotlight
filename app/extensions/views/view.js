@@ -26,7 +26,9 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       this.removeSubviews(options);
       if (this.template) {
         var context = _.extend(
-          this.templateContext(), options.context
+          {},
+          options.context,
+          this.templateContext()
         );
         this.$el.html(this.template(context));
       }
@@ -65,7 +67,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       }
       var instances = this.viewInstances;
       _.each(viewsDefinition, function (definition, selector) {
-        var $el = this.$el.find(selector);
+        var $el = this.$(selector);
         if (!$el.length) {
           console.warn('No element found for ' + selector);
           return;
@@ -74,8 +76,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         var View,
             options = this.defaultSubviewOptions();
 
-        $el.empty();
-        options.$el = $el;
+        options.el = $el;
 
         if (typeof definition === 'function') {
           View = definition.call(this);
