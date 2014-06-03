@@ -106,7 +106,7 @@
       "period": "week",
       "info": [
         "Data source: CSV update",
-        "Digital take-up measures digital transactions as a percentage of the total."
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures digital transactions as a percentage of the total."
       ],
       "numerator-matcher": "^Digital$",
       "denominator-matcher": ".*",

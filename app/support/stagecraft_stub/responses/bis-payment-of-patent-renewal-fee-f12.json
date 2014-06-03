@@ -158,7 +158,7 @@
       "period": "month",
       "info": [
         "Data source: Intellectual Property Office",
-        "Digital take-up measures the percentage of completed monthly renewals that are made through online and bulk software versus non-digital channels."
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly renewals that are made through online and bulk software versus non-digital channels."
       ]
     },
     {
@@ -170,7 +170,7 @@
       "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
-        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "period": "day",
       "value-attribute": "rating"
@@ -187,7 +187,7 @@
       "value-attribute": "count:sum",
       "period": "month",
       "info": [
-        "Completion rate measures the proportion of people who started a claim and were able to complete it.",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
         "It is calculated as the percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ]
     },

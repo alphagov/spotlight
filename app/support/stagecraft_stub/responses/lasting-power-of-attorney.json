@@ -61,7 +61,7 @@
       "data-type": "volumes",
       "info": [
         "Data source: Office of the Public Guardian",
-        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
       ],
       "numerator-matcher": "^[a-z_]*_digital_applications$",
       "denominator-matcher": "^[a-z_]*_applications$",
@@ -76,7 +76,7 @@
       "description": "Proportion of people who completed both parts of the digital service, 'Make an LPA' and 'Register an LPA'",
       "info": [
         "Data source: Google Analytics",
-        "Completion rate measures the proportion of people who started an application and were able to complete it.",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
         "It is calculated as percentage of unique visitors who arrived at the final page of the digital service out of those who arrived at the 'Choose LPA type' page.",
         "After using the digital service, users have further offline steps to complete, which this does not measure."
       ],
@@ -156,7 +156,7 @@
       "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
-        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "period": "day",
       "value-attribute": "rating"
