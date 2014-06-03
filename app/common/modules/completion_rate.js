@@ -1,14 +1,10 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/completion_rate',
+//  'common/views/visualisations/completion_rate',
   'common/collections/completion_rate'
 ],
-function (ModuleController, CompletionRateView, CompletionRateCollection) {
-  var CompletionRateModule = ModuleController.extend({
-    visualisationClass: CompletionRateView,
+function (CompletionRateCollection) {
+  return {
     collectionClass: CompletionRateCollection,
-    clientRenderOnInit: true,
-    requiresSvg: true,
 
     collectionOptions: function () {
       return {
@@ -45,7 +41,5 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
 
     visualisationOptions: {}
 
-  });
-
-  return CompletionRateModule;
+  };
 });
