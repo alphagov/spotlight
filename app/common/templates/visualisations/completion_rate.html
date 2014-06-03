@@ -1,5 +1,6 @@
 <div class="single-decker-graph">
-	<nav id="completion-nav"></nav>
-  <p id="volumetrics-completion-selected" class="impact-number"></p>
-  <div class="graph timeseries-graph" id="volumetrics-completion"></div>
+  <p class="impact-number volumetrics-completion-selected"></p>
+  <div class="graph timeseries-graph volumetrics-completion">
+    <% if (fallbackUrl) { %><noscript><img src="<%= fallbackUrl %>"/></noscript><% } %>
+  </div>
 </div>
