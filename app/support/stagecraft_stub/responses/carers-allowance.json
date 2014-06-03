@@ -46,7 +46,7 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
-      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
+      "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications since October 2013.",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "dashboard-strapline": "Service dashboard",
@@ -55,6 +55,8 @@
       "value-attribute": "value:sum",
       "show-line-labels": true,
       "use_stack": true,
+      "start-at": "2013-10-01T00:00:00",
+      "axis-period": "month",
       "info": [
         "Data source: DWP database",
         "Shows the number of successful claims for Carer's Allowance, broken down by channel",
@@ -84,8 +86,8 @@
     {
       "slug": "time-taken-to-complete-transaction",
       "module-type": "completion_numbers",
-      "title": "Time taken to complete transaction",
-      "description": "The mean length of time taken for users to complete a successful application.",
+      "title": "Time taken by successful applications",
+      "description": "The mean length of time taken (in seconds) for online users to complete an application.<br/>Data has been tracked since December 2013.",
       "data-group": "carers-allowance",
       "data-type": "time-taken-to-complete",
       "info": [
@@ -98,6 +100,8 @@
       "numerator-matcher": "consent-and-declaration$",
       "matching-attribute": "eventLabel",
       "value-attribute": "avgSessionDuration:sum",
+      "start-at": "2013-10-01T00:00:00",
+      "axis-period": "month",
       "axes": {
         "x": {
           "label": "Date",
@@ -117,7 +121,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "The percentage of all completed applications that were made via a digital channel.",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "info": [
@@ -127,7 +131,9 @@
       "denominator-matcher": "^ca_",
       "numerator-matcher": "ca_e_claims_received$",
       "matching-attribute": "key",
-      "value-attribute": "value:sum"
+      "value-attribute": "value:sum",
+      "start-at": "2013-10-01T00:00:00",
+      "axis-period": "month"
     },
     {
       "slug": "user-satisfaction",
@@ -141,13 +147,15 @@
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "start-at": "2013-10-01T00:00:00",
+      "axis-period": "month"
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "",
+      "description": "The percentage of online users who reached the final page of the service. Data has been tracked since December 2013.",
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
@@ -157,7 +165,9 @@
       ],
       "denominator-matcher": "about-you$",
       "numerator-matcher": "consent-and-declaration$",
-      "matching-attribute": "eventLabel"
+      "matching-attribute": "eventLabel",
+      "start-at": "2013-10-01T00:00:00",
+      "axis-period": "month"
     },
     {
       "slug": "users-at-each-step",
