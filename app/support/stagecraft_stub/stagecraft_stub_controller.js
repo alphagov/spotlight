@@ -46,7 +46,8 @@ function loadRelated(basePath, callback) {
   async.map([
     basePath + '/departments.json',
     basePath + '/business-models.json',
-    basePath + '/customer-types.json'
+    basePath + '/customer-types.json',
+    basePath + '/agencies.json'
   ], fs.readFile,
   function(err, content) {
     var json = content.map(JSON.parse.bind(JSON)),
@@ -55,6 +56,7 @@ function loadRelated(basePath, callback) {
     related.departments = json[0];
     related.businessModels = json[1];
     related.customerTypes = json[2];
+    related.agencies = json[3];
 
     callback(null, related);
   });
@@ -64,6 +66,10 @@ function enrichDashboard(related, dashboard) {
   if (dashboard.department) {
     dashboard.department =
       related.departments[dashboard.department];
+  }
+
+  if (dashboard.agency) {
+    dashboard.agency = related.agencies[dashboard.agency];
   }
 
   if (dashboard['customer-type']) {
