@@ -1,24 +1,6 @@
-define([
-  'extensions/controllers/module',
-  'extensions/views/table',
-  'common/collections/list'
-],
-function (ModuleController, TableView, Collection) {
-  var TableModule = ModuleController.extend({
-    visualisationClass: TableView,
-    collectionClass: Collection,
-    clientRenderOnInit: true,
-    requiresSvg: false,
+define(function () {
+  return {
     hasTable: false,
-
-    collectionOptions: function () {
-      return {
-        id: 'list',
-        title: 'List',
-        queryParams: this.model.get('query-params'),
-        axes: this.model.get('axes')
-      };
-    },
 
     visualisationOptions: function () {
       return {
@@ -27,7 +9,5 @@ function (ModuleController, TableView, Collection) {
       };
     }
 
-  });
-
-  return TableModule;
+  };
 });
