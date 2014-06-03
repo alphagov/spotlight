@@ -14,7 +14,7 @@ define([
   'client/modules/tab',
   'client/modules/table',
   'common/modules/user_satisfaction',
-  'common/modules/user_satisfaction_graph',
+  'client/modules/user_satisfaction_graph',
   'common/modules/visitors-realtime',
   'client/controllers/services'
 ],

@@ -1,14 +1,11 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/user-satisfaction-graph',
   'common/collections/user-satisfaction'
 ],
-function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
-  var UserSatisfactionModule = ModuleController.extend({
-    visualisationClass: UserSatisfactionView,
+function (UserSatisfactionCollection) {
+  return {
+
     collectionClass: UserSatisfactionCollection,
-    clientRenderOnInit: true,
-    requiresSvg: true,
+
     collectionOptions: function () {
       return {
         id: 'user_satisfaction',
@@ -46,7 +43,6 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
         formatOptions: this.model.get('format')
       };
     }
-  });
 
-  return UserSatisfactionModule;
+  };
 });

@@ -1,12 +1,10 @@
 define([
-  'stache!common/templates/visualisations/user-satisfaction-graph',
   'common/views/visualisations/completion_rate',
   'common/views/visualisations/bar-chart/user-satisfaction',
   'extensions/collections/collection'
 ],
-function (template, CompletionRateView, UserSatisfactionView, Collection) {
+function (CompletionRateView, UserSatisfactionView, Collection) {
   return CompletionRateView.extend({
-    template: template,
 
     valueAttr: 'rating',
 
@@ -55,12 +53,13 @@ function (template, CompletionRateView, UserSatisfactionView, Collection) {
       var views = CompletionRateView.prototype.views.apply(this, arguments);
 
       if (this.model.get('page-type') === 'module') {
-        views['#volumetrics-bar-selected'] = {
+        views['.volumetrics-bar-selected'] = {
           view: UserSatisfactionView,
           options: {
             valueAttr: 'count',
             selectionValueAttr: this.valueAttr,
-            collection: this.userSatisfactionCollection
+            collection: this.userSatisfactionCollection,
+            formatOptions: this.formatOptions
           }
         };
       }
