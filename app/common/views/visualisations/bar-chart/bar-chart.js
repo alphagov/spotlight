@@ -12,21 +12,21 @@ function (Graph, XAxis, Bar, Hover) {
     initialize: function (options) {
       this.valueAttr = options.valueAttr || 'uniqueEvents';
       this.axisPeriod = options.axisPeriod;
-      this.formatOptions = options.formatOptions;
+      this.formatOptions = options.formatOptions || { type: 'integer' };
 
       Graph.prototype.initialize.apply(this, arguments);
     },
 
     components: function () {
       var that = this;
-      return [
-        {
+      return {
+        xaxis: {
           view: XAxis,
           options: {
             axisPeriod: this.axisPeriod
           }
         },
-        {
+        yaxis: {
           view: this.sharedComponents.yaxis,
           options: (this.formatOptions.type === 'percent') ? {
             tickFormat: function () {
@@ -36,9 +36,9 @@ function (Graph, XAxis, Bar, Hover) {
             }
           } : {}
         },
-        { view: Bar },
-        { view: Hover }
-      ];
+        bar: { view: Bar },
+        hover: { view: Hover }
+      };
     },
 
     getXPos: function (groupIndex, modelIndex) {

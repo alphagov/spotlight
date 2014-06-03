@@ -5,10 +5,11 @@ define([
 function (XAxis, Collection) {
   describe('Bar chart XAxisComponent', function () {
 
-    var el, wrapper;
+    var el, wrapper, svg;
     beforeEach(function () {
       el = $('<div></div>').appendTo($('body'));
-      wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g');
+      wrapper = XAxis.prototype.d3.select(el[0]).append('svg').append('g'),
+      svg = d3.select(el[0]).select('svg');
     });
 
     afterEach(function () {
@@ -60,6 +61,7 @@ function (XAxis, Collection) {
       it('display formatted periods when axisPeriod is set', function () {
         var view = createView();
         view.axisPeriod = 'quarter';
+        svg.style('width', '1400px');
 
         view.render();
 
@@ -74,6 +76,7 @@ function (XAxis, Collection) {
 
       it('display titles when axisPeriod is not set', function () {
         var view = createView();
+        svg.style('width', '1400px');
 
         view.render();
 

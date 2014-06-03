@@ -5,7 +5,8 @@ function (Graph) {
   var PercentageGraph = Graph.extend({
 
     components: function () {
-      return Graph.prototype.components.apply(this, arguments).concat([{
+      var components = Graph.prototype.components.apply(this, arguments);
+      components.tooltip = {
         view: this.sharedComponents.tooltip,
         options: {
           formatValue: function (value) {
@@ -16,7 +17,9 @@ function (Graph) {
             return value + '%';
           }
         }
-      }]);
+      };
+
+      return components;
     }
   });
 

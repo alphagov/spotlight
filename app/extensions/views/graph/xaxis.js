@@ -25,11 +25,8 @@ function (d3, Axis) {
       // space allocated for each data item.
       // We do this by hand with D3, because SVG text elements don't support
       // CSS ellipsis styles or line breaks.
-      var labels = d3.selectAll('.x-axis .tick text');
-      if (!this.svg) {
-        this.svg = d3.select('svg'); // For unit tests.
-      }
-      var svgWidth = this.svg.style('width').replace('px', '');
+      var labels = this.wrapper.selectAll('.x-axis .tick text');
+      var svgWidth = $(this.wrapper[0]).parent().width();
       var blockWidth = svgWidth / this.collection.first().get('values').length;
 
       labels.each(function () {
@@ -83,8 +80,7 @@ function (d3, Axis) {
     configs: {
       hour: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.hour.utc, 6];
+          return [this.d3.time.hour.utc, 6];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -101,8 +97,7 @@ function (d3, Axis) {
       },
       day: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.mondays.utc, 1];
+          return [this.d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -112,8 +107,7 @@ function (d3, Axis) {
       },
       week: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.mondays.utc, 1];
+          return [this.d3.time.mondays.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {
@@ -123,8 +117,7 @@ function (d3, Axis) {
       },
       month: {
         ticks: function () {
-          var d3 = this.d3;
-          return [d3.time.month.utc, 1];
+          return [this.d3.time.month.utc, 1];
         },
         tickFormat: function () {
           return _.bind(function (d) {

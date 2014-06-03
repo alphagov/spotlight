@@ -9,12 +9,12 @@ function (BarChart, XAxis, Bar, Callout, Hover) {
   var JourneyGraph = BarChart.extend({
 
     components: function () {
-      return [
-        { view: XAxis },
-        { view: Bar },
-        { view: Callout },
-        { view: Hover }
-      ];
+      return {
+        xaxis: { view: XAxis },
+        bar: { view: Bar },
+        callout: { view: Callout },
+        hover: { view: Hover }
+      };
     },
 
     calcYScale: function () {

@@ -87,16 +87,16 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
             collection: new Collection(),
             model: model
           });
-          var stackComponent = graph.components()[2]['view'];
-          var stackOptions = graph.components()[2]['options'];
+          var stackComponent = graph.components().stack['view'];
+          var stackOptions = graph.components().stack['options'];
           expect(stackOptions).not.toBeUndefined();
           expect(stackComponent).toEqual(Stack);
         });
       });
       describe('when showLineLabels is falsy', function () {
         it('should return the stack component with the correct args on initialize', function () {
-          var stackComponent = graph.components()[2]['view'];
-          var stackOptions = graph.components()[2]['options'];
+          var stackComponent = graph.components().stack['view'];
+          var stackOptions = graph.components().stack['options'];
           expect(stackOptions).toBeUndefined();
           expect(stackComponent).toEqual(Stack);
         });
@@ -112,8 +112,8 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
             collection: new Collection(),
             model: model
           });
-          var labelComponent = graph.components()[3]['view'];
-          var labelOptions = graph.components()[3]['options'];
+          var labelComponent = graph.components().label['view'];
+          var labelOptions = graph.components().label['options'];
           expect(labelOptions).toEqual({
             showValues: true,
             showValuesPercentage: true,
@@ -126,8 +126,8 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
       });
       describe('when showLineLabels is falsy', function () {
         it('should return the callout component with the correct args on initialize', function () {
-          var labelComponent = graph.components()[3]['view'];
-          var labelOptions = graph.components()[3]['options'];
+          var labelComponent = graph.components().label['view'];
+          var labelOptions = graph.components().label['options'];
           expect(labelOptions).toBeUndefined();
           expect(labelComponent).toEqual(Callout);
         });

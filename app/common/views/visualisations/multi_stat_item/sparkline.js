@@ -19,22 +19,23 @@ function (Graph) {
     },
 
     components: function () {
-      var val = [
-        {
+      var val = {
+        line: {
           view: this.sharedComponents.line
         },
-        { view: this.sharedComponents.hover }
-      ];
+        hover: { view: this.sharedComponents.hover }
+      };
 
       if (this.showStartAndEndTicks) {
-        val.push({
+        val.yaxis = {
           view: this.sharedComponents.yaxis,
           options: { showStartAndEndTicks: true }
-        },
-        {
+        };
+
+        val.yaxisRight = {
           view: this.sharedComponents.yaxisRight,
           options: { showStartAndEndTicks: true }
-        });
+        };
       }
 
       return val;

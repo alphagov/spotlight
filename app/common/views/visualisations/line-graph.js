@@ -11,11 +11,11 @@ function (Graph) {
     },
 
     components: function () {
-      return [
-        { view: this.sharedComponents.xaxis },
-        { view: this.sharedComponents.yaxis },
-        { view: this.sharedComponents.linelabel },
-        {
+      return {
+        axis: { view: this.sharedComponents.xaxis },
+        yaxis: { view: this.sharedComponents.yaxis },
+        linelabel: { view: this.sharedComponents.linelabel },
+        line: {
           view: this.sharedComponents.line,
           options: {
             interactive: function (e) {
@@ -23,9 +23,9 @@ function (Graph) {
             }
           }
         },
-        { view: this.sharedComponents.callout },
-        { view: this.sharedComponents.hover }
-      ];
+        callout: { view: this.sharedComponents.callout },
+        hover: { view: this.sharedComponents.hover }
+      };
     }
 
   });

@@ -1,6 +1,6 @@
 define([
   'extensions/controllers/module',
-  'common/views/visualisations/completion_rate',
+  'common/views/visualisations/user-satisfaction-graph',
   'common/collections/user-satisfaction'
 ],
 function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
