@@ -23,7 +23,7 @@ function (GovUkView, contentTemplate) {
 
       context.modules = _.map(this.moduleInstances, function (module) {
         return module.html;
-      }).join('');
+      }).join('\n');
 
       context.header = this.getPageHeader();
       context.dashboardType = this.dashboardType;
