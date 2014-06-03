@@ -1,6 +1,8 @@
 var requirejs = require('requirejs');
 
 var PageConfig = requirejs('page_config');
+var controllerMap = require('./server/controller_map')();
+
 var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 
@@ -40,7 +42,9 @@ var setup = function (req, res) {
 };
 
 setup.getStagecraftApiClient = function () {
-  return new StagecraftApiClient();
+  return new StagecraftApiClient({}, {
+    ControllerMap: controllerMap
+  });
 };
 
 setup.renderContent = renderContent;

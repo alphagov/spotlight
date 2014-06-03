@@ -1,11 +1,12 @@
 define([
   'stagecraft_api_client',
+  './controller_map',
   'lodash',
   'modernizr',
   './preprocessors/visualisation_fallback',
   './preprocessors/report_a_problem'
 ],
-function (StagecraftApiClient, _, Modernizr) {
+function (StagecraftApiClient, controllerMap, _, Modernizr) {
 
   var bootstrap = function (config) {
     _.each(bootstrap.preprocessors, function (preprocessor) {
@@ -17,7 +18,11 @@ function (StagecraftApiClient, _, Modernizr) {
       return;
     }
 
-    var model = new StagecraftApiClient(config, { parse: true });
+    var model = new StagecraftApiClient(config, {
+      parse: true,
+      ControllerMap: controllerMap
+    });
+
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
       model: model,
@@ -33,7 +38,7 @@ function (StagecraftApiClient, _, Modernizr) {
     return controller;
   };
 
-  bootstrap.preprocessors = Array.prototype.slice.call(arguments, 3);
+  bootstrap.preprocessors = Array.prototype.slice.call(arguments, -2);
 
   return bootstrap;
 });
