@@ -7,7 +7,7 @@ define([
   'common/modules/completion_numbers',
   'client/modules/completion_rate',
   'client/modules/grouped_timeseries',
-  'common/modules/journey',
+  'client/modules/journey',
   'common/modules/kpi',
   'common/modules/list',
   'common/modules/multi_stats',

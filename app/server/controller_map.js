@@ -7,7 +7,6 @@ var AvailabilityModule            = requirejs('common/modules/availability');
 var BarChartWithNumberModule      = requirejs('common/modules/bar_chart_with_number');
 //var ComparisonModule              = requirejs('common/modules/comparison');
 var CompletionNumbersModule       = requirejs('common/modules/completion_numbers');
-var JourneyModule                 = requirejs('common/modules/journey');
 var KPIModule                     = requirejs('common/modules/kpi');
 var ListModule                    = requirejs('common/modules/list');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');
@@ -17,6 +16,7 @@ var VisitorsRealtimeModule        = requirejs('common/modules/visitors-realtime'
 
 var CompletionRateModule          = require('./modules/completion_rate');
 var GroupedTimeseriesModule       = require('./modules/grouped_timeseries');
+var JourneyModule                 = require('./modules/journey');
 var TabModule                     = require('./modules/tab');
 var TableModule                   = require('./modules/table');
 

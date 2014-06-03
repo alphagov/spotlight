@@ -1,14 +1,10 @@
 define([
-  'extensions/controllers/module',
-  'common/collections/journey',
-  'common/views/visualisations/journey-graph/journey-graph'
+  'common/collections/journey'
 ],
-function (ModuleController, JourneyCollection, JourneyGraph) {
-  var JourneyModule = ModuleController.extend({
-    visualisationClass: JourneyGraph,
+function (JourneyCollection) {
+  return {
+
     collectionClass: JourneyCollection,
-    clientRenderOnInit: true,
-    requiresSvg: true,
 
     collectionOptions: function () {
       return {
@@ -23,15 +19,7 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
           y: []
         }, this.model.get('axes'))
       };
-    },
-
-    visualisationOptions: function () {
-      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
-        valueAttr: 'uniqueEvents'
-      });
     }
 
-  });
-
-  return JourneyModule;
+  };
 });
