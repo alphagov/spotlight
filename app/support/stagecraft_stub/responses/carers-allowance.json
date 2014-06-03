@@ -139,7 +139,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
+      "description": "Average score of satisfied responses. Graph shows the earliest data available.",
       "data-group": "apply-carers-allowance",
       "data-type": "customer-satisfaction",
       "info": [
