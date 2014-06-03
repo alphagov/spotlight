@@ -82,6 +82,38 @@
       }
     },
     {
+      "slug": "time-taken-to-complete-transaction",
+      "module-type": "completion_numbers",
+      "title": "Time taken to complete transaction",
+      "description": "The mean length of time taken for users to complete a successful application.",
+      "data-group": "carers-allowance",
+      "data-type": "time-taken-to-complete",
+      "info": [
+        "Info text line 1",
+        "Info text line 2"
+      ],
+      "category": "eventLabel",
+      "period": "week",
+      "denominator-matcher": "consent-and-declaration$",
+      "numerator-matcher": "consent-and-declaration$",
+      "matching-attribute": "eventLabel",
+      "value-attribute": "avgSessionDuration:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Session time",
+            "key": "consent-and-declaration$",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
