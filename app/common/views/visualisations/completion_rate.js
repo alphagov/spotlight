@@ -4,14 +4,14 @@ define([
   'common/views/visualisations/volumetrics/completion-graph'
 ],
 function (View, VolumetricsNumberView, CompletionGraphView) {
-  var CompletionRateView = View.extend({
+  return View.extend({
 
     valueAttr: 'completion',
     totalAttr: 'totalCompletion',
 
     views: function () {
       return {
-        '#volumetrics-completion-selected': {
+        '.volumetrics-completion-selected': {
           view: VolumetricsNumberView,
           options: {
             valueAttr: this.totalAttr,
@@ -21,7 +21,7 @@ function (View, VolumetricsNumberView, CompletionGraphView) {
             }
           }
         },
-        '#volumetrics-completion': {
+        '.volumetrics-completion': {
           view: CompletionGraphView,
           options: {
             valueAttr: this.valueAttr
@@ -29,7 +29,6 @@ function (View, VolumetricsNumberView, CompletionGraphView) {
         }
       };
     }
-  });
 
-  return CompletionRateView;
+  });
 });
