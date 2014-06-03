@@ -88,7 +88,7 @@
       "data-type": "customer-satisfaction",
       "info": [
         "Data source: DVLA database",
-        "User satisfaction is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "value-attribute": "satisfaction_sorn",
       "classes": "cols2"
@@ -142,7 +142,7 @@
       "data-type": "volumetrics",
       "info": [
         "Data source: DVLA database",
-        "Digital take-up measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
       ],
       "numerator-matcher": "^fully-digital$",
       "denominator-matcher": "^fully-digital|assisted-digital|manual$",

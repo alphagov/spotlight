@@ -127,7 +127,7 @@
       "start-at": "2014-01-01T00:00:00",
       "info": [
         "Data source: Student Loans Company",
-        "Digital take-up measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
       ],
       "numerator-matcher": "digital",
       "denominator-matcher": "[paper|digital]",
@@ -147,7 +147,7 @@
       "start-at": "2014-01-01T00:00:00",
       "info": [
         "Data source: Student Loans Company",
-        "Completion rate measures the percentage of digital applications that were started versus submitted in a given week"
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the percentage of digital applications that were started versus submitted in a given week"
       ],
       "denominator-matcher": "started",
       "numerator-matcher": "submitted",
