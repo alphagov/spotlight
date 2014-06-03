@@ -20,6 +20,7 @@ function (UserSatisfactionCollection) {
         axisPeriod: this.model.get('axis-period'),
         duration: this.model.get('duration') || 30,
         trim: this.model.get('trim') === false ? false : true,
+        format: this.model.get('format') || 'integer',
         axes: _.merge({
           x: {
             label: 'Date',
@@ -66,7 +67,7 @@ function (UserSatisfactionCollection) {
       return {
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
-        formatOptions: this.model.get('format')
+        formatOptions: this.model.get('format') || 'integer'
       };
     }
 
