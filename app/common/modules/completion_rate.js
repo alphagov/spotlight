@@ -39,7 +39,12 @@ function (CompletionRateCollection) {
       };
     },
 
-    visualisationOptions: {}
+    visualisationOptions: function () {
+      return {
+        valueAttr: this.model.get('value-attribute') || 'completion',
+        totalAttr: this.model.get('total-attribute') || 'totalCompletion'
+      };
+    }
 
   };
 });

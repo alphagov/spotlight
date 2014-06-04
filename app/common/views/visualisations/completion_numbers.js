@@ -1,35 +1,25 @@
 define([
-  'stache!common/templates/visualisations/completion_numbers',
-  'extensions/views/view',
+  'common/views/visualisations/completion_rate',
   'common/views/visualisations/volumetrics/number',
   'common/views/visualisations/volumetrics/submissions-graph'
 ],
-function (template, View, VolumetricsNumberView, SubmissionGraphView) {
-  var CompletionNumbersView = View.extend({
-    template: template,
+function (View, VolumetricsNumberView, SubmissionGraphView) {
+  return View.extend({
+
+    graphView: SubmissionGraphView,
 
     views: function () {
       var period = this.collection.options.period || 'week';
-      return {
-        '#volumetrics-submissions-selected': {
-          view: VolumetricsNumberView,
-          options: {
-            valueAttr: 'mean',
-            selectionValueAttr: 'uniqueEvents',
-            labelPrefix: 'mean per ' + period + ' over the'
-          }
-        },
-        '#volumetrics-submissions': {
-          view: SubmissionGraphView,
-          options: {
-            valueAttr: 'uniqueEvents'
-          }
-        }
+      var views = View.prototype.views.apply(this, arguments);
+
+      views['.volumetrics-completion-selected'].options = {
+        valueAttr: this.totalAttr,
+        selectionValueAttr: this.valueAttr,
+        labelPrefix: 'mean per ' + period + ' over the'
       };
 
+      return views;
     }
 
   });
-
-  return CompletionNumbersView;
 });

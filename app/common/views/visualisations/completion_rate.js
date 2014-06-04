@@ -6,8 +6,7 @@ define([
 function (View, VolumetricsNumberView, CompletionGraphView) {
   return View.extend({
 
-    valueAttr: 'completion',
-    totalAttr: 'totalCompletion',
+    graphView: CompletionGraphView,
 
     views: function () {
       return {
@@ -16,13 +15,11 @@ function (View, VolumetricsNumberView, CompletionGraphView) {
           options: {
             valueAttr: this.totalAttr,
             selectionValueAttr: this.valueAttr,
-            formatValue: function (value) {
-              return this.format(value, 'percent');
-            }
+            formatOptions: 'percent'
           }
         },
         '.volumetrics-completion': {
-          view: CompletionGraphView,
+          view: this.graphView,
           options: {
             valueAttr: this.valueAttr
           }

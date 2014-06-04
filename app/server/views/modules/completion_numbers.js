@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 
 var template = requirejs('tpl!common/templates/visualisations/completion.html');
-var View = requirejs('common/views/visualisations/completion_rate');
+var View = requirejs('common/views/visualisations/completion_numbers');
 
 module.exports = View.extend({
 

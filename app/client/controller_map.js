@@ -4,7 +4,7 @@ define([
   'client/modules/availability',
   'common/modules/bar_chart_with_number',
   //'common/modules/comparison',
-  'common/modules/completion_numbers',
+  'client/modules/completion_numbers',
   'client/modules/completion_rate',
   'client/modules/grouped_timeseries',
   'client/modules/journey',
