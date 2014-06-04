@@ -3,12 +3,12 @@ var requirejs = require('requirejs');
 var DashboardController  = requirejs('extensions/controllers/dashboard');
 var ErrorController      = requirejs('common/controllers/error');
 
-var BarChartWithNumberModule      = requirejs('common/modules/bar_chart_with_number');
 //var ComparisonModule              = requirejs('common/modules/comparison');
 var ListModule                    = requirejs('common/modules/list');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');
 
 var AvailabilityModule            = require('./modules/availability');
+var BarChartWithNumberModule      = require('./modules/bar_chart_with_number');
 var CompletionNumbersModule       = require('./modules/completion_numbers');
 var CompletionRateModule          = require('./modules/completion_rate');
 var GroupedTimeseriesModule       = require('./modules/grouped_timeseries');

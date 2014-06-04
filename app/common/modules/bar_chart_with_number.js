@@ -1,14 +1,9 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/bar_chart_with_number',
   'common/collections/bar_chart_with_number'
 ],
-function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection) {
-  var BarChartWithNumberModule = ModuleController.extend({
-    visualisationClass: BarChartWithNumberView,
+function (BarChartWithNumberCollection) {
+  return {
     collectionClass: BarChartWithNumberCollection,
-    clientRenderOnInit: true,
-    requiresSvg: true,
 
     collectionOptions: function () {
       var valueAttr = this.model.get('value-attribute');
@@ -38,12 +33,11 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
     },
 
     visualisationOptions: function () {
-      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
+      return {
         valueAttr: 'uniqueEvents',
         formatOptions: this.model.get('format')
-      });
+      };
     }
-  });
+  };
 
-  return BarChartWithNumberModule;
 });
