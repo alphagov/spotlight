@@ -153,6 +153,58 @@
       "axis-period": "month"
     },
     {
+      "slug": "user-satisfaction-test",
+      "module-type": "grouped_timeseries",
+      "title": "User satisfaction - test version",
+      "description": "The ratings given by users who completed the transaction. Graph shows the earliest data available.",
+      "data-group": "apply-carers-allowance",
+      "data-type": "test-customer-satisfaction",
+      "info": [
+        "Info TBA"
+      ],
+      "category": "key",
+      "period": "day",
+      "value-attribute": "count",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "start-at": "2014-03-01T00:00:00",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "5 stars",
+            "categoryId": "rating_5:sum",
+            "format": "integer"
+          },
+          {
+            "label": "4 stars",
+            "categoryId": "rating_4:sum",
+            "format": "integer"
+          },
+          {
+            "label": "3 stars",
+            "categoryId": "rating_3:sum",
+            "format": "integer"
+          },
+          {
+            "label": "2 stars",
+            "categoryId": "rating_2:sum",
+            "format": "integer"
+          },
+          {
+            "label": "1 star",
+            "categoryId": "rating_1:sum",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
