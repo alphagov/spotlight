@@ -4,7 +4,6 @@ var DashboardController  = requirejs('extensions/controllers/dashboard');
 var ErrorController      = requirejs('common/controllers/error');
 
 //var ComparisonModule              = requirejs('common/modules/comparison');
-var ListModule                    = requirejs('common/modules/list');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');
 
 var AvailabilityModule            = require('./modules/availability');
@@ -14,6 +13,7 @@ var CompletionRateModule          = require('./modules/completion_rate');
 var GroupedTimeseriesModule       = require('./modules/grouped_timeseries');
 var JourneyModule                 = require('./modules/journey');
 var KPIModule                     = require('./modules/kpi');
+var ListModule                    = require('./modules/list');
 var TabModule                     = require('./modules/tab');
 var TableModule                   = require('./modules/table');
 var UserSatisfactionModule        = require('./modules/user_satisfaction');
