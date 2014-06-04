@@ -10,7 +10,6 @@ var KPIModule                     = requirejs('common/modules/kpi');
 var ListModule                    = requirejs('common/modules/list');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');
 var UserSatisfactionModule        = requirejs('common/modules/user_satisfaction');
-var VisitorsRealtimeModule        = requirejs('common/modules/visitors-realtime');
 
 var AvailabilityModule            = require('./modules/availability');
 var CompletionRateModule          = require('./modules/completion_rate');
@@ -19,6 +18,7 @@ var JourneyModule                 = require('./modules/journey');
 var TabModule                     = require('./modules/tab');
 var TableModule                   = require('./modules/table');
 var UserSatisfactionGraphModule   = require('./modules/user_satisfaction_graph');
+var VisitorsRealtimeModule        = require('./modules/visitors-realtime');
 
 module.exports = function () {
   return {

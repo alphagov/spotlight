@@ -15,7 +15,7 @@ define([
   'client/modules/table',
   'common/modules/user_satisfaction',
   'client/modules/user_satisfaction_graph',
-  'common/modules/visitors-realtime',
+  'client/modules/visitors-realtime',
   'client/controllers/services'
 ],
 function (DashboardController, ErrorController,
