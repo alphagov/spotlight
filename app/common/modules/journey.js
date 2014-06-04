@@ -15,9 +15,16 @@ function (JourneyCollection) {
           magnitude: true,
           sigfigs: 3
         },
+        valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
         axes: _.merge({
           y: []
         }, this.model.get('axes'))
+      };
+    },
+
+    visualisationOptions: function () {
+      return {
+        valueAttr: this.model.get('value-attribute') || 'uniqueEvents'
       };
     }
 
