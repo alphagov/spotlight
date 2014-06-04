@@ -41,8 +41,8 @@ function (CompletionRateCollection) {
 
     visualisationOptions: function () {
       return {
-        valueAttr: this.model.get('value-attribute') || 'completion',
-        totalAttr: this.model.get('total-attribute') || 'totalCompletion'
+        valueAttr: 'completion',
+        totalAttr: 'totalCompletion'
       };
     }
 
