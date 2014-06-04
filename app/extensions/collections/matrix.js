@@ -152,6 +152,22 @@ function (require, Collection, Group) {
       }
     },
 
+    lastNonNullItem: function (attr, groupIndex, selectedModelIndex) {
+      var values = this.at(groupIndex, selectedModelIndex).get('values');
+      var maxModelIndex = values.length - 1;
+      var value = null;
+      for (var index = maxModelIndex; index >= 0; index--) {
+        value = values.at(index).get(attr);
+        if (value !== null) {
+          break;
+        }
+      }
+      return {
+        val: value,
+        index: index
+      };
+    },
+
     groupSum: function (attr, index) {
       return this.at(index).get('values').reduce(function (memo, model) {
         var value = model.get(attr);
@@ -190,13 +206,17 @@ function (require, Collection, Group) {
       }
     },
 
-    fraction: function (attr, groupIndex, index) {
+    fraction: function (attr, groupIndex, index, isLineGraph) {
       var getFraction = function () {
         if (_.isNumber(groupIndex) && _.isNumber(index)) {
           var itemSum = this.sum(attr, null, index);
           var value = this.at(groupIndex, index).get(attr) || 0;
           return value / itemSum;
         } else if (_.isNumber(groupIndex)) {
+          if (isLineGraph) {
+            var v = this.lastNonNullItem(attr, groupIndex, index) || 0;
+            return v.val / this.itemSum(attr, v.index);
+          }
           return this.sum(attr, groupIndex) / this.sum(attr);
         } else if (_.isNumber(index)) {
           return this.sum(attr, null, index) / this.sum(attr);

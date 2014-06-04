@@ -177,10 +177,10 @@ function (LineLabel, Collection) {
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
-          expect(label1.find('span.value')).toHaveText('60');
-          expect(label2.find('span.value')).toHaveText('160');
-          expect(label1.find('span.percentage')).toHaveText('(27.3%)'); // 60/(60+160)
-          expect(label2.find('span.percentage')).toHaveText('(72.7%)'); // 160/(60+160)
+          expect(label1.find('span.value')).toHaveText('30');
+          expect(label2.find('span.value')).toHaveText('90');
+          expect(label1.find('span.percentage')).toHaveText('(25%)');
+          expect(label2.find('span.percentage')).toHaveText('(75%)');
         });
 
         it('renders a summary label when enabled', function () {

@@ -262,11 +262,16 @@ function (Component) {
         if (selected.selectedModel) {
           value = this.collection.at(groupIndex, selected.selectedModelIndex).get(attr);
         } else {
-          value = this.collection.sum(attr, groupIndex);
+          if (this.isLineGraph) {
+            value = this.collection.lastNonNullItem(attr, groupIndex, selected.selectedModelIndex).val;
+          } else {
+            value = this.collection.sum(attr, groupIndex);
+          }
         }
 
         if (this.showValuesPercentage && value) {
-          var fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex);
+          var fraction;
+          fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex, this.isLineGraph);
           labelMeta += this.renderValuePercentage(value, fraction);
         } else {
           labelMeta += this.renderValuePercentage(value);
