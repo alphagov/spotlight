@@ -312,6 +312,25 @@ function (MatrixCollection, Collection, Group) {
 
     describe('aggregates', function () {
 
+      describe('lastNonNullItem', function () {
+
+        it('returns the last non-null item in a collection for a particular attribute, or just null if the entire collection is null', function () {
+          var collection = new MatrixCollection([{}, {}]);
+          collection.at(0).set('values', new Collection([
+            { a: 1, b: 2, c: 0, d: null },
+            { a: 3, b: null, c: 0, d: null }
+          ]));
+          expect(collection.lastNonNullItem('a', 0, null).val).toEqual(3);
+          expect(collection.lastNonNullItem('a', 0, null).index).toEqual(1);
+          expect(collection.lastNonNullItem('b', 0, null).val).toEqual(2);
+          expect(collection.lastNonNullItem('b', 0, null).index).toEqual(0);
+          expect(collection.lastNonNullItem('c', 0, null).val).toEqual(0);
+          expect(collection.lastNonNullItem('c', 0, null).index).toEqual(1);
+          expect(collection.lastNonNullItem('d', 0, null).val).toEqual(null);
+        });
+
+      });
+
       describe('sum', function () {
         describe('default case', function () {
           var collection;
