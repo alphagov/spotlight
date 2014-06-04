@@ -237,10 +237,15 @@
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
+          {"journeyId": "eligibility", "label": "Eligibility", "format": "integer"},
           {"journeyId": "about-you", "label": "About you", "format": "integer"},
-          {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
+          {"journeyId": "your-partner", "label": "Partner/Spouse", "format": "integer", "optional": true},
+          {"journeyId": "care-you-provide", "label": "Care", "format": "integer"},
+          {"journeyId": "education", "label": "Education", "format": "integer", "optional": true},
+          {"journeyId": "employment", "label": "Employment", "format": "integer", "optional": true},
           {"journeyId": "other-money", "label": "Other money", "format": "integer"},
-          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"}
+          {"journeyId": "pay-details", "label": "Pay details", "format": "integer", "optional": true},
+          {"journeyId": "consent-and-declaration", "label": "Declaration", "format": "integer"}
         ]
       }
     },
