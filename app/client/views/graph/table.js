@@ -5,7 +5,6 @@ define([
 function (Table, HideShow) {
   return Table.extend({
     initialize: function () {
-      this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
 
       this.isModule = (this.model.get('page-type') === 'module');
 
@@ -14,18 +13,26 @@ function (Table, HideShow) {
     },
 
     render: function () {
-      Table.prototype.render.apply(this, arguments);
-      var label = 'Table view of “' + this.model.get('title') + '” data';
-      this.$table = this.$('table');
-      this.$table.appendTo(this.$toggleContainer);
-      this.$toggleContainer.appendTo(this.$el);
-      this.toggleTable = new HideShow({
-        $reveal: this.$table,
-        $el: this.$toggleContainer,
-        showLabel: label,
-        hideLabel: label,
-        isModule: this.isModule
-      });
+      if (this.isModule) {
+        Table.prototype.render.apply(this, arguments);
+        return;
+      }
+
+      this.$toggleContainer = this.$('.table-toggle');
+      if (!this.$toggleContainer.length) {
+        Table.prototype.render.apply(this, arguments);
+        this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
+        this.$toggleContainer.appendTo(this.$el);
+        var label = 'Table view of “' + this.model.get('title') + '” data';
+        this.$table = this.$('table');
+        this.$table.appendTo(this.$toggleContainer);
+        this.toggleTable = new HideShow({
+          $reveal: this.$table,
+          $el: this.$toggleContainer,
+          showLabel: label,
+          hideLabel: label
+        });
+      }
     },
 
     remove: function () {
