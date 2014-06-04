@@ -7,7 +7,6 @@ var BarChartWithNumberModule      = requirejs('common/modules/bar_chart_with_num
 //var ComparisonModule              = requirejs('common/modules/comparison');
 var ListModule                    = requirejs('common/modules/list');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');
-var UserSatisfactionModule        = requirejs('common/modules/user_satisfaction');
 
 var AvailabilityModule            = require('./modules/availability');
 var CompletionNumbersModule       = require('./modules/completion_numbers');
@@ -17,6 +16,7 @@ var JourneyModule                 = require('./modules/journey');
 var KPIModule                     = require('./modules/kpi');
 var TabModule                     = require('./modules/tab');
 var TableModule                   = require('./modules/table');
+var UserSatisfactionModule        = require('./modules/user_satisfaction');
 var UserSatisfactionGraphModule   = require('./modules/user_satisfaction_graph');
 var VisitorsRealtimeModule        = require('./modules/visitors-realtime');
 
