@@ -32,11 +32,9 @@
       "data-group": "waste-carriers-registration",
       "data-type": "transactions-by-channel",
       "classes": "cols2",
-      "query-params": {
-      "filter_by": ["channel:waste_new_reg_all"],
-        "group_by": "channel",
-        "collect":"count:sum"
-      },
+      "filter-by": ["channel:waste_new_reg_all"],
+      "group-by": "channel",
+      "collect":"count:sum",
       "info": [
         "Data source: Environment Agency",
         "Total number of registrations completed since the service began in 16 December 2013."
@@ -53,12 +51,10 @@
       "data-type": "cost-per-transaction",
       "date-period": "week",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "channel:cost_per_transaction_digital"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "channel:cost_per_transaction_digital"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "count",
       "format": {
         "type": "currency",

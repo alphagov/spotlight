@@ -31,10 +31,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "number_of_transactions",
       "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },
@@ -45,10 +43,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "total_cost",
       "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
     },
@@ -59,10 +55,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "cost_per_transaction",
       "format": { "type": "currency", "pence": true }
     },
@@ -149,9 +143,7 @@
       "matching-attribute": "channel",
       "value-attribute": "volume:sum",
       "period": "month",
-      "query-params": {
-        "filter_by": "service:sorn"
-      }
+      "filter-by": "service:sorn"
     },
     {
       "slug": "recorded-errors",
@@ -160,13 +152,11 @@
       "description": "Errors generated during the online application process last week",
       "data-group": "vehicle-licensing",
       "data-type": "failures",
-      "query-params": {
-        "filter_by": "type:sorn",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
-        "duration": 1
-      },
+      "filter-by": "type:sorn",
+      "group-by": "reason",
+      "collect": ["count:sum", "description:set"],
+      "period": "week",
+      "duration": 1,
       "axes": {
         "x": {
           "label": "Description",

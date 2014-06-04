@@ -18,10 +18,8 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "number_of_transactions",
       "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
     },

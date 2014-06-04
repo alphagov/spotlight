@@ -13,7 +13,7 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
     collectionOptions: function () {
       var valueAttr = this.model.get('value-attribute');
       var options = {
-        queryParams: this.model.get('query-params'),
+        queryParams: this.queryParams(),
         valueAttr: valueAttr,
         axisPeriod: this.model.get('axis-period')
       };

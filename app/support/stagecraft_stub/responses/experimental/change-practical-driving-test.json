@@ -38,13 +38,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-amend-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-amend-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
@@ -59,13 +57,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-amend-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-amend-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
@@ -80,13 +76,11 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-amend-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
+      "filter-by": [
+        "service_id:dft-amend-practical-driving-test",
+        "type:seasonally-adjusted"
+      ],
+      "sort-by": "_timestamp:descending",
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
@@ -211,13 +205,11 @@
       "description": "Number of occurences of users selecting online help during the booking change or cancellation process",
       "data-group": "driving-test-practical-public",
       "data-type": "journey-help",
-      "query-params": {
-        "filter_by": ["eventCategory:pp-change-practical-driving-test-public","eventType:help"],
-        "group_by": "eventDetail",
-        "collect": ["uniqueEvents:sum"],
-        "period": "week",
-        "duration": 1
-      },
+      "filter-by": ["eventCategory:pp-change-practical-driving-test-public","eventType:help"],
+      "group-by": "eventDetail",
+      "collect": ["uniqueEvents:sum"],
+      "period": "week",
+      "duration": 1,
       "axes": {
         "x": {
           "label": "Help usage",

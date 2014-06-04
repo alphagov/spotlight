@@ -113,13 +113,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -148,13 +146,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-news-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -183,13 +179,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-publications-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -218,13 +212,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-consultations-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -253,13 +245,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-policy-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -288,13 +278,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-speeches-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -323,13 +311,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "top-collections-count",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "pageTitle",
+          "collect": ["pageviews:sum", "uniquePageviews:sum"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Page title",
@@ -466,13 +452,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "referrers-rate",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "sourceMedium",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "sourceMedium",
+          "collect": ["entrances:sum", "visitBounceRate"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Source of user",
@@ -504,13 +488,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "organic-rate",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "keyword",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "keyword",
+          "collect": ["entrances:sum", "visitBounceRate"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Keyword",
@@ -542,13 +524,11 @@
           "description": "",
           "data-group": "gov-uk-content",
           "data-type": "social-rate",
-          "query-params": {
-            "filter_by": "department:hm-prison-service",
-            "group_by": "socialNetwork",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
+          "filter-by": "department:hm-prison-service",
+          "group-by": "socialNetwork",
+          "collect": ["entrances:sum", "visitBounceRate"],
+          "period": "week",
+          "duration": 1,
           "axes": {
             "x": {
               "label": "Social Network",
@@ -616,13 +596,11 @@
         "Pages receiving the most comments in a calendar month.",
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
-      "query-params": {
-        "filter_by": "organisation_acronym:hmps",
-        "group_by": "url",
-        "collect": ["comment_count:sum"],
-        "period": "month",
-        "duration": 1
-      },
+      "filter-by": "organisation_acronym:hmps",
+      "group-by": "url",
+      "collect": ["comment_count:sum"],
+      "period": "month",
+      "duration": 1,
       "axes": {
         "x": {
           "label": "URL",

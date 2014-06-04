@@ -76,10 +76,8 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'data-group': 'transactional-services',
             'data-type': 'summaries',
             'classes': 'cols3',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
-              'sort_by': '_timestamp:descending'
-            },
+            'filter-by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
+            'sort-by': '_timestamp:descending',
             'value-attribute': 'total_cost',
             'format': { 'type': 'currency', 'magnitude': true, 'sigfigs': 3 }
           };
@@ -91,10 +89,8 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'data-group': 'transactional-services',
             'data-type': 'summaries',
             'classes': 'cols3',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
-              'sort_by': '_timestamp:descending'
-            },
+            'filter-by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
+            'sort-by': '_timestamp:descending',
             'value-attribute': 'cost_per_transaction',
             'format': { 'type': 'currency', 'pence': true }
           };
@@ -133,10 +129,8 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'data-group': 'transactional-services',
             'data-type': 'summaries',
             'classes': 'cols3',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
-              'sort_by': '_timestamp:descending'
-            },
+            'filter-by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
+            'sort-by': '_timestamp:descending',
             'value-attribute': 'number_of_transactions',
             'format': { 'type': 'number', 'magnitude': true, 'sigfigs': 3 },
             'info': [
@@ -154,9 +148,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'data-type': 'summaries',
             'value-attribute': 'number_of_transactions',
             'axis-period': 'quarter',
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:quarterly']
-            },
+            'filter-by': ['service_id:' + output.slug, 'type:quarterly'],
             'info': [
               'Data source: ' + row.department
             ]
@@ -176,9 +168,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'axes': {
               'y': [{'label': 'Percentage digital take-up'}]
             },
-            'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:quarterly']
-            },
+            'filter-by': ['service_id:' + output.slug, 'type:quarterly'],
             'info': [
               'Data source: ' + row.department,
               '<a href="https://www.gov.uk/service-manual/measurement/digital-takeup.html">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels.'

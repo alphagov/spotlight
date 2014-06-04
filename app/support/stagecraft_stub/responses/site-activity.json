@@ -86,10 +86,8 @@
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "sort-by": "pageviews:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
       "link-attr": "pagePath"
@@ -107,10 +105,8 @@
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "trending",
-      "query-params": {
-        "sort_by": "percent_change:descending",
-        "limit": 10
-      },
+      "sort-by": "percent_change:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
       "link-attr": "pagePath"
@@ -127,10 +123,8 @@
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed_policies",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "sort-by": "pageviews:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*?)(?:\\s-\\s(?:Policy\\s-\\s|Policies\\s-\\s)?GOV.UK)?$",
       "link-attr": "pagePath"
@@ -147,10 +141,8 @@
       "classes": ["cols2"],
       "data-group": "govuk",
       "data-type": "most_viewed_news",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "sort-by": "pageviews:descending",
+      "limit": 10,
       "label-attr": "pageTitle",
       "label-regex": "^(.*?)(?:\\s-\\s(?:News stories\\s-\\s|Press releases\\s-\\s)?GOV.UK)?$",
       "link-attr": "pagePath"
