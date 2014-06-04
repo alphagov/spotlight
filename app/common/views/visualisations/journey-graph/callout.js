@@ -54,14 +54,16 @@ function (Callout) {
       var val = model.get(attr) || 0;
       var max = model.collection.max(function (m) { return m.get(attr) || 0; }).get(attr) || 1;
 
+      var isOptional = model.get('isOptional') ? ' (optional)' : '';
       var header = $('<h3>').html([
-        '<span class="date stack' + groupIndex + '">',
+        '<span class="date stack' + groupIndex + (isOptional ? ' optional' : '') + '">',
         start.format(start.month() === end.month() ? 'D' : 'D MMM'),
         ' to ',
         end.format('D MMM YYYY'),
         '</span> ',
         'Stage: ',
-        model.get('title')
+        model.get('title'),
+        isOptional
       ].join(''));
 
       var body = $('<dl>').html([

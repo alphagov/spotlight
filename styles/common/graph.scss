@@ -224,6 +224,29 @@ figure.graph {
         stroke-width:4px;
       }
     }
+
+    .optional {
+
+      text {
+        font-weight: bold;
+        fill:$grey-1;
+      }
+
+      line {
+        stroke-width:2px;
+        stroke:$grey-2;
+      }
+
+      rect {
+        fill:$grey-4;
+        stroke:$grey-3;
+      }
+    }
+
+    .optional.selected rect {
+      stroke:$grey-2;
+    }
+
   }
 
   .tick line {

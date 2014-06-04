@@ -57,7 +57,9 @@ function (require, Component) {
       var that = this;
       selection.each(function (group, groupIndex) {
         var segmentSelection = that.d3.select(this).selectAll('g.segment')
-            .data(group.get('values').models);
+            .data(function() {
+              return group.get('values').models;
+            });
         var enterSegmentSelection = segmentSelection.enter().append('g').attr('class', 'segment');
 
         enterSegmentSelection.append('rect');
@@ -65,6 +67,9 @@ function (require, Component) {
         if (that.text) {
           enterSegmentSelection.append('text');
         }
+        enterSegmentSelection.classed('optional', function(d) {
+          return d.get('isOptional');
+        });
 
         segmentSelection.each(function (model, i) {
           that.updateSegment.call(that, groupIndex, d3.select(this), model, i);
