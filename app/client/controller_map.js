@@ -1,7 +1,7 @@
 define([
   'extensions/controllers/dashboard',
   'common/controllers/error',
-  'common/modules/availability',
+  'client/modules/availability',
   'common/modules/bar_chart_with_number',
   //'common/modules/comparison',
   'common/modules/completion_numbers',
