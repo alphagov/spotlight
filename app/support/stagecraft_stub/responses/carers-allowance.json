@@ -156,7 +156,7 @@
       "slug": "user-satisfaction-test",
       "module-type": "grouped_timeseries",
       "title": "User satisfaction - test version",
-      "description": "The ratings given by users who completed the transaction. Graph shows the earliest data available.",
+      "description": "The ratings given by users who reached the final page of the service.",
       "data-group": "apply-carers-allowance",
       "data-type": "test-customer-satisfaction",
       "info": [
@@ -225,8 +225,8 @@
     {
       "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Users at each step",
-      "description": "Number of users who completed important steps of the transaction last week",
+      "title": "Visitors starting each step",
+      "description": "Visits to the start of important steps of the transaction last week. Optional steps are shown in grey.",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
