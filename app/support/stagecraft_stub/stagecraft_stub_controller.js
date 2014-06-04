@@ -85,6 +85,15 @@ function enrichDashboard(related, dashboard) {
   return dashboard;
 }
 
+function removeDisabledModules(dashboard) {
+  if (dashboard.modules) {
+    dashboard.modules = dashboard.modules.filter(function(module) {
+      return !module.disabled;
+    });
+  }
+  return dashboard;
+}
+
 function loadDashboards(basePath, callback) {
   loadRelated(basePath, function(err, related) {
     if (err) callback(err);
@@ -95,6 +104,7 @@ function loadDashboards(basePath, callback) {
         else {
           async.map(files, fs.readFile, function(err, results) {
             var dashboardMap = results.map(JSON.parse.bind(JSON))
+                                      .map(removeDisabledModules)
                                       .map(enrichDashboard.bind(null, related))
                                       .reduce(function(dashboards, dashboard) {
                                         dashboards[dashboard.slug] = dashboard;
