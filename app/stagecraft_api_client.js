@@ -43,7 +43,11 @@ function (Model) {
         controller = controllerMap[data['page-type']];
         _.each(data.modules, function (module) {
           module.controller = controllerMap.modules[module['module-type']];
-          module.controller.map = controllerMap.modules;
+          if (module.controller) {
+            // requiring the controller map from within a module causes a circular dependency
+            // so add the map as a property for modules that need it i.e. tabs
+            module.controller.map = controllerMap.modules;
+          }
         }, this);
       }
 

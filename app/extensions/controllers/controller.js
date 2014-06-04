@@ -68,6 +68,12 @@ define([
       }
 
       return _.map(modules, function (definition) {
+
+        if (!definition.controller) {
+          // some modules don't have client-side controllers
+          return;
+        }
+
         var model = new Model(definition);
         model.set('parent', parentModel);
 

@@ -8,7 +8,6 @@ define([
   'client/modules/completion_rate',
   'client/modules/grouped_timeseries',
   'client/modules/journey',
-  'common/modules/kpi',
   'common/modules/list',
   'common/modules/multi_stats',
   'client/modules/tab',
@@ -21,7 +20,7 @@ define([
 function (DashboardController, ErrorController,
 
   AvailabilityModule, BarChartWithNumberModule, /*ComparisonModule,*/ CompletionNumbersModule,
-  CompletionRateModule, GroupedTimeseriesModule, JourneyModule, KPIModule,
+  CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
   ListModule, MultiStatsModule, TabModule, TableModule, UserSatisfactionModule,
   UserSatisfactionGraphModule, VisitorsRealtimeModule, ServicesController) {
 
@@ -37,7 +36,6 @@ function (DashboardController, ErrorController,
       completion_rate:        CompletionRateModule,
       grouped_timeseries:     GroupedTimeseriesModule,
       journey:                JourneyModule,
-      kpi:                    KPIModule,
       list:                   ListModule,
       multi_stats:            MultiStatsModule,
       tab:                    TabModule,
