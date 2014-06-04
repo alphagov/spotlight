@@ -5,7 +5,9 @@ define([
 ],
 function (ModuleController, TabController, TabView) {
 
-  var TabModule = ModuleController.extend(TabController).extend({
+  var parent = ModuleController.extend(TabController);
+
+  var TabModule = parent.extend({
 
     visualisationClass: TabView,
 
@@ -26,7 +28,7 @@ function (ModuleController, TabController, TabView) {
         this.model.set('activeIndex', 0);
       }
 
-      ModuleController.prototype.initialize.apply(this, arguments);
+      parent.prototype.initialize.apply(this, arguments);
     },
 
     renderTabs: function () {

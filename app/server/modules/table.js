@@ -6,7 +6,9 @@ var TableView = requirejs('extensions/views/table');
 
 var Collection = requirejs('common/collections/list');
 
-module.exports = ModuleController.extend(TableController).extend({
+var parent = ModuleController.extend(TableController);
+
+module.exports = parent.extend({
 
   visualisationClass: TableView,
   collectionClass: Collection,
@@ -21,7 +23,7 @@ module.exports = ModuleController.extend(TableController).extend({
   },
 
   viewOptions: function () {
-    var options = ModuleController.prototype.viewOptions.apply(this, arguments);
+    var options = parent.prototype.viewOptions.apply(this, arguments);
     options.url = null;
     return options;
   }

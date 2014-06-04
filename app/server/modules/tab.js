@@ -4,7 +4,9 @@ var ModuleController = require('../controllers/module');
 var TabController = requirejs('common/modules/tab');
 var TabView = require('../views/modules/tab');
 
-var TabModule = ModuleController.extend(TabController).extend({
+var parent = ModuleController.extend(TabController);
+
+var TabModule = parent.extend({
   visualisationClass: TabView,
 
   initialize: function () {
@@ -14,7 +16,7 @@ var TabModule = ModuleController.extend(TabController).extend({
       return tab;
     }, this);
 
-    ModuleController.prototype.initialize.apply(this, arguments);
+    parent.prototype.initialize.apply(this, arguments);
   },
 
   render: function () {
@@ -23,7 +25,7 @@ var TabModule = ModuleController.extend(TabController).extend({
       this.model.set('tabs', _.map(this.tabModules, function (module) {
         return _.extend(module.model.toJSON(), { html: module.html });
       }));
-      ModuleController.prototype.render.apply(this);
+      parent.prototype.render.apply(this);
     }.bind(this));
 
   }

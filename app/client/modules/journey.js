@@ -6,13 +6,7 @@ define([
 
   return ModuleController.extend(JourneyModule).extend({
 
-    visualisationClass: JourneyView,
-
-    visualisationOptions: function () {
-      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
-        valueAttr: 'uniqueEvents'
-      });
-    }
+    visualisationClass: JourneyView
 
   });
 
