@@ -16,7 +16,8 @@ define([
           dashboard: true,
           url: this.url
         },
-        { init: options.init }
+        { init: options.init },
+        _.bind(function () { this.trigger('ready'); }, this)
       );
     }
   });

@@ -63,16 +63,24 @@ define([
       var remaining = modules.length;
 
       callback = _.isFunction(callback) ? callback : function () {};
-
       if (remaining === 0) {
         callback();
         return;
       }
 
+      var loaded = _.bind(function () {
+        remaining--;
+        if (remaining === 0) {
+          this.trigger('loaded');
+          callback();
+        }
+      }, this);
+
       return _.map(modules, function (definition) {
 
         if (!definition.controller) {
           // some modules don't have client-side controllers
+          loaded();
           return;
         }
 
@@ -83,13 +91,7 @@ define([
           _.merge({ model: model }, moduleOptions)
         );
 
-        module.once('ready', _.bind(function () {
-          remaining--;
-          if (remaining === 0) {
-            this.trigger('loaded');
-            callback();
-          }
-        }, this));
+        module.once('ready', loaded);
 
         module.render(_.isFunction(renderOptions) ? renderOptions(model) : renderOptions);
 
