@@ -221,9 +221,13 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
           err = targetTickCount / span * step;
 
       // Filter ticks to get closer to the desired count.
-      if (err <= 0.15) step *= 10;
-      else if (err <= 0.35) step *= 5;
-      else if (err <= 0.75) step *= 2;
+      if (err <= 0.15) {
+        step *= 10;
+      } else if (err <= 0.35) {
+        step *= 5;
+      } else if (err <= 0.75) {
+        step *= 2;
+      }
 
       // Round start and stop values to step interval.
       var first = Math.floor(extent[0] / step) * step,
