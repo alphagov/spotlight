@@ -24,18 +24,22 @@ function (StagecraftApiClient, controllerMap, _, Modernizr) {
     });
 
     var ControllerClass = model.get('controller');
-    var controller = new ControllerClass({
-      model: model,
-      url: model.get('url')
-    });
-    controller.on('ready', function () {
-      $('body').addClass('ready');
-    });
-    controller.on('loaded', function () {
-      $('body').addClass('loaded');
-    });
-    controller.render({ init: true });
-    return controller;
+    if (ControllerClass) {
+      var controller = new ControllerClass({
+        model: model,
+        url: model.get('url')
+      });
+      controller.on('ready', function () {
+        $('body').addClass('ready');
+      });
+      controller.on('loaded', function () {
+        $('body').addClass('loaded');
+      });
+      controller.render({ init: true });
+      return controller;
+    } else {
+      $('body').addClass('ready loaded');
+    }
   };
 
   bootstrap.preprocessors = Array.prototype.slice.call(arguments, -2);

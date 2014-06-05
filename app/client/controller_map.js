@@ -1,6 +1,5 @@
 define([
-  'extensions/controllers/dashboard',
-  'common/controllers/error',
+  'client/controllers/dashboard',
   'client/modules/availability',
   'client/modules/bar_chart_with_number',
   //'common/modules/comparison',
@@ -15,7 +14,7 @@ define([
   'client/modules/visitors-realtime',
   'client/controllers/services'
 ],
-function (DashboardController, ErrorController,
+function (DashboardController,
 
   AvailabilityModule, BarChartWithNumberModule, /*ComparisonModule,*/ CompletionNumbersModule,
   CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
@@ -24,7 +23,6 @@ function (DashboardController, ErrorController,
 
   var ControllerMap = {
     dashboard: DashboardController,
-    error: ErrorController,
     services: ServicesController,
     modules: {
       availability:           AvailabilityModule,
