@@ -2,7 +2,7 @@ define([
   'client/controllers/dashboard',
   'client/modules/availability',
   'client/modules/bar_chart_with_number',
-  //'common/modules/comparison',
+  'client/modules/comparison',
   'client/modules/completion_numbers',
   'client/modules/completion_rate',
   'client/modules/grouped_timeseries',
@@ -16,7 +16,7 @@ define([
 ],
 function (DashboardController,
 
-  AvailabilityModule, BarChartWithNumberModule, /*ComparisonModule,*/ CompletionNumbersModule,
+  AvailabilityModule, BarChartWithNumberModule, ComparisonModule, CompletionNumbersModule,
   CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
   MultiStatsModule, TabModule, TableModule,
   UserSatisfactionGraphModule, VisitorsRealtimeModule, ServicesController) {
@@ -27,7 +27,7 @@ function (DashboardController,
     modules: {
       availability:           AvailabilityModule,
       bar_chart_with_number:  BarChartWithNumberModule,
-      //comparison:             ComparisonModule,
+      comparison:             ComparisonModule,
       completion_numbers:     CompletionNumbersModule,
       completion_rate:        CompletionRateModule,
       grouped_timeseries:     GroupedTimeseriesModule,

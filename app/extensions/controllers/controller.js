@@ -62,6 +62,8 @@ define([
     renderModules: function (modules, parentModel, moduleOptions, renderOptions, callback) {
       var remaining = modules.length;
 
+      callback = _.isFunction(callback) ? callback : function () {};
+
       if (remaining === 0) {
         callback();
         return;
