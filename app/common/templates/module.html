@@ -1,4 +1,4 @@
-<% if (model.get('page-type') === 'module') { %>
+<% if (pageType === 'module') { %>appropriately on page-per-thing
   <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
   <% if (model.get('parent') && model.get('parent').get('slug') && model.get('slug')) { %>
@@ -9,7 +9,7 @@
 <% } %>
 
 <% if (model.get('description')) { %>
-  <% if (model.get('page-type') === 'module') { %>
+  <% if (pageType === 'module') { %>
     <h2 class="dashboard"><%= model.get('description') %></h2>
   <% } else { %>
     <h3><%= model.get('description') %></h3>
@@ -26,7 +26,8 @@
 
 <div class="visualisation-moreinfo">
 
-<% if (model.get('page-type') === 'module') { %>
+
+<% if (pageType === 'module') { %>
 <aside class="more-info download" role="complementary">
   <h2 id="download">Download the data</h2>
   <ul>
@@ -36,8 +37,8 @@
 </aside>
 <% } %>
 
-<% if (model.get('info') && model.get('page-type') === 'module') { %>
- <aside class="more-info about" role="complementary">
+<% if (model.get('info') && pageType === 'module') { %>
+<aside class="more-info about" role="complementary">
   <h2>About the data</h2>
   <ul>
     <% _.each(model.get('info'), function (row) { %>
