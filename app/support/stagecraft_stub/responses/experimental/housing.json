@@ -122,49 +122,6 @@
       "show-line-labels": true
     },
     {
-      "slug": "average-first-mortgage",
-      "module-type": "multi_stats",
-      "title": "Average first mortgage",
-      "description": "A range of factors indicative of the state of the housing market for first-time buyers",
-      "data-group": "housing-policy",
-      "data-type": "first-time-buyer",
-      "period": "quarter",
-      "restricted_data": true,
-      "info": [
-        "Source: Council of Mortgage Lenders"
-      ],
-      "stats": [
-        {
-          "title": "Median size of mortgage",
-          "attr": "median_advance_sterling",
-          "format": "£{{ value }}"
-        },
-        {
-          "title": "Median advance",
-          "attr": "median_percentage_advance",
-          "format": "{{ value }}%"
-        },
-        {
-          "title": "Median borrower(s) income",
-          "attr": "borrowers_median_total_income",
-          "format": "£{{ value }}"
-        },
-        {
-          "title": "Repayments as a percentage of income",
-          "attr": "median_capital_and_interest_payments_as_a_percentage_of_income",
-          "format": "{{ value }}%"
-        },
-        {
-          "title": "Income multiple",
-          "attr": "median_income_multiple"
-        },
-        {
-          "title": "Median age of borrower",
-          "attr": "median_age_of_borrower"
-        }
-      ]
-    },
-    {
       "slug": "house-price-index",
       "module-type": "grouped_timeseries",
       "title": "House price index (HPI)",

@@ -94,17 +94,5 @@ function (ModuleView, Collection, Model, View) {
       });
     });
 
-    it('renders a module with classes module-banner and restricted-data-banner when Stagecraft sets restricted_data to true', function () {
-      model.set('restricted_data', true);
-      moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass module-banner restricted-data-banner"><div class="module-banner-text"><p>This section contains <strong>commercially licensed data</strong>. Do not share or redistribute outside government.</p></div><h2 id="slug-heading">A Title</h2><div class="visualisation">test content</div></section>');
-    });
-
-    it('renders a module without classes module-banner and restricted-data-banner when Stagecraft returns restricted_data false', function () {
-      model.set('restricted_data', false);
-      moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation">test content</div></section>');
-    });
-
   });
 });
