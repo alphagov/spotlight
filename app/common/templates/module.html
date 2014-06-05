@@ -1,9 +1,3 @@
-<% if (model.get('restricted_data') === true) { %>
-  <div class="module-banner-text">
-    <p>This section contains <strong>commercially licensed data</strong>. Do not share or redistribute outside government.</p>
-  </div>
-<% } %>
-
 <% if (model.get('page-type') === 'module') { %>
   <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
