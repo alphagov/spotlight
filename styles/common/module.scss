@@ -10,6 +10,33 @@
       border-top: none;
       h1 {
         @include bold-48;
+        padding-bottom: 0.5em;
+      }
+      .visualisation-table {
+        float: left;
+        margin-top: 2em;
+        margin-bottom: 1em;
+        padding-right: 3em;
+        width: 66%;
+        table {
+          width: 100%;
+          margin-top: 0;
+        }
+        @media (max-width: 640px) {
+          width: 100%;
+          float: none;
+          padding-right: 0;
+        }
+      }
+
+      .visualisation-moreinfo {
+        width: 33%;
+        overflow: hidden;
+        margin-top: 2em;
+        display: inline-block;
+        @media (max-width: 640px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -22,22 +49,5 @@
       clear: both;
     }
 
-    .visualisation-table {
-      float: left;
-      margin-top: 2em;
-      margin-bottom: 1em;
-      padding-right: 3em;
-
-      table {
-        margin-top: 0;
-      }
-    }
-
-    .visualisation-moreinfo {
-      min-width: 10em;
-      overflow: hidden;
-      margin-top: 2em;
-      display: inline-block;
-    }
   }
 }
