@@ -34,8 +34,8 @@
   "strict"        : false,
   "trailing"      : true,
   "maxdepth"      : 4,
-  "maxstatements" : 44,
-  "maxcomplexity" : 25,
+  "maxstatements" : 34,
+  "maxcomplexity" : 18,
 
   "asi"           : false,
   "boss"          : true,
