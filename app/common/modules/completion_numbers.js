@@ -36,8 +36,8 @@ function (CompletionNumbersCollection) {
 
     visualisationOptions: function () {
       return {
-        valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
-        totalAttr: this.model.get('total-attribute') || 'mean'
+        valueAttr: 'uniqueEvents',
+        totalAttr: 'mean'
       };
     }
 
