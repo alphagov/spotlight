@@ -2,6 +2,7 @@ var requirejs = require('requirejs');
 
 var View = require('./govuk');
 var template = requirejs('stache!common/templates/dashboard');
+var pptTemplate = requirejs('stache!common/templates/module-page');
 
 module.exports = View.extend({
   contentTemplate: template,
@@ -9,6 +10,10 @@ module.exports = View.extend({
   initialize: function () {
 
     View.prototype.initialize.apply(this, arguments);
+
+    if (this.model.get('page-type') === 'module') {
+      this.contentTemplate = pptTemplate;
+    }
 
     this.dashboardType = this.model.get('dashboard-type');
   },

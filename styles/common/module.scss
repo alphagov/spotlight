@@ -1,4 +1,18 @@
 #content {
+  .module-page {
+    header {
+      h1 {
+        @include bold-24;
+      }
+      margin-bottom: 0;
+    }
+    section.module {
+      border-top: none;
+      h1 {
+        @include bold-48;
+      }
+    }
+  }
   section.module {
     min-height: 190px;
 
