@@ -60,16 +60,19 @@ module.exports = View.extend({
   },
 
   getBreadcrumbs: function () {
-    var breadcrumbs = this.getBreadcrumbCrumbs().filter(function (el) {
-      return el !== null;
-    });
-    breadcrumbs = _.each(breadcrumbs, function (b) {
+    var breadcrumbs = this.getBreadcrumbCrumbs().filter(_.identity);
+    breadcrumbs = this.ellipsifyBreadcrumbs(breadcrumbs);
+    return {'breadcrumbs': breadcrumbs};
+  },
+
+  ellipsifyBreadcrumbs: function (breadcrumbs) {
+    _.each(breadcrumbs, function (b) {
       b.original_title = b.title;
       if (b.title.length > 35) {
         b.title = b.title.substring(0, 32) + '…';
       }
     });
-    return {'breadcrumbs': breadcrumbs};
+    return breadcrumbs;
   },
 
   templateContext: function () {
