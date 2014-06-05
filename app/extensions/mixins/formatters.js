@@ -193,8 +193,9 @@ define([
     commas: function (value) {
       value = value.toString().split('.');
       var pattern = /(-?\d+)(\d{3})/;
-      while (pattern.test(value[0]))
+      while (pattern.test(value[0])) {
         value[0] = value[0].replace(pattern, '$1,$2');
+      }
       return value.join('.');
     },
 

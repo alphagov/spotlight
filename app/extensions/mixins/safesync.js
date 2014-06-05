@@ -47,12 +47,16 @@ define([
     options.success = function (resp, status, xhr) {
       that.loading = false;
       var escaped = escapeHtml(resp);
-      if (success) success(escaped, status, xhr);
+      if (success) {
+        success(escaped, status, xhr);
+      }
     };
     var error = options.error;
     options.error = function (xhr, status, thrown) {
       that.loading = false;
-      if (error) error(xhr, status, thrown);
+      if (error) {
+        error(xhr, status, thrown);
+      }
     };
 
     Backbone.sync.apply(this, arguments);
