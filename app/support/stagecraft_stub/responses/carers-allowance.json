@@ -208,7 +208,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "The percentage of online users who reached the final page of the service. Data has been tracked since December 2013.",
+      "description": "The percentage of online users who reached the final page of the service.",
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
