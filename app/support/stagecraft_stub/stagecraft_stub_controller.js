@@ -16,28 +16,11 @@ function parseParent(content, slug) {
     return false;
   }
 
-  module = _.extend(module, {
-    'page-type': 'module',
-    'dashboard-title': dashboardData.title,
-    'dashboard-strapline': dashboardData.strapline,
-    'dashboard-slug': dashboardData.slug
-  });
-
-  if (dashboardData.department) {
-    module = _.extend(module, {
-      'department': dashboardData.department
-    });
-  }
-
-  if (dashboardData.agency) {
-    module = _.extend(module, {
-      'agency': dashboardData.agency
-    });
-  }
-
+  dashboardData['page-type'] = 'module';
   delete module.classes; // We don't care about the classes property on the page-per-thing pages
+  dashboardData.modules = [module];
 
-  return module;
+  return dashboardData;
 
 }
 

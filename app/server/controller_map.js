@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 
-var DashboardController  = requirejs('extensions/controllers/dashboard');
-var ErrorController      = requirejs('common/controllers/error');
+var DashboardController  = require('./controllers/dashboard');
+var ErrorController      = require('./controllers/error');
 
 //var ComparisonModule              = requirejs('common/modules/comparison');
 var MultiStatsModule              = requirejs('common/modules/multi_stats');

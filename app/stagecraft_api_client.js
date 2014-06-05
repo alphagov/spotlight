@@ -37,19 +37,21 @@ function (Model) {
     parse: function (data, options) {
       var controller;
       var controllerMap = this.controllers || options.ControllerMap;
+
+      controller = controllerMap[data['page-type']];
+
       if (data['page-type'] === 'module') {
-        controller = controllerMap.modules[data['module-type']];
-      } else {
-        controller = controllerMap[data['page-type']];
-        _.each(data.modules, function (module) {
-          module.controller = controllerMap.modules[module['module-type']];
-          if (module.controller) {
-            // requiring the controller map from within a module causes a circular dependency
-            // so add the map as a property for modules that need it i.e. tabs
-            module.controller.map = controllerMap.modules;
-          }
-        }, this);
+        controller = controllerMap.dashboard;
       }
+
+      _.each(data.modules, function (module) {
+        module.controller = controllerMap.modules[module['module-type']];
+        if (module.controller) {
+          // requiring the controller map from within a module causes a circular dependency
+          // so add the map as a property for modules that need it i.e. tabs
+          module.controller.map = controllerMap.modules;
+        }
+      }, this);
 
       if (!controller) {
         data.controller = controllerMap.error;
