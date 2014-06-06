@@ -11,17 +11,15 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
     requiresSvg: true,
 
     collectionOptions: function () {
-      return {
+      var options = {
         matchingAttribute: this.model.get('matching-attribute'),
-        format: {
-          type: 'integer',
-          magnitude: true,
-          sigfigs: 3
-        },
         axes: _.merge({
           y: []
         }, this.model.get('axes'))
       };
+      options.format = this.model.get('format') ||
+        { type: 'integer', magnitude: true, sigfigs: 3 };
+      return options;
     },
 
     visualisationOptions: function () {
