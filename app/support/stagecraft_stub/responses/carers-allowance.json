@@ -225,7 +225,7 @@
     {
       "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Drop-off rate by section",
+      "title": "Users starting each section",
       "description": "Visits to the start of important sections of the transaction last week. Optional sections are shown in grey.",
       "info": [
         "Data source: Google Analytics",
@@ -236,6 +236,36 @@
       "data-type": "time-spent-on-each-page",
       "matching-attribute": "pagePathLevel1",
       "value-attribute": "users",
+      "axes": {
+        "y": [
+          {"journeyId": "/allowance/", "label": "Eligibility", "format": "integer"},
+          {"journeyId": "/about-you/", "label": "About you", "format": "integer"},
+          {"journeyId": "/your-partner/", "label": "Partner/Spouse", "format": "integer", "optional": true},
+          {"journeyId": "/care-you-provide/", "label": "Care", "format": "integer"},
+          {"journeyId": "/education/", "label": "Education", "format": "integer", "optional": true},
+          {"journeyId": "/employment/", "label": "Employment", "format": "integer", "optional": true},
+          {"journeyId": "/other-money/", "label": "Other money", "format": "integer"},
+          {"journeyId": "/pay-details/", "label": "Pay details", "format": "integer", "optional": true},
+          {"journeyId": "/consent-and-declaration/", "label": "Declaration", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "exits-at-each-step",
+      "module-type": "journey",
+      "title": "Exit rate in each section",
+      "description": "The exits in each section of the service last week. Optional pages are shown in grey.",
+      "info": [
+        "Data source: Google Analytics",
+        "XXXX"
+      ],
+      "data-group": "carers-allowance",
+      "data-type": "time-spent-on-each-page",
+      "matching-attribute": "pagePathLevel1",
+      "value-attribute": "exitsOverUsers",
+      "format": {
+        "type": "percent"
+      },
       "axes": {
         "y": [
           {"journeyId": "/allowance/", "label": "Eligibility", "format": "integer"},
