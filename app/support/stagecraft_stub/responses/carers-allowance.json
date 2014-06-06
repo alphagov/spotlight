@@ -166,7 +166,7 @@
       "period": "day",
       "value-attribute": "count",
       "show-line-labels": true,
-      "one-hundred-percent": true,
+      "one-hundred-percent": false,
       "use_stack": false,
       "start-at": "2014-03-01T00:00:00",
       "axes": {
