@@ -87,7 +87,7 @@
       "slug": "time-taken-to-complete-transaction",
       "module-type": "completion_numbers",
       "title": "Time taken to complete online application",
-      "description": "The mean length of time taken (in seconds) for online users to complete an application.<br/>Users who did not complete their application are not included in these statistics.<br/>Data has been tracked since December 2013.",
+      "description": "The mean total time taken (in seconds) for online users to complete an application.<br/>Users who failed to complete their application are not included in these statistics.<br/>Data has been tracked since December 2013.",
       "data-group": "carers-allowance",
       "data-type": "time-taken-to-complete",
       "info": [
@@ -122,7 +122,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "The percentage of all completed applications that were made via a digital channel.",
+      "description": "The percentage of all applications that were made via a digital channel.",
       "data-group": "carers-allowance",
       "data-type": "weekly-claims",
       "info": [
@@ -156,7 +156,7 @@
       "slug": "user-satisfaction-test",
       "module-type": "grouped_timeseries",
       "title": "User satisfaction - test version",
-      "description": "The ratings given by users who reached the final page of the service.",
+      "description": "The ratings given by users who reached the final page of the service.<br/>Users who drop out before completing do not complete the survey.",
       "data-group": "apply-carers-allowance",
       "data-type": "test-customer-satisfaction",
       "info": [
@@ -208,7 +208,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "The percentage of online users who reached the final page of the service.",
+      "description": "The percentage of online users who successfully reached the final page of the service.",
       "data-group": "carers-allowance",
       "data-type": "journey",
       "info": [
@@ -225,27 +225,55 @@
     {
       "slug": "users-at-each-step",
       "module-type": "journey",
-      "title": "Visitors starting each step",
-      "description": "Visits to the start of important steps of the transaction last week. Optional steps are shown in grey.",
+      "title": "Drop-off rate by section",
+      "description": "Visits to the start of important sections of the transaction last week. Optional sections are shown in grey.",
       "info": [
         "Data source: Google Analytics",
-        "The total number of users who arrived at each step.",
-        "Number of users is measured using the count of unique events from each step."
+        "The total number of users who arrived at each section.",
+        "Number of users is measured using the count of unique events from each section."
       ],
       "data-group": "carers-allowance",
-      "data-type": "journey",
-      "matching-attribute": "eventLabel",
+      "data-type": "time-spent-on-each-page",
+      "matching-attribute": "pagePathLevel1",
+      "value-attribute": "users",
       "axes": {
         "y": [
-          {"journeyId": "eligibility", "label": "Eligibility", "format": "integer"},
-          {"journeyId": "about-you", "label": "About you", "format": "integer"},
-          {"journeyId": "your-partner", "label": "Partner/Spouse", "format": "integer", "optional": true},
-          {"journeyId": "care-you-provide", "label": "Care", "format": "integer"},
-          {"journeyId": "education", "label": "Education", "format": "integer", "optional": true},
-          {"journeyId": "employment", "label": "Employment", "format": "integer", "optional": true},
-          {"journeyId": "other-money", "label": "Other money", "format": "integer"},
-          {"journeyId": "pay-details", "label": "Pay details", "format": "integer", "optional": true},
-          {"journeyId": "consent-and-declaration", "label": "Declaration", "format": "integer"}
+          {"journeyId": "/allowance/", "label": "Eligibility", "format": "integer"},
+          {"journeyId": "/about-you/", "label": "About you", "format": "integer"},
+          {"journeyId": "/your-partner/", "label": "Partner/Spouse", "format": "integer", "optional": true},
+          {"journeyId": "/care-you-provide/", "label": "Care", "format": "integer"},
+          {"journeyId": "/education/", "label": "Education", "format": "integer", "optional": true},
+          {"journeyId": "/employment/", "label": "Employment", "format": "integer", "optional": true},
+          {"journeyId": "/other-money/", "label": "Other money", "format": "integer"},
+          {"journeyId": "/pay-details/", "label": "Pay details", "format": "integer", "optional": true},
+          {"journeyId": "/consent-and-declaration/", "label": "Declaration", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "time-taken-at-each-step",
+      "module-type": "journey",
+      "title": "Time taken in each section",
+      "description": "The mean time (in seconds) that users spent per page in each section of the service last week. Optional pages are shown in grey.",
+      "info": [
+        "Data source: Google Analytics",
+        "XXXX"
+      ],
+      "data-group": "carers-allowance",
+      "data-type": "time-spent-on-each-page",
+      "matching-attribute": "pagePathLevel1",
+      "value-attribute": "avgTimeOnPage",
+      "axes": {
+        "y": [
+          {"journeyId": "/allowance/", "label": "Eligibility", "format": "integer"},
+          {"journeyId": "/about-you/", "label": "About you", "format": "integer"},
+          {"journeyId": "/your-partner/", "label": "Partner/Spouse", "format": "integer", "optional": true},
+          {"journeyId": "/care-you-provide/", "label": "Care", "format": "integer"},
+          {"journeyId": "/education/", "label": "Education", "format": "integer", "optional": true},
+          {"journeyId": "/employment/", "label": "Employment", "format": "integer", "optional": true},
+          {"journeyId": "/other-money/", "label": "Other money", "format": "integer"},
+          {"journeyId": "/pay-details/", "label": "Pay details", "format": "integer", "optional": true},
+          {"journeyId": "/consent-and-declaration/", "label": "Declaration", "format": "integer"}
         ]
       }
     },
