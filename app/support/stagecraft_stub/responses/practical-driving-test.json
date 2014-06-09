@@ -5,7 +5,7 @@
   "published": false,
   "strapline": "Dashboard",
   "title": "Practical driving test (public users)",
-  "description": "This dashboard provides additional information for the :<br><a href='/performance/book-practical-driving-test' rel='external'>Book a practical driving test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Change the date of your practical driving or riding test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Cancel your practical driving or riding test</a> dashboard",
+  "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>This dashboard provides additional information to the :<br><a href='/performance/book-practical-driving-test'>Practical driving test bookings</a> dashboard<br><a href='/performance/change-practical-driving-test'>Practical driving test changes and cancellations</a> dashboard",
   "department": {
      "title": "Department for Transport",
      "abbr": "DfT"
@@ -16,23 +16,13 @@
   },
   "relatedPages": {
     "improve-dashboard-message": true,
-    "other": [
-      {
+    "transaction": {
         "title": "Book your official practical driving or riding test",
         "url" : "https://www.gov.uk/book-practical-driving-test"
-      },
-      {
-        "title": "Change the date of your practical driving or riding test",
-        "url": "https://www.gov.uk/change-date-practical-driving-test"
-      },
-      {
-        "title": "Cancel your practical test",
-        "url": "https://www.gov.uk/cancel-practical-driving-test"
-      }
-		]
-	},	
-  "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+    }
+  },
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
   "modules": [
     {
       "slug": "live-service-usage",
@@ -49,14 +39,15 @@
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Breakdown by transaction type",
-      "description": "Practical driving test transaction volumes by <span class=\"group0\">bookings</span> and <span class=\"group1\">changes and cancellations</span>",
+      "title": "Bookings, changes and cancellations breakdown",
+      "description": "Practical driving test <span class=\"group0\">bookings</span> and <span class=\"group1\">changes and cancellations</span>",
       "data-group": "driving-test-practical",
       "data-type": "transactions-by-channel",
       "category": "action",
       "filter-by": ["sector:public"],
       "period": "week",
-      "axis-period": "week",
+      "axis-period": "month",
+      "duration": 52,
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -66,6 +57,11 @@
         "Practical driving test (public users) bookings and changes (including cancellations), broken down by channel"
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
         "y": [
           {
             "label": "Bookings",
@@ -89,6 +85,7 @@
       "data-type": "device-usage",
       "category": "deviceCategory",
       "period": "week",
+      "duration": 13,
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -98,6 +95,11 @@
         "Desktop category includes traffic from desktops and laptops"
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
         "y": [
           {
             "label": "Mobile",

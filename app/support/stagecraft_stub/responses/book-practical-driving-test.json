@@ -4,8 +4,8 @@
   "dashboard-type": "transaction",
   "published": false,
   "strapline": "Dashboard",
-  "title": "Book a practical driving test (public users)",
-  "description": "Figures for the service for the public to <strong>book a practical driving test</strong>. Figures include applications made via digital, phone and postal channels.<br><br> More performance information for the practical driving test can be found <a href='/performance/practical-driving-test' rel='external'>here</a>",
+  "title": "Practical driving test bookings",
+  "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>More performance information for the <strong>practical driving test</strong> can be found <a href='/performance/practical-driving-test'>here</a>. The performance dashboard for the <strong>Practical driving test changes and cancellations</strong> service can be found <a href='/performance/change-practical-driving-test'>here</a>",
   "department": {
      "title": "Department for Transport",
      "abbr": "DfT"
@@ -15,76 +15,15 @@
      "abbr": "DVSA"
   },
   "relatedPages": {
+    "improve-dashboard-message": true,
     "transaction": {
       "title": "Book your official practical driving or riding test",
       "url" : "https://www.gov.uk/book-practical-driving-test"
     }
   },
-  "customer-type": "Citizen",
-  "business-model": "Cost recovery",
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
   "modules": [
-    {
-      "slug": "transactions-per-year",
-      "module-type": "kpi",
-      "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
-      "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
-      "value-attribute": "number_of_transactions",
-      "format": {
-        "type": "number",
-        "magnitude": true,
-        "sigfigs": 3
-      }
-    },
-    {
-      "slug": "total-cost",
-      "module-type": "kpi",
-      "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
-      "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
-      "value-attribute": "total_cost",
-      "format": {
-        "type": "currency",
-        "magnitude": true,
-        "sigfigs": 3
-      }
-    },
-    {
-      "slug": "cost-per-transaction",
-      "module-type": "kpi",
-      "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
-      "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-book-practical-driving-test",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
-      "value-attribute": "cost_per_transaction",
-      "format": {
-        "type": "currency",
-        "pence": true
-      }
-    },
     {
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction_graph",
@@ -92,12 +31,58 @@
       "description": "Average score of satisfied responses",
       "data-group": "book-practical-driving-test",
       "data-type": "customer-satisfaction",
+      "duration": 60,
       "info": [
         "Data source: GOV.UK user feedback database",
-        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "period": "day",
       "value-attribute": "rating"
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Bookings breakdown",
+      "description": "Practical driving test bookings <span class=\"group0\">online</span>, by <span class=\"group1\">telephone</span> and by <span class=\"group2\">post</span>",
+      "data-group": "driving-test-practical",
+      "data-type": "transactions-by-channel",
+      "category": "channel",
+      "filter-by": ["sector:public","action:book"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Driver and Vehicle Standards Agency",
+        "Practical driving test (public users) booking, broken down by channel"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Online",
+            "categoryId": "online",
+            "format": "integer"
+          },
+          {
+            "label": "Telephone",
+            "categoryId": "phone",
+            "format": "integer"
+          },
+          {
+            "label": "Post",
+            "categoryId": "post",
+            "format": "integer"
+          }
+        ]
+      }
     },
     {
       "slug": "digital-takeup",
@@ -107,6 +92,7 @@
       "data-group": "driving-test-practical",
       "data-type": "transactions-by-channel",
       "filter-by": ["sector:public","action:book"],
+      "duration": 13,
       "info": [
         "Data source: Driver and Vehicle Standards Agency",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
@@ -117,86 +103,6 @@
       "value-attribute": "count:sum"
     },
     {
-      "slug": "volumetrics",
-      "module-type": "grouped_timeseries",
-      "title": "Volumes by channel",
-      "description": "Practical driving test (public users) booking volumes by <span class=\"group0\">online</span>, <span class=\"group1\">telephone</span> and <span class=\"group2\">post</span>",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
-      "category": "channel",
-      "filter-by": ["sector:public","action:book"],
-      "period": "week",
-      "axis-period": "week",
-      "value-attribute": "count:sum",
-      "show-line-labels": true,
-      "show-total-lines": true,
-      "use_stack": true,
-      "info": [
-        "Data source: Driver and Vehicle Standards Agency",
-        "Practical driving test (public users) booking, broken down by channel"
-      ],
-      "axes": {
-        "y": [
-          {
-            "label": "Online",
-            "categoryId": "online",
-            "format": "integer"
-          },
-          {
-            "label": "Telephone",
-            "categoryId": "phone",
-            "format": "integer"
-          },
-          {
-            "label": "Post",
-            "categoryId": "post",
-            "format": "integer"
-          }
-        ]
-      }
-    },
-    {
-      "slug": "long-volumetrics",
-      "module-type": "grouped_timeseries",
-      "title": "Big Volumes by channel",
-      "description": "Practical driving test (public users) booking volumes by <span class=\"group0\">online</span>, <span class=\"group1\">telephone</span> and <span class=\"group2\">post</span>",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
-      "category": "channel",
-      "filter-by": ["sector:public","action:book"],
-      "period": "week",
-      "axis-period": "month",
-      "start-at": "2013-03-04T00:00:00",
-      "duration": 78,
-      "value-attribute": "count:sum",
-      "show-line-labels": true,
-      "show-total-lines": true,
-      "use_stack": true,
-      "info": [
-        "Data source: Driver and Vehicle Standards Agency",
-        "Practical driving test (public users) booking, broken down by channel"
-      ],
-      "axes": {
-        "y": [
-          {
-            "label": "Online",
-            "categoryId": "online",
-            "format": "integer"
-          },
-          {
-            "label": "Telephone",
-            "categoryId": "phone",
-            "format": "integer"
-          },
-          {
-            "label": "Post",
-            "categoryId": "post",
-            "format": "integer"
-          }
-        ]
-      }
-    },
-    {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
@@ -204,6 +110,7 @@
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
       "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "duration": 13,
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a a booking and were able to complete it.",
@@ -230,7 +137,7 @@
       "axes": {
         "y": [
           {"journeyId": "choose-type-of-test", "label": "Choose type of test", "format": "integer"},
-          {"journeyId": "enter-licence-details", "label": "Enter license details", "format": "integer"},
+          {"journeyId": "enter-licence-details", "label": "Enter licence details", "format": "integer"},
           {"journeyId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
           {"journeyId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
           {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
@@ -281,6 +188,50 @@
       "info": [
         "<li>Data source: <abbr title='Driver and Vehicle Standards Agency'>DVSA</abbr> database</li>",
         "<li>More than one help use may be logged per user.</li>"
+      ]
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "day",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "hour",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          }
+        }
       ]
     }
   ]
