@@ -4,14 +4,15 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "description": "<abbr title='Statutory Off Road Notification'>SORN</abbr> is a service within <a href='vehicle-licensing'>vehicle licensing</a>, which also covers <a href='tax-disc'>tax disc</a>.",
   "title": "SORN (Statutory Off Road Notification) applications",
+  "description": "If you have a vehicle that you're not driving or parking on public roads, you can avoid paying tax and insurance by making a Statutory Off Road Notification (SORN).",
   "department": {
     "title": "Department for Transport",
     "abbr": "DfT"
   },
   "agency": {
-    "title": "DVLA"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "transaction": {
@@ -69,7 +70,7 @@
     {
       "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Users on start page",
+      "title": "Live service usage",
       "description": "Users currently on the GOV.UK start page for the service",
       "info": [
         "Data source: Google Analytics",
@@ -83,7 +84,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
       "data-group": "vehicle-licensing",
       "data-type": "customer-satisfaction",
       "info": [
@@ -137,7 +138,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of SORN applications made using the digital service",
       "data-group": "vehicle-licensing",
       "data-type": "volumetrics",
       "info": [
