@@ -155,7 +155,8 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'value-attribute': 'number_of_transactions',
             'axis-period': 'quarter',
             'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:quarterly']
+              'filter_by': ['service_id:' + output.slug, 'type:quarterly'],
+              'sort_by': '_timestamp:ascending'
             },
             'info': [
               'Data source: ' + row.department
@@ -177,7 +178,8 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
               'y': [{'label': 'Percentage digital take-up'}]
             },
             'query-params': {
-              'filter_by': ['service_id:' + output.slug, 'type:quarterly']
+              'filter_by': ['service_id:' + output.slug, 'type:quarterly'],
+              'sort_by': '_timestamp:ascending'
             },
             'info': [
               'Data source: ' + row.department,
