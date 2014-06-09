@@ -110,7 +110,8 @@
         "filter_by": [
           "service_id:dft-book-practical-driving-test",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport"
@@ -139,7 +140,8 @@
         "filter_by": [
           "service_id:dft-book-practical-driving-test",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport",

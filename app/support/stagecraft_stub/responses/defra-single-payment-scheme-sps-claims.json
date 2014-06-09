@@ -117,7 +117,8 @@
         "filter_by": [
           "service_id:defra-single-payment-scheme-sps-claims",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Environment, Food and Rural Affairs"
@@ -146,7 +147,8 @@
         "filter_by": [
           "service_id:defra-single-payment-scheme-sps-claims",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Environment, Food and Rural Affairs",

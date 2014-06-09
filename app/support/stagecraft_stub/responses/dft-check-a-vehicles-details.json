@@ -107,7 +107,8 @@
         "filter_by": [
           "service_id:dft-check-a-vehicles-details",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport"
@@ -136,7 +137,8 @@
         "filter_by": [
           "service_id:dft-check-a-vehicles-details",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport",

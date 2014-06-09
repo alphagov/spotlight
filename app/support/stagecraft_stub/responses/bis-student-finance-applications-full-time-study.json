@@ -116,7 +116,8 @@
         "filter_by": [
           "service_id:bis-student-finance-applications-full-time-study",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Business, Innovation and Skills"
@@ -145,7 +146,8 @@
         "filter_by": [
           "service_id:bis-student-finance-applications-full-time-study",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Business, Innovation and Skills",

@@ -117,7 +117,8 @@
         "filter_by": [
           "service_id:home-office-enhanced-criminal-records-checks",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office"
@@ -146,7 +147,8 @@
         "filter_by": [
           "service_id:home-office-enhanced-criminal-records-checks",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office",

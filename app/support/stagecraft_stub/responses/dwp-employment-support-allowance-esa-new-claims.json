@@ -113,7 +113,8 @@
         "filter_by": [
           "service_id:dwp-employment-support-allowance-esa-new-claims",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Work and Pensions"
@@ -142,7 +143,8 @@
         "filter_by": [
           "service_id:dwp-employment-support-allowance-esa-new-claims",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Work and Pensions",

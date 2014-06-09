@@ -115,7 +115,8 @@
         "filter_by": [
           "service_id:dft-book-theory-driving-test",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport"
@@ -144,7 +145,8 @@
         "filter_by": [
           "service_id:dft-book-theory-driving-test",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport",

@@ -111,7 +111,8 @@
         "filter_by": [
           "service_id:dft-amend-driving-licence-details",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport"
@@ -140,7 +141,8 @@
         "filter_by": [
           "service_id:dft-amend-driving-licence-details",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport",

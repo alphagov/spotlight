@@ -114,7 +114,8 @@
         "filter_by": [
           "service_id:bis-accounts-filing",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Business, Innovation and Skills"
@@ -143,7 +144,8 @@
         "filter_by": [
           "service_id:bis-accounts-filing",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Business, Innovation and Skills",
