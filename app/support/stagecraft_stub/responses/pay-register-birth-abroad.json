@@ -12,8 +12,8 @@
   },
   "relatedPages": {
     "transaction": {
-        "title": "Register a birth abroad",
-        "url": "https://www.gov.uk/register-a-birth"
+      "title": "Register a birth abroad",
+      "url": "https://www.gov.uk/register-a-birth"
     }
   },
   "customer-type": "Individuals",
@@ -23,43 +23,69 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-registering-a-birth-abroad", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-registering-a-birth-abroad",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-registering-a-birth-abroad", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-registering-a-birth-abroad",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-registering-a-birth-abroad", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
-      "format": { "type": "currency", "pence": true }
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-registering-a-birth-abroad",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "live-service-usage",
@@ -70,16 +96,16 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "pay-register-birth-abroad",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "pay-register-birth-abroad",
+        "data-type": "realtime"
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "completion_numbers",
       "title": "Payments",
       "description": "",
-      "data-group": "pay-register-birth-abroad",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
@@ -96,6 +122,10 @@
             "label": "Number of payments"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "pay-register-birth-abroad",
+        "data-type": "journey"
       }
     },
     {
@@ -103,8 +133,6 @@
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "pay-register-birth-abroad",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
@@ -112,7 +140,11 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "eventCategory",
+      "data-source": {
+        "data-group": "pay-register-birth-abroad",
+        "data-type": "journey"
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -124,14 +156,28 @@
         "The total number of users who arrived at each step.",
         "Number of users is measured using the count of unique events from each step."
       ],
-      "data-group": "pay-register-birth-abroad",
-      "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "pay-register-birth-abroad:start", "label": "Start", "format": "integer"},
-          {"journeyId": "pay-register-birth-abroad:confirm", "label": "Confirm", "format": "integer"},
-          {"journeyId": "pay-register-birth-abroad:done", "label": "Done", "format": "integer"}
+          {
+            "journeyId": "pay-register-birth-abroad:start",
+            "label": "Start",
+            "format": "integer"
+          },
+          {
+            "journeyId": "pay-register-birth-abroad:confirm",
+            "label": "Confirm",
+            "format": "integer"
+          },
+          {
+            "journeyId": "pay-register-birth-abroad:done",
+            "label": "Done",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "pay-register-birth-abroad",
+        "data-type": "journey"
       }
     },
     {
@@ -149,14 +195,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-register-birth-abroad",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-register-birth-abroad",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -165,14 +215,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-register-birth-abroad",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-register-birth-abroad",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

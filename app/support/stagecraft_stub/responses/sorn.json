@@ -28,43 +28,69 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-request-statutory-off-road-notice-sorn",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-request-statutory-off-road-notice-sorn",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
-      "format": { "type": "currency", "pence": true }
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-request-statutory-off-road-notice-sorn",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "live-service-usage",
@@ -75,37 +101,37 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently on the GOV.UK start page for the service."
       ],
-      "data-group": "sorn",
-      "data-type": "realtime",
-      "classes": "cols2"
+      "classes": "cols2",
+      "data-source": {
+        "data-group": "sorn",
+        "data-type": "realtime"
+      }
     },
     {
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
       "description": "Average score of satisfied responses",
-      "data-group": "vehicle-licensing",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: DVLA database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "value-attribute": "satisfaction_sorn",
-      "classes": "cols2"
+      "classes": "cols2",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "customer-satisfaction"
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "SORN applications per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "category": "channel",
-      "period": "month",
       "value-attribute": "volume:sum",
       "show-line-labels": true,
       "use_stack": true,
-      "filter-by": ["service:sorn"],
       "info": [
         "Data source: DVLA database",
         "Shows the monthly number of SORNs received by the DVLA, broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
@@ -131,6 +157,16 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "month",
+          "filter-by": [
+            "service:sorn"
+          ]
+        }
       }
     },
     {
@@ -138,8 +174,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "info": [
         "Data source: DVLA database",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
@@ -148,9 +182,13 @@
       "denominator-matcher": "^fully-digital|assisted-digital|manual$",
       "matching-attribute": "channel",
       "value-attribute": "volume:sum",
-      "period": "month",
-      "query-params": {
-        "filter_by": "service:sorn"
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "filter_by": "service:sorn",
+          "period": "month"
+        }
       }
     },
     {
@@ -158,15 +196,6 @@
       "module-type": "table",
       "title": "Recorded errors",
       "description": "Errors generated during the online application process last week",
-      "data-group": "vehicle-licensing",
-      "data-type": "failures",
-      "query-params": {
-        "filter_by": "type:sorn",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Description",
@@ -185,12 +214,26 @@
           }
         ]
       },
-      "sort-by": "count:sum",
       "sort-order": "descending",
       "info": [
         "<li>Data source: <abbr title='Driver and Vehicle Licensing Agency'>DVLA</abbr> database</li>",
         "<li>More than one error may be logged per user.</li>"
-      ]
+      ],
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "failures",
+        "query-params": {
+          "filter_by": "type:sorn",
+          "group_by": "reason",
+          "collect": [
+            "count:sum",
+            "description:set"
+          ],
+          "period": "week",
+          "duration": 1,
+          "sort-by": "count:sum"
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -207,14 +250,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "sorn",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "sorn",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -223,14 +270,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "sorn",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "sorn",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

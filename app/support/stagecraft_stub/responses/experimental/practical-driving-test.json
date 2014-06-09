@@ -7,19 +7,19 @@
   "title": "Practical driving test (public users)",
   "description": "This dashboard provides additional information for the :<br><a href='/performance/book-practical-driving-test' rel='external'>Book a practical driving test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Change the date of your practical driving or riding test</a> dashboard<br><a href='/performance/change-practical-driving-test' rel='external'>Cancel your practical driving or riding test</a> dashboard",
   "department": {
-     "title": "Department for Transport",
-     "abbr": "DfT"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-     "title": "Driver and Vehicle Standards Agency",
-     "abbr": "DVSA"
+    "title": "Driver and Vehicle Standards Agency",
+    "abbr": "DVSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
     "other": [
       {
         "title": "Book your official practical driving or riding test",
-        "url" : "https://www.gov.uk/book-practical-driving-test"
+        "url": "https://www.gov.uk/book-practical-driving-test"
       },
       {
         "title": "Change the date of your practical driving or riding test",
@@ -29,8 +29,8 @@
         "title": "Cancel your practical test",
         "url": "https://www.gov.uk/cancel-practical-driving-test"
       }
-		]
-	},	
+    ]
+  },
   "customer-type": "Citizen",
   "business-model": "Cost recovery",
   "modules": [
@@ -43,19 +43,17 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "driving-test-practical-public",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "realtime"
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Breakdown by transaction type",
       "description": "Practical driving test transaction volumes by <span class=\"group0\">bookings</span> and <span class=\"group1\">changes and cancellations</span>",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
       "category": "action",
-      "filter-by": ["sector:public"],
-      "period": "week",
       "axis-period": "week",
       "value-attribute": "count:sum",
       "show-line-labels": true,
@@ -78,6 +76,16 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter-by": [
+            "sector:public"
+          ]
+        }
       }
     },
     {
@@ -85,10 +93,7 @@
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
       "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
-      "data-group": "driving-test-practical-public",
-      "data-type": "device-usage",
       "category": "deviceCategory",
-      "period": "week",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -115,6 +120,13 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "device-usage",
+        "query-params": {
+          "period": "week"
+        }
       }
     },
     {
@@ -132,14 +144,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -148,14 +164,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

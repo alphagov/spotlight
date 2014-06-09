@@ -16,10 +16,7 @@
       "module-type": "grouped_timeseries",
       "title": "Tax disc and SORN – breakdown",
       "description": "Vehicle licensing applications per month broken down by service",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "category": "service",
-      "period": "month",
       "value-attribute": "volume:sum",
       "show-line-labels": true,
       "use_stack": true,
@@ -30,9 +27,26 @@
       "line-label-links": true,
       "axes": {
         "y": [
-           { "categoryId": "tax-disc", "label": "Tax disc", "href": "/performance/tax-disc", "format": "integer" },
-           { "categoryId": "sorn", "label": "SORN", "href": "/performance/sorn", "format": "integer" }
+          {
+            "categoryId": "tax-disc",
+            "label": "Tax disc",
+            "href": "/performance/tax-disc",
+            "format": "integer"
+          },
+          {
+            "categoryId": "sorn",
+            "label": "SORN",
+            "href": "/performance/sorn",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "month"
+        }
       }
     },
     {
@@ -40,10 +54,7 @@
       "module-type": "grouped_timeseries",
       "title": "Digital, Post Office and DVLA centre – breakdown",
       "description": "Vehicle licensing per month broken down by <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "category": "channel",
-      "period": "month",
       "value-attribute": "volume:sum",
       "show-line-labels": true,
       "use_stack": true,
@@ -56,10 +67,29 @@
       ],
       "axes": {
         "y": [
-           { "categoryId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
-           { "categoryId": "assisted-digital", "label": "Post Office", "format": "integer" },
-           { "categoryId": "manual", "label": "DVLA centre", "format": "integer" }
+          {
+            "categoryId": "fully-digital",
+            "label": "Digital and automated phone",
+            "format": "integer"
+          },
+          {
+            "categoryId": "assisted-digital",
+            "label": "Post Office",
+            "format": "integer"
+          },
+          {
+            "categoryId": "manual",
+            "label": "DVLA centre",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "month"
+        }
       }
     }
   ]
