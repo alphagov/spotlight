@@ -7,9 +7,6 @@ _.extend(moduleSchema.properties, {
   'value-attribute': {
     type: 'string',
     required: true
-  },
-  period: {
-    $ref: '#/definitions/period'
   }
 });
 

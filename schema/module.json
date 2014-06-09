@@ -24,13 +24,22 @@
       },
       "minItems": 1
     },
-    "data-group": {
-      "type": "string",
-      "required": true
-    },
-    "data-type": {
-      "type": "string",
-      "required": true
+    "data-source": {
+      "type": "object",
+      "properties": {
+        "data-group": {
+          "type": "string",
+          "required": true
+        },
+        "data-type": {
+          "type": "string",
+          "required": true
+        },
+        "query-params": {
+          "$ref": "#/definitions/query-params",
+          "required": false
+        }
+      }
     },
     "axes": {
       "type": "object",
@@ -52,6 +61,60 @@
     }
   },
   "definitions": {
+    "query-params": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "allOf": [
+            { "required": false },
+            {
+              "type": "string",
+              "enum": [
+                "hour",
+                "day",
+                "week",
+                "month",
+                "quarter"
+              ]
+            }
+          ]
+        },
+        "start-at": {
+          "type": "string",
+          "required": false
+        },
+        "end-at": {
+          "type": "string",
+          "required": false
+        },
+        "duration": {
+          "type": "integer",
+          "required": false
+        },
+        "sort-by": {
+          "type": "string",
+          "required": false
+        },
+        "group-by": {
+          "type": "string",
+          "required": false
+        },
+        "collect": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "string"
+          }
+        },
+        "filter-by": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "axis": {
       "type": "object",
       "properties": {
@@ -85,17 +148,6 @@
           ]
         }
       }
-    },
-    "period": {
-      "type": "string",
-      "required": true,
-      "enum": [
-        "hour",
-        "day",
-        "week",
-        "month",
-        "quarter"
-      ]
     }
   }
 }
