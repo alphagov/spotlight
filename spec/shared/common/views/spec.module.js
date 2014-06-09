@@ -70,6 +70,14 @@ function (ModuleView, Collection, Model, View) {
       expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation">test content</div></section>');
     });
 
+    it('renders a standalone module with description and info link', function () {
+      model.set('page-type', 'module');
+      model.set('description', 'Description');
+      model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
+      moduleView.render();
+      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h1 id="slug-heading">A Title</h1><h2 class="dashboard">Description</h2><div class="visualisation">test content</div><aside class="more-info" role="complementary"><h2>About the data</h2><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></aside></section>');
+    });
+
     it('renders an SVG-based module as a fallback element on the server', function () {
       jasmine.serverOnly(function () {
         moduleView.requiresSvg = true;
