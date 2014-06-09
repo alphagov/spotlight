@@ -23,7 +23,7 @@
   },
   "customer-type": "Individuals",
   "business-model": "Fees and charges",
-  "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
+  "costs": "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it's an aggregation of the differing channel/service pricing structures. This service is cost-recovery funded.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -70,7 +70,7 @@
         "sigfigs": 3
       },
       "info": [
-        "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
+        "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it's an aggregation of the differing channel/service pricing structures. This service is cost-recovery funded.",
         "<br />",
         "Data source: Home Office",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
@@ -96,7 +96,7 @@
         "pence": true
       },
       "info": [
-        "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it is an aggregation of the differing channel/service pricing structures. This service is cost recovery funded.",
+        "Unit cost for producing and issuing a certificate. The average cost does not align with individual certificate fees as it's an aggregation of the differing channel/service pricing structures. This service is cost-recovery funded.",
         "<br />",
         "Data source: Home Office",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
