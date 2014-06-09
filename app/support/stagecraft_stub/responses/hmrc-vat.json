@@ -109,7 +109,8 @@
         "filter_by": [
           "service_id:hmrc-vat",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs"
@@ -138,7 +139,8 @@
         "filter_by": [
           "service_id:hmrc-vat",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs",

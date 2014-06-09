@@ -115,7 +115,8 @@
         "filter_by": [
           "service_id:dh-blood-donation-appointments",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department of Health"
@@ -144,7 +145,8 @@
         "filter_by": [
           "service_id:dh-blood-donation-appointments",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department of Health",
