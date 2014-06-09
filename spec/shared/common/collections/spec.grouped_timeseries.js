@@ -9,7 +9,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
     var response = {
       'data': [
         {
-          'some:value': 5,
+          'some:value': 3,
           'values': [
             {
               '_end_at': '2012-09-01T00:00:00+00:00',
@@ -18,6 +18,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             },
             {
               '_end_at': '2012-10-01T00:00:00+00:00',
+              'some:value': null,
               '_start_at': '2012-09-01T00:00:00+00:00'
             }
           ],
@@ -102,6 +103,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           },
           {
             '_end_at': '2012-10-01T00:00:00+00:00',
+            'some:value': null,
             '_start_at': '2012-09-01T00:00:00+00:00'
           }
         ]
@@ -176,8 +178,9 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           },
           {
             '_end_at': '2012-10-01T00:00:00+00:00',
-            '_start_at': '2012-09-01T00:00:00+00:00',
             'some:value': null,
+            '_start_at': '2012-09-01T00:00:00+00:00',
+            'some:value_original': null
           }
         ]
       }
@@ -415,6 +418,7 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             },
             {
               '_end_at': '2012-10-01T00:00:00+00:00',
+              'some:value': null,
               '_start_at': '2012-09-01T00:00:00+00:00'
             }
           ]

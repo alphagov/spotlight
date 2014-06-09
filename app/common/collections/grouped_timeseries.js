@@ -63,7 +63,10 @@ function (MatrixCollection) {
       _.each(dataWithPercentages, function (d) {
         _.each(d.values, function (obj, i) {
           obj[this.valueAttr + '_original'] = obj[this.valueAttr];
-          obj[this.valueAttr] = obj[this.valueAttr] / totalSeries.values[i][this.valueAttr];
+          // If the data we're returned is null, we don't want to do any transformation on it.
+          if (obj[this.valueAttr] !== null) {
+            obj[this.valueAttr] = obj[this.valueAttr] / totalSeries.values[i][this.valueAttr];
+          }
         }, this);
       }, this);
 
