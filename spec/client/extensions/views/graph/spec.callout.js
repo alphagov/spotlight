@@ -4,16 +4,16 @@ define([
 ],
 function (Callout, Model) {
   describe('Callout Component', function () {
-    
+
     describe('onChangeSelected', function () {
-      
+
       var callout, model, group;
       beforeEach(function () {
 
         group = new Model({
           title: 'test title'
         });
-        
+
         model = new Model({
           fraction: 0.3,
           a: 20,
@@ -49,19 +49,19 @@ function (Callout, Model) {
         spyOn(callout, 'renderContent').andCallThrough();
         callout.render();
       });
-      
+
       it('hides when only a group but no item is selected', function () {
         callout.onChangeSelected('group', 1, null, null);
         expect(callout.calloutEl).toHaveClass('performance-hidden');
         expect(callout.renderContent).not.toHaveBeenCalled();
       });
-      
+
       it('hides when all items at a specific position are selected', function () {
         callout.onChangeSelected(null, null, 'model', 1);
         expect(callout.calloutEl).toHaveClass('performance-hidden');
         expect(callout.renderContent).not.toHaveBeenCalled();
       });
-      
+
       it('renders a callout at the correct position when graph is not scaled', function () {
         callout.graph.scaleFactor.andReturn(1);
         callout.onChangeSelected(group, 1, model, 2);
@@ -72,7 +72,7 @@ function (Callout, Model) {
         expect(callout.calloutEl.css('left')).toEqual('23px'); // left margin + result of x() + offsetX
         expect(callout.calloutEl.css('top')).toEqual('43px'); // right margin + result of y() + offsetY
       });
-      
+
       it('renders a callout at the correct position when graph is scaled', function () {
         callout.graph.scaleFactor.andReturn(0.5);
         callout.onChangeSelected(group, 1, model, 2);
@@ -90,9 +90,13 @@ function (Callout, Model) {
       });
 
       it('displays series title, count and percentage when configured', function () {
+        var testModel = new Model({
+          a: 0.2,
+          a_original: 30
+        });
         callout.showPercentage = true;
-        callout.onChangeSelected(group, 1, model, 2);
-        expect(callout.calloutEl.html()).toEqual('<h3>test header</h3><dl><dt>test title</dt><dd>20 (30%)</dd></dl>');
+        callout.onChangeSelected(group, 1, testModel, 2);
+        expect(callout.calloutEl.html()).toEqual('<h3>test header</h3><dl><dt>test title</dt><dd>20% (30)</dd></dl>');
       });
     });
   });

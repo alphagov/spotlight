@@ -38,6 +38,8 @@ function (ModuleController, GroupedTimeseriesCollection, GroupedTimeshiftCollect
         seriesList: this.model.get('series'),
         filterBy: this.model.get('filter-by'),
         showTotalLines: this.model.get('show-total-lines'),
+        isOneHundredPercent: this.model.get('one-hundred-percent'),
+        useStack: this.model.get('use_stack'),
         duration: this.model.get('duration'),
         axisPeriod: this.model.get('axis-period'),
         groupMapping: this.model.get('group-mapping'),

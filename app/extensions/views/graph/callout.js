@@ -16,6 +16,12 @@ function (Component, Pivot) {
     constrainToBounds: true,
     classed: 'callout',
 
+    initialize: function (options) {
+      Component.prototype.initialize.apply(this, arguments);
+      options = options || {};
+      this.showPercentage = options.showPercentage;
+    },
+
     render: function () {
       if (!this.calloutEl) {
         this.calloutEl = $('<div></div>').addClass(this.classed + ' performance-hidden').appendTo(this.$el);
@@ -84,10 +90,13 @@ function (Component, Pivot) {
 
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
       var format = this.graph.currency ? 'currency' : 'integer';
-      var value = this.format(model.get(this.graph.valueAttr), { type: format, magnitude: true, pad: true });
 
+      var value;
       if (this.showPercentage) {
-        value += ' (' + this.format(model.get('fraction'), 'percent') + ')';
+        value = this.format(model.get(this.graph.valueAttr), 'percent');
+        value += ' (' + this.format(model.get(this.graph.valueAttr + '_original'), { type: format, magnitude: true, pad: true }) + ')';
+      } else {
+        value = this.format(model.get(this.graph.valueAttr), { type: format, magnitude: true, pad: true });
       }
 
       var detail = $('<dl>').html([

@@ -424,7 +424,105 @@
             ]
           },
           "show-line-labels": true
-        }
+        },
+    {
+      "slug": "how-users-access-the-service",
+      "module-type": "grouped_timeseries",
+      "title": "Categories in a % stack",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+      "data-group": "gov-uk-content",
+      "data-type": "devices-count",
+      "filter-by": "department:attorney-generals-office",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "week",
+      "duration": 9,
+      "value-attribute": "pageviews:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+        {
+      "slug": "how-users-access-the-service",
+      "module-type": "grouped_timeseries",
+      "title": "Categories as % lines",
+      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+      "data-group": "gov-uk-content",
+      "data-type": "devices-count",
+      "filter-by": "department:attorney-generals-office",
+      "category": "deviceCategory",
+      "period": "week",
+      "axis-period": "week",
+      "duration": 9,
+      "value-attribute": "pageviews:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics",
+        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          }
+        ]
+      }
+    }
       ]
     }
   ]
