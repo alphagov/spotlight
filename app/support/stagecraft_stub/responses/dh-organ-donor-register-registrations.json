@@ -110,7 +110,8 @@
         "filter_by": [
           "service_id:dh-organ-donor-register-registrations",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department of Health"
@@ -139,7 +140,8 @@
         "filter_by": [
           "service_id:dh-organ-donor-register-registrations",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department of Health",

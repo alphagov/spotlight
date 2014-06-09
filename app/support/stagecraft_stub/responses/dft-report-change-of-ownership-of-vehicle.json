@@ -115,7 +115,8 @@
         "filter_by": [
           "service_id:dft-report-change-of-ownership-of-vehicle",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport"
@@ -144,7 +145,8 @@
         "filter_by": [
           "service_id:dft-report-change-of-ownership-of-vehicle",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Department for Transport",

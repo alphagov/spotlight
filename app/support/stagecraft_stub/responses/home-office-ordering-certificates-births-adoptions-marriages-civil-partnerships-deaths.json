@@ -115,7 +115,8 @@
         "filter_by": [
           "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office"
@@ -144,7 +145,8 @@
         "filter_by": [
           "service_id:home-office-ordering-certificates-births-adoptions-marriages-civil-partnerships-deaths",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office",

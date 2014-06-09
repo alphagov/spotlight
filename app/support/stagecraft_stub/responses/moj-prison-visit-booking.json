@@ -112,7 +112,8 @@
         "filter_by": [
           "service_id:moj-prison-visit-booking",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Ministry of Justice"
@@ -141,7 +142,8 @@
         "filter_by": [
           "service_id:moj-prison-visit-booking",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Ministry of Justice",

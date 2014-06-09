@@ -105,7 +105,8 @@
         "filter_by": [
           "service_id:hmrc-excise-movement-control-service",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs"
@@ -134,7 +135,8 @@
         "filter_by": [
           "service_id:hmrc-excise-movement-control-service",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs",

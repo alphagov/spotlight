@@ -112,7 +112,8 @@
         "filter_by": [
           "service_id:hmrc-construction-industry-scheme",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs"
@@ -141,7 +142,8 @@
         "filter_by": [
           "service_id:hmrc-construction-industry-scheme",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: HM Revenue and Customs",

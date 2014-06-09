@@ -112,7 +112,8 @@
         "filter_by": [
           "service_id:home-office-visas-immigration-applications",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office"
@@ -141,7 +142,8 @@
         "filter_by": [
           "service_id:home-office-visas-immigration-applications",
           "type:quarterly"
-        ]
+        ],
+        "sort_by": "_timestamp:ascending"
       },
       "info": [
         "Data source: Home Office",
