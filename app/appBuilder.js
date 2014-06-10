@@ -58,6 +58,7 @@ module.exports = {
           json: true
         });
         global.logger.remove(winston.transports.Console);
+        app.set('etag', 'strong');
       }
 
     });
