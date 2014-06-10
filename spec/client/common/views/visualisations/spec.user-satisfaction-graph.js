@@ -5,9 +5,10 @@ define([
   'extensions/models/model'
 ],
 function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
-  describe('User Satisfaction Graph', function () {
+  describe('User satisfaction graph', function () {
 
     var collection, view;
+
     beforeEach(function () {
       spyOn(CompletionRateView.prototype, 'views').andReturn({});
       collection = new Collection();
@@ -62,7 +63,9 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
         limit: 0,
         min: 1,
         max: 5,
-        model: new Model(),
+        model: new Model({
+          'page-type': 'module'
+        }),
         period: 'day',
         duration: 30,
         trim: true,
@@ -89,7 +92,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
     });
 
     describe('rendering a graph', function () {
-      it('renders the graph x-axis', function () {
+      it('renders the bars x-axis', function () {
         jasmine.renderView(view, function () {
           var xaxis = view.$el.find('.x-axis text');
 
@@ -113,8 +116,16 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
         });
       });
 
+      it('doesn\'t render the bars on the dashboard, only on page-per-thing', function () {
+        view.model.set('page-type', undefined);
+
+        jasmine.renderView(view, function () {
+          expect(view.$el.find('.bar').length).toEqual(0);
+        });
+      });
+
       describe('updating the graph', function () {
-        it('updates the values when the collection is reset', function () {
+        it('updates the bar values when the collection is reset', function () {
           jasmine.renderView(view, function () {
             var changedModel = collection.at(0).get('values').at(2);
             view.collection.trigger('change:selected', undefined, undefined, changedModel);
