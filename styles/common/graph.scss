@@ -6,20 +6,6 @@ span.group3 { color: $data-colour-4; }
 span.group4 { color: $data-colour-5; }
 span.group5 { color: $data-colour-6; }
 
-.table-toggle {
-  a {
-    @include core-14;
-  }
-
-  table {
-    padding-bottom: 1em;
-
-    .js-enabled & {
-      display: none;
-    }
-  }
-}
-
 figure.graph {
   margin:0 auto;
   position:relative;

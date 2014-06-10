@@ -134,7 +134,7 @@ function (ModuleView, Collection, Model, View, $) {
       var collectionWithAxes = new Collection({}, { 'axes': true });
       moduleView.collection = collectionWithAxes;
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-table"><div class="table-toggle"><a class="" href="#">Table view of “A Title” data</a><table><thead><tr></tr></thead><tbody><tr></tr></tbody></table></div></div><div class="visualisation-moreinfo"></div></div></section>');
+      expect($(getContent()).find('table.visuallyhidden').html()).toEqual('<thead><tr></tr></thead><tbody><tr></tr></tbody>');
     });
 
   });
