@@ -72,11 +72,9 @@ function (View, template, GraphTable) {
       return _.extend(
         View.prototype.templateContext.call(this),
         {
-          fallback: isServer && this.requiresSvg,
-          fallbackUrl: this.url ? (this.url + '.png') : null,
+          fallbackUrl: this.requiresSvg && this.url ? (this.url + '.png') : null,
           jsonUrl: this.jsonUrl,
-          hasTable: this.hasTable,
-          offerPng: this.requiresSvg
+          hasTable: this.hasTable
         }
       );
     }

@@ -2,9 +2,10 @@ define([
   'common/views/module',
   'extensions/collections/collection',
   'extensions/models/model',
-  'extensions/views/view'
+  'extensions/views/view',
+  'jquery'
 ],
-function (ModuleView, Collection, Model, View) {
+function (ModuleView, Collection, Model, View, $) {
   describe('ModuleView', function () {
 
     var moduleView, model;
@@ -28,7 +29,8 @@ function (ModuleView, Collection, Model, View) {
         visualisationClass: Visualisation,
         className: 'testclass',
         collection: collection,
-        model: model
+        model: model,
+        url: '/foo/bar'
       });
     });
 
@@ -70,18 +72,43 @@ function (ModuleView, Collection, Model, View) {
       expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><h3>Description</h3><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
     });
 
-    it('renders a standalone module with description and info link', function () {
+    it('renders a standalone module with description', function () {
       model.set('page-type', 'module');
       model.set('description', 'Description');
-      model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
       moduleView.render();
-      expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h1 id="slug-heading">A Title</h1><h2 class="dashboard">Description</h2><div class="visualisation">test content</div><aside class="more-info" role="complementary"><h2>About the data</h2><ul><li><a href="https://example.com/">Info line 1</a> with trailing text</li><li>Info line 2</li></ul></aside></section>');
+      expect(moduleView.$('h2.dashboard').text()).toEqual('Description');
+    });
+
+    it('renders a standalone module with info links', function () {
+      var info = ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2'];
+      model.set('page-type', 'module');
+      model.set('info', info);
+      moduleView.render();
+      expect(moduleView.$('aside.more-info.about ul li').length).toEqual(info.length);
+      moduleView.$('aside.more-info.about ul li').each(function (i) {
+        expect($(this).html()).toEqual(info[i]);
+      });
+    });
+
+    it('renders a standalone module with json download link', function () {
+      model.set('page-type', 'module');
+      moduleView.render();
+      expect(moduleView.$('aside.more-info.download ul li').length).toEqual(1);
+      expect(moduleView.$('aside.more-info.download ul li:eq(0) a').text()).toEqual('JSON');
+    });
+
+    it('renders a standalone module with png download link for svg modules', function () {
+      model.set('page-type', 'module');
+      moduleView.requiresSvg = true;
+      moduleView.render();
+      expect(moduleView.$('aside.more-info.download ul li').length).toEqual(2);
+      expect(moduleView.$('aside.more-info.download ul li:eq(1) a').attr('href')).toEqual('/foo/bar.png');
+      expect(moduleView.$('aside.more-info.download ul li:eq(1) a').text()).toEqual('PNG');
     });
 
     it('renders an SVG-based module as a fallback element on the server', function () {
       jasmine.serverOnly(function () {
         moduleView.requiresSvg = true;
-        moduleView.url = '/test/url';
         moduleView.render();
 
         // normalise jsdom and phantomjs output
@@ -90,7 +117,7 @@ function (ModuleView, Collection, Model, View) {
           .replace('&gt;', '>')
           .replace(' />', '/>');
 
-        expect(content).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner" data-src="/test/url.png"><noscript><img src="/test/url.png"/></noscript></div><div class="visualisation-moreinfo"></div></div></section>');
+        expect(content).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner" data-src="/foo/bar.png"><noscript><img src="/foo/bar.png"/></noscript></div><div class="visualisation-moreinfo"></div></div></section>');
       });
     });
 
@@ -98,7 +125,7 @@ function (ModuleView, Collection, Model, View) {
       jasmine.clientOnly(function () {
         moduleView.requiresSvg = true;
         moduleView.render();
-        expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
+        expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading">A Title</h2><div class="visualisation"><div class="visualisation-inner" data-src="/foo/bar.png">test content</div><div class="visualisation-moreinfo"></div></div></section>');
       });
     });
 
