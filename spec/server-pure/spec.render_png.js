@@ -7,7 +7,7 @@ describe('renderPng', function () {
       renderPng.screenshotTargetUrl = 'http://spotlight';
       var url = '/test/path.png';
       var screenshotPath = renderPng.getScreenshotPath(url);
-      expect(screenshotPath).toEqual('http://screenshotservice?readyExpression=!!document.querySelector(".loaded")&forwardCacheHeaders=true&clipSelector=.visualisation&url=http://spotlight/test/path?raw');
+      expect(screenshotPath).toEqual('http://screenshotservice?readyExpression=!!document.querySelector(".loaded")&forwardCacheHeaders=true&clipSelector=.visualisation-inner&url=http://spotlight/test/path?raw');
     });
   });
 });

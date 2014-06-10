@@ -30,7 +30,7 @@ renderPng.getScreenshotPath = function (url) {
     renderPng.screenshotServiceUrl,
     '?readyExpression=!!document.querySelector(".loaded")',
     '&forwardCacheHeaders=true',
-    '&clipSelector=.visualisation',
+    '&clipSelector=.visualisation-inner',
     '&url=',
     renderPng.screenshotTargetUrl,
     url.replace(/.png|\?raw/g, '?raw')
