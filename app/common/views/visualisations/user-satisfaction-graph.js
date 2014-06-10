@@ -54,14 +54,16 @@ function (template, CompletionRateView, UserSatisfactionView, Collection) {
     views: function () {
       var views = CompletionRateView.prototype.views.apply(this, arguments);
 
-      views['#volumetrics-bar-selected'] = {
-        view: UserSatisfactionView,
-        options: {
-          valueAttr: 'count',
-          selectionValueAttr: this.valueAttr,
-          collection: this.userSatisfactionCollection
-        }
-      };
+      if (this.model.get('page-type') === 'module') {
+        views['#volumetrics-bar-selected'] = {
+          view: UserSatisfactionView,
+          options: {
+            valueAttr: 'count',
+            selectionValueAttr: this.valueAttr,
+            collection: this.userSatisfactionCollection
+          }
+        };
+      }
 
       return views;
     }
