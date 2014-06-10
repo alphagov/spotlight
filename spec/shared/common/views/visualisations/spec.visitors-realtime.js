@@ -25,6 +25,8 @@ function (VisitorsRealtimeView, Collection) {
         collection: collection
       });
 
+      view.valueAttr = 'unique_visitors';
+
       jasmine.serverOnly(function () {
         view.sparkline = false;
       });
@@ -183,6 +185,7 @@ function (VisitorsRealtimeView, Collection) {
       testView = new VisitorsRealtimeView({
         collection: testCollection
       });
+      testView.valueAttr = 'unique_visitors';
       jasmine.serverOnly(function () {
         testView.sparkline = false;
       });

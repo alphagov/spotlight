@@ -11,6 +11,7 @@ define([
 
     visualisationClass: null,
     requiresSvg: false,
+    hasTable: true,
 
     id: function () {
       return this.model.get('slug') || this.model.get('module-type');
@@ -53,7 +54,8 @@ define([
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,
-        url: this.url
+        url: this.url,
+        hasTable: this.hasTable
       };
 
       if (isClient) {
@@ -65,6 +67,12 @@ define([
       }
 
       return options;
+    },
+
+    visualisationOptions: function () {
+      return {
+        valueAttr: this.model.get('value-attribute')
+      };
     }
   });
 

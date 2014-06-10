@@ -35,6 +35,13 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
           ]
         }, this.model.get('axes'));
       return options;
+    },
+
+    visualisationOptions: function () {
+      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
+        valueAttr: 'uniqueEvents',
+        formatOptions: this.model.get('format')
+      });
     }
   });
 

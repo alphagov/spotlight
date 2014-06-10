@@ -5,14 +5,6 @@ define([
 function (Graph, LineLabel) {
   var StackedGraph = Graph.extend({
 
-    initialize: function (options) {
-      options = options || {};
-      if (!options.valueAttr && this.model && this.model.get('value-attribute')) {
-        options.valueAttr = this.model.get('value-attribute');
-      }
-      Graph.prototype.initialize.apply(this, arguments);
-    },
-
     interactiveFunction: function (e) {
       if (this.graph.lineLabelOnTop()) {
         return e.slice >= 3;

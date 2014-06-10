@@ -12,6 +12,7 @@ function (JourneyGraph, JourneyCollection, Collection) {
       graph = new JourneyGraph({
         collection: new JourneyCollection([{}])
       });
+      graph.valueAttr = 'uniqueEvents';
     });
 
     describe('calcYScale', function () {

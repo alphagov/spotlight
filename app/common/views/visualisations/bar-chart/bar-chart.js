@@ -8,14 +8,7 @@ function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({
     minYDomainExtent: 1,
     numYTicks: 3,
-
-    initialize: function (options) {
-      this.valueAttr = options.valueAttr || 'uniqueEvents';
-      this.axisPeriod = options.axisPeriod;
-      this.formatOptions = options.formatOptions || { type: 'integer' };
-
-      Graph.prototype.initialize.apply(this, arguments);
-    },
+    formatOptions: 'integer',
 
     components: function () {
       var that = this;

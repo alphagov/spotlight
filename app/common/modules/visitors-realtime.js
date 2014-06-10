@@ -34,7 +34,12 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
           ]
         }, this.model.get('axes'))
       };
+    },
+
+    visualisationOptions: {
+      valueAttr: 'unique_visitors'
     }
+
   });
 
   return VisitorsRealtimeModule;

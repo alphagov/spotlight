@@ -16,16 +16,28 @@
   <% } %>
 <% } %>
 
-<% if (fallback) { %>
-  <div class="visualisation-fallback" data-src="<%= fallbackUrl %>">
-    <noscript><img src="<%= fallbackUrl %>"/></noscript>
-  </div>
-<% } else { %>
-  <div class="visualisation"></div>
+<div class="visualisation">
+
+<div class="visualisation-inner"<% if (fallbackUrl) { %> data-src="<%= fallbackUrl %>"<% } %>><% if (fallbackUrl) { %><noscript><img src="<%= fallbackUrl %>"/></noscript><% } %></div>
+
+<% if (hasTable) { %>
+<div class="visualisation-table"></div>
+<% } %>
+
+<div class="visualisation-moreinfo">
+
+<% if (model.get('page-type') === 'module') { %>
+<aside class="more-info download" role="complementary">
+  <h2>Download the data</h2>
+  <ul>
+    <li><a href="<%= jsonUrl %>">JSON</a></li>
+    <% if (fallbackUrl) { %><li><a href="<%= fallbackUrl %>">PNG</a></li><% } %>
+  </ul>
+</aside>
 <% } %>
 
 <% if (model.get('info') && model.get('page-type') === 'module') { %>
-<aside class="more-info" role="complementary">
+ <aside class="more-info about" role="complementary">
   <h2>About the data</h2>
   <ul>
     <% _.each(model.get('info'), function (row) { %>
@@ -34,3 +46,8 @@
   </ul>
 </aside>
 <% } %>
+
+
+</div>
+
+</div>

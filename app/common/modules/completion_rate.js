@@ -41,7 +41,10 @@ function (ModuleController, CompletionRateView, CompletionRateCollection) {
           ]
         }, this.model.get('axes'))
       };
-    }
+    },
+
+    visualisationOptions: {}
+
   });
 
   return CompletionRateModule;

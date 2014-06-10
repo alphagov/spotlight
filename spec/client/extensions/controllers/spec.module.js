@@ -36,7 +36,7 @@ function (ModuleController, Model) {
 
       beforeEach(function () {
         moduleController = new ModuleController({
-          model: new Model({ 'module-type': 'availability' })
+          model: new Model({ 'module-type': 'availability', 'value-attribute': 'someAttr' })
         });
       });
 
@@ -69,6 +69,13 @@ function (ModuleController, Model) {
 
         moduleController.model.set('classes', 'baz');
         expect(moduleController.className()).toEqual('module availability baz');
+
+      });
+
+      it('returns valueAttr in the visualisation options', function () {
+
+        moduleController.model.set('classes', ['foo', 'bar']);
+        expect(moduleController.visualisationOptions().valueAttr).toEqual('someAttr');
 
       });
 

@@ -8,6 +8,7 @@ function (ModuleController, TabView) {
     visualisationClass: TabView,
     clientRenderOnInit: true,
     requiresSvg: true,
+    hasTable: false,
 
     initialize: function (options) {
       // for tests we want to be able to inject a custom controller map

@@ -8,6 +8,7 @@ function (ModuleController, UserSatisfactionView, ListCollection) {
     visualisationClass: UserSatisfactionView,
     collectionClass: ListCollection,
     clientRenderOnInit: true,
+    hasTable: false,
     collectionOptions: function () {
       return {
         id: 'user_satisfaction',

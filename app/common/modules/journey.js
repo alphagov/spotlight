@@ -25,13 +25,11 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
     },
 
     visualisationOptions: function () {
-      if (this.model.get('value-attribute')) {
-        return {
-          valueAttr: this.model.get('value-attribute')
-        };
-      }
-      return;
+      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
+        valueAttr: 'uniqueEvents'
+      });
     }
+
   });
 
   return JourneyModule;

@@ -10,10 +10,9 @@ define([
   './hover',
   './callout',
   './tooltip',
-  './missing-data',
-  'extensions/views/graph/table'
+  './missing-data'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData, GraphTable) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData) {
 
   var Graph = View.extend({
 
@@ -46,10 +45,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       this.scales = {};
       this.margin = {};
-
-      if (this.collection.options.axes) {
-        this.table = new GraphTable(_.extend(options, {$el: this.figure, valueAttr: this.valueAttr}));
-      }
 
       // initialize graph components
       this.componentInstances = [];
@@ -357,9 +352,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       _.each(this.componentInstances, function (component) {
         component.render();
       }, this);
-      if (this.table) {
-        this.table.render();
-      }
     },
 
     remove: function () {

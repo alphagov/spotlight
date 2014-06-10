@@ -161,28 +161,6 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         spyOn(TestGraph.prototype, 'prepareGraphArea');
       });
 
-      it('only creates a table if options.axis is present', function () {
-        spyOn(Graph.prototype, 'prepareGraphArea');
-        var graph = new TestGraph({
-          collection: {
-            on: jasmine.createSpy(),
-            options: {
-              axes: true
-            }
-          }
-        });
-        expect(graph.table).toBeDefined();
-
-        graph = new TestGraph({
-          collection: {
-            on: jasmine.createSpy(),
-            options: {
-            }
-          }
-        });
-        expect(graph.table).toBeUndefined();
-      });
-
       it('re-renders when collection resets', function () {
         var graph = new TestGraph({
           collection: collection
@@ -520,21 +498,6 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
         graph.remove();
         expect(TestComponent1.prototype.remove).toHaveBeenCalled();
         expect(TestComponent2.prototype.remove).toHaveBeenCalled();
-      });
-
-      it('removes table if it exists', function () {
-        spyOn(GraphTable.prototype, 'remove');
-        var graph = new TestGraph({
-          collection: {
-            on: function () {},
-            off: function () {},
-            options: {
-              axes: true
-            }
-          }
-        });
-        graph.remove();
-        expect(graph.table.remove).toHaveBeenCalled();
       });
 
     });

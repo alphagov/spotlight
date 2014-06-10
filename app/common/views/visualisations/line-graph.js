@@ -5,12 +5,6 @@ define([
 function (Graph, LineLabel) {
   var LineGraph = Graph.extend({
 
-    initialize: function (options) {
-      options = options || {};
-      options.valueAttr = this.model.get('value-attribute');
-      Graph.prototype.initialize.apply(this, arguments);
-    },
-
     components: function () {
       var labelComponent, labelOptions, yAxisOptions;
       if (this.isOneHundredPercent()) {
