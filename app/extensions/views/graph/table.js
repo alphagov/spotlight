@@ -1,12 +1,9 @@
 define([
-  'extensions/views/table',
-  'extensions/views/hideShow'
+  'extensions/views/table'
 ],
-function (Table, HideShow) {
+function (Table) {
   return Table.extend({
     initialize: function () {
-      this.$toggleContainer = $('<div>', {'class': 'table-toggle'});
-
       this.isModule = (this.model.get('page-type') === 'module');
 
       Table.prototype.initialize.apply(this, arguments);
@@ -14,33 +11,24 @@ function (Table, HideShow) {
     },
 
     prepareTable: function () {
-      var label = 'Table view of “' + this.model.get('title') + '” data';
       this.$table = $('<table/>');
-      this.$table.appendTo(this.$toggleContainer);
-      this.$toggleContainer.appendTo(this.$el);
-      this.toggleTable = new HideShow({
-        $reveal: this.$table,
-        $el: this.$toggleContainer,
-        showLabel: label,
-        hideLabel: label,
-        isModule: this.isModule
-      });
+
+      if (!this.isModule) {
+        this.$table.addClass('visuallyhidden');
+      }
+
+      this.$table.appendTo(this.$el);
     },
 
-    // Show the hidden tables before calling floatHeaders, as it relies on their
-    // visible width on the page. Hide them again immediately after.
     floatHeaders: function () {
-      this.toggleTable.show();
-      Table.prototype.floatHeaders.apply(this, arguments);
-      if (!this.isModule) {
-        this.toggleTable.hide();
+      // Only float the headers on the page-per-thing page. The dashboard table
+      // is used for accessibility so doesn't need floated headers.
+      if (this.isModule) {
+        Table.prototype.floatHeaders.apply(this, arguments);
       }
     },
 
     remove: function () {
-      if (this.toggleTable) {
-        this.toggleTable.remove();
-      }
       return Table.prototype.remove.apply(this, arguments);
     }
   });
