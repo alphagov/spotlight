@@ -44,7 +44,12 @@ var http = require('http'),
 var rootDir = path.join(__dirname, '..');
 var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
 
-var port = process.env.PORT || app.get('port');
+// Set a port for the app. There are several different ways to do this:
+// - In production-like environments we fall back to the config/ directory.
+// - On PaaS products like Heroku, we use the $PORT environment variable that they set.
+// - When running a Procfile locally (like with Foreman) we need to override $PORT
+//   by setting $SPOTLIGHT_PORT, so that our local Nginx connects to the right place.
+var port = process.env.SPOTLIGHT_PORT || process.env.PORT || app.get('port');
 
 app.set('port', port);
 
