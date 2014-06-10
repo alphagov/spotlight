@@ -4,8 +4,8 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Document legalisation payments",
-  "description": "Figures for payments processed on GOV.UK to the Foreign & Commonwealth Office (FCO) to get a UK public document 'legalised'.",
+  "title": "Document legalisation: payments for service by post",
+  "description": "The UK government can confirm that a UK public official’s signature, seal or stamp on the document is genuine. This is known as 'legalisation'.",
   "department": {
     "title": "Foreign and Commonwealth Office",
     "abbr": "FCO"
@@ -14,8 +14,16 @@
     "transaction": {
       "title": "Pay to get documents legalised by post",
       "url" : "https://www.gov.uk/pay-legalisation-post"
-    }
+    },
+    "other": [
+      {
+        "title": "Get a document legalised",
+        "url": "https://www.gov.uk/get-document-legalised"
+      }
+    ]
   },
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
   "description-extra": "Legalisation means a signature, seal or stamp made by a UK public official on the document is confirmed as genuine by the UK government.",
   "modules": [
     {
@@ -101,7 +109,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "",
+      "description": "Proportion of users who start and complete their payment using the digital service",
       "data-group": "pay-legalisation-post",
       "data-type": "journey",
       "info": [

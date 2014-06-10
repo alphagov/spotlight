@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "title": "Certificate to get married abroad: payments",
-  "description": "Figures for payments processed on GOV.UK in the UK to the Foreign & Commonwealth Office (FCO) for documents you need to get married abroad.",
+  "description": "If you plan to get married in another country, you may be required to prove you're allowed to marry by providing a Certificate of No Impediment (CNI).",
   "department": {
     "title": "Foreign and Commonwealth Office",
     "abbr": "FCO"
@@ -14,7 +14,13 @@
     "transaction": {
       "title": "Pay for certificates to get married abroad",
       "url" : "https://www.gov.uk/pay-foreign-marriage-certificates"
-    }
+    },
+    "other": [
+      {
+        "title": "Getting married abroad",
+        "url": "https://www.gov.uk/marriage-abroad"
+      }
+    ]
   },
   "modules": [
     {
@@ -58,7 +64,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "",
+      "description": "Proportion of users who start and complete their payment using the digital service",
       "data-group": "pay-foreign-marriage-certificates",
       "data-type": "journey",
       "info": [

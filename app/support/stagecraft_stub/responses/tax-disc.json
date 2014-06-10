@@ -4,14 +4,15 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "description": "This service is provided by the DVLA to relicense vehicles that are kept on public roads.",
   "title": "Tax disc renewals",
+  "description": "If you drive or park your vehicle on public roads, you must show you have paid vehicle tax by displaying a valid tax disc.",
   "department": {
     "title": "Department for Transport",
     "abbr": "DfT"
   },
   "agency": {
-    "title": "DVLA"
+    "title": "Driver and Vehicle Licensing Agency",
+    "abbr": "DVLA"
   },
   "relatedPages": {
     "transaction": {
@@ -69,7 +70,7 @@
     {
       "slug": "live-service-usage",
       "module-type": "realtime",
-      "title": "Users on start page",
+      "title": "Live service usage",
       "description": "Users currently on the GOV.UK start page for the service",
       "info": [
         "Data source: Google Analytics",
@@ -83,7 +84,7 @@
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
       "data-group": "vehicle-licensing",
       "data-type": "customer-satisfaction",
       "info": [
@@ -125,7 +126,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "",
+      "description": "Proportion of renewals made using the digital service",
       "data-group": "vehicle-licensing",
       "data-type": "volumetrics",
       "info": [
