@@ -114,7 +114,7 @@
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "denominator-matcher": "about-you$",
-      "numerator-matcher": "consent-and-declaration$",
+      "numerator-matcher": "thank-you$",
       "matching-attribute": "eventLabel"
     },
     {
@@ -135,7 +135,8 @@
           {"journeyId": "about-you", "label": "About you", "format": "integer"},
           {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
           {"journeyId": "other-money", "label": "Other money", "format": "integer"},
-          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"}
+          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
+          {"journeyId": "thank-you", "label": "Application complete", "format": "integer"}
         ]
       }
     },
