@@ -15,6 +15,7 @@ var renderContent = function (req, res, model) {
   });
 
   controller.once('ready', function () {
+    res.set('Cache-Control', 'public, max-age=120');
     res.send(controller.html);
   });
 

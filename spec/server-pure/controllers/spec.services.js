@@ -13,7 +13,8 @@ describe('Services Controller', function () {
     query: {}
   };
   var res = {
-    send: jasmine.createSpy()
+    send: jasmine.createSpy(),
+    set: jasmine.createSpy(),
   };
 
   beforeEach(function () {
@@ -75,6 +76,11 @@ describe('Services Controller', function () {
   it('sends the services view html', function () {
     controller(req, res);
     expect(res.send).toHaveBeenCalledWith('html string');
+  });
+
+  it('has an explicit caching policy', function () {
+    controller(req, res);
+    expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=120');
   });
 
 });
