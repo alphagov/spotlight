@@ -6,6 +6,7 @@ function () {
 
   var commonConfig = function (req) {
     return {
+      url: req.originalUrl,
       govukUrl: this.getGovUkUrl(req),
       requirePath: req.app.get('requirePath'),
       assetPath: req.app.get('assetPath'),

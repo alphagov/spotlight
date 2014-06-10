@@ -20,7 +20,8 @@ function (StagecraftApiClient, _, Modernizr) {
     var model = new StagecraftApiClient(config, { parse: true });
     var ControllerClass = model.get('controller');
     var controller = new ControllerClass({
-      model: model
+      model: model,
+      url: model.get('url')
     });
     controller.on('ready', function () {
       $('body').addClass('ready');
