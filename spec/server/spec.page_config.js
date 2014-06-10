@@ -29,10 +29,13 @@ function (PageConfig) {
     });
 
     describe('commonConfig', function () {
-      it('returns configuration required by all Spotlight pages', function () {
+      it('contains assetPath property', function () {
         var commonConfig = PageConfig.commonConfig(req);
-        expect(Object.keys(commonConfig).length).toEqual(7);
         expect(commonConfig.assetPath).toEqual('/path/to/assets/');
+      });
+      it('contains assetPath property', function () {
+        var commonConfig = PageConfig.commonConfig(req);
+        expect(commonConfig.url).toEqual('/performance/foo');
       });
     });
   });
