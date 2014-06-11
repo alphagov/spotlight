@@ -128,7 +128,7 @@
       ],
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-      "filter-by": ["eventCategory:pp-practical-driving-test-public"],
+      "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
