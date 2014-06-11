@@ -28,6 +28,10 @@ define([
       view.render();
 
       this.html = view.html || view.$el[0].outerHTML;
+      this.ready();
+    },
+
+    ready: function () {
       setTimeout(_.bind(function () {
         this.trigger('ready');
       }, this), 0);

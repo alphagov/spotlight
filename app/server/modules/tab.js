@@ -20,13 +20,22 @@ var TabModule = parent.extend({
   },
 
   render: function () {
-
-    this.tabModules = this.renderModules(this.tabs, this.model, { dashboard: true }, {}, function () {
-      this.model.set('tabs', _.map(this.tabModules, function (module) {
-        return _.extend(module.model.toJSON(), { html: module.html });
-      }));
-      parent.prototype.render.apply(this);
-    }.bind(this));
+    this.tabModules = this.renderModules(
+      this.tabs,
+      this.model,
+      function (model) {
+        return {
+          url: this.url + '/' + model.get('slug')
+        };
+      }.bind(this),
+      {},
+      function () {
+        this.model.set('tabs', _.map(this.tabModules, function (module) {
+          return _.extend(module.model.toJSON(), { html: module.html });
+        }));
+        parent.prototype.render.apply(this);
+      }.bind(this)
+    );
 
   }
 
