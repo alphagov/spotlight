@@ -25,21 +25,6 @@
   "business-model": "Fees and charges",
   "modules": [
     {
-      "slug": "user-satisfaction",
-      "module-type": "user_satisfaction_graph",
-      "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
-      "data-group": "book-practical-driving-test",
-      "data-type": "customer-satisfaction",
-      "duration": 60,
-      "info": [
-        "Data source: GOV.UK user feedback database",
-        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
-      ],
-      "period": "day",
-      "value-attribute": "rating"
-    },
-    {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Bookings breakdown",
@@ -101,6 +86,21 @@
       "denominator-matcher": "[online|phone|post]",
       "matching-attribute": "channel",
       "value-attribute": "count:sum"
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "book-practical-driving-test",
+      "data-type": "customer-satisfaction",
+      "duration": 60,
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
     },
     {
       "slug": "completion-rate",

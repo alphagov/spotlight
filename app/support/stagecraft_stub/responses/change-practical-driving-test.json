@@ -24,21 +24,6 @@
   "business-model": "Fees and charges",
   "modules": [
     {
-      "slug": "user-satisfaction",
-      "module-type": "user_satisfaction_graph",
-      "title": "User satisfaction",
-      "description": "Average score of satisfied responses",
-      "data-group": "change-date-practical-driving-test",
-      "data-type": "customer-satisfaction",
-      "duration": 60,
-      "info": [
-        "Data source: GOV.UK user feedback database",
-        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
-      ],
-      "period": "day",
-      "value-attribute": "rating"
-    },
-    {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Changes/cancellations breakdown",
@@ -97,6 +82,21 @@
       "value-attribute": "count:sum"
     },
     {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "change-date-practical-driving-test",
+      "data-type": "customer-satisfaction",
+      "duration": 60,
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
+    },
+    {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
@@ -135,12 +135,12 @@
           {"journeyId": "access-your-booking", "label": "Access your booking", "format": "integer"},
           {"journeyId": "change-booking", "label": "Change booking", "format": "integer"},
           {"journeyId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
-          {"journeyId": "choose-alternative-test-centre", "label": "Choose alternative test centre", "format": "integer"},
           {"journeyId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
-          {"journeyId": "choose-available-test", "label": "Choose available test", "format": "integer"},
+          {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
           {"journeyId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
           {"journeyId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
-          {"journeyId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"}
+          {"journeyId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
+          {"journeyId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
         ]
       }
     },
