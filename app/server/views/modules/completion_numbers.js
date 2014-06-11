@@ -11,12 +11,6 @@ module.exports = View.extend({
     var views = View.prototype.views.apply(this, arguments);
     delete views['.volumetrics-completion'];
     return views;
-  },
-
-  templateContext: function () {
-    return {
-      fallbackUrl: this.url ? (this.url + '.png') : null
-    };
   }
 
 });

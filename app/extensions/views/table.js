@@ -47,13 +47,6 @@ function (View, Formatters) {
       }
       this.renderHead();
       this.renderBody();
-
-      if (isClient) {
-        // When the table has rendered client-side call a method to set up the floating headers.
-        // Ideally this would be the only part of the table module that runs client-side, but
-        // the entire module has to at the moment.
-        this.floatHeaders();
-      }
     },
 
     renderHead: function () {
@@ -128,20 +121,6 @@ function (View, Formatters) {
         }
       }
       return _.filter(cols);
-    },
-
-    floatHeaders: function () {
-      var headers = this.$table.find('thead th'),
-          body = this.$table.find('tbody td');
-
-      if (body.length > headers.length) {
-        _.each(headers, function (th, index) {
-          th.width = th.offsetWidth;
-          body[index].width = th.offsetWidth;
-        }, this);
-        this.$table.addClass('floated-header');
-      }
-
     }
 
   });

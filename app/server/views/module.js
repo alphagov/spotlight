@@ -60,7 +60,6 @@ module.exports = View.extend({
         fallbackUrl: this.url ? (this.url + '.png') : null,
         jsonUrl: this.jsonUrl,
         hasTable: this.hasTable,
-        offerPng: this.requiresSvg,
         pageType: this.model.get('parent').get('page-type')
       }
     );
