@@ -23,14 +23,13 @@ define([
     },
 
     viewOptions: function () {
-      var pageType = this.model.get('parent').get('page-type');
       var options = {
         visualisationClass: this.visualisationClass,
         visualisationOptions: this.visualisationOptions,
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,
-        url: pageType !== 'module' ? this.url + '/' + this.id() : this.url,
+        url: this.url,
         hasTable: this.hasTable
       };
 

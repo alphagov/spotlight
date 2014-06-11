@@ -32,13 +32,15 @@ module.exports = Controller.extend({
 
   render: function (options) {
     options = options || {};
+    var pageType = this.model.get('page-type');
     this.moduleInstances = this.renderModules(
       this.modules,
       this.model,
-      {
-        dashboard: true,
-        url: this.url
-      },
+      function (model) {
+        return {
+          url: pageType === 'module' ? this.url : this.url + '/' + model.get('slug')
+        };
+      }.bind(this),
       { init: options.init },
       Controller.prototype.render.bind(this, options)
     );

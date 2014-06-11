@@ -91,9 +91,9 @@ define([
         var model = new Model(definition);
         model.set('parent', parentModel);
 
-        var module = new definition.controller(
-          _.merge({ model: model }, moduleOptions)
-        );
+        var options = _.isFunction(moduleOptions) ? moduleOptions(model) : moduleOptions;
+
+        var module = new definition.controller(_.merge({ model: model }, options));
 
         module.once('ready', loaded);
 
