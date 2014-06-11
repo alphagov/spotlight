@@ -20,11 +20,10 @@ module.exports = View.extend({
       label = this.format(value, { type: 'plural', singular: 'user' }) + ' online now';
     }
 
-    return {
+    return _.extend(View.prototype.templateContext.apply(this, arguments), {
       value: value,
-      label: label,
-      fallbackUrl: this.url ? this.url + '.png' : null
-    };
+      label: label
+    });
 
   }
 

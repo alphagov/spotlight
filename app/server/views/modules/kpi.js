@@ -69,6 +69,6 @@ module.exports = View.extend({
       });
     }
 
-    return config;
+    return _.extend(View.prototype.templateContext.apply(this, arguments), config);
   }
 });

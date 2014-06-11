@@ -34,7 +34,7 @@ module.exports = View.extend({
       }, this);
     }
 
-    return { 'items': items };
+    return _.extend(View.prototype.templateContext.apply(this, arguments), { 'items': items });
   }
 
 });
