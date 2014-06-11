@@ -1,4 +1,4 @@
-<% if (pageType === 'module') { %>appropriately on page-per-thing
+<% if (pageType === 'module') { %>
   <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
   <% if (model.get('parent') && model.get('parent').get('slug') && model.get('slug')) { %>
