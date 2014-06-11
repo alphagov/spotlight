@@ -12,7 +12,6 @@ var renderContent = function (req, res, model) {
   var ControllerClass = model.get('controller');
   var controller = new ControllerClass({
     model: model,
-    raw: _.has(req.query, 'raw'),
     url: req.originalUrl
   });
 

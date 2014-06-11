@@ -35,7 +35,7 @@ renderPng.getScreenshotPath = function (req) {
     '&clipSelector=' + selector,
     '&url=',
     renderPng.screenshotTargetUrl,
-    url.replace(/.png|\?raw/g, '')
+    url.replace(/.png/g, '')
   ].join('');
 };
 
