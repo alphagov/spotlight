@@ -35,7 +35,8 @@ describe('processRequest middleware', function () {
     };
     res = {
       status: jasmine.createSpy(),
-      send: jasmine.createSpy()
+      send: jasmine.createSpy(),
+      set: jasmine.createSpy()
     };
   });
 
@@ -118,6 +119,13 @@ describe('processRequest middleware', function () {
       controller.html = 'test content';
       controller.trigger('ready');
       expect(res.send).toHaveBeenCalledWith('test content');
+    });
+
+    it('has an explicit caching policy', function () {
+      var controller = processRequest.renderContent(req, res, model);
+      controller.html = 'test content';
+      controller.trigger('ready');
+      expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=120');
     });
   });
 
