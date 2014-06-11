@@ -27,7 +27,7 @@
 <div class="visualisation-moreinfo">
 
 
-<% if (pageType === 'module') { %>
+<% if (pageType === 'module' && model.get('module-type') !== 'tab') { %>
 <aside class="more-info download" role="complementary">
   <h2 id="download">Download the data</h2>
   <ul>
