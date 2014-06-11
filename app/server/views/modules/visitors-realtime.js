@@ -22,7 +22,8 @@ module.exports = View.extend({
 
     return {
       value: value,
-      label: label
+      label: label,
+      fallbackUrl: this.url ? this.url + '.png' : null
     };
 
   }

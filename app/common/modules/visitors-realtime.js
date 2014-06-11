@@ -34,8 +34,11 @@ function (RealtimeCollection) {
       };
     },
 
-    visualisationOptions: {
-      valueAttr: 'unique_visitors'
+    visualisationOptions: function () {
+      return {
+        valueAttr: 'unique_visitors',
+        url: this.url
+      };
     }
 
   };

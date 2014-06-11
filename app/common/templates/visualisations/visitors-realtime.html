@@ -6,7 +6,9 @@
 
   <div class="sparkline">
     <span class="sparkline-title"></span>
-    <div class="sparkline-graph"></div>
+    <div class="sparkline-graph">
+      {{#fallbackUrl}}<noscript><img src="{{fallbackUrl}}"/></noscript><% } %>{{/fallbackUrl}}
+    </div>
   </div>
 
 </p>
