@@ -57,7 +57,8 @@ module.exports = View.extend({
     return _.extend(
       View.prototype.templateContext.call(this),
       {
-        fallbackUrl: this.url ? (this.url + '.png') : null,
+        url: this.url,
+        fallbackUrl: this.requiresSvg && this.url ? (this.url + '.png') : null,
         jsonUrl: this.jsonUrl,
         hasTable: this.hasTable,
         pageType: this.model.get('parent').get('page-type')

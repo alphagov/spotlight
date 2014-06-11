@@ -3,6 +3,7 @@ define([
 ],
 function (AvailabilityCollection) {
   return {
+    requiresSvg: true,
     collectionClass: AvailabilityCollection,
 
     collectionOptions: function () {

@@ -5,6 +5,7 @@ define([
 function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
 
   return {
+    requiresSvg: true,
     initialize: function () {
 
       var containsTimeshift = false,

@@ -4,6 +4,7 @@ define([
 function (UserSatisfactionCollection) {
   return {
 
+    requiresSvg: true,
     collectionClass: UserSatisfactionCollection,
 
     collectionOptions: function () {

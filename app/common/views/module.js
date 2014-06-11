@@ -19,14 +19,9 @@ function (View) {
     },
 
     templateContext: function () {
-      if (this.collection) {
-        this.jsonUrl = this.collection.url();
-      }
       return _.extend(
         View.prototype.templateContext.call(this),
         {
-          fallbackUrl: this.requiresSvg && this.url ? (this.url + '.png') : null,
-          jsonUrl: this.jsonUrl,
           hasTable: this.hasTable
         }
       );

@@ -3,6 +3,7 @@ define([
 ],
 function (RealtimeCollection) {
   return {
+    requiresSvg: true,
     collectionClass: RealtimeCollection,
 
     collectionOptions: function () {

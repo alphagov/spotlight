@@ -3,6 +3,7 @@ define([
 ],
 function (CompletionNumbersCollection) {
   return {
+    requiresSvg: true,
     collectionClass: CompletionNumbersCollection,
 
     collectionOptions: function () {

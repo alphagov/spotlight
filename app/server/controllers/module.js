@@ -6,6 +6,7 @@ var ModuleView = require('../views/module');
 
 module.exports = ModuleController.extend({
 
-  viewClass: ModuleView
+  viewClass: ModuleView,
+  requireSvg: false
 
 });

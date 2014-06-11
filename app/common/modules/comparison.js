@@ -6,6 +6,7 @@ define([
 function (GroupedTimeseriesController, ModuleController, ComparisonCollection) {
 
   return _.extend({}, GroupedTimeseriesController, {
+    requiresSvg: true,
 
     initialize: ModuleController.prototype.initialize,
     collectionClass: ComparisonCollection,

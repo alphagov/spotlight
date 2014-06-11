@@ -1,5 +1,6 @@
 define(function () {
   return {
+    requiresSvg: false,
     hasTable: false,
 
     visualisationOptions: function () {

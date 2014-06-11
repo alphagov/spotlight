@@ -3,6 +3,7 @@ define([
 ],
 function (BarChartWithNumberCollection) {
   return {
+    requiresSvg: true,
     collectionClass: BarChartWithNumberCollection,
 
     collectionOptions: function () {

@@ -4,6 +4,7 @@ define([
 function (JourneyCollection) {
   return {
 
+    requiresSvg: true,
     collectionClass: JourneyCollection,
 
     collectionOptions: function () {

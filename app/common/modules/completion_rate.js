@@ -1,9 +1,9 @@
 define([
-//  'common/views/visualisations/completion_rate',
   'common/collections/completion_rate'
 ],
 function (CompletionRateCollection) {
   return {
+    requiresSvg: true,
     collectionClass: CompletionRateCollection,
 
     collectionOptions: function () {
