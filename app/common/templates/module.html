@@ -1,8 +1,8 @@
 <% if (pageType === 'module') { %>
   <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
-  <% if (model.get('parent') && model.get('parent').get('slug') && model.get('slug')) { %>
-    <h2 id="<%= this.ariaId() %>"><a href="<%= model.get('parent').get('slug') %>/<%= model.get('slug') %>"><%= model.get('title') %></a></h2>
+  <% if (url) { %>
+    <h2 id="<%= this.ariaId() %>"><a href="<%= url %>"><%= model.get('title') %></a></h2>
   <% } else { %>
     <h2 id="<%= this.ariaId() %>"><%= model.get('title') %></h2>
   <% } %>
