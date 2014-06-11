@@ -1,0 +1,23 @@
+{
+  "slug": "register-to-vote",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Register to vote",
+  "department": {
+    "title": "Cabinet Office",
+    "abbr": "CO"
+  },
+  "description": "This service is to get on the electoral register or to update your details. You need to be on the electoral register (sometimes called the ‘electoral roll’) to vote in elections and referendums.",
+  "relatedPages": {
+    "transaction": {
+      "title": "Register to vote",
+      "url" : "https://www.gov.uk/register-to-vote"
+    }
+  },
+  "customer-type": "Individuals",
+  "business-model": "Department budget",
+  "modules": [
+  ]
+}
