@@ -51,8 +51,7 @@ function (CompletionRateView, UserSatisfactionView, Collection) {
 
     views: function () {
       var views = CompletionRateView.prototype.views.apply(this, arguments);
-
-      if (this.model.get('page-type') === 'module') {
+      if (this.model.get('parent').get('page-type') === 'module') {
         views['.volumetrics-bar-selected'] = {
           view: UserSatisfactionView,
           options: {

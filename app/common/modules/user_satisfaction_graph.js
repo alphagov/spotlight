@@ -67,7 +67,8 @@ function (UserSatisfactionCollection) {
       return {
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
-        formatOptions: this.model.get('format') || 'integer'
+        formatOptions: this.model.get('format') || 'integer',
+        url: this.url
       };
     }
 

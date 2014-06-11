@@ -2,7 +2,7 @@ var http = require('http');
 var url = require('url');
 
 var renderPng = function (req, res) {
-  var options = url.parse(renderPng.getScreenshotPath(req.url));
+  var options = url.parse(renderPng.getScreenshotPath(req));
   http.get(options, function (screenshot) {
     res.status(screenshot.statusCode);
     for (var i in screenshot.headers) {
@@ -25,15 +25,17 @@ if (global.config) {
   renderPng.screenshotTargetUrl = config.screenshotTargetUrl;
 }
 
-renderPng.getScreenshotPath = function (url) {
+renderPng.getScreenshotPath = function (req) {
+  var url = req.url;
+  var selector = req.query.selector || '.visualisation-inner figure';
   return [
     renderPng.screenshotServiceUrl,
     '?readyExpression=!!document.querySelector(".loaded")',
     '&forwardCacheHeaders=true',
-    '&clipSelector=.visualisation-inner figure',
+    '&clipSelector=' + selector,
     '&url=',
     renderPng.screenshotTargetUrl,
-    url.replace(/.png|\?raw/g, '?raw')
+    url.replace(/.png|\?raw/g, '')
   ].join('');
 };
 
