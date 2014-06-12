@@ -33,16 +33,19 @@ function (ModuleController, TabController, TabView) {
 
     renderTabs: function () {
       var tab = this.tabs[this.model.get('activeIndex')];
-
+      if (tab.rendered) {
+        return;
+      }
       this.renderModules(
         [tab],
         this.model,
-        { dashboard: true },
+        {},
         {},
         _.bind(function () {
           var height = this.view.$('section').eq(this.model.get('activeIndex')).height();
           this.view.$('section').css('min-height', height);
           ModuleController.prototype.ready.call(this);
+          tab.rendered = true;
         }, this)
       );
     }
