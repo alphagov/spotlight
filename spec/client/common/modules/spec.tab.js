@@ -1,5 +1,5 @@
 define([
-  'common/modules/tab',
+  'client/modules/tab',
   'extensions/models/model'
 ], function (TabModule, Model) {
 
@@ -21,18 +21,19 @@ define([
         once: function () {}
       });
 
-      var controllerMap = {
-        modules: {
-            foo: fooModule,
-            bar: barModule
-          }
-        },
-        config = new Model({ tabs: [{ 'module-type': 'foo' }, { 'module-type': 'bar' }] });
+      TabModule.map = {
+        foo: fooModule,
+        bar: barModule
+      };
+
+      var config = new Model({
+        tabs: [{ 'module-type': 'foo' }, { 'module-type': 'bar' }],
+        parent: new Model({ 'page-type': 'dashboard' })
+      });
 
       tabModule = new TabModule({
         dashboard: true,
-        model: config,
-        controllerMap: controllerMap
+        model: config
       });
 
     });
@@ -42,31 +43,28 @@ define([
     });
 
     it('should render the first tab when the module is ready on the client', function () {
-      jasmine.clientOnly(function () {
-        tabModule.render();
 
-        tabModule.trigger('ready');
+      tabModule.ready();
 
-        expect(fooModule).toHaveBeenCalled();
-        expect(fooRender.mostRecentCall.args[0].el.is('section')).toBe(true);
-        expect(barModule).not.toHaveBeenCalled();
-        expect(barRender).not.toHaveBeenCalled();
-      });
+      expect(fooModule).toHaveBeenCalled();
+      expect(fooRender).toHaveBeenCalled();
+      expect(barModule).not.toHaveBeenCalled();
+      expect(barRender).not.toHaveBeenCalled();
     });
 
     it('should render the tabs when the activeIndex changes', function () {
-      jasmine.clientOnly(function () {
-        tabModule.render();
+      tabModule.ready();
+      fooModule.reset();
+      fooRender.reset();
+      barModule.reset();
+      barRender.reset();
 
-        tabModule.model.set('activeIndex', 1);
-        tabModule.trigger('ready');
+      tabModule.model.set('activeIndex', 1);
 
-        expect(fooModule).not.toHaveBeenCalled();
-        expect(fooRender).not.toHaveBeenCalled();
-        expect(barModule).toHaveBeenCalled();
-        expect(barRender).toHaveBeenCalled();
-        expect(barRender.mostRecentCall.args[0].el.is('section')).toBe(true);
-      });
+      expect(fooModule).not.toHaveBeenCalled();
+      expect(fooRender).not.toHaveBeenCalled();
+      expect(barModule).toHaveBeenCalled();
+      expect(barRender).toHaveBeenCalled();
     });
 
   });
