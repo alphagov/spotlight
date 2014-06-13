@@ -1,6 +1,6 @@
 <div class="single-decker-graph">
   <p class="impact-number volumetrics-completion-selected"></p>
-  <div class="graph timeseries-graph volumetrics-completion">
-    <% if (fallbackUrl) { %><noscript><img src="<%= fallbackUrl %>"/></noscript><% } %>
+  <div class="graph timeseries-graph volumetrics-completion" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-completion figure"{{/fallbackUrl}}>
+    {{#fallbackUrl}}<noscript><img src="{{fallbackUrl}}?selector=.volumetrics-completion figure"/></noscript>{{/fallbackUrl}}
   </div>
 </div>

@@ -1,6 +1,6 @@
 var requirejs = require('requirejs');
 
-var template = requirejs('tpl!common/templates/visualisations/completion.html');
+var template = requirejs('stache!common/templates/visualisations/completion');
 var View = requirejs('common/views/visualisations/completion_numbers');
 
 module.exports = View.extend({
