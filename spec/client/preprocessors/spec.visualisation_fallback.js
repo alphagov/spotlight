@@ -1,30 +1,27 @@
 define([
-  'client/preprocessors/visualisation_fallback'
-], function (visualisationFallback) {
+  'client/preprocessors/visualisation_fallback',
+  'modernizr'
+], function (visualisationFallback, Modernizr) {
   describe('Module actions', function () {
-
-    var originalModernizr = visualisationFallback.Modernizr;
 
     var el;
     beforeEach(function () {
-      visualisationFallback.Modernizr = {};
       el = $('<div class="visualisation-inner" data-src="spec/client/preprocessors/transparent.gif">original content</div>');
       $('body').append(el);
     });
 
     afterEach(function () {
-      visualisationFallback.Modernizr = originalModernizr;
       $('.visualisation-inner').remove();
     });
 
     it('does nothing when the browser supports SVG', function () {
-      visualisationFallback.Modernizr.inlinesvg = true;
+      Modernizr.inlinesvg = true;
       visualisationFallback();
       expect(el.html()).toEqual('original content');
     });
 
     it('replaces the fallback container content with a fallback image', function () {
-      visualisationFallback.Modernizr.inlinesvg = false;
+      Modernizr.inlinesvg = false;
       visualisationFallback();
 
       waitsFor(function () {
