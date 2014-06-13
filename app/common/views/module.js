@@ -14,10 +14,6 @@ function (View) {
       };
     },
 
-    render: function () {
-      View.prototype.render.apply(this, arguments);
-    },
-
     templateContext: function () {
       return _.extend(
         View.prototype.templateContext.call(this),
