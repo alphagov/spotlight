@@ -1,27 +1,15 @@
 define([
   'extensions/controllers/module',
   'extensions/controllers/controller',
-  'common/views/module',
-  'common/views/module_raw',
-  'common/views/module_standalone'
+  'common/views/module'
 ],
-function (ModuleController, Controller, ModuleView, RawView, StandaloneView) {
+function (ModuleController, Controller, ModuleView) {
   describe('ModuleController', function () {
     describe('chooses which view to use', function () {
       it('uses a ModuleView on the client side', function () {
         jasmine.clientOnly(function () {
           var moduleController = new ModuleController({});
           expect(moduleController.viewClass).toBe(ModuleView);
-        });
-      });
-
-      it('uses a RawView when the query param raw is present', function () {
-        jasmine.serverOnly(function () {
-          var options = {
-            raw: 'rawData'
-          };
-          var moduleController = new ModuleController(options);
-          expect(moduleController.viewClass).toBe(RawView);
         });
       });
 
@@ -39,14 +27,6 @@ function (ModuleController, Controller, ModuleView, RawView, StandaloneView) {
           };
           var moduleController = new ModuleController(options);
           expect(moduleController.viewClass).toBe(ModuleView);
-        });
-      });
-
-      it('uses a StandaloneView when no options are passed in', function () {
-        jasmine.serverOnly(function () {
-          var options = {};
-          var moduleController = new ModuleController(options);
-          expect(moduleController.viewClass).toBe(StandaloneView);
         });
       });
     });
