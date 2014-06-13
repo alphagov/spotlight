@@ -77,7 +77,8 @@
       "data-group": "driving-test-practical",
       "data-type": "transactions-by-channel",
       "filter-by": ["sector:public","action:book"],
-      "duration": 13,
+      "duration": 26,
+      "axis-period": "month",
       "info": [
         "Data source: Driver and Vehicle Standards Agency",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
@@ -94,7 +95,7 @@
       "description": "Average score of satisfied responses",
       "data-group": "book-practical-driving-test",
       "data-type": "customer-satisfaction",
-      "duration": 60,
+      "duration": 182,
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
@@ -109,8 +110,9 @@
       "description": "",
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
+      "duration": 26,
+      "axis-period": "month",
       "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
-      "duration": 13,
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a a booking and were able to complete it.",

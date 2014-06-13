@@ -71,7 +71,8 @@
       "data-group": "driving-test-practical",
       "data-type": "transactions-by-channel",
       "filter-by": ["sector:public","action:change"],
-      "duration": 13,
+      "duration": 26,
+      "axis-period": "month",
       "info": [
         "Data source: Driver and Vehicle Standards Agency",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of changed or cancelled bookings that are made through a digital channel versus non-digital channels."
@@ -88,7 +89,7 @@
       "description": "Average score of satisfied responses",
       "data-group": "change-date-practical-driving-test",
       "data-type": "customer-satisfaction",
-      "duration": 60,
+      "duration": 182,
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
@@ -103,7 +104,8 @@
       "description": "",
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-      "duration": 13,
+      "duration": 26,
+      "axis-period": "month",
       "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
@@ -111,7 +113,7 @@
         "It is calculated as percentage of unique visitors who arrived at the final stage of the service out of those who arrived at the start.",
         "The change transaction includes 8 possible user actions – and success does not involve reaching the done page in all cases. This significantly reduces the overall reported completion rate."
       ],
-      "denominator-matcher": "change-booking",
+      "denominator-matcher": "access-your-booking",
       "numerator-matcher": "confirm-changes",
       "matching-attribute": "eventAction"
     },
@@ -139,6 +141,7 @@
           {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
           {"journeyId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
           {"journeyId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
+          {"journeyId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
           {"journeyId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
           {"journeyId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
         ]
