@@ -4,13 +4,20 @@ var path = require('path');
 var winston = require('winston');
 var requirejs = require('requirejs');
 
+// Express middleware modules which have been separated out now
+var bodyParser = require('body-parser');
+var compression = require('compression');
+var errorHandler = require('errorhandler');
+var methodOverride = require('method-override');
+var morgan  = require('morgan');
+
 module.exports = {
   getApp: function (environment, rootDir, requireBaseUrl) {
     var app;
     app = express();
     app.disable('x-powered-by');
 
-    app.configure(function () {
+    (function () {
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);
@@ -19,49 +26,48 @@ module.exports = {
       app.set('govukHost', global.config.govukHost);
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
-      app.use(express.logger('dev'));
-      app.use(express.bodyParser());
-      app.use(express.methodOverride());
-      app.use(express.compress());
+      app.use(morgan('dev'));
+      app.use(bodyParser());
+      app.use(methodOverride());
+      app.use(compression());
       app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
+    }());
 
-      if (environment === 'development') {
-        global.logger.debug('Winston is logging in development');
+    if (environment === 'development') {
+      global.logger.debug('Winston is logging in development');
 
-        // In development, overwrite the asset digest so that each value is equal to the key,
-        // because Sass will recompile itself to the non-cachebusted filename with each change.
-        var assetDigest = app.get('assetDigest');
-        _.each(assetDigest, function (value, key) {
-          assetDigest[key] = key;
-        });
-        app.set('assetDigest', assetDigest);
+      // In development, overwrite the asset digest so that each value is equal to the key,
+      // because Sass will recompile itself to the non-cachebusted filename with each change.
+      var assetDigest = app.get('assetDigest');
+      _.each(assetDigest, function (value, key) {
+        assetDigest[key] = key;
+      });
+      app.set('assetDigest', assetDigest);
 
-        app.use(express.errorHandler());
-        app.use('/app', express['static'](path.join(rootDir, 'app')));
-        app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
-        app.use('/.grunt', express['static'](path.join(rootDir, '.grunt')));
-        app.use('/spec', express['static'](path.join(rootDir, 'spec')));
-        app.use('/tests', function (req, res) {
-          res.sendfile(path.join(rootDir, '_SpecRunner.html'));
-        });
+      app.use(errorHandler());
+      app.use('/app', express['static'](path.join(rootDir, 'app')));
+      app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
+      app.use('/.grunt', express['static'](path.join(rootDir, '.grunt')));
+      app.use('/spec', express['static'](path.join(rootDir, 'spec')));
+      app.use('/tests', function (req, res) {
+        res.sendfile(path.join(rootDir, '_SpecRunner.html'));
+      });
 
-        // We use Sass sourcemaps in development. When you click a Sass filename from in
-        // your browser, it will attempt to GET the file from /styles
-        app.use('/styles', function (req, res) {
-          res.sendfile(path.join(rootDir, req.originalUrl));
-        });
-      } else {
-        global.logger.add(winston.transports.File, {
-          filename: 'log/spotlight.log.json',
-          level: 'info',
-          colorize: false,
-          json: true
-        });
-        global.logger.remove(winston.transports.Console);
-        app.set('etag', 'strong');
-      }
-
-    });
+      // We use Sass sourcemaps in development. When you click a Sass filename from in
+      // your browser, it will attempt to GET the file from /styles
+      app.use('/styles', function (req, res) {
+        res.sendfile(path.join(rootDir, req.originalUrl));
+      });
+    } else {
+      global.logger.add(winston.transports.File, {
+        filename: 'log/spotlight.log.json',
+        level: 'info',
+        colorize: false,
+        json: true
+      });
+      global.logger.remove(winston.transports.Console);
+      app.set('etag', 'strong');
+    }
 
     // If environment variables are set for basic authentication, protect
     // everything under /performance. We don't want to protect things like
