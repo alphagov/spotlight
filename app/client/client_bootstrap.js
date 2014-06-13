@@ -9,9 +9,6 @@ define([
 function (StagecraftApiClient, controllerMap, _, Modernizr) {
 
   var bootstrap = function (config) {
-    _.each(bootstrap.preprocessors, function (preprocessor) {
-      preprocessor();
-    });
 
     if (config.clientRequiresCors && !(Modernizr.cors || window.XDomainRequest)) {
       // Don't bootstrap client in non-CORS browsers when CORS is required
@@ -31,6 +28,7 @@ function (StagecraftApiClient, controllerMap, _, Modernizr) {
       });
       controller.on('ready', function () {
         $('body').addClass('ready');
+        preprocessors();
       });
       controller.on('loaded', function () {
         $('body').addClass('loaded');
@@ -39,7 +37,14 @@ function (StagecraftApiClient, controllerMap, _, Modernizr) {
       return controller;
     } else {
       $('body').addClass('ready loaded');
+      preprocessors();
     }
+  };
+
+  var preprocessors = function () {
+    _.each(bootstrap.preprocessors, function (preprocessor) {
+      preprocessor();
+    });
   };
 
   bootstrap.preprocessors = Array.prototype.slice.call(arguments, -2);
