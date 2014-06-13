@@ -49,10 +49,10 @@ function (View, Model, Backbone) {
 
       it('renders template with custom context', function () {
         view.template = function (context) {
-          return context.a + ': ' + context.foo;
+          return context.a + ': ' + context.bar;
         };
         view.render({
-          context: { foo: 'baz' }
+          context: { bar: 'baz' }
         });
         expect(view.$el.html()).toEqual('b: baz');
       });
