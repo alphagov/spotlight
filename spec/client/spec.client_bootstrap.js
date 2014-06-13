@@ -1,6 +1,6 @@
 define([
   'client/client_bootstrap',
-  'extensions/controllers/dashboard'
+  'client/controllers/dashboard'
 ],
 function (bootstrap, DashboardController) {
   describe('client bootstrap', function () {
