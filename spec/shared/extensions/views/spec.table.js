@@ -120,22 +120,6 @@ function (Table, View, Collection, $) {
         expect(table.collection.getTableRows).toHaveBeenCalledWith(['timestamp', 'value', 'value']);
       });
 
-      it('will call floatHeaders on the client-side', function () {
-        jasmine.clientOnly(function () {
-          spyOn(table, 'floatHeaders');
-          table.render();
-          expect(table.floatHeaders).toHaveBeenCalled();
-        });
-      });
-
-      it('will not call floatHeaders on the server-side', function () {
-        jasmine.serverOnly(function () {
-          spyOn(table, 'floatHeaders');
-          table.render();
-          expect(table.floatHeaders).not.toHaveBeenCalled();
-        });
-      });
-
       it('does not crash if no data is provided', function () {
         table.collection.getTableRows.andReturn([[]]);
         expect(_.bind(table.render, table)).not.toThrow();
@@ -202,21 +186,6 @@ function (Table, View, Collection, $) {
               { key: 'value', label: 'last' }
             ]);
         });
-        it('filters columns based on y-axis keys', function () {
-          table.collection.options.axes.y[1].key = 'differentKey';
-          expect(table.getColumns()).toEqual([
-              { key: 'timestamp', label: 'date' },
-              { key: 'value', label: 'another' }
-            ]);
-        });
-        it('does not filter if table has no valueAttr defined', function () {
-          delete table.valueAttr;
-          expect(table.getColumns()).toEqual([
-              { key: 'timestamp', label: 'date' },
-              { key: 'value', label: 'another' },
-              { key: 'value', label: 'last' }
-            ]);
-        });
       });
 
       describe('renderCell', function () {
@@ -272,48 +241,6 @@ function (Table, View, Collection, $) {
                 '<tbody>' +
                   '<tr><td class="">01/02/01</td><td class="">foo</td><td class="">no data</td></tr>' +
                 '</tbody>');
-      });
-    });
-
-    describe('floatHeaders', function () {
-
-      var table;
-
-      beforeEach(function () {
-        table = new Table({
-          collection: {
-            on: jasmine.createSpy(),
-            options: { axes: {
-              x: { label: 'date', key: 'timestamp' },
-              y: [{ label: 'another', key: 'value' }]
-            } }
-          },
-          valueAttr: 'value'
-        });
-      });
-
-      it('adds a class of floated-header to the table element on the client-side when table body has more cells than the header', function () {
-        jasmine.clientOnly(function () {
-          var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
-              tableBody = '<tbody><tr><td>Item1</td><td>Item2</td></tr><tr><td>Item1</td><td>Item2</td></tr></tbody>';
-
-          table.$table = $('<table>' + tableHeader + tableBody + '</table>');
-          table.floatHeaders();
-
-          expect(table.$table.attr('class')).toEqual('floated-header');
-        });
-      });
-
-      it('doesnt a class of floated-header to the table element on the client-side when the table body has "no data"', function () {
-        jasmine.clientOnly(function () {
-          var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
-              tableBody = '<tbody><tr><td>No data available</td></tr></tbody>';
-
-          table.$table = $('<table>' + tableHeader + tableBody + '</table>');
-          table.floatHeaders();
-
-          expect(table.$table.attr('class')).toNotEqual('floated-header');
-        });
       });
     });
 
