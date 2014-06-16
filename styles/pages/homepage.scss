@@ -1,4 +1,10 @@
-#homepage-content {
+#about-content {
+  section {
+    width: 74.21875%;
+  }
+}
+
+#homepage-content, #about-content {
   @extend %contain-floats;
 
   header {
