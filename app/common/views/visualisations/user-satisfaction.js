@@ -20,11 +20,13 @@ function (View, HeadlineItemView, DeltaItemView, template) {
         'attr': percentAttr
       };
 
-      this.collection.first().get('values').each(function (d) {
-        var val = d.get(valueAttr);
-        var percent = this.getScoreAsPercentage(val);
-        d.set(percentAttr, percent);
-      }, this);
+      if (this.collection.first()) {
+        this.collection.first().get('values').each(function (d) {
+          var val = d.get(valueAttr);
+          var percent = this.getScoreAsPercentage(val);
+          d.set(percentAttr, percent);
+        }, this);
+      }
 
     },
 
