@@ -2,7 +2,7 @@
   "slug": "practical-driving-test",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Practical driving test (public users)",
   "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>This dashboard provides additional information to the :<br><a href='/performance/book-practical-driving-test'>Practical driving test bookings</a> dashboard<br><a href='/performance/change-practical-driving-test'>Practical driving test changes and cancellations</a> dashboard",
