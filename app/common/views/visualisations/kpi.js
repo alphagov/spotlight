@@ -1,9 +1,8 @@
 define([
   'extensions/views/view',
-  'extensions/mixins/formatters',
   'stache!common/templates/visualisations/kpi'
 ],
-function (View, Formatters, template) {
+function (View, template) {
 
   return View.extend({
 
@@ -17,6 +16,8 @@ function (View, Formatters, template) {
         format = this.model.get('format') || 'number',
         dateFormat = { type: 'dateRange', format: 'MMM YYYY', subtract: 'months'},
         datePeriod = this.model.get('date-period');
+
+      format.abbr = true;
 
       if (datePeriod && datePeriod === 'week') {
         dateFormat.format = 'D MMM YYYY';
@@ -70,9 +71,7 @@ function (View, Formatters, template) {
       }
 
       return config;
-    },
-
-    format: Formatters.format
+    }
 
   });
 

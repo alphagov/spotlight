@@ -18,7 +18,7 @@ function (template, View, BarChart, MostRecentNumberView) {
           view: MostRecentNumberView,
           options: {
             valueAttr: valueAttr,
-            formatOptions: formatOptions
+            formatOptions: _.extend({}, formatOptions, { abbr: true })
           }
         },
         '#bar': {
