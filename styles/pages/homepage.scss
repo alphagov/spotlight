@@ -1,18 +1,26 @@
 #homepage-content, #about-content {
   @extend %contain-floats;
 
-  header {
-    margin-top: 1.5em;
-    padding-bottom: 0;
-    border: none;
-  }
-
   section {
     margin-top: 0;
     margin-bottom: 2em;
     padding-top: 0;
     border-top: none;
+  }
 
+  > header {
+    margin-top: 1.5em;
+    padding-bottom: 0;
+    border: none;
+
+    section {
+      float: left;
+      margin-bottom: 0;
+      width: (600 / 960) * 100%;
+    }
+  }
+
+  > section {
     h2 {
       @include bold-24;
       margin-bottom: 0.75em;
