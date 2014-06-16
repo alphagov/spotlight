@@ -58,7 +58,7 @@ function (CompletionRateView, UserSatisfactionView, Collection) {
             valueAttr: 'count',
             selectionValueAttr: this.valueAttr,
             collection: this.userSatisfactionCollection,
-            formatOptions: this.formatOptions
+            formatOptions: this.formatOptions || 'integer'
           }
         };
       }
