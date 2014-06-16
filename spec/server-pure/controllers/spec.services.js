@@ -40,7 +40,8 @@ describe('Services Controller', function () {
       title: 'Services',
       'page-type': 'services',
       filter: '',
-      data: jasmine.any(Array)
+      data: jasmine.any(Array),
+      script: true
     });
   });
 
@@ -51,7 +52,8 @@ describe('Services Controller', function () {
       title: 'Services',
       'page-type': 'services',
       filter: 'foo',
-      data: jasmine.any(Array)
+      data: jasmine.any(Array),
+      script: true
     });
   });
 

@@ -13,8 +13,9 @@ module.exports = function (req, res) {
       model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Services',
     'page-type': 'services',
-    'filter': req.query.filter || '',
-    'data': services
+    filter: req.query.filter || '',
+    data: services,
+    script: true
   }));
 
   var collection = new DashboardCollection(services);
