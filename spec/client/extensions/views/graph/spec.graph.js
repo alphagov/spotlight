@@ -90,10 +90,6 @@ function (Graph, Collection, Model, View, d3) {
 
   describe('Graph', function () {
 
-    beforeEach(function () {
-      spyOn(Graph.prototype, 'isVisible').andReturn(true);
-    });
-
     it('keeps a reference to d3 library', function () {
       spyOn(Graph.prototype, 'prepareGraphArea');
       var view = new Graph({
