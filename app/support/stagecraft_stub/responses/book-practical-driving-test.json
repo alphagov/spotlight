@@ -96,6 +96,7 @@
       "data-group": "book-practical-driving-test",
       "data-type": "customer-satisfaction",
       "duration": 182,
+      "trim": false,
       "axis-period": "month",
       "info": [
         "Data source: GOV.UK user feedback database",
