@@ -15,14 +15,14 @@ function (template, View, VolumetricsNumberView, SubmissionGraphView) {
           view: VolumetricsNumberView,
           options: {
             valueAttr: 'mean',
-            selectionValueAttr: 'uniqueEvents',
+            selectionValueAttr: this.valueAttr || 'uniqueEvents',
             labelPrefix: 'mean per ' + period + ' over the'
           }
         },
         '#volumetrics-submissions': {
           view: SubmissionGraphView,
           options: {
-            valueAttr: 'uniqueEvents'
+            valueAttr: this.valueAttr || 'uniqueEvents'
           }
         }
       };
