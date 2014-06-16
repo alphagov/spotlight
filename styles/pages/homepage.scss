@@ -1,9 +1,3 @@
-#about-content {
-  section {
-    width: 74.21875%;
-  }
-}
-
 #homepage-content, #about-content {
   @extend %contain-floats;
 
@@ -100,5 +94,13 @@
   img {
     display: block;
     width: 100%;
+  }
+}
+
+@include media(desktop) {
+  #about-content {
+    section {
+      width: (712.5 / 960) * 100%;
+    }
   }
 }
