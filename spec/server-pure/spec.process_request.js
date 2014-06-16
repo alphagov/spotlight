@@ -26,9 +26,6 @@ describe('processRequest middleware', function () {
       app: {
         get: get
       },
-      query: {
-        raw: ''
-      },
       originalUrl: 'test url',
       route: {},
       url: '/performance/carers-allowance'
@@ -108,7 +105,6 @@ describe('processRequest middleware', function () {
       expect(model.get('backdropUrl')).toEqual('//testBackdrop/');
       expect(model.get('environment')).toEqual('development');
       expect(controller.model).toBe(model);
-      expect(controller.raw).toEqual(true);
       expect(controller.url).toEqual('test url');
       expect(controller.render).toHaveBeenCalled();
     });
