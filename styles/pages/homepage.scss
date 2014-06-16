@@ -1,4 +1,4 @@
-#homepage-content {
+#homepage-content, #about-content {
   @extend %contain-floats;
 
   header {
@@ -94,5 +94,13 @@
   img {
     display: block;
     width: 100%;
+  }
+}
+
+@include media(desktop) {
+  #about-content {
+    section {
+      width: (712.5 / 960) * 100%;
+    }
   }
 }
