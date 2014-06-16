@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 var ServicesView = require('../../../app/server/views/services');
 
-var BaseView = requirejs('common/views/govuk');
+var BaseView = require('../../../app/server/views/govuk');
 var FilteredListView = requirejs('common/views/filtered_list');
 
 describe('Services View', function () {
