@@ -187,17 +187,17 @@
           {
             "label": "Desktop",
             "categoryId": "desktop",
-            "format": "integer"
+            "format": "percent"
           },
           {
             "label": "Mobile",
             "categoryId": "mobile",
-            "format": "integer"
+            "format": "percent"
           },
           {
             "label": "Tablet",
             "categoryId": "tablet",
-            "format": "integer"
+            "format": "percent"
           }
         ]
       }

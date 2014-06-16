@@ -16,10 +16,10 @@
   },
   "relatedPages": {
     "transaction": {
-       "title": "Non-Realistic Data",
-       "url": "#"
+      "title": "Non-Realistic Data",
+      "url": "#"
     },
-    "other" : [
+    "other": [
       {
         "title": "Helping people to buy a home",
         "url": "https://www.gov.uk/government/policies/helping-people-to-buy-a-home",
@@ -47,11 +47,18 @@
       "data-type": "summaries",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      }
     },
     {
       "slug": "total-cost",
@@ -61,11 +68,18 @@
       "data-type": "summaries",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      }
     },
     {
       "slug": "digital-take-up",
@@ -75,11 +89,16 @@
       "data-type": "summaries",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "digital_takeup",
-      "format": { "type": "percent" }
+      "format": {
+        "type": "percent"
+      }
     },
     {
       "slug": "cost-per-transaction",
@@ -89,11 +108,17 @@
       "data-type": "summaries",
       "classes": "cols2",
       "query-params": {
-        "filter_by": ["service_id:bis-annual-returns", "type:seasonally-adjusted"],
+        "filter_by": [
+          "service_id:bis-annual-returns",
+          "type:seasonally-adjusted"
+        ],
         "sort_by": "_timestamp:descending"
       },
       "value-attribute": "cost_per_transaction",
-      "format": { "type": "currency", "pence": true }
+      "format": {
+        "type": "currency",
+        "pence": true
+      }
     },
     {
       "slug": "transactions-per-quarter",
@@ -105,7 +130,10 @@
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
       "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
+        "filter_by": [
+          "service_id:dft-request-statutory-off-road-notice-sorn",
+          "type:quarterly"
+        ]
       }
     },
     {
@@ -118,9 +146,14 @@
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "query-params": {
-        "filter_by": ["service_id:dft-request-statutory-off-road-notice-sorn", "type:quarterly"]
+        "filter_by": [
+          "service_id:dft-request-statutory-off-road-notice-sorn",
+          "type:quarterly"
+        ]
       },
-      "format": { "type": "percent"}
+      "format": {
+        "type": "percent"
+      }
     },
     {
       "slug": "live-service-usage",
@@ -139,7 +172,9 @@
       "module-type": "list",
       "title": "Top content",
       "description": "Most unique pageviews",
-      "classes": ["cols2"],
+      "classes": [
+        "cols2"
+      ],
       "data-group": "govuk",
       "data-type": "most_viewed",
       "query-params": {
@@ -155,7 +190,10 @@
       "module-type": "list",
       "title": "Trending content",
       "description": "Largest percentage increase in pageviews week-on-week",
-      "classes": ["cols2", "up"],
+      "classes": [
+        "cols2",
+        "up"
+      ],
       "data-group": "govuk",
       "data-type": "trending",
       "query-params": {
@@ -217,7 +255,10 @@
           "key": "eventDestination",
           "format": {
             "type": "sentence",
-            "uppercase": ["lpa","bacs"]
+            "uppercase": [
+              "lpa",
+              "bacs"
+            ]
           }
         },
         "y": [
@@ -359,7 +400,9 @@
           "value-attribute": "value:sum",
           "category": "geography",
           "period": "month",
-          "filter-by": ["key:residential_property_transactions"],
+          "filter-by": [
+            "key:residential_property_transactions"
+          ],
           "axes": {
             "y": [
               {
@@ -397,14 +440,20 @@
           "value-attribute": "value:sum",
           "category": "type",
           "period": "quarter",
-          "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
+          "filter-by": [
+            "geography:United_Kingdom",
+            "tenure:all_dwellings"
+          ],
           "info": [
             "Source: National House-Building Council (NHBC)"
           ],
           "axes": {
             "x": {
               "label": "Date",
-              "key": ["_start_at", "_end_at"],
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
               "format": {
                 "type": "dateRange",
                 "format": "MMM YYYY"
@@ -425,104 +474,110 @@
           },
           "show-line-labels": true
         },
-    {
-      "slug": "how-users-access-the-service",
-      "module-type": "grouped_timeseries",
-      "title": "Categories in a % stack",
-      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-      "data-group": "gov-uk-content",
-      "data-type": "devices-count",
-      "filter-by": "department:attorney-generals-office",
-      "category": "deviceCategory",
-      "period": "week",
-      "axis-period": "week",
-      "duration": 9,
-      "value-attribute": "pageviews:sum",
-      "show-line-labels": true,
-      "one-hundred-percent": true,
-      "use_stack": true,
-      "info": [
-        "Data source: Google Analytics",
-        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "D MMM YYYY"
-          }
-        },
-        "y": [
-          {
-            "label": "Desktop",
-            "categoryId": "desktop",
-            "format": "integer"
-          },
-          {
-            "label": "Mobile",
-            "categoryId": "mobile",
-            "format": "integer"
-          },
-          {
-            "label": "Tablet",
-            "categoryId": "tablet",
-            "format": "integer"
-          }
-        ]
-      }
-    },
         {
-      "slug": "how-users-access-the-service",
-      "module-type": "grouped_timeseries",
-      "title": "Categories as % lines",
-      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-      "data-group": "gov-uk-content",
-      "data-type": "devices-count",
-      "filter-by": "department:attorney-generals-office",
-      "category": "deviceCategory",
-      "period": "week",
-      "axis-period": "week",
-      "duration": 9,
-      "value-attribute": "pageviews:sum",
-      "show-line-labels": true,
-      "one-hundred-percent": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Google Analytics",
-        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "D MMM YYYY"
+          "slug": "how-users-access-the-service",
+          "module-type": "grouped_timeseries",
+          "title": "Categories in a % stack",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "data-group": "gov-uk-content",
+          "data-type": "devices-count",
+          "filter-by": "department:attorney-generals-office",
+          "category": "deviceCategory",
+          "period": "week",
+          "axis-period": "week",
+          "duration": 9,
+          "value-attribute": "pageviews:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": true,
+          "info": [
+            "Data source: Google Analytics",
+            "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "categoryId": "desktop",
+                "format": "integer"
+              },
+              {
+                "label": "Mobile",
+                "categoryId": "mobile",
+                "format": "integer"
+              },
+              {
+                "label": "Tablet",
+                "categoryId": "tablet",
+                "format": "integer"
+              }
+            ]
           }
         },
-        "y": [
-          {
-            "label": "Desktop",
-            "categoryId": "desktop",
-            "format": "integer"
-          },
-          {
-            "label": "Mobile",
-            "categoryId": "mobile",
-            "format": "integer"
-          },
-          {
-            "label": "Tablet",
-            "categoryId": "tablet",
-            "format": "integer"
+        {
+          "slug": "how-users-access-the-service",
+          "module-type": "grouped_timeseries",
+          "title": "Categories as % lines",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "data-group": "gov-uk-content",
+          "data-type": "devices-count",
+          "filter-by": "department:attorney-generals-office",
+          "category": "deviceCategory",
+          "period": "week",
+          "axis-period": "week",
+          "duration": 9,
+          "value-attribute": "pageviews:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "categoryId": "desktop",
+                "format": "percent"
+              },
+              {
+                "label": "Mobile",
+                "categoryId": "mobile",
+                "format": "percent"
+              },
+              {
+                "label": "Tablet",
+                "categoryId": "tablet",
+                "format": "percent"
+              }
+            ]
           }
-        ]
-      }
-    }
+        }
       ]
     }
   ]
