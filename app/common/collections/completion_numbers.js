@@ -3,17 +3,19 @@ define([
 ], function (CompletionCollection) {
   var CompletionNumbersSeries = CompletionCollection.extend({
     defaultValueAttrs: function (value) {
-      var val = value._end;
+      var obj = {},
+          val = value._end;
+
       if (value._end === null && this.options.defaultValue !== undefined) {
         val = this.options.defaultValue;
       }
-      return {
-        uniqueEvents: val
-      };
+
+      obj[this.valueAttr] = val;
+      return obj;
     },
 
     defaultCollectionAttrs: function (collection) {
-      var available = _.filter(collection.values, function (v) { return v.get('uniqueEvents') !== null; }).length;
+      var available = _.filter(collection.values, function (v) { return v.get(this.valueAttr) !== null; }).length;
       return {
         id: 'done',
         title: 'Done',
