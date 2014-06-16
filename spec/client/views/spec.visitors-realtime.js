@@ -1,6 +1,6 @@
 define([
-  'common/views/visualisations/visitors-realtime',
-  'common/collections/list',
+  'client/views/visualisations/visitors-realtime',
+  'common/collections/realtime',
   'extensions/models/model'
 ],
 function (VisitorsRealtimeView, Collection) {
@@ -27,9 +27,6 @@ function (VisitorsRealtimeView, Collection) {
 
       view.valueAttr = 'unique_visitors';
 
-      jasmine.serverOnly(function () {
-        view.sparkline = false;
-      });
     });
 
     afterEach(function () {
