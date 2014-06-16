@@ -90,6 +90,12 @@ function (ModuleView, Collection, Model, View, $) {
       });
     });
 
+    it('renders a standalone module with download id', function () {
+      model.set('page-type', 'module');
+      moduleView.render();
+      expect(moduleView.$('aside.more-info.download #download').length).toEqual(1);
+    });
+
     it('renders a standalone module with json download link', function () {
       model.set('page-type', 'module');
       moduleView.render();

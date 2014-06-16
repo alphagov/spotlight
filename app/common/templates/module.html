@@ -28,7 +28,7 @@
 
 <% if (model.get('page-type') === 'module') { %>
 <aside class="more-info download" role="complementary">
-  <h2>Download the data</h2>
+  <h2 id="download">Download the data</h2>
   <ul>
     <li><a href="<%= jsonUrl %>">JSON</a></li>
     <% if (fallbackUrl) { %><li><a href="<%= fallbackUrl %>">PNG</a></li><% } %>
