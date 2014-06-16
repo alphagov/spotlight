@@ -20,6 +20,7 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period') || 'day',
+        axisPeriod: this.model.get('axis-period'),
         duration: this.model.get('duration') || 30,
         trim: this.model.get('trim') || true,
         axes: _.merge({

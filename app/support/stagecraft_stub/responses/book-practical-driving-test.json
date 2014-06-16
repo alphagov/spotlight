@@ -96,6 +96,7 @@
       "data-group": "book-practical-driving-test",
       "data-type": "customer-satisfaction",
       "duration": 182,
+      "axis-period": "month",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
