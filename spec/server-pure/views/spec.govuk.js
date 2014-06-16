@@ -2,7 +2,6 @@ var requirejs = require('requirejs');
 
 var GovUkView = require('../../../app/server/views/govuk');
 
-var View = requirejs('extensions/views/view');
 var Model = requirejs('extensions/models/model');
 
 describe('GovUkView', function () {

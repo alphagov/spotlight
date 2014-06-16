@@ -1,4 +1,5 @@
-var requirejs = require('requirejs')
+var requirejs = require('requirejs');
+var $ = require('jquery');
 
 var ModuleView = require('../../../app/server/views/module');
 
