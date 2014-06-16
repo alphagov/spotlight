@@ -2,6 +2,7 @@
   "slug": "change-practical-driving-test",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
+  "published": true,
   "strapline": "Dashboard",
   "title": "Practical driving test changes and cancellations",
   "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical and driving theory tests.<br><br>More performance information for the <strong>practical driving test</strong> can be found <a href='/performance/practical-driving-test'>here</a>.  The performance dashboard for <strong>Practical driving test bookings</strong> can be found <a href='/performance/book-practical-driving-test'>here</a>",
@@ -90,6 +91,8 @@
       "data-group": "change-date-practical-driving-test",
       "data-type": "customer-satisfaction",
       "duration": 182,
+      "axis-period": "month",
+      "trim": false,
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."

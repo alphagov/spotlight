@@ -2,7 +2,7 @@
   "slug": "book-practical-driving-test",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Practical driving test bookings",
   "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>More performance information for the <strong>practical driving test</strong> can be found <a href='/performance/practical-driving-test'>here</a>. The performance dashboard for the <strong>Practical driving test changes and cancellations</strong> service can be found <a href='/performance/change-practical-driving-test'>here</a>",
@@ -96,6 +96,8 @@
       "data-group": "book-practical-driving-test",
       "data-type": "customer-satisfaction",
       "duration": 182,
+      "trim": false,
+      "axis-period": "month",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
