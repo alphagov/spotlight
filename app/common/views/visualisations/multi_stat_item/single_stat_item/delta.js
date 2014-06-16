@@ -23,15 +23,23 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      var model = this.collection.first().get('values').last();
-      var change = this.getChange(model, this.stat.attr);
-      this.trend = change.trend;
-      return change.percentChange;
+      if (this.collection.first()) {
+        var model = this.collection.first().get('values').last();
+        var change = this.getChange(model, this.stat.attr);
+        this.trend = change.trend;
+        return change.percentChange;
+      } else {
+        return null;
+      }
     },
 
     getLabel: function () {
-      var model = this.collection.first().get('values').last();
-      return this.getChange(model, this.stat.attr).previousDate;
+      if (this.collection.first()) {
+        var model = this.collection.first().get('values').last();
+        return this.getChange(model, this.stat.attr).previousDate;
+      } else {
+        return null;
+      }
     },
 
     getValueSelected: function (selected) {
