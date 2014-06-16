@@ -21,6 +21,11 @@ function (View, SparklineView) {
 
     },
 
+    render: function () {
+      View.prototype.render.apply(this, arguments);
+      this.onChangeSelected();
+    },
+
     onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
       var content = this.noDataMessage,
           selection = this.collection.getCurrentSelection(),
