@@ -19,8 +19,7 @@ module.exports = BaseView.extend(templater).extend({
   },
 
   getContent: function () {
-    return this.loadTemplate(path.resolve(__dirname, '../templates/about.html'), _.extend({}, {
-    }, this.model.toJSON()));
+    return this.loadTemplate(path.resolve(__dirname, '../templates/about.html'), this.model.toJSON());
   }
 
 });
