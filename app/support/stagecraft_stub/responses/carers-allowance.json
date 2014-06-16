@@ -115,7 +115,7 @@
       ],
       "denominator-matcher": "about-you$",
       "numerator-matcher": "thank-you$",
-      "matching-attribute": "eventLabel",
+      "matching-attribute": "stage",
       "start-at": "2014-05-19T00:00:00+00:00"
     },
     {
@@ -130,7 +130,7 @@
       ],
       "data-group": "carers-allowance",
       "data-type": "journey",
-      "matching-attribute": "eventLabel",
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {"journeyId": "about-you", "label": "About you", "format": "integer"},

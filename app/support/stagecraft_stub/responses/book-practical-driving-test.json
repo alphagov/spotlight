@@ -112,7 +112,7 @@
       "data-type": "journey",
       "duration": 26,
       "axis-period": "month",
-      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "filter-by": ["transaction:pp-book-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a a booking and were able to complete it.",
@@ -120,7 +120,7 @@
       ],
       "denominator-matcher": "choose-type-of-test",
       "numerator-matcher": "booking-complete",
-      "matching-attribute": "eventAction"
+      "matching-attribute": "stage"
     },
     {
       "slug": "users-at-each-step",
@@ -134,8 +134,8 @@
       ],
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
-      "matching-attribute": "eventAction",
+      "filter-by": ["transaction:pp-book-practical-driving-test-public"],
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {"journeyId": "choose-type-of-test", "label": "Choose type of test", "format": "integer"},

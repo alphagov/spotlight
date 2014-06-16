@@ -48,7 +48,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "matching-attribute": "stage",
       "axes": {
         "x": {
           "label": "Date of Payment"
@@ -74,7 +74,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "stage"
     },
     {
       "slug": "users-at-each-step",

@@ -211,7 +211,7 @@
       "description": "Number of users who completed important stages of the transaction last week",
       "data-group": "deposit-foreign-marriage",
       "data-type": "journey",
-      "matching-attribute": "eventCategory",
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {
@@ -241,10 +241,9 @@
       "title": "Table",
       "description": "Number of users who completed important stages of the transaction last week",
       "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
+      "data-type": "help-usage",
       "query-params": {
-        "filter_by": "eventAction:help.inline",
-        "group_by": "eventDestination",
+        "group_by": "helpLabel",
         "collect": "uniqueEvents:sum",
         "period": "week",
         "duration": 1
@@ -252,7 +251,7 @@
       "axes": {
         "x": {
           "label": "Description",
-          "key": "eventDestination",
+          "key": "helpLabel",
           "format": {
             "type": "sentence",
             "uppercase": [
@@ -344,7 +343,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "matching-attribute": "stage",
       "end-at": "2014-02-20T12:00:00+00:00"
     },
     {
@@ -360,7 +359,7 @@
       ],
       "denominator-matcher": "about-you$",
       "numerator-matcher": "consent-and-declaration$",
-      "matching-attribute": "eventLabel"
+      "matching-attribute": "stage"
     },
     {
       "slug": "average-first-mortgage",

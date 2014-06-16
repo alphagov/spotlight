@@ -106,7 +106,7 @@
       "data-type": "journey",
       "duration": 26,
       "axis-period": "month",
-      "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
+      "filter-by": ["transaction:pp-change-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a change or cancellation of booking and were able to complete it.",
@@ -115,7 +115,7 @@
       ],
       "denominator-matcher": "access-your-booking",
       "numerator-matcher": "confirm-changes",
-      "matching-attribute": "eventAction"
+      "matching-attribute": "stage"
     },
     {
       "slug": "users-at-each-step",
@@ -130,8 +130,8 @@
       ],
       "data-group": "driving-test-practical-public",
       "data-type": "journey",
-      "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
-      "matching-attribute": "eventAction",
+      "filter-by": ["transaction:pp-change-practical-driving-test-public"],
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {"journeyId": "access-your-booking", "label": "Access your booking", "format": "integer"},

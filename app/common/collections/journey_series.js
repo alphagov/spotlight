@@ -43,7 +43,7 @@ define([
     },
 
     getStep: function (d) {
-      return d[this.options.matchingAttribute] || d.eventCategory;
+      return d[this.options.matchingAttribute] || d.stage;
     }
   });
 

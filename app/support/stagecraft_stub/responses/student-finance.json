@@ -166,8 +166,8 @@
       ],
       "data-group": "student-finance",
       "data-type": "journey",
-      "filter-by": ["eventAction:full-time-higher-education-england"],
-      "matching-attribute": "eventLabel",
+      "filter-by": ["transaction:full-time-higher-education-england"],
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {

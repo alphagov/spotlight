@@ -86,7 +86,7 @@
       "data-type": "journey",
       "denominator-matcher": "create/lpa-type$",
       "numerator-matcher": "register/confirmation$",
-      "matching-attribute": "eventLabel"
+      "matching-attribute": "stage"
     },
     {
       "slug": "users-at-each-step",
@@ -101,7 +101,7 @@
       ],
       "data-group": "lasting-power-of-attorney",
       "data-type": "journey",
-      "matching-attribute": "eventLabel",
+      "matching-attribute": "stage",
       "axes": {
         "y": [
           {
@@ -174,10 +174,9 @@
         "Help usage counts the number of unique visitors who clicked on each help button."
       ],
       "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
+      "data-type": "help-usage",
       "query-params": {
-        "filter_by": "eventAction:help.inline",
-        "group_by": "eventDestination",
+        "group_by": "helpLabel",
         "collect": "uniqueEvents:sum",
         "period": "week",
         "duration": 1
@@ -185,7 +184,7 @@
       "axes": {
         "x": {
           "label": "Description",
-          "key": "eventDestination",
+          "key": "helpLabel",
           "format": {
             "type": "sentence",
             "uppercase": ["lpa","bacs"]

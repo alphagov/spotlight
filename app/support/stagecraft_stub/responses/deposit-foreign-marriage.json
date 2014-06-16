@@ -50,7 +50,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "matching-attribute": "stage",
       "axes": {
         "x": {
           "label": "Date of Payment"
@@ -77,7 +77,7 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "matching-attribute": "stage",
       "end-at": "2013-12-30T00:00:00+00:00"
     },
     {

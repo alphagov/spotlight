@@ -51,7 +51,7 @@
       "module-type": "journey",
       "title": "Users at each step",
       "value-attribute": "users",
-      "matching-attribute": "eventAction",
+      "matching-attribute": "stage",
       "description": "Number of users at stages a user goes through whilst applying for a visa. Some stages may be repeated or returned to, as indicated by higher numbers.",
       "info": [
         "Data source: Google Analytics",
