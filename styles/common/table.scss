@@ -70,3 +70,8 @@ table {
     background: $white;
   }
 }
+
+.visualisation-table.visuallyhidden {
+  max-height: 28em;
+  overflow: auto;
+}
