@@ -44,7 +44,7 @@ function (GovUkView, View, Model) {
       expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
       var content = context.content.replace(/\s+/g, ' ').trim();
-      expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group" role="breadcrumbs"> <li> <a href="/performance"> <span title="Performance"> Performance </span> </a> </li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> <div class="performance-platform-outer"> test_content report_a_problem </div> </main> </div>');
+      expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group"> <li> <a href="/performance"> <span title="Performance"> Performance </span> </a> </li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> <div class="performance-platform-outer"> test_content report_a_problem </div> </main> </div>');
     });
 
     it('doesn\'t display the breadcrumb wrapper if there are no breadcrumbs', function () {
