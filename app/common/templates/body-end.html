@@ -3,10 +3,12 @@
   GOVUK.config = <%= JSON.stringify(model.toJSON()) %>;
 </script>
 
+<% if (model.get('script')) { %>
 <% if (model.get('environment') === 'development') { %>
 <script data-main="<%= requirePath %>client.js" src="<%= requirePath %>vendor/require.js" type="text/javascript"></script>
 <% } else { %>
 <!--[if lt IE 9]><script src="<%= assetPath %>javascripts/<%= assetDigest['spotlight-no-d3.js'] %>" type="text/javascript"></script><![endif]-->
 <!--[if gt IE 8]><!--><script src="<%= assetPath %>javascripts/<%= assetDigest['spotlight.js'] %>" type="text/javascript"></script><!--<![endif]-->
 
+<% } %>
 <% } %>

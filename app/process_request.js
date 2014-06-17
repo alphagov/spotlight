@@ -26,6 +26,7 @@ var renderContent = function (req, res, model) {
 
 var setup = function (req, res) {
   var model = setup.getStagecraftApiClient();
+  model.set('script', true);
 
   model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
 
