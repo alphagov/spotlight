@@ -28,6 +28,10 @@ define([
       view.render();
 
       this.html = view.html || view.$el[0].outerHTML;
+      this.ready();
+    },
+
+    ready: function () {
       setTimeout(_.bind(function () {
         this.trigger('ready');
       }, this), 0);
@@ -41,11 +45,6 @@ define([
           'data-type': this.model.get('data-type'),
           'data-group': this.model.get('data-group')
         }, this.collectionOptions()));
-      }
-      if (isClient && options.init && !this.clientRenderOnInit) {
-        // Do not render on init when rendering in client
-        this.trigger('ready');
-        return;
       }
 
       var renderViewOptions = _.merge({
@@ -67,26 +66,36 @@ define([
     renderModules: function (modules, parentModel, moduleOptions, renderOptions, callback) {
       var remaining = modules.length;
 
+      callback = _.isFunction(callback) ? callback : function () {};
       if (remaining === 0) {
         callback();
         return;
       }
 
+      var loaded = _.bind(function () {
+        remaining--;
+        if (remaining === 0) {
+          this.trigger('loaded');
+          callback();
+        }
+      }, this);
+
       return _.map(modules, function (definition) {
+
+        if (!definition.controller) {
+          // some modules don't have client-side controllers
+          loaded();
+          return;
+        }
+
         var model = new Model(definition);
         model.set('parent', parentModel);
 
-        var module = new definition.controller(
-          _.merge({ model: model }, moduleOptions)
-        );
+        var options = _.isFunction(moduleOptions) ? moduleOptions(model) : moduleOptions;
 
-        module.once('ready', _.bind(function () {
-          remaining--;
-          if (remaining === 0) {
-            this.trigger('loaded');
-            callback();
-          }
-        }, this));
+        var module = new definition.controller(_.merge({ model: model }, options));
+
+        module.once('ready', loaded);
 
         module.render(_.isFunction(renderOptions) ? renderOptions(model) : renderOptions);
 

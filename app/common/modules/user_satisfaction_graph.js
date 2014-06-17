@@ -1,14 +1,12 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/user-satisfaction-graph',
   'common/collections/user-satisfaction'
 ],
-function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
-  var UserSatisfactionModule = ModuleController.extend({
-    visualisationClass: UserSatisfactionView,
-    collectionClass: UserSatisfactionCollection,
-    clientRenderOnInit: true,
+function (UserSatisfactionCollection) {
+  return {
+
     requiresSvg: true,
+    collectionClass: UserSatisfactionCollection,
+
     collectionOptions: function () {
       return {
         id: 'user_satisfaction',
@@ -23,6 +21,7 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
         axisPeriod: this.model.get('axis-period'),
         duration: this.model.get('duration') || 30,
         trim: this.model.get('trim') === false ? false : true,
+        format: this.model.get('format') || 'integer',
         axes: _.merge({
           x: {
             label: 'Date',
@@ -34,19 +33,45 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
               label: this.model.get('title'),
               key: 'rating',
               format: 'percent'
+            },
+            {
+              label: 'Not satisfied',
+              key: 'rating_1:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Dissatisfied',
+              key: 'rating_2:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Neither satisfied or dissatisfied',
+              key: 'rating_3:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Satisfied',
+              key: 'rating_4:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Very satisfied',
+              key: 'rating_5:sum',
+              format: 'integer'
             }
           ]
         }, this.model.get('axes'))
       };
     },
+
     visualisationOptions: function () {
       return {
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
-        formatOptions: this.model.get('format')
+        formatOptions: this.model.get('format') || 'integer',
+        url: this.url
       };
     }
-  });
 
-  return UserSatisfactionModule;
+  };
 });

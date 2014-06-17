@@ -1,12 +1,10 @@
 define([
-  'tpl!common/templates/visualisations/categories.html',
   'extensions/views/view',
   'common/views/visualisations/stacked-graph',
   'common/views/visualisations/line-graph'
 ],
-function (template, View, StackedGraph, LineGraph) {
+function (View, StackedGraph, LineGraph) {
   var CategoriesView = View.extend({
-    template: template,
 
     views: function () {
       var useStack = this.model.get('use_stack'),

@@ -16,29 +16,29 @@ function parseParent(content, slug) {
     return false;
   }
 
-  module = _.extend(module, {
-    'page-type': 'module',
-    'dashboard-title': dashboardData.title,
-    'dashboard-strapline': dashboardData.strapline,
-    'dashboard-slug': dashboardData.slug
-  });
-
-  if (dashboardData.department) {
-    module = _.extend(module, {
-      'department': dashboardData.department
-    });
-  }
-
-  if (dashboardData.agency) {
-    module = _.extend(module, {
-      'agency': dashboardData.agency
-    });
-  }
-
+  dashboardData['page-type'] = 'module';
   delete module.classes; // We don't care about the classes property on the page-per-thing pages
+  dashboardData.modules = [module];
 
-  return module;
+  return dashboardData;
 
+}
+
+function parseGrandParent(content, slug, tabslug) {
+  tabslug = tabslug.replace(slug + '-', '');
+  var dashboardData = parseParent(content, slug);
+  if (dashboardData) {
+    var module = _.find(dashboardData.modules[0].tabs, function (module) {
+      return module.slug === tabslug;
+    });
+    if (!module) {
+      return false;
+    }
+    module.info = dashboardData.modules[0].info;
+    module.title = dashboardData.modules[0].title + ' - ' + module.title;
+    dashboardData.modules = [module];
+    return dashboardData;
+  }
 }
 
 function send404(res, filePath) {
@@ -55,7 +55,22 @@ module.exports =  function (req, res) {
       var parentPath = paramPath.join('/');
       readFile(parentPath, function (err, parentContent) {
         if (err) {
-          send404(res, paramPath);
+          /*send404(res, paramPath);*/
+          parentPath = parentPath.split('/');
+          var parentslug = parentPath.pop();
+          var grandParentPath = parentPath.join('/');
+          readFile(grandParentPath, function (err, parentContent) {
+            if (err) {
+              send404(res, paramPath);
+            } else {
+              var moduleData = parseGrandParent(parentContent, parentslug, slug);
+              if (moduleData) {
+                res.send(moduleData);
+              } else {
+                send404(res, paramPath);
+              }
+            }
+          });
         } else {
           var moduleData = parseParent(parentContent, slug);
           if (moduleData) {

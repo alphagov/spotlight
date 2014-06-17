@@ -1,12 +1,11 @@
 define([
   'extensions/views/graph/graph',
-  'extensions/views/graph/table',
   'extensions/collections/collection',
   'extensions/models/model',
   'extensions/views/view',
   'd3'
 ],
-function (Graph, GraphTable, Collection, Model, View, d3) {
+function (Graph, Collection, Model, View, d3) {
 
   var defaultData;
 
@@ -90,11 +89,6 @@ function (Graph, GraphTable, Collection, Model, View, d3) {
   });
 
   describe('Graph', function () {
-
-    beforeEach(function () {
-      spyOn(GraphTable.prototype, 'initialize');
-      spyOn(Graph.prototype, 'isVisible').andReturn(true);
-    });
 
     it('keeps a reference to d3 library', function () {
       spyOn(Graph.prototype, 'prepareGraphArea');

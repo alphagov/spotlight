@@ -1,6 +1,8 @@
 var requirejs = require('requirejs');
 
 var PageConfig = requirejs('page_config');
+var controllerMap = require('./server/controller_map')();
+
 var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 
@@ -10,7 +12,6 @@ var renderContent = function (req, res, model) {
   var ControllerClass = model.get('controller');
   var controller = new ControllerClass({
     model: model,
-    raw: _.has(req.query, 'raw'),
     url: req.originalUrl
   });
 
@@ -40,7 +41,9 @@ var setup = function (req, res) {
 };
 
 setup.getStagecraftApiClient = function () {
-  return new StagecraftApiClient();
+  return new StagecraftApiClient({}, {
+    ControllerMap: controllerMap
+  });
 };
 
 setup.renderContent = renderContent;

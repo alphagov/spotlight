@@ -1,14 +1,10 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/availability',
   'common/collections/availability'
 ],
-function (ModuleController, AvailabilityView, AvailabilityCollection) {
-  var AvailabilityModule = ModuleController.extend({
-    visualisationClass: AvailabilityView,
-    collectionClass: AvailabilityCollection,
-    clientRenderOnInit: true,
+function (AvailabilityCollection) {
+  return {
     requiresSvg: true,
+    collectionClass: AvailabilityCollection,
 
     collectionOptions: function () {
       return {
@@ -35,7 +31,6 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
         }, this.model.get('axes'))
       };
     }
-  });
+  };
 
-  return AvailabilityModule;
 });

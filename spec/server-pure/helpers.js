@@ -11,3 +11,6 @@ requirejs.config(requirejs('config'));
 
 global.isServer = true;
 global.config = {};
+global._ = require('lodash');
+global.$ = require('jquery');
+global.isClient = false;

@@ -5,11 +5,15 @@ define([
 ],
 function (GroupedTimeseriesController, ModuleController, ComparisonCollection) {
 
-  return GroupedTimeseriesController.extend({
+  return _.extend({}, GroupedTimeseriesController, {
+    requiresSvg: true,
+
     initialize: ModuleController.prototype.initialize,
     collectionClass: ComparisonCollection,
+
     collectionOptions: function () {
-      return _.extend(GroupedTimeseriesController.prototype.collectionOptions.apply(this, arguments), {
+      var options = GroupedTimeseriesController.collectionOptions.apply(this, arguments);
+      return _.extend(options, {
         comparison: this.model.get('comparison'),
       });
     }

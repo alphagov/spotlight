@@ -1,15 +1,15 @@
-<% if (model.get('page-type') === 'module') { %>
+<% if (pageType === 'module') { %>
   <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
-  <% if (model.get('parent') && model.get('parent').get('slug') && model.get('slug')) { %>
-    <h2 id="<%= this.ariaId() %>"><a href="<%= model.get('parent').get('slug') %>/<%= model.get('slug') %>"><%= model.get('title') %></a></h2>
+  <% if (url) { %>
+    <h2 id="<%= this.ariaId() %>"><a href="<%= url %>"><%= model.get('title') %></a></h2>
   <% } else { %>
     <h2 id="<%= this.ariaId() %>"><%= model.get('title') %></h2>
   <% } %>
 <% } %>
 
 <% if (model.get('description')) { %>
-  <% if (model.get('page-type') === 'module') { %>
+  <% if (pageType === 'module') { %>
     <h2 class="dashboard"><%= model.get('description') %></h2>
   <% } else { %>
     <h3><%= model.get('description') %></h3>
@@ -18,26 +18,27 @@
 
 <div class="visualisation">
 
-<div class="visualisation-inner"<% if (fallbackUrl) { %> data-src="<%= fallbackUrl %>"<% } %>><% if (fallbackUrl) { %><noscript><img src="<%= fallbackUrl %>"/></noscript><% } %></div>
+<div class="visualisation-inner"></div>
 
 <% if (hasTable) { %>
-<div class="visualisation-table"></div>
+<div class="visualisation-table<% if (pageType !== 'module') {%> visuallyhidden<%} %> "></div>
 <% } %>
 
 <div class="visualisation-moreinfo">
 
-<% if (model.get('page-type') === 'module') { %>
+
+<% if (pageType === 'module' && model.get('module-type') !== 'tab') { %>
 <aside class="more-info download" role="complementary">
   <h2 id="download">Download the data</h2>
   <ul>
     <li><a href="<%= jsonUrl %>">JSON</a></li>
-    <% if (fallbackUrl) { %><li><a href="<%= fallbackUrl %>">PNG</a></li><% } %>
+    <% if (fallbackUrl) { %><li><a href="<%= fallbackUrl %>?selector=.visualisation-inner">PNG</a></li><% } %>
   </ul>
 </aside>
 <% } %>
 
-<% if (model.get('info') && model.get('page-type') === 'module') { %>
- <aside class="more-info about" role="complementary">
+<% if (model.get('info') && pageType === 'module') { %>
+<aside class="more-info about" role="complementary">
   <h2>About the data</h2>
   <ul>
     <% _.each(model.get('info'), function (row) { %>

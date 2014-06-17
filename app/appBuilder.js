@@ -92,7 +92,7 @@ module.exports = {
 
     app.get('/performance/services', require('./server/controllers/services'));
 
-    app.get('/performance/prototypes', requirejs('./common/controllers/prototypes'));
+    app.get('/performance/prototypes', require('./server/controllers/prototypes'));
 
     app.get('/performance/*', require('./process_request'));
 

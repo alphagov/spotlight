@@ -1,9 +1,17 @@
 <div class="double-decker-graph">
   <h3>Page load time</h3>
   <p class="impact-number response-time"></p>
-  <div class="timeseries-graph response-time-graph"></div>
+  <div class="timeseries-graph response-time-graph" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.response-time-graph figure"{{/fallbackUrl}}>
+    {{#fallbackUrl}}
+      <noscript><img src="{{fallbackUrl}}?selector=.response-time-graph figure" /></noscript>
+    {{/fallbackUrl}}
+  </div>
 
   <h3>Uptime</h3>
   <p class="impact-number uptime"></p>
-  <div class="timeseries-graph uptime-graph"></div>
+  <div class="timeseries-graph uptime-graph" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.uptime-graph figure"{{/fallbackUrl}}>
+    {{#fallbackUrl}}
+      <noscript><img src="{{fallbackUrl}}?selector=.uptime-graph figure" /></noscript>
+    {{/fallbackUrl}}
+  </div>
 </div>

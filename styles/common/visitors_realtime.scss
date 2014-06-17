@@ -12,6 +12,7 @@
   .sparkline {
     overflow: hidden;
     min-height: 120px;
+    position: relative;
 
     .sparkline-graph {
       figure.graph {
@@ -35,6 +36,9 @@
           }
         }
       }
+    }
+    .sparkline-title {
+      top: 70px;
     }
   }
 

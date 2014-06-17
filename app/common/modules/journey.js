@@ -1,14 +1,11 @@
 define([
-  'extensions/controllers/module',
-  'common/collections/journey',
-  'common/views/visualisations/journey-graph/journey-graph'
+  'common/collections/journey'
 ],
-function (ModuleController, JourneyCollection, JourneyGraph) {
-  var JourneyModule = ModuleController.extend({
-    visualisationClass: JourneyGraph,
-    collectionClass: JourneyCollection,
-    clientRenderOnInit: true,
+function (JourneyCollection) {
+  return {
+
     requiresSvg: true,
+    collectionClass: JourneyCollection,
 
     collectionOptions: function () {
       return {
@@ -19,6 +16,7 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
           magnitude: true,
           sigfigs: 3
         },
+        valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
         axes: _.merge({
           y: []
         }, this.model.get('axes'))
@@ -26,12 +24,10 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
     },
 
     visualisationOptions: function () {
-      return _.defaults(ModuleController.prototype.visualisationOptions.apply(this, arguments), {
-        valueAttr: 'uniqueEvents'
-      });
+      return {
+        valueAttr: this.model.get('value-attribute') || 'uniqueEvents'
+      };
     }
 
-  });
-
-  return JourneyModule;
+  };
 });

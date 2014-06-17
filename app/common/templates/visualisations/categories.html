@@ -1,2 +1,3 @@
-<nav id="categories-nav" role="navigation"></nav>
-<div class="categories"></div>
+<div class="categories" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.categories figure"{{/fallbackUrl}}>
+  {{#fallbackUrl}}<noscript><img src="{{fallbackUrl}}?selector=.categories figure"/></noscript>{{/fallbackUrl}}
+</div>

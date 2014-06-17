@@ -10,6 +10,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
     var collection, view;
 
     beforeEach(function () {
+      var $el = $('<div><div class="volumetrics-bar-selected"/></div>');
       spyOn(CompletionRateView.prototype, 'views').andReturn({});
       collection = new Collection();
       var data = [
@@ -56,6 +57,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
       } ]);
 
       view = new UserSatisfactionGraphView({
+        el: $el,
         collection: collection,
         valueAttr: 'rating',
         totalAttr: 'totalRatings',
@@ -64,7 +66,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
         min: 1,
         max: 5,
         model: new Model({
-          'page-type': 'module'
+          parent: new Model({'page-type': 'module'})
         }),
         period: 'day',
         duration: 30,
@@ -117,7 +119,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
       });
 
       it('doesn\'t render the bars on the dashboard, only on page-per-thing', function () {
-        view.model.set('page-type', undefined);
+        view.model.get('parent').set('page-type', undefined);
 
         jasmine.renderView(view, function () {
           expect(view.$el.find('.bar').length).toEqual(0);

@@ -1,8 +1,7 @@
 define([
-  'extensions/views/view',
-  'stache!common/templates/visualisations/tab'
+  'extensions/views/view'
 ],
-function (View, template) {
+function (View) {
 
   var TabView = View.extend({
 
@@ -13,13 +12,6 @@ function (View, template) {
 
     events: {
       'click nav a': 'onTabClick'
-    },
-
-    template: template,
-    templateContext: function () {
-      return {
-        tabs: this.tabs
-      };
     },
 
     onTabClick: function (event) {
@@ -40,7 +32,6 @@ function (View, template) {
     },
 
     render: function () {
-      View.prototype.render.apply(this, arguments);
       this.setActiveTab();
     }
 

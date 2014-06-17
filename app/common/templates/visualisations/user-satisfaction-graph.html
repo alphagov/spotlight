@@ -1,6 +1,13 @@
 <div class="single-decker-graph">
-  <nav id="completion-nav"></nav>
-  <p id="volumetrics-completion-selected" class="impact-number"></p>
-  <div class="graph timeseries-graph" id="volumetrics-completion"></div>
-  <div class="graph journey" id="volumetrics-bar-selected"></div>
+  <p class="impact-number volumetrics-completion-selected"></p>
+  <div class="graph timeseries-graph volumetrics-completion" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-completion figure"{{/fallbackUrl}}>
+    {{#fallbackUrl}}
+      <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-completion figure" /></noscript>
+    {{/fallbackUrl}}
+  </div>
+  <div class="graph journey volumetrics-bar-selected" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-bar-selected"{{/fallbackUrl}}>
+    {{#fallbackUrl}}
+      <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-bar-selected" /></noscript>
+    {{/fallbackUrl}}
+  </div>
 </div>

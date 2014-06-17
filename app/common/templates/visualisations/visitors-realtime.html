@@ -1,12 +1,14 @@
 <p>
   <div class="stat">
-    <div class="impact-number"><strong>&nbsp;</strong></div>
-    <span class="stat-description" role="presentation"></span>
+    <div class="impact-number"><strong>{{{ value }}}</strong></div>
+    <span class="stat-description" role="presentation">{{{ label }}}</span>
   </div>
 
   <div class="sparkline">
     <span class="sparkline-title"></span>
-    <div class="sparkline-graph"></div>
+    <div class="sparkline-graph" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.sparkline-graph"{{/fallbackUrl}}>
+      {{#fallbackUrl}}<noscript><img src="{{fallbackUrl}}?selector=.sparkline-graph"/></noscript>{{/fallbackUrl}}
+    </div>
   </div>
 
 </p>

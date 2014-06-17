@@ -107,43 +107,36 @@
           {
             "journeyId": "user/login",
             "label": "Login",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/lpa-type",
             "label": "Choose LPA type",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/donor",
             "label": "Add donor details",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/attorneys",
             "label": "Create attorneys",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/certificate-provider",
             "label": "Choose certificate provider",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/review",
             "label": "Review LPA",
-            "key": "uniqueEvents",
             "format": "integer"
           },
           {
             "journeyId": "create/complete",
             "label": "LPA PDF complete",
-            "key": "uniqueEvents",
             "format": "integer"
           }
         ]

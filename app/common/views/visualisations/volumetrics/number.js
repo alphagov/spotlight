@@ -6,9 +6,10 @@ function (SingleStatView) {
 
     changeOnSelected: true,
     labelPrefix: '',
+    formatOptions: { type: 'number', magnitude: true, pad: true },
 
     formatValue: function (value) {
-      return this.format(value, { type: 'number', magnitude: true, pad: true });
+      return this.format(value, this.formatOptions);
     },
 
     getValue: function () {

@@ -1,14 +1,10 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/completion_numbers',
   'common/collections/completion_numbers'
 ],
-function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) {
-  var CompletionNumbersModule = ModuleController.extend({
-    visualisationClass: CompletionNumbersView,
-    collectionClass: CompletionNumbersCollection,
-    clientRenderOnInit: true,
+function (CompletionNumbersCollection) {
+  return {
     requiresSvg: true,
+    collectionClass: CompletionNumbersCollection,
 
     collectionOptions: function () {
       return {
@@ -37,8 +33,14 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         duration: this.model.get('duration'),
         defaultValue: this.model.get('default-value')
       };
-    }
-  });
+    },
 
-  return CompletionNumbersModule;
+    visualisationOptions: function () {
+      return {
+        valueAttr: 'uniqueEvents',
+        totalAttr: 'mean'
+      };
+    }
+
+  };
 });

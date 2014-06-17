@@ -1,14 +1,11 @@
 define([
-  'extensions/controllers/module',
-  'common/views/visualisations/visitors-realtime',
-  'common/collections/list'
+  'common/collections/realtime'
 ],
-function (ModuleController, VisitorsRealtimeView, ListCollection) {
-  var VisitorsRealtimeModule = ModuleController.extend({
-    visualisationClass: VisitorsRealtimeView,
-    collectionClass: ListCollection,
-    clientRenderOnInit: true,
+function (RealtimeCollection) {
+  return {
     requiresSvg: true,
+    collectionClass: RealtimeCollection,
+
     collectionOptions: function () {
       return {
         id: 'realtime',
@@ -19,6 +16,8 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
           limit: this.model.get('numTwoMinPeriodsToQuery') || (((60 / 2) * 24) + 2)
         },
         fetchOptions: { headers: { 'cache-control': 'max-age=120' } },
+        period: this.model.get('period') || 'hours',
+        duration: this.model.get('duration') || 24,
         axes: _.merge({
           x: {
             label: 'Time',
@@ -36,11 +35,13 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
       };
     },
 
-    visualisationOptions: {
-      valueAttr: 'unique_visitors'
+    visualisationOptions: function () {
+      return {
+        valueAttr: 'unique_visitors',
+        url: this.url
+      };
     }
 
-  });
+  };
 
-  return VisitorsRealtimeModule;
 });

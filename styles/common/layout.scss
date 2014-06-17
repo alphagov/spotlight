@@ -29,9 +29,6 @@ $govuk-page-width: 960px;
     border-top: 1px solid $grey-2;
 
     .visualisation {
-      // This fixes an issue on the page-per-thing page when both tabs and "more info" are present.
-      // http://www.quirksmode.org/css/clearing.html#link3
-      overflow: auto;
       width: 100%;
     }
   }

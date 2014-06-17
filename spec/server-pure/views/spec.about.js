@@ -1,9 +1,8 @@
-var requirejs = require('requirejs');
 var Backbone = require('backbone');
 
 var AboutView = require('../../../app/server/views/about');
 
-var BaseView = requirejs('common/views/govuk');
+var BaseView = require('../../../app/server/views/govuk');
 
 describe('About View', function () {
 

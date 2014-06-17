@@ -4,12 +4,23 @@ define([
 function (StagecraftApiClient) {
   describe('StagecraftApiClient', function () {
 
+    var ControllerMap = {
+      dashboard: function () {},
+      error: function () {},
+      modules: {
+        realtime: function () {}
+      }
+    };
+
     beforeEach(function () {
       spyOn(StagecraftApiClient.prototype, 'fetch');
+
     });
 
     it('retrieves data for the current path', function () {
-      var client = new StagecraftApiClient();
+      var client = new StagecraftApiClient({}, {
+        ControllerMap: ControllerMap
+      });
       client.urlRoot = 'http://testdomain/';
       client.setPath('foo/bar');
       expect(client.url()).toEqual('http://testdomain/foo/bar');
@@ -18,6 +29,8 @@ function (StagecraftApiClient) {
     it('re-retrieves data when the path changes', function () {
       var client = new StagecraftApiClient({
         path: 'foo'
+      }, {
+        ControllerMap: ControllerMap
       });
       expect(client.fetch.callCount).toEqual(0);
       client.setPath('foo/bar');
@@ -30,7 +43,9 @@ function (StagecraftApiClient) {
 
       var client;
       beforeEach(function () {
-        client = new StagecraftApiClient();
+        client = new StagecraftApiClient({}, {
+          ControllerMap: ControllerMap
+        });
       });
 
       it('maps page-type "dashboard" to DashboardController', function () {
@@ -60,18 +75,17 @@ function (StagecraftApiClient) {
         expect(data.controller).toBe(client.controllers.error);
       });
 
-      it('maps page-type "module" with a module-type "realtime" to Realtime module', function () {
+      it('maps page-type "module" to Dashboard module', function () {
         var data = client.parse({
-          'page-type': 'module',
-          'module-type': 'realtime'
+          'page-type': 'module'
         });
-        expect(data.controller).toBe(client.controllers.modules.realtime);
+        expect(data.controller).toBe(client.controllers.dashboard);
       });
 
-      it('maps to ErrorController when the module type is unknown', function () {
+      it('maps to ErrorController when the page type is unknown', function () {
         var data = client.parse({
-          'page-type': 'module',
-          'module-type': 'not-implemented'
+          'page-type': 'not-known',
+          modules: [{ 'module-type': 'not-implemented' }]
         });
         expect(data.controller).toBe(client.controllers.error);
       });

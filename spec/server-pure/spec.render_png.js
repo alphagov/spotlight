@@ -6,8 +6,11 @@ describe('renderPng', function () {
       renderPng.screenshotServiceUrl = 'http://screenshotservice';
       renderPng.screenshotTargetUrl = 'http://spotlight';
       var url = '/test/path.png';
-      var screenshotPath = renderPng.getScreenshotPath(url);
-      expect(screenshotPath).toEqual('http://screenshotservice?readyExpression=!!document.querySelector(".loaded")&forwardCacheHeaders=true&clipSelector=.visualisation&url=http://spotlight/test/path?raw');
+      var screenshotPath = renderPng.getScreenshotPath({
+        url: url,
+        query: {}
+      });
+      expect(screenshotPath).toEqual('http://screenshotservice?readyExpression=!!document.querySelector(".loaded")&forwardCacheHeaders=true&clipSelector=.visualisation-inner figure&url=http://spotlight/test/path');
     });
   });
 });

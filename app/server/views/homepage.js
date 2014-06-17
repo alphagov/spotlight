@@ -1,9 +1,8 @@
-var requirejs = require('requirejs');
 var path = require('path');
 
 var templater = require('../mixins/templater');
 
-var BaseView = requirejs('common/views/govuk');
+var BaseView = require('./govuk');
 
 module.exports = BaseView.extend(templater).extend({
 

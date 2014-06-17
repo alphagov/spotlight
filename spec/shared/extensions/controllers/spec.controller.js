@@ -170,36 +170,15 @@ function (Controller, View, Model, Collection) {
       });
 
       it('render view on init on the server', function () {
-        jasmine.serverOnly(function () {
-          var controller = new Controller({
-            model: model,
-            viewClass: View,
-            collectionClass: Collection
-          });
-          controller.render({ init: true });
-          expect(controller.renderView).not.toHaveBeenCalled();
-          controller.collection.trigger('sync');
-          expect(controller.renderView).toHaveBeenCalled();
+        var controller = new Controller({
+          model: model,
+          viewClass: View,
+          collectionClass: Collection
         });
-      });
-
-      it('does not render view on init on the client by default', function () {
-        jasmine.clientOnly(function () {
-          var controller = new Controller({
-            model: model,
-            viewClass: View,
-            collectionClass: Collection
-          });
-          var isReady = false;
-          controller.once('ready', function () {
-            isReady = true;
-          });
-          controller.render({ init: true });
-          expect(controller.renderView).not.toHaveBeenCalled();
-          controller.collection.trigger('sync');
-          expect(controller.renderView).not.toHaveBeenCalled();
-          expect(isReady).toBe(true);
-        });
+        controller.render();
+        expect(controller.renderView).not.toHaveBeenCalled();
+        controller.collection.trigger('sync');
+        expect(controller.renderView).toHaveBeenCalled();
       });
 
       it('renders view on init on the client when configured', function () {
@@ -210,7 +189,7 @@ function (Controller, View, Model, Collection) {
             collectionClass: Collection,
             clientRenderOnInit: true
           });
-          controller.render({ init: true });
+          controller.render();
           expect(controller.renderView).not.toHaveBeenCalled();
           controller.collection.trigger('sync');
           expect(controller.renderView).toHaveBeenCalled();
@@ -228,7 +207,7 @@ function (Controller, View, Model, Collection) {
           { value: 1 },
           { value: 2 }
         ]);
-        controller.render({ init: true });
+        controller.render();
         expect(controller.collection.length).toEqual(2);
         expect(controller.collection.at(0).toJSON()).toEqual({ value: 1 });
         expect(controller.collection.at(1).toJSON()).toEqual({ value: 2 });
@@ -245,7 +224,7 @@ function (Controller, View, Model, Collection) {
           { value: 1 },
           { value: 2 }
         ]);
-        controller.render({ init: true });
+        controller.render();
         expect(controller.renderView).toHaveBeenCalled();
       });
 
@@ -260,7 +239,7 @@ function (Controller, View, Model, Collection) {
           { value: 1 },
           { value: 2 }
         ]);
-        controller.render({ init: true });
+        controller.render();
         expect(Collection.prototype.fetch).not.toHaveBeenCalled();
       });
 

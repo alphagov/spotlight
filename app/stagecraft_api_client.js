@@ -1,14 +1,16 @@
 define([
-  'extensions/models/model',
-  'controller_map'
+  'extensions/models/model'
 ],
-function (Model, ControllerMap) {
+function (Model) {
   var StagecraftApiClient = Model.extend({
-
-    controllers: ControllerMap,
 
     defaults: {
       status: 200
+    },
+
+    initialize: function (attrs, options) {
+      this.controllers = options.ControllerMap;
+      Model.prototype.initialize.apply(this, arguments);
     },
 
     setPath: function (path) {
@@ -32,19 +34,27 @@ function (Model, ControllerMap) {
       Model.prototype.fetch.call(this, options);
     },
 
-    parse: function (data) {
+    parse: function (data, options) {
       var controller;
+      var controllerMap = this.controllers || options.ControllerMap;
+
+      controller = controllerMap[data['page-type']];
+
       if (data['page-type'] === 'module') {
-        controller = this.controllers.modules[data['module-type']];
-      } else {
-        controller = this.controllers[data['page-type']];
-        _.each(data.modules, function (module) {
-          module.controller = this.controllers.modules[module['module-type']];
-        }, this);
+        controller = controllerMap.dashboard;
       }
 
+      _.each(data.modules, function (module) {
+        module.controller = controllerMap.modules[module['module-type']];
+        if (module.controller) {
+          // requiring the controller map from within a module causes a circular dependency
+          // so add the map as a property for modules that need it i.e. tabs
+          module.controller.map = controllerMap.modules;
+        }
+      }, this);
+
       if (!controller) {
-        data.controller = this.controllers.error;
+        data.controller = controllerMap.error;
         data.status = 501;
       } else {
         data.controller = controller;
