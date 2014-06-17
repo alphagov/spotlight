@@ -14,13 +14,27 @@ function (SingleStatView, Mustache) {
     },
 
     getValue: function () {
-      var model = this.collection.first().get('values').last();
+      var model;
+
+      if (this.collection.first()) {
+        model = this.collection.first().get('values').last();
+      } else {
+        model = null;
+      }
+
       return this.getFormattedValue(model, this.stat);
     },
 
     getLabel: function () {
-      var currentDate = this.collection.first().get('values').last();
-      if (typeof currentDate !== 'undefined') {
+      var currentDate;
+
+      if (this.collection.first()) {
+        currentDate = this.collection.first().get('values').last();
+      } else {
+        currentDate = null;
+      }
+
+      if (typeof currentDate !== 'undefined' && currentDate !== null) {
         currentDate = currentDate.get(this.timeAttr).format('MMM YYYY');
       } else {
         currentDate = '';
@@ -45,7 +59,7 @@ function (SingleStatView, Mustache) {
     getFormattedValue: function (model, stat) {
 
       var value = null;
-      if (typeof model !== 'undefined') {
+      if (typeof model !== 'undefined' && model !== null) {
         value = model.get(stat.attr);
       }
       if (value === null) {
