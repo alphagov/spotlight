@@ -246,9 +246,16 @@ define([
         type: formatter
       };
     }
-    formatter = _.clone(formatter);
+    formatter = formatter || {};
     if (typeof formatters[formatter.type] === 'function' && value !== null && value !== undefined) {
-      return formatters[formatter.type](value, formatter || {});
+      var val = formatters[formatter.type](value, _.clone(formatter));
+      if (formatter.abbr && formatter.magnitude) {
+        var unmagnituded = formatters[formatter.type](value, _.extend({}, formatter, { magnitude: false, pad: false }));
+        if (val !== unmagnituded) {
+          return '<abbr title="' + unmagnituded + '">' + val + '</abbr>';
+        }
+      }
+      return val;
     } else {
       return value;
     }

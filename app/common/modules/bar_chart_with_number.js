@@ -18,7 +18,7 @@ function (ModuleController, BarChartWithNumberView, BarChartWithNumberCollection
         axisPeriod: this.model.get('axis-period')
       };
       options.format = this.model.get('format') ||
-        { type: 'integer', magnitude: true, sigfigs: 3 };
+        { type: 'integer', magnitude: true, sigfigs: 3, pad: true };
 
       options.axes = _.merge({
           x: {
