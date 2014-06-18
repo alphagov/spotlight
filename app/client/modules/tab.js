@@ -38,7 +38,7 @@ function (ModuleController, TabController, TabView) {
       }
       this.renderModules(
         [tab],
-        this.model,
+        this.model.get('parent'),
         {},
         {},
         _.bind(function () {

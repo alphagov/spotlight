@@ -22,7 +22,7 @@ var TabModule = parent.extend({
   render: function () {
     this.tabModules = this.renderModules(
       this.tabs,
-      this.model,
+      this.model.get('parent'),
       function (model) {
         return {
           url: this.url + '/' + model.get('slug')
