@@ -1,4 +1,5 @@
 var requirejs = require('requirejs');
+var _ = require('lodash');
 
 var TabModule = require('../../../app/server/modules/tab');
 
@@ -12,12 +13,13 @@ describe('TabModule', function () {
   beforeEach(function () {
 
     TabModule.map = {
-      foo: function () {},
-      bar: function () {}
+      foo: function foo() {},
+      bar: function bar() {}
     };
 
     model = new Model({
       parent: new Model({}),
+      info: ['info content'],
       tabs: [
         { 'module-type': 'foo', slug: 'foo' },
         { 'module-type': 'bar', slug: 'bar' }
@@ -26,6 +28,25 @@ describe('TabModule', function () {
 
     module = new TabModule({
       model: model
+    });
+
+  });
+
+  describe('initialize', function () {
+
+    it('sets "tabs" property', function () {
+      expect(_.isArray(module.tabs)).toBe(true);
+    });
+
+    it('sets controller property on tabs', function () {
+      expect(module.tabs[0].controller).toEqual(TabModule.map.foo);
+      expect(module.tabs[1].controller).toEqual(TabModule.map.bar);
+    });
+
+    it('copies info data from tab-set to child modules', function () {
+      _.each(module.tabs, function (tab) {
+        expect(tab.info).toEqual(model.get('info'));
+      });
     });
 
   });
