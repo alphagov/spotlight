@@ -46,3 +46,17 @@
 
   }
 }
+
+#content .volumetrics-bar-selected {
+  h3 {
+    font-size: 19px;
+    font-weight: bold;
+  }
+  p {
+    margin-top: 0;
+  }
+
+  p.volumetrics-bar-period {
+    margin-bottom: 0;
+  }
+}
