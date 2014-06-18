@@ -479,8 +479,8 @@ function (LineLabel, Collection) {
         enterSelection = selection.enter().append('li').attr('style', 'display:block;height:20px;position:absolute;');
 
         spyOn(lineLabel, 'calcPositions').andReturn([
-          { min: 20 },
-          { min: 30 }
+          { min: 20, id: 'a' },
+          { min: 30, id: 'b' }
         ]);
       });
 
@@ -529,6 +529,15 @@ function (LineLabel, Collection) {
         });
       });
 
+      it('sorts elements by ideal position before calculating positions', function () {
+        collection.at(0).get('values').last().set('_count', 8);
+        collection.at(1).get('values').last().set('_count', 4);
+        lineLabel.setLabelPositions(wrapper.selectAll('li'));
+        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
+        expect(startPositions[0].id).toEqual('b');
+        expect(startPositions[1].id).toEqual('a');
+      });
+
     });
 
     describe('renderLines', function () {
@@ -547,8 +556,8 @@ function (LineLabel, Collection) {
         el = $('<div></div>').appendTo($('body'));
         componentWrapper = lineLabel.d3.select(el[0]).append('svg').append('g');
         var collection = new Collection([
-          { y: 30, yLabel: 40 },
-          { y: 80, yLabel: 80 }
+          { y: 30, yLabel: 40, id: 'foo' },
+          { y: 80, yLabel: 80, id: 'bar' }
         ]);
         lineLabel.positions = [
           { ideal: 30, min: 40 },
