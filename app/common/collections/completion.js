@@ -14,12 +14,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.setValueAttribute(options);
-      this.period = options.period || 'week';
-      this.start_at = options.startAt || null;
-      this.end_at = options.endAt || null;
       this.axisPeriod = options.axisPeriod || 'week';
-      this.duration = options.duration || Query.prototype.periods[this.period].duration;
-      this.filterBy = options.filterBy || [];
 
       MatrixCollection.prototype.initialize.apply(this, arguments);
       if (!this.denominatorMatcher) {
@@ -35,23 +30,10 @@ function (MatrixCollection, Collection, Group, Query) {
     },
 
     queryParams: function () {
-      var params = {
+      return {
         collect: this.valueAttr,
-        duration: this.duration,
-        group_by: this.matchingAttribute,
-        period: this.period,
-        start_at: this.start_at,
-        end_at: this.end_at,
-        filter_by: this.filterBy
+        group_by: this.matchingAttribute
       };
-
-      if (this.options && this.options.tabbedAttr) {
-        params[this.options.tabbedAttr] = this.options.tabs[0].id;
-      }
-
-      params = _.extend(params, (this.options.queryParams || {}));
-
-      return params;
     },
 
     parse: function (response) {

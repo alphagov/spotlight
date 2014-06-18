@@ -13,14 +13,11 @@ function (ModuleController, UserSatisfactionView, UserSatisfactionCollection) {
       return {
         id: 'user_satisfaction',
         title: 'User satisfaction',
-        sortBy: '_timestamp:ascending',
-        limit: 0,
         min: 1,
         max: 5,
         totalAttr: 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
-        period: this.model.get('period') || 'day',
-        duration: this.model.get('duration') || 30,
+        dataSource: this.model.get('data-source'),
         trim: this.model.get('trim') || true,
         axes: _.merge({
           x: {

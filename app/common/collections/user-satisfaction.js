@@ -18,9 +18,7 @@ define([
           'rating_4:sum',
           'rating_5:sum',
           'total:sum'
-        ],
-        period: this.options.period,
-        duration: this.options.duration
+        ]
       };
     },
     parse: function (response) {

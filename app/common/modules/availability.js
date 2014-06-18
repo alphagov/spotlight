@@ -12,8 +12,7 @@ function (ModuleController, AvailabilityView, AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
-        endAt: this.model.get('end-at'),
-        period: this.model.get('period'),
+        dataSource: this.model.get('data-source'),
         axes: _.merge({
           x: {
             label: 'Time',

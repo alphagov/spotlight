@@ -309,7 +309,7 @@ function (Component) {
     },
 
     renderTimePeriod: function () {
-      var period = this.period || this.collection.query.get('period') || 'week',
+      var period = this.period || this.collection.getPeriod() || 'week',
           numPeriods = this.collection.at(0).get('values').length,
           selection = this.collection.getCurrentSelection();
 

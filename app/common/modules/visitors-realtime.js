@@ -14,10 +14,7 @@ function (ModuleController, VisitorsRealtimeView, ListCollection) {
         id: 'realtime',
         title: 'Realtime',
         updateInterval: 120 * 1000,
-        queryParams: {
-          sort_by: '_timestamp:descending',
-          limit: this.model.get('numTwoMinPeriodsToQuery') || (((60 / 2) * 24) + 2)
-        },
+        dataSource: this.model.get('data-source'),
         fetchOptions: { headers: { 'cache-control': 'max-age=120' } },
         axes: _.merge({
           x: {

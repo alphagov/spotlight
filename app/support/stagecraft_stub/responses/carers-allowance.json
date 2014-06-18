@@ -105,7 +105,10 @@
       "value-attribute": "value:sum",
       "data-source": {
         "data-group": "carers-allowance",
-        "data-type": "weekly-claims"
+        "data-type": "weekly-claims",
+        "query-params": {
+          "period": "week"
+        }
       }
     },
     {
@@ -141,7 +144,10 @@
       "matching-attribute": "eventLabel",
       "data-source": {
         "data-group": "carers-allowance",
-        "data-type": "journey"
+        "data-type": "journey",
+        "query-params": {
+          "period": "week"
+        }
       }
     },
     {

@@ -13,6 +13,7 @@ function (ModuleController, JourneyCollection, JourneyGraph) {
     collectionOptions: function () {
       return {
         matchingAttribute: this.model.get('matching-attribute'),
+        dataSource: this.model.get('data-source'),
         format: {
           type: 'integer',
           magnitude: true,

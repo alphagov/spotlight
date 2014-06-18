@@ -19,7 +19,6 @@ function (MatrixCollection) {
 
     queryParams: function () {
       return {
-        period: this.period,
         collect: this.getAttrNames()
       };
     },

@@ -1,9 +1,9 @@
 define([
   'extensions/collections/matrix',
-  'extensions/models/query',
+  'extensions/models/data_source',
   'moment-timezone'
 ],
-function (MatrixCollection, Query, moment) {
+function (MatrixCollection, DataSource, moment) {
 
   var format = 'YYYY-MM-DD[T]HH:mm:ss';
 
@@ -11,13 +11,9 @@ function (MatrixCollection, Query, moment) {
     queryParams: function () {
       var params = {
         collect: this.options.valueAttr,
-        period: this.options.period,
         group_by: this.options.category,
         duration: this.duration()
       };
-      if (this.options.filterBy) {
-        params.filter_by = this.options.filterBy;
-      }
       if (this.options.startAt) {
         params.start_at = moment(this.options.startAt).subtract(this.options.period, this.timeshift()).format(format);
         params.duration = this.standardDuration();
@@ -29,7 +25,7 @@ function (MatrixCollection, Query, moment) {
       if (this.options.duration) {
         return this.options.duration;
       } else {
-        return Query.prototype.periods[this.options.period].duration;
+        return DataSource.PERIOD_TO_DURATION[this.options.period];
       }
     },
 

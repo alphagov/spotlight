@@ -16,9 +16,7 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
         denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
         matchingAttribute: this.model.get('matching-attribute'),
         valueAttr: this.model.get('value-attribute'),
-        period: this.model.get('period'),
-        startAt: this.model.get('start-at'),
-        endAt: this.model.get('end-at'),
+        dataSource: this.model.get('data-source'),
         axisPeriod: this.model.get('axis-period'),
         axes: _.merge({
           x: {
@@ -34,7 +32,6 @@ function (ModuleController, CompletionNumbersView, CompletionNumbersCollection) 
             }
           ]
         }, this.model.get('axes')),
-        duration: this.model.get('duration'),
         defaultValue: this.model.get('default-value')
       };
     }

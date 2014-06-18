@@ -10,7 +10,7 @@ function (ModuleController, KPIView, Collection) {
 
     collectionOptions: function () {
       return {
-        queryParams: this.model.get('query-params')
+        dataSource: this.model.get('data-source')
       };
     }
 

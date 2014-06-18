@@ -13,7 +13,7 @@ function (ModuleController, MultiStatsView, MultiStatsCollection) {
     collectionOptions: function () {
       return {
         stats: this.model.get('stats'),
-        period: this.model.get('period')
+        queryParams: this.model.get('query-params')
       };
     }
   });

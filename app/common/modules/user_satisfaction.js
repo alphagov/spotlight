@@ -12,8 +12,7 @@ function (ModuleController, UserSatisfactionView, ListCollection) {
       return {
         id: 'user_satisfaction',
         title: 'User satisfaction',
-        sortBy: '_timestamp:ascending',
-        limit: 0,
+        dataSource: this.model.get('data-source'),
         valueAttr: this.model.get('value-attribute')
       };
     }
