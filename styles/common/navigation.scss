@@ -1,19 +1,18 @@
 span.alpha-tag {
+  @include core-16;
+
+  // FIXME: Replace with the phase-tag @mixin
+  // when it's released by the govuk_frontend_toolkit
+
   text-transform: uppercase;
-  font-weight:normal;
   letter-spacing: 1px;
   color: $white;
   -webkit-font-smoothing: subpixel-antialiased;
-  background-color: $pink;
+  background-color: $alpha-colour;
   padding: 2px 5px 0;
-  font-size:67%;
   display:inline-block;
   vertical-align:top;
-  margin-top:2px;
-
-  a:hover & {
-      text-decoration: none;
-  }
+  margin: 2px 0 0 1px;
 }
 
 #global-header-bar .header-bar {
