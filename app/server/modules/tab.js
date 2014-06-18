@@ -13,6 +13,9 @@ var TabModule = parent.extend({
     this.tabs = _.map(this.model.get('tabs'), function (tab) {
       tab.controller = TabModule.map[tab['module-type']];
       tab.slug = this.model.get('slug') + '-' + tab.slug;
+      if (!tab.info) {
+        tab.info = this.model.get('info');
+      }
       return tab;
     }, this);
 
@@ -22,7 +25,7 @@ var TabModule = parent.extend({
   render: function () {
     this.tabModules = this.renderModules(
       this.tabs,
-      this.model,
+      this.model.get('parent'),
       function (model) {
         return {
           url: this.url + '/' + model.get('slug')

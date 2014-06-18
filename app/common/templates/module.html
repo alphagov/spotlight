@@ -35,7 +35,7 @@
     <% if (fallbackUrl) { %><li><a href="<%= fallbackUrl %>?selector=.visualisation-inner">PNG</a></li><% } %>
   </ul>
 </aside>
-<% } %>
+
 
 <% if (model.get('info') && pageType === 'module') { %>
 <aside class="more-info about" role="complementary">
@@ -48,6 +48,7 @@
 </aside>
 <% } %>
 
+<% } %>
 
 </div>
 
