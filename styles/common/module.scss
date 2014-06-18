@@ -17,7 +17,7 @@
         margin-top: 2em;
         margin-bottom: 1em;
         padding-right: 3em;
-        width: 66%;
+        min-width: 66%;
         table {
           width: 100%;
           margin-top: 0;
@@ -34,6 +34,7 @@
         overflow: hidden;
         margin-top: 2em;
         display: inline-block;
+        float: right;
         @media (max-width: 640px) {
           width: 100%;
         }
