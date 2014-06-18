@@ -155,6 +155,18 @@ describe('ContentDashboardView', function () {
       ]);
     });
 
+    it('does not include additional dashboard title on page-per-thing pages [bugfix]', function () {
+
+      model.set('page-type', 'module');
+
+      expect(view.getBreadcrumbCrumbs()).toEqual([
+        { path: '/performance', title: 'Performance' },
+        { title: 'Activity on GOV.UK' },
+        { title: 'Content Dashboard' }
+      ]);
+
+    });
+
   });
 
 });
@@ -251,6 +263,23 @@ describe('TransactionDashboardView', function () {
         { title: 'Department for Work and Pensions' },
         { title: 'Agency Name'}
       ]);
+    });
+
+    it('includes top-level dashboard title on page-per-thing pages', function () {
+
+      model.set('page-type', 'module');
+      model.set({
+        department: {
+          title: 'Department for Work and Pensions'
+        }
+      });
+
+      expect(view.getBreadcrumbCrumbs()).toEqual([
+        { path: '/performance', title: 'Performance' },
+        { title: 'Department for Work and Pensions' },
+        { title: 'Carer\'s Allowance' }
+      ]);
+
     });
 
   });
