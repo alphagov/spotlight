@@ -61,17 +61,6 @@ module.exports = View.extend({
       {'path': '/performance', 'title': 'Performance'}
     ];
     return crumbs;
-  },
-
-  getBreadcrumbs: function () {
-    var breadcrumbs = this.getBreadcrumbCrumbs();
-    if (this.model.get('page-type') === 'module') {
-      breadcrumbs.push({
-        title: this.model.get('title')
-      });
-    }
-    breadcrumbs = breadcrumbs.filter(_.identity);
-    breadcrumbs = this.ellipsifyBreadcrumbs(breadcrumbs);
-    return {'breadcrumbs': breadcrumbs};
   }
+
 });
