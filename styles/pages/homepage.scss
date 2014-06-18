@@ -14,9 +14,12 @@
     border: none;
 
     section {
-      float: left;
       margin-bottom: 0;
-      width: (600 / 960) * 100%;
+
+      @include media(desktop) {
+        float: left;
+        width: (600 / 960) * 100%;
+      }
     }
   }
 
