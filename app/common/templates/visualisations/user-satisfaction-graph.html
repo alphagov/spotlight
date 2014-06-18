@@ -5,9 +5,16 @@
       <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-completion figure" /></noscript>
     {{/fallbackUrl}}
   </div>
-  <div class="graph journey volumetrics-bar-selected" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-bar-selected"{{/fallbackUrl}}>
-    {{#fallbackUrl}}
-      <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-bar-selected" /></noscript>
-    {{/fallbackUrl}}
-  </div>
 </div>
+{{#hasBarChart}}
+<div class="graph journey volumetrics-bar-selected" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-bar-selected"{{/fallbackUrl}}>
+
+  <h3>Breakdown of survey rating</h3>
+  <p>The proportion of each response for the user satisfaction survey rating above</p>
+  <p class="volumetrics-bar-period"></p>
+
+  {{#fallbackUrl}}
+    <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-bar-selected" /></noscript>
+  {{/fallbackUrl}}
+</div>
+{{/hasBarChart}}
