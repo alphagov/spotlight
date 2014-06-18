@@ -20,12 +20,6 @@ module.exports = parent.extend({
       queryParams: this.model.get('query-params'),
       axes: this.model.get('axes')
     };
-  },
-
-  viewOptions: function () {
-    var options = parent.prototype.viewOptions.apply(this, arguments);
-    options.url = null;
-    return options;
   }
 
 });
