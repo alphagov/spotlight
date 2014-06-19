@@ -30,6 +30,39 @@
       "data-type": "realtime"
     },
     {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Applications",
+      "description": "Applications completed using the digital service",
+      "data-group": "tier-2-visit-visa",
+      "data-type": "volumetrics",
+      "category": "dataType",
+      "period": "week",
+      "value-attribute": "uniquePageviews:sum",
+      "show-line-labels": false,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Applications",
+            "categoryId": "volumetrics",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
