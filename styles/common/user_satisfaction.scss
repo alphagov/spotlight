@@ -1,10 +1,10 @@
 .user_satisfaction .visualisation-inner {
 
-  overflow: hidden;
-  position: relative;
+  display: table-cell;
 
   .stat {
-    float: left;
+    display: inline-block;
+    vertical-align: bottom;
 
     strong {
       margin-bottom: 3px;
@@ -12,9 +12,10 @@
   }
 
   .delta {
-    position: absolute;
-    bottom: 5px;
-    left: 12em;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 1em;
+    padding-bottom: 5px;
 
     .change {
       @include core-24();
@@ -24,11 +25,7 @@
   @media(max-width: 850px) {
 
     .delta {
-      left: 9em;
-    }
-
-    .stat strong {
-      margin-bottom: 8px;
+      padding-bottom: 2px;
     }
 
   }
@@ -36,12 +33,7 @@
   @media(max-width: 640px) {
 
     .delta {
-      left: 8em;
-      bottom: 2px;
-    }
-
-    .stat strong {
-      margin-bottom: 5px;
+      padding-bottom: 0px;
     }
 
   }
