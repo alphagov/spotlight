@@ -111,7 +111,7 @@ function (d3, Axis) {
         },
         tickFormat: function () {
           return _.bind(function (d) {
-            return this.getMoment(d).format('D MMM');
+            return this.getMoment(d).subtract('days', 1).format('D MMM');
           }, this);
         }
       },

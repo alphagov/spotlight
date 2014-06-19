@@ -127,7 +127,13 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     modelToDate: function (model) {
-      var prop = this.getPeriod() === 'hour' ? '_timestamp' : '_start_at';
+      var prop = '_start_at';
+      var period = this.getPeriod();
+      if (period === 'hour') {
+        prop = '_timestamp';
+      } else if (period === 'week') {
+        prop = '_end_at';
+      }
       return this.getMoment(model.get(prop));
     },
 
