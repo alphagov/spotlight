@@ -14,8 +14,6 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
 
       CompletionRateView.prototype.initialize.apply(this, arguments);
 
-      this.$breakDownPeriod = this.$el.find('.volumetrics-bar-period');
-
       this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
     },
 
@@ -25,17 +23,25 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
       this.populateBreakdownLabel();
     },
 
+    render: function () {
+      CompletionRateView.prototype.render.apply(this, arguments);
+
+      this.populateBreakdownLabel();
+    },
+
     populateBreakdownLabel: function () {
-      var selection = this.collection.getCurrentSelection();
+      if (this.model.get('parent').get('page-type') === 'module') {
+        var selection = this.collection.getCurrentSelection();
 
-      if (selection.selectedModel) {
-        selection = VolumetricsNumberView.prototype.getLabelSelected.call(this, selection);
-      } else {
-        selection = VolumetricsNumberView.prototype.getLabel.call(this);
+        if (selection.selectedModel) {
+          selection = VolumetricsNumberView.prototype.getLabelSelected.call(this, selection);
+        } else {
+          selection = VolumetricsNumberView.prototype.getLabel.call(this);
+        }
+        selection = selection === '' ? '(no data)' : selection;
+
+        this.$el.find('.volumetrics-bar-period').html(selection);
       }
-      selection = selection === '' ? '(no data)' : selection;
-
-      this.$breakDownPeriod.html(selection);
     },
 
     getPeriod: function () {
@@ -82,7 +88,6 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
             formatOptions: this.formatOptions || 'integer'
           }
         };
-        this.populateBreakdownLabel();
       }
 
       return views;
