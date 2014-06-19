@@ -16,6 +16,7 @@ function (UserSatisfactionCollection) {
         min: 1,
         max: 5,
         totalAttr: 'totalRatings',
+        startAt: this.model.get('start-at'),
         valueAttr: this.model.get('value-attribute'),
         period: this.model.get('period') || 'day',
         axisPeriod: this.model.get('axis-period'),

@@ -19,6 +19,7 @@ define([
           'rating_5:sum',
           'total:sum'
         ],
+        start_at: this.options.startAt,
         period: this.options.period,
         duration: this.options.duration
       };
