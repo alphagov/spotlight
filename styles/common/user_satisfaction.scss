@@ -48,6 +48,8 @@
 }
 
 #content .volumetrics-bar-selected {
+  position: relative;
+
   h3 {
     font-size: 19px;
     font-weight: bold;
@@ -57,6 +59,6 @@
   }
 
   p.volumetrics-bar-period {
-    margin-bottom: 0;
+    position: absolute;
   }
 }
