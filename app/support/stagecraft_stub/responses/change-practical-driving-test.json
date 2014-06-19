@@ -93,6 +93,7 @@
       "duration": 182,
       "axis-period": "month",
       "trim": false,
+      "start-at": "2014-04-01T00:00:00",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
@@ -109,6 +110,7 @@
       "data-type": "journey",
       "duration": 26,
       "axis-period": "month",
+      "start-at": "2014-04-01T00:00:00",
       "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
