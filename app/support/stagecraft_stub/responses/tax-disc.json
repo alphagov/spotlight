@@ -140,6 +140,20 @@
       "period": "month",
       "query-params": {
         "filter_by": "service:tax-disc"
+      },
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
       }
     },
     {

@@ -111,7 +111,21 @@
       "numerator-matcher": "^Digital$",
       "denominator-matcher": ".*",
       "matching-attribute": "channel",
-      "value-attribute": "count:sum"
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "service-availability",

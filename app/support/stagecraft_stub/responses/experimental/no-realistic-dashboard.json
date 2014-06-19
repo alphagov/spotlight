@@ -97,7 +97,21 @@
       },
       "value-attribute": "digital_takeup",
       "format": {
-        "type": "percent"
+        "type": "percent",
+        "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
       }
     },
     {

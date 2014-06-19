@@ -85,7 +85,21 @@
       "denominator-matcher": "^ca_",
       "numerator-matcher": "ca_e_claims_received$",
       "matching-attribute": "key",
-      "value-attribute": "value:sum"
+      "value-attribute": "value:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "user-satisfaction",

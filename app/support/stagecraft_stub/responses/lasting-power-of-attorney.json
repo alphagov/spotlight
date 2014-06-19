@@ -69,7 +69,21 @@
       "denominator-matcher": "^[a-z_]*_applications$",
       "matching-attribute": "key",
       "value-attribute": "value:sum",
-      "period": "week"
+      "period": "week",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "completion-rate",

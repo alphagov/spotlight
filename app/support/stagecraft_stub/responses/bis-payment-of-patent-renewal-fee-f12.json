@@ -160,7 +160,21 @@
       "info": [
         "Data source: Intellectual Property Office",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly renewals that are made through online and bulk software versus non-digital channels."
-      ]
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "user-satisfaction",
