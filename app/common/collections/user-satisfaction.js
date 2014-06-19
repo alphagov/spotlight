@@ -3,6 +3,10 @@ define([
 ], function (Collection) {
 
   return Collection.extend({
+    initialize: function (models, options) {
+      this.start_at = options.startAt || null;
+      Collection.prototype.initialize.apply(this, arguments);
+    },
     toPercent: function (score) {
       if (isNaN(score)) {
         return null;
@@ -19,6 +23,7 @@ define([
           'rating_5:sum',
           'total:sum'
         ],
+        start_at: this.start_at,
         period: this.options.period,
         duration: this.options.duration
       };
