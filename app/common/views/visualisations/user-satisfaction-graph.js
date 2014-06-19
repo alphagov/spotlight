@@ -1,9 +1,10 @@
 define([
   'common/views/visualisations/completion_rate',
   'common/views/visualisations/bar-chart/user-satisfaction',
+  'common/views/visualisations/volumetrics/number',
   'extensions/collections/collection'
 ],
-function (CompletionRateView, UserSatisfactionView, Collection) {
+function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Collection) {
   return CompletionRateView.extend({
 
     valueAttr: 'rating',
@@ -19,6 +20,32 @@ function (CompletionRateView, UserSatisfactionView, Collection) {
     onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
       var ratings = this.getBreakdown(selectModel);
       this.userSatisfactionCollection.at(0).get('values').reset(ratings);
+      this.populateBreakdownLabel();
+    },
+
+    render: function () {
+      CompletionRateView.prototype.render.apply(this, arguments);
+
+      this.populateBreakdownLabel();
+    },
+
+    populateBreakdownLabel: function () {
+      if (this.model.get('parent').get('page-type') === 'module') {
+        var selection = this.collection.getCurrentSelection();
+
+        if (selection.selectedModel) {
+          selection = VolumetricsNumberView.prototype.getLabelSelected.call(this, selection);
+        } else {
+          selection = VolumetricsNumberView.prototype.getLabel.call(this);
+        }
+        selection = selection === '' ? '(no data)' : selection;
+
+        this.$el.find('.volumetrics-bar-period').html(selection);
+      }
+    },
+
+    getPeriod: function () {
+      return this.model.get('period') || 'week';
     },
 
     getBreakdown: function (selectModel) {

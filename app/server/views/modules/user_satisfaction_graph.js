@@ -5,6 +5,12 @@ var template = requirejs('stache!common/templates/visualisations/user-satisfacti
 
 module.exports = View.extend({
 
-  template: template
+  template: template,
+
+  templateContext: function () {
+    return {
+      hasBarChart: this.model.get('parent').get('page-type') === 'module'
+    };
+  }
 
 });
