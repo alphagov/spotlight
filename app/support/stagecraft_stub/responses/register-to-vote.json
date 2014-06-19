@@ -20,6 +20,194 @@
   "business-model": "Department budget",
   "modules": [
     {
+      "slug": "registrations-breakdown",
+      "module-type": "grouped_timeseries",
+      "title": "Registrations breakdown",
+      "description": "",
+      "data-group": "register-to-vote",
+      "data-type": "volumetrics",
+      "category": "value",
+      "period": "day",
+      "value-attribute": "count:sum",
+      "filter-by": "metricName:application_type",
+      "show-line-labels": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Register to vote service"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Digital and phone",
+            "categoryId": "ordinary",
+            "format": "integer"
+          },
+          {
+            "label": "Paper forms",
+            "categoryId": "ems",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "",
+      "data-group": "register-to-vote",
+      "data-type": "volumetrics",
+      "period": "day",
+      "info": [
+        "Data source: Register to vote service"
+      ],
+      "filter-by": "metricName:application_type",
+      "numerator-matcher": "^ordinary$",
+      "denominator-matcher": "^ems$",
+      "matching-attribute": "value",
+      "value-attribute": "count:sum"
+    },
+    {
+      "slug": "registrations-by-age-group",
+      "module-type": "grouped_timeseries",
+      "title": "Registrations by age group",
+      "description": "",
+      "data-group": "register-to-vote",
+      "data-type": "volumetrics",
+      "category": "value",
+      "period": "day",
+      "value-attribute": "count:sum",
+      "filter-by": "metricName:age_band",
+      "show-line-labels": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Register to vote service"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "15 to 20",
+            "categoryId": "15-20",
+            "format": "integer"
+          },
+          {
+            "label": "31 to 40",
+            "categoryId": "31-40",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "registrations-by-type",
+      "module-type": "grouped_timeseries",
+      "title": "Registrations by type",
+      "description": "",
+      "data-group": "register-to-vote",
+      "data-type": "volumetrics",
+      "category": "value",
+      "period": "day",
+      "value-attribute": "count:sum",
+      "filter-by": "metricName:application_type",
+      "show-line-labels": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Register to vote service"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "UK citizens",
+            "categoryId": "ordinary",
+            "format": "integer"
+          },
+          {
+            "label": "Crown servants",
+            "categoryId": "crown",
+            "format": "integer"
+          },
+          {
+            "label": "Armed forces",
+            "categoryId": "forces",
+            "format": "integer"
+          },
+          {
+            "label": "British Council employees",
+            "categoryId": "overseas",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "electoral-background-checks",
+      "module-type": "grouped_timeseries",
+      "title": "Electoral background checks",
+      "description": "Registrations which can't be verified automatically have to be checked manually.",
+      "data-group": "register-to-vote",
+      "data-type": "volumetrics",
+      "category": "value",
+      "period": "day",
+      "value-attribute": "count:sum",
+      "filter-by": "metricName:match",
+      "show-line-labels": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Register to vote service"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "dateRange",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Successful registrations",
+            "categoryId": "green",
+            "format": "integer"
+          },
+          {
+            "label": "Requires verification",
+            "categoryId": "red",
+            "format": "integer"
+          },
+          {
+            "label": "Not enough information to verify",
+            "categoryId": "unverifiable",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
