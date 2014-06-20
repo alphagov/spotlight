@@ -68,6 +68,26 @@ describe('KPIView', function () {
       expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 30 Mar 2014');
     });
 
+    it('displays the month when the date period is month', function () {
+      var dateKpi = new KPIView({
+        model: new Model({
+          valueAttr: 'value',
+          format: 'currency',
+          'date-period': 'month'
+        }),
+        collection: new Collection([
+          {
+            value: 1100,
+            _timestamp: '2014-03-01T00:00:00+00:00',
+            end_at: '2014-03-31T00:00:00+00:00'
+          },
+          { value: 1000 }
+        ])
+      });
+      dateKpi.render();
+      expect(dateKpi.$('.period').text()).toEqual('March 2014');
+    });
+
     it('fails gracefully if there is no data', function () {
       var dateKpi = new KPIView({
         model: new Model({
