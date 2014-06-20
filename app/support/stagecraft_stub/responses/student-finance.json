@@ -4,9 +4,14 @@
   "dashboard-type": "transaction",
   "published": false,
   "strapline": "Dashboard",
-  "title": "Student finance applications",
+  "title": "Student finance applications: full-time study, England",
   "department": {
-    "title": "Department for Education"
+    "title": "Department for Business, Innovation & Skills",
+    "abbr": "BIS"
+  },
+  "agency": {
+     "title": "Student Loans Company",
+     "abbr": "SLC"
   },
   "relatedPages": {
     "transaction": {
@@ -15,16 +20,15 @@
       "metadata": ""
     }
   },
-  "description": "This service provides full-time higher education students in the UK with the funding they require.",
+  "description": "Student finance provides students living in England with the funding they require for full-time higher education.",
   "customer-type": "Individuals",
-  "business-model": "Department budget",
-  "description-extra": "The service also ensures they receive their payments, maintain their account and make repayments. The service varies across the devolved administrations: customers in England receive the full service from SLC; in Wales and Northern Ireland the service is delivered with the support of local authority partners; in Scotland it is delivered in partnership with SAAS.",
+  "description-extra": "The Student Loans Company also ensures students receive their payments, maintain their account and make repayments. The service varies across the devolved administrations: customers in England receive the full service from SLC; in Wales and Northern Ireland the service is delivered with the support of local authority partners; in Scotland it is delivered in partnership with SAAS.",
   "modules": [
     {
       "slug": "comparison-of-applications-by-stage",
       "module-type": "comparison",
       "title": "Applications at each stage of completion",
-      "description": "New digital applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the academic year",
+      "description": "New online applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current and previous academic year",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "category": "stage",
@@ -39,9 +43,7 @@
       "use_stack": false,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education digital channel applications for the 2014/15 academic year, broken down by stage",
-        "Started - 2014/15: applications started and in progress",
-        "Submitted - 2014/15: applications submitted for processing"
+        "Shows the number of new Student Finance England full-time higher education online applications started and submitted for the 2014/15 academic year with comparable numbers for the 2013/14 academic year"
       ],
       "axes": {
         "x": {
@@ -118,7 +120,7 @@
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "description": "The percentage of applications for 2014/15 made online",
+      "description": "Proportion of applications made using the digital service",
       "data-group": "student-finance",
       "data-type": "transactions-by-channel",
       "filter-by": ["academic_year:2014/15", "country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
@@ -132,26 +134,6 @@
       "numerator-matcher": "digital",
       "denominator-matcher": "[paper|digital]",
       "matching-attribute": "channel",
-      "value-attribute": "count:sum"
-    },
-    {
-      "slug": "completion-rate",
-      "module-type": "completion_rate",
-      "title": "Completion rate",
-      "description": "The percentage of online applications for 2014/15 that were successfully completed",
-      "data-group": "student-finance",
-      "data-type": "transactions-by-channel",
-      "filter-by": ["academic_year:2014/15", "country:england", "application_type:full-time application", "new_or_continuing:new"],
-      "period": "week",
-      "axis-period": "month",
-      "start-at": "2014-01-01T00:00:00",
-      "info": [
-        "Data source: Student Loans Company",
-        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the percentage of digital applications that were started versus submitted in a given week"
-      ],
-      "denominator-matcher": "started",
-      "numerator-matcher": "submitted",
-      "matching-attribute": "stage",
       "value-attribute": "count:sum"
     },
     {
@@ -213,50 +195,24 @@
       "module-type": "completion_numbers",
       "title": "Site traffic",
       "description": "Total number of unique site visits per week",
+      "info": [
+        "Data source: Google Analytics",
+        "This show the total number of visitors to the service each week. ",
+        "Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "These metrics may be based on sampled data."
+      ],
       "data-group": "student-finance",
       "data-type": "site-traffic",
       "value-attribute": "visitors:sum",
-      "info": [
-        "Data source: Google Analytics",
-        "The number of unique visits to online service pages."
-      ],
-      "denominator-matcher": "student_finance_site_traffic",
-      "numerator-matcher": "student_finance_site_traffic",
-      "matching-attribute": "dataType"
-    },
-    {
-      "slug": "device-type",
-      "module-type": "grouped_timeseries",
-      "title": "How people access the service",
-      "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
-      "data-group": "student-finance",
-      "data-type": "device-usage",
-      "category": "deviceCategory",
+      "matching-attribute": "dataType",
       "period": "week",
-      "value-attribute": "visitors:sum",
-      "show-line-labels": true,
-      "one-hundred-percent": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Google Analytics",
-        "Desktop category includes traffic from desktops and laptops"
-      ],
       "axes": {
+        "x": {
+          "label": "Date"
+        },
         "y": [
           {
-            "label": "Mobile",
-            "categoryId": "mobile",
-            "format": "percent"
-          },
-          {
-            "label": "Tablet",
-            "categoryId": "tablet",
-            "format": "percent"
-          },
-          {
-            "label": "Desktop",
-            "categoryId": "desktop",
-            "format": "percent"
+            "label": "Number of visitors"
           }
         ]
       }
