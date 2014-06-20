@@ -80,7 +80,7 @@
       "slug": "device-type",
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
-      "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
       "data-group": "driving-test-practical-public",
       "data-type": "device-usage",
       "category": "deviceCategory",
@@ -103,6 +103,11 @@
         },
         "y": [
           {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "percent"
+          },
+          {
             "label": "Mobile",
             "categoryId": "mobile",
             "format": "percent"
@@ -110,11 +115,6 @@
           {
             "label": "Tablet",
             "categoryId": "tablet",
-            "format": "percent"
-          },
-          {
-            "label": "Desktop",
-            "categoryId": "desktop",
             "format": "percent"
           }
         ]

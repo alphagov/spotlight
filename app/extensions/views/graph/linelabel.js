@@ -231,6 +231,10 @@ function (Component) {
         });
       });
 
+      positions = positions.sort(function (a, b) {
+        return a.ideal - b.ideal;
+      });
+
       // optimise positions
       positions = this.positions = this.calcPositions(positions, {
         min: this.overlapLabelTop + this.summaryHeight,
@@ -238,11 +242,15 @@ function (Component) {
       });
 
       // apply optimised positions
-      selection.attr('style', function (model, index) {
-        return [
-          'top:', that.margin.top + positions[index].min, 'px;',
+      selection.attr('style', function (model) {
+        var id = model.get('id');
+        var position = _.find(positions, function (pos) {
+          return pos.id === id;
+        });
+        return position ? [
+          'top:', that.margin.top + position.min, 'px;',
           'left:', that.offset, 'px;'
-        ].join('');
+        ].join('') : '';
       });
     },
 

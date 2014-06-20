@@ -78,8 +78,8 @@ function (LineLabel, Collection) {
         enterSelection = selection.enter().append('li').attr('style', 'display:block;height:20px;position:absolute;');
 
         spyOn(lineLabel, 'calcPositions').andReturn([
-          { min: 20 },
-          { min: 30 }
+          { min: 20, id: 'a' },
+          { min: 30, id: 'b' }
         ]);
       });
 
