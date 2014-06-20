@@ -38,5 +38,26 @@ function (Collection) {
 
       });
     });
+
+    describe('isEmpty', function () {
+
+      it('is considered "empty" is it contains only one data point', function () {
+
+        var testCollection;
+        testCollection = new Collection([], { title: 'foo', id: 'bar', period: 'hours', duration: 24 });
+        var testData = [
+          {
+            '_timestamp': testCollection.getMoment('2002-03-02T01:06:00+00:00'),
+            'unique_visitors': 1
+          }
+        ];
+        testCollection.reset({ data: testData }, { parse: true });
+
+        expect(testCollection.isEmpty()).toBe(true);
+
+      });
+
+    });
+
   });
 });
