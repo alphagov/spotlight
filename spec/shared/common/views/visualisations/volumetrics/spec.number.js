@@ -44,6 +44,14 @@ function (VolumetricsNumberView, View, Collection, Model) {
         expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith('123');
         expect(returnValue).toEqual('456');
       });
+
+      it('should return null when it doesn\'t have a collection', function () {
+        var nullVolumetricsNumberView = new VolumetricsNumberView({
+          collection: new Collection(),
+          model: new Model()
+        });
+        expect(nullVolumetricsNumberView.getValue()).toEqual(null);
+      });
     });
 
     describe('getLabel', function () {
@@ -80,6 +88,13 @@ function (VolumetricsNumberView, View, Collection, Model) {
           expect(subject.getLabel()).toEqual(prefix + ' last 12 months <span class="unavailable">(2 months unavailable)</span>');
         });
 
+        it('should return (no data) when it can\'t find a collection', function () {
+          var nullVolumetricsNumberView = new VolumetricsNumberView({
+            collection: new Collection(),
+            model: new Model()
+          });
+          expect(nullVolumetricsNumberView.getLabel()).toEqual('(no data)');
+        });
       });
 
       describe('when there are not unavailable periods', function () {

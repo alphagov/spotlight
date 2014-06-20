@@ -13,13 +13,20 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      return this.formatValue(this.collection.at(0).get(this.valueAttr));
+      if (this.collection.at(0)) {
+        return this.formatValue(this.collection.at(0).get(this.valueAttr));
+      } else {
+        return null;
+      }
     },
 
     getLabel: function () {
-      var period = this.getPeriod();
-      var events = this.collection.at(0).get('periods'),
-        unavailableEvents = events.total - events.available,
+      var period = this.getPeriod(),
+          events, unavailableEvents, label;
+
+      if (this.collection.at(0)) {
+        events = this.collection.at(0).get('periods');
+        unavailableEvents = events.total - events.available;
         label = [
           this.labelPrefix,
           'last',
@@ -27,15 +34,17 @@ function (SingleStatView) {
           this.format(events.total, { type: 'plural', singular: period })
         ];
 
-      if (unavailableEvents > 0) {
-        label = label.concat([
-          '<span class="unavailable">(' + unavailableEvents,
-          this.format(unavailableEvents, { type: 'plural', singular: period }),
-          'unavailable)</span>'
-        ]);
+        if (unavailableEvents > 0) {
+          label = label.concat([
+            '<span class="unavailable">(' + unavailableEvents,
+            this.format(unavailableEvents, { type: 'plural', singular: period }),
+            'unavailable)</span>'
+          ]);
+        }
+        return label.join(' ');
+      } else {
+        return '(no data)';
       }
-
-      return label.join(' ');
     },
 
     getValueSelected: function (selection) {
