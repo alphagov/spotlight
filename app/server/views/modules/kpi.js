@@ -11,6 +11,8 @@ module.exports = View.extend({
     var formattedDate = '';
     if (period === 'week') {
       formattedDate = this.format([startDate, endDate], {type: 'dateRange', format: 'D MMM YYYY'});
+    } else if (period === 'month') {
+      formattedDate = this.format(startDate, {type: 'date', format: 'MMMM YYYY'});
     } else {
       formattedDate = this.format([startDate, endDate], {type: 'dateRange', format: 'MMM YYYY', subtract: 'months'});
     }
