@@ -134,7 +134,21 @@
       "denominator-matcher": "^waste_new_reg_all$",
       "matching-attribute": "channel",
       "value-attribute": "count:sum",
-      "period": "week"
+      "period": "week",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "user-satisfaction",
