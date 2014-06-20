@@ -4,6 +4,7 @@
   "dashboard-type": "transaction",
   "published": false,
   "strapline": "Dashboard",
+  "tagline": "This dashboard shows information about how the new visa application service is performing. The service is currently in private beta.",
   "title": "Visa applications",
   "department": {
     "title": "Home Office",
