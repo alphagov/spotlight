@@ -368,7 +368,7 @@
       "value-attribute": "pageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
-      "use_stack": true,
+      "use_stack": false,
       "info": [
         "Data source: Google Analytics",
         "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
@@ -387,17 +387,17 @@
           {
             "label": "Desktop",
             "categoryId": "desktop",
-            "format": "integer"
+            "format": "percent"
           },
           {
             "label": "Mobile",
             "categoryId": "mobile",
-            "format": "integer"
+            "format": "percent"
           },
           {
             "label": "Tablet",
             "categoryId": "tablet",
-            "format": "integer"
+            "format": "percent"
           }
         ]
       }
@@ -417,7 +417,7 @@
       "value-attribute": "entrances:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
-      "use_stack": true,
+      "use_stack": false,
       "info": [
         "Data source: Google Analytics",
         "Visits to GOV.UK which include the department’s content. Returning visitors are those who have previously visited any part of GOV.UK. Weekly for the last 9 full weeks (Monday to Sunday).",
@@ -436,12 +436,12 @@
           {
             "label": "New visitors",
             "categoryId": "New Visitor",
-            "format": "integer"
+            "format": "percent"
           },
           {
             "label": "Returning visitors",
             "categoryId": "Returning Visitor",
-            "format": "integer"
+            "format": "percent"
           }
         ]
       }
