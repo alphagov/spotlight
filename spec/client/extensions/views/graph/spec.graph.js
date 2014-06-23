@@ -737,12 +737,13 @@ function (Graph, Collection, Model, View, d3) {
           beforeEach(function () {
             spyOn(graph, 'getPeriod').andReturn(period);
           });
-          it('scales domain from start entry start date to end entry start date', function () {
-            var domain = graph.calcXScale().domain();
-            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
-            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
-          });
-
+          if (period !== 'week') {
+            it('scales domain from first entry start date to last entry start date', function () {
+              var domain = graph.calcXScale().domain();
+              expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
+              expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-01-28');
+            });
+          }
           it('scales range to inner width', function () {
             expect(graph.calcXScale().range()).toEqual([0, 444]);
           });
@@ -813,6 +814,16 @@ function (Graph, Collection, Model, View, d3) {
 
       describe('week', function () {
         sharedSpecsForScalingBetweenStartAndEndDates('week');
+        describe('calcXScale', function () {
+          beforeEach(function () {
+            spyOn(graph, 'getPeriod').andReturn('week');
+          });
+          it('scales domain from first entry end date to last entry end date', function () {
+            var domain = graph.calcXScale().domain();
+            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-21');
+            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-02-04');
+          });
+        });
       });
 
       describe('month', function () {

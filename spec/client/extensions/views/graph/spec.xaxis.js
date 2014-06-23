@@ -83,16 +83,16 @@ function (XAxis, Collection) {
     });
 
     describe('"week" configuration', function () {
-      it('shows tick and label each Monday', function () {
+      it('shows tick and label for the sunday at the end of each period', function () {
         var view = viewForConfig('week', '2013-03-05T00:00:00+00:00', '2013-04-05T00:00:00+01:00');
         view.render();
 
         var ticks = wrapper.selectAll('.tick')[0];
         expect(wrapper.selectAll('.tick')[0].length).toEqual(4);
-        expect(d3.select(ticks[0]).text()).toEqual('11 Mar');
-        expect(d3.select(ticks[1]).text()).toEqual('18 Mar');
-        expect(d3.select(ticks[2]).text()).toEqual('25 Mar');
-        expect(d3.select(ticks[3]).text()).toEqual('1 Apr');
+        expect(d3.select(ticks[0]).text()).toEqual('10 Mar');
+        expect(d3.select(ticks[1]).text()).toEqual('17 Mar');
+        expect(d3.select(ticks[2]).text()).toEqual('24 Mar');
+        expect(d3.select(ticks[3]).text()).toEqual('31 Mar');
       });
     });
 
