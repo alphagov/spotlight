@@ -64,11 +64,15 @@ define([
       });
 
       it('should provide total uptime', function () {
-
         var collection = new AvailiabilityCollection(availabilityData, options);
         var totalUptime = collection._getTotalUptime();
 
         expect(totalUptime).toEqual(19);
+      });
+
+      it('should return null total uptime when no data is available', function () {
+        var collection = new AvailiabilityCollection(null, options);
+        expect(collection._getTotalUptime()).toEqual(null);
       });
 
       it('should provide total (monitored) time', function () {
@@ -82,7 +86,7 @@ define([
         expect(totalTime).toEqual(3);
       });
 
-      it('should provide total monitored AND unmonitored time', function () {
+      it('should provide total monitored and unmonitored time when told to', function () {
         var collection = new AvailiabilityCollection({'data': [{
           'uptime:sum': 1,
           'downtime:sum': 2,
@@ -100,11 +104,21 @@ define([
         expect(totalTime).toEqual(20);
       });
 
+      it('should return null total time when no data is available', function () {
+        var collection = new AvailiabilityCollection(null, options);
+        expect(collection._getTotalTime()).toEqual(null);
+      });
+
       it('should provide average response time', function () {
         var collection = new AvailiabilityCollection(availabilityData, options);
         var averageResponseTime = collection.getAverageResponseTime();
 
         expect(averageResponseTime).toEqual(333);
+      });
+
+      it('should return null average response time when no data is available', function () {
+        var collection = new AvailiabilityCollection(null, options);
+        expect(collection.getAverageResponseTime()).toEqual(null);
       });
 
       it('should parse data with end_at as the timestamp and start at as an hour earlier', function () {

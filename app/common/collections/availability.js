@@ -39,19 +39,31 @@ function (MatrixCollection) {
     },
 
     _getTotalUptime: function () {
-      return this.at(0).get('values').reduce(function (memo, model) {
-        return memo + model.get('uptime');
-      }, 0);
+      var totalUptime;
+      if (this.at(0)) {
+        totalUptime = this.at(0).get('values').reduce(function (memo, model) {
+          return memo + model.get('uptime');
+        }, 0);
+      } else {
+        totalUptime = null;
+      }
+      return totalUptime;
     },
 
     _getTotalTime: function (includeUnmonitored) {
-      return this.at(0).get('values').reduce(function (memo, model) {
-        var res = memo + model.get('total');
-        if (includeUnmonitored) {
-          res += model.get('unmonitored');
-        }
-        return res;
-      }, 0);
+      var totalTime;
+      if (this.at(0)) {
+        totalTime = this.at(0).get('values').reduce(function (memo, model) {
+          var res = memo + model.get('total');
+          if (includeUnmonitored) {
+            res += model.get('unmonitored');
+          }
+          return res;
+        }, 0);
+      } else {
+        totalTime = null;
+      }
+      return totalTime;
     },
 
     getFractionOfUptime: function () {
@@ -59,15 +71,21 @@ function (MatrixCollection) {
     },
 
     getAverageResponseTime: function () {
-      var values = this.at(0).get('values');
-      var total = values.reduce(function (memo, model) {
-        return memo + model.get('avgresponse');
-      }, 0);
-      if (total === 0) {
-        return null;
+      var averageResponseTime;
+      if (this.at(0)) {
+        var values = this.at(0).get('values');
+        var total = values.reduce(function (memo, model) {
+          return memo + model.get('avgresponse');
+        }, 0);
+        if (total === 0) {
+          averageResponseTime = null;
+        } else {
+          averageResponseTime = total / values.length;
+        }
       } else {
-        return total / values.length;
+        averageResponseTime = null;
       }
+      return averageResponseTime;
     }
 
   });
