@@ -47,7 +47,7 @@
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
-      "title": "Cost per digital transaction",
+      "title": "Cost per transaction",
       "description": "Average for digital transactions",
       "data-group": "waste-carriers-registration",
       "data-type": "cost-per-transaction",
