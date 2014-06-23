@@ -55,8 +55,7 @@
     "requirejs": "2.1.14",
     "uglify-js": "2.4.14",
     "winston": "0.7.3",
-    "xmlhttprequest": "1.6.0",
-    "xtend": "2.2.0"
+    "xmlhttprequest": "1.6.0"
   },
   "devDependencies": {
     "cheapseats": "git+https://github.com/alphagov/cheapseats#9eb35d15fc6b860da4462cd919774611b98908f8",
