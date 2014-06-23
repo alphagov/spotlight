@@ -1,9 +1,5 @@
-var requirejs = require('requirejs');
-
 var DashboardController  = require('./controllers/dashboard');
 var ErrorController      = require('./controllers/error');
-
-var MultiStatsModule              = requirejs('common/modules/multi_stats');
 
 var AvailabilityModule            = require('./modules/availability');
 var BarChartWithNumberModule      = require('./modules/bar_chart_with_number');
@@ -34,7 +30,6 @@ module.exports = function () {
       journey:                JourneyModule,
       kpi:                    KPIModule,
       list:                   ListModule,
-      multi_stats:            MultiStatsModule,
       tab:                    TabModule,
       table:                  TableModule,
       user_satisfaction:      UserSatisfactionModule,

@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/multi_stat_item/sparkline',
+  'common/views/visualisations/sparkline',
   'extensions/collections/collection',
   'backbone'
 ], function (SparklineView, Collection, Backbone) {
