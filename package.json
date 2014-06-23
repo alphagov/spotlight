@@ -46,7 +46,6 @@
     "jshint-stylish": "0.1.5",
     "jsonschema": "0.4.0",
     "lodash": "2.4.1",
-    "method-override": "2.0.2",
     "morgan": "1.1.1",
     "moment-timezone": "0.0.3",
     "mustache": "0.8.1",
