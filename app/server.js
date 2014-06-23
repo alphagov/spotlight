@@ -1,8 +1,10 @@
 var requirejs = require('requirejs');
 
 //Config for libraries accessible and require js
+requirejs.config({baseUrl: __dirname + '/'});
+
 var appConfig = requirejs('./config');
-appConfig.baseUrl = 'app/';
+
 appConfig.nodeRequire = require;
 requirejs.config(appConfig);
 
