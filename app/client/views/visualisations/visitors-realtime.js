@@ -57,7 +57,7 @@ function (View, SparklineView) {
 
     views: function () {
       var views = {};
-      if (this.collection && this.collection.length && this.collection.first().get('values').length > 1) {
+      if (!this.collection.isEmpty()) {
         views['.sparkline-graph'] = {
           view: SparklineView,
           options: function () {
@@ -91,7 +91,7 @@ function (View, SparklineView) {
 
       var latestDate, startDate, timePeriod, timePeriodValue, headlineLabel, graphLabel;
 
-      if (this.collection.first().get('values').length > 1) {
+      if (!this.collection.isEmpty()) {
 
         latestDate = this.collection.first().get('values').last().get('_timestamp');
         startDate = this.collection.first().get('values').first().get('_timestamp');

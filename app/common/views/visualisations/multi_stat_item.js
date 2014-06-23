@@ -13,7 +13,7 @@ function (View, HeadlineItemView, DeltaItemView, SparklineView, template) {
     templateContext: function () {
 
       var currentDate = null, startDate = null, timePeriodValue = null, timePeriod = null;
-      if (this.collection.first().get('values').length > 1) {
+      if (!this.collection.isEmpty()) {
         currentDate = this.collection.first().get('values').last().get('_start_at');
         startDate = this.collection.first().get('values').first().get('_start_at');
         if (currentDate.diff(startDate, 'days') > 365) {

@@ -16,6 +16,10 @@ function (ListCollection) {
       }, this);
 
       return data;
+    },
+
+    isEmpty: function () {
+      return ListCollection.prototype.isEmpty.call(this) || this.first().get('values').length < 2;
     }
 
   });
