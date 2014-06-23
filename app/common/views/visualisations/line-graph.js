@@ -5,7 +5,7 @@ function (Graph) {
   var LineGraph = Graph.extend({
 
     components: function () {
-      var labelOptions, yAxisOptions;
+      var labelOptions, yAxisOptions, lineGraphComponents;
 
       if (this.isOneHundredPercent()) {
         labelOptions = {
@@ -25,15 +25,11 @@ function (Graph) {
         };
       }
 
-      return {
+      lineGraphComponents = {
         axis: { view: this.sharedComponents.xaxis },
         yaxis: {
           view: this.sharedComponents.yaxis,
           options: yAxisOptions
-        },
-        linelabel: {
-          view: this.sharedComponents.linelabel,
-          options: labelOptions
         },
         line: {
           view: this.sharedComponents.line,
@@ -51,6 +47,15 @@ function (Graph) {
         },
         hover: { view: this.sharedComponents.hover }
       };
+
+      if (this.showLineLabels()) {
+        lineGraphComponents.linelabel = {
+          view: this.sharedComponents.linelabel,
+          options: labelOptions
+        };
+      }
+
+      return lineGraphComponents;
     }
 
   });
