@@ -41,7 +41,7 @@ function (Collection) {
 
     describe('isEmpty', function () {
 
-      it('is considered "empty" is it contains only one data point', function () {
+      it('is considered "empty" if it contains only one data point', function () {
 
         var testCollection;
         testCollection = new Collection([], { title: 'foo', id: 'bar', period: 'hours', duration: 24 });
