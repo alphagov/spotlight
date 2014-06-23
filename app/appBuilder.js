@@ -5,7 +5,6 @@ var winston = require('winston');
 var requirejs = require('requirejs');
 
 // Express middleware modules which have been separated out now
-var bodyParser = require('body-parser');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
@@ -27,7 +26,6 @@ module.exports = {
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
       app.use(morgan('dev'));
-      app.use(bodyParser());
       app.use(methodOverride());
       app.use(compression());
       app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
