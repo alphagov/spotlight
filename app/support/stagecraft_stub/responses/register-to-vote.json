@@ -46,7 +46,7 @@
         },
         "y": [
           {
-            "label": "Digital and phone",
+            "label": "Digital",
             "categoryId": "ordinary",
             "format": "integer"
           },
@@ -141,12 +141,12 @@
         },
         "y": [
           {
-            "label": "UK citizens",
+            "label": "UK residents",
             "categoryId": "ordinary",
             "format": "integer"
           },
           {
-            "label": "Crown servants",
+            "label": "Crown servants and British Council employees",
             "categoryId": "crown",
             "format": "integer"
           },
@@ -156,7 +156,7 @@
             "format": "integer"
           },
           {
-            "label": "British Council employees",
+            "label": "British citizens abroad",
             "categoryId": "overseas",
             "format": "integer"
           }
@@ -190,12 +190,12 @@
         },
         "y": [
           {
-            "label": "Successful registrations",
+            "label": "Successfully verified",
             "categoryId": "green",
             "format": "integer"
           },
           {
-            "label": "Requires verification",
+            "label": "Requires further verification",
             "categoryId": "red",
             "format": "integer"
           },
