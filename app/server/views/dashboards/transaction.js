@@ -16,7 +16,7 @@ module.exports = DashboardView.extend({
   },
 
   getTagline: function () {
-    return 'This dashboard shows information about how ' +
+    return this.model.get('tagline') || 'This dashboard shows information about how ' +
             'the <strong>' + this.model.get('title') +
             '</strong> service is currently performing.';
   },

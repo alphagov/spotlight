@@ -214,6 +214,11 @@ describe('TransactionDashboardView', function () {
       expect(view.getTagline()).toEqual('This dashboard shows information about how the <strong>Carer\'s Allowance</strong> service is currently performing.');
     });
 
+    it('returns the tagline from the model if set', function () {
+      view.model.set('tagline', 'Test tagline');
+      expect(view.getTagline()).toEqual('Test tagline');
+    });
+
   });
 
   describe('getBreadcrumbCrumbs', function () {
