@@ -1,14 +1,13 @@
 define([
-  'extensions/views/graph/graph',
-  'extensions/views/graph/linelabel'
+  'extensions/views/graph/graph'
 ],
-function (Graph, LineLabel) {
+function (Graph) {
   var LineGraph = Graph.extend({
 
     components: function () {
-      var labelComponent, labelOptions, yAxisOptions;
+      var labelOptions, yAxisOptions, lineGraphComponents;
+
       if (this.isOneHundredPercent()) {
-        labelComponent = LineLabel;
         labelOptions = {
           showValues: true,
           showValuesPercentage: true,
@@ -24,21 +23,13 @@ function (Graph, LineLabel) {
             };
           }
         };
-      } else {
-        labelComponent = this.sharedComponents.linelabel;
       }
 
-      labelComponent = this.sharedComponents.linelabel;
-
-      return {
+      lineGraphComponents = {
         axis: { view: this.sharedComponents.xaxis },
         yaxis: {
           view: this.sharedComponents.yaxis,
           options: yAxisOptions
-        },
-        linelabel: {
-          view: labelComponent,
-          options: labelOptions
         },
         line: {
           view: this.sharedComponents.line,
@@ -56,6 +47,15 @@ function (Graph, LineLabel) {
         },
         hover: { view: this.sharedComponents.hover }
       };
+
+      if (this.showLineLabels()) {
+        lineGraphComponents.linelabel = {
+          view: this.sharedComponents.linelabel,
+          options: labelOptions
+        };
+      }
+
+      return lineGraphComponents;
     }
 
   });
