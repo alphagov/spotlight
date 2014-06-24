@@ -38,11 +38,7 @@ function (SingleStatView) {
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedGroupIndex !== null) {
-        return this.formatPeriod(selection.selectedModel, this.getPeriod());
-      } else {
-        return '';
-      }
+      return this.formatPeriod(selection.selectedModel, this.getPeriod());
     },
 
     getPeriod: function () {

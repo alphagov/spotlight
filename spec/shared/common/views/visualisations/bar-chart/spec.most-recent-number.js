@@ -179,9 +179,18 @@ define([
           selection.set('_start_at', view.getMoment('2014-01-01T00:00:00+00:00'));
           selection.set('_end_at', view.getMoment('2014-04-01T00:00:00+00:00'));
 
-          expect(view.getLabelSelected({ selectedModel: selection })).toEqual('Jan to Mar 2014');
+          expect(view.getLabelSelected({ selectedModel: selection, selectedGroupIndex: 0 })).toEqual('Jan to Mar 2014');
         });
 
+        it('displays formatted label for selected period when selectedGroupIndex is null', function () {
+
+          var selection = new Model();
+          selection.set('_start_at', view.getMoment('2014-01-01T00:00:00+00:00'));
+          selection.set('_end_at', view.getMoment('2014-04-01T00:00:00+00:00'));
+
+          expect(view.getLabelSelected({ selectedModel: selection, selectedGroupIndex: null })).toEqual('Jan to Mar 2014');
+        });
       });
+
     });
   });
