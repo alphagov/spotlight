@@ -7,7 +7,6 @@ define([
   'client/modules/completion_rate',
   'client/modules/grouped_timeseries',
   'client/modules/journey',
-  //'common/modules/multi_stats',
   'client/modules/tab',
   'client/modules/table',
   'client/modules/user_satisfaction_graph',
@@ -18,7 +17,7 @@ function (DashboardController,
 
   AvailabilityModule, BarChartWithNumberModule, ComparisonModule, CompletionNumbersModule,
   CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
-  /*MultiStatsModule,*/ TabModule, TableModule,
+  TabModule, TableModule,
   UserSatisfactionGraphModule, VisitorsRealtimeModule, ServicesController) {
 
   var ControllerMap = {
@@ -32,7 +31,6 @@ function (DashboardController,
       completion_rate:        CompletionRateModule,
       grouped_timeseries:     GroupedTimeseriesModule,
       journey:                JourneyModule,
-      //multi_stats:            MultiStatsModule,
       tab:                    TabModule,
       table:                  TableModule,
       user_satisfaction_graph: UserSatisfactionGraphModule,

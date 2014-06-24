@@ -1,6 +1,6 @@
 define([
   'common/views/visualisations/visitors-realtime',
-  'common/views/visualisations/multi_stat_item/sparkline'
+  'common/views/visualisations/sparkline'
 ],
 function (View, SparklineView) {
   var VisitorsRealtimeView = View.extend({

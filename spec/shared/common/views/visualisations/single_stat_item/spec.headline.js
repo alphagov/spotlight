@@ -1,6 +1,6 @@
 define([
   'extensions/views/single_stat',
-  'common/views/visualisations/multi_stat_item/single_stat_item/headline',
+  'common/views/visualisations/headline',
   'extensions/collections/collection'
 ],
 function (SingleStatView, HeadlineView, Collection) {

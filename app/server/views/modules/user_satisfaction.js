@@ -1,8 +1,8 @@
 var requirejs = require('requirejs');
 
 var View = requirejs('extensions/views/view');
-var HeadlineItemView = requirejs('common/views/visualisations/multi_stat_item/single_stat_item/headline');
-var DeltaItemView = requirejs('common/views/visualisations/multi_stat_item/single_stat_item/delta');
+var HeadlineItemView = requirejs('common/views/visualisations/headline');
+var DeltaItemView = requirejs('common/views/visualisations/delta');
 var template = requirejs('stache!common/templates/visualisations/user-satisfaction');
 
 module.exports = View.extend({

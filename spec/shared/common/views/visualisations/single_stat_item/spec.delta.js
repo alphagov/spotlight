@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/multi_stat_item/single_stat_item/delta',
+  'common/views/visualisations/delta',
   'extensions/models/model',
   'extensions/collections/collection'
 ],
