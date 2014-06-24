@@ -1,4 +1,4 @@
-var extend = require('xtend');
+var _ = require('lodash');
 
 var getRequirejsConfig = function () {
   var requirejsConfig;
@@ -7,7 +7,7 @@ var getRequirejsConfig = function () {
   };
   require('./app/config');
 
-  return extend(requirejsConfig, {
+  return _.extend(requirejsConfig, {
     baseUrl: 'app',
     name: 'client',
     waitSeconds: 60,
@@ -139,13 +139,13 @@ module.exports = function (grunt) {
     // Creates a single big JS file
     requirejs: {
       production: {
-        options: extend({}, requirejsConfig, {
+        options: _.extend({}, requirejsConfig, {
           out: 'public/javascripts/spotlight.js',
           d3: true
         })
       },
       'production-no-d3': {
-        options: extend({}, requirejsConfig, {
+        options: _.extend({}, requirejsConfig, {
           out: 'public/javascripts/spotlight-no-d3.js',
           d3: false
         })
