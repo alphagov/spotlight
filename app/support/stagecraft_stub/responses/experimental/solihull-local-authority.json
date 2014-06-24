@@ -28,7 +28,7 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Missed collections breakdown",
-      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>.",
+      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",
       "category": "channel",
