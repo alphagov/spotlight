@@ -66,6 +66,43 @@
       }
     },
     {
+      "slug": "missed_bin-by-ward",
+      "module-type": "table",
+      "title": "Missed bins by ward",
+      "description": "Wards where missed bins were reported in the past week",
+      "data-group": "solihull-local-authority",
+      "data-type": "missed-bin-by-ward",
+      "query-params": {
+        "group_by": "ward",
+        "collect": ["missed_bins:sum"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Ward",
+          "key": "ward"
+        },
+        "y": [
+          {
+            "label": "Reports last week",
+            "key": "missed_bins:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of total reports",
+            "key": "percentOfTotal(missed_bins:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "missed_bins:sum",
+      "sort-order": "descending",
+      "info": [
+        "Data source: Solihull Borough Council database"
+      ]
+    },
+    {
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",

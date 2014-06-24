@@ -56,7 +56,8 @@ define(['extensions/models/model', 'lodash', 'fs', 'path'], function (Model, _, 
       { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'cumulative_count:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-procurement-count.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'monthly_spend:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-monthly-procurement.json'},
       { 'key': {'service': 'gcloud', 'api_name': 'sales', 'collect': 'count:sum', 'period': 'month', 'group_by': 'sme_large'}, 'file': 'g-cloud-monthly-procurement-count.json'},
-      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'monthly_spend:sum', 'group_by': 'lot'}, 'file': 'g-cloud-monthly-by-lot.json'}
+      { 'key': {'service': 'gcloud', 'api_name': 'sales', 'period': 'month', 'collect': 'monthly_spend:sum', 'group_by': 'lot'}, 'file': 'g-cloud-monthly-by-lot.json'},
+      { 'key': {'service': 'solihull-local-authority', 'api_name': 'missed-bin-by-ward'}, 'file': 'solihull_table.json'}
     ],
 
     fetchJson: function (request) {
