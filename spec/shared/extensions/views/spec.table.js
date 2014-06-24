@@ -110,6 +110,12 @@ function (Table, View, Collection, $) {
         expect(Table.prototype.prepareTable).not.toHaveBeenCalled();
       });
 
+      it('adds the .touch-table class on touch devices', function () {
+        table.modernizr = { touch: true };
+        table.render();
+        expect(table.$table.hasClass('touch-table')).toBe(true);
+      });
+
       it('will call renderEl with "no data" when a row has null values', function () {
         table.render();
         expect(Table.prototype.renderEl.mostRecentCall.args[2]).toEqual('no data');

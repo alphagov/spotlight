@@ -20,6 +20,9 @@ function (View, Formatters) {
     prepareTable: function () {
       this.$table = $('<table></table>');
       this.$table.appendTo(this.$el);
+      if (this.modernizr.touch) {
+        this.$table.addClass('touch-table');
+      }
     },
 
     renderEl: function (elementName, context, value, attr) {
