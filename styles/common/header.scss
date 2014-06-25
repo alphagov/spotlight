@@ -44,4 +44,27 @@
     }
 
   }
+
+  #unpublished-warning {
+    border-top: none;
+    border-left: 10px solid $mellow-red;
+    color: $mellow-red;
+    min-height: 5em;
+    padding: 0 0 0 1em;
+
+    h2 {
+      @include bold-36;
+      float: left;
+    }
+
+    p {
+      @include bold-24;
+      float: right;
+
+      @include media(desktop) {
+        margin: 0;
+        width: 66%;
+      }
+    }
+  }
 }
