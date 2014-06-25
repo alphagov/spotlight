@@ -12,7 +12,7 @@ function (Collection, Group, Query) {
       this.denominatorMatcher = options.denominatorMatcher;
       this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
-      this.setValueAttribute(options);
+      this.valueAttr = options.valueAttr || 'uniqueEvents:sum';
       this.period = options.period || 'week';
       this.start_at = options.startAt || null;
       this.end_at = options.endAt || null;
@@ -27,10 +27,6 @@ function (Collection, Group, Query) {
       if (!this.numeratorMatcher) {
         throw new Error('numeratorMatcher option must be provided');
       }
-    },
-
-    setValueAttribute: function (options) {
-      this.valueAttr = options.valueAttr ? options.valueAttr : 'uniqueEvents:sum';
     },
 
     queryParams: function () {
@@ -54,8 +50,6 @@ function (Collection, Group, Query) {
     },
 
     parse: function (response) {
-      // refresh value attribute to work with tabbed interface
-      this.setValueAttribute(this.options);
 
       var periods = 0,
           values = [];
