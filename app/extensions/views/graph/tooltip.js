@@ -14,13 +14,13 @@ function (Component, Pivot) {
     xOffset: -7,
     yOffset: -7,
 
-    x: function (group, groupIndex, model, index) {
-      var xPos = this.graph.getXPos(groupIndex, index);
+    x: function (model, index) {
+      var xPos = this.graph.getXPos(index);
       return this.scales.x(xPos);
     },
 
-    y: function (group, groupIndex, model, index) {
-      var yPos = this.graph.getYPos(groupIndex, index);
+    y: function (model, index) {
+      var yPos = this.graph.getYPos(index);
       return this.scales.y(yPos);
     },
 
@@ -28,7 +28,7 @@ function (Component, Pivot) {
       return selection.node().getBBox().width;
     },
 
-    getValue: function (group, groupIndex, model, index) {
+    getValue: function (model, index) {
       if (_.isArray(model)) {
         var noData = true;
         var sum = _.reduce(model, function (sum, model) {
@@ -53,11 +53,12 @@ function (Component, Pivot) {
         return sum;
       } else {
         if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
-          return this.collection.fraction(this.graph.valueAttr, groupIndex, index);
-        } else {
+          // TODO
+        } else if (model) {
           return model.get(this.graph.valueAttr);
         }
       }
+      return null;
     },
 
     formatValue: function (value) {
@@ -68,7 +69,7 @@ function (Component, Pivot) {
       return '(no data)';
     },
 
-    onChangeSelected: function (group, groupIndex, model, index) {
+    onChangeSelected: function (model, index) {
       var unselected = model === null;
       var selection = this.componentWrapper.selectAll('text');
 
@@ -77,7 +78,7 @@ function (Component, Pivot) {
         return;
       }
 
-      var value = this.getValue(group, groupIndex, model, index);
+      var value = this.getValue(model, index);
 
       if (value === LABELS_OFF) {
         selection.data([]).exit().remove();
@@ -99,8 +100,8 @@ function (Component, Pivot) {
       selection.text(value);
 
       var basePos = {
-        x: this.x(group, groupIndex, model, index),
-        y: this.y(group, groupIndex, model, index)
+        x: this.x(model, index),
+        y: this.y(model, index)
       };
 
       var pos = this.applyPivot(basePos, {

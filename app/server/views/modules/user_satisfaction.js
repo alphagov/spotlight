@@ -20,7 +20,7 @@ module.exports = View.extend({
       'attr': percentAttr
     };
 
-    this.collection.first().get('values').each(function (d) {
+    this.collection.each(function (d) {
       var val = d.get(valueAttr);
       var percent = this.getScoreAsPercentage(val);
       d.set(percentAttr, percent);

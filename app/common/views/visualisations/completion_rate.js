@@ -13,8 +13,7 @@ function (View, VolumetricsNumberView, CompletionGraphView) {
         '.volumetrics-completion-selected': {
           view: VolumetricsNumberView,
           options: {
-            valueAttr: this.totalAttr,
-            selectionValueAttr: this.valueAttr,
+            valueAttr: this.valueAttr,
             formatOptions: 'percent'
           }
         },

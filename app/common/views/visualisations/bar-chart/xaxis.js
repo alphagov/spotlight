@@ -2,26 +2,22 @@ define([
   'extensions/views/graph/xaxis'
 ],
 function (XAxis) {
-  var JourneyXAxis = XAxis.extend({
+  return XAxis.extend({
     useEllipses: true,
     tickValues: function () {
-      return [_.range(this.collection.at(0).get('values').length)];
+      return [_.range(this.collection.length)];
     },
     tickSize: 0,
     tickPadding: 0,
     tickFormat: function () {
-      var steps = this.collection.at(0).get('values');
       if (this.axisPeriod) {
-        var that = this;
-        return function (index) {
-          return that.formatPeriod(steps.at(index), that.axisPeriod);
-        };
+        return _.bind(function (index) {
+          return this.formatPeriod(this.collection.at(index), this.axisPeriod);
+        }, this);
       }
-      return function (index) {
-        return steps.at(index).get('title');
-      };
+      return _.bind(function (index) {
+        return this.collection.at(index).get('title');
+      }, this);
     }
   });
-
-  return JourneyXAxis;
 });

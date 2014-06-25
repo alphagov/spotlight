@@ -13,8 +13,7 @@ function (View, VolumetricsNumberView, SubmissionGraphView) {
       var views = View.prototype.views.apply(this, arguments);
 
       views['.volumetrics-completion-selected'].options = {
-        valueAttr: this.totalAttr,
-        selectionValueAttr: this.valueAttr,
+        valueAttr: this.valueAttr,
         labelPrefix: 'mean per ' + period + ' over the'
       };
 

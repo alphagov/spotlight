@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/stacked-graph'
+  'extensions/views/graph/graph'
 ],
 function (Graph) {
   var VolumetricsCompletionGraph = Graph.extend({
