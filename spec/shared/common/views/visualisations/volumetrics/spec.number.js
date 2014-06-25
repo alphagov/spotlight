@@ -145,15 +145,22 @@ function (VolumetricsNumberView, View, Collection, Model) {
     });
 
     describe('getLabelSelected', function () {
-      it('should call the view formatPeriod method with the appropriate selectedModel attribute', function () {
-        var fakeSelection = {
-          selectedModel: 'SELECTED MODEL!!!!!!'
-        };
-        spyOn(View.prototype, 'formatPeriod').andReturn('456');
-        var returnValue;
-        returnValue = subject.getLabelSelected(fakeSelection);
-        expect(View.prototype.formatPeriod).toHaveBeenCalledWith('SELECTED MODEL!!!!!!', 'week');
-        expect(returnValue).toEqual('456');
+      it('displays formatted label for selected period', function () {
+
+        var selection = new Model();
+        selection.set('_start_at', subject.getMoment('2014-01-01T00:00:00+00:00'));
+        selection.set('_end_at', subject.getMoment('2014-04-01T00:00:00+00:00'));
+
+        expect(subject.getLabelSelected({ selectedModel: selection, selectedGroupIndex: 0 })).toEqual('1 Jan to 31 Mar 2014');
+      });
+
+      it('displays formatted label for selected period when selectedGroupIndex is null', function () {
+
+        var selection = new Model();
+        selection.set('_start_at', subject.getMoment('2014-01-01T00:00:00+00:00'));
+        selection.set('_end_at', subject.getMoment('2014-04-01T00:00:00+00:00'));
+
+        expect(subject.getLabelSelected({ selectedModel: selection, selectedGroupIndex: null })).toEqual('1 Jan to 31 Mar 2014');
       });
     });
 
