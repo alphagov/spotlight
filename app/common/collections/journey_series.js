@@ -16,7 +16,9 @@ define([
 
     queryParams: function () {
       var weeksAgo = this.options.weeksAgo || 0;
-      return this.lastWeekDateRange(this.getMoment(), weeksAgo);
+      return _.extend(this.lastWeekDateRange(this.getMoment(), weeksAgo), {
+        filter_by: this.options.filterBy ? this.options.filterBy : []
+      });
     },
 
     parse: function (response) {
@@ -38,13 +40,19 @@ define([
           m[valueAttr] = m[valueAttr] || 0;
         });
       }
-
       return data;
     },
 
     getStep: function (d) {
       return d[this.options.matchingAttribute] || d.eventCategory;
+    },
+
+    getTableRows: function (keys) {
+      return [this.map(function (model, i) {
+        return model.get(keys[i]);
+      })];
     }
+
   });
 
   return JourneySeriesCollection;
