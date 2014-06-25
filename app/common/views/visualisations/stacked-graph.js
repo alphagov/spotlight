@@ -138,20 +138,9 @@ function (Graph, LineLabel) {
       return model[y0Property];
     },
     calcYScale: function () {
-      var d3 = this.d3;
       var valueAttr = this.valueAttr;
 
-      var sumAtIndex = _.bind(function (i) {
-        return this.collection.reduce(function (memo, group) {
-          return memo + group.get('values').at(i).get(valueAttr);
-        }, 0);
-      }, this);
-
-      var sums = [];
-      for (var i = 0; i < this.collection.at(0).get('values').length; i++) {
-        sums.push(sumAtIndex(i));
-      }
-      var max = d3.max(sums);
+      var max = this.collection.max(valueAttr);
       var yScale = this.d3.scale.linear();
       var tickValues = this.calculateLinearTicks([0, Math.max(max, this.minYDomainExtent)], this.numYTicks);
       if (this.isOneHundredPercent()) {

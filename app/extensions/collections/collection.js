@@ -325,6 +325,63 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       }
     },
 
+    getValues: function () {
+      return this;
+    },
+
+    max: function (attr) {
+      var maxModel = Backbone.Collection.prototype.max.call(this, function (model) {
+        return model.get(attr);
+      });
+      if (maxModel instanceof Backbone.Model) {
+        return maxModel.get(attr);
+      }
+    },
+
+    min: function (attr) {
+      var minModel = Backbone.Collection.prototype.min.call(this, function (model) {
+        return model.get(attr);
+      });
+      if (minModel instanceof Backbone.Model) {
+        return minModel.get(attr);
+      }
+    },
+
+    hasData: function () {
+      return this.length > 0;
+    },
+
+    at: function (groupIndex, modelIndex) {
+      if (arguments.length === 1 || modelIndex === undefined) {
+        modelIndex = groupIndex;
+      }
+      return Backbone.Collection.prototype.at.call(this, modelIndex);
+    },
+
+    mean: function (attr) {
+      var total = this.total(attr);
+      var count = this.defined(attr).length;
+      return total / count;
+    },
+
+    total: function (attr) {
+      var total = this.reduce(function (sum, model) {
+        var val = model.get(attr);
+        if (val !== null && !isNaN(Number(val))) {
+          sum += Number(val);
+        }
+        return sum;
+      }, 0);
+      return total;
+    },
+
+    defined: function (attr) {
+      return this.filter(function (model) {
+        var val = model.get(attr);
+        return val !== null && !isNaN(Number(val));
+      });
+    },
+
     processors: Processors
 
   });

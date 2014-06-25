@@ -27,7 +27,7 @@ function (d3, Axis) {
       // CSS ellipsis styles or line breaks.
       var labels = this.wrapper.selectAll('.x-axis .tick text');
       var svgWidth = $(this.wrapper[0]).parent().width();
-      var blockWidth = svgWidth / this.collection.first().get('values').length;
+      var blockWidth = svgWidth / this.collection.length;
 
       labels.each(function () {
 
@@ -54,7 +54,7 @@ function (d3, Axis) {
       return this.scales.x;
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
+    onChangeSelected: function (modelSelected, indexSelected) {
       var ticks = this.componentWrapper.selectAll('.tick');
       ticks.classed('selected', false);
 

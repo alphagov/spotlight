@@ -13,11 +13,7 @@ module.exports = View.extend({
         labelRegexString = this.collection.options.labelRegex,
         labelRegex = labelRegexString ? new RegExp(labelRegexString) : null;
 
-    var data = this.collection.first();
-    var items;
-
-    if (data) {
-      items = data.get('values').map(function (item) {
+    var items = this.collection.map(function (item) {
         var label = item.get(labelAttr),
             labelRegexMatch = labelRegex ? labelRegex.exec(label) : null;
 
@@ -32,7 +28,6 @@ module.exports = View.extend({
           'link': linkAttr ? (urlRoot + item.get(linkAttr)) : null
         };
       }, this);
-    }
 
     return _.extend(View.prototype.templateContext.apply(this, arguments), { 'items': items });
   }

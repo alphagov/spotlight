@@ -10,16 +10,16 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     valueAttr: 'rating',
 
     initialize: function () {
-      this.userSatisfactionCollection = new Collection([ { values: new Collection(this.getBreakdown()) } ], { format: 'integer' });
+      this.userSatisfactionCollection = new Collection(this.getBreakdown(), { format: 'integer' });
 
       CompletionRateView.prototype.initialize.apply(this, arguments);
 
       this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
     },
 
-    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
+    onChangeSelected: function (selectModel) {
       var ratings = this.getBreakdown(selectModel);
-      this.userSatisfactionCollection.at(0).get('values').reset(ratings);
+      this.userSatisfactionCollection.reset(ratings);
       this.populateBreakdownLabel();
     },
 
@@ -68,7 +68,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
           val = selectModel.get(attr);
           valueAttr = selectModel.get(valueAttr);
         } else {
-          val = this.collection.sum(attr);
+          val = this.collection.total(attr);
         }
         ratings.push({ count: val, title: label});
       }, this);
@@ -83,7 +83,6 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
           view: UserSatisfactionView,
           options: {
             valueAttr: 'count',
-            selectionValueAttr: this.valueAttr,
             collection: this.userSatisfactionCollection,
             formatOptions: this.formatOptions || 'integer'
           }

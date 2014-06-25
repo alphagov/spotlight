@@ -143,16 +143,17 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return this.modelToDate(model);
     },
 
-    getYPos: function (groupIndex, modelIndex) {
-      var group = this.collection.at(groupIndex);
-      var model = group.get('values').at(modelIndex);
-      return model.get(this.valueAttr);
+    getYPos: function () {
+      var model = this.collection.at.apply(this.collection, arguments);
+      if (model) {
+        return model.get(this.valueAttr);
+      }
+      return null;
     },
 
     calcXScale: function () {
-      var total = this.collection.first().get('values'),
-          start = this.modelToDate(total.first()).toDate(),
-          end = this.modelToDate(total.last()).toDate();
+      var start = this.modelToDate(this.collection.first()).toDate(),
+          end = this.modelToDate(this.collection.last()).toDate();
 
       return this.d3.time.scale()
               .domain([start, end])
@@ -164,7 +165,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       var yScale = this.d3.scale.linear();
       if (max) {
-        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
+        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(max, this.minYDomainExtent)], this.numYTicks);
         if (this.isOneHundredPercent()) {
           yScale.domain([0, 1]);
         } else {
@@ -177,13 +178,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     maxValue: function () {
-      var d3 = this.d3;
-      var valueAttr = this.valueAttr;
-      return d3.max(this.collection.toJSON(), function (group) {
-        return d3.max(group.values.toJSON(), function (value) {
-          return value[valueAttr];
-        });
-      });
+      return this.collection.max(this.valueAttr);
     },
 
     minValue: function () {
@@ -191,7 +186,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     hasData: function () {
-      return this.maxValue() !== undefined;
+      return this.collection.defined(this.valueAttr).length > 0;
     },
 
     getPeriod: function () {

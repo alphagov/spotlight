@@ -23,14 +23,14 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      var model = this.collection.first().get('values').last();
+      var model = this.collection.last();
       var change = this.getChange(model, this.stat.attr);
       this.trend = change.trend;
       return change.percentChange;
     },
 
     getLabel: function () {
-      var model = this.collection.first().get('values').last();
+      var model = this.collection.last();
       return this.getChange(model, this.stat.attr).previousDate;
     },
 
@@ -52,7 +52,7 @@ function (SingleStatView) {
 
       // Get previous value from collection.
       previousDate = currentDate.clone().subtract(this.deltaPeriod, this.delta);
-      var matchingValues = this.collection.first().get('values').find(function (d) {
+      var matchingValues = this.collection.find(function (d) {
         return (d.get(this.timeAttr).valueOf() === previousDate.valueOf());
       }, this);
 
