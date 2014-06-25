@@ -1,5 +1,5 @@
 define([
-  'common/collections/journey'
+  'common/collections/journey_series'
 ],
 function (JourneyCollection) {
   return {
