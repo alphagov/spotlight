@@ -76,6 +76,11 @@ module.exports = {
       res.redirect(301, '/performance');
     });
 
+    app.get('/robots.txt', function (req, res) {
+      res.set('Content-Type', 'text/plain');
+      res.send('User-agent: *\nDisallow: /');
+    });
+
     app.get('/_status', require('./healthcheck_controller'));
 
     app.get('*.png', require('./render_png'));
