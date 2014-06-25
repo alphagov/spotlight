@@ -49,9 +49,8 @@
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
       ],
-      "denominator-matcher": "start$",
-      "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "group-by": "eventCategory",
+      "filter-by": "eventCategory:pay-legalisation-drop-off:done",
       "axes": {
         "x": {
           "label": "Date of Payment"

@@ -47,9 +47,8 @@
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
-          "denominator-matcher": "scotland-office",
-          "numerator-matcher": "scotland-office",
-          "matching-attribute": "department",
+          "group-by": "department",
+          "filter-by": "department:scotland-office",
           "value-attribute": "visitors:sum",
           "period": "week",
           "axes": {
@@ -76,9 +75,8 @@
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
           ],
-          "denominator-matcher": "scotland-office",
-          "numerator-matcher": "scotland-office",
-          "matching-attribute": "department",
+          "group-by": "department",
+          "filter-by": "department:scotland-office",
           "value-attribute": "pageviews:sum",
           "period": "week",
           "axes": {
@@ -588,9 +586,8 @@
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "default-value": 0,
-      "denominator-matcher": "scotland_office",
-      "numerator-matcher": "scotland_office",
-      "matching-attribute": "organisation_acronym",
+      "group-by": "organisation_acronym",
+      "filter-by": "organisation_acronym:scotland_office",
       "value-attribute": "comment_count:sum",
       "period": "month",
       "axes": {
