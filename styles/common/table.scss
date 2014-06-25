@@ -3,6 +3,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid darken($grey-2, 10%);
+  &.touch-table {
+    margin-left: 1.5em;
+    width: calc(100% - 1.5em);
+  }
 
   &.floated-header {
     thead {
