@@ -15,7 +15,6 @@ function (RealtimeCollection) {
           sort_by: '_timestamp:descending',
           limit: this.model.get('numTwoMinPeriodsToQuery') || (((60 / 2) * 24) + 2)
         },
-        fetchOptions: { headers: { 'cache-control': 'max-age=120' } },
         period: this.model.get('period') || 'hours',
         duration: this.model.get('duration') || 24,
         axes: _.merge({
