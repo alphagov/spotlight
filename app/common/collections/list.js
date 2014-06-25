@@ -1,5 +1,5 @@
 define([
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ],
 function (MatrixCollection) {
   var ListCollection = MatrixCollection.extend({
@@ -28,13 +28,7 @@ function (MatrixCollection) {
         }, {});
       });
 
-      return {
-        id: this.options.id,
-        title: this.options.title,
-        values: data
-      };
-
-    },
+      return data;
 
     }
 

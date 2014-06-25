@@ -93,8 +93,8 @@ function (View, SparklineView) {
 
       if (!this.collection.isEmpty()) {
 
-        latestDate = this.collection.first().get('values').last().get('_timestamp');
-        startDate = this.collection.first().get('values').first().get('_timestamp');
+        latestDate = this.collection.max('_timestamp');
+        startDate = this.collection.min('_timestamp');
 
         if (latestDate) {
           var period = 'hour';
