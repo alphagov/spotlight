@@ -123,6 +123,20 @@ describe('processRequest middleware', function () {
       controller.trigger('ready');
       expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=120');
     });
+
+    it('instructs search engines not to index unpublished dashboards', function () {
+      model.set('published', false);
+      var controller = processRequest.renderContent(req, res, model);
+      controller.trigger('ready');
+      expect(res.set).toHaveBeenCalledWith('X-Robots-Tag', 'none');
+    });
+
+    it('does not set a robots header when published is set to true', function () {
+      model.set('published', true);
+      var controller = processRequest.renderContent(req, res, model);
+      controller.trigger('ready');
+      expect(res.set).not.toHaveBeenCalledWith('X-Robots-Tag', 'none');
+    });
   });
 
 });
