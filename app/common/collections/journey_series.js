@@ -33,7 +33,7 @@ define([
       }, this);
 
       var hasData = _.any(data, function (m) {
-        return m[valueAttr] !== undefined;
+        return m[valueAttr] !== null;
       });
       if (hasData) {
         _.each(data, function (m) {
