@@ -21,15 +21,17 @@ define([
       });
     },
 
-    parse: function (response) {
-      var valueAttr = this.options.valueAttr || 'uniqueEvents';
-      var data = _.map(this.axes.y, function (step) {
+    parse: function () {
+      var data = Collection.prototype.parse.apply(this, arguments);
+      var valueAttr = this.valueAttr || 'uniqueEvents';
+      data = _.map(this.axes.y, function (step) {
+        var matchingModel = _.find(data, function (responseStep) {
+          return this.getStep(responseStep) === step.journeyId;
+        }, this);
         return _.extend({
           title: step.label,
           step: step.journeyId
-        }, _.find(response.data, function (responseStep) {
-          return this.getStep(responseStep) === step.journeyId;
-        }, this));
+        }, matchingModel);
       }, this);
 
       var hasData = _.any(data, function (m) {
