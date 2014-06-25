@@ -233,14 +233,25 @@ function (require, Collection, Group) {
         var values = group.get('values'),
           max;
 
-        if (values && values.length) {
-          max = values.max(function (model) {
-            return model.get(attr) || 0;
-          }).get(attr);
+        if (values) {
+          max = values.max(attr);
         }
-        return max;
+        return max || 0;
       }, this);
       return Math.max.apply(Math, groupMaximums);
+    },
+
+    min: function (attr) {
+      var groupMinimums = this.map(function (group) {
+        var values = group.get('values'),
+          min;
+
+        if (values) {
+          min = values.min(attr);
+        }
+        return min || 0;
+      }, this);
+      return Math.min.apply(Math, groupMinimums);
     },
 
     onGroupChangeSelected: function (group, groupIndex, model, index) {
@@ -261,6 +272,14 @@ function (require, Collection, Group) {
       return this.all(function (model) {
         return model.get('values').isEmpty();
       });
+    },
+
+    hasData: function () {
+      return true;
+    },
+
+    getValues: function () {
+      return this.first().get('values');
     }
 
   });

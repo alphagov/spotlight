@@ -6,11 +6,6 @@ function (InterleavedBar) {
     interactive: true,
     strokeAlign: 'inner',
 
-    blockWidth: function () {
-      var x0 = this.scales.x(this.graph.getXPos(0, 0));
-      var x1 = this.scales.x(this.graph.getXPos(0, 1));
-      return x1 - x0;
-    },
     text: function (model) {
       var value = model.get(this.graph.valueAttr);
       if (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) {

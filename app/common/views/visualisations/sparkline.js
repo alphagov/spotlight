@@ -42,16 +42,8 @@ function (Graph) {
     },
 
     minValue: function () {
-      var d3 = this.d3;
-      var valueAttr = this.valueAttr;
-      var min = d3.min(this.collection.toJSON(), function (group) {
-        return d3.min(group.values.toJSON(), function (value) {
-          return value[valueAttr];
-        });
-      }) || 0;
-      return min;
+      return this.collection.min(this.valueAttr);
     }
-
 
   });
 

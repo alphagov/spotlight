@@ -6,24 +6,15 @@ function (SingleStatView) {
 
     changeOnSelected: true,
 
-    getFirstNonNullValueInCollection: function () {
-      var values = this.collection.first().get('values');
-      values = values.last(values.length).reverse();
-      var firstMatch = _.find(values, function (value) {
-        return !_.isNull(value.get(this.valueAttr));
-      }, this);
-      return firstMatch;
-    },
-
     getValue: function () {
-      var firstMatch = this.getFirstNonNullValueInCollection();
+      var firstMatch = _.last(this.collection.defined(this.valueAttr));
 
       var value = firstMatch ? firstMatch.get(this.valueAttr) : null;
       return this.format(value, this.formatOptions);
     },
 
     getLabel: function () {
-      var firstMatch = this.getFirstNonNullValueInCollection();
+      var firstMatch = _.last(this.collection.defined(this.valueAttr));
       return firstMatch ? this.formatPeriod(firstMatch, this.getPeriod()) : '';
     },
 

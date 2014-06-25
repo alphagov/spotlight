@@ -4,7 +4,7 @@ define([
 function (BarChart) {
   var UserSatisfaction = BarChart.extend({
     initialize: function () {
-      this.listenTo(this.collection.at(0).get('values'), 'reset', this.render, this);
+      this.listenTo(this.collection, 'reset', this.render, this);
 
       BarChart.prototype.initialize.apply(this, arguments);
     },

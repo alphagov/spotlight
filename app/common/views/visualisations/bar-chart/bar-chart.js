@@ -44,7 +44,7 @@ function (Graph, XAxis, Bar, Hover) {
 
     calcXScale: function () {
       var xScale = this.d3.scale.linear();
-      var count = this.collection.at(0).get('values').length;
+      var count = this.collection.length;
       var halfBarWidth = this.innerWidth / count / 2;
       xScale.domain([0, count - 1]);
       xScale.range([halfBarWidth + 1, this.innerWidth - halfBarWidth - 1]);
