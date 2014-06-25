@@ -3,7 +3,7 @@ var requirejs = require('requirejs');
 var ModuleController = require('../controllers/module');
 var TableView = requirejs('extensions/views/table');
 
-var Collection = requirejs('common/collections/list');
+var Collection = requirejs('extensions/collections/collection');
 
 module.exports = ModuleController.extend({
 
