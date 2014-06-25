@@ -1,8 +1,8 @@
 define([
   'extensions/collections/collection'
 ],
-function (MatrixCollection) {
-  var ListCollection = MatrixCollection.extend({
+function (Collection) {
+  return Collection.extend({
 
     initialize: function (models, options) {
       // this is delibrately not allowing empty strings
@@ -10,7 +10,7 @@ function (MatrixCollection) {
       if (!options || !options.title || !options.id) {
         throw new Error('Both "title" and "id" are required options for a ListCollection instance');
       }
-      MatrixCollection.prototype.initialize.apply(this, arguments);
+      Collection.prototype.initialize.apply(this, arguments);
     },
 
     parse: function (response) {
@@ -33,6 +33,4 @@ function (MatrixCollection) {
     }
 
   });
-
-  return ListCollection;
 });
