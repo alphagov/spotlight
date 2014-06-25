@@ -8,16 +8,14 @@ define([
       };
     },
 
-    defaultCollectionAttrs: function (collection) {
-      return {
-        id: 'completion',
-        title: 'Completion rate',
-        totalCompletion: collection._start > 0 ? (collection._end / collection._start) : null,
-        periods: {
-          total: collection.values.length,
-          available: _.filter(collection.values, function (v) { return v.get('completion') !== null; }).length
-        }
-      };
+    mean: function (attr) {
+      if (attr === 'completion') {
+        var started = this.total('_start');
+        var ended = this.total('_end');
+        return ended / started;
+      } else {
+        return CompletionCollection.prototype.mean.apply(this, arguments);
+      }
     }
   });
 

@@ -1,12 +1,11 @@
 define([
-  'extensions/collections/matrix',
   'extensions/collections/collection',
   'extensions/models/group',
   'extensions/models/query'
 ],
-function (MatrixCollection, Collection, Group, Query) {
+function (Collection, Group, Query) {
 
-  var CompletionCollection = MatrixCollection.extend({
+  var CompletionCollection = Collection.extend({
     model: Group,
 
     initialize: function (models, options) {
@@ -21,7 +20,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.duration = options.duration || Query.prototype.periods[this.period].duration;
       this.filterBy = options.filterBy || [];
 
-      MatrixCollection.prototype.initialize.apply(this, arguments);
+      Collection.prototype.initialize.apply(this, arguments);
       if (!this.denominatorMatcher) {
         throw new Error('denominatorMatcher option must be provided');
       }
@@ -59,8 +58,7 @@ function (MatrixCollection, Collection, Group, Query) {
       this.setValueAttribute(this.options);
 
       var periods = 0,
-          values = [],
-          dataTotals = { start: null, end: null };
+          values = [];
 
       if (response.data && response.data.length > 0 && response.data[0].values) {
         periods = response.data[0].values.length;
@@ -86,17 +84,9 @@ function (MatrixCollection, Collection, Group, Query) {
         };
         values.push(_.extend(this.defaultValueAttrs(value), value));
 
-        dataTotals.start += totals.start;
-        dataTotals.end += totals.end;
       }, this);
 
-      var collectionAttrs = {
-        values: new Collection(values).models,
-        _start: dataTotals.start,
-        _end: dataTotals.end
-      };
-
-      return _.extend(this.defaultCollectionAttrs(collectionAttrs), collectionAttrs);
+      return values;
     }
 
   });

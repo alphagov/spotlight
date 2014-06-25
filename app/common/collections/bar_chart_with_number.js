@@ -1,11 +1,10 @@
 define([
-  'extensions/collections/matrix',
   'extensions/collections/collection',
   'extensions/models/group'
 ],
-function (MatrixCollection, Collection, Group) {
+function (Collection, Group) {
 
-  var BarChartWithNumberCollection = MatrixCollection.extend({
+  var BarChartWithNumberCollection = Collection.extend({
 
     model: Group,
 
@@ -13,7 +12,7 @@ function (MatrixCollection, Collection, Group) {
       this.valueAttr = options.valueAttr || 'uniqueEvents:sum';
       this.axisPeriod = options.axisPeriod || 'week';
 
-      MatrixCollection.prototype.initialize.apply(this, arguments);
+      Collection.prototype.initialize.apply(this, arguments);
     },
 
     parse: function (response) {
@@ -30,12 +29,7 @@ function (MatrixCollection, Collection, Group) {
           d[this.valueAttr] = null;
         }
       }, this);
-
-      var collectionAttrs = {
-        values: new Collection(response.data).models
-      };
-
-      return collectionAttrs;
+      return response.data;
     }
 
   }, { 'MAX_LENGTH': 6});
