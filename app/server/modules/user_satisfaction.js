@@ -4,7 +4,7 @@ var ModuleController = require('../controllers/module');
 
 var View = require('../views/modules/user_satisfaction');
 
-var Collection = requirejs('common/collections/list');
+var Collection = requirejs('extensions/collections/collection');
 
 module.exports = ModuleController.extend({
 
