@@ -275,11 +275,9 @@ function (require, Collection, Group) {
     },
 
     hasData: function () {
-      return true;
-    },
-
-    getValues: function () {
-      return this.first().get('values');
+      return this.any(function (model) {
+        return model.get('values').hasData();
+      });
     }
 
   });

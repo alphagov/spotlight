@@ -325,10 +325,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       }
     },
 
-    getValues: function () {
-      return this;
-    },
-
     max: function (attr) {
       var maxModel = Backbone.Collection.prototype.max.call(this, function (model) {
         return model.get(attr);
