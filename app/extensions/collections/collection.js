@@ -32,7 +32,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       options = options || {};
       this.options = options;
 
-      _.each(['filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
+      _.each(['valueAttr', 'filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
         if (options[prop] && !this[prop]) {
           this[prop] = options[prop];
         }
@@ -64,6 +64,42 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       var queryParams = _.extend({}, this.prop('defaultQueryParams'), this.prop('queryParams'));
       this.query = new Query(queryParams);
       this.query.on('change', function () { this.fetch(); }, this);
+    },
+
+    parse: function (response) {
+      var data = response.data;
+      var suffix = /:(sum|mean)/;
+      var datetime = /_at$/;
+      // if we have a grouped response with only one group, flatten the data
+      if (this.query.get('group_by') && data.length === 1 && data[0].values) {
+        data = data[0].values;
+      }
+      if (data.length) {
+        _.each(_.keys(data[0]), function (key) {
+          // remove suffixes from `collect`ed keys
+          if (key.match(suffix)) {
+            _.each(data, function (d) {
+              d[key.replace(suffix, '')] = d[key];
+            });
+          }
+          // cast all datetime strings to moment
+          if (key.match(datetime) || key === '_timestamp') {
+            _.each(data, function (d) {
+              d[key] = this.getMoment(d[key]);
+            }, this);
+          }
+        }, this);
+        // fill in timestamps and valueAttrs where not defined
+        _.each(data, function (d) {
+          if (!d._timestamp) {
+            d._timestamp = d._start_at;
+          }
+          if (this.valueAttr && d[this.valueAttr] === undefined) {
+            d[this.valueAttr] = null;
+          }
+        }, this);
+      }
+      return data;
     },
 
     /**
@@ -312,10 +348,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         }
       }, this);
       return processors;
-    },
-
-    parse: function (response) {
-      return response.data;
     },
 
     trim: function (values, min) {
