@@ -10,15 +10,7 @@ function (MatrixCollection) {
       if (!options || !options.title || !options.id) {
         throw new Error('Both "title" and "id" are required options for a ListCollection instance');
       }
-
       MatrixCollection.prototype.initialize.apply(this, arguments);
-
-      if (isClient && _.isNumber(this.options.updateInterval)) {
-        clearInterval(this.timer);
-        this.timer = setInterval(
-          _.bind(this.fetch, this), this.options.updateInterval
-        );
-      }
     },
 
     parse: function (response) {
@@ -44,9 +36,6 @@ function (MatrixCollection) {
 
     },
 
-    fetch: function (options) {
-      options = _.extend(this.options.fetchOptions || {}, options);
-      MatrixCollection.prototype.fetch.call(this, options);
     }
 
   });
