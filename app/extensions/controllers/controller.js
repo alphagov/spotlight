@@ -53,11 +53,11 @@ define([
       }, options);
 
       if (this.collection && this.collection.isEmpty()) {
-        this.listenToOnce(this.collection, 'sync reset error', function () {
+        this.listenToOnce(this.collection, 'reset error', function () {
           this.renderView(renderViewOptions);
         }, this);
 
-        this.collection.fetch();
+        this.collection.fetch({ reset: true });
       } else {
         this.renderView(renderViewOptions);
       }
