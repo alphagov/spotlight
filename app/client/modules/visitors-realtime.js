@@ -1,12 +1,16 @@
 define([
   'client/controllers/module',
   'common/modules/visitors-realtime',
+  'client/collections/realtime',
   'client/views/visualisations/visitors-realtime'
 ],
-function (ModuleController, RealtimeModule, VisitorsRealtimeView) {
+function (ModuleController, RealtimeModule, RealtimeCollection, VisitorsRealtimeView) {
+
   return ModuleController.extend(RealtimeModule).extend({
 
-    visualisationClass: VisitorsRealtimeView
+    visualisationClass: VisitorsRealtimeView,
+
+    collectionClass: RealtimeCollection
 
   });
 
