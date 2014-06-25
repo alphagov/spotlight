@@ -81,6 +81,7 @@ figure.graph {
     }
   }
 
+  .line { stroke: $data-colour-1; z-index: 1; }
   .line0 { stroke: $data-colour-1; }
   .line1 { stroke: $data-colour-2; }
   .line2 { stroke: $data-colour-3; }
@@ -107,6 +108,7 @@ figure.graph {
     &.compare-group1 { stroke: mix($data-colour-2, $white, 50%); }
   }
 
+  .stack { fill: mix($data-colour-1, $white, 25%); }
   .stack0 { fill: mix($data-colour-1, $white, 25%); }
   .stack1 { fill: mix($data-colour-2, $white, 25%); }
   .stack2 { fill: mix($data-colour-3, $white, 25%); }
@@ -116,6 +118,7 @@ figure.graph {
   .stack6 { fill: mix($data-colour-7, $white, 25%); }
 
   .selected {
+    &.stack { fill: mix($data-colour-1, $white, 50%); }
     &.stack0 { fill: mix($data-colour-1, $white, 50%); }
     &.stack1 { fill: mix($data-colour-2, $white, 50%); }
     &.stack2 { fill: mix($data-colour-3, $white, 50%); }
@@ -126,6 +129,7 @@ figure.graph {
   }
 
   .not-selected {
+    &.stack { fill: mix($data-colour-1, $white, 10%); }
     &.stack0 { fill: mix($data-colour-1, $white, 10%); }
     &.stack1 { fill: mix($data-colour-2, $white, 10%); }
     &.stack2 { fill: mix($data-colour-3, $white, 10%); }
@@ -135,6 +139,7 @@ figure.graph {
     &.stack6 { fill: mix($data-colour-7, $white, 10%); }
   }
 
+  .text { fill: $data-colour-1; }
   .text0 { fill: $data-colour-1; }
   .text1 { fill: $data-colour-2; }
   .text2 { fill: $data-colour-3; }
@@ -146,20 +151,6 @@ figure.graph {
   .x-axis path,
   .y-axis path {
     display: none;
-  }
-
-  .selectedIndicator {
-    fill: $white;
-    vector-effect: non-scaling-stroke;
-    stroke-width: 4px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .selectedIndicator.cursorLine {
-    stroke: $black;
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
   }
 
   .terminator {
@@ -181,9 +172,25 @@ figure.graph {
     }
   }
 
+  .selectedIndicator {
+    fill: $white;
+    vector-effect: non-scaling-stroke;
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .cursorLine {
+    stroke: $black;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
+
   .bar {
     line {
       stroke-width: 2px;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
       shape-rendering: crispEdges;
       vector-effect: non-scaling-stroke;
     }
@@ -203,6 +210,7 @@ figure.graph {
 
     rect {
       stroke-width: 2px;
+      &.stack { stroke: mix($data-colour-1, $white, 25%); }
       &.stack0 { stroke: mix($data-colour-1, $white, 25%); }
       &.stack1 { stroke: mix($data-colour-2, $white, 25%); }
       &.stack2 { stroke: mix($data-colour-3, $white, 25%); }
@@ -214,6 +222,7 @@ figure.graph {
 
     .selected {
       rect {
+        &.stack { stroke: $data-colour-1; }
         &.stack0 { stroke: $data-colour-1; }
         &.stack1 { stroke: $data-colour-2; }
         &.stack2 { stroke: $data-colour-3; }
