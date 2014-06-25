@@ -10,11 +10,12 @@ function (CompletionNumbersCollection) {
       return {
         numeratorMatcher: new RegExp(this.model.get('numerator-matcher')),
         denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
-        matchingAttribute: this.model.get('matching-attribute'),
-        valueAttr: this.model.get('value-attribute'),
+        matchingAttribute: this.model.get('group-by'),
+        valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
         period: this.model.get('period'),
         startAt: this.model.get('start-at'),
         endAt: this.model.get('end-at'),
+        filterBy: this.model.get('filter-by'),
         axisPeriod: this.model.get('axis-period'),
         axes: _.merge({
           x: {
