@@ -13,13 +13,9 @@ function (Collection) {
       return params;
     },
 
-    parse: function (response) {
-      var data = response.data;
+    parse: function () {
+      var data = Collection.prototype.parse.apply(this, arguments);
       _.each(data, function (d) {
-        d.uptime = d['uptime:sum'];
-        d.downtime = d['downtime:sum'];
-        d.unmonitored = d['unmonitored:sum'];
-        d.avgresponse = d['avgresponse:mean'];
         if (d.downtime === null && d.uptime === null) {
           d.total = null;
           d.uptimeFraction = null;
@@ -27,9 +23,6 @@ function (Collection) {
           d.total = d.downtime + d.uptime;
           d.uptimeFraction = d.uptime / d.total;
         }
-        d._end_at = this.getMoment(d._end_at);
-        d._start_at = this.getMoment(d._start_at);
-        d._timestamp = d._start_at;
       }, this);
       return data;
     },
