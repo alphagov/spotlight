@@ -39,13 +39,11 @@ function (Collection) {
     },
 
     _getTotalTime: function (includeUnmonitored) {
-      return this.reduce(function (memo, model) {
-        var res = memo + model.get('total');
-        if (includeUnmonitored) {
-          res += model.get('unmonitored');
-        }
-        return res;
-      }, 0);
+      var total = this.total('total');
+      if (includeUnmonitored) {
+        total += this.total('unmonitored');
+      }
+      return total;
     },
 
     getFractionOfUptime: function () {
