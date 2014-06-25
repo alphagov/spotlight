@@ -13,6 +13,7 @@ function (Collection, Group, Query) {
       this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';
       this.valueAttr = options.valueAttr || 'uniqueEvents:sum';
+      this.collect = options.valueAttr || 'uniqueEvents:sum';
       this.period = options.period || 'week';
       this.start_at = options.startAt || null;
       this.end_at = options.endAt || null;
@@ -31,7 +32,7 @@ function (Collection, Group, Query) {
 
     queryParams: function () {
       var params = {
-        collect: this.valueAttr,
+        collect: this.collect,
         duration: this.duration,
         group_by: this.matchingAttribute,
         period: this.period,
