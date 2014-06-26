@@ -253,7 +253,10 @@ module.exports = function (grunt) {
       supervisor: {
         options: {
           stdout: true,
-          stderr: true
+          stderr: true,
+          execOptions: {
+            maxBuffer: Infinity
+          }
         },
         command: './node_modules/supervisor/lib/cli-wrapper.js -w app -i app/vendor -e "js|html" -n error app/server'
       }
