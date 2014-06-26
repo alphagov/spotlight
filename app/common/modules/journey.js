@@ -9,7 +9,7 @@ function (JourneyCollection) {
 
     collectionOptions: function () {
       return {
-        matchingAttribute: this.model.get('matching-attribute'),
+        matchingAttribute: this.model.get('matching-attribute') || 'eventCategory',
         filterBy: this.model.get('filter-by'),
         format: {
           type: 'integer',
