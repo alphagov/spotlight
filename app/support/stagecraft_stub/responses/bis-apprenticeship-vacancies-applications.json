@@ -130,7 +130,7 @@
       "data-group": "transactional-services",
       "data-type": "summaries",
       "value-attribute": "digital_takeup",
-      "axis-period": "quarter",
+      "period": "quarter",
       "format": {
         "type": "percent"
       },

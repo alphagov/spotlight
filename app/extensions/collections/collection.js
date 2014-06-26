@@ -68,6 +68,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       var datetime = /_at$/;
 
       data = this.flatten(data);
+
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
           // remove suffixes from `collect`ed keys
