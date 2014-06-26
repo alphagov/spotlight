@@ -128,6 +128,20 @@ function (d3, Axis) {
             return val;
           }, this);
         }
+      },
+      quarter: {
+        ticks: function () {
+          return [this.d3.time.month.utc, 3];
+        },
+        tickFormat: function () {
+          return _.bind(function (d) {
+            var val = this.getMoment(d).subtract('months', 1).format('MMM');
+            if (d.getMonth() === 0) {
+              val += ' ' + this.getMoment(d).subtract('months', 1).format('YYYY');
+            }
+            return val;
+          }, this);
+        }
       }
     }
   });

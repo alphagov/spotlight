@@ -29,23 +29,19 @@ function (Collection, Query) {
     },
 
     queryParams: function () {
-      var params = {
-        collect: this.collect,
-        duration: this.duration,
-        group_by: this.matchingAttribute,
-        period: this.period,
-        start_at: this.start_at,
-        end_at: this.end_at,
-        filter_by: this.filterBy
-      };
-
-      if (this.options && this.options.tabbedAttr) {
-        params[this.options.tabbedAttr] = this.options.tabs[0].id;
+      if (this.options.queryParams) {
+        return this.options.queryParams;
+      } else {
+        return {
+          collect: this.collect,
+          duration: this.duration,
+          group_by: this.matchingAttribute,
+          period: this.period,
+          start_at: this.start_at,
+          end_at: this.end_at,
+          filter_by: this.filterBy
+        };
       }
-
-      params = _.extend(params, (this.options.queryParams || {}));
-
-      return params;
     }
 
   });

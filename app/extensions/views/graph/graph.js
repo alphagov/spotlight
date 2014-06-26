@@ -131,7 +131,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       var period = this.getPeriod();
       if (period === 'hour') {
         prop = '_timestamp';
-      } else if (period === 'week') {
+      } else if (period === 'week' || period === 'quarter') {
         prop = '_end_at';
       }
       return this.getMoment(model.get(prop));
