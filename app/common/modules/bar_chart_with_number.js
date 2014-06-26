@@ -1,10 +1,10 @@
 define([
-  'common/collections/bar_chart_with_number'
+  'extensions/collections/collection'
 ],
-function (BarChartWithNumberCollection) {
+function (Collection) {
   return {
     requiresSvg: true,
-    collectionClass: BarChartWithNumberCollection,
+    collectionClass: Collection,
 
     collectionOptions: function () {
       var valueAttr = this.model.get('value-attribute') || 'uniqueEvents:sum';
@@ -36,7 +36,8 @@ function (BarChartWithNumberCollection) {
     visualisationOptions: function () {
       return {
         valueAttr: 'uniqueEvents',
-        formatOptions: this.model.get('format')
+        formatOptions: this.model.get('format'),
+        maxBars: 6
       };
     }
   };
