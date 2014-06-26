@@ -91,6 +91,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         }, this);
         // fill in timestamps and valueAttrs where not defined
         _.each(data, function (d) {
+          if (!d._start_at && this.options.axisPeriod) {
+            d._start_at = d['_' + this.options.axisPeriod + '_start_at'];
+          }
           if (!d._timestamp) {
             d._timestamp = d._start_at;
           }
