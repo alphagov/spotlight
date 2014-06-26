@@ -5,7 +5,8 @@ table {
   border: 1px solid darken($grey-2, 10%);
   &.touch-table {
     margin-left: 1.5em;
-    width: calc(100% - 1.5em);
+    margin-right: 1.5em;
+    width: calc(100% - 3em);
   }
 
   &.floated-header {

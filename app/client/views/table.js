@@ -1,8 +1,16 @@
-define(['backbone'], function (Backbone) {
+define([
+  'backbone',
+  'modernizr'
+],
+function (Backbone, Modernizr) {
 
   return Backbone.View.extend({
 
     render: function () {
+
+      if (Modernizr.touch) {
+        this.$('table').addClass('touch-table');
+      }
 
       this.$('table').removeClass('floated-header');
       var headers = this.$('table').find('thead th'),
