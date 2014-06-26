@@ -212,6 +212,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       return base + '?' + $.param(params, true);
     },
 
+    comparator: '_timestamp',
+
     /**
      * Sets a new attribute-specific comparator to sort by and then re-sorts.
      * This will trigger a reset event.
