@@ -23,7 +23,6 @@ define([
 
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
-      var valueAttr = this.valueAttr || 'uniqueEvents';
       data = _.map(this.axes.y, function (step) {
         var matchingModel = _.find(data, function (responseStep) {
           return this.getStep(responseStep) === step.journeyId;
@@ -34,19 +33,20 @@ define([
         }, matchingModel);
       }, this);
 
-      var hasData = _.any(data, function (m) {
-        return m[valueAttr] !== null;
-      });
-      if (hasData) {
+      if (this.hasData()) {
         _.each(data, function (m) {
-          m[valueAttr] = m[valueAttr] || 0;
-        });
+          m[this.valueAttr] = m[this.valueAttr] || 0;
+        }, this);
       }
       return data;
     },
 
+    hasData: function () {
+      return this.defined(this.valueAttr).length > 0;
+    },
+
     getStep: function (d) {
-      return d[this.options.matchingAttribute] || d.eventCategory;
+      return d[this.options.matchingAttribute];
     },
 
     getTableRows: function (keys) {
