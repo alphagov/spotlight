@@ -7,11 +7,11 @@ function (BarChartWithNumberCollection) {
     collectionClass: BarChartWithNumberCollection,
 
     collectionOptions: function () {
-      var valueAttr = this.model.get('value-attribute');
+      var valueAttr = this.model.get('value-attribute') || 'uniqueEvents:sum';
       var options = {
         queryParams: this.model.get('query-params'),
         valueAttr: valueAttr,
-        axisPeriod: this.model.get('axis-period')
+        axisPeriod: this.model.get('axis-period') || 'week'
       };
       options.format = this.model.get('format') ||
         { type: 'integer', magnitude: true, sigfigs: 3, pad: true };
