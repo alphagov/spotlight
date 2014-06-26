@@ -94,6 +94,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
           if (!d._start_at && this.options.axisPeriod) {
             d._start_at = d['_' + this.options.axisPeriod + '_start_at'];
           }
+          if (!d._end_at && d.end_at) {
+            d._end_at = d.end_at;
+          }
           if (!d._timestamp) {
             d._timestamp = d._start_at;
           }
