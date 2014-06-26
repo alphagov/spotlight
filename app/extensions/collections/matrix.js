@@ -1,16 +1,14 @@
 define([
   'require',
-  './collection',
-  'extensions/models/group'
+  './collection'
 ],
-function (require, Collection, Group) {
+function (require, Collection) {
   /**
    * Helper class. Graphs expect a collection of `Group` models, each of which
    * containing a data series. This collection combines one or more single
    * data series into a Graph-compatible collection of collections.
    */
   var MatrixCollection = Collection.extend({
-    model: Group,
 
     initialize: function () {
       Collection.prototype.initialize.apply(this, arguments);

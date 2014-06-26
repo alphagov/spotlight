@@ -1,12 +1,10 @@
 define([
   'extensions/collections/collection',
-  'extensions/models/group',
   'extensions/models/query'
 ],
-function (Collection, Group, Query) {
+function (Collection, Query) {
 
   var CompletionCollection = Collection.extend({
-    model: Group,
 
     initialize: function (models, options) {
       this.denominatorMatcher = options.denominatorMatcher;

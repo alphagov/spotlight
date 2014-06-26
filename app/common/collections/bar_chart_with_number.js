@@ -1,12 +1,9 @@
 define([
-  'extensions/collections/collection',
-  'extensions/models/group'
+  'extensions/collections/collection'
 ],
-function (Collection, Group) {
+function (Collection) {
 
   var BarChartWithNumberCollection = Collection.extend({
-
-    model: Group,
 
     initialize: function (models, options) {
       this.valueAttr = options.valueAttr || 'uniqueEvents:sum';
