@@ -8,11 +8,10 @@ define([
   './stack',
   './linelabel',
   './hover',
-  './callout',
   './tooltip',
   './missing-data'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Tooltip, MissingData) {
 
   var Graph = View.extend({
 
@@ -30,7 +29,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       line: Line,
       stack: Stack,
       linelabel: LineLabel,
-      callout: Callout,
+      callout: Tooltip,
       hover: Hover,
       tooltip: Tooltip
     },

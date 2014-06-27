@@ -13,7 +13,7 @@ function (Component) {
     labelOffset: 6,
 
     showSquare: true,
-    showValues: false,
+    showValues: true,
     showValuesPercentage: false,
     showSummary: false,
     showTimePeriod: false,
@@ -190,8 +190,8 @@ function (Component) {
         selection.selectAll('span').attr('class', 'meta');
       }
 
-      selection.each(function (group, i) {
-        that.setLabelContent.call(that, that.d3.select(this), group, i);
+      selection.each(function (line, i) {
+        that.setLabelContent.call(that, that.d3.select(this), line, i);
       });
 
       this.setLabelPositions(selection);
@@ -260,28 +260,23 @@ function (Component) {
           labelMeta = '';
 
       if (this.showValues) {
-        var attr = this.graph.valueAttr,
-            selected = this.collection.getCurrentSelection(),
-            value = 0;
+        var selected = this.collection.getCurrentSelection(),
+            value = 0,
+            attr = line.categoryId + ':' + this.graph.valueAttr;
 
         if (this.showValuesPercentage && this.isLineGraph) {
           attr += '_original';
         }
-
         if (selected.selectedModel) {
-          value = this.collection.at(groupIndex, selected.selectedModelIndex).get(attr);
+          value = this.collection.at(selected.selectedModelIndex).get(attr);
         } else {
-          if (this.isLineGraph) {
-            value = this.collection.lastNonNullItem(attr, groupIndex, selected.selectedModelIndex).val;
-          } else {
-            value = this.collection.sum(attr, groupIndex);
-          }
+          value = this.collection.total(attr);
         }
 
         if (this.showValuesPercentage && value) {
           var fraction;
-          fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex, this.isLineGraph);
-          labelMeta += this.renderValuePercentage(value, fraction);
+          //fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex, this.isLineGraph);
+          //labelMeta += this.renderValuePercentage(value, fraction);
         } else {
           labelMeta += this.renderValuePercentage(value);
         }
