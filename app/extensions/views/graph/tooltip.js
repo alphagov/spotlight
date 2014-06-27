@@ -29,7 +29,7 @@ function (Component, Pivot) {
     },
 
     getValue: function (model, index, attr) {
-      attr = attr || this.graph.valueAttr
+      attr = attr || this.graph.valueAttr;
       if (_.isArray(model)) {
         var noData = true;
         var sum = _.reduce(model, function (sum, model) {
@@ -63,7 +63,8 @@ function (Component, Pivot) {
     },
 
     formatValue: function (value) {
-      return value;
+      var format = this.graph.currency ? 'currency' : 'number';
+      return this.format(value, { type: format, magnitude: true, pad: true });
     },
 
     formatMissingValue: function () {
