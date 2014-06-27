@@ -26,15 +26,15 @@ function (View, SparklineView) {
       this.onChangeSelected();
     },
 
-    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
+    onChangeSelected: function (model, index) {
       var content = this.noDataMessage,
           selection = this.collection.getCurrentSelection(),
           label;
 
       this.currentVisitors = this.getCurrentVisitors();
 
-      if (selectModel) {
-        this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
+      if (model) {
+        this.selectedModel = _.isArray(model) ? model[0] : model;
       }
 
       if (this.selectedModel) {
