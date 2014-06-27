@@ -38,7 +38,6 @@ function (SingleStatView) {
     },
 
     getValueSelected: function (selection) {
-      console.log(selection);
       var val;
       if (selection.selectedModel !== null) {
         val = selection.selectedModel.get(this.valueAttr);
