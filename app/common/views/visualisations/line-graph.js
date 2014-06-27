@@ -1,7 +1,8 @@
 define([
-  'extensions/views/graph/graph'
+  'extensions/views/graph/graph',
+  'extensions/views/graph/line-set'
 ],
-function (Graph) {
+function (Graph, LineSet) {
   var LineGraph = Graph.extend({
 
     components: function () {
@@ -31,12 +32,10 @@ function (Graph) {
           view: this.sharedComponents.yaxis,
           options: yAxisOptions
         },
-        line: {
-          view: this.sharedComponents.line,
+        lines: {
+          view: LineSet,
           options: {
-            interactive: function (e) {
-              return e.slice % 3 !== 2;
-            }
+            interactive: true
           }
         },
         callout: {
@@ -56,6 +55,18 @@ function (Graph) {
       }
 
       return lineGraphComponents;
+    },
+
+    getLines: function () {
+      return _.map(this.model.get('axes').y, function (line) {
+        return line.categoryId + ':' + this.valueAttr;
+      }, this);
+    },
+
+    maxValue: function () {
+      return _.reduce(this.getLines(), function (max, attr) {
+        return Math.max(max, this.collection.max(attr) || 0);
+      }, 0, this);
     }
 
   });

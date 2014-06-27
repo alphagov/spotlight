@@ -25,6 +25,7 @@ function (View, d3) {
     },
 
     moveToFront: function (el) {
+      el = el || this.componentWrapper;
       if (_.isFunction(el.node)) {
         el = el.node();
       }

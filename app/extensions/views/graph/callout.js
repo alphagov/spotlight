@@ -32,20 +32,21 @@ function (Component, Pivot) {
       return this.calloutEl;
     },
 
-    onChangeSelected: function (model, index) {
+    onChangeSelected: function (model, index, options) {
       var el = this.calloutEl;
       if (!model) {
         el.addClass('performance-hidden');
         return;
       }
-      this.renderContent(el, model, index);
+      options = options || {};
+      this.renderContent(el, model, options.valueAttr);
       el.removeClass('performance-hidden');
 
       var scaleFactor = this.graph.scaleFactor();
 
       var basePos = {
-        x: this.x(model, index) * scaleFactor,
-        y: this.y(model, index) * scaleFactor
+        x: this.x(index) * scaleFactor,
+        y: this.y(index, options.valueAttr) * scaleFactor
       };
 
       var pivotingEl = this.getPivotingElement();
@@ -69,12 +70,12 @@ function (Component, Pivot) {
       });
     },
 
-    x: function (model, index) {
+    x: function (index) {
       return this.scales.x(this.graph.getXPos(index));
     },
 
-    y: function (model, index) {
-      return this.scales.y(this.graph.getYPos(index));
+    y: function (index, valueAttr) {
+      return this.scales.y(this.graph.getYPos(index, valueAttr));
     },
 
     onMouseMove: function () {
@@ -86,17 +87,18 @@ function (Component, Pivot) {
       return this.formatPeriod(model, period);
     },
 
-    renderContent: function (el, model) {
+    renderContent: function (el, model, valueAttr) {
 
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
       var format = this.graph.currency ? 'currency' : 'integer';
+      valueAttr = valueAttr || this.graph.valueAttr;
 
       var value;
       if (this.showPercentage) {
-        value = this.format(model.get(this.graph.valueAttr), 'percent');
-        value += ' (' + this.format(model.get(this.graph.valueAttr + '_original'), { type: format, magnitude: true, pad: true }) + ')';
+        value = this.format(model.get(valueAttr), 'percent');
+        value += ' (' + this.format(model.get(valueAttr + '_original'), { type: format, magnitude: true, pad: true }) + ')';
       } else {
-        value = this.format(model.get(this.graph.valueAttr), { type: format, magnitude: true, pad: true });
+        value = this.format(model.get(valueAttr), { type: format, magnitude: true, pad: true });
       }
 
       var detail = $('<dl>').html([
