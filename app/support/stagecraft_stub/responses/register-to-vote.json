@@ -46,7 +46,7 @@
         },
         "y": [
           {
-            "label": "Digital and phone",
+            "label": "Digital",
             "categoryId": "ordinary",
             "format": "integer"
           },
@@ -71,7 +71,7 @@
       ],
       "filter-by": "metricName:application_type",
       "numerator-matcher": "^ordinary$",
-      "denominator-matcher": "^ems$",
+      "denominator-matcher": "^ordinary|ems$",
       "matching-attribute": "value",
       "value-attribute": "count:sum"
     },
@@ -102,13 +102,43 @@
         },
         "y": [
           {
-            "label": "15 to 20",
-            "categoryId": "15-20",
+            "label": "16 to 18",
+            "categoryId": "16-18",
             "format": "integer"
           },
           {
-            "label": "31 to 40",
-            "categoryId": "31-40",
+            "label": "18 to 24",
+            "categoryId": "18-24",
+            "format": "integer"
+          },
+          {
+            "label": "25 to 34",
+            "categoryId": "25-34",
+            "format": "integer"
+          },
+          {
+            "label": "35 to 44",
+            "categoryId": "35-44",
+            "format": "integer"
+          },
+          {
+            "label": "45 to 54",
+            "categoryId": "45-54",
+            "format": "integer"
+          },
+          {
+            "label": "55 to 64",
+            "categoryId": "55-64",
+            "format": "integer"
+          },
+          {
+            "label": "65 to 74",
+            "categoryId": "65-74",
+            "format": "integer"
+          },
+          {
+            "label": "Over 75",
+            "categoryId": "> 75",
             "format": "integer"
           }
         ]
@@ -141,12 +171,12 @@
         },
         "y": [
           {
-            "label": "UK citizens",
+            "label": "UK residents",
             "categoryId": "ordinary",
             "format": "integer"
           },
           {
-            "label": "Crown servants",
+            "label": "Crown servants and British Council employees",
             "categoryId": "crown",
             "format": "integer"
           },
@@ -156,52 +186,8 @@
             "format": "integer"
           },
           {
-            "label": "British Council employees",
+            "label": "British citizens abroad",
             "categoryId": "overseas",
-            "format": "integer"
-          }
-        ]
-      }
-    },
-    {
-      "slug": "electoral-background-checks",
-      "module-type": "grouped_timeseries",
-      "title": "Electoral background checks",
-      "description": "Registrations which can't be verified automatically have to be checked manually.",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
-      "category": "value",
-      "period": "day",
-      "value-attribute": "count:sum",
-      "filter-by": "metricName:match",
-      "show-line-labels": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Register to vote service"
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "D MMM YYYY"
-          }
-        },
-        "y": [
-          {
-            "label": "Successful registrations",
-            "categoryId": "green",
-            "format": "integer"
-          },
-          {
-            "label": "Requires verification",
-            "categoryId": "red",
-            "format": "integer"
-          },
-          {
-            "label": "Not enough information to verify",
-            "categoryId": "unverifiable",
             "format": "integer"
           }
         ]
