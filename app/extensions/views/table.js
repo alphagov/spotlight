@@ -91,7 +91,7 @@ function (View, Formatters) {
       if (axes) {
         cols = _.map(axes.y, function (axis) {
           return _.extend({
-            key: this.valueAttr
+            key: axis.categoryId + ':' + this.valueAttr
           }, axis);
         }, this);
         if (axes.x) {

@@ -38,8 +38,9 @@ function (SingleStatView) {
     },
 
     getValueSelected: function (selection) {
+      console.log(selection);
       var val;
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel !== null) {
         val = selection.selectedModel.get(this.valueAttr);
       } else {
         val = null;
@@ -48,7 +49,7 @@ function (SingleStatView) {
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel !== null) {
         return this.formatPeriod(selection.selectedModel, this.getPeriod());
       } else {
         return '';

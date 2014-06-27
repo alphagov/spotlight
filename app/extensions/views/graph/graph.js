@@ -118,12 +118,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return $(this.svg.node()).width() / this.width;
     },
 
-    getModel: function (groupIndex, modelIndex) {
-      if (!this.collection.at(groupIndex) && this.encompassStack) {
-        return this.collection.at(groupIndex - 1, modelIndex);
-      } else {
-        return this.collection.at(groupIndex, modelIndex);
-      }
+    getModel: function (modelIndex) {
+      return this.collection.at(modelIndex);
     },
 
     modelToDate: function (model) {
@@ -137,16 +133,16 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return this.getMoment(model.get(prop));
     },
 
-    getXPos: function (groupIndex, modelIndex) {
-      groupIndex = groupIndex || 0;
-      var model = this.getModel(groupIndex, modelIndex);
+    getXPos: function (modelIndex) {
+      var model = this.getModel(modelIndex);
       return this.modelToDate(model);
     },
 
-    getYPos: function () {
-      var model = this.collection.at.apply(this.collection, arguments);
+    getYPos: function (modelIndex, valueAttr) {
+      valueAttr = valueAttr || this.valueAttr;
+      var model = this.getModel(modelIndex);
       if (model) {
-        return model.get(this.valueAttr);
+        return model.get(valueAttr);
       }
       return null;
     },
