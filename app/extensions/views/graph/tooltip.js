@@ -118,6 +118,7 @@ function (Component, Pivot) {
       });
 
       selection.attr('transform', 'translate(' + pos.x + ', ' + pos.y + ')');
+      this.moveToFront();
     }
 
   });
