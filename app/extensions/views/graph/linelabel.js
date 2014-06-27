@@ -103,7 +103,7 @@ function (Component) {
         data.push(this.format(value, { type: format, magnitude: true, pad: true }));
       }
       if (percentage) {
-        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
+        if (this.graph.isOneHundredPercent()) {
           data.unshift(this.format(percentage, 'percent'));
         } else {
           data.push(this.format(percentage, 'percent'));
@@ -168,7 +168,7 @@ function (Component) {
       });
 
       var selection = labelWrapper.selectAll('li')
-        .data(this.collection.options.axes.y);
+        .data(this.graph.getLines());
       var enterSelection = selection.enter().append('li');
 
       selection.attr('class', function (line, index) {
@@ -217,7 +217,7 @@ function (Component) {
       var that = this;
       selection.each(function (line) {
         var y;
-        var valueAttr = line.categoryId + ':' + that.graph.valueAttr;
+        var valueAttr = line.key;
         for (var index = maxModelIndex; index >= 0; index--) {
           y = that.getYIdeal(index, valueAttr);
           if (y !== null) {
@@ -263,24 +263,23 @@ function (Component) {
       if (this.showValues) {
         var selected = this.collection.getCurrentSelection(),
             value = 0,
-            attr = line.categoryId + ':' + this.graph.valueAttr;
+            percentage,
+            model,
+            attr = line.key;
 
-        if (this.showValuesPercentage && this.isLineGraph) {
-          attr += '_original';
-        }
         if (selected.selectedModel) {
-          value = this.collection.at(selected.selectedModelIndex).get(attr);
+          model = selected.selectedModel;
         } else {
-          value = this.collection.total(attr);
+          model = this.collection.last();
+        }
+        if (this.graph.isOneHundredPercent()) {
+          value = model.get(attr.replace(':percent', ''));
+          percentage = model.get(attr);
+        } else {
+          value = model.get(attr);
         }
 
-        if (this.showValuesPercentage && value) {
-          var fraction;
-          //fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex, this.isLineGraph);
-          //labelMeta += this.renderValuePercentage(value, fraction);
-        } else {
-          labelMeta += this.renderValuePercentage(value);
-        }
+        labelMeta += this.renderValuePercentage(value, percentage);
       }
 
       /*if (group.get('timeshift')) {
@@ -345,9 +344,8 @@ function (Component) {
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
-      var graphValueAttr = this.graph.valueAttr;
       var selected = function (line) {
-        var valueAttr = line.categoryId + ':' + graphValueAttr;
+        var valueAttr = line.key;
         return model && (!options.valueAttr || options.valueAttr === valueAttr);
       };
       var unselected = function (line) {
