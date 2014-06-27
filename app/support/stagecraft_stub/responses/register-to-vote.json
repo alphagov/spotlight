@@ -71,7 +71,7 @@
       ],
       "filter-by": "metricName:application_type",
       "numerator-matcher": "^ordinary$",
-      "denominator-matcher": "^ems$",
+      "denominator-matcher": "^ordinary|ems$",
       "matching-attribute": "value",
       "value-attribute": "count:sum"
     },
