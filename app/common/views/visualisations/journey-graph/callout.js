@@ -14,7 +14,7 @@ function (Callout) {
     blockMarginFraction: 0.2,
     barMarginFraction: 0.05,
 
-    x: function (model, index) {
+    x: function (index) {
       var blockWidth = this.scales.x(1) - this.scales.x(0);
       var blockMargin = this.blockMarginFraction * blockWidth / 2;
 
