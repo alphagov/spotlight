@@ -92,14 +92,15 @@ function (Component) {
 
     renderValuePercentage: function (value, percentage) {
       var data = [],
-          summary = '';
+          summary = '',
+          format = this.graph.currency ? 'currency' : 'number';
 
       if (value === null && !percentage) {
         return '<span class="no-data">(no data)</span>';
       }
 
       if (value !== null) {
-        data.push(this.format(value, { type: 'number', magnitude: true, pad: true }));
+        data.push(this.format(value, { type: format, magnitude: true, pad: true }));
       }
       if (percentage) {
         if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
