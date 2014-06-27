@@ -19,20 +19,21 @@ function (Collection) {
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
       var lines = this.options.axes.y;
-      var hasTotalLine = _.find(lines, function (line) {
-        return line.categoryId === 'Total';
-      });
-      if (hasTotalLine) {
-        _.each(data, function (model) {
-          model['Total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
-            var prop = line.categoryId;
-            if (prop !== 'Total') {
-              sum += model[prop + ':' + this.valueAttr];
-            }
-            return sum;
-          }, 0, this);
+
+      _.each(data, function (model) {
+        model['total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
+          var prop = line.key || line.categoryId;
+          if (prop !== 'total') {
+            sum += model[prop + ':' + this.valueAttr];
+          }
+          return sum;
+        }, 0, this);
+        _.each(lines, function (line) {
+          var prop = (line.key || line.categoryId) + ':' + this.valueAttr;
+          model[prop + ':' + 'percent'] = model[prop] / model['total:' + this.valueAttr];
         }, this);
-      }
+      }, this);
+
       return data;
     }
 

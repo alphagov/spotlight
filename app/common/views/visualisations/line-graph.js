@@ -6,16 +6,18 @@ function (Graph, LineSet) {
   var LineGraph = Graph.extend({
 
     components: function () {
-      var labelOptions, yAxisOptions, lineGraphComponents;
+      var labelOptions = {
+          isLineGraph: true
+        },
+        yAxisOptions, lineGraphComponents;
 
       if (this.isOneHundredPercent()) {
-        labelOptions = {
+        _.extend(labelOptions, {
           showValues: true,
           showValuesPercentage: true,
-          isLineGraph: true,
           showOriginalValues: true,
           showSummary: false
-        };
+        });
 
         yAxisOptions = {
           tickFormat: function () {
@@ -57,15 +59,24 @@ function (Graph, LineSet) {
       return lineGraphComponents;
     },
 
+    isOneHundredPercent: function () {
+      return this.model && this.model.get('one-hundred-percent');
+    },
+
     getLines: function () {
       return _.map(this.model.get('axes').y, function (line) {
-        return line.categoryId + ':' + this.valueAttr;
+        line = _.clone(line);
+        line.key = line.key || (line.categoryId + ':' + this.valueAttr);
+        if (this.isOneHundredPercent()) {
+          line.key += ':percent';
+        }
+        return line;
       }, this);
     },
 
     maxValue: function () {
-      return _.reduce(this.getLines(), function (max, attr) {
-        return Math.max(max, this.collection.max(attr) || 0);
+      return _.reduce(this.getLines(), function (max, line) {
+        return Math.max(max, this.collection.max(line.key) || 0);
       }, 0, this);
     }
 
