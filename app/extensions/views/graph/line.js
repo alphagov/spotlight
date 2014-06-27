@@ -15,6 +15,8 @@ function (Component) {
       return yPos === null ? null : this.scales.y(yPos);
     },
 
+    className: '',
+
     /**
      * Renders a line for each group in the collection.
      */
@@ -35,7 +37,7 @@ function (Component) {
           .defined(function (model, index) { return getY(model, index) !== null; });
 
       var path = this.componentWrapper.append('g').attr('class', 'group')
-        .append('path').attr('class', 'line');
+        .append('path').attr('class', 'line ' + this.className);
       path.datum(this.collection.toJSON())
           .attr('d', line);
     },
@@ -55,7 +57,7 @@ function (Component) {
         if (showTerminator) {
           this.componentWrapper.select('g.group')
             .append('circle')
-            .attr('class', 'terminator line')
+            .attr('class', 'terminator line ' + this.className)
             .attr('cx', getX(null, index))
             .attr('cy', getY(null, index))
             .attr('r', 1.5);
@@ -63,18 +65,42 @@ function (Component) {
       }, this);
     },
 
-    onChangeSelected: function (model, index) {
-      this.componentWrapper.select('path.line').classed('selected', !!model);
-      this.componentWrapper.selectAll('.selectedIndicator').remove();
-      if (model && this.y(index) !== null) {
+    onChangeSelected: function (model, index, options) {
+      options = options || {};
+      if (model) {
+        if (options.valueAttr && this.valueAttr !== options.valueAttr) {
+          this.deselect();
+        } else {
+          this.select(index);
+        }
+      } else {
+        this.unselect();
+      }
+    },
+
+    select: function (index) {
+      if (this.y(index) !== null) {
+        this.moveToFront();
+        this.componentWrapper.select('path.line').classed('selected', true).classed('not-selected', false);
         var x = this.x(index);
         var y = this.y(index);
         this.renderSelectionPoint(x, y);
       }
     },
 
+    deselect: function () {
+      this.componentWrapper.selectAll('.selectedIndicator').remove();
+      this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', true);
+    },
+
+    unselect: function () {
+      this.componentWrapper.selectAll('.selectedIndicator').remove();
+      this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', false);
+    },
+
     renderSelectionPoint: function (x, y) {
-      var className = 'selectedIndicator line';
+      this.componentWrapper.selectAll('.selectedIndicator').remove();
+      var className = 'selectedIndicator line ' + this.className;
       this.componentWrapper.append('circle').attr({
         'class': className,
         cx: x,

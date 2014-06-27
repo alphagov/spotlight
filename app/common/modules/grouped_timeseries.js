@@ -15,7 +15,7 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
           return series.timeshift;
         });
       }
-      if (containsTimeshift) {
+      if (false && containsTimeshift) {
         this.collectionClass = GroupedTimeshiftCollection;
       } else  {
         this.collectionClass = GroupedTimeseriesCollection;
