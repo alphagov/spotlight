@@ -16,7 +16,7 @@ function (View) {
       this.listenTo(this.collection, 'reset sync error', this.render, this);
     },
 
-    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
+    onChangeSelected: function (selectModel) {
       if (selectModel) {
         this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
       }

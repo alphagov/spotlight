@@ -208,7 +208,7 @@ function (Component) {
     setLabelPositions: function (selection) {
 
       // labels are positioned in relation to last data point
-      var maxModelIndex = this.collection.at(0).get('values').length - 1;
+      var maxModelIndex = this.collection.length - 1;
 
       // prepare 'positions' array
       var positions = [];
