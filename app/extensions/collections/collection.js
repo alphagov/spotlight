@@ -253,14 +253,14 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
      * @param {Boolean} [options.silent=false] Suppress `change:selected` event
      */
     selectItem: function (index, options) {
-      if (index === this.selectedIndex) {
+      options = options || {};
+      if (index === this.selectedIndex && !options.force) {
         return;
       }
       var model = (index === null) ? null : this.models[index];
-      this.selectedItem = model;
       this.selectedIndex = index;
-      if (!options || !options.silent) {
-        this.trigger('change:selected', model, index);
+      if (!options.silent) {
+        this.trigger('change:selected', model, index, options);
       }
     },
 

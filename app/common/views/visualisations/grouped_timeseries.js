@@ -7,7 +7,7 @@ function (View, StackedGraph, LineGraph) {
   var CategoriesView = View.extend({
 
     views: function () {
-      var useStack = this.model.get('use_stack'),
+      var useStack = false,//this.model.get('use_stack'),
           graph = useStack ? StackedGraph : LineGraph;
 
       return {
