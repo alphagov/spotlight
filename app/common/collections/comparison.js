@@ -1,11 +1,11 @@
 define([
-  'extensions/collections/matrix',
+  'extensions/collections/collection',
   'common/collections/grouped_timeshift'
 ],
 function (Collection, TimeshiftCollection) {
 
   return Collection.extend({
-    initialize: function (models, options) {
+    /*initialize: function (models, options) {
       options.collections = _.map(options.comparison, function (param) {
         return {
           collection: TimeshiftCollection.extend({}),
@@ -37,7 +37,7 @@ function (Collection, TimeshiftCollection) {
         });
       });
       return collections;
-    }
+    }*/
   });
 
 });

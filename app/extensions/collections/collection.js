@@ -38,10 +38,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         }
       }, this);
 
-      if (this.collections) {
-        // does not request data itself but depends on other collections
-        this.instantiateParts(models, options);
-      }
       this.createQueryModel();
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
@@ -70,10 +66,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       var data = response.data;
       var suffix = /:(sum|mean)/;
       var datetime = /_at$/;
-      // if we have a grouped response with only one group, flatten the data
-      if (this.query.get('group_by') && data.length === 1 && data[0].values) {
-        data = data[0].values;
-      }
+
+      data = this.flatten(data);
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
           // remove suffixes from `collect`ed keys
@@ -108,6 +102,24 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       return data;
     },
 
+    flatten: function (data) {
+      var category = this.query.get('group_by');
+      var valueAttr = this.valueAttr;
+      if (category && data.length) {
+        // if we have a grouped response with only one group, flatten the data
+        if (data[0].values) {
+          _.each(data, function (dataset) {
+            var categoryValue = dataset[category];
+            _.each(dataset.values, function (model, i) {
+              data[0].values[i][categoryValue + ':' + valueAttr] = model[valueAttr];
+            }, this);
+          }, this);
+          data = data[0].values;
+        }
+      }
+      return data;
+    },
+
     /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.
@@ -124,59 +136,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         queryId: this.queryId
       }, options);
 
-      if (this.collectionInstances) {
-        this.fetchParts(options);
-      } else {
-        Backbone.Collection.prototype.fetch.call(this, options);
-      }
-    },
-
-    /**
-     * Fetches data for all constituent collections. Parses data when all
-     * requests have returned successfully. Fails if any of the requests fail.
-     */
-    fetchParts: function (options) {
-      options = options || {};
-
-      _.each(this.collectionInstances, function (collection) {
-        collection.query.set(this.query.attributes, {silent: true});
-      }, this);
-
-      var numRequests = this.collectionInstances.length;
-      var openRequests = numRequests;
-      var successfulRequests = 0;
-      var that = this;
-
-      var onResponse = function () {
-        if (--openRequests > 0) {
-          // wait for other requests to return
-          return;
-        }
-
-        if (successfulRequests === numRequests) {
-          // all constituent collections returned successfully
-          that.reset.call(that, that.parse.call(that, options), { parse: true });
-        }
-      };
-      var onSuccess = function () {
-        successfulRequests++;
-        onResponse();
-      };
-
-      _.each(this.collectionInstances, function (collection) {
-        collection.on('error', function () {
-          // escalate error status
-          if (options.error) {
-            options.error.apply(collection, arguments);
-          }
-          var args = ['error'].concat(Array.prototype.slice.call(arguments));
-          this.trigger.apply(this, args);
-        }, this);
-        collection.fetch({
-          success: onSuccess,
-          error: onResponse
-        });
-      }, this);
+      Backbone.Collection.prototype.fetch.call(this, options);
     },
 
     defaultQueryParams: function () {
@@ -385,13 +345,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
 
     hasData: function () {
       return this.length > 0;
-    },
-
-    at: function (groupIndex, modelIndex) {
-      if (arguments.length === 1 || modelIndex === undefined) {
-        modelIndex = groupIndex;
-      }
-      return Backbone.Collection.prototype.at.call(this, modelIndex);
     },
 
     mean: function (attr) {

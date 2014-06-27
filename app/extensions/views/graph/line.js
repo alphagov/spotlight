@@ -11,7 +11,7 @@ function (Component) {
       return xPos === null ? null : Math.floor(this.scales.x(xPos)) + 0.5;
     },
     y: function (index) {
-      var yPos = this.graph.getYPos(index);
+      var yPos = this.graph.getYPos(index, this.valueAttr);
       return yPos === null ? null : this.scales.y(yPos);
     },
 

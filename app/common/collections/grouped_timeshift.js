@@ -1,14 +1,13 @@
 define([
-  'extensions/collections/matrix',
-  'extensions/models/query',
+  './grouped_timeseries',
   'moment-timezone'
 ],
-function (MatrixCollection, Query, moment) {
+function (GroupedCollection, moment) {
 
   var format = 'YYYY-MM-DD[T]HH:mm:ss';
 
-  var GroupedTimeshiftCollection = MatrixCollection.extend({
-    queryParams: function () {
+  return GroupedCollection.extend({
+    /*queryParams: function () {
       var params = {
         collect: this.options.valueAttr,
         period: this.options.period,
@@ -105,9 +104,7 @@ function (MatrixCollection, Query, moment) {
                            .value();
 
       return this.applyStandardDates(matchedSeries);
-    }
+    }*/
 
   });
-
-  return GroupedTimeshiftCollection;
 });
