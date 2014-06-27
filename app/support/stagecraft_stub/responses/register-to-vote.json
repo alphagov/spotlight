@@ -194,50 +194,6 @@
       }
     },
     {
-      "slug": "electoral-background-checks",
-      "module-type": "grouped_timeseries",
-      "title": "Electoral background checks",
-      "description": "Registrations which can't be verified automatically have to be checked manually.",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
-      "category": "value",
-      "period": "day",
-      "value-attribute": "count:sum",
-      "filter-by": "metricName:match",
-      "show-line-labels": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Register to vote service"
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": {
-            "type": "dateRange",
-            "format": "D MMM YYYY"
-          }
-        },
-        "y": [
-          {
-            "label": "Successfully verified",
-            "categoryId": "green",
-            "format": "integer"
-          },
-          {
-            "label": "Requires further verification",
-            "categoryId": "red",
-            "format": "integer"
-          },
-          {
-            "label": "Not enough information to verify",
-            "categoryId": "unverifiable",
-            "format": "integer"
-          }
-        ]
-      }
-    },
-    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
