@@ -30,40 +30,14 @@ function (Component, Pivot) {
 
     getValue: function (model, index, attr) {
       attr = attr || this.graph.valueAttr;
-      if (_.isArray(model)) {
-        var noData = true;
-        var sum = _.reduce(model, function (sum, model) {
-          var value = model.get(attr);
-          if (value !== null) {
-            noData = false;
-          }
-          return sum += model.get(attr);
-        }, 0, this);
-        //this is a hack based on a bug in getDistanceAndClosestModel
-        //which manifests in grouped_timeseries displayed as stack.
-        //it causes the total rather than the stack value to be displayed
-        //when hovering to the right of the last value.
-        //in the case of stacked_graph this is not desired
-        //(though we still want '(no data)' labels)
-        //and so we show nothing if noTotal is true and the sum isn't null
-        if (noData) {
-          sum = null;
-        } else if (this.noTotal) {
-          sum = LABELS_OFF;
-        }
-        return sum;
-      } else {
-        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
-          // TODO
-        } else if (model) {
-          return model.get(attr);
-        }
-      }
-      return null;
+      return model.get(attr);
     },
 
     formatValue: function (value) {
       var format = this.graph.currency ? 'currency' : 'number';
+      if (this.graph.isOneHundredPercent()) {
+        format = 'percent';
+      }
       return this.format(value, { type: format, magnitude: true, pad: true });
     },
 

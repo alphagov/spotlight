@@ -79,10 +79,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Too
       return this.model && this.model.get('show-line-labels');
     },
 
-    isOneHundredPercent: function () {
-      return this.model && this.model.get('one-hundred-percent');
-    },
-
     prepareGraphArea: function () {
       var figure = this.figure = $('<figure/>').addClass('graph');
       if (this.showLineLabels()) {

@@ -106,7 +106,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       var category = this.query.get('group_by');
       var valueAttr = this.valueAttr;
       if (category && data.length) {
-        // if we have a grouped response with only one group, flatten the data
+        // if we have a grouped response, flatten the data
         if (data[0].values) {
           _.each(data, function (dataset) {
             var categoryValue = dataset[category];

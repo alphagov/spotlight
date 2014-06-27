@@ -11,7 +11,7 @@ define([
       this.lines = _.map(this.graph.getLines(), function (line, i) {
         var options = _.extend(defaultOptions, {
           interactive: false,
-          valueAttr: line,
+          valueAttr: line.key,
           className: 'line' + i
         });
         return new Line(options);
