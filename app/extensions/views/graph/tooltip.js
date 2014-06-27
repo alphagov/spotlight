@@ -14,13 +14,13 @@ function (Component, Pivot) {
     xOffset: -7,
     yOffset: -7,
 
-    x: function (model, index) {
+    x: function (index) {
       var xPos = this.graph.getXPos(index);
       return this.scales.x(xPos);
     },
 
-    y: function (model, index) {
-      var yPos = this.graph.getYPos(index);
+    y: function (index, attr) {
+      var yPos = this.graph.getYPos(index, attr);
       return this.scales.y(yPos);
     },
 
@@ -28,15 +28,16 @@ function (Component, Pivot) {
       return selection.node().getBBox().width;
     },
 
-    getValue: function (model, index) {
+    getValue: function (model, index, attr) {
+      attr = attr || this.graph.valueAttr
       if (_.isArray(model)) {
         var noData = true;
         var sum = _.reduce(model, function (sum, model) {
-          var value = model.get(this.graph.valueAttr);
+          var value = model.get(attr);
           if (value !== null) {
             noData = false;
           }
-          return sum += model.get(this.graph.valueAttr);
+          return sum += model.get(attr);
         }, 0, this);
         //this is a hack based on a bug in getDistanceAndClosestModel
         //which manifests in grouped_timeseries displayed as stack.
@@ -55,7 +56,7 @@ function (Component, Pivot) {
         if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
           // TODO
         } else if (model) {
-          return model.get(this.graph.valueAttr);
+          return model.get(attr);
         }
       }
       return null;
@@ -69,7 +70,8 @@ function (Component, Pivot) {
       return '(no data)';
     },
 
-    onChangeSelected: function (model, index) {
+    onChangeSelected: function (model, index, options) {
+      options = options || {};
       var unselected = model === null;
       var selection = this.componentWrapper.selectAll('text');
 
@@ -78,7 +80,7 @@ function (Component, Pivot) {
         return;
       }
 
-      var value = this.getValue(model, index);
+      var value = this.getValue(model, index, options.valueAttr);
 
       if (value === LABELS_OFF) {
         selection.data([]).exit().remove();
@@ -100,8 +102,8 @@ function (Component, Pivot) {
       selection.text(value);
 
       var basePos = {
-        x: this.x(model, index),
-        y: this.y(model, index)
+        x: this.x(index),
+        y: this.y(index, options.valueAttr)
       };
 
       var pos = this.applyPivot(basePos, {

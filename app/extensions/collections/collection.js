@@ -259,6 +259,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       }
       var model = (index === null) ? null : this.models[index];
       this.selectedIndex = index;
+      this.selectedItem = model;
       if (!options.silent) {
         this.trigger('change:selected', model, index, options);
       }
