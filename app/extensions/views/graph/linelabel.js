@@ -167,17 +167,17 @@ function (Component) {
       });
 
       var selection = labelWrapper.selectAll('li')
-        .data(this.collection.models);
+        .data(this.collection.options.axes.y);
       var enterSelection = selection.enter().append('li');
 
-      selection.attr('class', function (model, index) {
+      selection.attr('class', function (line, index) {
         var classes = ['label' + index];
-        if (model.get('className')) {
+        /*if (model.get('className')) {
           classes.push(model.get('className'));
         }
         if (model.get('timeshift')) {
           classes.push('timeshift');
-        }
+        }*/
         return classes.join(' ');
       });
 
@@ -197,8 +197,8 @@ function (Component) {
       this.setLabelPositions(selection);
     },
 
-    getYIdeal: function (groupIndex, index) {
-      return this.graph.getYPos(groupIndex, index);
+    getYIdeal: function (index, attr) {
+      return this.graph.getYPos(index, attr);
     },
 
     /**
@@ -214,10 +214,11 @@ function (Component) {
       var positions = [];
       var scale = this.scales.y;
       var that = this;
-      selection.each(function (group, groupIndex) {
+      selection.each(function (line) {
         var y;
+        var valueAttr = line.categoryId + ':' + that.graph.valueAttr;
         for (var index = maxModelIndex; index >= 0; index--) {
-          y = that.getYIdeal.call(that, groupIndex, index);
+          y = that.getYIdeal(index, valueAttr);
           if (y !== null) {
             break;
           }
@@ -227,7 +228,7 @@ function (Component) {
         positions.push({
           ideal: scale(y),
           size: size,
-          id: group.get('id')
+          id: line.categoryId
         });
       });
 
@@ -242,8 +243,8 @@ function (Component) {
       });
 
       // apply optimised positions
-      selection.attr('style', function (model) {
-        var id = model.get('id');
+      selection.attr('style', function (line) {
+        var id = line.categoryId;
         var position = _.find(positions, function (pos) {
           return pos.id === id;
         });
@@ -254,8 +255,8 @@ function (Component) {
       });
     },
 
-    setLabelContent: function (selection, group, groupIndex) {
-      var labelTitle = '<span class="label-title">' + group.get('title') + '</span>',
+    setLabelContent: function (selection, line) {
+      var labelTitle = '<span class="label-title">' + line.label + '</span>',
           labelMeta = '';
 
       if (this.showValues) {
@@ -286,9 +287,9 @@ function (Component) {
         }
       }
 
-      if (group.get('timeshift')) {
+      /*if (group.get('timeshift')) {
         labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
-      }
+      }*/
 
       if (this.attachLinks) {
         selection.select('a').html(labelTitle);
@@ -344,40 +345,22 @@ function (Component) {
       }
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected) {
+    onChangeSelected: function (model, index, options) {
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
-      labels.classed('selected', function (group, groupIndex) {
-        return groupIndexSelected === groupIndex;
-      });
-      labels.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
-      });
-      lines.classed('selected', function (group, groupIndex) {
-        return groupIndexSelected === groupIndex;
-      });
-      lines.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
-      });
-    },
-
-    onHover: function (e) {
-      var y = e.y;
-      var bestIndex, bestDistance = Infinity;
-      _.each(this.positions, function (elem, index) {
-        var yLabel = Math.floor(elem.min) + 0.5;
-        var distance = Math.abs(yLabel - y);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          bestIndex = index;
-        }
-      });
-      if (e.toggle && bestIndex === this.collection.selectedIndex) {
-        this.collection.selectItem(null);
-      } else {
-        this.collection.selectItem(bestIndex);
-      }
+      var graphValueAttr = this.graph.valueAttr;
+      var selected = function (line) {
+        var valueAttr = line.categoryId + ':' + graphValueAttr;
+        return model && (!options.valueAttr || options.valueAttr === valueAttr);
+      };
+      var unselected = function (line) {
+        return model && !selected(line);
+      };
+      labels.classed('selected', selected);
+      labels.classed('not-selected', unselected);
+      lines.classed('selected', selected);
+      lines.classed('not-selected', unselected);
     },
 
     /**

@@ -77,7 +77,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     showLineLabels: function () {
-      return false && this.model && this.model.get('show-line-labels');
+      return this.model && this.model.get('show-line-labels');
     },
 
     isOneHundredPercent: function () {
