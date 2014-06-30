@@ -4,6 +4,22 @@ define([
 function (Line) {
   return Line.extend({
 
+    y: function (index) {
+      return Line.prototype.y.apply(this, arguments) - (this.scales.y(0) - this.y0(index));
+    },
+
+    y0: function (index) {
+      var total = this.scales.y(0);
+      if (this.baselineAttr) {
+        var base =  _.reduce(this.baselineAttr, function (sum, attr) {
+          return sum + (total - Line.prototype.y.call(this, index, attr));
+        }, 0, this);
+        return total - base;
+      } else {
+        return total;
+      }
+    },
+
     render: function () {
       Line.prototype.render.apply(this, arguments);
       this.renderArea();
@@ -12,29 +28,43 @@ function (Line) {
     renderArea: function () {
       var getX = _.bind(function (model, index) { return this.x(index); }, this);
       var getY = _.bind(function (model, index) { return this.y(index); }, this);
-      var yScale = this.scales.y;
+      var getY0 = _.bind(function (model, index) { return this.y0(index); }, this);
       var area = d3.svg.area()
           .x(getX)
           .y1(getY)
-          .y0(function () { return yScale(0); })
+          .y0(getY0)
           .defined(function (model, index) { return getY(model, index) !== null; });
 
       var path = this.componentWrapper.insert('g', ':first-child').attr('class', 'group')
-        .append('path').attr('class', 'stack');
+        .append('path').attr('class', 'stack ' + this.className);
       path.datum(this.collection.toJSON())
           .attr('d', area);
     },
 
-    onChangeSelected: function (model, index) {
-      this.componentWrapper.selectAll('.cursorLine').remove();
-      if (model && this.drawCursorLine) {
+    select: function (index) {
+      this.componentWrapper.select('path.stack').classed('selected', true).classed('not-selected', false);
+      if (this.drawCursorLine || true) {
         this.renderCursorLine(this.x(index));
       }
-      Line.prototype.onChangeSelected.apply(this, arguments);
-      this.componentWrapper.select('path.stack').classed('selected', !!model);
+      Line.prototype.select.apply(this, arguments);
+    },
+
+    // put line into dis-emphasised state when other lines are selected
+    deselect: function () {
+      Line.prototype.deselect.apply(this, arguments);
+      this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', true);
+      this.componentWrapper.select('line.cursorLine').remove();
+    },
+
+    // put line into default state when no lines are selected
+    unselect: function () {
+      Line.prototype.unselect.apply(this, arguments);
+      this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', false);
+      this.componentWrapper.select('line.cursorLine').remove();
     },
 
     renderCursorLine: function (x) {
+      this.componentWrapper.select('line.cursorLine').remove();
       this.componentWrapper.append('line').attr({
         'class': 'cursorLine',
         x1: x,

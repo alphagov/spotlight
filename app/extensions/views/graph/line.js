@@ -10,8 +10,9 @@ function (Component) {
       var xPos = this.graph.getXPos(index);
       return xPos === null ? null : Math.floor(this.scales.x(xPos)) + 0.5;
     },
-    y: function (index) {
-      var yPos = this.graph.getYPos(index, this.valueAttr);
+    y: function (index, attr) {
+      attr = attr || this.valueAttr;
+      var yPos = this.graph.getYPos(index, attr);
       return yPos === null ? null : this.scales.y(yPos);
     },
 
@@ -88,11 +89,13 @@ function (Component) {
       }
     },
 
+    // put line into dis-emphasised state when other lines are selected
     deselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', true);
     },
 
+    // put line into default state when no lines are selected
     unselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', false);

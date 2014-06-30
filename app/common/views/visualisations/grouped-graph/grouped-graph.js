@@ -1,9 +1,8 @@
 define([
-  'extensions/views/graph/graph',
-  'extensions/views/graph/line-set'
+  'extensions/views/graph/graph'
 ],
-function (Graph, LineSet) {
-  var LineGraph = Graph.extend({
+function (Graph) {
+  return Graph.extend({
 
     components: function () {
       var labelOptions = {
@@ -35,7 +34,7 @@ function (Graph, LineSet) {
           options: yAxisOptions
         },
         lines: {
-          view: LineSet,
+          view: this.GroupClass,
           options: {
             interactive: true
           }
@@ -80,15 +79,8 @@ function (Graph, LineSet) {
         }
         return line;
       }, this);
-    },
-
-    maxValue: function () {
-      return _.reduce(this.getLines(), function (max, line) {
-        return Math.max(max, this.collection.max(line.key) || 0);
-      }, 0, this);
     }
 
   });
 
-  return LineGraph;
 });
