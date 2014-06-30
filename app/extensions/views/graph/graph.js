@@ -142,6 +142,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Too
       return null;
     },
 
+    getY0Pos: function () {
+      return 0;
+    },
+
     calcXScale: function () {
       var start = this.modelToDate(this.collection.first()).toDate(),
           end = this.modelToDate(this.collection.last()).toDate();

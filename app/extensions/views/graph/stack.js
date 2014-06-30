@@ -4,20 +4,9 @@ define([
 function (Line) {
   return Line.extend({
 
-    y: function (index) {
-      return Line.prototype.y.apply(this, arguments) - (this.scales.y(0) - this.y0(index));
-    },
-
     y0: function (index) {
-      var total = this.scales.y(0);
-      if (this.baselineAttr) {
-        var base =  _.reduce(this.baselineAttr, function (sum, attr) {
-          return sum + (total - Line.prototype.y.call(this, index, attr));
-        }, 0, this);
-        return total - base;
-      } else {
-        return total;
-      }
+      var val = this.graph.getY0Pos(index, this.valueAttr);
+      return this.scales.y(val);
     },
 
     render: function () {

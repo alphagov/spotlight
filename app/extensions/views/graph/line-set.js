@@ -5,6 +5,8 @@ define([
 
   return Component.extend({
 
+    GroupClass: Line,
+
     initialize: function () {
       Component.prototype.initialize.apply(this, arguments);
       var defaultOptions = this.graph.getDefaultComponentOptions();
@@ -14,7 +16,7 @@ define([
           valueAttr: line.key,
           className: 'group' + i
         });
-        return new Line(options);
+        return new this.GroupClass(options);
       }, this);
     },
 

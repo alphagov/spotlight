@@ -1,25 +1,11 @@
 define([
-  './component',
   './line-set',
   './stack'
-], function (Component, LineSet, Stack) {
+], function (LineSet, Stack) {
 
   return LineSet.extend({
 
-    initialize: function () {
-      Component.prototype.initialize.apply(this, arguments);
-      var defaultOptions = this.graph.getDefaultComponentOptions();
-      var lines = this.graph.getLines();
-      this.lines = _.map(lines, function (line, i) {
-        var options = _.extend(defaultOptions, {
-          interactive: false,
-          valueAttr: line.key,
-          className: 'group' + i,
-          baselineAttr: _.pluck(lines, 'key').slice(i + 1)
-        });
-        return new Stack(options);
-      }, this);
-    },
+    GroupClass: Stack,
 
     onHover: function (e) {
       var xdiff = Infinity;
