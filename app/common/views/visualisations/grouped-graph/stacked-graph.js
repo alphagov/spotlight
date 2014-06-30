@@ -1,11 +1,14 @@
 define([
   './grouped-graph',
-  'extensions/views/graph/stack-set'
+  'extensions/views/graph/stack-set',
+  'extensions/views/graph/stacked-linelabel'
 ],
-function (Graph, StackSet) {
+function (Graph, StackSet, StackedLineLabel) {
   return Graph.extend({
 
     GroupClass: StackSet,
+
+    LineLabel: StackedLineLabel,
 
     getYPos: function (index, attr) {
       var val = Graph.prototype.getYPos.apply(this, arguments);

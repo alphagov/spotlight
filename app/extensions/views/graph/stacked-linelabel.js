@@ -3,12 +3,12 @@ define([
 ], function (LineLabel) {
 
   return LineLabel.extend({
-    getYIdeal: function (groupIndex, index) {
-      var y = this.graph.getYPos(groupIndex, index);
+    getYIdeal: function (index, attr) {
+      var y = this.graph.getYPos(index, attr);
       if (y === null) {
         return null;
       }
-      var y0 = this.graph.getY0Pos(groupIndex, index);
+      var y0 = this.graph.getY0Pos(index, attr);
       return (y + y0) / 2;
     }
   });
