@@ -347,7 +347,7 @@
     },
     {
       "slug": "applications",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Applications",
       "description": "",
       "data-group": "pay-foreign-marriage-certificates",

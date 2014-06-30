@@ -1,15 +1,15 @@
 var requirejs = require('requirejs');
 
 var ModuleController = require('../controllers/module');
-var CompletionNumbersController = requirejs('common/modules/completion_numbers');
+var TimeseriesController = requirejs('common/modules/single-timeseries');
 
-var CompletionNumbersView = require('../views/modules/completion_numbers');
+var View = require('../views/modules/single-timeseries');
 
-var parent = ModuleController.extend(CompletionNumbersController);
+var parent = ModuleController.extend(TimeseriesController);
 
 module.exports = parent.extend({
 
-  visualisationClass: CompletionNumbersView,
+  visualisationClass: View,
 
   visualisationOptions: function () {
     return _.extend(parent.prototype.visualisationOptions.apply(this, arguments), {
