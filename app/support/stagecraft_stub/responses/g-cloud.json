@@ -47,7 +47,7 @@
         "y": [
           {
            "label": "Total",
-           "categoryId": "Total",
+           "categoryId": "total",
            "format": "currency"
           },
           {
@@ -87,7 +87,7 @@
          "y": [
            {
              "label": "Total",
-             "categoryId": "Total",
+             "categoryId": "total",
              "format": "currency"
            },
            {
@@ -170,7 +170,7 @@
         "y": [
           {
             "label": "Total",
-            "categoryId": "Total",
+            "categoryId": "total",
             "format": "currency"
           },
           {
