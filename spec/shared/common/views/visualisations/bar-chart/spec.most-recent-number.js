@@ -55,9 +55,7 @@ define([
         model = new Model();
         model.set('axis-period', 'quarter');
         collection = new Collection();
-        collection.reset([ {
-          values: new Collection(data)
-        } ]);
+        collection.reset({ data: data }, { parse: true });
         view = new MostRecentNumber({
           collection: collection,
           model: model
@@ -73,11 +71,10 @@ define([
         });
 
         it('displays value for earlier period if most recent period not available', function () {
-          collection.reset([ {
-            values: new Collection(incompleteData)
-          } ]);
+          collection.reset({ data: incompleteData }, { parse: true });
           view = new MostRecentNumber({
-            collection: collection
+            collection: collection,
+            model: model
           });
           view.valueAttr = 'number_of_transactions';
           view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
@@ -91,11 +88,10 @@ define([
         });
 
         it('displays (no data) when there is no data available', function () {
-          collection.reset([ {
-            values: new Collection(nullData)
-          } ]);
+          collection.reset({ data: nullData }, { parse: true });
           view = new MostRecentNumber({
-            collection: collection
+            collection: collection,
+            model: model
           });
           view.valueAttr = 'number_of_transactions';
           view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
@@ -109,11 +105,10 @@ define([
       describe('getValueSelected', function () {
         it('displays value for selected period', function () {
 
-          collection.reset([ {
-            values: new Collection(data)
-          } ]);
+          collection.reset({ data: data }, { parse: true });
           view = new MostRecentNumber({
-            collection: collection
+            collection: collection,
+            model: model
           });
           view.valueAttr = 'number_of_transactions';
           view.formatOptions = { 'type': 'integer', 'magnitude': 'true' };
@@ -126,11 +121,10 @@ define([
 
         it('displays percentage values when percent option is set', function () {
 
-          collection.reset([ {
-            values: new Collection(data)
-          } ]);
+          collection.reset({ data: data }, { parse: true });
           view = new MostRecentNumber({
-            collection: collection
+            collection: collection,
+            model: model
           });
           view.valueAttr = 'digital_takeup';
           view.formatOptions = { 'type': 'percent' };
@@ -157,11 +151,10 @@ define([
         });
 
         it('should display no label when there is no data available', function () {
-          collection.reset([ {
-            values: new Collection(nullData)
-          } ]);
+          collection.reset({ data: nullData }, { parse: true });
           view = new MostRecentNumber({
-            collection: collection
+            collection: collection,
+            model: model
           });
           view.valueAttr = 'number_of_transactions';
           view.formatOptions = { 'format': { 'type': 'integer' }};

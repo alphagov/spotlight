@@ -20,7 +20,7 @@ function (SingleStatView) {
 
     getValueSelected: function (selection) {
       var val;
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel) {
         val = selection.selectedModel.get(this.valueAttr);
       } else {
         val = null;
@@ -29,7 +29,7 @@ function (SingleStatView) {
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel) {
         return this.formatPeriod(selection.selectedModel, this.getPeriod());
       } else {
         return '';
