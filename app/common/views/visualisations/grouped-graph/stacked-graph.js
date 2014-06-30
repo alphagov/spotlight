@@ -9,6 +9,9 @@ function (Graph, StackSet) {
 
     getYPos: function (index, attr) {
       var val = Graph.prototype.getYPos.apply(this, arguments);
+      if (val === null) {
+        return null;
+      }
       val += this.getY0Pos(index, attr);
       return val;
     },
