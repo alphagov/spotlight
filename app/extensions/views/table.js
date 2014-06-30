@@ -90,9 +90,13 @@ function (View, Formatters) {
         axes = this.collection.options.axes;
       if (axes) {
         cols = _.map(axes.y, function (axis) {
-          return _.extend({
-            key: axis.categoryId + ':' + this.valueAttr
+          var column = _.extend({
+            key: axis.key || (axis.categoryId + ':' + this.valueAttr)
           }, axis);
+          if (this.collection.options.isOneHundredPercent) {
+            column.key += ':percent';
+          }
+          return column;
         }, this);
         if (axes.x) {
           cols.unshift(axes.x);
