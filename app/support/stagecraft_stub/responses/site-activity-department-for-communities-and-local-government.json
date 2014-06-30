@@ -36,7 +36,7 @@
       "tabs": [
         {
           "slug": "visitors",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Visitors",
           "description": "",
           "data-group": "gov-uk-content",
@@ -64,7 +64,7 @@
         },
         {
           "slug": "pageviews",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Pageviews",
           "description": "",
           "data-group": "gov-uk-content",
@@ -575,7 +575,7 @@
     },
     {
       "slug": "total-feedback-received",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Total feedback received",
       "description": "",
       "data-group": "gov-uk-content",

@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 
 var template = requirejs('stache!common/templates/visualisations/completion');
-var View = requirejs('common/views/visualisations/completion_numbers');
+var View = requirejs('common/views/visualisations/single-timeseries');
 
 module.exports = View.extend({
 
