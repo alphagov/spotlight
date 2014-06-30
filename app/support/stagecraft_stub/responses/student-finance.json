@@ -206,7 +206,7 @@
     },
     {
       "slug": "site-traffic",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Site traffic",
       "description": "Total number of unique site visits per week",
       "info": [

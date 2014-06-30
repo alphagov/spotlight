@@ -40,7 +40,7 @@
     },
     {
       "slug": "volumetrics",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
       "data-group": "pay-legalisation-drop-off",
