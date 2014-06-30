@@ -19,22 +19,27 @@ function (SingleStatView) {
     getLabel: function () {
       var period = this.getPeriod();
       var available = this.collection.defined(this.valueAttr).length;
-      var unavailableEvents = this.collection.length - available,
+      var label;
+      if (available === 0) {
+        label = '(no data)';
+      } else {
+        var unavailableEvents = this.collection.length - available;
         label = [
           this.labelPrefix,
           'last',
           this.collection.length,
           this.format(this.collection.length, { type: 'plural', singular: period })
         ];
-
-      if (unavailableEvents > 0) {
-        label = label.concat([
-          '<span class="unavailable">(' + unavailableEvents,
-          this.format(unavailableEvents, { type: 'plural', singular: period }),
-          'unavailable)</span>'
-        ]);
+        if (unavailableEvents > 0) {
+          label = label.concat([
+            '<span class="unavailable">(' + unavailableEvents,
+            this.format(unavailableEvents, { type: 'plural', singular: period }),
+            'unavailable)</span>'
+          ]);
+        }
+        label = label.join(' ');
       }
-      return label.join(' ');
+      return label;
     },
 
     getValueSelected: function (selection) {
