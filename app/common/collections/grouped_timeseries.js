@@ -30,7 +30,7 @@ function (Collection) {
         }, 0, this);
         _.each(lines, function (line) {
           var prop = (line.key || line.categoryId) + ':' + this.valueAttr;
-          model[prop + ':' + 'percent'] = model[prop] / model['total:' + this.valueAttr];
+          model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
         }, this);
       }, this);
 
