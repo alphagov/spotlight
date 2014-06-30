@@ -1,0 +1,200 @@
+{
+  "slug": "renew-tax-credits-online",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": true,
+  "strapline": "Dashboard",
+  "title": "Renew tax credits online",
+  "description": "Tax credits are payments from the government to people who are either responsible for at least 1 child or on a low income. This dashboard shows statistics about the online tax credit renewals service.",
+  "department": {
+    "title": "HM Revenue and Customs",
+    "abbr": "HMRC"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Renew tax credits online",
+      "url" : "https://www-qa.tax.service.gov.uk/tax-credits/renewal"
+    },
+    "improve-dashboard-message": true
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "modules": [
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "renewtaxcredits",
+      "data-type": "realtime"
+    },
+    {
+      "slug": "total-renewals",
+      "module-type": "grouped_timeseries",
+      "title": "Total number of renewals",
+      "description": "Total number of <span class=\"group0\">individual</span> and <span class=\"group1\">dual</span> renewals each week using the online service",
+      "data-group": "renewtaxcredits",
+      "data-type": "journey",
+      "category": "pagePath",
+      "period": "week",
+      "value-attribute": "users:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": false,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Individual",
+            "categoryId": "/tax-credits/renewal/declaration",
+            "format": "integer"
+          },
+          {
+            "label": "Dual",
+            "categoryId": "/tax-credits/renewal/dual/declaration",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "users-at-each-step-individual",
+      "module-type": "journey",
+      "title": "Users at each step - individual",
+      "description": "Number of users who completed important steps of the individual transaction last week",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
+      ],
+      "data-group": "renewtaxcredits",
+      "data-type": "journey",
+      "matching-attribute": "pagePath",
+      "value-attribute": "users",
+      "axes": {
+        "y": [
+          {"journeyId": "/tax-credits/renewal/d2check", "label": "d2check", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/details", "label": "details", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/acknowledgement", "label": "acknowledgement", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/certain-benefits", "label": "certain-benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/taxable-social-security-benefits", "label": "taxable-social-security-benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/income-details", "label": "income-details", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/summary", "label": "summary", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/declaration", "label": "declaration", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/renew-phone-post", "label": "renew-phone-post", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "users-at-each-step-dual",
+      "module-type": "journey",
+      "title": "Users at each step - dual",
+      "description": "Number of users who completed important steps of the dual transaction last week",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
+      ],
+      "data-group": "renewtaxcredits",
+      "data-type": "journey",
+      "matching-attribute": "pagePath",
+      "value-attribute": "users",
+      "axes": {
+        "y": [
+          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/primary", "label": "certain-benefits-primary", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/partner", "label": "certain-benefits-partner", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/primary", "label": "taxable-social-security-benefits-primary", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/partner", "label": "taxable-social-security-benefits-partner", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/income-details/primary", "label": "income-details-primary", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/income-details/partner", "label": "income-details-partner", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/summary", "label": "summary", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/declaration", "label": "declaration", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "Uusers who successfully complete their renewal, as a percentage of all users beginning the transaction online",
+      "data-group": "renewtaxcredits",
+      "data-type": "journey",
+      "info": [
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "denominator-matcher": "renewal$",
+      "numerator-matcher": "declaration$",
+      "matching-attribute": "pagePath",
+      "value-attribute": "users:sum"
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "renewtaxcredits",
+      "data-type": "customer-satisfaction",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
+    },
+    {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
+      "data-group": "renewtaxcredits",
+      "data-type": "device-usage",
+      "category": "deviceCategory",
+      "period": "week",
+      "value-attribute": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "percent"
+          },
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "percent"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "percent"
+          }
+        ]
+      }
+    }
+  ]
+}
