@@ -7,26 +7,17 @@ define([
 
     GroupClass: Stack,
 
-    onHover: function (e) {
-      var xdiff = Infinity;
-      var xindex;
-      var closestLine;
-      // Find closest point of closest group
-      this.collection.each(function (model, i) {
-        var x = this.lines[0].x(i);
-        if (Math.abs(x - e.x) < xdiff) {
-          xdiff = Math.abs(x - e.x);
-          xindex = i;
-        }
-      }, this);
+    getClosestLine: function (e, x) {
+      var closestY = this.lines[0];
+      var interpolator = this.getInterpolator(e, x);
 
       _.each(this.lines, function (line) {
-        var y = line.y(xindex);
-        if (y < e.y) {
-          closestLine = line.valueAttr;
+        if (interpolator(line) < e.y) {
+          closestY = line;
         }
       });
-      this.collection.selectItem(xindex, { valueAttr: closestLine, force: true });
+
+      return closestY;
     }
 
   });

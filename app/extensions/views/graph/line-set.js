@@ -28,27 +28,56 @@ define([
     },
 
     onHover: function (e) {
-      var xdiff = Infinity;
-      var ydiff = Infinity;
-      var xindex;
-      var closestLine;
+      var closestX = this.getClosestX(e);
+      var closestLine = this.getClosestLine(e, closestX);
+      this.collection.selectItem(closestX, { valueAttr: closestLine.valueAttr, force: true });
+    },
+
+    getClosestX: function (e) {
+      var diff = Infinity;
+      var index;
       // Find closest point of closest group
       this.collection.each(function (model, i) {
         var x = this.lines[0].x(i);
-        if (Math.abs(x - e.x) < xdiff) {
-          xdiff = Math.abs(x - e.x);
-          xindex = i;
+        if (Math.abs(x - e.x) < Math.abs(diff)) {
+          diff = x - e.x;
+          index = i;
         }
       }, this);
+      return index;
+    },
+
+    getInterpolator: function (e, index) {
+      var interpolator;
+      var diff = this.lines[0].x(index) - e.x;
+      var next = diff < 0 ? index + 1 : index - 1;
+      if (next < 0 || next === this.collection.length) {
+        interpolator = function (line) {
+          return line.y(index);
+        };
+      } else {
+        interpolator = function (line) {
+          var interpx = diff / (line.x(index) - line.x(next));
+          return d3.interpolateNumber(line.y(index), line.y(next))(interpx);
+        };
+      }
+      return interpolator;
+    },
+
+    getClosestLine: function (e, index) {
+      var ydiff = Infinity;
+      var closestY = {};
+      var interpolator = this.getInterpolator(e, index);
 
       _.each(this.lines, function (line) {
-        var y = line.y(xindex);
-        if (Math.abs(y - e.y) < ydiff) {
-          ydiff = Math.abs(y - e.y);
-          closestLine = line.valueAttr;
+        var diff = interpolator(line) - e.y;
+        if (Math.abs(diff) < Math.abs(ydiff)) {
+          closestY = line;
+          ydiff = diff;
         }
       });
-      this.collection.selectItem(xindex, { valueAttr: closestLine, force: true });
+
+      return closestY;
     }
 
   });
