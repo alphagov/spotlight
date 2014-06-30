@@ -9,10 +9,8 @@ function (SingleStatView, HeadlineView, Collection) {
     var collection, view;
     beforeEach(function () {
       collection = new Collection();
-      collection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      collection.reset({
+        data: [
           {
             _start_at: collection.getMoment('2013-08-01T00:00:00+00:00'),
             a: 1,
@@ -29,8 +27,8 @@ function (SingleStatView, HeadlineView, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       view = new HeadlineView({
         collection: collection,
         stat: {
@@ -40,7 +38,7 @@ function (SingleStatView, HeadlineView, Collection) {
         valueAttr: 'a'
       });
     });
-  
+
     it('renders sample data', function () {
 
       jasmine.renderView(view, function () {
@@ -51,33 +49,31 @@ function (SingleStatView, HeadlineView, Collection) {
     });
 
     it('indicates missing data', function () {
-      
-      collection.first().get('values').last().set('a', null);
+
+      collection.last().set('a', null);
       jasmine.renderView(view, function () {
         expect(view.$el.find('strong').length).toEqual(0);
         expect(view.$el.text()).toContain('(no data)');
       });
-      
+
     });
-    
+
     it('indicates missing data', function () {
-      
-      collection.first().get('values').last().set('a', null);
+
+      collection.last().set('a', null);
       jasmine.renderView(view, function () {
         expect(view.$el.find('strong').length).toEqual(0);
         expect(view.$el.text()).toContain('(no data)');
       });
-      
+
     });
 
     it('uses the timeAttr option if it is passed', function () {
 
       var testCollection, testView;
       testCollection = new Collection();
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      testCollection.reset({
+        data: [
           {
             _timestamp: testCollection.getMoment('2013-08-01T00:00:00+00:00'),
             a: 1,
@@ -94,8 +90,8 @@ function (SingleStatView, HeadlineView, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       testView = new HeadlineView({
         collection: testCollection,
         stat: {
@@ -117,10 +113,8 @@ function (SingleStatView, HeadlineView, Collection) {
 
       var testCollection, testView;
       testCollection = new Collection();
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      testCollection.reset({
+        data: [
           {
             _timestamp: testCollection.getMoment('2013-08-01T00:00:00+00:00'),
             a: 1,
@@ -137,8 +131,8 @@ function (SingleStatView, HeadlineView, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       testView = new HeadlineView({
         collection: testCollection,
         stat: {
@@ -156,7 +150,7 @@ function (SingleStatView, HeadlineView, Collection) {
       });
 
     });
- 
+
   });
 
 });
