@@ -4,6 +4,8 @@ define([
 function (Graph) {
   return Graph.extend({
 
+    LineLabel: Graph.prototype.sharedComponents.linelabel,
+
     components: function () {
       var labelOptions = {
           isLineGraph: true
@@ -50,7 +52,7 @@ function (Graph) {
 
       if (this.showLineLabels()) {
         lineGraphComponents.linelabel = {
-          view: this.sharedComponents.linelabel,
+          view: this.LineLabel,
           options: labelOptions
         };
       }
