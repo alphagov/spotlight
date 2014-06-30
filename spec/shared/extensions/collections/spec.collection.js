@@ -772,5 +772,34 @@ function (Collection, Model, Backbone) {
 
     });
 
+    describe('mean', function () {
+
+      var collection;
+
+      beforeEach(function () {
+        collection = new Collection();
+        collection.reset([
+          { count: 1 },
+          { count: 2 },
+          { count: 3 },
+          { count: 4 }
+        ]);
+      });
+
+      it('returns the mean of the attribute passed', function () {
+        expect(collection.mean('count')).toEqual(2.5);
+      });
+
+      it('returns null for non-matching attributes', function () {
+        expect(collection.mean('foo')).toEqual(null);
+      });
+
+      it('returns null for an empty collection', function () {
+        collection.reset([]);
+        expect(collection.mean('count')).toEqual(null);
+      });
+
+    });
+
   });
 });
