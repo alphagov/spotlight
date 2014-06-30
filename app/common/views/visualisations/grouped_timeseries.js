@@ -1,13 +1,13 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/stacked-graph',
-  'common/views/visualisations/line-graph'
+  'common/views/visualisations/grouped-graph/stacked-graph',
+  'common/views/visualisations/grouped-graph/line-graph'
 ],
 function (View, StackedGraph, LineGraph) {
   var CategoriesView = View.extend({
 
     views: function () {
-      var useStack = false,//this.model.get('use_stack'),
+      var useStack = this.model.get('use_stack'),
           graph = useStack ? StackedGraph : LineGraph;
 
       return {

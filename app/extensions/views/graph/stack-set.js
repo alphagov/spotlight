@@ -1,33 +1,28 @@
 define([
   './component',
-  './line'
-], function (Component, Line) {
+  './line-set',
+  './stack'
+], function (Component, LineSet, Stack) {
 
-  return Component.extend({
+  return LineSet.extend({
 
     initialize: function () {
       Component.prototype.initialize.apply(this, arguments);
       var defaultOptions = this.graph.getDefaultComponentOptions();
-      this.lines = _.map(this.graph.getLines(), function (line, i) {
+      var lines = this.graph.getLines();
+      this.lines = _.map(lines, function (line, i) {
         var options = _.extend(defaultOptions, {
           interactive: false,
           valueAttr: line.key,
-          className: 'group' + i
+          className: 'group' + i,
+          baselineAttr: _.pluck(lines, 'key').slice(i + 1)
         });
-        return new Line(options);
+        return new Stack(options);
       }, this);
-    },
-
-    render: function () {
-      Component.prototype.render.apply(this, arguments);
-      _.each(this.lines, function (line) {
-        line.render();
-      });
     },
 
     onHover: function (e) {
       var xdiff = Infinity;
-      var ydiff = Infinity;
       var xindex;
       var closestLine;
       // Find closest point of closest group
@@ -41,8 +36,7 @@ define([
 
       _.each(this.lines, function (line) {
         var y = line.y(xindex);
-        if (Math.abs(y - e.y) < ydiff) {
-          ydiff = Math.abs(y - e.y);
+        if (y < e.y) {
           closestLine = line.valueAttr;
         }
       });
