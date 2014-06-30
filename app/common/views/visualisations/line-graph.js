@@ -63,6 +63,14 @@ function (Graph, LineSet) {
       return this.model && this.model.get('one-hundred-percent');
     },
 
+    calcYScale: function () {
+      var yScale = Graph.prototype.calcYScale.apply(this, arguments);
+      if (this.isOneHundredPercent()) {
+        yScale.domain([0, 1]);
+      }
+      return yScale;
+    },
+
     getLines: function () {
       return _.map(this.model.get('axes').y, function (line) {
         line = _.clone(line);

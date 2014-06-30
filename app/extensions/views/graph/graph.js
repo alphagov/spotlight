@@ -157,11 +157,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Too
       var yScale = this.d3.scale.linear();
       if (max) {
         var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(max, this.minYDomainExtent)], this.numYTicks);
-        if (this.isOneHundredPercent()) {
-          yScale.domain([0, 1]);
-        } else {
-          yScale.domain(tickValues.extent);
-        }
+        yScale.domain(tickValues.extent);
         yScale.tickValueList = tickValues.values;
       }
       yScale.rangeRound([this.innerHeight, 0]);
