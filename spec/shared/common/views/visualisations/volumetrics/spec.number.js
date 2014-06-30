@@ -10,10 +10,21 @@ function (VolumetricsNumberView, View, Collection, Model) {
     beforeEach(function () {
       spyOn(VolumetricsNumberView.prototype, 'render');
       collection = new Collection();
+      collection.reset({
+        data: [
+          { count: 1 },
+          { count: 2 },
+          { count: 3 },
+          { count: 4 },
+          { count: null },
+          { count: null }
+        ]
+      }, { parse: true });
       model = new Model();
       subject = new VolumetricsNumberView({
         collection: collection,
-        model: model
+        model: model,
+        valueAttr: 'count'
       });
     });
 
@@ -28,64 +39,35 @@ function (VolumetricsNumberView, View, Collection, Model) {
     });
 
     describe('getValue', function () {
-      it('should call the view format method with the appropriate collection model value', function () {
-        subject.valueAttr = 'someAttr';
-        var fakeModel = {
-          get: function (key) {
-            return {
-              'someAttr': '123'
-            }[key];
-          }
-        };
-        spyOn(collection, 'at').andReturn(fakeModel);
+      it('should call the view format method with the collection mean', function () {
         spyOn(VolumetricsNumberView.prototype, 'formatValue').andReturn('456');
+        spyOn(subject.collection, 'mean').andReturn(10);
         var returnValue;
         returnValue = subject.getValue();
-        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith('123');
+        expect(subject.collection.mean).toHaveBeenCalledWith('count');
+        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith(10);
         expect(returnValue).toEqual('456');
-      });
-
-      it('should return null when it doesn\'t have a collection', function () {
-        var nullVolumetricsNumberView = new VolumetricsNumberView({
-          collection: new Collection(),
-          model: new Model()
-        });
-        expect(nullVolumetricsNumberView.getValue()).toEqual(null);
       });
     });
 
     describe('getLabel', function () {
-      var fakeModel, prefix;
+
+      var prefix;
+
       beforeEach(function () {
-        spyOn(collection, 'at');
-        collection.at.plan = function () {
-          return fakeModel;
-        };
         prefix = 'Some prefix';
         subject.labelPrefix = prefix;
       });
 
       describe('when there are unavailable periods', function () {
-        beforeEach(function () {
-          fakeModel = {
-            get: function (key) {
-              return {
-                periods: {
-                  total: 12,
-                  available: 10
-                }
-              }[key];
-            }
-          };
-        });
 
         it('should return the appropriately formatted label', function () {
-          expect(subject.getLabel()).toEqual(prefix + ' last 12 weeks <span class="unavailable">(2 weeks unavailable)</span>');
+          expect(subject.getLabel()).toEqual(prefix + ' last 6 weeks <span class="unavailable">(2 weeks unavailable)</span>');
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
           subject.model.set('period', 'month');
-          expect(subject.getLabel()).toEqual(prefix + ' last 12 months <span class="unavailable">(2 months unavailable)</span>');
+          expect(subject.getLabel()).toEqual(prefix + ' last 6 months <span class="unavailable">(2 months unavailable)</span>');
         });
 
         it('should return (no data) when it can\'t find a collection', function () {
@@ -99,25 +81,25 @@ function (VolumetricsNumberView, View, Collection, Model) {
 
       describe('when there are not unavailable periods', function () {
         beforeEach(function () {
-          fakeModel = {
-            get: function (key) {
-              return {
-                periods: {
-                  total: 12,
-                  available: 12
-                }
-              }[key];
-            }
-          };
+          collection.reset({
+            data: [
+              { count: 1 },
+              { count: 2 },
+              { count: 3 },
+              { count: 4 },
+              { count: 5 },
+              { count: 6 }
+            ]
+          }, { parse: true });
         });
 
         it('should return the appropriately formatted label', function () {
-          expect(subject.getLabel()).toEqual(prefix + ' last 12 weeks');
+          expect(subject.getLabel()).toEqual(prefix + ' last 6 weeks');
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
           subject.model.set('period', 'month');
-          expect(subject.getLabel()).toEqual(prefix + ' last 12 months');
+          expect(subject.getLabel()).toEqual(prefix + ' last 6 months');
         });
 
       });
@@ -126,20 +108,13 @@ function (VolumetricsNumberView, View, Collection, Model) {
 
     describe('getValueSelected', function () {
       it('should call the view format method with the appropriate selectedModel attribute', function () {
-        subject.selectionValueAttr = 'someAttr';
         var fakeSelection = {
-          selectedModel: {
-            get: function (key) {
-              return {
-                'someAttr': '789'
-              }[key];
-            }
-          }
+          selectedModel: collection.at(0)
         };
         spyOn(View.prototype, 'format').andReturn('456');
         var returnValue;
         returnValue = subject.getValueSelected(fakeSelection);
-        expect(View.prototype.format).toHaveBeenCalledWith('789', { type : 'number', magnitude : true, pad : true });
+        expect(View.prototype.format).toHaveBeenCalledWith(1, { type : 'number', magnitude : true, pad : true });
         expect(returnValue).toEqual('456');
       });
     });
@@ -147,12 +122,12 @@ function (VolumetricsNumberView, View, Collection, Model) {
     describe('getLabelSelected', function () {
       it('should call the view formatPeriod method with the appropriate selectedModel attribute', function () {
         var fakeSelection = {
-          selectedModel: 'SELECTED MODEL!!!!!!'
+          selectedModel: collection.at(0)
         };
         spyOn(View.prototype, 'formatPeriod').andReturn('456');
         var returnValue;
         returnValue = subject.getLabelSelected(fakeSelection);
-        expect(View.prototype.formatPeriod).toHaveBeenCalledWith('SELECTED MODEL!!!!!!', 'week');
+        expect(View.prototype.formatPeriod).toHaveBeenCalledWith(collection.at(0), 'week');
         expect(returnValue).toEqual('456');
       });
     });
