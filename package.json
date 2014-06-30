@@ -54,6 +54,7 @@
     "optimist": "0.6.1",
     "q": "1.0.1",
     "requirejs": "2.1.14",
+    "sanitizer": "0.1.1",
     "uglify-js": "2.4.14",
     "winston": "0.7.3",
     "xmlhttprequest": "1.6.0"

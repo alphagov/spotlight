@@ -57,6 +57,18 @@ describe('Services Controller', function () {
     });
   });
 
+  it('sanitizes user input before rendering it', function () {
+    controller({ query: { filter: '<script>alert(1)</script>' } }, res);
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
+      config: 'setting',
+      title: 'Services',
+      'page-type': 'services',
+      filter: '&lt;script&gt;alert(1)&lt;/script&gt;',
+      data: jasmine.any(Array),
+      script: true
+    });
+  });
+
   it('creates a collection', function () {
     controller(req, res);
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));

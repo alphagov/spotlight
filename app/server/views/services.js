@@ -29,7 +29,8 @@ module.exports = BaseView.extend(templater).extend({
     list.render();
 
     return this.loadTemplate(path.resolve(__dirname, '../templates/services.html'), {
-      list: list.html
+      list: list.html,
+      filter: this.model.get('filter')
     });
 
   }

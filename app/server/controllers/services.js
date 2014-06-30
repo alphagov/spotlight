@@ -1,5 +1,6 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
+var sanitizer = require('sanitizer');
 
 var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
 
@@ -13,7 +14,7 @@ module.exports = function (req, res) {
       model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Services',
     'page-type': 'services',
-    filter: req.query.filter || '',
+    filter: sanitizer.escape(req.query.filter || ''),
     data: services,
     script: true
   }));
