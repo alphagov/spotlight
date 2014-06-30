@@ -54,7 +54,7 @@ function (Collection) {
       });
 
       it('filters input based on string matching of a single character', function () {
-        var output = collection.alphabetise('C');
+        var output = collection.alphabetise({'text': 'C'});
         expect(output.count).toEqual(3);
         expect(output.C).toEqual([
           { title: 'Chicken' },
@@ -68,7 +68,7 @@ function (Collection) {
       });
 
       it('filters input based on string matching of multiple characters', function () {
-        var output = collection.alphabetise('ck');
+        var output = collection.alphabetise({'text': 'ck'});
         expect(output.count).toEqual(2);
         expect(output.C).toEqual([
           { title: 'Chicken' },
@@ -87,7 +87,7 @@ function (Collection) {
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
         ]);
 
-        var output = collection.alphabetise('thing');
+        var output = collection.alphabetise({'text': 'thing'});
         expect(output.count).toEqual(1);
         expect(output.F).toEqual([
           { title: 'Foo', department: { title: 'Department of Things', abbr: 'DoT' } }
@@ -102,7 +102,7 @@ function (Collection) {
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
         ]);
 
-        var output = collection.alphabetise('doos');
+        var output = collection.alphabetise({'text': 'doos'});
         expect(output.count).toEqual(1);
         expect(output.B).toEqual([
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }

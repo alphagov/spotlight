@@ -14,7 +14,9 @@ define([
 
     templateContext: function () {
       return _.extend(this.model.toJSON(), {
-        items: this.collection.alphabetise(this.model.get('filter'))
+        items: this.collection.alphabetise({
+          text: this.model.get('filter')
+        })
       });
     },
 

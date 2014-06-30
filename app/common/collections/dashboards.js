@@ -4,14 +4,18 @@ define([
 function (Collection) {
   return Collection.extend({
     comparator: 'title',
+
     alphabetise: function (filter) {
       var groups = { count: 0 };
-      this.each(function (model) {
-        var title = model.get('title').toUpperCase();
-        var department = model.get('department') || { title: '', abbr: '' };
-        filter = (filter || '').toUpperCase();
 
-        if (!filter || title.indexOf(filter) > -1 || department.abbr.toUpperCase().indexOf(filter) > -1 || department.title.toUpperCase().indexOf(filter) > -1) {
+      filter = filter || {};
+
+      this.each(function (model) {
+        var title = model.get('title').toUpperCase(),
+            department = model.get('department') || { title: '', abbr: '' },
+            textFilter = (filter.text || '').toUpperCase();
+
+        if (!textFilter || title.indexOf(textFilter) > -1 || department.abbr.toUpperCase().indexOf(textFilter) > -1 || department.title.toUpperCase().indexOf(textFilter) > -1) {
           var key = title.substr(0, 1);
           groups[key] = groups[key] || [];
           groups[key].push(model.toJSON());
