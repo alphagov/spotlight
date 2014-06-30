@@ -119,7 +119,7 @@ function (Controller, View, Model, Collection) {
         expect(controller.collection.options['data-group']).toEqual('bar-group');
         expect(controller.collection.fetch).toHaveBeenCalled();
 
-        controller.collection.trigger('sync');
+        controller.collection.trigger('reset');
         expect(controller.renderView).toHaveBeenCalled();
       });
 
@@ -177,7 +177,7 @@ function (Controller, View, Model, Collection) {
         });
         controller.render();
         expect(controller.renderView).not.toHaveBeenCalled();
-        controller.collection.trigger('sync');
+        controller.collection.trigger('reset');
         expect(controller.renderView).toHaveBeenCalled();
       });
 
@@ -191,7 +191,7 @@ function (Controller, View, Model, Collection) {
           });
           controller.render();
           expect(controller.renderView).not.toHaveBeenCalled();
-          controller.collection.trigger('sync');
+          controller.collection.trigger('reset');
           expect(controller.renderView).toHaveBeenCalled();
         });
       });
