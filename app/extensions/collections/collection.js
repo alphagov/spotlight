@@ -351,7 +351,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
     mean: function (attr) {
       var total = this.total(attr);
       var count = this.defined(attr).length;
-      return total / count;
+      return count === 0 ? null : total / count;
     },
 
     total: function (attr) {
