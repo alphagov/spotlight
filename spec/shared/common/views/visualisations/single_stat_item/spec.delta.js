@@ -8,13 +8,11 @@ function (DeltaView, Model, Collection) {
 
     var collection, view;
     beforeEach(function () {
-      collection = new Collection();
-      collection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      collection = new Collection()
+      collection.reset({
+        data: [
           {
-            _start_at: collection.getMoment('2012-09-01T00:00:00+00:00'),
+            _start_at: '2012-09-01T00:00:00+00:00',
             a: 1,
             b: 2,
             c: null,
@@ -22,15 +20,15 @@ function (DeltaView, Model, Collection) {
             e: 5
           },
           {
-            _start_at: collection.getMoment('2013-09-01T00:00:00+00:00'),
+            _start_at: '2013-09-01T00:00:00+00:00',
             a: 0.5,
             b: 4,
             c: 6,
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
 
       view = new DeltaView({
         collection: collection,
@@ -85,10 +83,8 @@ function (DeltaView, Model, Collection) {
     it('correctly applies no-change classes to the number, based on the value displayed', function () {
 
       var testNoChangeCollection = new Collection();
-      testNoChangeCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      testNoChangeCollection.reset({
+        data: [
           {
             _start_at: collection.getMoment('2012-09-01T00:00:00+00:00'),
             a: 1,
@@ -105,8 +101,8 @@ function (DeltaView, Model, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       var testNoChangeView = new DeltaView({
         collection: testNoChangeCollection,
         stat: {
@@ -123,7 +119,7 @@ function (DeltaView, Model, Collection) {
     });
 
     it('does not show a delta if the denominator is null', function () {
-      collection.first().get('values').first().set('a', null);
+      collection.first().set('a', null);
       jasmine.renderView(view, function () {
         expect(view.$el.find('span')).toHaveClass('no-data');
       });
@@ -131,14 +127,14 @@ function (DeltaView, Model, Collection) {
 
     it('does not show a delta if the denominator is zero', function () {
 
-      collection.first().get('values').first().set('a', 0);
+      collection.first().set('a', 0);
       jasmine.renderView(view, function () {
         expect(view.$el.find('span')).toHaveClass('no-data');
       });
     });
 
     it('does show a delta if the numerator is zero', function () {
-      collection.first().get('values').last().set('a', 0);
+      collection.last().set('a', 0);
       jasmine.renderView(view, function () {
         expect(view.$el.find('.change').text()).toContain('−100.00%');
       });
@@ -149,10 +145,8 @@ function (DeltaView, Model, Collection) {
       var testCollection, testView;
 
       testCollection = new Collection();
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      testCollection.reset({
+        data: [
           {
             _timestamp: testCollection.getMoment('2012-09-01T00:00:00+00:00'),
             a: 1,
@@ -169,8 +163,8 @@ function (DeltaView, Model, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       testView = new DeltaView({
         collection: testCollection,
         stat: {
@@ -192,10 +186,8 @@ function (DeltaView, Model, Collection) {
 
       var testCollection, testView;
       testCollection = new Collection();
-      testCollection.reset([ {
-        id: 'test',
-        title: 'test',
-        values: new Collection([
+      testCollection.reset({
+        data: [
           {
             _timestamp: testCollection.getMoment('2013-08-01T00:00:00+00:00'),
             a: 1,
@@ -212,8 +204,8 @@ function (DeltaView, Model, Collection) {
             d: 10,
             e: 0
           }
-        ])
-      } ]);
+        ]
+      }, { parse: true });
       testView = new DeltaView({
         collection: testCollection,
         stat: {
