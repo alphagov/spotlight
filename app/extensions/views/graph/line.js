@@ -10,9 +10,8 @@ function (Component) {
       var xPos = this.graph.getXPos(index);
       return xPos === null ? null : Math.floor(this.scales.x(xPos)) + 0.5;
     },
-    y: function (index, attr) {
-      attr = attr || this.valueAttr;
-      var yPos = this.graph.getYPos(index, attr);
+    y: function (index) {
+      var yPos = this.graph.getYPos(index, this.valueAttr);
       return yPos === null ? null : this.scales.y(yPos);
     },
 
