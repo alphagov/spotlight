@@ -34,6 +34,9 @@ function (Component, Pivot) {
     },
 
     formatValue: function (value) {
+      if (value === null) {
+        return '(no data)';
+      }
       var format = this.graph.currency ? 'currency' : 'number';
       if (this.graph.isOneHundredPercent()) {
         format = 'percent';
@@ -41,16 +44,11 @@ function (Component, Pivot) {
       return this.format(value, { type: format, magnitude: true, pad: true });
     },
 
-    formatMissingValue: function () {
-      return '(no data)';
-    },
-
     onChangeSelected: function (model, index, options) {
       options = options || {};
-      var unselected = model === null;
       var selection = this.componentWrapper.selectAll('text');
 
-      if (unselected) {
+      if (model === null) {
         selection.data([]).exit().remove();
         return;
       }
@@ -62,11 +60,7 @@ function (Component, Pivot) {
         return;
       }
 
-      if (value === null) {
-        value = this.formatMissingValue();
-      } else {
-        value = this.formatValue(value);
-      }
+      value = this.formatValue(value);
 
       selection = selection.data([value, value]);
       selection.exit().remove();
