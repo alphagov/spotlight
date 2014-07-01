@@ -131,8 +131,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return this.dataSource.buildUrl(this.prop('queryParams'));
     },
 
-    comparator: '_timestamp',
-
     /**
      * Sets a new attribute-specific comparator to sort by and then re-sorts.
      * This will trigger a reset event.

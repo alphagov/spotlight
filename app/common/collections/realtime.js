@@ -4,6 +4,8 @@ define([
 function (Collection) {
   return Collection.extend({
 
+    comparator: '_timestamp',
+
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
 
