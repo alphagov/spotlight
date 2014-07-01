@@ -12,12 +12,7 @@ function (Collection) {
         denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
         matchingAttribute: this.model.get('group-by'),
         valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
-        period: this.model.get('period') || this.model.get('axis-period'),
-        startAt: this.model.get('start-at'),
-        endAt: this.model.get('end-at'),
-        filterBy: this.model.get('filter-by'),
         axisPeriod: this.model.get('axis-period') || this.model.get('period'),
-        queryParams: this.model.get('query-params'),
         axes: _.merge({
           x: {
             label: 'Date of Application',
@@ -32,7 +27,6 @@ function (Collection) {
             }
           ]
         }, this.model.get('axes')),
-        duration: this.model.get('duration'),
         defaultValue: this.model.get('default-value')
       };
     },

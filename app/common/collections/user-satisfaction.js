@@ -9,20 +9,15 @@ define([
       }
       return (score - this.options.min) / (this.options.max - this.options.min);
     },
-    queryParams: function () {
-      return {
-        collect: [
-          'rating_1:sum',
-          'rating_2:sum',
-          'rating_3:sum',
-          'rating_4:sum',
-          'rating_5:sum',
-          'total:sum'
-        ],
-        start_at: this.options.startAt,
-        period: this.options.period,
-        duration: this.options.duration
-      };
+    queryParams: {
+      collect: [
+        'rating_1:sum',
+        'rating_2:sum',
+        'rating_3:sum',
+        'rating_4:sum',
+        'rating_5:sum',
+        'total:sum'
+      ]
     },
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);

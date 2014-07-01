@@ -4,27 +4,13 @@ define([
   'extensions/mixins/date-functions',
   'extensions/mixins/collection-processors',
   'extensions/models/model',
-  'extensions/models/query',
-  'jquery',
-  'Mustache'
+  'extensions/models/data_source'
 ],
-function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustache) {
-  // get base URL for Backdrop instance (with trailing slash if missing)
-  var backdropUrl;
-  if (isServer) {
-    backdropUrl = config.backdropUrl;
-  } else if (isClient) {
-    backdropUrl = GOVUK.config.backdropUrl;
-  }
+function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
 
   var Collection = Backbone.Collection.extend({
 
     model: Model,
-
-    /**
-     * Defines location of Backdrop service
-     */
-    backdropUrl: backdropUrl,
 
     defaultDateFormat: Model.prototype.defaultDateFormat,
 
@@ -32,34 +18,17 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       options = options || {};
       this.options = options;
 
-      _.each(['valueAttr', 'filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
-        if (options[prop] && !this[prop]) {
-          this[prop] = options[prop];
-        }
-      }, this);
+      if (!this.valueAttr) this.valueAttr = options.valueAttr;
 
-      this.createQueryModel();
+      this.dataSource = new DataSource(options.dataSource);
+      this.dataSource.on('change', this.fetch.bind(this, {}));
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
-    instantiateParts: function (models, options) {
-      delete options.collections;
-      this.collectionInstances = _.map(this.collections, function (ClassRef) {
-        if (ClassRef.collection) {
-          return new ClassRef.collection(
-            models, _.extend({}, options, ClassRef.options)
-          );
-        } else {
-          return new ClassRef(models, options);
-        }
-      });
-    },
-
-    createQueryModel: function () {
-      var queryParams = _.extend({}, this.prop('defaultQueryParams'), this.prop('queryParams'));
-      this.query = new Query(queryParams);
-      this.query.on('change', function () { this.fetch(); }, this);
+    getPeriod: function() {
+      var queryParams = this.dataSource.get('query-params');
+      return queryParams ? queryParams.period : undefined;
     },
 
     parse: function (response) {
@@ -85,9 +54,11 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         }, this);
         // fill in timestamps and valueAttrs where not defined
         _.each(data, function (d) {
+          // this is for tx bar charts that do not provide a _start_at
           if (!d._start_at && this.options.axisPeriod) {
             d._start_at = d['_' + this.options.axisPeriod + '_start_at'];
           }
+          // also to smooth out tx data
           if (!d._end_at && d.end_at) {
             d._end_at = d.end_at;
           }
@@ -103,7 +74,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
     },
 
     flatten: function (data) {
-      var category = this.query.get('group_by');
+      var category = this.dataSource.groupedBy();
       if (category && data.length) {
         // if we have a grouped response, flatten the data
         if (data[0].values) {
@@ -153,40 +124,11 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       Backbone.Collection.prototype.fetch.call(this, options);
     },
 
-    defaultQueryParams: function () {
-      var params = {};
-      if (this.filterBy) {
-        params.filter_by = _.map(this.filterBy, function (value, key) {
-          return key + ':' + value;
-        });
-
-        if (params.filter_by.length === 1) {
-          params.filter_by = params.filter_by[0];
-        }
-      }
-      return params;
-    },
-
     /**
      * Constructs a Backdrop query for the current environment
      */
     url: function () {
-      // add query parameters
-      var params = _.clone(this.query.attributes);
-
-      // convert date parameters
-      _.each(params, function (value, key) {
-        if (this.moment.isMoment(value)) {
-          params[key] = value.format(this.defaultDateFormat);
-        }
-      }, this);
-
-      var base = Mustache.render(this.backdropUrl, {
-        'data-group': this['data-group'],
-        'data-type': this['data-type']
-      });
-
-      return base + '?' + $.param(params, true);
+      return this.dataSource.buildUrl(this.prop('queryParams'));
     },
 
     comparator: '_timestamp',

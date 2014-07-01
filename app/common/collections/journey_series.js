@@ -13,17 +13,15 @@ define([
       if (options.axes) {
         this.axes = options.axes;
       }
-      if (options.valueAttr) {
-        this.valueAttr = options.valueAttr;
-      }
+
+      this.dateRange = this.lastWeekDateRange(
+          this.getMoment(), options.weeksAgo || 0);
+
       Collection.prototype.initialize.apply(this, arguments);
     },
 
     queryParams: function () {
-      var weeksAgo = this.options.weeksAgo || 0;
-      return _.extend(this.lastWeekDateRange(this.getMoment(), weeksAgo), {
-        filter_by: this.options.filterBy ? this.options.filterBy : []
-      });
+      return this.dateRange;
     },
 
     parse: function () {
