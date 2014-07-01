@@ -36,7 +36,7 @@
       "slug": "total-renewals",
       "module-type": "grouped_timeseries",
       "title": "Total number of renewals",
-      "description": "Total number of <span class=\"group0\">individual</span> and <span class=\"group1\">dual</span> renewals each week using the online service",
+      "description": "Total number of <span class=\"group0\">single claimant</span> and <span class=\"group1\">joint claimant</span> renewals each week using the online service",
       "data-group": "renewtaxcredits",
       "data-type": "journey",
       "category": "pagePath",
@@ -56,12 +56,12 @@
         },
         "y": [
           {
-            "label": "Individual",
+            "label": "Single claimant",
             "categoryId": "/tax-credits/renewal/declaration",
             "format": "integer"
           },
           {
-            "label": "Dual",
+            "label": "Joint claimant",
             "categoryId": "/tax-credits/renewal/dual/declaration",
             "format": "integer"
           }
@@ -72,7 +72,7 @@
       "slug": "users-at-each-step-joint",
       "module-type": "journey",
       "title": "Users at each step",
-      "description": "Number of users who reached important steps of the transaction last week<br/>Note also details of the individual and dual journey below",
+      "description": "Number of users who reached important steps of the transaction last week<br/>Note also details of the single and joint claimant journeys below",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -95,8 +95,8 @@
     {
       "slug": "users-at-each-step-individual",
       "module-type": "journey",
-      "title": "Users at each step - individual",
-      "description": "Number of users who reached important steps of the individual transaction last week",
+      "title": "Users at each step - single claimant",
+      "description": "Number of single claimants who reached important steps of the transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -118,8 +118,8 @@
     {
       "slug": "users-at-each-step-dual",
       "module-type": "journey",
-      "title": "Users at each step - dual",
-      "description": "Number of users who reached important steps of the dual transaction last week",
+      "title": "Users at each step - joint claimants",
+      "description": "Number of joint claimants who reached important steps of the transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
