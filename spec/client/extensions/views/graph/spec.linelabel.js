@@ -63,12 +63,6 @@ function (LineLabel, Collection) {
 
       describe('render', function () {
 
-        beforeEach(function () {
-          collection.reset([
-            collection.at(0).toJSON()
-          ]);
-        });
-
         it('renders a label with text and line', function () {
           lineLabel.render();
           var textLabels = lineLabel.$el.find('figcaption li');
@@ -128,7 +122,7 @@ function (LineLabel, Collection) {
           expect(lineLabel.$el.find('figcaption ol')).toHaveClass('squares');
         });
 
-        it('does not render links, values, percentages or timeperiods by default', function () {
+        it('does not render links or timeperiods by default', function () {
           lineLabel.render();
           expect(lineLabel.$el.find('figcaption li a').length).toEqual(0);
           expect(lineLabel.$el.find('figcaption .summary span.timeperiod').length).toEqual(0);
@@ -150,15 +144,27 @@ function (LineLabel, Collection) {
           expect(links.eq(1).attr('href')).toEqual('/link2');
         });
 
-        it('renders a label with additional value text when enabled', function () {
+        it('renders a label with additional value text', function () {
           lineLabel.render();
 
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
 
-          expect(label1.find('span.value')).toHaveText('10');
-          expect(label2.find('span.value')).toHaveText('20');
+          expect(label1.find('span.value')).toHaveText('30');
+          expect(label2.find('span.value')).toHaveText('30');
+        });
+
+        it('uses last non-null value if last value is null', function () {
+          collection.last().set({ _count: null, _value: null });
+          lineLabel.render();
+
+          var labels = lineLabel.$el.find('figcaption ol li');
+          var label1 = labels.eq(0);
+          var label2 = labels.eq(1);
+
+          expect(label1.find('span.value')).toHaveText('20');
+          expect(label2.find('span.value')).toHaveText('30');
         });
 
         it('does not render values or percentages if disabled', function () {
@@ -190,8 +196,8 @@ function (LineLabel, Collection) {
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
-          expect(label1.find('span.percentage')).toHaveText('(33%)');
-          expect(label2.find('span.percentage')).toHaveText('(67%)');
+          expect(label1.find('span.percentage')).toHaveText('(50%)');
+          expect(label2.find('span.percentage')).toHaveText('(50%)');
         });
 
         /*it('renders a summary label when enabled', function () {

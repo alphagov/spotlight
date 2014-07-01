@@ -253,7 +253,7 @@ function (Component) {
         if (selected.selectedModel) {
           model = selected.selectedModel;
         } else {
-          model = this.collection.last();
+          model = this.collection.defined(attr).pop();
         }
         if (this.graph.isOneHundredPercent()) {
           value = model.get(attr.replace(':percent', ''));
