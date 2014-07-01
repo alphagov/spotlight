@@ -8,8 +8,6 @@ function (AvailabilityCollection) {
 
     collectionOptions: function () {
       return {
-        endAt: this.model.get('end-at'),
-        period: this.model.get('period'),
         axes: _.merge({
           x: {
             label: 'Time',

@@ -16,7 +16,6 @@ module.exports = ModuleController.extend({
     return {
       id: 'list',
       title: 'List',
-      queryParams: this.model.get('query-params'),
       labelAttr: this.model.get('label-attr'),
       labelRegex: this.model.get('label-regex'),
       linkAttr: this.model.get('link-attr'),

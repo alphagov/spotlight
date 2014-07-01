@@ -179,8 +179,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       var period = 'week';
       if (this.collection && this.collection.options.axisPeriod) {
         period = this.collection.options.axisPeriod;
-      } else if (this.collection && this.collection.query.get('period')) {
-        period = this.collection.query.get('period');
+      } else if (this.collection && this.collection.getPeriod()) {
+        period = this.collection.getPeriod();
       } else if (this.model && this.model.get('period')) {
         period = this.model.get('period');
       }
