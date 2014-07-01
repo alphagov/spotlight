@@ -662,6 +662,39 @@ function (Collection, Model, Backbone) {
 
     });
 
+    describe('total', function () {
+
+      var collection;
+
+      beforeEach(function () {
+        collection = new Collection([
+          { a: 1 },
+          { a: 2 },
+          { a: 3 },
+          { a: 4 }
+        ]);
+      });
+
+      it('returns the total value of the attribute passed across all models', function () {
+        expect(collection.total('a')).toEqual(10);
+
+        collection.add({ a: 5 });
+
+        expect(collection.total('a')).toEqual(15);
+      });
+
+      it('ignores null values', function () {
+        collection.at(1).set({ a: null });
+
+        expect(collection.total('a')).toEqual(8);
+      });
+
+      it('returns null if all values are null', function () {
+        expect(collection.total('b')).toEqual(null);
+      });
+
+    });
+
     describe('mean', function () {
 
       var collection;
