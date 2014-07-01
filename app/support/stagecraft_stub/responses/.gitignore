@@ -1,4 +1,6 @@
 *
 !.gitignore
 !*.json
+agencies.json
 dashboards.json
+departments.json
