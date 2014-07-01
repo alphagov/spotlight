@@ -6,12 +6,11 @@ define([
   './yaxisRight',
   './line',
   './stack',
-  './linelabel',
   './hover',
   './tooltip',
   './missing-data'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Tooltip, MissingData) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, MissingData) {
 
   var Graph = View.extend({
 
@@ -28,7 +27,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Too
       yaxisRight: YAxisRight,
       line: Line,
       stack: Stack,
-      linelabel: LineLabel,
       callout: Tooltip,
       hover: Hover,
       tooltip: Tooltip
