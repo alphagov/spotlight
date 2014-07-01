@@ -110,6 +110,15 @@ git push heroku your-branch-name:master
 heroku open
 ```
 
+If you want the Heroku app to be password-protected, set config variables as follows,
+before pushing the code.
+
+```bash
+heroku config:set BASIC_AUTH_USER=xxxx
+heroku config:set BASIC_AUTH_PASS=xxxx
+heroku config
+```
+
 [buildpack]: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
 
 ## App status ##
