@@ -1,11 +1,11 @@
 define([
-  'extensions/views/graph/interleavedbar',
+  'extensions/views/graph/bar',
   'extensions/collections/collection'
 ],
-function (InterleavedBar, Collection) {
-  describe('InterleavedBarComponent', function () {
+function (Bar, Collection) {
+  describe('BarComponent', function () {
 
-    var d3 = InterleavedBar.prototype.d3;
+    var d3 = Bar.prototype.d3;
 
     var el, wrapper, collection, view;
     beforeEach(function () {
@@ -29,7 +29,7 @@ function (InterleavedBar, Collection) {
           ])
         }
       ]);
-      view = new InterleavedBar({
+      view = new Bar({
         wrapper: wrapper,
         collection: collection,
         yStack: function (model) {

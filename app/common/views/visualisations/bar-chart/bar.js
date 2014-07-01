@@ -1,8 +1,8 @@
 define([
-  'extensions/views/graph/interleavedbar'
+  'extensions/views/graph/bar'
 ],
-function (InterleavedBar) {
-  var JourneyBar = InterleavedBar.extend({
+function (Bar) {
+  return Bar.extend({
     interactive: true,
     strokeAlign: 'inner',
 
@@ -15,5 +15,4 @@ function (InterleavedBar) {
     }
   });
 
-  return JourneyBar;
 });
