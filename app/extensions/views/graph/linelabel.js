@@ -13,11 +13,8 @@ function (Component) {
     labelOffset: 6,
 
     showSquare: true,
-    showValues: true,
-    showValuesPercentage: false,
-    showSummary: false,
-    attachLinks: true,
     summaryPadding: -36,
+    summaryHeight: 0,
 
     classed: 'labels',
 
@@ -109,55 +106,23 @@ function (Component) {
 
     renderSummary: function () {
 
-      this.summaryHeight = 0;
+      // TODO - only render date/time period here as per https://www.pivotaltracker.com/s/projects/911874/stories/73142060
 
-      if (!this.showSummary) {
-        this.overlapLabelTop = 0;
-        return;
-      }
-
-      var summary = '<span class="title">Total</span>';
-
-      if (this.showValues) {
-        var attr = this.graph.valueAttr,
-            selected = this.collection.getCurrentSelection(),
-            value = '';
-
-        if (selected.selectedModel) {
-          value = selected.selectedModel.get('total:' + attr);
-        } else {
-          value = this.collection.total(attr);
-        }
-
-        if (this.showValuesPercentage && value) {
-          summary += this.renderValuePercentage(value, 1);
-        } else {
-          summary += this.renderValuePercentage(value);
-        }
-      }
-
-      var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
-      summaryWrapper.enter().append('div').attr('class', 'summary');
-      summaryWrapper.html(summary);
-
-      var translateY = this.overlapLabelTop - this.margin.top + this.labelOffset;
-      summaryWrapper.attr('style', 'margin-top: ' + translateY + 'px;');
-
-      this.summaryHeight = $(summaryWrapper.node()).height() + this.summaryPadding;
     },
 
     renderLabels: function () {
       var that = this;
+      var lines = this.graph.getLines();
 
       var labelWrapper = this.figcaption.selectAll('ol').data(['one-wrapper']);
       labelWrapper.enter().append('ol').classed('squares', function () {
         return that.showSquare;
       }).classed('has-links', function () {
-        return that.attachLinks;
+        return _.any(lines, function (line) { return line.href; });
       });
 
       var selection = labelWrapper.selectAll('li')
-        .data(this.graph.getLines());
+        .data(lines);
       selection.enter().append('li');
 
       selection.attr('class', function (line, index) {
@@ -188,22 +153,14 @@ function (Component) {
      */
     setLabelPositions: function (selection) {
 
-      // labels are positioned in relation to last data point
-      var maxModelIndex = this.collection.length - 1;
-
       // prepare 'positions' array
       var positions = [];
       var scale = this.scales.y;
       var that = this;
       selection.each(function (line) {
-        var y;
-        var valueAttr = line.key;
-        for (var index = maxModelIndex; index >= 0; index--) {
-          y = that.getYIdeal(index, valueAttr);
-          if (y !== null) {
-            break;
-          }
-        }
+        var defined = that.collection.defined(line.key);
+        var y = defined.length ? defined.pop().get(line.key) : null;
+
         var size = $(this).height();
 
         positions.push({
@@ -243,18 +200,14 @@ function (Component) {
       selection.select('a').remove();
       selection.select('span.meta').remove();
 
-      if (this.showValues) {
-        var selected = this.collection.getCurrentSelection(),
-            value = 0,
-            percentage,
-            model,
-            attr = line.key;
+      var selected = this.collection.getCurrentSelection(),
+          value = 0,
+          percentage,
+          model,
+          attr = line.key;
 
-        if (selected.selectedModel) {
-          model = selected.selectedModel;
-        } else {
-          model = this.collection.defined(attr).pop();
-        }
+      if (selected.selectedModel) {
+        model = selected.selectedModel;
         if (this.graph.isOneHundredPercent()) {
           value = model.get(attr.replace(':percent', ''));
           percentage = model.get(attr);
@@ -262,15 +215,24 @@ function (Component) {
           value = model.get(attr);
           percentage = model.get(attr + ':percent');
         }
-
-        labelMeta += this.renderValuePercentage(value, percentage);
+      } else {
+        if (this.graph.isOneHundredPercent()) {
+          model = this.collection.defined(attr).pop();
+          value = model.get(attr.replace(':percent', ''));
+          percentage = model.get(attr);
+        } else {
+          value = this.collection.total(attr);
+          percentage = value / this.collection.total('total:' + this.graph.valueAttr);
+        }
       }
+
+      labelMeta += this.renderValuePercentage(value, percentage);
 
       /*if (group.get('timeshift')) {
         labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
       }*/
 
-      if (this.attachLinks && line.href) {
+      if (line.href) {
         selection.append('a').attr('href', line.href).html(labelTitle);
         selection.append('span').attr('class', 'meta').html(labelMeta);
       } else {
