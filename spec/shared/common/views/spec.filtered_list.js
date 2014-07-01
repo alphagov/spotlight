@@ -31,7 +31,7 @@ define([
 
       it('adds output from collection.alphabetise to template context', function () {
         var output = view.templateContext();
-        expect(output).toEqual({ items: { alphabetised: 'data' } });
+        expect(output).toEqual({ items: { alphabetised: 'data' }, title: 'services' });
       });
 
       it('includes model data in template context', function () {
@@ -39,7 +39,7 @@ define([
           model: 'data'
         });
         var output = view.templateContext();
-        expect(output).toEqual({ model: 'data', items: { alphabetised: 'data' } });
+        expect(output).toEqual({ model: 'data', items: { alphabetised: 'data' }, title: 'services' });
       });
 
     });

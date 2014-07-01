@@ -13,11 +13,14 @@ define([
     },
 
     templateContext: function () {
+      var filteredList = this.collection.alphabetise({
+        text: this.model.get('filter'),
+        department: this.model.get('departmentFilter')
+      });
+
       return _.extend(this.model.toJSON(), {
-        items: this.collection.alphabetise({
-          text: this.model.get('filter'),
-          department: this.model.get('departmentFilter')
-        })
+        items: filteredList,
+        title: filteredList.count === 1 ? 'service' : 'services'
       });
     },
 
