@@ -8,19 +8,9 @@ function (Graph, LineLabel) {
     LineLabel: LineLabel,
 
     components: function () {
-      var labelOptions = {
-          isLineGraph: true
-        },
-        yAxisOptions, lineGraphComponents;
+      var yAxisOptions, lineGraphComponents;
 
       if (this.isOneHundredPercent()) {
-        _.extend(labelOptions, {
-          showValues: true,
-          showValuesPercentage: true,
-          showOriginalValues: true,
-          showSummary: false
-        });
-
         yAxisOptions = {
           tickFormat: function () {
             return function (d) {
@@ -53,8 +43,7 @@ function (Graph, LineLabel) {
 
       if (this.showLineLabels()) {
         lineGraphComponents.linelabel = {
-          view: this.LineLabel,
-          options: labelOptions
+          view: this.LineLabel
         };
       }
 
