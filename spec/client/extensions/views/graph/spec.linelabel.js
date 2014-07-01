@@ -1,33 +1,34 @@
 define([
   'extensions/views/graph/linelabel',
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ],
 function (LineLabel, Collection) {
 
   describe('LineLabel Component', function () {
     describe('rendering tests', function () {
 
-      var el, wrapper, lineLabel, collection;
+      var el, wrapper, lineLabel, collection, graph;
       beforeEach(function () {
-        var TestCollection = Collection.extend({
-          parse: function (response) {
-            return response;
-          }
-        });
 
-        collection = new TestCollection();
-        collection.reset([
-          { y: 30, yLabel: 30, title: 'Title 1', id: 'id1', href: '/link1', values: [
-            { _count: 10, _count_original: 10 },
-            { _count: 20, _count_original: 20 },
-            { _count: 30, _count_original: 30, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
-          ] },
-          { y: 80, yLabel: 80, title: 'Title 2', id: 'id2', href: '/link2', values: [
-            { _count: 60, _count_original: 20 },
-            { _count: 70, _count_original: 50 },
-            { _count: 80, _count_original: 90, _start_at: collection.getMoment('2013-08-26T00:00:00+00:00'), _end_at: collection.getMoment('2013-09-02T00:00:00+00:00') }
-          ] }
-        ], {parse: true});
+        collection = new Collection([
+          { _count: 10, _value: 20, '_count:percent': 0.33, '_value:percent': 0.67 },
+          { _count: 20, _value: 30, '_count:percent': 0.4, '_value:percent': 0.6 },
+          { _count: 30, _value: 30, '_count:percent': 0.5, '_value:percent': 0.5 }
+        ]);
+
+        graph = {
+          innerWidth: 400,
+          valueAttr: '_count',
+          getLines: function () {
+            return [
+              { label: 'Title 1', key: '_count' },
+              { label: 'Title 2', key: '_value' }
+            ];
+          },
+          isOneHundredPercent: function () {
+            return false;
+          }
+        };
 
         el = $('<div></div>').appendTo($('body'));
         wrapper = LineLabel.prototype.d3.select(el[0]).append('svg').append('g');
@@ -42,10 +43,7 @@ function (LineLabel, Collection) {
         lineLabel.offset = 100;
         lineLabel.linePaddingInner = 20;
         lineLabel.linePaddingOuter = 30;
-        lineLabel.graph = {
-          innerWidth: 400,
-          valueAttr: '_count'
-        };
+        lineLabel.graph = graph;
         lineLabel.margin = {
           top: 100,
           right: 200,
@@ -53,8 +51,8 @@ function (LineLabel, Collection) {
           left: 400
         };
         lineLabel.positions = [
-          { ideal: 30, min: 30, size: 20, id: 'id1' },
-          { ideal: 80, min: 80, size: 30, id: 'id2' }
+          { ideal: 30, min: 30, size: 20, key: '_count' },
+          { ideal: 80, min: 80, size: 30, key: '_value' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
       });
@@ -64,15 +62,22 @@ function (LineLabel, Collection) {
       });
 
       describe('render', function () {
+
+        beforeEach(function () {
+          collection.reset([
+            collection.at(0).toJSON()
+          ]);
+        });
+
         it('renders a label with text and line', function () {
           lineLabel.render();
           var textLabels = lineLabel.$el.find('figcaption li');
           expect(textLabels.length).toEqual(2);
 
-          expect(textLabels.eq(0)).toHaveText('Title 1');
+          expect(textLabels.eq(0).find('.label-title')).toHaveText('Title 1');
           expect(textLabels.eq(0).prop('class')).toEqual('label0');
 
-          expect(textLabels.eq(1)).toHaveText('Title 2');
+          expect(textLabels.eq(1).find('.label-title')).toHaveText('Title 2');
           expect(textLabels.eq(1).prop('class')).toEqual('label1');
 
           var lines = wrapper.selectAll('line');
@@ -80,8 +85,12 @@ function (LineLabel, Collection) {
         });
 
         it('adds custom classes to line labels', function () {
-          collection.at(0).set('className', 'foo');
-          collection.at(1).set('className', 'bar');
+          lineLabel.graph.getLines = function () {
+            return [
+              { label: 'Title 1', key: '_count', className: 'foo' },
+              { label: 'Title 2', key: '_count', className: 'bar' }
+            ];
+          };
           lineLabel.render();
 
           var textLabels = lineLabel.$el.find('figcaption li');
@@ -91,7 +100,12 @@ function (LineLabel, Collection) {
         });
 
         it('adds timeshift class to line labels for timeshifted lines', function () {
-          collection.at(0).set('timeshift', 52);
+          lineLabel.graph.getLines = function () {
+            return [
+              { label: 'Title 1', key: '_count', timeshift: 52 },
+              { label: 'Title 2', key: '_count' }
+            ];
+          };
           lineLabel.render();
 
           var textLabels = lineLabel.$el.find('figcaption li');
@@ -117,13 +131,16 @@ function (LineLabel, Collection) {
         it('does not render links, values, percentages or timeperiods by default', function () {
           lineLabel.render();
           expect(lineLabel.$el.find('figcaption li a').length).toEqual(0);
-          expect(lineLabel.$el.find('figcaption li span.value').length).toEqual(0);
-          expect(lineLabel.$el.find('figcaption li span.percentage').length).toEqual(0);
           expect(lineLabel.$el.find('figcaption .summary span.timeperiod').length).toEqual(0);
         });
 
-        it('renders links when enabled', function () {
-          lineLabel.attachLinks = true;
+        it('renders links when enabled and lines have href attributes', function () {
+          lineLabel.graph.getLines = function () {
+            return [
+              { label: 'Title 1', key: '_count', href: '/link1' },
+              { label: 'Title 2', key: '_count', href: '/link2' }
+            ];
+          };
           lineLabel.render();
           expect(lineLabel.$el.find('figcaption ol')).toHaveClass('has-links');
           var links = lineLabel.$el.find('figcaption li a');
@@ -134,20 +151,30 @@ function (LineLabel, Collection) {
         });
 
         it('renders a label with additional value text when enabled', function () {
-          lineLabel.showValues = true;
           lineLabel.render();
 
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
 
-          expect(label1.find('span.value')).toHaveText('60');
-          expect(label2.find('span.value')).toHaveText('210');
+          expect(label1.find('span.value')).toHaveText('10');
+          expect(label2.find('span.value')).toHaveText('20');
         });
 
-        it('renders links and additional value text when selected', function () {
-          lineLabel.attachLinks = true;
-          lineLabel.showValues = true;
+        it('does not render values or percentages if disabled', function () {
+          lineLabel.showValues = false;
+          lineLabel.render();
+          expect(lineLabel.$el.find('figcaption li span.value').length).toEqual(0);
+          expect(lineLabel.$el.find('figcaption li span.percentage').length).toEqual(0);
+        });
+
+        it('renders links and additional value text', function () {
+          lineLabel.graph.getLines = function () {
+            return [
+              { label: 'Title 1', key: '_count', href: '/link1' },
+              { label: 'Title 2', key: '_value', href: '/link2' }
+            ];
+          };
           lineLabel.render();
 
           var link1 = lineLabel.$el.find('figcaption ol li a').eq(0);
@@ -159,48 +186,23 @@ function (LineLabel, Collection) {
         });
 
         it('renders a label with additional value text and percentage when enabled', function () {
-          lineLabel.showValues = true;
-          lineLabel.showValuesPercentage = true;
           lineLabel.render();
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
-          expect(label1.find('span.percentage')).toHaveText('(22.2%)');
-          expect(label2.find('span.percentage')).toHaveText('(77.8%)');
+          expect(label1.find('span.percentage')).toHaveText('(33%)');
+          expect(label2.find('span.percentage')).toHaveText('(67%)');
         });
 
-        it('renders a label with additional value text and percentage for line graphs when enabled', function () {
-          lineLabel.showValues = true;
-          lineLabel.showValuesPercentage = true;
-          lineLabel.isLineGraph = true;
-          lineLabel.render();
-          var labels = lineLabel.$el.find('figcaption ol li');
-          var label1 = labels.eq(0);
-          var label2 = labels.eq(1);
-          expect(label1.find('span.value')).toHaveText('30');
-          expect(label2.find('span.value')).toHaveText('90');
-          expect(label1.find('span.percentage')).toHaveText('(25%)');
-          expect(label2.find('span.percentage')).toHaveText('(75%)');
-        });
-
-        it('renders a summary label when enabled', function () {
+        /*it('renders a summary label when enabled', function () {
           lineLabel.showSummary = true;
-          lineLabel.showValues = true;
-          lineLabel.showValuesPercentage = true;
           lineLabel.render();
           var summary = lineLabel.$el.find('figcaption .summary');
           expect(summary.find('span.title')).toHaveText('Total');
           expect(summary.find('span.value')).toHaveText('270');
           expect(summary.find('span.percentage')).toHaveText('(100%)');
-        });
+        });*/
 
-        it('renders a time period label when enabled', function () {
-          lineLabel.showSummary = true;
-          lineLabel.showTimePeriod = true;
-          lineLabel.render();
-          var summary = lineLabel.$el.find('figcaption .summary');
-          expect(summary.find('span.timeperiod')).toHaveText('last 3 weeks');
-        });
       });
 
       describe('event handling', function () {
@@ -214,9 +216,7 @@ function (LineLabel, Collection) {
             collection: collection,
             interactive: false,
             attachLinks: true,
-            graph: {
-              innerWidth: 400
-            },
+            graph: graph,
             margin: {
               top: 100,
               right: 200,
@@ -241,7 +241,7 @@ function (LineLabel, Collection) {
             LineLabel.prototype.modernizr = { touch: false };
             lineLabel = new LineLabel(options);
             lineLabel.render();
-            lineLabel.$el.find('a').eq(0).trigger('mousemove');
+            lineLabel.$el.find('li').eq(0).trigger('mousemove');
             expect(collection.selectedIndex).toBe(0);
 
             $('body').trigger('mousemove');
@@ -252,7 +252,7 @@ function (LineLabel, Collection) {
             LineLabel.prototype.modernizr = { touch: true };
             lineLabel = new LineLabel(options);
             lineLabel.render();
-            lineLabel.$el.find('a').eq(1).trigger('touchstart');
+            lineLabel.$el.find('li').eq(1).trigger('touchstart');
             expect(collection.selectedIndex).toBe(1);
 
             $('body').trigger('touchstart');
@@ -273,7 +273,7 @@ function (LineLabel, Collection) {
           lineLabel.render();
           var littleLines = wrapper.select('.labels');
           var labels = lineLabel.$el.find('figcaption ol li');
-          lineLabel.onChangeSelected(collection.at(1));
+          lineLabel.onChangeSelected(collection.at(0), 0, { valueAttr: '_value' });
           expect(hasClass(labels.eq(0), 'selected')).toBe(false);
           expect(hasClass(labels.eq(1), 'selected')).toBe(true);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(true);
@@ -282,7 +282,7 @@ function (LineLabel, Collection) {
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(true);
           expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(true);
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
-          lineLabel.onChangeSelected(collection.at(0));
+          lineLabel.onChangeSelected(collection.at(0), 0, { valueAttr: '_count' });
           expect(hasClass(labels.eq(0), 'selected')).toBe(true);
           expect(hasClass(labels.eq(1), 'selected')).toBe(false);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
@@ -303,7 +303,6 @@ function (LineLabel, Collection) {
         });
 
         it('displays the values for the current selection', function () {
-          lineLabel.showValues = true;
           lineLabel.showValuesPercentage = true;
           lineLabel.showSummary = true;
           lineLabel.showTimePeriod = true;
@@ -311,28 +310,28 @@ function (LineLabel, Collection) {
 
           var figcaption = lineLabel.$el.find('figcaption');
 
-          collection.selectItem(null, 2);
-          expect(figcaption.find('.summary .value')).toHaveText('110');
+          collection.selectItem(1);
+          /*expect(figcaption.find('.summary .value')).toHaveText('60');
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(27.3%)');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('80');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(72.7%)');
+          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');*/
+          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('20');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(40%)');
+          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('30');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(60%)');
 
-          collection.selectItem(null, null);
-          expect(figcaption.find('.summary .value')).toHaveText('270');
+          collection.selectItem(null);
+          /*expect(figcaption.find('.summary .value')).toHaveText('270');
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('60');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(22.2%)');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('210');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(77.8%)');
+          expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');*/
+          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(50%)');
+          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('30');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(50%)');
         });
 
         it('displays (no data) when the current selection is null', function () {
-          collection.at(0).get('values').at(2).set('_count', null);
-          lineLabel.showValues = true;
+          collection.at(0).set('_count', null).set('_count:percent', null);
+          collection.at(0).set('_value', null).set('_value:percent', null);
           lineLabel.showValuesPercentage = true;
           lineLabel.showSummary = true;
           lineLabel.showTimePeriod = true;
@@ -340,79 +339,13 @@ function (LineLabel, Collection) {
 
           var figcaption = lineLabel.$el.find('figcaption');
 
-          collection.selectItem(null, 2);
-          expect(figcaption.find('.summary .value')).toHaveText('80');
+          collection.selectItem(0);
+          /*expect(figcaption.find('.summary .value')).toHaveText('80');
           expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');
-          expect(figcaption.find('li').eq(0).find('.no-data')).toHaveText('(no data)');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('80');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(100%)');
-
-          collection.selectItem(null, null);
-          expect(figcaption.find('.summary .value')).toHaveText('240');
-          expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(12.5%)');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('210');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(87.5%)');
-        });
-
-        it('displays (no data) for all items when the current selection is null', function () {
-          collection.at(0).get('values').at(2).set('_count', null);
-          collection.at(1).get('values').at(2).set('_count', null);
-          lineLabel.showValues = true;
-          lineLabel.showValuesPercentage = true;
-          lineLabel.showSummary = true;
-          lineLabel.showTimePeriod = true;
-          lineLabel.render();
-
-          var figcaption = lineLabel.$el.find('figcaption');
-
-          collection.selectItem(null, 2);
-          expect(figcaption.find('.summary .no-data')).toHaveText('(no data)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');
+          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');*/
           expect(figcaption.find('li').eq(0).find('.no-data')).toHaveText('(no data)');
           expect(figcaption.find('li').eq(1).find('.no-data')).toHaveText('(no data)');
 
-          collection.selectItem(null, null);
-          expect(figcaption.find('.summary .value')).toHaveText('160');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('130');
-        });
-      });
-
-      describe('onHover', function () {
-        beforeEach(function () {
-          spyOn(collection, 'selectItem');
-          lineLabel.render();
-        });
-
-        it('selects the closest label', function () {
-          lineLabel.onHover({ x: null, y: 54 });
-          expect(collection.selectItem).toHaveBeenCalledWith(0);
-          lineLabel.onHover({ x: null, y: 56 });
-          expect(collection.selectItem).toHaveBeenCalledWith(1);
-        });
-
-        it('unselects when the closest label is already selected and the toggle option is used', function () {
-          lineLabel.onHover({ x: null, y: 54, toggle: true });
-          expect(collection.selectItem).toHaveBeenCalledWith(0);
-          collection.selectedIndex = 0;
-          lineLabel.onHover({ x: null, y: 54, toggle: true });
-          expect(collection.selectItem).toHaveBeenCalledWith(null);
-        });
-
-        it('selects the closest label when label positions are out of sync with collection order', function () {
-          lineLabel.positions = [
-            { ideal: 30, min: 30, size: 20, id: 'id2' },
-            { ideal: 80, min: 80, size: 30, id: 'id1' }
-          ];
-          lineLabel.onHover({ x: null, y: 54 });
-          expect(collection.selectItem).toHaveBeenCalledWith(1);
-          lineLabel.onHover({ x: null, y: 56 });
-          expect(collection.selectItem).toHaveBeenCalledWith(0);
         });
 
       });
@@ -424,22 +357,9 @@ function (LineLabel, Collection) {
           figcaption, labelWrapper, selection, enterSelection;
       beforeEach(function () {
         collection = new Collection([
-          {
-            id: 'a',
-            values: new Collection([
-              { _count: 1, alternative: 8 },
-              { _count: 4, alternative: 5 },
-              { _count: 7, alternative: 2 }
-            ])
-          },
-          {
-            id: 'b',
-            values: new Collection([
-              { _count: 2, alternative: 9 },
-              { _count: 5, alternative: 6 },
-              { _count: 8, alternative: 3 }
-            ])
-          }
+          { a: 1, b: 2 },
+          { a: 4, b: 5 },
+          { a: 7, b: 8 }
         ]);
 
         var yScale = jasmine.createSpy();
@@ -447,18 +367,14 @@ function (LineLabel, Collection) {
           return val * val;
         };
         graph = {
-          valueAttr: '_count',
+          valueAttr: 'a',
           innerWidth: 100,
           innerHeight: 100,
-          getYPos: function (groupIndex, modelIndex) {
-            return collection.at(groupIndex).get('values').at(modelIndex).get(graph.valueAttr);
+          getYPos: function (modelIndex, attr) {
+            return collection.at(modelIndex).get(attr);
           },
-          getY0Pos: function (groupIndex, modelIndex) {
-            if (groupIndex > 0) {
-              return collection.at(groupIndex - 1).get('values').at(modelIndex).get(graph.valueAttr);
-            } else {
-              return 0;
-            }
+          getY0Pos: function () {
+            return 0;
           }
         };
         lineLabel = new LineLabel({
@@ -487,12 +403,15 @@ function (LineLabel, Collection) {
         labelWrapper.enter().append('ol');
 
         // Set the height of the li for cross-browser test compatibility
-        selection = labelWrapper.selectAll('li').data(collection.models);
+        selection = labelWrapper.selectAll('li').data([
+          { key: 'a' },
+          { key: 'b' }
+        ]);
         enterSelection = selection.enter().append('li').attr('style', 'display:block;height:20px;position:absolute;');
 
         spyOn(lineLabel, 'calcPositions').andReturn([
-          { min: 20, id: 'a' },
-          { min: 30, id: 'b' }
+          { min: 20, key: 'a' },
+          { min: 30, key: 'b' }
         ]);
       });
 
@@ -508,13 +427,13 @@ function (LineLabel, Collection) {
         expect(startPositions[0]).toEqual({
           ideal: 49, // yScale was applied to '_count' attribute of last element in line 'a'
           size: 20,
-          id: 'a'
+          key: 'a',
         });
         expect(lineLabel.scales.y).toHaveBeenCalledWith(8);
         expect(startPositions[1]).toEqual({
           ideal: 64, // yScale was applied to '_count' attribute of last element in line 'b'
           size: 20,
-          id: 'b'
+          key: 'b'
         });
 
         expect($(wrapper.selectAll('li')[0][0]).prop('style').top).toEqual('20px');
@@ -522,8 +441,7 @@ function (LineLabel, Collection) {
       });
 
       it('uses the last non-null value for positioning in overlay configuration', function () {
-        collection.at(0).get('values').last().set('_count', null);
-        collection.at(1).get('values').last().set('_count', null);
+        collection.last().set('a', null).set('b', null);
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
@@ -531,23 +449,23 @@ function (LineLabel, Collection) {
         expect(startPositions[0]).toEqual({
           ideal: 16, // yScale was applied to '_count' attribute of penultimate element in line 'a'
           size: 20,
-          id: 'a'
+          key: 'a'
         });
         expect(lineLabel.scales.y).toHaveBeenCalledWith(5);
         expect(startPositions[1]).toEqual({
           ideal: 25, // yScale was applied to '_count' attribute of penultimate element in line 'b'
           size: 20,
-          id: 'b'
+          key: 'b'
         });
       });
 
       it('sorts elements by ideal position before calculating positions', function () {
-        collection.at(0).get('values').last().set('_count', 8);
-        collection.at(1).get('values').last().set('_count', 4);
+        collection.last().set('a', 8);
+        collection.last().set('b', 4);
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         var startPositions = lineLabel.calcPositions.argsForCall[0][0];
-        expect(startPositions[0].id).toEqual('b');
-        expect(startPositions[1].id).toEqual('a');
+        expect(startPositions[0].key).toEqual('b');
+        expect(startPositions[1].key).toEqual('a');
       });
 
     });
