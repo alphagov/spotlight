@@ -9,7 +9,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Environment Agency",
-      "url" : "https://www.gov.uk/government/organisations/environment-agency"
+      "url": "https://www.gov.uk/government/organisations/environment-agency"
     },
     "other": [
       {
@@ -27,7 +27,7 @@
       "slug": "traffic-to-department-content",
       "module-type": "tab",
       "title": "Traffic to content",
-      "info":[
+      "info": [
         "Data source: Google Analytics",
         "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
         "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
@@ -39,18 +39,13 @@
           "module-type": "single_timeseries",
           "title": "Visitors",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "traffic-count",
           "info": [
             "Data source: Google Analytics",
             "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
-          "group-by": "department",
-          "filter-by": "department:environment-agency",
           "value-attribute": "visitors:sum",
-          "period": "week",
           "axes": {
             "x": {
               "label": "Date"
@@ -60,6 +55,22 @@
                 "label": "Number of visitors"
               }
             ]
+          },
+          "axis-period": "week",
+          "matching-attribute": "eventCategory",
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "traffic-count",
+            "query-params": {
+              "period": "week",
+              "group_by": "eventCategory",
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "collect": [
+                "visitors:sum"
+              ]
+            }
           }
         },
         {
@@ -67,18 +78,13 @@
           "module-type": "single_timeseries",
           "title": "Pageviews",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "pageviews-count",
           "info": [
             "Data source: Google Analytics",
             "Weekly data for the last 9 full weeks (Monday to Sunday).",
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
           ],
-          "group-by": "department",
-          "filter-by": "department:environment-agency",
           "value-attribute": "pageviews:sum",
-          "period": "week",
           "axes": {
             "x": {
               "label": "Date"
@@ -88,6 +94,22 @@
                 "label": "Number of pageviews"
               }
             ]
+          },
+          "axis-period": "week",
+          "matching-attribute": "eventCategory",
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "pageviews-count",
+            "query-params": {
+              "period": "week",
+              "group_by": "eventCategory",
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "collect": [
+                "pageviews:sum"
+              ]
+            }
           }
         }
       ]
@@ -97,7 +119,7 @@
       "module-type": "tab",
       "title": "Most popular content",
       "description": "Visitors arriving over the last week.",
-      "info":[
+      "info": [
         "Data source: Google Analytics",
         "The 10 most popular pages over the last full week (Monday to Sunday).",
         "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. ‘Unique pageviews’ is the number of visits during which the specified page was viewed at least once.",
@@ -109,15 +131,6 @@
           "slug": "all-pages",
           "title": "All pages",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -136,23 +149,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "news-pages",
           "title": "News pages",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-news-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -171,23 +191,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-news-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "publications",
           "title": "Publications",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-publications-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -206,23 +233,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-publications-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "consultations",
           "title": "Consultations",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-consultations-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -241,23 +275,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-consultations-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "policies",
           "title": "Policies",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-policy-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -276,23 +317,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-policy-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "speeches",
           "title": "Speeches",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-speeches-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -311,23 +359,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-speeches-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "collections",
           "title": "Collections",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "top-collections-count",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "pageTitle",
-            "collect": ["pageviews:sum", "uniquePageviews:sum"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Page title",
@@ -346,8 +401,24 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "uniquePageviews:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "top-collections-count",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "pageTitle",
+              "collect": [
+                "pageviews:sum",
+                "uniquePageviews:sum"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         }
       ]
     },
@@ -356,13 +427,8 @@
       "module-type": "grouped_timeseries",
       "title": "Devices used to access the content",
       "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-      "data-group": "gov-uk-content",
-      "data-type": "devices-count",
-      "filter-by": "department:environment-agency",
       "category": "deviceCategory",
-      "period": "week",
       "axis-period": "week",
-      "duration": 9,
       "value-attribute": "pageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -375,7 +441,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -398,6 +467,21 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "gov-uk-content",
+        "data-type": "devices-count",
+        "query-params": {
+          "period": "week",
+          "duration": 9,
+          "filter_by": [
+            "department:environment-agency"
+          ],
+          "group_by": "deviceCategory",
+          "collect": [
+            "pageviews:sum"
+          ]
+        }
       }
     },
     {
@@ -405,13 +489,8 @@
       "module-type": "grouped_timeseries",
       "title": "New and returning visitors",
       "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
-      "data-group": "gov-uk-content",
-      "data-type": "new-returning-count",
-      "filter-by": "department:environment-agency",
       "category": "visitorType",
-      "period": "week",
       "axis-period": "week",
-      "duration": 9,
       "value-attribute": "entrances:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -424,7 +503,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -442,6 +524,21 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "gov-uk-content",
+        "data-type": "new-returning-count",
+        "query-params": {
+          "period": "week",
+          "duration": 9,
+          "filter_by": [
+            "department:environment-agency"
+          ],
+          "group_by": "visitorType",
+          "collect": [
+            "entrances:sum"
+          ]
+        }
       }
     },
     {
@@ -462,15 +559,6 @@
           "slug": "all-sources",
           "title": "All sources",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "referrers-rate",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "sourceMedium",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Source of user",
@@ -492,23 +580,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "referrers-rate",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "sourceMedium",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "search-terms",
           "title": "Search terms",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "organic-rate",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "keyword",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Keyword",
@@ -530,23 +625,30 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "organic-rate",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "keyword",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "social-media",
           "title": "Social media",
           "description": "",
-          "data-group": "gov-uk-content",
-          "data-type": "social-rate",
-          "query-params": {
-            "filter_by": "department:environment-agency",
-            "group_by": "socialNetwork",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Social Network",
@@ -568,8 +670,24 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "social-rate",
+            "query-params": {
+              "filter_by": [
+                "department:environment-agency"
+              ],
+              "group_by": "socialNetwork",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         }
       ]
     },
@@ -578,18 +696,13 @@
       "module-type": "single_timeseries",
       "title": "Total feedback received",
       "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "feedback-count",
       "info": [
         "Data source: GOV.UK anonymous feedback",
         "A count of anonymous comments made on departmental pages in a calendar month.",
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "default-value": 0,
-      "group-by": "organisation_acronym",
-      "filter-by": "organisation_acronym:ea",
       "value-attribute": "comment_count:sum",
-      "period": "month",
       "axes": {
         "x": {
           "label": "Date"
@@ -599,6 +712,22 @@
             "label": "Comment count"
           }
         ]
+      },
+      "axis-period": "month",
+      "matching-attribute": "eventCategory",
+      "data-source": {
+        "data-group": "gov-uk-content",
+        "data-type": "feedback-count",
+        "query-params": {
+          "period": "month",
+          "group_by": "eventCategory",
+          "filter_by": [
+            "organisation_acronym:ea"
+          ],
+          "collect": [
+            "comment_count:sum"
+          ]
+        }
       }
     },
     {
@@ -606,20 +735,11 @@
       "module-type": "table",
       "title": "Most commented pages",
       "description": "",
-      "data-group": "gov-uk-content",
-      "data-type": "top-urls",
       "info": [
         "Data source: GOV.UK anonymous feedback",
         "Pages receiving the most comments in a calendar month.",
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
-      "query-params": {
-        "filter_by": "organisation_acronym:ea",
-        "group_by": "url",
-        "collect": ["comment_count:sum"],
-        "period": "month",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "URL",
@@ -633,8 +753,23 @@
           }
         ]
       },
+      "sort-order": "descending",
       "sort-by": "comment_count:sum",
-      "sort-order": "descending"
+      "data-source": {
+        "data-group": "gov-uk-content",
+        "data-type": "top-urls",
+        "query-params": {
+          "filter_by": [
+            "organisation_acronym:ea"
+          ],
+          "group_by": "url",
+          "collect": [
+            "comment_count:sum"
+          ],
+          "period": "month",
+          "duration": 1
+        }
+      }
     }
   ]
 }

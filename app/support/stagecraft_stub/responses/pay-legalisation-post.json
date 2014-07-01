@@ -13,7 +13,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Pay to get documents legalised by post",
-      "url" : "https://www.gov.uk/pay-legalisation-post"
+      "url": "https://www.gov.uk/pay-legalisation-post"
     },
     "other": [
       {
@@ -30,43 +30,69 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-apply-for-legalisation-apostille-certificate",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-apply-for-legalisation-apostille-certificate",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:fco-apply-for-legalisation-apostille-certificate", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
-      "format": { "type": "currency", "pence": true }
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-apply-for-legalisation-apostille-certificate",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "live-service-usage",
@@ -77,22 +103,24 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "pay-legalisation-post",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "pay-legalisation-post",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
-      "data-group": "pay-legalisation-post",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
       ],
-      "group-by": "eventCategory",
-      "filter-by": "eventCategory:pay-legalisation-post:done",
       "axes": {
         "x": {
           "label": "Date of Payment"
@@ -102,6 +130,23 @@
             "label": "Number of payments"
           }
         ]
+      },
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "matching-attribute": "eventCategory",
+      "data-source": {
+        "data-group": "pay-legalisation-post",
+        "data-type": "journey",
+        "query-params": {
+          "group_by": "eventCategory",
+          "filter_by": [
+            "eventCategory:pay-legalisation-post:done"
+          ],
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ]
+        }
       }
     },
     {
@@ -109,8 +154,6 @@
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "Proportion of users who start and complete their payment using the digital service",
-      "data-group": "pay-legalisation-post",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
@@ -118,7 +161,20 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "eventCategory",
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "pay-legalisation-post",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventCategory"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -130,14 +186,28 @@
         "The total number of users who arrived at each step.",
         "Number of users is measured using the count of unique events from each step."
       ],
-      "data-group": "pay-legalisation-post",
-      "data-type": "journey",
       "axes": {
         "y": [
-          {"groupId": "pay-legalisation-post:start", "label": "Start", "format": "integer"},
-          {"groupId": "pay-legalisation-post:confirm", "label": "Confirm", "format": "integer"},
-          {"groupId": "pay-legalisation-post:done", "label": "Done", "format": "integer"}
+          {
+            "groupId": "pay-legalisation-post:start",
+            "label": "Start",
+            "format": "integer"
+          },
+          {
+            "groupId": "pay-legalisation-post:confirm",
+            "label": "Confirm",
+            "format": "integer"
+          },
+          {
+            "groupId": "pay-legalisation-post:done",
+            "label": "Done",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "pay-legalisation-post",
+        "data-type": "journey"
       }
     },
     {
@@ -155,14 +225,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-legalisation-post",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-legalisation-post",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -171,14 +245,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-legalisation-post",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-legalisation-post",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

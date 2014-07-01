@@ -7,18 +7,18 @@
   "title": "Practical driving test (public users)",
   "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>This dashboard provides additional information to the :<br><a href='/performance/book-practical-driving-test'>Practical driving test bookings</a> dashboard<br><a href='/performance/change-practical-driving-test'>Practical driving test changes and cancellations</a> dashboard",
   "department": {
-     "title": "Department for Transport",
-     "abbr": "DfT"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-     "title": "Driver and Vehicle Standards Agency",
-     "abbr": "DVSA"
+    "title": "Driver and Vehicle Standards Agency",
+    "abbr": "DVSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-        "title": "Book your official practical driving or riding test",
-        "url" : "https://www.gov.uk/book-practical-driving-test"
+      "title": "Book your official practical driving or riding test",
+      "url": "https://www.gov.uk/book-practical-driving-test"
     }
   },
   "customer-type": "Individuals",
@@ -33,21 +33,22 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "driving-test-practical-public",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Bookings, changes and cancellations breakdown",
       "description": "Practical driving test <span class=\"group0\">bookings</span> and <span class=\"group1\">changes and cancellations</span>",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
       "category": "action",
-      "filter-by": ["sector:public"],
-      "period": "week",
       "axis-period": "month",
-      "duration": 52,
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -59,7 +60,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -74,6 +78,21 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "duration": 52,
+          "filter_by": [
+            "sector:public"
+          ],
+          "group_by": "action",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -81,11 +100,7 @@
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
       "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
-      "data-group": "driving-test-practical-public",
-      "data-type": "device-usage",
       "category": "deviceCategory",
-      "period": "week",
-      "duration": 26,
       "axis-period": "month",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
@@ -98,7 +113,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -118,6 +136,18 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "device-usage",
+        "query-params": {
+          "period": "week",
+          "duration": 26,
+          "group_by": "deviceCategory",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
       }
     },
     {
@@ -135,14 +165,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -151,14 +185,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

@@ -43,95 +43,106 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
       "slug": "digital-take-up",
       "module-type": "kpi",
       "title": "Digital take-up",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "digital_takeup",
       "format": {
         "type": "percent",
         "axes": {
-        "x": {
-          "label": "Date",
-          "key": ["_start_at", "_end_at"],
-          "format": "dateRange"
-        },
-        "y": [
-          {
-            "label": "Digital take-up",
-            "key": "completion",
-            "format": "percent"
-          }
-        ]
-      }
+          "x": {
+            "label": "Date",
+            "key": [
+              "_start_at",
+              "_end_at"
+            ],
+            "format": "dateRange"
+          },
+          "y": [
+            {
+              "label": "Digital take-up",
+              "key": "completion",
+              "format": "percent"
+            }
+          ]
+        }
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
         "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
@@ -139,15 +150,17 @@
       "module-type": "bar_chart_with_number",
       "title": "Transactions per quarter",
       "description": "Total number of transactions each quarter",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-request-statutory-off-road-notice-sorn",
-          "type:quarterly"
-        ]
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-request-statutory-off-road-notice-sorn",
+            "type:quarterly"
+          ]
+        }
       }
     },
     {
@@ -155,18 +168,20 @@
       "module-type": "bar_chart_with_number",
       "title": "Digital takeup per quarter",
       "description": "Percentage digital takeup each quarter",
-      "data-group": "transactions-explorer",
-      "data-type": "spreadsheet",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": [
-          "service_id:dft-request-statutory-off-road-notice-sorn",
-          "type:quarterly"
-        ]
-      },
       "format": {
         "type": "percent"
+      },
+      "data-source": {
+        "data-group": "transactions-explorer",
+        "data-type": "spreadsheet",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-request-statutory-off-road-notice-sorn",
+            "type:quarterly"
+          ]
+        }
       }
     },
     {
@@ -178,8 +193,14 @@
         "Info text line 1",
         "Info text line 2"
       ],
-      "data-group": "licensing",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "licensing",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "top-content",
@@ -189,15 +210,17 @@
       "classes": [
         "cols2"
       ],
-      "data-group": "govuk",
-      "data-type": "most_viewed",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "most_viewed",
+        "query-params": {
+          "sort_by": "pageviews:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "trending",
@@ -208,23 +231,23 @@
         "cols2",
         "up"
       ],
-      "data-group": "govuk",
-      "data-type": "trending",
-      "query-params": {
-        "sort_by": "percent_change:descending",
-        "limit": 10
-      },
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "trending",
+        "query-params": {
+          "sort_by": "percent_change:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
       "module-type": "journey",
       "title": "Users at each step",
       "description": "Number of users who completed important stages of the transaction last week",
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "journey",
       "matching-attribute": "eventCategory",
       "axes": {
         "y": [
@@ -247,6 +270,10 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "deposit-foreign-marriage",
+        "data-type": "journey"
       }
     },
     {
@@ -254,15 +281,6 @@
       "module-type": "table",
       "title": "Table",
       "description": "Number of users who completed important stages of the transaction last week",
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
-      "query-params": {
-        "filter_by": "eventAction:help.inline",
-        "group_by": "eventDestination",
-        "collect": "uniqueEvents:sum",
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Description",
@@ -283,8 +301,23 @@
           }
         ]
       },
+      "sort-order": "descending",
       "sort-by": "uniqueEvents:sum",
-      "sort-order": "descending"
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "journey",
+        "query-params": {
+          "filter_by": [
+            "eventAction:help.inline"
+          ],
+          "group_by": "eventDestination",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -301,9 +334,6 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "carers-allowance",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
@@ -311,16 +341,20 @@
               "format": "date"
             }
           },
-          "end-at": "2013-10-27T12:00:00+00:00"
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day",
+              "end_at": "2013-10-27T12:00:00Z"
+            }
+          }
         },
         {
           "title": "24 hours",
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "carers-allowance",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
@@ -328,7 +362,14 @@
               "format": "time"
             }
           },
-          "end-at": "2013-10-27T12:00:00+00:00"
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour",
+              "end_at": "2013-10-27T12:00:00Z"
+            }
+          }
         }
       ]
     },
@@ -337,21 +378,21 @@
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
       "description": "Average score of satisfied responses",
-      "data-group": "vehicle-licensing",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: DVLA database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "value-attribute": "satisfaction_sorn"
+      "value-attribute": "satisfaction_sorn",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "customer-satisfaction"
+      }
     },
     {
       "slug": "applications",
       "module-type": "single_timeseries",
       "title": "Applications",
       "description": "",
-      "data-group": "pay-foreign-marriage-certificates",
-      "data-type": "journey",
       "info": [
         "Info text line 1",
         "Info text line 2"
@@ -359,22 +400,46 @@
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
       "matching-attribute": "eventCategory",
-      "end-at": "2014-02-20T12:00:00+00:00"
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "pay-foreign-marriage-certificates",
+        "data-type": "journey",
+        "query-params": {
+          "end_at": "2014-02-20T12:00:00Z",
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventCategory"
+        }
+      }
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "carers-allowance",
-      "data-type": "journey",
       "info": [
         "Info text line 1",
         "Info text line 2"
       ],
       "denominator-matcher": "about-you$",
       "numerator-matcher": "consent-and-declaration$",
-      "matching-attribute": "eventLabel"
+      "matching-attribute": "eventLabel",
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventLabel"
+        }
+      }
     },
     {
       "slug": "tab_things",
@@ -387,15 +452,9 @@
           "module-type": "grouped_timeseries",
           "title": "Categories in a stack",
           "description": "A nested description inside of a tabbed module",
-          "data-group": "housing-policy",
-          "data-type": "residential-transactions",
           "use_stack": true,
           "value-attribute": "value:sum",
           "category": "geography",
-          "period": "month",
-          "filter-by": [
-            "key:residential_property_transactions"
-          ],
           "axes": {
             "y": [
               {
@@ -420,23 +479,30 @@
               }
             ]
           },
-          "show-line-labels": true
+          "show-line-labels": true,
+          "data-source": {
+            "data-group": "housing-policy",
+            "data-type": "residential-transactions",
+            "query-params": {
+              "period": "month",
+              "filter_by": [
+                "key:residential_property_transactions"
+              ],
+              "group_by": "geography",
+              "collect": [
+                "value:sum"
+              ]
+            }
+          }
         },
         {
           "slug": "starts_completions",
           "module-type": "grouped_timeseries",
           "title": "Categories as lines",
           "description": "",
-          "data-group": "housing-policy",
-          "data-type": "dwellings",
           "use_stack": false,
           "value-attribute": "value:sum",
           "category": "type",
-          "period": "quarter",
-          "filter-by": [
-            "geography:United_Kingdom",
-            "tenure:all_dwellings"
-          ],
           "info": [
             "Source: National House-Building Council (NHBC)"
           ],
@@ -465,20 +531,30 @@
               }
             ]
           },
-          "show-line-labels": true
+          "show-line-labels": true,
+          "data-source": {
+            "data-group": "housing-policy",
+            "data-type": "dwellings",
+            "query-params": {
+              "period": "quarter",
+              "filter_by": [
+                "geography:United_Kingdom",
+                "tenure:all_dwellings"
+              ],
+              "group_by": "type",
+              "collect": [
+                "value:sum"
+              ]
+            }
+          }
         },
         {
           "slug": "how-users-access-the-service",
           "module-type": "grouped_timeseries",
           "title": "Categories in a % stack",
           "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-          "data-group": "gov-uk-content",
-          "data-type": "devices-count",
-          "filter-by": "department:attorney-generals-office",
           "category": "deviceCategory",
-          "period": "week",
           "axis-period": "week",
-          "duration": 9,
           "value-attribute": "pageviews:sum",
           "show-line-labels": true,
           "one-hundred-percent": true,
@@ -517,6 +593,21 @@
                 "format": "integer"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "devices-count",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "filter_by": [
+                "department:attorney-generals-office"
+              ],
+              "group_by": "deviceCategory",
+              "collect": [
+                "pageviews:sum"
+              ]
+            }
           }
         },
         {
@@ -524,13 +615,8 @@
           "module-type": "grouped_timeseries",
           "title": "Categories as % lines",
           "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-          "data-group": "gov-uk-content",
-          "data-type": "devices-count",
-          "filter-by": "department:attorney-generals-office",
           "category": "deviceCategory",
-          "period": "week",
           "axis-period": "week",
-          "duration": 9,
           "value-attribute": "pageviews:sum",
           "show-line-labels": true,
           "one-hundred-percent": true,
@@ -569,6 +655,21 @@
                 "format": "percent"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "devices-count",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "filter_by": [
+                "department:attorney-generals-office"
+              ],
+              "group_by": "deviceCategory",
+              "collect": [
+                "pageviews:sum"
+              ]
+            }
           }
         }
       ]
