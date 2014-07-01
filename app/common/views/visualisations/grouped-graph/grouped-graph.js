@@ -1,10 +1,11 @@
 define([
-  'extensions/views/graph/graph'
+  'extensions/views/graph/graph',
+  'extensions/views/graph/linelabel'
 ],
-function (Graph) {
+function (Graph, LineLabel) {
   return Graph.extend({
 
-    LineLabel: Graph.prototype.sharedComponents.linelabel,
+    LineLabel: LineLabel,
 
     components: function () {
       var labelOptions = {
