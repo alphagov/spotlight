@@ -11,9 +11,9 @@ function (LineLabel, Collection) {
       beforeEach(function () {
 
         collection = new Collection([
-          { _count: 10, _value: 20, '_count:percent': 0.33, '_value:percent': 0.67 },
-          { _count: 20, _value: 30, '_count:percent': 0.4, '_value:percent': 0.6 },
-          { _count: 30, _value: 30, '_count:percent': 0.5, '_value:percent': 0.5 }
+          { _count: 10, _value: 20, '_count:percent': 0.33, '_value:percent': 0.67, 'total:_count': 30 },
+          { _count: 20, _value: 30, '_count:percent': 0.4, '_value:percent': 0.6, 'total:_count': 50 },
+          { _count: 30, _value: 30, '_count:percent': 0.5, '_value:percent': 0.5, 'total:_count': 60 }
         ]);
 
         graph = {
@@ -122,12 +122,6 @@ function (LineLabel, Collection) {
           expect(lineLabel.$el.find('figcaption ol')).toHaveClass('squares');
         });
 
-        it('does not render links or timeperiods by default', function () {
-          lineLabel.render();
-          expect(lineLabel.$el.find('figcaption li a').length).toEqual(0);
-          expect(lineLabel.$el.find('figcaption .summary span.timeperiod').length).toEqual(0);
-        });
-
         it('renders links when enabled and lines have href attributes', function () {
           lineLabel.graph.getLines = function () {
             return [
@@ -144,34 +138,17 @@ function (LineLabel, Collection) {
           expect(links.eq(1).attr('href')).toEqual('/link2');
         });
 
-        it('renders a label with additional value text', function () {
+        it('renders a label with additional value text showing total value', function () {
           lineLabel.render();
 
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
 
-          expect(label1.find('span.value')).toHaveText('30');
-          expect(label2.find('span.value')).toHaveText('30');
-        });
-
-        it('uses last non-null value if last value is null', function () {
-          collection.last().set({ _count: null, _value: null });
-          lineLabel.render();
-
-          var labels = lineLabel.$el.find('figcaption ol li');
-          var label1 = labels.eq(0);
-          var label2 = labels.eq(1);
-
-          expect(label1.find('span.value')).toHaveText('20');
-          expect(label2.find('span.value')).toHaveText('30');
-        });
-
-        it('does not render values or percentages if disabled', function () {
-          lineLabel.showValues = false;
-          lineLabel.render();
-          expect(lineLabel.$el.find('figcaption li span.value').length).toEqual(0);
-          expect(lineLabel.$el.find('figcaption li span.percentage').length).toEqual(0);
+          expect(label1.find('span.value')).toHaveText('60');
+          expect(label1.find('span.percentage')).toHaveText('(42.9%)');
+          expect(label2.find('span.value')).toHaveText('80');
+          expect(label2.find('span.percentage')).toHaveText('(57.1%)');
         });
 
         it('renders links and additional value text', function () {
@@ -191,24 +168,6 @@ function (LineLabel, Collection) {
           expect(spanValues.length).toEqual(2);
         });
 
-        it('renders a label with additional value text and percentage when enabled', function () {
-          lineLabel.render();
-          var labels = lineLabel.$el.find('figcaption ol li');
-          var label1 = labels.eq(0);
-          var label2 = labels.eq(1);
-          expect(label1.find('span.percentage')).toHaveText('(50%)');
-          expect(label2.find('span.percentage')).toHaveText('(50%)');
-        });
-
-        /*it('renders a summary label when enabled', function () {
-          lineLabel.showSummary = true;
-          lineLabel.render();
-          var summary = lineLabel.$el.find('figcaption .summary');
-          expect(summary.find('span.title')).toHaveText('Total');
-          expect(summary.find('span.value')).toHaveText('270');
-          expect(summary.find('span.percentage')).toHaveText('(100%)');
-        });*/
-
       });
 
       describe('event handling', function () {
@@ -221,7 +180,6 @@ function (LineLabel, Collection) {
             wrapper: wrapper,
             collection: collection,
             interactive: false,
-            attachLinks: true,
             graph: graph,
             margin: {
               top: 100,
@@ -309,46 +267,32 @@ function (LineLabel, Collection) {
         });
 
         it('displays the values for the current selection', function () {
-          lineLabel.showValuesPercentage = true;
-          lineLabel.showSummary = true;
-          lineLabel.showTimePeriod = true;
           lineLabel.render();
 
           var figcaption = lineLabel.$el.find('figcaption');
 
           collection.selectItem(1);
-          /*expect(figcaption.find('.summary .value')).toHaveText('60');
-          expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');*/
           expect(figcaption.find('li').eq(0).find('.value')).toHaveText('20');
           expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(40%)');
           expect(figcaption.find('li').eq(1).find('.value')).toHaveText('30');
           expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(60%)');
 
           collection.selectItem(null);
-          /*expect(figcaption.find('.summary .value')).toHaveText('270');
-          expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('last 3 weeks');*/
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(50%)');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('30');
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(50%)');
+          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('60');
+          expect(figcaption.find('li').eq(0).find('.percentage')).toHaveText('(42.9%)');
+          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('80');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(57.1%)');
         });
 
         it('displays (no data) when the current selection is null', function () {
           collection.at(0).set('_count', null).set('_count:percent', null);
           collection.at(0).set('_value', null).set('_value:percent', null);
-          lineLabel.showValuesPercentage = true;
-          lineLabel.showSummary = true;
           lineLabel.showTimePeriod = true;
           lineLabel.render();
 
           var figcaption = lineLabel.$el.find('figcaption');
 
           collection.selectItem(0);
-          /*expect(figcaption.find('.summary .value')).toHaveText('80');
-          expect(figcaption.find('.summary .percentage')).toHaveText('(100%)');
-          expect(figcaption.find('.summary .timeperiod')).toHaveText('26 Aug to 1 Sep 2013');*/
           expect(figcaption.find('li').eq(0).find('.no-data')).toHaveText('(no data)');
           expect(figcaption.find('li').eq(1).find('.no-data')).toHaveText('(no data)');
 
