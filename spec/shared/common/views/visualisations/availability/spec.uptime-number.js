@@ -38,20 +38,22 @@ define([
             'uptime:sum': 13,
             'downtime:sum': 15,
             'unmonitored:sum': 17,
-            'avgresponse:mean': 29
+            'avgresponse:mean': 29,
+            '_start_at': '2013-05-17T00:00:00+00:00'
           },
           {
             'uptime:sum': null,
             'downtime:sum': null,
             'unmonitored:sum': null,
-            'avgresponse:mean': null
+            'avgresponse:mean': null,
+            '_start_at': '2013-05-18T00:00:00+00:00'
           }
         ]};
         var collection = new AvailabilityCollection(availabilityData, options);
         var view = new UptimeNumber({
           collection: collection
         });
-        collection.selectItem(0, 1);
+        collection.selectItem(1);
         var selection = collection.getCurrentSelection();
 
         expect(view.getValueSelected(selection)).toEqual('<span class="no-data">(no data)</span>');
