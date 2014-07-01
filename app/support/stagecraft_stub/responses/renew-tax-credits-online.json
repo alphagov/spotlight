@@ -41,7 +41,7 @@
       "data-type": "journey",
       "category": "pagePath",
       "period": "week",
-      "value-attribute": "users:sum",
+      "value-attribute": "uniquePageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": false,
       "use_stack": false,
@@ -69,30 +69,49 @@
       }
     },
     {
-      "slug": "users-at-each-step-individual",
+      "slug": "users-at-each-step-joint",
       "module-type": "journey",
-      "title": "Users at each step - individual",
-      "description": "Number of users who completed important steps of the individual transaction last week",
+      "title": "Users at each step - combined",
+      "description": "Number of users who started important steps of the individual transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
-        "Number of users is measured using the count of unique events from each step."
+        "Number of users is measured using the count of unique pageviews from each step."
       ],
       "data-group": "renewtaxcredits",
       "data-type": "journey",
       "matching-attribute": "pagePath",
-      "value-attribute": "users",
+      "value-attribute": "uniquePageviews",
       "axes": {
         "y": [
-          {"journeyId": "/tax-credits/renewal/d2check", "label": "d2check", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/details", "label": "details", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/acknowledgement", "label": "acknowledgement", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/certain-benefits", "label": "certain-benefits", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/taxable-social-security-benefits", "label": "taxable-social-security-benefits", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/income-details", "label": "income-details", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/summary", "label": "summary", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/declaration", "label": "declaration", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/renew-phone-post", "label": "renew-phone-post", "format": "integer"}
+          {"journeyId": "/tax-credits/renewal", "label": "Your circumstances", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/d2check", "label": "Your renewal type", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/details", "label": "Your details", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/renew-phone-post", "label": "You can't renew your tax credits online", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/acknowledgement", "label": "Thank You", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "users-at-each-step-individual",
+      "module-type": "journey",
+      "title": "Users at each step - individual",
+      "description": "Number of users who started important steps of the individual transaction last week",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique pageviews from each step."
+      ],
+      "data-group": "renewtaxcredits",
+      "data-type": "journey",
+      "matching-attribute": "pagePath",
+      "value-attribute": "uniquePageviews",
+      "axes": {
+        "y": [
+          {"journeyId": "/tax-credits/renewal/certain-benefits", "label": "Your benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/taxable-social-security-benefits", "label": "Your taxable social security benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/income-details", "label": "Your income", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/declaration", "label": "Declaration", "format": "integer"}
         ]
       }
     },
@@ -100,26 +119,26 @@
       "slug": "users-at-each-step-dual",
       "module-type": "journey",
       "title": "Users at each step - dual",
-      "description": "Number of users who completed important steps of the dual transaction last week",
+      "description": "Number of users who started important steps of the dual transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
-        "Number of users is measured using the count of unique events from each step."
+        "Number of users is measured using the count of unique pageviews from each step."
       ],
       "data-group": "renewtaxcredits",
       "data-type": "journey",
       "matching-attribute": "pagePath",
-      "value-attribute": "users",
+      "value-attribute": "uniquePageviews",
       "axes": {
         "y": [
-          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/primary", "label": "certain-benefits-primary", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/partner", "label": "certain-benefits-partner", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/primary", "label": "taxable-social-security-benefits-primary", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/partner", "label": "taxable-social-security-benefits-partner", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/income-details/primary", "label": "income-details-primary", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/income-details/partner", "label": "income-details-partner", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/summary", "label": "summary", "format": "integer"},
-          {"journeyId": "/tax-credits/renewal/dual/declaration", "label": "declaration", "format": "integer"}
+          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/primary", "label": "Your benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/certain-benefits/partner", "label": "Your partner's benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/primary", "label": "Your taxable benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/taxable-social-security-benefits/partner", "label": "Your partner's taxable benefits", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/income-details/primary", "label": "Your income", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/income-details/partner", "label": "Your partner's income", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/summary", "label": "Your income", "format": "integer"},
+          {"journeyId": "/tax-credits/renewal/dual/declaration", "label": "Declaration", "format": "integer"}
         ]
       }
     },
@@ -138,7 +157,7 @@
       "denominator-matcher": "renewal$",
       "numerator-matcher": "declaration$",
       "matching-attribute": "pagePath",
-      "value-attribute": "users:sum"
+      "value-attribute": "uniquePageviews:sum"
     },
     {
       "slug": "user-satisfaction",
