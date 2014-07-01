@@ -361,7 +361,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
           sum += Number(val);
         }
         return sum;
-      }, 0);
+      }, null);
       return total;
     },
 
