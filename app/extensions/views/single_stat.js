@@ -16,10 +16,7 @@ function (View) {
       this.listenTo(this.collection, 'reset sync error', this.render, this);
     },
 
-    onChangeSelected: function (selectModel) {
-      if (selectModel) {
-        this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
-      }
+    onChangeSelected: function () {
       this.render();
     },
 
@@ -28,10 +25,6 @@ function (View) {
 
       var value, label;
       var selection = this.collection.getCurrentSelection();
-
-      if (this.selectedModel) {
-        selection.selectedModel = this.selectedModel;
-      }
 
       if (selection.selectedModel) {
         value = this.getValueSelected(selection);
