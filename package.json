@@ -49,6 +49,7 @@
     "moment-timezone": "0.0.3",
     "morgan": "1.1.1",
     "mustache": "0.8.2",
+    "node-basicauth": "0.0.9",
     "node-sass": "0.9.3",
     "optimist": "0.6.1",
     "q": "1.0.1",

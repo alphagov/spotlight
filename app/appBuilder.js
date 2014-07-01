@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var winston = require('winston');
 var requirejs = require('requirejs');
+var basicAuth = require('node-basicauth');
 
 // Express middleware modules which have been separated out now
 var compression = require('compression');
@@ -69,7 +70,9 @@ module.exports = {
     // everything under /performance. We don't want to protect things like
     // /stagecraft-stub.
     if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
-      app.get('/performance*', express.basicAuth(process.env.BASIC_AUTH_USER, process.env.BASIC_AUTH_PASS));
+      var auth = {};
+      auth[process['env']['BASIC_AUTH_USER']] = process.env.BASIC_AUTH_PASS;
+      app.get('/performance*', basicAuth(auth));
     }
 
     app.get('/', function (req, res) {
