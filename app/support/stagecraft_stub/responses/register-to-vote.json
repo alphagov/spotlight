@@ -13,7 +13,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Register to vote",
-      "url" : "https://www.gov.uk/register-to-vote"
+      "url": "https://www.gov.uk/register-to-vote"
     }
   },
   "customer-type": "Individuals",
@@ -28,20 +28,22 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service."
       ],
-      "data-group": "register-to-vote",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "registrations-breakdown",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
       "category": "value",
-      "period": "day",
       "value-attribute": "count:sum",
-      "filter-by": "metricName:application_type",
       "show-line-labels": true,
       "use_stack": false,
       "info": [
@@ -50,7 +52,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -68,6 +73,20 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "day",
+          "filter_by": [
+            "metricName:application_type"
+          ],
+          "group_by": "value",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -75,13 +94,9 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
-      "period": "day",
       "info": [
         "Data source: Register to vote service"
       ],
-      "filter-by": "metricName:application_type",
       "numerator-matcher": "^ordinary$",
       "denominator-matcher": "^ordinary|ems$",
       "matching-attribute": "value",
@@ -101,6 +116,21 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "day",
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "day",
+          "filter_by": [
+            "metricName:application_type"
+          ],
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "value"
+        }
       }
     },
     {
@@ -108,12 +138,8 @@
       "module-type": "grouped_timeseries",
       "title": "Applications by age group",
       "description": "",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
       "category": "value",
-      "period": "day",
       "value-attribute": "count:sum",
-      "filter-by": "metricName:age_band",
       "show-line-labels": true,
       "use_stack": false,
       "info": [
@@ -122,7 +148,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -170,6 +199,20 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "day",
+          "filter_by": [
+            "metricName:age_band"
+          ],
+          "group_by": "value",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -177,12 +220,8 @@
       "module-type": "grouped_timeseries",
       "title": "Applications by type",
       "description": "",
-      "data-group": "register-to-vote",
-      "data-type": "volumetrics",
       "category": "value",
-      "period": "day",
       "value-attribute": "count:sum",
-      "filter-by": "metricName:application_type",
       "show-line-labels": true,
       "use_stack": false,
       "info": [
@@ -192,7 +231,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -220,6 +262,20 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "day",
+          "filter_by": [
+            "metricName:application_type"
+          ],
+          "group_by": "value",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -227,14 +283,19 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
-      "data-group": "register-to-vote",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "register-to-vote",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -251,14 +312,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "register-to-vote",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "register-to-vote",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -267,14 +332,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "register-to-vote",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "register-to-vote",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

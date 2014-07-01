@@ -20,28 +20,35 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing GOV.UK."
       ],
-      "data-group": "government",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "government",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "site-traffic",
       "module-type": "grouped_timeseries",
       "title": "Site traffic",
       "description": "Unique visitors to GOV.UK over the past year, compared with the previous year",
-      "data-group": "govuk",
-      "data-type": "visitors",
       "category": "website",
-      "period": "week",
-      "duration": 52,
       "axis-period": "month",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "use_stack": false,
-      "info": [ "Data source: Google Analytics" ],
+      "info": [
+        "Data source: Google Analytics"
+      ],
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -72,6 +79,18 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "visitors",
+        "query-params": {
+          "period": "week",
+          "duration": 52,
+          "group_by": "website",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
       }
     },
     {
@@ -83,16 +102,20 @@
         "Data source: Google Analytics",
         "The content on GOV.UK with the most pageviews in the past 7 days."
       ],
-      "classes": ["cols2"],
-      "data-group": "govuk",
-      "data-type": "most_viewed",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "classes": [
+        "cols2"
+      ],
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "most_viewed",
+        "query-params": {
+          "sort_by": "pageviews:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "trending",
@@ -104,16 +127,20 @@
         "Based on percentage increase between total pageviews in past 7 days and total pageviews in previous 7 days. Low pageviews in either period are rounded up to a set threshold.",
         "Excludes search results, help pages, the Service Design Manual, the Performance Platform, policies, and transformation projects."
       ],
-      "classes": ["cols2"],
-      "data-group": "govuk",
-      "data-type": "trending",
-      "query-params": {
-        "sort_by": "percent_change:descending",
-        "limit": 10
-      },
+      "classes": [
+        "cols2"
+      ],
       "label-attr": "pageTitle",
       "label-regex": "^(.*)\\s-[^-]+$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "trending",
+        "query-params": {
+          "sort_by": "percent_change:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "top-policies",
@@ -124,16 +151,20 @@
         "Data source: Google Analytics",
         "The policies on GOV.UK with the most pageviews in the past 7 days."
       ],
-      "classes": ["cols2"],
-      "data-group": "govuk",
-      "data-type": "most_viewed_policies",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "classes": [
+        "cols2"
+      ],
       "label-attr": "pageTitle",
       "label-regex": "^(.*?)(?:\\s-\\s(?:Policy\\s-\\s|Policies\\s-\\s)?GOV.UK)?$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "most_viewed_policies",
+        "query-params": {
+          "sort_by": "pageviews:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "top-announcements",
@@ -144,28 +175,28 @@
         "Data source: Google Analytics",
         "The press releases and news on GOV.UK with the most pageviews in the past 7 days."
       ],
-      "classes": ["cols2"],
-      "data-group": "govuk",
-      "data-type": "most_viewed_news",
-      "query-params": {
-        "sort_by": "pageviews:descending",
-        "limit": 10
-      },
+      "classes": [
+        "cols2"
+      ],
       "label-attr": "pageTitle",
       "label-regex": "^(.*?)(?:\\s-\\s(?:News stories\\s-\\s|Press releases\\s-\\s)?GOV.UK)?$",
-      "link-attr": "pagePath"
+      "link-attr": "pagePath",
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "most_viewed_news",
+        "query-params": {
+          "sort_by": "pageviews:descending",
+          "limit": 10
+        }
+      }
     },
     {
       "slug": "device-type",
       "module-type": "grouped_timeseries",
       "title": "How people access GOV.UK",
       "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on GOV.UK over time",
-      "data-group": "govuk",
-      "data-type": "devices",
       "category": "deviceCategory",
-      "period": "week",
       "axis-period": "month",
-      "duration": 52,
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -177,7 +208,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -200,6 +234,18 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "govuk",
+        "data-type": "devices",
+        "query-params": {
+          "period": "week",
+          "duration": 52,
+          "group_by": "deviceCategory",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
       }
     },
     {
@@ -217,14 +263,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "govuk",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "govuk",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -233,14 +283,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "govuk",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "govuk",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

@@ -10,8 +10,8 @@
     "abbr": "BIS"
   },
   "agency": {
-     "title": "Student Loans Company",
-     "abbr": "SLC"
+    "title": "Student Loans Company",
+    "abbr": "SLC"
   },
   "relatedPages": {
     "transaction": {
@@ -29,15 +29,12 @@
       "module-type": "comparison",
       "title": "Applications at each stage of completion",
       "description": "New online applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current and previous academic year",
-      "data-group": "student-finance",
-      "data-type": "transactions-by-channel",
       "category": "stage",
-      "filter-by": ["province:england", "application_type:full-time application", "new_or_continuing:new", "channel:digital"],
-      "comparison": ["academic_year:2014/15", "academic_year:2013/14"],
-      "period": "week",
+      "comparison": [
+        "academic_year:2014/15",
+        "academic_year:2013/14"
+      ],
       "axis-period": "month",
-      "start-at": "2014-01-01T00:00:00",
-      "duration": 52,
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": false,
@@ -49,7 +46,10 @@
         "x": {
           "label": "Date",
           "format": "dateRange",
-          "key": ["_start_at", "_end_at"]
+          "key": [
+            "_start_at",
+            "_end_at"
+          ]
         },
         "y": [
           {
@@ -79,6 +79,25 @@
             "timeshift": 52
           }
         ]
+      },
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "duration": 52,
+          "filter_by": [
+            "province:england",
+            "application_type:full-time application",
+            "new_or_continuing:new",
+            "channel:digital"
+          ],
+          "start_at": "2014-01-01T00:00:00Z",
+          "group_by": "stage",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -86,13 +105,8 @@
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "Submitted <span class=\"group0\">digital</span> and <span class=\"group1\">paper form</span> applications for 2014/15",
-      "data-group": "student-finance",
-      "data-type": "transactions-by-channel",
       "category": "channel",
-      "filter-by": ["academic_year:2014/15", "province:england", "application_type:full-time application", "new_or_continuing:new", "stage:submitted"],
-      "period": "week",
       "axis-period": "month",
-      "start-at": "2014-01-01T00:00:00",
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -114,6 +128,25 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "academic_year:2014/15",
+            "province:england",
+            "application_type:full-time application",
+            "new_or_continuing:new",
+            "stage:submitted"
+          ],
+          "start_at": "2014-01-01T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -121,12 +154,7 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "Proportion of applications made using the digital service",
-      "data-group": "student-finance",
-      "data-type": "transactions-by-channel",
-      "filter-by": ["academic_year:2014/15", "country:england", "application_type:full-time application", "stage:submitted", "new_or_continuing:new"],
-      "period": "week",
       "axis-period": "month",
-      "start-at": "2014-01-01T00:00:00",
       "info": [
         "Data source: Student Loans Company",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
@@ -138,7 +166,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -148,6 +179,25 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "academic_year:2014/15",
+            "country:england",
+            "application_type:full-time application",
+            "stage:submitted",
+            "new_or_continuing:new"
+          ],
+          "start_at": "2014-01-01T00:00:00Z",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
       }
     },
     {
@@ -160,9 +210,6 @@
         "The total number of users who arrived at each stage of the application process",
         "Number of users is measured using the count of unique events from each step"
       ],
-      "data-group": "student-finance",
-      "data-type": "journey",
-      "filter-by": ["eventAction:full-time-higher-education-england"],
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
@@ -202,6 +249,15 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "journey",
+        "query-params": {
+          "filter_by": [
+            "eventAction:full-time-higher-education-england"
+          ]
+        }
       }
     },
     {
@@ -215,11 +271,8 @@
         "Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
         "These metrics may be based on sampled data."
       ],
-      "data-group": "student-finance",
-      "data-type": "site-traffic",
       "value-attribute": "visitors:sum",
       "matching-attribute": "dataType",
-      "period": "week",
       "axes": {
         "x": {
           "label": "Date"
@@ -229,6 +282,18 @@
             "label": "Number of visitors"
           }
         ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "site-traffic",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "visitors:sum"
+          ],
+          "group_by": "dataType"
+        }
       }
     },
     {
@@ -246,14 +311,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "student-finance",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "student-finance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -262,14 +331,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "student-finance",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "student-finance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

@@ -14,7 +14,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Visa applications",
-      "url" : "https://www.gov.uk/tier-2-priority-applications"
+      "url": "https://www.gov.uk/tier-2-priority-applications"
     }
   },
   "modules": [
@@ -27,18 +27,21 @@
         "Data source: Google Analytics",
         "Live number of users on any page within the service."
       ],
-      "data-group": "tier-2-visit-visa",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "tier-2-visit-visa",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications",
       "description": "Applications completed using the digital service",
-      "data-group": "tier-2-visit-visa",
-      "data-type": "volumetrics",
       "category": "dataType",
-      "period": "week",
       "value-attribute": "uniquePageviews:sum",
       "show-line-labels": false,
       "use_stack": false,
@@ -48,7 +51,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -61,6 +67,17 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "tier-2-visit-visa",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "week",
+          "group_by": "dataType",
+          "collect": [
+            "uniquePageviews:sum"
+          ]
+        }
       }
     },
     {
@@ -68,8 +85,6 @@
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "tier-2-visit-visa",
-      "data-type": "journey",
       "value-attribute": "users:sum",
       "info": [
         "Data source: Google Analytics",
@@ -78,7 +93,19 @@
       ],
       "denominator-matcher": "product",
       "numerator-matcher": "download and print",
-      "matching-attribute": "eventAction"
+      "matching-attribute": "eventAction",
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "tier-2-visit-visa",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "users:sum"
+          ],
+          "group_by": "eventAction"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -92,18 +119,48 @@
         "The total number of users who arrived at each step.",
         "Number of users is measured using the count of unique events from each step."
       ],
-      "data-group": "tier-2-visit-visa",
-      "data-type": "journey",
       "axes": {
         "y": [
-          {"groupId": "product", "label": "Apply now", "format": "integer"},
-          {"groupId": "start", "label": "Start", "format": "integer"},
-          {"groupId": "application", "label": "Application", "format": "integer"},
-          {"groupId": "documents", "label": "Documents", "format": "integer"},
-          {"groupId": "declaration", "label": "Declaration", "format": "integer"},
-          {"groupId": "pay", "label": "Pay", "format": "integer"},
-          {"groupId": "download and print", "label": "Download and print", "format": "integer"}
+          {
+            "groupId": "product",
+            "label": "Apply now",
+            "format": "integer"
+          },
+          {
+            "groupId": "start",
+            "label": "Start",
+            "format": "integer"
+          },
+          {
+            "groupId": "application",
+            "label": "Application",
+            "format": "integer"
+          },
+          {
+            "groupId": "documents",
+            "label": "Documents",
+            "format": "integer"
+          },
+          {
+            "groupId": "declaration",
+            "label": "Declaration",
+            "format": "integer"
+          },
+          {
+            "groupId": "pay",
+            "label": "Pay",
+            "format": "integer"
+          },
+          {
+            "groupId": "download and print",
+            "label": "Download and print",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "tier-2-visit-visa",
+        "data-type": "journey"
       }
     },
     {
@@ -111,10 +168,7 @@
       "module-type": "grouped_timeseries",
       "title": "How people access the service",
       "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
-      "data-group": "tier-2-visit-visa",
-      "data-type": "devices",
       "category": "deviceCategory",
-      "period": "week",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -141,6 +195,17 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "tier-2-visit-visa",
+        "data-type": "devices",
+        "query-params": {
+          "period": "week",
+          "group_by": "deviceCategory",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
       }
     },
     {
@@ -158,14 +223,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "tier-2-visit-visa",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "tier-2-visit-visa",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -174,14 +243,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "tier-2-visit-visa",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "tier-2-visit-visa",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

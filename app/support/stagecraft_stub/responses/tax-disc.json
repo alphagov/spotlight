@@ -29,43 +29,69 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-tax-a-vehicle",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
-      "format": { "type": "currency", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-tax-a-vehicle",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": ["service_id:dft-tax-a-vehicle", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
-      "format": { "type": "currency", "pence": true }
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dft-tax-a-vehicle",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "live-service-usage",
@@ -76,37 +102,41 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently on the GOV.UK start page for the service."
       ],
-      "data-group": "tax-disc",
-      "data-type": "realtime",
-      "classes": "cols2"
+      "classes": "cols2",
+      "data-source": {
+        "data-group": "tax-disc",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction",
       "title": "User satisfaction",
       "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
-      "data-group": "vehicle-licensing",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: DVLA database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
       "value-attribute": "satisfaction_tax_disc",
-      "classes": "cols2"
+      "classes": "cols2",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "customer-satisfaction"
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
       "description": "Tax disc renewals per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "category": "channel",
-      "period": "month",
       "value-attribute": "volume:sum",
       "show-line-labels": true,
       "use_stack": true,
-      "filter-by": ["service:tax-disc"],
       "info": [
         "Data source: DVLA database",
         "Shows the number of successful applications to renew a tax disc, broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
@@ -116,10 +146,36 @@
       ],
       "axes": {
         "y": [
-           { "groupId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
-           { "groupId": "assisted-digital", "label": "Post Office", "format": "integer" },
-           { "groupId": "manual", "label": "DVLA centre", "format": "integer" }
+          {
+            "groupId": "fully-digital",
+            "label": "Digital and automated phone",
+            "format": "integer"
+          },
+          {
+            "groupId": "assisted-digital",
+            "label": "Post Office",
+            "format": "integer"
+          },
+          {
+            "groupId": "manual",
+            "label": "DVLA centre",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "period": "month",
+          "filter_by": [
+            "service:tax-disc"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "volume:sum"
+          ]
+        }
       }
     },
     {
@@ -127,8 +183,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "Proportion of renewals made using the digital service",
-      "data-group": "vehicle-licensing",
-      "data-type": "volumetrics",
       "info": [
         "Data source: DVLA database",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
@@ -137,14 +191,13 @@
       "denominator-matcher": "^fully-digital|assisted-digital|manual$",
       "matching-attribute": "channel",
       "value-attribute": "volume:sum",
-      "period": "month",
-      "query-params": {
-        "filter_by": "service:tax-disc"
-      },
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -154,6 +207,21 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "volumetrics",
+        "query-params": {
+          "filter_by": [
+            "service:tax-disc"
+          ],
+          "period": "month",
+          "collect": [
+            "volume:sum"
+          ],
+          "group_by": "channel"
+        }
       }
     },
     {
@@ -161,15 +229,6 @@
       "module-type": "table",
       "title": "Recorded errors",
       "description": "Errors generated during the online application process last week",
-      "data-group": "vehicle-licensing",
-      "data-type": "failures",
-      "query-params": {
-        "filter_by": "type:tax-disc",
-        "group_by": "reason",
-        "collect": ["count:sum", "description:set"],
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Description",
@@ -188,12 +247,28 @@
           }
         ]
       },
-      "sort-by": "count:sum",
       "sort-order": "descending",
       "info": [
         "<li>Data source: <abbr title='Driver and Vehicle Licensing Agency'>DVLA</abbr> database</li>",
         "<li>More than one error may be logged per user.</li>"
-      ]
+      ],
+      "sort-by": "count:sum",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "failures",
+        "query-params": {
+          "filter_by": [
+            "type:tax-disc"
+          ],
+          "group_by": "reason",
+          "collect": [
+            "count:sum",
+            "description:set"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -210,14 +285,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "tax-disc",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "tax-disc",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -226,14 +305,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "tax-disc",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "tax-disc",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }
