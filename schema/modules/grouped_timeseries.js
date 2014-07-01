@@ -17,9 +17,6 @@ module.exports = {
         use_stack: {
           type: 'boolean'
         },
-        period: {
-          $ref: '#/definitions/period'
-        },
         'value-attribute': {
           required: true
         },
