@@ -71,8 +71,8 @@
     {
       "slug": "users-at-each-step-joint",
       "module-type": "journey",
-      "title": "Users at each step - combined",
-      "description": "Number of users who started important steps of the individual transaction last week",
+      "title": "Users at each step",
+      "description": "Number of users who reached important steps of the transaction last week<br/>Note also details of the individual and dual journey below",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -96,7 +96,7 @@
       "slug": "users-at-each-step-individual",
       "module-type": "journey",
       "title": "Users at each step - individual",
-      "description": "Number of users who started important steps of the individual transaction last week",
+      "description": "Number of users who reached important steps of the individual transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -119,7 +119,7 @@
       "slug": "users-at-each-step-dual",
       "module-type": "journey",
       "title": "Users at each step - dual",
-      "description": "Number of users who started important steps of the dual transaction last week",
+      "description": "Number of users who reached important steps of the dual transaction last week",
       "info": [
         "Data source: Google Analytics",
         "The total number of users who arrived at each step.",
@@ -146,7 +146,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "Uusers who successfully complete their renewal, as a percentage of all users beginning the transaction online",
+      "description": "Uusers who successfully reach the 'Thank You' page, as a percentage of all users beginning the transaction online",
       "data-group": "renewtaxcredits",
       "data-type": "journey",
       "info": [
@@ -155,7 +155,7 @@
         "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
       ],
       "denominator-matcher": "renewal$",
-      "numerator-matcher": "declaration$",
+      "numerator-matcher": "acknowledgement$",
       "matching-attribute": "pagePath",
       "value-attribute": "uniquePageviews:sum"
     },
