@@ -29,9 +29,9 @@ function (XAxis, Collection) {
         });
       }
 
-      collection.reset([{
-        values: new Collection(values)
-      }]);
+      collection.reset({
+        data: values
+      }, { parse: true });
 
       var view = new XAxis({
         collection: collection,
