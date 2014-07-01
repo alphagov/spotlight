@@ -16,19 +16,12 @@ function (Component) {
     showValues: true,
     showValuesPercentage: false,
     showSummary: false,
-    showTimePeriod: false,
-    attachLinks: false,
+    attachLinks: true,
     summaryPadding: -36,
 
     classed: 'labels',
 
-    interactive: function (e) {
-      if (this.graph.lineLabelOnTop()) {
-        return false;
-      } else {
-        return e.slice % 3 === 2;
-      }
-    },
+    interactive: false,
 
     /**
      * Renders labels for current collection.
@@ -131,9 +124,9 @@ function (Component) {
             value = '';
 
         if (selected.selectedModel) {
-          value = this.collection.sum(attr, null, selected.selectedModelIndex);
+          value = selected.selectedModel.get('total:' + attr);
         } else {
-          value = this.collection.sum(attr);
+          value = this.collection.total(attr);
         }
 
         if (this.showValuesPercentage && value) {
@@ -141,10 +134,6 @@ function (Component) {
         } else {
           summary += this.renderValuePercentage(value);
         }
-      }
-
-      if (this.showTimePeriod) {
-        summary += '<span class="timeperiod">' + this.renderTimePeriod() + '</span>';
       }
 
       var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
@@ -169,27 +158,18 @@ function (Component) {
 
       var selection = labelWrapper.selectAll('li')
         .data(this.graph.getLines());
-      var enterSelection = selection.enter().append('li');
+      selection.enter().append('li');
 
       selection.attr('class', function (line, index) {
         var classes = ['label' + index];
-        /*if (model.get('className')) {
-          classes.push(model.get('className'));
+        if (line.className) {
+          classes.push(line.className);
         }
-        if (model.get('timeshift')) {
+        if (line.timeshift) {
           classes.push('timeshift');
-        }*/
+        }
         return classes.join(' ');
       });
-
-      if (this.attachLinks) {
-        enterSelection.append('a');
-        selection.selectAll('a').attr('href', function (group) {
-          return group.get('href');
-        });
-        enterSelection.append('span');
-        selection.selectAll('span').attr('class', 'meta');
-      }
 
       selection.each(function (line, i) {
         that.setLabelContent.call(that, that.d3.select(this), line, i);
@@ -229,7 +209,7 @@ function (Component) {
         positions.push({
           ideal: scale(y),
           size: size,
-          id: line.categoryId
+          key: line.key
         });
       });
 
@@ -245,9 +225,9 @@ function (Component) {
 
       // apply optimised positions
       selection.attr('style', function (line) {
-        var id = line.categoryId;
+        var id = line.key;
         var position = _.find(positions, function (pos) {
-          return pos.id === id;
+          return pos.key === id;
         });
         return position ? [
           'top:', that.margin.top + position.min, 'px;',
@@ -259,6 +239,9 @@ function (Component) {
     setLabelContent: function (selection, line) {
       var labelTitle = '<span class="label-title">' + line.label + '</span>',
           labelMeta = '';
+
+      selection.select('a').remove();
+      selection.select('span.meta').remove();
 
       if (this.showValues) {
         var selected = this.collection.getCurrentSelection(),
@@ -277,6 +260,7 @@ function (Component) {
           percentage = model.get(attr);
         } else {
           value = model.get(attr);
+          percentage = model.get(attr + ':percent');
         }
 
         labelMeta += this.renderValuePercentage(value, percentage);
@@ -286,9 +270,9 @@ function (Component) {
         labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
       }*/
 
-      if (this.attachLinks) {
-        selection.select('a').html(labelTitle);
-        selection.select('.meta').html(labelMeta);
+      if (this.attachLinks && line.href) {
+        selection.append('a').attr('href', line.href).html(labelTitle);
+        selection.append('span').attr('class', 'meta').html(labelMeta);
       } else {
         selection.html(labelTitle + labelMeta);
       }
@@ -318,26 +302,6 @@ function (Component) {
             return d.ideal - d.min === 0;
           });
       });
-    },
-
-    renderTimePeriod: function () {
-      var period = this.period || this.collection.query.get('period') || 'week',
-          numPeriods = this.collection.at(0).get('values').length,
-          selection = this.collection.getCurrentSelection();
-
-      if (selection.selectedModel) {
-        var model = selection.selectedModel;
-        if (_.isArray(model) && model.length) {
-          model = model[0];
-        }
-        return this.formatPeriod(model, period);
-      } else {
-        return [
-          'last',
-          numPeriods,
-          this.format(numPeriods, { type: 'plural', singular: period })
-        ].join(' ');
-      }
     },
 
     onChangeSelected: function (model, index, options) {
