@@ -6,12 +6,14 @@ function (View, FilteredListView) {
   return View.extend({
 
     events: _.extend({}, View.prototype.events, {
-      'keyup #filter': 'filter'
+      'keyup #filter': 'filter',
+      'change #department': 'filter'
     }),
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
-      if (this.$('#filter').val()) {
+
+      if (this.$('#filter').val() || this.$('#department').val()) {
         this.filter();
       }
     },
@@ -26,6 +28,7 @@ function (View, FilteredListView) {
 
     filter: function () {
       this.model.set('filter', this.$('#filter').val());
+      this.model.set('departmentFilter', this.$('#department').val());
     }
 
   });

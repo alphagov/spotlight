@@ -9,13 +9,14 @@ define([
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
-      this.model.on('change:filter', this.render, this);
+      this.model.on('change:filter change:departmentFilter', this.render, this);
     },
 
     templateContext: function () {
       return _.extend(this.model.toJSON(), {
         items: this.collection.alphabetise({
-          text: this.model.get('filter')
+          text: this.model.get('filter'),
+          department: this.model.get('departmentFilter')
         })
       });
     },

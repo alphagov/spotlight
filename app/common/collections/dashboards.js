@@ -9,7 +9,8 @@ function (Collection) {
       var groups = { count: 0 };
 
       filter = filter || {};
-      var textFilter = (filter.text || '').toUpperCase();
+      var textFilter = (filter.text || '').toUpperCase(),
+          departmentFilter = (filter.department || null);
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
@@ -21,8 +22,13 @@ function (Collection) {
           return false;
         }
 
+        // Remove the dashboard from the list if its department isn't what we want
+        if (departmentFilter && this.getDepartmentSlug(department) !== departmentFilter) {
+          return false;
+        }
+
         return true;
-      });
+      }, this);
 
       _.each(filteredDashboards, function (model) {
         var key = model.get('title').toUpperCase().substr(0, 1);
@@ -32,6 +38,10 @@ function (Collection) {
       });
 
       return groups;
+    },
+
+    getDepartmentSlug: function (department) {
+      return department.abbr.toLowerCase().replace(/ /, '-');
     },
 
     filterDashboards: function () {

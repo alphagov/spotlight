@@ -1,57 +1,85 @@
 #content {
   #filter-wrapper {
-
     padding-top: 1.5em;
     border-top: 5px solid $primary-colour;
 
-    &.licences {
-      max-width:40em;
-    }
-
-    label {
-      @include core-36($tabular-numbers: true) ;
+    label.primary-filter {
+      @include core-36($tabular-numbers: true);
       margin-right:.5em;
     }
 
     input {
-      font-size: 100%;
-      margin: 0 auto;
+      font-size: 1em;
+      margin: 0;
       width: 16em;
       padding: .2em .5em;
       position:relative;
-      top:-.3em;
+      top: 0;
+
+      @include media(tablet) {
+        top: -0.3em;
+      }
+    }
+
+    #faceted-search {
+      margin: 1em 0 0 0;
+
+      @include media(desktop) {
+        margin-top: 3em;
+        width: 24%;
+      }
+
+      select, input {
+        margin-bottom: 1em;
+        max-width: 100%;
+      }
+    }
+
+    #filter-submit-button {
+      @include button;
+      margin-top: 1em;
+
+      body.js-enabled & {
+        display: none;
+      }
     }
   }
 
-  section.entity-type {
-    padding-top: 0;
-    margin-top:3em;
-    min-height:8em;
+  section.filtered-list {
+    padding: 0;
+    margin-top: 1.5em;
     border-top: none;
 
+    @include media(desktop) {
+      float: right;
+      margin-top: -6em;
+      width: 70%;
+
+      body.js-enabled & {
+        margin-top: -3.5em;
+      }
+    }
+
     header {
-      padding:0;
-      margin:0;
-      border:0;
-      max-width:17em;
-      float:left;
+      margin: 0 0 1em 0;
+      border-bottom: 1px solid $grey-3;
 
       h2 {
-        @include core-24($tabular-numbers: true) ;
-      }
-      p.count {
-        @include bold-80($tabular-numbers: true) ;
-        margin:0;
+        @include core-19;
+        vertical-align: top;
+
+        span.count {
+          @include bold-48($tabular-numbers: true);
+          margin: 0 0.2em 0 0;
+        }
       }
     }
 
     dl {
-      margin-left:20em;
-      padding-left:0;
-      list-style:none;
+      margin: 0;
 
       dt {
-        @include core-19($tabular-numbers: true) ;
+        @include core-19($tabular-numbers: true);
       }
 
       dd {
@@ -67,36 +95,14 @@
             padding:.3em 0;
 
             .department {
-              float: right;
               color: $grey-1;
+
+              @include media(tablet) {
+                float: right;
+              }
             }
           }
         }
-      }
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  #content {
-    #filter-wrapper input {
-      top:0;
-    }
-
-    section.entity-type {
-      margin-top:1.5em;
-      header {
-        max-width:none;
-        float:none;
-
-        p.count {
-          @include bold-48($tabular-numbers: true) ;
-          margin:0;
-        }
-      }
-
-      dl {
-        margin:0;
       }
     }
   }

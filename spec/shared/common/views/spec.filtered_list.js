@@ -22,6 +22,11 @@ define([
       expect(view.render).toHaveBeenCalled();
     });
 
+    it('renders on model change:departmentFilter', function () {
+      view.model.set('departmentFilter', 'home-office');
+      expect(view.render).toHaveBeenCalled();
+    });
+
     describe('templateContext', function () {
 
       it('adds output from collection.alphabetise to template context', function () {

@@ -110,6 +110,31 @@ function (Collection) {
 
       });
 
+      it('filters based on explicit department filter', function () {
+        collection.reset([
+          { title: 'Blood', department: { title: 'Department of Health', abbr: 'DH' } },
+          { title: 'Passport', department: { title: 'Home Office', abbr: 'Home Office' } }
+        ]);
+
+        var output = collection.alphabetise({'department': 'home-office'});
+        expect(output.count).toEqual(1);
+        expect(output.P).toEqual([
+          { title: 'Passport', department: { title: 'Home Office', abbr: 'Home Office' } }
+        ]);
+      });
+
+    });
+
+    describe('getDepartmentSlug', function () {
+      it('lowercases the department abbreviation', function () {
+        var department = { title: 'Cabinet Office', abbr: 'CO' };
+        expect(collection.getDepartmentSlug(department)).toEqual('co');
+      });
+
+      it('turns spaces into hyphens', function () {
+        var department = { title: 'Home Office', abbr: 'Home Office' };
+        expect(collection.getDepartmentSlug(department)).toEqual('home-office');
+      });
     });
 
     describe('filterDashboards', function () {

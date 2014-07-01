@@ -2,10 +2,24 @@
   <h1>Services</h1>
   <h2>Services providing performance data to GOV.UK</h2>
 </header>
+
 <form id="filter-wrapper" class="services" method="get" action="">
-  <label for="filter">Find a service named:</label>
+  <label for="filter" class="primary-filter">Find a service named:</label>
   <input id="filter" placeholder="Example: Licensing" name="filter" value="<%= filter %>" />
+
+  <div id="faceted-search">
+    <label for="department">Department:</label>
+    <select id="department" name="department">
+      <option value="">All departments</option>
+      <% _.each(departments, function (department) { %>
+        <option value="<%= department.slug %>" <% if (department.slug === departmentFilter) { %>selected<% } %>><%= department.title %></option>
+      <% }); %>
+    </select>
+
+    <input type="submit" value="Filter dashboards" id="filter-submit-button" />
+  </div>
 </form>
-<section id="services-list" class="entity-type">
+
+<section id="services-list" class="filtered-list">
   <%= list %>
 </section>
