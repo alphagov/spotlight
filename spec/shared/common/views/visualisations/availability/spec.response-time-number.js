@@ -89,17 +89,19 @@ define([
         it('should display (no data) when the selected data is unavailable', function () {
           var availabilityData = { 'data': [
             {
-              'avgresponse:mean': 123
+              'avgresponse:mean': 123,
+              '_start_at': '2013-05-17T00:00:00+00:00'
             },
             {
-              'avgresponse:mean': null
+              'avgresponse:mean': null,
+              '_start_at': '2013-05-18T00:00:00+00:00'
             }
           ]};
           var collection = new AvailabilityCollection(availabilityData, availabilityOptions);
           var view = new ResponseTimeNumber({
             collection: collection
           });
-          collection.selectItem(0, 1);
+          collection.selectItem(1);
           var selection = collection.getCurrentSelection();
 
           expect(view.getValueSelected(selection)).toEqual('<span class="no-data">(no data)</span>');
