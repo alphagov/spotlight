@@ -1,7 +1,5 @@
 define([
-  'common/collections/availability',
-  'extensions/collections/collection',
-  'extensions/collections/matrix'
+  'common/collections/availability'
 ],
   function (AvailiabilityCollection) {
     describe('AvailiabilityCollection', function () {
@@ -137,8 +135,8 @@ define([
         var collection = new AvailiabilityCollection(availabilityData, options);
         var data = collection.parse(response);
 
-        expect(data.values[0]._start_at).toEqual(collection.moment('2013-06-17T15:00:00+00:00'));
-        expect(data.values[0]._end_at).toEqual(collection.moment('2013-06-17T16:00:00+00:00'));
+        expect(data[0]._start_at).toEqual(collection.moment('2013-06-17T15:00:00+00:00'));
+        expect(data[0]._end_at).toEqual(collection.moment('2013-06-17T16:00:00+00:00'));
       });
 
       it('should parse null data without resorting to NaN', function () {
@@ -158,8 +156,8 @@ define([
         var collection = new AvailiabilityCollection(availabilityData, options);
         var data = collection.parse(response);
 
-        expect(data.values[0].total).toEqual(null);
-        expect(data.values[0].uptimeFraction).toEqual(null);
+        expect(data[0].total).toEqual(null);
+        expect(data[0].uptimeFraction).toEqual(null);
       });
 
     });
