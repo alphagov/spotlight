@@ -20,7 +20,6 @@ function (View, d3) {
       } else if (this.interactive === true) {
         this.graph.on('hover', this.onHover, this);
       }
-
       this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
     },
 
