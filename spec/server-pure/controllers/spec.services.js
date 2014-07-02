@@ -42,6 +42,8 @@ describe('Services Controller', function () {
       filter: '',
       departmentFilter: null,
       departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });
@@ -56,6 +58,8 @@ describe('Services Controller', function () {
       filter: 'foo',
       departmentFilter: null,
       departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });
@@ -70,6 +74,8 @@ describe('Services Controller', function () {
       filter: '',
       departmentFilter: 'home-office',
       departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });
@@ -84,6 +90,8 @@ describe('Services Controller', function () {
       filter: '&lt;script&gt;alert(1)&lt;/script&gt;',
       departmentFilter: null,
       departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });

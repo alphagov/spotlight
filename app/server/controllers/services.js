@@ -3,7 +3,8 @@ var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
 var dashboards = require('../../support/stagecraft_stub/responses/dashboards'),
-    departments = require('../../support/stagecraft_stub/responses/departments');
+    departments = require('../../support/stagecraft_stub/responses/departments'),
+    agencies = require('../../support/stagecraft_stub/responses/agencies');
 
 var View = require('../views/services');
 
@@ -19,6 +20,8 @@ module.exports = function (req, res) {
     filter: sanitizer.escape(req.query.filter || ''),
     departmentFilter: req.query.department || null,
     departments: departments,
+    agencyFilter: req.query.agency || null,
+    agencies: agencies,
     data: services,
     script: true
   }));

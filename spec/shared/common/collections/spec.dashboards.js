@@ -125,15 +125,25 @@ function (Collection) {
 
     });
 
-    describe('getDepartmentSlug', function () {
-      it('lowercases the department abbreviation', function () {
+    describe('getSlug', function () {
+      it('lowercases the abbreviation if possible', function () {
         var department = { title: 'Cabinet Office', abbr: 'CO' };
-        expect(collection.getDepartmentSlug(department)).toEqual('co');
+        expect(collection.getSlug(department)).toEqual('co');
       });
 
       it('turns spaces into hyphens', function () {
         var department = { title: 'Home Office', abbr: 'Home Office' };
-        expect(collection.getDepartmentSlug(department)).toEqual('home-office');
+        expect(collection.getSlug(department)).toEqual('home-office');
+      });
+
+      it('uses the title if no abbreviation is provided', function () {
+        var department = { title: 'Skills Funding Agency' };
+        expect(collection.getSlug(department)).toEqual('skills-funding-agency');
+      });
+
+      it('returns unknown-organisation if no useful information is provided', function () {
+        var department = { foo: 'bar' };
+        expect(collection.getSlug(department)).toEqual('unknown-organisation');
       });
     });
 

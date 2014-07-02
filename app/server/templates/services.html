@@ -16,6 +16,14 @@
       <% }); %>
     </select>
 
+    <label for="agency">Agency:</label>
+    <select id="agency" name="agency">
+      <option value="">All agencies</option>
+      <% _.each(agencies, function (agency) { %>
+        <option value="<%= agency.slug %>" <% if (agency.slug === agencyFilter) { %>selected<% } %>><%= agency.title %></option>
+      <% }); %>
+    </select>
+
     <input type="submit" value="Filter dashboards" id="filter-submit-button" />
   </div>
 </form>

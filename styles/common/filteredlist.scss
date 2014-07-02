@@ -52,11 +52,11 @@
 
     @include media(desktop) {
       float: right;
-      margin-top: -6em;
+      margin-top: -10.5em;
       width: 70%;
 
       body.js-enabled & {
-        margin-top: -3.5em;
+        margin-top: -7em;
       }
     }
 

@@ -10,11 +10,13 @@ function (Collection) {
 
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
-          departmentFilter = (filter.department || null);
+          departmentFilter = (filter.department || null),
+          agencyFilter = (filter.agency || null);
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
-            department = dashboard.get('department') || { title: '', abbr: '' };
+            department = dashboard.get('department') || { title: '', abbr: '' },
+            agency = dashboard.get('agency') || { title: '', abbr: '' };
 
         // Remove the dashboard from the list if it doesn't match the text filter
         var textSearchFields = [title, department.abbr.toUpperCase(), department.title.toUpperCase()];
@@ -22,8 +24,11 @@ function (Collection) {
           return false;
         }
 
-        // Remove the dashboard from the list if its department isn't what we want
-        if (departmentFilter && this.getDepartmentSlug(department) !== departmentFilter) {
+        if (departmentFilter && this.getSlug(department) !== departmentFilter) {
+          return false;
+        }
+
+        if (agencyFilter && this.getSlug(agency) !== agencyFilter) {
           return false;
         }
 
@@ -40,8 +45,14 @@ function (Collection) {
       return groups;
     },
 
-    getDepartmentSlug: function (department) {
-      return department.abbr.toLowerCase().replace(/ /, '-');
+    getSlug: function (organisation) {
+      if (organisation.abbr) {
+        return organisation.abbr.toLowerCase().replace(/ /g, '-');
+      } else if (organisation.title) {
+        return organisation.title.toLowerCase().replace(/ /g, '-');
+      } else {
+        return 'unknown-organisation';
+      }
     },
 
     filterDashboards: function () {

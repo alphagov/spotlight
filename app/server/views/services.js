@@ -33,6 +33,8 @@ module.exports = BaseView.extend(templater).extend({
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
+      agencies: this.model.get('agencies'),
+      agencyFilter: this.model.get('agencyFilter')
     });
 
   }
