@@ -20,17 +20,36 @@ function (Collection) {
       var data = Collection.prototype.parse.apply(this, arguments);
       var lines = this.options.axes.y;
 
+      if (this.options.groupMapping) {
+        _.each(data, function (model) {
+          _.each(this.options.groupMapping, function (to, from) {
+            if (model[from + ':' + this.valueAttr]) {
+              model[to + ':' + this.valueAttr] += model[from + ':' + this.valueAttr];
+            }
+            delete model[from + ':' + this.valueAttr];
+          }, this);
+        }, this);
+      }
+
       _.each(data, function (model) {
         model['total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
           var prop = line.key || line.categoryId;
-          if (prop !== 'total') {
-            sum += model[prop + ':' + this.valueAttr];
+          var value = model[prop + ':' + this.valueAttr];
+          if (value === undefined) {
+            value = model[prop + ':' + this.valueAttr] = null;
+          }
+          if (prop !== 'total' && value !== null) {
+            sum += value;
           }
           return sum;
-        }, 0, this);
+        }, null, this);
         _.each(lines, function (line) {
           var prop = (line.key || line.categoryId) + ':' + this.valueAttr;
-          model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
+          if (model['total:' + this.valueAttr]) {
+            model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
+          } else {
+            model[prop + ':percent'] = null;
+          }
         }, this);
       }, this);
 
