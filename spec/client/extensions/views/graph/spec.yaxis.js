@@ -25,9 +25,9 @@ function (YAxis, Graph, Collection) {
         values.push({ 'value': i });
       }
 
-      collection.reset([{
-        values: new Collection(values)
-      }]);
+      collection.reset({
+        data: values
+      }, { parse: true });
 
       var graph = new Graph({
         el: el,
