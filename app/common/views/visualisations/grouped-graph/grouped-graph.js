@@ -8,7 +8,7 @@ function (Graph, LineLabel) {
     LineLabel: LineLabel,
 
     components: function () {
-      var yAxisOptions, lineGraphComponents;
+      var yAxisOptions, components;
 
       if (this.isOneHundredPercent()) {
         yAxisOptions = {
@@ -20,7 +20,7 @@ function (Graph, LineLabel) {
         };
       }
 
-      lineGraphComponents = {
+      components = {
         axis: { view: this.sharedComponents.xaxis },
         yaxis: {
           view: this.sharedComponents.yaxis,
@@ -42,12 +42,12 @@ function (Graph, LineLabel) {
       };
 
       if (this.showLineLabels()) {
-        lineGraphComponents.linelabel = {
+        components.linelabel = {
           view: this.LineLabel
         };
       }
 
-      return lineGraphComponents;
+      return components;
     },
 
     isOneHundredPercent: function () {
