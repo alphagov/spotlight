@@ -352,6 +352,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       }
       return View.prototype.remove.apply(this, arguments);
     }
+
   });
 
   return Graph;
