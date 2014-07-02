@@ -678,7 +678,7 @@ function (Graph, Collection, Model, View, d3) {
           beforeEach(function () {
             spyOn(graph, 'getPeriod').andReturn(period);
           });
-          if (period !== 'week') {
+          if (period !== 'week' && period !== 'quarter') {
             it('scales domain from first entry start date to last entry start date', function () {
               var domain = graph.calcXScale().domain();
               expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-14');
@@ -694,56 +694,19 @@ function (Graph, Collection, Model, View, d3) {
             spyOn(graph, 'getPeriod').andReturn(period);
             spyOn(graph, 'modelToDate').andReturn(123);
           });
-          describe('groupIndex is set', function () {
-            describe('when there is no model at this index', function () {
-              beforeEach(function () {
-                graph.collection = {
-                  at: function (index) {
-                    if (index === 4) {
-                      return 'model minus one';
-                    } else {
-                      return null;
-                    }
-                  }
-                };
-              });
-              describe('when encompassStack is true', function () {
-                beforeEach(function () {
-                  graph.encompassStack = true;
-                });
-                it('should return the value of modelToDate with the model at this index minus 1', function () {
-                  expect(graph.getXPos(5)).toEqual(123);
-                  expect(graph.modelToDate).toHaveBeenCalledWith('model minus one');
-                });
-              });
-            });
-            describe('when there is a model at this index', function () {
-              beforeEach(function () {
-                graph.collection = {
-                  at: function () {
-                    return 'model';
-                  }
-                };
-              });
-              it('should return the value of modelToDate with the model at this index', function () {
-                expect(graph.getXPos(5)).toEqual(123);
-                expect(graph.modelToDate).toHaveBeenCalledWith('model');
-              });
-            });
-          });
           describe('when groupIndex is not set', function () {
             beforeEach(function () {
               graph.collection = {
                 at: function (index) {
-                  if (index === 0) {
-                    return 'model at 0';
-                  }
+                  return 'model at ' + index;
                 }
               };
             });
-            it('should return the value of modelToDate with the model at this 0', function () {
-              expect(graph.getXPos(null)).toEqual(123);
+            it('should return the value of modelToDate with the model at index provided', function () {
+              expect(graph.getXPos(0)).toEqual(123);
               expect(graph.modelToDate).toHaveBeenCalledWith('model at 0');
+              expect(graph.getXPos(1)).toEqual(123);
+              expect(graph.modelToDate).toHaveBeenCalledWith('model at 1');
             });
           });
         });
@@ -773,6 +736,16 @@ function (Graph, Collection, Model, View, d3) {
 
       describe('quarter', function () {
         sharedSpecsForScalingBetweenStartAndEndDates('quarter');
+        describe('calcXScale', function () {
+          beforeEach(function () {
+            spyOn(graph, 'getPeriod').andReturn('quarter');
+          });
+          it('scales domain from first entry end date to last entry end date', function () {
+            var domain = graph.calcXScale().domain();
+            expect(graph.getMoment(domain[0]).format('YYYY-MM-DD')).toEqual('2013-01-21');
+            expect(graph.getMoment(domain[1]).format('YYYY-MM-DD')).toEqual('2013-02-04');
+          });
+        });
       });
 
       describe('hour', function () {
@@ -787,9 +760,7 @@ function (Graph, Collection, Model, View, d3) {
             });
           }
 
-          graph.collection = new Collection([{
-            values: new Collection(values)
-          }]);
+          graph.collection = new Collection(values);
           spyOn(graph, 'getPeriod').andReturn('hour');
         });
 
