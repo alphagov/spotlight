@@ -7,7 +7,7 @@ define([
 
   describe('Line Set', function () {
 
-    var stackset, graph, collection;
+    var lineset, graph, collection;
 
     beforeEach(function () {
       collection = new Collection();
@@ -31,7 +31,7 @@ define([
 
       it('calls up to component initialize', function () {
         spyOn(Component.prototype, 'initialize').andCallThrough();
-        stackset = new LineSet({
+        lineset = new LineSet({
           graph: graph,
           collection: collection
         });
@@ -41,24 +41,24 @@ define([
         });
       });
 
-      it('creates a stack for each line', function () {
-        stackset = new LineSet({
+      it('creates a line component for each line', function () {
+        lineset = new LineSet({
           graph: graph,
           collection: collection
         });
-        expect(stackset.lines.length).toEqual(2);
-        _.each(stackset.lines, function (line) {
+        expect(lineset.lines.length).toEqual(2);
+        _.each(lineset.lines, function (line) {
           expect(line instanceof Line).toBe(true);
         });
       });
 
       it('sets classNames and valueAttrs on lines', function () {
-        stackset = new LineSet({
+        lineset = new LineSet({
           graph: graph,
           collection: collection
         });
         var lines = graph.getLines();
-        _.each(stackset.lines, function (line, i) {
+        _.each(lineset.lines, function (line, i) {
           expect(line.valueAttr).toEqual(lines[i].key);
           expect(line.className).toEqual('group' + i);
         });
