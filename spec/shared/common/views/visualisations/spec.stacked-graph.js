@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/stacked-graph',
+  'common/views/visualisations/grouped-graph/stacked-graph',
   'extensions/collections/collection',
   'extensions/views/graph/stack',
   'extensions/views/graph/stacked-linelabel',
@@ -8,7 +8,7 @@ define([
   'extensions/models/model'
 ],
 function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
-  describe('StackedGraph', function () {
+  xdescribe('StackedGraph', function () {
 
     var graph;
     beforeEach(function () {

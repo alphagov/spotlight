@@ -4,7 +4,7 @@ define([
 ],
 function (Line, Collection) {
 
-  describe('Line Component', function () {
+  xdescribe('Line Component', function () {
     var el, wrapper, collection, view, lineColour0, lineColour1, lineColour0RGB, lineColour1RGB;
 
     var matchesColour = function (str, line) {
@@ -48,8 +48,6 @@ function (Line, Collection) {
         }
       ]);
       collection.getCurrentSelection = jasmine.createSpy().andReturn({
-        selectedGroup: collection.at(0),
-        selectedGroupIndex: 0,
         selectedModel: { a: 1 },
         selectedModelIndex: 2
       });
@@ -58,10 +56,10 @@ function (Line, Collection) {
         interactive: false,
         wrapper: wrapper,
         collection: collection,
-        x: function (group, groupIndex, model, index) {
+        x: function (index) {
           return group.get('values').at(index).get('a');
         },
-        y: function (group, groupIndex, model, index) {
+        y: function (index) {
           var attr = group.get('testAttr');
           return group.get('values').at(index).get(attr);
         }
