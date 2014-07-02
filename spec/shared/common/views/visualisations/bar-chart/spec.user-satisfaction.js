@@ -1,11 +1,10 @@
 define([
   'common/views/visualisations/bar-chart/user-satisfaction',
   'common/views/visualisations/bar-chart/bar-chart',
-  'common/collections/journey',
   'extensions/collections/collection',
   'backbone'
 ],
-function (UserSatisfaction, BarChart, JourneyCollection, Collection, Backbone) {
+function (UserSatisfaction, BarChart, Collection, Backbone) {
 
   describe('UserSatisfaction Bar Chart', function () {
     var graph;
@@ -14,7 +13,7 @@ function (UserSatisfaction, BarChart, JourneyCollection, Collection, Backbone) {
       spyOn(UserSatisfaction.prototype, 'render');
 
       graph = new UserSatisfaction({
-        collection: new Collection([ { values: new Collection([]) } ], { format: 'integer' })
+        collection: new Collection([], { format: 'integer' })
       });
     });
 
@@ -22,7 +21,7 @@ function (UserSatisfaction, BarChart, JourneyCollection, Collection, Backbone) {
       it('calls render() on a reset of the collection data', function () {
         expect(UserSatisfaction.prototype.render).not.toHaveBeenCalled();
 
-        graph.collection.at(0).get('values').reset();
+        graph.collection.reset();
         expect(UserSatisfaction.prototype.render).toHaveBeenCalled();
       });
     });
