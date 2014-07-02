@@ -43,60 +43,24 @@ define([
 
         view.collection.reset([
           {
-            values: new Collection([
-              {
-                _count: 90,
-                alternativeValue: 444
-              },
-              {
-                _count: 100,
-                alternativeValue: 333
-              },
-              {
-                _count: 114,
-                alternativeValue: 222
-              }
-            ])
+            _count: 90,
+            alternativeValue: 444
           },
           {
-            values: new Collection([
-              {
-                _count: 1,
-                alternativeValue: 100
-              },
-              {
-                _count: 6,
-                alternativeValue: 99
-              },
-              {
-                _count: 11,
-                alternativeValue: 98
-              }
-            ])
+            _count: 100,
+            alternativeValue: 333
           },
           {
-            values: new Collection([
-              {
-                _count: 2,
-                alternativeValue: 80
-              },
-              {
-                _count: 7,
-                alternativeValue: 87
-              },
-              {
-                _count: 12,
-                alternativeValue: 23
-              }
-            ])
+            _count: 114,
+            alternativeValue: 222
           }
         ]);
 
-        expect(view.minValue()).toEqual(1);
+        expect(view.minValue()).toEqual(90);
 
         view.valueAttr = 'alternativeValue';
 
-        expect(view.minValue()).toEqual(23);
+        expect(view.minValue()).toEqual(222);
 
       });
 
