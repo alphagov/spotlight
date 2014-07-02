@@ -8,7 +8,8 @@ function (View, FilteredListView) {
     events: _.extend({}, View.prototype.events, {
       'keyup #filter': 'filter',
       'change #department': 'filter',
-      'change #agency': 'filter'
+      'change #agency': 'filter',
+      'click .filter-remove': 'removeFilter'
     }),
 
     initialize: function () {
@@ -31,6 +32,12 @@ function (View, FilteredListView) {
       this.model.set('filter', this.$('#filter').val());
       this.model.set('departmentFilter', this.$('#department').val());
       this.model.set('agencyFilter', this.$('#agency').val());
+    },
+
+    removeFilter: function (event) {
+      var filter = $(event.target).data('filter');
+      this.$('#' + filter).val('');
+      this.model.set(filter + 'Filter', null);
     }
 
   });

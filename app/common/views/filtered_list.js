@@ -19,9 +19,52 @@ define([
         agency: this.model.get('agencyFilter')
       });
 
+      var title = filteredList.count === 1 ? ['service'] : ['services'];
+
+      if (this.model.get('filter')) {
+        var textFilter = _.escape(this.model.get('filter'));
+        title = title.concat('matching', '<strong>', textFilter, '</strong>');
+      }
+
+      if (this.model.get('agencyFilter') || this.model.get('departmentFilter')) {
+        title = title.concat('for');
+
+        if (this.model.get('departmentFilter')) {
+          var department = _.find(this.model.get('departments'), function (item) {
+            return item.slug === this.model.get('departmentFilter');
+          }, this);
+          if (department) {
+            title = title.concat(
+              '<strong>',
+              department.title,
+              '</strong>',
+              '<span class="filter-remove" data-filter="department"></span>'
+            );
+          }
+        }
+
+        if (this.model.get('agencyFilter') && this.model.get('departmentFilter')) {
+          title = title.concat('and');
+        }
+
+        if (this.model.get('agencyFilter')) {
+          var agency = _.find(this.model.get('agencies'), function (item) {
+            return item.slug === this.model.get('agencyFilter');
+          }, this);
+          if (agency) {
+            title = title.concat(
+              '<strong>',
+              agency.title,
+              '</strong>',
+              '<span class="filter-remove" data-filter="agency"></span>'
+            );
+          }
+        }
+      }
+
       return _.extend(this.model.toJSON(), {
         items: filteredList,
-        title: filteredList.count === 1 ? 'service' : 'services'
+        title: title.join(' ')
       });
     },
 
