@@ -1,393 +1,201 @@
 define([
   'common/views/visualisations/grouped-graph/stacked-graph',
-  'extensions/collections/collection',
-  'extensions/views/graph/stack',
+  'common/collections/grouped_timeseries',
+  'extensions/views/graph/stack-set',
   'extensions/views/graph/stacked-linelabel',
-  'extensions/views/graph/callout',
   'extensions/views/graph/graph',
   'extensions/models/model'
 ],
-function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
-  xdescribe('StackedGraph', function () {
+function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
+  describe('StackedGraph', function () {
 
-    var graph;
+    var graph, model, collection, data;
     beforeEach(function () {
       spyOn(Graph.prototype, 'initialize').andCallThrough();
-      var model = new Model({
-        'value-attribute': 'someAttr'
+      model = new Model({
+        'value-attribute': 'someAttr',
+        axes: {
+          y: [
+            { label: 'Label1', categoryId: 'croydon' },
+            { label: 'Label2', categoryId: 'hackney' },
+            { label: 'Label3', categoryId: 'westminster' }
+          ]
+        }
+      });
+      collection = new Collection([], {
+        axes: model.get('axes'),
+        category: 'id',
+        valueAttr: '_count'
       });
       graph = new StackedGraph({
-        collection: new Collection(),
-        model: model
-      });
-    });
-
-    describe('interactiveFunction', function () {
-      describe('if graph.lineLabelOnTop() is truthy', function () {
-        beforeEach(function () {
-          graph.graph = {
-            lineLabelOnTop: function () {
-              return true;
-            }
-          };
-        });
-        it('returns true when the passed in object.slice is >= 3', function () {
-          expect(graph.interactiveFunction({slice: 3})).toEqual(true);
-        });
-        it('returns false when the passed in object.slice is < 3', function () {
-          expect(graph.interactiveFunction({slice: 2})).toEqual(false);
-        });
-      });
-      describe('if graph.lineLabelOnTop() is falsy', function () {
-        beforeEach(function () {
-          graph.graph = {
-            lineLabelOnTop: function () {
-              return false;
-            }
-          };
-        });
-        it('returns true when the passed in object.slice % 3 is !== 2', function () {
-          expect(graph.interactiveFunction({slice: 3})).toEqual(true);
-        });
-        it('returns false when the passed in object.slice % 3 is == 2', function () {
-          expect(graph.interactiveFunction({slice: 5})).toEqual(false);
-        });
-      });
-    });
-
-    describe('components', function () {
-      describe('when showLineLabels is truthy', function () {
-        it('should return the stack component with the correct args on initialize', function () {
-          var model = new Model({
-            'show-line-labels': true
-          });
-          graph = new StackedGraph({
-            collection: new Collection(),
-            model: model
-          });
-          var stackComponent = graph.components().stack['view'];
-          var stackOptions = graph.components().stack['options'];
-          expect(stackOptions).not.toBeUndefined();
-          expect(stackComponent).toEqual(Stack);
-        });
-      });
-      describe('when showLineLabels is falsy', function () {
-        it('should return the stack component with the correct args on initialize', function () {
-          var stackComponent = graph.components().stack['view'];
-          var stackOptions = graph.components().stack['options'];
-          expect(stackOptions).toBeUndefined();
-          expect(stackComponent).toEqual(Stack);
-        });
+        collection: collection,
+        model: model,
+        valueAttr: '_count'
       });
 
-      describe('when showLineLabels is truthy', function () {
-        it('should return the linelabel component with the correct args on initialize', function () {
-          var model = new Model({
-            'show-line-labels': true,
-            'line-label-links': true
-          });
-          graph = new StackedGraph({
-            collection: new Collection(),
-            model: model
-          });
-          var labelComponent = graph.components().label['view'];
-          var labelOptions = graph.components().label['options'];
-          expect(labelOptions).toEqual({
-            showValues: true,
-            showValuesPercentage: true,
-            showSummary: true,
-            showTimePeriod: true,
-            attachLinks: model.get('line-label-links')
-          });
-          expect(labelComponent).toEqual(LineLabel);
-        });
-      });
-      describe('when showLineLabels is falsy', function () {
-        it('should return the callout component with the correct args on initialize', function () {
-          var labelComponent = graph.components().label['view'];
-          var labelOptions = graph.components().label['options'];
-          expect(labelOptions).toBeUndefined();
-          expect(labelComponent).toEqual(Callout);
-        });
-      });
-    });
-
-    describe('getYPos', function () {
-      describe('if there is nothing at the index', function () {
-        describe('if there is something at the previous index', function () {
-          beforeEach(function () {
-            graph.collection = {
-              at: function (index) {
-                if (index === 4) {
-                  return true;
-                } else {
-                  return null;
-                }
-              }
-            };
-          });
-          describe('if encompassStack is true', function () {
-            beforeEach(function () {
-              graph.encompassStack = true;
-            });
-            it('returns 0', function () {
-              expect(graph.getYPos(5)).toEqual(0);
-            });
-          });
-          describe('if encompassStack is false', function () {
-            beforeEach(function () {
-              graph.encompassStack = false;
-            });
-            it('returns null', function () {
-              expect(graph.getYPos(5)).toEqual(null);
-            });
-          });
-        });
-        describe('if there is nothing at the previous index', function () {
-          beforeEach(function () {
-            graph.collection = {
-              at: function () {
-                return null;
-              }
-            };
-          });
-          it('returns null', function () {
-            expect(graph.getYPos(5)).toEqual(null);
-          });
-        });
-      });
-    });
-
-    describe('calculation', function () {
-      var collection, graph;
-      beforeEach(function () {
-
-        spyOn(Graph.prototype, 'render');
-
-        collection = new Collection();
-
-        collection.reset([
-          {
-            id: 'total',
-            title: 'Total applications',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 90,
-                alternativeValue: 444
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 100,
-                alternativeValue: 333
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 114,
-                alternativeValue: 222
-              }
-            ])
-          },
+      data = {
+        data: [
           {
             id: 'westminster',
             title: 'Westminster',
-            values: new Collection([
+            values: [
               {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
+                _start_at: '2013-01-14',
+                _end_at: '2013-01-21',
                 _count: 1,
                 alternativeValue: 100
               },
               {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
+                _start_at: '2013-01-21',
+                _end_at: '2013-01-28',
                 _count: 6,
                 alternativeValue: 99
               },
               {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
+                _start_at: '2013-01-28',
+                _end_at: '2013-02-04',
                 _count: 11,
                 alternativeValue: 98
               }
-            ])
+            ]
           },
           {
             id: 'croydon',
             title: 'Croydon',
-            values: new Collection([
+            values: [
               {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
+                _start_at: '2013-01-14',
+                _end_at: '2013-01-21',
                 _count: 2,
                 alternativeValue: 80
               },
               {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
+                _start_at: '2013-01-21',
+                _end_at: '2013-01-28',
                 _count: 7,
                 alternativeValue: 87
               },
               {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
+                _start_at: '2013-01-28',
+                _end_at: '2013-02-04',
                 _count: 12,
                 alternativeValue: 23
               }
-            ])
+            ]
+          },
+          {
+            id: 'hackney',
+            title: 'Hackney',
+            values: [
+              {
+                _start_at: '2013-01-14',
+                _end_at: '2013-01-21',
+                _count: 5,
+                alternativeValue: 110
+              },
+              {
+                _start_at: '2013-01-21',
+                _end_at: '2013-01-28',
+                _count: 12,
+                alternativeValue: 40
+              },
+              {
+                _start_at: '2013-01-28',
+                _end_at: '2013-02-04',
+                _count: 9,
+                alternativeValue: 50
+              }
+            ]
           }
-        ]);
-        collection.getCurrentSelection = jasmine.createSpy().andReturn({});
-        graph = new StackedGraph({
-          collection: collection
-        });
-        graph.innerWidth = 444;
-        graph.innerHeight = 333;
+        ]
+      };
+    });
 
+    describe('components', function () {
+
+      it('should include a stacked linelabel component when showLineLabels is truthy', function () {
+        model.set({ 'show-line-labels': true });
+        var labelComponent = graph.components().linelabel.view;
+        expect(labelComponent).toEqual(StackedLineLabel);
       });
 
-      it('calculates d3 stack', function () {
-        graph.render();
-
-        expect(graph.layers.length).toEqual(3);
-        expect(graph.layers[0].get('values').at(0).y0).toEqual(0);
-        expect(graph.layers[0].get('values').at(0).y).toEqual(2);
-        expect(graph.layers[0].get('values').at(1).y0).toEqual(0);
-        expect(graph.layers[0].get('values').at(1).y).toEqual(7);
-        expect(graph.layers[0].get('values').at(2).y0).toEqual(0);
-        expect(graph.layers[0].get('values').at(2).y).toEqual(12);
-
-        expect(graph.layers[1].get('values').at(0).y0).toEqual(2);
-        expect(graph.layers[1].get('values').at(0).y).toEqual(1);
-
-        expect(graph.layers[2].get('values').at(0).y0).toEqual(3);
-        expect(graph.layers[2].get('values').at(0).y).toEqual(90);
+      it('should include a stack-set component', function () {
+        var stackset = graph.components().lines.view;
+        expect(stackset).toEqual(StackSet);
       });
 
-      it('calculates d3 stack using custom properties', function () {
-        graph.stackYProperty = 'yCustom';
-        graph.stackY0Property = 'yCustom0';
-        graph.outStack = function (model, y0, y) {
-          model.yCustom0 = y0;
-          model.yCustom = y;
-        };
-        graph.render();
+    });
 
-        expect(graph.layers.length).toEqual(3);
-        expect(graph.layers[0].get('values').at(0).yCustom0).toEqual(0);
-        expect(graph.layers[0].get('values').at(0).yCustom).toEqual(2);
-        expect(graph.layers[0].get('values').at(1).yCustom0).toEqual(0);
-        expect(graph.layers[0].get('values').at(1).yCustom).toEqual(7);
-        expect(graph.layers[0].get('values').at(2).yCustom0).toEqual(0);
-        expect(graph.layers[0].get('values').at(2).yCustom).toEqual(12);
+    describe('getYPos', function () {
 
-        expect(graph.layers[1].get('values').at(0).yCustom0).toEqual(2);
-        expect(graph.layers[1].get('values').at(0).yCustom).toEqual(1);
-
-        expect(graph.layers[2].get('values').at(0).yCustom0).toEqual(3);
-        expect(graph.layers[2].get('values').at(0).yCustom).toEqual(90);
+      beforeEach(function () {
+        collection.reset(data, { parse: true });
+        spyOn(graph, 'getY0Pos').andReturn(10);
       });
+
+      it('adds the baseline position to the model value', function () {
+        var output = graph.getYPos(0, 'westminster:_count');
+        expect(graph.getY0Pos).toHaveBeenCalledWith(0, 'westminster:_count');
+        expect(output).toEqual(11);
+      });
+
+      it('returns null if model value is null', function () {
+        collection.at(0).set('westminster:_count', null);
+        var output = graph.getYPos(0, 'westminster:_count');
+        expect(output).toEqual(null);
+      });
+
+    });
+
+    describe('getY0Pos', function () {
+
+      beforeEach(function () {
+        collection.reset(data, { parse: true });
+        spyOn(Graph.prototype, 'getYPos').andCallThrough();
+      });
+
+      it('sums the values for subsequent stacks', function () {
+        var output = graph.getY0Pos(0, 'croydon:_count');
+        expect(Graph.prototype.getYPos).toHaveBeenCalledWith(0, 'westminster:_count');
+        expect(Graph.prototype.getYPos).toHaveBeenCalledWith(0, 'hackney:_count');
+        expect(output).toEqual(6);
+
+        Graph.prototype.getYPos.reset();
+
+        output = graph.getY0Pos(2, 'hackney:_count');
+        expect(Graph.prototype.getYPos).not.toHaveBeenCalledWith(2, 'croydon:_count');
+        expect(Graph.prototype.getYPos).toHaveBeenCalledWith(2, 'westminster:_count');
+        expect(output).toEqual(11);
+      });
+
+      it('returns zero for the last stack', function () {
+        var output = graph.getY0Pos(0, 'westminster:_count');
+        expect(Graph.prototype.getYPos).not.toHaveBeenCalled();
+        expect(output).toEqual(0);
+      });
+
     });
 
     describe('calcYScale', function () {
 
-      var collection, graph;
       beforeEach(function () {
-        collection = new Collection();
 
-        collection.reset([
-          {
-            id: 'total',
-            title: 'Total applications',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 90,
-                alternativeValue: 444
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 100,
-                alternativeValue: 333
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 114,
-                alternativeValue: 222
-              }
-            ])
-          },
-          {
-            id: 'westminster',
-            title: 'Westminster',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 1,
-                alternativeValue: 100
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 6,
-                alternativeValue: 99
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 11,
-                alternativeValue: 98
-              }
-            ])
-          },
-          {
-            id: 'croydon',
-            title: 'Croydon',
-            values: new Collection([
-              {
-                _start_at: collection.getMoment('2013-01-14').startOf('day'),
-                _end_at: collection.getMoment('2013-01-21').startOf('day'),
-                _count: 2,
-                alternativeValue: 80
-              },
-              {
-                _start_at: collection.getMoment('2013-01-21').startOf('day'),
-                _end_at: collection.getMoment('2013-01-28').startOf('day'),
-                _count: 7,
-                alternativeValue: 87
-              },
-              {
-                _start_at: collection.getMoment('2013-01-28').startOf('day'),
-                _end_at: collection.getMoment('2013-02-04').startOf('day'),
-                _count: 12,
-                alternativeValue: 23
-              }
-            ])
-          }
-        ]);
+        collection.reset(data, { parse: true });
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
-        graph = new StackedGraph({
-          collection: collection
-        });
         graph.innerWidth = 444;
         graph.innerHeight = 333;
 
       });
 
       it('scales domain from 0 to nice value above max value', function () {
-        expect(graph.calcYScale().domain()).toEqual([0, 140]);
+        expect(graph.calcYScale().domain()).toEqual([0, 35]);
       });
 
       it('scales domain from 0 to nice value above max value when an alternative value attribute is used', function () {
         graph.valueAttr = 'alternativeValue';
-        expect(graph.calcYScale().domain()).toEqual([0, 700]);
+        collection.valueAttr = 'alternativeValue';
+        collection.reset(data, { parse: true });
+        expect(graph.calcYScale().domain()).toEqual([0, 300]);
       });
 
       it('scales range to inner height', function () {
@@ -396,12 +204,14 @@ function (StackedGraph, Collection, Stack, LineLabel, Callout, Graph, Model) {
 
       it('sets the tick values correctly', function () {
         expect(graph.calcYScale().tickValueList)
-            .toEqual([0, 20, 40, 60, 80, 100, 120, 140]);
+            .toEqual([ 0, 5, 10, 15, 20, 25, 30, 35 ]);
       });
 
       it('scales domain from 0 to nice value above maximum sum of point in time when an alternative value attribute is used', function () {
         graph.valueAttr = 'alternativeValue';
-        expect(graph.calcYScale().domain()).toEqual([0, 700]);
+        collection.valueAttr = 'alternativeValue';
+        collection.reset(data, { parse: true });
+        expect(graph.calcYScale().domain()).toEqual([0, 300]);
       });
 
     });
