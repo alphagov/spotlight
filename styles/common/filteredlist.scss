@@ -3,9 +3,14 @@
     padding-top: 1.5em;
     border-top: 5px solid $primary-colour;
 
-    label.primary-filter {
-      @include core-36($tabular-numbers: true);
-      margin-right:.5em;
+    label {
+      display: block;
+
+      &.primary-filter {
+        @include core-36($tabular-numbers: true);
+        display: inline;
+        margin-right:.5em;
+      }
     }
 
     input {
@@ -32,6 +37,21 @@
       select, input {
         margin-bottom: 1em;
         max-width: 100%;
+      }
+
+      select {
+        @include core-14;
+        background: $white;
+        line-height: 1.8;
+
+        @include media(desktop) {
+          @include appearance(none);
+          @include box-shadow(1px 1px 1px $white);
+          @include border-radius(4px);
+          background: $grey-3 file-url('images/dropdown-arrow-small.png') no-repeat right center;
+          border: 1px solid $border-colour;
+          padding: 0.1em 0.4em;
+        }
       }
     }
 
