@@ -1,8 +1,9 @@
 define([
   'client/views/table',
-  'jquery'
+  'jquery',
+  'modernizr'
 ],
-function (Table, $) {
+function (Table, $, Modernizr) {
   describe('Table', function () {
 
 
@@ -24,20 +25,24 @@ function (Table, $) {
       });
 
       it('adds a class of touch-table on touch devices', function () {
-        var touchTable = new Table({
-          collection: {
-            on: jasmine.createSpy(),
-            options: { axes: {
-              x: { label: 'date', key: 'timestamp' },
-              y: [{ label: 'another', key: 'value' }]
-            } }
-          },
-          valueAttr: 'value'
-        }, { touch: true });
-        var $table = $('<table></table>');
+        var isTouch = Modernizr.touch,
+            touchTable = new Table({
+              collection: {
+                on: jasmine.createSpy(),
+                options: { axes: {
+                  x: { label: 'date', key: 'timestamp' },
+                  y: [{ label: 'another', key: 'value' }]
+                } }
+              },
+              valueAttr: 'value'
+            }),
+            $table = $('<table></table>');
+
+        Modernizr.touch = true;
         touchTable.$el.append($table);
         touchTable.render();
         expect($table.attr('class')).toContain('touch-table');
+        Modernizr.touch = isTouch;
       });
 
       it('adds a class of floated-header to the table element on the client-side when table body has more cells than the header', function () {
