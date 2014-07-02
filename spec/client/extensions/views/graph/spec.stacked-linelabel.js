@@ -10,7 +10,10 @@ function (LineLabel, Collection) {
     beforeEach(function () {
 
       collection = new Collection([
-        { _count: 1 }
+        { _count: 1, value: 10 },
+        { _count: 2, value: 100 },
+        { _count: 3, value: 1000 },
+        { _count: null, value: 10000 }
       ]);
 
       graph = {
@@ -24,8 +27,8 @@ function (LineLabel, Collection) {
         isOneHundredPercent: function () {
           return false;
         },
-        getYPos: function (i) { return i * 10; },
-        getY0Pos: function (i) { return i * 5 }
+        getYPos: function (i, attr) { return collection.at(i).get(attr) ? 2 * collection.at(i).get(attr) : null; },
+        getY0Pos: function (i, attr) { return collection.at(i).get(attr); }
       };
 
       el = $('<div></div>').appendTo($('body'));
@@ -59,10 +62,13 @@ function (LineLabel, Collection) {
       });
 
       it('attempts to centre label in stack', function () {
-        var result = lineLabel.getYIdeal(1, 'foo');
-        expect(lineLabel.graph.getYPos).toHaveBeenCalledWith(1, 'foo');
-        expect(lineLabel.graph.getY0Pos).toHaveBeenCalledWith(1, 'foo');
-        expect(result).toEqual(7.5);
+        var result = lineLabel.getYIdeal('value');
+        expect(result).toEqual(15000);
+      });
+
+      it('uses last non-null value', function () {
+        var result = lineLabel.getYIdeal('_count');
+        expect(result).toEqual(4.5);
       });
 
     });
