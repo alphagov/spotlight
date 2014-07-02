@@ -1,13 +1,13 @@
 define([
-  'common/collections/completion_numbers'
+  'common/collections/single-timeseries'
 ],
-function (CompletionNumbersCollection) {
-  describe('Completion numbers collection', function () {
+function (Collection) {
+  describe('Single Timeseries collection', function () {
 
     var collection;
 
     beforeEach(function () {
-      collection = new CompletionNumbersCollection([], {
+      collection = new Collection([], {
         denominatorMatcher: 'foo',
         numeratorMatcher: 'bar',
         valueAttr: '_end'
