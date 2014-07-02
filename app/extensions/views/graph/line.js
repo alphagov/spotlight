@@ -84,6 +84,7 @@ function (Component) {
         this.componentWrapper.select('path.line').classed('selected', true).classed('not-selected', false);
         var x = this.x(index);
         var y = this.y(index);
+        this.renderCursorLine(this.x(index));
         this.renderSelectionPoint(x, y);
       }
     },
@@ -92,12 +93,14 @@ function (Component) {
     deselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', true);
+      this.componentWrapper.select('line.cursorLine').remove();
     },
 
     // put line into default state when no lines are selected
     unselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.select('path.line').classed('selected', false).classed('not-selected', false);
+      this.componentWrapper.select('line.cursorLine').remove();
     },
 
     renderSelectionPoint: function (x, y) {
@@ -124,6 +127,17 @@ function (Component) {
       }, this);
 
       this.collection.selectItem(index);
+    },
+
+    renderCursorLine: function (x) {
+      this.componentWrapper.select('line.cursorLine').remove();
+      this.componentWrapper.append('line').attr({
+        'class': 'cursorLine',
+        x1: x,
+        y1: 0,
+        x2: x,
+        y2: this.graph.innerHeight
+      });
     }
 
 
