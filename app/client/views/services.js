@@ -1,8 +1,9 @@
 define([
+  'modernizr',
   'extensions/views/view',
   'common/views/filtered_list'
 ],
-function (View, FilteredListView) {
+function (Modernizr, View, FilteredListView) {
   return View.extend({
 
     events: _.extend({}, View.prototype.events, {
@@ -32,6 +33,15 @@ function (View, FilteredListView) {
       this.model.set('filter', this.$('#filter').val());
       this.model.set('departmentFilter', this.$('#department').val());
       this.model.set('agencyFilter', this.$('#agency').val());
+
+      if (Modernizr.history) {
+        var params = $.param({
+          filter: this.model.get('filter'),
+          department: this.model.get('departmentFilter'),
+          agency: this.model.get('agencyFilter')
+        });
+        window.history.replaceState(null, null, '/performance/services?' + params);
+      }
     },
 
     removeFilter: function (event) {
