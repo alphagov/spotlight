@@ -143,8 +143,14 @@ function (Component) {
       this.setLabelPositions(selection);
     },
 
-    getYIdeal: function (index, attr) {
-      return this.graph.getYPos(index, attr);
+    getYIdeal: function (attr) {
+      var index = this.collection.length;
+      var val = null;
+      while (val === null && index > 0) {
+        index--;
+        val = this.graph.getYPos(index, attr);
+      }
+      return val;
     },
 
     /**
@@ -158,8 +164,7 @@ function (Component) {
       var scale = this.scales.y;
       var that = this;
       selection.each(function (line) {
-        var defined = that.collection.defined(line.key);
-        var y = defined.length ? defined.pop().get(line.key) : null;
+        var y = that.getYIdeal(line.key);
 
         var size = $(this).height();
 

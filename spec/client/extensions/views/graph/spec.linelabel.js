@@ -475,6 +475,34 @@ function (LineLabel, Collection) {
       });
     });
 
+    describe('getYIdeal', function () {
+
+      var line, collection;
+      beforeEach(function () {
+        collection = new Collection([
+          { value: 1, count: 10 },
+          { value: 2, count: 20 },
+          { value: 3, count: 30 },
+          { value: null, count: 40 },
+        ]);
+        line = new LineLabel({
+          interactive: false,
+          collection: collection,
+          graph: {
+            getYPos: function (index, attr) {
+              return collection.at(index).get(attr);
+            }
+          }
+        });
+      });
+
+      it('returns y value of last non-null value', function () {
+        expect(line.getYIdeal('value')).toEqual(3);
+        expect(line.getYIdeal('count')).toEqual(40);
+      });
+
+    });
+
     describe('calcPositions', function () {
 
       var line;
