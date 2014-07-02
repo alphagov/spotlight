@@ -42,7 +42,7 @@ function (Graph) {
     },
 
     minValue: function () {
-      return this.collection.min(this.valueAttr);
+      return this.collection.min(this.valueAttr) || 0;
     }
 
   });
