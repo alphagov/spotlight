@@ -209,7 +209,7 @@ define([
           {stepAttr: 'example:submitApplicationPage', uniqueEvents: 4321},
           {stepAttr: 'example:end', uniqueEvents: 321}
         ];
-        var collection = new TestCollection(models, {parse: true});
+        var collection = new TestCollection({ data: models }, {parse: true});
 
         expect(collection.at(0).get('step')).toEqual('example:downloadFormPage');
         expect(collection.at(1).get('step')).toEqual('example:submitApplicationPage');
@@ -222,7 +222,7 @@ define([
           {stepAttr: 'example:downloadFormPage', uniqueEvents: 54321},
           {stepAttr: 'example:end', uniqueEvents: 321}
         ];
-        var collection = new TestCollection(models, {parse: true});
+        var collection = new TestCollection({ data: models }, {parse: true});
 
         expect(collection.at(0).get('step')).toEqual('example:downloadFormPage');
         expect(collection.at(1).get('step')).toEqual('example:submitApplicationPage');
@@ -236,7 +236,7 @@ define([
           {stepAttr: 'example:submitApplicationPage', uniqueEvents: 321},
           {stepAttr: 'example:end', uniqueEvents: 3211}
         ];
-        var collection = new TestCollection(models, {parse: true});
+        var collection = new TestCollection({ data: models }, {parse: true});
 
         expect(collection.length).toEqual(3);
         expect(collection.at(0).get('step')).toEqual('example:downloadFormPage');
@@ -266,7 +266,7 @@ define([
         ];
 
         var collection = new TestCollection(null);
-        collection.reset(collection.parse({ data: models }));
+        collection.reset({ data: models }, { parse: true });
 
         expect(collection.at(0).get('step')).toEqual('example:downloadFormPage');
         expect(collection.at(0).get('uniqueEvents')).toEqual(50000);
@@ -309,9 +309,9 @@ define([
         var collection = new TestCollection();
         var output = collection.parse({ data: models });
 
-        expect(output[0].uniqueEvents).toBeUndefined();
-        expect(output[1].uniqueEvents).toBeUndefined();
-        expect(output[2].uniqueEvents).toBeUndefined();
+        expect(output[0].uniqueEvents).toBeNull();
+        expect(output[1].uniqueEvents).toBeNull();
+        expect(output[2].uniqueEvents).toBeNull();
       });
 
     });
