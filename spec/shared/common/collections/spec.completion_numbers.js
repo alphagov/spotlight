@@ -9,75 +9,36 @@ function (CompletionNumbersCollection) {
     beforeEach(function () {
       collection = new CompletionNumbersCollection([], {
         denominatorMatcher: 'foo',
-        numeratorMatcher: 'bar'
+        numeratorMatcher: 'bar',
+        valueAttr: '_end'
       });
     });
 
-    describe('defaultValueAttrs', function () {
+    describe('parse', function () {
 
-      it('should add unique events to values', function () {
-        var input = {
-          _end: 5
-        };
-        var expected = {
-          uniqueEvents: 5
-        };
-        expect(collection.defaultValueAttrs(input)).toEqual(expected);
+      it('maps valueAttr to "uniqueEvents"', function () {
+        var input = [
+          { _end: 5 }
+        ];
+        var output = collection.parse({ data: input });
+        expect(output[0]).toEqual({ _end: 5, uniqueEvents: 5 });
       });
 
       it('should add null if no end value', function () {
-        var input = {
-          _end: null
-        };
-        var expected = {
-          uniqueEvents: null
-        };
-        expect(collection.defaultValueAttrs(input)).toEqual(expected);
+        var input = [
+          { _end: null }
+        ];
+        var output = collection.parse({ data: input });
+        expect(output[0]).toEqual({ _end: null, uniqueEvents: null });
       });
 
       it('should add a default value if end is null and one is provided', function () {
-        collection = new CompletionNumbersCollection([], {
-          defaultValue: 0,
-          denominatorMatcher: 'foo',
-          numeratorMatcher: 'bar'
-        });
-        var input = {
-          _end: null
-        };
-        var expected = {
-          uniqueEvents: 0
-        };
-        expect(collection.defaultValueAttrs(input)).toEqual(expected);
-      });
-
-      it('should return default collection attributes', function () {
-        var input = {
-          _start: 10,
-          _end: 5,
-          values: [ {get: function () { return 1; }}, {get: function () { return null; }} ]
-        };
-        var expected = {
-          id: 'done',
-          title: 'Done',
-          mean: 5,
-          periods: { total: 2, available: 1 }
-        };
-        expect(collection.defaultCollectionAttrs(input)).toEqual(expected);
-      });
-
-      it('should return null mean in default collection attributes no events', function () {
-        var input = {
-          _start: 10,
-          _end: 5,
-          values: [ {get: function () { return null; }}, {get: function () { return null; }} ]
-        };
-        var expected = {
-          id: 'done',
-          title: 'Done',
-          mean: null,
-          periods: { total: 2, available: 0 }
-        };
-        expect(collection.defaultCollectionAttrs(input)).toEqual(expected);
+        collection.options.defaultValue = 0;
+        var input = [
+          { _end: null }
+        ];
+        var output = collection.parse({ data: input });
+        expect(output[0]).toEqual({ _end: null, uniqueEvents: 0 });
       });
 
     });
