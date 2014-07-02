@@ -30,9 +30,9 @@ function (Collection) {
         ];
         testCollection.reset({ data: testData }, { parse: true });
 
-        expect(testCollection.first().get('values').length).toEqual(3);
+        expect(testCollection.length).toEqual(3);
         // The collection should not include the oldest timestamp
-        expect(testCollection.first().get('values').some(function (model) {
+        expect(testCollection.some(function (model) {
           return model.get('_timestamp').format() === testData[3]._timestamp.format();
         })).toEqual(false);
 
