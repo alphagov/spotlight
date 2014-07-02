@@ -3,6 +3,8 @@ define([
 ], function (Collection) {
   var JourneySeriesCollection = Collection.extend({
 
+    valueAttr: 'uniqueEvents',
+
     initialize: function (models, options) {
       options = options || {};
       if (options.getStep) {
@@ -10,6 +12,9 @@ define([
       }
       if (options.axes) {
         this.axes = options.axes;
+      }
+      if (options.valueAttr) {
+        this.valueAttr = options.valueAttr;
       }
       Collection.prototype.initialize.apply(this, arguments);
     },
@@ -33,7 +38,7 @@ define([
         }, matchingModel);
       }, this);
 
-      if (this.hasData()) {
+      if (this.hasData(data)) {
         _.each(data, function (m) {
           m[this.valueAttr] = m[this.valueAttr] || 0;
         }, this);
@@ -41,12 +46,14 @@ define([
       return data;
     },
 
-    hasData: function () {
-      return this.defined(this.valueAttr).length > 0;
+    hasData: function (data) {
+      return _.any(data, function (m) {
+        return m[this.valueAttr] !== null && m[this.valueAttr] !== undefined;
+      }, this);
     },
 
     getStep: function (d) {
-      return d[this.options.matchingAttribute];
+      return d[this.options.matchingAttribute] || d.eventCategory;
     },
 
     getTableRows: function (keys) {
