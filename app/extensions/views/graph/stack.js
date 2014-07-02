@@ -32,9 +32,6 @@ function (Line) {
 
     select: function (index) {
       this.componentWrapper.select('path.stack').classed('selected', true).classed('not-selected', false);
-      if (this.drawCursorLine || true) {
-        this.renderCursorLine(this.x(index));
-      }
       Line.prototype.select.apply(this, arguments);
     },
 
@@ -42,25 +39,12 @@ function (Line) {
     deselect: function () {
       Line.prototype.deselect.apply(this, arguments);
       this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', true);
-      this.componentWrapper.select('line.cursorLine').remove();
     },
 
     // put line into default state when no lines are selected
     unselect: function () {
       Line.prototype.unselect.apply(this, arguments);
       this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', false);
-      this.componentWrapper.select('line.cursorLine').remove();
-    },
-
-    renderCursorLine: function (x) {
-      this.componentWrapper.select('line.cursorLine').remove();
-      this.componentWrapper.append('line').attr({
-        'class': 'cursorLine',
-        x1: x,
-        y1: 0,
-        x2: x,
-        y2: this.graph.innerHeight
-      });
     }
 
   });
