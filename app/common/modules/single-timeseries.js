@@ -1,10 +1,10 @@
 define([
-  'common/collections/completion_numbers'
+  'common/collections/single-timeseries'
 ],
-function (CompletionNumbersCollection) {
+function (Collection) {
   return {
     requiresSvg: true,
-    collectionClass: CompletionNumbersCollection,
+    collectionClass: Collection,
 
     collectionOptions: function () {
       return {
