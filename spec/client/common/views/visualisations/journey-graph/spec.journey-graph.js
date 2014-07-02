@@ -1,16 +1,15 @@
 define([
   'common/views/visualisations/journey-graph/journey-graph',
-  'common/collections/journey',
-  'extensions/collections/collection'
+  'common/collections/journey_series'
 ],
-function (JourneyGraph, JourneyCollection, Collection) {
+function (JourneyGraph, JourneyCollection) {
 
   describe('JourneyGraph', function () {
     var graph;
 
     beforeEach(function () {
       graph = new JourneyGraph({
-        collection: new JourneyCollection([{}])
+        collection: new JourneyCollection()
       });
       graph.valueAttr = 'uniqueEvents';
     });
@@ -24,10 +23,10 @@ function (JourneyGraph, JourneyCollection, Collection) {
         });
 
         it('is set to the range of the data', function () {
-          graph.collection.at(0).set('values', new Collection([
+          graph.collection.reset([
             { uniqueEvents: 137 },
             { uniqueEvents: 100 }
-          ]));
+          ]);
           expect(graph.calcYScale().domain()).toEqual([0, 137]);
         });
 
