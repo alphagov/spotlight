@@ -3,7 +3,7 @@ define([
   'extensions/models/query'
 ],
 function (GroupedTimeshiftCollection, Query) {
-  describe('GroupedTimeshiftCollection', function () {
+  xdescribe('GroupedTimeshiftCollection', function () {
     var weekDuration = Query.prototype.periods.week.duration;
 
     it('should return query parameters', function () {
