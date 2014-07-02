@@ -13,76 +13,22 @@ function (Graph, Collection, Model, View, d3) {
 
     defaultData = [
       {
-        id: 'total',
-        title: 'Total applications',
-        values: new Collection([
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _count: 90,
-            alternativeValue: 444
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _count: 100,
-            alternativeValue: 333
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
-            _count: 114,
-            alternativeValue: 222
-          }
-        ])
+        _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
+        _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+        _count: 90,
+        alternativeValue: 444
       },
       {
-        id: 'westminster',
-        title: 'Westminster',
-        values: new Collection([
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _count: 1,
-            alternativeValue: 100
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _count: 6,
-            alternativeValue: 99
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
-            _count: 11,
-            alternativeValue: 98
-          }
-        ])
+        _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
+        _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+        _count: 100,
+        alternativeValue: 333
       },
       {
-        id: 'croydon',
-        title: 'Croydon',
-        values: new Collection([
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-14').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _count: 2,
-            alternativeValue: 80
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-21').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _count: 7,
-            alternativeValue: 87
-          },
-          {
-            _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
-            _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
-            _count: 12,
-            alternativeValue: 23
-          }
-        ])
+        _start_at: Collection.prototype.getMoment('2013-01-28').startOf('day'),
+        _end_at: Collection.prototype.getMoment('2013-02-04').startOf('day'),
+        _count: 114,
+        alternativeValue: 222
       }
     ];
 
@@ -618,7 +564,7 @@ function (Graph, Collection, Model, View, d3) {
 
         collection = new Collection();
 
-        collection.reset(defaultData);
+        collection.reset({ data: defaultData }, { parse: true });
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           collection: collection
@@ -628,19 +574,19 @@ function (Graph, Collection, Model, View, d3) {
       });
 
       it('scales domain to a minimum value of 6 to avoid extreme line jumps on graph and duplicate y axis values', function () {
-        collection.at(0).get('values').each(function (model) { model.set('_count', 1); });
-        collection.at(1).get('values').each(function (model) { model.set('_count', 1); });
-        collection.at(2).get('values').each(function (model) { model.set('_count', 1); });
+        collection.each(function (model) { model.set('_count', 1); });
+        collection.each(function (model) { model.set('_count', 1); });
+        collection.each(function (model) { model.set('_count', 1); });
         expect(graph.calcYScale().domain()).toEqual([0, 6]);
 
-        collection.at(0).get('values').each(function (model) { model.set('_count', 2); });
-        collection.at(1).get('values').each(function (model) { model.set('_count', 2); });
-        collection.at(2).get('values').each(function (model) { model.set('_count', 2); });
+        collection.each(function (model) { model.set('_count', 2); });
+        collection.each(function (model) { model.set('_count', 2); });
+        collection.each(function (model) { model.set('_count', 2); });
         expect(graph.calcYScale().domain()).toEqual([0, 6]);
 
-        collection.at(0).get('values').each(function (model) { model.set('_count', 5); });
-        collection.at(1).get('values').each(function (model) { model.set('_count', 5); });
-        collection.at(2).get('values').each(function (model) { model.set('_count', 5); });
+        collection.each(function (model) { model.set('_count', 5); });
+        collection.each(function (model) { model.set('_count', 5); });
+        collection.each(function (model) { model.set('_count', 5); });
         expect(graph.calcYScale().domain()).toEqual([0, 6]);
       });
 
@@ -653,11 +599,6 @@ function (Graph, Collection, Model, View, d3) {
         expect(graph.calcYScale().domain()).toEqual([0, 500]);
       });
 
-      it('scales domain from 0 to 1 when this is a percentage graph', function () {
-        graph.isOneHundredPercent = function () { return true; };
-        expect(graph.calcYScale().domain()).toEqual([0, 1]);
-      });
-
       it('scales range to inner height', function () {
         expect(graph.calcYScale().range()).toEqual([333, 0]);
       });
@@ -668,9 +609,9 @@ function (Graph, Collection, Model, View, d3) {
       });
 
       it('does not set a tickValueList to the scale if all data is null', function () {
-        collection.at(0).get('values').each(function (model) { model.set('_count', null); });
-        collection.at(1).get('values').each(function (model) { model.set('_count', null); });
-        collection.at(2).get('values').each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
         expect(graph.calcYScale().tickValueList).toBeUndefined();
       });
     });
@@ -701,9 +642,9 @@ function (Graph, Collection, Model, View, d3) {
       });
 
       it('returns false when collection data is null', function () {
-        collection.at(0).get('values').each(function (model) { model.set('_count', null); });
-        collection.at(1).get('values').each(function (model) { model.set('_count', null); });
-        collection.at(2).get('values').each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
+        collection.each(function (model) { model.set('_count', null); });
         expect(graph.hasData()).toEqual(false);
       });
 
