@@ -111,10 +111,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       return $(this.svg.node()).width() / this.width;
     },
 
-    getModel: function (modelIndex) {
-      return this.collection.at(modelIndex);
-    },
-
     modelToDate: function (model) {
       var prop = '_start_at';
       var period = this.getPeriod();
@@ -127,13 +123,13 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     },
 
     getXPos: function (modelIndex) {
-      var model = this.getModel(modelIndex);
+      var model = this.collection.at(modelIndex);
       return this.modelToDate(model);
     },
 
     getYPos: function (modelIndex, valueAttr) {
       valueAttr = valueAttr || this.valueAttr;
-      var model = this.getModel(modelIndex);
+      var model = this.collection.at(modelIndex);
       if (model) {
         return model.get(valueAttr);
       }
