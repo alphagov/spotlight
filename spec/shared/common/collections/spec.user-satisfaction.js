@@ -11,7 +11,6 @@ function (UserSatisfactionCollection) {
       beforeEach(function () {
         collection = new UserSatisfactionCollection([], {
           valueAttr: 'rating',
-          totalAttr: 'average',
           min: 1,
           max: 5
         });
@@ -48,44 +47,9 @@ function (UserSatisfactionCollection) {
           ]
         });
 
-        expect(output.values[0].rating).toEqual(0.5);
-        expect(output.values[1].rating).toEqual(0.75);
-        expect(output.values[2].rating).toEqual(0.25);
-
-      });
-
-      it('calculates a long term average score score for the data set', function () {
-
-        var output = collection.parse({
-          data: [
-            {
-              'rating_1:sum': 1,
-              'rating_2:sum': 1,
-              'rating_3:sum': 1,
-              'rating_4:sum': 1,
-              'rating_5:sum': 1,
-              'total:sum': 5
-            },
-            {
-              'rating_1:sum': 1,
-              'rating_2:sum': 1,
-              'rating_3:sum': 1,
-              'rating_4:sum': 1,
-              'rating_5:sum': 6,
-              'total:sum': 10
-            },
-            {
-              'rating_1:sum': 6,
-              'rating_2:sum': 1,
-              'rating_3:sum': 1,
-              'rating_4:sum': 1,
-              'rating_5:sum': 1,
-              'total:sum': 10
-            }
-          ]
-        });
-
-        expect(output.average).toEqual(0.5);
+        expect(output[0].rating).toEqual(0.5);
+        expect(output[1].rating).toEqual(0.75);
+        expect(output[2].rating).toEqual(0.25);
 
       });
 
@@ -104,7 +68,7 @@ function (UserSatisfactionCollection) {
           ]
         });
 
-        expect(output.values[0].rating).toEqual(null);
+        expect(output[0].rating).toEqual(null);
 
       });
 
@@ -149,8 +113,8 @@ function (UserSatisfactionCollection) {
           ]
         });
 
-        expect(output.values.length).toEqual(1);
-        expect(output.values[0].rating).toEqual(0.25);
+        expect(output.length).toEqual(1);
+        expect(output[0].rating).toEqual(0.25);
 
       });
 
@@ -195,9 +159,48 @@ function (UserSatisfactionCollection) {
           ]
         });
 
-        expect(output.values.length).toEqual(2);
-        expect(output.values[0].rating).toEqual(null);
-        expect(output.values[1].rating).toEqual(0.25);
+        expect(output.length).toEqual(2);
+        expect(output[0].rating).toEqual(null);
+        expect(output[1].rating).toEqual(0.25);
+
+      });
+
+    });
+
+    describe('mean', function () {
+
+      it('calculates a long term average score score for the data set', function () {
+
+        collection.reset({
+          data: [
+            {
+              'rating_1:sum': 1,
+              'rating_2:sum': 1,
+              'rating_3:sum': 1,
+              'rating_4:sum': 1,
+              'rating_5:sum': 1,
+              'total:sum': 5
+            },
+            {
+              'rating_1:sum': 1,
+              'rating_2:sum': 1,
+              'rating_3:sum': 1,
+              'rating_4:sum': 1,
+              'rating_5:sum': 6,
+              'total:sum': 10
+            },
+            {
+              'rating_1:sum': 6,
+              'rating_2:sum': 1,
+              'rating_3:sum': 1,
+              'rating_4:sum': 1,
+              'rating_5:sum': 1,
+              'total:sum': 10
+            }
+          ]
+        }, { parse: true });
+
+        expect(collection.mean('rating')).toEqual(0.5);
 
       });
 
