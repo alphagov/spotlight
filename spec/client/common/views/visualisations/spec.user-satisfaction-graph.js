@@ -12,17 +12,16 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
     beforeEach(function () {
       var $el = $('<div><div class="volumetrics-bar-selected"/></div>');
       spyOn(CompletionRateView.prototype, 'views').andReturn({});
-      collection = new Collection();
+      collection = new Collection([], { min: 1, max: 5 });
       var data = [
         {
           'total:sum': 229.0,
-          _timestamp: collection.getMoment('2004-04-01T00:00:00+00:00'),
+          _timestamp: '2004-04-01T00:00:00+00:00',
           'rating_1:sum': 3.0,
           'rating_2:sum': 1.0,
           'rating_3:sum': 16.0,
           'rating_4:sum': 62.0,
-          'rating_5:sum': 147.0,
-          'rating': 0.88100436681223
+          'rating_5:sum': 147.0
         },
         {
           'total:sum': 248.0,
@@ -31,30 +30,21 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
           'rating_2:sum': 1.0,
           'rating_3:sum': 0.0,
           'rating_4:sum': 100.0,
-          'rating_5:sum': 147.0,
-          'rating': 0.88100436681223
+          'rating_5:sum': 147.0
         },
         {
           'total:sum': 230.0,
-          _timestamp: collection.getMoment('2004-06-01T00:00:00+00:00'),
+          _timestamp: '2004-06-01T00:00:00+00:00',
           'rating_1:sum': 3.0,
           'rating_2:sum': 2.0,
           'rating_3:sum': 16.0,
           'rating_4:sum': 62.0,
-          'rating_5:sum': 147.0,
-          'rating': 0.88100436681223
+          'rating_5:sum': 147.0
         }
       ];
-      collection.reset([ {
-        id: 'test',
-        title: 'test',
-        'periods': {
-          'total': 30,
-          'available': 30
-        },
-        'totalRatings': 0.89076170869789,
-        values: new Collection(data)
-      } ]);
+      collection.reset({
+        data: data
+      }, { parse: true });
 
       view = new UserSatisfactionGraphView({
         el: $el,
@@ -129,8 +119,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
       describe('updating the graph', function () {
         it('updates the bar values when the collection is reset', function () {
           jasmine.renderView(view, function () {
-            var changedModel = collection.at(0).get('values').at(2);
-            view.collection.trigger('change:selected', undefined, undefined, changedModel);
+            view.collection.trigger('change:selected', collection.at(2), 2);
             var bar = view.$el.find('.bar text');
 
             expect($(bar[0]).text()).toEqual('3');
