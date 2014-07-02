@@ -22,22 +22,6 @@ function (View, Formatters) {
       this.$table.appendTo(this.$el);
     },
 
-    renderEl: function (elementName, context, value, attr) {
-      var element;
-      if (context) {
-        element = $('<' + elementName + '></' + elementName + '>');
-        if (value && value !== null || value !== undefined) {
-          //fix double escaping of html entities.
-          element.text($('<div />').html(value).text());
-        }
-        if (attr) {
-          element.attr(attr);
-        }
-        element.appendTo(context);
-      }
-      return element;
-    },
-
     render: function () {
       if (this.$table) {
         this.$table.empty();
@@ -45,66 +29,60 @@ function (View, Formatters) {
       } else {
         this.prepareTable();
       }
-      this.renderHead();
-      this.renderBody();
-    },
-
-    renderHead: function () {
-      var $thead = this.renderEl('thead', this.$table);
-      var $row = this.renderEl('tr', $thead);
-
-      _.each(this.getColumns(), function (column) {
-        var label = column.label;
-
-        if (column.timeshift) {
-          label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
-        }
-
-        this.renderEl('th', $row, label, { scope: 'col' });
-      }, this);
-
-    },
-
-    renderBody: function () {
-      var columns = this.getColumns();
-      var keys = _.pluck(columns, 'key');
-      var $tbody = this.renderEl('tbody', this.$table);
 
       if (this.sortBy) {
         this.collection.sortByAttr(this.sortBy, this.sortOrder === 'descending');
       }
 
-      var rows = this.collection.getTableRows(keys);
-
-      if (rows.length > 0) {
-        _.each(rows, function (row) {
-          var $row = this.renderEl('tr', $tbody);
-          var renderCell = this.renderCell.bind(this, 'td', $row);
-
-          _.each(row, function (cell, index) {
-            renderCell(cell, columns[index]);
-          });
-
-        }, this);
-      } else {
-        var $row = this.renderEl('tr', $tbody);
-        this.renderEl('td', $row, 'No data available', { colspan: keys.length });
-      }
+      $(this.renderHead()).appendTo(this.$table);
+      $(this.renderBody()).appendTo(this.$table);
     },
 
-    renderCell: function (tag, parent, content, column) {
-      var className = '';
+    renderHead: function () {
+      var head = '';
+      head += _.map(this.getColumns(), function(column) {
+        var label = column.label;
+        if (column.timeshift) {
+          label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
+        }
+        return '<th scope="col">' + label + '</th>';
+      }, this).join('\n');
+      return '<thead><tr>' + head + '</tr></thead>';
+    },
+
+    renderRow: function (columns, cellContent, index) {
+      var column = columns[index],
+          className = '';
 
       if (column.format) {
-        content = this.format(content, column.format);
+        cellContent = this.format(cellContent, column.format);
         className = _.isString(column.format) ? column.format : column.format.type;
       }
 
-      content = (content === null || content === undefined) ? 'no data' : content;
+      cellContent = (cellContent === null || cellContent === undefined) ?
+          'no data' : cellContent;
 
-      this.renderEl(tag, parent, content, {
-        'class': className
-      });
+      return '<td class="' + className + '">' + cellContent + '</td>';
+    },
+
+    renderBody: function () {
+      var columns = this.getColumns(),
+          keys = _.pluck(columns, 'key'),
+          rows = this.collection.getTableRows(keys),
+          body = '';
+
+      if (rows.length > 0) {
+        body += _.map(rows, function(row) {
+          var rowContent =
+            _.map(row, this.renderRow.bind(this, columns)).join('\n');
+
+          return '<tr>' + rowContent + '</tr>';
+        }, this).join('\n');
+      } else {
+        body += '<tr><td colspan="' + keys.length + '">No data available</td></tr>';
+      }
+
+      return '<tbody>' + body + '</tbody>';
     },
 
     getColumns: function () {
