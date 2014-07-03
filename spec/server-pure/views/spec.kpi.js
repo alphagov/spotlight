@@ -45,7 +45,7 @@ describe('KPIView', function () {
         ])
       });
       dateKpi.render();
-      expect(dateKpi.$('.period').text()).toEqual('Jan 2014 to Dec 2014');
+      expect(dateKpi.$('.period').text()).toEqual('Jan to Dec 2014');
     });
 
     it('formats date period for week', function () {
@@ -65,7 +65,7 @@ describe('KPIView', function () {
         ])
       });
       dateKpi.render();
-      expect(dateKpi.$('.period').text()).toEqual('24 Mar 2014 to 30 Mar 2014');
+      expect(dateKpi.$('.period').text()).toEqual('24 to 30 Mar 2014');
     });
 
     it('displays the month when the date period is month', function () {
@@ -180,7 +180,7 @@ describe('KPIView', function () {
       ]);
       kpi.render();
       expect(kpi.$('.delta').text()).toContain('£1,100');
-      expect(kpi.$('.delta').text()).toContain('Mar 2014 to Mar 2014');
+      expect(kpi.$('.delta').text()).toContain('Mar 2014');
     });
 
   });
