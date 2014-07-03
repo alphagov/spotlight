@@ -229,19 +229,19 @@
       "axes": {
         "y": [
           {
-            "journeyId": "deposit-foreign-marriage:start",
+            "categoryId": "deposit-foreign-marriage:start",
             "label": "Start",
             "key": "uniqueEvents",
             "format": "integer"
           },
           {
-            "journeyId": "deposit-foreign-marriage:confirm",
+            "categoryId": "deposit-foreign-marriage:confirm",
             "label": "Confirm",
             "key": "uniqueEvents",
             "format": "integer"
           },
           {
-            "journeyId": "deposit-foreign-marriage:done",
+            "categoryId": "deposit-foreign-marriage:done",
             "label": "Done",
             "key": "uniqueEvents",
             "format": "integer"

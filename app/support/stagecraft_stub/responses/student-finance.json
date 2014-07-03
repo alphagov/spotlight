@@ -167,37 +167,37 @@
       "axes": {
         "y": [
           {
-            "journeyId": "about-you",
+            "categoryId": "about-you",
             "label": "About you",
             "format": "integer"
           },
           {
-            "journeyId": "previous-study",
+            "categoryId": "previous-study",
             "label": "Previous studies (if any)",
             "format": "integer"
           },
           {
-            "journeyId": "course-and-fees",
+            "categoryId": "course-and-fees",
             "label": "Course and fees",
             "format": "integer"
           },
           {
-            "journeyId": "living-costs",
+            "categoryId": "living-costs",
             "label": "Living costs",
             "format": "integer"
           },
           {
-            "journeyId": "financial-info",
+            "categoryId": "financial-info",
             "label": "Financial info",
             "format": "integer"
           },
           {
-            "journeyId": "additional-info",
+            "categoryId": "additional-info",
             "label": "Additional info",
             "format": "integer"
           },
           {
-            "journeyId": "confirm",
+            "categoryId": "confirm",
             "label": "Confirm",
             "format": "integer"
           }

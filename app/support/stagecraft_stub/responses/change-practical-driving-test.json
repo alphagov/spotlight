@@ -153,16 +153,16 @@
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
-          {"journeyId": "access-your-booking", "label": "Access your booking", "format": "integer"},
-          {"journeyId": "change-booking", "label": "Change booking", "format": "integer"},
-          {"journeyId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
-          {"journeyId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
-          {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
-          {"journeyId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
-          {"journeyId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
-          {"journeyId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
-          {"journeyId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
-          {"journeyId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
+          {"categoryId": "access-your-booking", "label": "Access your booking", "format": "integer"},
+          {"categoryId": "change-booking", "label": "Change booking", "format": "integer"},
+          {"categoryId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
+          {"categoryId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
+          {"categoryId": "enter-your-details", "label": "Enter your details", "format": "integer"},
+          {"categoryId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
+          {"categoryId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
+          {"categoryId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
+          {"categoryId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
+          {"categoryId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
         ]
       }
     },
