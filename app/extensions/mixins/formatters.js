@@ -27,8 +27,31 @@ define([
       if (options.subtract) {
         value[1] = moment(value[1]).subtract(options.subtract, 1);
       }
-      return formatters.date(value[0], options) + ' to ' +
-        formatters.date(value[1], options);
+
+      var start = formatters.date(value[0], options);
+      var end = formatters.date(value[1], options);
+
+      if (start === end) {
+        return end;
+      } else {
+        var startOptions = _.clone(options);
+        // need to prevent stripping formats like DD/MM/YYYY etc
+        if (options.format.match(/^[DMY ]+$/)) {
+          var y1 = formatters.date(value[0], _.extend({}, options, { format: 'YYYY' }));
+          var y2 = formatters.date(value[1], _.extend({}, options, { format: 'YYYY' }));
+          if (y1 === y2) {
+            startOptions.format = startOptions.format.replace(/[Y]+ ?/, '');
+          }
+          var m1 = formatters.date(value[0], _.extend({}, options, { format: 'MMM YYYY' }));
+          var m2 = formatters.date(value[1], _.extend({}, options, { format: 'MMM YYYY' }));
+          if (m1 === m2) {
+            startOptions.format = startOptions.format.replace(/[M]+ ?/, '');
+          }
+          startOptions.format = startOptions.format.trim();
+        }
+        return formatters.date(value[0], startOptions) + ' to ' +
+          end;
+      }
     },
 
     duration: function (value, options) {

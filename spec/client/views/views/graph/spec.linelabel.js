@@ -1,8 +1,9 @@
 define([
   'extensions/views/graph/linelabel',
-  'extensions/collections/collection'
+  'extensions/collections/collection',
+  'extensions/models/model'
 ],
-function (LineLabel, Collection) {
+function (LineLabel, Collection, Model) {
 
   describe('LineLabel Component', function () {
     describe('rendering tests', function () {
@@ -27,6 +28,9 @@ function (LineLabel, Collection) {
           },
           isOneHundredPercent: function () {
             return false;
+          },
+          modelToDate: function () {
+            return '2014-01-01';
           }
         };
 
@@ -37,7 +41,8 @@ function (LineLabel, Collection) {
           interactive: false,
           showSquare: false,
           collection: collection,
-          rendered: true
+          rendered: true,
+          model: new Model({ period: 'week' })
         });
         lineLabel.wrapper = wrapper;
         lineLabel.offset = 100;
@@ -191,7 +196,8 @@ function (LineLabel, Collection) {
               { ideal: 30, min: 30, size: 20 },
               { ideal: 80, min: 80, size: 30 }
             ],
-            rendered: true
+            rendered: true,
+            model: new Model()
           };
           spyOn(LineLabel.prototype, 'setLabelPositions');
         });

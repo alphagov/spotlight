@@ -65,6 +65,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       return {
         graph: this,
         collection: this.collection,
+        model: this.model,
         el: this.figure,
         svg: this.svg,
         wrapper: this.wrapper,
@@ -119,7 +120,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       } else if (period === 'week' || period === 'quarter') {
         prop = '_end_at';
       }
-      return this.getMoment(model.get(prop));
+      return model.get(prop);
     },
 
     getXPos: function (modelIndex) {

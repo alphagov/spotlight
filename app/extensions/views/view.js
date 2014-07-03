@@ -146,41 +146,27 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         end = this.getMoment(model.get('_original_end_at'));
       }
 
-      if (start) {
-        start = this.getMoment(start);
-      }
-      if (end) {
-        end = this.getMoment(end);
+      var formats = {
+        hour: 'HH:mm',
+        day: 'D MMM YYYY',
+        week: 'D MMM YYYY',
+        month: 'MMMM YYYY',
+        quarter: 'MMM YYYY'
+      };
+
+      var options = {
+        type: 'date',
+        format: formats[period]
+      };
+
+      var input = start;
+
+      if (end && (period === 'week' || period === 'quarter')) {
+        options.type = 'dateRange';
+        input = [start, end];
       }
 
-      switch (period) {
-        case 'week': // fall through; we're formatting weeks same as days
-        case 'day':
-          if (end) {
-            end = end.subtract(1, 'days');
-            if (start.diff(end)) {
-              if (start.month() !== end.month()) {
-                return start.format('D MMM') + ' to ' + end.format('D MMM YYYY');
-              } else {
-                return start.format('D') + ' to ' + end.format('D MMM YYYY');
-              }
-            }
-          }
-          return start.format('D MMM YYYY');
-        case 'month':
-        case 'quarter':
-          if (end) {
-            end = end.subtract(1, 'months');
-            if (start.diff(end)) {
-              if (start.year() !== end.year()) {
-                return start.format('MMM YYYY') + ' to ' + end.format('MMM YYYY');
-              } else if (start.month() !== end.month()) {
-                return start.format('MMM') + ' to ' + end.format('MMM YYYY');
-              }
-            }
-          }
-          return start.format('MMMM YYYY');
-      }
+      return this.format(input, options);
     },
 
     /**
