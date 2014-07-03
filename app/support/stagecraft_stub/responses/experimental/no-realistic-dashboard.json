@@ -229,19 +229,19 @@
       "axes": {
         "y": [
           {
-            "categoryId": "deposit-foreign-marriage:start",
+            "groupId": "deposit-foreign-marriage:start",
             "label": "Start",
             "key": "uniqueEvents",
             "format": "integer"
           },
           {
-            "categoryId": "deposit-foreign-marriage:confirm",
+            "groupId": "deposit-foreign-marriage:confirm",
             "label": "Confirm",
             "key": "uniqueEvents",
             "format": "integer"
           },
           {
-            "categoryId": "deposit-foreign-marriage:done",
+            "groupId": "deposit-foreign-marriage:done",
             "label": "Done",
             "key": "uniqueEvents",
             "format": "integer"
@@ -400,22 +400,22 @@
             "y": [
               {
                 "label": "England",
-                "categoryId": "England",
+                "groupId": "England",
                 "format": "integer"
               },
               {
                 "label": "Scotland",
-                "categoryId": "Scotland",
+                "groupId": "Scotland",
                 "format": "integer"
               },
               {
                 "label": "Wales",
-                "categoryId": "Wales",
+                "groupId": "Wales",
                 "format": "integer"
               },
               {
                 "label": "Northern Ireland",
-                "categoryId": "Northern_Ireland",
+                "groupId": "Northern_Ireland",
                 "format": "integer"
               }
             ]
@@ -455,12 +455,12 @@
             "y": [
               {
                 "label": "Completed",
-                "categoryId": "completed",
+                "groupId": "completed",
                 "format": "integer"
               },
               {
                 "label": "Started",
-                "categoryId": "started",
+                "groupId": "started",
                 "format": "integer"
               }
             ]
@@ -503,17 +503,17 @@
             "y": [
               {
                 "label": "Desktop",
-                "categoryId": "desktop",
+                "groupId": "desktop",
                 "format": "integer"
               },
               {
                 "label": "Mobile",
-                "categoryId": "mobile",
+                "groupId": "mobile",
                 "format": "integer"
               },
               {
                 "label": "Tablet",
-                "categoryId": "tablet",
+                "groupId": "tablet",
                 "format": "integer"
               }
             ]
@@ -555,17 +555,17 @@
             "y": [
               {
                 "label": "Desktop",
-                "categoryId": "desktop",
+                "groupId": "desktop",
                 "format": "percent"
               },
               {
                 "label": "Mobile",
-                "categoryId": "mobile",
+                "groupId": "mobile",
                 "format": "percent"
               },
               {
                 "label": "Tablet",
-                "categoryId": "tablet",
+                "groupId": "tablet",
                 "format": "percent"
               }
             ]

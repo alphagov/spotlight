@@ -47,12 +47,12 @@
         "y": [
           {
             "label": "Digital",
-            "categoryId": "ordinary",
+            "groupId": "ordinary",
             "format": "integer"
           },
           {
             "label": "Paper forms",
-            "categoryId": "ems",
+            "groupId": "ems",
             "format": "integer"
           }
         ]
@@ -103,42 +103,42 @@
         "y": [
           {
             "label": "16 to 18",
-            "categoryId": "16-18",
+            "groupId": "16-18",
             "format": "integer"
           },
           {
             "label": "18 to 24",
-            "categoryId": "18-24",
+            "groupId": "18-24",
             "format": "integer"
           },
           {
             "label": "25 to 34",
-            "categoryId": "25-34",
+            "groupId": "25-34",
             "format": "integer"
           },
           {
             "label": "35 to 44",
-            "categoryId": "35-44",
+            "groupId": "35-44",
             "format": "integer"
           },
           {
             "label": "45 to 54",
-            "categoryId": "45-54",
+            "groupId": "45-54",
             "format": "integer"
           },
           {
             "label": "55 to 64",
-            "categoryId": "55-64",
+            "groupId": "55-64",
             "format": "integer"
           },
           {
             "label": "65 to 74",
-            "categoryId": "65-74",
+            "groupId": "65-74",
             "format": "integer"
           },
           {
             "label": "Over 75",
-            "categoryId": "> 75",
+            "groupId": "> 75",
             "format": "integer"
           }
         ]
@@ -172,22 +172,22 @@
         "y": [
           {
             "label": "UK residents",
-            "categoryId": "ordinary",
+            "groupId": "ordinary",
             "format": "integer"
           },
           {
             "label": "Crown servants and British Council employees",
-            "categoryId": "crown",
+            "groupId": "crown",
             "format": "integer"
           },
           {
             "label": "Armed forces",
-            "categoryId": "forces",
+            "groupId": "forces",
             "format": "integer"
           },
           {
             "label": "British citizens abroad",
-            "categoryId": "overseas",
+            "groupId": "overseas",
             "format": "integer"
           }
         ]

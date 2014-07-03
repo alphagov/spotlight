@@ -76,19 +76,19 @@ function (GroupedCollection, moment) {
       var matchedSeries = _.chain(this.options.axes.y)
                            .filter(function (series) {
                               return _.find(data, function (d) {
-                                return d[this.options.category] === series.categoryId;
+                                return d[this.options.category] === series.groupId;
                               }, this);
                             }, this)
                            .map(function (series) {
                               var dataSeries = _.find(data, function (d) {
-                                return d[this.options.category] === series.categoryId;
+                                return d[this.options.category] === series.groupId;
                               }, this);
 
                               var start = startOffset;
-                              var id = series.categoryId;
+                              var id = series.groupId;
 
                               if (series.timeshift) {
-                                id = series.categoryId + series.timeshift;
+                                id = series.groupId + series.timeshift;
                                 start = startOffset - series.timeshift;
                               }
                               var end = start + this.standardDuration();

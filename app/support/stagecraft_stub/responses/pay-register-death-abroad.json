@@ -127,9 +127,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"categoryId": "pay-register-death-abroad:start", "label": "Start", "format": "integer"},
-          {"categoryId": "pay-register-death-abroad:confirm", "label": "Confirm", "format": "integer"},
-          {"categoryId": "pay-register-death-abroad:done", "label": "Done", "format": "integer"}
+          {"groupId": "pay-register-death-abroad:start", "label": "Start", "format": "integer"},
+          {"groupId": "pay-register-death-abroad:confirm", "label": "Confirm", "format": "integer"},
+          {"groupId": "pay-register-death-abroad:done", "label": "Done", "format": "integer"}
         ]
       }
     },

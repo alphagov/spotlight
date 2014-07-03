@@ -89,9 +89,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"categoryId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
-          {"categoryId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
-          {"categoryId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
+          {"groupId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
+          {"groupId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
+          {"groupId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
         ]
       }
     },

@@ -65,7 +65,7 @@ function (Graph, LineLabel) {
     getLines: function () {
       return _.map(this.model.get('axes').y, function (line) {
         line = _.clone(line);
-        line.key = line.key || (line.categoryId + ':' + this.valueAttr);
+        line.key = line.key || (line.groupId + ':' + this.valueAttr);
         if (this.isOneHundredPercent()) {
           line.key += ':percent';
         }

@@ -30,8 +30,8 @@
       "line-label-links": true,
       "axes": {
         "y": [
-           { "categoryId": "tax-disc", "label": "Tax disc", "href": "/performance/tax-disc", "format": "integer" },
-           { "categoryId": "sorn", "label": "SORN", "href": "/performance/sorn", "format": "integer" }
+           { "groupId": "tax-disc", "label": "Tax disc", "href": "/performance/tax-disc", "format": "integer" },
+           { "groupId": "sorn", "label": "SORN", "href": "/performance/sorn", "format": "integer" }
         ]
       }
     },
@@ -56,9 +56,9 @@
       ],
       "axes": {
         "y": [
-           { "categoryId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
-           { "categoryId": "assisted-digital", "label": "Post Office", "format": "integer" },
-           { "categoryId": "manual", "label": "DVLA centre", "format": "integer" }
+           { "groupId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
+           { "groupId": "assisted-digital", "label": "Post Office", "format": "integer" },
+           { "groupId": "manual", "label": "DVLA centre", "format": "integer" }
         ]
       }
     }
