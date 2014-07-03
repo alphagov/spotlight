@@ -23,11 +23,11 @@ describe('UserSatisfactionView', function () {
         _timestamp: collection.getMoment('2004-06-01T00:00:00+00:00')
       }
     ];
-    collection.reset([ {
+    collection.reset({
       id: 'test',
       title: 'test',
-      values: new Collection(data)
-    } ]);
+      data: data
+    }, { parse: true });
 
     collection.options = {
       valueAttr: 'satisfactionTaxDisc'
@@ -47,10 +47,9 @@ describe('UserSatisfactionView', function () {
 
   it('calculates percentages correctly and sets them as an attribute', function () {
 
-    var returned = collection.first().get('values');
-    expect(returned.at(0).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9618, 4);
-    expect(returned.at(1).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9701, 2);
-    expect(returned.at(2).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9663, 4);
+    expect(collection.at(0).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9618, 4);
+    expect(collection.at(1).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9701, 4);
+    expect(collection.at(2).get('satisfactionTaxDisc_percent')).toBeCloseTo(0.9663, 4);
 
   });
 

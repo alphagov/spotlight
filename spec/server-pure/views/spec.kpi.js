@@ -167,7 +167,11 @@ describe('KPIView', function () {
 
     it('renders data in the delta section if the latest data point is empty but the penultimate data point is not', function () {
       kpi.collection.reset([
-        {},
+        {
+          value: null,
+          _timestamp: '2014-02-01T00:00:00+00:00',
+          end_at: '2014-03-01T00:00:00+00:00'
+        },
         {
           value: 1100,
           _timestamp: '2014-03-01T00:00:00+00:00',
