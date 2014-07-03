@@ -1,13 +1,13 @@
 var requirejs = require('requirejs');
 
 var ListView = require('../../../app/server/views/modules/list');
-var ListCollection = requirejs('common/collections/list');
+var Collection = requirejs('extensions/collections/collection');
 
 describe('ListView', function () {
 
   it('should show the correct number of items', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo',
           'pagePath': '/foo' },
@@ -40,7 +40,7 @@ describe('ListView', function () {
 
   it('should show a nice "no data" message when there is no data', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': []
     }, {
       'id': 'foo',
@@ -63,7 +63,7 @@ describe('ListView', function () {
   });
   it('should escape labels properly', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo&#x27;',
           'pagePath': '/foo' }
@@ -90,7 +90,7 @@ describe('ListView', function () {
 
   it('should show the urls with a url-root', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo',
           'pagePath': '/foo' },
@@ -118,7 +118,7 @@ describe('ListView', function () {
 
   it('should not show links if there is no link-attr', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo',
           'pagePath': '/foo' },
@@ -147,7 +147,7 @@ describe('ListView', function () {
 
   it('it should use a labelRegex if provided', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo - GOV.UK',
           'pagePath': '/foo' },
@@ -179,7 +179,7 @@ describe('ListView', function () {
 
   it('should not use label if labelRegex match fails', function () {
 
-    var collection = new ListCollection({
+    var collection = new Collection({
       'data': [
         { 'pageTitle': 'foo - GOV.UK',
           'pagePath': '/foo' },
