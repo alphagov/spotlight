@@ -3,8 +3,6 @@ define([
 ], function (Collection) {
   var JourneySeriesCollection = Collection.extend({
 
-    valueAttr: 'uniqueEvents',
-
     initialize: function (models, options) {
       options = options || {};
       if (options.getStep) {
@@ -14,6 +12,7 @@ define([
         this.axes = options.axes;
       }
 
+      this.valueAttr = options.valueAttr || 'uniqueEvents';
       this.dateRange = this.lastWeekDateRange(
           this.getMoment(), options.weeksAgo || 0);
 
