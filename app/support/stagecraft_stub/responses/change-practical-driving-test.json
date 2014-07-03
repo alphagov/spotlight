@@ -53,12 +53,12 @@
         "y": [
           {
             "label": "Online",
-            "categoryId": "online",
+            "groupId": "online",
             "format": "integer"
           },
           {
             "label": "Telephone",
-            "categoryId": "phone",
+            "groupId": "phone",
             "format": "integer"
           }
         ]
@@ -153,16 +153,16 @@
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
-          {"categoryId": "access-your-booking", "label": "Access your booking", "format": "integer"},
-          {"categoryId": "change-booking", "label": "Change booking", "format": "integer"},
-          {"categoryId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
-          {"categoryId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
-          {"categoryId": "enter-your-details", "label": "Enter your details", "format": "integer"},
-          {"categoryId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
-          {"categoryId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
-          {"categoryId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
-          {"categoryId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
-          {"categoryId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
+          {"groupId": "access-your-booking", "label": "Access your booking", "format": "integer"},
+          {"groupId": "change-booking", "label": "Change booking", "format": "integer"},
+          {"groupId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
+          {"groupId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
+          {"groupId": "enter-your-details", "label": "Enter your details", "format": "integer"},
+          {"groupId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
+          {"groupId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
+          {"groupId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
+          {"groupId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
+          {"groupId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
         ]
       }
     },

@@ -92,9 +92,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"categoryId": "pay-legalisation-drop-off:start", "label": "Start", "format": "integer"},
-          {"categoryId": "pay-legalisation-drop-off:confirm", "label": "Confirm", "format": "integer"},
-          {"categoryId": "pay-legalisation-drop-off:done", "label": "Done", "format": "integer"}
+          {"groupId": "pay-legalisation-drop-off:start", "label": "Start", "format": "integer"},
+          {"groupId": "pay-legalisation-drop-off:confirm", "label": "Confirm", "format": "integer"},
+          {"groupId": "pay-legalisation-drop-off:done", "label": "Done", "format": "integer"}
         ]
       }
     },

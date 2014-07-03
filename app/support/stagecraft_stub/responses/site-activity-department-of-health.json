@@ -384,17 +384,17 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop",
+            "groupId": "desktop",
             "format": "percent"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile",
+            "groupId": "mobile",
             "format": "percent"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet",
+            "groupId": "tablet",
             "format": "percent"
           }
         ]
@@ -433,12 +433,12 @@
         "y": [
           {
             "label": "New visitors",
-            "categoryId": "New Visitor",
+            "groupId": "New Visitor",
             "format": "percent"
           },
           {
             "label": "Returning visitors",
-            "categoryId": "Returning Visitor",
+            "groupId": "Returning Visitor",
             "format": "percent"
           }
         ]

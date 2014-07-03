@@ -19,7 +19,7 @@ function (GroupedTimeshiftCollection, Query) {
           y: [
             {
               'label': 'One',
-              'categoryId': 'one',
+              'groupId': 'one',
               'key': 'value:sum',
               'timeshift': 1
             }
@@ -49,7 +49,7 @@ function (GroupedTimeshiftCollection, Query) {
           y: [
             {
               'label': 'One',
-              'categoryId': 'one',
+              'groupId': 'one',
               'key': 'value:sum',
               'timeshift': 1
             }
@@ -91,19 +91,19 @@ function (GroupedTimeshiftCollection, Query) {
           y: [
             {
               'label': 'One',
-              'categoryId': 'one',
+              'groupId': 'one',
               'key': 'value:sum',
               'timeshift': 4
             },
             {
               'label': 'Two',
-              'categoryId': 'two',
+              'groupId': 'two',
               'key': 'value:sum',
               'timeshift': 5
             },
             {
               'label': 'Thr',
-              'categoryId': 'thr',
+              'groupId': 'thr',
               'key': 'value:sum',
               'timeshift': 6
             }
@@ -260,18 +260,18 @@ function (GroupedTimeshiftCollection, Query) {
             y: [
               {
                 'label': 'One',
-                'categoryId': 'one',
+                'groupId': 'one',
                 'key': 'value:sum',
               },
               {
                 'label': 'One',
-                'categoryId': 'one',
+                'groupId': 'one',
                 'key': 'value:sum',
                 'timeshift': 2
               },
               {
                 'label': 'Two',
-                'categoryId': 'two',
+                'groupId': 'two',
                 'key': 'value:sum',
               }
             ]
@@ -298,23 +298,23 @@ function (GroupedTimeshiftCollection, Query) {
             y: [
               {
                 'label': 'One',
-                'categoryId': 'one',
+                'groupId': 'one',
                 'key': 'value:sum',
               },
               {
                 'label': 'One',
-                'categoryId': 'one',
+                'groupId': 'one',
                 'key': 'value:sum',
                 'timeshift': 2
               },
               {
                 'label': 'Two',
-                'categoryId': 'two',
+                'groupId': 'two',
                 'key': 'value:sum',
               },
               {
                 'label': 'Three',
-                'categoryId': 'three',
+                'groupId': 'three',
                 'key': 'value:sum',
               }
             ]
@@ -342,7 +342,7 @@ function (GroupedTimeshiftCollection, Query) {
             y: [
               {
                 'label': 'Three',
-                'categoryId': 'three',
+                'groupId': 'three',
                 'key': 'value:sum',
               }
             ]

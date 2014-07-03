@@ -77,15 +77,15 @@ function (GroupedTimeseries, Collection, Query) {
           y: [
             {
               'label': 'ABC',
-              'categoryId': 'abc'
+              'groupId': 'abc'
             },
             {
               'label': 'DEF',
-              'categoryId': 'def'
+              'groupId': 'def'
             },
             {
               'label': 'XYZ',
-              'categoryId': 'xyz'
+              'groupId': 'xyz'
             }
           ]
         }
@@ -174,19 +174,19 @@ function (GroupedTimeseries, Collection, Query) {
             y: [
               {
                 'label': 'ABC',
-                'categoryId': 'abc'
+                'groupId': 'abc'
               },
               {
                 'label': 'DEF',
-                'categoryId': 'def'
+                'groupId': 'def'
               },
               {
                 'label': 'XYZ',
-                'categoryId': 'xyz'
+                'groupId': 'xyz'
               },
               {
                 'label': 'GHI',
-                'categoryId': 'ghi'
+                'groupId': 'ghi'
               }
             ]
           }
@@ -215,7 +215,7 @@ function (GroupedTimeseries, Collection, Query) {
             y: [
               {
                 'label': 'GHI',
-                'categoryId': 'ghi'
+                'groupId': 'ghi'
               }
             ]
           }
@@ -237,11 +237,11 @@ function (GroupedTimeseries, Collection, Query) {
         collection.options.axes.y = [
           {
             'label': 'ABC',
-            'categoryId': 'abc'
+            'groupId': 'abc'
           },
           {
             'label': 'XYZ',
-            'categoryId': 'xyz'
+            'groupId': 'xyz'
           }
         ];
 

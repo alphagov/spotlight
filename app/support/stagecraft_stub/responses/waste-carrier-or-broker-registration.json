@@ -104,17 +104,17 @@
         "y": [
           {
             "label": "Total",
-            "categoryId": "waste_new_reg_all",
+            "groupId": "waste_new_reg_all",
             "format": "integer"
           },
           {
             "label": "Digital",
-            "categoryId": "waste_new_reg_digital_user",
+            "groupId": "waste_new_reg_digital_user",
             "format": "integer"
           },
           {
             "label": "Call centre",
-            "categoryId": "waste_new_reg_assisted",
+            "groupId": "waste_new_reg_assisted",
             "format": "integer"
           }
         ]

@@ -91,7 +91,7 @@ function (View, Formatters) {
       if (axes) {
         cols = _.map(axes.y, function (axis) {
           var column = _.extend({
-            key: axis.key || (axis.categoryId + ':' + this.valueAttr)
+            key: axis.key || (axis.groupId + ':' + this.valueAttr)
           }, axis);
           if (this.collection.options.isOneHundredPercent) {
             column.key += ':percent';

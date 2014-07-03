@@ -117,17 +117,17 @@
       "axes": {
         "y": [
           {
-            "categoryId": "fully-digital",
+            "groupId": "fully-digital",
             "label": "Digital and automated phone",
             "format": "integer"
           },
           {
-            "categoryId": "assisted-digital",
+            "groupId": "assisted-digital",
             "label": "Post Office",
             "format": "integer"
           },
           {
-            "categoryId": "manual",
+            "groupId": "manual",
             "label": "DVLA centre",
             "format": "integer"
           }
