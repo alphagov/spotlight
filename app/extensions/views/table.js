@@ -96,6 +96,9 @@ function (View, Formatters) {
           if (this.collection.options.isOneHundredPercent) {
             column.key += ':percent';
           }
+          if (axis.timeshift) {
+            column.key = 'timeshift' + axis.timeshift + ':' + column.key;
+          }
           return column;
         }, this);
         if (axes.x) {

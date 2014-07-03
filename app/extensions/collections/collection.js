@@ -104,20 +104,28 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
 
     flatten: function (data) {
       var category = this.query.get('group_by');
-      var valueAttr = this.valueAttr;
       if (category && data.length) {
         // if we have a grouped response, flatten the data
         if (data[0].values) {
-          _.each(data, function (dataset) {
-            var categoryValue = dataset[category];
-            _.each(dataset.values, function (model, i) {
-              data[0].values[i][categoryValue + ':' + valueAttr] = model[valueAttr];
-            }, this);
+          _.each(this.options.axes.y || [], function (axis) {
+            if (axis.groupId !== 'total') {
+              var dataset = _.find(data, function (d) {
+                return d[category] === axis.groupId;
+              });
+              this.mergeDataset(dataset, data[0], axis);
+            }
           }, this);
           data = data[0].values;
         }
       }
       return data;
+    },
+
+    mergeDataset: function (source, target, axis) {
+      var valueAttr = this.valueAttr;
+      _.each(source.values, function (model, i) {
+        target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
+      }, this);
     },
 
     /**

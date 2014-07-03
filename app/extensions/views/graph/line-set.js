@@ -15,7 +15,8 @@ define([
           interactive: false,
           valueAttr: line.key,
           className: 'group' + i,
-          grouped: true
+          grouped: true,
+          timeshift: !!line.timeshift
         });
         return new this.GroupClass(options);
       }, this);
@@ -40,7 +41,7 @@ define([
       // Find closest point of closest group
       this.collection.each(function (model, i) {
         var x = this.lines[0].x(i);
-        var y = _.any(this.lines, function (line) { return line.y(i); });
+        var y = this.hasValueAtIndex(i);
         if (y && Math.abs(x - e.x) < Math.abs(diff)) {
           diff = x - e.x;
           index = i;
@@ -53,7 +54,7 @@ define([
       var interpolator;
       var diff = this.lines[0].x(index) - e.x;
       var next = diff < 0 ? index + 1 : index - 1;
-      if (_.any(this.lines, function (line) { return line.y(next); })) {
+      if (this.hasValueAtIndex(next)) {
         interpolator = function (line) {
           var interpx = diff / (line.x(index) - line.x(next));
           return d3.interpolateNumber(line.y(index), line.y(next))(interpx);
@@ -80,6 +81,12 @@ define([
       });
 
       return closestY;
+    },
+
+    hasValueAtIndex: function (i) {
+      return _.any(this.lines, function (line) {
+        return this.graph.getYPos(i, line.valueAttr);
+      }, this);
     }
 
   });
