@@ -6,13 +6,16 @@ function (Component) {
   var Line = Component.extend({
 
     interactive: true,
+
+    timeshift: false,
+
     x: function (index) {
       var xPos = this.graph.getXPos(index);
       return xPos === null ? null : Math.floor(this.scales.x(xPos)) + 0.5;
     },
     y: function (index) {
       var yPos = this.graph.getYPos(index, this.valueAttr);
-      return yPos === null ? null : this.scales.y(yPos);
+      return !_.isNumber(yPos) ? null : this.scales.y(yPos);
     },
 
     className: '',
@@ -38,6 +41,7 @@ function (Component) {
 
       var group = this.componentWrapper.append('g').attr('class', 'group');
       var path = group.append('path').attr('class', 'line ' + this.className);
+      path.classed('timeshift', this.timeshift);
       path.datum(this.collection.toJSON())
           .attr('d', line);
       return group;

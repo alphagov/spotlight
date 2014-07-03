@@ -125,7 +125,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     getXPos: function (modelIndex) {
       var model = this.collection.at(modelIndex);
-      return this.modelToDate(model);
+      return model ? this.modelToDate(model) : null;
     },
 
     getYPos: function (modelIndex, valueAttr) {
