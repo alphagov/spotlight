@@ -1,29 +1,27 @@
 {
-  "slug": "dft-book-theory-driving-test",
+  "slug": "bis-title-plan-views",
   "page-type": "dashboard",
   "dashboard-type": "high-volume-transaction",
   "published": true,
   "strapline": "Dashboard",
-  "description": "Book and pay for a theory driving test.",
-  "title": "Driving theory test: bookings",
+  "title": "Land Registry: title plan views",
   "department": {
-    "title": "Department for Transport",
-    "abbr": "DfT"
+    "title": "Department for Business, Innovation and Skills",
+    "abbr": "BIS"
   },
   "agency": {
-    "title": "Driver and Vehicle Standards Agency",
-    "abbr": "DVSA"
+    "title": "Land Registry",
+    "abbr": "HMLR"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Driving theory test: bookings",
-      "url": "https://www.gov.uk/book-a-driving-theory-test"
+      "title": "Land Registry: title plan views",
+      "url": "http://www.landregistry.gov.uk/professional/business-e-services"
     }
   },
-  "customer-type": "Individuals",
+  "customer-type": "Business",
   "business-model": "Fees and charges",
-  "costs": "Transactional cost data is not available separately since the booking process is part of a much wider and fully outsourced contract for the delivery of the theory test itself.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -34,7 +32,7 @@
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:dft-book-theory-driving-test",
+          "service_id:bis-title-plan-views",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -46,7 +44,7 @@
         "sigfigs": 3
       },
       "info": [
-        "Data source: Department for Transport"
+        "Data source: Department for Business, Innovation and Skills"
       ]
     },
     {
@@ -58,7 +56,7 @@
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:dft-book-theory-driving-test",
+          "service_id:bis-title-plan-views",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -70,9 +68,7 @@
         "sigfigs": 3
       },
       "info": [
-        "Transactional cost data is not available separately since the booking process is part of a much wider and fully outsourced contract for the delivery of the theory test itself.",
-        "<br />",
-        "Data source: Department for Transport",
+        "Data source: Department for Business, Innovation and Skills",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
       ]
     },
@@ -85,7 +81,7 @@
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:dft-book-theory-driving-test",
+          "service_id:bis-title-plan-views",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -96,9 +92,7 @@
         "pence": true
       },
       "info": [
-        "Transactional cost data is not available separately since the booking process is part of a much wider and fully outsourced contract for the delivery of the theory test itself.",
-        "<br />",
-        "Data source: Department for Transport",
+        "Data source: Department for Business, Innovation and Skills",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
       ]
     },
@@ -113,13 +107,13 @@
       "axis-period": "quarter",
       "query-params": {
         "filter_by": [
-          "service_id:dft-book-theory-driving-test",
+          "service_id:bis-title-plan-views",
           "type:quarterly"
         ],
         "sort_by": "_timestamp:ascending"
       },
       "info": [
-        "Data source: Department for Transport"
+        "Data source: Department for Business, Innovation and Skills"
       ]
     },
     {
@@ -143,13 +137,13 @@
       },
       "query-params": {
         "filter_by": [
-          "service_id:dft-book-theory-driving-test",
+          "service_id:bis-title-plan-views",
           "type:quarterly"
         ],
         "sort_by": "_timestamp:ascending"
       },
       "info": [
-        "Data source: Department for Transport",
+        "Data source: Department for Business, Innovation and Skills",
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
       ]
     }

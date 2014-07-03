@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "description": "Requests to update the register by conveyancers acting on behalf of their clients, or by the public. Includes transfers of ownership.",
-  "title": "Land Registry: updates to the register",
+  "title": "Land Registry: updates to the register and bankruptcy dealings",
   "department": {
     "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
@@ -17,13 +17,13 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Land Registry: updates to the register",
+      "title": "Land Registry: updates to the register and bankruptcy dealings",
       "url": "http://www.landregistry.gov.uk/professional/business-e-services"
     }
   },
   "customer-type": "Business",
   "business-model": "Fees and charges",
-  "costs": "Applications can be received via different channels, requiring different processes and may contain multiple transactions. The published cost per transaction is therefore an average cost, including apportioned overheads, based on Land Registry’s 2011/12 published accounts.",
+  "other-notes": "Number of digital transactions taken from the delivery channel for each service. Applications lodged electronically may still require some manual intervention. Figure is based on an average percentage basis across each quarter.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -70,8 +70,6 @@
         "sigfigs": 3
       },
       "info": [
-        "Applications can be received via different channels, requiring different processes and may contain multiple transactions. The published cost per transaction is therefore an average cost, including apportioned overheads, based on Land Registry’s 2011/12 published accounts.",
-        "<br />",
         "Data source: Department for Business, Innovation and Skills",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
       ]
@@ -96,8 +94,6 @@
         "pence": true
       },
       "info": [
-        "Applications can be received via different channels, requiring different processes and may contain multiple transactions. The published cost per transaction is therefore an average cost, including apportioned overheads, based on Land Registry’s 2011/12 published accounts.",
-        "<br />",
         "Data source: Department for Business, Innovation and Skills",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
       ]

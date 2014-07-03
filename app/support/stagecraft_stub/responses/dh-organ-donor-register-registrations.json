@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "description": "Registrations by people wishing to donate their organs after they die.",
-  "title": "Organ donor registrations",
+  "title": "Organ donations: registrations",
   "department": {
     "title": "Department of Health",
     "abbr": "DH"
@@ -17,12 +17,13 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Organ donor registrations",
+      "title": "Organ donations: registrations",
       "url": "http://www.organdonation.nhs.uk/"
     }
   },
   "customer-type": "Individuals",
   "business-model": "Taxpayers",
+  "costs": "The reduction in cost per transaction for organ donation is due to a small decrease in total costs, combined with a large increase in the number of registrations in mid-2013.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -69,6 +70,8 @@
         "sigfigs": 3
       },
       "info": [
+        "The reduction in cost per transaction for organ donation is due to a small decrease in total costs, combined with a large increase in the number of registrations in mid-2013.",
+        "<br />",
         "Data source: Department of Health",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
       ]
@@ -93,6 +96,8 @@
         "pence": true
       },
       "info": [
+        "The reduction in cost per transaction for organ donation is due to a small decrease in total costs, combined with a large increase in the number of registrations in mid-2013.",
+        "<br />",
         "Data source: Department of Health",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
       ]

@@ -10,6 +10,10 @@
     "title": "Department of Health",
     "abbr": "DH"
   },
+  "agency": {
+    "title": "NHS Business Services Authority",
+    "abbr": "NHSBSA"
+  },
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
