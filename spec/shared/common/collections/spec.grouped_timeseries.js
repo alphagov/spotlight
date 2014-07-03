@@ -1,9 +1,8 @@
 define([
   'common/collections/grouped_timeseries',
-  'extensions/collections/collection',
-  'extensions/models/query'
+  'extensions/collections/collection'
 ],
-function (GroupedTimeseries, Collection, Query) {
+function (GroupedTimeseries, Collection) {
   describe('GroupedTimeseries', function () {
     var response;
 
@@ -62,13 +61,19 @@ function (GroupedTimeseries, Collection, Query) {
         ]
       };
       collection = new GroupedTimeseries([], {
-        'data-type': 'some-type',
-        'data-group': 'some-group',
+        dataSource: {
+          'data-type': 'some-type',
+          'data-group': 'some-group',
+          'query-params': {
+            period: 'month',
+            start_at: '2014-01-10T00:00:00+00:00',
+            end_at: '2014-03-10T00:00:00+00:00',
+            collect: 'some:value',
+            group_by: 'some-category'
+          }
+        },
         valueAttr: 'some:value',
         category: 'some-category',
-        period: 'month',
-        startAt: '2014-01-10T00:00:00+00:00',
-        endAt: '2014-03-10T00:00:00+00:00',
         axes: {
           x: {
             'label': 'Date',
@@ -90,50 +95,7 @@ function (GroupedTimeseries, Collection, Query) {
           ]
         }
       });
-      collection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-    });
-
-    it('should pass through duration to query generator which wont add it to the url', function () {
-      spyOn(Query.prototype, 'set');
-      var durationCollection = new GroupedTimeseries([], {
-        'period': 'week',
-        'duration': 60
-      });
-      var args = durationCollection.query.set.mostRecentCall.args;
-      expect(durationCollection.query.set).toHaveBeenCalled();
-      expect(args[0].duration).toEqual(60);
-      expect(durationCollection.url()).not.toContain('duration');
-    });
-
-    it('should not add duration to url undefined', function () {
-      var durationCollection = new GroupedTimeseries([], {'period': 'week'});
-      expect(durationCollection.url()).not.toContain('duration');
-    });
-
-    describe('url', function () {
-      /* global decodeURIComponent */
-      it('should query backdrop with the correct url for the config', function () {
-        expect(decodeURIComponent(collection.url())).toContain('some-group');
-        expect(decodeURIComponent(collection.url())).toContain('some-type');
-        expect(decodeURIComponent(collection.url())).toContain('period=month');
-        expect(decodeURIComponent(collection.url())).toContain('start_at=2014-01-10T00:00:00+00:00');
-        expect(decodeURIComponent(collection.url())).toContain('end_at=2014-03-10T00:00:00+00:00');
-        expect(decodeURIComponent(collection.url())).toContain('group_by=some-category');
-        expect(decodeURIComponent(collection.url())).toContain('collect=some:value');
-        expect(decodeURIComponent(collection.url())).not.toContain('filter_by');
-      });
-
-      it('should contain filters', function () {
-        var filteredCollection = new GroupedTimeseries([], {
-          'data-type': 'some-type',
-          'data-group': 'some-group',
-          filterBy: ['filter_1:abc', 'filter_2:def']
-        });
-        filteredCollection.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
-
-        expect(filteredCollection.url()).toContain('filter_by=filter_1%3Aabc');
-        expect(filteredCollection.url()).toContain('filter_by=filter_2%3Adef');
-      });
+      collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
 
     describe('parse', function () {
@@ -167,11 +129,16 @@ function (GroupedTimeseries, Collection, Query) {
 
       it('copes if not all of the specified series are present in the response', function () {
         var collectionWithExtraSeries = new GroupedTimeseries([], {
-          'data-type': 'some-type',
-          'data-group': 'some-group',
+          dataSource: {
+            'data-type': 'some-type',
+            'data-group': 'some-group',
+            'query-params': {
+              period: 'month',
+              group_by: 'some-category'
+            }
+          },
           valueAttr: 'some:value',
           category: 'some-category',
-          period: 'month',
           axes: {
             x: {
               'label': 'Date',
