@@ -119,37 +119,37 @@
       "axes": {
         "y": [
           {
-            "journeyId": "user/login",
+            "categoryId": "user/login",
             "label": "Login",
             "format": "integer"
           },
           {
-            "journeyId": "create/lpa-type",
+            "categoryId": "create/lpa-type",
             "label": "Choose LPA type",
             "format": "integer"
           },
           {
-            "journeyId": "create/donor",
+            "categoryId": "create/donor",
             "label": "Add donor details",
             "format": "integer"
           },
           {
-            "journeyId": "create/attorneys",
+            "categoryId": "create/attorneys",
             "label": "Create attorneys",
             "format": "integer"
           },
           {
-            "journeyId": "create/certificate-provider",
+            "categoryId": "create/certificate-provider",
             "label": "Choose certificate provider",
             "format": "integer"
           },
           {
-            "journeyId": "create/review",
+            "categoryId": "create/review",
             "label": "Review LPA",
             "format": "integer"
           },
           {
-            "journeyId": "create/complete",
+            "categoryId": "create/complete",
             "label": "LPA PDF complete",
             "format": "integer"
           }

@@ -30,11 +30,14 @@ define([
       var data = Collection.prototype.parse.apply(this, arguments);
       data = _.map(this.axes.y, function (step) {
         var matchingModel = _.find(data, function (responseStep) {
-          return this.getStep(responseStep) === step.journeyId;
+          return this.getStep(responseStep) === step.categoryId;
         }, this);
+        if (matchingModel) {
+          matchingModel[step.categoryId + ':' + this.valueAttr] = matchingModel[this.valueAttr];
+        }
         return _.extend({
           title: step.label,
-          step: step.journeyId
+          step: step.categoryId
         }, matchingModel);
       }, this);
 

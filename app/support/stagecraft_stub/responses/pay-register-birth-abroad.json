@@ -127,9 +127,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "pay-register-birth-abroad:start", "label": "Start", "format": "integer"},
-          {"journeyId": "pay-register-birth-abroad:confirm", "label": "Confirm", "format": "integer"},
-          {"journeyId": "pay-register-birth-abroad:done", "label": "Done", "format": "integer"}
+          {"categoryId": "pay-register-birth-abroad:start", "label": "Start", "format": "integer"},
+          {"categoryId": "pay-register-birth-abroad:confirm", "label": "Confirm", "format": "integer"},
+          {"categoryId": "pay-register-birth-abroad:done", "label": "Done", "format": "integer"}
         ]
       }
     },

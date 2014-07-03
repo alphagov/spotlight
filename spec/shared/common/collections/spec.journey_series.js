@@ -8,19 +8,19 @@ define([
         axes: {
           y: [
             {
-              journeyId: 'example:downloadFormPage',
+              categoryId: 'example:downloadFormPage',
               label: 'A'
             },
             {
-              journeyId: 'example:submitApplicationPage',
+              categoryId: 'example:submitApplicationPage',
               label: 'B'
             },
             {
-              journeyId: 'example:end',
+              categoryId: 'example:end',
               label: 'C'
             }
           ]
-        },
+        }
       });
 
       this.addMatchers({
@@ -36,14 +36,14 @@ define([
         var collection = new JourneySeriesCollection([], {
           axes: {
             y: [
-              { journeyId: 'example:downloadFormPage', label: 'A' }
+              { categoryId: 'example:downloadFormPage', label: 'A' }
             ]
           }
         });
 
         expect(collection.axes).toEqual({
           y: [
-            { journeyId: 'example:downloadFormPage', label: 'A' }
+            { categoryId: 'example:downloadFormPage', label: 'A' }
           ]
         });
       });
@@ -312,6 +312,21 @@ define([
         expect(output[0].uniqueEvents).toBeNull();
         expect(output[1].uniqueEvents).toBeNull();
         expect(output[2].uniqueEvents).toBeNull();
+      });
+
+      it('adds a categoryId prefixed value to each model', function () {
+        var models = [
+          {eventCategory: 'example:downloadFormPage', uniqueEvents: 50000},
+          {eventCategory: 'example:submitApplicationPage', uniqueEvents: 25000},
+          {eventCategory: 'example:end', uniqueEvents: 10000}
+        ];
+
+        var collection = new TestCollection(null);
+        collection.reset({ data: models }, { parse: true });
+
+        expect(collection.at(0).get('example:downloadFormPage:uniqueEvents')).toEqual(50000);
+        expect(collection.at(1).get('example:submitApplicationPage:uniqueEvents')).toEqual(25000);
+        expect(collection.at(2).get('example:end:uniqueEvents')).toEqual(10000);
       });
 
     });
