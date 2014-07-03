@@ -21,7 +21,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       if (!this.valueAttr) this.valueAttr = options.valueAttr;
 
       this.dataSource = new DataSource(options.dataSource);
-      this.dataSource.on('change', this.fetch.bind(this, {}));
+      this.dataSource.on('change', function () {
+        this.fetch();
+      }, this);
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
@@ -114,14 +116,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     prop: function (prop, obj) {
       obj = obj || this;
       return _.isFunction(obj[prop]) ? obj[prop].call(obj) : obj[prop];
-    },
-
-    fetch: function (options) {
-      options = _.extend({
-        queryId: this.queryId
-      }, options);
-
-      Backbone.Collection.prototype.fetch.call(this, options);
     },
 
     /**

@@ -33,6 +33,12 @@ function (Backbone, Mustache, _, moment) {
       return url;
     },
 
+    setQueryParam: function(key, value) {
+      var params = _.clone(this.get('query-params'));
+      params[key] = value;
+      this.set('query-params', params);
+    },
+
     groupedBy: function () {
       var queryParams = this.get('query-params');
       return (queryParams && queryParams['group_by']) || null;
