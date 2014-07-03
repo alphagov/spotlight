@@ -9,6 +9,7 @@ define([
     var view;
 
     beforeEach(function () {
+      spyOn(SparklineView.prototype, 'render');
       view = new SparklineView({
         model: new Backbone.Model(),
         collection: new Collection()
