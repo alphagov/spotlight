@@ -28,18 +28,19 @@ function (Component) {
       this.renderTerminators();
     },
 
-    renderLine: function () {
+    renderLine: function (getY) {
       var getX = _.bind(function (model, index) { return this.x(index); }, this);
-      var getY = _.bind(function (model, index) { return this.y(index); }, this);
+      getY = getY || _.bind(function (model, index) { return this.y(index); }, this);
       var line = d3.svg.line()
           .x(getX)
           .y(getY)
           .defined(function (model, index) { return getY(model, index) !== null; });
 
-      var path = this.componentWrapper.append('g').attr('class', 'group')
-        .append('path').attr('class', 'line ' + this.className);
+      var group = this.componentWrapper.append('g').attr('class', 'group');
+      var path = group.append('path').attr('class', 'line ' + this.className);
       path.datum(this.collection.toJSON())
           .attr('d', line);
+      return group;
     },
 
     renderTerminators: function () {
@@ -81,7 +82,7 @@ function (Component) {
     select: function (index) {
       if (this.y(index) !== null) {
         this.moveToFront();
-        this.componentWrapper.select('path.line').classed('selected', true).classed('not-selected', false);
+        this.componentWrapper.selectAll('path.line').classed('selected', true).classed('not-selected', false);
         var x = this.x(index);
         var y = this.y(index);
         this.renderCursorLine(this.x(index));
