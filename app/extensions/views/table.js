@@ -40,12 +40,12 @@ function (View, Formatters) {
 
     renderHead: function () {
       var head = '';
-      head += _.map(this.getColumns(), function(column) {
+      head += _.map(this.getColumns(), function (column) {
         var label = column.label;
         if (column.timeshift) {
           label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
         }
-        return '<th scope="col">' + label + '</th>';
+        return '<th scope="col"><a href="#">' + label + '</a></th>';
       }, this).join('\n');
       return '<thead><tr>' + head + '</tr></thead>';
     },
@@ -65,14 +65,15 @@ function (View, Formatters) {
       return '<td class="' + className + '">' + cellContent + '</td>';
     },
 
-    renderBody: function () {
-      var columns = this.getColumns(),
+    renderBody: function (collection) {
+      var collection = collection || this.collection,
+          columns = this.getColumns(),
           keys = _.pluck(columns, 'key'),
-          rows = this.collection.getTableRows(keys),
+          rows = collection.getTableRows(keys),
           body = '';
 
       if (rows.length > 0) {
-        body += _.map(rows, function(row) {
+        body += _.map(rows, function (row) {
           var rowContent =
             _.map(row, this.renderRow.bind(this, columns)).join('\n');
 
