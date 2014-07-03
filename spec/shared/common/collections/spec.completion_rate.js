@@ -80,55 +80,14 @@ function (CompletionCollection) {
       expect(fn).toThrow();
     });
 
-    it('should use options in query params', function () {
-      var collection = new CompletionCollection({}, {
-        valueAttr: 'one',
-        period: 'month',
-        startAt: '2014-01-10T00:00:00+00:00',
-        endAt: '2014-03-10T00:00:00+00:00',
-        matchingAttribute: 'two',
-        filterBy: ['new_or_continuing:new', 'channel:digital'],
-        denominatorMatcher: 'start',
-        numeratorMatcher: 'done'
-      });
-
-      expect(decodeURIComponent(collection.url())).toContain('period=month');
-      expect(decodeURIComponent(collection.url())).toContain('start_at=2014-01-10T00:00:00+00:00');
-      expect(decodeURIComponent(collection.url())).toContain('end_at=2014-03-10T00:00:00+00:00');
-      expect(decodeURIComponent(collection.url())).toContain('collect=one');
-      expect(decodeURIComponent(collection.url())).toContain('group_by=two');
-      expect(decodeURIComponent(collection.url())).toContain('filter_by=new_or_continuing:new&filter_by=channel:digital');
-    });
-
-    it('should use default query params', function () {
-      var collection = new CompletionCollection({}, {
-        denominatorMatcher: 'start',
-        numeratorMatcher: 'done'
-      });
-
-      expect(decodeURIComponent(collection.url())).toContain('period=week');
-      expect(decodeURIComponent(collection.url())).toContain('collect=uniqueEvents:sum');
-      expect(decodeURIComponent(collection.url())).toContain('group_by=eventCategory');
-    });
-
-    it('should recognise query parameters passed in from the module', function () {
-      var collection = new CompletionCollection({}, {
-        queryParams: {
-          'filter_by': 'foo:bar'
-        },
-        denominatorMatcher: 'start',
-        numeratorMatcher: 'done'
-      });
-
-      expect(collection.url()).toContain('filter_by=foo%3Abar');
-    });
-
     describe('parse', function () {
 
       it('should parse responses', function () {
         var collection = new CompletionCollection({}, {
           denominatorMatcher: 'start',
-          numeratorMatcher: 'done'
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
         });
 
         var result = collection.parse(mockResponse);
@@ -145,7 +104,9 @@ function (CompletionCollection) {
       it('should handle an empty data response', function () {
         var collection = new CompletionCollection({}, {
             denominatorMatcher: 'start',
-            numeratorMatcher: 'done'
+            numeratorMatcher: 'done',
+            matchingAttribute: 'eventCategory',
+            valueAttr: 'uniqueEvents:sum'
           }),
           response = {data: []};
 
@@ -155,7 +116,9 @@ function (CompletionCollection) {
       it('should allow matcher to be a regex', function () {
         var collection = new CompletionCollection({}, {
           denominatorMatcher: 'start',
-          numeratorMatcher: '(confirm|done)'
+          numeratorMatcher: '(confirm|done)',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
         });
 
         var result = collection.parse(mockResponse);
@@ -178,7 +141,9 @@ function (CompletionCollection) {
         });
         var collection = new CompletionCollection({}, {
           denominatorMatcher: 'start',
-          numeratorMatcher: 'done'
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
         });
         var result = collection.parse(mockResponse);
 
@@ -200,7 +165,9 @@ function (CompletionCollection) {
         });
         var collection = new CompletionCollection({}, {
           denominatorMatcher: 'start',
-          numeratorMatcher: 'done'
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
         });
         var result = collection.parse(mockResponse);
 
@@ -221,7 +188,9 @@ function (CompletionCollection) {
       beforeEach(function () {
         collection = new CompletionCollection({}, {
           denominatorMatcher: 'start',
-          numeratorMatcher: 'done'
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
         });
         collection.reset(mockResponse, { parse: true });
       });
