@@ -8,7 +8,7 @@ function (DeltaView, Model, Collection) {
 
     var collection, view;
     beforeEach(function () {
-      collection = new Collection()
+      collection = new Collection();
       collection.reset({
         data: [
           {
