@@ -96,13 +96,13 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "product", "label": "Apply now", "format": "integer"},
-          {"journeyId": "start", "label": "Start", "format": "integer"},
-          {"journeyId": "application", "label": "Application", "format": "integer"},
-          {"journeyId": "documents", "label": "Documents", "format": "integer"},
-          {"journeyId": "declaration", "label": "Declaration", "format": "integer"},
-          {"journeyId": "pay", "label": "Pay", "format": "integer"},
-          {"journeyId": "download and print", "label": "Download and print", "format": "integer"}
+          {"categoryId": "product", "label": "Apply now", "format": "integer"},
+          {"categoryId": "start", "label": "Start", "format": "integer"},
+          {"categoryId": "application", "label": "Application", "format": "integer"},
+          {"categoryId": "documents", "label": "Documents", "format": "integer"},
+          {"categoryId": "declaration", "label": "Declaration", "format": "integer"},
+          {"categoryId": "pay", "label": "Pay", "format": "integer"},
+          {"categoryId": "download and print", "label": "Download and print", "format": "integer"}
         ]
       }
     },

@@ -147,11 +147,11 @@
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
-          {"journeyId": "about-you", "label": "About you", "format": "integer"},
-          {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
-          {"journeyId": "other-money", "label": "Other money", "format": "integer"},
-          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
-          {"journeyId": "thank-you", "label": "Application complete", "format": "integer"}
+          {"categoryId": "about-you", "label": "About you", "format": "integer"},
+          {"categoryId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
+          {"categoryId": "other-money", "label": "Other money", "format": "integer"},
+          {"categoryId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
+          {"categoryId": "thank-you", "label": "Application complete", "format": "integer"}
         ]
       }
     },
