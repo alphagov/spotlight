@@ -138,7 +138,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
     },
 
     formatPeriod: function (model, period) {
-      var start = model.get('_start_at') || model.get('start_at');
+      var start = model.get('_start_at') || model.get('start_at') || model.get('_timestamp');
       var end = model.get('_end_at') || model.get('end_at');
 
       if (model.get('_original_start_at')) {
@@ -146,6 +146,20 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         end = this.getMoment(model.get('_original_end_at'));
       }
 
+      var options = {
+        type: 'date',
+        format: this.getFormat(period)
+      };
+
+      if (end && (period === 'week' || period === 'quarter')) {
+        options.type = 'dateRange';
+        return this.format([start, end], options);
+      } else {
+        return this.format(start, options);
+      }
+    },
+
+    getFormat: function (period) {
       var formats = {
         hour: 'HH:mm',
         day: 'D MMM YYYY',
@@ -153,20 +167,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         month: 'MMMM YYYY',
         quarter: 'MMM YYYY'
       };
-
-      var options = {
-        type: 'date',
-        format: formats[period]
-      };
-
-      var input = start;
-
-      if (end && (period === 'week' || period === 'quarter')) {
-        options.type = 'dateRange';
-        input = [start, end];
-      }
-
-      return this.format(input, options);
+      return formats[period];
     },
 
     /**
