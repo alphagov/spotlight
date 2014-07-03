@@ -65,12 +65,12 @@
         "y": [
           {
             "label": "Bookings",
-            "categoryId": "book",
+            "groupId": "book",
             "format": "integer"
           },
           {
             "label": "Changes and cancellations",
-            "categoryId": "change",
+            "groupId": "change",
             "format": "integer"
           }
         ]
@@ -104,17 +104,17 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop",
+            "groupId": "desktop",
             "format": "percent"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile",
+            "groupId": "mobile",
             "format": "percent"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet",
+            "groupId": "tablet",
             "format": "percent"
           }
         ]

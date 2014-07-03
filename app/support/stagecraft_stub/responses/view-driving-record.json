@@ -59,12 +59,12 @@
         "y": [
           {
             "label": "Driving Licence Number",
-            "categoryId": "/driving-record/viewbydln",
+            "groupId": "/driving-record/viewbydln",
             "format": "integer"
           },
           {
             "label": "Personal Details",
-            "categoryId": "/driving-record/viewbypersonaldetails",
+            "groupId": "/driving-record/viewbypersonaldetails",
             "format": "integer"
           }
         ]
@@ -102,12 +102,12 @@
             "y": [
               {
                 "label": "Driving Licence Number",
-                "categoryId": "dln",
+                "groupId": "dln",
                 "format": "integer"
               },
               {
                 "label": "Personal Details",
-                "categoryId": "personal-details",
+                "groupId": "personal-details",
                 "format": "integer"
               }
             ]
@@ -144,12 +144,12 @@
             "y": [
               {
                 "label": "Success",
-                "categoryId": "/driving-record/viewbydln",
+                "groupId": "/driving-record/viewbydln",
                 "format": "integer"
               },
               {
                 "label": "Error",
-                "categoryId": "/driving-record/licence-number/error",
+                "groupId": "/driving-record/licence-number/error",
                 "format": "integer"
               }
             ]
@@ -180,12 +180,12 @@
             "y": [
               {
                 "label": "Success",
-                "categoryId": "/driving-record/viewbypersonaldetails",
+                "groupId": "/driving-record/viewbypersonaldetails",
                 "format": "integer"
               },
               {
                 "label": "Error",
-                "categoryId": "/driving-record/personal-details/error",
+                "groupId": "/driving-record/personal-details/error",
                 "format": "integer"
               }
             ]

@@ -16,9 +16,9 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
         'value-attribute': 'someAttr',
         axes: {
           y: [
-            { label: 'Label1', categoryId: 'croydon' },
-            { label: 'Label2', categoryId: 'hackney' },
-            { label: 'Label3', categoryId: 'westminster' }
+            { label: 'Label1', groupId: 'croydon' },
+            { label: 'Label2', groupId: 'hackney' },
+            { label: 'Label3', groupId: 'westminster' }
           ]
         }
       });

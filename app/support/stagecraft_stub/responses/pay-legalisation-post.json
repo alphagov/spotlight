@@ -134,9 +134,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"categoryId": "pay-legalisation-post:start", "label": "Start", "format": "integer"},
-          {"categoryId": "pay-legalisation-post:confirm", "label": "Confirm", "format": "integer"},
-          {"categoryId": "pay-legalisation-post:done", "label": "Done", "format": "integer"}
+          {"groupId": "pay-legalisation-post:start", "label": "Start", "format": "integer"},
+          {"groupId": "pay-legalisation-post:confirm", "label": "Confirm", "format": "integer"},
+          {"groupId": "pay-legalisation-post:done", "label": "Done", "format": "integer"}
         ]
       }
     },

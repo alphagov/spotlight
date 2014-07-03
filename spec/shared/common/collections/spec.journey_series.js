@@ -8,15 +8,15 @@ define([
         axes: {
           y: [
             {
-              categoryId: 'example:downloadFormPage',
+              groupId: 'example:downloadFormPage',
               label: 'A'
             },
             {
-              categoryId: 'example:submitApplicationPage',
+              groupId: 'example:submitApplicationPage',
               label: 'B'
             },
             {
-              categoryId: 'example:end',
+              groupId: 'example:end',
               label: 'C'
             }
           ]
@@ -36,14 +36,14 @@ define([
         var collection = new JourneySeriesCollection([], {
           axes: {
             y: [
-              { categoryId: 'example:downloadFormPage', label: 'A' }
+              { groupId: 'example:downloadFormPage', label: 'A' }
             ]
           }
         });
 
         expect(collection.axes).toEqual({
           y: [
-            { categoryId: 'example:downloadFormPage', label: 'A' }
+            { groupId: 'example:downloadFormPage', label: 'A' }
           ]
         });
       });
@@ -314,7 +314,7 @@ define([
         expect(output[2].uniqueEvents).toBeNull();
       });
 
-      it('adds a categoryId prefixed value to each model', function () {
+      it('adds a groupId prefixed value to each model', function () {
         var models = [
           {eventCategory: 'example:downloadFormPage', uniqueEvents: 50000},
           {eventCategory: 'example:submitApplicationPage', uniqueEvents: 25000},

@@ -33,7 +33,7 @@ function (Collection) {
 
       _.each(data, function (model) {
         model['total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
-          var prop = line.key || line.categoryId;
+          var prop = line.key || line.groupId;
           var value = model[prop + ':' + this.valueAttr];
           if (value === undefined) {
             value = model[prop + ':' + this.valueAttr] = null;
@@ -44,7 +44,7 @@ function (Collection) {
           return sum;
         }, null, this);
         _.each(lines, function (line) {
-          var prop = (line.key || line.categoryId) + ':' + this.valueAttr;
+          var prop = (line.key || line.groupId) + ':' + this.valueAttr;
           if (model['total:' + this.valueAttr]) {
             model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
           } else {

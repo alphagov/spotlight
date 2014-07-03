@@ -44,22 +44,22 @@
         "y": [
           {
             "label": "Phone",
-            "categoryId": "Phone",
+            "groupId": "Phone",
             "format": "integer"
           },
           {
             "label": "Digital",
-            "categoryId": "Digital",
+            "groupId": "Digital",
             "format": "integer"
           },
           {
             "label": "Face to face",
-            "categoryId": "FaceToFace",
+            "groupId": "FaceToFace",
             "format": "integer"
           },
           {
             "label": "Other",
-            "categoryId": "Other",
+            "groupId": "Other",
             "format": "integer"
           }
         ]
@@ -86,12 +86,12 @@
         "y": [
           {
             "label": "Non-digital",
-            "categoryId": "NonDigital",
+            "groupId": "NonDigital",
             "format": "integer"
           },
           {
             "label": "Digital",
-            "categoryId": "Digital",
+            "groupId": "Digital",
             "format": "integer"
           }
         ]

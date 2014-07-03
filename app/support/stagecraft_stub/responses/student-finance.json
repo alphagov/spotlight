@@ -54,26 +54,26 @@
         "y": [
           {
             "label": "Started - 2014/15",
-            "categoryId": "started",
+            "groupId": "started",
             "comparison": "academic_year:2014/15",
             "format": "integer"
           },
           {
             "label": "Submitted - 2014/15",
-            "categoryId": "submitted",
+            "groupId": "submitted",
             "comparison": "academic_year:2014/15",
             "format": "integer"
           },
           {
             "label": "Started - 2013/14",
-            "categoryId": "started",
+            "groupId": "started",
             "comparison": "academic_year:2013/14",
             "format": "integer",
             "timeshift": 52
           },
           {
             "label": "Submitted - 2013/14",
-            "categoryId": "submitted",
+            "groupId": "submitted",
             "comparison": "academic_year:2013/14",
             "format": "integer",
             "timeshift": 52
@@ -105,12 +105,12 @@
         "y": [
           {
             "label": "Digital",
-            "categoryId": "digital",
+            "groupId": "digital",
             "format": "integer"
           },
           {
             "label": "Paper",
-            "categoryId": "paper",
+            "groupId": "paper",
             "format": "integer"
           }
         ]
@@ -167,37 +167,37 @@
       "axes": {
         "y": [
           {
-            "categoryId": "about-you",
+            "groupId": "about-you",
             "label": "About you",
             "format": "integer"
           },
           {
-            "categoryId": "previous-study",
+            "groupId": "previous-study",
             "label": "Previous studies (if any)",
             "format": "integer"
           },
           {
-            "categoryId": "course-and-fees",
+            "groupId": "course-and-fees",
             "label": "Course and fees",
             "format": "integer"
           },
           {
-            "categoryId": "living-costs",
+            "groupId": "living-costs",
             "label": "Living costs",
             "format": "integer"
           },
           {
-            "categoryId": "financial-info",
+            "groupId": "financial-info",
             "label": "Financial info",
             "format": "integer"
           },
           {
-            "categoryId": "additional-info",
+            "groupId": "additional-info",
             "label": "Additional info",
             "format": "integer"
           },
           {
-            "categoryId": "confirm",
+            "groupId": "confirm",
             "label": "Confirm",
             "format": "integer"
           }

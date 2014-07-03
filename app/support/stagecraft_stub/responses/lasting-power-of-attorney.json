@@ -49,8 +49,8 @@
       ],
       "axes": {
         "y": [
-           { "categoryId": "non-digital", "label": "Paper form", "format": "integer" },
-           { "categoryId": "digital", "label": "Digital", "format": "integer" }
+           { "groupId": "non-digital", "label": "Paper form", "format": "integer" },
+           { "groupId": "digital", "label": "Digital", "format": "integer" }
         ]
       }
     },
@@ -119,37 +119,37 @@
       "axes": {
         "y": [
           {
-            "categoryId": "user/login",
+            "groupId": "user/login",
             "label": "Login",
             "format": "integer"
           },
           {
-            "categoryId": "create/lpa-type",
+            "groupId": "create/lpa-type",
             "label": "Choose LPA type",
             "format": "integer"
           },
           {
-            "categoryId": "create/donor",
+            "groupId": "create/donor",
             "label": "Add donor details",
             "format": "integer"
           },
           {
-            "categoryId": "create/attorneys",
+            "groupId": "create/attorneys",
             "label": "Create attorneys",
             "format": "integer"
           },
           {
-            "categoryId": "create/certificate-provider",
+            "groupId": "create/certificate-provider",
             "label": "Choose certificate provider",
             "format": "integer"
           },
           {
-            "categoryId": "create/review",
+            "groupId": "create/review",
             "label": "Review LPA",
             "format": "integer"
           },
           {
-            "categoryId": "create/complete",
+            "groupId": "create/complete",
             "label": "LPA PDF complete",
             "format": "integer"
           }

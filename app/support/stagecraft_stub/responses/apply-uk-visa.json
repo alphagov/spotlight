@@ -57,7 +57,7 @@
         "y": [
           {
             "label": "Applications",
-            "categoryId": "volumetrics",
+            "groupId": "volumetrics",
             "format": "integer"
           }
         ]
@@ -96,13 +96,13 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"categoryId": "product", "label": "Apply now", "format": "integer"},
-          {"categoryId": "start", "label": "Start", "format": "integer"},
-          {"categoryId": "application", "label": "Application", "format": "integer"},
-          {"categoryId": "documents", "label": "Documents", "format": "integer"},
-          {"categoryId": "declaration", "label": "Declaration", "format": "integer"},
-          {"categoryId": "pay", "label": "Pay", "format": "integer"},
-          {"categoryId": "download and print", "label": "Download and print", "format": "integer"}
+          {"groupId": "product", "label": "Apply now", "format": "integer"},
+          {"groupId": "start", "label": "Start", "format": "integer"},
+          {"groupId": "application", "label": "Application", "format": "integer"},
+          {"groupId": "documents", "label": "Documents", "format": "integer"},
+          {"groupId": "declaration", "label": "Declaration", "format": "integer"},
+          {"groupId": "pay", "label": "Pay", "format": "integer"},
+          {"groupId": "download and print", "label": "Download and print", "format": "integer"}
         ]
       }
     },
@@ -127,17 +127,17 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop",
+            "groupId": "desktop",
             "format": "percent"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile",
+            "groupId": "mobile",
             "format": "percent"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet",
+            "groupId": "tablet",
             "format": "percent"
           }
         ]
