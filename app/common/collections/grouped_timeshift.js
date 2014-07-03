@@ -36,6 +36,7 @@ function (GroupedCollection, moment) {
           });
       return (maxTimeshift.timeshift || 0);
     },
+
     flatten: function (data) {
       data = GroupedCollection.prototype.flatten.apply(this, arguments);
       return _.filter(data, function (model) {

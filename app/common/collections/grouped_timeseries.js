@@ -54,6 +54,14 @@ function (Collection) {
       }, this);
 
       return data;
+    },
+
+    getYAxes: function () {
+      var axes = Collection.prototype.getYAxes.apply(this, arguments);
+      _.each(this.options.groupMapping, function (to, from) {
+        axes.push({ groupId: from });
+      });
+      return axes;
     }
 
   });

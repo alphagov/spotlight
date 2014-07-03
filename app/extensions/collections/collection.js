@@ -107,12 +107,14 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       if (category && data.length) {
         // if we have a grouped response, flatten the data
         if (data[0].values) {
-          _.each(this.options.axes.y || [], function (axis) {
+          _.each(this.getYAxes(), function (axis) {
             if (axis.groupId !== 'total') {
               var dataset = _.find(data, function (d) {
                 return d[category] === axis.groupId;
               });
-              this.mergeDataset(dataset, data[0], axis);
+              if (dataset) {
+                this.mergeDataset(dataset, data[0], axis);
+              }
             }
           }, this);
           data = data[0].values;
@@ -126,6 +128,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       _.each(source.values, function (model, i) {
         target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
       }, this);
+    },
+
+    getYAxes: function () {
+      return _.clone(this.options.axes.y) || [];
     },
 
     /**

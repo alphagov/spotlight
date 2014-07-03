@@ -141,6 +141,12 @@ function (GroupedTimeseries, Collection, Query) {
       it('collapses groups into single models', function () {
         var parsed = collection.parse(response);
         expect(parsed.length).toEqual(2);
+        expect(parsed[0]['abc:some:value']).toEqual(3);
+        expect(parsed[1]['abc:some:value']).toEqual(6);
+        expect(parsed[0]['def:some:value']).toEqual(6);
+        expect(parsed[1]['def:some:value']).toEqual(10);
+        expect(parsed[0]['xyz:some:value']).toEqual(3);
+        expect(parsed[1]['xyz:some:value']).toEqual(null);
       });
 
       it('adds total properties to models', function () {
