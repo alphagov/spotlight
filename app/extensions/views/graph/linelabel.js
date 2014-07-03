@@ -106,8 +106,31 @@ function (Component) {
 
     renderSummary: function () {
 
-      // TODO - only render date/time period here as per https://www.pivotaltracker.com/s/projects/911874/stories/73142060
+      this.summaryHeight = 0;
 
+      var selected = this.collection.getCurrentSelection();
+      var period = this.model.get('period');
+      var output;
+
+      if (selected.selectedModel) {
+        output = this.formatPeriod(selected.selectedModel, period);
+      } else {
+        var start = this.graph.modelToDate(this.collection.first());
+        var end = this.graph.modelToDate(this.collection.last());
+        var format = this.getFormat(period);
+        output = this.format([start, end], { type: 'dateRange', format: format });
+      }
+
+      var summary = '<span class="timeperiod">' + output + '</span>';
+
+      var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
+      summaryWrapper.enter().append('div').attr('class', 'summary');
+      summaryWrapper.html(summary);
+
+      var translateY = this.overlapLabelTop - this.margin.top + this.labelOffset;
+      summaryWrapper.attr('style', 'margin-top: ' + translateY + 'px;');
+
+      this.summaryHeight = $(summaryWrapper.node()).height() + this.summaryPadding;
     },
 
     renderLabels: function () {
