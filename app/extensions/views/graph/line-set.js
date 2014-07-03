@@ -14,7 +14,8 @@ define([
         var options = _.extend(defaultOptions, {
           interactive: false,
           valueAttr: line.key,
-          className: 'group' + i
+          className: 'group' + i,
+          grouped: true
         });
         return new this.GroupClass(options);
       }, this);
