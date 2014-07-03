@@ -17,7 +17,7 @@
       "url": "http://www.hmrc.gov.uk/emcs/"
     }
   },
-  "other-notes": "The data covers online transactions for amendments or movements of goods, and confirmation of receipt of goods. Payment transactions are excluded.",
+  "other-notes": "A transaction is a draft movement requesting authorisation to despatch the goods, a request to amend the consignee, a request to cancel a movement or a confirmation of receipt of the goods. There are no payment transactions.",
   "modules": [
     {
       "slug": "transactions-per-year",

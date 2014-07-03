@@ -23,7 +23,7 @@
   "description-extra": "The transactions counted here include the total number of ULNs created, which consists of batch uploads and individually created ULNs.",
   "customer-type": "Business",
   "business-model": "Taxpayers",
-  "costs": "The Skills Funding Agency can't currently give a breakdown of batch uploads and individual manually created ULNs but are looking at how they can provide data on costs.",
+  "costs": "The cost per transaction figure has been calculated using an apportioned cost for the volume of ULN transactions, based on the total transaction volumes and cost for the Learning Records Service.",
   "modules": [
     {
       "slug": "transactions-per-year",
@@ -70,7 +70,7 @@
         "sigfigs": 3
       },
       "info": [
-        "The Skills Funding Agency can't currently give a breakdown of batch uploads and individual manually created ULNs but are looking at how they can provide data on costs.",
+        "The cost per transaction figure has been calculated using an apportioned cost for the volume of ULN transactions, based on the total transaction volumes and cost for the Learning Records Service.",
         "<br />",
         "Data source: Department for Business, Innovation and Skills",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
@@ -96,7 +96,7 @@
         "pence": true
       },
       "info": [
-        "The Skills Funding Agency can't currently give a breakdown of batch uploads and individual manually created ULNs but are looking at how they can provide data on costs.",
+        "The cost per transaction figure has been calculated using an apportioned cost for the volume of ULN transactions, based on the total transaction volumes and cost for the Learning Records Service.",
         "<br />",
         "Data source: Department for Business, Innovation and Skills",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."

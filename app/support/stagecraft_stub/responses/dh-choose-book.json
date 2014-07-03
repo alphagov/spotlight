@@ -5,7 +5,7 @@
   "published": true,
   "strapline": "Dashboard",
   "description": "Bookings, changes and cancellations by patients for their first outpatient appointment in a hospital or clinic.",
-  "title": "Choose and Book",
+  "title": "Choose and Book: outpatient appointments",
   "department": {
     "title": "Department of Health",
     "abbr": "DH"
@@ -16,7 +16,7 @@
   "relatedPages": {
     "improve-dashboard-message": true,
     "transaction": {
-      "title": "Choose and Book",
+      "title": "Choose and Book: outpatient appointments",
       "url": "http://www.chooseandbook.nhs.uk/"
     }
   },
