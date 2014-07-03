@@ -26,7 +26,7 @@ function (View, SparklineView) {
       this.onChangeSelected();
     },
 
-    onChangeSelected: function (model, index) {
+    onChangeSelected: function (model) {
       var content = this.noDataMessage,
           selection = this.collection.getCurrentSelection(),
           label;
