@@ -10,7 +10,14 @@ define([
     var graph, collection, model;
 
     beforeEach(function () {
-      model = new Model();
+      model = new Model({
+        axes: {
+          y: [
+            { groupId: 'group1' },
+            { groupId: 'group2' }
+          ]
+        }
+      });
       collection = new Collection();
       Graph.prototype.GroupClass = function () {};
       graph = new Graph({
@@ -44,6 +51,29 @@ define([
           var labelComponent = graph.components().label;
           expect(labelComponent).toBeUndefined();
         });
+      });
+
+    });
+
+    describe('hasData', function () {
+
+      beforeEach(function () {
+        collection.reset([
+          {
+            events: null,
+            'group1:events': 1,
+            'group2:events': 1
+          },
+          {
+            events: null,
+            'group1:events': 2,
+            'group2:events': 3
+          }
+        ], { silent: true });
+      });
+
+      it('returns true if any line has any data', function () {
+        expect(graph.hasData()).toBe(true);
       });
 
     });

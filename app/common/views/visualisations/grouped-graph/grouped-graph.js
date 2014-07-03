@@ -75,6 +75,12 @@ function (Graph, LineLabel) {
         }
         return line;
       }, this);
+    },
+
+    hasData: function () {
+      return _.any(this.getLines(), function (line) {
+        return this.collection.defined(line.key).length > 0;
+      }, this);
     }
 
   });
