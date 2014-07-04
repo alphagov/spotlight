@@ -3,68 +3,31 @@ define([
   'extensions/collections/collection'
 ],
 function (Line, Collection) {
-
-  xdescribe('Line Component', function () {
-    var el, wrapper, collection, view, lineColour0, lineColour1, lineColour0RGB, lineColour1RGB;
-
-    var matchesColour = function (str, line) {
-      if (line === 0) {
-        return (str === lineColour0) || (str === lineColour0RGB);
-      } else if (line === 1) {
-        return (str === lineColour1) || (str === lineColour1RGB);
-      }
-      return false;
-    };
-
+  describe('Line component', function () {
+    var el, wrapper, collection, graph;
+    var d3 = Line.prototype.d3;
     beforeEach(function () {
-      lineColour0 = '#097f96';
-      lineColour1 = '#d14836';
-      lineColour0RGB = 'rgb(9, 127, 150)';
-      lineColour1RGB = 'rgb(209, 72, 54)';
-      el = $('<div><style type="text/css">.line0 {stroke: ' + lineColour0 + ';}.line1 {stroke: ' + lineColour1 + ';}</style></div>').appendTo($('body'));
-      wrapper = Line.prototype.d3.select(el[0]).append('svg').append('g');
+      el = $('<div></div>').appendTo($('body'));
+      wrapper = d3.select(el[0]).append('svg').append('g');
       collection = new Collection([
-        {
-          id: 'lineId0',
-          testAttr: 'b',
-          values: new Collection([
-            { a: 1, b: 2},
-            { a: 4, b: 5},
-            { a: 7, b: 8},
-            { a: 9, b: 10},
-            { a: 11, b: 12}
-          ])
-        },
-        {
-          id: 'lineId1',
-          testAttr: 'c',
-          values: new Collection([
-            { a: 1, b: 3, c: 3},
-            { a: 4, b: 6, c: 6},
-            { a: 7, b: 9, c: 9},
-            { a: 10, b: 11, c: 11},
-            { a: 12, b: 13, c: 13}
-          ])
-        }
+        { 'a:count': 1, 'b:count': 2, 'total:count': 3 },
+        { 'a:count': 4, 'b:count': 5, 'total:count': 9 },
+        { 'a:count': 7, 'b:count': 8, 'total:count': 15 },
+        { 'a:count': 9, 'b:count': 10, 'total:count': 19 },
+        { 'a:count': 11, 'b:count': 12, 'total:count': 23 }
       ]);
-      collection.getCurrentSelection = jasmine.createSpy().andReturn({
-        selectedModel: { a: 1 },
-        selectedModelIndex: 2
-      });
 
-      view = new Line({
-        interactive: false,
-        wrapper: wrapper,
-        collection: collection,
-        x: function (index) {
-          return group.get('values').at(index).get('a');
+      graph = {
+        getXPos: function (index) {
+          return index;
         },
-        y: function (index) {
-          var attr = group.get('testAttr');
-          return group.get('values').at(index).get(attr);
-        }
-      });
-      spyOn(Line.prototype, 'onChangeSelected');
+        getYPos: function (index, attr) {
+          return collection.at(index).get(attr);
+        },
+        innerHeight: 100,
+        innerWidth: 200
+      };
+
     });
 
     afterEach(function () {
@@ -73,361 +36,138 @@ function (Line, Collection) {
 
     describe('render', function () {
 
-      it('requires an "x" definition', function () {
-        expect(function () {
-          var view = new Line({
-            wrapper: wrapper,
-            y: function () {}
-          });
-          view.render();
-        }).toThrow();
+      var view;
+      beforeEach(function () {
+        view = new Line({
+          interactive: false,
+          wrapper: wrapper,
+          collection: collection,
+          scales: {
+            x: function (x) {
+              return x;
+            },
+            y: function (y) {
+              return y;
+            }
+          },
+          graph: graph,
+          valueAttr: 'a:count'
+        });
       });
 
-      it('requires an "y" definition', function () {
-        expect(function () {
-          var view = new Line({
-            wrapper: wrapper,
-            x: function () {}
-          });
-          view.render();
-        }).toThrow();
-      });
-
-      it('renders paths for each group in the collection in reverse order with sections for each point in the timeseries', function () {
+      it('renders a line', function () {
         view.render();
-
-        expect(wrapper.select('g.group:nth-child(1) path').attr('d')).toEqual('M1,3L4,6L7,9L10,11L12,13');
-        expect(wrapper.select('g.group:nth-child(2) path').attr('d')).toEqual('M1,2L4,5L7,8L9,10L11,12');
+        var coords = _.map(collection.pluck('a:count'), function (y, i) {
+          return (i + 0.5) + ',' + (y);
+        });
+        var line = 'M' + coords.join('L');
+        expect(wrapper.selectAll('path.line').attr('d')).toEqual(line);
       });
 
       it('renders multiple paths when there are gaps in the data', function () {
-        collection.at(0).get('values').at(2).set('b', null);
+        collection.at(2).set('a:count', null);
         view.render();
-
-        expect(wrapper.select('g.group:nth-child(2) path').attr('d')).toEqual('M1,2L4,5M9,10L11,12');
+        expect(wrapper.selectAll('path.line').attr('d')).toEqual('M0.5,1L1.5,4M3.5,9L4.5,11');
       });
 
-      it('highlights the current selection', function () {
+      it('scales x&y values appropriately using scale functions provided', function () {
+        view.scales = {
+          x: function (x) {
+            return 2 * x;
+          },
+          y: function (y) {
+            return 3 * y;
+          }
+        };
         view.render();
-
-        expect(view.onChangeSelected).toHaveBeenCalledWith(
-          collection.at(0), 0, { a: 1 }, 2
-        );
+        var coords = _.map(collection.pluck('a:count'), function (y, i) {
+          return ((2 * i) + 0.5) + ',' + (3 * y);
+        });
+        var line = 'M' + coords.join('L');
+        expect(wrapper.selectAll('path.line').attr('d')).toEqual(line);
       });
 
-      it('adds custom classes', function () {
-        collection.at(0).set('className', 'foo');
-        view.render();
-        expect(wrapper.select('g.group:nth-child(2) path').attr('class')).toEqual('line line0 lineId0 foo');
-      });
-
-      it('adds timeshift classes', function () {
-        collection.at(0).set('timeshift', 52);
-        view.render();
-        expect(wrapper.select('g.group:nth-child(2) path').attr('class')).toEqual('line line0 lineId0 timeshift');
-      });
     });
 
     describe('onChangeSelected', function () {
 
-      var hasClass = function (selector, className) {
-        var selection = view.componentWrapper.selectAll(selector);
-        var eachItemHasClass = true;
-        selection.each(function () {
-          if (!eachItemHasClass) {
-            return;
-          }
-          var itemHasClass = _.contains(
-            d3.select(this).attr('class').split(' '),
-            className
-          );
-          if (!itemHasClass) {
-            eachItemHasClass = false;
-          }
-        });
-        return eachItemHasClass;
-      };
-
-      describe('when encompassStack is true', function () {
-        it('highlights the selected group and the following line, dims the other groups and sets the following line colour to that of the selected', function () {
-          view.encompassStack = true;
-          view.render();
-          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-          expect(hasClass('path.line0', 'selected')).toBe(false);
-          expect(hasClass('path.line1', 'selected')).toBe(true);
-          expect(hasClass('path.line0', 'not-selected')).toBe(true);
-          expect(hasClass('path.line1', 'not-selected')).toBe(false);
-          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
-          //as this is the last line there is no further line to colour to encompass the stack
-          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
-          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
-          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
-
-          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-
-          expect(hasClass('path.line0', 'selected')).toBe(true);
-          expect(hasClass('path.line1', 'selected')).toBe(false);
-          expect(hasClass('path.line0', 'not-selected')).toBe(false);
-          expect(hasClass('path.line1', 'not-selected')).toBe(true);
-          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
-          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(true);
-          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
-          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 0)).toBeTruthy;
-        });
-      });
-      describe('when encompassStack is not set', function () {
-        it('highlights the selected group and dims the other groups', function () {
-          view.render();
-          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-          expect(hasClass('path.line0', 'selected')).toBe(false);
-          expect(hasClass('path.line1', 'selected')).toBe(true);
-          expect(hasClass('path.line0', 'not-selected')).toBe(true);
-          expect(hasClass('path.line1', 'not-selected')).toBe(false);
-          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
-          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
-          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
-          expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
-
-          view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-
-          expect(hasClass('path.line0', 'selected')).toBe(true);
-          expect(hasClass('path.line1', 'selected')).toBe(false);
-          expect(hasClass('path.line0', 'not-selected')).toBe(false);
-          expect(hasClass('path.line1', 'not-selected')).toBe(true);
-          expect(hasClass('path.line0', 'selected-following-sibling')).toBe(false);
-          expect(hasClass('path.line1', 'selected-following-sibling')).toBe(false);
-          expect(matchesColour(view.componentWrapper.select('path.line0').style('stroke'), 0)).toBeTruthy;
-          expect(matchesColour(view.componentWrapper.select('path.line1').style('stroke'), 1)).toBeTruthy;
-        });
-      });
-
-      it('highlights the selected group and dims the other groups and their line terminators', function () {
-        collection.at(0).get('values').at(3).set('b', null);
-        collection.at(1).get('values').at(3).set('c', null);
-
-        view.encompassStack = true;
-        view.render();
-        view.onChangeSelected.originalValue.call(view, collection.at(1), 1, null, null);
-        expect(hasClass('path.line0', 'selected')).toBe(false);
-        expect(hasClass('path.line1', 'selected')).toBe(true);
-        expect(hasClass('path.line0', 'not-selected')).toBe(true);
-        expect(hasClass('path.line1', 'not-selected')).toBe(false);
-        expect(hasClass('circle.terminator.line0', 'selected')).toBe(false);
-        expect(hasClass('circle.terminator.line1', 'selected')).toBe(true);
-        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(true);
-        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(false);
-        expect(view.componentWrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
-
-        view.onChangeSelected.originalValue.call(view, collection.at(0), 0, null, null);
-
-        expect(hasClass('path.line0', 'selected')).toBe(true);
-        expect(hasClass('path.line1', 'selected')).toBe(false);
-        expect(hasClass('path.line0', 'not-selected')).toBe(false);
-        expect(hasClass('path.line1', 'not-selected')).toBe(true);
-        expect(hasClass('circle.terminator.line0', 'selected')).toBe(true);
-        expect(hasClass('circle.terminator.line1', 'selected')).toBe(false);
-        expect(hasClass('circle.terminator.line0', 'not-selected')).toBe(false);
-        expect(hasClass('circle.terminator.line1', 'not-selected')).toBe(true);
-      });
-
-      it('adds custom classes to collection indicators', function () {
-        collection.at(0).set('className', 'custom-class');
-        view.render();
-        view.onChangeSelected.originalValue.call(view, collection.at(0), 1, null, null);
-        expect(hasClass('.selectedIndicator', 'custom-class')).toBe(true);
-      });
-
-      describe('when encompassStack is true', function () {
-        beforeEach(function () {
-          var y = function (group, groupIndex) {
-            return groupIndex * 100;
-          };
-          var x = function (group, groupIndex) {
-            return groupIndex * 50;
-          };
-          view.y = y;
-          view.x = x;
-          view.encompassStack = true;
-          view.drawCursorLine = true;
-          view.renderCursorLine = function () { return null; };
-        });
-        it('renders a selection indicator on the selected item and the one after using the class of the first and joins them by line', function () {
-          view.render();
-          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
-
-          expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
-          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0];
-          expect(circles.length).toEqual(2);
-          expect($(circles[0]).attr('cx')).toEqual('100');
-          expect($(circles[0]).attr('cy')).toEqual('200');
-          expect($(circles[1]).attr('cx')).toEqual('50');
-          expect($(circles[1]).attr('cy')).toEqual('100');
-          expect($(circles[0]).attr('class')).toEqual($(circles[1]).attr('class'));
-
-          var overlayCursorLine = view.componentWrapper.select('line.selectedIndicator.cursorLine.overlay');
-          expect(overlayCursorLine.attr('x1')).toEqual('50');
-          expect(overlayCursorLine.attr('y1')).toEqual('100');
-          expect(overlayCursorLine.attr('x2')).toEqual('100');
-          expect(overlayCursorLine.attr('y2')).toEqual('200');
-          expect(matchesColour(overlayCursorLine.style('stroke'), 1)).toBeTruthy;
-        });
-      });
-      describe('when encompassStack is true', function () {
-        it('renders a selection indicator on the selected item and not the one after', function () {
-          var y = function (group, groupIndex) {
-            return groupIndex * 100;
-          };
-          var x = function (group, groupIndex) {
-            return groupIndex * 50;
-          };
-          view.y = y;
-          view.x = x;
-          view.render();
-          view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
-
-          expect(view.componentWrapper.select('path.line1').attr('class').indexOf('selected')).not.toBe(-1);
-          var circles = view.componentWrapper.selectAll('circle.selectedIndicator')[0];
-          expect(circles.length).toEqual(1);
-          expect($(circles[0]).attr('cx')).toEqual('50');
-          expect($(circles[0]).attr('cy')).toEqual('100');
-        });
-      });
-
-      it('doesn\'t renders a selection indicator for missing data item', function () {
-        view.render();
-        collection.at(1).get('values').at(1).set('c', null);
-        view.onChangeSelected.originalValue.call(view, collection.at(1), 1, collection.at(1).get('values').at(1), 1);
-
-        expect(view.componentWrapper.selectAll('circle.selectedIndicator')[0].length).toEqual(0);
-      });
-    });
-
-    describe('getDistanceAndClosestModel', function () {
-
-      /*
-      DATA:
-      { a: 1, b: 2},
-      { a: 4, b: 5},
-      { a: 7, b: 8},
-      { a: 9, b: 10},
-      { a: 11, b: 12}
-      */
-
-      it('picks closest model', function () {
-        var res;
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 3 });
-        expect(res.index).toEqual(0);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 8 });
-        expect(res.index).toEqual(1);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 7, y: 8 });
-        expect(res.index).toEqual(2);
-      });
-
-      it('interpolates y-value at mouse x-position', function () {
-        var res;
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 3 });
-        expect(res.diff).toEqual(0);
-        expect(res.dist).toEqual(0);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 5 });
-        expect(res.diff).toEqual(2);
-        expect(res.dist).toEqual(2);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 2, y: 1 });
-        expect(res.diff).toEqual(-2);
-        expect(res.dist).toEqual(2);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 3 });
-        expect(res.diff).toEqual(-1);
-        expect(res.dist).toEqual(1);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 5 });
-        expect(res.diff).toEqual(1);
-        expect(res.dist).toEqual(1);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 1 });
-        expect(res.diff).toEqual(-3);
-        expect(res.dist).toEqual(3);
-      });
-
-      it('does not return diff or dist values when the x is off the scale', function () {
-        var res;
-        // off to the right
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 50, y: -3 });
-        expect(res.dist).toBeUndefined();
-        expect(res.diff).toBeUndefined();
-        expect(res.index).toEqual(4);
-
-        // off to the left
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: -50, y: -3 });
-        expect(res.dist).toBeUndefined();
-        expect(res.diff).toBeUndefined();
-        expect(res.index).toEqual(0);
-      });
-
-      it('does not return diff or dist values when closest model has a null value', function () {
-        collection.at(0).get('values').at(0).set('b', null);
-        collection.at(0).get('values').at(1).set('b', null);
-        collection.at(0).get('values').at(3).set('b', null);
-        collection.at(0).get('values').at(4).set('b', null);
-
-        var res;
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 4, y: 2 });
-        expect(res.dist).toBeUndefined();
-        expect(res.diff).toBeUndefined();
-        expect(res.index).toEqual(1);
-
-        res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 9, y: 2 });
-        expect(res.dist).toBeUndefined();
-        expect(res.diff).toBeUndefined();
-        expect(res.index).toEqual(3);
-      });
-
-      it('can handle zero y-values (bugfix)', function () {
-        collection.at(0).get('values').at(0).set('b', 3);
-        collection.at(0).get('values').at(1).set('b', 0);
-        var res = view.getDistanceAndClosestModel(collection.at(0), 0, { x: 3, y: 2 });
-        expect(res.dist).toEqual(1);
-        expect(res.diff).toEqual(1);
-      });
-
-    });
-
-    describe('onHover', function () {
-
+      var view;
       beforeEach(function () {
-        spyOn(collection, 'selectItem');
-      });
-
-      it('selects the closest item in the closest group', function () {
-        view.onHover({
-          x: 7,
-          y: 8
+        view = new Line({
+          interactive: false,
+          wrapper: wrapper,
+          collection: collection,
+          scales: {
+            x: function (x) {
+              return x;
+            },
+            y: function (y) {
+              return y;
+            }
+          },
+          graph: graph,
+          valueAttr: 'a:count'
         });
-        expect(collection.selectItem).toHaveBeenCalledWith(0, 2);
       });
 
-      it('keeps the current group when possible', function () {
-        view.collection.selectedIndex = 1;
-        view.onHover({
-          x: 7,
-          y: 8
+      it('adds a selected class to line', function () {
+        view.render();
+        view.onChangeSelected(collection.at(0), 0);
+        expect(wrapper.select('path.line').attr('class').split(' ')).toContain('selected');
+      });
+
+      it('renders a cursor line', function () {
+        view.render();
+        view.onChangeSelected(collection.at(0), 0);
+        expect(wrapper.selectAll('line.cursorLine')[0].length).toEqual(1);
+
+        var line = d3.select(wrapper.selectAll('line.cursorLine')[0][0]);
+        expect(line.attr('x1')).toEqual('0.5');
+        expect(line.attr('x2')).toEqual('0.5');
+        expect(line.attr('y1')).toEqual('0');
+        expect(line.attr('y2')).toEqual('100');
+      });
+
+      it('renders a selection point', function () {
+        view.render();
+        view.onChangeSelected(collection.at(3), 3);
+        expect(wrapper.selectAll('.selectedIndicator')[0].length).toEqual(1);
+        var c1 = d3.select(wrapper.selectAll('.selectedIndicator')[0][0]);
+        expect(c1.attr('cx')).toEqual('3.5');
+        expect(c1.attr('cy')).toEqual('9');
+      });
+
+      it('removes classes, selection point and cursor line if no model is selected', function () {
+        view.render();
+        view.onChangeSelected(collection.at(0), 0);
+        expect(wrapper.select('path.line').attr('class').split(' ')).toContain('selected');
+        expect(wrapper.selectAll('line.cursorLine')[0].length).toEqual(1);
+        expect(wrapper.selectAll('.selectedIndicator')[0].length).toEqual(1);
+
+        view.onChangeSelected(null, null);
+        expect(wrapper.select('path.line').attr('class').split(' ')).not.toContain('selected');
+        expect(wrapper.select('path.line').attr('class').split(' ')).not.toContain('not-selected');
+        expect(wrapper.selectAll('line.cursorLine')[0].length).toEqual(0);
+        expect(wrapper.selectAll('.selectedIndicator')[0].length).toEqual(0);
+      });
+
+      describe('when part of a group', function () {
+
+        it('selects line if valueAttr option matches line valueAttr', function () {
+          view.render();
+          view.onChangeSelected(collection.at(3), 3, { valueAttr: 'a:count' });
+          expect(wrapper.select('path.line').attr('class')).toContain('selected');
         });
-        expect(collection.selectItem).toHaveBeenCalledWith(1, 2);
+
+        it('deselects line if valueAttr option does not match line valueAttr', function () {
+          view.render();
+          view.onChangeSelected(collection.at(3), 3, { valueAttr: 'b:count' });
+          expect(wrapper.select('path.line').attr('class').split(' ')).not.toContain('selected');
+          expect(wrapper.select('path.line').attr('class').split(' ')).toContain('not-selected');
+        });
+
       });
 
-      it('optionally toggles selection when the new item is the currently selected item', function () {
-        view.collection.selectedIndex = 0;
-        view.collection.selectedItem = view.collection.at(0);
-        view.collection.at(0).get('values').selectItem(2);
-        view.onHover({ x: 7, y: 8, toggle: true });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0, 2, { toggle : true }]);
-      });
     });
   });
-
 });

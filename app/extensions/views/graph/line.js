@@ -122,7 +122,7 @@ function (Component) {
     onHover: function (e) {
       var diff = Infinity;
       var index;
-      // Find closest point of closest group
+      // Find closest point
       this.collection.each(function (model, i) {
         var x = this.x(i);
         if (Math.abs(x - e.x) < diff) {
