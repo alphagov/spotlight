@@ -71,6 +71,32 @@ function(DataSource, moment) {
       });
     });
 
+    describe('setQueryParams', function () {
+      it('should fire a change event', function () {
+        var source = new DataSource({ 'query-params': {
+              foo: 'bar'
+            }}),
+            changeEventFired = false;
+
+        source.once('change', function () {
+          changeEventFired = true;
+        });
+
+        source.setQueryParam('foo', 'changed');
+
+        expect(changeEventFired).toBe(true);
+        expect(source.buildUrl()).toContain('foo=changed');
+      });
+
+      it('should handle there being now query params object', function () {
+        var source = new DataSource({});
+
+        source.setQueryParam('foo', 'bar');
+
+        expect(source.buildUrl()).toContain('foo=bar');
+      });
+    });
+
     describe('configureTimespans', function () {
       it('should add an end_at when start_at no duration', function () {
         var source = new DataSource(),

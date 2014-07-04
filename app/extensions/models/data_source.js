@@ -34,7 +34,7 @@ function (Backbone, Mustache, _, moment) {
     },
 
     setQueryParam: function(key, value) {
-      var params = _.clone(this.get('query-params'));
+      var params = _.clone(this.get('query-params')) || {};
       params[key] = value;
       this.set('query-params', params);
     },
