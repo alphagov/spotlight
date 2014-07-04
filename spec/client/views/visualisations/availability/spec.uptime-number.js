@@ -9,9 +9,13 @@ define([
 
       var options = {
         checkName: 'anything',
-        'data-group': 'anything',
-        'data-type': 'monitoring',
-        period: 'day',
+        dataSource: {
+          'data-group': 'anything',
+          'data-type': 'monitoring',
+          'query-params': {
+            period: 'day'
+          }
+        },
         parse: true
       };
 
