@@ -10,10 +10,10 @@ function (LineLabel, Collection) {
     beforeEach(function () {
 
       collection = new Collection([
-        { _count: 1, value: 10 },
-        { _count: 2, value: 100 },
-        { _count: 3, value: 1000 },
-        { _count: null, value: 10000 }
+        { 'def:_count': 1, 'abc:_count': 10, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 11 },
+        { 'def:_count': 2, 'abc:_count': 100, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 102 },
+        { 'def:_count': 3, 'abc:_count': 1000, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 1003 },
+        { 'def:_count': null, 'abc:_count': 10000, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 10000 }
       ]);
 
       graph = {
@@ -21,7 +21,8 @@ function (LineLabel, Collection) {
         valueAttr: '_count',
         getLines: function () {
           return [
-            { label: 'Title 1', key: '_count' }
+            { label: 'Title 1', key: 'abc:_count' },
+            { label: 'Title 2', key: 'def:_count' }
           ];
         },
         isOneHundredPercent: function () {
@@ -48,6 +49,9 @@ function (LineLabel, Collection) {
         bottom: 300,
         left: 400
       };
+      lineLabel.scales = {
+        y: function (i) { return i; }
+      };
     });
 
     afterEach(function () {
@@ -62,15 +66,29 @@ function (LineLabel, Collection) {
       });
 
       it('attempts to centre label in stack', function () {
-        var result = lineLabel.getYIdeal('value');
+        var result = lineLabel.getYIdeal('abc:_count');
         expect(result).toEqual(15000);
       });
 
       it('uses last non-null value', function () {
-        var result = lineLabel.getYIdeal('_count');
+        var result = lineLabel.getYIdeal('def:_count');
         expect(result).toEqual(4.5);
       });
 
+    });
+
+    describe('render', function () {
+
+      beforeEach(function () {
+        spyOn(lineLabel, 'renderSummary');
+      });
+
+      it('always renders percentages', function () {
+        lineLabel.render();
+        var labels = lineLabel.$el.find('figcaption ol li');
+        expect(labels.eq(0).find('.percentage')).toHaveText('(99.9%)');
+        expect(labels.eq(1).find('.percentage')).toHaveText('(0.1%)');
+      });
     });
 
   });
