@@ -25,7 +25,12 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
       collection = new Collection([], {
         axes: model.get('axes'),
         category: 'id',
-        valueAttr: '_count'
+        valueAttr: '_count',
+        dataSource: {
+          'query-params': {
+            group_by: 'id'
+          }
+        }
       });
       graph = new StackedGraph({
         collection: collection,
