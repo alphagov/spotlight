@@ -3,7 +3,7 @@ define([
 ],
 function (Component) {
 
-  var LineLabel = Component.extend({
+  return Component.extend({
 
     offset: 20,
     linePaddingInner: 4,
@@ -241,7 +241,9 @@ function (Component) {
           percentage = model.get(attr);
         } else {
           value = model.get(attr);
-          percentage = model.get(attr + ':percent');
+          if (this.showPercentages()) {
+            percentage = model.get(attr + ':percent');
+          }
         }
       } else {
         if (this.graph.isOneHundredPercent()) {
@@ -250,15 +252,17 @@ function (Component) {
           percentage = model.get(attr);
         } else {
           value = this.collection.total(attr);
-          percentage = value / this.collection.total('total:' + this.graph.valueAttr);
+          if (this.showPercentages()) {
+            percentage = value / this.collection.total('total:' + this.graph.valueAttr);
+          }
         }
       }
 
       labelMeta += this.renderValuePercentage(value, percentage);
 
-      /*if (group.get('timeshift')) {
-        labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
-      }*/
+      if (line.timeshift) {
+        labelMeta = '<span class="label-title">(' + line.timeshift + ' ' + this.collection.options.period + 's ago)</span>' + labelMeta;
+      }
 
       if (line.href) {
         selection.append('a').attr('href', line.href).html(labelTitle);
@@ -267,6 +271,12 @@ function (Component) {
         selection.html(labelTitle + labelMeta);
       }
 
+    },
+
+    showPercentages: function () {
+      return _.any(this.graph.getLines(), function (line) {
+        return line.key.match(/^total:/);
+      });
     },
 
     /**
@@ -458,5 +468,4 @@ function (Component) {
     }
   });
 
-  return LineLabel;
 });

@@ -12,7 +12,12 @@ define([
       }
       var y0 = this.graph.getY0Pos(index, attr);
       return (val + y0) / 2;
+    },
+
+    showPercentages: function () {
+      return true;
     }
+
   });
 
 });
