@@ -26,7 +26,9 @@ function (Stack, Collection) {
         },
         getY0Pos: function () {
           return 0;
-        }
+        },
+        innerHeight: 100,
+        innerWidth: 200
       };
 
     });
@@ -139,6 +141,13 @@ function (Stack, Collection) {
           });
         });
 
+        it('adds a selected class to line', function () {
+          view.render();
+          view.onChangeSelected(collection.at(0), 0);
+          expect(wrapper.select('path.line').attr('class').split(' ')).toContain('selected');
+          expect(wrapper.select('path.stack').attr('class').split(' ')).toContain('selected');
+        });
+
         it('does not render a highlighted cursor line', function () {
           view.render();
           view.onChangeSelected(collection.at(0), 0);
@@ -152,6 +161,7 @@ function (Stack, Collection) {
           var c1 = d3.select(wrapper.selectAll('.selectedIndicator')[0][0]);
           expect(c1.attr('cy')).toEqual('9');
         });
+
 
       });
 
@@ -180,17 +190,33 @@ function (Stack, Collection) {
           };
         });
 
+        it('selects stack if valueAttr option matches line valueAttr', function () {
+          view.render();
+          view.onChangeSelected(collection.at(3), 3, { valueAttr: 'a:count' });
+          expect(wrapper.select('path.line').attr('class')).toContain('selected');
+          expect(wrapper.select('path.stack').attr('class')).toContain('selected');
+        });
+
+        it('deselects stack if valueAttr option does not match line valueAttr', function () {
+          view.render();
+          view.onChangeSelected(collection.at(3), 3, { valueAttr: 'b:count' });
+          expect(wrapper.select('path.line').attr('class').split(' ')).not.toContain('selected');
+          expect(wrapper.select('path.line').attr('class').split(' ')).toContain('not-selected');
+          expect(wrapper.select('path.stack').attr('class').split(' ')).not.toContain('selected');
+          expect(wrapper.select('path.stack').attr('class').split(' ')).toContain('not-selected');
+        });
+
         it('renders a highlighted cursor line across the the stack', function () {
           view.render();
 
-          view.onChangeSelected(collection.at(0), 0);
+          view.onChangeSelected(collection.at(0), 0, { valueAttr: 'a:count' });
 
           expect(wrapper.selectAll('.cursorLine.selected').attr('x1')).toEqual('0.5');
           expect(wrapper.selectAll('.cursorLine.selected').attr('x2')).toEqual('0.5');
           expect(wrapper.selectAll('.cursorLine.selected').attr('y1')).toEqual('0.5');
           expect(wrapper.selectAll('.cursorLine.selected').attr('y2')).toEqual('1');
 
-          view.onChangeSelected(collection.at(1), 1);
+          view.onChangeSelected(collection.at(1), 1, { valueAttr: 'a:count' });
 
           expect(wrapper.selectAll('.cursorLine.selected').attr('x1')).toEqual('1.5');
           expect(wrapper.selectAll('.cursorLine.selected').attr('x2')).toEqual('1.5');
@@ -201,7 +227,7 @@ function (Stack, Collection) {
         it('renders an extra selection point at bottom of stack', function () {
           view.render();
 
-          view.onChangeSelected(collection.at(3), 3);
+          view.onChangeSelected(collection.at(3), 3, { valueAttr: 'a:count' });
 
           expect(wrapper.selectAll('.selectedIndicator')[0].length).toEqual(2);
           var c1 = d3.select(wrapper.selectAll('.selectedIndicator')[0][0]);
