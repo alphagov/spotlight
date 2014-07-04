@@ -1,12 +1,11 @@
 define([
   'common/views/visualisations/volumetrics/number',
   'extensions/views/view',
-  'extensions/collections/collection',
-  'extensions/models/model'
+  'extensions/collections/collection'
 ],
-function (VolumetricsNumberView, View, Collection, Model) {
+function (VolumetricsNumberView, View, Collection) {
   describe('VolumetricsNumberView', function () {
-    var subject, collection, model;
+    var subject, collection;
     beforeEach(function () {
       spyOn(VolumetricsNumberView.prototype, 'render');
       collection = new Collection();
@@ -20,10 +19,8 @@ function (VolumetricsNumberView, View, Collection, Model) {
           { count: null }
         ]
       }, { parse: true });
-      model = new Model();
       subject = new VolumetricsNumberView({
         collection: collection,
-        model: model,
         valueAttr: 'count'
       });
     });
@@ -66,14 +63,13 @@ function (VolumetricsNumberView, View, Collection, Model) {
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
-          subject.model.set('period', 'month');
+          collection.dataSource.setQueryParam('period', 'month');
           expect(subject.getLabel()).toEqual(prefix + ' last 6 months <span class="unavailable">(2 months unavailable)</span>');
         });
 
         it('should return (no data) when it can\'t find a collection', function () {
           var nullVolumetricsNumberView = new VolumetricsNumberView({
-            collection: new Collection(),
-            model: new Model()
+            collection: new Collection()
           });
           expect(nullVolumetricsNumberView.getLabel()).toEqual('(no data)');
         });
@@ -98,7 +94,7 @@ function (VolumetricsNumberView, View, Collection, Model) {
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
-          subject.model.set('period', 'month');
+          collection.dataSource.setQueryParam('period', 'month');
           expect(subject.getLabel()).toEqual(prefix + ' last 6 months');
         });
 
