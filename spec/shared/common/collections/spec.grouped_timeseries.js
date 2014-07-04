@@ -233,6 +233,32 @@ function (GroupedTimeseries) {
 
       });
 
+      it('handles group key not existing', function () {
+        collection.options.groupMapping = {
+          def: 'zxc'
+        };
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'zxc'
+          },
+          {
+            'label': 'XYZ',
+            'groupId': 'xyz'
+          }
+        ];
+
+        var parsed = collection.parse(response);
+        expect(parsed[0]['zxc:some:value']).toEqual(6);
+        expect(parsed[1]['zxc:some:value']).toEqual(10);
+        expect(parsed[0]['zxc:some:value:percent']).toEqual(2/3);
+        expect(parsed[1]['zxc:some:value:percent']).toEqual(1);
+
+        expect(parsed[0]['total:some:value']).toEqual(9);
+        expect(parsed[1]['total:some:value']).toEqual(10);
+
+      });
+
     });
 
   });

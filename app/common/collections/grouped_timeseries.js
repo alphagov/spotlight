@@ -12,9 +12,12 @@ function (Collection) {
       if (this.options.groupMapping) {
         _.each(data, function (model) {
           _.each(this.options.groupMapping, function (to, from) {
-            if (model[from + ':' + this.valueAttr]) {
-              model[to + ':' + this.valueAttr] += model[from + ':' + this.valueAttr];
-            }
+            var toAttr = to + ':' + this.valueAttr,
+                fromAttr = from + ':' + this.valueAttr;
+
+            if (model[toAttr] === undefined) model[toAttr] = 0;
+            if (model[fromAttr]) model[toAttr] += model[fromAttr];
+
             delete model[from + ':' + this.valueAttr];
           }, this);
         }, this);
