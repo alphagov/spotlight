@@ -38,6 +38,31 @@ function (Line) {
       }
     },
 
+    renderCursorLine: function (index) {
+      Line.prototype.renderCursorLine.apply(this, arguments);
+      var x = this.x(index);
+      this.componentWrapper.append('line').attr({
+        'class': 'cursorLine line selected ' + this.className,
+        x1: x,
+        y1: this.y0(index),
+        x2: x,
+        y2: this.y(index)
+      });
+    },
+
+    renderSelectionPoint: function (index) {
+      var x = this.x(index);
+      var y = this.y0(index);
+      Line.prototype.renderSelectionPoint.apply(this, arguments);
+      var className = 'selectedIndicator line ' + this.className;
+      this.componentWrapper.append('circle').attr({
+        'class': className,
+        cx: x,
+        cy: y,
+        r: 4
+      });
+    },
+
     select: function () {
       this.componentWrapper.select('path.stack').classed('selected', true).classed('not-selected', false);
       this.renderBaseLine();

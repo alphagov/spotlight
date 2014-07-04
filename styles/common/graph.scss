@@ -179,6 +179,9 @@ figure.graph {
     stroke: $black;
     stroke-width: 1px;
     shape-rendering: crispEdges;
+    &.selected {
+      stroke-width: 3px;
+    }
   }
 
   .bar {
@@ -481,14 +484,6 @@ figure.graph {
     }
   }
 
-  .cursorLine.overlay{
-    stroke-width: 3px;
-  }
-
-  .cursorLine.ascender,
-  .cursorLine.descender {
-    display: none;
-  }
 }
 
 @media (max-width: 640px) {
