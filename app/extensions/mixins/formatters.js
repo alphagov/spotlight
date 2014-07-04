@@ -180,8 +180,11 @@ define([
       } else {
         return options.singular + 's';
       }
-    }
+    },
 
+    url: function (value, options) {
+      return '<a href="' + value + '">' + value + '</a>';
+    }
   };
 
   var utils = {
