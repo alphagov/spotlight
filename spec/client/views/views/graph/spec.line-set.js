@@ -64,6 +64,16 @@ define([
         });
       });
 
+      it('passes a "grouped" property to lines', function () {
+        lineset = new LineSet({
+          graph: graph,
+          collection: collection
+        });
+        _.each(lineset.lines, function (line) {
+          expect(line.grouped).toEqual(true);
+        });
+      });
+
     });
 
   });

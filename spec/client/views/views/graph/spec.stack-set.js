@@ -47,8 +47,8 @@ define([
           collection: collection
         });
         expect(stackset.lines.length).toEqual(2);
-        _.each(stackset.lines, function (line) {
-          expect(line instanceof Stack).toBe(true);
+        _.each(stackset.lines, function (stack) {
+          expect(stack instanceof Stack).toBe(true);
         });
       });
 
@@ -58,9 +58,19 @@ define([
           collection: collection
         });
         var lines = graph.getLines();
-        _.each(stackset.lines, function (line, i) {
-          expect(line.valueAttr).toEqual(lines[i].key);
-          expect(line.className).toEqual('group' + i);
+        _.each(stackset.lines, function (stack, i) {
+          expect(stack.valueAttr).toEqual(lines[i].key);
+          expect(stack.className).toEqual('group' + i);
+        });
+      });
+
+      it('passes a "grouped" property to stacks', function () {
+        stackset = new StackSet({
+          graph: graph,
+          collection: collection
+        });
+        _.each(stackset.lines, function (stack) {
+          expect(stack.grouped).toEqual(true);
         });
       });
 
