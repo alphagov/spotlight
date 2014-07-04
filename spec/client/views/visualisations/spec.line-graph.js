@@ -25,7 +25,12 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
       collection = new Collection([], {
         axes: model.get('axes'),
         category: 'id',
-        valueAttr: '_count'
+        valueAttr: '_count',
+        dataSource: {
+          'query-params': {
+            group_by: 'id'
+          }
+        }
       });
       graph = new LineGraph({
         collection: collection,
