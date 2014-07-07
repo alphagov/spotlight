@@ -3,8 +3,8 @@ define([
   'extensions/collections/collection',
   'extensions/collections/matrix'
 ],
-  function (AvailiabilityCollection) {
-    describe('AvailiabilityCollection', function () {
+  function (AvailabilityCollection) {
+    describe('AvailabilityCollection', function () {
       var availabilityData = {'data': [
         {
           'uptime:sum': 9,
@@ -29,7 +29,7 @@ define([
 
       it('should be created with correct query parameters', function () {
         var collection =
-          new AvailiabilityCollection(null, {
+          new AvailabilityCollection(null, {
             checkName: 'mycheck',
             'data-group': 'something-something-fco',
             'data-type': 'monitoring',
@@ -43,7 +43,7 @@ define([
 
       it('should be created with correct query parameters, if period set', function () {
         var collection =
-          new AvailiabilityCollection(null, {
+          new AvailabilityCollection(null, {
             checkName: 'mycheck',
             'data-group': 'something-something-fco',
             'data-type': 'monitoring',
@@ -57,26 +57,26 @@ define([
       });
 
       it('should provide percentage of uptime for all models', function () {
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var fractionOfUptime = collection.getFractionOfUptime();
 
         expect(fractionOfUptime).toEqual(0.95);
       });
 
       it('should provide total uptime', function () {
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var totalUptime = collection._getTotalUptime();
 
         expect(totalUptime).toEqual(19);
       });
 
       it('should return null total uptime when no data is available', function () {
-        var collection = new AvailiabilityCollection(null, options);
+        var collection = new AvailabilityCollection(null, options);
         expect(collection._getTotalUptime()).toEqual(null);
       });
 
       it('should provide total (monitored) time', function () {
-        var collection = new AvailiabilityCollection({'data': [{
+        var collection = new AvailabilityCollection({'data': [{
           'uptime:sum': 1,
           'downtime:sum': 2,
           'unmonitored:sum': 3
@@ -87,7 +87,7 @@ define([
       });
 
       it('should provide total monitored and unmonitored time when told to', function () {
-        var collection = new AvailiabilityCollection({'data': [{
+        var collection = new AvailabilityCollection({'data': [{
           'uptime:sum': 1,
           'downtime:sum': 2,
           'unmonitored:sum': 3
@@ -98,26 +98,26 @@ define([
       });
 
       it('should provide total time for all models', function () {
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var totalTime = collection._getTotalTime();
 
         expect(totalTime).toEqual(20);
       });
 
       it('should return null total time when no data is available', function () {
-        var collection = new AvailiabilityCollection(null, options);
+        var collection = new AvailabilityCollection(null, options);
         expect(collection._getTotalTime()).toEqual(null);
       });
 
       it('should provide average response time', function () {
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var averageResponseTime = collection.getAverageResponseTime();
 
         expect(averageResponseTime).toEqual(333);
       });
 
       it('should return null average response time when no data is available', function () {
-        var collection = new AvailiabilityCollection(null, options);
+        var collection = new AvailabilityCollection(null, options);
         expect(collection.getAverageResponseTime()).toEqual(null);
       });
 
@@ -134,7 +134,7 @@ define([
             }
           ]
         };
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var data = collection.parse(response);
 
         expect(data.values[0]._start_at).toEqual(collection.moment('2013-06-17T15:00:00+00:00'));
@@ -155,7 +155,7 @@ define([
             }
           ]
         };
-        var collection = new AvailiabilityCollection(availabilityData, options);
+        var collection = new AvailabilityCollection(availabilityData, options);
         var data = collection.parse(response);
 
         expect(data.values[0].total).toEqual(null);
