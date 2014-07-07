@@ -15,6 +15,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
       model = new Model({
         'value-attribute': 'someAttr',
         axes: {
+          x: { key: '_timestamp' },
           y: [
             { label: 'Label1', groupId: 'croydon' },
             { label: 'Label2', groupId: 'hackney' },
@@ -43,6 +44,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
           {
             id: 'westminster',
             title: 'Westminster',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',
@@ -67,6 +69,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
           {
             id: 'croydon',
             title: 'Croydon',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',
@@ -91,6 +94,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
           {
             id: 'hackney',
             title: 'Hackney',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',
