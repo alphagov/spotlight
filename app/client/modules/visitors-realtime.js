@@ -6,7 +6,7 @@ define([
 function (ModuleController, RealtimeModule, VisitorsRealtimeView) {
   return ModuleController.extend(RealtimeModule).extend({
 
-    visualisationClass: VisitorsRealtimeView,
+    visualisationClass: VisitorsRealtimeView
 
   });
 
