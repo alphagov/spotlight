@@ -147,7 +147,7 @@
       "value-attribute": "avgSessionDuration:sum",
       "format-options": {
         "type": "duration",
-        "unit": "s"
+        "unit": "m"
       },
       "axes": {
         "x": {
@@ -157,11 +157,7 @@
         },
         "y": [
           {
-            "label": "Average session time",
-            "format": {
-              "type": "duration",
-              "unit": "s"
-            }
+            "label": "Average session time"
           }
         ]
       }
