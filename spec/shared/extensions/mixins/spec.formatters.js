@@ -474,6 +474,18 @@ define([
       it('formats a URL as a link', function () {
         expect(Formatters.format('http://example.com/', 'url')).toEqual('<a href="http://example.com/">http://example.com/</a>');
       });
+
+      it('handles undefined URLs gracefully', function () {
+        expect(Formatters.format(undefined, 'url')).toEqual(undefined);
+      });
+
+      it('handles empty URLs gracefully', function () {
+        expect(Formatters.format('', 'url')).toEqual('');
+      });
+
+      it('formats a URL with query parameters', function () {
+        expect(Formatters.format('http://example.com/?q=search&f=123', 'url')).toEqual('<a href="http://example.com/?q=search&f=123">http://example.com/?q=search&amp;f=123</a>');
+      });
     });
 
   });
