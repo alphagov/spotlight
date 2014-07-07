@@ -188,7 +188,7 @@ define([
       }
     },
 
-    url: function (value, options) {
+    url: function (value) {
       return '<a href="' + value + '">' + value + '</a>';
     }
   };
