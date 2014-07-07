@@ -14,8 +14,14 @@ define([
       _.defaults(options, {
         format: 'D MMMM YYYY'
       });
-      var date = moment(value);
-      return date.format(options.format);
+      var date = moment(value).local();
+      var val;
+      if (options.calendar) {
+        val = date.calendar();
+      } else {
+        val = date.format(options.format);
+      }
+      return val;
     },
 
     dateRange: function (value, options) {
