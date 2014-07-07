@@ -1,6 +1,8 @@
 <header>
-  <h2><%= title %></h2>
-  <p class="count"><%= items.count %></p>
+  <h2>
+    <span class="count"><%= items.count %></span>
+    <span class="title"><%= title %></span>
+  </h2>
 </header>
 <dl>
   <% _.each(items, function (list, letter) { %>

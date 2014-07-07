@@ -1,17 +1,22 @@
 define([
+  'modernizr',
   'extensions/views/view',
   'common/views/filtered_list'
 ],
-function (View, FilteredListView) {
+function (Modernizr, View, FilteredListView) {
   return View.extend({
 
     events: _.extend({}, View.prototype.events, {
-      'keyup #filter': 'filter'
+      'keyup #filter': 'filter',
+      'change #department': 'filter',
+      'change #agency': 'filter',
+      'click .filter-remove': 'removeFilter'
     }),
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
-      if (this.$('#filter').val()) {
+
+      if (this.$('#filter').val() || this.$('#department').val() || this.$('#agency').val()) {
         this.filter();
       }
     },
@@ -26,6 +31,23 @@ function (View, FilteredListView) {
 
     filter: function () {
       this.model.set('filter', this.$('#filter').val());
+      this.model.set('departmentFilter', this.$('#department').val());
+      this.model.set('agencyFilter', this.$('#agency').val());
+
+      if (Modernizr.history) {
+        var params = $.param({
+          filter: this.model.get('filter'),
+          department: this.model.get('departmentFilter'),
+          agency: this.model.get('agencyFilter')
+        });
+        window.history.replaceState(null, null, '/performance/services?' + params);
+      }
+    },
+
+    removeFilter: function (event) {
+      var filter = $(event.target).data('filter');
+      this.$('#' + filter).val('');
+      this.model.set(filter + 'Filter', null);
     }
 
   });

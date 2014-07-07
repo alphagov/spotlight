@@ -40,6 +40,10 @@ describe('Services Controller', function () {
       title: 'Services',
       'page-type': 'services',
       filter: '',
+      departmentFilter: null,
+      departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });
@@ -52,6 +56,42 @@ describe('Services Controller', function () {
       title: 'Services',
       'page-type': 'services',
       filter: 'foo',
+      departmentFilter: null,
+      departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
+      data: jasmine.any(Array),
+      script: true
+    });
+  });
+
+  it('passes department filter to model if set', function () {
+    controller({ query: { department: 'home-office' } }, res);
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
+      config: 'setting',
+      title: 'Services',
+      'page-type': 'services',
+      filter: '',
+      departmentFilter: 'home-office',
+      departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
+      data: jasmine.any(Array),
+      script: true
+    });
+  });
+
+  it('sanitizes user input before rendering it', function () {
+    controller({ query: { filter: '<script>alert(1)</script>' } }, res);
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
+      config: 'setting',
+      title: 'Services',
+      'page-type': 'services',
+      filter: '&lt;script&gt;alert(1)&lt;/script&gt;',
+      departmentFilter: null,
+      departments: jasmine.any(Array),
+      agencyFilter: null,
+      agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true
     });

@@ -54,7 +54,7 @@ function (Collection) {
       });
 
       it('filters input based on string matching of a single character', function () {
-        var output = collection.alphabetise('C');
+        var output = collection.alphabetise({'text': 'C'});
         expect(output.count).toEqual(3);
         expect(output.C).toEqual([
           { title: 'Chicken' },
@@ -68,7 +68,7 @@ function (Collection) {
       });
 
       it('filters input based on string matching of multiple characters', function () {
-        var output = collection.alphabetise('ck');
+        var output = collection.alphabetise({'text': 'ck'});
         expect(output.count).toEqual(2);
         expect(output.C).toEqual([
           { title: 'Chicken' },
@@ -87,7 +87,7 @@ function (Collection) {
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
         ]);
 
-        var output = collection.alphabetise('thing');
+        var output = collection.alphabetise({'text': 'thing'});
         expect(output.count).toEqual(1);
         expect(output.F).toEqual([
           { title: 'Foo', department: { title: 'Department of Things', abbr: 'DoT' } }
@@ -102,7 +102,7 @@ function (Collection) {
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
         ]);
 
-        var output = collection.alphabetise('doos');
+        var output = collection.alphabetise({'text': 'doos'});
         expect(output.count).toEqual(1);
         expect(output.B).toEqual([
           { title: 'Bar', department: { title: 'Department of Other Stuff', abbr: 'DoOS' } }
@@ -110,6 +110,41 @@ function (Collection) {
 
       });
 
+      it('filters based on explicit department filter', function () {
+        collection.reset([
+          { title: 'Blood', department: { title: 'Department of Health', abbr: 'DH' } },
+          { title: 'Passport', department: { title: 'Home Office', abbr: 'Home Office' } }
+        ]);
+
+        var output = collection.alphabetise({'department': 'home-office'});
+        expect(output.count).toEqual(1);
+        expect(output.P).toEqual([
+          { title: 'Passport', department: { title: 'Home Office', abbr: 'Home Office' } }
+        ]);
+      });
+
+    });
+
+    describe('getSlug', function () {
+      it('lowercases the abbreviation if possible', function () {
+        var department = { title: 'Cabinet Office', abbr: 'CO' };
+        expect(collection.getSlug(department)).toEqual('co');
+      });
+
+      it('turns spaces into hyphens', function () {
+        var department = { title: 'Home Office', abbr: 'Home Office' };
+        expect(collection.getSlug(department)).toEqual('home-office');
+      });
+
+      it('uses the title if no abbreviation is provided', function () {
+        var department = { title: 'Skills Funding Agency' };
+        expect(collection.getSlug(department)).toEqual('skills-funding-agency');
+      });
+
+      it('returns unknown-organisation if no useful information is provided', function () {
+        var department = { foo: 'bar' };
+        expect(collection.getSlug(department)).toEqual('unknown-organisation');
+      });
     });
 
     describe('filterDashboards', function () {

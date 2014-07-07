@@ -1,5 +1,5 @@
-/* Modernizr 2.7.0 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-textshadow-inlinesvg-svg-touch-cssclasses-teststyles-prefixes-cors
+/* Modernizr 2.8.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-textshadow-history-inlinesvg-svg-touch-cssclasses-teststyles-prefixes-cors
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.7.0',
+    var version = '2.8.2',
 
     Modernizr = {},
 
@@ -179,6 +179,9 @@ window.Modernizr = (function( window, document, undefined ) {
         }
 
         return bool;
+    };
+    tests['history'] = function() {
+      return !!(window.history && history.pushState);
     };
 
     tests['textshadow'] = function() {
