@@ -78,6 +78,10 @@ define([
         expect(Formatters.format(dateStr, { type: 'date', format: 'DD/MM/YY' })).toEqual('11/03/14');
       });
 
+      it('uses calendar option if provided', function () {
+        expect(Formatters.format(dateStr, { type: 'date', calendar: true })).toEqual('11 Mar 2014');
+      });
+
     });
 
     describe('dateRange', function () {

@@ -138,7 +138,7 @@ function (View, SparklineView) {
         headline = [
           users,
           ' ',
-          this.moment(timestamp).calendar(),
+          this.format(timestamp, { type: 'date', calendar: true }),
           ',<br />',
           this.moment(timestamp).fromNow()
         ].join('');
