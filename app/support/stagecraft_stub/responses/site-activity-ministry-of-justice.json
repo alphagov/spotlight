@@ -626,7 +626,8 @@
       "axes": {
         "x": {
           "label": "URL",
-          "key": "url"
+          "key": "url",
+          "format": "url"
         },
         "y": [
           {

@@ -466,6 +466,12 @@ define([
 
     });
 
+    describe('url', function() {
+      it('formats a URL as a link', function () {
+        expect(Formatters.format('http://example.com/', 'url')).toEqual('<a href="http://example.com/">http://example.com/</a>');
+      });
+    });
+
   });
 
 });
