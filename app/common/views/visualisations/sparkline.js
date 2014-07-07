@@ -50,7 +50,7 @@ function (Graph) {
         });
       }) || 0;
       return min;
-    },
+    }
 
 
   });

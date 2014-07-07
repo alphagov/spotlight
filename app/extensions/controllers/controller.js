@@ -49,7 +49,7 @@ define([
 
       var renderViewOptions = _.merge({
         collection: this.collection,
-        model: this.model,
+        model: this.model
       }, options);
 
       if (this.collection && this.collection.isEmpty()) {

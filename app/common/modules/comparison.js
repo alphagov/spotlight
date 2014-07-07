@@ -14,7 +14,7 @@ function (GroupedTimeseriesController, ModuleController, ComparisonCollection) {
     collectionOptions: function () {
       var options = GroupedTimeseriesController.collectionOptions.apply(this, arguments);
       return _.extend(options, {
-        comparison: this.model.get('comparison'),
+        comparison: this.model.get('comparison')
       });
     }
 
