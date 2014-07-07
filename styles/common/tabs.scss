@@ -2,36 +2,65 @@
   ul, ol {
 
     margin-top: 14px;
-    border-bottom: 1px solid $grey-2;
     padding-left: 0;
 
+    @include media(tablet) {
+      border-bottom: 1px solid $grey-2;
+    }
+
     li {
-      @include bold-16() ;
+      @include bold-16;
       border: 3px solid $white;
       background-color: $grey-3;
       list-style: none;
       float: left;
       cursor: pointer;
       min-width: 8em;
+
+      @include media(mobile) {
+        min-width: 0;
+        width: 50%;
+      }
+
       &:hover {
         text-decoration: underline;
       }
+
+      // The tab currently being displayed is active
       &.active {
-        margin-bottom: -1px;
         background-color: $white;
-        border: 1px solid $grey-2;
-        margin-left: 2px;
-        margin-right: 2px;
-        border-bottom: 0;
         cursor: default;
+
+        @include media(mobile) {
+          background-color: $grey-3;
+        }
+
+        @include media(tablet) {
+          margin: -3px 3px -1px 0;
+        }
+
         &:hover {
           text-decoration: none;
         }
+
         a {
           color: $text-colour;
-          padding: 9px 16px 7px 16px;
+          border: 1px solid $grey-2;
+          margin: 0 0 -2px -1px;
+
+          @include media(mobile) {
+            border-color: $grey-1;
+          }
+
+          @include media(tablet) {
+            border-bottom-width: 0;
+            margin-right: -4px;
+            margin-bottom: -2px;
+            padding: 9px 16px 5px 16px;
+          }
         }
       }
+
       a {
         padding: 6px 16px 2px 13px;
         text-decoration: none;
