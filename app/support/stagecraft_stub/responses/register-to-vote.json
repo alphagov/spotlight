@@ -85,7 +85,23 @@
       "numerator-matcher": "^ordinary$",
       "denominator-matcher": "^ordinary|ems$",
       "matching-attribute": "value",
-      "value-attribute": "count:sum"
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_start_at",
+          "format": {
+            "type": "date",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "format": "percent"
+          }
+        ]
+      }
     },
     {
       "slug": "registrations-by-age-group",
