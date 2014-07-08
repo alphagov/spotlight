@@ -51,11 +51,14 @@ function (TableView, Modernizr) {
 
       ths.removeClass('asc');
       ths.removeClass('desc');
+      ths.attr('aria-sort', 'none');
 
       if (isDescending) {
         th.addClass('asc');
+        th.attr('aria-sort', 'ascending');
       } else {
         th.addClass('desc');
+        th.attr('aria-sort', 'descending');
       }
 
       this.tableCollection.comparator = function (a, b) {
@@ -100,14 +103,21 @@ function (TableView, Modernizr) {
 
     render: function () {
       if (Modernizr.touch) {
-        this.$('table').addClass('touch-table');
+        this.$table.addClass('touch-table');
       }
 
-      this.$('table').removeClass('floated-header');
-      var headers = this.$('table').find('thead th'),
-          body = this.$('table').find('tbody td');
+      this.$table.removeClass('floated-header');
+      var headers = this.$table.find('thead th'),
+          headerLinks = this.$table.find('thead th a'),
+          body = this.$table.find('tbody td');
 
       headers.attr('width', '');
+      if (headerLinks.length === 0) {
+        headers.each(function () {
+          $(this).attr('aria-sort', 'none');
+          $(this).wrapInner('<a href="#"></a>');
+        });
+      }
       body.attr('width', '');
 
       if (body.length > headers.length) {
