@@ -103,12 +103,12 @@
               {
                 "label": "Driving Licence Number",
                 "groupId": "dln",
-                "format": "integer"
+                "format": "percent"
               },
               {
                 "label": "Personal Details",
                 "groupId": "personal-details",
-                "format": "integer"
+                "format": "percent"
               }
             ]
           },
@@ -145,12 +145,12 @@
               {
                 "label": "Success",
                 "groupId": "/driving-record/viewbydln",
-                "format": "integer"
+                "format": "percent"
               },
               {
                 "label": "Error",
                 "groupId": "/driving-record/licence-number/error",
-                "format": "integer"
+                "format": "percent"
               }
             ]
           }
@@ -181,12 +181,12 @@
               {
                 "label": "Success",
                 "groupId": "/driving-record/viewbypersonaldetails",
-                "format": "integer"
+                "format": "percent"
               },
               {
                 "label": "Error",
                 "groupId": "/driving-record/personal-details/error",
-                "format": "integer"
+                "format": "percent"
               }
             ]
           }
