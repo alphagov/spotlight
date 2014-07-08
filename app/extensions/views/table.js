@@ -14,7 +14,7 @@ function (View, Formatters) {
 
       View.prototype.initialize.apply(this, arguments);
 
-      this.listenTo(collection, 'reset add remove sync', this.render);
+      this.listenTo(collection, 'reset add remove', this.render);
     },
 
     prepareTable: function () {
