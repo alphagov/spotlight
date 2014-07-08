@@ -65,7 +65,7 @@ function (TableView, Modernizr) {
         var firstVal = a.get(sortBy),
           firstTime = a.get('_timestamp') || a.get('_start_at'),
           secondVal = b.get(sortBy),
-          secondTime = b.get('_timestamp') || a.get('_end_at'),
+          secondTime = b.get('_timestamp') || b.get('_start_at'),
           nullValues = (firstVal !== null || secondVal !== null),
           ret;
 
