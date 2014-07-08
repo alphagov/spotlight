@@ -2,7 +2,7 @@
   "slug": "register-to-vote",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Register to vote",
   "department": {
