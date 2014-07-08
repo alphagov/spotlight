@@ -22,11 +22,10 @@
       }
 
       .visualisation-table {
-        float: left;
         margin-top: 2em;
         margin-bottom: 1em;
-        padding-right: 3em;
-        min-width: 66%;
+        padding-right: 0;
+        width: 100%;
 
         table {
           width: 100%;
@@ -36,22 +35,22 @@
           }
         }
 
-        @include media(mobile) {
-          width: 100%;
-          float: none;
-          padding-right: 0;
+        @include media(tablet) {
+          float: left;
+          padding-right: 3em;
+          width: 66%;
         }
       }
 
       .visualisation-moreinfo {
-        width: 33%;
+        width: 100%;
         overflow: hidden;
         margin-top: 2em;
         display: inline-block;
         float: left;
 
-        @include media(mobile) {
-          width: 100%;
+        @include media(tablet) {
+          width: 33%;
         }
       }
     }
