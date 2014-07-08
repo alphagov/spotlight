@@ -1,8 +1,8 @@
 define([
-  'extensions/collections/collection',
-  'common/collections/grouped_timeshift'
+  'extensions/collections/collection'/*,
+  'common/collections/grouped_timeshift'*/
 ],
-function (Collection, TimeshiftCollection) {
+function (Collection/*, TimeshiftCollection*/) {
 
   return Collection.extend({
     /*initialize: function (models, options) {
