@@ -2,7 +2,7 @@
   "slug": "register-to-vote",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Register to vote",
   "department": {
@@ -19,6 +19,18 @@
   "customer-type": "Individuals",
   "business-model": "Department budget",
   "modules": [
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service."
+      ],
+      "data-group": "register-to-vote",
+      "data-type": "realtime"
+    },
     {
       "slug": "registrations-breakdown",
       "module-type": "grouped_timeseries",
@@ -158,7 +170,8 @@
       "show-line-labels": true,
       "use_stack": false,
       "info": [
-        "Data source: Register to vote service"
+        "Data source: Register to vote service",
+        "Figures from online registrations only"
       ],
       "axes": {
         "x": {
@@ -192,18 +205,6 @@
           }
         ]
       }
-    },
-    {
-      "slug": "live-service-usage",
-      "module-type": "realtime",
-      "title": "Live service usage",
-      "description": "Live number of users on any page within the service",
-      "info": [
-        "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing the service."
-      ],
-      "data-group": "register-to-vote",
-      "data-type": "realtime"
     },
     {
       "slug": "user-satisfaction",
