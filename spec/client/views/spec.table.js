@@ -315,6 +315,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
 
         Modernizr.touch = true;
         touchTable.$el.append($table);
+        touchTable.$table = $table;
         touchTable.render();
         expect($table.attr('class')).toContain('touch-table');
         Modernizr.touch = isTouch;
@@ -326,6 +327,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
 
         var $table = $('<table>' + tableHeader + tableBody + '</table>');
         table.$el.append($table);
+        table.$table = $table;
         table.render();
 
         expect($table.attr('class')).toContain('floated-header');
@@ -337,9 +339,25 @@ function (Table, BaseTable, Collection, $, Modernizr) {
 
         var $table = $('<table>' + tableHeader + tableBody + '</table>');
         table.$el.append($table);
+        table.$table = $table;
         table.render();
 
         expect($table.attr('class')).toNotEqual('floated-header');
+      });
+
+      it('renders links in the thead', function () {
+        var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
+            tableBody = '<tbody><tr><td>No data available</td></tr></tbody>';
+
+        var $table = $('<table>' + tableHeader + tableBody + '</table>');
+        table.$el.append($table);
+        table.$table = $table;
+
+        expect($table.find('thead a').length).toEqual(0);
+
+        table.render();
+
+        expect($table.find('thead a').length).toEqual(2);
       });
     });
 
