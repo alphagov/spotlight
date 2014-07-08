@@ -38,11 +38,6 @@ function (Table, View, Collection, $) {
         expect(table.render).toHaveBeenCalled();
       });
 
-      it('renders on collection sync', function () {
-        table.collection.trigger('sync');
-        expect(table.render).toHaveBeenCalled();
-      });
-
       it('does not render if it has been removed', function () {
         table.remove();
         table.collection.trigger('reset');
