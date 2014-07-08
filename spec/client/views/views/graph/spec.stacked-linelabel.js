@@ -1,8 +1,9 @@
 define([
   'extensions/views/graph/stacked-linelabel',
-  'extensions/collections/collection'
+  'extensions/collections/collection',
+  'extensions/models/model'
 ],
-function (LineLabel, Collection) {
+function (LineLabel, Collection, Model) {
 
   describe('Stacked Line Label Component', function () {
 
@@ -29,14 +30,18 @@ function (LineLabel, Collection) {
           return false;
         },
         getYPos: function (i, attr) { return collection.at(i).get(attr) ? 2 * collection.at(i).get(attr) : null; },
-        getY0Pos: function (i, attr) { return collection.at(i).get(attr); }
+        getY0Pos: function (i, attr) { return collection.at(i).get(attr); },
+        modelToDate: function() {
+          return Date.now();
+        }
       };
 
       el = $('<div></div>').appendTo($('body'));
       wrapper = LineLabel.prototype.d3.select(el[0]).append('svg').append('g');
 
       lineLabel = new LineLabel({
-        collection: collection
+        collection: collection,
+        model: new Model({ period: 'week' })
       });
       lineLabel.wrapper = wrapper;
       lineLabel.offset = 100;
