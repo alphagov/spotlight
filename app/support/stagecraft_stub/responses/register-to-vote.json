@@ -144,8 +144,8 @@
         },
         "y": [
           {
-            "label": "16 to 18",
-            "categoryId": "16-18",
+            "label": "16 to 17",
+            "categoryId": "16-17",
             "format": "integer"
           },
           {
