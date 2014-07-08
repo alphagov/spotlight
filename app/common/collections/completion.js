@@ -7,6 +7,7 @@ function (Collection, Query) {
   var CompletionCollection = Collection.extend({
 
     initialize: function (models, options) {
+      this.options = options || {};
       this.denominatorMatcher = options.denominatorMatcher;
       this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute || 'eventCategory';

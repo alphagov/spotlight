@@ -14,7 +14,7 @@ function (View, Formatters) {
 
       View.prototype.initialize.apply(this, arguments);
 
-      this.listenTo(collection, 'reset add remove sync', this.render);
+      this.listenTo(collection, 'reset add remove', this.render);
     },
 
     prepareTable: function () {
@@ -40,7 +40,7 @@ function (View, Formatters) {
 
     renderHead: function () {
       var head = '';
-      head += _.map(this.getColumns(), function(column) {
+      head += _.map(this.getColumns(), function (column) {
         var label = column.label;
         if (column.timeshift) {
           label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
@@ -65,14 +65,15 @@ function (View, Formatters) {
       return '<td class="' + className + '">' + cellContent + '</td>';
     },
 
-    renderBody: function () {
-      var columns = this.getColumns(),
+    renderBody: function (collection) {
+      var collection = collection || this.collection,
+          columns = this.getColumns(),
           keys = _.pluck(columns, 'key'),
-          rows = this.collection.getTableRows(keys),
+          rows = collection.getTableRows(keys),
           body = '';
 
       if (rows.length > 0) {
-        body += _.map(rows, function(row) {
+        body += _.map(rows, function (row) {
           var rowContent =
             _.map(row, this.renderRow.bind(this, columns)).join('\n');
 
