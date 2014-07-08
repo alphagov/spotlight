@@ -189,7 +189,10 @@ define([
     },
 
     url: function (value) {
-      return '<a href="' + value + '">' + value + '</a>';
+      if (value.length === 0) {
+        return '';
+      }
+      return '<a href="' + value + '">' + value.replace(/&/g, '&amp;') + '</a>';
     }
   };
 
