@@ -71,7 +71,14 @@ describe('ModuleView', function () {
     model.get('parent').set('page-type', 'module');
     model.set('description', 'Description');
     moduleView.render();
-    expect(moduleView.$('p').text()).toEqual('Description');
+    expect(moduleView.$('p').eq(1).text()).toEqual('Description');
+  });
+
+  it('renders an unpublished warning on the module page', function () {
+    model.get('parent').set('page-type', 'module');
+    model.get('parent').set('published', false);
+    moduleView.render();
+    expect(moduleView.$('#unpublished-warning').length).toEqual(1);
   });
 
   it('renders a standalone module with download id', function () {
