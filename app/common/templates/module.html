@@ -9,11 +9,7 @@
 <% } %>
 
 <% if (model.get('description')) { %>
-  <% if (pageType === 'module') { %>
-    <h2 class="dashboard"><%= model.get('description') %></h2>
-  <% } else { %>
-    <h3><%= model.get('description') %></h3>
-  <% } %>
+  <p><%= model.get('description') %></p>
 <% } %>
 
 <div class="visualisation">

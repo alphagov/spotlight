@@ -1,23 +1,33 @@
 #content {
+  // module-page is a class added on the page-per-thing
   .module-page {
     header {
       h1 {
         @include bold-24;
       }
+
       margin-bottom: 0;
     }
+
     section.module {
       border-top: none;
+
       h1 {
         @include bold-48;
         padding-bottom: 0.5em;
       }
+
+      > p {
+        margin: 0;
+      }
+
       .visualisation-table {
         float: left;
         margin-top: 2em;
         margin-bottom: 1em;
         padding-right: 3em;
         min-width: 66%;
+
         table {
           width: 100%;
           margin-top: 0;
@@ -25,7 +35,8 @@
             width: calc(100% - 3em);
           }
         }
-        @media (max-width: 640px) {
+
+        @include media(mobile) {
           width: 100%;
           float: none;
           padding-right: 0;
@@ -38,14 +49,20 @@
         margin-top: 2em;
         display: inline-block;
         float: left;
-        @media (max-width: 640px) {
+
+        @include media(mobile) {
           width: 100%;
         }
       }
     }
   }
+
   section.module {
     min-height: 190px;
+
+    > p {
+      margin: 5px 0 0 0;
+    }
 
     .visualisation-inner {
       width: 100%;
