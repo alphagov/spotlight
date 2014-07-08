@@ -5,6 +5,8 @@ function (Component) {
 
   var Line = Component.extend({
 
+    drawCursorLine: false,
+
     interactive: true,
 
     timeshift: false,
@@ -86,7 +88,9 @@ function (Component) {
     select: function (index) {
       if (this.y(index) !== null) {
         this.moveToFront();
-        this.renderCursorLine(index);
+        if (this.drawCursorLine) {
+          this.renderCursorLine(index);
+        }
         this.renderSelectionPoint(index);
         this.componentWrapper.selectAll('path.line').classed('selected', true).classed('not-selected', false);
       }

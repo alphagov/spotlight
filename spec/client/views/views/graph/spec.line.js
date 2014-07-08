@@ -117,6 +117,7 @@ function (Line, Collection) {
       });
 
       it('renders a cursor line', function () {
+        view.drawCursorLine = true;
         view.render();
         view.onChangeSelected(collection.at(0), 0);
         expect(wrapper.selectAll('line.cursorLine')[0].length).toEqual(1);
@@ -138,6 +139,7 @@ function (Line, Collection) {
       });
 
       it('removes classes, selection point and cursor line if no model is selected', function () {
+        view.drawCursorLine = true;
         view.render();
         view.onChangeSelected(collection.at(0), 0);
         expect(wrapper.select('path.line').attr('class').split(' ')).toContain('selected');
