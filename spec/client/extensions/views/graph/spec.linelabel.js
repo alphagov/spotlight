@@ -53,8 +53,8 @@ function (LineLabel, Collection) {
           left: 400
         };
         lineLabel.positions = [
-          { ideal: 30, min: 30, size: 20 },
-          { ideal: 80, min: 80, size: 30 }
+          { ideal: 30, min: 30, size: 20, id: 'id1' },
+          { ideal: 80, min: 80, size: 30, id: 'id2' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
       });
@@ -273,7 +273,7 @@ function (LineLabel, Collection) {
           lineLabel.render();
           var littleLines = wrapper.select('.labels');
           var labels = lineLabel.$el.find('figcaption ol li');
-          lineLabel.onChangeSelected(collection.at(1), 1);
+          lineLabel.onChangeSelected(collection.at(1));
           expect(hasClass(labels.eq(0), 'selected')).toBe(false);
           expect(hasClass(labels.eq(1), 'selected')).toBe(true);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(true);
@@ -282,7 +282,7 @@ function (LineLabel, Collection) {
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(true);
           expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(true);
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
-          lineLabel.onChangeSelected(collection.at(0), 0);
+          lineLabel.onChangeSelected(collection.at(0));
           expect(hasClass(labels.eq(0), 'selected')).toBe(true);
           expect(hasClass(labels.eq(1), 'selected')).toBe(false);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
@@ -291,7 +291,7 @@ function (LineLabel, Collection) {
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(false);
           expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(false);
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(true);
-          lineLabel.onChangeSelected(null, null);
+          lineLabel.onChangeSelected(null);
           expect(hasClass(labels.eq(0), 'selected')).toBe(false);
           expect(hasClass(labels.eq(1), 'selected')).toBe(false);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
@@ -403,6 +403,18 @@ function (LineLabel, Collection) {
           lineLabel.onHover({ x: null, y: 54, toggle: true });
           expect(collection.selectItem).toHaveBeenCalledWith(null);
         });
+
+        it('selects the closest label when label positions are out of sync with collection order', function () {
+          lineLabel.positions = [
+            { ideal: 30, min: 30, size: 20, id: 'id2' },
+            { ideal: 80, min: 80, size: 30, id: 'id1' }
+          ];
+          lineLabel.onHover({ x: null, y: 54 });
+          expect(collection.selectItem).toHaveBeenCalledWith(1);
+          lineLabel.onHover({ x: null, y: 56 });
+          expect(collection.selectItem).toHaveBeenCalledWith(0);
+        });
+
       });
 
     });

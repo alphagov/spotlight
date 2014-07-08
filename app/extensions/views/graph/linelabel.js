@@ -344,35 +344,40 @@ function (Component) {
       }
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected) {
+    onChangeSelected: function (groupSelected) {
+      var groupIdSelected = groupSelected ? groupSelected.get('id') : null;
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
-      labels.classed('selected', function (group, groupIndex) {
-        return groupIndexSelected === groupIndex;
+      labels.classed('selected', function (group) {
+        return groupIdSelected === group.id;
       });
-      labels.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
+      labels.classed('not-selected', function (group) {
+        return groupIdSelected !== null && groupIdSelected !== group.id;
       });
-      lines.classed('selected', function (group, groupIndex) {
-        return groupIndexSelected === groupIndex;
+      lines.classed('selected', function (group) {
+        return groupIdSelected === group.id;
       });
-      lines.classed('not-selected', function (group, groupIndex) {
-        return groupIndexSelected !== null && groupIndexSelected !== groupIndex;
+      lines.classed('not-selected', function (group) {
+        return groupIdSelected !== null && groupIdSelected !== group.id;
       });
     },
 
     onHover: function (e) {
       var y = e.y;
-      var bestIndex, bestDistance = Infinity;
-      _.each(this.positions, function (elem, index) {
+      var bestIndex, bestId, bestDistance = Infinity;
+      _.each(this.positions, function (elem) {
         var yLabel = Math.floor(elem.min) + 0.5;
         var distance = Math.abs(yLabel - y);
         if (distance < bestDistance) {
           bestDistance = distance;
-          bestIndex = index;
+          bestId = elem.id;
         }
       });
+      var modelSelected = _.find(this.collection.models, function(elem) {
+        return (elem.id === bestId);
+      });
+      bestIndex = modelSelected ? this.collection.indexOf(modelSelected) : null;
       if (e.toggle && bestIndex === this.collection.selectedIndex) {
         this.collection.selectItem(null);
       } else {
