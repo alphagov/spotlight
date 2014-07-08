@@ -206,7 +206,8 @@ function (Stack, Collection) {
           expect(wrapper.select('path.stack').attr('class').split(' ')).toContain('not-selected');
         });
 
-        it('renders a highlighted cursor line across the the stack', function () {
+        it('renders a highlighted cursor line across the stack', function () {
+          view.drawCursorLine = true;
           view.render();
 
           view.onChangeSelected(collection.at(0), 0, { valueAttr: 'a:count' });
