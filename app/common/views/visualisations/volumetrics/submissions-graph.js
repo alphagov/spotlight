@@ -11,8 +11,7 @@ function (Graph) {
         xaxis: { view: this.sharedComponents.xaxis },
         yaxis: { view: this.sharedComponents.yaxis },
         stack: {
-          view: this.sharedComponents.stack,
-          options: { drawCursorLine: true }
+          view: this.sharedComponents.stack
         },
         hover: { view: this.sharedComponents.hover }
       };

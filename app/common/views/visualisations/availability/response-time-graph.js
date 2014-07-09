@@ -26,10 +26,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack,
-          options: {
-            drawCursorLine: true
-          }
+          view: this.sharedComponents.stack
         },
         tooltip: {
           view: this.sharedComponents.tooltip,
