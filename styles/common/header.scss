@@ -54,15 +54,13 @@
 
     h2 {
       @include bold-36;
-      float: left;
     }
 
     p {
       @include bold-24;
-      float: right;
 
       @include media(desktop) {
-        margin: 0;
+        margin-bottom: 0;
         width: 66%;
       }
     }

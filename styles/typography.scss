@@ -34,16 +34,16 @@ a[rel="external"] {
       @include bold-24;
     }
 
-    h2.dashboard, h3 {
-      @include core-16();
-    }
-
     h3 {
       margin-top: 5px;
     }
 
     .double-decker-graph h3 {
       @include bold-19();
+    }
+
+    p {
+      @include core-16;
     }
   }
 }
