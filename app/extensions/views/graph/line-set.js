@@ -41,8 +41,7 @@ define([
       // Find closest point of closest group
       this.collection.each(function (model, i) {
         var x = this.lines[0].x(i);
-        var y = this.hasValueAtIndex(i);
-        if (y && Math.abs(x - e.x) < Math.abs(diff)) {
+        if (Math.abs(x - e.x) < Math.abs(diff)) {
           diff = x - e.x;
           index = i;
         }

@@ -90,6 +90,9 @@ function (Component) {
         this.renderSelectionPoint(index);
         this.componentWrapper.selectAll('path.line').classed('selected', true).classed('not-selected', false);
         this.componentWrapper.selectAll('circle.terminator').classed('selected', true).classed('not-selected', false);
+      } else {
+        this.unselect();
+        this.renderCursorLine(index);
       }
     },
 
