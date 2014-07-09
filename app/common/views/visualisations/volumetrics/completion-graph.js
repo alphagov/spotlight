@@ -21,8 +21,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack,
-          options: { drawCursorLine: true }
+          view: this.sharedComponents.stack
         },
         hover: { view: this.sharedComponents.hover }
       };
