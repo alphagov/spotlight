@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Register to vote",
+  "title": "Voter registrations",
   "department": {
     "title": "Cabinet Office",
     "abbr": "CO"
@@ -34,7 +34,7 @@
     {
       "slug": "registrations-breakdown",
       "module-type": "grouped_timeseries",
-      "title": "Registrations breakdown",
+      "title": "Applications breakdown",
       "description": "",
       "data-group": "register-to-vote",
       "data-type": "volumetrics",
@@ -106,7 +106,7 @@
     {
       "slug": "registrations-by-age-group",
       "module-type": "grouped_timeseries",
-      "title": "Registrations by age group",
+      "title": "Applications by age group",
       "description": "",
       "data-group": "register-to-vote",
       "data-type": "volumetrics",
@@ -175,7 +175,7 @@
     {
       "slug": "registrations-by-type",
       "module-type": "grouped_timeseries",
-      "title": "Registrations by type",
+      "title": "Applications by type",
       "description": "",
       "data-group": "register-to-vote",
       "data-type": "volumetrics",
