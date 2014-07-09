@@ -1,9 +1,10 @@
 {
   "slug": "vat-registrations",
   "page-type": "dashboard",
-  "dashboard-type": "other",
+  "dashboard-type": "transaction",
   "published": false,
-  "strapline": "Transaction dashboard",
+  "strapline": "Dashboard",
+  "description": "Registrations and deregistrations",
   "title": "VAT registrations and deregistrations",
   "tagline": "Service performance for VAT registrations and deregistrations",
   "relatedPages": {
@@ -19,12 +20,12 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
+      "data-group": "tax",
+      "data-type": "receipts",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:hmrc-vat",
+          "service_id:hmrc-tax",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -43,12 +44,12 @@
       "slug": "annual-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
+      "data-group": "tax",
+      "data-type": "receipts",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:hmrc-vat",
+          "service_id:hmrc-tax",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -70,12 +71,12 @@
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
+      "data-group": "tax",
+      "data-type": "receipts",
       "classes": "cols3",
       "query-params": {
         "filter_by": [
-          "service_id:hmrc-vat",
+          "service_id:hmrc-tax",
           "type:seasonally-adjusted"
         ],
         "sort_by": "_timestamp:descending"
@@ -119,7 +120,8 @@
           }
         ]
       },
-      "start-at": "2012-04-01T00:00:00+00:00"
+      "start-at": "2013-04-01T00:00:00+00:00",
+      "end-at": "2014-04-01T00:00:00+00:00"
     },
     {
       "slug": "vat-registrations-and-deregistrations",
@@ -155,13 +157,26 @@
             "label": "VAT deregistrations",
             "categoryId": "de-registrations",
             "format": "number"
+          },
+          {
+            "label": "VAT registrations",
+            "categoryId": "new-registrations",
+            "timeshift": 12,
+            "format": "number"
+          },
+          {
+            "label": "VAT deregistrations",
+            "categoryId": "de-registrations",
+            "timeshift": 12,
+            "format": "number"
           }
         ]
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "start-at": "2013-04-01T00:00:00+00:00",
+      "end-at": "2014-04-01T00:00:00+00:00",
+      "axis-period": "month"
     }
   ]
 }

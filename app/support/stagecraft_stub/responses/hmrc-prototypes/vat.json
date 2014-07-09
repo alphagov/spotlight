@@ -338,9 +338,44 @@
       ]
     },
     {
+      "slug": "most-popular-content",
+      "module-type": "table",
+      "slug": "all-pages",
+      "title": "Most popular VAT content on GOV.UK",
+      "description": "Visitors arriving over the last week.",
+      "data-group": "tax-vat-content",
+      "data-type": "top-count",
+      "query-params": {
+        "group_by": "pageTitle",
+        "collect": ["pageviews:sum", "uniquePageviews:sum"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Page title",
+          "key": "pageTitle"
+        },
+        "y": [
+          {
+            "label": "Pageviews",
+            "key": "pageviews:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Unique pageviews",
+            "key": "uniquePageviews:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-by": "uniquePageviews:sum",
+      "sort-order": "descending"
+    },
+    {
       "slug": "reasons-people-call-the-helpline",
       "module-type": "table",
-      "title": "Reasons people call the VAT helpline",
+      "title": "Top 5 reasons people call the VAT helpline",
       "description": "",
       "data-group": "gov-uk-content",
       "data-type": "top-urls",
