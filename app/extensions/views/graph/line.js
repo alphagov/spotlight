@@ -89,6 +89,7 @@ function (Component) {
         this.renderCursorLine(index);
         this.renderSelectionPoint(index);
         this.componentWrapper.selectAll('path.line').classed('selected', true).classed('not-selected', false);
+        this.componentWrapper.selectAll('circle.terminator').classed('selected', true).classed('not-selected', false);
       }
     },
 
@@ -96,6 +97,7 @@ function (Component) {
     deselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.selectAll('path.line').classed('selected', false).classed('not-selected', true);
+      this.componentWrapper.selectAll('circle.terminator').classed('selected', false).classed('not-selected', true);
       this.componentWrapper.selectAll('line.cursorLine').remove();
     },
 
@@ -103,6 +105,7 @@ function (Component) {
     unselect: function () {
       this.componentWrapper.selectAll('.selectedIndicator').remove();
       this.componentWrapper.selectAll('path.line').classed('selected', false).classed('not-selected', false);
+      this.componentWrapper.selectAll('circle.terminator').classed('selected', false).classed('not-selected', false);
       this.componentWrapper.selectAll('line.cursorLine').remove();
     },
 
