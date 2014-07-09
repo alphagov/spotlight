@@ -33,7 +33,13 @@ function (Line) {
     renderBaseLine: function () {
       if (this.grouped) {
         this.componentWrapper.selectAll('.baseline').remove();
-        var baseline = _.bind(function (model, index) { return this.y0(index); }, this);
+        var baseline = _.bind(function (model, index) {
+          if (model[this.valueAttr] === null) {
+            return null;
+          } else {
+            return this.y0(index);
+          }
+        }, this);
         this.renderLine(baseline).classed('baseline', true);
       }
     },
