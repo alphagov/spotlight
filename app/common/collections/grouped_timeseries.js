@@ -15,8 +15,13 @@ function (Collection) {
             var toAttr = to + ':' + this.valueAttr,
                 fromAttr = from + ':' + this.valueAttr;
 
-            if (model[toAttr] === undefined) model[toAttr] = 0;
-            if (model[fromAttr]) model[toAttr] += model[fromAttr];
+            if (model[toAttr] === undefined) {
+              model[toAttr] = 0;
+            }
+
+            if (model[fromAttr]) {
+              model[toAttr] += model[fromAttr];
+            }
 
             delete model[from + ':' + this.valueAttr];
           }, this);

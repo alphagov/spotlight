@@ -578,26 +578,26 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
         var collection = new Collection(undefined, {
           axes: {
-            "x": {
-              "label": "Description",
-              "key": "eventDestination"
+            'x': {
+              'label': 'Description',
+              'key': 'eventDestination'
             },
-            "y": [
+            'y': [
               {
-                "label": "Usage last week",
-                "key": "uniqueEvents:sum",
-                "format": "integer"
+                'label': 'Usage last week',
+                'key': 'uniqueEvents:sum',
+                'format': 'integer'
               }
             ]
           },
           dataSource: {
             'query-params': {
-              "group_by": "eventDestination",
-              "collect": [
-                "uniqueEvents:sum"
+              'group_by': 'eventDestination',
+              'collect': [
+                'uniqueEvents:sum'
               ],
-              "period": "week",
-              "duration": 1
+              'period': 'week',
+              'duration': 1
             }
           }
         });
@@ -605,44 +605,44 @@ function (Collection, Model, DataSource, Backbone, moment) {
         var parsed = collection.parse({
           data: [
             {
-              "_count": 2.0, 
-              "_group_count": 1, 
-              "eventDestination": "add-extra-instructions-for-the-attorneys", 
-              "uniqueEvents:sum": 263.0, 
-              "values": [
+              '_count': 2.0, 
+              '_group_count': 1, 
+              'eventDestination': 'add-extra-instructions-for-the-attorneys', 
+              'uniqueEvents:sum': 263.0, 
+              'values': [
                 {
-                  "_count": 2.0, 
-                  "_end_at": "2014-06-30T00:00:00+00:00", 
-                  "_start_at": "2014-06-23T00:00:00+00:00", 
-                  "uniqueEvents:sum": 263.0
+                  '_count': 2.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 263.0
                 }
               ]
             }, 
             {
-              "_count": 1.0, 
-              "_group_count": 1, 
-              "eventDestination": "applying-for-a-reduction-of-the-fee", 
-              "uniqueEvents:sum": 141.0, 
-              "values": [
+              '_count': 1.0, 
+              '_group_count': 1, 
+              'eventDestination': 'applying-for-a-reduction-of-the-fee', 
+              'uniqueEvents:sum': 141.0, 
+              'values': [
                 {
-                  "_count": 1.0, 
-                  "_end_at": "2014-06-30T00:00:00+00:00", 
-                  "_start_at": "2014-06-23T00:00:00+00:00", 
-                  "uniqueEvents:sum": 141.0
+                  '_count': 1.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 141.0
                 }
               ]
             }, 
             {
-              "_count": 1.0, 
-              "_group_count": 1, 
-              "eventDestination": "can-i-do-it-all-using-this-tool", 
-              "uniqueEvents:sum": 187.0, 
-              "values": [
+              '_count': 1.0, 
+              '_group_count': 1, 
+              'eventDestination': 'can-i-do-it-all-using-this-tool', 
+              'uniqueEvents:sum': 187.0, 
+              'values': [
                 {
-                  "_count": 1.0, 
-                  "_end_at": "2014-06-30T00:00:00+00:00", 
-                  "_start_at": "2014-06-23T00:00:00+00:00", 
-                  "uniqueEvents:sum": 187.0
+                  '_count': 1.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 187.0
                 }
               ]
             }
