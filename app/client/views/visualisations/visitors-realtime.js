@@ -26,15 +26,15 @@ function (View, SparklineView) {
       this.onChangeSelected();
     },
 
-    onChangeSelected: function (selectGroup, selectGroupIndex, selectModel) {
+    onChangeSelected: function (model) {
       var content = this.noDataMessage,
           selection = this.collection.getCurrentSelection(),
           label;
 
       this.currentVisitors = this.getCurrentVisitors();
 
-      if (selectModel) {
-        this.selectedModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
+      if (model) {
+        this.selectedModel = _.isArray(model) ? model[0] : model;
       }
 
       if (this.selectedModel) {
@@ -93,8 +93,8 @@ function (View, SparklineView) {
 
       if (!this.collection.isEmpty()) {
 
-        latestDate = this.collection.first().get('values').last().get('_timestamp');
-        startDate = this.collection.first().get('values').first().get('_timestamp');
+        latestDate = this.collection.max('_timestamp');
+        startDate = this.collection.min('_timestamp');
 
         if (latestDate) {
           var period = 'hour';

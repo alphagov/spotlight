@@ -32,20 +32,21 @@ function (Component, Pivot) {
       return this.calloutEl;
     },
 
-    onChangeSelected: function (group, groupIndex, model, index) {
+    onChangeSelected: function (model, index, options) {
       var el = this.calloutEl;
-      if (!group || !model) {
+      if (!model) {
         el.addClass('performance-hidden');
         return;
       }
-      this.renderContent(el, group, groupIndex, model, index);
+      options = options || {};
+      this.renderContent(el, model, options.valueAttr);
       el.removeClass('performance-hidden');
 
       var scaleFactor = this.graph.scaleFactor();
 
       var basePos = {
-        x: this.x(group, groupIndex, model, index) * scaleFactor,
-        y: this.y(group, groupIndex, model, index) * scaleFactor
+        x: this.x(index) * scaleFactor,
+        y: this.y(index, options.valueAttr) * scaleFactor
       };
 
       var pivotingEl = this.getPivotingElement();
@@ -69,39 +70,40 @@ function (Component, Pivot) {
       });
     },
 
-    x: function (group, groupIndex, model, index) {
-      return this.scales.x(this.graph.getXPos(groupIndex, index));
+    x: function (index) {
+      return this.scales.x(this.graph.getXPos(index));
     },
 
-    y: function (group, groupIndex, model, index) {
-      return this.scales.y(this.graph.getYPos(groupIndex, index));
+    y: function (index, valueAttr) {
+      return this.scales.y(this.graph.getYPos(index, valueAttr));
     },
 
     onMouseMove: function () {
       return false;
     },
 
-    getHeader: function (el, group, groupIndex, model) {
+    getHeader: function (el, model) {
       var period = this.graph.collection.query.get('period') || 'week';
       return this.formatPeriod(model, period);
     },
 
-    renderContent: function (el, group, groupIndex, model) {
+    renderContent: function (el, model, valueAttr) {
 
       var header = $('<h3>').html(this.getHeader.apply(this, arguments));
       var format = this.graph.currency ? 'currency' : 'integer';
+      valueAttr = valueAttr || this.graph.valueAttr;
 
       var value;
       if (this.showPercentage) {
-        value = this.format(model.get(this.graph.valueAttr), 'percent');
-        value += ' (' + this.format(model.get(this.graph.valueAttr + '_original'), { type: format, magnitude: true, pad: true }) + ')';
+        value = this.format(model.get(valueAttr), 'percent');
+        value += ' (' + this.format(model.get(valueAttr + '_original'), { type: format, magnitude: true, pad: true }) + ')';
       } else {
-        value = this.format(model.get(this.graph.valueAttr), { type: format, magnitude: true, pad: true });
+        value = this.format(model.get(valueAttr), { type: format, magnitude: true, pad: true });
       }
 
       var detail = $('<dl>').html([
         '<dt>',
-        group.get('title'),
+        model.get('title'),
         '</dt>',
         '<dd>',
         value,

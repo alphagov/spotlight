@@ -3,7 +3,7 @@ define([
 ],
 function (Component) {
 
-  var LineLabel = Component.extend({
+  return Component.extend({
 
     offset: 20,
     linePaddingInner: 4,
@@ -13,22 +13,12 @@ function (Component) {
     labelOffset: 6,
 
     showSquare: true,
-    showValues: false,
-    showValuesPercentage: false,
-    showSummary: false,
-    showTimePeriod: false,
-    attachLinks: false,
     summaryPadding: -36,
+    summaryHeight: 0,
 
     classed: 'labels',
 
-    interactive: function (e) {
-      if (this.graph.lineLabelOnTop()) {
-        return false;
-      } else {
-        return e.slice % 3 === 2;
-      }
-    },
+    interactive: false,
 
     /**
      * Renders labels for current collection.
@@ -92,17 +82,18 @@ function (Component) {
 
     renderValuePercentage: function (value, percentage) {
       var data = [],
-          summary = '';
+          summary = '',
+          format = this.graph.currency ? 'currency' : 'number';
 
       if (value === null && !percentage) {
         return '<span class="no-data">(no data)</span>';
       }
 
       if (value !== null) {
-        data.push(this.format(value, { type: 'number', magnitude: true, pad: true }));
+        data.push(this.format(value, { type: format, magnitude: true, pad: true }));
       }
       if (percentage) {
-        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
+        if (this.graph.isOneHundredPercent()) {
           data.unshift(this.format(percentage, 'percent'));
         } else {
           data.push(this.format(percentage, 'percent'));
@@ -117,34 +108,20 @@ function (Component) {
 
       this.summaryHeight = 0;
 
-      if (!this.showSummary) {
-        this.overlapLabelTop = 0;
-        return;
+      var selected = this.collection.getCurrentSelection();
+      var period = this.model.get('period');
+      var output;
+
+      if (selected.selectedModel) {
+        output = this.formatPeriod(selected.selectedModel, period);
+      } else {
+        var start = this.graph.modelToDate(this.collection.first());
+        var end = this.graph.modelToDate(this.collection.last());
+        var format = this.getFormat(period);
+        output = this.format([start, end], { type: 'dateRange', format: format });
       }
 
-      var summary = '<span class="title">Total</span>';
-
-      if (this.showValues) {
-        var attr = this.graph.valueAttr,
-            selected = this.collection.getCurrentSelection(),
-            value = '';
-
-        if (selected.selectedModel) {
-          value = this.collection.sum(attr, null, selected.selectedModelIndex);
-        } else {
-          value = this.collection.sum(attr);
-        }
-
-        if (this.showValuesPercentage && value) {
-          summary += this.renderValuePercentage(value, 1);
-        } else {
-          summary += this.renderValuePercentage(value);
-        }
-      }
-
-      if (this.showTimePeriod) {
-        summary += '<span class="timeperiod">' + this.renderTimePeriod() + '</span>';
-      }
+      var summary = '<span class="timeperiod">' + output + '</span>';
 
       var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
       summaryWrapper.enter().append('div').attr('class', 'summary');
@@ -158,47 +135,45 @@ function (Component) {
 
     renderLabels: function () {
       var that = this;
+      var lines = this.graph.getLines();
 
       var labelWrapper = this.figcaption.selectAll('ol').data(['one-wrapper']);
       labelWrapper.enter().append('ol').classed('squares', function () {
         return that.showSquare;
       }).classed('has-links', function () {
-        return that.attachLinks;
+        return _.any(lines, function (line) { return line.href; });
       });
 
       var selection = labelWrapper.selectAll('li')
-        .data(this.collection.models);
-      var enterSelection = selection.enter().append('li');
+        .data(lines);
+      selection.enter().append('li');
 
-      selection.attr('class', function (model, index) {
+      selection.attr('class', function (line, index) {
         var classes = ['label' + index];
-        if (model.get('className')) {
-          classes.push(model.get('className'));
+        if (line.className) {
+          classes.push(line.className);
         }
-        if (model.get('timeshift')) {
+        if (line.timeshift) {
           classes.push('timeshift');
         }
         return classes.join(' ');
       });
 
-      if (this.attachLinks) {
-        enterSelection.append('a');
-        selection.selectAll('a').attr('href', function (group) {
-          return group.get('href');
-        });
-        enterSelection.append('span');
-        selection.selectAll('span').attr('class', 'meta');
-      }
-
-      selection.each(function (group, i) {
-        that.setLabelContent.call(that, that.d3.select(this), group, i);
+      selection.each(function (line, i) {
+        that.setLabelContent.call(that, that.d3.select(this), line, i);
       });
 
       this.setLabelPositions(selection);
     },
 
-    getYIdeal: function (groupIndex, index) {
-      return this.graph.getYPos(groupIndex, index);
+    getYIdeal: function (attr) {
+      var index = this.collection.length;
+      var val = null;
+      while (val === null && index > 0) {
+        index--;
+        val = this.graph.getYPos(index, attr);
+      }
+      return val;
     },
 
     /**
@@ -207,27 +182,19 @@ function (Component) {
      */
     setLabelPositions: function (selection) {
 
-      // labels are positioned in relation to last data point
-      var maxModelIndex = this.collection.at(0).get('values').length - 1;
-
       // prepare 'positions' array
       var positions = [];
       var scale = this.scales.y;
       var that = this;
-      selection.each(function (group, groupIndex) {
-        var y;
-        for (var index = maxModelIndex; index >= 0; index--) {
-          y = that.getYIdeal.call(that, groupIndex, index);
-          if (y !== null) {
-            break;
-          }
-        }
+      selection.each(function (line) {
+        var y = that.getYIdeal(line.key);
+
         var size = $(this).height();
 
         positions.push({
           ideal: scale(y),
           size: size,
-          id: group.get('id')
+          key: line.key
         });
       });
 
@@ -242,10 +209,10 @@ function (Component) {
       });
 
       // apply optimised positions
-      selection.attr('style', function (model) {
-        var id = model.get('id');
+      selection.attr('style', function (line) {
+        var id = line.key;
         var position = _.find(positions, function (pos) {
-          return pos.id === id;
+          return pos.key === id;
         });
         return position ? [
           'top:', that.margin.top + position.min, 'px;',
@@ -254,49 +221,62 @@ function (Component) {
       });
     },
 
-    setLabelContent: function (selection, group, groupIndex) {
-      var labelTitle = '<span class="label-title">' + group.get('title') + '</span>',
+    setLabelContent: function (selection, line) {
+      var labelTitle = '<span class="label-title">' + line.label + '</span>',
           labelMeta = '';
 
-      if (this.showValues) {
-        var attr = this.graph.valueAttr,
-            selected = this.collection.getCurrentSelection(),
-            value = 0;
+      selection.select('a').remove();
+      selection.select('span.meta').remove();
 
-        if (this.showValuesPercentage && this.isLineGraph) {
-          attr += '_original';
-        }
+      var selected = this.collection.getCurrentSelection(),
+          value = 0,
+          percentage,
+          model,
+          attr = line.key;
 
-        if (selected.selectedModel) {
-          value = this.collection.at(groupIndex, selected.selectedModelIndex).get(attr);
+      if (selected.selectedModel) {
+        model = selected.selectedModel;
+        if (this.graph.isOneHundredPercent()) {
+          value = model.get(attr.replace(':percent', ''));
+          percentage = model.get(attr);
         } else {
-          if (this.isLineGraph) {
-            value = this.collection.lastNonNullItem(attr, groupIndex, selected.selectedModelIndex).val;
-          } else {
-            value = this.collection.sum(attr, groupIndex);
+          value = model.get(attr);
+          if (this.showPercentages()) {
+            percentage = model.get(attr + ':percent');
           }
         }
-
-        if (this.showValuesPercentage && value) {
-          var fraction;
-          fraction = this.collection.fraction(attr, groupIndex, selected.selectedModelIndex, this.isLineGraph);
-          labelMeta += this.renderValuePercentage(value, fraction);
+      } else {
+        if (this.graph.isOneHundredPercent()) {
+          model = this.collection.defined(attr).pop();
+          value = model.get(attr.replace(':percent', ''));
+          percentage = model.get(attr);
         } else {
-          labelMeta += this.renderValuePercentage(value);
+          value = this.collection.total(attr);
+          if (this.showPercentages()) {
+            percentage = value / this.collection.total('total:' + this.graph.valueAttr);
+          }
         }
       }
 
-      if (group.get('timeshift')) {
-        labelMeta += '<span class="percentage">(' + group.get('timeshift') + ' ' + this.collection.options.period + 's ago)</span>';
+      labelMeta += this.renderValuePercentage(value, percentage);
+
+      if (line.timeshift) {
+        labelMeta = '<span class="label-title">(' + line.timeshift + ' ' + this.collection.options.period + 's ago)</span>' + labelMeta;
       }
 
-      if (this.attachLinks) {
-        selection.select('a').html(labelTitle);
-        selection.select('.meta').html(labelMeta);
+      if (line.href) {
+        selection.append('a').attr('href', line.href).html(labelTitle);
+        selection.append('span').attr('class', 'meta').html(labelMeta);
       } else {
         selection.html(labelTitle + labelMeta);
       }
 
+    },
+
+    showPercentages: function () {
+      return _.any(this.graph.getLines(), function (line) {
+        return line.key.match(/^total:/);
+      });
     },
 
     /**
@@ -324,65 +304,21 @@ function (Component) {
       });
     },
 
-    renderTimePeriod: function () {
-      var period = this.period || this.collection.query.get('period') || 'week',
-          numPeriods = this.collection.at(0).get('values').length,
-          selection = this.collection.getCurrentSelection();
-
-      if (selection.selectedModel) {
-        var model = selection.selectedModel;
-        if (_.isArray(model) && model.length) {
-          model = model[0];
-        }
-        return this.formatPeriod(model, period);
-      } else {
-        return [
-          'last',
-          numPeriods,
-          this.format(numPeriods, { type: 'plural', singular: period })
-        ].join(' ');
-      }
-    },
-
-    onChangeSelected: function (groupSelected) {
-      var groupIdSelected = groupSelected ? groupSelected.get('id') : null;
+    onChangeSelected: function (model, index, options) {
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
-      labels.classed('selected', function (group) {
-        return groupIdSelected === group.id;
-      });
-      labels.classed('not-selected', function (group) {
-        return groupIdSelected !== null && groupIdSelected !== group.id;
-      });
-      lines.classed('selected', function (group) {
-        return groupIdSelected === group.id;
-      });
-      lines.classed('not-selected', function (group) {
-        return groupIdSelected !== null && groupIdSelected !== group.id;
-      });
-    },
-
-    onHover: function (e) {
-      var y = e.y;
-      var bestIndex, bestId, bestDistance = Infinity;
-      _.each(this.positions, function (elem) {
-        var yLabel = Math.floor(elem.min) + 0.5;
-        var distance = Math.abs(yLabel - y);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          bestId = elem.id;
-        }
-      });
-      var modelSelected = _.find(this.collection.models, function(elem) {
-        return (elem.id === bestId);
-      });
-      bestIndex = modelSelected ? this.collection.indexOf(modelSelected) : null;
-      if (e.toggle && bestIndex === this.collection.selectedIndex) {
-        this.collection.selectItem(null);
-      } else {
-        this.collection.selectItem(bestIndex);
-      }
+      var selected = function (line) {
+        var valueAttr = line.key;
+        return model && (!options.valueAttr || options.valueAttr === valueAttr);
+      };
+      var unselected = function (line) {
+        return model && !selected(line);
+      };
+      labels.classed('selected', selected);
+      labels.classed('not-selected', unselected);
+      lines.classed('selected', selected);
+      lines.classed('not-selected', unselected);
     },
 
     /**
@@ -532,5 +468,4 @@ function (Component) {
     }
   });
 
-  return LineLabel;
 });

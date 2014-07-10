@@ -14,12 +14,12 @@ function (SingleStatView, Mustache) {
     },
 
     getValue: function () {
-      var model = this.collection.first().get('values').last();
+      var model = this.collection.last();
       return this.getFormattedValue(model, this.stat);
     },
 
     getLabel: function () {
-      var currentDate = this.collection.first().get('values').last();
+      var currentDate = this.collection.last();
       if (typeof currentDate !== 'undefined') {
         currentDate = currentDate.get(this.timeAttr).format('MMM YYYY');
       } else {

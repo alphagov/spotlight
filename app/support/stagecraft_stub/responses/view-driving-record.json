@@ -59,12 +59,12 @@
         "y": [
           {
             "label": "Driving Licence Number",
-            "categoryId": "/driving-record/viewbydln",
+            "groupId": "/driving-record/viewbydln",
             "format": "integer"
           },
           {
             "label": "Personal Details",
-            "categoryId": "/driving-record/viewbypersonaldetails",
+            "groupId": "/driving-record/viewbypersonaldetails",
             "format": "integer"
           }
         ]
@@ -102,13 +102,13 @@
             "y": [
               {
                 "label": "Driving Licence Number",
-                "categoryId": "dln",
-                "format": "integer"
+                "groupId": "dln",
+                "format": "percent"
               },
               {
                 "label": "Personal Details",
-                "categoryId": "personal-details",
-                "format": "integer"
+                "groupId": "personal-details",
+                "format": "percent"
               }
             ]
           },
@@ -144,13 +144,13 @@
             "y": [
               {
                 "label": "Success",
-                "categoryId": "/driving-record/viewbydln",
-                "format": "integer"
+                "groupId": "/driving-record/viewbydln",
+                "format": "percent"
               },
               {
                 "label": "Error",
-                "categoryId": "/driving-record/licence-number/error",
-                "format": "integer"
+                "groupId": "/driving-record/licence-number/error",
+                "format": "percent"
               }
             ]
           }
@@ -180,13 +180,13 @@
             "y": [
               {
                 "label": "Success",
-                "categoryId": "/driving-record/viewbypersonaldetails",
-                "format": "integer"
+                "groupId": "/driving-record/viewbypersonaldetails",
+                "format": "percent"
               },
               {
                 "label": "Error",
-                "categoryId": "/driving-record/personal-details/error",
-                "format": "integer"
+                "groupId": "/driving-record/personal-details/error",
+                "format": "percent"
               }
             ]
           }

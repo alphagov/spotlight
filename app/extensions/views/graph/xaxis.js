@@ -27,7 +27,7 @@ function (d3, Axis) {
       // CSS ellipsis styles or line breaks.
       var labels = this.wrapper.selectAll('.x-axis .tick text');
       var svgWidth = $(this.wrapper[0]).parent().width();
-      var blockWidth = svgWidth / this.collection.first().get('values').length;
+      var blockWidth = svgWidth / this.collection.length;
 
       labels.each(function () {
 
@@ -54,7 +54,7 @@ function (d3, Axis) {
       return this.scales.x;
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected, modelSelected, indexSelected) {
+    onChangeSelected: function (modelSelected, indexSelected) {
       var ticks = this.componentWrapper.selectAll('.tick');
       ticks.classed('selected', false);
 
@@ -124,6 +124,20 @@ function (d3, Axis) {
             var val = this.getMoment(d).format('MMM');
             if (d.getMonth() === 0) {
               val += ' ' + this.getMoment(d).format('YYYY');
+            }
+            return val;
+          }, this);
+        }
+      },
+      quarter: {
+        ticks: function () {
+          return [this.d3.time.month.utc, 3];
+        },
+        tickFormat: function () {
+          return _.bind(function (d) {
+            var val = this.getMoment(d).subtract('months', 1).format('MMM');
+            if (d.getMonth() === 0) {
+              val += ' ' + this.getMoment(d).subtract('months', 1).format('YYYY');
             }
             return val;
           }, this);

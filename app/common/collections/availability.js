@@ -1,8 +1,8 @@
 define([
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ],
-function (MatrixCollection) {
-  var AvailabilityCollection = MatrixCollection.extend({
+function (Collection) {
+  var AvailabilityCollection = Collection.extend({
 
     queryParams: function () {
       var params = {
@@ -13,13 +13,9 @@ function (MatrixCollection) {
       return params;
     },
 
-    parse: function (response) {
-      var data = response.data;
+    parse: function () {
+      var data = Collection.prototype.parse.apply(this, arguments);
       _.each(data, function (d) {
-        d.uptime = d['uptime:sum'];
-        d.downtime = d['downtime:sum'];
-        d.unmonitored = d['unmonitored:sum'];
-        d.avgresponse = d['avgresponse:mean'];
         if (d.downtime === null && d.uptime === null) {
           d.total = null;
           d.uptimeFraction = null;
@@ -27,43 +23,20 @@ function (MatrixCollection) {
           d.total = d.downtime + d.uptime;
           d.uptimeFraction = d.uptime / d.total;
         }
-        d._end_at = this.getMoment(d._end_at);
-        d._start_at = this.getMoment(d._start_at);
-        d._timestamp = d._start_at;
       }, this);
-      return {
-        id: 'availability',
-        title: 'Availability',
-        values: data
-      };
+      return data;
     },
 
     _getTotalUptime: function () {
-      var totalUptime;
-      if (this.at(0)) {
-        totalUptime = this.at(0).get('values').reduce(function (memo, model) {
-          return memo + model.get('uptime');
-        }, 0);
-      } else {
-        totalUptime = null;
-      }
-      return totalUptime;
+      return this.total('uptime');
     },
 
     _getTotalTime: function (includeUnmonitored) {
-      var totalTime;
-      if (this.at(0)) {
-        totalTime = this.at(0).get('values').reduce(function (memo, model) {
-          var res = memo + model.get('total');
-          if (includeUnmonitored) {
-            res += model.get('unmonitored');
-          }
-          return res;
-        }, 0);
-      } else {
-        totalTime = null;
+      var total = this.total('total');
+      if (includeUnmonitored) {
+        total += this.total('unmonitored');
       }
-      return totalTime;
+      return total;
     },
 
     getFractionOfUptime: function () {
@@ -71,21 +44,7 @@ function (MatrixCollection) {
     },
 
     getAverageResponseTime: function () {
-      var averageResponseTime;
-      if (this.at(0)) {
-        var values = this.at(0).get('values');
-        var total = values.reduce(function (memo, model) {
-          return memo + model.get('avgresponse');
-        }, 0);
-        if (total === 0) {
-          averageResponseTime = null;
-        } else {
-          averageResponseTime = total / values.length;
-        }
-      } else {
-        averageResponseTime = null;
-      }
-      return averageResponseTime;
+      return this.mean('avgresponse');
     }
 
   });

@@ -6,13 +6,11 @@ define([
   './yaxisRight',
   './line',
   './stack',
-  './linelabel',
   './hover',
-  './callout',
   './tooltip',
   './missing-data'
 ],
-function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Callout, Tooltip, MissingData) {
+function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, MissingData) {
 
   var Graph = View.extend({
 
@@ -29,8 +27,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       yaxisRight: YAxisRight,
       line: Line,
       stack: Stack,
-      linelabel: LineLabel,
-      callout: Callout,
+      callout: Tooltip,
       hover: Hover,
       tooltip: Tooltip
     },
@@ -68,6 +65,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return {
         graph: this,
         collection: this.collection,
+        model: this.model,
         el: this.figure,
         svg: this.svg,
         wrapper: this.wrapper,
@@ -78,10 +76,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
     showLineLabels: function () {
       return this.model && this.model.get('show-line-labels');
-    },
-
-    isOneHundredPercent: function () {
-      return this.model && this.model.get('one-hundred-percent');
     },
 
     prepareGraphArea: function () {
@@ -118,41 +112,38 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       return $(this.svg.node()).width() / this.width;
     },
 
-    getModel: function (groupIndex, modelIndex) {
-      if (!this.collection.at(groupIndex) && this.encompassStack) {
-        return this.collection.at(groupIndex - 1, modelIndex);
-      } else {
-        return this.collection.at(groupIndex, modelIndex);
-      }
-    },
-
     modelToDate: function (model) {
       var prop = '_start_at';
       var period = this.getPeriod();
       if (period === 'hour') {
         prop = '_timestamp';
-      } else if (period === 'week') {
+      } else if (period === 'week' || period === 'quarter') {
         prop = '_end_at';
       }
-      return this.getMoment(model.get(prop));
+      return model.get(prop);
     },
 
-    getXPos: function (groupIndex, modelIndex) {
-      groupIndex = groupIndex || 0;
-      var model = this.getModel(groupIndex, modelIndex);
-      return this.modelToDate(model);
+    getXPos: function (modelIndex) {
+      var model = this.collection.at(modelIndex);
+      return model ? this.modelToDate(model) : null;
     },
 
-    getYPos: function (groupIndex, modelIndex) {
-      var group = this.collection.at(groupIndex);
-      var model = group.get('values').at(modelIndex);
-      return model.get(this.valueAttr);
+    getYPos: function (modelIndex, valueAttr) {
+      valueAttr = valueAttr || this.valueAttr;
+      var model = this.collection.at(modelIndex);
+      if (model) {
+        return model.get(valueAttr);
+      }
+      return null;
+    },
+
+    getY0Pos: function () {
+      return 0;
     },
 
     calcXScale: function () {
-      var total = this.collection.first().get('values'),
-          start = this.modelToDate(total.first()).toDate(),
-          end = this.modelToDate(total.last()).toDate();
+      var start = this.modelToDate(this.collection.first()).toDate(),
+          end = this.modelToDate(this.collection.last()).toDate();
 
       return this.d3.time.scale()
               .domain([start, end])
@@ -164,12 +155,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
 
       var yScale = this.d3.scale.linear();
       if (max) {
-        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(this.maxValue(), this.minYDomainExtent)], this.numYTicks);
-        if (this.isOneHundredPercent()) {
-          yScale.domain([0, 1]);
-        } else {
-          yScale.domain(tickValues.extent);
-        }
+        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(max, this.minYDomainExtent)], this.numYTicks);
+        yScale.domain(tickValues.extent);
         yScale.tickValueList = tickValues.values;
       }
       yScale.rangeRound([this.innerHeight, 0]);
@@ -177,13 +164,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     maxValue: function () {
-      var d3 = this.d3;
-      var valueAttr = this.valueAttr;
-      return d3.max(this.collection.toJSON(), function (group) {
-        return d3.max(group.values.toJSON(), function (value) {
-          return value[valueAttr];
-        });
-      });
+      return this.collection.max(this.valueAttr);
     },
 
     minValue: function () {
@@ -191,7 +172,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
     },
 
     hasData: function () {
-      return this.maxValue() !== undefined;
+      return this.collection.defined(this.valueAttr).length > 0;
     },
 
     getPeriod: function () {
@@ -368,6 +349,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, LineLabel, Hover, Cal
       }
       return View.prototype.remove.apply(this, arguments);
     }
+
   });
 
   return Graph;

@@ -1,17 +1,16 @@
 define([
-  'common/collections/list'
+  'extensions/collections/collection'
 ],
-function (ListCollection) {
-  return ListCollection.extend({
+function (Collection) {
+  return Collection.extend({
 
     parse: function () {
-      var data = ListCollection.prototype.parse.apply(this, arguments);
+      var data = Collection.prototype.parse.apply(this, arguments);
 
       // limit the number of data point to the last <duration> <period>s
-      var latestDate = _.max(data.values, function (model) { return model._timestamp; });
-      var timestamp = this.moment(latestDate._timestamp);
-
-      data.values = _.filter(data.values, function (model) {
+      var latestDate = _.max(data, function (model) { return model._timestamp; }, this);
+      var timestamp = latestDate._timestamp;
+      data = _.filter(data, function (model) {
         return timestamp.diff(model._timestamp, this.options.period) <= this.options.duration;
       }, this);
 
@@ -19,7 +18,7 @@ function (ListCollection) {
     },
 
     isEmpty: function () {
-      return ListCollection.prototype.isEmpty.call(this) || this.first().get('values').length < 2;
+      return this.length < 2;
     }
 
   });

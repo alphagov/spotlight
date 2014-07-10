@@ -129,17 +129,17 @@
         "y": [
           {
             "label": "Online",
-            "categoryId": "digital",
+            "groupId": "digital",
             "format": "integer"
           },
           {
             "label": "Bulk software",
-            "categoryId": "file-upload",
+            "groupId": "file-upload",
             "format": "integer"
           },
           {
             "label": "Paper",
-            "categoryId": "paper",
+            "groupId": "paper",
             "format": "integer"
           }
         ]

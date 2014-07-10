@@ -7,25 +7,13 @@ module.exports = View.extend({
 
   template: template,
 
-  formatDate: function (period, startDate, endDate) {
-    var formattedDate = '';
-    if (period === 'week') {
-      formattedDate = this.format([startDate, endDate], {type: 'dateRange', format: 'D MMM YYYY'});
-    } else if (period === 'month') {
-      formattedDate = this.format(startDate, {type: 'date', format: 'MMMM YYYY'});
-    } else {
-      formattedDate = this.format([startDate, endDate], {type: 'dateRange', format: 'MMM YYYY', subtract: 'months'});
-    }
-    return formattedDate;
-  },
-
   templateContext: function () {
 
     var current = this.collection.at(0),
       previous = this.collection.at(1),
       valueAttr = this.model.get('value-attribute'),
       format = this.model.get('format') || { type: 'number' },
-      datePeriod = this.model.get('date-period');
+      datePeriod = this.model.get('date-period') || 'quarter';
 
     format.abbr = true;
 
@@ -40,7 +28,7 @@ module.exports = View.extend({
 
     if (current.get('_timestamp') && current.get('end_at')) {
       _.extend(config, {
-          period: this.formatDate(datePeriod, current.get('_timestamp'), current.get('end_at'))
+          period: this.formatPeriod(current, datePeriod)
         }
       );
     }
@@ -48,7 +36,7 @@ module.exports = View.extend({
     if (previous && previous.get(valueAttr)) {
       _.extend(config, {
         previousPeriod: {
-          period: this.formatDate(datePeriod, previous.get('_timestamp'), previous.get('end_at')),
+          period: this.formatPeriod(previous, datePeriod),
           value: this.format(previous.get(valueAttr), format)
         }
       });

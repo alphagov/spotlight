@@ -6,30 +6,21 @@ function (SingleStatView) {
 
     changeOnSelected: true,
 
-    getFirstNonNullValueInCollection: function () {
-      var values = this.collection.first().get('values');
-      values = values.last(values.length).reverse();
-      var firstMatch = _.find(values, function (value) {
-        return !_.isNull(value.get(this.valueAttr));
-      }, this);
-      return firstMatch;
-    },
-
     getValue: function () {
-      var firstMatch = this.getFirstNonNullValueInCollection();
+      var firstMatch = _.last(this.collection.defined(this.valueAttr));
 
       var value = firstMatch ? firstMatch.get(this.valueAttr) : null;
       return this.format(value, this.formatOptions);
     },
 
     getLabel: function () {
-      var firstMatch = this.getFirstNonNullValueInCollection();
+      var firstMatch = _.last(this.collection.defined(this.valueAttr));
       return firstMatch ? this.formatPeriod(firstMatch, this.getPeriod()) : '';
     },
 
     getValueSelected: function (selection) {
       var val;
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel) {
         val = selection.selectedModel.get(this.valueAttr);
       } else {
         val = null;
@@ -38,7 +29,7 @@ function (SingleStatView) {
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel) {
         return this.formatPeriod(selection.selectedModel, this.getPeriod());
       } else {
         return '';

@@ -81,13 +81,14 @@ figure.graph {
     }
   }
 
-  .line0 { stroke: $data-colour-1; }
-  .line1 { stroke: $data-colour-2; }
-  .line2 { stroke: $data-colour-3; }
-  .line3 { stroke: $data-colour-4; }
-  .line4 { stroke: $data-colour-5; }
-  .line5 { stroke: $data-colour-6; }
-  .line6 { stroke: $data-colour-7; }
+  .line { stroke: $data-colour-1; z-index: 1; }
+  .line.group0 { stroke: $data-colour-1; }
+  .line.group1 { stroke: $data-colour-2; }
+  .line.group2 { stroke: $data-colour-3; }
+  .line.group3 { stroke: $data-colour-4; }
+  .line.group4 { stroke: $data-colour-5; }
+  .line.group5 { stroke: $data-colour-6; }
+  .line.group6 { stroke: $data-colour-7; }
 
   .compare-group0 { stroke: $data-colour-1; }
   .compare-group1 { stroke: $data-colour-2; }
@@ -95,46 +96,52 @@ figure.graph {
   .line.timeshift { stroke-dasharray: 5, 10; }
 
   .not-selected {
-    &.line0 { stroke: mix($data-colour-1, $white, 50%); }
-    &.line1 { stroke: mix($data-colour-2, $white, 50%); }
-    &.line2 { stroke: mix($data-colour-3, $white, 50%); }
-    &.line3 { stroke: mix($data-colour-4, $white, 50%); }
-    &.line4 { stroke: mix($data-colour-5, $white, 50%); }
-    &.line5 { stroke: mix($data-colour-6, $white, 50%); }
-    &.line6 { stroke: mix($data-colour-7, $white, 50%); }
+    &.line.group0 { stroke: mix($data-colour-1, $white, 50%); }
+    &.line.group1 { stroke: mix($data-colour-2, $white, 50%); }
+    &.line.group2 { stroke: mix($data-colour-3, $white, 50%); }
+    &.line.group3 { stroke: mix($data-colour-4, $white, 50%); }
+    &.line.group4 { stroke: mix($data-colour-5, $white, 50%); }
+    &.line.group5 { stroke: mix($data-colour-6, $white, 50%); }
+    &.line.group6 { stroke: mix($data-colour-7, $white, 50%); }
 
     &.compare-group0 { stroke: mix($data-colour-1, $white, 50%); }
     &.compare-group1 { stroke: mix($data-colour-2, $white, 50%); }
   }
 
-  .stack0 { fill: mix($data-colour-1, $white, 25%); }
-  .stack1 { fill: mix($data-colour-2, $white, 25%); }
-  .stack2 { fill: mix($data-colour-3, $white, 25%); }
-  .stack3 { fill: mix($data-colour-4, $white, 25%); }
-  .stack4 { fill: mix($data-colour-5, $white, 25%); }
-  .stack5 { fill: mix($data-colour-6, $white, 25%); }
-  .stack6 { fill: mix($data-colour-7, $white, 25%); }
+  .stack { fill: mix($data-colour-1, $white, 25%); }
+  .stack.group0 { fill: mix($data-colour-1, $white, 25%); }
+  .stack.group1 { fill: mix($data-colour-2, $white, 25%); }
+  .stack.group2 { fill: mix($data-colour-3, $white, 25%); }
+  .stack.group3 { fill: mix($data-colour-4, $white, 25%); }
+  .stack.group4 { fill: mix($data-colour-5, $white, 25%); }
+  .stack.group5 { fill: mix($data-colour-6, $white, 25%); }
+  .stack.group6 { fill: mix($data-colour-7, $white, 25%); }
 
   .selected {
-    &.stack0 { fill: mix($data-colour-1, $white, 50%); }
-    &.stack1 { fill: mix($data-colour-2, $white, 50%); }
-    &.stack2 { fill: mix($data-colour-3, $white, 50%); }
-    &.stack3 { fill: mix($data-colour-4, $white, 50%); }
-    &.stack4 { fill: mix($data-colour-5, $white, 50%); }
-    &.stack5 { fill: mix($data-colour-6, $white, 50%); }
-    &.stack6 { fill: mix($data-colour-7, $white, 50%); }
+    &.stack { fill: mix($data-colour-1, $white, 50%);
+      &.group0 { fill: mix($data-colour-1, $white, 50%); }
+      &.group1 { fill: mix($data-colour-2, $white, 50%); }
+      &.group2 { fill: mix($data-colour-3, $white, 50%); }
+      &.group3 { fill: mix($data-colour-4, $white, 50%); }
+      &.group4 { fill: mix($data-colour-5, $white, 50%); }
+      &.group5 { fill: mix($data-colour-6, $white, 50%); }
+      &.group6 { fill: mix($data-colour-7, $white, 50%); }
+    }
   }
 
   .not-selected {
-    &.stack0 { fill: mix($data-colour-1, $white, 10%); }
-    &.stack1 { fill: mix($data-colour-2, $white, 10%); }
-    &.stack2 { fill: mix($data-colour-3, $white, 10%); }
-    &.stack3 { fill: mix($data-colour-4, $white, 10%); }
-    &.stack4 { fill: mix($data-colour-5, $white, 10%); }
-    &.stack5 { fill: mix($data-colour-6, $white, 10%); }
-    &.stack6 { fill: mix($data-colour-7, $white, 10%); }
+    &.stack { fill: mix($data-colour-1, $white, 10%);
+      &.group0 { fill: mix($data-colour-1, $white, 10%); }
+      &.group1 { fill: mix($data-colour-2, $white, 10%); }
+      &.group2 { fill: mix($data-colour-3, $white, 10%); }
+      &.group3 { fill: mix($data-colour-4, $white, 10%); }
+      &.group4 { fill: mix($data-colour-5, $white, 10%); }
+      &.group5 { fill: mix($data-colour-6, $white, 10%); }
+      &.group6 { fill: mix($data-colour-7, $white, 10%); }
+    }
   }
 
+  .text { fill: $data-colour-1; }
   .text0 { fill: $data-colour-1; }
   .text1 { fill: $data-colour-2; }
   .text2 { fill: $data-colour-3; }
@@ -146,20 +153,6 @@ figure.graph {
   .x-axis path,
   .y-axis path {
     display: none;
-  }
-
-  .selectedIndicator {
-    fill: $white;
-    vector-effect: non-scaling-stroke;
-    stroke-width: 4px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .selectedIndicator.cursorLine {
-    stroke: $black;
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
   }
 
   .terminator {
@@ -181,9 +174,28 @@ figure.graph {
     }
   }
 
+  .selectedIndicator {
+    fill: $white;
+    vector-effect: non-scaling-stroke;
+    stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .cursorLine {
+    stroke: $black;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+    &.selected {
+      stroke-width: 3px;
+    }
+  }
+
   .bar {
     line {
       stroke-width: 2px;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
       shape-rendering: crispEdges;
       vector-effect: non-scaling-stroke;
     }
@@ -203,6 +215,7 @@ figure.graph {
 
     rect {
       stroke-width: 2px;
+      &.stack { stroke: mix($data-colour-1, $white, 25%); }
       &.stack0 { stroke: mix($data-colour-1, $white, 25%); }
       &.stack1 { stroke: mix($data-colour-2, $white, 25%); }
       &.stack2 { stroke: mix($data-colour-3, $white, 25%); }
@@ -214,6 +227,7 @@ figure.graph {
 
     .selected {
       rect {
+        &.stack { stroke: $data-colour-1; }
         &.stack0 { stroke: $data-colour-1; }
         &.stack1 { stroke: $data-colour-2; }
         &.stack2 { stroke: $data-colour-3; }
@@ -283,7 +297,6 @@ figure.graph {
     .summary {
       border-bottom: 1px solid $grey-2;
       margin: 0 0 0 20px;
-      padding: 0 0 0 20px;
 
       .title {
         display: block;
@@ -485,14 +498,6 @@ figure.graph {
     }
   }
 
-  .cursorLine.overlay{
-    stroke-width: 3px;
-  }
-
-  .cursorLine.ascender,
-  .cursorLine.descender {
-    display: none;
-  }
 }
 
 @media (max-width: 640px) {

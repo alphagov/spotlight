@@ -1,10 +1,9 @@
 define([
   'client/controllers/module',
-  'common/modules/table',
   'client/views/table'
-], function (ModuleController, TableModule, TableView) {
+], function (ModuleController, TableView) {
 
-  return ModuleController.extend(TableModule).extend({
+  return ModuleController.extend({
 
     visualisationClass: TableView,
     collectionClass: null

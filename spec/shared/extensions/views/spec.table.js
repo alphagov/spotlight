@@ -123,7 +123,7 @@ function (Table, View, Collection, $) {
       it('will call collection.getTableRows with the column keys', function () {
         table.render();
         expect(table.collection.getTableRows)
-          .toHaveBeenCalledWith(['timestamp', 'value', 'value', 'value']);
+          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'value']);
       });
 
       it('does not crash if no data is provided', function () {
@@ -142,7 +142,7 @@ function (Table, View, Collection, $) {
           expect(table.getColumns()).toEqual([
               { key: 'timestamp', label: 'date' },
               { key: 'value', label: 'another' },
-              { key: 'value', label: 'onemore', timeshift: 52 },
+              { key: 'timeshift52:value', label: 'onemore', timeshift: 52 },
               { key: 'value', label: 'last' }
             ]);
         });

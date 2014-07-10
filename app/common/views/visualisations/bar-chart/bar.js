@@ -1,16 +1,11 @@
 define([
-  'extensions/views/graph/interleavedbar'
+  'extensions/views/graph/bar'
 ],
-function (InterleavedBar) {
-  var JourneyBar = InterleavedBar.extend({
+function (Bar) {
+  return Bar.extend({
     interactive: true,
     strokeAlign: 'inner',
 
-    blockWidth: function () {
-      var x0 = this.scales.x(this.graph.getXPos(0, 0));
-      var x1 = this.scales.x(this.graph.getXPos(0, 1));
-      return x1 - x0;
-    },
     text: function (model) {
       var value = model.get(this.graph.valueAttr);
       if (_.isNull(value) || _.isUndefined(value) || _.isNaN(value)) {
@@ -20,5 +15,4 @@ function (InterleavedBar) {
     }
   });
 
-  return JourneyBar;
 });

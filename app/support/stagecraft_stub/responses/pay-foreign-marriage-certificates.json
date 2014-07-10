@@ -37,7 +37,7 @@
     },
     {
       "slug": "volumetrics",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
       "data-group": "pay-foreign-marriage-certificates",
@@ -46,9 +46,8 @@
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
       ],
-      "denominator-matcher": "start$",
-      "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory",
+      "group-by": "eventCategory",
+      "filter-by": "eventCategory:pay-foreign-marriage-certificates:done",
       "axes": {
         "x": {
           "label": "Date of Payment"
@@ -90,9 +89,9 @@
       "data-type": "journey",
       "axes": {
         "y": [
-          {"journeyId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
-          {"journeyId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
-          {"journeyId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
+          {"groupId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
+          {"groupId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
+          {"groupId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
         ]
       }
     },

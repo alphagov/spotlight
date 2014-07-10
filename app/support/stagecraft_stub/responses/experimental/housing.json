@@ -60,12 +60,12 @@
         "y": [
           {
             "label": "Completed",
-            "categoryId": "completed",
+            "groupId": "completed",
             "format": "integer"
           },
           {
             "label": "Started",
-            "categoryId": "started",
+            "groupId": "started",
             "format": "integer"
           }
         ]
@@ -99,22 +99,22 @@
         "y": [
           {
             "label": "England",
-            "categoryId": "England",
+            "groupId": "England",
             "format": "integer"
           },
           {
             "label": "Scotland",
-            "categoryId": "Scotland",
+            "groupId": "Scotland",
             "format": "integer"
           },
           {
             "label": "Wales",
-            "categoryId": "Wales",
+            "groupId": "Wales",
             "format": "integer"
           },
           {
             "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland",
+            "groupId": "Northern_Ireland",
             "format": "integer"
           }
         ]
@@ -148,7 +148,7 @@
         "y": [
           {
             "label": "Scotland",
-            "categoryId": "Scotland",
+            "groupId": "Scotland",
             "format": {
               "type": "number",
               "dps": 1
@@ -156,7 +156,7 @@
           },
           {
             "label": "Wales",
-            "categoryId": "Wales",
+            "groupId": "Wales",
             "format": {
               "type": "number",
               "dps": 1
@@ -164,7 +164,7 @@
           },
           {
             "label": "London",
-            "categoryId": "London",
+            "groupId": "London",
             "format": {
               "type": "number",
               "dps": 1
@@ -172,7 +172,7 @@
           },
           {
             "label": "England",
-            "categoryId": "England",
+            "groupId": "England",
             "format": {
               "type": "number",
               "dps": 1
@@ -180,7 +180,7 @@
           },
           {
             "label": "Northern Ireland",
-            "categoryId": "Northern_Ireland",
+            "groupId": "Northern_Ireland",
             "format": {
               "type": "number",
               "dps": 1

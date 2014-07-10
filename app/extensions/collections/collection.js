@@ -32,16 +32,12 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       options = options || {};
       this.options = options;
 
-      _.each(['filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
+      _.each(['valueAttr', 'filterBy', 'collections', 'data-type', 'data-group', 'queryParams'], function (prop) {
         if (options[prop] && !this[prop]) {
           this[prop] = options[prop];
         }
       }, this);
 
-      if (this.collections) {
-        // does not request data itself but depends on other collections
-        this.instantiateParts(models, options);
-      }
       this.createQueryModel();
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
@@ -66,6 +62,78 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       this.query.on('change', function () { this.fetch(); }, this);
     },
 
+    parse: function (response) {
+      var data = response.data;
+      var suffix = /:(sum|mean)/;
+      var datetime = /_at$/;
+
+      data = this.flatten(data);
+      if (data.length) {
+        _.each(_.keys(data[0]), function (key) {
+          // remove suffixes from `collect`ed keys
+          if (key.match(suffix)) {
+            _.each(data, function (d) {
+              d[key.replace(suffix, '')] = d[key];
+            });
+          }
+          // cast all datetime strings to moment
+          if (key.match(datetime) || key === '_timestamp') {
+            _.each(data, function (d) {
+              d[key] = this.getMoment(d[key]);
+            }, this);
+          }
+        }, this);
+        // fill in timestamps and valueAttrs where not defined
+        _.each(data, function (d) {
+          if (!d._start_at && this.options.axisPeriod) {
+            d._start_at = d['_' + this.options.axisPeriod + '_start_at'];
+          }
+          if (!d._end_at && d.end_at) {
+            d._end_at = d.end_at;
+          }
+          if (!d._timestamp) {
+            d._timestamp = d._start_at;
+          }
+          if (this.valueAttr && d[this.valueAttr] === undefined) {
+            d[this.valueAttr] = null;
+          }
+        }, this);
+      }
+      return data;
+    },
+
+    flatten: function (data) {
+      var category = this.query.get('group_by');
+      if (category && data.length) {
+        // if we have a grouped response, flatten the data
+        if (data[0].values) {
+          _.each(this.getYAxes(), function (axis) {
+            if (axis.groupId !== 'total') {
+              var dataset = _.find(data, function (d) {
+                return d[category] === axis.groupId;
+              });
+              if (dataset) {
+                this.mergeDataset(dataset, data[0], axis);
+              }
+            }
+          }, this);
+          data = data[0].values;
+        }
+      }
+      return data;
+    },
+
+    mergeDataset: function (source, target, axis) {
+      var valueAttr = this.valueAttr;
+      _.each(source.values, function (model, i) {
+        target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
+      }, this);
+    },
+
+    getYAxes: function () {
+      return _.clone(this.options.axes.y) || [];
+    },
+
     /**
      * Convenience method, gets object property or method result. The method
      * is passed no arguments and is executed in the object context.
@@ -82,59 +150,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
         queryId: this.queryId
       }, options);
 
-      if (this.collectionInstances) {
-        this.fetchParts(options);
-      } else {
-        Backbone.Collection.prototype.fetch.call(this, options);
-      }
-    },
-
-    /**
-     * Fetches data for all constituent collections. Parses data when all
-     * requests have returned successfully. Fails if any of the requests fail.
-     */
-    fetchParts: function (options) {
-      options = options || {};
-
-      _.each(this.collectionInstances, function (collection) {
-        collection.query.set(this.query.attributes, {silent: true});
-      }, this);
-
-      var numRequests = this.collectionInstances.length;
-      var openRequests = numRequests;
-      var successfulRequests = 0;
-      var that = this;
-
-      var onResponse = function () {
-        if (--openRequests > 0) {
-          // wait for other requests to return
-          return;
-        }
-
-        if (successfulRequests === numRequests) {
-          // all constituent collections returned successfully
-          that.reset.call(that, that.parse.call(that, options), { parse: true });
-        }
-      };
-      var onSuccess = function () {
-        successfulRequests++;
-        onResponse();
-      };
-
-      _.each(this.collectionInstances, function (collection) {
-        collection.on('error', function () {
-          // escalate error status
-          if (options.error) {
-            options.error.apply(collection, arguments);
-          }
-          var args = ['error'].concat(Array.prototype.slice.call(arguments));
-          this.trigger.apply(this, args);
-        }, this);
-        collection.fetch({
-          success: onSuccess,
-          error: onResponse
-        });
-      }, this);
+      Backbone.Collection.prototype.fetch.call(this, options);
     },
 
     defaultQueryParams: function () {
@@ -172,6 +188,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
 
       return base + '?' + $.param(params, true);
     },
+
+    comparator: '_timestamp',
 
     /**
      * Sets a new attribute-specific comparator to sort by and then re-sorts.
@@ -249,14 +267,15 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
      * @param {Boolean} [options.silent=false] Suppress `change:selected` event
      */
     selectItem: function (index, options) {
-      if (index === this.selectedIndex) {
+      options = options || {};
+      if (index === this.selectedIndex && !options.force) {
         return;
       }
       var model = (index === null) ? null : this.models[index];
-      this.selectedItem = model;
       this.selectedIndex = index;
-      if (!options || !options.silent) {
-        this.trigger('change:selected', model, index);
+      this.selectedItem = model;
+      if (!options.silent) {
+        this.trigger('change:selected', model, index, options);
       }
     },
 
@@ -314,15 +333,57 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, Query, $, Mustac
       return processors;
     },
 
-    parse: function (response) {
-      return response.data;
-    },
-
     trim: function (values, min) {
       var minlength = (typeof min === 'number') ? min : 0;
       while (values.length > minlength && values[0][this.options.valueAttr] === null) {
         values.shift();
       }
+    },
+
+    max: function (attr) {
+      var maxModel = Backbone.Collection.prototype.max.call(this, function (model) {
+        return model.get(attr);
+      });
+      if (maxModel instanceof Backbone.Model) {
+        return maxModel.get(attr);
+      }
+    },
+
+    min: function (attr) {
+      var minModel = Backbone.Collection.prototype.min.call(this, function (model) {
+        return model.get(attr);
+      });
+      if (minModel instanceof Backbone.Model) {
+        return minModel.get(attr);
+      }
+    },
+
+    hasData: function () {
+      return this.length > 0;
+    },
+
+    mean: function (attr) {
+      var total = this.total(attr);
+      var count = this.defined(attr).length;
+      return count === 0 ? null : total / count;
+    },
+
+    total: function (attr) {
+      var total = this.reduce(function (sum, model) {
+        var val = model.get(attr);
+        if (val !== null && !isNaN(Number(val))) {
+          sum += Number(val);
+        }
+        return sum;
+      }, null);
+      return total;
+    },
+
+    defined: function (attr) {
+      return this.filter(function (model) {
+        var val = model.get(attr);
+        return val !== null && !isNaN(Number(val));
+      });
     },
 
     processors: Processors

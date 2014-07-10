@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/stacked-graph'
+  'extensions/views/graph/graph'
 ],
 function (Graph) {
   var VolumetricsCompletionGraph = Graph.extend({
@@ -21,8 +21,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack,
-          options: { drawCursorLine: true }
+          view: this.sharedComponents.stack
         },
         hover: { view: this.sharedComponents.hover }
       };

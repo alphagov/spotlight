@@ -1,17 +1,25 @@
 var requirejs = require('requirejs');
 
 var ModuleController = require('../controllers/module');
-var TableController = requirejs('common/modules/table');
 var TableView = requirejs('extensions/views/table');
 
-var Collection = requirejs('common/collections/list');
+var Collection = requirejs('extensions/collections/collection');
 
-var parent = ModuleController.extend(TableController);
+module.exports = ModuleController.extend({
 
-module.exports = parent.extend({
+  requiresSvg: false,
+  hasTable: false,
 
   visualisationClass: TableView,
   collectionClass: Collection,
+
+  visualisationOptions: function () {
+    return {
+      sortBy: this.model.get('sort-by'),
+      sortOrder: this.model.get('sort-order') || 'descending',
+      url: this.url
+    };
+  },
 
   collectionOptions: function () {
     return {

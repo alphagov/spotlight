@@ -36,7 +36,7 @@
       "tabs": [
         {
           "slug": "visitors",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Visitors",
           "description": "",
           "data-group": "gov-uk-content",
@@ -47,9 +47,8 @@
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
           ],
-          "denominator-matcher": "hm-treasury",
-          "numerator-matcher": "hm-treasury",
-          "matching-attribute": "department",
+          "group-by": "department",
+          "filter-by": "department:hm-treasury",
           "value-attribute": "visitors:sum",
           "period": "week",
           "axes": {
@@ -65,7 +64,7 @@
         },
         {
           "slug": "pageviews",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Pageviews",
           "description": "",
           "data-group": "gov-uk-content",
@@ -76,9 +75,8 @@
             "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
             "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
           ],
-          "denominator-matcher": "hm-treasury",
-          "numerator-matcher": "hm-treasury",
-          "matching-attribute": "department",
+          "group-by": "department",
+          "filter-by": "department:hm-treasury",
           "value-attribute": "pageviews:sum",
           "period": "week",
           "axes": {
@@ -386,17 +384,17 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop",
+            "groupId": "desktop",
             "format": "percent"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile",
+            "groupId": "mobile",
             "format": "percent"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet",
+            "groupId": "tablet",
             "format": "percent"
           }
         ]
@@ -435,12 +433,12 @@
         "y": [
           {
             "label": "New visitors",
-            "categoryId": "New Visitor",
+            "groupId": "New Visitor",
             "format": "percent"
           },
           {
             "label": "Returning visitors",
-            "categoryId": "Returning Visitor",
+            "groupId": "Returning Visitor",
             "format": "percent"
           }
         ]
@@ -577,7 +575,7 @@
     },
     {
       "slug": "total-feedback-received",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Total feedback received",
       "description": "",
       "data-group": "gov-uk-content",
@@ -588,9 +586,8 @@
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
       "default-value": 0,
-      "denominator-matcher": "hmt",
-      "numerator-matcher": "hmt",
-      "matching-attribute": "organisation_acronym",
+      "group-by": "organisation_acronym",
+      "filter-by": "organisation_acronym:hmt",
       "value-attribute": "comment_count:sum",
       "period": "month",
       "axes": {

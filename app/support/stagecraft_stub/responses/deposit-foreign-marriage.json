@@ -39,7 +39,7 @@
     },
     {
       "slug": "payments",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
       "data-group": "deposit-foreign-marriage",

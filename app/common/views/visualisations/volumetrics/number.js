@@ -13,27 +13,23 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      if (this.collection.at(0)) {
-        return this.formatValue(this.collection.at(0).get(this.valueAttr));
-      } else {
-        return null;
-      }
+      return this.formatValue(this.collection.mean(this.valueAttr));
     },
 
     getLabel: function () {
-      var period = this.getPeriod(),
-          events, unavailableEvents, label;
-
-      if (this.collection.at(0)) {
-        events = this.collection.at(0).get('periods');
-        unavailableEvents = events.total - events.available;
+      var period = this.getPeriod();
+      var available = this.collection.defined(this.valueAttr).length;
+      var label;
+      if (available === 0) {
+        label = '(no data)';
+      } else {
+        var unavailableEvents = this.collection.length - available;
         label = [
           this.labelPrefix,
           'last',
-          events.total,
-          this.format(events.total, { type: 'plural', singular: period })
+          this.collection.length,
+          this.format(this.collection.length, { type: 'plural', singular: period })
         ];
-
         if (unavailableEvents > 0) {
           label = label.concat([
             '<span class="unavailable">(' + unavailableEvents,
@@ -41,16 +37,15 @@ function (SingleStatView) {
             'unavailable)</span>'
           ]);
         }
-        return label.join(' ');
-      } else {
-        return '(no data)';
+        label = label.join(' ');
       }
+      return label;
     },
 
     getValueSelected: function (selection) {
       var val;
-      if (selection.selectedGroupIndex !== null) {
-        val = selection.selectedModel.get(this.selectionValueAttr);
+      if (selection.selectedModel !== null) {
+        val = selection.selectedModel.get(this.valueAttr);
       } else {
         val = null;
       }
@@ -58,7 +53,7 @@ function (SingleStatView) {
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedGroupIndex !== null) {
+      if (selection.selectedModel !== null) {
         return this.formatPeriod(selection.selectedModel, this.getPeriod());
       } else {
         return '';

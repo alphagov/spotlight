@@ -1,193 +1,66 @@
 define([
   'common/collections/grouped_timeseries',
   'extensions/collections/collection',
-  'extensions/collections/matrix',
   'extensions/models/query'
 ],
-function (GroupedTimeseries, Collection, MatrixCollection, Query) {
+function (GroupedTimeseries, Collection, Query) {
   describe('GroupedTimeseries', function () {
-    var response = {
-      'data': [
-        {
-          'some:value': 3,
-          'values': [
-            {
-              '_end_at': '2012-09-01T00:00:00+00:00',
-              'some:value': 3,
-              '_start_at': '2012-08-01T00:00:00+00:00'
-            },
-            {
-              '_end_at': '2012-10-01T00:00:00+00:00',
-              'some:value': null,
-              '_start_at': '2012-09-01T00:00:00+00:00'
-            }
-          ],
-          'some-category': 'xyz'
-        },
-        {
-          'some:value': 7,
-          'values': [
-            {
-              '_end_at': '2012-09-01T00:00:00+00:00',
-              'some:value': 3,
-              '_start_at': '2012-08-01T00:00:00+00:00'
-            },
-            {
-              '_end_at': '2012-10-01T00:00:00+00:00',
-              'some:value': 4,
-              '_start_at': '2012-09-01T00:00:00+00:00'
-            }
-          ],
-          'some-category': 'abc'
-        },
-        {
-          'some:value': 16,
-          'values': [
-            {
-              '_end_at': '2012-09-01T00:00:00+00:00',
-              'some:value': 6,
-              '_start_at': '2012-08-01T00:00:00+00:00'
-            },
-            {
-              '_end_at': '2012-10-01T00:00:00+00:00',
-              'some:value': 10,
-              '_start_at': '2012-09-01T00:00:00+00:00'
-            }
-          ],
-          'some-category': 'def'
-        }
-      ]
-    };
-
-    var expected = [
-      {
-        'id': 'abc',
-        'title': 'ABC',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 3,
-            '_start_at': '2012-08-01T00:00:00+00:00'
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': 4,
-            '_start_at': '2012-09-01T00:00:00+00:00'
-          }
-        ]
-      },
-      {
-        'id': 'def',
-        'title': 'DEF',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 6,
-            '_start_at': '2012-08-01T00:00:00+00:00'
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': 10,
-            '_start_at': '2012-09-01T00:00:00+00:00'
-          }
-        ]
-      },
-      {
-        'id': 'xyz',
-        'title': 'XYZ',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 3,
-            '_start_at': '2012-08-01T00:00:00+00:00'
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': null,
-            '_start_at': '2012-09-01T00:00:00+00:00'
-          }
-        ]
-      }
-    ];
-
-    var totalSeries = [
-      {
-        'id': 'Total',
-        'title': 'Total',
-        'values': [
-          {
-            '_start_at': '2012-08-01T00:00:00+00:00',
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 12
-          },
-          {
-            '_start_at': '2012-09-01T00:00:00+00:00',
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': 14
-          }
-        ]
-      }
-    ];
-    var expectedWithTotal = totalSeries.concat(expected);
-    var expectedWithPercentages = [
-      {
-        'id': 'abc',
-        'title': 'ABC',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 0.25,
-            '_start_at': '2012-08-01T00:00:00+00:00',
-            'some:value_original': 3
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': 0.2857142857142857,
-            '_start_at': '2012-09-01T00:00:00+00:00',
-            'some:value_original': 4,
-          }
-        ]
-      },
-      {
-        'id': 'def',
-        'title': 'DEF',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 0.5,
-            '_start_at': '2012-08-01T00:00:00+00:00',
-            'some:value_original': 6
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': 0.7142857142857143,
-            '_start_at': '2012-09-01T00:00:00+00:00',
-            'some:value_original': 10
-          }
-        ]
-      },
-      {
-        'id': 'xyz',
-        'title': 'XYZ',
-        'values': [
-          {
-            '_end_at': '2012-09-01T00:00:00+00:00',
-            'some:value': 0.25,
-            '_start_at': '2012-08-01T00:00:00+00:00',
-            'some:value_original': 3
-          },
-          {
-            '_end_at': '2012-10-01T00:00:00+00:00',
-            'some:value': null,
-            '_start_at': '2012-09-01T00:00:00+00:00',
-            'some:value_original': null
-          }
-        ]
-      }
-    ];
+    var response;
 
     var collection;
     beforeEach(function () {
+      response = {
+        'data': [
+          {
+            'some:value': 3,
+            'values': [
+              {
+                '_end_at': '2012-09-01T00:00:00+00:00',
+                'some:value': 3,
+                '_start_at': '2012-08-01T00:00:00+00:00'
+              },
+              {
+                '_end_at': '2012-10-01T00:00:00+00:00',
+                'some:value': null,
+                '_start_at': '2012-09-01T00:00:00+00:00'
+              }
+            ],
+            'some-category': 'xyz'
+          },
+          {
+            'some:value': 7,
+            'values': [
+              {
+                '_end_at': '2012-09-01T00:00:00+00:00',
+                'some:value': 3,
+                '_start_at': '2012-08-01T00:00:00+00:00'
+              },
+              {
+                '_end_at': '2012-10-01T00:00:00+00:00',
+                'some:value': 6,
+                '_start_at': '2012-09-01T00:00:00+00:00'
+              }
+            ],
+            'some-category': 'abc'
+          },
+          {
+            'some:value': 16,
+            'values': [
+              {
+                '_end_at': '2012-09-01T00:00:00+00:00',
+                'some:value': 6,
+                '_start_at': '2012-08-01T00:00:00+00:00'
+              },
+              {
+                '_end_at': '2012-10-01T00:00:00+00:00',
+                'some:value': 10,
+                '_start_at': '2012-09-01T00:00:00+00:00'
+              }
+            ],
+            'some-category': 'def'
+          }
+        ]
+      };
       collection = new GroupedTimeseries([], {
         'data-type': 'some-type',
         'data-group': 'some-group',
@@ -204,18 +77,15 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
           y: [
             {
               'label': 'ABC',
-              'categoryId': 'abc',
-              'key': 'value:sum'
+              'groupId': 'abc'
             },
             {
               'label': 'DEF',
-              'categoryId': 'def',
-              'key': 'value:sum'
+              'groupId': 'def'
             },
             {
               'label': 'XYZ',
-              'categoryId': 'xyz',
-              'key': 'value:sum'
+              'groupId': 'xyz'
             }
           ]
         }
@@ -267,9 +137,32 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
     });
 
     describe('parse', function () {
-      it('parses the response', function () {
+
+      it('collapses groups into single models', function () {
         var parsed = collection.parse(response);
-        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
+        expect(parsed.length).toEqual(2);
+        expect(parsed[0]['abc:some:value']).toEqual(3);
+        expect(parsed[1]['abc:some:value']).toEqual(6);
+        expect(parsed[0]['def:some:value']).toEqual(6);
+        expect(parsed[1]['def:some:value']).toEqual(10);
+        expect(parsed[0]['xyz:some:value']).toEqual(3);
+        expect(parsed[1]['xyz:some:value']).toEqual(null);
+      });
+
+      it('adds total properties to models', function () {
+        var parsed = collection.parse(response);
+        expect(parsed[0]['total:some:value']).toEqual(12);
+        expect(parsed[1]['total:some:value']).toEqual(16);
+      });
+
+      it('adds percent properties to models for each axis property', function () {
+        var parsed = collection.parse(response);
+        expect(parsed[0]['abc:some:value:percent']).toEqual(0.25);
+        expect(parsed[0]['def:some:value:percent']).toEqual(0.5);
+        expect(parsed[0]['xyz:some:value:percent']).toEqual(0.25);
+        expect(parsed[1]['abc:some:value:percent']).toEqual(0.375);
+        expect(parsed[1]['def:some:value:percent']).toEqual(0.625);
+        expect(parsed[1]['xyz:some:value:percent']).toEqual(0);
       });
 
       it('copes if not all of the specified series are present in the response', function () {
@@ -287,30 +180,30 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             y: [
               {
                 'label': 'ABC',
-                'categoryId': 'abc',
-                'key': 'value:sum'
+                'groupId': 'abc'
               },
               {
                 'label': 'DEF',
-                'categoryId': 'def',
-                'key': 'value:sum'
+                'groupId': 'def'
               },
               {
                 'label': 'XYZ',
-                'categoryId': 'xyz',
-                'key': 'value:sum'
+                'groupId': 'xyz'
               },
               {
                 'label': 'GHI',
-                'categoryId': 'ghi',
-                'key': 'value:sum'
+                'groupId': 'ghi'
               }
             ]
           }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
-        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expected));
+
+        expect(parsed[0]['ghi:some:value']).toEqual(null);
+        expect(parsed[1]['ghi:some:value']).toEqual(null);
+        expect(parsed[0]['ghi:some:value:percent']).toEqual(0);
+        expect(parsed[1]['ghi:some:value:percent']).toEqual(0);
       });
 
       it('copes if none of the specified series are present in the response', function () {
@@ -328,141 +221,49 @@ function (GroupedTimeseries, Collection, MatrixCollection, Query) {
             y: [
               {
                 'label': 'GHI',
-                'categoryId': 'ghi',
-                'key': 'value:sum'
+                'groupId': 'ghi'
               }
             ]
           }
         });
 
         var parsed = collectionWithExtraSeries.parse(response);
-        expect(JSON.stringify(parsed)).toEqual(JSON.stringify([]));
-      });
-
-      it('calculates total lines if specified', function () {
-        var totalCollection = new GroupedTimeseries([], {
-          'data-type': 'some-type',
-          'data-group': 'some-group',
-          valueAttr: 'some:value',
-          category: 'some-category',
-          period: 'month',
-          axes: {
-            x: {
-              label: 'Date',
-              key: '_start_at'
-            },
-            y: [
-              {
-                label: 'Total',
-                categoryId: 'Total'
-              },
-              {
-                label: 'ABC',
-                categoryId: 'abc',
-                key: 'value:sum'
-              },
-              {
-                label: 'DEF',
-                categoryId: 'def',
-                key: 'value:sum'
-              },
-              {
-                label: 'XYZ',
-                categoryId: 'xyz',
-                key: 'value:sum'
-              }
-            ]
-          },
-          'show-total-lines': true
-        });
-        totalCollection.options.showTotalLines = true;
-
-        var parsed = totalCollection.parse(response);
-        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithTotal));
-
+        expect(parsed[0]['ghi:some:value']).toEqual(null);
+        expect(parsed[1]['ghi:some:value']).toEqual(null);
+        expect(parsed[0]['total:some:value']).toEqual(null);
+        expect(parsed[1]['total:some:value']).toEqual(null);
+        expect(parsed[0]['ghi:some:value:percent']).toEqual(null);
+        expect(parsed[1]['ghi:some:value:percent']).toEqual(null);
       });
 
       it('groups categories together if mappings are provided', function () {
         collection.options.groupMapping = {
           def: 'abc'
         };
-
-        var output = collection.parse(response);
-
-        expect(output.length).toEqual(2);
-
-        expect(output[0]).toEqual({
-          'id': 'abc',
-          'title': 'ABC',
-          'values': [
-            {
-              '_end_at': '2012-09-01T00:00:00+00:00',
-              'some:value': 9,
-              '_start_at': '2012-08-01T00:00:00+00:00'
-            },
-            {
-              '_end_at': '2012-10-01T00:00:00+00:00',
-              'some:value': 14,
-              '_start_at': '2012-09-01T00:00:00+00:00'
-            }
-          ]
-        });
-        expect(output[1]).toEqual({
-          'id': 'xyz',
-          'title': 'XYZ',
-          'values': [
-            {
-              '_end_at': '2012-09-01T00:00:00+00:00',
-              'some:value': 3,
-              '_start_at': '2012-08-01T00:00:00+00:00'
-            },
-            {
-              '_end_at': '2012-10-01T00:00:00+00:00',
-              'some:value': null,
-              '_start_at': '2012-09-01T00:00:00+00:00'
-            }
-          ]
-        });
-      });
-
-      it('calculates percentages if specified', function () {
-        var totalCollection = new GroupedTimeseries([], {
-          'data-type': 'some-type',
-          'data-group': 'some-group',
-          valueAttr: 'some:value',
-          category: 'some-category',
-          period: 'month',
-          axes: {
-            x: {
-              label: 'Date',
-              key: '_start_at'
-            },
-            y: [
-              {
-                label: 'ABC',
-                categoryId: 'abc',
-                key: 'value:sum'
-              },
-              {
-                label: 'DEF',
-                categoryId: 'def',
-                key: 'value:sum'
-              },
-              {
-                label: 'XYZ',
-                categoryId: 'xyz',
-                key: 'value:sum'
-              }
-            ]
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
           },
-          'use_stack': false,
-          'one-hundred-percent': true
-        });
-        totalCollection.options.isOneHundredPercent = true;
-        totalCollection.options.useStack = false;
+          {
+            'label': 'XYZ',
+            'groupId': 'xyz'
+          }
+        ];
 
-        var parsed = totalCollection.parse(response);
-        expect(JSON.stringify(parsed)).toEqual(JSON.stringify(expectedWithPercentages));
+        var parsed = collection.parse(response);
+        expect(parsed[0]['abc:some:value']).toEqual(9);
+        expect(parsed[1]['abc:some:value']).toEqual(16);
+        expect(parsed[0]['abc:some:value:percent']).toEqual(0.75);
+        expect(parsed[1]['abc:some:value:percent']).toEqual(1);
+
+        expect(parsed[0]['def:some:value']).toBeUndefined();
+        expect(parsed[1]['def:some:value']).toBeUndefined();
+        expect(parsed[0]['def:some:value:percent']).toBeUndefined();
+        expect(parsed[1]['def:some:value:percent']).toBeUndefined();
+
+        expect(parsed[0]['total:some:value']).toEqual(12);
+        expect(parsed[1]['total:some:value']).toEqual(16);
 
       });
 

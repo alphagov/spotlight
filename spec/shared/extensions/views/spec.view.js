@@ -271,22 +271,20 @@ function (View, Model, Backbone) {
         expect(view.formatPeriod(model, 'day')).toEqual('19 Aug 2013');
       });
 
-      it('formats daily date periods mid-month', function () {
+      it('formats weekly date periods mid-month', function () {
         var model = new Model({
           _start_at: View.prototype.getMoment('2013-08-19T00:00:00+00:00'),
           _end_at: View.prototype.getMoment('2013-08-26T00:00:00+00:00')
         });
         expect(view.formatPeriod(model, 'week')).toEqual('19 to 25 Aug 2013');
-        expect(view.formatPeriod(model, 'day')).toEqual('19 to 25 Aug 2013');
       });
 
-      it('formats daily date periods across month boundaries', function () {
+      it('formats weekly date periods across month boundaries', function () {
         var model = new Model({
           _start_at: View.prototype.getMoment('2013-08-26T00:00:00+00:00'),
           _end_at: View.prototype.getMoment('2013-09-02T00:00:00+00:00')
         });
         expect(view.formatPeriod(model, 'week')).toEqual('26 Aug to 1 Sep 2013');
-        expect(view.formatPeriod(model, 'day')).toEqual('26 Aug to 1 Sep 2013');
       });
 
       it('formats as single month when there is no end date defined', function () {
@@ -296,7 +294,7 @@ function (View, Model, Backbone) {
         expect(view.formatPeriod(model, 'month')).toEqual('August 2013');
       });
 
-      it('formats monthly date periods for a single month', function () {
+      it('formats monthly date periods as a single month', function () {
         var model = new Model({
           _start_at: View.prototype.getMoment('2013-08-01T00:00:00+00:00'),
           _end_at: View.prototype.getMoment('2013-09-01T00:00:00+00:00')
@@ -304,20 +302,20 @@ function (View, Model, Backbone) {
         expect(view.formatPeriod(model, 'month')).toEqual('August 2013');
       });
 
-      it('formats monthly date periods across months', function () {
+      it('formats quarterly date period mid-year', function () {
         var model = new Model({
           _start_at: View.prototype.getMoment('2013-08-01T00:00:00+00:00'),
-          _end_at: View.prototype.getMoment('2013-10-01T00:00:00+00:00')
+          _end_at: View.prototype.getMoment('2013-11-01T00:00:00+00:00')
         });
-        expect(view.formatPeriod(model, 'month')).toEqual('Aug to Sep 2013');
+        expect(view.formatPeriod(model, 'quarter')).toEqual('Aug to Oct 2013');
       });
 
-      it('formats monthly date periods across years', function () {
+      it('formats quarterly date period across years', function () {
         var model = new Model({
-          _start_at: View.prototype.getMoment('2013-08-01T00:00:00+00:00'),
+          _start_at: View.prototype.getMoment('2013-11-01T00:00:00+00:00'),
           _end_at: View.prototype.getMoment('2014-02-01T00:00:00+00:00')
         });
-        expect(view.formatPeriod(model, 'month')).toEqual('Aug 2013 to Jan 2014');
+        expect(view.formatPeriod(model, 'quarter')).toEqual('Nov 2013 to Jan 2014');
       });
 
       it('formats original dates if they are set', function () {
@@ -328,7 +326,7 @@ function (View, Model, Backbone) {
           _start_at: View.prototype.getMoment('2013-08-01T00:00:00+00:00'),
           _end_at: View.prototype.getMoment('2014-02-01T00:00:00+00:00')
         });
-        expect(view.formatPeriod(model, 'month')).toEqual('Aug 2010 to Jan 2011');
+        expect(view.formatPeriod(model, 'quarter')).toEqual('Aug 2010 to Jan 2011');
       });
 
       it('when passed a date string converts it to a date', function () {

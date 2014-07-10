@@ -17,41 +17,6 @@ function (Collection, Model, Backbone) {
     });
 
     describe('initialize', function () {
-      it('creates instances of constituent collections with default options', function () {
-        var Part1 = Collection.extend({});
-        var Part2 = Collection.extend({});
-        var collection = new Collection([], {
-          collections: [Part1, Part2]
-        });
-        expect(collection.collectionInstances[0] instanceof Part1).toBe(true);
-        expect(collection.collectionInstances[1] instanceof Part2).toBe(true);
-      });
-
-      it('creates instances of constituent collections with custom options', function () {
-        var Part1 = Collection.extend({});
-        var Part2 = Collection.extend({});
-        var collection = new Collection([], {
-          foo: 'wrong',
-          collections: [
-            {
-              collection: Part1,
-              options: {
-                foo: 'bar'
-              }
-            },
-            {
-              collection: Part2,
-              options: {
-                foo: 'baz'
-              }
-            }
-          ]
-        });
-        expect(collection.collectionInstances[0] instanceof Part1).toBe(true);
-        expect(collection.collectionInstances[1] instanceof Part2).toBe(true);
-        expect(collection.collectionInstances[0].options.foo).toEqual('bar');
-        expect(collection.collectionInstances[1].options.foo).toEqual('baz');
-      });
 
       it('sets queryParams option to `this` if defined', function () {
 
@@ -122,7 +87,6 @@ function (Collection, Model, Backbone) {
           queryId: 'testid'
         });
         spyOn(TestCollection.prototype, 'sync');
-        spyOn(TestCollection.prototype, 'fetchParts');
       });
 
       it('adds a unique identifier to the request', function () {
@@ -135,95 +99,7 @@ function (Collection, Model, Backbone) {
         var collection = new TestCollection();
         collection.fetch();
         expect(TestCollection.prototype.sync).toHaveBeenCalled();
-        expect(TestCollection.prototype.fetchParts).not.toHaveBeenCalled();
       });
-
-      it('retrieves data for constituent parts when configured', function () {
-        TestCollection.prototype.collections = [
-          Collection
-        ];
-        var collection = new TestCollection();
-        collection.fetch();
-        expect(TestCollection.prototype.sync).not.toHaveBeenCalled();
-        expect(TestCollection.prototype.fetchParts).toHaveBeenCalled();
-      });
-    });
-
-    describe('fetchParts', function () {
-      var collection, part1, part2;
-      beforeEach(function () {
-        collection = new Collection();
-        var Part1Collection = Collection.extend({
-          queryParams: {part: 'one'},
-          fetch: jasmine.createSpy(),
-          on: jasmine.createSpy()
-        });
-        var Part2Collection = Collection.extend({
-          queryParams: {part: 'two'},
-          fetch: jasmine.createSpy(),
-          on: jasmine.createSpy()
-        });
-        part1 = new Part1Collection();
-        part2 = new Part2Collection();
-        collection.collectionInstances = [part1, part2];
-        spyOn(collection, 'parse');
-      });
-
-      it('propagates shared query parameters to all collections', function () {
-        collection.query.set('foo', 'bar');
-        expect(part1.query.attributes).toEqual({ foo: 'bar', part: 'one' });
-        expect(part2.query.attributes).toEqual({ foo: 'bar', part: 'two' });
-        expect(part1.fetch).toHaveBeenCalled();
-        expect(part2.fetch).toHaveBeenCalled();
-      });
-
-      it('fetches data for all collections', function () {
-        collection.fetch();
-        expect(part1.fetch).toHaveBeenCalled();
-        expect(part2.fetch).toHaveBeenCalled();
-      });
-
-      it('parses data once all collections have fetched successfully', function () {
-        collection.fetch();
-        expect(part1.fetch).toHaveBeenCalled();
-        expect(part2.fetch).toHaveBeenCalled();
-        expect(collection.parse).not.toHaveBeenCalled();
-
-        part2.fetch.argsForCall[0][0].success();
-        expect(collection.parse).not.toHaveBeenCalled();
-
-        part1.fetch.argsForCall[0][0].success();
-        expect(collection.parse).toHaveBeenCalled();
-      });
-
-      it('fails as soon as a request fails', function () {
-        var onError1 = jasmine.createSpy();
-        var onError2 = jasmine.createSpy();
-
-        collection.fetch({
-          error: onError1
-        });
-        collection.on('error', onError2);
-
-        expect(part2.on.argsForCall[0][0]).toEqual('error');
-        var onErrorListener = part2.on.argsForCall[0][1];
-
-        expect(part1.fetch).toHaveBeenCalled();
-        expect(part2.fetch).toHaveBeenCalled();
-        expect(onError1).not.toHaveBeenCalled();
-        expect(onError2).not.toHaveBeenCalled();
-
-        // part 2 fails - the error is escalated immediately
-        onErrorListener.call(collection);
-        expect(collection.parse).not.toHaveBeenCalled();
-        expect(onError1).toHaveBeenCalled();
-        expect(onError2).toHaveBeenCalled();
-
-        // part 1 returns successfully - parse is still not called
-        part1.fetch.argsForCall[0][0].success();
-        expect(collection.parse).not.toHaveBeenCalled();
-      });
-
     });
 
     describe('url', function () {
@@ -547,7 +423,12 @@ function (Collection, Model, Backbone) {
         collection.selectItem(1);
         expect(collection.selectedItem).toBe(collection.at(1));
         expect(collection.selectedIndex).toEqual(1);
-        expect(spy).toHaveBeenCalledWith(collection.at(1), 1);
+        expect(spy).toHaveBeenCalledWith(collection.at(1), 1, {});
+      });
+
+      it('passes options to listeners', function () {
+        collection.selectItem(1, { foo: 'bar' });
+        expect(spy).toHaveBeenCalledWith(collection.at(1), 1, { foo: 'bar' });
       });
 
       it('selects an item in the collection but allows suppressing the event', function () {
@@ -568,12 +449,21 @@ function (Collection, Model, Backbone) {
         expect(spy).toHaveBeenCalled();
       });
 
+      it('does not do anything when the item is already selected unless force flag is passed', function () {
+        collection.selectItem(1, { silent: true });
+        expect(collection.selectedItem).toBe(collection.at(1));
+        expect(collection.selectedIndex).toEqual(1);
+        expect(spy).not.toHaveBeenCalled();
+        collection.selectItem(1, { force: true });
+        expect(spy).toHaveBeenCalled();
+      });
+
       it('unselects the current selection', function () {
         collection.selectItem(1, { silent: true });
         expect(collection.selectedItem).toBe(collection.at(1));
         expect(collection.selectedIndex).toEqual(1);
         collection.selectItem(null);
-        expect(spy).toHaveBeenCalledWith(null, null);
+        expect(spy).toHaveBeenCalledWith(null, null, {});
       });
     });
 
@@ -768,6 +658,68 @@ function (Collection, Model, Backbone) {
           ];
         collection.trim(input, 5);
         expect(input.length).toEqual(5);
+      });
+
+    });
+
+    describe('total', function () {
+
+      var collection;
+
+      beforeEach(function () {
+        collection = new Collection([
+          { a: 1 },
+          { a: 2 },
+          { a: 3 },
+          { a: 4 }
+        ]);
+      });
+
+      it('returns the total value of the attribute passed across all models', function () {
+        expect(collection.total('a')).toEqual(10);
+
+        collection.add({ a: 5 });
+
+        expect(collection.total('a')).toEqual(15);
+      });
+
+      it('ignores null values', function () {
+        collection.at(1).set({ a: null });
+
+        expect(collection.total('a')).toEqual(8);
+      });
+
+      it('returns null if all values are null', function () {
+        expect(collection.total('b')).toEqual(null);
+      });
+
+    });
+
+    describe('mean', function () {
+
+      var collection;
+
+      beforeEach(function () {
+        collection = new Collection();
+        collection.reset([
+          { count: 1 },
+          { count: 2 },
+          { count: 3 },
+          { count: 4 }
+        ]);
+      });
+
+      it('returns the mean of the attribute passed', function () {
+        expect(collection.mean('count')).toEqual(2.5);
+      });
+
+      it('returns null for non-matching attributes', function () {
+        expect(collection.mean('foo')).toEqual(null);
+      });
+
+      it('returns null for an empty collection', function () {
+        collection.reset([]);
+        expect(collection.mean('count')).toEqual(null);
       });
 
     });

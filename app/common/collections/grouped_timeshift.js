@@ -1,23 +1,15 @@
 define([
-  'extensions/collections/matrix',
-  'extensions/models/query',
+  './grouped_timeseries',
   'moment-timezone'
 ],
-function (MatrixCollection, Query, moment) {
+function (GroupedCollection, moment) {
 
   var format = 'YYYY-MM-DD[T]HH:mm:ss';
 
-  var GroupedTimeshiftCollection = MatrixCollection.extend({
+  return GroupedCollection.extend({
     queryParams: function () {
-      var params = {
-        collect: this.options.valueAttr,
-        period: this.options.period,
-        group_by: this.options.category,
-        duration: this.duration()
-      };
-      if (this.options.filterBy) {
-        params.filter_by = this.options.filterBy;
-      }
+      var params = GroupedCollection.prototype.queryParams.apply(this, arguments);
+      params.duration = this.duration();
       if (this.options.startAt) {
         params.start_at = moment(this.options.startAt).subtract(this.options.period, this.timeshift()).format(format);
         params.duration = this.standardDuration();
@@ -29,7 +21,7 @@ function (MatrixCollection, Query, moment) {
       if (this.options.duration) {
         return this.options.duration;
       } else {
-        return Query.prototype.periods[this.options.period].duration;
+        return this.query.periods[this.options.period].duration;
       }
     },
 
@@ -45,69 +37,31 @@ function (MatrixCollection, Query, moment) {
       return (maxTimeshift.timeshift || 0);
     },
 
-    applyStandardDates: function (seriesList) {
-      return _.map(seriesList, function (series) {
-        for (var i = 0, _i = series.values.length; i < _i; i++) {
-          // copy old values by value rather than reference
-          if (series.timeshift) {
-            series.values[i]._original_start_at = '' + series.values[i]._start_at;
-            series.values[i]._original_end_at = '' + series.values[i]._end_at;
-
-            series.values[i]._start_at = moment(series.values[i]._start_at).add(this.options.period, series.timeshift).format(format);
-            series.values[i]._end_at = moment(series.values[i]._end_at).add(this.options.period, series.timeshift).format(format);
-          }
-        }
-        while (series.values.length < this.standardDuration()) {
-          var last = series.values[series.values.length - 1],
-            pad = {};
-          pad[this.options.valueAttr] = null;
-          series.values.push(_.extend({
-            _start_at: moment(last._start_at).add(this.options.period, 1).format(format),
-            _end_at: moment(last._end_at).add(this.options.period, 1).format(format)
-          }, pad));
-        }
-        return series;
+    flatten: function (data) {
+      data = GroupedCollection.prototype.flatten.apply(this, arguments);
+      return _.filter(data, function (model) {
+        return moment(_.last(data)._start_at).diff(model._start_at, this.options.period) < this.options.duration;
       }, this);
     },
 
-    parse: function (response) {
-      var data = response.data;
-      var startOffset = this.duration() - this.standardDuration();
+    mergeDataset: function (source, target, axis) {
+      if (axis.timeshift) {
+        _.each(source.values, function (model, i) {
+          model._original_start_at = model._start_at;
+          model._original_end_at = model._end_at;
+          var _start_at = moment(model._start_at);
+          var _end_at = moment(model._start_at);
+          _start_at.add(this.options.period, axis.timeshift).format(format);
+          _end_at.add(this.options.period, axis.timeshift).format(format);
 
-      var matchedSeries = _.chain(this.options.axes.y)
-                           .filter(function (series) {
-                              return _.find(data, function (d) {
-                                return d[this.options.category] === series.categoryId;
-                              }, this);
-                            }, this)
-                           .map(function (series) {
-                              var dataSeries = _.find(data, function (d) {
-                                return d[this.options.category] === series.categoryId;
-                              }, this);
-
-                              var start = startOffset;
-                              var id = series.categoryId;
-
-                              if (series.timeshift) {
-                                id = series.categoryId + series.timeshift;
-                                start = startOffset - series.timeshift;
-                              }
-                              var end = start + this.standardDuration();
-
-                              return {
-                                id: id,
-                                title: series.label,
-                                timeshift: series.timeshift,
-                                values: dataSeries.values.slice(start, end)
-                              };
-
-                            }, this)
-                           .value();
-
-      return this.applyStandardDates(matchedSeries);
+          if (target.values[i + axis.timeshift]) {
+            target.values[i + axis.timeshift]['timeshift' + axis.timeshift + ':' + axis.groupId + ':' + this.valueAttr] = model[this.valueAttr];
+          }
+        }, this);
+      } else {
+        GroupedCollection.prototype.mergeDataset.apply(this, arguments);
+      }
     }
 
   });
-
-  return GroupedTimeshiftCollection;
 });

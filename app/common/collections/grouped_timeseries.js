@@ -1,9 +1,9 @@
 define([
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ],
-function (MatrixCollection) {
+function (Collection) {
 
-  var CategoriesCollection = MatrixCollection.extend({
+  return Collection.extend({
     queryParams: function () {
       return {
         collect: this.options.valueAttr,
@@ -16,133 +16,54 @@ function (MatrixCollection) {
       };
     },
 
-    parse: function (response) {
-      var data = response.data;
-      this.category = this.options.category;
-      this.valueAttr = this.options.valueAttr;
+    parse: function () {
+      var data = Collection.prototype.parse.apply(this, arguments);
+      var lines = this.options.axes.y;
 
       if (this.options.groupMapping) {
-        data = this.groupData(data);
-      }
-      if (this.options.showTotalLines) {
-        data = this.createTotals(data);
-      }
-      if (this.options.isOneHundredPercent && !this.options.useStack) {
-        data = this.transformToPercentages(data);
-      }
-
-      return _.chain(this.options.axes.y)
-                     .filter(function (series) {
-                        return _.find(data, function (d) {
-                          return d[this.category] === series.categoryId;
-                        }, this);
-                      }, this)
-                     .map(function (series) {
-                        var dataSeries = _.find(data, function (d) {
-                          return d[this.category] === series.categoryId;
-                        }, this);
-
-                        return _.extend({
-                          id: series.categoryId,
-                          title: series.label,
-                          href: series.href
-                        }, {
-                          values: dataSeries.values
-                        });
-                      }, this)
-                     .value();
-    },
-
-    transformToPercentages: function (data) {
-
-      var dataWithPercentages = _.clone(data);
-      var totalSeries = _.find(this.createTotals(data), function (series) {
-        return series[this.category] === this.totalSeriesLabel;
-      }, this);
-
-      _.each(dataWithPercentages, function (d) {
-        _.each(d.values, function (obj, i) {
-          obj[this.valueAttr + '_original'] = obj[this.valueAttr];
-          // If the data we're returned is null, we don't want to do any transformation on it.
-          if (obj[this.valueAttr] !== null) {
-            obj[this.valueAttr] = obj[this.valueAttr] / totalSeries.values[i][this.valueAttr];
-          }
-        }, this);
-      }, this);
-
-      return dataWithPercentages;
-    },
-
-    createTotals: function (data) {
-
-      this.totalSeriesLabel = 'Total';
-      var totalSeries = {};
-
-      totalSeries[this.category] = this.totalSeriesLabel;
-      totalSeries[this.valueAttr] = 0.0;
-
-      var totalValues = [];
-      var tmp = {};
-
-      _.each(data, function (d) {
-        _.each(d.values, function (obj) {
-          if (tmp[obj._start_at]) {
-            if ((this.valueAttr in obj) && (obj[this.valueAttr] !== null)) {
-              tmp[obj._start_at][this.valueAttr] += obj[this.valueAttr];
+        _.each(data, function (model) {
+          _.each(this.options.groupMapping, function (to, from) {
+            if (model[from + ':' + this.valueAttr]) {
+              model[to + ':' + this.valueAttr] += model[from + ':' + this.valueAttr];
             }
+            delete model[from + ':' + this.valueAttr];
+          }, this);
+        }, this);
+      }
+
+      _.each(data, function (model) {
+        model['total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
+          var prop = line.key || line.groupId;
+          var value = model[prop + ':' + this.valueAttr];
+          if (value === undefined) {
+            value = model[prop + ':' + this.valueAttr] = null;
+          }
+          if (prop !== 'total' && value !== null) {
+            sum += value;
+          }
+          return sum;
+        }, null, this);
+        _.each(lines, function (line) {
+          var prop = (line.key || line.groupId) + ':' + this.valueAttr;
+          if (model['total:' + this.valueAttr]) {
+            model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
           } else {
-            tmp[obj._start_at] = {_end_at: obj._end_at};
-            tmp[obj._start_at][this.valueAttr] = (this.valueAttr in obj) ? obj[this.valueAttr] : 0;
+            model[prop + ':percent'] = null;
           }
         }, this);
       }, this);
-      _.each(tmp, function (v, i) {
-          var t = {_start_at: i, _end_at: v._end_at};
-          t[this.valueAttr] = v[this.valueAttr];
-          totalValues.push(t);
-        }, this);
 
-      totalSeries.values = totalValues;
-      data.push(totalSeries);
       return data;
     },
 
-    groupData: function (data) {
-      var mapped = {};
-
-      _.each(data, function (d) {
-        var key = this.options.groupMapping[d[this.category]] || d[this.category];
-
-        if (!mapped[key]) {
-          mapped[key] = {};
-        }
-        _.each(d.values, function (obj) {
-          if (mapped[key][obj._start_at]) {
-            if ((this.valueAttr in obj) && (obj[this.valueAttr] !== null)) {
-              mapped[key][obj._start_at][this.valueAttr] += obj[this.valueAttr];
-            }
-          } else {
-            mapped[key][obj._start_at] = {_end_at: obj._end_at};
-            if (this.valueAttr in obj) {
-              mapped[key][obj._start_at][this.valueAttr] = obj[this.valueAttr];
-            }
-          }
-        }, this);
-      }, this);
-
-      return _.map(mapped, function (values, key) {
-        var groupData = {  };
-        groupData[this.category] = key;
-        groupData.values = _.map(values, function (obj, start) {
-          return _.extend(obj, {
-            _start_at: start
-          });
-        });
-        return groupData;
-      }, this);
+    getYAxes: function () {
+      var axes = Collection.prototype.getYAxes.apply(this, arguments);
+      _.each(this.options.groupMapping, function (to, from) {
+        axes.push({ groupId: from });
+      });
+      return axes;
     }
 
   });
 
-  return CategoriesCollection;
 });

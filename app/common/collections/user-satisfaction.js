@@ -1,5 +1,5 @@
 define([
-  'extensions/collections/matrix'
+  'extensions/collections/collection'
 ], function (Collection) {
 
   return Collection.extend({
@@ -24,35 +24,31 @@ define([
         duration: this.options.duration
       };
     },
-    parse: function (response) {
-      response.data = response.data || [];
-      var totalscore = 0;
-      var totalratings = 0;
-      _.each(response.data, function (datapoint) {
+    parse: function () {
+      var data = Collection.prototype.parse.apply(this, arguments);
+      _.each(data, function (datapoint) {
         var score = 0;
         _.each(_.range(this.options.min, this.options.max + 1), function (i) {
-          score += (datapoint['rating_' + i + ':sum'] * i);
+          score += (datapoint['rating_' + i] * i);
         });
-        totalscore += score;
-        totalratings += datapoint['total:sum'];
-        var mean = score / datapoint['total:sum'];
-        datapoint[this.options.valueAttr] = this.toPercent(mean);
+        var mean = score / datapoint['total'];
+        datapoint[this.valueAttr + ':sum'] = score;
+        datapoint[this.valueAttr] = this.toPercent(mean);
       }, this);
       if (this.options.trim) {
-        this.trim(response.data, this.options.trim);
+        this.trim(data, this.options.trim);
       }
-      var parsed = {
-        values: response.data,
-        id: this.options.id,
-        title: this.options.title,
-        periods: {
-          total: response.data.length,
-          available: _.filter(response.data, function (v) { return v[this.options.valueAttr] !== null; }, this).length
-        }
-      };
-      parsed[this.options.totalAttr] = this.toPercent(totalscore / totalratings);
-      return parsed;
+      return data;
+    },
+
+    mean: function (attr) {
+      if (attr === this.options.valueAttr) {
+        var sum = this.total(this.options.valueAttr + ':sum');
+        var total = this.total('total');
+        return this.toPercent(sum / total);
+      }
     }
+
   });
 
 });

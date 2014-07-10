@@ -138,7 +138,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
     },
 
     formatPeriod: function (model, period) {
-      var start = model.get('_start_at') || model.get('start_at');
+      var start = model.get('_start_at') || model.get('start_at') || model.get('_timestamp');
       var end = model.get('_end_at') || model.get('end_at');
 
       if (model.get('_original_start_at')) {
@@ -146,41 +146,28 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         end = this.getMoment(model.get('_original_end_at'));
       }
 
-      if (start) {
-        start = this.getMoment(start);
-      }
-      if (end) {
-        end = this.getMoment(end);
-      }
+      var options = {
+        type: 'date',
+        format: this.getFormat(period)
+      };
 
-      switch (period) {
-        case 'week': // fall through; we're formatting weeks same as days
-        case 'day':
-          if (end) {
-            end = end.subtract(1, 'days');
-            if (start.diff(end)) {
-              if (start.month() !== end.month()) {
-                return start.format('D MMM') + ' to ' + end.format('D MMM YYYY');
-              } else {
-                return start.format('D') + ' to ' + end.format('D MMM YYYY');
-              }
-            }
-          }
-          return start.format('D MMM YYYY');
-        case 'month':
-        case 'quarter':
-          if (end) {
-            end = end.subtract(1, 'months');
-            if (start.diff(end)) {
-              if (start.year() !== end.year()) {
-                return start.format('MMM YYYY') + ' to ' + end.format('MMM YYYY');
-              } else if (start.month() !== end.month()) {
-                return start.format('MMM') + ' to ' + end.format('MMM YYYY');
-              }
-            }
-          }
-          return start.format('MMMM YYYY');
+      if (end && (period === 'week' || period === 'quarter')) {
+        options.type = 'dateRange';
+        return this.format([start, end], options);
+      } else {
+        return this.format(start, options);
       }
+    },
+
+    getFormat: function (period) {
+      var formats = {
+        hour: 'HH:mm',
+        day: 'D MMM YYYY',
+        week: 'D MMM YYYY',
+        month: 'MMMM YYYY',
+        quarter: 'MMM YYYY'
+      };
+      return formats[period];
     },
 
     /**

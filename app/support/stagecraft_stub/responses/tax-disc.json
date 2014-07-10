@@ -116,9 +116,9 @@
       ],
       "axes": {
         "y": [
-           { "categoryId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
-           { "categoryId": "assisted-digital", "label": "Post Office", "format": "integer" },
-           { "categoryId": "manual", "label": "DVLA centre", "format": "integer" }
+           { "groupId": "fully-digital", "label": "Digital and automated phone", "format": "integer" },
+           { "groupId": "assisted-digital", "label": "Post Office", "format": "integer" },
+           { "groupId": "manual", "label": "DVLA centre", "format": "integer" }
         ]
       }
     },

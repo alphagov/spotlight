@@ -53,17 +53,17 @@
         "y": [
           {
             "label": "Online",
-            "categoryId": "online",
+            "groupId": "online",
             "format": "integer"
           },
           {
             "label": "Telephone",
-            "categoryId": "phone",
+            "groupId": "phone",
             "format": "integer"
           },
           {
             "label": "Post",
-            "categoryId": "post",
+            "groupId": "post",
             "format": "integer"
           }
         ]
@@ -156,14 +156,14 @@
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
-          {"journeyId": "choose-type-of-test", "label": "Choose type of test", "format": "integer"},
-          {"journeyId": "enter-licence-details", "label": "Enter licence details", "format": "integer"},
-          {"journeyId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
-          {"journeyId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
-          {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
-          {"journeyId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
-          {"journeyId": "confirm-all-details", "label": "Confirm all details", "format": "integer"},
-          {"journeyId": "booking-complete", "label": "Booking complete", "format": "integer"}
+          {"groupId": "choose-type-of-test", "label": "Choose type of test", "format": "integer"},
+          {"groupId": "enter-licence-details", "label": "Enter licence details", "format": "integer"},
+          {"groupId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
+          {"groupId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
+          {"groupId": "enter-your-details", "label": "Enter your details", "format": "integer"},
+          {"groupId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
+          {"groupId": "confirm-all-details", "label": "Confirm all details", "format": "integer"},
+          {"groupId": "booking-complete", "label": "Booking complete", "format": "integer"}
         ]
       }
     },

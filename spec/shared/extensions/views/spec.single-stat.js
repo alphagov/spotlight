@@ -70,23 +70,6 @@ define([
         });
       });
 
-      it('sets selectedModel if available', function () {
-        var model = jasmine.createSpy('myfakeModel');
-
-        expect(view.selectedModel).toBeUndefined();
-
-        view.onChangeSelected(null, null, model, null);
-
-        expect(view.selectedModel).toEqual(model);
-      });
-
-      it('sets selectedModel to first item if passed array', function () {
-        var model = jasmine.createSpy('myfakeModel');
-        view.onChangeSelected(null, null, [model], null);
-
-        expect(view.selectedModel).toEqual(model);
-      });
-
       it('calls render', function () {
         view.onChangeSelected();
         expect(view.render).toHaveBeenCalled();

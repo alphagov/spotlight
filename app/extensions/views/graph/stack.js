@@ -1,149 +1,97 @@
 define([
-  'require',
-  './line',
-  'extensions/views/graph/component'
+  './line'
 ],
-function (require, Line, Component) {
-  var Stack = Line.extend({
+function (Line) {
+  return Line.extend({
 
-    selectGroup: true,
+    y0: function (index) {
+      var val = this.graph.getY0Pos(index, this.valueAttr);
+      return this.scales.y(val);
+    },
 
     render: function () {
-      Component.prototype.render.apply(this, arguments);
-
-      var layers = this.graph.layers;
-
-      var groupStacks = this.componentWrapper.selectAll('g.stacks').data([0]);
-      groupStacks.enter().append('g').attr('class', 'stacks');
-
-      var selectionStacks = groupStacks.selectAll('g.group')
-          .data(layers);
-      selectionStacks.exit().remove();
-
-      var groupLines = this.componentWrapper.selectAll('g.lines').data([0]);
-      groupLines.enter().append('g').attr('class', 'lines');
-
-      var selectionLines = groupLines.selectAll('g.group')
-          .data(layers);
-      selectionLines.exit().remove();
-
-      this.renderContent(selectionStacks, selectionLines);
+      Line.prototype.render.apply(this, arguments);
+      this.renderArea();
     },
 
-    renderContent: function (selectionStacks, selectionLines) {
-      var that = this;
-      var getX = function (model, index) {
-        return that.x.call(that, null, 0, model, index);
-      };
-
-      var yProperty = this.graph.stackYProperty || 'y';
-      var y0Property = this.graph.stackY0Property || 'y0';
-
-      var yScale = this.scales.y;
-
-      var hasYValue = function (model) {
-        return model[yProperty] !== null;
-      };
-
-      var getY = function (model) {
-        return yScale(model[yProperty] + model[y0Property]);
-      };
-
-      var getY0 = function (model) {
-        return yScale(model[y0Property]);
-      };
-
+    renderArea: function () {
+      var getX = _.bind(function (model, index) { return this.x(index); }, this);
+      var getY = _.bind(function (model, index) { return this.y(index); }, this);
+      var getY0 = _.bind(function (model, index) { return this.y0(index); }, this);
       var area = d3.svg.area()
-        .defined(hasYValue)
-        .x(getX)
-        .y0(getY0)
-        .y1(getY);
+          .x(getX)
+          .y1(getY)
+          .y0(getY0)
+          .defined(function (model, index) { return getY(model, index) !== null; });
 
-      var line = d3.svg.line()
-        .defined(hasYValue)
-        .x(getX)
-        .y(getY);
-
-      var maxGroupIndex = this.collection.length - 1;
-
-      selectionStacks.enter().append('g').attr('class', 'group').append('path')
-        .attr('class', function (group, index) {
-          return 'stack stack' + (maxGroupIndex - index) + ' ' + group.get('id');
-        });
-      selectionStacks.select('path').attr('d', function (group) {
-        return area(group.get('values').models);
-      });
-
-      selectionLines.enter().append('g').attr('class', 'group').append('path')
-        .attr('class', function (group, index) {
-          return 'line line' + (maxGroupIndex - index) + ' ' + group.get('id');
-        });
-      selectionLines.select('path').attr('d', function (group) {
-        return line(group.get('values').models);
-      });
-
-      // Restore correct order element order. Order gets mixed up on selection
-      // change when we bring the 'selected' line to front.
-      this.collection.each(function (group, groupIndex) {
-        var index = maxGroupIndex - groupIndex;
-        var line = selectionLines.select('path.line' + index);
-        var groupEl = line.node().parentNode;
-        groupEl.parentNode.appendChild(groupEl);
-      }, this);
+      var path = this.componentWrapper.insert('g', ':first-child').attr('class', 'group')
+        .append('path').attr('class', 'stack ' + this.className);
+      path.datum(this.collection.toJSON())
+          .attr('d', area);
     },
 
-    onChangeSelected: function (groupSelected, groupIndexSelected) {
-      Line.prototype.onChangeSelected.apply(this, arguments);
-      this.collection.each(function (group, groupIndex) {
-        var selected = (groupIndexSelected === groupIndex);
-        var stack = this.componentWrapper.select('path.stack' + groupIndex);
-        stack.classed('selected', selected);
-      }, this);
+    renderBaseLine: function () {
+      if (this.grouped) {
+        this.componentWrapper.selectAll('.baseline').remove();
+        var baseline = _.bind(function (model, index) {
+          if (model[this.valueAttr] === null) {
+            return null;
+          } else {
+            return this.y0(index);
+          }
+        }, this);
+        this.renderLine(baseline).classed('baseline', true);
+      }
     },
 
-    /**
-     * Selects the group the user is hovering over and the closest item in
-     * that group.
-     * When position is below the last area, the last area is selected.
-     * When position is above the first area, the first area is selected.
-     * @param {Object} e Hover event details
-     * @param {Number} e.x Hover x position
-     * @param {Number} e.y Hover y position
-     * @param {Boolean} [e.toggle=false] Unselect if the new selection is the current selection
-     */
-    onHover: function (e) {
-      var point = {
-        x: e.x,
-        y: e.y
-      };
-
-      var selectedGroupIndex, selectedItemIndex;
-      for (var i = this.collection.length - 1; i >= 0; i--) {
-        var group = this.collection.models[i];
-        var distanceAndClosestModel = this.getDistanceAndClosestModel(group, i, point);
-
-        if (typeof distanceAndClosestModel.diff === 'undefined') {
-          selectedGroupIndex = null;
-          selectedItemIndex = distanceAndClosestModel.index;
-          break;
-        } else if (distanceAndClosestModel.diff > 0 || i === 0) {
-          selectedGroupIndex = i;
-          selectedItemIndex = distanceAndClosestModel.index;
-          break;
-        }
+    renderCursorLine: function (index) {
+      Line.prototype.renderCursorLine.apply(this, arguments);
+      if (this.grouped) {
+        var x = this.x(index);
+        this.componentWrapper.append('line').attr({
+          'class': 'cursorLine line selected ' + this.className,
+          x1: x,
+          y1: this.y0(index),
+          x2: x,
+          y2: this.y(index)
+        });
       }
+    },
 
-      if (!this.selectGroup) {
-        selectedGroupIndex = null;
+    renderSelectionPoint: function (index) {
+      Line.prototype.renderSelectionPoint.apply(this, arguments);
+      if (this.grouped) {
+        var x = this.x(index);
+        var y = this.y0(index);
+        var className = 'selectedIndicator line ' + this.className;
+        this.componentWrapper.append('circle').attr({
+          'class': className,
+          cx: x,
+          cy: y,
+          r: 4
+        });
       }
-      if (e.toggle) {
-        this.collection.selectItem(selectedGroupIndex, selectedItemIndex, { toggle: true });
-      } else {
-        this.collection.selectItem(selectedGroupIndex, selectedItemIndex);
-      }
+    },
 
+    select: function () {
+      this.componentWrapper.select('path.stack').classed('selected', true).classed('not-selected', false);
+      this.renderBaseLine();
+      Line.prototype.select.apply(this, arguments);
+    },
+
+    // put line into dis-emphasised state when other lines are selected
+    deselect: function () {
+      this.componentWrapper.selectAll('.baseline').remove();
+      Line.prototype.deselect.apply(this, arguments);
+      this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', true);
+    },
+
+    // put line into default state when no lines are selected
+    unselect: function () {
+      this.componentWrapper.selectAll('.baseline').remove();
+      Line.prototype.unselect.apply(this, arguments);
+      this.componentWrapper.select('path.stack').classed('selected', false).classed('not-selected', false);
     }
-  });
 
-  return Stack;
+  });
 });

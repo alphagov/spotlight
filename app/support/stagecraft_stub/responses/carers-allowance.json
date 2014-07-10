@@ -60,12 +60,12 @@
         "y": [
           {
             "label": "Paper form",
-            "categoryId": "ca_clerical_received",
+            "groupId": "ca_clerical_received",
             "format": "integer"
           },
           {
             "label": "Digital",
-            "categoryId": "ca_e_claims_received",
+            "groupId": "ca_e_claims_received",
             "format": "integer"
           }
         ]
@@ -147,11 +147,11 @@
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
-          {"journeyId": "about-you", "label": "About you", "format": "integer"},
-          {"journeyId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
-          {"journeyId": "other-money", "label": "Other money", "format": "integer"},
-          {"journeyId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
-          {"journeyId": "thank-you", "label": "Application complete", "format": "integer"}
+          {"groupId": "about-you", "label": "About you", "format": "integer"},
+          {"groupId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
+          {"groupId": "other-money", "label": "Other money", "format": "integer"},
+          {"groupId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
+          {"groupId": "thank-you", "label": "Application complete", "format": "integer"}
         ]
       }
     },

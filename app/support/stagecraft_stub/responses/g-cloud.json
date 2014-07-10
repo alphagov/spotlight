@@ -47,17 +47,17 @@
         "y": [
           {
            "label": "Total",
-           "categoryId": "Total",
+           "groupId": "total",
            "format": "currency"
           },
           {
            "label": "Small and medium enterprises",
-           "categoryId": "Small and medium enterprises",
+           "groupId": "Small and medium enterprises",
            "format": "currency"
           },
           {
            "label": "Large enterprises",
-           "categoryId": "Large enterprises",
+           "groupId": "Large enterprises",
            "format": "currency"
           }
         ]
@@ -87,17 +87,17 @@
          "y": [
            {
              "label": "Total",
-             "categoryId": "Total",
+             "groupId": "total",
              "format": "currency"
            },
            {
              "label": "Small and medium enterprises",
-             "categoryId": "Small and medium enterprises",
+             "groupId": "Small and medium enterprises",
              "format": "currency"
            },
            {
              "label": "Large enterprises",
-             "categoryId": "Large enterprises",
+             "groupId": "Large enterprises",
              "format": "currency"
            }
          ]
@@ -170,32 +170,32 @@
         "y": [
           {
             "label": "Total",
-            "categoryId": "Total",
+            "groupId": "total",
             "format": "currency"
           },
           {
             "label": "Central government",
-            "categoryId": "Central government",
+            "groupId": "Central government",
             "format": "currency"
           },
           {
             "label": "Wider public sector",
-            "categoryId": "Other wider public sector",
+            "groupId": "Other wider public sector",
             "format": "currency"
           },
           {
             "label": "Local government",
-            "categoryId": "Local government",
+            "groupId": "Local government",
             "format": "currency"
           },
           {
             "label": "Other",
-            "categoryId": "Unknown",
+            "groupId": "Unknown",
             "format": "currency"
           },
           {
             "label": "Not for profit",
-            "categoryId": "Not for profit",
+            "groupId": "Not for profit",
             "format": "currency"
           }
         ]
@@ -232,22 +232,22 @@
         },
         "y": [
           {
-           "categoryId": "Cloud Support Services (CSS)",
+           "groupId": "Cloud Support Services (CSS)",
            "label": "Specialist cloud services",
            "format": "currency"
           },
           {
-           "categoryId": "Cloud Software as a Service (SaaS)",
+           "groupId": "Cloud Software as a Service (SaaS)",
            "label": "Cloud Software as a Service",
            "format": "currency"
           },
           {
-           "categoryId": "Cloud Infrastructure as a Service (IaaS)",
+           "groupId": "Cloud Infrastructure as a Service (IaaS)",
            "label": "Cloud Infrastructure as a Service",
            "format": "currency"
           },
           {
-           "categoryId": "Cloud Platform as a Service (PaaS)",
+           "groupId": "Cloud Platform as a Service (PaaS)",
            "label": "Cloud Platform as a Service",
            "format": "currency"
           }

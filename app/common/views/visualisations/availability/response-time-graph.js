@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/stacked-graph'
+  'extensions/views/graph/graph'
 ],
 function (Graph) {
   var ResponseTimeGraph = Graph.extend({
@@ -26,10 +26,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack,
-          options: {
-            drawCursorLine: true
-          }
+          view: this.sharedComponents.stack
         },
         tooltip: {
           view: this.sharedComponents.tooltip,

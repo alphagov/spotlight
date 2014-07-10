@@ -14,13 +14,13 @@ function (Component, Pivot) {
     xOffset: -7,
     yOffset: -7,
 
-    x: function (group, groupIndex, model, index) {
-      var xPos = this.graph.getXPos(groupIndex, index);
+    x: function (index) {
+      var xPos = this.graph.getXPos(index);
       return this.scales.x(xPos);
     },
 
-    y: function (group, groupIndex, model, index) {
-      var yPos = this.graph.getYPos(groupIndex, index);
+    y: function (index, attr) {
+      var yPos = this.graph.getYPos(index, attr);
       return this.scales.y(yPos);
     },
 
@@ -28,67 +28,39 @@ function (Component, Pivot) {
       return selection.node().getBBox().width;
     },
 
-    getValue: function (group, groupIndex, model, index) {
-      if (_.isArray(model)) {
-        var noData = true;
-        var sum = _.reduce(model, function (sum, model) {
-          var value = model.get(this.graph.valueAttr);
-          if (value !== null) {
-            noData = false;
-          }
-          return sum += model.get(this.graph.valueAttr);
-        }, 0, this);
-        //this is a hack based on a bug in getDistanceAndClosestModel
-        //which manifests in grouped_timeseries displayed as stack.
-        //it causes the total rather than the stack value to be displayed
-        //when hovering to the right of the last value.
-        //in the case of stacked_graph this is not desired
-        //(though we still want '(no data)' labels)
-        //and so we show nothing if noTotal is true and the sum isn't null
-        if (noData) {
-          sum = null;
-        } else if (this.noTotal) {
-          sum = LABELS_OFF;
-        }
-        return sum;
-      } else {
-        if (this.graph.model && this.graph.model.get('one-hundred-percent')) {
-          return this.collection.fraction(this.graph.valueAttr, groupIndex, index);
-        } else {
-          return model.get(this.graph.valueAttr);
-        }
-      }
+    getValue: function (model, index, attr) {
+      attr = attr || this.graph.valueAttr;
+      return model.get(attr);
     },
 
     formatValue: function (value) {
-      return value;
+      if (value === null) {
+        return '(no data)';
+      }
+      var format = this.graph.currency ? 'currency' : 'number';
+      if (this.graph.isOneHundredPercent()) {
+        format = 'percent';
+      }
+      return this.format(value, { type: format, magnitude: true, pad: true });
     },
 
-    formatMissingValue: function () {
-      return '(no data)';
-    },
-
-    onChangeSelected: function (group, groupIndex, model, index) {
-      var unselected = model === null;
+    onChangeSelected: function (model, index, options) {
+      options = options || {};
       var selection = this.componentWrapper.selectAll('text');
 
-      if (unselected) {
+      if (model === null) {
         selection.data([]).exit().remove();
         return;
       }
 
-      var value = this.getValue(group, groupIndex, model, index);
+      var value = this.getValue(model, index, options.valueAttr);
 
       if (value === LABELS_OFF) {
         selection.data([]).exit().remove();
         return;
       }
 
-      if (value === null) {
-        value = this.formatMissingValue();
-      } else {
-        value = this.formatValue(value);
-      }
+      value = this.formatValue(value);
 
       selection = selection.data([value, value]);
       selection.exit().remove();
@@ -99,8 +71,8 @@ function (Component, Pivot) {
       selection.text(value);
 
       var basePos = {
-        x: this.x(group, groupIndex, model, index),
-        y: this.y(group, groupIndex, model, index)
+        x: this.x(index),
+        y: this.y(index, options.valueAttr)
       };
 
       var pos = this.applyPivot(basePos, {
@@ -117,6 +89,7 @@ function (Component, Pivot) {
       });
 
       selection.attr('transform', 'translate(' + pos.x + ', ' + pos.y + ')');
+      this.moveToFront();
     }
 
   });
