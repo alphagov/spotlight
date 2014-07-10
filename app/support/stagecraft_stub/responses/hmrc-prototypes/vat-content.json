@@ -89,7 +89,6 @@
     {
       "slug": "most-popular-content",
       "module-type": "table",
-      "slug": "all-pages",
       "title": "Most popular VAT content",
       "description": "Visitors arriving over the last week.",
       "data-group": "tax-vat-content",
