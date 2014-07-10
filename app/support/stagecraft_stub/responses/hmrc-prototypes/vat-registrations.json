@@ -1,0 +1,182 @@
+{
+  "slug": "vat-registrations",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "description": "Registrations and deregistrations",
+  "title": "VAT registrations and deregistrations",
+  "tagline": "Service performance for VAT registrations and deregistrations",
+  "relatedPages": {
+    "other": [
+      {
+        "title": "VAT",
+        "url": "https://www.gov.uk/browse/tax/vat"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "tax",
+      "data-type": "receipts",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
+    },
+    {
+      "slug": "annual-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "tax",
+      "data-type": "receipts",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "tax",
+      "data-type": "receipts",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-tax",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
+    },
+    {
+      "slug": "total-vat-registered-businesses",
+      "module-type": "completion_numbers",
+      "title": "Total VAT registered businesses",
+      "description": "",
+      "data-group": "tax-vat",
+      "data-type": "registrations",
+      "info": [
+        "Data source: Google Analytics",
+        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "filter-by":["registration_type:total-registrations"],
+      "matching-attribute": "registration_type",
+      "value-attribute": "count:sum",
+      "period": "month",
+      "axes": {
+        "x": {
+          "label": "Date"
+        },
+        "y": [
+          {
+            "label": "Number of visitors"
+          }
+        ]
+      },
+      "start-at": "2013-04-01T00:00:00+00:00",
+      "end-at": "2014-04-01T00:00:00+00:00"
+    },
+    {
+      "slug": "vat-registrations-and-deregistrations",
+      "module-type": "grouped_timeseries",
+      "title": "VAT registrations and deregistrations",
+      "description": "Tax collected by tax type",
+      "data-group": "tax-vat",
+      "data-type": "registrations",
+      "value-attribute": "count:sum",
+      "category": "registration_type",
+      "use_stack": false,
+      "period": "month",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_start_at",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "VAT registrations",
+            "categoryId": "new-registrations",
+            "format": "number"
+          },
+          {
+            "label": "VAT deregistrations",
+            "categoryId": "de-registrations",
+            "format": "number"
+          },
+          {
+            "label": "VAT registrations",
+            "categoryId": "new-registrations",
+            "timeshift": 12,
+            "format": "number"
+          },
+          {
+            "label": "VAT deregistrations",
+            "categoryId": "de-registrations",
+            "timeshift": 12,
+            "format": "number"
+          }
+        ]
+      },
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "start-at": "2013-04-01T00:00:00+00:00",
+      "end-at": "2014-04-01T00:00:00+00:00",
+      "axis-period": "month"
+    }
+  ]
+}

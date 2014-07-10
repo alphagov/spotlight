@@ -1,0 +1,410 @@
+{
+  "slug": "hmrc-tier-two-VAT",
+  "page-type": "dashboard",
+  "dashboard-type": "other",
+  "published": false,
+  "strapline": "Service explorer",
+  "title": "VAT",
+  "tagline": "",
+  "relatedPages": {
+    "other": [
+      {
+        "title": "VAT",
+        "url": "https://www.gov.uk/browse/tax/vat"
+      }
+    ]
+  },
+  "modules": [
+      {
+      "slug": "vat-collected-per-year",
+      "module-type": "kpi",
+      "title": "VAT collected per year",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
+    },
+    {
+      "slug": "total-cost-per-year",
+      "module-type": "kpi",
+      "title": "Total cost per year",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
+    },
+    {
+      "slug": "cost-of-collecting-100-gbp",
+      "module-type": "kpi",
+      "title": "Cost of collecting £100",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
+    },
+    {
+      "slug": "vat-collected",
+      "module-type": "grouped_timeseries",
+      "title": "VAT collected",
+      "description": "<span class=\"group0\">Total VAT collected</span> = <span class=\"group1\">VAT payments</span> + <span class=\"group2\">Import VAT</span> - <span class=\"group3\">VAT repayments</span>",
+      "data-group": "tax-vat",
+      "data-type": "receipts",
+      "value-attribute": "count:sum",
+      "category": "receipts",
+      "use_stack": false,
+      "currency": "gbp",
+      "period": "month",
+      "info": [
+        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
+        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_start_at",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "Total VAT",
+            "categoryId": "net-vat",
+            "format": "currency"
+          },
+          {
+            "label": "VAT payments",
+            "categoryId": "payments",
+            "format": "currency"
+          },
+          {
+            "label": "Import VAT",
+            "categoryId": "import-vat",
+            "format": "currency"
+          },
+          {
+            "label": "VAT Repayments",
+            "categoryId": "repayments",
+            "format": "currency"
+          }
+        ]
+      },
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "start-at": "2012-04-01T00:00:00+00:00",
+      "axis-period": "quarter"
+    },
+    {
+          "slug": "cost-of-collecting-100-gbp-in-vat",
+          "module-type": "completion_numbers",
+          "title": "Cost of collecting £100 in VAT",
+          "description": "",
+          "data-group": "gov-uk-content",
+          "data-type": "traffic-count",
+          "info": [
+            "Data source: Google Analytics",
+            "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+          ],
+          "denominator-matcher": "attorney-generals-office",
+          "numerator-matcher": "attorney-generals-office",
+          "matching-attribute": "department",
+          "value-attribute": "visitors:sum",
+          "period": "week",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
+          }
+        },
+        {
+      "slug": "vat-transactions",
+      "module-type": "table",
+      "title": "VAT transactions",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "top-urls",
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "Pages receiving the most comments in a calendar month.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
+      ],
+      "query-params": {
+        "filter_by": "organisation_acronym:ago",
+        "group_by": "url",
+        "collect": ["comment_count:sum"],
+        "period": "month",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "URL",
+          "key": "url"
+        },
+        "y": [
+          {
+            "label": "Total comments",
+            "key": "comment_count:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-by": "comment_count:sum",
+      "sort-order": "descending"
+    },
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ]
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "classes": "cols3",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:seasonally-adjusted"
+        ],
+        "sort_by": "_timestamp:descending"
+      },
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
+        "<br />",
+        "Data source: HM Revenue and Customs",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ]
+    },
+    {
+      "slug": "vat-transactions-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "VAT transactions per quarter",
+      "description": "Total number of transactions each quarter",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "value-attribute": "number_of_transactions",
+      "axis-period": "quarter",
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:quarterly"
+        ],
+        "sort_by": "_timestamp:ascending"
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ]
+    },
+    {
+      "slug": "digital-take-up-per-quarter",
+      "module-type": "bar_chart_with_number",
+      "title": "Digital take-up",
+      "description": "Digital take-up rates each quarter",
+      "data-group": "transactional-services",
+      "data-type": "summaries",
+      "value-attribute": "digital_takeup",
+      "axis-period": "quarter",
+      "format": {
+        "type": "percent"
+      },
+      "axes": {
+        "y": [
+          {
+            "label": "Percentage digital take-up"
+          }
+        ]
+      },
+      "query-params": {
+        "filter_by": [
+          "service_id:hmrc-vat",
+          "type:quarterly"
+        ],
+        "sort_by": "_timestamp:ascending"
+      },
+      "info": [
+        "Data source: HM Revenue and Customs",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ]
+    },
+    {
+      "slug": "most-popular-content",
+      "module-type": "table",
+      "title": "Most popular VAT content on GOV.UK",
+      "description": "Visitors arriving over the last week.",
+      "data-group": "tax-vat-content",
+      "data-type": "top-count",
+      "query-params": {
+        "group_by": "pageTitle",
+        "collect": ["pageviews:sum", "uniquePageviews:sum"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Page title",
+          "key": "pageTitle"
+        },
+        "y": [
+          {
+            "label": "Pageviews",
+            "key": "pageviews:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Unique pageviews",
+            "key": "uniquePageviews:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-by": "uniquePageviews:sum",
+      "sort-order": "descending"
+    },
+    {
+      "slug": "reasons-people-call-the-helpline",
+      "module-type": "table",
+      "title": "Top 5 reasons people call the VAT helpline",
+      "description": "",
+      "data-group": "gov-uk-content",
+      "data-type": "top-urls",
+      "info": [
+        "Data source: GOV.UK anonymous feedback",
+        "Pages receiving the most comments in a calendar month.",
+        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
+      ],
+      "query-params": {
+        "filter_by": "organisation_acronym:ago",
+        "group_by": "url",
+        "collect": ["comment_count:sum"],
+        "period": "month",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "URL",
+          "key": "url"
+        },
+        "y": [
+          {
+            "label": "Total comments",
+            "key": "comment_count:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-by": "comment_count:sum",
+      "sort-order": "descending"
+    }
+  ]
+}
