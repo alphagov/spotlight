@@ -1,8 +1,7 @@
 define([
-  'common/collections/grouped_timeseries',
-  'extensions/collections/collection'
+  'common/collections/grouped_timeseries'
 ],
-function (GroupedTimeseries, Collection) {
+function (GroupedTimeseries) {
   describe('GroupedTimeseries', function () {
     var response;
 

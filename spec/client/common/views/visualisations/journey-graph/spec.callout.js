@@ -1,9 +1,8 @@
 define([
   'common/views/visualisations/journey-graph/callout',
-  'common/collections/journey_series',
-  'extensions/models/model'
+  'common/collections/journey_series'
 ],
-function (JourneyCallout, JourneySeriesCollection, Model) {
+function (JourneyCallout, JourneySeriesCollection) {
   describe('JourneyCallout', function () {
 
     describe('rendering', function () {

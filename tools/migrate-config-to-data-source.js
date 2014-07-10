@@ -2,7 +2,6 @@
 var glob = require('glob'),
     path = require('path'),
     fs = require('fs'),
-    _ = require('lodash'),
     moment = require('moment-timezone');
 
 var configGlob = path.resolve(
@@ -13,7 +12,7 @@ var configGlob = path.resolve(
 var ISO8601_FORMAT = 'YYYY-MM-DD[T]HH:mm:ss[Z]';
 
 var queryParamProps = [
-  "period", "duration", "sort-by", "group-by", "collect", "filter-by", "start-at", "end-at"
+  'period', 'duration', 'sort-by', 'group-by', 'collect', 'filter-by', 'start-at', 'end-at'
 ];
 
 function ensureArray(obj, key) {
@@ -22,26 +21,7 @@ function ensureArray(obj, key) {
   }
 }
 
-function transformModule (module) {
-  var queryParams = module['query-params'] || {};
-
-  delete module['query-params']
-
-  queryParamProps.forEach(function(prop) {
-   var value = module[prop],
-       underscoredProp = prop.replace(/-/g, '_');
-
-   if (value && queryParams[underscoredProp]) {
-     console.log('clash!');
-   }
-
-   if (value) queryParams[underscoredProp] = value;
-   delete module[prop];
-  });
-
-  ensureArray(queryParams, 'collect');
-  ensureArray(queryParams, 'filter_by');
-
+function normaliseModule(module, queryParams) {
   switch (module['module-type']) {
     case 'availability':
       if (!queryParams['period']) queryParams['period'] = 'day';
@@ -61,8 +41,8 @@ function transformModule (module) {
       queryParams.group_by = module['matching-attribute'];
       break;
     case 'user_satisfaction_graph':
-      if (!queryParams.period) queryParams.period = 'day'
-      if (!queryParams.duration) queryParams.duration = 30
+      if (!queryParams.period) queryParams.period = 'day';
+      if (!queryParams.duration) queryParams.duration = 30;
       break;
     case 'realtime':
       if (!queryParams.sort_by) queryParams.sort_by = '_timestamp:descending';
@@ -86,6 +66,29 @@ function transformModule (module) {
       }*/
       break;
   }
+}
+
+function transformModule (module) {
+  var queryParams = module['query-params'] || {};
+
+  delete module['query-params'];
+
+  queryParamProps.forEach(function(prop) {
+   var value = module[prop],
+       underscoredProp = prop.replace(/-/g, '_');
+
+   if (value && queryParams[underscoredProp]) {
+     console.log('clash!');
+   }
+
+   if (value) queryParams[underscoredProp] = value;
+   delete module[prop];
+  });
+
+  ensureArray(queryParams, 'collect');
+  ensureArray(queryParams, 'filter_by');
+
+  normaliseModule(module, queryParams);
 
   if (Object.keys(queryParams).length === 0) {
     queryParams = undefined;
@@ -101,8 +104,8 @@ function transformModule (module) {
      'query-params': queryParams
     };
 
-    delete module['data-group']
-    delete module['data-type']
+    delete module['data-group'];
+    delete module['data-type'];
   }
 
   if (module.tabs) module.tabs = module.tabs.map(transformModule);
@@ -125,6 +128,6 @@ glob(configGlob, function(err, files) {
          fs.writeFileSync(
            files[i], 
            JSON.stringify(dashboard, null, '  ') + '\n'
-         )
+         );
        });
 });

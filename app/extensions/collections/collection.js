@@ -18,7 +18,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       options = options || {};
       this.options = options;
 
-      if (!this.valueAttr) this.valueAttr = options.valueAttr;
+      if (!this.valueAttr) {
+        this.valueAttr = options.valueAttr;
+      }
 
       this.dataSource = new DataSource(options.dataSource);
       this.dataSource.on('change', function () {

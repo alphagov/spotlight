@@ -125,7 +125,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
           return {
             a: 1,
             b: this.testProp
-          }
+          };
         };
         expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&b=foobar');
       });

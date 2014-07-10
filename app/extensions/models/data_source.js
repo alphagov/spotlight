@@ -23,7 +23,7 @@ function (Backbone, Mustache, _, moment) {
             {},
             this.get('query-params') || {},
             customQueryParams
-          ), queryParams;
+          );
 
       if (!_.isEmpty(rawQueryParams)) {
         url += '?' + this._objectToQueryString(
@@ -82,7 +82,7 @@ function (Backbone, Mustache, _, moment) {
           parts.push(out);
         }
 
-        return parts
+        return parts;
       }, [], this).join('&');
     }
 
