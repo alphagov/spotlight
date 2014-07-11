@@ -6,7 +6,8 @@
   "strapline": "Dashboard",
   "title": "Solihull: Missed bin reporting",
   "department": {
-    "title": "Solihull Local Authority"
+    "title": "Solihull Local Authority",
+    "abbr": "Solihull Local Authority"
   },
   "relatedPages": {
     "transaction": {
