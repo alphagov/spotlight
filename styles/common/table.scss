@@ -42,7 +42,6 @@ table {
     text-align: left;
     font-weight: bold;
     background-color: $grey-3;
-    color: $black;
     line-height: 1.25em;
 
     border-bottom: 1px solid darken($grey-2, 10%);
@@ -50,6 +49,25 @@ table {
 
     &:last-of-type {
       border-right: none;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.desc a:after,
+    &.asc a:after {
+      content: "\00a0\00a0\25BC";
+      font-size: 8px;
+      position: absolute;
+    }
+
+    &.asc a:after {
+      content: "\00a0\00a0\25B2";
     }
   }
 
