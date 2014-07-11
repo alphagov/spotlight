@@ -2,11 +2,12 @@
   "slug": "solihull-local-authority",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Solihull: Missed bin reporting",
   "department": {
-    "title": "Solihull Local Authority"
+    "title": "Solihull Local Authority",
+    "abbr": "Solihull Local Authority"
   },
   "relatedPages": {
     "transaction": {
