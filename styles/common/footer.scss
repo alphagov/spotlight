@@ -7,7 +7,7 @@
     @extend %contain-floats;
 
     @include media(tablet){
-      padding: 0 0 30px;
+      padding: 0 15px 30px 15px;
     }
 
     .footer-explore,
