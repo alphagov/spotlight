@@ -2,11 +2,12 @@
   "slug": "solihull-local-authority",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
-  "title": "Solihull missed waste collections",
+  "title": "Solihull: Missed bin reporting",
   "department": {
-    "title": "Solihull Local Authority"
+    "title": "Solihull Local Authority",
+    "abbr": "Solihull Local Authority"
   },
   "relatedPages": {
     "transaction": {
@@ -28,7 +29,7 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Missed collections breakdown",
-      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>.",
+      "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>",
       "data-group": "solihull-local-authority",
       "data-type": "transactions-by-channel",
       "category": "channel",
@@ -66,36 +67,41 @@
       }
     },
     {
-      "slug": "usage-breakdown",
-      "module-type": "grouped_timeseries",
-      "title": "Usage breakdown",
-      "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> transactions",
+      "slug": "missed_bin-by-ward",
+      "module-type": "table",
+      "title": "Missed bins by ward",
+      "description": "Wards where missed bins were reported in the past week",
       "data-group": "solihull-local-authority",
-      "data-type": "transactions-by-channel",
-      "category": "digital",
-      "period": "week",
-      "value-attribute": "count:sum",
-      "show-line-labels": true,
-      "show-total-lines": true,
-      "cumulative": true,
-      "info": [
-        "Data source: CSV extract",
-        "Shows the number of digital and non digital transactions"
-      ],
+      "data-type": "missed-bin-by-ward",
+      "query-params": {
+        "group_by": "ward",
+        "collect": ["missed_bins:sum"],
+        "period": "week",
+        "duration": 1
+      },
       "axes": {
+        "x": {
+          "label": "Ward",
+          "key": "ward"
+        },
         "y": [
           {
-            "label": "Non-digital",
-            "groupId": "NonDigital",
+            "label": "Reports last week",
+            "key": "missed_bins:sum",
             "format": "integer"
           },
           {
-            "label": "Digital",
-            "groupId": "Digital",
-            "format": "integer"
+            "label": "Percentage of total reports",
+            "key": "percentOfTotal(missed_bins:sum)",
+            "format": "percent"
           }
         ]
-      }
+      },
+      "sort-by": "missed_bins:sum",
+      "sort-order": "descending",
+      "info": [
+        "Data source: Solihull Borough Council database"
+      ]
     },
     {
       "slug": "digital-takeup",

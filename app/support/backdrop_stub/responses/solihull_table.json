@@ -1,0 +1,257 @@
+
+{
+  "data": [
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 15.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 15.0
+        }
+      ], 
+      "ward": "Bickenhill"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 29.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 29.0
+        }
+      ], 
+      "ward": "Blythe"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 4.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 4.0
+        }
+      ], 
+      "ward": "Castle Bromwich"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 14.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 14.0
+        }
+      ], 
+      "ward": "Chelmsley Wood"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 5.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 5.0
+        }
+      ], 
+      "ward": "Dorridge and Hockley Heath"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 12.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 12.0
+        }
+      ], 
+      "ward": "Elmdon"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 8.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 8.0
+        }
+      ], 
+      "ward": "Kingshurst and Fordbridge"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 2.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 2.0
+        }
+      ], 
+      "ward": "Knowle"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 5.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 5.0
+        }
+      ], 
+      "ward": "Lyndon"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 8.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 8.0
+        }
+      ], 
+      "ward": "Meriden"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 2.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 2.0
+        }
+      ], 
+      "ward": "NULL"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 23.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 23.0
+        }
+      ], 
+      "ward": "Olton"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 3.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 3.0
+        }
+      ], 
+      "ward": "Shirley East"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 6.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 6.0
+        }
+      ], 
+      "ward": "Shirley South"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 5.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 5.0
+        }
+      ], 
+      "ward": "Shirley West"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 18.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 18.0
+        }
+      ], 
+      "ward": "Silhill"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 6.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 6.0
+        }
+      ], 
+      "ward": "Smith's Wood"
+    }, 
+    {
+      "_count": 7.0, 
+      "_group_count": 1, 
+      "missed_bins:sum": 5.0, 
+      "values": [
+        {
+          "_count": 7.0, 
+          "_end_at": "2014-06-02T00:00:00+00:00", 
+          "_start_at": "2014-05-26T00:00:00+00:00", 
+          "missed_bins:sum": 5.0
+        }
+      ], 
+      "ward": "St Alphege"
+    }
+  ]
+}
