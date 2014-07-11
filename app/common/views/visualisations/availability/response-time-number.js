@@ -61,7 +61,7 @@ function (SingleStatView) {
     },
 
     getLabel: function () {
-      var period = this.collection.query.get('period');
+      var period = this.collection.getPeriod();
 
       return this.labelPrefix + 'for the last ' + this.config[period].label;
     },
@@ -70,7 +70,7 @@ function (SingleStatView) {
       var model = selection.selectedModel;
       var start = model.get('_start_at');
       var end = model.get('_end_at');
-      var period = this.collection.query.get('period');
+      var period = this.collection.getPeriod();
 
       return this.config[period].selectionFormat(start, end);
     }

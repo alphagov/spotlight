@@ -11,12 +11,6 @@ function (RealtimeCollection) {
         id: 'realtime',
         title: 'Realtime',
         updateInterval: 120 * 1000,
-        queryParams: {
-          sort_by: '_timestamp:descending',
-          limit: this.model.get('numTwoMinPeriodsToQuery') || (((60 / 2) * 24) + 2)
-        },
-        period: this.model.get('period') || 'hours',
-        duration: this.model.get('duration') || 24,
         axes: _.merge({
           x: {
             label: 'Time',

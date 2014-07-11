@@ -42,8 +42,7 @@ define([
 
       if (this.collectionClass && !this.collection) {
         this.collection = new this.collectionClass(this.collectionData(), _.extend({
-          'data-type': this.model.get('data-type'),
-          'data-group': this.model.get('data-group')
+          dataSource: this.model.get('data-source'),
         }, this.collectionOptions()));
       }
 

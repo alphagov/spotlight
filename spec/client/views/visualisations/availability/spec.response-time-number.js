@@ -1,31 +1,28 @@
 define([
   'common/views/visualisations/availability/response-time-number',
-  'extensions/collections/collection',
   'common/collections/availability',
   'extensions/models/model'
 ],
-  function (ResponseTimeNumber, Collection, AvailabilityCollection, Model) {
+  function (ResponseTimeNumber, AvailabilityCollection, Model) {
 
     describe('ResponseTimeNumber', function () {
 
       var availabilityOptions = {
         checkName: 'anything',
-        'data-group': 'anything',
-        'data-type': 'monitoring',
-        period: 'day',
+        dataSource: {
+          'data-group': 'anything',
+          'data-type': 'monitoring',
+          'query-params': {
+            period: 'day'
+          }
+        },
         parse: true
       };
 
       function collectionForPeriod(period) {
-        var CollectionWithPeriod =  Collection.extend({
-          queryParams: function () {
-            return {
-              period: period
-            };
-          }
-        });
-
-        return new CollectionWithPeriod();
+        var options = _.clone(availabilityOptions);
+        options.dataSource['query-params'].period = period;
+        return new AvailabilityCollection(undefined, options);
       }
 
       describe('getLabel', function () {

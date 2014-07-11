@@ -15,15 +15,24 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": ["service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates", "type:seasonally-adjusted"],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
-      "format": { "type": "number", "magnitude": true, "sigfigs": 3 }
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:fco-deposit-foreign-marriage-or-civil-partnership-certificates",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "live-service-usage",
@@ -34,16 +43,20 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "deposit-foreign-marriage",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "payments",
       "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
@@ -61,15 +74,26 @@
           }
         ]
       },
-      "end-at": "2013-12-30T00:00:00+00:00"
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "deposit-foreign-marriage",
+        "data-type": "journey",
+        "query-params": {
+          "end_at": "2013-12-30T00:00:00Z",
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventCategory"
+        }
+      }
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "deposit-foreign-marriage",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
@@ -78,7 +102,20 @@
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
       "matching-attribute": "eventCategory",
-      "end-at": "2013-12-30T00:00:00+00:00"
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "deposit-foreign-marriage",
+        "data-type": "journey",
+        "query-params": {
+          "end_at": "2013-12-30T00:00:00Z",
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventCategory"
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -95,9 +132,6 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "deposit-foreign-marriage",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
@@ -105,16 +139,20 @@
               "format": "date"
             }
           },
-          "end-at": "2013-12-30T00:00:00+00:00"
+          "data-source": {
+            "data-group": "deposit-foreign-marriage",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day",
+              "end_at": "2013-12-30T00:00:00Z"
+            }
+          }
         },
         {
           "title": "24 hours",
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "deposit-foreign-marriage",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
@@ -122,7 +160,14 @@
               "format": "time"
             }
           },
-          "end-at": "2013-12-30T00:00:00+00:00"
+          "data-source": {
+            "data-group": "deposit-foreign-marriage",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour",
+              "end_at": "2013-12-30T00:00:00Z"
+            }
+          }
         }
       ]
     }

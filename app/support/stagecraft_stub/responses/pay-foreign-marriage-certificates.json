@@ -13,7 +13,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Pay for certificates to get married abroad",
-      "url" : "https://www.gov.uk/pay-foreign-marriage-certificates"
+      "url": "https://www.gov.uk/pay-foreign-marriage-certificates"
     },
     "other": [
       {
@@ -32,22 +32,24 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "pay-foreign-marriage-certificates",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "pay-foreign-marriage-certificates",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "single_timeseries",
       "title": "Payments",
       "description": "",
-      "data-group": "pay-foreign-marriage-certificates",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "Completed payments count based on unique visitors to the final page of the service."
       ],
-      "group-by": "eventCategory",
-      "filter-by": "eventCategory:pay-foreign-marriage-certificates:done",
       "axes": {
         "x": {
           "label": "Date of Payment"
@@ -57,6 +59,23 @@
             "label": "Number of payments"
           }
         ]
+      },
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "matching-attribute": "eventCategory",
+      "data-source": {
+        "data-group": "pay-foreign-marriage-certificates",
+        "data-type": "journey",
+        "query-params": {
+          "group_by": "eventCategory",
+          "filter_by": [
+            "eventCategory:pay-foreign-marriage-certificates:done"
+          ],
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ]
+        }
       }
     },
     {
@@ -64,8 +83,6 @@
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "Proportion of users who start and complete their payment using the digital service",
-      "data-group": "pay-foreign-marriage-certificates",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started an application and were able to complete it.",
@@ -73,7 +90,20 @@
       ],
       "denominator-matcher": "start$",
       "numerator-matcher": "done$",
-      "matching-attribute": "eventCategory"
+      "matching-attribute": "eventCategory",
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "pay-foreign-marriage-certificates",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventCategory"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -85,14 +115,28 @@
         "The total number of users who arrived at each step.",
         "Number of users is measured using the count of unique events from each step."
       ],
-      "data-group": "pay-foreign-marriage-certificates",
-      "data-type": "journey",
       "axes": {
         "y": [
-          {"groupId": "pay-foreign-marriage-certificates:start", "label": "Start", "format": "integer"},
-          {"groupId": "pay-foreign-marriage-certificates:confirm", "label": "Confirm", "format": "integer"},
-          {"groupId": "pay-foreign-marriage-certificates:done", "label": "Done", "format": "integer"}
+          {
+            "groupId": "pay-foreign-marriage-certificates:start",
+            "label": "Start",
+            "format": "integer"
+          },
+          {
+            "groupId": "pay-foreign-marriage-certificates:confirm",
+            "label": "Confirm",
+            "format": "integer"
+          },
+          {
+            "groupId": "pay-foreign-marriage-certificates:done",
+            "label": "Done",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "pay-foreign-marriage-certificates",
+        "data-type": "journey"
       }
     },
     {
@@ -110,14 +154,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-foreign-marriage-certificates",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-foreign-marriage-certificates",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -126,14 +174,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "pay-foreign-marriage-certificates",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "pay-foreign-marriage-certificates",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

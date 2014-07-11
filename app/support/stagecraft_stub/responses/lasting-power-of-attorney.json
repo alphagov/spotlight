@@ -7,17 +7,17 @@
   "title": "Lasting Power of Attorney registrations",
   "description": "Lasting power of attorney (LPA) is a powerful legal document that lets you appoint someone to make decisions on your behalf.",
   "department": {
-     "title": "Ministry of Justice",
-     "abbr": "MoJ"
+    "title": "Ministry of Justice",
+    "abbr": "MoJ"
   },
   "agency": {
-     "title": "Office of the Public Guardian",
-     "abbr": "OPG"
+    "title": "Office of the Public Guardian",
+    "abbr": "OPG"
   },
   "relatedPages": {
     "transaction": {
       "title": "Apply for Lasting Power of Attorney",
-      "url" : "https://www.gov.uk/power-of-attorney/overview"
+      "url": "https://www.gov.uk/power-of-attorney/overview"
     }
   },
   "customer-type": "Individuals",
@@ -28,10 +28,7 @@
       "module-type": "grouped_timeseries",
       "title": "Registrations breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> registrations over time",
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "volumes",
       "category": "key",
-      "period": "week",
       "value-attribute": "value:sum",
       "show-line-labels": true,
       "use_stack": true,
@@ -49,9 +46,28 @@
       ],
       "axes": {
         "y": [
-           { "groupId": "non-digital", "label": "Paper form", "format": "integer" },
-           { "groupId": "digital", "label": "Digital", "format": "integer" }
+          {
+            "groupId": "non-digital",
+            "label": "Paper form",
+            "format": "integer"
+          },
+          {
+            "groupId": "digital",
+            "label": "Digital",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "volumes",
+        "query-params": {
+          "period": "week",
+          "group_by": "key",
+          "collect": [
+            "value:sum"
+          ]
+        }
       }
     },
     {
@@ -59,8 +75,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "Proportion of LPA registrations made using the digital service",
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "volumes",
       "info": [
         "Data source: Office of the Public Guardian",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly applications that are made through a digital channel versus non-digital channels."
@@ -69,11 +83,13 @@
       "denominator-matcher": "^[a-z_]*_applications$",
       "matching-attribute": "key",
       "value-attribute": "value:sum",
-      "period": "week",
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -83,6 +99,18 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "volumes",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "value:sum"
+          ],
+          "group_by": "key"
+        }
       }
     },
     {
@@ -96,11 +124,22 @@
         "It is calculated as percentage of unique visitors who arrived at the final page of the digital service out of those who arrived at the 'Choose LPA type' page.",
         "After using the digital service, users have further offline steps to complete, which this does not measure."
       ],
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
       "denominator-matcher": "create/lpa-type$",
       "numerator-matcher": "register/confirmation$",
-      "matching-attribute": "eventLabel"
+      "matching-attribute": "eventLabel",
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventLabel"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -113,8 +152,6 @@
         "Shows significant stages only.",
         "Number of users is measured using the count of unique events from each stage."
       ],
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
@@ -154,6 +191,10 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "journey"
       }
     },
     {
@@ -161,14 +202,19 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Average score of satisfied responses",
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
     },
     {
       "slug": "help-usage",
@@ -180,22 +226,16 @@
         "Help buttons are available to assist users as they complete the transaction.",
         "Help usage counts the number of unique visitors who clicked on each help button."
       ],
-      "data-group": "lasting-power-of-attorney",
-      "data-type": "journey",
-      "query-params": {
-        "filter_by": "eventAction:help.inline",
-        "group_by": "eventDestination",
-        "collect": "uniqueEvents:sum",
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Description",
           "key": "eventDestination",
           "format": {
             "type": "sentence",
-            "uppercase": ["lpa","bacs"]
+            "uppercase": [
+              "lpa",
+              "bacs"
+            ]
           }
         },
         "y": [
@@ -206,8 +246,23 @@
           }
         ]
       },
+      "sort-order": "descending",
       "sort-by": "uniqueEvents:sum",
-      "sort-order": "descending"
+      "data-source": {
+        "data-group": "lasting-power-of-attorney",
+        "data-type": "journey",
+        "query-params": {
+          "filter_by": [
+            "eventAction:help.inline"
+          ],
+          "group_by": "eventDestination",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -224,14 +279,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "lasting-power-of-attorney",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "lasting-power-of-attorney",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -240,14 +299,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "lasting-power-of-attorney",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "lasting-power-of-attorney",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

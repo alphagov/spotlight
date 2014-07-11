@@ -10,12 +10,6 @@ module.exports = ModuleController.extend({
   visualisationClass: View,
   collectionClass: Collection,
 
-  hasTable: false,
-
-  collectionOptions: function () {
-    return {
-      queryParams: this.model.get('query-params')
-    };
-  }
+  hasTable: false
 
 });

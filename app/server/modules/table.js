@@ -25,7 +25,6 @@ module.exports = ModuleController.extend({
     return {
       id: 'list',
       title: 'List',
-      queryParams: this.model.get('query-params'),
       axes: this.model.get('axes')
     };
   }

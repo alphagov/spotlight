@@ -98,8 +98,10 @@ function (Controller, View, Model, Collection) {
       var model;
       beforeEach(function () {
         model = new Model({
-          'data-type': 'foo-type',
-          'data-group': 'bar-group'
+          'data-source': {
+            'data-type': 'foo-type',
+            'data-group': 'bar-group'
+          }
         });
         spyOn(Controller.prototype, 'renderView');
         spyOn(Collection.prototype, 'fetch');
@@ -115,8 +117,8 @@ function (Controller, View, Model, Collection) {
 
         expect(controller.renderView).not.toHaveBeenCalled();
         expect(controller.collection instanceof Collection).toBe(true);
-        expect(controller.collection.options['data-type']).toEqual('foo-type');
-        expect(controller.collection.options['data-group']).toEqual('bar-group');
+        expect(controller.collection.options.dataSource['data-type']).toEqual('foo-type');
+        expect(controller.collection.options.dataSource['data-group']).toEqual('bar-group');
         expect(controller.collection.fetch).toHaveBeenCalled();
 
         controller.collection.trigger('reset');
@@ -138,8 +140,8 @@ function (Controller, View, Model, Collection) {
 
         expect(controller.renderView).not.toHaveBeenCalled();
         expect(controller.collection instanceof Collection).toBe(true);
-        expect(controller.collection.options['data-type']).toEqual('foo-type');
-        expect(controller.collection.options['data-group']).toEqual('bar-group');
+        expect(controller.collection.options.dataSource['data-type']).toEqual('foo-type');
+        expect(controller.collection.options.dataSource['data-group']).toEqual('bar-group');
         expect(controller.collection.options.foo).toEqual('bar');
         expect(controller.collection.fetch).toHaveBeenCalled();
 

@@ -15,6 +15,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
       model = new Model({
         'value-attribute': 'someAttr',
         axes: {
+          x: { key: '_timestamp' },
           y: [
             { label: 'Label1', groupId: 'croydon' },
             { label: 'Label2', groupId: 'hackney' },
@@ -25,7 +26,12 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
       collection = new Collection([], {
         axes: model.get('axes'),
         category: 'id',
-        valueAttr: '_count'
+        valueAttr: '_count',
+        dataSource: {
+          'query-params': {
+            group_by: 'id'
+          }
+        }
       });
       graph = new LineGraph({
         collection: collection,
@@ -38,6 +44,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
           {
             id: 'westminster',
             title: 'Westminster',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',
@@ -62,6 +69,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
           {
             id: 'croydon',
             title: 'Croydon',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',
@@ -86,6 +94,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
           {
             id: 'hackney',
             title: 'Hackney',
+            _timestamp: '2014-07-07T12:00:00Z',
             values: [
               {
                 _start_at: '2013-01-14',

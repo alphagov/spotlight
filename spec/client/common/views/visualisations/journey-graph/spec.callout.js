@@ -1,9 +1,8 @@
 define([
   'common/views/visualisations/journey-graph/callout',
-  'extensions/collections/collection',
-  'extensions/models/model'
+  'common/collections/journey_series'
 ],
-function (JourneyCallout, Collection, Model) {
+function (JourneyCallout, JourneySeriesCollection) {
   describe('JourneyCallout', function () {
 
     describe('rendering', function () {
@@ -11,9 +10,28 @@ function (JourneyCallout, Collection, Model) {
 
       var el, wrapper, collection, view;
       beforeEach(function () {
+
         el = $('<div></div>').appendTo($('body'));
         wrapper = d3.select(el[0]).append('svg').append('g');
-        collection = new Collection();
+
+        var Collection = JourneySeriesCollection.extend({
+          getMoment: function() {
+            return JourneySeriesCollection.prototype.getMoment('2013-06-03T00:00:00+00:00');
+          }
+
+        });
+
+        collection = new Collection([], {
+          matchingAttribute: 'title',
+          valueAttr: 'uniqueEvents',
+          axes: {
+            y: [
+              { groupId: 'Stage 1' },
+              { groupId: 'Stage 2' },
+              { groupId: 'Stage 3' }
+            ]
+          }
+        });
         collection.reset({
           data: [
             { title: 'Stage 1', uniqueEvents: 20 },
@@ -21,10 +39,7 @@ function (JourneyCallout, Collection, Model) {
             { title: 'Stage 3', uniqueEvents: 10 }
           ]
         }, { parse: true });
-        collection.query = new Model({
-          start_at: collection.getMoment('2013-05-27T00:00:00+00:00'),
-          end_at: collection.getMoment('2013-06-03T00:00:00+00:00')
-        });
+
         view = new JourneyCallout({
           wrapper: wrapper,
           collection: collection,

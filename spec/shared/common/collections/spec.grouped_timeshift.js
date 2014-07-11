@@ -1,10 +1,10 @@
 define([
   'common/collections/grouped_timeshift',
-  'extensions/models/query'
+  'extensions/models/data_source'
 ],
-function (GroupedTimeshiftCollection, Query) {
+function (GroupedTimeshiftCollection, DataSource) {
   xdescribe('GroupedTimeshiftCollection', function () {
-    var weekDuration = Query.prototype.periods.week.duration;
+    var weekDuration = DataSource.PERIOD_TO_DURATION['week'];
 
     it('should return query parameters', function () {
       var collection = new GroupedTimeshiftCollection([], {

@@ -61,7 +61,7 @@ function (SingleStatView) {
     },
 
     getPeriod: function () {
-      return this.model.get('period') || 'week';
+      return this.collection.getPeriod() || 'week';
     }
   });
 

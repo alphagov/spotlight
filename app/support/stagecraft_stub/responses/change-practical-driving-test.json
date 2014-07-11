@@ -7,12 +7,12 @@
   "title": "Practical driving test changes and cancellations",
   "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical and driving theory tests.<br><br>More performance information for the <strong>practical driving test</strong> can be found <a href='/performance/practical-driving-test'>here</a>.  The performance dashboard for <strong>Practical driving test bookings</strong> can be found <a href='/performance/book-practical-driving-test'>here</a>",
   "department": {
-     "title": "Department for Transport",
-     "abbr": "DfT"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
-     "title": "Driver and Vehicle Standards Agency",
-     "abbr": "DVSA"
+    "title": "Driver and Vehicle Standards Agency",
+    "abbr": "DVSA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,
@@ -29,13 +29,8 @@
       "module-type": "grouped_timeseries",
       "title": "Changes/cancellations breakdown",
       "description": "Practical driving test changes and cancellations <span class=\"group0\">online</span> and by <span class=\"group1\">telephone</span>",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
       "category": "channel",
-      "filter-by": ["sector:public","action:change"],
-      "period": "week",
       "axis-period": "month",
-      "duration": 52,
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -47,7 +42,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -62,6 +60,22 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "duration": 52,
+          "filter_by": [
+            "sector:public",
+            "action:change"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -69,10 +83,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "",
-      "data-group": "driving-test-practical",
-      "data-type": "transactions-by-channel",
-      "filter-by": ["sector:public","action:change"],
-      "duration": 26,
       "axis-period": "month",
       "info": [
         "Data source: Driver and Vehicle Standards Agency",
@@ -85,7 +95,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -95,6 +108,22 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "duration": 26,
+          "filter_by": [
+            "sector:public",
+            "action:change"
+          ],
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
       }
     },
     {
@@ -102,30 +131,29 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Average score of satisfied responses",
-      "data-group": "change-date-practical-driving-test",
-      "data-type": "customer-satisfaction",
-      "duration": 182,
       "axis-period": "month",
       "trim": false,
-      "start-at": "2014-04-01T00:00:00",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "change-date-practical-driving-test",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 182,
+          "start_at": "2014-04-01T00:00:00Z"
+        }
+      }
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "",
-      "data-group": "driving-test-practical-public",
-      "data-type": "journey",
-      "duration": 26,
       "axis-period": "month",
-      "start-at": "2014-04-01T00:00:00",
-      "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a change or cancellation of booking and were able to complete it.",
@@ -134,7 +162,24 @@
       ],
       "denominator-matcher": "access-your-booking",
       "numerator-matcher": "confirm-changes",
-      "matching-attribute": "eventAction"
+      "matching-attribute": "eventAction",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "journey",
+        "query-params": {
+          "duration": 26,
+          "filter_by": [
+            "eventCategory:pp-change-practical-driving-test-public"
+          ],
+          "start_at": "2014-04-01T00:00:00Z",
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventAction"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -147,23 +192,69 @@
         "Number of users is measured using the count of unique events from each step.",
         "The change transaction includes 8 possible user actions – and success does not involve reaching the done page in all cases. This significantly reduces the overall reported completion rate."
       ],
-      "data-group": "driving-test-practical-public",
-      "data-type": "journey",
-      "filter-by": ["eventCategory:pp-change-practical-driving-test-public"],
       "matching-attribute": "eventAction",
       "axes": {
         "y": [
-          {"groupId": "access-your-booking", "label": "Access your booking", "format": "integer"},
-          {"groupId": "change-booking", "label": "Change booking", "format": "integer"},
-          {"groupId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
-          {"groupId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
-          {"groupId": "enter-your-details", "label": "Enter your details", "format": "integer"},
-          {"groupId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
-          {"groupId": "confirm-changes", "label": "Confirm changes", "format": "integer"},
-          {"groupId": "confirm-cancellation", "label": "Confirm cancellation", "format": "integer"},
-          {"groupId": "your-test-fee-will-be-refunded", "label": "Your test fee will be refunded", "format": "integer"},
-          {"groupId": "you-went-away-and-came-back-again", "label": "You went away and came back again", "format": "integer"}
+          {
+            "groupId": "access-your-booking",
+            "label": "Access your booking",
+            "format": "integer"
+          },
+          {
+            "groupId": "change-booking",
+            "label": "Change booking",
+            "format": "integer"
+          },
+          {
+            "groupId": "choose-test-centre",
+            "label": "Choose test centre",
+            "format": "integer"
+          },
+          {
+            "groupId": "choose-date-and-time",
+            "label": "Choose date and time",
+            "format": "integer"
+          },
+          {
+            "groupId": "enter-your-details",
+            "label": "Enter your details",
+            "format": "integer"
+          },
+          {
+            "groupId": "enter-payment-details",
+            "label": "Enter payment details",
+            "format": "integer"
+          },
+          {
+            "groupId": "confirm-changes",
+            "label": "Confirm changes",
+            "format": "integer"
+          },
+          {
+            "groupId": "confirm-cancellation",
+            "label": "Confirm cancellation",
+            "format": "integer"
+          },
+          {
+            "groupId": "your-test-fee-will-be-refunded",
+            "label": "Your test fee will be refunded",
+            "format": "integer"
+          },
+          {
+            "groupId": "you-went-away-and-came-back-again",
+            "label": "You went away and came back again",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "journey",
+        "query-params": {
+          "filter_by": [
+            "eventCategory:pp-change-practical-driving-test-public"
+          ]
+        }
       }
     },
     {
@@ -171,22 +262,15 @@
       "module-type": "table",
       "title": "Help usage",
       "description": "Number of occurences of users selecting online help during the booking change or cancellation process",
-      "data-group": "driving-test-practical-public",
-      "data-type": "journey-help",
-      "query-params": {
-        "filter_by": ["eventCategory:pp-change-practical-driving-test-public","eventType:help"],
-        "group_by": "eventDetail",
-        "collect": ["uniqueEvents:sum"],
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Help usage",
           "key": "eventDetail",
           "format": {
             "type": "sentence",
-            "uppercase": ["dvsa"]
+            "uppercase": [
+              "dvsa"
+            ]
           }
         },
         "y": [
@@ -202,12 +286,28 @@
           }
         ]
       },
-      "sort-by": "uniqueEvents:sum",
       "sort-order": "descending",
       "info": [
         "<li>Data source: <abbr title='Driver and Vehicle Standards Agency'>DVSA</abbr> database</li>",
         "<li>More than one help use may be logged per user.</li>"
-      ]
+      ],
+      "sort-by": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "driving-test-practical-public",
+        "data-type": "journey-help",
+        "query-params": {
+          "filter_by": [
+            "eventCategory:pp-change-practical-driving-test-public",
+            "eventType:help"
+          ],
+          "group_by": "eventDetail",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -224,14 +324,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -240,14 +344,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "driving-test-practical-public",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "driving-test-practical-public",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

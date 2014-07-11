@@ -31,16 +31,7 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dh-prepayment-certificates-issued",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
@@ -49,22 +40,24 @@
       },
       "info": [
         "Data source: Department of Health"
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-prepayment-certificates-issued",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dh-prepayment-certificates-issued",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
@@ -76,22 +69,24 @@
         "<br />",
         "Data source: Department of Health",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-prepayment-certificates-issued",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:dh-prepayment-certificates-issued",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
@@ -102,35 +97,46 @@
         "<br />",
         "Data source: Department of Health",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-prepayment-certificates-issued",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "transactions-per-quarter",
       "module-type": "bar_chart_with_number",
       "title": "Transactions per quarter",
       "description": "Total number of transactions each quarter",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "value-attribute": "number_of_transactions",
       "axis-period": "quarter",
-      "query-params": {
-        "filter_by": [
-          "service_id:dh-prepayment-certificates-issued",
-          "type:quarterly"
-        ],
-        "sort_by": "_timestamp:ascending"
-      },
       "info": [
         "Data source: Department of Health"
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-prepayment-certificates-issued",
+            "type:quarterly"
+          ],
+          "sort_by": "_timestamp:ascending"
+        }
+      }
     },
     {
       "slug": "digital-take-up-per-quarter",
       "module-type": "bar_chart_with_number",
       "title": "Digital take-up",
       "description": "Digital take-up rates each quarter",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "format": {
@@ -143,17 +149,21 @@
           }
         ]
       },
-      "query-params": {
-        "filter_by": [
-          "service_id:dh-prepayment-certificates-issued",
-          "type:quarterly"
-        ],
-        "sort_by": "_timestamp:ascending"
-      },
       "info": [
         "Data source: Department of Health",
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-prepayment-certificates-issued",
+            "type:quarterly"
+          ],
+          "sort_by": "_timestamp:ascending"
+        }
+      }
     }
   ]
 }

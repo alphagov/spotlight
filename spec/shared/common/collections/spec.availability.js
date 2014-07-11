@@ -28,30 +28,10 @@ define([
       it('should be created with correct query parameters', function () {
         var collection =
           new AvailabilityCollection(null, {
-            checkName: 'mycheck',
-            'data-group': 'something-something-fco',
-            'data-type': 'monitoring',
-            'endAt': '2012-04-01T00:00:00+00:00'
+            checkName: 'mycheck'
           });
-        var params = collection.queryParams();
-        expect(params.period).toEqual('day');
+        var params = collection.queryParams;
         expect(params.collect).toEqual(['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']);
-        expect(params.end_at).toEqual('2012-04-01T00:00:00+00:00');
-      });
-
-      it('should be created with correct query parameters, if period set', function () {
-        var collection =
-          new AvailabilityCollection(null, {
-            checkName: 'mycheck',
-            'data-group': 'something-something-fco',
-            'data-type': 'monitoring',
-            'endAt': '2012-04-01T00:00:00+00:00',
-            'period': 'hour'
-          });
-        var params = collection.queryParams();
-        expect(params.period).toEqual('hour');
-        expect(params.collect).toEqual(['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']);
-        expect(params.end_at).toEqual('2012-04-01T00:00:00+00:00');
       });
 
       it('should provide percentage of uptime for all models', function () {

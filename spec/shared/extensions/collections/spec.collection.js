@@ -1,9 +1,11 @@
 define([
   'extensions/collections/collection',
   'extensions/models/model',
-  'backbone'
+  'extensions/models/data_source',
+  'backbone',
+  'moment-timezone'
 ],
-function (Collection, Model, Backbone) {
+function (Collection, Model, DataSource, Backbone, moment) {
   describe('Collection', function () {
 
     it('inherits from Backbone.Collection', function () {
@@ -14,31 +16,6 @@ function (Collection, Model, Backbone) {
     it('sets the extended Model as default model', function () {
       var collection = new Collection([{foo: 'bar'}]);
       expect(collection.models[0] instanceof Model).toBe(true);
-    });
-
-    describe('initialize', function () {
-
-      it('sets queryParams option to `this` if defined', function () {
-
-        var collection = new Collection([], {
-          queryParams: { foo: 'bar' }
-        });
-        expect(collection.queryParams).toEqual({ foo: 'bar' });
-
-      });
-
-      it('does not overwrite pre-existing queryParams method', function () {
-        var ExtendedCollection = Collection.extend({
-          queryParams: function () {}
-        });
-
-        var collection = new ExtendedCollection([], {
-          queryParams: { foo: 'bar' }
-        });
-        expect(collection.queryParams).not.toEqual({ foo: 'bar' });
-
-      });
-
     });
 
     describe('prop', function () {
@@ -77,29 +54,11 @@ function (Collection, Model, Backbone) {
       });
     });
 
-    describe('fetch', function () {
-      var TestCollection;
-      beforeEach(function () {
-        TestCollection = Collection.extend({
-          backdropUrl: '//testdomain/{{ data-group }}/{{ data-type }}',
-          'data-group': 'service',
-          'data-type': 'apiname',
-          queryId: 'testid'
-        });
-        spyOn(TestCollection.prototype, 'sync');
-      });
-
-      it('adds a unique identifier to the request', function () {
-        var collection = new TestCollection();
-        collection.fetch();
-        expect(collection.sync.argsForCall[0][2].queryId).toEqual('testid');
-      });
-
-      it('retrieves data by default', function () {
-        var collection = new TestCollection();
-        collection.fetch();
-        expect(TestCollection.prototype.sync).toHaveBeenCalled();
-      });
+    it('retrieves data by default', function () {
+      spyOn(Collection.prototype, 'sync');
+      var collection = new Collection();
+      collection.fetch();
+      expect(Collection.prototype.sync).toHaveBeenCalled();
     });
 
     describe('url', function () {
@@ -114,94 +73,76 @@ function (Collection, Model, Backbone) {
       });
 
       it('constructs a backdrop query URL without params', function () {
-        var collection = new TestCollection();
-        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?');
+        var collection = new Collection([], {
+          dataSource: {
+            'data-group': 'foo',
+            'data-type': 'bar'
+          }
+        });
+        collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        expect(collection.url()).toEqual('//testdomain/foo/bar');
       });
 
       it('constructs a backdrop query URL with static params', function () {
-        TestCollection.prototype.queryParams = {
-          a: 1,
-          b: 'foo bar'
-        };
-
-        var collection = new TestCollection();
-
-        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&b=foo+bar');
+        var collection = new Collection([], {
+          dataSource: {
+            'data-group': 'foo',
+            'data-type': 'bar',
+            'query-params': {
+              a: 1,
+              b: 'foo'
+            }
+          }
+        });
+        collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&b=foo');
       });
 
       it('constructs a backdrop query URL with multiple values for a single parameter', function () {
-        TestCollection.prototype.queryParams = {
-          a: [1, 'foo']
-        };
-
-        var collection = new TestCollection();
-
-        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&a=foo');
+        var collection = new Collection([], {
+          dataSource: {
+            'data-group': 'foo',
+            'data-type': 'bar',
+            'query-params': {
+              a: [1, 'foo']
+            }
+          }
+        });
+        collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&a=foo');
       });
 
       it('constructs a backdrop query URL with dynamic params', function () {
-        TestCollection.prototype.queryParams = function () {
+        var collection = new Collection([], {
+          dataSource: {
+            'data-group': 'foo',
+            'data-type': 'bar'
+          }
+        });
+        collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.testProp = 'foobar';
+        collection.queryParams = function() {
           return {
             a: 1,
             b: this.testProp
           };
         };
-        TestCollection.prototype.testProp = 'foo bar';
-
-        var collection = new TestCollection();
-
-        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&b=foo+bar');
+        expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&b=foobar');
       });
 
       it('constructs a backdrop query URL with moment date params', function () {
-
-        TestCollection.prototype.testProp = 'foo bar';
-        TestCollection.prototype.queryParams = function () {
-          return {
-            a: 1,
-            somedate: this.moment('03/08/2013 14:53:26 +00:00', 'MM/DD/YYYY HH:mm:ss T')
-          };
-        };
-
-        var collection = new TestCollection();
-        expect(collection.url()).toEqual('//testdomain/service/foo/apiname?a=1&somedate=2013-03-08T14%3A53%3A26%2B00%3A00');
-      });
-
-      it('constructs a backdrop query URL with a single filter parameter', function () {
-
-        TestCollection.prototype.queryParams = function () {
-          return {
-            a: 1
-          };
-        };
-
-        TestCollection.prototype.filterBy = {foo: 'bar'};
-
-        var collection = new TestCollection();
-
-        var url = collection.url();
-
-        expect(url).toMatch('//testdomain/service/foo/apiname?');
-        expect(url).toMatch('filter_by=foo%3Abar');
-        expect(url).toMatch('a=1');
-      });
-
-      it('constructs a backdrop query URL with multiple filter parameters', function () {
-        TestCollection.prototype.queryParams = function () {
-          return {
-            a: 1
-          };
-        };
-
-        TestCollection.prototype.filterBy = {foo: 'bar', b: 'c'};
-
-        var collection = new TestCollection();
-
-        var url = collection.url();
-        expect(url).toMatch('//testdomain/service/foo/apiname?');
-        expect(url).toMatch('filter_by=foo%3Abar');
-        expect(url).toMatch('filter_by=b%3Ac');
-        expect(url).toMatch('a=1');
+        var collection = new Collection([], {
+          dataSource: {
+            'data-group': 'foo',
+            'data-type': 'bar',
+            'query-params': {
+              a: 1,
+              somedate: moment('03/08/2013 14:53:26 +00:00', 'MM/DD/YYYY HH:mm:ss T')
+            }
+          }
+        });
+        collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&somedate=2013-03-08T14%3A53%3A26Z');
       });
     });
 
@@ -469,31 +410,32 @@ function (Collection, Model, Backbone) {
 
     describe('updating the query model', function () {
 
-      var SubclassOfCollection;
+      var collection;
 
       beforeEach(function () {
-        SubclassOfCollection = Collection.extend({
-          queryParams: {foo: 'bar'},
-          backdropUrl: '/backdrop-stub/{{ data-group }}/{{ data-type }}',
-          'data-group': 'awesomeService',
-          'data-type': 'bob'
+        collection = new Collection([], {
+          dataSource: {
+            'data-group': 'awesomeService',
+            'data-type': 'bob',
+            'query-params': {
+              foo: 'bar'
+            }
+          }
         });
+        collection.dataSource.backdropUrl =  '/backdrop-stub/{{ data-group }}/{{ data-type }}';
       });
 
       it('gets initialized with the query parameters', function () {
-        var subclassOfCollection = new SubclassOfCollection();
-
-        expect(subclassOfCollection.url()).toBe('/backdrop-stub/awesomeService/bob?foo=bar');
+        expect(collection.url()).toBe('/backdrop-stub/awesomeService/bob?foo=bar');
       });
 
       it('retrieves new data when the query parameters are updated', function () {
-        spyOn(Collection.prototype, 'fetch');
-        var subclassOfCollection = new SubclassOfCollection();
+        spyOn(collection, 'fetch');
 
-        subclassOfCollection.query.set('foo', 'zap');
+        collection.dataSource.setQueryParam('foo', 'zap');
 
-        expect(subclassOfCollection.fetch).toHaveBeenCalled();
-        expect(subclassOfCollection.url()).toContain('foo=zap');
+        expect(collection.fetch).toHaveBeenCalled();
+        expect(collection.url()).toContain('foo=zap');
       });
 
     });
@@ -630,6 +572,83 @@ function (Collection, Model, Backbone) {
 
         expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
 
+      });
+
+      it('handles wierd things', function () {
+
+        var collection = new Collection(undefined, {
+          axes: {
+            'x': {
+              'label': 'Description',
+              'key': 'eventDestination'
+            },
+            'y': [
+              {
+                'label': 'Usage last week',
+                'key': 'uniqueEvents:sum',
+                'format': 'integer'
+              }
+            ]
+          },
+          dataSource: {
+            'query-params': {
+              'group_by': 'eventDestination',
+              'collect': [
+                'uniqueEvents:sum'
+              ],
+              'period': 'week',
+              'duration': 1
+            }
+          }
+        });
+
+        var parsed = collection.parse({
+          data: [
+            {
+              '_count': 2.0, 
+              '_group_count': 1, 
+              'eventDestination': 'add-extra-instructions-for-the-attorneys', 
+              'uniqueEvents:sum': 263.0, 
+              'values': [
+                {
+                  '_count': 2.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 263.0
+                }
+              ]
+            }, 
+            {
+              '_count': 1.0, 
+              '_group_count': 1, 
+              'eventDestination': 'applying-for-a-reduction-of-the-fee', 
+              'uniqueEvents:sum': 141.0, 
+              'values': [
+                {
+                  '_count': 1.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 141.0
+                }
+              ]
+            }, 
+            {
+              '_count': 1.0, 
+              '_group_count': 1, 
+              'eventDestination': 'can-i-do-it-all-using-this-tool', 
+              'uniqueEvents:sum': 187.0, 
+              'values': [
+                {
+                  '_count': 1.0, 
+                  '_end_at': '2014-06-30T00:00:00+00:00', 
+                  '_start_at': '2014-06-23T00:00:00+00:00', 
+                  'uniqueEvents:sum': 187.0
+                }
+              ]
+            }
+          ]
+        });
+        expect(parsed.length).toBe(3);
       });
 
     });
