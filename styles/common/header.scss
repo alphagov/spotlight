@@ -5,6 +5,8 @@
 
     display: inline-block;
 
+    main h1 { margin-bottom: 10px; }
+
     @include media(desktop) {
       main {
         width: 62.5%; // 600px
@@ -40,6 +42,9 @@
     aside {
       h2 {
         @include bold-19;
+      }
+      p {
+        @include core-16;
       }
     }
 

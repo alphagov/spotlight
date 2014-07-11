@@ -1,4 +1,25 @@
 #content {
+  section.module {
+    min-height: 190px;
+
+    @include core-16;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    > p {
+      margin: 5px 0 0 0;
+    }
+
+    .visualisation-inner {
+      width: 100%;
+      float: left;
+      clear: both;
+    }
+
+  }
+
   // module-page is a class added on the page-per-thing
   .module-page {
     header {
@@ -54,20 +75,5 @@
         }
       }
     }
-  }
-
-  section.module {
-    min-height: 190px;
-
-    > p {
-      margin: 5px 0 0 0;
-    }
-
-    .visualisation-inner {
-      width: 100%;
-      float: left;
-      clear: both;
-    }
-
   }
 }

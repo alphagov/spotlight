@@ -3,6 +3,7 @@
 
   strong {
     @include bold-80();
+    margin-top: 10px;
     margin-bottom: -0.1em;
     display: block;
 

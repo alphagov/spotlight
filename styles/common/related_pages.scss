@@ -2,6 +2,8 @@
 
   .related-pages {
 
+    @include core-16;
+
     h3 {
       @include core-16;
     }
