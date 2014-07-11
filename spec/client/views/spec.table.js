@@ -225,8 +225,8 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       it('sorts the tableCollection desc', function () {
         var sortByValue = table.$table.find('thead th:last');
 
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello');
+        expect(table.tableCollection.at(0).get('value')).toEqual('hello');
+        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
         expect(table.tableCollection.at(2).get('value')).toEqual('hello world');
 
         sortByValue.find('a').click();
@@ -239,8 +239,8 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       it('sorts the tableCollection asc', function () {
         var sortByValue = table.$table.find('thead th:last');
 
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello');
+        expect(table.tableCollection.at(0).get('value')).toEqual('hello');
+        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
         expect(table.tableCollection.at(2).get('value')).toEqual('hello world');
 
         sortByValue.find('a').click();
@@ -254,8 +254,8 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       it('secondary sorts on the _timestamp attr', function () {
         var sortByValue = table.$table.find('thead th:last');
 
-        expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+        expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+        expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
         expect(table.tableCollection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
 
         sortByValue.find('a').click();
@@ -274,8 +274,8 @@ function (Table, BaseTable, Collection, $, Modernizr) {
         expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
         expect(table.tableCollection.at(2).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
 
-        expect(table.collection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+        expect(table.collection.at(0).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+        expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
         expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
       });
     });
