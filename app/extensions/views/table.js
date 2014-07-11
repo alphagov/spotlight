@@ -66,8 +66,8 @@ function (View, Formatters) {
     },
 
     renderBody: function (collection) {
-      var collection = collection || this.collection,
-          columns = this.getColumns(),
+      collection = collection || this.collection;
+      var columns = this.getColumns(),
           keys = _.pluck(columns, 'key'),
           rows = collection.getTableRows(keys),
           body = '';

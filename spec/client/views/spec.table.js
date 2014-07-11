@@ -223,8 +223,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       });
 
       it('sorts the tableCollection desc', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$table.find('thead th:last');
 
         expect(table.tableCollection.at(0).get('value')).toEqual('hello world');
         expect(table.tableCollection.at(1).get('value')).toEqual('hello');
@@ -238,8 +237,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       });
 
       it('sorts the tableCollection asc', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$table.find('thead th:last');
 
         expect(table.tableCollection.at(0).get('value')).toEqual('hello world');
         expect(table.tableCollection.at(1).get('value')).toEqual('hello');
@@ -254,8 +252,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       });
 
       it('secondary sorts on the _timestamp attr', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$table.find('thead th:last');
 
         expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
         expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
@@ -269,8 +266,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       });
 
       it('doesnt sort the main collection', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$table.find('thead th:last');
 
         sortByValue.find('a').click();
 
