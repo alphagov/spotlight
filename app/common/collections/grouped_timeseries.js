@@ -4,17 +4,6 @@ define([
 function (Collection) {
 
   return Collection.extend({
-    queryParams: function () {
-      return {
-        collect: this.options.valueAttr,
-        period: this.options.period,
-        start_at: this.options.startAt,
-        end_at: this.options.endAt,
-        group_by: this.options.category,
-        filter_by: this.options.filterBy ? this.options.filterBy : [],
-        duration: this.options.duration ? this.options.duration : null
-      };
-    },
 
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
@@ -23,9 +12,17 @@ function (Collection) {
       if (this.options.groupMapping) {
         _.each(data, function (model) {
           _.each(this.options.groupMapping, function (to, from) {
-            if (model[from + ':' + this.valueAttr]) {
-              model[to + ':' + this.valueAttr] += model[from + ':' + this.valueAttr];
+            var toAttr = to + ':' + this.valueAttr,
+                fromAttr = from + ':' + this.valueAttr;
+
+            if (model[toAttr] === undefined) {
+              model[toAttr] = 0;
             }
+
+            if (model[fromAttr]) {
+              model[toAttr] += model[fromAttr];
+            }
+
             delete model[from + ':' + this.valueAttr];
           }, this);
         }, this);

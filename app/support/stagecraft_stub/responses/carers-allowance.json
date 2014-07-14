@@ -13,7 +13,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Apply for Carer's Allowance",
-      "url" : "https://www.gov.uk/apply-carers-allowance"
+      "url": "https://www.gov.uk/apply-carers-allowance"
     },
     "improve-dashboard-message": true
   },
@@ -29,19 +29,22 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently accessing the service on GOV.UK."
       ],
-      "data-group": "carers-allowance",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
-      "data-group": "carers-allowance",
-      "data-type": "weekly-claims",
       "dashboard-strapline": "Service dashboard",
       "category": "key",
-      "period": "week",
       "value-attribute": "value:sum",
       "show-line-labels": true,
       "use_stack": true,
@@ -54,7 +57,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -69,6 +75,17 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "weekly-claims",
+        "query-params": {
+          "period": "week",
+          "group_by": "key",
+          "collect": [
+            "value:sum"
+          ]
+        }
       }
     },
     {
@@ -76,8 +93,6 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "Proportion of applications made using the digital service",
-      "data-group": "carers-allowance",
-      "data-type": "weekly-claims",
       "info": [
         "Data source: Department for Work and Pensions",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
@@ -89,7 +104,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -99,6 +117,49 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "weekly-claims",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "value:sum"
+          ],
+          "group_by": "key"
+        }
+      }
+    },
+    {
+      "slug": "time-taken-to-complete-transaction",
+      "module-type": "single_timeseries",
+      "title": "Time taken to complete transaction",
+      "description": "The mean length of time taken for users to complete an application.",
+      "data-group": "carers-allowance",
+      "data-type": "time-taken-to-complete",
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "period": "week",
+      "group-by": "stage",
+      "filter-by": "stage:thank-you",
+      "value-attribute": "avgSessionDuration:sum",
+      "format-options": {
+        "type": "duration",
+        "unit": "m"
+      },
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Average session time"
+          }
+        ]
       }
     },
     {
@@ -106,22 +167,25 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
-      "data-group": "apply-carers-allowance",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "apply-carers-allowance",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "Proportion of users who start and complete their application using the digital service",
-      "data-group": "carers-allowance",
-      "data-type": "journey",
       "info": [
         "Data source: Google Analytics",
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
@@ -130,7 +194,20 @@
       "denominator-matcher": "about-you$",
       "numerator-matcher": "thank-you$",
       "matching-attribute": "eventLabel",
-      "start-at": "2014-05-19T00:00:00+00:00"
+      "axis-period": "week",
+      "value-attribute": "uniqueEvents:sum",
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "journey",
+        "query-params": {
+          "start_at": "2014-05-19T01:00:00Z",
+          "period": "week",
+          "collect": [
+            "uniqueEvents:sum"
+          ],
+          "group_by": "eventLabel"
+        }
+      }
     },
     {
       "slug": "users-at-each-step",
@@ -142,17 +219,39 @@
         "The total number of users who arrived at each step.",
         "Number of users is measured using the count of unique events from each step."
       ],
-      "data-group": "carers-allowance",
-      "data-type": "journey",
       "matching-attribute": "eventLabel",
       "axes": {
         "y": [
-          {"groupId": "about-you", "label": "About you", "format": "integer"},
-          {"groupId": "care-you-provide", "label": "About the care you provide", "format": "integer"},
-          {"groupId": "other-money", "label": "Other money", "format": "integer"},
-          {"groupId": "consent-and-declaration", "label": "Consent and declaration", "format": "integer"},
-          {"groupId": "thank-you", "label": "Application complete", "format": "integer"}
+          {
+            "groupId": "about-you",
+            "label": "About you",
+            "format": "integer"
+          },
+          {
+            "groupId": "care-you-provide",
+            "label": "About the care you provide",
+            "format": "integer"
+          },
+          {
+            "groupId": "other-money",
+            "label": "Other money",
+            "format": "integer"
+          },
+          {
+            "groupId": "consent-and-declaration",
+            "label": "Consent and declaration",
+            "format": "integer"
+          },
+          {
+            "groupId": "thank-you",
+            "label": "Application complete",
+            "format": "integer"
+          }
         ]
+      },
+      "data-source": {
+        "data-group": "carers-allowance",
+        "data-type": "journey"
       }
     },
     {
@@ -170,14 +269,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "carers-allowance",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -186,14 +289,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "carers-allowance",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

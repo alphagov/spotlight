@@ -7,8 +7,8 @@
   "title": "View driving record",
   "description": "Find out which vehicles you can drive, penalty points and when your licence expires.",
   "department": {
-     "title": "Department for Transport",
-     "abbr": "DfT"
+    "title": "Department for Transport",
+    "abbr": "DfT"
   },
   "agency": {
     "title": "Driver and Vehicle Licensing Agency",
@@ -17,11 +17,11 @@
   "relatedPages": {
     "transaction": {
       "title": "View your driving licence information",
-      "url" : "https://www.gov.uk/view-driving-licence"
+      "url": "https://www.gov.uk/view-driving-licence"
     }
   },
   "modules": [
-      {
+    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "Live service usage",
@@ -30,19 +30,22 @@
         "Data source: Google Analytics",
         "Live number of users on any page within the service"
       ],
-      "data-group": "view-driving-record",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "view-driving-record",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "digital-transactions",
       "module-type": "grouped_timeseries",
       "title": "Digital Transactions",
       "description": "Transactions by <span class=\"group0\">driving licence number</span> and <span class=\"group1\">personal details</span> over time.",
-      "data-group": "view-driving-record",
-      "data-type": "digital-transactions",
       "dashboard-strapline": "Service dashboard",
       "category": "pagePath",
-      "period": "week",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
       "use_stack": true,
@@ -53,7 +56,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -68,6 +74,17 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "view-driving-record",
+        "data-type": "digital-transactions",
+        "query-params": {
+          "period": "week",
+          "group_by": "pagePath",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
       }
     },
     {
@@ -81,10 +98,7 @@
           "slug": "user",
           "title": "User log in",
           "module-type": "grouped_timeseries",
-          "data-group": "view-driving-record",
-          "data-type": "digital-transactions",
           "category": "pagePath",
-          "period": "week",
           "value-attribute": "visitors:sum",
           "show-line-labels": true,
           "use_stack": true,
@@ -96,7 +110,10 @@
           "axes": {
             "x": {
               "label": "Date",
-              "key": ["_start_at", "_end_at"],
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
               "format": "dateRange"
             },
             "y": [
@@ -117,16 +134,24 @@
             "/driving-record/licence-number/error": "dln",
             "/driving-record/viewbypersonaldetails": "personal-details",
             "/driving-record/personal-details/error": "personal-details"
+          },
+          "data-source": {
+            "data-group": "view-driving-record",
+            "data-type": "digital-transactions",
+            "query-params": {
+              "period": "week",
+              "group_by": "pagePath",
+              "collect": [
+                "visitors:sum"
+              ]
+            }
           }
         },
         {
           "slug": "dln",
           "title": "Driving licence number log in",
           "module-type": "grouped_timeseries",
-          "data-group": "view-driving-record",
-          "data-type": "digital-transactions",
           "category": "pagePath",
-          "period": "week",
           "value-attribute": "visitors:sum",
           "show-line-labels": true,
           "use_stack": true,
@@ -138,7 +163,10 @@
           "axes": {
             "x": {
               "label": "Date",
-              "key": ["_start_at", "_end_at"],
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
               "format": "dateRange"
             },
             "y": [
@@ -153,16 +181,24 @@
                 "format": "percent"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "view-driving-record",
+            "data-type": "digital-transactions",
+            "query-params": {
+              "period": "week",
+              "group_by": "pagePath",
+              "collect": [
+                "visitors:sum"
+              ]
+            }
           }
         },
         {
           "slug": "personal-details",
           "title": "Personal details log in",
           "module-type": "grouped_timeseries",
-          "data-group": "view-driving-record",
-          "data-type": "digital-transactions",
           "category": "pagePath",
-          "period": "week",
           "value-attribute": "visitors:sum",
           "show-line-labels": true,
           "use_stack": true,
@@ -174,7 +210,10 @@
           "axes": {
             "x": {
               "label": "Date",
-              "key": ["_start_at", "_end_at"],
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
               "format": "dateRange"
             },
             "y": [
@@ -189,6 +228,17 @@
                 "format": "percent"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "view-driving-record",
+            "data-type": "digital-transactions",
+            "query-params": {
+              "period": "week",
+              "group_by": "pagePath",
+              "collect": [
+                "visitors:sum"
+              ]
+            }
           }
         }
       ]
@@ -198,14 +248,19 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Average score of satisfied responses",
-      "data-group": "view-driving-licence",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "view-driving-licence",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -222,14 +277,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "view-driving-record",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "view-driving-record",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -238,14 +297,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "view-driving-record",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "view-driving-record",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

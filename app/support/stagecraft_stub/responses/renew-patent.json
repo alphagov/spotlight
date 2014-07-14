@@ -26,66 +26,72 @@
   "business-model": "Fees and charges",
   "costs": "These costs are based on our fee charges data produced for 2010 to 2011 and exclude policy cost.",
   "modules": [
-      {
+    {
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Renewals per year",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-payment-of-patent-renewal-fee-f12",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
         "magnitude": true,
         "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-payment-of-patent-renewal-fee-f12",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
       "slug": "total-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-payment-of-patent-renewal-fee-f12",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
         "magnitude": true,
         "sigfigs": 3
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-payment-of-patent-renewal-fee-f12",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per renewal",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-payment-of-patent-renewal-fee-f12",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
         "pence": true
+      },
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-payment-of-patent-renewal-fee-f12",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
       }
     },
     {
@@ -97,8 +103,14 @@
         "Data source: Google Analytics",
         "Shows users currently on the GOV.UK start page for the service."
       ],
-      "data-group": "bis-payment-of-patent-renewal-fee-f12",
-      "data-type": "realtime"
+      "data-source": {
+        "data-group": "bis-payment-of-patent-renewal-fee-f12",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
     },
     {
       "slug": "volumetrics",
@@ -112,18 +124,18 @@
         "Bulk software: Renewals made using the bulk electronic filing method",
         "Paper form: applications made using paper form and those received by fax"
       ],
-      "data-group": "patent-renewal",
-      "data-type": "transactions-by-channel",
       "dashboard-strapline": "Service dashboard",
       "category": "channel",
-      "period": "month",
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": true,
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -143,6 +155,17 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "patent-renewal",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "month",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -150,13 +173,10 @@
       "module-type": "completion_rate",
       "title": "Digital take-up",
       "description": "Proportion of renewals made using the digital service",
-      "data-group": "patent-renewal",
-      "data-type": "transactions-by-channel",
       "denominator-matcher": ".+",
       "numerator-matcher": "(file-upload|digital)",
       "matching-attribute": "channel",
       "value-attribute": "count:sum",
-      "period": "month",
       "info": [
         "Data source: Intellectual Property Office",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed monthly renewals that are made through online and bulk software versus non-digital channels."
@@ -164,7 +184,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -174,6 +197,18 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "patent-renewal",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "month",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
       }
     },
     {
@@ -181,31 +216,45 @@
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",
       "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
-      "data-group": "renew-patent",
-      "data-type": "customer-satisfaction",
       "info": [
         "Data source: GOV.UK user feedback database",
         "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
       ],
-      "period": "day",
-      "value-attribute": "rating"
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "renew-patent",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
     },
     {
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
       "description": "Proportion of users who start and complete their renewal using the digital service",
-      "data-group": "patent-renewal",
-      "data-type": "journey-completion",
       "denominator-matcher": "start$",
       "numerator-matcher": "finished$",
       "matching-attribute": "stage",
       "value-attribute": "count:sum",
-      "period": "month",
       "info": [
         "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
         "It is calculated as the percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
-      ]
+      ],
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "patent-renewal",
+        "data-type": "journey-completion",
+        "query-params": {
+          "period": "month",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "stage"
+        }
+      }
     },
     {
       "slug": "service-availability",
@@ -222,14 +271,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "bis-payment-of-patent-renewal-fee-f12",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "bis-payment-of-patent-renewal-fee-f12",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -238,14 +291,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "bis-payment-of-patent-renewal-fee-f12",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "bis-payment-of-patent-renewal-fee-f12",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }

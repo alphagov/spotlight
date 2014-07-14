@@ -11,16 +11,11 @@ function (UserSatisfactionCollection) {
       return {
         id: 'user_satisfaction',
         title: 'User satisfaction',
-        sortBy: '_timestamp:ascending',
-        limit: 0,
         min: 1,
         max: 5,
         totalAttr: 'totalRatings',
-        startAt: this.model.get('start-at'),
         valueAttr: this.model.get('value-attribute'),
-        period: this.model.get('period') || 'day',
         axisPeriod: this.model.get('axis-period'),
-        duration: this.model.get('duration') || 30,
         trim: this.model.get('trim') === false ? false : true,
         format: this.model.get('format') || 'integer',
         axes: _.merge({

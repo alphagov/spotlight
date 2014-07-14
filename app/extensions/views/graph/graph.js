@@ -152,12 +152,24 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     calcYScale: function () {
       var max = this.maxValue();
-
-      var yScale = this.d3.scale.linear();
-      if (max) {
-        var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(max, this.minYDomainExtent)], this.numYTicks);
-        yScale.domain(tickValues.extent);
-        yScale.tickValueList = tickValues.values;
+      var yScale;
+      if (this.formatOptions && this.formatOptions.type === 'duration') {
+        yScale = d3.time.scale();
+        if (max) {
+          yScale.domain([0, Math.max(max, this.minYDomainExtent)]);
+          var niceScale = d3.time.second;
+          if (max > 120000) {
+            niceScale = d3.time.min;
+          }
+          yScale.nice(niceScale);
+        }
+      } else {
+        yScale = this.d3.scale.linear();
+        if (max) {
+          var tickValues = this.calculateLinearTicks([this.minValue(), Math.max(max, this.minYDomainExtent)], this.numYTicks);
+          yScale.domain(tickValues.extent);
+          yScale.tickValueList = tickValues.values;
+        }
       }
       yScale.rangeRound([this.innerHeight, 0]);
       return yScale;
@@ -179,8 +191,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       var period = 'week';
       if (this.collection && this.collection.options.axisPeriod) {
         period = this.collection.options.axisPeriod;
-      } else if (this.collection && this.collection.query.get('period')) {
-        period = this.collection.query.get('period');
+      } else if (this.collection && this.collection.getPeriod()) {
+        period = this.collection.getPeriod();
       } else if (this.model && this.model.get('period')) {
         period = this.model.get('period');
       }

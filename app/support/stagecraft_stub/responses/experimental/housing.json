@@ -38,20 +38,19 @@
       "module-type": "grouped_timeseries",
       "title": "Building starts and completions",
       "description": "How many residential builds have been started and completed",
-      "data-group": "housing-policy",
-      "data-type": "dwellings",
       "use_stack": false,
       "value-attribute": "value:sum",
       "category": "type",
-      "period": "quarter",
-      "filter-by": ["geography:United_Kingdom", "tenure:all_dwellings"],
       "info": [
         "Source: National House-Building Council (NHBC)"
       ],
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "MMM YYYY"
@@ -70,27 +69,41 @@
           }
         ]
       },
-      "show-line-labels": true
+      "show-line-labels": true,
+      "data-source": {
+        "data-group": "housing-policy",
+        "data-type": "dwellings",
+        "query-params": {
+          "period": "quarter",
+          "filter_by": [
+            "geography:United_Kingdom",
+            "tenure:all_dwellings"
+          ],
+          "group_by": "type",
+          "collect": [
+            "value:sum"
+          ]
+        }
+      }
     },
     {
       "slug": "residential-property-transactions",
       "module-type": "grouped_timeseries",
       "title": "Residential property transactions",
       "description": "Volume of residential property transactions by nations and regions",
-      "data-group": "housing-policy",
-      "data-type": "residential-transactions",
       "use_stack": false,
       "value-attribute": "value:mean",
       "category": "geography",
-      "period": "quarter",
-      "filter-by": ["key:residential_property_transactions"],
       "info": [
         "Source: HMRC"
       ],
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "MMM YYYY"
@@ -119,27 +132,40 @@
           }
         ]
       },
-      "show-line-labels": true
+      "show-line-labels": true,
+      "data-source": {
+        "data-group": "housing-policy",
+        "data-type": "residential-transactions",
+        "query-params": {
+          "period": "quarter",
+          "filter_by": [
+            "key:residential_property_transactions"
+          ],
+          "group_by": "geography",
+          "collect": [
+            "value:mean"
+          ]
+        }
+      }
     },
     {
       "slug": "house-price-index",
       "module-type": "grouped_timeseries",
       "title": "House price index (HPI)",
       "description": "Average HPIs by nations and regions (100 = February 2002)",
-      "data-group": "housing-policy",
-      "data-type": "house-price-index",
       "use_stack": false,
       "value-attribute": "value:mean",
       "category": "geography",
-      "period": "quarter",
-      "filter-by": ["key:house_price_index"],
       "info": [
         "Source: Office of National Statistics (ONS)"
       ],
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "MMM YYYY"
@@ -188,7 +214,21 @@
           }
         ]
       },
-      "show-line-labels": true
+      "show-line-labels": true,
+      "data-source": {
+        "data-group": "housing-policy",
+        "data-type": "house-price-index",
+        "query-params": {
+          "period": "quarter",
+          "filter_by": [
+            "key:house_price_index"
+          ],
+          "group_by": "geography",
+          "collect": [
+            "value:mean"
+          ]
+        }
+      }
     }
   ]
 }

@@ -32,12 +32,9 @@
       "module-type": "grouped_timeseries",
       "title": "Cumulative sales by company size",
       "description": "Cumulative sales over time, showing the division between SMEs and larger enterprises",
-      "data-group": "gcloud",
-      "data-type": "sales",
       "use_stack": false,
       "value-attribute": "cumulative_spend:sum",
       "category": "sme_large",
-      "period": "month",
       "currency": "gbp",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
@@ -46,74 +43,91 @@
       "axes": {
         "y": [
           {
-           "label": "Total",
-           "groupId": "total",
-           "format": "currency"
+            "label": "Total",
+            "groupId": "total",
+            "format": "currency"
           },
           {
-           "label": "Small and medium enterprises",
-           "groupId": "Small and medium enterprises",
-           "format": "currency"
+            "label": "Small and medium enterprises",
+            "groupId": "Small and medium enterprises",
+            "format": "currency"
           },
           {
-           "label": "Large enterprises",
-           "groupId": "Large enterprises",
-           "format": "currency"
+            "label": "Large enterprises",
+            "groupId": "Large enterprises",
+            "format": "currency"
           }
         ]
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "gcloud",
+        "data-type": "sales",
+        "query-params": {
+          "period": "month",
+          "start_at": "2012-04-01T01:00:00Z",
+          "group_by": "sme_large",
+          "collect": [
+            "cumulative_spend:sum"
+          ]
+        }
+      }
     },
     {
       "slug": "monthly-sales-by-company-size",
       "module-type": "grouped_timeseries",
       "title": "Monthly sales by company size",
       "description": "Total sales each month, showing the division between SMEs and larger enterprises",
-      "data-group": "gcloud",
-      "data-type": "sales",
       "use_stack": false,
       "value-attribute": "monthly_spend:sum",
       "category": "sme_large",
-      "period": "month",
       "currency": "gbp",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
       ],
       "axes": {
-         "y": [
-           {
-             "label": "Total",
-             "groupId": "total",
-             "format": "currency"
-           },
-           {
-             "label": "Small and medium enterprises",
-             "groupId": "Small and medium enterprises",
-             "format": "currency"
-           },
-           {
-             "label": "Large enterprises",
-             "groupId": "Large enterprises",
-             "format": "currency"
-           }
-         ]
+        "y": [
+          {
+            "label": "Total",
+            "groupId": "total",
+            "format": "currency"
+          },
+          {
+            "label": "Small and medium enterprises",
+            "groupId": "Small and medium enterprises",
+            "format": "currency"
+          },
+          {
+            "label": "Large enterprises",
+            "groupId": "Large enterprises",
+            "format": "currency"
+          }
+        ]
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "gcloud",
+        "data-type": "sales",
+        "query-params": {
+          "period": "month",
+          "start_at": "2012-04-01T01:00:00Z",
+          "group_by": "sme_large",
+          "collect": [
+            "monthly_spend:sum"
+          ]
+        }
+      }
     },
     {
       "slug": "proportion-of-sales-from-small-and-medium-enterprises",
       "module-type": "completion_rate",
       "title": "Proportion of sales from small and medium enterprises",
       "description": "The proportion of sales allocated to SMEs each month",
-      "data-group": "gcloud",
-      "data-type": "sales",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
@@ -122,7 +136,6 @@
       "numerator-matcher": "^Small",
       "matching-attribute": "sme_large",
       "value-attribute": "monthly_spend:sum",
-      "period": "month",
       "category": "sme_large",
       "axes": {
         "x": {
@@ -139,21 +152,29 @@
           }
         ]
       },
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "gcloud",
+        "data-type": "sales",
+        "query-params": {
+          "period": "month",
+          "start_at": "2012-04-01T01:00:00Z",
+          "collect": [
+            "monthly_spend:sum"
+          ],
+          "group_by": "sme_large"
+        }
+      }
     },
     {
       "slug": "cumulative-spend-by-customer-type",
       "module-type": "grouped_timeseries",
       "title": "Cumulative spend by customer type",
       "description": "Cumulative spend over time, showing spend by central government and wider public services",
-      "data-group": "gcloud",
-      "data-type": "sales",
       "use_stack": false,
       "category": "sector",
       "value-attribute": "cumulative_spend:sum",
       "currency": "gbp",
-      "period": "month",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
@@ -202,20 +223,28 @@
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "gcloud",
+        "data-type": "sales",
+        "query-params": {
+          "period": "month",
+          "start_at": "2012-04-01T01:00:00Z",
+          "group_by": "sector",
+          "collect": [
+            "cumulative_spend:sum"
+          ]
+        }
+      }
     },
     {
       "slug": "monthly-spend-by-lot",
       "module-type": "grouped_timeseries",
       "title": "Monthly spend by lot",
       "description": "Spend each month by category of service purchased",
-      "data-group": "gcloud",
-      "data-type": "sales",
       "use_stack": false,
       "value-attribute": "monthly_spend:sum",
       "category": "lot",
-      "period": "month",
       "currency": "gbp",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
@@ -232,30 +261,41 @@
         },
         "y": [
           {
-           "groupId": "Cloud Support Services (CSS)",
-           "label": "Specialist cloud services",
-           "format": "currency"
+            "groupId": "Cloud Support Services (CSS)",
+            "label": "Specialist cloud services",
+            "format": "currency"
           },
           {
-           "groupId": "Cloud Software as a Service (SaaS)",
-           "label": "Cloud Software as a Service",
-           "format": "currency"
+            "groupId": "Cloud Software as a Service (SaaS)",
+            "label": "Cloud Software as a Service",
+            "format": "currency"
           },
           {
-           "groupId": "Cloud Infrastructure as a Service (IaaS)",
-           "label": "Cloud Infrastructure as a Service",
-           "format": "currency"
+            "groupId": "Cloud Infrastructure as a Service (IaaS)",
+            "label": "Cloud Infrastructure as a Service",
+            "format": "currency"
           },
           {
-           "groupId": "Cloud Platform as a Service (PaaS)",
-           "label": "Cloud Platform as a Service",
-           "format": "currency"
+            "groupId": "Cloud Platform as a Service (PaaS)",
+            "label": "Cloud Platform as a Service",
+            "format": "currency"
           }
         ]
       },
       "show-line-labels": true,
-      "start-at": "2012-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "gcloud",
+        "data-type": "sales",
+        "query-params": {
+          "period": "month",
+          "start_at": "2012-04-01T01:00:00Z",
+          "group_by": "lot",
+          "collect": [
+            "monthly_spend:sum"
+          ]
+        }
+      }
     }
   ]
 }

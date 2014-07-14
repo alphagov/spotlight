@@ -1,12 +1,22 @@
 define([
   'client/controllers/module',
-  'client/views/table'
-], function (ModuleController, TableView) {
+  'client/views/table',
+  'extensions/collections/collection'
+], function (ModuleController, TableView, Collection) {
 
   return ModuleController.extend({
 
     visualisationClass: TableView,
-    collectionClass: null
+    collectionClass: Collection,
+
+    collectionOptions: function () {
+      return {
+        id: 'list',
+        title: 'List',
+        queryParams: this.model.get('query-params'),
+        axes: this.model.get('axes')
+      };
+    }
 
   });
 

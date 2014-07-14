@@ -52,20 +52,20 @@ define([
     describe('queryParams', function () {
 
       it('requests data for the last week by default', function () {
-        var collection = new TestCollection();
+        jasmine.setupMoment('2013-03-13T00:00:00+00:00', TestCollection.prototype);
 
-        jasmine.setupMoment('2013-03-13T00:00:00+00:00', collection);
+        var collection = new TestCollection();
 
         var params = collection.queryParams();
         expect(params).toHaveStartAndEndDatesMatching('2013-03-04T00:00:00', '2013-03-11T00:00:00');
       });
 
       it('requests data for an earlier week', function () {
+        jasmine.setupMoment('2013-03-13', TestCollection.prototype);
+
         var collection = new TestCollection(null, {
           weeksAgo: 1
         });
-
-        jasmine.setupMoment('2013-03-13', collection);
 
         var params = collection.queryParams();
         expect(params).toHaveStartAndEndDatesMatching('2013-02-25T00:00:00', '2013-03-04T00:00:00');
@@ -74,18 +74,18 @@ define([
       describe('Monday to Sunday week boundaries', function () {
         describe('Sundays', function () {
           it('should start the query 13 days before and finish 6 days before - by default', function () {
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
           });
 
           it('should start the query 20 days before and finish 13 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-06-24T00:00:00', '2013-07-01T00:00:00');
@@ -94,18 +94,18 @@ define([
 
         describe('Mondays', function () {
           it('should start the query 7 days before and finish 0 days before - by default', function () {
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-08T00:00:00', '2013-07-15T00:00:00');
           });
 
           it('should start the query 14 days before and finish 7 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
@@ -114,18 +114,18 @@ define([
 
         describe('Saturdays', function () {
           it('should start the query 12 days before and finish 5 days before - by default', function () {
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-07-01T00:00:00', '2013-07-08T00:00:00');
           });
 
           it('should start the query 19 days before and finish 12 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params).toHaveStartAndEndDatesMatching('2013-06-24T00:00:00', '2013-07-01T00:00:00');
@@ -136,8 +136,8 @@ define([
       describe('Monday to Sunday week boundaries', function () {
         describe('Sundays', function () {
           it('should start the query 13 days before and finish 6 days before - by default', function () {
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -145,10 +145,10 @@ define([
           });
 
           it('should start the query 20 days before and finish 13 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-14T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-14T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-06-24T00:00:00');
@@ -158,8 +158,8 @@ define([
 
         describe('Mondays', function () {
           it('should start the query 7 days before and finish 0 days before - by default', function () {
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-08T00:00:00');
@@ -167,10 +167,10 @@ define([
           });
 
           it('should start the query 14 days before and finish 7 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-15T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-15T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -180,8 +180,8 @@ define([
 
         describe('Saturdays', function () {
           it('should start the query 12 days before and finish 5 days before - by default', function () {
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection();
-            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-07-01T00:00:00');
@@ -189,10 +189,10 @@ define([
           });
 
           it('should start the query 19 days before and finish 12 days before - for 1 week ago', function () {
+            jasmine.setupMoment('2013-07-13T00:00:00+00:00', TestCollection.prototype);
             var conversionCollection = new TestCollection(null, {
               weeksAgo: 1
             });
-            jasmine.setupMoment('2013-07-13T00:00:00+00:00', conversionCollection);
 
             var params = conversionCollection.queryParams();
             expect(params.start_at.format('YYYY-MM-DDTHH:mm:ss')).toEqual('2013-06-24T00:00:00');

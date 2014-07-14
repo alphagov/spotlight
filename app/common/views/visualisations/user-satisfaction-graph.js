@@ -45,7 +45,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     },
 
     getPeriod: function () {
-      return this.model.get('period') || 'week';
+      return this.collection.getPeriod() || 'week';
     },
 
     getBreakdown: function (selectModel) {

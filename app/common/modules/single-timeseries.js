@@ -12,12 +12,7 @@ function (Collection) {
         denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
         matchingAttribute: this.model.get('group-by'),
         valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
-        period: this.model.get('period') || this.model.get('axis-period'),
-        startAt: this.model.get('start-at'),
-        endAt: this.model.get('end-at'),
-        filterBy: this.model.get('filter-by'),
         axisPeriod: this.model.get('axis-period') || this.model.get('period'),
-        queryParams: this.model.get('query-params'),
         axes: _.merge({
           x: {
             label: 'Date of Application',
@@ -28,11 +23,10 @@ function (Collection) {
             {
               label: 'Number of applications',
               key: 'uniqueEvents',
-              format: 'integer'
+              format: this.model.get('format-options') || 'integer'
             }
           ]
         }, this.model.get('axes')),
-        duration: this.model.get('duration'),
         defaultValue: this.model.get('default-value')
       };
     },
@@ -40,7 +34,8 @@ function (Collection) {
     visualisationOptions: function () {
       return {
         valueAttr: 'uniqueEvents',
-        totalAttr: 'mean'
+        totalAttr: 'mean',
+        formatOptions: this.model.get('format-options') || { type: 'number', magnitude: true, pad: true }
       };
     }
 

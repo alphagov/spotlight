@@ -614,6 +614,29 @@ function (Graph, Collection, Model, View, d3) {
         collection.each(function (model) { model.set('_count', null); });
         expect(graph.calcYScale().tickValueList).toBeUndefined();
       });
+
+      it('uses a time scale if specified', function () {
+        graph.formatOptions = {};
+        graph.formatOptions.type = 'duration';
+        expect(graph.calcYScale().domain()[0]).toEqual(new Date('Thu Jan 01 1970 00:00:00'));
+      });
+
+      it('uses a time scale with ticks at minute intervals if appropriate for the data', function () {
+        var alternateCollection = new Collection();
+        var alternateData = defaultData.map(function (d) {
+          d._count = d._count * 10000;
+          return d;
+        });
+        alternateCollection.reset(alternateData);
+        var alternateGraph = new Graph({
+          collection: alternateCollection
+        });
+        alternateGraph.formatOptions = {};
+        alternateGraph.formatOptions.type = 'duration';
+        expect(alternateGraph.calcYScale().ticks()[5])
+            .toEqual(new Date('Thu Jan 01 1970 00:05:00'));
+      });
+
     });
 
     describe('hasData', function () {

@@ -67,13 +67,19 @@ define([
       });
 
       var divisor = 1;
-      if (options.unit === 's') {
-        divisor = 1000;
-      } else if (options.unit === 'm') {
+      var result;
+      if (options.unit === 'm') {
         divisor = 60000;
-        options.dps = 0;
+        result = Math.floor(value/divisor) + 'm';
+        result += ' ' + this.duration(value % divisor, { unit: 's', dps: 0 });
+      } else {
+        if (options.unit === 's') {
+          divisor = 1000;
+        }
+        result = formatters.number(value / divisor, options) + options.unit;
       }
-      return formatters.number(value / divisor, options) + options.unit;
+
+      return result;
     },
 
     currency: function (value, options) {

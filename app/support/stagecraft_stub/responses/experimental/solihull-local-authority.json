@@ -29,10 +29,7 @@
       "module-type": "grouped_timeseries",
       "title": "Missed collections breakdown",
       "description": "Transactions by <span class=\"group0\">phone</span>, <span class=\"group1\">digital</span>, <span class=\"group2\">face to face</span> and <span class=\"group3\">other</span>.",
-      "data-group": "solihull-local-authority",
-      "data-type": "transactions-by-channel",
       "category": "channel",
-      "period": "week",
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": false,
@@ -63,6 +60,17 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "solihull-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
@@ -70,10 +78,7 @@
       "module-type": "grouped_timeseries",
       "title": "Usage breakdown",
       "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> transactions",
-      "data-group": "solihull-local-authority",
-      "data-type": "transactions-by-channel",
       "category": "digital",
-      "period": "week",
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "show-total-lines": true,
@@ -95,15 +100,23 @@
             "format": "integer"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "solihull-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "group_by": "digital",
+          "collect": [
+            "count:sum"
+          ]
+        }
       }
     },
     {
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
-      "data-group": "solihull-local-authority",
-      "data-type": "transactions-by-channel",
-      "period": "week",
       "info": [
         "Data source: CSV update",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures digital transactions as a percentage of the total."
@@ -115,7 +128,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": "dateRange"
         },
         "y": [
@@ -125,6 +141,18 @@
             "format": "percent"
           }
         ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "solihull-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
       }
     },
     {
@@ -142,14 +170,18 @@
           "slug": "30-days",
           "module-type": "availability",
           "description": "",
-          "data-group": "solihull-local-authority",
-          "data-type": "monitoring",
-          "period": "day",
           "axes": {
             "x": {
               "label": "Date",
               "key": "_timestamp",
               "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "solihull-local-authority",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
             }
           }
         },
@@ -158,14 +190,18 @@
           "slug": "24-hours",
           "module-type": "availability",
           "description": "",
-          "data-group": "solihull-local-authority",
-          "data-type": "monitoring",
-          "period": "hour",
           "axes": {
             "x": {
               "label": "Time",
               "key": "_timestamp",
               "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "solihull-local-authority",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
             }
           }
         }
