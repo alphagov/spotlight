@@ -20,16 +20,7 @@
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "tax",
-      "data-type": "receipts",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:hmrc-tax",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "number_of_transactions",
       "format": {
         "type": "number",
@@ -38,22 +29,24 @@
       },
       "info": [
         "Data source: HM Revenue and Customs"
-      ]
+      ],
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "annual-cost",
       "module-type": "kpi",
       "title": "Total cost",
-      "data-group": "tax",
-      "data-type": "receipts",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:hmrc-tax",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "total_cost",
       "format": {
         "type": "currency",
@@ -65,22 +58,24 @@
         "<br />",
         "Data source: HM Revenue and Customs",
         "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
-      ]
+      ],
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "data-group": "tax",
-      "data-type": "receipts",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_id:hmrc-tax",
-          "type:seasonally-adjusted"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "cost_per_transaction",
       "format": {
         "type": "currency",
@@ -91,25 +86,32 @@
         "<br />",
         "Data source: HM Revenue and Customs",
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
-      ]
+      ],
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
     },
     {
       "slug": "total-vat-registered-businesses",
       "module-type": "completion_numbers",
       "title": "Total VAT registered businesses",
       "description": "",
-      "data-group": "tax-vat",
-      "data-type": "registrations",
       "info": [
         "Data source: Google Analytics",
         "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
         "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
         "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
       ],
-      "filter-by":["registration_type:total-registrations"],
       "matching-attribute": "registration_type",
       "value-attribute": "count:sum",
-      "period": "month",
       "axes": {
         "x": {
           "label": "Date"
@@ -120,20 +122,27 @@
           }
         ]
       },
-      "start-at": "2013-04-01T00:00:00+00:00",
-      "end-at": "2014-04-01T00:00:00+00:00"
+      "data-source": {
+        "data-group": "tax-vat",
+        "data-type": "registrations",
+        "query-params": {
+          "period": "month",
+          "filter_by": [
+            "registration_type:total-registrations"
+          ],
+          "start_at": "2013-04-01T01:00:00Z",
+          "end_at": "2014-04-01T01:00:00Z"
+        }
+      }
     },
     {
       "slug": "vat-registrations-and-deregistrations",
       "module-type": "grouped_timeseries",
       "title": "VAT registrations and deregistrations",
       "description": "Tax collected by tax type",
-      "data-group": "tax-vat",
-      "data-type": "registrations",
       "value-attribute": "count:sum",
       "category": "registration_type",
       "use_stack": false,
-      "period": "month",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
@@ -174,9 +183,20 @@
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2013-04-01T00:00:00+00:00",
-      "end-at": "2014-04-01T00:00:00+00:00",
-      "axis-period": "month"
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "tax-vat",
+        "data-type": "registrations",
+        "query-params": {
+          "period": "month",
+          "start_at": "2013-04-01T01:00:00Z",
+          "end_at": "2014-04-01T01:00:00Z",
+          "group_by": "registration_type",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
     }
   ]
 }
