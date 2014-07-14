@@ -1,27 +1,30 @@
 define([
   './grouped_timeseries',
+  'extensions/models/data_source',
   'moment-timezone'
 ],
-function (GroupedCollection, moment) {
+function (GroupedCollection, DataSource, moment) {
 
   var format = 'YYYY-MM-DD[T]HH:mm:ss';
 
   return GroupedCollection.extend({
     queryParams: function () {
-      var params = GroupedCollection.prototype.queryParams.apply(this, arguments);
+      var params = {};
+      var options = this.dataSource.get('query-params');
       params.duration = this.duration();
-      if (this.options.startAt) {
-        params.start_at = moment(this.options.startAt).subtract(this.options.period, this.timeshift()).format(format);
+      if (options.startAt) {
+        params.start_at = moment(options.startAt).subtract(this.getPeriod(), this.timeshift()).format(format);
         params.duration = this.standardDuration();
       }
       return params;
     },
 
     standardDuration: function () {
-      if (this.options.duration) {
-        return this.options.duration;
+      var options = this.dataSource.get('query-params');
+      if (options.duration) {
+        return options.duration;
       } else {
-        return this.query.periods[this.options.period].duration;
+        return DataSource.PERIOD_TO_DURATION[this.getPeriod()];
       }
     },
 
@@ -40,7 +43,7 @@ function (GroupedCollection, moment) {
     flatten: function (data) {
       data = GroupedCollection.prototype.flatten.apply(this, arguments);
       return _.filter(data, function (model) {
-        return moment(_.last(data)._start_at).diff(model._start_at, this.options.period) < this.options.duration;
+        return moment(_.last(data)._start_at).diff(model._start_at, this.getPeriod()) < this.standardDuration();
       }, this);
     },
 
@@ -51,8 +54,8 @@ function (GroupedCollection, moment) {
           model._original_end_at = model._end_at;
           var _start_at = moment(model._start_at);
           var _end_at = moment(model._start_at);
-          _start_at.add(this.options.period, axis.timeshift).format(format);
-          _end_at.add(this.options.period, axis.timeshift).format(format);
+          _start_at.add(this.getPeriod(), axis.timeshift).format(format);
+          _end_at.add(this.getPeriod(), axis.timeshift).format(format);
 
           if (target.values[i + axis.timeshift]) {
             target.values[i + axis.timeshift]['timeshift' + axis.timeshift + ':' + axis.groupId + ':' + this.valueAttr] = model[this.valueAttr];

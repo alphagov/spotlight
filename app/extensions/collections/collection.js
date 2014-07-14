@@ -30,7 +30,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
-    getPeriod: function() {
+    getPeriod: function () {
       var queryParams = this.dataSource.get('query-params');
       return queryParams ? queryParams.period : undefined;
     },
