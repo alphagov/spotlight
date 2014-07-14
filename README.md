@@ -9,12 +9,38 @@ every browser.
 [D3]: http://d3js.org/
 [progressive enhancement]: https://www.gov.uk/service-manual/making-software/progressive-enhancement
 
-## Installation ##
+## Building and running the app ##
 
-This app runs inside [the Performance Platform development environment][ppdev],
-not in the standard GDS development VM.
+### Development ###
 
-[ppdev]: https://github.com/alphagov/pp-development
+**Just Spotlight:** The simplest way to get started is to run just this
+app, against production data. You can run the app as follows:
+
+```bash
+npm install -g grunt-cli # install grunt globally
+npm install
+grunt
+```
+
+Now you should be able to connect to the app at `http://localhost:3057`.
+
+The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
+automatically restart the server and recompile Sass.
+
+[node-supervisor]: https://github.com/isaacs/node-supervisor
+[grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
+
+By default, this will look at production data, but perhaps you want to connect
+to a different data source. You can do that
+by creating your own config file in `/config/config.development_personal.json` that mimics
+`/config/config.development.json` with a different `backdropUrl` property. It'll be ignored by Git.
+
+**Full stack:** if you're using our development environment then you can run all
+our apps in one go and use a real database for development.
+As a bonus, this will let you test the image fallbacks using the
+[screenshot-as-a-service][screenshot-as-a-service] app.
+
+First, you need to set up [the Performance Platform development environment][ppdev].
 
 Once you've got a machine that has the required system-level dependencies, you can install
 application dependencies with:
@@ -23,14 +49,7 @@ application dependencies with:
 npm install
 ```
 
-## Building and running the app ##
-
-### Development ###
-
-**Full stack:** if you're using our development environment then you can run all our apps in one go and use a real database for development.
-As a bonus, this will let you test the image fallbacks using the [screenshot-as-a-service][] app.
-
-[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
+And finally run the application:
 
 ```bash
 cd /var/apps/pp-development
@@ -38,25 +57,8 @@ bundle install # install bowler
 bowl performance
 ```
 
-**Just Spotlight:** if you want to only run this app, that's fine too.
-
-```bash
-cd /var/apps/spotlight
-grunt
-```
-
-Perhaps you want to run just the Spotlight app and connect to a different data source. You can do that
-by creating your own config file in `/config/config.development_personal.json` that mimics
-`/config/config.development.json` with a different `backdropUrl` property. It'll be ignored by Git.
-
-Once you've set up your DNS, `http://spotlight.perfplat.dev`
-will connect to the app (which is running on port 3057).
-
-The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
-automatically restart the server and recompile Sass.
-
-[node-supervisor]: https://github.com/isaacs/node-supervisor
-[grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
+[ppdev]: https://github.com/alphagov/pp-development
+[screenshot-as-a-service]: https://github.com/alphagov/screenshot-as-a-service
 
 ### Running tests ###
 
