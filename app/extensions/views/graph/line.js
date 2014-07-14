@@ -48,23 +48,21 @@ function (Component) {
     },
 
     renderTerminators: function () {
-      var getX = _.bind(function (model, index) { return this.x(index); }, this);
-      var getY = _.bind(function (model, index) { return this.y(index); }, this);
 
       this.componentWrapper.selectAll('.terminator').remove();
 
       this.collection.each(function (model, index) {
-        var hasCurrentPoint = (getY(null, index) !== null),
-            missingPreviousPoint = (index > 0 && getY(null, index - 1) === null),
-            missingNextPoint = (index < this.collection.size() - 1 && getY(null, index + 1) === null),
+        var hasCurrentPoint = this.y(index) !== null,
+            missingPreviousPoint = (index > 0 && this.y(index - 1) === null),
+            missingNextPoint = index === this.collection.length - 1 || this.y(index + 1) === null,
             showTerminator = hasCurrentPoint && (missingPreviousPoint || missingNextPoint);
 
         if (showTerminator) {
           this.componentWrapper.select('g.group')
             .append('circle')
             .attr('class', 'terminator line ' + this.className)
-            .attr('cx', getX(null, index))
-            .attr('cy', getY(null, index))
+            .attr('cx', this.x(index))
+            .attr('cy', this.y(index))
             .attr('r', 1.5);
         }
       }, this);
