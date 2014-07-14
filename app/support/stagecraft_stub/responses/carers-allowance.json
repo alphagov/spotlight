@@ -132,6 +132,37 @@
       }
     },
     {
+      "slug": "time-taken-to-complete-transaction",
+      "module-type": "single_timeseries",
+      "title": "Time taken to complete transaction",
+      "description": "The mean length of time taken for users to complete an application.",
+      "data-group": "carers-allowance",
+      "data-type": "time-taken-to-complete",
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "period": "week",
+      "group-by": "stage",
+      "filter-by": "stage:thank-you",
+      "value-attribute": "avgSessionDuration:sum",
+      "format-options": {
+        "type": "duration",
+        "unit": "m"
+      },
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Average session time"
+          }
+        ]
+      }
+    },
+    {
       "slug": "user-satisfaction",
       "module-type": "user_satisfaction_graph",
       "title": "User satisfaction",

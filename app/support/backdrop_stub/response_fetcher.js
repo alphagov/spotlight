@@ -4,6 +4,7 @@ define(['extensions/models/model', 'lodash', 'fs', 'path'], function (Model, _, 
   var ResponseFetcher = Model.extend({
 
     stubMappings: [
+      { 'key': {'service': 'carers-allowance', 'api_name': 'time-taken-to-complete'}, 'file': 'carers-allowance-time-taken.json'},
       { 'key': {'service': 'transactional-services', 'api_name': 'summaries'}, 'file': 'kpi.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:sum', 'period': 'month', 'group_by': 'geography'}, 'file':  'housing_residential_transactions.json'},
       { 'key': {'service': 'housing-policy', 'api_name': 'residential-transactions', 'collect': 'value:mean', 'period': 'quarter', 'group_by': 'geography'}, 'file':  'housing_residential_transactions_quarterly.json'},

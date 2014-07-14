@@ -121,6 +121,12 @@ define([
         expect(Formatters.format(12345, { type: 'duration', unit: 's', dps: 2 })).toEqual('12.35s');
       });
 
+      it('returns value in minutes and seconds if required', function () {
+        expect(Formatters.format(567, { type: 'duration', unit: 'm' })).toEqual('0m 1s');
+        expect(Formatters.format(12345, { type: 'duration', unit: 'm' })).toEqual('0m 12s');
+        expect(Formatters.format(1234500, { type: 'duration', unit: 'm' })).toEqual('20m 35s');
+      });
+
     });
 
     describe('currency', function () {
