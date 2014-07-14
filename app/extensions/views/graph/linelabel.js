@@ -18,7 +18,7 @@ function (Component) {
 
     classed: 'labels',
 
-    interactive: false,
+    interactive: true,
 
     /**
      * Renders labels for current collection.
@@ -53,6 +53,27 @@ function (Component) {
       }
     },
 
+    onHover: function (e) {
+      if (e.slice % 3 !== 2) {
+        return;
+      }
+      var index, options, closest;
+      var diff = Infinity;
+      _.each(this.positions, function (pos) {
+        var y = pos.min - this.margin.top + this.labelOffset + (pos.size / 2);
+        var d = Math.abs(y - e.y);
+        if (d < diff) {
+          diff = d;
+          closest = pos;
+        }
+      }, this);
+      if (closest) {
+        index = this.collection.length - 1;
+        options = { valueAttr: closest.key, force: true };
+      }
+      this.collection.selectItem(index, options);
+    },
+
     /**
      * Links are displayed above hover element and intercept events.
      * Replicates hover functionality for link areas.
@@ -63,18 +84,11 @@ function (Component) {
       events[eventName + ' li'] = function (e) {
         var target = $(e.currentTarget);
         var index = $(this.figcaption.node()).find('li').index(target);
-        this.collection.selectItem(index);
-
-        if (!this.bodyListener) {
-          this.bodyListener = true;
-          var that = this;
-          $('body').one(eventName, function () {
-            that.bodyListener = false;
-            that.collection.selectItem(null, null);
-          });
-        }
-
-        return false;
+        this.collection.selectItem(this.collection.length - 1, {
+          valueAttr: this.positions[index].key,
+          force: true
+        });
+        e.stopPropagation();
       };
 
       return events;

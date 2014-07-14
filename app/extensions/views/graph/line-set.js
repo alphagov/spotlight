@@ -30,9 +30,11 @@ define([
     },
 
     onHover: function (e) {
-      var closestX = this.getClosestX(e);
-      var closestLine = this.getClosestLine(e, closestX);
-      this.collection.selectItem(closestX, { valueAttr: closestLine.valueAttr, force: true });
+      if (e.slice % 3 !== 2) {
+        var closestX = this.getClosestX(e);
+        var closestLine = this.getClosestLine(e, closestX);
+        this.collection.selectItem(closestX, { valueAttr: closestLine.valueAttr, force: true });
+      }
     },
 
     getClosestX: function (e) {

@@ -72,13 +72,13 @@ function (LineLabel, Collection, Model) {
           showSquare: false,
           collection: collection,
           rendered: true,
-          model: new Model({ period: 'week' })
+          graph: graph,
+          model: new Model()
         });
         lineLabel.wrapper = wrapper;
         lineLabel.offset = 100;
         lineLabel.linePaddingInner = 20;
         lineLabel.linePaddingOuter = 30;
-        lineLabel.graph = graph;
         lineLabel.margin = {
           top: 100,
           right: 200,
@@ -285,22 +285,18 @@ function (LineLabel, Collection, Model) {
             LineLabel.prototype.modernizr = { touch: false };
             lineLabel = new LineLabel(options);
             lineLabel.render();
+            expect(collection.selectedIndex).toEqual(null);
             lineLabel.$el.find('li').eq(0).trigger('mousemove');
-            expect(collection.selectedIndex).toBe(0);
-
-            $('body').trigger('mousemove');
-            expect(collection.selectedIndex).toBe(null);
+            expect(collection.selectedIndex).toEqual(collection.length - 1);
           });
 
           it('listens for touchstart events for links on touch devices', function () {
             LineLabel.prototype.modernizr = { touch: true };
             lineLabel = new LineLabel(options);
             lineLabel.render();
+            expect(collection.selectedIndex).toEqual(null);
             lineLabel.$el.find('li').eq(1).trigger('touchstart');
-            expect(collection.selectedIndex).toBe(1);
-
-            $('body').trigger('touchstart');
-            expect(collection.selectedIndex).toBe(null);
+            expect(collection.selectedIndex).toEqual(collection.length - 1);
           });
         });
       });
