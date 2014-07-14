@@ -10,7 +10,7 @@ function (View, Formatters) {
       var collection = this.collection = options.collection;
 
       this.valueAttr = options.valueAttr;
-      this.period = collection.options.period;
+      this.period = collection.getPeriod();
 
       View.prototype.initialize.apply(this, arguments);
 

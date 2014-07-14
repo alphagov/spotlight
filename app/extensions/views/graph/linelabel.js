@@ -261,7 +261,7 @@ function (Component) {
       labelMeta += this.renderValuePercentage(value, percentage);
 
       if (line.timeshift) {
-        labelMeta = '<span class="label-title">(' + line.timeshift + ' ' + this.collection.options.period + 's ago)</span>' + labelMeta;
+        labelMeta = '<span class="label-title label-timeshift">(' + line.timeshift + ' ' + this.collection.getPeriod() + 's ago)</span>' + labelMeta;
       }
 
       if (line.href) {

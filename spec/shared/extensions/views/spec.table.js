@@ -18,6 +18,7 @@ function (Table, View, Collection, $) {
       var table;
       beforeEach(function () {
         spyOn(Table.prototype, 'render');
+        spyOn(Collection.prototype, 'getPeriod').andReturn('month');
         table = new Table({
           collection: new Collection()
         });
@@ -44,6 +45,11 @@ function (Table, View, Collection, $) {
         expect(table.render).not.toHaveBeenCalled();
       });
 
+      it('sets collection period to own period property', function () {
+        expect(table.collection.getPeriod).toHaveBeenCalled();
+        expect(table.period).toEqual('month');
+      });
+
     });
 
     describe('render', function () {
@@ -55,7 +61,6 @@ function (Table, View, Collection, $) {
           collection: {
             on: jasmine.createSpy(),
             options: {
-              period: 'week',
               axes: {
                 x: {
                   label: 'date',
@@ -69,7 +74,8 @@ function (Table, View, Collection, $) {
               }
             },
             getTableRows: function () {},
-            sortByAttr: function () {}
+            sortByAttr: function () {},
+            getPeriod: function () { return 'week'; }
           },
           valueAttr: 'value'
         });

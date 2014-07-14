@@ -90,6 +90,7 @@ function (LineLabel, Collection, Model) {
           { ideal: 80, min: 80, size: 30, key: '_value' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
+        spyOn(collection, 'getPeriod').andReturn('week');
       });
 
       afterEach(function () {
@@ -141,6 +142,20 @@ function (LineLabel, Collection, Model) {
 
           expect(typeof textLabels.eq(0).prop('class')).toEqual('string');
           expect(textLabels.eq(0).prop('class')).toEqual('label0 timeshift');
+        });
+
+        it('adds timeshift subtitle to line labels for timeshifted lines', function () {
+          lineLabel.graph.getLines = function () {
+            return [
+              { label: 'Title 1', key: '_count', timeshift: 52 },
+              { label: 'Title 2', key: '_count' }
+            ];
+          };
+          lineLabel.render();
+
+          var textLabels = lineLabel.$el.find('figcaption li');
+
+          expect(textLabels.eq(0).find('.label-timeshift').text()).toEqual('(52 weeks ago)');
         });
 
         it('renders a label with correct WAI-ARIA attributes', function () {
