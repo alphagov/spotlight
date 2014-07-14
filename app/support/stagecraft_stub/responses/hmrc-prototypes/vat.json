@@ -161,7 +161,7 @@
     },
     {
       "slug": "cost-of-collecting-100-gbp-in-vat",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Cost of collecting £100 in VAT",
       "description": "",
       "info": [

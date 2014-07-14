@@ -101,7 +101,7 @@
     },
     {
       "slug": "total-vat-registered-businesses",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Total VAT registered businesses",
       "description": "",
       "info": [
