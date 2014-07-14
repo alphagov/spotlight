@@ -87,7 +87,9 @@
           "period": "week",
           "duration": 52,
           "group_by": "website",
-          "collect": "visitors:sum"
+          "collect": [
+            "visitors:sum"
+          ]
         }
       }
     },
