@@ -74,46 +74,6 @@
       }
     },
     {
-      "slug": "usage-breakdown",
-      "module-type": "grouped_timeseries",
-      "title": "Usage breakdown",
-      "description": "<span class=\"group0\">Non-digital</span> and <span class=\"group1\">digital</span> transactions",
-      "category": "digital",
-      "value-attribute": "count:sum",
-      "show-line-labels": true,
-      "show-total-lines": true,
-      "cumulative": true,
-      "info": [
-        "Data source: CSV extract",
-        "Shows the number of digital and non digital transactions"
-      ],
-      "axes": {
-        "y": [
-          {
-            "label": "Non-digital",
-            "groupId": "NonDigital",
-            "format": "integer"
-          },
-          {
-            "label": "Digital",
-            "groupId": "Digital",
-            "format": "integer"
-          }
-        ]
-      },
-      "data-source": {
-        "data-group": "solihull-local-authority",
-        "data-type": "transactions-by-channel",
-        "query-params": {
-          "period": "week",
-          "group_by": "digital",
-          "collect": [
-            "count:sum"
-          ]
-        }
-      }
-    },
-    {
       "slug": "digital-takeup",
       "module-type": "completion_rate",
       "title": "Digital take-up",
