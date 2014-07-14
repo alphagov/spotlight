@@ -195,7 +195,7 @@
           },
           {
             "label": "Over 75",
-            "groupId": "> 75",
+            "groupId": "&gt; 75",
             "format": "integer"
           }
         ]
