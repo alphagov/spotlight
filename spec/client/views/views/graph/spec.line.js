@@ -22,7 +22,7 @@ function (Line, Collection) {
           return index;
         },
         getYPos: function (index, attr) {
-          return collection.at(index).get(attr);
+          return collection.at(index) ? collection.at(index).get(attr) : null;
         },
         innerHeight: 100,
         innerWidth: 200
@@ -85,6 +85,42 @@ function (Line, Collection) {
         });
         var line = 'M' + coords.join('L');
         expect(wrapper.selectAll('path.line').attr('d')).toEqual(line);
+      });
+
+      describe('renderTerminators', function () {
+
+        it('adds line terminators to the end of a dataset', function () {
+          view.render();
+          expect(wrapper.selectAll('circle.terminator').attr('cx')).toEqual('4.5');
+          expect(wrapper.selectAll('circle.terminator').attr('cy')).toEqual('11');
+        });
+
+        it('adds line terminators around gaps in the dataset', function () {
+          collection.at(2).set('a:count', null);
+          view.render();
+          var terminators = wrapper.selectAll('circle.terminator');
+
+          expect(d3.select(terminators[0][0]).attr('cx')).toEqual('1.5');
+          expect(d3.select(terminators[0][0]).attr('cy')).toEqual('4');
+
+          expect(d3.select(terminators[0][1]).attr('cx')).toEqual('3.5');
+          expect(d3.select(terminators[0][1]).attr('cy')).toEqual('9');
+        });
+
+        it('does not add a terminator to the start of a complete dataset', function () {
+          view.render();
+          expect(wrapper.selectAll('circle.terminator')[0].length).toEqual(1);
+          expect(wrapper.selectAll('circle.terminator').attr('cx')).toEqual('4.5');
+        });
+
+        it('adds a terminator to the start of a dataset missing data at start', function () {
+          collection.at(0).set('a:count', null);
+          view.render();
+          expect(wrapper.selectAll('circle.terminator')[0].length).toEqual(2);
+          expect(d3.select(wrapper.selectAll('circle.terminator')[0][0]).attr('cx')).toEqual('1.5');
+          expect(d3.select(wrapper.selectAll('circle.terminator')[0][0]).attr('cy')).toEqual('4');
+        });
+
       });
 
     });

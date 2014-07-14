@@ -22,7 +22,7 @@ function (Stack, Collection) {
           return index;
         },
         getYPos: function (index, attr) {
-          return collection.at(index).get(attr);
+          return collection.at(index) ? collection.at(index).get(attr) : null;
         },
         getY0Pos: function () {
           return 0;
