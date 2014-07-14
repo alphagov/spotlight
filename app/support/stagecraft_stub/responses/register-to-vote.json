@@ -64,7 +64,7 @@
         "y": [
           {
             "label": "Digital",
-            "groupId": "ordinary",
+            "groupId": "digital",
             "format": "integer"
           },
           {
@@ -73,6 +73,12 @@
             "format": "integer"
           }
         ]
+      },
+      "group-mapping": {
+        "ordinary": "digital",
+        "crown": "digital",
+        "overseas": "digital",
+        "forces": "digital"
       },
       "data-source": {
         "data-group": "register-to-vote",
@@ -97,8 +103,8 @@
       "info": [
         "Data source: Register to vote service"
       ],
-      "numerator-matcher": "^ordinary$",
-      "denominator-matcher": "^ordinary|ems$",
+      "numerator-matcher": "^ordinary|crown|overseas|forces$",
+      "denominator-matcher": "^ordinary|crown|overseas|forces|ems$",
       "matching-attribute": "value",
       "value-attribute": "count:sum",
       "axes": {
@@ -159,7 +165,7 @@
         },
         "y": [
           {
-            "label": "16 to 18",
+            "label": "16 to 17",
             "groupId": "16-18",
             "format": "integer"
           },
