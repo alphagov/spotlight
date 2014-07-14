@@ -1,0 +1,373 @@
+{
+  "slug": "prison-visits",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": true,
+  "strapline": "Dashboard",
+  "title": "Prison visit bookings",
+  "description": "Arrange meetings between prisoners and social visitors or legal professionals.",
+  "description-extra": "The service must match the visitor and prisoner to the available capacity for visits, balancing convenience for the visitor with the need for efficiency and security.",
+  "department": {
+    "title": "Ministry of Justice",
+    "abbr": "MoJ"
+  },
+  "agency": {
+    "title": "National Offender Management Service",
+    "abbr": "NOMS"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Visit someone in prison",
+      "url": "https://www.gov.uk/prison-visits"
+    }
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "costs": "Cost-per-transaction data is based on estimates of the cost of back office support for prison visit booking and the cost of time spent by staff on prison wings supporting applications by prisoners to book visits.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Ministry of Justice"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-prison-visit-booking",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Cost-per-transaction data is based on estimates of the cost of back office support for prison visit booking and the cost of time spent by staff on prison wings supporting applications by prisoners to book visits.",
+        "<br />",
+        "Data source: Ministry of Justice",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-prison-visit-booking",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "classes": "cols3",
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "Cost-per-transaction data is based on estimates of the cost of back office support for prison visit booking and the cost of time spent by staff on prison wings supporting applications by prisoners to book visits.",
+        "<br />",
+        "Data source: Ministry of Justice",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-prison-visit-booking",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Applications breakdown",
+      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">non-digital</span> applications over time",
+      "category": "is_digital",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: DWP database",
+        "Shows the number of successful prison visit bookings, broken down by channel",
+        "Digital: applications made online",
+        "Paper form: applications made using a paper form"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital",
+            "groupId": "digital",
+            "format": "integer"
+          },
+          {
+            "label": "Non-digital",
+            "groupId": "non-digital",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "digital-volumes",
+        "query-params": {
+          "period": "week",
+          "group_by": "is_digital",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "Proportion of applications made using the digital service",
+      "info": [
+        "Data source: Department for Work and Pensions",
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ],
+      "denominator-matcher": "digital$",
+      "numerator-matcher": "^digital$",
+      "matching-attribute": "is_digital",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "digital-volumes",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "is_digital"
+        }
+      }
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "Proportion of users who start and complete their application using the digital service",
+      "info": [
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
+      ],
+      "denominator-matcher": "^/visitor-details$",
+      "numerator-matcher": "^/request-sent$",
+      "matching-attribute": "pagePath",
+      "axis-period": "week",
+      "value-attribute": "uniquePageviews:sum",
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "uniquePageviews:sum"
+          ],
+          "group_by": "pagePath"
+        }
+      }
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
+    },
+    {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group0\">desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage on this service over time",
+      "category": "deviceCategory",
+      "value-attribute": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Desktop",
+            "groupId": "desktop",
+            "format": "percent"
+          },
+          {
+            "label": "Mobile",
+            "groupId": "mobile",
+            "format": "percent"
+          },
+          {
+            "label": "Tablet",
+            "groupId": "tablet",
+            "format": "percent"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "prison-visits",
+        "data-type": "device-usage",
+        "query-params": {
+          "period": "week",
+          "group_by": "deviceCategory",
+          "collect": [
+            "visitors:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "prison-visits",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "prison-visits",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
