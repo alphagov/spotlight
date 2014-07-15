@@ -572,7 +572,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100
@@ -617,7 +617,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100
@@ -662,7 +662,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100

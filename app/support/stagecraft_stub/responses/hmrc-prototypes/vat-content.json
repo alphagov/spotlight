@@ -277,7 +277,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100
@@ -294,7 +294,7 @@
               "group_by": "sourceMedium",
               "collect": [
                 "entrances:sum",
-                "visitBounceRate"
+                "visitBounceRate:mean"
               ],
               "period": "week",
               "duration": 1
@@ -319,7 +319,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100
@@ -336,7 +336,7 @@
               "group_by": "keyword",
               "collect": [
                 "entrances:sum",
-                "visitBounceRate"
+                "visitBounceRate:mean"
               ],
               "period": "week",
               "duration": 1
@@ -361,7 +361,7 @@
               },
               {
                 "label": "Bounce rate",
-                "key": "visitBounceRate",
+                "key": "visitBounceRate:mean",
                 "format": {
                   "type": "percent",
                   "normalisation": 100
@@ -378,7 +378,7 @@
               "group_by": "socialNetwork",
               "collect": [
                 "entrances:sum",
-                "visitBounceRate"
+                "visitBounceRate:mean"
               ],
               "period": "week",
               "duration": 1
