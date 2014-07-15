@@ -57,7 +57,7 @@ function (Component) {
       if (e.slice % 3 !== 2) {
         return;
       }
-      var index, options, closest;
+      var closest;
       var diff = Infinity;
       _.each(this.positions, function (pos) {
         var y = pos.min - this.margin.top + this.labelOffset + (pos.size / 2);
@@ -67,11 +67,7 @@ function (Component) {
           closest = pos;
         }
       }, this);
-      if (closest) {
-        index = this.collection.length - 1;
-        options = { valueAttr: closest.key, force: true };
-      }
-      this.collection.selectItem(index, options);
+      this.selectLine(closest.key);
     },
 
     /**
@@ -84,14 +80,24 @@ function (Component) {
       events[eventName + ' li'] = function (e) {
         var target = $(e.currentTarget);
         var index = $(this.figcaption.node()).find('li').index(target);
-        this.collection.selectItem(this.collection.length - 1, {
-          valueAttr: this.positions[index].key,
-          force: true
-        });
+        this.selectLine(this.positions[index].key);
         e.stopPropagation();
       };
 
       return events;
+    },
+
+    selectLine: function (key) {
+      var index, options;
+      if (key) {
+        this.collection.each(function (model, i) {
+          if (model.get(key) !== null) {
+            index = i;
+          }
+        });
+        options = { valueAttr: key, force: true };
+      }
+      this.collection.selectItem(index, options);
     },
 
     renderValuePercentage: function (value, percentage) {
