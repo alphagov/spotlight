@@ -61,6 +61,9 @@ function (LineLabel, Collection, Model) {
           },
           modelToDate: function () {
             return '2014-01-01';
+          },
+          getYPos: function (index, attr) {
+            return collection.at(index).get(attr);
           }
         };
 
@@ -72,13 +75,13 @@ function (LineLabel, Collection, Model) {
           showSquare: false,
           collection: collection,
           rendered: true,
-          model: new Model({ period: 'week' })
+          graph: graph,
+          model: new Model()
         });
         lineLabel.wrapper = wrapper;
         lineLabel.offset = 100;
         lineLabel.linePaddingInner = 20;
         lineLabel.linePaddingOuter = 30;
-        lineLabel.graph = graph;
         lineLabel.margin = {
           top: 100,
           right: 200,
@@ -271,9 +274,13 @@ function (LineLabel, Collection, Model) {
               { ideal: 80, min: 80, size: 30 }
             ],
             rendered: true,
+            scales: {
+              x: function (x) { return x; },
+              y: function (y) { return y; }
+            },
             model: new Model()
           };
-          spyOn(LineLabel.prototype, 'setLabelPositions');
+
         });
 
         afterEach(function () {
@@ -281,26 +288,39 @@ function (LineLabel, Collection, Model) {
         });
 
         describe('events', function () {
+
+          beforeEach(function () {
+            spyOn(collection, 'selectItem');
+          });
+
           it('listens for mousemove events for links on non-touch devices', function () {
             LineLabel.prototype.modernizr = { touch: false };
             lineLabel = new LineLabel(options);
             lineLabel.render();
+            expect(collection.selectItem).not.toHaveBeenCalled();
             lineLabel.$el.find('li').eq(0).trigger('mousemove');
-            expect(collection.selectedIndex).toBe(0);
-
-            $('body').trigger('mousemove');
-            expect(collection.selectedIndex).toBe(null);
+            expect(collection.selectItem).toHaveBeenCalledWith(2, { valueAttr: '_count', force: true });
           });
 
           it('listens for touchstart events for links on touch devices', function () {
             LineLabel.prototype.modernizr = { touch: true };
             lineLabel = new LineLabel(options);
             lineLabel.render();
+            expect(collection.selectItem).not.toHaveBeenCalled();
             lineLabel.$el.find('li').eq(1).trigger('touchstart');
-            expect(collection.selectedIndex).toBe(1);
+            expect(collection.selectItem).toHaveBeenCalledWith(2, { valueAttr: '_value', force: true });
+          });
 
-            $('body').trigger('touchstart');
-            expect(collection.selectedIndex).toBe(null);
+          it('highlights the last point on the selected line that has data', function () {
+            collection.last().set('_count', null);
+
+            LineLabel.prototype.modernizr = { touch: false };
+            lineLabel = new LineLabel(options);
+            lineLabel.render();
+            lineLabel.$el.find('li').eq(0).trigger('mousemove');
+            expect(collection.selectItem).toHaveBeenCalledWith(1, { valueAttr: '_count', force: true });
+            lineLabel.$el.find('li').eq(1).trigger('mousemove');
+            expect(collection.selectItem).toHaveBeenCalledWith(2, { valueAttr: '_value', force: true });
           });
         });
       });

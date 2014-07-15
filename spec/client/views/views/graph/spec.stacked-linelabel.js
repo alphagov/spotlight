@@ -16,6 +16,7 @@ function (LineLabel, Collection, Model) {
         { 'def:_count': 3, 'abc:_count': 1000, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 1003 },
         { 'def:_count': null, 'abc:_count': 10000, 'def:_count:percent': 0.4, 'abc:_count:percent': 0.6, 'total:_count': 10000 }
       ]);
+      spyOn(collection, 'getPeriod').andReturn('week');
 
       graph = {
         innerWidth: 400,
@@ -31,9 +32,10 @@ function (LineLabel, Collection, Model) {
         },
         getYPos: function (i, attr) { return collection.at(i).get(attr) ? 2 * collection.at(i).get(attr) : null; },
         getY0Pos: function (i, attr) { return collection.at(i).get(attr); },
-        modelToDate: function() {
+        modelToDate: function () {
           return Date.now();
-        }
+        },
+        on: function () {}
       };
 
       el = $('<div></div>').appendTo($('body'));
@@ -41,13 +43,13 @@ function (LineLabel, Collection, Model) {
 
       lineLabel = new LineLabel({
         collection: collection,
+        graph: graph,
         model: new Model({ period: 'week' })
       });
       lineLabel.wrapper = wrapper;
       lineLabel.offset = 100;
       lineLabel.linePaddingInner = 20;
       lineLabel.linePaddingOuter = 30;
-      lineLabel.graph = graph;
       lineLabel.margin = {
         top: 100,
         right: 200,
