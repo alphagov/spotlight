@@ -325,15 +325,15 @@ function (Component) {
     },
 
     onChangeSelected: function (model, index, options) {
+      options = options || {};
       this.render();
       var labels = this.figcaption.selectAll('li');
       var lines = this.componentWrapper.selectAll('line');
       var selected = function (line) {
-        var valueAttr = line.key;
-        return model && (!options.valueAttr || options.valueAttr === valueAttr);
+        return model && options.valueAttr === line.key;
       };
       var unselected = function (line) {
-        return model && !selected(line);
+        return model && options.valueAttr && options.valueAttr !== line.key;
       };
       labels.classed('selected', selected);
       labels.classed('not-selected', unselected);

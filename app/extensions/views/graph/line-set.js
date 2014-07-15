@@ -55,7 +55,7 @@ define([
       var interpolator;
       var diff = this.lines[0].x(index) - e.x;
       var next = diff < 0 ? index + 1 : index - 1;
-      if (this.hasValueAtIndex(next)) {
+      if (diff !== 0 && this.hasValueAtIndex(next)) {
         interpolator = function (line) {
           var interpx = diff / (line.x(index) - line.x(next));
           return d3.interpolateNumber(line.y(index), line.y(next))(interpx);
@@ -69,18 +69,19 @@ define([
     },
 
     getClosestLine: function (e, index) {
-      var ydiff = Infinity;
-      var closestY = {};
-      var interpolator = this.getInterpolator(e, index);
+      var closestY = { valueAttr: null };
+      if (this.hasValueAtIndex(index)) {
+        var ydiff = Infinity;
+        var interpolator = this.getInterpolator(e, index);
 
-      _.each(this.lines, function (line) {
-        var diff = interpolator(line) - e.y;
-        if (Math.abs(diff) < Math.abs(ydiff)) {
-          closestY = line;
-          ydiff = diff;
-        }
-      });
-
+        _.each(this.lines, function (line) {
+          var diff = interpolator(line) - e.y;
+          if (Math.abs(diff) < Math.abs(ydiff)) {
+            closestY = line;
+            ydiff = diff;
+          }
+        });
+      }
       return closestY;
     },
 
