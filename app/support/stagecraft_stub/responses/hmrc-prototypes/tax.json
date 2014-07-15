@@ -15,19 +15,11 @@
     ]
   },
   "modules": [
-  {
-     "slug": "tax-collected-per-year",
+    {
+      "slug": "tax-collected-per-year",
       "module-type": "kpi",
       "title": "Total tax collected per year",
-      "data-group": "tax",
-      "data-type": "receipts",
       "classes": "cols2",
-      "query-params": {
-        "filter_by": [
-          "service_slug:hmrc-tax"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "count",
       "format": {
         "type": "currency",
@@ -36,70 +28,81 @@
       },
       "info": [
         "Data source: HM Revenue & Customs"
-      ]
-   },
+      ],
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_slug:hmrc-tax"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
     {
-     "slug": "total-cost-per-year",
-     "module-type": "kpi",
-     "title": "Total cost per year",
-     "data-group": "transactional-services",
-     "data-type": "summaries",
-     "classes": "cols3",
-     "query-params": {
-       "filter_by": [
-         "service_id:hmrc-tax",
-         "type:seasonally-adjusted"
-       ],
-       "sort_by": "_timestamp:descending"
-     },
-     "value-attribute": "number_of_transactions",
-     "format": {
-       "type": "number",
-       "magnitude": true,
-       "sigfigs": 3
-     },
-     "info": [
-       "Data source: HM Revenue and Customs"
-     ]
-   },
-   {
-     "slug": "Cost of collecting £100",
-     "module-type": "kpi",
-     "title": "Total cost",
-     "data-group": "transactional-services",
-     "data-type": "summaries",
-     "classes": "cols3",
-     "query-params": {
-       "filter_by": [
-         "service_id:hmrc-tax",
-         "type:seasonally-adjusted"
-       ],
-       "sort_by": "_timestamp:descending"
-     },
-     "value-attribute": "total_cost",
-     "format": {
-       "type": "currency",
-       "magnitude": true,
-       "sigfigs": 3
-     },
-     "info": [
-       "The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011 to 2012 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to maintain the digital service may alter the cost balance, with additional depreciation charges increasing online cost.\n\n",
-       "<br />",
-       "Data source: HM Revenue and Customs"
-       ]
-       },
+      "slug": "total-cost-per-year",
+      "module-type": "kpi",
+      "title": "Total cost per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "Cost of collecting £100",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011 to 2012 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to maintain the digital service may alter the cost balance, with additional depreciation charges increasing online cost.\n\n",
+        "<br />",
+        "Data source: HM Revenue and Customs"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
     {
       "slug": "total-tax-collected",
       "module-type": "grouped_timeseries",
       "title": "Total tax collected",
       "description": "Tax collected by tax type",
-      "data-group": "tax",
-      "data-type": "receipts",
       "value-attribute": "count:sum",
       "category": "service_slug",
       "use_stack": false,
       "currency": "gbp",
-      "period": "quarter",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
@@ -153,52 +156,66 @@
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2008-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "period": "quarter",
+          "start_at": "2008-04-01T01:00:00Z",
+          "group_by": "service_slug",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
     },
     {
-          "module-type": "table",
-          "slug": "tax-collected-by-tax-type-table",
-          "title": "Tax collected by tax type",
-          "description": "",
-          "data-group": "tax",
-          "data-type": "receipts",
-          "query-params": {
-            "filter_by": "service_type:receipt",
-            "group_by": "service_slug",
-            "collect": ["count:sum"],
-            "period": "month",
-            "duration": 1,
-            "start_at": "2014-01-01T00:00:00+00:00"
-          },
-          "axes": {
-            "x": {
-              "label": "Tax type",
-              "key": "service_slug"
-            },
-            "y": [
-              {
-                "label": "Amount raised",
-                "key": "count:sum",
-                "format": "currency"
-              }
-            ]
-          },
-          "sort-by": "count:sum",
-          "sort-order": "descending"
+      "module-type": "table",
+      "slug": "tax-collected-by-tax-type-table",
+      "title": "Tax collected by tax type",
+      "description": "",
+      "axes": {
+        "x": {
+          "label": "Tax type",
+          "key": "service_slug"
+        },
+        "y": [
+          {
+            "label": "Amount raised",
+            "key": "count:sum",
+            "format": "currency"
+          }
+        ]
+      },
+      "sort-order": "descending",
+      "sort-by": "count:sum",
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_type:receipt"
+          ],
+          "group_by": "service_slug",
+          "collect": [
+            "count:sum"
+          ],
+          "period": "month",
+          "duration": 1,
+          "start_at": "2014-01-01T00:00:00Z"
+        }
+      }
     },
     {
       "slug": "cost-of-collecting-100-gbp-in-tax",
       "module-type": "grouped_timeseries",
       "title": "Cost of collecting £100 in tax",
       "description": "Cost of collecting £100 of Income Tax, Corporation Tax, VAT and National Insurance",
-      "data-group": "tax",
-      "data-type": "receipts",
       "value-attribute": "count:sum",
       "category": "service_slug",
       "use_stack": false,
       "currency": "gbp",
-      "period": "quarter",
       "info": [
         "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
         "Data is collated via monthly returns from suppliers on the G-Cloud framework"
@@ -252,22 +269,25 @@
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "start-at": "2008-04-01T00:00:00+00:00",
-      "axis-period": "quarter"
+      "axis-period": "quarter",
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "period": "quarter",
+          "start_at": "2008-04-01T01:00:00Z",
+          "group_by": "service_slug",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
     },
     {
-     "slug": "transactions-per-year",
+      "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
-      "data-group": "tax",
-      "data-type": "receipts",
       "classes": "cols3",
-      "query-params": {
-        "filter_by": [
-          "service_slug:hmrc-tax"
-        ],
-        "sort_by": "_timestamp:descending"
-      },
       "value-attribute": "count",
       "format": {
         "type": "currency",
@@ -276,121 +296,139 @@
       },
       "info": [
         "Data source: HM Revenue & Customs"
-      ]
-   },
+      ],
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_slug:hmrc-tax"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
     {
-     "slug": "annual-transactional-cost",
-     "module-type": "kpi",
-     "title": "Annual transactional cost",
-     "data-group": "transactional-services",
-     "data-type": "summaries",
-     "classes": "cols3",
-     "query-params": {
-       "filter_by": [
-         "service_id:hmrc-tax",
-         "type:seasonally-adjusted"
-       ],
-       "sort_by": "_timestamp:descending"
-     },
-     "value-attribute": "number_of_transactions",
-     "format": {
-       "type": "number",
-       "magnitude": true,
-       "sigfigs": 3
-     },
-     "info": [
-       "Data source: HM Revenue and Customs"
-     ]
-   },
-   {
-     "slug": "Cost per transaction",
-     "module-type": "kpi",
-     "title": "Total cost",
-     "data-group": "transactional-services",
-     "data-type": "summaries",
-     "classes": "cols3",
-     "query-params": {
-       "filter_by": [
-         "service_id:hmrc-tax",
-         "type:seasonally-adjusted"
-       ],
-       "sort_by": "_timestamp:descending"
-     },
-     "value-attribute": "total_cost",
-     "format": {
-       "type": "currency",
-       "magnitude": true,
-       "sigfigs": 3
-     },
-     "info": [
-       "The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011 to 2012 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to maintain the digital service may alter the cost balance, with additional depreciation charges increasing online cost.\n\n",
-       "<br />",
-       "Data source: HM Revenue and Customs"
-       ]
-       },
-       {
-          "module-type": "table",
-          "slug": "tax-services",
-          "title": "Tax services",
-          "description": "",
-          "data-group": "tax",
-          "data-type": "receipts",
-          "query-params": {
-            "filter_by": "service_type:receipt",
-            "group_by": "service_slug",
-            "collect": ["count:sum"],
-            "period": "month",
-            "duration": 1,
-            "start_at": "2014-01-01T00:00:00+00:00"
+      "slug": "annual-transactional-cost",
+      "module-type": "kpi",
+      "title": "Annual transactional cost",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: HM Revenue and Customs"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "Cost per transaction",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The cost of these transactions will include all the back office activity undertaken to deal with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1.Transaction and cost numbers have been collected using current year outturn data. Variations from baseline 2011 to 2012 costs have been driven by changing volumes, investment and efficiencies already in train. <br>2. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of estates and IT cost apportionment. <br>3. Assumptions have been made about the balance of cost for transactional and enforcement/ other activity where business units mix both. <br>4. Additional IT investment to maintain the digital service may alter the cost balance, with additional depreciation charges increasing online cost.\n\n",
+        "<br />",
+        "Data source: HM Revenue and Customs"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:hmrc-tax",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "module-type": "table",
+      "slug": "tax-services",
+      "title": "Tax services",
+      "description": "",
+      "axes": {
+        "x": {
+          "label": "Service group",
+          "key": "service_slug"
+        },
+        "y": [
+          {
+            "label": "Transactions per year",
+            "key": "count:sum",
+            "format": "number"
           },
-          "axes": {
-            "x": {
-              "label": "Service group",
-              "key": "service_slug"
-            },
-            "y": [
-              {
-                "label": "Transactions per year",
-                "key": "count:sum",
-                "format": "number"
-              },
-              {
-                "label": "Cost per year",
-                "key": "count:sum",
-                "format": "number"
-              },
-              {
-                "label": "Cost per transaction",
-                "key": "count:sum",
-                "format": "number"
-              },
-              {
-                "label": "Digital take-up",
-                "key": "count:sum",
-                "format": "number"
-              },
-              {
-                "label": "User satisfaction",
-                "key": "count:sum",
-                "format": "number"
-              },
-              {
-                "label": "Completion rate",
-                "key": "count:sum",
-                "format": "number"
-              }
-            ]
+          {
+            "label": "Cost per year",
+            "key": "count:sum",
+            "format": "number"
           },
-          "sort-by": "count:sum",
-          "sort-order": "descending"
+          {
+            "label": "Cost per transaction",
+            "key": "count:sum",
+            "format": "number"
+          },
+          {
+            "label": "Digital take-up",
+            "key": "count:sum",
+            "format": "number"
+          },
+          {
+            "label": "User satisfaction",
+            "key": "count:sum",
+            "format": "number"
+          },
+          {
+            "label": "Completion rate",
+            "key": "count:sum",
+            "format": "number"
+          }
+        ]
+      },
+      "sort-order": "descending",
+      "sort-by": "count:sum",
+      "data-source": {
+        "data-group": "tax",
+        "data-type": "receipts",
+        "query-params": {
+          "filter_by": [
+            "service_type:receipt"
+          ],
+          "group_by": "service_slug",
+          "collect": [
+            "count:sum"
+          ],
+          "period": "month",
+          "duration": 1,
+          "start_at": "2014-01-01T00:00:00Z"
+        }
+      }
     },
     {
       "slug": "payment-on-time",
       "module-type": "bar_chart_with_number",
       "title": "Payment on time",
       "description": "Payment on time",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "format": {
@@ -403,25 +441,27 @@
           }
         ]
       },
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:quarterly"
-        ],
-        "sort_by": "_timestamp:ascending"
-      },
       "info": [
         "Data source: HM Revenue & Customs",
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:quarterly"
+          ],
+          "sort_by": "_timestamp:ascending"
+        }
+      }
     },
     {
       "slug": "digital-take-up-per-quarter",
       "module-type": "bar_chart_with_number",
       "title": "Digital take-up",
       "description": "Digital take-up rates each quarter",
-      "data-group": "transactional-services",
-      "data-type": "summaries",
       "value-attribute": "digital_takeup",
       "axis-period": "quarter",
       "format": {
@@ -434,17 +474,21 @@
           }
         ]
       },
-      "query-params": {
-        "filter_by": [
-          "service_id:bis-annual-returns",
-          "type:quarterly"
-        ],
-        "sort_by": "_timestamp:ascending"
-      },
       "info": [
         "Data source: Department for Business, Innovation and Skills",
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
-      ]
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-annual-returns",
+            "type:quarterly"
+          ],
+          "sort_by": "_timestamp:ascending"
+        }
+      }
     }
   ]
 }

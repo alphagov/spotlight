@@ -6,7 +6,7 @@
   "strapline": "Content dashboard",
   "title": "VAT",
   "tagline": "Web performance data for pages relating to VAT <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
- "relatedPages": {
+  "relatedPages": {
     "other": [
       {
         "title": "VAT",
@@ -19,7 +19,7 @@
       "slug": "traffic-to-department-content",
       "module-type": "tab",
       "title": "Traffic to content",
-      "info":[
+      "info": [
         "Data source: Google Analytics",
         "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
         "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
@@ -28,11 +28,9 @@
       "tabs": [
         {
           "slug": "visitors",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Visitors",
           "description": "",
-          "data-group": "tax-vat-content",
-          "data-type": "traffic-count",
           "info": [
             "Data source: Google Analytics",
             "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
@@ -43,7 +41,6 @@
           "numerator-matcher": "traffic-count",
           "matching-attribute": "dataType",
           "value-attribute": "visitors:sum",
-          "period": "week",
           "axes": {
             "x": {
               "label": "Date"
@@ -53,15 +50,20 @@
                 "label": "Number of visitors"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "tax-vat-content",
+            "data-type": "traffic-count",
+            "query-params": {
+              "period": "week"
+            }
           }
         },
         {
           "slug": "pageviews",
-          "module-type": "completion_numbers",
+          "module-type": "single_timeseries",
           "title": "Pageviews",
           "description": "",
-          "data-group": "tax-vat-content",
-          "data-type": "pageviews-count",
           "info": [
             "Data source: Google Analytics",
             "Weekly data for the last 9 full weeks (Monday to Sunday).",
@@ -72,7 +74,6 @@
           "numerator-matcher": "pageviews-count",
           "matching-attribute": "dataType",
           "value-attribute": "pageviews:sum",
-          "period": "week",
           "axes": {
             "x": {
               "label": "Date"
@@ -82,6 +83,13 @@
                 "label": "Number of pageviews"
               }
             ]
+          },
+          "data-source": {
+            "data-group": "tax-vat-content",
+            "data-type": "pageviews-count",
+            "query-params": {
+              "period": "week"
+            }
           }
         }
       ]
@@ -91,14 +99,6 @@
       "module-type": "table",
       "title": "Most popular VAT content",
       "description": "Visitors arriving over the last week.",
-      "data-group": "tax-vat-content",
-      "data-type": "top-count",
-      "query-params": {
-        "group_by": "pageTitle",
-        "collect": ["pageviews:sum", "uniquePageviews:sum"],
-        "period": "week",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "Page title",
@@ -117,20 +117,29 @@
           }
         ]
       },
+      "sort-order": "descending",
       "sort-by": "uniquePageviews:sum",
-      "sort-order": "descending"
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "top-count",
+        "query-params": {
+          "group_by": "pageTitle",
+          "collect": [
+            "pageviews:sum",
+            "uniquePageviews:sum"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     },
     {
       "slug": "how-users-access-the-service",
       "module-type": "grouped_timeseries",
       "title": "Devices used to access the content",
       "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-      "data-group": "tax-vat-content",
-      "data-type": "devices-count",
       "category": "deviceCategory",
-      "period": "week",
       "axis-period": "week",
-      "duration": 9,
       "value-attribute": "pageviews:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -143,7 +152,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -166,6 +178,18 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "devices-count",
+        "query-params": {
+          "period": "week",
+          "duration": 9,
+          "group_by": "deviceCategory",
+          "collect": [
+            "pageviews:sum"
+          ]
+        }
       }
     },
     {
@@ -173,12 +197,8 @@
       "module-type": "grouped_timeseries",
       "title": "New and returning visitors",
       "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to GOV.UK over the last 9 weeks.",
-      "data-group": "tax-vat-content",
-      "data-type": "new-returning-count",
       "category": "visitorType",
-      "period": "week",
       "axis-period": "week",
-      "duration": 9,
       "value-attribute": "entrances:sum",
       "show-line-labels": true,
       "one-hundred-percent": true,
@@ -191,7 +211,10 @@
       "axes": {
         "x": {
           "label": "Date",
-          "key": ["_start_at", "_end_at"],
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "dateRange",
             "format": "D MMM YYYY"
@@ -209,6 +232,18 @@
             "format": "percent"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "new-returning-count",
+        "query-params": {
+          "period": "week",
+          "duration": 9,
+          "group_by": "visitorType",
+          "collect": [
+            "entrances:sum"
+          ]
+        }
       }
     },
     {
@@ -229,14 +264,6 @@
           "slug": "all-sources",
           "title": "All sources",
           "description": "",
-          "data-group": "tax-vat-content",
-          "data-type": "referrers-rate",
-          "query-params": {
-            "group_by": "sourceMedium",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Source of user",
@@ -258,22 +285,27 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "tax-vat-content",
+            "data-type": "referrers-rate",
+            "query-params": {
+              "group_by": "sourceMedium",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "search-terms",
           "title": "Search terms",
           "description": "",
-          "data-group": "tax-vat-content",
-          "data-type": "organic-rate",
-          "query-params": {
-            "group_by": "keyword",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Keyword",
@@ -295,22 +327,27 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "tax-vat-content",
+            "data-type": "organic-rate",
+            "query-params": {
+              "group_by": "keyword",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         },
         {
           "module-type": "table",
           "slug": "social-media",
           "title": "Social media",
           "description": "",
-          "data-group": "tax-vat-content",
-          "data-type": "social-rate",
-          "query-params": {
-            "group_by": "socialNetwork",
-            "collect": ["entrances:sum", "visitBounceRate"],
-            "period": "week",
-            "duration": 1
-          },
           "axes": {
             "x": {
               "label": "Social Network",
@@ -332,18 +369,29 @@
               }
             ]
           },
+          "sort-order": "descending",
           "sort-by": "entrances:sum",
-          "sort-order": "descending"
+          "data-source": {
+            "data-group": "tax-vat-content",
+            "data-type": "social-rate",
+            "query-params": {
+              "group_by": "socialNetwork",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
         }
       ]
     },
     {
       "slug": "total-feedback-received",
-      "module-type": "completion_numbers",
+      "module-type": "single_timeseries",
       "title": "Total feedback received",
       "description": "",
-      "data-group": "tax-vat-content",
-      "data-type": "feedback-count",
       "info": [
         "Data source: GOV.UK anonymous feedback",
         "A count of anonymous comments made on departmental pages in a calendar month.",
@@ -354,7 +402,6 @@
       "numerator-matcher": "ago",
       "matching-attribute": "organisation_acronym",
       "value-attribute": "comment_count:sum",
-      "period": "month",
       "axes": {
         "x": {
           "label": "Date"
@@ -364,6 +411,13 @@
             "label": "Comment count"
           }
         ]
+      },
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "feedback-count",
+        "query-params": {
+          "period": "month"
+        }
       }
     },
     {
@@ -371,20 +425,11 @@
       "module-type": "table",
       "title": "Most commented pages",
       "description": "",
-      "data-group": "tax-vat-content",
-      "data-type": "top-urls",
       "info": [
         "Data source: GOV.UK anonymous feedback",
         "Pages receiving the most comments in a calendar month.",
         "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
       ],
-      "query-params": {
-        "filter_by": "organisation_acronym:ago",
-        "group_by": "url",
-        "collect": ["comment_count:sum"],
-        "period": "month",
-        "duration": 1
-      },
       "axes": {
         "x": {
           "label": "URL",
@@ -398,8 +443,23 @@
           }
         ]
       },
+      "sort-order": "descending",
       "sort-by": "comment_count:sum",
-      "sort-order": "descending"
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "top-urls",
+        "query-params": {
+          "filter_by": [
+            "organisation_acronym:ago"
+          ],
+          "group_by": "url",
+          "collect": [
+            "comment_count:sum"
+          ],
+          "period": "month",
+          "duration": 1
+        }
+      }
     }
   ]
 }
