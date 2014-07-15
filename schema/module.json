@@ -103,7 +103,8 @@
           "type": "array",
           "required": false,
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": ":(sum|mean|set)$"
           }
         },
         "filter_by": {
