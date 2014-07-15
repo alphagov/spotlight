@@ -159,8 +159,7 @@
             "service_id:bis-apprenticeship-vacancies-applications",
             "type:quarterly"
           ],
-          "sort_by": "_timestamp:ascending",
-          "period": "quarter"
+          "sort_by": "_timestamp:ascending"
         }
       }
     }
