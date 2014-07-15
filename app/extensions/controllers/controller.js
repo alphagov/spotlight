@@ -1,7 +1,8 @@
 define([
   'backbone',
-  'extensions/models/model'
-], function (Backbone, Model) {
+  'extensions/models/model',
+  'extensions/views/error'
+], function (Backbone, Model, ErrorView) {
 
   var Controller = function (options) {
     options = options || {};
@@ -52,7 +53,11 @@ define([
       }, options);
 
       if (this.collection && this.collection.isEmpty()) {
-        this.listenToOnce(this.collection, 'reset error', function () {
+        this.listenToOnce(this.collection, 'reset', function () {
+          this.renderView(renderViewOptions);
+        }, this);
+        this.listenToOnce(this.collection, 'error', function () {
+          this.viewClass = ErrorView;
           this.renderView(renderViewOptions);
         }, this);
 
