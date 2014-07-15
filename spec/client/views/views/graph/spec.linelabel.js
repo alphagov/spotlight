@@ -366,6 +366,21 @@ function (LineLabel, Collection, Model) {
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
         });
 
+        it('does not mark any line selected or deselected if a model is provided and no valueAttr is defined', function () {
+          lineLabel.render();
+          var littleLines = wrapper.select('.labels');
+          var labels = lineLabel.$el.find('figcaption ol li');
+          lineLabel.onChangeSelected(collection.at(0), 0);
+          expect(hasClass(labels.eq(0), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'selected')).toBe(false);
+          expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
+          expect(hasClass(labels.eq(1), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(false);
+          expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
+        });
+
         it('displays the values for the current selection', function () {
           lineLabel.render();
 
