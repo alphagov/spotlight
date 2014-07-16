@@ -304,6 +304,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return this.length > 0;
     },
 
+    lastDefined: function () {
+      return this.defined.apply(this, arguments).pop();
+    },
+
     mean: function (attr) {
       var total = this.total(attr);
       var count = this.defined(attr).length;
@@ -321,10 +325,16 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return total;
     },
 
-    defined: function (attr) {
+    defined: function (attrs) {
+      if (_.isArray(attrs)) {
+        return this.defined.apply(this, attrs);
+      }
+      var args = arguments;
       return this.filter(function (model) {
-        var val = model.get(attr);
-        return val !== null && !isNaN(Number(val));
+        return _.any(args, function (arg) {
+          var val = model.get(arg);
+          return val !== null && !isNaN(Number(val));
+        });
       });
     },
 

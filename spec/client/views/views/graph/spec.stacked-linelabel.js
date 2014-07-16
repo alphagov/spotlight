@@ -90,12 +90,18 @@ function (LineLabel, Collection, Model) {
         spyOn(lineLabel, 'renderSummary');
       });
 
-      it('always renders percentages', function () {
+      it('always renders percentages for non-null values', function () {
         lineLabel.render();
         var labels = lineLabel.$el.find('figcaption ol li');
-        expect(labels.eq(0).find('.percentage')).toHaveText('(99.9%)');
-        expect(labels.eq(1).find('.percentage')).toHaveText('(0.1%)');
+        expect(labels.eq(0).find('.percentage').text()).toContain('(60%)');
       });
+
+      it('always renders no-data for null values', function () {
+        lineLabel.render();
+        var labels = lineLabel.$el.find('figcaption ol li');
+        expect(labels.eq(1).text()).toContain('(no data)');
+      });
+
     });
 
   });
