@@ -46,7 +46,7 @@ define([
       if (attr === 'completion') {
         var started = this.total('_start');
         var ended = this.total('_end');
-        return ended / started;
+        return !started ? null : ended / started;
       } else {
         return CompletionCollection.prototype.mean.apply(this, arguments);
       }

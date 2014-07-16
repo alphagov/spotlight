@@ -97,7 +97,7 @@ function (CompletionCollection) {
         expect(result[1]._start).toEqual(25);
         expect(result[0]._end).toEqual(10);
         expect(result[1]._end).toEqual(null);
-        expect(result[0].completion).toEqual(2/3);
+        expect(result[0].completion).toEqual(2 / 3);
         expect(result[1].completion).toEqual(0);
       });
 
@@ -197,6 +197,30 @@ function (CompletionCollection) {
 
       it('returns the overall mean completion if called with "completion"', function () {
         expect(collection.mean('completion')).toEqual(0.25);
+      });
+
+      it('returns null for an empty collection', function () {
+        collection = new CompletionCollection([], {
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
+        });
+        expect(collection.mean('completion')).toBeNull();
+      });
+
+      it('returns zero if no "ended" values', function () {
+        collection = new CompletionCollection([], {
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum'
+        });
+        collection.reset(mockResponse, { parse: true });
+        collection.each(function (model) {
+          model.set('_end', null);
+        });
+        expect(collection.mean('completion')).toEqual(0);
       });
 
     });
