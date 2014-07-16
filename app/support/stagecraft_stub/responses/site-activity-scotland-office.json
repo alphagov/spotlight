@@ -57,13 +57,12 @@
             ]
           },
           "axis-period": "week",
-          "matching-attribute": "eventCategory",
           "data-source": {
             "data-group": "gov-uk-content",
             "data-type": "traffic-count",
             "query-params": {
               "period": "week",
-              "group_by": "eventCategory",
+              "group_by": "department",
               "filter_by": [
                 "department:scotland-office"
               ],
@@ -96,13 +95,12 @@
             ]
           },
           "axis-period": "week",
-          "matching-attribute": "eventCategory",
           "data-source": {
             "data-group": "gov-uk-content",
             "data-type": "pageviews-count",
             "query-params": {
               "period": "week",
-              "group_by": "eventCategory",
+              "group_by": "department",
               "filter_by": [
                 "department:scotland-office"
               ],
@@ -714,13 +712,12 @@
         ]
       },
       "axis-period": "month",
-      "matching-attribute": "eventCategory",
       "data-source": {
         "data-group": "gov-uk-content",
         "data-type": "feedback-count",
         "query-params": {
           "period": "month",
-          "group_by": "eventCategory",
+          "group_by": "organisation_acronym",
           "filter_by": [
             "organisation_acronym:scotland_office"
           ],
