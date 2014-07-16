@@ -18,6 +18,7 @@ function (LineLabel, Collection, Model) {
             '_count:percent': 0.33,
             '_value:percent': 0.67,
             'total:_count': 30,
+            'total:_count:percent': 1,
             'abc:_count': 10,
             'def:_count': 20,
             'abc:_count:percent': 0.33,
@@ -29,6 +30,7 @@ function (LineLabel, Collection, Model) {
             '_count:percent': 0.4,
             '_value:percent': 0.6,
             'total:_count': 50,
+            'total:_count:percent': 1,
             'abc:_count': 20,
             'def:_count': 30,
             'abc:_count:percent': 0.4,
@@ -40,6 +42,7 @@ function (LineLabel, Collection, Model) {
             '_count:percent': 0.5,
             '_value:percent': 0.5,
             'total:_count': 60,
+            'total:_count:percent': 1,
             'abc:_count': 20,
             'def:_count': 40,
             'abc:_count:percent': 0.33,
@@ -173,15 +176,15 @@ function (LineLabel, Collection, Model) {
           expect(links.eq(1).attr('href')).toEqual('/link2');
         });
 
-        it('renders a label with additional value text showing total value', function () {
+        it('renders a label with additional value text showing last value', function () {
           lineLabel.render();
 
           var labels = lineLabel.$el.find('figcaption ol li');
           var label1 = labels.eq(0);
           var label2 = labels.eq(1);
 
-          expect(label1.find('span.value')).toHaveText('60');
-          expect(label2.find('span.value')).toHaveText('80');
+          expect(label1.find('span.value')).toHaveText('30');
+          expect(label2.find('span.value')).toHaveText('30');
         });
 
         it('does not render percentages if there is no total line', function () {
@@ -211,8 +214,8 @@ function (LineLabel, Collection, Model) {
           var label3 = labels.eq(2);
 
           expect(label1.find('span.percentage')).toHaveText('(100%)');
-          expect(label2.find('span.percentage')).toHaveText('(35.7%)');
-          expect(label3.find('span.percentage')).toHaveText('(64.3%)');
+          expect(label2.find('span.percentage')).toHaveText('(33%)');
+          expect(label3.find('span.percentage')).toHaveText('(67%)');
         });
 
         it('renders links and additional value text', function () {
@@ -343,8 +346,8 @@ function (LineLabel, Collection, Model) {
           expect(figcaption.find('li').eq(1).find('.percentage')).not.toExist();
 
           collection.selectItem(null);
-          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('60');
-          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('80');
+          expect(figcaption.find('li').eq(0).find('.value')).toHaveText('30');
+          expect(figcaption.find('li').eq(1).find('.value')).toHaveText('30');
           expect(figcaption.find('li').eq(0).find('.percentage')).not.toExist();
           expect(figcaption.find('li').eq(1).find('.percentage')).not.toExist();
         });
@@ -371,8 +374,8 @@ function (LineLabel, Collection, Model) {
           expect(figcaption.find('li').eq(2).find('.percentage')).toHaveText('(60%)');
 
           collection.selectItem(null);
-          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(35.7%)');
-          expect(figcaption.find('li').eq(2).find('.percentage')).toHaveText('(64.3%)');
+          expect(figcaption.find('li').eq(1).find('.percentage')).toHaveText('(33%)');
+          expect(figcaption.find('li').eq(2).find('.percentage')).toHaveText('(67%)');
         });
 
         it('displays (no data) when the current selection is null', function () {

@@ -109,17 +109,17 @@ function (Component) {
       this.summaryHeight = 0;
 
       var selected = this.collection.getCurrentSelection();
-      var period = this.model.get('period');
-      var output;
+      var model;
 
       if (selected.selectedModel) {
-        output = this.formatPeriod(selected.selectedModel, period);
+        model = selected.selectedModel;
       } else {
-        var start = this.graph.modelToDate(this.collection.first());
-        var end = this.graph.modelToDate(this.collection.last());
-        var format = this.getFormat(period);
-        output = this.format([start, end], { type: 'dateRange', format: format });
+        var lines = this.graph.getLines();
+        model = this.collection.lastDefined.apply(
+          this.collection, _.map(lines, function (line) {return line.key;})
+        );
       }
+      var output = this.formatPeriod(model, model.get('period'));
 
       var summary = '<span class="timeperiod">' + output + '</span>';
 
@@ -236,24 +236,20 @@ function (Component) {
 
       if (selected.selectedModel) {
         model = selected.selectedModel;
-        if (this.graph.isOneHundredPercent()) {
-          value = model.get(attr.replace(':percent', ''));
+      } else {
+        model = this.collection.lastDefined(_.pluck(this.graph.getLines(), 'key'));
+      }
+
+      if (this.graph.isOneHundredPercent()) {
+        value = model.get(attr.replace(':percent', ''));
+        if (value !== null) {
           percentage = model.get(attr);
-        } else {
-          value = model.get(attr);
-          if (this.showPercentages()) {
-            percentage = model.get(attr + ':percent');
-          }
         }
       } else {
-        if (this.graph.isOneHundredPercent()) {
-          model = this.collection.defined(attr).pop();
-          value = model.get(attr.replace(':percent', ''));
-          percentage = model.get(attr);
-        } else {
-          value = this.collection.total(attr);
-          if (this.showPercentages()) {
-            percentage = value / this.collection.total('total:' + this.graph.valueAttr);
+        value = model.get(attr);
+        if (this.showPercentages()) {
+          if (value !== null) {
+            percentage = model.get(attr + ':percent');
           }
         }
       }
