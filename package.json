@@ -60,7 +60,7 @@
     "xmlhttprequest": "1.6.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#0a0bbab268cd876a339eac40e0eada12cc0d033f",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#d216bcf5f0a71359b8ec6161913c04e31ed7d0b6",
     "supervisor": "0.5.7"
   }
 }

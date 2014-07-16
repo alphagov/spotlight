@@ -9,7 +9,7 @@ function (View, VolumetricsNumberView, SubmissionGraphView) {
     graphView: SubmissionGraphView,
 
     views: function () {
-      var period = this.collection.options.period || 'week';
+      var period = this.collection.getPeriod() || 'week';
       var views = View.prototype.views.apply(this, arguments);
 
       views['.volumetrics-completion-selected'].options = {
@@ -18,7 +18,7 @@ function (View, VolumetricsNumberView, SubmissionGraphView) {
         formatOptions: this.formatOptions
       };
 
-      _.extend( views['.volumetrics-completion'].options, {
+      _.extend(views['.volumetrics-completion'].options, {
         formatOptions: this.formatOptions
       });
 
