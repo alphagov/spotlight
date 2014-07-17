@@ -3,18 +3,12 @@
 
   strong {
     @include bold-80();
+    margin-top: 10px;
     margin-bottom: -0.1em;
     display: block;
 
-    @media (max-width: 850px) {
+    @include media(tablet) {
       @include bold-48();
-    }
-
-    @media (max-width: 640px) {
-      // Revert back to default impact number size for small screen sizes.
-      // GOV.UK frontend toolkit rule decreases font size automatically
-      // for small screens.
-      @include bold-80();
     }
   }
 

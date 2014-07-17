@@ -1,49 +1,86 @@
-h2 {
-  @include core-19;
+body {
+  @include core-19();
 }
 
-p, ul, ol {
-  @include core-16();
+.lede, .lead {
+  @include core-24;
+  margin-top: 5px/24px * 1em;
+  margin-bottom: 20px/24px * 1em;
+}
 
-  &.lede, &.lead {
-    @include core-24;
+p {
+  margin-top: 5px/19px * 1em;
+  margin-bottom: 20px/19px * 1em;
+}
+
+h1 {
+  @include bold-48;
+  span {
+    @include core-27;
+    color: $secondary-text-colour;
+    display: block;
+    margin-bottom: 5px/27px * 1em;
+  }
+  margin-top: 30px/48px * 1em;
+  margin-bottom: 45px/48px * 1em;
+}
+
+h2 {
+  @include bold-24;
+  margin-top: 45px/24px * 1em;
+  margin-bottom: 15px/24px * 1em;
+}
+
+h3 {
+  @include bold-19;
+  margin-top: 20px/19px * 1em;
+}
+
+// Remove margin-top from first h1-3 in any section/div/aside/main
+section, aside, div, main {
+  h1, h2, h3, p {
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 
+// Links
+
+// External link style
 a[rel="external"] {
   @include external-link-default;
-  @include external-link-16;
-
+  @include external-link-19;
 }
 
-#content {
-  h1 {
-    @include bold-24;
+@mixin remove-link-underlines() {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
+}
 
-  h2 {
-    margin-top:0;
-    @include core-16;
+// List with hyphens instead of bullets
+@mixin bullets-hyphens() {
+  ul {
+    margin: 0 0 (20px/19px * 1em) 0;
+    padding: 0;
   }
+  // Style li's
+  li {
+    list-style: none;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    @include remove-link-underlines;
 
-  section {
-    margin-top:1em;
-    margin-bottom:1.5em;
-
-    h1, h2 {
-      @include bold-24;
-    }
-
-    h3 {
-      margin-top: 5px;
-    }
-
-    .double-decker-graph h3 {
-      @include bold-19();
-    }
-
-    p {
-      @include core-16;
+    &:before {
+      content: "-";
+      position: relative;
+      float: left;
+      margin-left: -15px;
+      width: 15px;
     }
   }
 }
