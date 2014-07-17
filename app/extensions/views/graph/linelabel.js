@@ -139,7 +139,7 @@ function (Component) {
           this.collection, _.map(lines, function (line) {return line.key;})
         );
       }
-      var output = this.formatPeriod(model, model.get('period'));
+      var output = this.formatPeriod(model, this.collection.getPeriod());
 
       var summary = '<span class="timeperiod">' + output + '</span>';
 
