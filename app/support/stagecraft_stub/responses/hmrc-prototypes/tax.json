@@ -180,32 +180,38 @@
       "axes": {
         "x": {
           "label": "Tax type",
-          "key": "service_slug"
+          "key": "service_slug",
+          "format": {
+            "type": "sentence",
+            "uppercase": [
+              "vat","nics","hmrc"
+            ]
+          }
         },
         "y": [
           {
             "label": "Amount raised",
-            "key": "count:sum",
+            "key": "value:sum",
             "format": "currency"
           }
         ]
       },
       "sort-order": "descending",
-      "sort-by": "count:sum",
+      "sort-by": "value:sum",
       "data-source": {
         "data-group": "tax",
-        "data-type": "receipts",
+        "data-type": "receipts-monthly",
         "query-params": {
           "filter_by": [
-            "service_type:receipt"
+            "service_type:receipt",
+            "aggregate_service_slug:n-a"
           ],
           "group_by": "service_slug",
           "collect": [
-            "count:sum"
+            "value:sum"
           ],
           "period": "month",
-          "duration": 1,
-          "start_at": "2014-01-01T00:00:00Z"
+          "start_at": "2014-04-01T00:00:00Z"
         }
       }
     },
