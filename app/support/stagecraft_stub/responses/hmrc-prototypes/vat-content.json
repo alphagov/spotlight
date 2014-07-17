@@ -394,39 +394,6 @@
       ]
     },
     {
-      "slug": "total-feedback-received",
-      "module-type": "single_timeseries",
-      "title": "Total feedback received",
-      "description": "",
-      "info": [
-        "Data source: GOV.UK anonymous feedback",
-        "A count of anonymous comments made on departmental pages in a calendar month.",
-        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
-      ],
-      "default-value": 0,
-      "denominator-matcher": "ago",
-      "numerator-matcher": "ago",
-      "matching-attribute": "organisation_acronym",
-      "value-attribute": "comment_count:sum",
-      "axes": {
-        "x": {
-          "label": "Date"
-        },
-        "y": [
-          {
-            "label": "Comment count"
-          }
-        ]
-      },
-      "data-source": {
-        "data-group": "tax-vat-content",
-        "data-type": "feedback-count",
-        "query-params": {
-          "period": "month"
-        }
-      }
-    },
-    {
       "slug": "most-commented-pages",
       "module-type": "table",
       "title": "Most commented pages",
