@@ -33,9 +33,15 @@ function (Backbone, Mustache, _, moment) {
       return url;
     },
 
-    setQueryParam: function (key, value) {
+    setQueryParam: function (key, val) {
       var params = _.clone(this.get('query-params')) || {};
-      params[key] = value;
+      var attrs = {};
+      if (arguments.length === 2 && typeof key === 'string') {
+        attrs[key] = val;
+      } else {
+        attrs = key;
+      }
+      _.extend(params, attrs);
       this.set('query-params', params);
     },
 

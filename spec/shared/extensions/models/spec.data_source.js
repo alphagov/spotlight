@@ -73,22 +73,42 @@ function(DataSource, moment) {
 
     describe('setQueryParams', function () {
       it('should fire a change event', function () {
-        var source = new DataSource({ 'query-params': {
+        var source = new DataSource({
+            'query-params': {
               foo: 'bar'
-            }}),
-            changeEventFired = false;
+            }
+          }),
+          spy = jasmine.createSpy();
 
-        source.once('change', function () {
-          changeEventFired = true;
-        });
+        source.once('change', spy);
 
         source.setQueryParam('foo', 'changed');
 
-        expect(changeEventFired).toBe(true);
+        expect(spy).toHaveBeenCalled();
         expect(source.buildUrl()).toContain('foo=changed');
       });
 
-      it('should handle there being now query params object', function () {
+      it('accepts multiple properties as a hash', function () {
+        var source = new DataSource({
+            'query-params': {
+              foo: 'bar'
+            }
+          }),
+          spy = jasmine.createSpy();
+
+        source.once('change', spy);
+
+        source.setQueryParam({
+          foo: 'changed',
+          bar: 'baz'
+        });
+
+        expect(spy).toHaveBeenCalled();
+        expect(source.buildUrl()).toContain('foo=changed');
+        expect(source.buildUrl()).toContain('bar=baz');
+      });
+
+      it('should handle there being no query params object', function () {
         var source = new DataSource({});
 
         source.setQueryParam('foo', 'bar');
