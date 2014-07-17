@@ -8,7 +8,7 @@ function (LineLabel, Collection, Model) {
   describe('LineLabel Component', function () {
     describe('rendering tests', function () {
 
-      var el, wrapper, lineLabel, collection, graph;
+      var el, wrapper, lineLabel, collection, graph, getPeriodSpy;
       beforeEach(function () {
 
         collection = new Collection([
@@ -22,7 +22,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 10,
             'def:_count': 20,
             'abc:_count:percent': 0.33,
-            'def:_count:percent': 0.67
+            'def:_count:percent': 0.67,
+            '_timestamp': 'Thu May 01 2014 01:00:00 GMT+0100 (BST)'
           },
           {
             _count: 20,
@@ -34,7 +35,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 20,
             'def:_count': 30,
             'abc:_count:percent': 0.4,
-            'def:_count:percent': 0.6
+            'def:_count:percent': 0.6,
+            '_timestamp': 'Thu May 01 2014 01:00:00 GMT+0100 (BST)'
           },
           {
             _count: 30,
@@ -46,7 +48,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 20,
             'def:_count': 40,
             'abc:_count:percent': 0.33,
-            'def:_count:percent': 0.67
+            'def:_count:percent': 0.67,
+            '_timestamp': 'Thu May 01 2014 01:00:00 GMT+0100 (BST)'
           }
         ]);
 
@@ -96,7 +99,7 @@ function (LineLabel, Collection, Model) {
           { ideal: 80, min: 80, size: 30, key: '_value' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
-        spyOn(collection, 'getPeriod').andReturn('week');
+        getPeriodSpy = spyOn(collection, 'getPeriod').andReturn('week');
       });
 
       afterEach(function () {
@@ -251,6 +254,15 @@ function (LineLabel, Collection, Model) {
           expect(link2.text()).toEqual('Title 2');
           var spanValues = lineLabel.$el.find('figcaption ol li span.value');
           expect(spanValues.length).toEqual(2);
+        });
+
+        describe('renderSummary()', function () {
+          it('renders a summary time period', function () {
+            getPeriodSpy.andReturn('month');
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .timeperiod');
+            expect(textLabel.text()).toEqual('May 2014');
+          });
         });
 
       });
