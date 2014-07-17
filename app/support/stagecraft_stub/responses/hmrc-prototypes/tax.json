@@ -239,11 +239,6 @@
         },
         "y": [
           {
-            "label": "Total",
-            "groupId": "total-hmrc-receipts",
-            "format": "currency"
-          },
-          {
             "label": "Income tax",
             "groupId": "income-tax",
             "format": "currency"
@@ -259,18 +254,8 @@
             "format": "currency"
           },
           {
-            "label": "Corporation tax (incl Bank levy)",
-            "groupId": "total-corporation-tax-includes-bank-levy",
-            "format": "currency"
-          },
-          {
-            "label": "Fuel duties",
-            "groupId": "fuel-duties",
-            "format": "currency"
-          },
-          {
-            "label": "Tobacco duties",
-            "groupId": "tobacco-duties",
+            "label": "Corporation Tax",
+            "groupId": "corporation-tax",
             "format": "currency"
           }
         ]
@@ -367,68 +352,6 @@
             "type:seasonally-adjusted"
           ],
           "sort_by": "_timestamp:descending"
-        }
-      }
-    },
-    {
-      "module-type": "table",
-      "slug": "tax-services",
-      "title": "Tax services",
-      "description": "",
-      "axes": {
-        "x": {
-          "label": "Service group",
-          "key": "service_slug"
-        },
-        "y": [
-          {
-            "label": "Transactions per year",
-            "key": "count:sum",
-            "format": "number"
-          },
-          {
-            "label": "Cost per year",
-            "key": "count:sum",
-            "format": "number"
-          },
-          {
-            "label": "Cost per transaction",
-            "key": "count:sum",
-            "format": "number"
-          },
-          {
-            "label": "Digital take-up",
-            "key": "count:sum",
-            "format": "number"
-          },
-          {
-            "label": "User satisfaction",
-            "key": "count:sum",
-            "format": "number"
-          },
-          {
-            "label": "Completion rate",
-            "key": "count:sum",
-            "format": "number"
-          }
-        ]
-      },
-      "sort-order": "descending",
-      "sort-by": "count:sum",
-      "data-source": {
-        "data-group": "tax",
-        "data-type": "receipts",
-        "query-params": {
-          "filter_by": [
-            "service_type:receipt"
-          ],
-          "group_by": "service_slug",
-          "collect": [
-            "count:sum"
-          ],
-          "period": "month",
-          "duration": 1,
-          "start_at": "2014-01-01T00:00:00Z"
         }
       }
     },
