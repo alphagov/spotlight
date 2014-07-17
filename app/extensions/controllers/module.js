@@ -9,6 +9,7 @@ define([
     visualisationClass: null,
     requiresSvg: false,
     hasTable: true,
+    hasDatePicker: false,
 
     id: function () {
       return this.model.get('slug') || this.model.get('module-type');
@@ -30,7 +31,8 @@ define([
         id: this.id,
         requiresSvg: this.requiresSvg,
         url: this.url,
-        hasTable: this.hasTable
+        hasTable: this.hasTable,
+        hasDatePicker: this.hasDatePicker
       };
 
       return options;
