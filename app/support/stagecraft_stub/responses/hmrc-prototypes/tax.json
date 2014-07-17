@@ -34,7 +34,7 @@
         "data-type": "receipts",
         "query-params": {
           "filter_by": [
-            "service_slug:hmrc-tax"
+            "topic:tax"
           ],
           "sort_by": "_timestamp:descending"
         }
