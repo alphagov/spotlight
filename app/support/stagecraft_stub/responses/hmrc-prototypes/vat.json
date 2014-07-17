@@ -151,7 +151,7 @@
         "data-type": "receipts",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "group_by": "receipts",
           "collect": [
             "count:sum"

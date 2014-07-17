@@ -294,7 +294,7 @@
         "data-group": "carers-allowance",
         "data-type": "journey",
         "query-params": {
-          "start_at": "2014-05-19T01:00:00Z",
+          "start_at": "2014-05-19T00:00:00Z",
           "period": "week",
           "collect": [
             "uniqueEvents:sum"

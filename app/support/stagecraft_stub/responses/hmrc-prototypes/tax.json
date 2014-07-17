@@ -162,7 +162,7 @@
         "data-type": "receipts",
         "query-params": {
           "period": "quarter",
-          "start_at": "2008-04-01T01:00:00Z",
+          "start_at": "2008-04-01T00:00:00Z",
           "group_by": "service_slug",
           "collect": [
             "count:sum"
@@ -275,7 +275,7 @@
         "data-type": "receipts",
         "query-params": {
           "period": "quarter",
-          "start_at": "2008-04-01T01:00:00Z",
+          "start_at": "2008-04-01T00:00:00Z",
           "group_by": "service_slug",
           "collect": [
             "count:sum"
