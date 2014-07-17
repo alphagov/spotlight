@@ -23,7 +23,7 @@ function (TableView, Modernizr) {
     },
 
     syncToTableCollection: function () {
-      this.tableCollection.models = _.clone(this.collection.models);
+      this.tableCollection.reset(this.collection.toJSON());
     },
 
     renderSort: function () {
