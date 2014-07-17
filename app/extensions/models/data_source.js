@@ -77,12 +77,12 @@ function (Backbone, Mustache, _, moment) {
     },
 
     _objectToQueryString: function (obj) {
-      return _.reduce(obj, function(parts, value, key) {
+      return _.reduce(obj, function (parts, value, key) {
         var out;
 
         if (!(_.isNull(value) || _.isUndefined(value))) {
           if (_.isArray(value)) {
-            out = _.map(value, function(sub_value) {
+            out = _.map(value, function (sub_value) {
               return this._encodeValue(key) + '=' +
                 this._encodeValue(sub_value);
             }, this).join('&');
