@@ -45,7 +45,7 @@
       "module-type": "kpi",
       "title": "Total cost per year",
       "classes": "cols3",
-      "value-attribute": "number_of_transactions",
+      "value-attribute": "cost",
       "format": {
         "type": "number",
         "magnitude": true,
@@ -55,12 +55,11 @@
         "Data source: HM Revenue and Customs"
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "hmrc-cost-measures",
+        "data-type": "cost-of-collection",
         "query-params": {
           "filter_by": [
-            "service_id:hmrc-tax",
-            "type:seasonally-adjusted"
+            "topic:tax"
           ],
           "sort_by": "_timestamp:descending"
         }
