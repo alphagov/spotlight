@@ -120,22 +120,22 @@
         "y": [
           {
             "label": "Total VAT",
-            "categoryId": "net-vat",
+            "groupId": "net-vat",
             "format": "currency"
           },
           {
             "label": "VAT payments",
-            "categoryId": "payments",
+            "groupId": "payments",
             "format": "currency"
           },
           {
             "label": "Import VAT",
-            "categoryId": "import-vat",
+            "groupId": "import-vat",
             "format": "currency"
           },
           {
             "label": "VAT Repayments",
-            "categoryId": "repayments",
+            "groupId": "repayments",
             "format": "currency"
           }
         ]
