@@ -55,7 +55,10 @@
             "data-group": "tax-vat-content",
             "data-type": "traffic-count",
             "query-params": {
-              "period": "week"
+              "period": "week",
+              "collect": [
+                "visitors:sum"
+              ]
             }
           }
         },
@@ -88,7 +91,10 @@
             "data-group": "tax-vat-content",
             "data-type": "pageviews-count",
             "query-params": {
-              "period": "week"
+              "period": "week",
+              "collect": [
+                "pageviews:sum"
+              ]
             }
           }
         }
@@ -164,17 +170,17 @@
         "y": [
           {
             "label": "Desktop",
-            "categoryId": "desktop",
+            "groupId": "desktop",
             "format": "percent"
           },
           {
             "label": "Mobile",
-            "categoryId": "mobile",
+            "groupId": "mobile",
             "format": "percent"
           },
           {
             "label": "Tablet",
-            "categoryId": "tablet",
+            "groupId": "tablet",
             "format": "percent"
           }
         ]
@@ -223,12 +229,12 @@
         "y": [
           {
             "label": "New visitors",
-            "categoryId": "New Visitor",
+            "groupId": "New Visitor",
             "format": "percent"
           },
           {
             "label": "Returning visitors",
-            "categoryId": "Returning Visitor",
+            "groupId": "Returning Visitor",
             "format": "percent"
           }
         ]
