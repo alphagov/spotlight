@@ -37,10 +37,20 @@ function (VolumetricsNumberView, View, Collection) {
 
     describe('getValue', function () {
       it('should call the view format method with the last defined model (valueAttr) on the collection', function () {
-        spyOn(VolumetricsNumberView.prototype, 'formatValue').andReturn('456');
-        var returnValue = subject.getValue();
+        spyOn(VolumetricsNumberView.prototype, 'formatValue');
+
+        subject.getValue();
+
         expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith(4);
-        expect(returnValue).toEqual('456');
+      });
+
+      it('should call the view format method with null if there is no last defined models in the collection', function () {
+        spyOn(VolumetricsNumberView.prototype, 'formatValue');
+        spyOn(Collection.prototype, 'lastDefined').andReturn(undefined);
+
+        subject.getValue();
+
+        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith(null);
       });
     });
 
