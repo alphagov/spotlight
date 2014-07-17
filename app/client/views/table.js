@@ -12,6 +12,7 @@ function (TableView, Modernizr) {
       this.tableCollection = new this.collection.constructor(this.collection.models, this.collection.options);
 
       this.listenTo(this.tableCollection, 'sort', this.renderSort);
+      this.listenTo(this.tableCollection, 'reset', this.renderSort);
 
       this.listenTo(this.collection, 'sync', this.syncToTableCollection);
 
