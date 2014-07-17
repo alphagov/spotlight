@@ -1,15 +1,17 @@
 define([
   'common/views/visualisations/journey-graph/journey-graph',
-  'common/collections/journey_series'
+  'common/collections/journey_series',
+  'extensions/models/model'
 ],
-function (JourneyGraph, JourneyCollection) {
+function (JourneyGraph, JourneyCollection, Model) {
 
   describe('JourneyGraph', function () {
     var graph;
 
     beforeEach(function () {
       graph = new JourneyGraph({
-        collection: new JourneyCollection()
+        collection: new JourneyCollection(),
+        model: new Model()
       });
       graph.valueAttr = 'uniqueEvents';
     });

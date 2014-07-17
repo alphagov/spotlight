@@ -64,14 +64,14 @@ function (d3, Axis) {
     },
 
     ticks: function () {
-      var period = this.graph.getPeriod();
+      var period = this.graph.getAxisPeriod();
       if (this.configs[period]) {
         return this.configs[period].ticks.call(this);
       }
     },
 
     tickFormat: function () {
-      var period = this.graph.getPeriod();
+      var period = this.graph.getAxisPeriod();
       if (this.configs[period]) {
         return this.configs[period].tickFormat.call(this);
       }

@@ -114,7 +114,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     modelToDate: function (model) {
       var prop = '_start_at';
-      var period = this.getPeriod();
+      var period = this.getAxisPeriod();
       if (period === 'hour') {
         prop = '_timestamp';
       } else if (period === 'week' || period === 'quarter') {
@@ -188,15 +188,11 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     },
 
     getPeriod: function () {
-      var period = 'week';
-      if (this.collection && this.collection.options.axisPeriod) {
-        period = this.collection.options.axisPeriod;
-      } else if (this.collection && this.collection.getPeriod()) {
-        period = this.collection.getPeriod();
-      } else if (this.model && this.model.get('period')) {
-        period = this.model.get('period');
-      }
-      return period;
+      return this.collection.getPeriod() || 'week';
+    },
+
+    getAxisPeriod: function () {
+      return this.model.get('axis-period') || this.getPeriod();
     },
 
     /**

@@ -44,7 +44,8 @@ function (Graph, Collection, Model, View, d3) {
           options: {
             axes: true
           }
-        }
+        },
+        model: new Model()
       });
       expect(view.d3).toBe(d3);
     });
@@ -95,7 +96,8 @@ function (Graph, Collection, Model, View, d3) {
             return {
               a: 'b'
             };
-          }
+          },
+          model: new Model()
         });
         spyOn(TestGraph.prototype, 'render');
         spyOn(TestGraph.prototype, 'prepareGraphArea');
@@ -175,7 +177,8 @@ function (Graph, Collection, Model, View, d3) {
         TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
-          collection: new Collection()
+          collection: new Collection(),
+          model: new Model()
         });
       });
 
@@ -685,7 +688,8 @@ function (Graph, Collection, Model, View, d3) {
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           el: el,
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         graph.innerWidth = 444;
         graph.innerHeight = 333;
