@@ -13,7 +13,7 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      return this.formatValue(this.collection.mean(this.valueAttr));
+      return this.formatValue(this.collection.lastDefined(this.valueAttr).get(this.valueAttr));
     },
 
     getLabel: function () {

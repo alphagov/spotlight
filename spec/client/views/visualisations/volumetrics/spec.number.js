@@ -36,13 +36,10 @@ function (VolumetricsNumberView, View, Collection) {
     });
 
     describe('getValue', function () {
-      it('should call the view format method with the collection mean', function () {
+      it('should call the view format method with the last defined model (valueAttr) on the collection', function () {
         spyOn(VolumetricsNumberView.prototype, 'formatValue').andReturn('456');
-        spyOn(subject.collection, 'mean').andReturn(10);
-        var returnValue;
-        returnValue = subject.getValue();
-        expect(subject.collection.mean).toHaveBeenCalledWith('count');
-        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith(10);
+        var returnValue = subject.getValue();
+        expect(VolumetricsNumberView.prototype.formatValue).toHaveBeenCalledWith(4);
         expect(returnValue).toEqual('456');
       });
     });
