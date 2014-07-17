@@ -98,7 +98,7 @@
       "module-type": "grouped_timeseries",
       "title": "Total tax collected",
       "description": "Tax collected by tax type",
-      "value-attribute": "count:sum",
+      "value-attribute": "value:sum",
       "category": "service_slug",
       "use_stack": false,
       "currency": "gbp",
@@ -118,53 +118,56 @@
         "y": [
           {
             "label": "Total",
-            "categoryId": "total-hmrc-receipts",
+            "groupId": "total-hmrc-receipts",
             "format": "currency"
           },
           {
             "label": "Income tax",
-            "categoryId": "income-tax",
+            "groupId": "income-tax",
             "format": "currency"
           },
           {
             "label": "VAT",
-            "categoryId": "vat",
+            "groupId": "vat",
             "format": "currency"
           },
           {
             "label": "National Insurance",
-            "categoryId": "nics",
+            "groupId": "nics",
             "format": "currency"
           },
           {
             "label": "Corporation tax (incl Bank levy)",
-            "categoryId": "total-corporation-tax-includes-bank-levy",
+            "groupId": "total-corporation-tax-includes-bank-levy",
             "format": "currency"
           },
           {
             "label": "Fuel duties",
-            "categoryId": "fuel-duties",
+            "groupId": "fuel-duties",
             "format": "currency"
           },
           {
             "label": "Tobacco duties",
-            "categoryId": "tobacco-duties",
+            "groupId": "tobacco-duties",
             "format": "currency"
           }
         ]
       },
       "show-line-labels": true,
       "show-total-lines": true,
-      "axis-period": "quarter",
+      "axis-period": "year",
       "data-source": {
         "data-group": "tax",
-        "data-type": "receipts",
+        "data-type": "receipts-monthly",
         "query-params": {
-          "period": "quarter",
-          "start_at": "2008-04-01T00:00:00Z",
+          "filter_by": [
+            "service_type:receipt",
+            "aggregate_service_slug:n-a"
+          ],
+          "period": "month",
           "group_by": "service_slug",
           "collect": [
-            "count:sum"
+            "value:sum"
           ]
         }
       }
