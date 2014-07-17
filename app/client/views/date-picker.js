@@ -3,8 +3,8 @@ define([
 ], function (View) {
   return View.extend({
 
-    startDate: '2012-04-01',
-    dateFormat: 'YYYY-MM-01',
+    startDate: '2012-04-01T00:00:00Z',
+    dateFormat: 'YYYY-MM-DD[T]HH:mm:ss[Z]',
 
     events: {
       'change select': 'update'
