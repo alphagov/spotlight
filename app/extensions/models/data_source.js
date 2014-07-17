@@ -52,13 +52,18 @@ function (Backbone, Mustache, _, moment) {
 
     configureTimespans: function (queryParams) {
       if (queryParams['start_at'] && !queryParams['end_at'] && !queryParams['duration']) {
-        queryParams['end_at'] = moment().utc().format(DataSource.ISO_8601);
+        queryParams['end_at'] = moment();
       }
       if (queryParams.period && !queryParams.duration &&
             !(queryParams['start_at'] && queryParams['end_at'])) {
         queryParams.duration =
           DataSource.PERIOD_TO_DURATION[queryParams.period];
       }
+      _.each(['start_at', 'end_at'], function (prop) {
+        if (queryParams[prop]) {
+          queryParams[prop] = moment(queryParams[prop]).utc().format(DataSource.ISO_8601);
+        }
+      });
       return queryParams;
     },
 
