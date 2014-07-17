@@ -13,7 +13,9 @@ function (SingleStatView) {
     },
 
     getValue: function () {
-      return this.formatValue(this.collection.mean(this.valueAttr));
+      var lastDefined = this.collection.lastDefined(this.valueAttr);
+      var val = lastDefined ? lastDefined.get(this.valueAttr) : null;
+      return this.formatValue(val);
     },
 
     getLabel: function () {
