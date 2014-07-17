@@ -100,7 +100,7 @@
       "module-type": "grouped_timeseries",
       "title": "VAT collected",
       "description": "<span class=\"group0\">Total VAT collected</span> = <span class=\"group1\">VAT payments</span> + <span class=\"group2\">Import VAT</span> - <span class=\"group3\">VAT repayments</span>",
-      "value-attribute": "count:sum",
+      "value-attribute": "value:sum",
       "category": "receipts",
       "use_stack": false,
       "currency": "gbp",
@@ -144,48 +144,65 @@
       "show-total-lines": true,
       "axis-period": "quarter",
       "data-source": {
-        "data-group": "tax-vat",
-        "data-type": "receipts",
+        "data-group": "tax",
+        "data-type": "receipts-monthly",
         "query-params": {
           "period": "month",
           "start_at": "2012-04-01T00:00:00Z",
-          "group_by": "receipts",
+          "filter_by": [
+            "service_slug:vat"
+          ],
           "collect": [
-            "count:sum"
+            "value:sum"
           ]
         }
       }
     },
     {
       "slug": "cost-of-collecting-100-gbp-in-vat",
-      "module-type": "single_timeseries",
-      "title": "Cost of collecting £100 in VAT",
-      "description": "",
+      "module-type": "grouped_timeseries",
+      "title": "Cost of collecting £100 in vat",
+      "description": "TODO",
+      "value-attribute": "cost:sum",
+      "category": "service_slug",
+      "use_stack": false,
+      "currency": "gbp",
       "info": [
-        "Data source: Google Analytics",
-        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
-        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+        "TODO"
       ],
-      "denominator-matcher": "attorney-generals-office",
-      "numerator-matcher": "attorney-generals-office",
-      "matching-attribute": "department",
-      "value-attribute": "visitors:sum",
       "axes": {
         "x": {
-          "label": "Date"
+          "label": "Date",
+          "key": "_start_at",
+          "format": {
+            "type": "date",
+            "format": "MMMM YYYY"
+          }
         },
         "y": [
           {
-            "label": "Number of visitors"
+            "label": "VAT",
+            "groupId": "vat",
+            "format": "currency"
           }
         ]
       },
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "axis-period": "quarter",
       "data-source": {
-        "data-group": "gov-uk-content",
-        "data-type": "traffic-count",
+        "data-group": "hmrc-cost-measures",
+        "data-type": "cost-of-collection",
         "query-params": {
-          "period": "week"
+          "filter_by": [
+            "service_slug:vat"
+          ],
+          "period": "quarter",
+          "start_at": "2008-04-01T01:00:00Z",
+          "group_by": "service_slug",
+          "collect": [
+            "cost:sum"
+          ]
         }
       }
     },
