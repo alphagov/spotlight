@@ -343,7 +343,7 @@
       }
     },
     {
-      "slug": "Cost per transaction",
+      "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Total cost",
       "classes": "cols3",

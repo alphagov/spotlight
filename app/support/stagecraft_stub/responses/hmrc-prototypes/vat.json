@@ -75,10 +75,9 @@
       "module-type": "kpi",
       "title": "Cost of collecting £100",
       "classes": "cols3",
-      "value-attribute": "cost_per_transaction",
+      "value-attribute": "cost",
       "format": {
-        "type": "currency",
-        "pence": true
+        "type": "currency"
       },
       "info": [
         "The cost of these transactions includes all the back-office activity dealing with work arising from the contacts. It excludes the cost of compliance and enforcement activity. <br>1. Transaction and cost numbers have been collected using current year outturn data. <br>2. Variations to 2011 to 2012 volumes have arisen from a new approach to understanding the VAT service: many transaction services begin digitally but require additional manual intervention in order to complete the transaction effectively, eg identify and deal with basic errors, request additional customer data or apply an assessment of risk. HMRC have been trialling a new approach to measurement which captures this additional processing cost in order to identify the true cost of digital.  This will allow the business to track benefit of moving from a digital “front end only” to digitising the “end-to-end process” and provide the necessary information to make decisions around business process re-engineering and digital re-investment. <br>3. Unit cost data has been constructed using paybill data, with a 23% uplift for overheads. HMRC's costing framework is in development, and changes are in train to improve the accuracy of overhead cost apportionment.",
@@ -87,14 +86,12 @@
         "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "hmrc-cost-measures",
+        "data-type": "cost-of-collection",
         "query-params": {
           "filter_by": [
-            "service_id:hmrc-vat",
-            "type:seasonally-adjusted"
-          ],
-          "sort_by": "_timestamp:descending"
+            "service_slug:vat"
+          ]
         }
       }
     },
