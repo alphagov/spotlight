@@ -24,7 +24,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
 
       this.dataSource = new DataSource(options.dataSource);
       this.dataSource.on('change', function () {
-        this.fetch();
+        this.fetch({ reset: true });
       }, this);
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
@@ -96,6 +96,12 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         }
       }
       return data;
+    },
+
+    fetch: function () {
+      this.selectedItem = null;
+      this.selectedIndex = null;
+      return Backbone.Collection.prototype.fetch.apply(this, arguments);
     },
 
     isXADate: function (data) {
