@@ -137,7 +137,7 @@ function (Component) {
         var lines = this.graph.getLines();
         model = this.collection.lastDefined(_.pluck(lines, 'key'));
       }
-      var output = this.formatPeriod(model, this.collection.getPeriod());
+      var output = this.formatPeriod(model, this.graph.getPeriod());
 
       var summary = '<span class="timeperiod">' + output + '</span>';
 
