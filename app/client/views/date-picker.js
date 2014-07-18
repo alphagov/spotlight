@@ -3,11 +3,19 @@ define([
 ], function (View) {
   return View.extend({
 
-    startDate: '2012-04-01T00:00:00Z',
+    startDate: '2013-04-01T00:00:00Z',
     dateFormat: 'YYYY-MM-DD[T]HH:mm:ss[Z]',
 
     events: {
       'change select': 'update'
+    },
+
+    initialize: function () {
+      View.prototype.initialize.apply(this, arguments);
+      var options = this.model.get('date-picker') || {};
+      if (options['start-date']) {
+        this.startDate = options['start-date'];
+      }
     },
 
     update: function () {

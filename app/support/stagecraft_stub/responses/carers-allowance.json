@@ -139,6 +139,9 @@
         "Digital: applications made online",
         "Paper form: applications made using a paper form"
       ],
+      "date-picker": {
+        "start-date": "2013-10-01T00:00:00Z"
+      },
       "axes": {
         "x": {
           "label": "Date",
