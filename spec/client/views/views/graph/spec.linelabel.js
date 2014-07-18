@@ -8,7 +8,7 @@ function (LineLabel, Collection, Model) {
   describe('LineLabel Component', function () {
     describe('rendering tests', function () {
 
-      var el, wrapper, lineLabel, collection, graph;
+      var el, wrapper, lineLabel, collection, graph, getPeriodSpy;
       beforeEach(function () {
 
         collection = new Collection([
@@ -22,7 +22,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 10,
             'def:_count': 20,
             'abc:_count:percent': 0.33,
-            'def:_count:percent': 0.67
+            'def:_count:percent': 0.67,
+            '_timestamp': '2014-05-01T01:00:00Z'
           },
           {
             _count: 20,
@@ -34,7 +35,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 20,
             'def:_count': 30,
             'abc:_count:percent': 0.4,
-            'def:_count:percent': 0.6
+            'def:_count:percent': 0.6,
+            '_timestamp': '2014-05-01T01:00:00Z'
           },
           {
             _count: 30,
@@ -46,7 +48,8 @@ function (LineLabel, Collection, Model) {
             'abc:_count': 20,
             'def:_count': 40,
             'abc:_count:percent': 0.33,
-            'def:_count:percent': 0.67
+            'def:_count:percent': 0.67,
+            '_timestamp': '2014-05-01T01:00:00Z'
           }
         ]);
 
@@ -96,7 +99,7 @@ function (LineLabel, Collection, Model) {
           { ideal: 80, min: 80, size: 30, key: '_value' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
-        spyOn(collection, 'getPeriod').andReturn('week');
+        getPeriodSpy = spyOn(collection, 'getPeriod').andReturn('week');
       });
 
       afterEach(function () {
@@ -251,6 +254,39 @@ function (LineLabel, Collection, Model) {
           expect(link2.text()).toEqual('Title 2');
           var spanValues = lineLabel.$el.find('figcaption ol li span.value');
           expect(spanValues.length).toEqual(2);
+        });
+
+        describe('renderSummary()', function () {
+          // we currently don't test the rendering of summary times
+          // for hour due to issues with Travis and timezones
+
+          it('renders a summary time period for day', function () {
+            getPeriodSpy.andReturn('day');
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .timeperiod');
+            expect(textLabel.text()).toEqual('1 May 2014');
+          });
+
+          it('renders a summary time period for week', function () {
+            getPeriodSpy.andReturn('week');
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .timeperiod');
+            expect(textLabel.text()).toEqual('1 May 2014');
+          });
+
+          it('renders a summary time period for month', function () {
+            getPeriodSpy.andReturn('month');
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .timeperiod');
+            expect(textLabel.text()).toEqual('May 2014');
+          });
+
+          it('renders a summary time period for quarter', function () {
+            getPeriodSpy.andReturn('quarter');
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .timeperiod');
+            expect(textLabel.text()).toEqual('May 2014');
+          });
         });
 
       });
