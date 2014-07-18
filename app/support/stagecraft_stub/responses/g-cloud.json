@@ -67,7 +67,7 @@
         "data-type": "sales",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "group_by": "sme_large",
           "collect": [
             "cumulative_spend:sum"
@@ -115,7 +115,7 @@
         "data-type": "sales",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "group_by": "sme_large",
           "collect": [
             "monthly_spend:sum"
@@ -158,7 +158,7 @@
         "data-type": "sales",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "collect": [
             "monthly_spend:sum"
           ],
@@ -229,7 +229,7 @@
         "data-type": "sales",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "group_by": "sector",
           "collect": [
             "cumulative_spend:sum"
@@ -289,7 +289,7 @@
         "data-type": "sales",
         "query-params": {
           "period": "month",
-          "start_at": "2012-04-01T01:00:00Z",
+          "start_at": "2012-04-01T00:00:00Z",
           "group_by": "lot",
           "collect": [
             "monthly_spend:sum"
