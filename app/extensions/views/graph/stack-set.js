@@ -7,15 +7,17 @@ define([
 
     GroupClass: Stack,
 
-    getClosestLine: function (e, x) {
-      var closestY = this.lines[0];
-      var interpolator = this.getInterpolator(e, x);
+    getClosestLine: function (e, index) {
+      var closestY = { valueAttr: null };
+      if (this.hasValueAtIndex(index)) {
+        var interpolator = this.getInterpolator(e, index);
 
-      _.each(this.lines, function (line) {
-        if (interpolator(line) < e.y) {
-          closestY = line;
-        }
-      });
+        _.each(this.lines, function (line) {
+          if (interpolator(line) < e.y) {
+            closestY = line;
+          }
+        });
+      }
 
       return closestY;
     }

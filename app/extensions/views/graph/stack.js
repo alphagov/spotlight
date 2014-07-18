@@ -48,13 +48,16 @@ function (Line) {
       Line.prototype.renderCursorLine.apply(this, arguments);
       if (this.grouped) {
         var x = this.x(index);
-        this.componentWrapper.append('line').attr({
-          'class': 'cursorLine line selected ' + this.className,
-          x1: x,
-          y1: this.y0(index),
-          x2: x,
-          y2: this.y(index)
-        });
+        var y = this.y(index);
+        if (y !== null) {
+          this.componentWrapper.append('line').attr({
+            'class': 'cursorLine line selected ' + this.className,
+            x1: x,
+            y1: this.y0(index),
+            x2: x,
+            y2: y
+          });
+        }
       }
     },
 
