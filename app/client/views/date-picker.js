@@ -19,12 +19,25 @@ define([
     },
 
     update: function () {
-      var from = this.$('#date-from').val();
-      var to = this.$('#date-to').val();
+      var from = this.getMoment(this.$('#date-from').val());
+      var to = this.getMoment(this.$('#date-to').val());
+      var now = this.getMoment();
+      var period = this.collection.getPeriod();
+
+      from = from.startOf(period);
+      to = to.endOf('month');
+
+      if (to.isAfter(this.getMoment())) {
+        to = this.getMoment();
+      }
+
+      if (period === 'week') {
+        from = from.add('day', 1);
+      }
 
       this.collection.dataSource.setQueryParam({
-        start_at: from,
-        end_at: this.getMoment(to).add('months', 1).format(this.dateFormat),
+        start_at: from.format(this.dateFormat),
+        end_at: to.format(this.dateFormat),
       });
     },
 
