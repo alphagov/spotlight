@@ -20,7 +20,7 @@ function (SingleStatView) {
 
     getLabel: function (model) {
       model = model || this.collection.lastDefined(this.valueAttr);
-      if (model !== null) {
+      if (model) {
         return this.formatPeriod(model, this.getPeriod());
       }
       return '';
