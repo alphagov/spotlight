@@ -12,54 +12,26 @@ function (SingleStatView) {
       return this.format(value, this.formatOptions);
     },
 
-    getValue: function () {
-      var lastDefined = this.collection.lastDefined(this.valueAttr);
-      var val = lastDefined ? lastDefined.get(this.valueAttr) : null;
+    getValue: function (model) {
+      model = model || this.collection.lastDefined(this.valueAttr);
+      var val = model ? model.get(this.valueAttr) : null;
       return this.formatValue(val);
     },
 
-    getLabel: function () {
-      var period = this.getPeriod();
-      var available = this.collection.defined(this.valueAttr).length;
-      var label;
-      if (available === 0) {
-        label = '(no data)';
-      } else {
-        var unavailableEvents = this.collection.length - available;
-        label = [
-          this.labelPrefix,
-          'last',
-          this.collection.length,
-          this.format(this.collection.length, { type: 'plural', singular: period })
-        ];
-        if (unavailableEvents > 0) {
-          label = label.concat([
-            '<span class="unavailable">(' + unavailableEvents,
-            this.format(unavailableEvents, { type: 'plural', singular: period }),
-            'unavailable)</span>'
-          ]);
-        }
-        label = label.join(' ');
+    getLabel: function (model) {
+      model = model || this.collection.lastDefined(this.valueAttr);
+      if (model) {
+        return this.formatPeriod(model, this.getPeriod());
       }
-      return label;
+      return '';
     },
 
     getValueSelected: function (selection) {
-      var val;
-      if (selection.selectedModel !== null) {
-        val = selection.selectedModel.get(this.valueAttr);
-      } else {
-        val = null;
-      }
-      return this.formatValue(val);
+      return this.getValue(selection.selectedModel);
     },
 
     getLabelSelected: function (selection) {
-      if (selection.selectedModel !== null) {
-        return this.formatPeriod(selection.selectedModel, this.getPeriod());
-      } else {
-        return '';
-      }
+      return this.getLabel(selection.selectedModel);
     },
 
     getPeriod: function () {

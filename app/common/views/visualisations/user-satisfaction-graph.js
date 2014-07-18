@@ -34,7 +34,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
         var selection = this.collection.getCurrentSelection();
 
         if (selection.selectedModel) {
-          selection = VolumetricsNumberView.prototype.getLabelSelected.call(this, selection);
+          selection = VolumetricsNumberView.prototype.getLabel.call(this, selection.selectedModel);
         } else {
           selection = VolumetricsNumberView.prototype.getLabel.call(this);
         }

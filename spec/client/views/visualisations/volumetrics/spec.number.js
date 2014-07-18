@@ -59,50 +59,31 @@ function (VolumetricsNumberView, View, Collection) {
       var prefix;
 
       beforeEach(function () {
-        prefix = 'Some prefix';
+        prefix = 'week';
         subject.labelPrefix = prefix;
       });
 
-      describe('when there are unavailable periods', function () {
-
-        it('should return the appropriately formatted label', function () {
-          expect(subject.getLabel()).toEqual(prefix + ' last 6 weeks <span class="unavailable">(2 weeks unavailable)</span>');
-        });
-
-        it('should return the appropriately formatted label for arbitrary periods', function () {
-          collection.dataSource.setQueryParam('period', 'month');
-          expect(subject.getLabel()).toEqual(prefix + ' last 6 months <span class="unavailable">(2 months unavailable)</span>');
-        });
-
-        it('should return (no data) when it can\'t find a collection', function () {
-          var nullVolumetricsNumberView = new VolumetricsNumberView({
-            collection: new Collection()
-          });
-          expect(nullVolumetricsNumberView.getLabel()).toEqual('(no data)');
-        });
-      });
-
-      describe('when there are not unavailable periods', function () {
+      describe('should show the last available date in the collection', function () {
         beforeEach(function () {
           collection.reset({
             data: [
-              { count: 1 },
-              { count: 2 },
-              { count: 3 },
-              { count: 4 },
-              { count: 5 },
-              { count: 6 }
+              { count: 1, '_timestamp': '2014-07-14T00:00:00+00:00' },
+              { count: 2, '_timestamp': '2014-07-14T00:00:00+00:00' },
+              { count: 3, '_timestamp': '2014-07-14T00:00:00+00:00' },
+              { count: 4, '_timestamp': '2014-07-14T00:00:00+00:00' },
+              { count: 5, '_timestamp': '2014-07-14T00:00:00+00:00' },
+              { count: 6, '_timestamp': '2014-07-14T00:00:00+00:00' }
             ]
           }, { parse: true });
         });
 
         it('should return the appropriately formatted label', function () {
-          expect(subject.getLabel()).toEqual(prefix + ' last 6 weeks');
+          expect(subject.getLabel()).toEqual('14 July 2014');
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
           collection.dataSource.setQueryParam('period', 'month');
-          expect(subject.getLabel()).toEqual(prefix + ' last 6 months');
+          expect(subject.getLabel()).toEqual('July 2014');
         });
 
       });
