@@ -24,7 +24,7 @@ define([
 
       this.collection.dataSource.setQueryParam({
         start_at: from,
-        end_at: this.getMoment(to).add('months', 1),
+        end_at: this.getMoment(to).add('months', 1).format(this.dateFormat),
       });
     },
 
