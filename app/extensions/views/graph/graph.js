@@ -192,7 +192,20 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     },
 
     getAxisPeriod: function () {
-      return this.model.get('axis-period') || this.getPeriod();
+      var period = this.model.get('axis-period') || this.getPeriod();
+      var periods = ['hour', 'day', 'week', 'month', 'quarter'];
+      if (this.scales.x) {
+        var domain = this.scales.x.domain();
+        var start = this.getMoment(domain[0]);
+        var end = this.getMoment(domain[1]);
+        var index = periods.indexOf(period);
+        while (Math.abs(start.diff(end, period)) > 15 && index < periods.length) {
+          period = periods[index];
+          index++;
+        }
+      }
+      this.axisperiod = period;
+      return period;
     },
 
     /**
