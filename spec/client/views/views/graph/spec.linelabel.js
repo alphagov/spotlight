@@ -70,6 +70,9 @@ function (LineLabel, Collection, Model) {
           },
           getYPos: function (index, attr) {
             return collection.at(index).get(attr);
+          },
+          getPeriod: function () {
+            return 'week';
           }
         };
 
