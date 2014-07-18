@@ -2,11 +2,20 @@ table {
   margin-top: 1em;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid darken($grey-2, 10%);
+  border-left: 1px solid darken($grey-2, 10%);
+  border-right: 1px solid darken($grey-2, 10%);
   &.touch-table {
     margin-left: 1.5em;
     margin-right: 1.5em;
     width: calc(100% - 3em);
+  }
+
+  thead {
+    border-top: 1px solid darken($grey-2, 10%);
+  }
+
+  tbody {
+    border-bottom: 1px solid darken($grey-2, 10%);
   }
 
   &.floated-header {
