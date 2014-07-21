@@ -36,10 +36,16 @@ define([
         to = to.startOf('week').add('day', 1);
       }
 
-      this.collection.dataSource.setQueryParam({
-        start_at: from.format(this.dateFormat),
-        end_at: to.format(this.dateFormat),
-      });
+      if (!from.isBefore(to)) {
+        this.showError('Start date must be before end date');
+      } else {
+        this.hideError();
+        this.collection.dataSource.setQueryParam({
+          start_at: from.format(this.dateFormat),
+          end_at: to.format(this.dateFormat),
+        });
+      }
+
     },
 
     render: function () {
@@ -75,6 +81,16 @@ define([
       $select.val(this.getMoment(options.selected).format(this.dateFormat));
 
       return $select;
+    },
+
+    showError: function (msg) {
+      this.hideError();
+      var $error = $('<span/>').addClass('warning').text(msg);
+      this.$el.append($error);
+    },
+
+    hideError: function () {
+      this.$('.warning').remove();
     }
 
   });

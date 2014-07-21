@@ -134,6 +134,40 @@ define([
 
     });
 
+    describe('error messaging', function () {
+
+      beforeEach(function () {
+        datepicker.render();
+      });
+
+      it('shows an error message when start date is selected after end date', function () {
+
+        datepicker.$('#date-from').val('2014-07-01T00:00:00Z');
+        datepicker.$('#date-to').val('2013-06-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(datepicker.$('.warning').text()).toEqual('Start date must be before end date');
+
+      });
+
+      it('removes message if dates are set back to an appropriate order', function () {
+
+        datepicker.$('#date-from').val('2014-07-01T00:00:00Z');
+        datepicker.$('#date-to').val('2013-06-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(datepicker.$('.warning').length).toEqual(1);
+
+        datepicker.$('#date-from').val('2013-06-01T00:00:00Z');
+        datepicker.$('#date-to').val('2014-07-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(datepicker.$('.warning').length).toEqual(0);
+
+      });
+
+    });
+
   });
 
 });
