@@ -102,7 +102,7 @@ define([
 
       });
 
-      it('if period of collection is "week", rounds dates to nearest monday', function () {
+      it('if period of collection is "week", rounds dates to mondays', function () {
 
         collection.dataSource.setQueryParam('period', 'week');
 
@@ -112,7 +112,7 @@ define([
 
         expect(collection.dataSource.setQueryParam).toHaveBeenCalledWith({
           start_at: '2013-05-27T00:00:00Z',
-          end_at: '2014-05-26T00:00:00Z'
+          end_at: '2014-06-01T23:59:59Z'
         });
 
       });

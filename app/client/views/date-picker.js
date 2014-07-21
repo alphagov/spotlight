@@ -33,7 +33,7 @@ define([
 
       if (period === 'week') {
         from = from.add('day', 1);
-        to = to.startOf('week').add('day', 1);
+        to = to.endOf('week').add('day', 1);
       }
 
       if (!from.isBefore(to)) {
