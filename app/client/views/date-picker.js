@@ -27,12 +27,13 @@ define([
       from = from.startOf(period);
       to = to.endOf('month');
 
-      if (to.isAfter(this.getMoment())) {
-        to = this.getMoment();
+      if (to.isAfter(now)) {
+        to = now;
       }
 
       if (period === 'week') {
         from = from.add('day', 1);
+        to = to.startOf('week').add('day', 1);
       }
 
       this.collection.dataSource.setQueryParam({
@@ -43,11 +44,14 @@ define([
 
     render: function () {
       var firstDate = this.collection.first().get('_end_at');
+      var lastDate = this.collection.last().get('_end_at');
       var from = this.makeSelect({ id: 'date-from' }, {
         selected: this.getMoment(firstDate).startOf('month'),
         upperBound: this.getMoment().subtract('months', 1).startOf('month')
       });
-      var to = this.makeSelect({ id: 'date-to' });
+      var to = this.makeSelect({ id: 'date-to' }, {
+        selected: this.getMoment(lastDate).startOf('month')
+      });
 
       this.$el.append('Show data from: ').append(from).append(' to ').append(to);
     },

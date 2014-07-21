@@ -13,10 +13,12 @@ define([
       collection = new Collection([
         {'_end_at': '2014-03-04T01:00:00Z'},
         {'_end_at': '2014-03-11T01:00:00Z'},
-        {'_end_at': '2014-03-18T01:00:00Z'}
+        {'_end_at': '2014-03-18T01:00:00Z'},
+        {'_end_at': '2014-03-25T01:00:00Z'},
+        {'_end_at': '2014-04-01T01:00:00Z'}
       ]);
 
-      collection.dataSource.setQueryParam('period', 'week');
+      collection.dataSource.setQueryParam('period', 'month');
       model = new Model({
         'date-picker': {}
       });
@@ -73,8 +75,8 @@ define([
         expect(datepicker.$('#date-from').val()).toEqual('2014-03-01T00:00:00Z');
       });
 
-      it('selects the current month in the "to" select', function () {
-        expect(datepicker.$('#date-to').val()).toEqual('2014-07-01T00:00:00Z');
+      it('selects the upper bound of the collection in the "to" select', function () {
+        expect(datepicker.$('#date-to').val()).toEqual('2014-04-01T00:00:00Z');
       });
 
     });
@@ -82,7 +84,7 @@ define([
     describe('events', function () {
 
       beforeEach(function () {
-        spyOn(collection.dataSource, 'setQueryParam');
+        spyOn(collection.dataSource, 'setQueryParam').andCallThrough();
         datepicker.render();
       });
 
@@ -93,16 +95,41 @@ define([
         datepicker.$('#date-from').change();
 
         expect(collection.dataSource.setQueryParam).toHaveBeenCalledWith({
-          // start date is rounded down to nearest monday
-          start_at: '2013-05-27T00:00:00Z',
+          start_at: '2013-06-01T00:00:00Z',
           // end at is rounded to the end of the month to fully encompass the data
           end_at: '2014-06-30T23:59:59Z'
         });
 
       });
 
+      it('if period of collection is "week", rounds dates to nearest monday', function () {
+
+        collection.dataSource.setQueryParam('period', 'week');
+
+        datepicker.$('#date-from').val('2013-06-01T00:00:00Z');
+        datepicker.$('#date-to').val('2014-05-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(collection.dataSource.setQueryParam).toHaveBeenCalledWith({
+          start_at: '2013-05-27T00:00:00Z',
+          end_at: '2014-05-26T00:00:00Z'
+        });
+
+      });
+
       it('sets end date to current date if end date is after current date', function () {
-        // TODO
+
+        now = '2014-07-18T01:02:03Z';
+
+        datepicker.$('#date-from').val('2013-06-01T00:00:00Z');
+        datepicker.$('#date-to').val('2014-07-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(collection.dataSource.setQueryParam).toHaveBeenCalledWith({
+          start_at: '2013-06-01T00:00:00Z',
+          end_at: '2014-07-18T01:02:03Z'
+        });
+
       });
 
     });
