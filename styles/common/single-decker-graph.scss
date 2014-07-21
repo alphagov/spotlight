@@ -37,10 +37,15 @@
         left: 60px;
         right:30px;
         bottom:50px;
+        border-bottom: 2px solid $grey-2;
       }
 
       .cursorLine.ascender {
         display: inherit;
+      }
+
+      .stack {
+        fill: $white;
       }
     }
   }
