@@ -85,12 +85,12 @@ define([
 
     showError: function (msg) {
       this.hideError();
-      var $error = $('<span/>').addClass('warning').text(msg);
-      this.$el.append($error);
+      var $error = $('<p/>').addClass('error').text(msg);
+      this.$el.prepend($error);
     },
 
     hideError: function () {
-      this.$('.warning').remove();
+      this.$('.error').remove();
     }
 
   });

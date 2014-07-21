@@ -147,7 +147,7 @@ define([
         datepicker.$('#date-to').val('2013-06-01T00:00:00Z');
         datepicker.$('#date-from').change();
 
-        expect(datepicker.$('.warning').text()).toEqual('Start date must be before end date');
+        expect(datepicker.$('.error').text()).toEqual('Start date must be before end date');
 
       });
 
@@ -157,13 +157,13 @@ define([
         datepicker.$('#date-to').val('2013-06-01T00:00:00Z');
         datepicker.$('#date-from').change();
 
-        expect(datepicker.$('.warning').length).toEqual(1);
+        expect(datepicker.$('.error').length).toEqual(1);
 
         datepicker.$('#date-from').val('2013-06-01T00:00:00Z');
         datepicker.$('#date-to').val('2014-07-01T00:00:00Z');
         datepicker.$('#date-from').change();
 
-        expect(datepicker.$('.warning').length).toEqual(0);
+        expect(datepicker.$('.error').length).toEqual(0);
 
       });
 
