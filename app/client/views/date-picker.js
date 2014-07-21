@@ -3,7 +3,7 @@ define([
 ], function (View) {
   return View.extend({
 
-    startDate: '2013-04-01T00:00:00Z',
+    lowerBound: '2013-04-01T00:00:00Z',
     dateFormat: 'YYYY-MM-DD[T]HH:mm:ss[Z]',
 
     events: {
@@ -14,7 +14,7 @@ define([
       View.prototype.initialize.apply(this, arguments);
       var options = this.model.get('date-picker') || {};
       if (options['start-date']) {
-        this.startDate = options['start-date'];
+        this.lowerBound = options['start-date'];
       }
     },
 
@@ -42,22 +42,33 @@ define([
     },
 
     render: function () {
-      var from = this.makeSelect({ id: 'date-from' });
+      var firstDate = this.collection.first().get('_end_at');
+      var from = this.makeSelect({ id: 'date-from' }, {
+        selected: this.getMoment(firstDate).startOf('month'),
+        upperBound: this.getMoment().subtract('months', 1).startOf('month')
+      });
       var to = this.makeSelect({ id: 'date-to' });
 
       this.$el.append('Show data from: ').append(from).append(' to ').append(to);
     },
 
-    makeSelect: function (attrs) {
-      var $select = $('<select/>', attrs);
-      var date = this.getMoment(this.startDate);
-      var now = this.getMoment();
+    makeSelect: function (attrs, options) {
+      options = options || {};
+      _.defaults(options, {
+        lowerBound: this.lowerBound
+      });
 
-      while (date.isBefore(now)) {
+      var $select = $('<select/>', attrs);
+      var date = this.getMoment(options.lowerBound).startOf('month');
+      var now = this.getMoment(options.upperBound).startOf('month');
+
+      while (!date.isAfter(now)) {
         var option = '<option value="' + date.format(this.dateFormat) + '">' + date.format('MMM YYYY') + '</option>';
         $select.prepend(option);
         date = date.add('month', 1);
       }
+
+      $select.val(this.getMoment(options.selected).format(this.dateFormat));
 
       return $select;
     }
