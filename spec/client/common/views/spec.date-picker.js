@@ -30,6 +30,8 @@ define([
           return this.moment(now).utc();
         }
       });
+      spyOn(DatePicker.prototype, 'setHashParams');
+      spyOn(DatePicker.prototype, 'getHashParams').andReturn({});
       datepicker = new DatePicker({
         model: model,
         collection: collection
