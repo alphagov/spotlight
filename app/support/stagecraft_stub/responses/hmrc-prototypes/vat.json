@@ -20,7 +20,7 @@
       "module-type": "kpi",
       "title": "VAT collected per year",
       "classes": "cols3",
-      "value-attribute": "number_of_transactions",
+      "value-attribute": "value",
       "format": {
         "type": "number",
         "magnitude": true,
@@ -30,12 +30,12 @@
         "Data source: HM Revenue and Customs"
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "tax",
+        "data-type": "receipts-monthly",
         "query-params": {
           "filter_by": [
-            "service_id:hmrc-vat",
-            "type:seasonally-adjusted"
+            "service_slug:vat",
+            "period:month"
           ],
           "sort_by": "_timestamp:descending"
         }
@@ -198,7 +198,7 @@
             "service_slug:vat"
           ],
           "period": "quarter",
-          "start_at": "2008-04-01T01:00:00Z",
+          "start_at": "2011-04-01T01:00:00Z",
           "group_by": "service_slug",
           "collect": [
             "cost:sum"
