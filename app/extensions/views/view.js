@@ -179,7 +179,28 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
     prop: function (prop, obj) {
       obj = obj || this;
       return _.isFunction(obj[prop]) ? obj[prop].call(obj) : obj[prop];
+    },
+
+    getHashParams: function () {
+      var hash = window.location.hash.replace('#', '');
+      var params = {};
+      if (hash) {
+        var hashParams = hash.split('&');
+        _.each(hashParams, function (p) {
+          p = p.split('=');
+          params[p[0]] = p[1];
+        });
+      }
+      return params;
+    },
+
+    setHashParams: function (params) {
+      params = _.extend(this.getHashParams(), params);
+      window.location.hash = _.map(params, function (val, key) {
+        return key + '=' + val;
+      }).join('&');
     }
+
   });
 
   _.extend(View.prototype, DateFunctions);

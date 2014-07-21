@@ -24,6 +24,11 @@ define([
       var now = this.getMoment();
       var period = this.collection.getPeriod();
 
+      this.setHashParams({
+        from: this.$('#date-from').val(),
+        to: this.$('#date-to').val()
+      });
+
       from = from.startOf(period);
       to = to.endOf('month');
 
@@ -49,17 +54,22 @@ define([
     },
 
     render: function () {
-      var firstDate = this.collection.first().get('_end_at');
-      var lastDate = this.collection.last().get('_end_at');
+      var hashParams = this.getHashParams();
+      var firstDate = hashParams.from || this.collection.first().get('_end_at');
+      var lastDate = hashParams.to || this.collection.last().get('_end_at');
       var from = this.makeSelect({ id: 'date-from' }, {
-        selected: this.getMoment(firstDate).startOf('month'),
+        selected: this.getMoment(firstDate).startOf('month').format(this.dateFormat),
         upperBound: this.getMoment().subtract('months', 1).startOf('month')
       });
       var to = this.makeSelect({ id: 'date-to' }, {
-        selected: this.getMoment(lastDate).startOf('month')
+        selected: this.getMoment(lastDate).startOf('month').format(this.dateFormat)
       });
 
       this.$el.append('Show data from: ').append(from).append(' to ').append(to);
+
+      if ('from' in hashParams || 'to' in hashParams) {
+        this.update();
+      }
     },
 
     makeSelect: function (attrs, options) {
@@ -78,7 +88,7 @@ define([
         date = date.add('month', 1);
       }
 
-      $select.val(this.getMoment(options.selected).format(this.dateFormat));
+      $select.val(options.selected);
 
       return $select;
     },
