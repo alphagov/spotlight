@@ -1,6 +1,6 @@
 .single-decker-graph {
   .impact-number {
-    float:left;
+    float:right;
     width: 12.3em;
     strong {
       @include bold-48();
@@ -24,17 +24,17 @@
   }
 
   figure.graph {
-    margin-left: 12.5em;
+    margin-right: 12.5em;
 
     .graph-wrapper {
       svg {
         min-height: 135px;
         max-height: 135px;
-        max-width: 790px;
+        max-width: 760px;
       }
 
       .inner {
-        left: 70px;
+        left: 60px;
         right:30px;
         bottom:50px;
       }
@@ -61,7 +61,6 @@
     }
 
     figure.graph {
-      margin-left: 10em;
       margin-right: 0;
       min-height: 110px;
       .y-axis .tick:nth-child(even) text {
@@ -78,7 +77,6 @@
     }
 
     figure.graph {
-      margin-left:0;
       float:none;
     }
   }
