@@ -26,7 +26,7 @@ function(DataSource, moment) {
 
     describe('buildUrl', function () {
       it('should format dates properly', function () {
-        var startAt = moment('2014-07-01T01:00:00Z'),
+        var startAt = moment('2014-07-01T01:00:00Z').utc(),
             source = new DataSource({ 'query-params': {
               start_at: startAt
             }});

@@ -195,7 +195,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     },
 
     getAxisPeriod: function () {
-      var period = this.model.get('axis-period') || this.getPeriod();
+      var period = (this.model && this.model.get('axis-period')) || this.getPeriod();
       var periods = ['hour', 'day', 'week', 'month', 'quarter'];
       if (this.scales.x) {
         var domain = this.scales.x.domain();
