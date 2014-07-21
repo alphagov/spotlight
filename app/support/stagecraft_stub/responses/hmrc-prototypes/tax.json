@@ -268,7 +268,7 @@
         "data-type": "cost-of-collection",
         "query-params": {
           "period": "quarter",
-          "start_at": "2008-04-01T00:00:00Z",
+          "start_at": "2011-04-01T01:00:00Z",
           "group_by": "service_slug",
           "collect": [
             "cost:sum"
@@ -360,7 +360,7 @@
       "module-type": "bar_chart_with_number",
       "title": "Payment on time",
       "description": "Payment on time",
-      "value-attribute": "digital_takeup",
+      "value-attribute": "payment_on_time",
       "axis-period": "quarter",
       "format": {
         "type": "percent"
@@ -377,12 +377,11 @@
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "hmrc-revenue-measures",
+        "data-type": "payment-on-time",
         "query-params": {
           "filter_by": [
-            "service_id:bis-annual-returns",
-            "type:quarterly"
+            "service_slug:income-tax"
           ],
           "sort_by": "_timestamp:ascending"
         }
@@ -410,11 +409,11 @@
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "hmrc-revenue-measures",
+        "data-type": "payment-on-time",
         "query-params": {
           "filter_by": [
-            "service_id:bis-annual-returns",
+            "service_slug:income-tax",
             "type:quarterly"
           ],
           "sort_by": "_timestamp:ascending"
