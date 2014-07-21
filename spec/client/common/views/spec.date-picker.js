@@ -17,6 +17,7 @@ define([
         {'_end_at': '2014-03-25T01:00:00Z'},
         {'_end_at': '2014-04-01T01:00:00Z'}
       ]);
+      spyOn(collection, 'fetch');
 
       collection.dataSource.setQueryParam('period', 'month');
       model = new Model({
