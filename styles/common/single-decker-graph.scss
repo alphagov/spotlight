@@ -5,6 +5,11 @@
     strong {
       @include bold-48();
     }
+
+    .summary {
+      border-bottom: 1px solid $grey-2;
+      display: block;
+    }
   }
 
   ul.module-actions {

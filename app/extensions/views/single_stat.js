@@ -34,18 +34,18 @@ function (View) {
         label = this.getLabel();
       }
 
-      var content = null;
+      var content = '';
+      if (label) {
+        content = '<span class="summary">' + label + '</span>';
+      }
       if (value === null) {
-        content = '<span class="no-data">(no data)</span>';
+        content += '<span class="no-data">(no data)</span>';
       } else if (this.valueTag) {
-        content = '<' + this.valueTag + '>' + value + '</' + this.valueTag + '>';
+        content += '<' + this.valueTag + '>' + value + '</' + this.valueTag + '>';
       } else {
-        content = value;
+        content += value;
       }
 
-      if (label) {
-        content += ' ' + label;
-      }
       this.$el.html(content);
       delete this.selectedModel;
     },
