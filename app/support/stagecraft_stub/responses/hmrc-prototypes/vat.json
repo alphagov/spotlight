@@ -341,6 +341,45 @@
           "sort_by": "_timestamp:ascending"
         }
       }
+    },
+    {
+      "slug": "most-popular-content",
+      "module-type": "table",
+      "title": "Most popular VAT content",
+      "description": "Visitors arriving over the last week.",
+      "axes": {
+        "x": {
+          "label": "Page title",
+          "key": "pageTitle"
+        },
+        "y": [
+          {
+            "label": "Pageviews",
+            "key": "pageviews:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Unique pageviews",
+            "key": "uniquePageviews:sum",
+            "format": "integer"
+          }
+        ]
+      },
+      "sort-order": "descending",
+      "sort-by": "uniquePageviews:sum",
+      "data-source": {
+        "data-group": "tax-vat-content",
+        "data-type": "top-count",
+        "query-params": {
+          "group_by": "pageTitle",
+          "collect": [
+            "pageviews:sum",
+            "uniquePageviews:sum"
+          ],
+          "period": "week",
+          "duration": 1
+        }
+      }
     }
   ]
 }
