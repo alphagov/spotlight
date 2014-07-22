@@ -146,6 +146,18 @@ function(DataSource, moment) {
 
         expect(withTimespan.duration).toBe(undefined);
       });
+
+      it('removes duration if start_at and end_at are both set', function () {
+        var source = new DataSource(),
+            withTimespan = source.configureTimespans({
+              period: 'week',
+              start_at: 'some date',
+              end_at: 'some date',
+              duration: 20
+            });
+
+        expect(withTimespan.duration).toBe(undefined);
+      });
     });
   });
 
