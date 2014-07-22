@@ -19,7 +19,7 @@
       "slug": "tax-collected-per-year",
       "module-type": "kpi",
       "title": "Total tax collected per year",
-      "classes": "cols2",
+      "classes": "cols3",
       "value-attribute": "count",
       "format": {
         "type": "currency",
@@ -47,7 +47,7 @@
       "classes": "cols3",
       "value-attribute": "cost",
       "format": {
-        "type": "number",
+        "type": "currency",
         "magnitude": true,
         "sigfigs": 3
       },
@@ -68,9 +68,9 @@
     {
       "slug": "cost-of-collection-per-100-pound",
       "module-type": "kpi",
-      "title": "Total cost",
+      "title": "Cost of collecting £100",
       "classes": "cols3",
-      "value-attribute": "total_cost",
+      "value-attribute": "count",
       "format": {
         "type": "currency",
         "magnitude": true,
@@ -82,12 +82,11 @@
         "Data source: HM Revenue and Customs"
       ],
       "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
+        "data-group": "tax",
+        "data-type": "receipts",
         "query-params": {
           "filter_by": [
-            "service_id:hmrc-tax",
-            "type:seasonally-adjusted"
+            "topic:tax"
           ],
           "sort_by": "_timestamp:descending"
         }
