@@ -153,6 +153,16 @@ define([
 
       });
 
+      it('shows an error message when start date is after end date but date manipulation will round them to correctly ordered dates', function () {
+
+        datepicker.$('#date-from').val('2013-11-01T00:00:00Z');
+        datepicker.$('#date-to').val('2013-10-01T00:00:00Z');
+        datepicker.$('#date-from').change();
+
+        expect(datepicker.$('.error').text()).toEqual('Start date must be before end date');
+
+      });
+
       it('removes message if dates are set back to an appropriate order', function () {
 
         datepicker.$('#date-from').val('2014-07-01T00:00:00Z');

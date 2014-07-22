@@ -24,26 +24,26 @@ define([
       var now = this.getMoment();
       var period = this.collection.getPeriod();
 
-      this.setHashParams({
-        from: this.$('#date-from').val(),
-        to: this.$('#date-to').val()
-      });
-
-      from = from.startOf(period);
-      to = to.endOf('month');
-
-      if (to.isAfter(now)) {
-        to = now;
-      }
-
-      if (period === 'week') {
-        from = from.add('day', 1);
-        to = to.endOf('week').add('day', 1);
-      }
-
-      if (!from.isBefore(to)) {
+      if (from.isAfter(to)) {
         this.showError('Start date must be before end date');
       } else {
+        this.setHashParams({
+          from: this.$('#date-from').val(),
+          to: this.$('#date-to').val()
+        });
+
+        from = from.startOf(period);
+        to = to.endOf('month');
+
+        if (to.isAfter(now)) {
+          to = now;
+        }
+
+        if (period === 'week') {
+          from = from.add('day', 1);
+          to = to.endOf('week').add('day', 1);
+        }
+
         this.hideError();
         this.collection.dataSource.setQueryParam({
           start_at: from.format(this.dateFormat),
