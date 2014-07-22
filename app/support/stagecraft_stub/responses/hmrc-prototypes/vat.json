@@ -100,7 +100,7 @@
       "module-type": "grouped_timeseries",
       "title": "VAT collected",
       "description": "<span class=\"group0\">Total VAT collected</span> = <span class=\"group1\">VAT payments</span> + <span class=\"group2\">Import VAT</span> - <span class=\"group3\">VAT repayments</span>",
-      "value-attribute": "value:sum",
+      "value-attribute": "count:sum",
       "category": "receipts",
       "use_stack": false,
       "currency": "gbp",
@@ -144,16 +144,14 @@
       "show-total-lines": true,
       "axis-period": "quarter",
       "data-source": {
-        "data-group": "tax",
-        "data-type": "receipts-monthly",
+        "data-group": "tax-vat",
+        "data-type": "receipts",
         "query-params": {
           "period": "month",
           "start_at": "2012-04-01T00:00:00Z",
-          "filter_by": [
-            "service_slug:vat"
-          ],
+          "group_by": "receipts",
           "collect": [
-            "value:sum"
+            "count:sum"
           ]
         }
       }
