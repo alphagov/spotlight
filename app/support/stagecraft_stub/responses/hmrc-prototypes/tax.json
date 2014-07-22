@@ -280,7 +280,7 @@
       "slug": "payment-on-time",
       "module-type": "bar_chart_with_number",
       "title": "Payment on time",
-      "description": "Payment on time",
+      "description": "Percentage of income tax paid on time",
       "value-attribute": "payment_on_time",
       "axis-period": "quarter",
       "format": {
