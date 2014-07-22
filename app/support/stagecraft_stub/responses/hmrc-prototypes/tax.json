@@ -312,7 +312,7 @@
       "module-type": "bar_chart_with_number",
       "title": "Digital take-up",
       "description": "Digital take-up rates each quarter",
-      "value-attribute": "digital_takeup",
+      "value-attribute": "measure_rate",
       "axis-period": "quarter",
       "format": {
         "type": "percent"
@@ -329,12 +329,12 @@
         "<a href=\"https://www.gov.uk/service-manual/measurement/digital-takeup.html\">Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
       ],
       "data-source": {
-        "data-group": "hmrc-revenue-measures",
-        "data-type": "payment-on-time",
+        "data-group": "hmrc-customer-measures",
+        "data-type": "tax-return-transactions-online",
         "query-params": {
           "filter_by": [
-            "service_slug:income-tax",
-            "type:quarterly"
+            "measure:tax_return-transactions-online",
+            "period:quarter"
           ],
           "sort_by": "_timestamp:ascending"
         }
