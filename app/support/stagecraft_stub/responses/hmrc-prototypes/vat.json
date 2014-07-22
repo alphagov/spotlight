@@ -207,47 +207,6 @@
       }
     },
     {
-      "slug": "vat-transactions",
-      "module-type": "table",
-      "title": "VAT transactions",
-      "description": "",
-      "info": [
-        "Data source: GOV.UK anonymous feedback",
-        "Pages receiving the most comments in a calendar month.",
-        "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section and may be based on sampled data."
-      ],
-      "axes": {
-        "x": {
-          "label": "URL",
-          "key": "url"
-        },
-        "y": [
-          {
-            "label": "Total comments",
-            "key": "comment_count:sum",
-            "format": "integer"
-          }
-        ]
-      },
-      "sort-order": "descending",
-      "sort-by": "comment_count:sum",
-      "data-source": {
-        "data-group": "gov-uk-content",
-        "data-type": "top-urls",
-        "query-params": {
-          "filter_by": [
-            "organisation_acronym:ago"
-          ],
-          "group_by": "url",
-          "collect": [
-            "comment_count:sum"
-          ],
-          "period": "month",
-          "duration": 1
-        }
-      }
-    },
-    {
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
