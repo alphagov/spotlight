@@ -5,6 +5,7 @@ function (UserSatisfactionCollection) {
   return {
 
     requiresSvg: true,
+    hasDatePicker: true,
     collectionClass: UserSatisfactionCollection,
 
     collectionOptions: function () {
