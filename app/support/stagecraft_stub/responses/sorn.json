@@ -102,7 +102,6 @@
         "Data source: Google Analytics",
         "Shows the estimated number of users currently on the GOV.UK start page for the service."
       ],
-      "classes": "cols2",
       "data-source": {
         "data-group": "sorn",
         "data-type": "realtime",
@@ -110,22 +109,6 @@
           "sort_by": "_timestamp:descending",
           "limit": 722
         }
-      }
-    },
-    {
-      "slug": "user-satisfaction",
-      "module-type": "user_satisfaction",
-      "title": "User satisfaction",
-      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
-      "info": [
-        "Data source: DVLA database",
-        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
-      ],
-      "value-attribute": "satisfaction_sorn",
-      "classes": "cols2",
-      "data-source": {
-        "data-group": "vehicle-licensing",
-        "data-type": "customer-satisfaction"
       }
     },
     {
@@ -222,6 +205,21 @@
           ],
           "group_by": "channel"
         }
+      }
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction",
+      "title": "User satisfaction",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
+      "info": [
+        "Data source: DVLA database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying a sample of users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "value-attribute": "satisfaction_sorn",
+      "data-source": {
+        "data-group": "vehicle-licensing",
+        "data-type": "customer-satisfaction"
       }
     },
     {
