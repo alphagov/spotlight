@@ -160,7 +160,7 @@
       "slug": "cost-of-collecting-100-gbp-in-vat",
       "module-type": "grouped_timeseries",
       "title": "Cost of collecting £100 in vat",
-      "description": "TODO",
+      "description": "",
       "value-attribute": "cost:sum",
       "category": "service_slug",
       "use_stack": false,
