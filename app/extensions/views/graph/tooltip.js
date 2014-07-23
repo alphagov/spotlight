@@ -38,7 +38,7 @@ function (Component, Pivot) {
         return '(no data)';
       }
       var format = this.graph.currency ? 'currency' : 'number';
-      if (_.isFunction(this.graph.isOneHundredPercent) && this.graph.isOneHundredPercent()) {
+      if (this.graph.isOneHundredPercent()) {
         format = 'percent';
       }
       return this.format(value, { type: format, magnitude: true, pad: true });
