@@ -23,8 +23,16 @@ function (Graph) {
         stack: {
           view: this.sharedComponents.stack
         },
-        hover: { view: this.sharedComponents.hover }
+        hover: {
+          view: this.sharedComponents.hover
+        },
+        callout: {
+          view: this.sharedComponents.callout
+        }
       };
+    },
+    isOneHundredPercent: function () {
+      return true;
     }
   });
 
