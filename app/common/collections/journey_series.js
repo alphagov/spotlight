@@ -13,14 +13,12 @@ define([
       }
 
       this.valueAttr = options.valueAttr || 'uniqueEvents';
-      this.dateRange = this.lastWeekDateRange(
-          this.getMoment(), options.weeksAgo || 0);
+      var dateRange = this.lastWeekDateRange(this.getMoment(), options.weeksAgo || 0);
+
+      options.dataSource = options.dataSource || {};
+      options.dataSource['query-params'] = _.extend(dateRange, options.dataSource['query-params']);
 
       Collection.prototype.initialize.apply(this, arguments);
-    },
-
-    queryParams: function () {
-      return this.dateRange;
     },
 
     parse: function () {

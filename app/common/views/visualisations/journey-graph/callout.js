@@ -41,9 +41,8 @@ function (Callout) {
 
       var arrow = $('<div>').addClass('arrow').html('<span class="outer-arrow">&#x25B2;</span><span class="inner-arrow">&#x25B2;</span>');
 
-      // collection should be of type journey_series and it stores this var
-      var dateRange = model.collection.dateRange;
-      var start = dateRange['start_at'];
+      var dateRange = model.collection.dataSource.get('query-params');
+      var start = this.getMoment(dateRange['start_at']);
       var end = this.getMoment(dateRange['end_at']).subtract(1, 'days');
       var val = model.get(attr) || 0;
       var max = this.collection.at(0).get(attr) || 1;
