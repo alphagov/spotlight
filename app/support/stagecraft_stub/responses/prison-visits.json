@@ -2,7 +2,7 @@
   "slug": "prison-visits",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Prison visit bookings",
   "description": "Arrange meetings between prisoners and social visitors.",
