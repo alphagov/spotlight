@@ -1,5 +1,6 @@
 .single-decker-graph {
   .impact-number {
+    color: $data-colour-1;
     float:right;
     width: 12.3em;
     strong {
@@ -7,8 +8,10 @@
     }
 
     .summary {
+      color: $black;
       border-bottom: 1px solid $grey-2;
       display: block;
+      font-weight: bold;
     }
   }
 
