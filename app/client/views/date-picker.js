@@ -6,6 +6,8 @@ define([
     lowerBound: '2013-04-01T00:00:00Z',
     dateFormat: 'YYYY-MM-DD[T]HH:mm:ss[Z]',
 
+    interval: 'month',
+
     events: {
       'change select': 'update'
     },
@@ -33,7 +35,7 @@ define([
         });
 
         from = from.startOf(period);
-        to = to.endOf('month');
+        to = to.endOf(this.interval);
 
         if (to.isAfter(now)) {
           to = now;
@@ -58,11 +60,11 @@ define([
       var firstDate = hashParams.from || this.collection.first().get('_end_at');
       var lastDate = hashParams.to || this.collection.last().get('_end_at');
       var from = this.makeSelect({ id: 'date-from' }, {
-        selected: this.getMoment(firstDate).startOf('month').format(this.dateFormat),
-        upperBound: this.getMoment().subtract('months', 1).startOf('month')
+        selected: this.getMoment(firstDate).startOf(this.interval).format(this.dateFormat),
+        upperBound: this.getMoment().subtract(this.interval, 1).startOf(this.interval)
       });
       var to = this.makeSelect({ id: 'date-to' }, {
-        selected: this.getMoment(lastDate).startOf('month').format(this.dateFormat)
+        selected: this.getMoment(lastDate).startOf(this.interval).format(this.dateFormat)
       });
 
       this.$el.append('Show data from: ').append(from).append(' to ').append(to);
@@ -75,19 +77,19 @@ define([
     makeSelect: function (attrs, options) {
       options = options || {};
       _.defaults(options, {
-        lowerBound: this.lowerBound
+        lowerBound: this.lowerBound,
+        format: 'MMM YYYY'
       });
 
       var $select = $('<select/>', attrs);
-      var date = this.getMoment(options.lowerBound).startOf('month');
-      var now = this.getMoment(options.upperBound).startOf('month');
+      var date = this.getMoment(options.lowerBound).startOf(this.interval);
+      var now = this.getMoment(options.upperBound).startOf(this.interval);
 
       while (!date.isAfter(now)) {
-        var option = '<option value="' + date.format(this.dateFormat) + '">' + date.format('MMM YYYY') + '</option>';
+        var option = '<option value="' + date.format(this.dateFormat) + '">' + date.format(options.format) + '</option>';
         $select.prepend(option);
-        date = date.add('month', 1);
+        date = date.add(this.interval, 1);
       }
-
       $select.val(options.selected);
 
       return $select;
