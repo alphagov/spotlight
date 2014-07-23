@@ -12,9 +12,7 @@ define([
         if (this.hasTable) {
           views['.visualisation-table'] = {
             view: Table,
-            options: {
-              valueAttr: this.model.get('value-attribute')
-            }
+            options: this.visualisationOptions
           };
         }
         if (this.hasDatePicker) {
