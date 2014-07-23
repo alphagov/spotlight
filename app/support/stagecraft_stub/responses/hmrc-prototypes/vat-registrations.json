@@ -126,10 +126,10 @@
             "registration_type:total-registrations"
           ],
           "start_at": "2013-04-01T00:00:00Z",
-          "end_at": "2014-04-01T00:00:00Z"
+          "end_at": "2014-04-01T00:00:00Z",
           "collect": [
             "count:sum"
-          ],
+          ]
         }
       }
     },
