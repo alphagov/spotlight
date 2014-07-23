@@ -1,12 +1,22 @@
 define([
   'client/controllers/module',
+  'client/views/journey-date-picker',
   'common/modules/journey',
   'common/views/visualisations/journey-graph/journey-graph'
-], function (ModuleController, JourneyModule, JourneyView) {
+], function (ModuleController, DatePickerView, JourneyModule, JourneyView) {
 
-  return ModuleController.extend(JourneyModule).extend({
+  var parent = ModuleController.extend(JourneyModule);
 
-    visualisationClass: JourneyView
+  return parent.extend({
+
+    visualisationClass: JourneyView,
+
+    viewOptions: function () {
+      return _.extend(parent.prototype.viewOptions.apply(this, arguments), {
+        datePickerClass: DatePickerView
+      });
+    }
+
 
   });
 

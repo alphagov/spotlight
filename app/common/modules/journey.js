@@ -5,6 +5,8 @@ function (JourneyCollection) {
   return {
 
     requiresSvg: true,
+    hasDatePicker: true,
+
     collectionClass: JourneyCollection,
 
     collectionOptions: function () {
