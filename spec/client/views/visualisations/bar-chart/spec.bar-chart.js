@@ -1,9 +1,10 @@
 define([
   'common/views/visualisations/bar-chart/bar-chart',
   'extensions/views/graph/graph',
-  'extensions/collections/collection'
+  'extensions/collections/collection',
+  'extensions/models/model'
 ],
-function (BarChart, Graph, Collection) {
+function (BarChart, Graph, Collection, Model) {
 
   describe('BarChart', function () {
     var graph;
@@ -11,7 +12,8 @@ function (BarChart, Graph, Collection) {
     beforeEach(function () {
       graph = new BarChart({
         collection: new Collection(),
-        formatOptions: { 'type': 'integer', 'magnitude': 'true' }
+        formatOptions: { 'type': 'integer', 'magnitude': 'true' },
+        model: new Model()
       });
     });
 

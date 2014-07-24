@@ -45,6 +45,9 @@ function (XAxis, Collection) {
           innerHeight: 0,
           getPeriod: function () {
             return config;
+          },
+          getAxisPeriod: function () {
+            return config;
           }
         }
       });

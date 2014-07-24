@@ -4,6 +4,7 @@ define([
 function (CompletionRateCollection) {
   return {
     requiresSvg: true,
+    hasDatePicker: true,
     collectionClass: CompletionRateCollection,
 
     collectionOptions: function () {

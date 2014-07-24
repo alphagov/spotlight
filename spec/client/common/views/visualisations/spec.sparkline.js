@@ -16,20 +16,12 @@ define([
       });
     });
 
-    describe('getPeriod', function () {
+    describe('modelToDate', function () {
 
-      it('returns hour by default', function () {
-        expect(view.getPeriod()).toEqual('hour');
-      });
-
-      it('returns view\'s period property if set', function () {
-        view.period = 'week';
-        expect(view.getPeriod()).toEqual('week');
-      });
-
-      it('returns model\'s period property if set', function () {
-        view.model.set('period', 'day');
-        expect(view.getPeriod()).toEqual('day');
+      it('returns model timestamp property', function () {
+        expect(view.modelToDate(new Backbone.Model({
+          _timestamp: '2014-01-01T12:00:00Z'
+        }))).toEqual('2014-01-01T12:00:00Z');
       });
 
     });

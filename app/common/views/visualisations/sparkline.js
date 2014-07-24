@@ -9,13 +9,12 @@ function (Graph) {
 
     initialize: function (options) {
       Graph.prototype.initialize.apply(this, arguments);
-      this.period = options.period;
       this.showTooltip = options.showTooltip;
       this.showStartAndEndTicks = options.showStartAndEndTicks;
     },
 
-    getPeriod: function () {
-      return this.period || this.model.get('period') || 'hour';
+    modelToDate: function (model) {
+      return model.get('_timestamp');
     },
 
     components: function () {

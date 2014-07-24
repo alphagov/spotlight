@@ -33,9 +33,15 @@ function (Backbone, Mustache, _, moment) {
       return url;
     },
 
-    setQueryParam: function (key, value) {
+    setQueryParam: function (key, val) {
       var params = _.clone(this.get('query-params')) || {};
-      params[key] = value;
+      var attrs = {};
+      if (arguments.length === 2 && typeof key === 'string') {
+        attrs[key] = val;
+      } else {
+        attrs = key;
+      }
+      _.extend(params, attrs);
       this.set('query-params', params);
     },
 
@@ -45,14 +51,21 @@ function (Backbone, Mustache, _, moment) {
     },
 
     configureTimespans: function (queryParams) {
-      if (queryParams['start_at'] && !queryParams['end_at'] && !queryParams['duration']) {
-        queryParams['end_at'] = moment().utc().format(DataSource.ISO_8601);
+      if (queryParams.start_at && !queryParams.end_at && !queryParams.duration) {
+        queryParams.end_at = moment();
+      } else if (queryParams.start_at && queryParams.end_at && queryParams.duration) {
+        delete queryParams.duration;
       }
       if (queryParams.period && !queryParams.duration &&
-            !(queryParams['start_at'] && queryParams['end_at'])) {
+            !(queryParams.start_at && queryParams.end_at)) {
         queryParams.duration =
           DataSource.PERIOD_TO_DURATION[queryParams.period];
       }
+      _.each(['start_at', 'end_at'], function (prop) {
+        if (queryParams[prop]) {
+          queryParams[prop] = moment(queryParams[prop]).utc().format(DataSource.ISO_8601);
+        }
+      });
       return queryParams;
     },
 
@@ -66,12 +79,12 @@ function (Backbone, Mustache, _, moment) {
     },
 
     _objectToQueryString: function (obj) {
-      return _.reduce(obj, function(parts, value, key) {
+      return _.reduce(obj, function (parts, value, key) {
         var out;
 
         if (!(_.isNull(value) || _.isUndefined(value))) {
           if (_.isArray(value)) {
-            out = _.map(value, function(sub_value) {
+            out = _.map(value, function (sub_value) {
               return this._encodeValue(key) + '=' +
                 this._encodeValue(sub_value);
             }, this).join('&');

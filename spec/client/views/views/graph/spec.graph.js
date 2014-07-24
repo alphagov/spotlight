@@ -44,7 +44,8 @@ function (Graph, Collection, Model, View, d3) {
           options: {
             axes: true
           }
-        }
+        },
+        model: new Model()
       });
       expect(view.d3).toBe(d3);
     });
@@ -95,7 +96,8 @@ function (Graph, Collection, Model, View, d3) {
             return {
               a: 'b'
             };
-          }
+          },
+          model: new Model()
         });
         spyOn(TestGraph.prototype, 'render');
         spyOn(TestGraph.prototype, 'prepareGraphArea');
@@ -175,7 +177,8 @@ function (Graph, Collection, Model, View, d3) {
         TestGraph = Graph.extend();
         graph = new TestGraph({
           el: el,
-          collection: new Collection()
+          collection: new Collection(),
+          model: new Model()
         });
       });
 
@@ -348,7 +351,7 @@ function (Graph, Collection, Model, View, d3) {
       beforeEach(function () {
         spyOn(Graph.prototype, 'prepareGraphArea').andCallThrough();
         graph = new Graph({
-          collection: new Collection()
+          collection: new Collection(defaultData)
         });
         spyOn(graph.collection, 'isEmpty').andReturn(false);
         spyOn(graph, 'resizeWithCalloutHidden');
@@ -391,6 +394,27 @@ function (Graph, Collection, Model, View, d3) {
         graph.collection.isEmpty.andReturn(true);
         graph.render();
         expect(graph.figure.text()).toContain('(no data)');
+        expect(graph.figure.find('svg').length).toEqual(1);
+      });
+
+      it('does not delete graph elements if no data is provided (bugfix)', function () {
+        graph.collection.isEmpty.andReturn(true);
+        graph.render();
+
+        expect(graph.figure.find('svg').length).toEqual(1);
+      });
+
+      it('removes no data message if data is added', function () {
+        graph.collection.isEmpty.andReturn(true);
+        graph.render();
+
+        expect(graph.figure.text()).toContain('(no data)');
+
+        graph.collection.isEmpty.andReturn(false);
+        graph.render();
+
+        expect(graph.figure.text()).not.toContain('(no data)');
+        expect(graph.figure.find('.no-data').length).toEqual(0);
       });
 
     });
@@ -685,7 +709,8 @@ function (Graph, Collection, Model, View, d3) {
         collection.getCurrentSelection = jasmine.createSpy().andReturn({});
         graph = new Graph({
           el: el,
-          collection: collection
+          collection: collection,
+          model: new Model()
         });
         graph.innerWidth = 444;
         graph.innerHeight = 333;

@@ -135,9 +135,7 @@ function (Component) {
         model = selected.selectedModel;
       } else {
         var lines = this.graph.getLines();
-        model = this.collection.lastDefined.apply(
-          this.collection, _.map(lines, function (line) {return line.key;})
-        );
+        model = this.collection.lastDefined(_.pluck(lines, 'key'));
       }
       var output = this.formatPeriod(model, this.collection.getPeriod());
 

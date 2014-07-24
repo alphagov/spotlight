@@ -1,0 +1,12 @@
+.date-picker {
+  padding-bottom: 1em;
+  border-bottom: 1px solid $grey-2;
+  margin-bottom: 1em;
+
+  .error {
+    padding: 5px 0.5em 3px;
+    border-left: 3px solid $error-colour;
+    color: $error-colour;
+    background: $error-background;
+  }
+}

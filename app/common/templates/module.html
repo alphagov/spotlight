@@ -15,6 +15,10 @@
   <% } %>
 <% } %>
 
+<% if (pageType === 'module' && datePicker) { %>
+<div class="date-picker" />
+<% } %>
+
 <% if (model.get('description')) { %>
   <p><%= model.get('description') %></p>
 <% } %>

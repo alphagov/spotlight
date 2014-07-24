@@ -6,6 +6,7 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
 
   return {
     requiresSvg: true,
+    hasDatePicker: true,
     initialize: function () {
 
       var containsTimeshift = false,

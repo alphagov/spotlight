@@ -1,9 +1,10 @@
 define([
   'client/views/visualisations/visitors-realtime',
   'common/collections/realtime',
+  'extensions/models/model',
   'stache!common/templates/visualisations/visitors-realtime'
 ],
-function (VisitorsRealtimeView, Collection, template) {
+function (VisitorsRealtimeView, Collection, Model, template) {
   describe('VisitorsRealtimeView', function () {
 
     var collection, view, $el;
@@ -25,7 +26,8 @@ function (VisitorsRealtimeView, Collection, template) {
 
       view = new VisitorsRealtimeView({
         el: $el,
-        collection: collection
+        collection: collection,
+        model: new Model()
       });
 
       view.valueAttr = 'unique_visitors';
@@ -105,7 +107,8 @@ function (VisitorsRealtimeView, Collection, template) {
       testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         el: $el,
-        collection: testCollection
+        collection: testCollection,
+        model: new Model()
       });
 
       jasmine.renderView(testView, function () {
@@ -131,7 +134,8 @@ function (VisitorsRealtimeView, Collection, template) {
       testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         el: $el,
-        collection: testCollection
+        collection: testCollection,
+        model: new Model()
       });
       testView.valueAttr = 'unique_visitors';
 
@@ -153,7 +157,8 @@ function (VisitorsRealtimeView, Collection, template) {
       testCollection.reset({ data: testData }, { parse: true });
       testView = new VisitorsRealtimeView({
         el: $el,
-        collection: testCollection
+        collection: testCollection,
+        model: new Model()
       });
 
       jasmine.renderView(testView, function () {

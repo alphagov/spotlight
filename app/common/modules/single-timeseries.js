@@ -4,6 +4,7 @@ define([
 function (Collection) {
   return {
     requiresSvg: true,
+    hasDatePicker: true,
     collectionClass: Collection,
 
     collectionOptions: function () {

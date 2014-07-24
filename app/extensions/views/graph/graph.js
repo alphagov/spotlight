@@ -36,7 +36,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       View.prototype.initialize.apply(this, arguments);
 
       var collection = this.collection = options.collection;
-      this.listenTo(collection, 'reset add remove sync', this.render);
+      this.listenTo(collection, 'reset add remove sync', function () {
+        this.getAxisPeriod();
+        this.render();
+      });
 
       this.prepareGraphArea();
 
@@ -114,7 +117,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     modelToDate: function (model) {
       var prop = '_start_at';
-      var period = this.getPeriod();
+      var period = this.axisperiod || this.getAxisPeriod();
       if (period === 'hour') {
         prop = '_timestamp';
       } else if (period === 'week' || period === 'quarter') {
@@ -188,14 +191,23 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     },
 
     getPeriod: function () {
-      var period = 'week';
-      if (this.collection && this.collection.options.axisPeriod) {
-        period = this.collection.options.axisPeriod;
-      } else if (this.collection && this.collection.getPeriod()) {
-        period = this.collection.getPeriod();
-      } else if (this.model && this.model.get('period')) {
-        period = this.model.get('period');
+      return this.collection.getPeriod() || 'week';
+    },
+
+    getAxisPeriod: function () {
+      var period = (this.model && this.model.get('axis-period')) || this.getPeriod();
+      var periods = ['hour', 'day', 'week', 'month', 'quarter'];
+      if (this.scales.x) {
+        var domain = this.scales.x.domain();
+        var start = this.getMoment(domain[0]);
+        var end = this.getMoment(domain[1]);
+        var index = periods.indexOf(period);
+        while (Math.abs(start.diff(end, period)) > 15 && index < periods.length) {
+          period = periods[index];
+          index++;
+        }
       }
+      this.axisperiod = period;
       return period;
     },
 
@@ -326,9 +338,16 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
      * Applies current configuration, then renders components in defined order
      */
     render: function () {
+      if (this.missingData) {
+        this.figure.children().show();
+        this.missingData.remove();
+        delete this.missingData;
+      }
       if (this.collection.isEmpty()) {
+        this.figure.children().hide();
+        var $container = $('<div/>').appendTo(this.figure);
         this.missingData = new MissingData({
-          el: this.figure
+          el: $container
         });
         this.missingData.render();
         return;

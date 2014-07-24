@@ -18,7 +18,8 @@ function (View) {
       return _.extend(
         View.prototype.templateContext.call(this),
         {
-          hasTable: this.hasTable
+          hasTable: this.hasTable,
+          datePicker: this.hasDatePicker
         }
       );
     }
