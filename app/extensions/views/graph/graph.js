@@ -338,9 +338,16 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
      * Applies current configuration, then renders components in defined order
      */
     render: function () {
+      if (this.missingData) {
+        this.figure.children().show();
+        this.missingData.remove();
+        delete this.missingData;
+      }
       if (this.collection.isEmpty()) {
+        this.figure.children().hide();
+        var $container = $('<div/>').appendTo(this.figure);
         this.missingData = new MissingData({
-          el: this.figure
+          el: $container
         });
         this.missingData.render();
         return;
