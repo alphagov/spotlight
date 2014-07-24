@@ -10,16 +10,10 @@ function (Graph) {
       var values = {};
       values = {
         xaxis: { view: this.sharedComponents.xaxis },
-        yaxis: {
-          view: this.sharedComponents.yaxis
-        },
-        stack: {
-          view: this.sharedComponents.stack,
-          options: {
-            formatOptions: this.formatOptions
-          }
-        },
-        hover: { view: this.sharedComponents.hover }
+        yaxis: { view: this.sharedComponents.yaxis },
+        stack: { view: this.sharedComponents.stack },
+        hover: { view: this.sharedComponents.hover },
+        callout: { view: this.sharedComponents.callout }
       };
       if (this.formatOptions && this.formatOptions.type === 'duration') {
         values.yaxis.options = {};
@@ -27,6 +21,14 @@ function (Graph) {
         values.yaxis.options.tickFormat = function () {
           var format = '%-' + unit.toUpperCase() + unit;
           return d3.time.format(format);
+        };
+
+        values.callout.options = {};
+        values.callout.options.formatValue = function (value) {
+          if (value === null) {
+            return '(no-data)';
+          }
+          return this.format(value, this.graph.formatOptions);
         };
       }
       return values;

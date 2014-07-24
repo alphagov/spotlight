@@ -360,6 +360,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
         $(window).off('resize.' + this.cid);
       }
       return View.prototype.remove.apply(this, arguments);
+    },
+
+    isOneHundredPercent: function () {
+      return false;
     }
 
   });

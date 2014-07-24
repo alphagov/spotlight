@@ -171,7 +171,7 @@ define([
       });
 
       jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<strong>bar</strong> label');
+        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
       });
     });
 
@@ -191,9 +191,9 @@ define([
       });
 
       jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<strong>bar</strong> label');
+        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
         collection.selectItem(0);
-        expect(view.$el.html()).toEqual('<strong>bar</strong> label');
+        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
       });
     });
 
@@ -221,11 +221,11 @@ define([
       });
 
       jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<strong>bar</strong> label');
+        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
         collection.selectItem(0);
-        expect(view.$el.html()).toEqual('<strong>b</strong> selected');
+        expect(view.$el.html()).toEqual('<span class="summary">selected</span><strong>b</strong>');
         collection.selectItem(null);
-        expect(view.$el.html()).toEqual('<strong>bar</strong> label');
+        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
       });
     });
 
