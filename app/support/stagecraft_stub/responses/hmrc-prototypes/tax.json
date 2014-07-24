@@ -31,10 +31,10 @@
       ],
       "data-source": {
         "data-group": "tax",
-        "data-type": "receipts",
+        "data-type": "receipts-yearly",
         "query-params": {
           "filter_by": [
-            "topic:tax"
+            "service_slug:total-hmrc-receipts"
           ],
           "sort_by": "_timestamp:descending"
         }
@@ -55,11 +55,11 @@
         "Data source: HM Revenue and Customs"
       ],
       "data-source": {
-        "data-group": "hmrc-cost-measures",
-        "data-type": "cost-of-collection",
+        "data-group": "hmrc-operations",
+        "data-type": "tax-collection-costs",
         "query-params": {
           "filter_by": [
-            "topic:tax"
+            "dimension:undefined"
           ],
           "sort_by": "_timestamp:descending"
         }
@@ -82,11 +82,11 @@
         "Data source: HM Revenue and Customs"
       ],
       "data-source": {
-        "data-group": "tax",
-        "data-type": "receipts",
+        "data-group": "hmrc-operations",
+        "data-type": "tax-collection-costs",
         "query-params": {
           "filter_by": [
-            "topic:tax"
+            "dimension:undefined"
           ],
           "sort_by": "_timestamp:descending"
         }
@@ -96,19 +96,21 @@
       "slug": "total-tax-collected",
       "module-type": "grouped_timeseries",
       "title": "Total tax collected",
-      "description": "Tax collected by tax type",
+      "description": "Total tax receipts by quarter including top five taxes by amount",
       "value-attribute": "value:sum",
       "category": "service_slug",
       "use_stack": false,
       "currency": "gbp",
       "info": [
-        "Data source: <a href='http://gcloud.civilservice.gov.uk/about/sales-information/'>Crown Commercial Service</a>",
-        "Data is collated via monthly returns from suppliers on the G-Cloud framework"
+        "Data source: HM Revenue & Customs"
       ],
       "axes": {
         "x": {
           "label": "Date",
-          "key": "_start_at",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
           "format": {
             "type": "date",
             "format": "MMMM YYYY"
@@ -116,7 +118,7 @@
         },
         "y": [
           {
-            "label": "Total",
+            "label": "Total receipts",
             "groupId": "total-hmrc-receipts",
             "format": "currency"
           },
@@ -136,8 +138,8 @@
             "format": "currency"
           },
           {
-            "label": "Corporation tax (incl Bank levy)",
-            "groupId": "total-corporation-tax-includes-bank-levy",
+            "label": "Corporation tax",
+            "groupId": "corporation-tax",
             "format": "currency"
           },
           {
@@ -160,10 +162,10 @@
         "data-type": "receipts-monthly",
         "query-params": {
           "filter_by": [
-            "service_type:receipt",
-            "aggregate_service_slug:n-a"
+            "service_type:receipt", "aggregate_service_slug:n-a"
           ],
-          "period": "month",
+          "period": "quarter",
+          "start_at": "2008-04-01T01:00:00Z",
           "group_by": "service_slug",
           "collect": [
             "value:sum"
@@ -175,7 +177,7 @@
       "module-type": "table",
       "slug": "tax-collected-by-tax-type-table",
       "title": "Tax collected by tax type",
-      "description": "",
+      "description": "Tax receipts by type for the current tax year",
       "axes": {
         "x": {
           "label": "Tax type",
