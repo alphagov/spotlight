@@ -5,6 +5,9 @@ define([
 ], function (ModuleView, Table, DatePicker) {
 
   return ModuleView.extend({
+
+    datePickerClass: DatePicker,
+
     views: function () {
       var pageType = this.model.get('parent').get('page-type');
       var views = {};
@@ -12,14 +15,12 @@ define([
         if (this.hasTable) {
           views['.visualisation-table'] = {
             view: Table,
-            options: {
-              valueAttr: this.model.get('value-attribute')
-            }
+            options: this.visualisationOptions
           };
         }
         if (this.hasDatePicker) {
           views['.date-picker'] = {
-            view: DatePicker
+            view: this.datePickerClass
           };
         }
       }
