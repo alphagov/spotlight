@@ -8,6 +8,7 @@ function (require, Axis) {
     position: 'left',
     classed: 'y-axis',
     orient: 'left',
+    offsetX: -8,
     getScale: function () {
       return this.scales.y;
     },

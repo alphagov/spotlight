@@ -12,8 +12,13 @@
             max-width: 300px;
           }
 
-          .y-axis .tick text {
-            display: block;
+          .y-axis .tick{
+            text {
+              display: block;
+            }
+            line {
+              display: none;
+            }
           }
         }
 
