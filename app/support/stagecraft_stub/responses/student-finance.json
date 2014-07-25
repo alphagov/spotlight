@@ -187,7 +187,7 @@
           "period": "week",
           "filter_by": [
             "academic_year:2014/15",
-            "country:england",
+            "province:england",
             "application_type:full-time application",
             "stage:submitted",
             "new_or_continuing:new"
