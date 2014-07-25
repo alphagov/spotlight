@@ -5,7 +5,11 @@
   #content & .more-info-link {
     margin-bottom: 14px;
   }
-  svg { 
+  svg {
     min-height: 150px;
+    position: relative;
+  }
+  .inner {
+    border-bottom: 2px solid $grey-2;
   }
 }
