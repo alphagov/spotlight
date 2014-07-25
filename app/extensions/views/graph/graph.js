@@ -202,7 +202,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
         var start = this.getMoment(domain[0]);
         var end = this.getMoment(domain[1]);
         var index = periods.indexOf(period);
-        while (Math.abs(start.diff(end, period)) > 15 && index < periods.length) {
+        while (index > 0 && Math.abs(start.diff(end, period)) > 15 && index < periods.length) {
           period = periods[index];
           index++;
         }
