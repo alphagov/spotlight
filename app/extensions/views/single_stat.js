@@ -50,6 +50,14 @@ function (View) {
       delete this.selectedModel;
     },
 
+    getValue: function () {
+      return null;
+    },
+
+    getValueSelected: function () {
+      return null;
+    },
+
     getLabel: function () {
       return '';
     },
