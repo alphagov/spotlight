@@ -10,6 +10,14 @@ function (NumberView) {
     formatOptions: {
       type: 'duration',
       unit: 's'
+    },
+
+    formatValue: function (value) {
+      if (value === null) {
+        return '<span class="no-data">(no data)</span>';
+      } else {
+        return NumberView.prototype.formatValue.apply(this, arguments);
+      }
     }
 
   });
