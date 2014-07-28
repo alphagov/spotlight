@@ -11,7 +11,7 @@ function (Graph) {
       values = {
         xaxis: { view: this.sharedComponents.xaxis },
         yaxis: { view: this.sharedComponents.yaxis },
-        stack: { view: this.sharedComponents.stack },
+        stack: { view: this.sharedComponents.line },
         hover: { view: this.sharedComponents.hover },
         callout: { view: this.sharedComponents.callout }
       };
