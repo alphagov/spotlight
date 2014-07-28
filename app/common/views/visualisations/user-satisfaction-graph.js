@@ -20,7 +20,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     onChangeSelected: function (selectModel) {
       var ratings = this.getBreakdown(selectModel);
       this.userSatisfactionCollection.reset(ratings);
-      this.populateBreakdownLabel();
+      this.populateBreakdownLabel(selectModel);
     },
 
     render: function () {
@@ -29,13 +29,12 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
       this.populateBreakdownLabel();
     },
 
-    populateBreakdownLabel: function () {
+    populateBreakdownLabel: function (selectModel) {
       if (this.model.get('parent').get('page-type') === 'module') {
-        var selection = this.collection.getCurrentSelection();
         var output = '';
 
-        if (selection.selectedModel) {
-          output = VolumetricsNumberView.prototype.getLabel.call(this, selection.selectedModel) || 'no-data';
+        if (selectModel) {
+          output = VolumetricsNumberView.prototype.getLabel.call(this, selectModel) || 'no-data';
         }
 
         this.$el.find('.volumetrics-bar-period').html(output);
