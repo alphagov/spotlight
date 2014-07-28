@@ -12,5 +12,10 @@ cache:
 branches:
   only:
     - master
+env:
+  - TEST_CMD: test:unit
+  - TEST_CMD: shell:cheapseats:--range:0..100
+  - TEST_CMD: shell:cheapseats:--range:100..
+script: "grunt $TEST_CMD"
 matrix:
   fast_finish: true
