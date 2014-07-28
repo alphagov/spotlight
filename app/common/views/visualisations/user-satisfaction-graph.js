@@ -32,15 +32,13 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     populateBreakdownLabel: function () {
       if (this.model.get('parent').get('page-type') === 'module') {
         var selection = this.collection.getCurrentSelection();
+        var output = '';
 
         if (selection.selectedModel) {
-          selection = VolumetricsNumberView.prototype.getLabel.call(this, selection.selectedModel);
-        } else {
-          selection = VolumetricsNumberView.prototype.getLabel.call(this);
+          output = VolumetricsNumberView.prototype.getLabel.call(this, selection.selectedModel) || 'no-data';
         }
-        selection = selection === '' ? '(no data)' : selection;
 
-        this.$el.find('.volumetrics-bar-period').html(selection);
+        this.$el.find('.volumetrics-bar-period').html(output);
       }
     },
 
