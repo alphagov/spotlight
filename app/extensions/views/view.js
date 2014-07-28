@@ -161,7 +161,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
 
     getFormat: function (period) {
       var formats = {
-        hour: 'HH:mm',
+        hour: 'h:mma, D MMM YYYY',
         day: 'D MMM YYYY',
         week: 'D MMM YYYY',
         month: 'MMMM YYYY',

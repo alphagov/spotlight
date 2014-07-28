@@ -39,6 +39,7 @@
         min-height: 135px;
         max-height: 135px;
         max-width: 760px;
+        position: relative;
       }
 
       .inner {
@@ -53,7 +54,7 @@
       }
 
       .stack {
-        fill: $white;
+        fill: none;
       }
     }
   }

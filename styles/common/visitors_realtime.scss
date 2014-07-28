@@ -1,8 +1,11 @@
 .realtime {
   .stat {
-    float: left;
-    width: 240px;
-    min-width: 240px;
+    float: right;
+    width: 12.3em;
+    min-width: 12.3em;
+    .impact-number {
+      color: $data-colour-1;
+    }
 
     @media (max-width: 640px) {
       float: none;
@@ -39,6 +42,7 @@
     }
     .sparkline-title {
       top: 70px;
+      right: 70px;
     }
   }
 

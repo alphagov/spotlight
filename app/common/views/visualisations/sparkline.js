@@ -28,12 +28,12 @@ function (Graph) {
       if (this.showStartAndEndTicks) {
         val.yaxis = {
           view: this.sharedComponents.yaxis,
-          options: { showStartAndEndTicks: true }
+          options: { showStartAndEndTicks: true, offsetX: 0 }
         };
 
         val.yaxisRight = {
           view: this.sharedComponents.yaxisRight,
-          options: { showStartAndEndTicks: true }
+          options: { showStartAndEndTicks: true, offsetX: 0 }
         };
       }
 

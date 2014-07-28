@@ -5,7 +5,7 @@ function (Component) {
   var Axis = Component.extend({
 
     position: 'bottom',
-    tickPadding: 0,
+    tickPadding: 6,
     orient: 'bottom',
     classed: null,
 

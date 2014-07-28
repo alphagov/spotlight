@@ -1,22 +1,8 @@
 .double-decker-graph {
-  .impact-number {
-    padding-top:1em;
-    width: 12.3em;
-    float:left;
-    @include core-16();
-    color: $black;
-
-    strong {
-      @include bold-48();
-      margin-bottom:-.1em;
-      display:block
-
-    }
-  }
 
   h3 {
     clear:both;
-    height:0;
+    height:auto;
     margin:0;
     @include bold-19() ;
   }
@@ -27,7 +13,6 @@
   }
 
   figure.graph {
-    margin-left: 12.5em;
 
     .graph-wrapper {
       svg {

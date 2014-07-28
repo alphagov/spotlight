@@ -50,7 +50,7 @@ figure.graph {
       position:absolute;
       top: 20px;
       bottom: 45px;
-      left: 60px;
+      left: 70px;
       right: 40px;
 
       @media (max-width: 640px) {
@@ -253,7 +253,7 @@ figure.graph {
     vector-effect: non-scaling-stroke;
   }
 
-  .x-axis {
+  .x-axis, .y-axis {
     line {
       fill: none;
       stroke: $graph-axis-grey;
