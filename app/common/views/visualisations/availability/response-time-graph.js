@@ -26,7 +26,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack
+          view: this.sharedComponents.line
         },
         tooltip: {
           view: this.sharedComponents.tooltip,

@@ -21,7 +21,7 @@ function (Graph) {
           }
         },
         stack: {
-          view: this.sharedComponents.stack
+          view: this.sharedComponents.line
         },
         hover: {
           view: this.sharedComponents.hover
