@@ -123,10 +123,14 @@ function (TableView, Modernizr) {
 
       if (body.length > headers.length) {
         _.each(headers, function (th, index) {
-          th.width = th.offsetWidth;
-          body[index].width = th.offsetWidth;
+          body[index].width = body[index].offsetWidth;
         }, this);
+
         this.$('table').addClass('floated-header');
+
+        _.each(headers, function (th, index) {
+          th.width = body[index].offsetWidth;
+        }, this);
       }
 
     }

@@ -12,6 +12,7 @@ table {
 
   thead {
     border-top: 1px solid darken($grey-2, 10%);
+    background-color: $grey-3;
   }
 
   tbody {
@@ -27,6 +28,7 @@ table {
       display: block;
       max-height: 28em;
       overflow: auto;
+      border-top: 1px solid darken($grey-2, 10%);
     }
   }
 
@@ -52,8 +54,6 @@ table {
     font-weight: bold;
     background-color: $grey-3;
     line-height: 1.25em;
-
-    border-bottom: 1px solid darken($grey-2, 10%);
     border-right: 1px solid darken($grey-2, 10%);
 
     &:last-of-type {
