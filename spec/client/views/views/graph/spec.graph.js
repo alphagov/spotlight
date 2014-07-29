@@ -344,6 +344,27 @@ function (Graph, Collection, Model, View, d3) {
         expect(graph.margin.left).toEqual(4);
       });
 
+      it('calculates top dimension subtracting innerElBorderOffset (border width at the bottom of graph)', function () {
+        wrapper.css({
+          width: '150px',
+          position: 'relative'
+        });
+        withGraphStyle('max-width: 200px; max-height:100px;');
+
+        el.find('.inner').css({
+          position: 'absolute',
+          top: '1px',
+          right: '2px',
+          bottom: '3px',
+          left: '4px'
+        });
+
+        graph.innerElBorderOffset = 10;
+        graph.resize();
+
+        expect(graph.margin.top).toEqual(-9);
+      });
+
     });
 
     describe('render', function () {
