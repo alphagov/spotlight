@@ -259,6 +259,18 @@ function (GroupedTimeseries) {
 
       });
 
+      it('creates an "other" category that sums values from non-specified groups', function () {
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
+          }
+        ];
+        var parsed = collection.parse(response);
+        expect(parsed[0]['other:some:value']).toEqual(9);
+        expect(parsed[1]['other:some:value']).toEqual(10);
+      });
+
     });
 
   });

@@ -82,15 +82,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       if (groupedBy && data.length) {
         // if we have a grouped response, flatten the data
         if (data[0].values && this.isXADate(data[0])) {
-          _.each(this.getYAxes(), function (axis) {
-            if (axis.groupId !== 'total') {
-              var dataset = _.find(data, function (d) {
-                return d[groupedBy] === axis.groupId;
-              });
-              if (dataset) {
-                this.mergeDataset(dataset, data[0], axis);
-              }
-            }
+          var axes = this.getYAxes();
+          _.each(data, function (dataset) {
+            var axis = _.findWhere(axes, { groupId: dataset[groupedBy] });
+            this.mergeDataset(dataset, data[0], axis);
           }, this);
           data = data[0].values;
         }
@@ -113,7 +108,12 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     mergeDataset: function (source, target, axis) {
       var valueAttr = this.valueAttr;
       _.each(source.values, function (model, i) {
-        target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
+        if (axis) {
+          target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
+        } else {
+          target.values[i]['other:' + valueAttr] = target.values[i]['other:' + valueAttr] || 0;
+          target.values[i]['other:' + valueAttr] += model[valueAttr];
+        }
       }, this);
     },
 
