@@ -333,14 +333,36 @@ function (Graph, Collection, Model, View, d3) {
           bottom: '3px',
           left: '4px'
         });
+
+        //remove the border offsetproperty to make calculations more sense in the test
+        graph.innerElBorderOffset = 0;
         graph.resize();
 
         expect(graph.innerWidth).toEqual(150 - 2 - 4);
         expect(graph.innerHeight).toEqual(75 - 1 - 3);
         expect(graph.margin.top).toEqual(1);
-        expect(graph.margin.right).toEqual(2);
-        expect(graph.margin.bottom).toEqual(3);
         expect(graph.margin.left).toEqual(4);
+      });
+
+      it('calculates top dimension subtracting innerElBorderOffset (border width at the bottom of graph)', function () {
+        wrapper.css({
+          width: '150px',
+          position: 'relative'
+        });
+        withGraphStyle('max-width: 200px; max-height:100px;');
+
+        el.find('.inner').css({
+          position: 'absolute',
+          top: '1px',
+          right: '2px',
+          bottom: '3px',
+          left: '4px'
+        });
+
+        graph.innerElBorderOffset = 10;
+        graph.resize();
+
+        expect(graph.margin.top).toEqual(-9);
       });
 
     });

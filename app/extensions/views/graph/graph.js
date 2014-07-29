@@ -20,6 +20,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     minYDomainExtent: 6,
     numYTicks: 7,
+    innerElBorderOffset: 2,
 
     sharedComponents: {
       xaxis: XAxis,
@@ -292,22 +293,13 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       $svg.height(height);
 
       var innerEl = this.innerEl;
-      this.margin.top = innerEl.position().top;
+      this.margin.top = innerEl.position().top - this.innerElBorderOffset;
       this.margin.left = innerEl.position().left;
 
       this.innerWidth = innerEl.outerWidth();
       this.innerHeight = innerEl.outerHeight();
 
-      this.margin.bottom = height - this.margin.top - this.innerHeight;
-      this.margin.right = width - this.margin.left - this.innerWidth;
-
-      this.wrapper.attr('transform', [
-        'translate(',
-        this.margin.left,
-        ', ',
-        this.margin.top,
-        ')'
-      ].join(''));
+      this.wrapper.attr('transform', 'translate(' + this.margin.left + ', ' +  this.margin.top + ')');
     },
 
     /**
