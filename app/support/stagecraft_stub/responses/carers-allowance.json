@@ -350,6 +350,143 @@
         "data-type": "journey"
       }
     },
+        {
+      "module-type": "tab",
+      "slug": "top-referrers",
+      "title": "Sources of visitors",
+      "description": "Visitors arriving over the last week.",
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "all-sources",
+          "title": "All sources",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Source of user",
+              "key": "sourceMedium"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate:mean",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "entrances:sum",
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "referrers-rate",
+            "query-params": {
+              "group_by": "sourceMedium",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate:mean"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "search-terms",
+          "title": "Search terms",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Keyword",
+              "key": "keyword"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate:mean",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "entrances:sum",
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "organic-rate",
+            "query-params": {
+              "group_by": "keyword",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate:mean"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "social-media",
+          "title": "Social media",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Social Network",
+              "key": "socialNetwork"
+            },
+            "y": [
+              {
+                "label": "Entrances",
+                "key": "entrances:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "visitBounceRate:mean",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "entrances:sum",
+          "data-source": {
+            "data-group": "carers-allowance",
+            "data-type": "social-rate",
+            "query-params": {
+              "group_by": "socialNetwork",
+              "collect": [
+                "entrances:sum",
+                "visitBounceRate:mean"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        }
+      ]
+    },
     {
       "slug": "service-availability",
       "module-type": "tab",
