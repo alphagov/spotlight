@@ -85,7 +85,11 @@ function (TableView, Modernizr) {
     sort: function (sortBy, sortOrder) {
 
       sortBy = sortBy || this.model.get('sort-by');
-      sortOrder = sortOrder || this.model.get('sort-order');
+      sortOrder = sortOrder || this.model.get('sort-order') || 'descending';
+
+      if (!sortBy) {
+        return;
+      }
 
       this.tableCollection.comparator = function (a, b) {
         var firstVal = a.get(sortBy),
