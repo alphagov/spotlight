@@ -11,10 +11,14 @@ function (TableView, Modernizr) {
 
       this.tableCollection = new this.collection.constructor(this.collection.models, this.collection.options);
 
+      this.sort();
+
       this.listenTo(this.tableCollection, 'sort', this.renderSort);
       this.listenTo(this.tableCollection, 'reset', this.renderSort);
 
       this.listenTo(this.collection, 'sync', this.syncToTableCollection);
+
+      this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
 
       TableView.prototype.initialize.apply(this, arguments);
     },
@@ -32,6 +36,27 @@ function (TableView, Modernizr) {
         this.$table.find('tbody').remove();
       }
       $(this.renderBody(this.tableCollection)).appendTo(this.$table);
+
+      var sortBy = this.model.get('sort-by'),
+        sortOrder = this.model.get('sort-order');
+
+      if (sortBy) {
+        var ths = this.$('thead th'),
+          th = this.$('thead th[data-key="' + sortBy + '"]');
+
+        ths.removeClass('asc');
+        ths.removeClass('desc');
+        ths.attr('aria-sort', 'none');
+
+        if (sortOrder === 'descending') {
+          th.addClass('desc');
+          th.attr('aria-sort', 'descending');
+        } else {
+          th.addClass('asc');
+          th.attr('aria-sort', 'ascending');
+        }
+      }
+
       this.render();
     },
 
@@ -39,28 +64,28 @@ function (TableView, Modernizr) {
       e.preventDefault();
 
       var th = $(e.target).parent(),
-        ths = this.$table.find('th'),
-        column = ths.index(th),
-        isSorted = th.hasClass('desc') || th.hasClass('asc'),
-        isDescending = isSorted && th.hasClass('desc') || false,
-        columns = this.getColumns(),
-        sortBy = columns[column].key;
+        sorted = this.model.get('sort-by'),
+        isDescending = this.model.get('sort-order') === 'descending',
+        sortBy = th.attr('data-key');
 
       if (_.isArray(sortBy)) {
         sortBy = sortBy[0];
       }
 
-      ths.removeClass('asc');
-      ths.removeClass('desc');
-      ths.attr('aria-sort', 'none');
-
-      if (isDescending) {
-        th.addClass('asc');
-        th.attr('aria-sort', 'ascending');
+      if (sorted === sortBy) {
+        this.model.set('sort-order', isDescending ? 'ascending' : 'descending');
       } else {
-        th.addClass('desc');
-        th.attr('aria-sort', 'descending');
+        this.model.set({
+          'sort-order': 'descending',
+          'sort-by': sortBy
+        });
       }
+    },
+
+    sort: function (sortBy, sortOrder) {
+
+      sortBy = sortBy || this.model.get('sort-by');
+      sortOrder = sortOrder || this.model.get('sort-order');
 
       this.tableCollection.comparator = function (a, b) {
         var firstVal = a.get(sortBy),
@@ -93,7 +118,7 @@ function (TableView, Modernizr) {
           }
         }
 
-        if (!isDescending) {
+        if (sortOrder === 'descending') {
           ret = -ret;
         }
         return ret;

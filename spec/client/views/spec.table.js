@@ -2,10 +2,11 @@ define([
   'client/views/table',
   'extensions/views/table',
   'extensions/collections/collection',
+  'extensions/models/model',
   'jquery',
   'modernizr'
 ],
-function (Table, BaseTable, Collection, $, Modernizr) {
+function (Table, BaseTable, Collection, Model, $, Modernizr) {
   describe('Table', function () {
     describe('initialize', function () {
       var table;
@@ -14,6 +15,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
         spyOn(Table.prototype, 'syncToTableCollection');
         spyOn(BaseTable.prototype, 'initialize');
         table = new Table({
+          model: new Model(),
           collection: new Collection({
             '_timestamp': '2014-07-03T13:19:04+00:00',
             value: 'hello world'
@@ -45,6 +47,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       var table;
       beforeEach(function () {
         table = new Table({
+          model: new Model(),
           collection: new Collection({
             '_timestamp': '2014-07-03T13:19:04+00:00',
             value: 'model 1'
@@ -82,6 +85,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
         spyOn(BaseTable.prototype, 'renderBody');
         spyOn(Table.prototype, 'render');
         table = new Table({
+          model: new Model(),
           collection: new Collection({
             '_timestamp': '2014-07-03T13:19:04+00:00',
             value: 'model 1'
@@ -132,8 +136,8 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       beforeEach(function () {
         var $el = $('<div/>');
         $el.html(
-          '<table><thead><tr><th scope="col" width="0"><a href="#">date</a></th>' +
-          '<th scope="col" width="0"><a href="#">another</a></th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
+          '<table><thead><tr><th scope="col" width="0" data-key="_timestamp"><a href="#">date</a></th>' +
+          '<th scope="col" width="0" data-key="value"><a href="#">another</a></th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
           '<td class="" width="0">hello</td></tr>' +
           '<tr><td class="" width="">2014-07-03T13:19:04+00:00</td>' +
           '<td class="" width="">hello world</td></tr>' +
@@ -142,6 +146,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
         );
         table = new Table({
           el: $el,
+          model: new Model(),
           collection: new Collection([{
             '_timestamp': '2014-07-03T13:21:04+00:00',
             value: 'hello'
@@ -285,6 +290,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
 
       beforeEach(function () {
         table = new Table({
+          model: new Model(),
           collection: new Collection({
             '_timestamp': '2014-07-03T13:19:04+00:00',
             value: 'hello world'
@@ -300,6 +306,7 @@ function (Table, BaseTable, Collection, $, Modernizr) {
       it('adds a class of touch-table on touch devices', function () {
         var isTouch = Modernizr.touch;
         var touchTable = new Table({
+          model: new Model(),
           collection: new Collection({
             axes: {
               x: { label: 'date', key: 'timestamp' },
