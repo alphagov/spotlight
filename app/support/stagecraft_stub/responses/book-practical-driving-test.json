@@ -144,7 +144,7 @@
       ],
       "value-attribute": "rating",
       "data-source": {
-        "data-group": "book-practical-driving-test",
+        "data-group": "book-driving-test",
         "data-type": "customer-satisfaction",
         "query-params": {
           "period": "day",
