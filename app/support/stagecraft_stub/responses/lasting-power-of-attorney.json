@@ -28,8 +28,8 @@
       "module-type": "grouped_timeseries",
       "title": "Registrations breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> registrations over time",
-      "category": "key",
-      "value-attribute": "value:sum",
+      "category": "channel",
+      "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": true,
       "group-mapping": {
@@ -60,12 +60,12 @@
       },
       "data-source": {
         "data-group": "lasting-power-of-attorney",
-        "data-type": "volumes",
+        "data-type": "transactions-by-channel",
         "query-params": {
           "period": "week",
-          "group_by": "key",
+          "group_by": "channel",
           "collect": [
-            "value:sum"
+            "count:sum"
           ]
         }
       }
@@ -81,8 +81,8 @@
       ],
       "numerator-matcher": "^[a-z_]*_digital_applications$",
       "denominator-matcher": "^[a-z_]*_applications$",
-      "matching-attribute": "key",
-      "value-attribute": "value:sum",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
       "axes": {
         "x": {
           "label": "Date",
@@ -103,13 +103,13 @@
       "axis-period": "week",
       "data-source": {
         "data-group": "lasting-power-of-attorney",
-        "data-type": "volumes",
+        "data-type": "transactions-by-channel",
         "query-params": {
           "period": "week",
           "collect": [
-            "value:sum"
+            "count:sum"
           ],
-          "group_by": "key"
+          "group_by": "channel"
         }
       }
     },

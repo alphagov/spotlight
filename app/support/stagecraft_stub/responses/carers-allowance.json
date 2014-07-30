@@ -129,8 +129,8 @@
       "title": "Applications breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
       "dashboard-strapline": "Service dashboard",
-      "category": "key",
-      "value-attribute": "value:sum",
+      "category": "channel",
+      "value-attribute": "count:sum",
       "show-line-labels": true,
       "use_stack": true,
       "info": [
@@ -154,24 +154,24 @@
         "y": [
           {
             "label": "Paper form",
-            "groupId": "ca_clerical_received",
+            "groupId": "paper",
             "format": "integer"
           },
           {
             "label": "Digital",
-            "groupId": "ca_e_claims_received",
+            "groupId": "digital",
             "format": "integer"
           }
         ]
       },
       "data-source": {
         "data-group": "carers-allowance",
-        "data-type": "weekly-claims",
+        "data-type": "transactions-by-channel",
         "query-params": {
           "period": "week",
-          "group_by": "key",
+          "group_by": "channel",
           "collect": [
-            "value:sum"
+            "count:sum"
           ]
         }
       }
@@ -185,10 +185,10 @@
         "Data source: Department for Work and Pensions",
         "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
       ],
-      "denominator-matcher": "^ca_",
-      "numerator-matcher": "ca_e_claims_received$",
-      "matching-attribute": "key",
-      "value-attribute": "value:sum",
+      "denominator-matcher": "^(digital|paper)$",
+      "numerator-matcher": "^digital$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
       "axes": {
         "x": {
           "label": "Date",
@@ -209,13 +209,13 @@
       "axis-period": "week",
       "data-source": {
         "data-group": "carers-allowance",
-        "data-type": "weekly-claims",
+        "data-type": "transactions-by-channel",
         "query-params": {
           "period": "week",
           "collect": [
-            "value:sum"
+            "count:sum"
           ],
-          "group_by": "key"
+          "group_by": "channel"
         }
       }
     },
