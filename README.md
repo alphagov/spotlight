@@ -103,13 +103,38 @@ to view the console.
 
 If you want to deploy the app to Heroku, follow these instructions.
 
-The app runs on Heroku using [a custom buildpack for Grunt.js support][buildpack]:
+#### Create an app on Heroku
+
+Using the web interface, or the CLI:
 
 ```bash
-heroku create spotlight-demo-feature --buildpack https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
-heroku config:set NODE_ENV=development npm_config_production=false
-git push heroku your-branch-name:master
-heroku open
+heroku create <app-name>
+```
+
+#### Set the app to use the node-grunt buildpack
+
+The app runs on Heroku using [a custom buildpack for Grunt.js support][buildpack].
+
+This means it will run the grunt commands we need to compile the app when deploying code.
+
+```bash
+ heroku config:set BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+ ```
+
+#### Set configuration vars
+
+```bash
+heroku config:set NODE_ENV=development # makes app run in development mode
+heroku config:set npm_config_production=true # does not install dev dependencies
+```
+
+#### Deploy the code
+
+If the code you're deploying is not in master, then you'll need to make sure you specify your local branch to push to master. Otherwise it will just deploy your local master (and probably not work as expected).
+
+```bash
+git push heroku <your-branch-name>:master
+heroku open # opens the freshly deployed app in a browser
 ```
 
 If you want the Heroku app to be password-protected, set config variables as follows,
@@ -120,6 +145,16 @@ heroku config:set BASIC_AUTH_USER=xxxx
 heroku config:set BASIC_AUTH_PASS=xxxx
 heroku config
 ```
+
+#### Logging
+
+You might also want to enable some logging in your Heroku app to assist with debugging. You can use logentries to do that:
+
+```bash
+heroku addons:add logentries
+```
+
+You can then access the logs from your app's dashboard on Heroku (under the "Add-ons" section).
 
 [buildpack]: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
 
