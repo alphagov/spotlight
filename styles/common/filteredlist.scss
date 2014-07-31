@@ -138,6 +138,13 @@
           li {
             border-bottom: 1px solid $grey-3;
             padding:.3em 0;
+            clear: both;
+            overflow: auto;
+
+            a {
+              float: left;
+              max-width: 80%;
+            }
 
             .department {
               color: $grey-1;
