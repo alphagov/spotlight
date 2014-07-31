@@ -45,7 +45,7 @@ function (View, Formatters) {
         if (column.timeshift) {
           label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
         }
-        return '<th scope="col">' + label + '</th>';
+        return '<th scope="col" data-key="' + column.key + '">' + label + '</th>';
       }, this).join('\n');
       return '<thead><tr>' + head + '</tr></thead>';
     },
