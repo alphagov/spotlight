@@ -3,9 +3,9 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
-  "title": "Driver & Vehicle Standards Agency (DVSA)",
-  "tagline": "Web performance data for Driver & Vehicle Standards Agency. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "strapline": "Dashboard",
+  "title": "Driver & Vehicle Standards Agency: web traffic",
+  "tagline": "Web traffic data for Driver & Vehicle Standards Agency. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Driver & Vehicle Standards Agency",

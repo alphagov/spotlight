@@ -3,9 +3,9 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
-  "title": "HM Treasury (HMT)",
-  "tagline": "Web performance data for HM Treasury. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "strapline": "Dashboard",
+  "title": "HM Treasury: web traffic",
+  "tagline": "Web traffic data for HM Treasury. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "HM Treasury",

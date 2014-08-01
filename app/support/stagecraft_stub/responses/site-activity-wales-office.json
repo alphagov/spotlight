@@ -3,9 +3,9 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
-  "title": "Wales Office (WO)",
-  "tagline": "Web performance data for Wales Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "strapline": "Dashboard",
+  "title": "Wales Office: web traffic",
+  "tagline": "Web traffic data for Wales Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Wales Office",

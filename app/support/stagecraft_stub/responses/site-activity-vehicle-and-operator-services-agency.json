@@ -3,9 +3,9 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
-  "title": "Vehicle & Operator Services Agency (VOSA)",
-  "tagline": "Web performance data for Vehicle & Operator Services Agency. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "strapline": "Dashboard",
+  "title": "Vehicle & Operator Services Agency: web traffic",
+  "tagline": "Web traffic data for Vehicle & Operator Services Agency. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Vehicle & Operator Services Agency",

@@ -3,9 +3,9 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
-  "title": "Foreign & Commonwealth Office (FCO)",
-  "tagline": "Web performance data for Foreign & Commonwealth Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
+  "strapline": "Dashboard",
+  "title": "Foreign & Commonwealth Office: web traffic",
+  "tagline": "Web traffic data for Foreign & Commonwealth Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
       "title": "Foreign & Commonwealth Office",
