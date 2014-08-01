@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
+  "strapline": "Dashboard",
   "title": "Ministry of Defence (MOD)",
   "tagline": "Web traffic data for Ministry of Defence. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {

@@ -3,7 +3,7 @@
   "page-type": "dashboard",
   "dashboard-type": "content",
   "published": true,
-  "strapline": "Content dashboard",
+  "strapline": "Dashboard",
   "title": "Department for Transport (DFT)",
   "tagline": "Web traffic data for Department for Transport. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
