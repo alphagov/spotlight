@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "HM Revenue & Customs (HMRC)",
+  "title": "HM Revenue & Customs: web traffic",
   "tagline": "Web traffic data for HM Revenue & Customs. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {

@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Department for Work and Pensions (DWP)",
+  "title": "Department for Work and Pensions: web traffic",
   "tagline": "Web traffic data for Department for Work and Pensions. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {

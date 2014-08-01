@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "UK Visas and Immigration (UKVI)",
+  "title": "UK Visas and Immigration: web traffic",
   "tagline": "Web traffic data for UK Visas and Immigration. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {

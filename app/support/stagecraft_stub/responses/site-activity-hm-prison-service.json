@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "HM Prison Service (HMPS)",
+  "title": "HM Prison Service: web traffic",
   "tagline": "Web traffic data for HM Prison Service. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
