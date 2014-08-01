@@ -17,6 +17,25 @@ define(['backbone'], function (Backbone) {
       return function (value) {
         return value / total;
       };
+    },
+    delta: function (key) {
+      return _.bind(function (value, model) {
+        if (!this.isXADate()) {
+          var ret = null;
+          var values = model.get('values');
+          if (values.length > 1) {
+            var previous = values[values.length - 2][key];
+            if (previous) {
+              ret = (value - previous) / previous;
+            }
+          }
+          return ret;
+        } else {
+          // we may wish to implement this for time-keyed collections at some point, but it's not supported now
+          console.warn('"delta" processor is not currently supported for date indexed collections');
+          return value;
+        }
+      }, this);
     }
   };
 

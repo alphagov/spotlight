@@ -38,7 +38,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     parse: function (response) {
       var data = response.data;
       var suffix = /:(sum|mean)/;
-      var datetime = /_at$/;
 
       data = this.flatten(data);
       if (data.length) {
@@ -50,7 +49,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
             });
           }
           // cast all datetime strings to moment
-          if (key.match(datetime) || key === '_timestamp') {
+          if (this.dateKey(key)) {
             _.each(data, function (d) {
               d[key] = this.getMoment(d[key]);
             }, this);
@@ -80,14 +79,20 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     flatten: function (data) {
       var groupedBy = this.dataSource.groupedBy();
       if (groupedBy && data.length) {
+        var axes = this.getYAxes();
         // if we have a grouped response, flatten the data
-        if (data[0].values && this.isXADate(data[0])) {
-          var axes = this.getYAxes();
+        if (data[0].values && this.isXADate()) {
           _.each(data, function (dataset) {
             var axis = _.findWhere(axes, { groupId: dataset[groupedBy] });
             this.mergeDataset(dataset, data[0], axis);
           }, this);
           data = data[0].values;
+        } else if (data[0].values && data[0].values.length > 1) {
+          _.each(data, function (dataset) {
+            _.each(axes, function (axis) {
+              dataset[axis.key] = _.last(dataset.values)[axis.key];
+            });
+          }, this);
         }
       }
       return data;
@@ -99,10 +104,18 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return Backbone.Collection.prototype.fetch.apply(this, arguments);
     },
 
-    isXADate: function (data) {
+    isXADate: function () {
       var axes = this.options.axes,
           xKey = axes && axes.x && axes.x.key;
-      return xKey && this.getMoment(data[xKey]).isValid();
+      if (_.isArray(xKey)) {
+        return _.any(xKey, this.dateKey, this);
+      } else {
+        return this.dateKey(xKey);
+      }
+    },
+
+    dateKey: function (key) {
+      return key && (key === '_timestamp' || key.match(/_at$/));
     },
 
     mergeDataset: function (source, target, axis) {
@@ -257,7 +270,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
           var fn = this.processors[processor.fn].call(this, processor.key);
           if (_.isFunction(fn)) {
             this.each(function (model) {
-              var value = fn.call(this, model.get(processor.key));
+              var value = fn.call(this, model.get(processor.key), model);
               model.set(processor.fn + '(' + processor.key + ')', value);
             }, this);
           } else {

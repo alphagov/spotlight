@@ -539,11 +539,11 @@ function (Collection, Model, DataSource, Backbone, moment) {
             expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
           });
 
-          it('calls processor methods with value as arguments', function () {
+          it('calls processor methods with value and model as arguments', function () {
             collection.applyProcessors(['toString(a)']);
             expect(toString.calls.length).toEqual(2);
-            expect(toString.calls[0].args).toEqual([1]);
-            expect(toString.calls[1].args).toEqual([3]);
+            expect(toString.calls[0].args).toEqual([1, jasmine.any(Backbone.Model)]);
+            expect(toString.calls[1].args).toEqual([3, jasmine.any(Backbone.Model)]);
           });
 
           it('calls processor factory method once with context of the collection and an argument of the key', function () {
