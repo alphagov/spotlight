@@ -276,6 +276,14 @@
             "label": "Percentage of total help usage",
             "key": "percentOfTotal(uniqueEvents:sum)",
             "format": "percent"
+          },
+          {
+            "label": "Change since previous week",
+            "key": "delta(uniqueEvents:sum)",
+            "format": {
+              "type": "percent",
+              "showSigns": true
+            }
           }
         ]
       },
@@ -298,7 +306,7 @@
             "uniqueEvents:sum"
           ],
           "period": "week",
-          "duration": 1
+          "duration": 2
         }
       }
     },

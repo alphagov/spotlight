@@ -97,6 +97,14 @@
             "label": "Percentage of total reports",
             "key": "percentOfTotal(missed_bins:sum)",
             "format": "percent"
+          },
+          {
+            "label": "Change since previous week",
+            "key": "delta(missed_bins:sum)",
+            "format": {
+              "type": "percent",
+              "showSigns": true
+            }
           }
         ]
       },
@@ -105,7 +113,7 @@
         "data-type": "missed-bin-by-ward",
         "query-params": {
           "period": "week",
-          "duration": 1,
+          "duration": 2,
           "group_by": "ward",
           "collect": [
             "missed_bins:sum"
