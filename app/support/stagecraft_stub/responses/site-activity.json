@@ -33,7 +33,7 @@
       "slug": "site-traffic",
       "module-type": "grouped_timeseries",
       "title": "Site traffic",
-      "description": "Unique visitors to GOV.UK over the past year, compared with the previous year",
+      "description": "Unique visitors to GOV.UK",
       "category": "website",
       "axis-period": "month",
       "value-attribute": "visitors:sum",
@@ -61,31 +61,26 @@
             "format": "integer"
           },
           {
-            "label": "GOV.UK",
-            "groupId": "govuk",
-            "timeshift": 52,
-            "format": "integer"
-          },
-          {
             "label": "Directgov",
             "groupId": "directgov",
-            "timeshift": 52,
             "format": "integer"
           },
           {
             "label": "Business Link",
             "groupId": "businesslink",
-            "timeshift": 52,
             "format": "integer"
           }
         ]
+      },
+      "date-picker": {
+        "start-date": "2011-05-01T00:00:00Z"
       },
       "data-source": {
         "data-group": "govuk",
         "data-type": "visitors",
         "query-params": {
           "period": "week",
-          "duration": 52,
+          "duration": 104,
           "group_by": "website",
           "collect": [
             "visitors:sum"
