@@ -57,7 +57,7 @@ function ($) {
 
   return function () {
     // Add in the toggle link for reporting a problem at the bottom of the page
-    var $toggleLink = $('<p>', {'class': 'report-a-problem-toggle js-footer'}).append('<a href=>Is there anything wrong with this page?</a>');
+    var $toggleLink = $('<p>', {'class': 'report-a-problem-toggle js-footer'}).append('<a href=>Is there anything wrong with this dashboard?</a>');
     $toggleLink.insertBefore('.report-a-problem-container');
 
     // Add a click handler for the toggle
