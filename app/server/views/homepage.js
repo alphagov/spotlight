@@ -14,6 +14,10 @@ module.exports = BaseView.extend(templater).extend({
     return [];
   },
 
+  hasSurvey: function () {
+    return true;
+  },
+
   getContent: function () {
 
     // the GOV.UK content dashboard should be removed from the list
