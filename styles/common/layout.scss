@@ -8,15 +8,20 @@ $govuk-page-width: 960px;
   @include box-sizing(border-box);
 }
 
-#content {
-  // Opera requires display:block for max-width to work...
+#content,
+.content-centered {
+  @include box-sizing(border-box);
   display: block;
   margin: 0 auto;
   max-width: 1020px;
   padding: 15px;
+  // Opera requires display:block for max-width to work...
   @include media(tablet) {
-    padding: 30px;
+    padding: 0 30px;
   }
+}
+
+#content {
 
   background-color: $white;
 

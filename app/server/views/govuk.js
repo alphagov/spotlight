@@ -59,6 +59,10 @@ module.exports = View.extend({
     ];
   },
 
+  hasSurvey: function () {
+    return false;
+  },
+
   getBreadcrumbs: function () {
     var breadcrumbs = this.getBreadcrumbCrumbs().filter(_.identity);
     breadcrumbs = this.ellipsifyBreadcrumbs(breadcrumbs);
@@ -95,6 +99,7 @@ module.exports = View.extend({
         footerTop: footerTopTemplate(),
         footerSupportLinks: footerLinksTemplate(),
         content: contentTemplate({
+          hasSurvey: this.hasSurvey(),
           breadcrumbs: this.breadcrumbsTemplate(this.getBreadcrumbs()),
           content: this.getContent(),
           reportAProblem: this.reportAProblemTemplate(baseContext)
