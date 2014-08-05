@@ -1,6 +1,6 @@
 var requirejs = require('requirejs');
 
-var Controller = requirejs('extensions/controllers/controller');
+var Controller = requirejs('extensions/controllers/dashboard');
 
 var DashboardView = require('../views/dashboard');
 var ContentDashboardView = require('../views/dashboards/content');
@@ -31,18 +31,7 @@ module.exports = Controller.extend({
   },
 
   render: function (options) {
-    options = options || {};
-    var pageType = this.model.get('page-type');
-    this.moduleInstances = this.renderModules(
-      this.modules,
-      this.model,
-      function (model) {
-        return {
-          url: pageType === 'module' ? this.url : this.url + '/' + model.get('slug')
-        };
-      }.bind(this),
-      { init: options.init },
-      Controller.prototype.render.bind(this, options)
-    );
+    this.renderDashboard(options, Controller.prototype.render.bind(this, options));
   }
+
 });
