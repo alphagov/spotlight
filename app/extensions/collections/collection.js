@@ -131,7 +131,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     },
 
     getYAxes: function () {
-      return _.clone(this.options.axes.y) || [];
+      var axes = this.options.axes || {};
+      return _.clone(axes.y) || [];
     },
 
     /**

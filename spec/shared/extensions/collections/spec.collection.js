@@ -566,43 +566,10 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
     describe('parse', function () {
 
-      it('returns `data` property of response', function () {
+      var input;
 
-        var collection = new Collection();
-
-        expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
-
-      });
-
-      it('handles non date-indexed datasets', function () {
-
-        var collection = new Collection(undefined, {
-          axes: {
-            'x': {
-              'label': 'Description',
-              'key': 'eventDestination'
-            },
-            'y': [
-              {
-                'label': 'Usage last week',
-                'key': 'uniqueEvents:sum',
-                'format': 'integer'
-              }
-            ]
-          },
-          dataSource: {
-            'query-params': {
-              'group_by': 'eventDestination',
-              'collect': [
-                'uniqueEvents:sum'
-              ],
-              'period': 'week',
-              'duration': 1
-            }
-          }
-        });
-
-        var input = [
+      beforeEach(function () {
+        input = [
           {
             '_count': 2.0,
             '_group_count': 1,
@@ -664,6 +631,43 @@ function (Collection, Model, DataSource, Backbone, moment) {
             ]
           }
         ];
+      });
+
+      it('returns `data` property of response', function () {
+
+        var collection = new Collection();
+
+        expect(collection.parse({ data: [ 1, 2, 3 ] })).toEqual([ 1, 2, 3 ]);
+
+      });
+
+      it('handles non date-indexed datasets', function () {
+
+        var collection = new Collection(undefined, {
+          axes: {
+            'x': {
+              'label': 'Description',
+              'key': 'eventDestination'
+            },
+            'y': [
+              {
+                'label': 'Usage last week',
+                'key': 'uniqueEvents:sum',
+                'format': 'integer'
+              }
+            ]
+          },
+          dataSource: {
+            'query-params': {
+              'group_by': 'eventDestination',
+              'collect': [
+                'uniqueEvents:sum'
+              ],
+              'period': 'week',
+              'duration': 1
+            }
+          }
+        });
 
         var parsed = collection.parse({
           data: input
@@ -675,6 +679,23 @@ function (Collection, Model, DataSource, Backbone, moment) {
         expect(parsed[1].values).toEqual(input[1].values);
         expect(parsed[2]['uniqueEvents:sum']).toEqual(13);
         expect(parsed[2].values).toEqual(input[2].values);
+      });
+
+      it('does not require y-axes to be defined', function () {
+        var collection = new Collection([], {
+          dataSource: {
+            'query-params': {
+              'group_by': 'eventDestination',
+              'collect': [
+                'uniqueEvents:sum'
+              ],
+              'period': 'week',
+              'duration': 1
+            }
+          }
+        });
+
+        expect(collection.parse({ data: input }).length).toEqual(3);
       });
 
     });
