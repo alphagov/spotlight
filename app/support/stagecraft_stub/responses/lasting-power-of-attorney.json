@@ -243,6 +243,14 @@
             "label": "Usage last week",
             "key": "uniqueEvents:sum",
             "format": "integer"
+          },
+          {
+            "label": "Change since previous week",
+            "key": "delta(uniqueEvents:sum)",
+            "format": {
+              "type": "percent",
+              "showSigns": true
+            }
           }
         ]
       },
@@ -260,7 +268,7 @@
             "uniqueEvents:sum"
           ],
           "period": "week",
-          "duration": 1
+          "duration": 2
         }
       }
     },
