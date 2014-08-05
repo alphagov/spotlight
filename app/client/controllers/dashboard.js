@@ -1,5 +1,5 @@
 define([
-  'extensions/controllers/controller'
+  'extensions/controllers/dashboard'
 ], function (Controller) {
   return Controller.extend({
 
@@ -8,17 +8,7 @@ define([
     },
 
     render: function (options) {
-      options = options || {};
-      this.moduleInstances = this.renderModules(
-        this.modules,
-        this.model,
-        {
-          dashboard: true,
-          url: this.url
-        },
-        { init: options.init },
-        _.bind(function () { this.trigger('ready'); }, this)
-      );
+      this.renderDashboard(options, _.bind(function () { this.trigger('ready'); }, this));
     }
   });
 });
