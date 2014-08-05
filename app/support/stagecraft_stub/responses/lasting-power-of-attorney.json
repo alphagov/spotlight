@@ -45,6 +45,14 @@
         "Applications are counted at point of receipt."
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "dateRange"
+        },
         "y": [
           {
             "groupId": "non-digital",
