@@ -35,12 +35,20 @@ function (Modernizr, View, FilteredListView) {
       this.model.set('agencyFilter', this.$('#agency').val());
 
       if (Modernizr.history) {
-        var params = $.param({
-          filter: this.model.get('filter'),
-          department: this.model.get('departmentFilter'),
-          agency: this.model.get('agencyFilter')
-        });
-        window.history.replaceState(null, null, this.$('#filter-wrapper').attr('action') + '?' + params);
+        var params = {};
+
+        if (this.model.get('filter')) {
+          params.filter = this.model.get('filter');
+        }
+        if (this.model.get('departmentFilter')) {
+          params.department = this.model.get('departmentFilter');
+        }
+        if (this.model.get('agencyFilter')) {
+          params.agency = this.model.get('agencyFilter');
+        }
+
+        params = $.param(params);
+        window.history.replaceState(null, null, '?' + params);
       }
     },
 
