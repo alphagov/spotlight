@@ -1,0 +1,249 @@
+{
+  "slug": "accelerated-possession-eviction",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Civil claims: evicting a tenant using accelerated possession",
+  "description": "Accelerated property possession is used when people refuse to leave a property and have been given the appropriate notice to leave. ",
+  "department": {
+    "title": "Ministry of Justice",
+    "abbr": "MoJ"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Evict a tenant using accelerated possession",
+      "url": "https://www.gov.uk/accelerated-possession-eviction"
+    },
+    "improve-dashboard-message": true
+  },
+  "description-extra": "",
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "modules": [
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "description": "Average for digital transactions",
+      "info": [
+        "Data source: HMCTS",
+        "This figure is based on an HMCTS methodology for modelling volumes across the civil workload. This value is based on 26210 accelerated possession claims being issued and the predicted case stages each one of these claims would reach.",
+        "Cost per transaction is the average cost of providing an end-to-end service for an accelerated possession claim across all channels. Staff, IT and accommodation costs are all included."
+      ],
+      "value-attribute": "value",
+      "format": {
+        "type": "currency",
+        "dps": 2
+      },
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "cost-per-transaction",
+        "query-params": {
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Users currently on the GOV.UK start page for the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently on the GOV.UK start page for the service."
+      ],
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Claims breakdown",
+      "description": "<span class=\"group0\">Digital</span> and <span class=\"group1\">paper form</span> claims over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: MoJ database",
+        "Shows the number of successful claims, broken down by channel",
+        "Digital: applications made online",
+        "Paper form: applications made using a paper form"
+      ],
+      "axes": {
+        "y": [
+          {
+            "groupId": "digital",
+            "label": "Digital",
+            "format": "integer"
+          },
+          {
+            "groupId": "paper",
+            "label": "Paper form",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "month",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "Proportion of claims made using the digital service",
+      "info": [
+        "The service includes a print out of a pdf. We are able to measure the number of times a pdf is downloaded.",
+        "We are also able to measure the number of claims that are issued in court, which are published as National Statistics here <a href='https://www.gov.uk/government/collections/mortgage-and-landlord-possession-statistics' rel='external'>https://www.gov.uk/government/collections/mortgage-and-landlord-possession-statistics</a>",
+        "The claims downloaded and claims issued will not be the same as a download does not necessarily result in a claim being issued."
+      ],
+      "numerator-matcher": "^digital$",
+      "denominator-matcher": "^digital|paper$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "month",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
+      }
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes.",
+        "This is a measure of the initial digital interface. It does not cover the end-to-end service that is outlined in the cost per transaction"
+      ],
+      "value-attribute": "rating",
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "customer-satisfaction",
+        "query-params": {
+          "period": "day",
+          "duration": 30
+        }
+      }
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "Proportion of users who start and complete their claim using the digital service",
+      "info": [
+        "Data source: Google Analytics",
+        "This is a measure of the initial digital interface. It does not cover the end-to-end service that is outlined in the cost per transaction"
+      ],
+      "denominator-matcher": "start$",
+      "numerator-matcher": "complete$",
+      "matching-attribute": "stage",
+      "axis-period": "week",
+      "value-attribute": "count:sum",
+      "data-source": {
+        "data-group": "accelerated-possession-eviction",
+        "data-type": "journey",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "stage"
+        }
+      }
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "accelerated-possession-eviction",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "accelerated-possession-eviction",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
