@@ -4,8 +4,8 @@
 </header>
 
 <form id="filter-wrapper" class="services" method="get" action="">
-  <label for="filter" class="primary-filter">Find a service named:</label>
-  <input id="filter" placeholder="Example: Licensing" name="filter" value="<%= filter %>" />
+  <label for="filter" class="primary-filter">Find a <%= noun %> named:</label>
+  <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" />
 
   <div id="faceted-search">
     <% if (departments.length) {%>

@@ -12,6 +12,7 @@ module.exports = BaseView.extend(templater).extend({
 
   heading: 'Services',
   tagline: 'Services providing performance data to GOV.UK',
+  example: 'Licensing',
 
   getPageTitle: function () {
     return 'Services - GOV.UK';
@@ -34,16 +35,18 @@ module.exports = BaseView.extend(templater).extend({
     list.render();
 
     return this.loadTemplate(path.resolve(__dirname, this.templatePath), _.extend({
-          list: list.html,
-          filter: this.model.get('filter'),
-          departments: this.model.get('departments'),
-          departmentFilter: this.model.get('departmentFilter'),
-          agencies: this.model.get('agencies'),
-          agencyFilter: this.model.get('agencyFilter')
-        }, {
-          heading: this.heading,
-          tagline: this.tagline
-        }));
+      list: list.html,
+      filter: this.model.get('filter'),
+      departments: this.model.get('departments'),
+      departmentFilter: this.model.get('departmentFilter'),
+      agencies: this.model.get('agencies'),
+      agencyFilter: this.model.get('agencyFilter')
+    }, {
+      heading: this.heading,
+      tagline: this.tagline,
+      example: this.example,
+      noun: this.model.get('noun')
+    }));
 
   }
 
