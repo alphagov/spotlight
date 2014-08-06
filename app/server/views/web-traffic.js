@@ -2,17 +2,11 @@ var ServicesView = require('./services');
 
 module.exports = ServicesView.extend({
 
-  templatePath: '../templates/web-traffic.html',
+  heading: 'Web traffic dashboards',
+  tagline: 'Web traffic dashboards providing performance data to GOV.UK',
 
   getPageTitle: function () {
     return 'Web traffic - GOV.UK';
-  },
-
-  getBreadcrumbCrumbs: function () {
-    return [
-      {'path': '/performance', 'title': 'Performance'},
-      {'title': 'Web traffic'}
-    ];
   }
 
 });

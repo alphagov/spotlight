@@ -23,7 +23,8 @@ module.exports = function (req, res) {
     agencyFilter: req.query.agency || null,
     agencies: agencies,
     data: services,
-    script: true
+    script: true,
+    noun: 'service'
   }));
 
   var view = new View({

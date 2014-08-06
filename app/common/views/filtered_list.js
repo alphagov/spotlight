@@ -10,6 +10,7 @@ define([
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
       this.model.on('change:filter change:departmentFilter change:agencyFilter', this.render, this);
+      this.noun = this.model.get('noun') || 'service';
     },
 
     templateContext: function () {
@@ -19,7 +20,8 @@ define([
         agency: this.model.get('agencyFilter')
       });
 
-      var title = filteredList.count === 1 ? ['service'] : ['services'];
+      var title = this.format(filteredList.count, { type: 'plural', singular: this.noun });
+      title = [title];
 
       if (this.model.get('filter')) {
         var textFilter = _.escape(this.model.get('filter'));

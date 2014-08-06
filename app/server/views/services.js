@@ -10,6 +10,9 @@ module.exports = BaseView.extend(templater).extend({
 
   templatePath: '../templates/services.html',
 
+  heading: 'Services',
+  tagline: 'Services providing performance data to GOV.UK',
+
   getPageTitle: function () {
     return 'Services - GOV.UK';
   },
@@ -17,7 +20,7 @@ module.exports = BaseView.extend(templater).extend({
   getBreadcrumbCrumbs: function () {
     return [
       {'path': '/performance', 'title': 'Performance'},
-      {'title': 'Services'}
+      {'title': this.heading}
     ];
   },
 
@@ -30,14 +33,17 @@ module.exports = BaseView.extend(templater).extend({
 
     list.render();
 
-    return this.loadTemplate(path.resolve(__dirname, this.templatePath), {
-      list: list.html,
-      filter: this.model.get('filter'),
-      departments: this.model.get('departments'),
-      departmentFilter: this.model.get('departmentFilter'),
-      agencies: this.model.get('agencies'),
-      agencyFilter: this.model.get('agencyFilter')
-    });
+    return this.loadTemplate(path.resolve(__dirname, this.templatePath), _.extend({
+          list: list.html,
+          filter: this.model.get('filter'),
+          departments: this.model.get('departments'),
+          departmentFilter: this.model.get('departmentFilter'),
+          agencies: this.model.get('agencies'),
+          agencyFilter: this.model.get('agencyFilter')
+        }, {
+          heading: this.heading,
+          tagline: this.tagline
+        }));
 
   }
 
