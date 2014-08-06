@@ -62,6 +62,7 @@ function (Collection) {
       }), function (m) { return m.toJSON(); });
     }
   }, {
-    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group']
+    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group'],
+    CONTENT: ['content']
   });
 });

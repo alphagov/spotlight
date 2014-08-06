@@ -8,6 +8,8 @@ var FilteredListView = requirejs('common/views/filtered_list');
 
 module.exports = BaseView.extend(templater).extend({
 
+  templatePath: '../templates/services.html',
+
   getPageTitle: function () {
     return 'Services - GOV.UK';
   },
@@ -28,7 +30,7 @@ module.exports = BaseView.extend(templater).extend({
 
     list.render();
 
-    return this.loadTemplate(path.resolve(__dirname, '../templates/services.html'), {
+    return this.loadTemplate(path.resolve(__dirname, this.templatePath), {
       list: list.html,
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),

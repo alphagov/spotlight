@@ -96,6 +96,8 @@ module.exports = {
 
     app.get('/performance/services', require('./server/controllers/services'));
 
+    app.get('/performance/web-traffic', require('./server/controllers/web-traffic'));
+
     app.get('/performance/prototypes', require('./server/controllers/prototypes'));
 
     app.get('/performance/*', require('./process_request'));

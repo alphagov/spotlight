@@ -40,7 +40,7 @@ function (Modernizr, View, FilteredListView) {
           department: this.model.get('departmentFilter'),
           agency: this.model.get('agencyFilter')
         });
-        window.history.replaceState(null, null, '/performance/services?' + params);
+        window.history.replaceState(null, null, this.$('#filter-wrapper').attr('action') + '?' + params);
       }
     },
 
