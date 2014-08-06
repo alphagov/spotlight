@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Office of the Leader of the House of Lords: web traffic",
+  "title": "Office of the Leader of the House of Lords",
   "tagline": "Web traffic data for Office of the Leader of the House of Lords. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
@@ -21,6 +21,10 @@
         "url": "https://www.gov.uk/government/publications?departments%5B%5D=office-of-the-leader-of-the-house-of-lords"
       }
     ]
+  },
+  "department": {
+    "title": "Cabinet Office",
+    "abbr": "CO"
   },
   "modules": [
     {
