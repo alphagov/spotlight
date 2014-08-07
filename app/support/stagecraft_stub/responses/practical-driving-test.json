@@ -157,7 +157,8 @@
       "info": [
         "Data source: Pingdom",
         "Page load time measures the time taken for a sample page within the service to load.",
-        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available.",
+        "This service is only available between 06:00 – midnight so that overnight processing can take place. This is reflected in the service availability figure."
       ],
       "tabs": [
         {
