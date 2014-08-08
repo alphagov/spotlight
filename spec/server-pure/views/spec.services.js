@@ -66,9 +66,8 @@ describe('Services View', function () {
 
     it('renders the FilteredListView into the template', function () {
       view.getContent();
-      expect(view.loadTemplate).toHaveBeenCalledWith(jasmine.any(String), {
-        list: '<div id="filtered_list" />'
-      });
+      var options = view.loadTemplate.mostRecentCall.args[1];
+      expect(options.list).toEqual('<div id="filtered_list" />');
     });
 
   });

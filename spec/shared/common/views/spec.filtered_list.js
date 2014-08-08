@@ -12,7 +12,7 @@ define([
       view = new FilteredListView({
         model: new Backbone.Model(),
         collection: {
-          alphabetise: jasmine.createSpy().andReturn({ alphabetised: 'data' })
+          alphabetise: jasmine.createSpy().andReturn({ alphabetised: 'data', count: 2 })
         }
       });
     });
@@ -31,7 +31,7 @@ define([
 
       it('adds output from collection.alphabetise to template context', function () {
         var output = view.templateContext();
-        expect(output).toEqual({ items: { alphabetised: 'data' }, title: 'services' });
+        expect(output).toEqual({ items: { alphabetised: 'data', count: 2 }, title: 'services' });
       });
 
       it('includes model data in template context', function () {
@@ -39,7 +39,17 @@ define([
           model: 'data'
         });
         var output = view.templateContext();
-        expect(output).toEqual({ model: 'data', items: { alphabetised: 'data' }, title: 'services' });
+        expect(output).toEqual({ model: 'data', items: { alphabetised: 'data', count: 2 }, title: 'services' });
+      });
+
+      it('passes pluralised "noun" property from model as title', function () {
+        var collection = view.collection;
+        view = new FilteredListView({
+          model: new Backbone.Model({ noun: 'thing' }),
+          collection: collection
+        });
+        var output = view.templateContext();
+        expect(output.title).toEqual('things');
       });
 
       describe('title', function () {

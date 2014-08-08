@@ -39,7 +39,10 @@ define([
         model: new Backbone.Model()
       });
       view.filter();
-      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '/performance/services?filter=passport&department=&agency=');
+      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport');
+      $el.find('#department').val('home-office');
+      view.filter();
+      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport&department=home-office');
     });
 
   });
