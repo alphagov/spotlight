@@ -1,0 +1,10 @@
+{
+  "name": "spotlight",
+  "description": "Hybrid rendering application for the Performance Platform using Backbone and D3",
+  "repository": "https://github.com/alphagov/spotlight",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git",
+    "NODE_ENV": "development",
+    "npm_config_production": "true"
+  }
+}

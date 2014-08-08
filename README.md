@@ -137,6 +137,10 @@ git push heroku <your-branch-name>:master
 heroku open # opens the freshly deployed app in a browser
 ```
 
+#### Or just...
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 If you want the Heroku app to be password-protected, set config variables as follows,
 before pushing the code.
 
