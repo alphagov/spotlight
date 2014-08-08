@@ -5,6 +5,6 @@
   "env": {
     "BUILDPACK_URL": "https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git",
     "NODE_ENV": "development",
-    "npm_config_production": true
+    "npm_config_production": "true"
   }
 }
