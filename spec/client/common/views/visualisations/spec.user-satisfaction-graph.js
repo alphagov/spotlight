@@ -10,7 +10,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
     var collection, view;
 
     beforeEach(function () {
-      var $el = $('<div><div class="volumetrics-bar-selected"><p class="volumetrics-bar-period"></p></div></div>');
+      var $el = $('<div><div class="volumetrics-bar-selected"><p class="total-responses"><p><p class="volumetrics-bar-period"></p></div></div>');
       spyOn(CompletionRateView.prototype, 'views').andReturn({});
       collection = new Collection([], { min: 1, max: 5 });
       var data = [
@@ -141,6 +141,21 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
           jasmine.renderView(view, function () {
             view.collection.trigger('change:selected', collection.at(2), 2);
             expect(view.$el.find('.volumetrics-bar-period').text()).toBe('1 June 2004');
+          });
+        });
+      });
+
+      describe('renders total responses', function () {
+        it('renders the last total response by default', function () {
+          jasmine.renderView(view, function () {
+            expect(view.$el.find('.total-responses').text()).toBe('(230 total responses)');
+          });
+        });
+
+        it('renders a total response for selectedModels', function () {
+          jasmine.renderView(view, function () {
+            view.collection.trigger('change:selected', collection.at(1), 2);
+            expect(view.$el.find('.total-responses').text()).toBe('(248 total responses)');
           });
         });
       });
