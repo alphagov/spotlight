@@ -4,29 +4,29 @@ var sanitizer = require('sanitizer');
 
 var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
 
-var View = require('../views/services');
+var View = require('../views/web-traffic');
 
 var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
 module.exports = function (req, res) {
-  var services = new DashboardCollection(dashboards.items).filterDashboards(DashboardCollection.SERVICES),
-      collection = new DashboardCollection(services);
+  var contentDashboards = new DashboardCollection(dashboards.items).filterDashboards(DashboardCollection.CONTENT),
+      collection = new DashboardCollection(contentDashboards);
 
   var departments = collection.getDepartments();
   var agencies = collection.getAgencies();
 
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-    title: 'Services',
+    title: 'Web traffic',
     'page-type': 'services',
     filter: sanitizer.escape(req.query.filter || ''),
     departmentFilter: req.query.department || null,
     departments: departments,
     agencyFilter: req.query.agency || null,
     agencies: agencies,
-    data: services,
+    data: contentDashboards,
     script: true,
-    noun: 'service'
+    noun: 'dashboard'
   }));
 
   var view = new View({

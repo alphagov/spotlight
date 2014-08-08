@@ -1,3 +1,5 @@
+/*jshint maxstatements: false */
+
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
@@ -95,6 +97,8 @@ module.exports = {
     app.get('/performance/about', require('./server/controllers/about'));
 
     app.get('/performance/services', require('./server/controllers/services'));
+
+    app.get('/performance/web-traffic', require('./server/controllers/web-traffic'));
 
     app.get('/performance/prototypes', require('./server/controllers/prototypes'));
 

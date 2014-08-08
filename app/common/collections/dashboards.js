@@ -60,8 +60,31 @@ function (Collection) {
       return _.map(this.filter(function (service) {
         return types.indexOf(service.get('dashboard-type')) > -1;
       }), function (m) { return m.toJSON(); });
+    },
+
+    getDepartments: function () {
+      return this.getPropertyList('department');
+    },
+
+    getAgencies: function () {
+      return this.getPropertyList('agency');
+    },
+
+    getPropertyList: function (prop) {
+      var values = this.pluck(prop);
+      values = _.filter(values, _.identity);
+      values = _.sortBy(values, 'title');
+      values = _.uniq(values, true, function (o) { return o.title; });
+      values = _.map(values, function (a) {
+        return _.extend(a, {
+          slug: (a.abbr || a.title).toLowerCase().replace(/ /g, '-')
+        });
+      });
+      return values;
     }
+
   }, {
-    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group']
+    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group'],
+    CONTENT: ['content']
   });
 });

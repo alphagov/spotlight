@@ -12,6 +12,10 @@ module.exports = DashboardView.extend({
     crumbs.push({ title: this.model.get('title') });
 
     return crumbs;
+  },
+
+  getPageHeader: function () {
+    return this.model.get('title') + ': web traffic';
   }
 
 });

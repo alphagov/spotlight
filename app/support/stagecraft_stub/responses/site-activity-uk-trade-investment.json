@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "UK Trade & Investment: web traffic",
+  "title": "UK Trade & Investment",
   "tagline": "Web traffic data for UK Trade & Investment. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {

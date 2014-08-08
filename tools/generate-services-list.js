@@ -54,31 +54,6 @@ glob(stagecraftStubGlob, function (err, files) {
   })).then(function () {
     console.log('Writing ' + dashboards.length + ' dashboards into dashboards.json');
     fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards }, null, 2) + '\n');
-
-    _.each({departments: departments, agencies: agencies}, function (organisationList, organisation) {
-      organisationList = _.chain(organisationList)
-        .without(undefined)
-        .map(function (item) {
-          if (!item.abbr) {
-            item.abbr = item.title;
-          }
-          if (!item.slug) {
-            item.slug = item.abbr.toLowerCase().replace(/ /g, '-');
-          }
-          return item;
-        })
-        .sortBy(function (item) {
-          return item.title;
-        })
-        .uniq(function (item) {
-          return item.title + item.slug;
-        })
-        .value();
-
-      console.log('Writing ' + organisationList.length + ' ' + organisation + ' into ' + organisation + '.json');
-      fs.writeFileSync(stagecraftStubDir + '/' + organisation + '.json', JSON.stringify(organisationList, null, 2) + '\n');
-    });
-
   });
 
 });

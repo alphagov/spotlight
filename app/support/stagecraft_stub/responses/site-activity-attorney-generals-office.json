@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Attorney General's Office: web traffic",
+  "title": "Attorney General's Office",
   "tagline": "Web traffic data for Attorney General's Office. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
@@ -21,6 +21,10 @@
         "url": "https://www.gov.uk/government/publications?departments%5B%5D=attorney-generals-office"
       }
     ]
+  },
+  "department": {
+    "title": "Attorney General's Office",
+    "abbr": "AGO"
   },
   "modules": [
     {

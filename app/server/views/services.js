@@ -8,6 +8,12 @@ var FilteredListView = requirejs('common/views/filtered_list');
 
 module.exports = BaseView.extend(templater).extend({
 
+  templatePath: '../templates/services.html',
+
+  heading: 'Services',
+  tagline: 'Services providing performance data to GOV.UK',
+  example: 'Licensing',
+
   getPageTitle: function () {
     return 'Services - GOV.UK';
   },
@@ -15,7 +21,7 @@ module.exports = BaseView.extend(templater).extend({
   getBreadcrumbCrumbs: function () {
     return [
       {'path': '/performance', 'title': 'Performance'},
-      {'title': 'Services'}
+      {'title': this.heading}
     ];
   },
 
@@ -28,14 +34,19 @@ module.exports = BaseView.extend(templater).extend({
 
     list.render();
 
-    return this.loadTemplate(path.resolve(__dirname, '../templates/services.html'), {
+    return this.loadTemplate(path.resolve(__dirname, this.templatePath), _.extend({
       list: list.html,
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
       agencies: this.model.get('agencies'),
       agencyFilter: this.model.get('agencyFilter')
-    });
+    }, {
+      heading: this.heading,
+      tagline: this.tagline,
+      example: this.example,
+      noun: this.model.get('noun')
+    }));
 
   }
 

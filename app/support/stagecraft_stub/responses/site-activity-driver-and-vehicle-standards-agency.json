@@ -4,7 +4,7 @@
   "dashboard-type": "content",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Driver & Vehicle Standards Agency: web traffic",
+  "title": "Driver & Vehicle Standards Agency",
   "tagline": "Web traffic data for Driver & Vehicle Standards Agency. <a href=\"http://www.gov.uk/performance/site-activity\">View site activity for all GOV.UK pages</a>.",
   "relatedPages": {
     "transaction": {
@@ -21,6 +21,10 @@
         "url": "https://www.gov.uk/government/publications?departments%5B%5D=driver-and-vehicle-standards-agency"
       }
     ]
+  },
+  "department": {
+    "title": "Department for Transport",
+    "abbr": "DFT"
   },
   "modules": [
     {

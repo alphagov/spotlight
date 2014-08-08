@@ -45,7 +45,8 @@ describe('Services Controller', function () {
       agencyFilter: null,
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
-      script: true
+      script: true,
+      noun: 'service'
     });
   });
 
@@ -61,7 +62,8 @@ describe('Services Controller', function () {
       agencyFilter: null,
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
-      script: true
+      script: true,
+      noun: 'service'
     });
   });
 
@@ -77,7 +79,8 @@ describe('Services Controller', function () {
       agencyFilter: null,
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
-      script: true
+      script: true,
+      noun: 'service'
     });
   });
 
@@ -93,7 +96,8 @@ describe('Services Controller', function () {
       agencyFilter: null,
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
-      script: true
+      script: true,
+      noun: 'service'
     });
   });
 
