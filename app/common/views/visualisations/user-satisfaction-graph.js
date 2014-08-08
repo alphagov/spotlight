@@ -21,12 +21,15 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
       var ratings = this.getBreakdown(selectModel);
       this.userSatisfactionCollection.reset(ratings);
       this.populateBreakdownLabel(selectModel);
+      this.populateResponses(selectModel);
     },
 
     render: function () {
       CompletionRateView.prototype.render.apply(this, arguments);
 
       this.populateBreakdownLabel();
+
+      this.populateResponses();
     },
 
     populateBreakdownLabel: function (selectModel) {
@@ -36,9 +39,22 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
         if (selectModel) {
           output = VolumetricsNumberView.prototype.getLabel.call(this, selectModel) || 'no-data';
         }
-
         this.$el.find('.volumetrics-bar-period').html(output);
       }
+    },
+
+    populateResponses: function (selectModel) {
+      var model = selectModel || this.collection.lastDefined('total:sum'),
+          output = '';
+
+      if (model) {
+        if (model.get('total:sum')) {
+          output = '(' + model.get('total:sum') + ' total responses)';
+        } else {
+          output = 'no-data';
+        }
+      }
+      this.$el.find('.total-responses').html(output);
     },
 
     getPeriod: function () {
