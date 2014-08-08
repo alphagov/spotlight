@@ -45,6 +45,7 @@
         @include core-14;
         background: $white;
         line-height: 1.8;
+        width: 100%;
 
         @include media(desktop) {
           @include appearance(none);
