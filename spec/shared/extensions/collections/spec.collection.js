@@ -698,6 +698,162 @@ function (Collection, Model, DataSource, Backbone, moment) {
         expect(collection.parse({ data: input }).length).toEqual(3);
       });
 
+      describe('data grouped by multiple keys', function () {
+
+        var collection;
+
+        beforeEach(function () {
+          input = [
+            {
+              'eventDestination': 'a',
+              'subCategory': 'a',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 260.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 240.0
+                }
+              ]
+            },
+            {
+              'eventDestination': 'a',
+              'subCategory': 'b',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 263.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 237.0
+                }
+              ]
+            },
+            {
+              'eventDestination': 'b',
+              'subCategory': 'a',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 140.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 60.0
+                }
+              ]
+            },
+            {
+              'eventDestination': 'b',
+              'subCategory': 'b',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 141.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 59.0
+                }
+              ]
+            },
+            {
+              'eventDestination': 'c',
+              'subCategory': 'a',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 190.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 10.0
+                }
+              ]
+            },
+            {
+              'eventDestination': 'c',
+              'subCategory': 'b',
+              'values': [
+                {
+                  '_end_at': '2014-06-30T00:00:00+00:00',
+                  '_start_at': '2014-06-23T00:00:00+00:00',
+                  'uniqueEvents:sum': 187.0
+                },
+                {
+                  '_end_at': '2014-07-07T00:00:00+00:00',
+                  '_start_at': '2014-06-30T00:00:00+00:00',
+                  'uniqueEvents:sum': 13.0
+                }
+              ]
+            }
+          ];
+
+          collection = new Collection([], {
+            valueAttr: 'uniqueEvents:sum',
+            axes: {
+              'x': {
+                'key': '_start_at'
+              },
+              'y': [
+                {
+                  'key': 'uniqueEvents:sum'
+                }
+              ]
+            },
+            dataSource: {
+              'query-params': {
+                'group_by': [
+                  'eventDestination',
+                  'subCategory'
+                ],
+                'collect': [
+                  'uniqueEvents:sum'
+                ],
+                'period': 'week',
+                'duration': 2
+              }
+            }
+          });
+
+        });
+
+        it('concatenates group_by parameters into keys', function () {
+
+          var parsed = collection.parse({ data: input });
+          expect(parsed.length).toEqual(2);
+
+          expect(parsed[0]['a:a:uniqueEvents:sum']).toEqual(260);
+          expect(parsed[0]['a:b:uniqueEvents:sum']).toEqual(263);
+          expect(parsed[0]['b:a:uniqueEvents:sum']).toEqual(140);
+          expect(parsed[0]['b:b:uniqueEvents:sum']).toEqual(141);
+          expect(parsed[0]['c:a:uniqueEvents:sum']).toEqual(190);
+          expect(parsed[0]['c:b:uniqueEvents:sum']).toEqual(187);
+
+          expect(parsed[1]['a:a:uniqueEvents:sum']).toEqual(240);
+          expect(parsed[1]['a:b:uniqueEvents:sum']).toEqual(237);
+          expect(parsed[1]['b:a:uniqueEvents:sum']).toEqual(60);
+          expect(parsed[1]['b:b:uniqueEvents:sum']).toEqual(59);
+          expect(parsed[1]['c:a:uniqueEvents:sum']).toEqual(10);
+          expect(parsed[1]['c:b:uniqueEvents:sum']).toEqual(13);
+
+        });
+
+      });
+
     });
 
     describe('trim', function () {
