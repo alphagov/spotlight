@@ -507,6 +507,13 @@
             "Visits to GOV.UK which include the department’s content. Weekly for the last 9 full weeks (Monday to Sunday).",
             "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
           ],
+          "group-mapping": {
+            "Chrome:(.)*": "Chrome",
+            "Safari:(.)*": "Safari",
+            "Internet Explorer:[2-8]{1}(.)*": "OldIE",
+            "Internet Explorer:(9|1)(.)*": "NewIE",
+            "Firefox:(.)*": "Firefox"
+          },
           "axes": {
             "x": {
               "label": "Date",
@@ -526,8 +533,13 @@
                 "format": "percent"
               },
               {
-                "label": "Internet Explorer",
-                "groupId": "Internet Explorer",
+                "label": "Internet Explorer 9+",
+                "groupId": "NewIE",
+                "format": "percent"
+              },
+              {
+                "label": "Internet Explorer &lt;= 8",
+                "groupId": "OldIE",
                 "format": "percent"
               },
               {
@@ -556,7 +568,10 @@
               "filter_by": [
                 "department:driver-and-vehicle-standards-agency"
               ],
-              "group_by": "browser",
+              "group_by": [
+                "browser",
+                "browserVersion"
+              ],
               "collect": [
                 "visitors:sum"
               ]
