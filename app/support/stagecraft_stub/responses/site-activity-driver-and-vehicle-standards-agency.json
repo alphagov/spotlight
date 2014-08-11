@@ -425,9 +425,9 @@
       ]
     },
     {
-      "slug": "how-users-access-the-service",
-      "title": "How users access this service",
-      "description": "Which devices and browsers users are accessing the service from",
+      "slug": "how-users-access-the-content",
+      "title": "How users access the content",
+      "description": "Which devices and browsers users are accessing the content from",
       "module-type": "tab",
       "tabs": [
         {
