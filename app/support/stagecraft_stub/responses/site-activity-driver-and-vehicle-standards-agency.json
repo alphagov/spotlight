@@ -533,12 +533,12 @@
                 "format": "percent"
               },
               {
-                "label": "Internet Explorer 9+",
+                "label": "Internet Explorer (IE9+)",
                 "groupId": "NewIE",
                 "format": "percent"
               },
               {
-                "label": "Internet Explorer &lt;= 8",
+                "label": "Internet Explorer (pre IE9)",
                 "groupId": "OldIE",
                 "format": "percent"
               },

@@ -31,7 +31,14 @@ define([
 
       it('scales domain from 0 to 1 when this is a percentage graph', function () {
         graph.isOneHundredPercent = function () { return true; };
+        graph.maxValue = function () { return 0.679; };
         expect(graph.calcYScale().domain()).toEqual([0, 1]);
+      });
+
+      it('scales domain down to 0-0.5 when maximum value is < 0.5', function () {
+        graph.isOneHundredPercent = function () { return true; };
+        graph.maxValue = function () { return 0.39; };
+        expect(graph.calcYScale().domain()).toEqual([0, 0.5]);
       });
 
     });
