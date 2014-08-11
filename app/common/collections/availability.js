@@ -11,25 +11,25 @@ function (Collection) {
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
       _.each(data, function (d) {
-        if (d.downtime === null && d.uptime === null) {
+        if (d['downtime:sum'] === null && d['uptime:sum'] === null) {
           d.total = null;
           d.uptimeFraction = null;
         } else {
-          d.total = d.downtime + d.uptime;
-          d.uptimeFraction = d.uptime / d.total;
+          d.total = d['downtime:sum'] + d['uptime:sum'];
+          d.uptimeFraction = d['uptime:sum'] / d.total;
         }
       }, this);
       return data;
     },
 
     _getTotalUptime: function () {
-      return this.total('uptime');
+      return this.total('uptime:sum');
     },
 
     _getTotalTime: function (includeUnmonitored) {
       var total = this.total('total');
       if (includeUnmonitored) {
-        total += this.total('unmonitored');
+        total += this.total('unmonitored:sum');
       }
       return total;
     },
@@ -39,7 +39,7 @@ function (Collection) {
     },
 
     getAverageResponseTime: function () {
-      return this.mean('avgresponse');
+      return this.mean('avgresponse:mean');
     }
 
   });

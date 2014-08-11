@@ -4,7 +4,7 @@ define([
 function (NumberView) {
   return NumberView.extend({
 
-    valueAttr: 'avgresponse',
+    valueAttr: 'avgresponse:mean',
     labelPrefix: 'mean ',
 
     formatOptions: {

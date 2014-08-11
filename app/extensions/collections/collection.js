@@ -37,17 +37,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
 
     parse: function (response) {
       var data = response.data;
-      var suffix = /:(sum|mean)/;
 
       data = this.flatten(data);
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
-          // remove suffixes from `collect`ed keys
-          if (key.match(suffix)) {
-            _.each(data, function (d) {
-              d[key.replace(suffix, '')] = d[key];
-            });
-          }
           // cast all datetime strings to moment
           if (this.dateKey(key)) {
             _.each(data, function (d) {

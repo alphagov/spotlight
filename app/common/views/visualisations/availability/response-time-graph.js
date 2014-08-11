@@ -4,7 +4,7 @@ define([
 function (Graph) {
   var ResponseTimeGraph = Graph.extend({
 
-    valueAttr: 'avgresponse',
+    valueAttr: 'avgresponse:mean',
     numYTicks: 3,
 
     components: function () {
