@@ -21,26 +21,18 @@ describe('GovUkView', function () {
   it('renders a page with breadcrumbs and content view in GOV.UK style', function () {
 
     var view = new GovUkView({
-      model: model,
-      bodyEndTemplate: function () {
-        return 'body_end';
-      },
-      reportAProblemTemplate: function () {
-        return 'report_a_problem';
-      }
+      model: model
     });
 
-    spyOn(view, 'template').andReturn('rendered');
+    spyOn(view, 'loadTemplate').andCallThrough();
     spyOn(view, 'getContent').andReturn('test_content');
+    spyOn(view, 'getReportForm').andReturn('report_a_problem');
 
     view.render();
 
-    expect(view.html).toEqual('rendered');
-
-    var context = view.template.argsForCall[0][0];
+    var context = view.loadTemplate.mostRecentCall.args[1];
     expect(context.head.trim().indexOf('<link href="/testAssetPath/stylesheets/spotlight-cachebust.css" media="all" rel="stylesheet" type="text/css">')).not.toBe(-1);
     expect(context.head.trim().indexOf('google-analytics.com')).not.toBe(-1);
-    expect(context.bodyEnd).toEqual('body_end');
     expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
     var content = context.content.replace(/\s+/g, ' ').trim();
@@ -52,12 +44,12 @@ describe('GovUkView', function () {
       model: model,
     });
 
-    spyOn(view, 'template').andReturn('rendered');
+    spyOn(view, 'loadTemplate').andCallThrough();
     spyOn(view, 'getBreadcrumbCrumbs').andReturn([]);
 
     view.render();
 
-    var context = view.template.argsForCall[0][0];
+    var context = view.loadTemplate.mostRecentCall.args[1];
     var content = context.content.replace(/\s+/g, ' ').trim();
 
     expect(content.indexOf('breadcrumb')).toEqual(-1);
@@ -68,7 +60,7 @@ describe('GovUkView', function () {
       model: model,
     });
 
-    spyOn(ellipsisView, 'template').andReturn('rendered');
+    spyOn(ellipsisView, 'loadTemplate').andCallThrough();
     spyOn(ellipsisView, 'getBreadcrumbCrumbs').andReturn([
       {'path': '/performance', 'title': 'Performance'},
       {'path': '/url', 'title': 'A very very very very very very very long department name'}
@@ -76,7 +68,7 @@ describe('GovUkView', function () {
 
     ellipsisView.render();
 
-    var context = ellipsisView.template.argsForCall[0][0];
+    var context = ellipsisView.loadTemplate.mostRecentCall.args[1];
     var content = context.content.replace(/\s+/g, ' ').trim();
 
     expect(content).toContain('A very very very very very very …');
