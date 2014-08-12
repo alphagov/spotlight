@@ -1,11 +1,15 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
-var template = requirejs('stache!common/templates/visualisations/kpi');
+var templatePath = path.resolve(__dirname, '../../templates/modules/kpi.html');
+var templater = require('../../mixins/templater');
 
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
 
-  template: template,
+  templatePath: templatePath,
+
+  templateType: 'mustache',
 
   templateContext: function () {
 
