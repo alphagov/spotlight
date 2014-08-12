@@ -1,16 +1,11 @@
-define([
-  'winston'
-],
-function (winston) {
-  var logger = new (winston.Logger)({
-    transports: [
-      // In development we log debug messages to the console by default
-      new (winston.transports.Console)({
-        level: 'debug',
-        colorize: true
-      })
-    ]
-  });
+var winston = require('winston');
 
-  return logger;
+module.exports = new (winston.Logger)({
+  transports: [
+    // In development we log debug messages to the console by default
+    new (winston.transports.Console)({
+      level: 'debug',
+      colorize: true
+    })
+  ]
 });

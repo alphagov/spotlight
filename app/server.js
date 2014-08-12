@@ -31,8 +31,8 @@ global.isServer = true;
 global.isClient = false;
 
 global._ = require('lodash');
-global.config = requirejs('environment_config').configure(environment, argv);
-global.logger = requirejs('logger');
+global.config = require('./environment_config').configure(environment, argv);
+global.logger = require('./logger');
 
 //App stuff
 
