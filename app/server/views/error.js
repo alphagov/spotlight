@@ -2,11 +2,9 @@ var path = require('path');
 
 var View = require('./govuk');
 
-var templater = require('../mixins/templater');
-
 var templatePath = path.resolve(__dirname, '../templates/error.html');
 
-module.exports = View.extend(templater).extend({
+module.exports = View.extend({
 
   getContent: function () {
     var status = this.model.get('status');
