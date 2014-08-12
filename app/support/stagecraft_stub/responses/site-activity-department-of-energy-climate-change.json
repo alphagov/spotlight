@@ -425,66 +425,160 @@
       ]
     },
     {
-      "slug": "how-users-access-the-service",
-      "module-type": "grouped_timeseries",
-      "title": "Devices used to access the content",
-      "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
-      "category": "deviceCategory",
-      "axis-period": "week",
-      "value-attribute": "pageviews:sum",
-      "show-line-labels": true,
-      "one-hundred-percent": true,
-      "use_stack": false,
-      "info": [
-        "Data source: Google Analytics",
-        "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
-        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": [
-            "_start_at",
-            "_end_at"
+      "slug": "how-users-access-the-content",
+      "title": "How users access the content",
+      "description": "Which devices and browsers users are accessing the content from",
+      "module-type": "tab",
+      "tabs": [
+        {
+          "slug": "devices",
+          "module-type": "grouped_timeseries",
+          "title": "Devices",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "category": "deviceCategory",
+          "axis-period": "week",
+          "value-attribute": "pageviews:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Visits to GOV.UK which include the department’s content. Desktop category includes traffic from desktops and laptops. Weekly for the last 9 full weeks (Monday to Sunday).",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
           ],
-          "format": {
-            "type": "dateRange",
-            "format": "D MMM YYYY"
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "groupId": "desktop",
+                "format": "percent"
+              },
+              {
+                "label": "Mobile",
+                "groupId": "mobile",
+                "format": "percent"
+              },
+              {
+                "label": "Tablet",
+                "groupId": "tablet",
+                "format": "percent"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "devices-count",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "filter_by": [
+                "department:department-of-energy-climate-change"
+              ],
+              "group_by": "deviceCategory",
+              "collect": [
+                "pageviews:sum"
+              ]
+            }
           }
         },
-        "y": [
-          {
-            "label": "Desktop",
-            "groupId": "desktop",
-            "format": "percent"
-          },
-          {
-            "label": "Mobile",
-            "groupId": "mobile",
-            "format": "percent"
-          },
-          {
-            "label": "Tablet",
-            "groupId": "tablet",
-            "format": "percent"
-          }
-        ]
-      },
-      "data-source": {
-        "data-group": "gov-uk-content",
-        "data-type": "devices-count",
-        "query-params": {
-          "period": "week",
-          "duration": 9,
-          "filter_by": [
-            "department:department-of-energy-climate-change"
+        {
+          "slug": "browsers",
+          "module-type": "grouped_timeseries",
+          "title": "Browsers",
+          "category": "browser",
+          "axis-period": "week",
+          "value-attribute": "visitors:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Visits to GOV.UK which include the department’s content. Weekly for the last 9 full weeks (Monday to Sunday).",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the Departments and policy section and may be based on sampled data."
           ],
-          "group_by": "deviceCategory",
-          "collect": [
-            "pageviews:sum"
-          ]
+          "group-mapping": {
+            "Chrome:(.)*": "Chrome",
+            "Safari:(.)*": "Safari",
+            "Internet Explorer:[2-8]{1}(.)*": "OldIE",
+            "Internet Explorer:(9|1)(.)*": "NewIE",
+            "Firefox:(.)*": "Firefox"
+          },
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Google Chrome",
+                "groupId": "Chrome",
+                "format": "percent"
+              },
+              {
+                "label": "Internet Explorer (IE9+)",
+                "groupId": "NewIE",
+                "format": "percent"
+              },
+              {
+                "label": "Internet Explorer (pre IE9)",
+                "groupId": "OldIE",
+                "format": "percent"
+              },
+              {
+                "label": "Safari",
+                "groupId": "Safari",
+                "format": "percent"
+              },
+              {
+                "label": "Firefox",
+                "groupId": "Firefox",
+                "format": "percent"
+              },
+              {
+                "label": "Other",
+                "groupId": "other",
+                "format": "percent"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "gov-uk-content",
+            "data-type": "browsers",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "filter_by": [
+                "department:department-of-energy-climate-change"
+              ],
+              "group_by": [
+                "browser",
+                "browserVersion"
+              ],
+              "collect": [
+                "visitors:sum"
+              ]
+            }
+          }
         }
-      }
+      ]
     },
     {
       "slug": "new-visitors-vs-returning-visitors",
