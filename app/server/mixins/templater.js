@@ -3,6 +3,12 @@ var fs = require('fs');
 module.exports = {
   loadTemplate: function (path, data, type) {
 
+    if (arguments.length === 2 && typeof data === 'string') {
+      type = data;
+      data = {};
+    }
+
+    data = data || {};
     type = type || 'underscore';
 
     var template = fs.readFileSync(path);
