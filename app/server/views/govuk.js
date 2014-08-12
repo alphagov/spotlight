@@ -1,18 +1,21 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
 var templater = require('../mixins/templater');
 
-var headTemplate = requirejs('tpl!common/templates/head.html');
-var bodyEndTemplate = requirejs('tpl!common/templates/body-end.html');
-var navigationTemplate = requirejs('stache!common/templates/navigation');
-var breadcrumbsTemplate = requirejs('stache!common/templates/breadcrumbs');
-var govukTemplate = requirejs('stache!common/templates/govuk_template');
-var footerTopTemplate = requirejs('stache!common/templates/footer_top');
-var footerLinksTemplate = requirejs('stache!common/templates/footer_links');
-var reportAProblemTemplate = requirejs('stache!common/templates/report_a_problem');
-var cookieMessageTemplate = requirejs('stache!common/templates/cookie_message_template');
-var contentTemplate = requirejs('stache!common/templates/content');
+var pr = path.resolve.bind(path, __dirname);
+
+var headTemplate = pr('../templates/page-components/head.html');
+var bodyEndTemplate = pr('../templates/page-components/body-end.html');
+var navigationTemplate = pr('../templates/page-components/navigation.html');
+var breadcrumbsTemplate = pr('../templates/page-components/breadcrumbs.html');
+var govukTemplate = pr('../templates/page-components/govuk_template.html');
+var footerTopTemplate = pr('../templates/page-components/footer_top.html');
+var footerLinksTemplate = pr('../templates/page-components/footer_links.html');
+var reportAProblemTemplate = pr('../templates/page-components/report_a_problem.html');
+var cookieMessageTemplate = pr('../templates/page-components/cookie_message.html');
+var contentTemplate = pr('../templates/page-components/content.html');
 
 
 /**
@@ -32,7 +35,7 @@ module.exports = View.extend(templater).extend({
 
   render: function () {
     var context = this.templateContext();
-    this.html = this.template(context);
+    this.html = this.loadTemplate(this.template, context, 'mustache');
   },
 
   getPageTitleItems: function () {
@@ -88,23 +91,23 @@ module.exports = View.extend(templater).extend({
       View.prototype.templateContext.apply(this, arguments),
       baseContext,
       {
-        head: headTemplate(_.extend(baseContext, { metaDescription: this.getMetaDescription() })),
-        bodyEnd: this.bodyEndTemplate(baseContext),
+        head: this.loadTemplate(headTemplate, _.extend(baseContext, { metaDescription: this.getMetaDescription() })),
+        bodyEnd: this.loadTemplate(this.bodyEndTemplate, baseContext),
         topOfPage: '',
         pageTitle: this.getPageTitle(),
         bodyClasses: '',
         headerClass: 'with-proposition',
         htmlLang: 'en',
-        propositionHeader: navigationTemplate,
-        cookieMessage: cookieMessageTemplate(),
-        footerTop: footerTopTemplate(),
-        footerSupportLinks: footerLinksTemplate(),
-        content: contentTemplate({
+        propositionHeader: this.loadTemplate(navigationTemplate, 'mustache'),
+        cookieMessage: this.loadTemplate(cookieMessageTemplate, 'mustache'),
+        footerTop: this.loadTemplate(footerTopTemplate, 'mustache'),
+        footerSupportLinks: this.loadTemplate(footerLinksTemplate, 'mustache'),
+        content: this.loadTemplate(contentTemplate, {
           hasSurvey: this.hasSurvey(),
-          breadcrumbs: this.breadcrumbsTemplate(this.getBreadcrumbs()),
+          breadcrumbs: this.loadTemplate(this.breadcrumbsTemplate, this.getBreadcrumbs(), 'mustache'),
           content: this.getContent(),
-          reportAProblem: this.reportAProblemTemplate(baseContext)
-        })
+          reportAProblem: this.loadTemplate(this.reportAProblemTemplate, baseContext)
+        }, 'mustache')
       }
     );
   }
