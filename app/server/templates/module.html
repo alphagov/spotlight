@@ -6,12 +6,12 @@
 <% } %>
 
 <% if (pageType === 'module') { %>
-  <h1 id="<%= this.ariaId() %>"><%= model.get('title') %></h1>
+  <h1 id="<%= self.ariaId() %>"><%= model.get('title') %></h1>
 <% } else { %>
   <% if (url) { %>
-    <h2 id="<%= this.ariaId() %>"><a href="<%= url %>"><%= model.get('title') %></a></h2>
+    <h2 id="<%= self.ariaId() %>"><a href="<%= url %>"><%= model.get('title') %></a></h2>
   <% } else { %>
-    <h2 id="<%= this.ariaId() %>"><%= model.get('title') %></h2>
+    <h2 id="<%= self.ariaId() %>"><%= model.get('title') %></h2>
   <% } %>
 <% } %>
 

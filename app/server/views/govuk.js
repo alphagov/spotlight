@@ -83,6 +83,10 @@ module.exports = View.extend(templater).extend({
     return breadcrumbs;
   },
 
+  getReportForm: function () {
+    return this.loadTemplate(this.reportAProblemTemplate, this.model.toJSON(), 'mustache');
+  },
+
   templateContext: function () {
     var baseContext = this.model.toJSON();
     baseContext.model = this.model;
@@ -106,7 +110,7 @@ module.exports = View.extend(templater).extend({
           hasSurvey: this.hasSurvey(),
           breadcrumbs: this.loadTemplate(this.breadcrumbsTemplate, this.getBreadcrumbs(), 'mustache'),
           content: this.getContent(),
-          reportAProblem: this.loadTemplate(this.reportAProblemTemplate, baseContext)
+          reportAProblem: this.getReportForm()
         }, 'mustache')
       }
     );
