@@ -1,12 +1,15 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('common/views/visualisations/visitors-realtime');
-var template = requirejs('stache!common/templates/visualisations/visitors-realtime');
+var templatePath = path.resolve(__dirname, '../../templates/modules/visitors-realtime.html');
+var templater = require('../../mixins/templater');
 
+module.exports = View.extend(templater).extend({
 
+  templatePath: templatePath,
 
-module.exports = View.extend({
-  template: template,
+  templateType: 'mustache',
 
   templateContext: function () {
 

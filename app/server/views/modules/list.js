@@ -1,11 +1,16 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
-var template = requirejs('stache!common/templates/visualisations/list');
+var templatePath = path.resolve(__dirname, '../../templates/modules/list.html');
+var templater = require('../../mixins/templater');
 
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
 
-  template: template,
+  templatePath: templatePath,
+
+  templateType: 'mustache',
+
   templateContext: function () {
     var labelAttr = this.collection.options.labelAttr,
         linkAttr = this.collection.options.linkAttr,

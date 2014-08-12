@@ -1,6 +1,11 @@
 var fs = require('fs');
 
 module.exports = {
+
+  template: function (data) {
+    return this.loadTemplate(this.templatePath, data, this.templateType);
+  },
+
   loadTemplate: function (path, data, type) {
 
     if (arguments.length === 2 && typeof data === 'string') {

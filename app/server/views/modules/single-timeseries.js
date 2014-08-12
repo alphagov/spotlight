@@ -1,11 +1,15 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
-var template = requirejs('stache!common/templates/visualisations/completion');
 var View = requirejs('common/views/visualisations/single-timeseries');
+var templatePath = path.resolve(__dirname, '../../templates/modules/completion.html');
+var templater = require('../../mixins/templater');
 
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
 
-  template: template,
+  templatePath: templatePath,
+
+  templateType: 'mustache',
 
   views: function () {
     var views = View.prototype.views.apply(this, arguments);
