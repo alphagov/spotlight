@@ -116,6 +116,42 @@ function (GroupedTimeseries) {
         expect(parsed[1]['total:some:value']).toEqual(16);
       });
 
+      it('does not include categories without lines in total', function () {
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
+          },
+          {
+            'label': 'XYZ',
+            'groupId': 'xyz'
+          }
+        ];
+        var parsed = collection.parse(response);
+        expect(parsed[0]['total:some:value']).toEqual(6);
+        expect(parsed[1]['total:some:value']).toEqual(6);
+      });
+
+      it('includes categories without lines in total if there is an "other" line', function () {
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
+          },
+          {
+            'label': 'XYZ',
+            'groupId': 'xyz'
+          },
+          {
+            'label': 'Other',
+            'groupId': 'other'
+          }
+        ];
+        var parsed = collection.parse(response);
+        expect(parsed[0]['total:some:value']).toEqual(12);
+        expect(parsed[1]['total:some:value']).toEqual(16);
+      });
+
       it('adds percent properties to models for each axis property', function () {
         var parsed = collection.parse(response);
         expect(parsed[0]['abc:some:value:percent']).toEqual(0.25);
@@ -251,7 +287,7 @@ function (GroupedTimeseries) {
         var parsed = collection.parse(response);
         expect(parsed[0]['zxc:some:value']).toEqual(6);
         expect(parsed[1]['zxc:some:value']).toEqual(10);
-        expect(parsed[0]['zxc:some:value:percent']).toEqual(2/3);
+        expect(parsed[0]['zxc:some:value:percent']).toEqual(2 / 3);
         expect(parsed[1]['zxc:some:value:percent']).toEqual(1);
 
         expect(parsed[0]['total:some:value']).toEqual(9);
@@ -269,6 +305,40 @@ function (GroupedTimeseries) {
         var parsed = collection.parse(response);
         expect(parsed[0]['other:some:value']).toEqual(9);
         expect(parsed[1]['other:some:value']).toEqual(10);
+      });
+
+      it('respects group mappings when adding values to "other" category', function () {
+        collection.options.groupMapping = {
+          def: 'abc'
+        };
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
+          }
+        ];
+        var parsed = collection.parse(response);
+        expect(parsed[0]['abc:some:value']).toEqual(9);
+        expect(parsed[1]['abc:some:value']).toEqual(16);
+        expect(parsed[0]['other:some:value']).toEqual(3);
+        expect(parsed[1]['other:some:value']).toEqual(null);
+      });
+
+      it('supports group mapping by regular expression', function () {
+        collection.options.groupMapping = {
+          '^(d|x)[a-z]{2}': 'abc'
+        };
+        collection.options.axes.y = [
+          {
+            'label': 'ABC',
+            'groupId': 'abc'
+          }
+        ];
+        var parsed = collection.parse(response);
+        expect(parsed[0]['abc:some:value']).toEqual(12);
+        expect(parsed[1]['abc:some:value']).toEqual(16);
+        expect(parsed[0]['other:some:value']).toEqual(null);
+        expect(parsed[1]['other:some:value']).toEqual(null);
       });
 
     });

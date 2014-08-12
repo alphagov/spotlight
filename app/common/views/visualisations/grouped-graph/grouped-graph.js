@@ -57,7 +57,11 @@ function (Graph, LineLabel) {
     calcYScale: function () {
       var yScale = Graph.prototype.calcYScale.apply(this, arguments);
       if (this.isOneHundredPercent()) {
-        yScale.domain([0, 1]);
+        if (this.maxValue() < 0.5) {
+          yScale.domain([0, 0.5]);
+        } else {
+          yScale.domain([0, 1]);
+        }
       }
       return yScale;
     },

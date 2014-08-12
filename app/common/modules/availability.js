@@ -17,7 +17,7 @@ function (AvailabilityCollection) {
           y: [
             {
               label: 'Page load time',
-              key: 'avgresponse',
+              key: 'avgresponse:mean',
               format: 'duration'
             },
             {

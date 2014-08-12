@@ -96,8 +96,19 @@
           "required": false
         },
         "group_by": {
-          "type": "string",
-          "required": false
+          "oneOf": [
+            {
+              "type": "string",
+              "required": false
+            },
+            {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         },
         "collect": {
           "type": "array",

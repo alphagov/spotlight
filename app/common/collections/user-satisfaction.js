@@ -24,9 +24,9 @@ define([
       _.each(data, function (datapoint) {
         var score = 0;
         _.each(_.range(this.options.min, this.options.max + 1), function (i) {
-          score += (datapoint['rating_' + i] * i);
+          score += (datapoint['rating_' + i + ':sum'] * i);
         });
-        var mean = score / datapoint['total'];
+        var mean = score / datapoint['total:sum'];
         datapoint[this.valueAttr + ':sum'] = score;
         datapoint[this.valueAttr] = this.toPercent(mean);
       }, this);
@@ -39,7 +39,7 @@ define([
     mean: function (attr) {
       if (attr === this.options.valueAttr) {
         var sum = this.total(this.options.valueAttr + ':sum');
-        var total = this.total('total');
+        var total = this.total('total:sum');
         return this.toPercent(sum / total);
       }
     }

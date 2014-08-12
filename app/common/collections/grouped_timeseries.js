@@ -8,42 +8,65 @@ function (Collection) {
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
       var lines = this.options.axes.y;
+      var hasOther = _.findWhere(lines, { groupId: 'other' });
 
       if (this.options.groupMapping) {
-        _.each(data, function (model) {
-          _.each(this.options.groupMapping, function (to, from) {
-            var toAttr = to + ':' + this.valueAttr,
-                fromAttr = from + ':' + this.valueAttr;
+        _.each(this.options.groupMapping, function (to, from) {
+          from = new RegExp(from + ':' + this.valueAttr);
+          _.each(data, function (model) {
+            var toAttr = to + ':' + this.valueAttr;
+            var sum = 0;
+
+            _.each(model, function (val, key) {
+              if (key.match(from)) {
+                if (val) {
+                  sum += val;
+                }
+                delete model[key];
+              }
+            });
 
             if (model[toAttr] === undefined) {
               model[toAttr] = 0;
             }
+            model[toAttr] += sum;
 
-            if (model[fromAttr]) {
-              model[toAttr] += model[fromAttr];
-            }
-
-            delete model[from + ':' + this.valueAttr];
           }, this);
         }, this);
       }
 
       _.each(data, function (model) {
-        model['total:' + this.valueAttr] = _.reduce(lines, function (sum, line) {
-          var prop = line.key || line.groupId;
-          var value = model[prop + ':' + this.valueAttr];
-          if (value === undefined) {
-            value = model[prop + ':' + this.valueAttr] = null;
+        var total = null,
+          other = null;
+
+        _.each(model, function (val, key) {
+          var index = key.indexOf(this.valueAttr);
+          if (index > 1 && model[key]) {
+            // get the prefix value
+            var group = key.replace(':' + this.valueAttr, '');
+            var axis = _.findWhere(lines, { groupId: group });
+            if (axis || hasOther) {
+              total += model[key];
+            }
+            if (!axis) {
+              other += model[key];
+              delete model[key];
+            }
           }
-          if (prop !== 'total' && value !== null) {
-            sum += value;
-          }
-          return sum;
-        }, null, this);
+        }, this);
+
+        model['other:' + this.valueAttr] = other;
+        model['total:' + this.valueAttr] = total;
+
         _.each(lines, function (line) {
           var prop = (line.key || line.groupId) + ':' + this.valueAttr;
+          var value = model[prop];
+          if (value === undefined) {
+            value = model[prop] = null;
+          }
+
           if (model['total:' + this.valueAttr]) {
-            model[prop + ':percent'] = model[prop] / model['total:' + this.valueAttr];
+            model[prop + ':percent'] = value / model['total:' + this.valueAttr];
           } else {
             model[prop + ':percent'] = null;
           }
