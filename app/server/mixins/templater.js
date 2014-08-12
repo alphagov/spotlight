@@ -8,7 +8,7 @@ module.exports = {
     var template = fs.readFileSync(path);
 
     if (type === 'mustache') {
-      return require('mustache')(template, data);
+      return require('mustache').render(template.toString(), data);
     } else if (type === 'underscore') {
       return _.template(template, data);
     } else {

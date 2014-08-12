@@ -19,13 +19,13 @@ describe('DashboardView', function () {
       }
     });
     view = new DashboardView({
-      model: model,
-      contentTemplate: jasmine.createSpy().andReturn('rendered')
+      model: model
     });
     view.moduleInstances = [
       { html: '<div>module 1</div>' },
       { html: '<div>module 2</div>' }
     ];
+    spyOn(view, 'loadTemplate').andReturn('rendered');
   });
 
   describe('getContent', function () {
@@ -33,14 +33,14 @@ describe('DashboardView', function () {
     it('renders a content template with model data and module content', function () {
       var result = view.getContent();
       expect(result).toEqual('rendered');
-      var context = view.contentTemplate.argsForCall[0][0];
+      var context = view.loadTemplate.argsForCall[0][1];
       expect(context.foo).toEqual('bar');
       expect(context.modules).toEqual('<div>module 1</div>\n<div>module 2</div>');
     });
 
     it('does not display a footer by default', function () {
       view.getContent();
-      var context = view.contentTemplate.argsForCall[0][0];
+      var context = view.loadTemplate.argsForCall[0][1];
       expect(context.hasFooter).toEqual(false);
     });
 
@@ -181,16 +181,16 @@ describe('TransactionDashboardView', function () {
       title: 'Carer\'s Allowance'
     });
     view = new TransactionDashboardView({
-      model: model,
-      contentTemplate: jasmine.createSpy().andReturn('rendered')
+      model: model
     });
+    spyOn(view, 'loadTemplate').andReturn('rendered');
   });
 
   describe('getContent', function () {
 
     it('displays a footer on detailed dashboards', function () {
       view.getContent();
-      var context = view.contentTemplate.argsForCall[0][0];
+      var context = view.loadTemplate.argsForCall[0][1];
       expect(context.hasFooter).toEqual(true);
     });
 
