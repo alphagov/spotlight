@@ -37,6 +37,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
 
     templateContext: function () {
       var context = {
+        self: this,
         model: this.model,
         collection: this.collection
       };
