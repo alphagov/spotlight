@@ -1,6 +1,7 @@
 var requirejs = require('requirejs');
 
 var View = requirejs('extensions/views/view');
+var templater = require('../mixins/templater');
 
 var headTemplate = requirejs('tpl!common/templates/head.html');
 var bodyEndTemplate = requirejs('tpl!common/templates/body-end.html');
@@ -19,7 +20,7 @@ var contentTemplate = requirejs('stache!common/templates/content');
  * Does not use jsdom itself but renders template directly because jsdom
  * does not seem to play nicely with <script> tags.
  */
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
   template: govukTemplate,
   bodyEndTemplate: bodyEndTemplate,
   reportAProblemTemplate: reportAProblemTemplate,
