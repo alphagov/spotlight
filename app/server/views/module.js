@@ -10,10 +10,8 @@ var templater = require('../mixins/templater');
 
 module.exports = View.extend(templater).extend({
 
-  template: function (data) {
-    return this.loadTemplate(templatePath, data);
-  },
-  
+  templatePath: templatePath,
+
   tagName: 'section',
 
   initialize: function (options) {

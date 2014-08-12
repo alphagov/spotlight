@@ -1,13 +1,17 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
 var HeadlineItemView = requirejs('common/views/visualisations/headline');
 var DeltaItemView = requirejs('common/views/visualisations/delta');
-var template = requirejs('stache!common/templates/visualisations/user-satisfaction');
+var templatePath = path.resolve(__dirname, '../../templates/modules/user-satisfaction.html');
+var templater = require('../../mixins/templater');
 
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
 
-  template: template,
+  templatePath: templatePath,
+
+  templateType: 'mustache',
 
   initialize: function () {
 

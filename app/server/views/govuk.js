@@ -24,7 +24,8 @@ var contentTemplate = pr('../templates/page-components/content.html');
  * does not seem to play nicely with <script> tags.
  */
 module.exports = View.extend(templater).extend({
-  template: govukTemplate,
+  templatePath: govukTemplate,
+  templateType: 'mustache',
   bodyEndTemplate: bodyEndTemplate,
   reportAProblemTemplate: reportAProblemTemplate,
   breadcrumbsTemplate: breadcrumbsTemplate,
@@ -35,7 +36,7 @@ module.exports = View.extend(templater).extend({
 
   render: function () {
     var context = this.templateContext();
-    this.html = this.loadTemplate(this.template, context, 'mustache');
+    this.html = this.template(context);
   },
 
   getPageTitleItems: function () {
