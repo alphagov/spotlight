@@ -1,11 +1,14 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
-var template = requirejs('stache!common/templates/visualisations/categories');
+var templatePath = path.resolve(__dirname, '../../templates/modules/categories.html');
+var templater = require('../../mixins/templater');
 
+module.exports = View.extend(templater).extend({
 
-module.exports = View.extend({
+  templatePath: templatePath,
 
-  template: template,
+  templateType: 'mustache',
 
 });

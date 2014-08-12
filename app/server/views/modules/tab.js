@@ -1,11 +1,14 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
+var templatePath = path.resolve(__dirname, '../../templates/modules/tab.html');
+var templater = require('../../mixins/templater');
 
-var template = requirejs('stache!common/templates/visualisations/tab');
+module.exports = View.extend(templater).extend({
 
-module.exports = View.extend({
+  templatePath: templatePath,
 
-  template: template
+  templateType: 'mustache',
 
 });

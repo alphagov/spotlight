@@ -2,7 +2,7 @@ define([
   'client/views/visualisations/visitors-realtime',
   'common/collections/realtime',
   'extensions/models/model',
-  'stache!common/templates/visualisations/visitors-realtime'
+  'stache!server/templates/modules/visitors-realtime'
 ],
 function (VisitorsRealtimeView, Collection, Model, template) {
   describe('VisitorsRealtimeView', function () {
