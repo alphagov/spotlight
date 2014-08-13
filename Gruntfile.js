@@ -155,7 +155,7 @@ module.exports = function (grunt) {
     copy: {
       govuk_template: {
         src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'app/common/templates/',
+        dest: 'app/server/templates/page-components/',
         expand: true,
         flatten: true,
         filter: 'isFile'

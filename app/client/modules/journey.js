@@ -2,7 +2,7 @@ define([
   'client/controllers/module',
   'client/views/journey-date-picker',
   'common/modules/journey',
-  'common/views/visualisations/journey-graph/journey-graph'
+  'client/views/visualisations/journey-graph'
 ], function (ModuleController, DatePickerView, JourneyModule, JourneyView) {
 
   var parent = ModuleController.extend(JourneyModule);

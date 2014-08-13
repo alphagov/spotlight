@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/grouped-graph/stacked-graph',
+  'client/views/visualisations/grouped-graph/stacked-graph',
   'common/collections/grouped_timeseries',
   'extensions/views/graph/stack-set',
   'extensions/views/graph/stacked-linelabel',

@@ -1,12 +1,17 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('common/views/module');
-var template = requirejs('tpl!common/templates/module.html');
+var templatePath = path.resolve(__dirname, '../templates/module.html');
 
 var Table = requirejs('extensions/views/table');
 
-module.exports = View.extend({
-  template: template,
+var templater = require('../mixins/templater');
+
+module.exports = View.extend(templater).extend({
+
+  templatePath: templatePath,
+
   tagName: 'section',
 
   initialize: function (options) {

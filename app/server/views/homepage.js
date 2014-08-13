@@ -1,10 +1,10 @@
 var path = require('path');
 
-var templater = require('../mixins/templater');
+var templatePath = path.resolve(__dirname, '../templates/homepage.html');
 
 var BaseView = require('./govuk');
 
-module.exports = BaseView.extend(templater).extend({
+module.exports = BaseView.extend({
 
   getPageTitle: function () {
     return 'Our performance - GOV.UK';
@@ -28,7 +28,7 @@ module.exports = BaseView.extend(templater).extend({
       return dashboard.slug !== 'site-activity';
     });
 
-    return this.loadTemplate(path.resolve(__dirname, '../templates/homepage.html'), _.extend({}, {
+    return this.loadTemplate(templatePath, _.extend({
       services: this.collection.filterDashboards('transaction', 'other'),
       serviceGroups: this.collection.filterDashboards('service-group'),
       highVolumeServices: this.collection.filterDashboards('high-volume-transaction'),
