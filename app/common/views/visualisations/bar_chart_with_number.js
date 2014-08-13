@@ -1,9 +1,8 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/bar-chart/bar-chart',
-  'common/views/visualisations/bar-chart/most-recent-number'
+  'common/views/visualisations/most-recent-number'
 ],
-function (View, BarChart, MostRecentNumberView) {
+function (View, MostRecentNumberView) {
   var BarChartView = View.extend({
 
     maxBars: 6,
@@ -24,14 +23,6 @@ function (View, BarChart, MostRecentNumberView) {
           options: {
             valueAttr: valueAttr,
             formatOptions: _.extend({}, formatOptions, { abbr: true })
-          }
-        },
-        '.bar': {
-          view: BarChart,
-          options: {
-            valueAttr: valueAttr,
-            axisPeriod: this.collection.options.axisPeriod,
-            formatOptions: formatOptions
           }
         }
       };
