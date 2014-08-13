@@ -1,20 +1,15 @@
 define([
   'extensions/views/view',
   'common/views/visualisations/availability/uptime-number',
-  'common/views/visualisations/availability/uptime-graph',
-  'common/views/visualisations/availability/response-time-number',
-  'common/views/visualisations/availability/response-time-graph'
+  'common/views/visualisations/availability/response-time-number'
 ],
-function (View, UptimeNumber, UptimeGraph,
-          ResponseTimeNumber, ResponseTimeGraph) {
+function (View, UptimeNumber, ResponseTimeNumber) {
   return View.extend({
 
     views: function () {
       return {
         '.uptime': {view: UptimeNumber},
-        '.uptime-graph': {view: UptimeGraph},
-        '.response-time': {view: ResponseTimeNumber},
-        '.response-time-graph': {view: ResponseTimeGraph}
+        '.response-time': {view: ResponseTimeNumber}
       };
     }
 

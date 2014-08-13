@@ -1,7 +1,7 @@
 define([
   'client/controllers/module',
   'common/modules/availability',
-  'common/views/visualisations/availability'
+  'client/views/visualisations/availability'
 ],
 function (ModuleController, AvailabilityModule, AvailabilityView) {
 
