@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/tab',
+  'client/views/visualisations/tab',
   'extensions/models/model'
 ],
 function (TabView, Model) {

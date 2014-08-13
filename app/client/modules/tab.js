@@ -1,7 +1,7 @@
 define([
   'client/controllers/module',
   'common/modules/tab',
-  'common/views/visualisations/tab'
+  'client/views/visualisations/tab'
 ],
 function (ModuleController, TabController, TabView) {
 
