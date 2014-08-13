@@ -1,7 +1,7 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/grouped-graph/stacked-graph',
-  'common/views/visualisations/grouped-graph/line-graph'
+  'client/views/visualisations/grouped-graph/stacked-graph',
+  'client/views/visualisations/grouped-graph/line-graph'
 ],
 function (View, StackedGraph, LineGraph) {
   var CategoriesView = View.extend({
