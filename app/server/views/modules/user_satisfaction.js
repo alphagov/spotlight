@@ -3,14 +3,15 @@ var path = require('path');
 
 var View = requirejs('extensions/views/view');
 var HeadlineItemView = requirejs('common/views/visualisations/headline');
-var DeltaItemView = requirejs('common/views/visualisations/delta');
+
+var DeltaItemView = require('../components/delta');
+
 var templatePath = path.resolve(__dirname, '../../templates/modules/user-satisfaction.html');
 var templater = require('../../mixins/templater');
 
 module.exports = View.extend(templater).extend({
 
   templatePath: templatePath,
-
   templateType: 'mustache',
 
   initialize: function () {
