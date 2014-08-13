@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/journey-graph/journey-graph',
+  'client/views/visualisations/journey-graph',
   'common/collections/journey_series',
   'extensions/models/model'
 ],
