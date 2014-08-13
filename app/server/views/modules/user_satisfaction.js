@@ -2,8 +2,9 @@ var requirejs = require('requirejs');
 
 var View = requirejs('extensions/views/view');
 var HeadlineItemView = requirejs('common/views/visualisations/headline');
-var DeltaItemView = requirejs('common/views/visualisations/delta');
 var template = requirejs('stache!common/templates/visualisations/user-satisfaction');
+
+var DeltaItemView = require('../components/delta');
 
 module.exports = View.extend({
 
