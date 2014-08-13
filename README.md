@@ -141,8 +141,6 @@ heroku open # opens the freshly deployed app in a browser
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-*Note: this won't work right now if you have a `/` in the branch name. This has been reported to Heroku*
-
 If you want the Heroku app to be password-protected, set config variables as follows,
 before pushing the code.
 
