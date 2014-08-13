@@ -1,8 +1,8 @@
 <ol>
   {{#items}}
   <li>
-    {{#link}}<a href="{{link}}" title="{{{label}}}">{{{label}}}</a>{{/link}}
-    {{^link}}{{{label}}}{{/link}}
+    {{#href}}<a href="{{href}}" title="{{{label}}}">{{{label}}}</a>{{/href}}
+    {{^href}}{{{label}}}{{/href}}
   </li>
   {{/items}}
 </ol>
