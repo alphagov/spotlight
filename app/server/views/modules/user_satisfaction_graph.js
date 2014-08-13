@@ -2,7 +2,6 @@ var path = require('path');
 
 var View = require('./completion_rate');
 var templatePath = path.resolve(__dirname, '../../templates/modules/user-satisfaction-graph.html');
-var templater = require('../../mixins/templater');
 
 module.exports = View.extend({
 
