@@ -30,7 +30,7 @@ module.exports = View.extend(templater).extend({
 
         return {
           'label': label,
-          'link': linkAttr ? (urlRoot + item.get(linkAttr)) : null
+          'href': linkAttr ? (urlRoot + item.get(linkAttr)) : null
         };
       }, this);
 
