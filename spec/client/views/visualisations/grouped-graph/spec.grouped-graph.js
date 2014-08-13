@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/grouped-graph/grouped-graph',
+  'client/views/visualisations/grouped-graph/grouped-graph',
   'extensions/collections/collection',
   'extensions/models/model',
   'extensions/views/graph/linelabel'
