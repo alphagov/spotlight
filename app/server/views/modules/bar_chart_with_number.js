@@ -11,10 +11,4 @@ module.exports = View.extend(templater).extend({
 
   templateType: 'mustache',
 
-  views: function () {
-    var views = View.prototype.views.apply(this, arguments);
-    delete views['.bar'];
-    return views;
-  }
-
 });

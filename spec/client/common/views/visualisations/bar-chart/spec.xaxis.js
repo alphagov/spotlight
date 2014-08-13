@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/bar-chart/xaxis',
+  'client/views/visualisations/bar-chart/xaxis',
   'extensions/collections/collection'
 ],
 function (XAxis, Collection) {

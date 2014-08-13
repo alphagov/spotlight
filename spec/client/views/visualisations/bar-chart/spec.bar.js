@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/bar-chart/bar',
+  'client/views/visualisations/bar-chart/bar',
   'extensions/collections/collection',
   'extensions/models/model'
 ],

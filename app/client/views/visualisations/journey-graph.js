@@ -1,7 +1,7 @@
 define([
-  'common/views/visualisations/bar-chart/bar-chart',
-  'common/views/visualisations/bar-chart/xaxis',
-  'common/views/visualisations/bar-chart/bar',
+  'client/views/visualisations/bar-chart/bar-chart',
+  'client/views/visualisations/bar-chart/xaxis',
+  'client/views/visualisations/bar-chart/bar',
   './journey-graph/callout',
   'extensions/views/graph/hover'
 ],
