@@ -30,7 +30,7 @@
     {
       "slug": "traffic-to-department-content",
       "module-type": "tab",
-      "title": "Traffic to content",
+      "title": "Site traffic",
       "info": [
         "Data source: Google Analytics",
         "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
