@@ -1,6 +1,6 @@
 define([
   'extensions/views/view',
-  'stache!extensions/templates/missing-data'
+  'stache!common/templates/missing-data'
 ],
   function (View, Template) {
     return View.extend({
