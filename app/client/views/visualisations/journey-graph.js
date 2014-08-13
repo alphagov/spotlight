@@ -1,8 +1,8 @@
 define([
   'common/views/visualisations/bar-chart/bar-chart',
-  '../bar-chart/xaxis',
-  '../bar-chart/bar',
-  './callout',
+  'common/views/visualisations/bar-chart/xaxis',
+  'common/views/visualisations/bar-chart/bar',
+  './journey-graph/callout',
   'extensions/views/graph/hover'
 ],
 function (BarChart, XAxis, Bar, Callout, Hover) {
