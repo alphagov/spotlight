@@ -1,6 +1,6 @@
 define([
   'common/views/visualisations/completion_rate',
-  'common/views/visualisations/bar-chart/user-satisfaction',
+  'client/views/visualisations/bar-chart/user-satisfaction',
   'common/views/visualisations/volumetrics/number',
   'extensions/collections/collection'
 ],

@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/bar-chart/most-recent-number',
+  'common/views/visualisations/most-recent-number',
   'extensions/collections/collection',
   'extensions/models/model'
 ],

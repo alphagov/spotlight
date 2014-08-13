@@ -7,10 +7,4 @@ module.exports = View.extend({
 
   template: template,
 
-  views: function () {
-    var views = View.prototype.views.apply(this, arguments);
-    delete views['.bar'];
-    return views;
-  }
-
 });
