@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/journey-graph/callout',
+  'client/views/visualisations/journey-graph/callout',
   'common/collections/journey_series'
 ],
 function (JourneyCallout, JourneySeriesCollection) {

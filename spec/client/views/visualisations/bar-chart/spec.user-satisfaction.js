@@ -1,6 +1,6 @@
 define([
-  'common/views/visualisations/bar-chart/user-satisfaction',
-  'common/views/visualisations/bar-chart/bar-chart',
+  'client/views/visualisations/bar-chart/user-satisfaction',
+  'client/views/visualisations/bar-chart/bar-chart',
   'extensions/collections/collection',
   'backbone'
 ],
