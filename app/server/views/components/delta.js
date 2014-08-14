@@ -5,7 +5,7 @@ var SingleStatView = requirejs('extensions/views/single_stat');
 
 module.exports = SingleStatView.extend({
 
-  changeOnSelected: true,
+  changeOnSelected: false,
   valueTag: 'p',
 
   initialize: function (options) {
@@ -25,28 +25,27 @@ module.exports = SingleStatView.extend({
 
   getValue: function () {
     var model = this.collection.last();
-    var change = this.getChange(model, this.stat.attr);
+    var change = this.getChange(model, this.valueAttr);
     this.trend = change.trend;
     return change.percentChange;
   },
 
   getLabel: function () {
     var model = this.collection.last();
-    return this.getChange(model, this.stat.attr).previousDate;
+    return this.getChange(model).previousDate;
   },
 
-  getValueSelected: function (selected) {
-    var change = this.getChange(selected.selectedModel, this.stat.attr);
-    this.trend = change.trend;
-    return change.percentChange;
+  getValueSelected: function () {
+    return this.getValue();
   },
 
-  getLabelSelected: function (selected) {
-    return this.getChange(selected.selectedModel, this.stat.attr).previousDate;
+  getLabelSelected: function () {
+    return this.getLabel();
   },
 
-  getChange: function (model, attr) {
+  getChange: function (model) {
 
+    var attr = this.valueAttr;
     var previousValue = null, previousDate = null, trend = null, percentChange = null;
     var currentValue = model.get(attr);
     var currentDate = model.get(this.timeAttr);
