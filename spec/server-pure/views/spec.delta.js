@@ -1,6 +1,6 @@
 var requirejs = require('requirejs');
 
-var DeltaView = requirejs('common/views/visualisations/delta');
+var DeltaView = require('../../../app/server/views/components/delta');
 var Collection = requirejs('extensions/collections/collection');
 
 describe('DeltaView', function () {
@@ -42,18 +42,16 @@ describe('DeltaView', function () {
 
   it('renders sample data', function () {
 
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('.change')).toHaveText('−50.00%');
-      expect(view.$el.text()).toContain('Sep 2012');
-    });
+    view.render();
+    expect(view.$el.find('.change').text()).toEqual('−50.00%');
+    expect(view.$el.text()).toContain('Sep 2012');
 
   });
 
   it('correctly applies increase and decrease classes to the number', function () {
 
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('.change')).toHaveClass('decrease');
-    });
+    view.render();
+    expect(view.$el.find('.change').hasClass('decrease')).toBe(true);
 
   });
 
@@ -69,13 +67,11 @@ describe('DeltaView', function () {
       showColours: true
     });
 
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('.change')).not.toHaveClass('decline');
-    });
+    view.render();
+    testColourView.render();
 
-    jasmine.renderView(testColourView, function () {
-      expect(testColourView.$el.find('.change')).toHaveClass('decline');
-    });
+    expect(view.$el.find('.change').hasClass('decline')).toBe(false);
+    expect(testColourView.$el.find('.change').hasClass('decline')).toBe(true);
 
   });
 
@@ -111,32 +107,30 @@ describe('DeltaView', function () {
       valueAttr: 'a'
     });
 
-    jasmine.renderView(testNoChangeView, function () {
-      expect(testNoChangeView.$el.find('.change')).toHaveClass('no-change');
-    });
+    testNoChangeView.render();
+    expect(testNoChangeView.$el.find('.change').hasClass('no-change')).toBe(true);
 
   });
 
   it('does not show a delta if the denominator is null', function () {
     collection.first().set('a', null);
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('span')).toHaveClass('no-data');
-    });
+    view.render();
+
+    expect(view.$el.find('span').hasClass('no-data')).toBe(true);
   });
 
   it('does not show a delta if the denominator is zero', function () {
 
     collection.first().set('a', 0);
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('span')).toHaveClass('no-data');
-    });
+    view.render();
+
+    expect(view.$el.find('span').hasClass('no-data')).toBe(true);
   });
 
   it('does show a delta if the numerator is zero', function () {
     collection.last().set('a', 0);
-    jasmine.renderView(view, function () {
-      expect(view.$el.find('.change').text()).toContain('−100.00%');
-    });
+    view.render();
+    expect(view.$el.find('.change').text()).toContain('−100.00%');
   });
 
   it('uses the timeAttr option if it is passed', function () {
@@ -174,10 +168,10 @@ describe('DeltaView', function () {
       timeAttr: '_timestamp'
     });
 
-    jasmine.renderView(testView, function () {
-      expect(testView.$el.find('.change')).toHaveText('−50.00%');
-      expect(testView.$el.text()).toContain('Sep 2012');
-    });
+    testView.render();
+
+    expect(testView.$el.find('.change').text()).toEqual('−50.00%');
+    expect(testView.$el.text()).toContain('Sep 2012');
 
   });
 
@@ -217,10 +211,9 @@ describe('DeltaView', function () {
       deltaPeriod: 'months'
     });
 
-    jasmine.renderView(testView, function () {
-      expect(testView.$el.find('.change')).toHaveText('−50.00%');
-      expect(testView.$el.text()).toContain('Aug 2013');
-    });
+    testView.render();
+    expect(testView.$el.find('.change').text()).toEqual('−50.00%');
+    expect(testView.$el.text()).toContain('Aug 2013');
 
   });
 
