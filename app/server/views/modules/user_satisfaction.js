@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 
 var View = requirejs('extensions/views/view');
-var HeadlineItemView = requirejs('common/views/visualisations/headline');
+var HeadlineItemView = requirejs('common/views/visualisations/most-recent-number');
 var template = requirejs('stache!common/templates/visualisations/user-satisfaction');
 
 var DeltaItemView = require('../components/delta');
@@ -17,15 +17,13 @@ module.exports = View.extend({
     var valueAttr = this.collection.options.valueAttr;
     var percentAttr = valueAttr + '_percent';
 
-    this.stat = {
-      'attr': percentAttr
-    };
-
     this.collection.each(function (d) {
       var val = d.get(valueAttr);
       var percent = this.getScoreAsPercentage(val);
       d.set(percentAttr, percent);
     }, this);
+
+    this.valueAttr = percentAttr;
 
   },
 
@@ -41,10 +39,8 @@ module.exports = View.extend({
         view: HeadlineItemView,
         options: function () {
           return {
-            stat: this.stat,
-            valueAttr: this.stat.attr,
-            timeAttr: '_timestamp',
-            isPercent: true
+            valueAttr: this.valueAttr,
+            formatOptions: 'percent'
           };
         }
       },
@@ -52,9 +48,7 @@ module.exports = View.extend({
         view: DeltaItemView,
         options: function () {
           return {
-            stat: this.stat,
-            collection: this.collection,
-            valueAttr: this.stat.attr,
+            valueAttr: this.valueAttr,
             timeAttr: '_timestamp',
             delta: 1,
             deltaPeriod: 'months',
