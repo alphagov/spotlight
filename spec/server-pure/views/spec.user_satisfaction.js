@@ -37,8 +37,6 @@ describe('UserSatisfactionView', function () {
       collection: collection
     });
 
-    view.render();
-
   });
 
   afterEach(function () {
