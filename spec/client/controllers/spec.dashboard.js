@@ -34,7 +34,7 @@ define([
         expect(renderSpy.calls.length).toEqual(2);
       });
 
-      it('passes correct module urls to modules', function () {
+      it('adds slugs to module urls', function () {
         controller.render();
         expect(moduleSpy).toHaveBeenCalledWith({
           model: jasmine.any(Backbone.Model),
@@ -43,6 +43,19 @@ define([
         expect(moduleSpy).toHaveBeenCalledWith({
           model: jasmine.any(Backbone.Model),
           url: '/test/bar'
+        });
+      });
+
+      it('does not add slugs to module url if page type is "module"', function () {
+        model.set('page-type', 'module');
+        controller.render();
+        expect(moduleSpy).toHaveBeenCalledWith({
+          model: jasmine.any(Backbone.Model),
+          url: '/test'
+        });
+        expect(moduleSpy).toHaveBeenCalledWith({
+          model: jasmine.any(Backbone.Model),
+          url: '/test'
         });
       });
 
