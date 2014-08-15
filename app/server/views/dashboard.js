@@ -1,8 +1,8 @@
-var requirejs = require('requirejs');
+var path = require('path');
 
 var View = require('./govuk');
-var template = requirejs('stache!common/templates/dashboard');
-var pptTemplate = requirejs('stache!common/templates/module-page');
+var template = path.resolve(__dirname, '../templates/dashboard.html');
+var pptTemplate = path.resolve(__dirname, '../templates/module-page.html');
 
 module.exports = View.extend({
   contentTemplate: template,
@@ -20,7 +20,7 @@ module.exports = View.extend({
 
   getContent: function () {
     var context = this.getContext();
-    return this.contentTemplate(context);
+    return this.loadTemplate(this.contentTemplate, context, 'mustache');
   },
 
   getContext: function () {
