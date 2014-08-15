@@ -286,7 +286,7 @@ module.exports = function (grunt) {
   // Load external module tasks
   [
     'grunt-contrib-jasmine',
-    'grunt-jasmine-node',
+    'grunt-jasmine-node-new',
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-requirejs',
