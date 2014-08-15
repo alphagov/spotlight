@@ -18,6 +18,7 @@ describe('environmentConfig', function () {
     resultingConfigObject = environmentJson;
     resultingConfigObject.backdropUrl = args.backdropUrl;
     resultingConfigObject.screenshotTargetUrl = args.screenshotTargetUrl;
+    spyOn(fs, 'existsSync').andReturn(false);
   });
 
   describe('configure', function () {
