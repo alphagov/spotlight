@@ -4,7 +4,10 @@
   "properties": {
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 2,
+      "maxLength": 90,
+      "pattern": "^[-a-z0-9]+$"
     },
     "dashboard-type": {
       "type": "string",
@@ -32,7 +35,58 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "description-extra": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 400
+    },
+    "costs": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 1500
+    },
+    "other-notes": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 700
+    },
+    "customer-type": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        { "enum": ["Business", "Individuals"] }
+      ]
+    },
+    "business-model": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        { "enum": ["Department budget", "Fees and charges", "Taxpayers"] }
+      ]
+    },
     "department": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "abbr": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "agency": {
       "type": "object",
       "properties": {
         "title": {
@@ -74,6 +128,12 @@
         "Public sector purchasing dashboard"
       ]
     },
+    "tagline": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 400
+    },
     "modules": {
       "type": "array",
       "minItems": 1,
@@ -89,7 +149,9 @@
       "properties": {
         "title": {
           "type": "string",
-          "required": true
+          "required": true,
+          "minLength": 2,
+          "maxLength": 90
         },
         "url": {
           "type": "string",

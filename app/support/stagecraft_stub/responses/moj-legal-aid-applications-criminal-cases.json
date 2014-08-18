@@ -11,7 +11,8 @@
     "abbr": "MoJ"
   },
   "agency": {
-    "title": "Legal Aid Agency"
+    "title": "Legal Aid Agency",
+    "abbr": "LAA"
   },
   "relatedPages": {
     "improve-dashboard-message": true

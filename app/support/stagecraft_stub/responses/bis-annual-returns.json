@@ -11,7 +11,8 @@
     "abbr": "BIS"
   },
   "agency": {
-    "title": "Companies House"
+    "title": "Companies House",
+    "abbr": "CH"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

@@ -11,7 +11,8 @@
     "abbr": "BIS"
   },
   "agency": {
-    "title": "Skills Funding Agency"
+    "title": "Skills Funding Agency",
+    "abbr": "SFA"
   },
   "relatedPages": {
     "improve-dashboard-message": true,

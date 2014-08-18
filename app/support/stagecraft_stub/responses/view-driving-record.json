@@ -20,6 +20,7 @@
       "url": "https://www.gov.uk/view-driving-licence"
     }
   },
+  "customer-type": "Individuals",
   "modules": [
     {
       "slug": "live-service-usage",
