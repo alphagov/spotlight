@@ -8,12 +8,7 @@ var renderPng = function (req, res) {
     for (var i in screenshot.headers) {
       res.setHeader(i, screenshot.headers[i]);
     }
-    screenshot.on('data', function (chunk) {
-      res.write(chunk);
-    });
-    screenshot.on('end', function () {
-      res.end();
-    });
+    screenshot.pipe(res);
   }).on('error', function (e) {
     res.status(500);
     res.send('Got error: ' + e.message);
