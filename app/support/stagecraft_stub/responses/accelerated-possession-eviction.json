@@ -8,7 +8,7 @@
   "description": "Accelerated property possession is used when people refuse to leave a property and have been given the appropriate notice to leave. ",
   "department": {
     "title": "Ministry of Justice",
-    "abbr": "MoJ"
+    "abbr": "MOJ"
   },
   "relatedPages": {
     "transaction": {
@@ -72,7 +72,7 @@
       "show-line-labels": true,
       "use_stack": true,
       "info": [
-        "Data source: MoJ database",
+        "Data source: MOJ database",
         "Shows the number of successful claims, broken down by channel",
         "Digital: applications made online",
         "Paper form: applications made using a paper form"
