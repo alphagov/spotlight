@@ -66,12 +66,17 @@ define([
         pad: true
       });
 
+      if (value instanceof Date) {
+        value = value.getTime();
+      }
       var divisor = 1;
       var result;
       if (options.unit === 'm') {
         divisor = 60000;
-        result = Math.floor(value/divisor) + 'm';
-        result += ' ' + this.duration(value % divisor, { unit: 's', dps: 0 });
+        result = Math.floor(value / divisor) + 'm';
+        if (value % divisor) {
+          result += ' ' + this.duration(value % divisor, { unit: 's', dps: 0 });
+        }
       } else {
         if (options.unit === 's') {
           divisor = 1000;
