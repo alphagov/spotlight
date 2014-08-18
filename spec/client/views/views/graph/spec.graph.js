@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/graph',
+  'client/views/graph/graph',
   'extensions/collections/collection',
   'extensions/models/model',
   'extensions/views/view',

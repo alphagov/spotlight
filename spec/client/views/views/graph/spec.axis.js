@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/axis'
+  'client/views/graph/axis'
 ],
 function (Axis) {
 

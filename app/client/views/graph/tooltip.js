@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/component',
+  'client/views/graph/component',
   'extensions/mixins/pivot'
 ],
 function (Component, Pivot) {

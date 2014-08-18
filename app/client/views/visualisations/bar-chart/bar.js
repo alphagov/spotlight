@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/bar'
+  'client/views/graph/bar'
 ],
 function (Bar) {
   return Bar.extend({

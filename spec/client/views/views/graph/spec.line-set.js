@@ -1,7 +1,7 @@
 define([
-  'extensions/views/graph/line-set',
-  'extensions/views/graph/line',
-  'extensions/views/graph/component',
+  'client/views/graph/line-set',
+  'client/views/graph/line',
+  'client/views/graph/component',
   'common/collections/grouped_timeseries'
 ], function (LineSet, Line, Component, Collection) {
 

@@ -1,7 +1,7 @@
 define([
-  'extensions/views/graph/stack-set',
-  'extensions/views/graph/stack',
-  'extensions/views/graph/component',
+  'client/views/graph/stack-set',
+  'client/views/graph/stack',
+  'client/views/graph/component',
   'common/collections/grouped_timeseries'
 ], function (StackSet, Stack, Component, Collection) {
 

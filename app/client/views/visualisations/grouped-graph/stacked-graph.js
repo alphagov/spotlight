@@ -1,7 +1,7 @@
 define([
   './grouped-graph',
-  'extensions/views/graph/stack-set',
-  'extensions/views/graph/stacked-linelabel'
+  'client/views/graph/stack-set',
+  'client/views/graph/stacked-linelabel'
 ],
 function (Graph, StackSet, StackedLineLabel) {
   return Graph.extend({

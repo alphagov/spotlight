@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/component'
+  'client/views/graph/component'
 ],
 function (Component) {
   var Axis = Component.extend({

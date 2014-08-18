@@ -1,6 +1,6 @@
 define([
   './grouped-graph',
-  'extensions/views/graph/line-set'
+  'client/views/graph/line-set'
 ],
 function (Graph, LineSet) {
 

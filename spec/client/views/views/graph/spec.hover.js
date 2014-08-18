@@ -1,6 +1,6 @@
 define([
-  'extensions/views/graph/hover',
-  'extensions/views/graph/graph'
+  'client/views/graph/hover',
+  'client/views/graph/graph'
 ],
 function (Hover) {
   describe('Hover Component', function () {

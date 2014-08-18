@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/stacked-linelabel',
+  'client/views/graph/stacked-linelabel',
   'extensions/collections/collection',
   'extensions/models/model'
 ],

@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/graph'
+  'client/views/graph/graph'
 ],
 function (Graph) {
   var VolumetricsCompletionGraph = Graph.extend({

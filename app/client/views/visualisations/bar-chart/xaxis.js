@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/xaxis'
+  'client/views/graph/xaxis'
 ],
 function (XAxis) {
   return XAxis.extend({

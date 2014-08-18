@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/tooltip',
+  'client/views/graph/tooltip',
   'extensions/collections/collection'
 ],
 function (Tooltip, Collection) {
