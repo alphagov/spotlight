@@ -4,6 +4,7 @@ define([
 function (Graph) {
   var VolumetricsGraph = Graph.extend({
 
+    minYDomainExtent: 1,
     numYTicks: 3,
 
     components: function () {
@@ -17,10 +18,11 @@ function (Graph) {
       };
       if (this.formatOptions && this.formatOptions.type === 'duration') {
         values.yaxis.options = {};
-        var unit = this.formatOptions.unit;
+        var self = this;
         values.yaxis.options.tickFormat = function () {
-          var format = '%-' + unit.toUpperCase() + unit;
-          return d3.time.format(format);
+          return function (v) {
+            return self.format(v, self.formatOptions);
+          };
         };
 
         values.callout.options = {};

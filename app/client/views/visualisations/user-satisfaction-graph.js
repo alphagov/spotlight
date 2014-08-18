@@ -1,18 +1,22 @@
 define([
-  'common/views/visualisations/completion_rate',
+  'client/views/visualisations/completion-rate',
   'client/views/visualisations/bar-chart/user-satisfaction',
   'common/views/visualisations/volumetrics/number',
   'extensions/collections/collection'
 ],
-function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Collection) {
-  return CompletionRateView.extend({
+function (SingleTimeseriesView, UserSatisfactionView, VolumetricsNumberView, Collection) {
+  return SingleTimeseriesView.extend({
 
     valueAttr: 'rating',
+
+    formatOptions: {
+      type: 'percent'
+    },
 
     initialize: function () {
       this.userSatisfactionCollection = new Collection(this.getBreakdown(), { format: 'integer' });
 
-      CompletionRateView.prototype.initialize.apply(this, arguments);
+      SingleTimeseriesView.prototype.initialize.apply(this, arguments);
 
       this.listenTo(this.collection, 'change:selected', this.onChangeSelected, this);
     },
@@ -25,7 +29,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     },
 
     render: function () {
-      CompletionRateView.prototype.render.apply(this, arguments);
+      SingleTimeseriesView.prototype.render.apply(this, arguments);
 
       this.populateBreakdownLabel();
 
@@ -90,7 +94,7 @@ function (CompletionRateView, UserSatisfactionView, VolumetricsNumberView, Colle
     },
 
     views: function () {
-      var views = CompletionRateView.prototype.views.apply(this, arguments);
+      var views = SingleTimeseriesView.prototype.views.apply(this, arguments);
       if (this.model.get('parent').get('page-type') === 'module') {
         views['.volumetrics-bar-selected'] = {
           view: UserSatisfactionView,

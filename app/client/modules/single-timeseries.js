@@ -1,10 +1,10 @@
 define([
   'client/controllers/module',
   'common/modules/single-timeseries',
-  'common/views/visualisations/single-timeseries'
-], function (ModuleController, SingleStackModule, SingleStackView) {
+  'client/views/visualisations/single-timeseries'
+], function (ModuleController, SingleTimeseriesModule, SingleStackView) {
 
-  return ModuleController.extend(SingleStackModule).extend({
+  return ModuleController.extend(SingleTimeseriesModule).extend({
 
     visualisationClass: SingleStackView
 
