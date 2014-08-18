@@ -7,7 +7,6 @@
   "additionalProperties" : true,
   "properties" : {
     "dashboard-title" : {"type" : "string", "required" : true},
-    "dashboard-strapline" : {"type" : "string", "required" : false},
     "dashboard-slug" : {"type" : "string", "required" : true, "pattern" : "[\\w|-]+"},
     "page-type" : {"type" : "string", "required" : true, "enumeration" : ["module"]},
     "module-type" : {"type" : "string", "required" : true, "enumeration" : ["grouped_timeseries", "completion_rate", "availability", "journey"]},

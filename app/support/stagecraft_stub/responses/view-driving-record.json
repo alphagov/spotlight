@@ -45,7 +45,6 @@
       "module-type": "grouped_timeseries",
       "title": "Digital Transactions",
       "description": "Transactions by <span class=\"group0\">driving licence number</span> and <span class=\"group1\">personal details</span> over time.",
-      "dashboard-strapline": "Service dashboard",
       "category": "pagePath",
       "value-attribute": "visitors:sum",
       "show-line-labels": true,
@@ -93,7 +92,6 @@
       "module-type": "tab",
       "title": "How users log in to the service",
       "description": "Transactions by <span class=\"group0\">driving licence number</span> and <span class=\"group1\">personal details</span> over time.",
-      "dashboard-strapline": "Service dashboard",
       "tabs": [
         {
           "slug": "user",
