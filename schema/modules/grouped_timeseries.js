@@ -23,6 +23,9 @@ module.exports = {
         'show-line-labels': {
           type: 'boolean'
         },
+        'line-label-links': {
+          type: 'boolean'
+        },
         'show-total-lines': {
           type: 'boolean'
         },
@@ -31,6 +34,16 @@ module.exports = {
         },
         'group-mapping': {
           type: 'object'
+        },
+        'currency': {
+          type: 'string',
+          required: false,
+          // This enum is wrapped inside a oneOf to get around the fact
+          // that a straight enum with required false does not work with
+          // our jsonschema library.
+          oneOf: [
+            { enum: ['gbp'] }
+          ]
         },
         axes: {
           type: 'object',

@@ -8,10 +8,11 @@
   "title": "Legal aid in criminal cases: acts of assistance",
   "department": {
     "title": "Ministry of Justice",
-    "abbr": "MoJ"
+    "abbr": "MOJ"
   },
   "agency": {
-    "title": "Legal Aid Agency"
+    "title": "Legal Aid Agency",
+    "abbr": "LAA"
   },
   "relatedPages": {
     "improve-dashboard-message": true

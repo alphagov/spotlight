@@ -128,7 +128,6 @@
       "module-type": "grouped_timeseries",
       "title": "Applications breakdown",
       "description": "<span class=\"group0\">Paper form</span> and <span class=\"group1\">digital</span> applications over time",
-      "dashboard-strapline": "Service dashboard",
       "category": "channel",
       "value-attribute": "count:sum",
       "show-line-labels": true,

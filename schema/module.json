@@ -4,18 +4,39 @@
   "properties": {
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 60,
+      "pattern": "^[-a-z0-9]+$"
     },
     "module-type": {
       "type": "string",
-      "required": true
+      "required": true,
+      "enum": [
+        "availability",
+        "bar_chart_with_number",
+        "comparison",
+        "completion_rate",
+        "grouped_timeseries",
+        "journey",
+        "kpi",
+        "list",
+        "realtime",
+        "single_timeseries",
+        "tab",
+        "table",
+        "user_satisfaction",
+        "user_satisfaction_graph"
+      ]
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 60
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": false,
+      "maxLength": 200
     },
     "info": {
       "type": "array",
@@ -26,6 +47,7 @@
     },
     "data-source": {
       "type": "object",
+      "required": true,
       "properties": {
         "data-group": {
           "type": "string",
@@ -56,8 +78,29 @@
         }
       }
     },
+    "axis-period": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        {"enum": ["day", "week", "month", "quarter"]}
+      ]
+    },
+    "date-picker": {
+      "type": "object",
+      "required": false,
+      "properties": {
+        "start-date": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        }
+      }
+    },
     "value-attribute": {
       "type": "string"
+    },
+    "classes": {
+      "type": ["array", "string"]
     }
   },
   "definitions": {

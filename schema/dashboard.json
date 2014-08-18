@@ -4,7 +4,10 @@
   "properties": {
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 2,
+      "maxLength": 90,
+      "pattern": "^[-a-z0-9]+$"
     },
     "dashboard-type": {
       "type": "string",
@@ -32,18 +35,378 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "description-extra": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 400
+    },
+    "costs": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 1500
+    },
+    "other-notes": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 700
+    },
+    "customer-type": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        { "enum": ["Business", "Individuals"] }
+      ]
+    },
+    "business-model": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        { "enum": ["Department budget", "Fees and charges", "Taxpayers"] }
+      ]
+    },
     "department": {
       "type": "object",
       "properties": {
-        "title": {
-          "type": "string",
-          "required": true
+        "title": { "type": "string" },
+        "abbr": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "title": "AGO",
+          "properties": {
+            "title": { "enum": ["Attorney General's Office"] },
+            "abbr": { "enum": ["AGO"] }
+          }
         },
-        "abbr": {
-          "type": "string",
-          "required": true
+        {
+          "title": "BIS",
+          "properties": {
+            "title": { "enum": ["Department for Business, Innovation and Skills"] },
+            "abbr": { "enum": ["BIS"] }
+          }
+        },
+        {
+          "title": "CO",
+          "properties": {
+            "title": { "enum": ["Cabinet Office"] },
+            "abbr": { "enum": ["CO"] }
+          }
+        },
+        {
+          "title": "DCLG",
+          "properties": {
+            "title": { "enum": ["Department for Communities and Local Government"] },
+            "abbr": { "enum": ["DCLG"] }
+          }
+        },
+        {
+          "title": "DCMS",
+          "properties": {
+            "title": { "enum": ["Department for Culture, Media and Sport"] },
+            "abbr": { "enum": ["DCMS"] }
+          }
+        },
+        {
+          "title": "DECC",
+          "properties": {
+            "title": { "enum": ["Department of Energy and Climate Change"] },
+            "abbr": { "enum": ["DECC"] }
+          }
+        },
+        {
+          "title": "Defra",
+          "properties": {
+            "title": { "enum": ["Department for Environment, Food and Rural Affairs"] },
+            "abbr": { "enum": ["Defra"] }
+          }
+        },
+        {
+          "title": "DFID",
+          "properties": {
+            "title": { "enum": ["Department for International Development"] },
+            "abbr": { "enum": ["DFID"] }
+          }
+        },
+        {
+          "title": "DFE",
+          "properties": {
+            "title": { "enum": ["Department for Education"] },
+            "abbr": { "enum": ["DfE"] }
+          }
+        },
+        {
+          "title": "DFT",
+          "properties": {
+            "title": { "enum": ["Department for Transport"] },
+            "abbr": { "enum": ["DFT"] }
+          }
+        },
+        {
+          "title": "DH",
+          "properties": {
+            "title": { "enum": ["Department of Health"] },
+            "abbr": { "enum": ["DH"] }
+          }
+        },
+        {
+          "title": "DPMO",
+          "properties": {
+            "title": { "enum": ["The Deputy Prime Minister's Office"] },
+            "abbr": { "enum": ["DPMO"] }
+          }
+        },
+        {
+          "title": "DWP",
+          "properties": {
+            "title": { "enum": ["Department for Work and Pensions"] },
+            "abbr": { "enum": ["DWP"] }
+          }
+        },
+        {
+          "title": "FCO",
+          "properties": {
+            "title": { "enum": ["Foreign and Commonwealth Office"] },
+            "abbr": { "enum": ["FCO"] }
+          }
+        },
+        {
+          "title": "HMRC",
+          "properties": {
+            "title": { "enum": ["HM Revenue and Customs"] },
+            "abbr": { "enum": ["HMRC"] }
+          }
+        },
+        {
+          "title": "HMT",
+          "properties": {
+            "title": { "enum": ["HM Treasury"] },
+            "abbr": { "enum": ["HMT"] }
+          }
+        },
+        {
+          "title": "Home Office",
+          "properties": {
+            "title": { "enum": ["Home Office"] },
+            "abbr": { "enum": ["Home Office"] }
+          }
+        },
+        {
+          "title": "MOD",
+          "properties": {
+            "title": { "enum": ["Ministry of Defence"] },
+            "abbr": { "enum": ["MOD"] }
+          }
+        },
+        {
+          "title": "MOJ",
+          "properties": {
+            "title": { "enum": ["Ministry of Justice"] },
+            "abbr": { "enum": ["MOJ"] }
+          }
+        },
+        {
+          "title": "NIO",
+          "properties": {
+            "title": { "enum": ["Northern Ireland Office"] },
+            "abbr": { "enum": ["NIO"] }
+          }
+        },
+        {
+          "title": "OAG",
+          "properties": {
+            "title": { "enum": ["Office of the Advocate General for Scotland"] },
+            "abbr": { "enum": ["OAG"] }
+          }
+        },
+        {
+          "title": "PMO",
+          "properties": {
+            "title": { "enum": ["Prime Minister's Office"] },
+            "abbr": { "enum": ["PMO"] }
+          }
+        },
+        {
+          "title": "SO",
+          "properties": {
+            "title": { "enum": ["Scotland Office"] },
+            "abbr": { "enum": ["SO"] }
+          }
+        },
+        {
+          "title": "UKEF",
+          "properties": {
+            "title": { "enum": ["UK Export Finance"] },
+            "abbr": { "enum": ["UKEF"] }
+          }
+        },
+        {
+          "title": "WO",
+          "properties": {
+            "title": { "enum": ["Wales Office"] },
+            "abbr": { "enum": ["WO"] }
+          }
         }
-      }
+      ]
+    },
+    "agency": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "abbr": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "title": "CH",
+          "properties": {
+            "title": { "enum": ["Companies House"] },
+            "abbr": { "enum": ["CH"] }
+          }
+        },
+        {
+          "title": "DBS",
+          "properties": {
+            "title": { "enum": ["Disclosure and Barring Service"] },
+            "abbr": { "enum": ["DBS"] }
+          }
+        },
+        {
+          "title": "DVLA",
+          "properties": {
+            "title": { "enum": ["Driver and Vehicle Licensing Agency"] },
+            "abbr": { "enum": ["DVLA"] }
+          }
+        },
+        {
+          "title": "DVSA",
+          "properties": {
+            "title": { "enum": ["Driver and Vehicle Standards Agency"] },
+            "abbr": { "enum": ["DVSA"] }
+          }
+        },
+        {
+          "title": "EA",
+          "properties": {
+            "title": { "enum": ["Environment Agency"] },
+            "abbr": { "enum": ["EA"] }
+          }
+        },
+        {
+          "title": "GDS",
+          "properties": {
+            "title": { "enum": ["Government Digital Service"] },
+            "abbr": { "enum": ["GDS"] }
+          }
+        },
+        {
+          "title": "HA",
+          "properties": {
+            "title": { "enum": ["Highways Agency"] },
+            "abbr": { "enum": ["HA"] }
+          }
+        },
+        {
+          "title": "HMCTS",
+          "properties": {
+            "title": { "enum": ["HM Courts & Tribunals Service"] },
+            "abbr": { "enum": ["HMCTS"] }
+          }
+        },
+        {
+          "title": "HMLR",
+          "properties": {
+            "title": { "enum": ["Land Registry"] },
+            "abbr": { "enum": ["HMLR"] }
+          }
+        },
+        {
+          "title": "HMPO",
+          "properties": {
+            "title": { "enum": ["HM Passport Office"] },
+            "abbr": { "enum": ["HMPO"] }
+          }
+        },
+        {
+          "title": "IPO",
+          "properties": {
+            "title": { "enum": ["Intellectual Property Office"] },
+            "abbr": { "enum": ["IPO"] }
+          }
+        },
+        {
+          "title": "LAA",
+          "properties": {
+            "title": { "enum": ["Legal Aid Agency"] },
+            "abbr": { "enum": ["LAA"] }
+          }
+        },
+        {
+          "title": "NHSBSA",
+          "properties": {
+            "title": { "enum": ["NHS Business Services Authority"] },
+            "abbr": { "enum": ["NHSBSA"] }
+          }
+        },
+        {
+          "title": "NHSBT",
+          "properties": {
+            "title": { "enum": ["NHS Blood and Transplant"] },
+            "abbr": { "enum": ["NHSBT"] }
+          }
+        },
+        {
+          "title": "NHS England",
+          "properties": {
+            "title": { "enum": ["NHS England"] },
+            "abbr": { "enum": ["NHS England"] }
+          }
+        },
+        {
+          "title": "NOMS",
+          "properties": {
+            "title": { "enum": ["National Offender Management Service"] },
+            "abbr": { "enum": ["NOMS"] }
+          }
+        },
+        {
+          "title": "OPG",
+          "properties": {
+            "title": { "enum": ["Office of the Public Guardian"] },
+            "abbr": { "enum": ["OPG"] }
+          }
+        },
+        {
+          "title": "RPA",
+          "properties": {
+            "title": { "enum": ["Rural Payments Agency"] },
+            "abbr": { "enum": ["RPA"] }
+          }
+        },
+        {
+          "title": "SFA",
+          "properties": {
+            "title": { "enum": ["Skills Funding Agency"] },
+            "abbr": { "enum": ["SFA"] }
+          }
+        },
+        {
+          "title": "SLC",
+          "properties": {
+            "title": { "enum": ["Student Loans Company"] },
+            "abbr": { "enum": ["SLC"] }
+          }
+        }
+      ]
     },
     "relatedPages": {
       "type": "object",
@@ -74,6 +437,12 @@
         "Public sector purchasing dashboard"
       ]
     },
+    "tagline": {
+      "type": "string",
+      "required": false,
+      "minLength": 1,
+      "maxLength": 400
+    },
     "modules": {
       "type": "array",
       "minItems": 1,
@@ -89,7 +458,9 @@
       "properties": {
         "title": {
           "type": "string",
-          "required": true
+          "required": true,
+          "minLength": 2,
+          "maxLength": 90
         },
         "url": {
           "type": "string",

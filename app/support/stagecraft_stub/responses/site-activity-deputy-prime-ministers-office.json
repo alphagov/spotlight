@@ -13,18 +13,18 @@
     },
     "other": [
       {
-        "title": "ODPM policies",
+        "title": "DPMO policies",
         "url": "https://www.gov.uk/government/policies?departments%5B%5D=deputy-prime-ministers-office"
       },
       {
-        "title": "ODPM publications",
+        "title": "DPMO publications",
         "url": "https://www.gov.uk/government/publications?departments%5B%5D=deputy-prime-ministers-office"
       }
     ]
   },
   "department": {
     "title": "The Deputy Prime Minister's Office",
-    "abbr": "ODPM"
+    "abbr": "DPMO"
   },
   "modules": [
     {

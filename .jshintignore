@@ -21,5 +21,4 @@ log/**
 LICENSE
 _SpecRunner.html
 spec/requirejs-setup.js
-spec/module-schema.json
 spec/client/preprocessors/transparent.gif

@@ -124,7 +124,6 @@
         "Bulk software: Renewals made using the bulk electronic filing method",
         "Paper form: applications made using paper form and those received by fax"
       ],
-      "dashboard-strapline": "Service dashboard",
       "category": "channel",
       "value-attribute": "count:sum",
       "show-line-labels": true,

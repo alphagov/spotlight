@@ -58,6 +58,10 @@ var testDirectory = function (fileGlob) {
             schema = require('../schema/module');
           }
 
+          if (_.keys(schema).length === 0) {
+            throw 'Schema for ' + module['module-type'] + ' module contains no keys. Aborting.';
+          }
+
           var result = v.validate(module, schema);
 
           if (result.errors.length > 0) {

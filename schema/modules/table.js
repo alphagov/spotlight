@@ -4,19 +4,12 @@ var _ = require('lodash');
 moduleSchema = _.cloneDeep(moduleSchema);
 
 _.extend(moduleSchema.properties, {
-  'denominator-matcher': {
+  'sort-order': {
     type: 'string',
-    required: true
+    required: true,
+    enum: ['ascending', 'descending']
   },
-  'numerator-matcher': {
-    type: 'string',
-    required: true
-  },
-  'matching-attribute': {
-    type: 'string',
-    required: true
-  },
-  'value-attribute': {
+  'sort-by': {
     type: 'string',
     required: true
   }

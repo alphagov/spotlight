@@ -11,7 +11,8 @@
     "abbr": "DH"
   },
   "agency": {
-    "title": "NHS England"
+    "title": "NHS England",
+    "abbr": "NHS England"
   },
   "relatedPages": {
     "improve-dashboard-message": true

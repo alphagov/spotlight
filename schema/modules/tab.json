@@ -8,10 +8,13 @@
     },
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 30,
+      "pattern": "^[-a-z0-9]+$"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 200
     },
     "tabs": {
       "type": "array",
@@ -21,7 +24,9 @@
         "properties": {
           "slug": {
             "type": "string",
-            "required": true
+            "required": true,
+            "maxLength": 30,
+            "pattern": "^[-a-z0-9]+$"
           }
         }
       }
