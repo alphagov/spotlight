@@ -14,6 +14,9 @@ define([
       _.defaults(options, {
         format: 'D MMMM YYYY'
       });
+      if (_.isArray(value)) {
+        return formatters.dateRange(value, options);
+      }
       var date = moment(value).local();
       var val;
       if (options.calendar) {

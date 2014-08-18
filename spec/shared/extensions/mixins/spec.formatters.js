@@ -82,6 +82,14 @@ define([
         expect(Formatters.format(dateStr, { type: 'date', calendar: true })).toEqual('11 Mar 2014');
       });
 
+      it('returns a date range if passed an array of values', function () {
+        var input = [
+          new Date('2014-01-01T00:00:00Z'),
+          new Date('2014-01-08T00:00:00Z')
+        ];
+        expect(Formatters.format(input, 'date')).toEqual('1 to 7 January 2014');
+      });
+
     });
 
     describe('dateRange', function () {
