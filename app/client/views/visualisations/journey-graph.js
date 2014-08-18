@@ -3,7 +3,7 @@ define([
   'client/views/visualisations/bar-chart/xaxis',
   'client/views/visualisations/bar-chart/bar',
   './journey-graph/callout',
-  'extensions/views/graph/hover'
+  'client/views/graph/hover'
 ],
 function (BarChart, XAxis, Bar, Callout, Hover) {
   var JourneyGraph = BarChart.extend({

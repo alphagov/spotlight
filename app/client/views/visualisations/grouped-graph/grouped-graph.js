@@ -1,6 +1,6 @@
 define([
-  'extensions/views/graph/graph',
-  'extensions/views/graph/linelabel'
+  'client/views/graph/graph',
+  'client/views/graph/linelabel'
 ],
 function (Graph, LineLabel) {
   return Graph.extend({

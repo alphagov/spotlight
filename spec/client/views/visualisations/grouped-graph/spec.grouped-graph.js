@@ -2,7 +2,7 @@ define([
   'client/views/visualisations/grouped-graph/grouped-graph',
   'extensions/collections/collection',
   'extensions/models/model',
-  'extensions/views/graph/linelabel'
+  'client/views/graph/linelabel'
 ], function (Graph, Collection, Model, LineLabel) {
 
   describe('Grouped Graph', function () {

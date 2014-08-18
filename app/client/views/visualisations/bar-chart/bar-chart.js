@@ -1,8 +1,8 @@
 define([
-  'extensions/views/graph/graph',
+  'client/views/graph/graph',
   './xaxis',
   './bar',
-  'extensions/views/graph/hover'
+  'client/views/graph/hover'
 ],
 function (Graph, XAxis, Bar, Hover) {
   var BarChartGraph = Graph.extend({

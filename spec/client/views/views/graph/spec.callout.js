@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/callout',
+  'client/views/graph/callout',
   'extensions/models/model'
 ],
 function (Callout, Model) {

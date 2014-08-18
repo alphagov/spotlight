@@ -1,6 +1,6 @@
 define([
-  'extensions/views/graph/yaxis',
-  'extensions/views/graph/graph',
+  'client/views/graph/yaxis',
+  'client/views/graph/graph',
   'extensions/collections/collection'
 ],
 function (YAxis, Graph, Collection) {

@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/line',
+  'client/views/graph/line',
   'extensions/collections/collection'
 ],
 function (Line, Collection) {

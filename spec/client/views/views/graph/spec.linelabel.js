@@ -1,5 +1,5 @@
 define([
-  'extensions/views/graph/linelabel',
+  'client/views/graph/linelabel',
   'extensions/collections/collection',
   'extensions/models/model'
 ],
