@@ -112,7 +112,7 @@
             "_end_at"
           ],
           "format": {
-            "type": "date",
+            "type": "dateRange",
             "format": "MMMM YYYY"
           }
         },
