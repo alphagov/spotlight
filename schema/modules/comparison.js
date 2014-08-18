@@ -4,21 +4,22 @@ var _ = require('lodash');
 moduleSchema = _.cloneDeep(moduleSchema);
 
 _.extend(moduleSchema.properties, {
-  'denominator-matcher': {
+  category: {
     type: 'string',
     required: true
   },
-  'numerator-matcher': {
-    type: 'string',
-    required: true
-  },
-  'matching-attribute': {
-    type: 'string',
+  comparison: {
+    type: 'array',
     required: true
   },
   'value-attribute': {
-    type: 'string',
-    required: true
+    type: 'string'
+  },
+  'show-line-labels': {
+    type: 'boolean'
+  },
+  'use_stack': {
+    type: 'boolean'
   }
 });
 

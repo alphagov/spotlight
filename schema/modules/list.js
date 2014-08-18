@@ -4,19 +4,15 @@ var _ = require('lodash');
 moduleSchema = _.cloneDeep(moduleSchema);
 
 _.extend(moduleSchema.properties, {
-  'denominator-matcher': {
+  'label-attr': {
     type: 'string',
     required: true
   },
-  'numerator-matcher': {
+  'label-regex': {
     type: 'string',
     required: true
   },
-  'matching-attribute': {
-    type: 'string',
-    required: true
-  },
-  'value-attribute': {
+  'link-attr': {
     type: 'string',
     required: true
   }
