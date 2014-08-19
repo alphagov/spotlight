@@ -1,17 +1,14 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('common/views/visualisations/availability');
-var template = requirejs('stache!common/templates/visualisations/availability');
+var templatePath = path.resolve(__dirname, '../../templates/modules/availability.html');
+var templater = require('../../mixins/templater');
 
-module.exports = View.extend({
+module.exports = View.extend(templater).extend({
 
-  template: template,
+  templatePath: templatePath,
 
-  views: function () {
-    var views = View.prototype.views.apply(this, arguments);
-    delete views['.uptime-graph'];
-    delete views['.response-time-graph'];
-    return views;
-  }
+  templateType: 'mustache'
 
 });

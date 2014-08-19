@@ -1,9 +1,9 @@
 define([
-  'common/views/visualisations/grouped-graph/stacked-graph',
+  'client/views/visualisations/grouped-graph/stacked-graph',
   'common/collections/grouped_timeseries',
-  'extensions/views/graph/stack-set',
-  'extensions/views/graph/stacked-linelabel',
-  'extensions/views/graph/graph',
+  'client/views/graph/stack-set',
+  'client/views/graph/stacked-linelabel',
+  'client/views/graph/graph',
   'extensions/models/model'
 ],
 function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {

@@ -1,8 +1,7 @@
-var requirejs = require('requirejs');
+var path = require('path');
 
 var View = require('./govuk');
-var template = requirejs('tpl!common/templates/prototypes.html');
-
+var templatePath = path.resolve(__dirname, '../templates/prototypes.html');
 
 module.exports = View.extend({
 
@@ -15,7 +14,7 @@ module.exports = View.extend({
   },
 
   getContent: function () {
-    return template(this.model.toJSON());
+    return this.loadTemplate(templatePath, this.model.toJSON());
   }
 
 });

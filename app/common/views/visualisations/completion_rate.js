@@ -1,12 +1,9 @@
 define([
   'extensions/views/view',
-  'common/views/visualisations/volumetrics/number',
-  'common/views/visualisations/volumetrics/completion-graph'
+  'common/views/visualisations/volumetrics/number'
 ],
-function (View, VolumetricsNumberView, CompletionGraphView) {
+function (View, VolumetricsNumberView) {
   return View.extend({
-
-    graphView: CompletionGraphView,
 
     views: function () {
       return {
@@ -15,12 +12,6 @@ function (View, VolumetricsNumberView, CompletionGraphView) {
           options: {
             valueAttr: this.valueAttr,
             formatOptions: 'percent'
-          }
-        },
-        '.volumetrics-completion': {
-          view: this.graphView,
-          options: {
-            valueAttr: this.valueAttr
           }
         }
       };

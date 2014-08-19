@@ -1,5 +1,5 @@
 define([
-  'common/views/visualisations/user-satisfaction-graph',
+  'client/views/visualisations/user-satisfaction-graph',
   'common/views/visualisations/completion_rate',
   'common/collections/user-satisfaction',
   'extensions/models/model'

@@ -1,11 +1,11 @@
-var requirejs = require('requirejs');
+var path = require('path');
 
 var View = require('./completion_rate');
-var template = requirejs('stache!common/templates/visualisations/user-satisfaction-graph');
+var templatePath = path.resolve(__dirname, '../../templates/modules/user-satisfaction-graph.html');
 
 module.exports = View.extend({
 
-  template: template,
+  templatePath: templatePath,
 
   templateContext: function () {
     return {

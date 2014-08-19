@@ -1,0 +1,11 @@
+<ol>
+  {{#items}}
+  <li>
+    {{#href}}<a href="{{href}}" title="{{{label}}}">{{{label}}}</a>{{/href}}
+    {{^href}}{{{label}}}{{/href}}
+  </li>
+  {{/items}}
+</ol>
+{{^items}}
+  <span class="no-data">(no data)</span>
+{{/items}}

@@ -1,17 +1,16 @@
-var requirejs = require('requirejs');
+var path = require('path');
 
 var View = require('./govuk');
-var template = requirejs('tpl!common/templates/error.html');
+
+var templatePath = path.resolve(__dirname, '../templates/error.html');
 
 module.exports = View.extend({
-
-  contentTemplate: template,
 
   getContent: function () {
     var status = this.model.get('status');
     var context = this.errors[status] || this.errors['500'];
     context.model = this.model;
-    return this.contentTemplate(context);
+    return this.loadTemplate(templatePath, context);
   },
 
   errors: {
