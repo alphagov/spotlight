@@ -20,6 +20,7 @@ var renderContent = function (req, res, model) {
     if (model.get('published') !== true) {
       res.set('X-Robots-Tag', 'none');
     }
+    req['spotlight-dashboard-slug'] = model.get('slug');
     res.send(controller.html);
   });
 

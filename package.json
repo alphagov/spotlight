@@ -51,6 +51,7 @@
     "mustache": "0.8.2",
     "node-basicauth": "0.0.9",
     "node-sass": "0.9.3",
+    "node-statsd": "0.0.7",
     "optimist": "0.6.1",
     "q": "1.0.1",
     "requirejs": "2.1.14",

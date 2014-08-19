@@ -4,5 +4,6 @@
   "backdropUrl": "https://www.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
   "screenshotTargetUrl": "http://localhost:3057",
   "screenshotServiceUrl": "http://localhost:3060",
-  "govukHost": "www.alphagov.co.uk"
+  "govukHost": "www.alphagov.co.uk",
+  "statsdPrefix": "pp.apps.spotlight"
 }
