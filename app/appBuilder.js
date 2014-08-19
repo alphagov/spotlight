@@ -19,6 +19,7 @@ module.exports = {
     app.disable('x-powered-by');
 
     (function () {
+      app.use(require('./stats'));
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);
