@@ -166,6 +166,58 @@
           }
         }
       ]
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "performance-platform",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "performance-platform",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
+            }
+          }
+        }
+      ]
     }
   ]
 }
