@@ -1,8 +1,8 @@
 define([
-  'extensions/views/single_stat',
+  'common/views/visualisations/volumetrics/number',
   'extensions/collections/collection'
-], function (SingleStatView, Collection) {
-  describe('SingleStatView', function () {
+], function (NumberView, Collection) {
+  describe('NumberView', function () {
 
     var collectionOptions = {
       checkName: 'anything',
@@ -17,9 +17,9 @@ define([
         var view, collection;
 
         beforeEach(function () {
-          spyOn(SingleStatView.prototype, 'render');
+          spyOn(NumberView.prototype, 'render');
           collection = new Collection();
-          view = new SingleStatView({
+          view = new NumberView({
             collection: collection
           });
         });
@@ -39,176 +39,105 @@ define([
           expect(view.render).toHaveBeenCalled();
         });
 
-        describe('changeOnSelected', function () {
-
-          it('should not listen to change:selected by default', function () {
-            collection.trigger('change:selected');
-            expect(view.render).not.toHaveBeenCalled();
-          });
-
-          it('should listen to change:selected when changeOnSelected is true', function () {
-            view.changeOnSelected = true;
-            view.initialize();
-
-            collection.trigger('change:selected');
-            expect(view.render).toHaveBeenCalled();
-          });
-
+        it('renders on change:selected', function () {
+          collection.trigger('change:selected');
+          expect(view.render).toHaveBeenCalled();
         });
-      });
-    });
 
-    describe('onChangeSelected', function () {
-
-      var view, collection;
-
-      beforeEach(function () {
-        spyOn(SingleStatView.prototype, 'render');
-        collection = new Collection();
-        view = new SingleStatView({
-          collection: collection
-        });
-      });
-
-      it('calls render', function () {
-        view.onChangeSelected();
-        expect(view.render).toHaveBeenCalled();
-      });
-    });
-
-    describe('extracting the stat from the collection', function () {
-
-      var stubCollection = {
-        on: function () {},
-        getValue: function () { return 5; },
-        getCurrentSelection: function () {
-          return {
-            selectedModel: null,
-            selectedModelIndex: null
-          };
-        }
-      };
-
-      it('Should try to get a value from a collection', function () {
-        spyOn(stubCollection, 'getValue').andCallThrough();
-        var view = new SingleStatView({
-          collection: stubCollection,
-          getValue: function () { return this.collection.getValue(); }
-        });
-        jasmine.renderView(view, function () {
-          expect(stubCollection.getValue).toHaveBeenCalled();
-          expect(view.$el.html()).toEqual('<strong>5</strong>');
-        });
       });
     });
 
     it('should display calculated value in a strong tag by default', function () {
       var collection = new Collection([{
-        'foo': 'bar'
+        'foo': 6
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        }
+        valueAttr: 'foo'
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<strong>bar</strong>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<strong>6</strong>');
     });
 
     it('should display calculated value in a custom wrapping tag when configured', function () {
       var collection = new Collection([{
-        'foo': 'bar'
+        'foo': 6
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         valueTag: 'em',
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        }
+        valueAttr: 'foo'
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<em>bar</em>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<em>6</em>');
+
     });
 
     it('should display calculated value without a wrapping tag when configured', function () {
       var collection = new Collection([{
-        'foo': 'bar'
+        'foo': 6
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         valueTag: '',
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        }
+        valueAttr: 'foo'
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('bar');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('6');
+
     });
 
     it('should display calculated value and label', function () {
       var collection = new Collection([{
-        'foo': 'bar'
+        'foo': 6
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        },
+        valueAttr: 'foo',
         getLabel: function () {
           return 'label';
         }
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>6</strong>');
     });
 
     it('should not display different values when the selection changes by default', function () {
       var collection = new Collection([{
-        'foo': 'bar'
+        'foo': 6
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        },
+        valueAttr: 'foo',
         getLabel: function () {
           return 'label';
         }
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
-        collection.selectItem(0);
-        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>6</strong>');
+      collection.selectItem(0);
+      expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>6</strong>');
     });
 
     it('should display different values when the selection changes when configured', function () {
       var collection = new Collection([{
-        foo: 'bar',
+        foo: 6,
         a: 'b'
       }], collectionOptions);
 
-      var view = new SingleStatView({
-        changeOnSelected: true,
+      var view = new NumberView({
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        },
+        valueAttr: 'foo',
         getLabel: function () {
           return 'label';
         },
@@ -220,13 +149,12 @@ define([
         }
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
-        collection.selectItem(0);
-        expect(view.$el.html()).toEqual('<span class="summary">selected</span><strong>b</strong>');
-        collection.selectItem(null);
-        expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>bar</strong>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>6</strong>');
+      collection.selectItem(0);
+      expect(view.$el.html()).toEqual('<span class="summary">selected</span><strong>b</strong>');
+      collection.selectItem(null);
+      expect(view.$el.html()).toEqual('<span class="summary">label</span><strong>6</strong>');
     });
 
     it('should display (no data) when data is missing', function () {
@@ -234,16 +162,13 @@ define([
         'foo': null
       }], collectionOptions);
 
-      var view = new SingleStatView({
+      var view = new NumberView({
         collection: collection,
-        getValue: function () {
-          return this.collection.first().get('foo');
-        }
+        valueAttr: 'foo'
       });
 
-      jasmine.renderView(view, function () {
-        expect(view.$el.html()).toEqual('<span class="no-data">(no data)</span>');
-      });
+      view.render();
+      expect(view.$el.html()).toEqual('<span class="no-data">(no data)</span>');
     });
   });
 });

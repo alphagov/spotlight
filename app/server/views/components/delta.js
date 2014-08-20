@@ -1,6 +1,6 @@
 var requirejs = require('requirejs');
 
-var SingleStatView = requirejs('extensions/views/single_stat');
+var SingleStatView = requirejs('common/views/visualisations/volumetrics/number');
 
 
 module.exports = SingleStatView.extend({

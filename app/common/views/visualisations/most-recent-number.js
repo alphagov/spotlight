@@ -1,5 +1,5 @@
 define([
-  'extensions/views/single_stat'
+  'common/views/visualisations/volumetrics/number'
 ],
 function (SingleStatView) {
   var MostRecentNumberView = SingleStatView.extend({
