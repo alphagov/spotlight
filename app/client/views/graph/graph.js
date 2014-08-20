@@ -55,9 +55,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
         this.componentInstances.push(new definition.view(options));
       }, this);
 
-      if (isClient) {
-        $(window).on('resize.' + this.cid, _.bind(this.render, this));
-      }
+      $(window).on('resize.' + this.cid, _.bind(this.render, this));
     },
 
     /**
@@ -367,9 +365,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       }
       _.invoke(this.componentInstances, 'remove');
       this.componentInstances = [];
-      if (isClient) {
-        $(window).off('resize.' + this.cid);
-      }
+      $(window).off('resize.' + this.cid);
       return View.prototype.remove.apply(this, arguments);
     },
 
