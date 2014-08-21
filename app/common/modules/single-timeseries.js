@@ -18,7 +18,7 @@ function (Collection) {
           x: {
             label: 'Date of Application',
             key: ['_start_at', '_end_at'],
-            format: 'dateRange'
+            format: 'date'
           },
           y: [
             {

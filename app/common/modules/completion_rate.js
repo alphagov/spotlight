@@ -19,7 +19,7 @@ function (CompletionRateCollection) {
           x: {
             label: 'Date of completion',
             key: ['_start_at', '_end_at'],
-            format: 'dateRange'
+            format: 'date'
           },
           y: [
             {
