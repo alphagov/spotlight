@@ -15,7 +15,7 @@ define([
         format: 'D MMMM YYYY'
       });
       if (_.isArray(value)) {
-        return formatters.dateRange(value, options);
+        return dateRangeFormatter(value, options);
       }
       var date = moment(value).local();
       var val;
@@ -25,42 +25,6 @@ define([
         val = date.format(options.format);
       }
       return val;
-    },
-
-    dateRange: function (value, options) {
-      _.defaults(options, {
-        format: 'D MMM YYYY',
-        subtract: 'day'
-      });
-      // avoid overlapping at the ends of a range i.e. 1 Mar-1 Apr => 1 Mar-31 Mar
-      if (options.subtract) {
-        value[1] = moment(value[1]).subtract(options.subtract, 1);
-      }
-
-      var start = formatters.date(value[0], options);
-      var end = formatters.date(value[1], options);
-
-      if (start === end) {
-        return end;
-      } else {
-        var startOptions = _.clone(options);
-        // need to prevent stripping formats like DD/MM/YYYY etc
-        if (options.format.match(/^[DMY ]+$/)) {
-          var y1 = formatters.date(value[0], _.extend({}, options, { format: 'YYYY' }));
-          var y2 = formatters.date(value[1], _.extend({}, options, { format: 'YYYY' }));
-          if (y1 === y2) {
-            startOptions.format = startOptions.format.replace(/[Y]+ ?/, '');
-          }
-          var m1 = formatters.date(value[0], _.extend({}, options, { format: 'MMM YYYY' }));
-          var m2 = formatters.date(value[1], _.extend({}, options, { format: 'MMM YYYY' }));
-          if (m1 === m2) {
-            startOptions.format = startOptions.format.replace(/[M]+ ?/, '');
-          }
-          startOptions.format = startOptions.format.trim();
-        }
-        return formatters.date(value[0], startOptions) + ' to ' +
-          end;
-      }
     },
 
     duration: function (value, options) {
@@ -329,6 +293,42 @@ define([
       return this.format(value, _.clone(props));
     }, this);
 
+  };
+
+  var dateRangeFormatter = function(value, options) {
+    _.defaults(options, {
+      format: 'D MMM YYYY',
+      subtract: 'day'
+    });
+    // avoid overlapping at the ends of a range i.e. 1 Mar-1 Apr => 1 Mar-31 Mar
+    if (options.subtract) {
+      value[1] = moment(value[1]).subtract(options.subtract, 1);
+    }
+
+    var start = formatters.date(value[0], options);
+    var end = formatters.date(value[1], options);
+
+    if (start === end) {
+      return end;
+    } else {
+      var startOptions = _.clone(options);
+      // need to prevent stripping formats like DD/MM/YYYY etc
+      if (options.format.match(/^[DMY ]+$/)) {
+        var y1 = formatters.date(value[0], _.extend({}, options, { format: 'YYYY' }));
+        var y2 = formatters.date(value[1], _.extend({}, options, { format: 'YYYY' }));
+        if (y1 === y2) {
+          startOptions.format = startOptions.format.replace(/[Y]+ ?/, '');
+        }
+        var m1 = formatters.date(value[0], _.extend({}, options, { format: 'MMM YYYY' }));
+        var m2 = formatters.date(value[1], _.extend({}, options, { format: 'MMM YYYY' }));
+        if (m1 === m2) {
+          startOptions.format = startOptions.format.replace(/[M]+ ?/, '');
+        }
+        startOptions.format = startOptions.format.trim();
+      }
+      return formatters.date(value[0], startOptions) + ' to ' +
+        end;
+    }
   };
 
   return {

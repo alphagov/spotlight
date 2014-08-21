@@ -90,21 +90,17 @@ define([
         expect(Formatters.format(input, 'date')).toEqual('1 to 7 January 2014');
       });
 
-    });
-
-    describe('dateRange', function () {
-
       it('outputs a range with the default date formatting', function () {
         var range = [new Date('2014-03-11T00:00:00.000Z'),
                      new Date('2014-03-18T00:00:00.000Z')];
-        expect(Formatters.format(range, 'dateRange'))
-          .toEqual('11 to 17 Mar 2014');
+        expect(Formatters.format(range, 'date'))
+          .toEqual('11 to 17 March 2014');
       });
 
       it('outputs a range with the custom date formatting', function () {
         var range = [new Date('2014-03-11T00:00:00.000Z'),
                      new Date('2014-03-18T00:00:00.000Z')];
-        expect(Formatters.format(range, { type: 'dateRange', format: 'DD/MM/YY' }))
+        expect(Formatters.format(range, { type: 'date', format: 'DD/MM/YY' }))
           .toEqual('11/03/14 to 17/03/14');
       });
 
