@@ -114,7 +114,7 @@
             "_end_at"
           ],
           "format": {
-            "type": "dateRange",
+            "type": "date",
             "format": "D MMM YYYY"
           }
         },
@@ -168,7 +168,7 @@
             "_start_at",
             "_end_at"
           ],
-          "format": "dateRange"
+          "format": "date"
         },
         "y": [
           {

@@ -19,7 +19,7 @@ function (Collection) {
           x: {
             label: 'Dates',
             key: ['_start_at', 'end_at'],
-            format: 'dateRange'
+            format: 'date'
           },
           y: [
             {

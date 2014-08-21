@@ -45,7 +45,7 @@
       "axes": {
         "x": {
           "label": "Date",
-          "format": "dateRange",
+          "format": "date",
           "key": [
             "_start_at",
             "_end_at"
@@ -170,7 +170,7 @@
             "_start_at",
             "_end_at"
           ],
-          "format": "dateRange"
+          "format": "date"
         },
         "y": [
           {

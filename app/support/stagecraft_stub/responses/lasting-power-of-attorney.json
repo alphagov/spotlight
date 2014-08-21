@@ -51,7 +51,7 @@
             "_start_at",
             "_end_at"
           ],
-          "format": "dateRange"
+          "format": "date"
         },
         "y": [
           {
@@ -98,7 +98,7 @@
             "_start_at",
             "_end_at"
           ],
-          "format": "dateRange"
+          "format": "date"
         },
         "y": [
           {

@@ -153,7 +153,6 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       };
 
       if (end && (period === 'week' || period === 'quarter')) {
-        options.type = 'dateRange';
         return this.format([start, end], options);
       } else {
         return this.format(start, options);
