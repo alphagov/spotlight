@@ -56,7 +56,7 @@
             "_end_at"
           ],
           "format": {
-            "type": "dateRange",
+            "type": "date",
             "format": "D MMM YYYY"
           }
         },
