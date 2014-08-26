@@ -97,6 +97,46 @@
           "group_by": "channel"
         }
       }
+    },
+    {
+      "slug": "digital-takeup-by-demographic",
+      "module-type": "completion_table",
+      "title": "Digital take-up by user demographic",
+      "denominator-matcher": "^(.)*$",
+      "numerator-matcher": "^online$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "category": "borrower_category",
+      "sort-by": "completion",
+      "sort-order": "ascending",
+      "axes": {
+        "x": {
+          "label": "User demographic",
+          "key": "borrower_category",
+          "format": "sentence"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "warwickshire-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": [
+            "borrower_category",
+            "channel"
+          ]
+        }
+      }
     }
   ]
 }

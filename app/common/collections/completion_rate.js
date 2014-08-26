@@ -9,15 +9,16 @@ define([
     },
 
     parse: function (response) {
-
-      var periods = 0,
-          values = [];
-
+      var values = [];
       if (response.data && response.data.length > 0 && response.data[0].values) {
-        periods = response.data[0].values.length;
+        values = this.calculateCompletion(response.data);
       }
-      _.times(periods, function (i) {
-        var totals = _.reduce(response.data, function (memo, d) {
+      return values;
+    },
+
+    calculateCompletion: function (dataset) {
+      return _.map(dataset[0].values, function (model, i) {
+        var totals = _.reduce(dataset, function (memo, d) {
           if (d.values[i][this.valueAttr] !== null) {
             if (d[this.matchingAttribute].match(this.denominatorMatcher) !== null) {
               memo.start += d.values[i][this.valueAttr];
@@ -30,16 +31,14 @@ define([
         }, {start: null, end: null}, this);
 
         var value = {
-          _start_at: this.getMoment(response.data[0].values[i]._start_at),
-          _end_at: this.getMoment(response.data[0].values[i]._end_at),
+          _start_at: this.getMoment(model._start_at),
+          _end_at: this.getMoment(model._end_at),
           _start: totals.start,
           _end: totals.end
         };
-        values.push(_.extend(this.defaultValueAttrs(value), value));
+        return _.extend(this.defaultValueAttrs(value), value);
 
       }, this);
-
-      return values;
     },
 
     mean: function (attr) {

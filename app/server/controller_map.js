@@ -5,6 +5,7 @@ var AvailabilityModule            = require('./modules/availability');
 var BarChartWithNumberModule      = require('./modules/bar_chart_with_number');
 var ComparisonModule              = require('./modules/comparison');
 var CompletionRateModule          = require('./modules/completion_rate');
+var CompletionTableModule         = require('./modules/completion-table');
 var GroupedTimeseriesModule       = require('./modules/grouped_timeseries');
 var JourneyModule                 = require('./modules/journey');
 var KPIModule                     = require('./modules/kpi');
@@ -25,6 +26,7 @@ module.exports = function () {
       bar_chart_with_number:  BarChartWithNumberModule,
       comparison:             ComparisonModule,
       completion_rate:        CompletionRateModule,
+      completion_table:       CompletionTableModule,
       grouped_timeseries:     GroupedTimeseriesModule,
       journey:                JourneyModule,
       kpi:                    KPIModule,
