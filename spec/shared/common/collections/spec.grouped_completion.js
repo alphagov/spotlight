@@ -200,6 +200,62 @@ define([
 
         });
 
+        it('strips leading and trailing whitespace from category names', function () {
+
+          input.data.push({
+            demographic: 'Test',
+            channel: 'digital',
+            values: [
+              {
+                _start_at: '2014-10-01T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-02T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-03T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-04T00:00:00Z',
+                count: 50
+              }
+            ]
+          },
+          {
+            demographic: ' Test ',
+            channel: 'other',
+            values: [
+              {
+                _start_at: '2014-10-01T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-02T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-03T00:00:00Z',
+                count: 50
+              },
+              {
+                _start_at: '2014-10-04T00:00:00Z',
+                count: 50
+              }
+            ]
+          });
+
+          var output = collection.parse(input);
+
+          expect(output.length).toEqual(3);
+
+          expect(output[2].demographic).toEqual('Test');
+          expect(output[2].completion).toEqual(0.5);
+
+        });
+
 
       });
 
