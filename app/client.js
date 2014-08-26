@@ -3,7 +3,7 @@ require(['config'], function (requireConfig) {
   window.isClient = true;
   window.isServer = false;
 
-  require(['client/client_bootstrap'], function (bootstrap) {
+  require(['client/client_bootstrap', 'client/logger'], function (bootstrap) {
     bootstrap(GOVUK.config);
   });
 });
