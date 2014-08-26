@@ -1,0 +1,22 @@
+{
+  "slug": "warwickshire-library-item-renewals",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Warwickshire library book renewals",
+  "department": {
+    "title": "Warwickshire County Council"
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "relatedPages": {
+    "transaction": {
+      "title": "Warwickshire library service",
+      "url": "http://www.warwickshire.gov.uk/renew"
+    }
+  },
+  "modules": [
+
+  ]
+}
