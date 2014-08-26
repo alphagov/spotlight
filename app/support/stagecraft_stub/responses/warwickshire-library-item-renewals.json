@@ -17,6 +17,86 @@
     }
   },
   "modules": [
-
+    {
+      "slug": "transactions-by-channel",
+      "title": "Book renewals breakdown",
+      "description": "Which channels are used to make book renewals",
+      "module-type": "grouped_timeseries",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "axes": {
+        "y": [
+          {
+            "label": "Online",
+            "groupId": "online",
+            "format": "integer"
+          },
+          {
+            "label": "Self-scan",
+            "groupId": "selfscan",
+            "format": "integer"
+          },
+          {
+            "label": "Face to face",
+            "groupId": "staff",
+            "format": "integer"
+          },
+          {
+            "label": "Automated phone",
+            "groupId": "automated phone",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "warwickshire-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ],
+          "period": "week"
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "Proportion of applications made using the digital service",
+      "denominator-matcher": "^(.)*$",
+      "numerator-matcher": "^online$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "warwickshire-local-authority",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "collect": [
+            "count:sum"
+          ],
+          "group_by": "channel"
+        }
+      }
+    }
   ]
 }
