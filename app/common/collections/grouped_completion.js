@@ -20,8 +20,8 @@ define([
           }, o);
         }, this);
 
-        data = _.filter(data, function (d) {
-          return d[this.options.category];
+        data = _.filter(data, function (group) {
+          return group[this.options.category];
         }, this);
 
         return Collection.prototype.parse.call(this, { data: data });

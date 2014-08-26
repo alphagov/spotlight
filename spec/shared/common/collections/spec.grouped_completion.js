@@ -144,6 +144,62 @@ define([
 
         });
 
+        it('filters out empty categories', function () {
+
+          input.data.push({
+            demographic: '',
+            channel: 'digital',
+            values: [
+              {
+                _start_at: '2014-10-01T00:00:00Z',
+                count: 5
+              },
+              {
+                _start_at: '2014-10-02T00:00:00Z',
+                count: 10
+              },
+              {
+                _start_at: '2014-10-03T00:00:00Z',
+                count: 15
+              },
+              {
+                _start_at: '2014-10-04T00:00:00Z',
+                count: 20
+              }
+            ]
+          },
+          {
+            demographic: '',
+            channel: 'other',
+            values: [
+              {
+                _start_at: '2014-10-01T00:00:00Z',
+                count: 20
+              },
+              {
+                _start_at: '2014-10-02T00:00:00Z',
+                count: 15
+              },
+              {
+                _start_at: '2014-10-03T00:00:00Z',
+                count: 10
+              },
+              {
+                _start_at: '2014-10-04T00:00:00Z',
+                count: 5
+              }
+            ]
+          });
+
+          var output = collection.parse(input);
+
+          expect(output.length).toEqual(2);
+
+          expect(output[0].demographic).toEqual('18-35');
+          expect(output[1].demographic).toEqual('36-50');
+
+        });
+
 
       });
 
