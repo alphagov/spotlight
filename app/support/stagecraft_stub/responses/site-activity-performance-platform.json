@@ -11,6 +11,87 @@
   },
   "modules": [
     {
+      "slug": "traffic-to-department-content",
+      "module-type": "tab",
+      "title": "Site traffic",
+      "info": [
+        "Data source: Google Analytics",
+        "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday).",
+        "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+        "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+      ],
+      "tabs": [
+        {
+          "slug": "visitors",
+          "module-type": "single_timeseries",
+          "title": "Visitors",
+          "description": "",
+          "info": [
+            "Data source: Google Analytics",
+            "These show visitors to content and pageviews each week for the last 9 full weeks (Monday to Sunday). ",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. The metrics only include the content in the departments and policy section of the site. These metrics may be based on sampled data."
+          ],
+          "value-attribute": "visitors:sum",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of visitors"
+              }
+            ]
+          },
+          "axis-period": "week",
+          "data-source": {
+            "data-group": "performance-platform",
+            "data-type": "traffic-count",
+            "query-params": {
+              "period": "week",
+              "collect": [
+                "visitors:sum"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "pageviews",
+          "module-type": "single_timeseries",
+          "title": "Pageviews",
+          "description": "",
+          "info": [
+            "Data source: Google Analytics",
+            "Weekly data for the last 9 full weeks (Monday to Sunday).",
+            "‘Pageviews’ is the total number of pages viewed; repeated views of a single page are counted. Visitors may be accessing the site through multiple devices or have deleted cookies, so may be counted more than once.",
+            "A department’s content is defined as the pages that a department publishes. Only includes the content in the Departments and policy section of the site and may be based on sampled data."
+          ],
+          "value-attribute": "pageviews:sum",
+          "axes": {
+            "x": {
+              "label": "Date"
+            },
+            "y": [
+              {
+                "label": "Number of pageviews"
+              }
+            ]
+          },
+          "axis-period": "week",
+          "data-source": {
+            "data-group": "performance-platform",
+            "data-type": "traffic-count",
+            "query-params": {
+              "period": "week",
+              "collect": [
+                "pageviews:sum"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
       "slug": "live-service-usage",
       "module-type": "realtime",
       "title": "How many users online now",
