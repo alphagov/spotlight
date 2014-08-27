@@ -188,6 +188,20 @@ function (Table, View, Collection, $) {
         expect(table.collection.sortByAttr).toHaveBeenCalledWith('timestamp', false);
       });
 
+      it('adds column keys as data attrs to header cells', function () {
+        table.render();
+        expect(table.$('th:eq(0)').attr('data-key')).toEqual('timestamp');
+        expect(table.$('th:eq(1)').attr('data-key')).toEqual('value');
+        expect(table.$('th:eq(2)').attr('data-key')).toEqual('timeshift52:value');
+        expect(table.$('th:eq(3)').attr('data-key')).toEqual('value');
+      });
+
+      it('adds first key as data attrs to header cell if key is an array', function () {
+        table.collection.options.axes.x.key = ['start', 'end'];
+        table.render();
+        expect(table.$('th:eq(0)').attr('data-key')).toEqual('start');
+      });
+
     });
 
   });

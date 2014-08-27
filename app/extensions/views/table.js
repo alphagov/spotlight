@@ -42,10 +42,14 @@ function (View, Formatters) {
       var head = '';
       head += _.map(this.getColumns(), function (column) {
         var label = column.label;
+        var key = column.key;
         if (column.timeshift) {
           label += ' (' + column.timeshift + ' ' + this.period + 's ago)';
         }
-        return '<th scope="col" data-key="' + column.key + '">' + label + '</th>';
+        if (_.isArray(column.key)) {
+          key = column.key[0];
+        }
+        return '<th scope="col" data-key="' + key + '">' + label + '</th>';
       }, this).join('\n');
       return '<thead><tr>' + head + '</tr></thead>';
     },
