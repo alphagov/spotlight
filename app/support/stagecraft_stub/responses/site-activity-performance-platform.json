@@ -11,6 +11,23 @@
   },
   "modules": [
     {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "How many users online now",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing GOV.UK."
+      ],
+      "data-source": {
+        "data-group": "performance-platform",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
       "slug": "traffic-to-department-content",
       "module-type": "tab",
       "title": "Site traffic",
@@ -90,23 +107,6 @@
           }
         }
       ]
-    },
-    {
-      "slug": "live-service-usage",
-      "module-type": "realtime",
-      "title": "How many users online now",
-      "info": [
-        "Data source: Google Analytics",
-        "Shows the estimated number of users currently accessing GOV.UK."
-      ],
-      "data-source": {
-        "data-group": "performance-platform",
-        "data-type": "realtime",
-        "query-params": {
-          "sort_by": "_timestamp:descending",
-          "limit": 722
-        }
-      }
     },
     {
       "slug": "how-users-access-the-content",
