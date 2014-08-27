@@ -210,6 +210,11 @@ function (VisitorsRealtimeView, Collection, Model, template) {
             }
           }
         };
+        spyOn(view, 'moment').andReturn({
+          fromNow: function () {
+            return '12 years ago';
+          }
+        });
         var returnValue = view.getLabelSelected(fakeSelection);
         expect(returnValue.headline).toEqual('users 1 Mar 2002,<br />12 years ago');
         expect(returnValue.graph).toEqual('');
