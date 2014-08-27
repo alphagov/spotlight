@@ -2,7 +2,7 @@
   "slug": "site-activity-performance-platform",
   "page-type": "dashboard",
   "dashboard-type": "content",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Activity on the Performance Platform",
   "department": {
