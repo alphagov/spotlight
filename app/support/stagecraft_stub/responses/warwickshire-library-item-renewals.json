@@ -25,6 +25,14 @@
       "value-attribute": "count:sum",
       "show-line-labels": true,
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": {
+            "type": "date",
+            "format": "D MMM YYYY"
+          }
+        },
         "y": [
           {
             "label": "Online",
