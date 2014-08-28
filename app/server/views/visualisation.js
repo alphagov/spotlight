@@ -1,12 +1,15 @@
 var requirejs = require('requirejs');
+var path = require('path');
 
 var View = requirejs('extensions/views/view');
 
-module.exports = View.extend({
+var templater = require('../mixins/templater');
+var templatePath = path.resolve(__dirname, '../templates/visualisation.html');
 
-  render: function () {
-    View.prototype.render.apply(this, arguments);
-    this.$el.attr('data-src', this.fallbackUrl);
-  }
+module.exports = View.extend(templater).extend({
+
+  templatePath: templatePath,
+
+  templateType: 'mustache'
 
 });
