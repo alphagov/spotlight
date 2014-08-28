@@ -1,7 +1,7 @@
 @import 'design-patterns/_alpha-beta';
 
-span.alpha-tag {
-  @include phase-tag($state: alpha);
+span.beta-tag {
+  @include phase-tag($state: beta);
   margin-left: 2px;
   position: relative;
   top: -2px;
