@@ -19,13 +19,13 @@
   },
   "description-extra": "",
   "customer-type": "Individuals",
-  "business-model": "Taxpayers",
+  "business-model": "Fees and charges, and taxpayers",
   "modules": [
     {
       "slug": "cost-per-transaction",
       "module-type": "kpi",
       "title": "Cost per transaction",
-      "description": "Average for digital transactions",
+      "description": "Average end-to-end cost of a claim",
       "info": [
         "Data source: HMCTS",
         "This figure is based on an HMCTS methodology for modelling volumes across the civil workload. This value is based on 26210 accelerated possession claims being issued and the predicted case stages each one of these claims would reach.",
@@ -74,8 +74,8 @@
       "info": [
         "Data source: MOJ database",
         "Shows the number of successful claims, broken down by channel",
-        "Digital: applications made online",
-        "Paper form: applications made using a paper form"
+        "Digital: downloads of the online claim form. Forms downloaded and claims issued may not be the same because downloads do not necessarily result in claims being issued.",
+        "Paper form: claims made using a paper form. Paper forms are calculated as the difference between the total number of claim forms received in court and the number of online claim forms downloaded."
       ],
       "axes": {
         "y": [
@@ -171,7 +171,7 @@
       "slug": "completion-rate",
       "module-type": "completion_rate",
       "title": "Completion rate",
-      "description": "Proportion of users who start and complete their claim using the digital service",
+      "description": "Proportion of users who start and download their claim form using the digital service",
       "info": [
         "Data source: Google Analytics",
         "This is a measure of the initial digital interface. It does not cover the end-to-end service that is outlined in the cost per transaction"
