@@ -295,7 +295,6 @@ figure.graph {
     }
 
     .summary {
-      border-bottom: 1px solid $grey-2;
       margin: 0 0 0 20px;
 
       .title {
@@ -314,6 +313,14 @@ figure.graph {
 
       .timeperiod {
         display: block;
+        border-bottom: 1px solid $grey-2;
+        margin-bottom: 5px;
+      }
+      .total {
+        strong {
+          display: block;
+          font-size: 21px;
+        }
       }
 
     }

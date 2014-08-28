@@ -54,6 +54,12 @@ function (Graph, LineLabel) {
       return this.model && this.model.get('one-hundred-percent');
     },
 
+    hasTotalLine: function () {
+      return _.any(this.model.get('axes').y, function (line) {
+        return line.groupId === 'total';
+      });
+    },
+
     calcYScale: function () {
       var yScale = Graph.prototype.calcYScale.apply(this, arguments);
       if (this.isOneHundredPercent()) {

@@ -85,6 +85,33 @@ define([
 
     });
 
+    describe('hasTotalLine', function () {
+
+      it('returns true if there is a y-axis with a groupId of total', function () {
+        graph.model.set('axes', {
+          y: [
+            { groupId: 'total' },
+            { groupId: 'foo' },
+            { groupId: 'bar' }
+          ]
+        });
+
+        expect(graph.hasTotalLine()).toEqual(true);
+      });
+
+      it('returns false if there is no y-axis with a groupId of total', function () {
+        graph.model.set('axes', {
+          y: [
+            { groupId: 'foo' },
+            { groupId: 'bar' }
+          ]
+        });
+
+        expect(graph.hasTotalLine()).toEqual(false);
+      });
+
+    });
+
 
   });
 
