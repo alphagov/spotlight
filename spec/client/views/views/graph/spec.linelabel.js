@@ -65,6 +65,9 @@ function (LineLabel, Collection, Model) {
           isOneHundredPercent: function () {
             return false;
           },
+          hasTotalLine: function () {
+            return false;
+          },
           modelToDate: function () {
             return '2014-01-01';
           },
@@ -290,6 +293,27 @@ function (LineLabel, Collection, Model) {
             var textLabel = lineLabel.$el.find('figcaption .timeperiod');
             expect(textLabel.text()).toEqual('May 2014');
           });
+
+          it('renders a total', function () {
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .total');
+            expect(textLabel.text()).toEqual('Total: 60');
+          });
+
+          it('does not render a total for "isOneHundredPercent" graphs', function () {
+            graph.isOneHundredPercent = function () { return true; };
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .total');
+            expect(textLabel.length).toEqual(0);
+          });
+
+          it('does not render a total for graphs with a total line', function () {
+            graph.hasTotalLine = function () { return true; };
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .total');
+            expect(textLabel.length).toEqual(0);
+          });
+
         });
 
       });
@@ -508,7 +532,8 @@ function (LineLabel, Collection, Model) {
           },
           getY0Pos: function () {
             return 0;
-          }
+          },
+          hasTotalLine: function () { return false; }
         };
         lineLabel = new LineLabel({
           scales: {

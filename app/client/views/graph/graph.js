@@ -371,6 +371,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     isOneHundredPercent: function () {
       return false;
+    },
+
+    hasTotalLine: function () {
+      return false;
     }
 
   });

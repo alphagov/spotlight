@@ -100,17 +100,21 @@ function (Component) {
       this.collection.selectItem(index, options);
     },
 
+    getFormatOptions: function () {
+      var format = this.graph.currency ? 'currency' : 'number';
+      return { type: format, magnitude: true, pad: true };
+    },
+
     renderValuePercentage: function (value, percentage) {
       var data = [],
-          summary = '',
-          format = this.graph.currency ? 'currency' : 'number';
+          summary = '';
 
       if (value === null && !percentage) {
         return '<span class="no-data">(no data)</span>';
       }
 
       if (value !== null) {
-        data.push(this.format(value, { type: format, magnitude: true, pad: true }));
+        data.push(this.format(value, this.getFormatOptions()));
       }
       if (percentage) {
         if (this.graph.isOneHundredPercent()) {
@@ -140,6 +144,12 @@ function (Component) {
       var output = this.formatPeriod(model, this.collection.getPeriod());
 
       var summary = '<span class="timeperiod">' + output + '</span>';
+
+      if (!this.graph.isOneHundredPercent() && !this.graph.hasTotalLine()) {
+        var total = model.get('total:' + this.graph.valueAttr);
+        var formattedTotal = total ? this.format(total, this.getFormatOptions()) : '(no data)';
+        summary += ('<span class="total">Total: <strong>' + formattedTotal + '</strong></span>');
+      }
 
       var summaryWrapper = this.figcaption.selectAll('div.summary').data(['one-wrapper']);
       summaryWrapper.enter().append('div').attr('class', 'summary');

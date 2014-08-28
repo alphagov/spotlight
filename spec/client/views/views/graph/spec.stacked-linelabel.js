@@ -30,6 +30,9 @@ function (LineLabel, Collection, Model) {
         isOneHundredPercent: function () {
           return false;
         },
+        hasTotalLine: function () {
+          return false;
+        },
         getYPos: function (i, attr) { return collection.at(i).get(attr) ? 2 * collection.at(i).get(attr) : null; },
         getY0Pos: function (i, attr) { return collection.at(i).get(attr); },
         modelToDate: function () {
