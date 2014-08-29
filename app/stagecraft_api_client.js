@@ -19,16 +19,31 @@ function (Model) {
     },
 
     url: function () {
-      return this.urlRoot + this.path;
+      if(!!this.fallback == false) {
+        return this.stagecraftUrlRoot + this.path;
+      } else {
+        return this.urlRoot + this.path;
+      }
     },
+
+    stagecraftUrlRoot: 'STAGECRAFT',
 
     fetch: function (options) {
       options = _.extend({}, options, {
         validate: true,
         error: _.bind(function (model, xhr) {
-          this.set('controller', this.controllers.error);
-          this.set('status', xhr.status);
-          this.set('errorText', xhr.responseText);
+          this.set('fallback', true);
+          options = _.extend({}, options, {
+            validate: true,
+            error: _.bind(function (model, xhr) {
+              this.set('fallback', true);
+              this.set('controller', this.controllers.error);
+              this.set('status', xhr.status);
+              this.set('errorText', xhr.responseText);
+            }, this)
+          });
+          Model.prototype.fetch.call(this, options);
+          this.set('fallback', false);
         }, this)
       });
       Model.prototype.fetch.call(this, options);
