@@ -19,11 +19,29 @@ function (Model) {
     },
 
     url: function () {
-      return this.urlRoot + this.path;
+      if(!!this.fallback == false) {
+        return this.stagecraftUrlRoot + '?slug=' + this.path;
+      } else {
+        return this.urlRoot + this.path;
+      }
     },
 
+    fallback: false, 
+
     fetch: function (options) {
-      options = _.extend({}, options, {
+      options = _.extend({}, {
+        validate: true,
+        error: _.bind(function (model, xhr) {
+          this.fetchFallback();
+        }, this)
+      }, options);
+      logger.info('Fetching <%s>', this.url());
+      Model.prototype.fetch.call(this, options);
+    },
+
+    fetchFallback: function () {
+      this.fallback = true;
+      options = _.extend({}, {
         validate: true,
         error: _.bind(function (model, xhr) {
           this.set('controller', this.controllers.error);
@@ -31,8 +49,8 @@ function (Model) {
           this.set('errorText', xhr.responseText);
         }, this)
       });
-      logger.info('Fetching <%s>', this.url());
-      Model.prototype.fetch.call(this, options);
+      var fetch_result = this.fetch(options);
+      this.fallback = false;
     },
 
     parse: function (data, options) {

@@ -28,6 +28,7 @@ module.exports = {
       app.set('govukHost', global.config.govukHost);
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
+      app.set('stagecraftUrl', global.config.stagecraftUrl);
       app.use(morgan('dev'));
       app.use(compression());
       app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
