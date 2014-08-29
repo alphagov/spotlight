@@ -12,10 +12,9 @@ function (ModuleController, TabController, TabView) {
     visualisationClass: TabView,
 
     initialize: function () {
-      var controllerMap = TabModule.map;
 
       this.tabs = _.map(this.model.get('tabs'), function (tab) {
-        tab.controller = controllerMap[tab['module-type']];
+        tab.controller = this.map[tab['module-type']];
         return tab;
       }, this);
 

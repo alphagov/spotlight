@@ -81,7 +81,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
 
         if (typeof definition === 'function') {
           View = definition.call(this);
-        } else if (_.isObject(definition)) {
+        } else if (_.isObject(definition) && definition.view) {
           View = definition.view;
           if (_.isFunction(definition.options)) {
             _.extend(options, definition.options.call(this));

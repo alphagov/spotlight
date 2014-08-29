@@ -49,7 +49,7 @@ function (Model) {
         if (module.controller) {
           // requiring the controller map from within a module causes a circular dependency
           // so add the map as a property for modules that need it i.e. tabs
-          module.controller.map = controllerMap.modules;
+          module.controller.prototype.map = controllerMap.modules;
         }
       }, this);
 

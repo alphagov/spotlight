@@ -6,6 +6,7 @@ var BarChartWithNumberModule      = require('./modules/bar_chart_with_number');
 var ComparisonModule              = require('./modules/comparison');
 var CompletionRateModule          = require('./modules/completion_rate');
 var CompletionTableModule         = require('./modules/completion-table');
+var GroupModule                   = require('./modules/group');
 var GroupedTimeseriesModule       = require('./modules/grouped_timeseries');
 var JourneyModule                 = require('./modules/journey');
 var KPIModule                     = require('./modules/kpi');
@@ -27,6 +28,7 @@ module.exports = function () {
       comparison:             ComparisonModule,
       completion_rate:        CompletionRateModule,
       completion_table:       CompletionTableModule,
+      group:                  GroupModule,
       grouped_timeseries:     GroupedTimeseriesModule,
       journey:                JourneyModule,
       kpi:                    KPIModule,

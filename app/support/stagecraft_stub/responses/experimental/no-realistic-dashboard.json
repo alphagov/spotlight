@@ -146,43 +146,50 @@
       }
     },
     {
-      "slug": "transactions-per-quarter",
-      "module-type": "bar_chart_with_number",
-      "title": "Transactions per quarter",
-      "description": "Total number of transactions each quarter",
-      "value-attribute": "number_of_transactions",
-      "axis-period": "quarter",
-      "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
-        "query-params": {
-          "filter_by": [
-            "service_id:dft-request-statutory-off-road-notice-sorn",
-            "type:quarterly"
-          ]
+      "module-type": "group",
+      "title": "Module group",
+      "slug": "test-group",
+      "modules": [
+        {
+          "slug": "transactions-per-quarter",
+          "module-type": "bar_chart_with_number",
+          "title": "Transactions per quarter",
+          "description": "Total number of transactions each quarter",
+          "value-attribute": "number_of_transactions",
+          "axis-period": "quarter",
+          "data-source": {
+            "data-group": "transactional-services",
+            "data-type": "summaries",
+            "query-params": {
+              "filter_by": [
+                "service_id:dft-request-statutory-off-road-notice-sorn",
+                "type:quarterly"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "digital-takeup-per-quarter",
+          "module-type": "bar_chart_with_number",
+          "title": "Digital takeup per quarter",
+          "description": "Percentage digital takeup each quarter",
+          "value-attribute": "digital_takeup",
+          "axis-period": "quarter",
+          "format": {
+            "type": "percent"
+          },
+          "data-source": {
+            "data-group": "transactions-explorer",
+            "data-type": "spreadsheet",
+            "query-params": {
+              "filter_by": [
+                "service_id:dft-request-statutory-off-road-notice-sorn",
+                "type:quarterly"
+              ]
+            }
+          }
         }
-      }
-    },
-    {
-      "slug": "digital-takeup-per-quarter",
-      "module-type": "bar_chart_with_number",
-      "title": "Digital takeup per quarter",
-      "description": "Percentage digital takeup each quarter",
-      "value-attribute": "digital_takeup",
-      "axis-period": "quarter",
-      "format": {
-        "type": "percent"
-      },
-      "data-source": {
-        "data-group": "transactions-explorer",
-        "data-type": "spreadsheet",
-        "query-params": {
-          "filter_by": [
-            "service_id:dft-request-statutory-off-road-notice-sorn",
-            "type:quarterly"
-          ]
-        }
-      }
+      ]
     },
     {
       "slug": "live-service-usage",

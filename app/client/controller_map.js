@@ -5,6 +5,7 @@ define([
   'client/modules/comparison',
   'client/modules/single-timeseries',
   'client/modules/completion_rate',
+  'client/modules/group',
   'client/modules/grouped_timeseries',
   'client/modules/journey',
   'client/modules/tab',
@@ -17,7 +18,7 @@ define([
 function (DashboardController,
 
   AvailabilityModule, BarChartWithNumberModule, ComparisonModule, TimeseriesModule,
-  CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
+  CompletionRateModule, GroupModule, GroupedTimeseriesModule, JourneyModule,
   TabModule, TableModule, CompletionTableModule,
   UserSatisfactionGraphModule, VisitorsRealtimeModule, ServicesController) {
 
@@ -30,6 +31,7 @@ function (DashboardController,
       comparison:             ComparisonModule,
       completion_rate:        CompletionRateModule,
       completion_table:       CompletionTableModule,
+      group:                  GroupModule,
       grouped_timeseries:     GroupedTimeseriesModule,
       journey:                JourneyModule,
       single_timeseries:      TimeseriesModule,
