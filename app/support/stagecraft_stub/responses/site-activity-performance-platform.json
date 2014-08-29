@@ -299,6 +299,37 @@
           }
         }
       ]
+    },
+    {
+      "slug": "notifications",
+      "module-type": "single_timeseries",
+      "title": "Performance Platform Notifier Emails",
+      "description": "",
+      "info": [
+        "Data source: Performance Platform",
+        "Number of notifications (emails) sent each day by the Performance Platform to service providers to ensure our data is up to date."
+      ],
+      "value-attribute": "recipient_count:sum",
+      "axes": {
+        "x": {
+          "label": "Date"
+        },
+        "y": [
+          {
+            "label": "Number of visitors"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "performance-platform",
+        "data-type": "notifier",
+        "query-params": {
+          "period": "day",
+          "collect": [
+            "recipient_count:sum"
+          ]
+        }
+      }
     }
   ]
 }
