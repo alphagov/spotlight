@@ -18,10 +18,9 @@ function (StagecraftApiClient, Model) {
         spyOn(Model.prototype, 'fetch');
       });
       it('fetches from stagecraft before falling back to local files', function () {
-        var client = new StagecraftApiClient({
-          path: 'foo',
-          ControllerMap: ControllerMap
-        });
+        var client = new StagecraftApiClient(
+          {path: 'foo'},
+          {ControllerMap: ControllerMap});
         expect(Model.prototype.fetch.callCount).toEqual(0);
         client.fetch();
         expect(Model.prototype.fetch.callCount).toEqual(2);
