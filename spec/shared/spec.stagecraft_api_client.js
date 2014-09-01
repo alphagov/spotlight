@@ -34,25 +34,26 @@ function (StagecraftApiClient, Model, Backbone) {
           })
         });
       });
-      /*describe('without a spy', function () {*/
-      /*var old_sync;*/
-      /*var fake_sync;*/
-      /*beforeEach(function () {*/
-      /**//*fake_sync = function (method, model, options) {*/
-      /**//*debugger;*/
-      /**//*}*/
-      /**//*old_sync = Backbone.sync;*/
-      /**//*Backbone.sync = fake_sync; */
-      /*spyOn(Backbone, 'sync');*/
-      /*});*/
-      /**//*afterEach(function () {*/
-      /**//*Backbone.sync = old_sync;*/
-      /**//*});*/
-      /*it("fulfills my dreams", function () {*/
-      /*client.fetch();*/
-      /*debugger;*/
-      /*});*/
-      /*});*/
+      describe('without a spy', function () {
+        var old_sync;
+        var fake_sync;
+        beforeEach(function () {
+          /*fake_sync = function (method, model, options) {*/
+          /*debugger;*/
+          /*}*/
+          /*old_sync = Backbone.sync;*/
+          /*Backbone.sync = fake_sync; */
+          //how to get this to error and record what has happened so we can read urls at call both times and simplify the tests?
+          spyOn(Backbone, 'sync');
+        });
+        /*afterEach(function () {*/
+        /*Backbone.sync = old_sync;*/
+        /*});*/
+        it("fulfills my dreams", function () {
+          client.fetch();
+          debugger;
+        });
+      });
     });
 
     describe('fetchFallback', function() {
