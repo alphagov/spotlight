@@ -28,25 +28,34 @@ function (Model) {
 
     stagecraftUrlRoot: 'STAGECRAFT',
 
+    fallback: false, 
+
     fetch: function (options) {
-      options = _.extend({}, options, {
+      options = _.extend({}, {
+        validate: true,
+        error: this._boundFetchFallback 
+      }, options);
+      Model.prototype.fetch.call(this, options);
+    },
+
+    fetchFallback: function () {
+      this.fallback = true;
+      options = _.extend({}, {
         validate: true,
         error: _.bind(function (model, xhr) {
-          this.set('fallback', true);
-          options = _.extend({}, options, {
-            validate: true,
-            error: _.bind(function (model, xhr) {
-              this.set('fallback', true);
-              this.set('controller', this.controllers.error);
-              this.set('status', xhr.status);
-              this.set('errorText', xhr.responseText);
-            }, this)
-          });
-          Model.prototype.fetch.call(this, options);
-          this.set('fallback', false);
+          this.set('controller', this.controllers.error);
+          this.set('status', xhr.status);
+          this.set('errorText', xhr.responseText);
         }, this)
       });
-      Model.prototype.fetch.call(this, options);
+      var fetch_result = this.fetch(options);
+      this.fallback = false;
+    },
+
+    _boundFetchFallback: function () {
+      return _.bind(function (model, xhr) {
+        this.fetchFallback();
+      }, this)
     },
 
     parse: function (data, options) {

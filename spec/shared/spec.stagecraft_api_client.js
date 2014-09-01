@@ -1,8 +1,9 @@
 define([
   'stagecraft_api_client',
-  'extensions/models/model'
+  'extensions/models/model',
+  'backbone',
 ],
-function (StagecraftApiClient, Model) {
+function (StagecraftApiClient, Model, Backbone) {
   describe('StagecraftApiClient', function () {
 
     var ControllerMap = {
@@ -14,16 +15,70 @@ function (StagecraftApiClient, Model) {
     };
 
     describe('fetch', function (){
+      var client;
       beforeEach(function () {
-        spyOn(Model.prototype, 'fetch');
-      });
-      it('fetches from stagecraft before falling back to local files', function () {
-        var client = new StagecraftApiClient(
+        client = new StagecraftApiClient(
           {path: 'foo'},
           {ControllerMap: ControllerMap});
-        expect(Model.prototype.fetch.callCount).toEqual(0);
-        client.fetch();
-        expect(Model.prototype.fetch.callCount).toEqual(2);
+      });
+      describe("with a spy", function (){
+        beforeEach(function () {
+          spyOn(Model.prototype, 'fetch');
+        });
+        it('calls Model fetch with fetchFallback as the error callback', function () {
+          client.fetch();
+
+          expect(Model.prototype.fetch).toHaveBeenCalledWith({
+            validate: true,
+            error: client._boundFetchFallback 
+          })
+        });
+      });
+      /*describe('without a spy', function () {*/
+      /*var old_sync;*/
+      /*var fake_sync;*/
+      /*beforeEach(function () {*/
+      /**//*fake_sync = function (method, model, options) {*/
+      /**//*debugger;*/
+      /**//*}*/
+      /**//*old_sync = Backbone.sync;*/
+      /**//*Backbone.sync = fake_sync; */
+      /*spyOn(Backbone, 'sync');*/
+      /*});*/
+      /**//*afterEach(function () {*/
+      /**//*Backbone.sync = old_sync;*/
+      /**//*});*/
+      /*it("fulfills my dreams", function () {*/
+      /*client.fetch();*/
+      /*debugger;*/
+      /*});*/
+      /*});*/
+    });
+
+    describe('fetchFallback', function() {
+      describe('testing with a value catching fetch replacement', function(){
+        var value_catcher = {};
+        var client;
+        var old_fetch;
+        beforeEach(function () {
+          client = new StagecraftApiClient(
+            {path: 'foo'},
+            {ControllerMap: ControllerMap});
+          fake_fetch = function () {
+            value_catcher['fallback_value'] = this.fallback;
+          }
+          old_fetch = client.fetch;
+          client.fetch = fake_fetch;
+        });
+        afterEach(function () {
+          client.fetch = old_fetch;
+        })
+        it('switches to fallback, calls fetch and switches back to no fallback', function () {
+          expect(client.fallback).toEqual(false);
+          client.fetchFallback();
+          expect(value_catcher['fallback_value']).toEqual(true);
+          expect(client.fallback).toEqual(false);
+        });
       });
     });
 
