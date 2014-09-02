@@ -35,8 +35,17 @@ var setup = function (req, res) {
 
   model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
   model.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/dashboards/public';
+  var error_count = 0;
 
-  model.on('sync error', function () {
+  model.on('error', function () {
+    if(error_count == 1){
+      model.off();
+      res.status(model.get('status'));
+      setup.renderContent(req, res, model);
+    };
+    error_count ++; 
+  });
+  model.on('sync', function () {
     model.off();
     res.status(model.get('status'));
     setup.renderContent(req, res, model);
