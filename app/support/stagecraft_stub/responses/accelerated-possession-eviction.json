@@ -2,7 +2,7 @@
   "slug": "accelerated-possession-eviction",
   "page-type": "dashboard",
   "dashboard-type": "transaction",
-  "published": false,
+  "published": true,
   "strapline": "Dashboard",
   "title": "Civil claims: evicting a tenant using accelerated possession",
   "description": "Accelerated property possession is used when people refuse to leave a property and have been given the appropriate notice to leave. ",
@@ -17,7 +17,6 @@
     },
     "improve-dashboard-message": true
   },
-  "description-extra": "",
   "customer-type": "Individuals",
   "business-model": "Fees and charges, and taxpayers",
   "modules": [

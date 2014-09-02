@@ -71,7 +71,7 @@
       "type": "string",
       "required": false,
       "oneOf": [
-        { "enum": ["Department budget", "Fees and charges", "Taxpayers"] }
+        { "enum": ["Department budget", "Fees and charges", "Taxpayers", "Fees and charges, and taxpayers"] }
       ]
     },
     "department": {
