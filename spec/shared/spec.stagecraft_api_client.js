@@ -15,70 +15,49 @@ function (StagecraftApiClient, Model, Backbone) {
     };
 
     describe('fetch', function (){
-      var client;
-      beforeEach(function () {
-        client = new StagecraftApiClient(
-          {path: 'foo'},
-          {ControllerMap: ControllerMap});
-      });
-      describe("with a spy", function (){
-        beforeEach(function () {
-          spyOn(Model.prototype, 'fetch');
-        });
-        it('calls Model fetch with fetchFallback as the error callback', function () {
-          client.fetch();
-
-          expect(Model.prototype.fetch).toHaveBeenCalledWith({
-            validate: true,
-            error: client._boundFetchFallback 
-          })
-        });
-      });
-      describe('without a spy', function () {
+      describe('on error responses', function (){
+        var client;
         var old_sync;
         var fake_sync;
+        var url_values = [];
+        var fallback_values = [];
         beforeEach(function () {
-          /*fake_sync = function (method, model, options) {*/
-          /*debugger;*/
-          /*}*/
-          /*old_sync = Backbone.sync;*/
-          /*Backbone.sync = fake_sync; */
-          //how to get this to error and record what has happened so we can read urls at call both times and simplify the tests?
-          spyOn(Backbone, 'sync');
-        });
-        /*afterEach(function () {*/
-        /*Backbone.sync = old_sync;*/
-        /*});*/
-        it("fulfills my dreams", function () {
-          client.fetch();
-          debugger;
-        });
-      });
-    });
-
-    describe('fetchFallback', function() {
-      describe('testing with a value catching fetch replacement', function(){
-        var value_catcher = {};
-        var client;
-        var old_fetch;
-        beforeEach(function () {
-          client = new StagecraftApiClient(
-            {path: 'foo'},
-            {ControllerMap: ControllerMap});
-          fake_fetch = function () {
-            value_catcher['fallback_value'] = this.fallback;
+          client = new StagecraftApiClient({}, {
+            ControllerMap: ControllerMap
+          });
+          client.stagecraftUrlRoot = 'http://stagecraft/';
+          client.urlRoot = 'http://fallback/';
+          client.path = 'foo';
+          //This ensures the error callback happens without 
+          //making a request. It also stores the values during calls.
+          fake_sync = function (method, model, options) {
+            url_values.push(model.url()); 
+            fallback_values.push(model.fallback); 
+            options.error({status: 404, responseText: 'all responses where 404!'});
           }
-          old_fetch = client.fetch;
-          client.fetch = fake_fetch;
+          old_sync = Backbone.sync;
+          Backbone.sync = fake_sync; 
+          //This records the number of calls made. 
+          spyOn(Backbone, 'sync').andCallThrough();
         });
         afterEach(function () {
-          client.fetch = old_fetch;
-        })
-        it('switches to fallback, calls fetch and switches back to no fallback', function () {
+          this.removeAllSpies();
+          Backbone.sync = old_sync;
+        });
+        it("it should attempt to call stagecraft, it should fallback to local config, it should set error attributes on the model", function () {
           expect(client.fallback).toEqual(false);
-          client.fetchFallback();
-          expect(value_catcher['fallback_value']).toEqual(true);
+          client.fetch();
           expect(client.fallback).toEqual(false);
+          expect(client.get('status')).toEqual(404);
+          expect(client.get('errorText')).toEqual('all responses where 404!');
+          expect(Backbone.sync.calls.length).toEqual(2);
+          //we cannot use the spy to determine the calls as 
+          //it will give the values set on model at the point fetch 
+          //has returned, we must store the values during the sync call
+          expect(url_values[0]).toEqual('http://stagecraft/foo');
+          expect(url_values[1]).toEqual('http://fallback/foo');
+          expect(fallback_values[0]).toEqual(false);
+          expect(fallback_values[1]).toEqual(true);
         });
       });
     });
