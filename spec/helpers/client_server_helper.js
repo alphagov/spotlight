@@ -1,4 +1,11 @@
 var obj;
+var logger = {
+  info: function () {},
+  debug: function () {},
+  error: function () {},
+  log: function () {},
+  warn: function () {}
+};
 if (typeof window === 'object') {
   window.isClient = false;
   window.isServer = false;
@@ -9,6 +16,8 @@ if (typeof global === 'object') {
   global.isServer = false;
   obj = global;
 }
+
+obj.logger = logger;
 
 jasmine.clientOnly = function (method) {
   obj.isClient = true;

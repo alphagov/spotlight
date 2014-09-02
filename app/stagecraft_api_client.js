@@ -31,6 +31,7 @@ function (Model) {
           this.set('errorText', xhr.responseText);
         }, this)
       });
+      logger.info('Fetching <%s>', this.url());
       Model.prototype.fetch.call(this, options);
     },
 

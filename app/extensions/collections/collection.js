@@ -108,6 +108,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     fetch: function () {
       this.selectedItem = null;
       this.selectedIndex = null;
+      logger.info('Fetching <%s>', this.url());
       return Backbone.Collection.prototype.fetch.apply(this, arguments);
     },
 
