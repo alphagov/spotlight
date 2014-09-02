@@ -14,7 +14,7 @@ function (StagecraftApiClient, Backbone) {
     };
 
     describe('fetch', function (){
-      describe('on error responses', function (){
+      describe('on all error responses', function (){
         var client;
         var old_sync;
         var fake_sync;

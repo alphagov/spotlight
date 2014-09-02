@@ -19,10 +19,10 @@ function (Model) {
     },
 
     url: function () {
-      if(!!this.fallback == false) {
-        return this.stagecraftUrlRoot + '?slug=' + this.path;
-      } else {
+      if(this.fallback) {
         return this.urlRoot + this.path;
+      } else {
+        return this.stagecraftUrlRoot + '?slug=' + this.path;
       }
     },
 
@@ -32,16 +32,16 @@ function (Model) {
       options = _.extend({}, {
         validate: true,
         error: _.bind(function (model, xhr) {
-          this.fetchFallback();
+          this.fetchFallback(options);
         }, this)
       }, options);
       logger.info('Fetching <%s>', this.url());
       Model.prototype.fetch.call(this, options);
     },
 
-    fetchFallback: function () {
+    fetchFallback: function (options) {
       this.fallback = true;
-      options = _.extend({}, {
+      options = _.extend({}, options, {
         validate: true,
         error: _.bind(function (model, xhr) {
           this.set('controller', this.controllers.error);
@@ -49,7 +49,7 @@ function (Model) {
           this.set('errorText', xhr.responseText);
         }, this)
       });
-      var fetch_result = this.fetch(options);
+      this.fetch(options);
       this.fallback = false;
     },
 
