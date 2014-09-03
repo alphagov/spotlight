@@ -64,9 +64,10 @@ describe('processRequest middleware', function () {
       expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
     });
 
-    it('renders content when stagecraft request failed and bubbles up error status', function () {
+    it('renders content when stagecraft request failed and bubbles up error status twice', function () {
       processRequest(req, res);
       client.set('status', 999);
+      client.trigger('error', client);
       client.trigger('error', client);
       expect(_.isEmpty(client._events)).toBe(true);
       expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
