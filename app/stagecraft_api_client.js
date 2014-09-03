@@ -22,7 +22,7 @@ function (Model) {
       if(this.fallback) {
         return this.urlRoot + this.path;
       } else {
-        return this.stagecraftUrlRoot + '?slug=' + this.path;
+        return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
       }
     },
 
@@ -31,7 +31,7 @@ function (Model) {
     fetch: function (options) {
       options = _.extend({}, {
         validate: true,
-        error: _.bind(function (model, xhr) {
+        error: _.bind(function () {
           this.fetchFallback(options);
         }, this)
       }, options);

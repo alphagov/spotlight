@@ -33,7 +33,7 @@ function (StagecraftApiClient, Backbone) {
             url_values.push(model.url()); 
             fallback_values.push(model.fallback); 
             options.error({status: 404, responseText: 'all responses where 404!'});
-          }
+          };
           old_sync = Backbone.sync;
           Backbone.sync = fake_sync; 
           //This records the number of calls made. 
@@ -43,7 +43,7 @@ function (StagecraftApiClient, Backbone) {
           this.removeAllSpies();
           Backbone.sync = old_sync;
         });
-        it("it should attempt to call stagecraft, it should fallback to local config, it should set error attributes on the model", function () {
+        it('it should attempt to call stagecraft, it should fallback to local config, it should set error attributes on the model', function () {
           expect(client.fallback).toEqual(false);
           client.fetch();
           expect(client.fallback).toEqual(false);
@@ -73,14 +73,14 @@ function (StagecraftApiClient, Backbone) {
       });
       describe('when fallback is false', function () {
         it('should use the stagecraftUrlRoot', function () {
-          client.fallback = false 
-          client.setPath('foo/bar');
+          client.fallback = false; 
+          client.setPath('/foo/bar');
           expect(client.url()).toEqual('http://boosh?slug=foo/bar');
         });
       });
       describe('when fallback is true', function () {
         it('should use the urlRoot', function () {
-          client.fallback = true 
+          client.fallback = true; 
           client.setPath('foo/bar');
           expect(client.url()).toEqual('http://testdomain/foo/bar');
         });
