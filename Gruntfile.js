@@ -14,7 +14,8 @@ var getRequirejsConfig = function () {
     include: ['vendor/almond'],
     deps: [
       'client',
-      'client/client_bootstrap'
+      'client/client_bootstrap',
+      'client/logger'
     ],
     wrap: true,
     optimize: 'uglify'
