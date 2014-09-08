@@ -3,7 +3,7 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-var winston = require('winston');
+var winston = require('winston-alphagov');
 var requirejs = require('requirejs');
 var basicAuth = require('node-basicauth');
 
@@ -64,7 +64,8 @@ module.exports = {
         filename: 'log/spotlight.log.json',
         level: 'info',
         colorize: false,
-        json: true
+        json: true,
+        logstash: true,
       });
       global.logger.remove(winston.transports.Console);
       app.set('etag', 'strong');

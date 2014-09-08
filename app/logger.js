@@ -1,4 +1,4 @@
-var winston = require('winston');
+var winston = require('winston-alphagov');
 
 module.exports = new (winston.Logger)({
   transports: [
