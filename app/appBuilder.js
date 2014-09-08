@@ -29,7 +29,7 @@ module.exports = {
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
       app.set('stagecraftUrl', global.config.stagecraftUrl);
-      app.use(morgan('dev'));
+      app.use(morgan('[:date] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :req[request-id]'));
       app.use(compression());
       app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
     }());
