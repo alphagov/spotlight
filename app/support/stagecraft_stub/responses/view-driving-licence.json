@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "title": "View driving licence",
+  "title": "Driving licence views",
   "description": "Find out which vehicles you can drive, penalty points and when your licence expires.",
   "department": {
     "title": "Department for Transport",
@@ -16,7 +16,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "View your driving licence information",
+      "title": "View driving licence",
       "url": "https://www.gov.uk/view-driving-licence"
     }
   },
