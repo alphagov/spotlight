@@ -41,9 +41,17 @@ define([
     render: function (options) {
       options = options || {};
 
+      var getRequestId = function(m) {
+        if (m.get('parent')) {
+          return m.get('parent').get('requestId');
+        }
+        return null;
+      };
+
       if (this.collectionClass && !this.collection) {
         this.collection = new this.collectionClass(this.collectionData(), _.extend({
           dataSource: this.model.get('data-source'),
+          requestId: getRequestId(this.model)
         }, this.collectionOptions()));
       }
 

@@ -13,10 +13,17 @@ function (PageConfig) {
           govukHost: 'www.gov.uk'
         }[prop];
       };
+      var headers = jasmine.createSpy();
+      headers.plan = function(prop) {
+        return {
+          'Request-Id': 'a-uuid'
+        }[prop];
+      };
       req = {
         app: {
           get: get
         },
+        get: headers,
         protocol: 'http',
         originalUrl: '/performance/foo'
       };
@@ -36,6 +43,10 @@ function (PageConfig) {
       it('contains assetPath property', function () {
         var commonConfig = PageConfig.commonConfig(req);
         expect(commonConfig.url).toEqual('/performance/foo');
+      });
+      it('contains requestId property', function() {
+        var commonConfig = PageConfig.commonConfig(req);
+        expect(commonConfig.requestId).toEqual('a-uuid');
       });
     });
   });

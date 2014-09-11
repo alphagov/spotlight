@@ -10,6 +10,7 @@ function (Model) {
 
     initialize: function (attrs, options) {
       this.controllers = options.ControllerMap;
+      this.requestId = options.requestId || 'Not-Set';
       Model.prototype.initialize.apply(this, arguments);
     },
 
@@ -35,7 +36,7 @@ function (Model) {
           this.fetchFallback(options);
         }, this)
       }, options);
-      logger.info('Fetching <%s>', this.url());
+      logger.info('Fetching <%s>', this.url(), { request_id: this.requestId });
       Model.prototype.fetch.call(this, options);
     },
 
