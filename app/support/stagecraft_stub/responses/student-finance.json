@@ -6,7 +6,7 @@
   "strapline": "Dashboard",
   "title": "Student finance applications: full-time study, England",
   "department": {
-    "title": "Department for Business, Innovation & Skills",
+    "title": "Department for Business, Innovation and Skills",
     "abbr": "BIS"
   },
   "agency": {
@@ -16,8 +16,7 @@
   "relatedPages": {
     "transaction": {
       "title": "Apply for student finance",
-      "url": "https://www.gov.uk/apply-online-for-student-finance",
-      "metadata": ""
+      "url": "https://www.gov.uk/apply-online-for-student-finance"
     }
   },
   "description": "Student finance provides students living in England with the funding they require for full-time higher education.",

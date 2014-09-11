@@ -22,6 +22,10 @@
       }
     ]
   },
+  "department": {
+    "title": "Department for Environment, Food and Rural Affairs",
+    "abbr": "Defra"
+  },
   "agency": {
     "title": "Environment Agency",
     "abbr": "EA"
