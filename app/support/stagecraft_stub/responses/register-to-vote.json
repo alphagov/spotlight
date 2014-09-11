@@ -151,6 +151,9 @@
       "info": [
         "Data source: Register to vote service"
       ],
+      "group-mapping": {
+        "16-18|18-24": "16-24"
+      },
       "axes": {
         "x": {
           "label": "Date",
@@ -165,13 +168,8 @@
         },
         "y": [
           {
-            "label": "16 to 17",
-            "groupId": "16-18",
-            "format": "integer"
-          },
-          {
-            "label": "18 to 24",
-            "groupId": "18-24",
+            "label": "16 to 24",
+            "groupId": "16-24",
             "format": "integer"
           },
           {
