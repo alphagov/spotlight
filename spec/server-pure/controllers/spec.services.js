@@ -10,6 +10,9 @@ var PageConfig = requirejs('page_config');
 describe('Services Controller', function () {
 
   var req = {
+    app: {'get': function(){
+      return '8989'
+    }},
     query: {}
   };
   var res = {
