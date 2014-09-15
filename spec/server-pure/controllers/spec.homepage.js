@@ -1,6 +1,7 @@
 var BaseView = require('../../../app/server/views/govuk');
 var HomePageView = require('../../../app/server/views/homepage');
 
+/*this is not a controller test*/
 describe('Homepage', function () {
 
   var view;

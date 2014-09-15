@@ -12,6 +12,9 @@ module.exports = function (req, res) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     'data': dashboards.items
   }));
+  var dashboardItems = function () {
+
+  };
 
   var collection = new Collection(dashboards.items);
 

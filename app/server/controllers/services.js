@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
 var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
+console.log(dashboards);
 
 var View = require('../views/services');
 

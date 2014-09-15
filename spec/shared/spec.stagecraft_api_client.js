@@ -13,6 +13,18 @@ function (StagecraftApiClient, Backbone) {
       }
     };
 
+    describe('getServicesList', function (){
+      var client;
+      beforeEach(function() {
+        client = new StagecraftApiClient({}, {
+          ControllerMap: ControllerMap
+        });
+      });
+      it('should fall back to the local services dashboards list', function() {
+        console.log(client.getServicesList());
+      });
+    });
+
     describe('fetch', function (){
       describe('on all error responses', function (){
         var client;
@@ -68,21 +80,39 @@ function (StagecraftApiClient, Backbone) {
         client = new StagecraftApiClient({}, {
           ControllerMap: ControllerMap
         });
-        client.stagecraftUrlRoot = 'http://boosh';
+        client.stagecraftUrlRoot = 'http://boosh/public/dashboards';
         client.urlRoot = 'http://testdomain/';
       });
       describe('when fallback is false', function () {
-        it('should use the stagecraftUrlRoot', function () {
-          client.fallback = false; 
-          client.setPath('/foo/bar');
-          expect(client.url()).toEqual('http://boosh?slug=foo/bar');
+        describe('when there is a path', function () {
+          it('should use the stagecraftUrlRoot with the path', function () {
+            client.fallback = false; 
+            client.setPath('/foo/bar');
+            expect(client.url()).toEqual('http://boosh/public/dashboards?slug=foo/bar');
+          });
+        });
+        describe('when there is no path', function () {
+          it('should use the stagecraftUrlRoot without a path', function () {
+            client.fallback = false; 
+            client.setPath('');
+            expect(client.url()).toEqual('http://boosh/public/dashboards');
+          });
         });
       });
       describe('when fallback is true', function () {
-        it('should use the urlRoot', function () {
-          client.fallback = true; 
-          client.setPath('foo/bar');
-          expect(client.url()).toEqual('http://testdomain/foo/bar');
+        describe('when there is a path', function () {
+          it('should use the urlRoot with the path', function () {
+            client.fallback = true; 
+            client.setPath('foo/bar');
+            expect(client.url()).toEqual('http://testdomain/foo/bar');
+          });
+        });
+        describe('when there is no path', function () {
+          it('should use the urlRoot with dashboards as the path', function () {
+            client.fallback = true; 
+            client.setPath('');
+            expect(client.url()).toEqual('http://testdomain/dashboards');
+          });
         });
       });
     });

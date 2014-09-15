@@ -4,6 +4,9 @@ define([
 function (Model) {
   var StagecraftApiClient = Model.extend({
 
+    getServicesList: function (){
+    },
+
     defaults: {
       status: 200
     },
@@ -20,9 +23,17 @@ function (Model) {
 
     url: function () {
       if(this.fallback) {
-        return this.urlRoot + this.path;
+        if(this.path.length){
+          return this.urlRoot + this.path;
+        } else {
+          return this.urlRoot + 'dashboards';
+        }
       } else {
-        return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
+        if(this.path.length){
+          return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
+        } else {
+          return this.stagecraftUrlRoot;
+        }
       }
     },
 
