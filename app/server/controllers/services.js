@@ -2,14 +2,13 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
-var controllerMap = require('../../server/controller_map')();
-var StagecraftApiClient = requirejs('stagecraft_api_client');
-
 var View = require('../views/services');
 var ErrorView = require('../views/error');
 
 var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
+
+var get_dashboards_and_render = require('../mixins/get_dashboards_and_render');
 
 var renderContent = function (req, res, client_instance) {
   var services = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.SERVICES),
@@ -50,26 +49,5 @@ var renderContent = function (req, res, client_instance) {
 };
 
 module.exports = function (req, res) {
-  var client_instance = new StagecraftApiClient({}, {
-    ControllerMap: controllerMap 
-  });
-  client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
-  client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
-  var error_count = 0;
-
-  client_instance.on('error', function () {
-    if(error_count === 1){
-      model.off();
-      res.status(model.get('status'));
-      setup.renderContent(req, res, model);
-    }
-    error_count ++; 
-  });
-  client_instance.on('sync', function () {
-    client_instance.off();
-    res.status(client_instance.get('status'));
-    renderContent(req, res, client_instance);
-  });
-
-  client_instance.setPath('');
+  get_dashboards_and_render(req, res, renderContent);
 };
