@@ -8,44 +8,50 @@ var client_instance = new stagecraft_api_client({}, {
   ControllerMap: controllerMap 
 });
 
-var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
-
 var View = require('../views/services');
 
 var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
 module.exports = function (req, res) {
-  client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
+  client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
   client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
-  client_instance.setPath('');
-  console.log(client_instance);
-
-  var services = new DashboardCollection(dashboards.items).filterDashboards(DashboardCollection.SERVICES),
-      collection = new DashboardCollection(services);
-
-  var departments = collection.getDepartments();
-  var agencies = collection.getAgencies();
-
-  var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-    title: 'Services',
-    'page-type': 'services',
-    filter: sanitizer.escape(req.query.filter || ''),
-    departmentFilter: req.query.department || null,
-    departments: departments,
-    agencyFilter: req.query.agency || null,
-    agencies: agencies,
-    data: services,
-    script: true,
-    noun: 'service'
-  }));
-
-  var view = new View({
-    model: model,
-    collection: collection
+  client_instance.on('sync', function () {
+    client_instance.off();
+    res.status(client_instance.get('status'));
+    renderContent(req, res, client_instance);
   });
-  view.render();
 
-  res.set('Cache-Control', 'public, max-age=120');
-  res.send(view.html);
+  client_instance.setPath('');
+
+  var renderContent = function (req, res, client_instance) {
+    console.log(client_instance.get('items'));
+    var services = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.SERVICES),
+        collection = new DashboardCollection(services);
+
+    var departments = collection.getDepartments();
+    var agencies = collection.getAgencies();
+
+    var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
+      title: 'Services',
+      'page-type': 'services',
+      filter: sanitizer.escape(req.query.filter || ''),
+      departmentFilter: req.query.department || null,
+      departments: departments,
+      agencyFilter: req.query.agency || null,
+      agencies: agencies,
+      data: services,
+      script: true,
+      noun: 'service'
+    }));
+
+    var view = new View({
+      model: model,
+      collection: collection
+    });
+    view.render();
+
+    res.set('Cache-Control', 'public, max-age=120');
+    res.send(view.html);
+  };
 };
