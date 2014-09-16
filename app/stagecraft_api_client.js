@@ -4,9 +4,6 @@ define([
 function (Model) {
   var StagecraftApiClient = Model.extend({
 
-    getServicesList: function (){
-    },
-
     defaults: {
       status: 200
     },

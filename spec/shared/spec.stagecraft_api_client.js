@@ -13,18 +13,6 @@ function (StagecraftApiClient, Backbone) {
       }
     };
 
-    describe('getServicesList', function (){
-      var client;
-      beforeEach(function() {
-        client = new StagecraftApiClient({}, {
-          ControllerMap: ControllerMap
-        });
-      });
-      it('should fall back to the local services dashboards list', function() {
-        console.log(client.getServicesList());
-      });
-    });
-
     describe('fetch', function (){
       var client;
       var old_sync;

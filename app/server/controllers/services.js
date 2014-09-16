@@ -31,7 +31,6 @@ var renderContent = function (req, res, client_instance) {
     noun: 'service'
   }));
 
-  console.log(client_instance.get('status'))
   var client_instance_status = client_instance.get('status'); 
   if(client_instance_status == 200 || client_instance_status == 501) {
     var view = new View({
