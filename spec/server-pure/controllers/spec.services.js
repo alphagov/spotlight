@@ -9,12 +9,13 @@ var PageConfig = requirejs('page_config');
 
 describe('Services Controller', function () {
 
-  var req = {
-    app: {'get': function(){
+  var fake_app = {'app': {'get': function(){
       return '8989'
-    }},
+    }}
+  }
+  var req = _.extend({
     query: {}
-  };
+  }, fake_app);
   var res = {
     send: jasmine.createSpy(),
     set: jasmine.createSpy(),
@@ -54,7 +55,7 @@ describe('Services Controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller({ query: { filter: 'foo' } }, res);
+    controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -71,7 +72,7 @@ describe('Services Controller', function () {
   });
 
   it('passes department filter to model if set', function () {
-    controller({ query: { department: 'home-office' } }, res);
+    controller(_.extend({ query: { department: 'home-office' } }, fake_app), res);
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -88,7 +89,7 @@ describe('Services Controller', function () {
   });
 
   it('sanitizes user input before rendering it', function () {
-    controller({ query: { filter: '<script>alert(1)</script>' } }, res);
+    controller(_.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',

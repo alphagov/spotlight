@@ -2,9 +2,10 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
+var controllerMap = require('../../server/controller_map')();
 var stagecraft_api_client = requirejs('stagecraft_api_client');
 var client_instance = new stagecraft_api_client({}, {
-  ControllerMap: {}
+  ControllerMap: controllerMap 
 });
 
 var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
@@ -18,7 +19,7 @@ module.exports = function (req, res) {
   client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
   client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
   client_instance.setPath('');
-  console.log(client_instance.parse());
+  console.log(client_instance);
 
   var services = new DashboardCollection(dashboards.items).filterDashboards(DashboardCollection.SERVICES),
       collection = new DashboardCollection(services);
