@@ -32,13 +32,13 @@ var renderContent = function (req, res, client_instance) {
   }));
 
   console.log(client_instance.get('status'))
-  if(client_instance.get('status') == 200) {
+  var client_instance_status = client_instance.get('status'); 
+  if(client_instance_status == 200 || client_instance_status == 501) {
     var view = new View({
       model: model,
       collection: collection
     });
   } else {
-    console.log('dis');
     var view = new ErrorView({
       model: model,
       collection: collection
@@ -61,7 +61,6 @@ module.exports = function (req, res) {
   client_instance.on('error', function () {
     if(error_count === 1){
       model.off();
-      console.log('here')
       res.status(model.get('status'));
       setup.renderContent(req, res, model);
     }
@@ -69,7 +68,6 @@ module.exports = function (req, res) {
   });
   client_instance.on('sync', function () {
     client_instance.off();
-    console.log('there')
     res.status(client_instance.get('status'));
     renderContent(req, res, client_instance);
   });
