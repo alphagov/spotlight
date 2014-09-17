@@ -5,7 +5,9 @@ var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 module.exports = function (req, res, renderContent) {
   var client_instance = new StagecraftApiClient({}, {
-    ControllerMap: controllerMap 
+    ControllerMap: controllerMap,
+    requestId: req.get('Request-Id'),
+  });
   });
   client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
   client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';

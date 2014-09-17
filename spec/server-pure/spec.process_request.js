@@ -44,14 +44,9 @@ describe('processRequest middleware', function () {
     beforeEach(function () {
       client = new Model();
       client.setPath = jasmine.createSpy();
-      spyOn(processRequest, 'getStagecraftApiClient').andReturn(client);
+      //dis
+      spyOn(processRequest, 'get_dashboard_and_render').andReturn(client);
       spyOn(processRequest, 'renderContent');
-    });
-
-    it('sets up a Stagecraft API client for the Stagecraft API stub', function () {
-      processRequest(req, res);
-      expect(processRequest.getStagecraftApiClient).toHaveBeenCalled();
-      expect(client.urlRoot).toEqual('http://localhost:1234/stagecraft-stub');
     });
 
     it('removes the /performance part of the slug when setting the path', function () {
@@ -59,33 +54,6 @@ describe('processRequest middleware', function () {
       expect(client.setPath).toHaveBeenCalledWith('/carers-allowance');
     });
 
-    it('renders content when stagecraft data was received successfully', function () {
-      processRequest(req, res);
-      client.trigger('sync');
-      expect(_.isEmpty(client._events)).toBe(true);
-      expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
-    });
-
-    it('renders content when stagecraft request failed and bubbles up error status twice', function () {
-      processRequest(req, res);
-      client.set('status', 999);
-      client.trigger('error', client);
-      client.trigger('error', client);
-      expect(_.isEmpty(client._events)).toBe(true);
-      expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
-      expect(res.status).toHaveBeenCalledWith(999);
-    });
-
-    it('sets the response status code to 501 when stagecraft api client reports an unknown stagecraft response', function () {
-      processRequest(req, res);
-      expect(res.status).not.toHaveBeenCalled();
-      client.set('status', 501);
-      expect(processRequest.renderContent).not.toHaveBeenCalled();
-      client.trigger('sync');
-      expect(res.status).toHaveBeenCalledWith(501);
-      expect(_.isEmpty(client._events)).toBe(true);
-      expect(processRequest.renderContent).toHaveBeenCalledWith(req, res, client);
-    });
   });
 
   describe('renderContent', function () {
