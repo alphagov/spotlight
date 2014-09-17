@@ -6,7 +6,7 @@ var View = require('../views/homepage');
 var Collection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
-var get_dashboards_and_render = require('../mixins/get_dashboards_and_render');
+var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
 var renderContent = function(req, res, client_instance) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
@@ -29,5 +29,6 @@ var renderContent = function(req, res, client_instance) {
 };
 
 module.exports = function (req, res) {
-  get_dashboards_and_render(req, res, renderContent);
+  var client_instance = get_dashboard_and_render(req, res, renderContent);
+  client_instance.setPath('');
 };

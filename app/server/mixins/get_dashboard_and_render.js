@@ -25,5 +25,5 @@ module.exports = function (req, res, renderContent) {
     renderContent(req, res, client_instance);
   });
 
-  client_instance.setPath('');
+  return client_instance;
 };

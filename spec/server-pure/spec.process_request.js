@@ -42,6 +42,7 @@ describe('processRequest middleware', function () {
     beforeEach(function () {
       client = new Model();
       client.setPath = jasmine.createSpy();
+      //dis
       spyOn(processRequest, 'getStagecraftApiClient').andReturn(client);
       spyOn(processRequest, 'renderContent');
     });
