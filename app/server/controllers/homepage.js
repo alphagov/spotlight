@@ -13,20 +13,18 @@ var renderContent = function(req, res, client_instance) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     'data': client_instance.get('items')
   }));
-  var dashboardItems = function () {
-
-  };
 
   var collection = new Collection(client_instance.get('items'));
 
   var client_instance_status = client_instance.get('status'); 
-  if(client_instance_status == 200 || client_instance_status == 501) {
-    var view = new View({
+  var view;
+  if(client_instance_status === 200 || client_instance_status === 501) {
+    view = new View({
       model: model,
       collection: collection
     });
   } else {
-    var view = new ErrorView({
+    view = new ErrorView({
       model: model,
       collection: collection
     });

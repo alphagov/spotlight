@@ -1,7 +1,6 @@
 var requirejs = require('requirejs');
 
 var PageConfig = requirejs('page_config');
-var controllerMap = require('./server/controller_map')();
 
 var get_dashboard_and_render = require('./server/mixins/get_dashboard_and_render');
 

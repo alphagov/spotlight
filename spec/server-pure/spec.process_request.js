@@ -1,5 +1,4 @@
 var requirejs = require('requirejs');
-var _ = require('lodash');
 
 var processRequest = require('../../app/process_request');
 
@@ -44,7 +43,6 @@ describe('processRequest middleware', function () {
     beforeEach(function () {
       client = new Model();
       client.setPath = jasmine.createSpy();
-      //dis
       spyOn(processRequest, 'get_dashboard_and_render').andReturn(client);
       spyOn(processRequest, 'renderContent');
     });

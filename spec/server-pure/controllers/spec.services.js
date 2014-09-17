@@ -1,5 +1,6 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
+var _ = require('lodash');
 
 var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
 var controller = require('../../../app/server/controllers/services');
@@ -12,9 +13,9 @@ var PageConfig = requirejs('page_config');
 describe('Services Controller', function () {
 
   var fake_app = {'app': {'get': function(){
-      return '8989'
+      return '8989';
     }}
-  }
+  };
   var req = _.extend({
     query: {}
   }, fake_app);

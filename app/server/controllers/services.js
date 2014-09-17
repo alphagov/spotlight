@@ -31,13 +31,14 @@ var renderContent = function (req, res, client_instance) {
   }));
 
   var client_instance_status = client_instance.get('status'); 
-  if(client_instance_status == 200 || client_instance_status == 501) {
-    var view = new View({
+  var view;
+  if(client_instance_status === 200 || client_instance_status === 501) {
+    view = new View({
       model: model,
       collection: collection
     });
   } else {
-    var view = new ErrorView({
+    view = new ErrorView({
       model: model,
       collection: collection
     });
