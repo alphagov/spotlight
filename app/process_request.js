@@ -3,8 +3,6 @@ var requirejs = require('requirejs');
 var PageConfig = requirejs('page_config');
 var controllerMap = require('./server/controller_map')();
 
-var StagecraftApiClient = requirejs('stagecraft_api_client');
-
 var get_dashboard_and_render = require('./server/mixins/get_dashboard_and_render');
 
 var renderContent = function (req, res, model) {
@@ -31,12 +29,13 @@ var renderContent = function (req, res, model) {
 };
 
 var setup = function (req, res) {
-  var client_instance = get_dashboard_and_render(req, res, setup.renderContent);
+  var client_instance = setup.get_dashboard_and_render(req, res, setup.renderContent);
   //I have no idea what this does, can't find anything obvious in the docs or this app.
   client_instance.set('script', true);
   client_instance.setPath(req.url.replace('/performance', ''));
 };
 
 setup.renderContent = renderContent;
+setup.get_dashboard_and_render = get_dashboard_and_render;
 
 module.exports = setup;
