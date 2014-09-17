@@ -2,6 +2,7 @@ var Backbone = require('backbone');
 var requirejs = require('requirejs');
 
 var View = require('../views/homepage');
+var ErrorView = require('../views/error');
 
 var Collection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
@@ -18,10 +19,18 @@ var renderContent = function(req, res, client_instance) {
 
   var collection = new Collection(client_instance.get('items'));
 
-  var view = new View({
-    model: model,
-    collection: collection
-  });
+  var client_instance_status = client_instance.get('status'); 
+  if(client_instance_status == 200 || client_instance_status == 501) {
+    var view = new View({
+      model: model,
+      collection: collection
+    });
+  } else {
+    var view = new ErrorView({
+      model: model,
+      collection: collection
+    });
+  }
   view.render();
 
   res.set('Cache-Control', 'public, max-age=120');
