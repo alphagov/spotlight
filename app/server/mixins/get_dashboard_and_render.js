@@ -13,9 +13,9 @@ module.exports = function (req, res, renderContent) {
 
   client_instance.on('error', function () {
     if(error_count === 1){
-      model.off();
-      res.status(model.get('status'));
-      renderContent(req, res, model);
+      client_instance.off();
+      res.status(client_instance.get('status'));
+      renderContent(req, res, client_instance);
     }
     error_count ++; 
   });
