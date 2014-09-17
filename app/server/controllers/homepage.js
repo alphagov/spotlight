@@ -1,26 +1,43 @@
 var Backbone = require('backbone');
 var requirejs = require('requirejs');
 
-var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
-
 var View = require('../views/homepage');
+var ErrorView = require('../views/error');
 
 var Collection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
-module.exports = function (req, res) {
+var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
+
+var renderContent = function(req, res, client_instance) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-    'data': dashboards.items
+    'data': client_instance.get('items')
   }));
+  var dashboardItems = function () {
 
-  var collection = new Collection(dashboards.items);
+  };
 
-  var view = new View({
-    model: model,
-    collection: collection
-  });
+  var collection = new Collection(client_instance.get('items'));
+
+  var client_instance_status = client_instance.get('status'); 
+  if(client_instance_status == 200 || client_instance_status == 501) {
+    var view = new View({
+      model: model,
+      collection: collection
+    });
+  } else {
+    var view = new ErrorView({
+      model: model,
+      collection: collection
+    });
+  }
   view.render();
 
   res.set('Cache-Control', 'public, max-age=7200');
   res.send(view.html);
+};
+
+module.exports = function (req, res) {
+  var client_instance = get_dashboard_and_render(req, res, renderContent);
+  client_instance.setPath('');
 };
