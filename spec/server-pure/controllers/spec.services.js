@@ -1,21 +1,29 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
 
+var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
 var controller = require('../../../app/server/controllers/services');
 var ServicesView = require('../../../app/server/views/services');
+var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 
 var PageConfig = requirejs('page_config');
 
 describe('Services Controller', function () {
 
-  var req = {
+  var fake_app = {'app': {'get': function(){
+      return '8989'
+    }}
+  }
+  var req = _.extend({
     query: {}
-  };
+  }, fake_app);
   var res = {
     send: jasmine.createSpy(),
     set: jasmine.createSpy(),
+    status: jasmine.createSpy(),
   };
+  var client_instance;
 
   beforeEach(function () {
     spyOn(PageConfig, 'commonConfig').andReturn({
@@ -27,6 +35,10 @@ describe('Services Controller', function () {
     spyOn(ServicesView.prototype, 'render').andCallFake(function () {
       this.html = 'html string';
     });
+    spyOn(StagecraftApiClient.prototype, 'initialize').andCallFake(function () {
+      this.set({'status': 200, 'items': dashboards.items});
+      client_instance = this;
+    });
   });
 
   it('is a function', function () {
@@ -35,6 +47,7 @@ describe('Services Controller', function () {
 
   it('creates a model containing config and page settings', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -51,7 +64,8 @@ describe('Services Controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller({ query: { filter: 'foo' } }, res);
+    controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
+    client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -68,7 +82,8 @@ describe('Services Controller', function () {
   });
 
   it('passes department filter to model if set', function () {
-    controller({ query: { department: 'home-office' } }, res);
+    controller(_.extend({ query: { department: 'home-office' } }, fake_app), res);
+    client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -85,7 +100,8 @@ describe('Services Controller', function () {
   });
 
   it('sanitizes user input before rendering it', function () {
-    controller({ query: { filter: '<script>alert(1)</script>' } }, res);
+    controller(_.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
+    client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
       config: 'setting',
       title: 'Services',
@@ -103,11 +119,13 @@ describe('Services Controller', function () {
 
   it('creates a collection', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
 
   it('creates a services view', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(ServicesView.prototype.initialize).toHaveBeenCalledWith({
       model: jasmine.any(Backbone.Model),
       collection: jasmine.any(Backbone.Collection)
@@ -116,16 +134,19 @@ describe('Services Controller', function () {
 
   it('renders the services view', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(ServicesView.prototype.render).toHaveBeenCalled();
   });
 
   it('sends the services view html', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(res.send).toHaveBeenCalledWith('html string');
   });
 
   it('has an explicit caching policy', function () {
     controller(req, res);
+    client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });
 
