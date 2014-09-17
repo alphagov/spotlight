@@ -14,19 +14,57 @@ function (StagecraftApiClient, Backbone) {
     };
 
     describe('fetch', function (){
+      var client;
+      var old_sync;
+      var fake_sync;
+      beforeEach(function () {
+        client = new StagecraftApiClient({}, {
+          ControllerMap: ControllerMap
+        });
+        client.stagecraftUrlRoot = 'http://stagecraft';
+        client.urlRoot = 'http://fallback/';
+        client.path = 'foo';
+        old_sync = Backbone.sync;
+      });
+      afterEach(function () {
+        this.removeAllSpies();
+        Backbone.sync = old_sync;
+      });
+      describe('on success response', function (){
+        describe('when there is no controller', function (){
+          beforeEach(function () {
+            fake_sync = function (method, model, options) {
+              options.success({status: 200});
+            };
+            Backbone.sync = fake_sync; 
+            spyOn(Backbone, 'sync').andCallThrough();
+          });
+          it('it should set 501 on the client and only have one sync', function () {
+            client.fetch();
+            expect(Backbone.sync.calls.length).toEqual(1);
+            expect(client.get('status')).toEqual(501);
+          });
+        });
+        describe('when there is an controller', function (){
+          beforeEach(function () {
+            fake_sync = function (method, model, options) {
+              client.set(); 
+              options.success({status: 200, 'page-type': 'dashboard'});
+            };
+            Backbone.sync = fake_sync; 
+            spyOn(Backbone, 'sync').andCallThrough();
+          });
+          it('it should set 200 on the client and only have one sync', function () {
+            client.fetch();
+            expect(Backbone.sync.calls.length).toEqual(1);
+            expect(client.get('status')).toEqual(200);
+          });
+        });
+      });
       describe('on all error responses', function (){
-        var client;
-        var old_sync;
-        var fake_sync;
         var url_values = [];
         var fallback_values = [];
         beforeEach(function () {
-          client = new StagecraftApiClient({}, {
-            ControllerMap: ControllerMap
-          });
-          client.stagecraftUrlRoot = 'http://stagecraft';
-          client.urlRoot = 'http://fallback/';
-          client.path = 'foo';
           //This ensures the error callback happens without 
           //making a request. It also stores the values during calls.
           fake_sync = function (method, model, options) {
@@ -34,14 +72,9 @@ function (StagecraftApiClient, Backbone) {
             fallback_values.push(model.fallback); 
             options.error({status: 404, responseText: 'all responses where 404!'});
           };
-          old_sync = Backbone.sync;
           Backbone.sync = fake_sync; 
           //This records the number of calls made. 
           spyOn(Backbone, 'sync').andCallThrough();
-        });
-        afterEach(function () {
-          this.removeAllSpies();
-          Backbone.sync = old_sync;
         });
         it('it should attempt to call stagecraft, it should fallback to local config, it should set error attributes on the model', function () {
           expect(client.fallback).toEqual(false);
@@ -68,21 +101,39 @@ function (StagecraftApiClient, Backbone) {
         client = new StagecraftApiClient({}, {
           ControllerMap: ControllerMap
         });
-        client.stagecraftUrlRoot = 'http://boosh';
+        client.stagecraftUrlRoot = 'http://boosh/public/dashboards';
         client.urlRoot = 'http://testdomain/';
       });
       describe('when fallback is false', function () {
-        it('should use the stagecraftUrlRoot', function () {
-          client.fallback = false; 
-          client.setPath('/foo/bar');
-          expect(client.url()).toEqual('http://boosh?slug=foo/bar');
+        describe('when there is a path', function () {
+          it('should use the stagecraftUrlRoot with the path', function () {
+            client.fallback = false; 
+            client.setPath('/foo/bar');
+            expect(client.url()).toEqual('http://boosh/public/dashboards?slug=foo/bar');
+          });
+        });
+        describe('when there is no path', function () {
+          it('should use the stagecraftUrlRoot without a path', function () {
+            client.fallback = false; 
+            client.setPath('');
+            expect(client.url()).toEqual('http://boosh/public/dashboards');
+          });
         });
       });
       describe('when fallback is true', function () {
-        it('should use the urlRoot', function () {
-          client.fallback = true; 
-          client.setPath('foo/bar');
-          expect(client.url()).toEqual('http://testdomain/foo/bar');
+        describe('when there is a path', function () {
+          it('should use the urlRoot with the path', function () {
+            client.fallback = true; 
+            client.setPath('foo/bar');
+            expect(client.url()).toEqual('http://testdomain/foo/bar');
+          });
+        });
+        describe('when there is no path', function () {
+          it('should use the urlRoot with dashboards as the path', function () {
+            client.fallback = true; 
+            client.setPath('');
+            expect(client.url()).toEqual('http://testdomain/dashboards');
+          });
         });
       });
     });
