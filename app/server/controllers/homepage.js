@@ -1,22 +1,22 @@
 var Backbone = require('backbone');
 var requirejs = require('requirejs');
 
-var dashboards = require('../../support/stagecraft_stub/responses/dashboards');
-
 var View = require('../views/homepage');
 
 var Collection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
-module.exports = function (req, res) {
+var get_dashboards_and_render = require('../mixins/get_dashboards_and_render');
+
+var renderContent = function(req, res, client_instance) {
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-    'data': dashboards.items
+    'data': client_instance.get('items')
   }));
   var dashboardItems = function () {
 
   };
 
-  var collection = new Collection(dashboards.items);
+  var collection = new Collection(client_instance.get('items'));
 
   var view = new View({
     model: model,
@@ -26,4 +26,8 @@ module.exports = function (req, res) {
 
   res.set('Cache-Control', 'public, max-age=120');
   res.send(view.html);
+};
+
+module.exports = function (req, res) {
+  get_dashboards_and_render(req, res, renderContent);
 };
