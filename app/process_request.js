@@ -30,7 +30,7 @@ var renderContent = function (req, res, model) {
 };
 
 var setup = function (req, res) {
-  var model = setup.getStagecraftApiClient();
+  var model = setup.getStagecraftApiClient(req);
   model.set('script', true);
 
   model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
@@ -54,9 +54,10 @@ var setup = function (req, res) {
   model.setPath(req.url.replace('/performance', ''));
 };
 
-setup.getStagecraftApiClient = function () {
+setup.getStagecraftApiClient = function (req) {
   return new StagecraftApiClient({}, {
-    ControllerMap: controllerMap
+    ControllerMap: controllerMap, 
+    requestId: req.get('Request-Id'),
   });
 };
 

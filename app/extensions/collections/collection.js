@@ -26,6 +26,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       this.dataSource.on('change', function () {
         this.fetch({ reset: true });
       }, this);
+      this.requestId = options.requestId || 'Not-Set';
 
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
@@ -108,7 +109,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     fetch: function () {
       this.selectedItem = null;
       this.selectedIndex = null;
-      logger.info('Fetching <%s>', this.url());
+      logger.info('Fetching <%s>', this.url(), { request_id: this.requestId });
       return Backbone.Collection.prototype.fetch.apply(this, arguments);
     },
 

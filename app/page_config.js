@@ -13,7 +13,8 @@ function () {
       assetDigest: req.app.get('assetDigest'),
       environment: req.app.get('environment'),
       backdropUrl: req.app.get('backdropUrl'),
-      clientRequiresCors: req.app.get('clientRequiresCors')
+      clientRequiresCors: req.app.get('clientRequiresCors'),
+      requestId: req.get('Request-Id')
     };
   };
 

@@ -22,10 +22,12 @@ describe('processRequest middleware', function () {
         backdropUrl: '//testBackdrop/'
       }[id];
     };
+    var headers = jasmine.createSpy();
     req = {
       app: {
         get: get
       },
+      get: headers,
       originalUrl: 'test url',
       route: {},
       url: '/performance/carers-allowance'
