@@ -19,6 +19,11 @@ describe('Services Controller', function () {
     }}
   };
   var req = _.extend({
+    get: function(key) {
+      return {
+        'Request-Id':'Xb35Gt'
+      }[key];
+    },
     query: {}
   }, fake_app);
   var res = {

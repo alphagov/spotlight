@@ -18,6 +18,11 @@ describe('get_dashboard_and_render', function () {
       'stagecraftUrl': 'urlURL'
     };
     fake_request = {
+      get: function(key) {
+        return {
+          'Request-Id':'Xb35Gt'
+        }[key];
+      },
       'app': {
         'get': function(key) {
           return request_attrs[key];
@@ -32,7 +37,8 @@ describe('get_dashboard_and_render', function () {
     expect(StagecraftApiClient.prototype.initialize).toHaveBeenCalledWith(
       {}, 
       {
-        ControllerMap: controllerMap
+        ControllerMap: controllerMap,
+        requestId: 'Xb35Gt'
       });
     expect(client_instance.urlRoot).toEqual('http://localhost:8989/stagecraft-stub/');
     expect(client_instance.stagecraftUrlRoot).toEqual('urlURL/public/dashboards');
