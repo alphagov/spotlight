@@ -5,15 +5,17 @@ var _ = require('lodash');
 var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
 var controller = require('../../../app/server/controllers/services');
 var ServicesView = require('../../../app/server/views/services');
-var StagecraftApiClient = requirejs('stagecraft_api_client');
-
+var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
 
 var PageConfig = requirejs('page_config');
 
 describe('Services Controller', function () {
 
-  var fake_app = {'app': {'get': function(){
-      return '8989';
+  var fake_app = {'app': {'get': function(key){
+      return {
+        'port':'8989',
+        'stagecraftUrl':'the url'
+      }[key];
     }}
   };
   var req = _.extend({
@@ -36,9 +38,10 @@ describe('Services Controller', function () {
     spyOn(ServicesView.prototype, 'render').andCallFake(function () {
       this.html = 'html string';
     });
-    spyOn(StagecraftApiClient.prototype, 'initialize').andCallFake(function () {
-      this.set({'status': 200, 'items': dashboards.items});
-      client_instance = this;
+    client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
+    client_instance.set({'status': 200, 'items': dashboards.items});
+    spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function () {
+      return client_instance; 
     });
   });
 

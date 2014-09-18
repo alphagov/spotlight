@@ -3,14 +3,18 @@ var requirejs = require('requirejs');
 var controllerMap = require('../../server/controller_map')();
 var StagecraftApiClient = requirejs('stagecraft_api_client');
 
-module.exports = function (req, res, renderContent) {
-  var client_instance = new StagecraftApiClient({}, {
+var buildStagecraftApiClient = function(req){
+  var this_client_instance = new StagecraftApiClient({}, {
     ControllerMap: controllerMap,
-    requestId: req.get('Request-Id'),
+    requestId: req.get('Request-Id')
   });
-  });
-  client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
-  client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
+  this_client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
+  this_client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
+  return this_client_instance;
+};
+
+var get_dashboard_and_render = function (req, res, renderContent) {
+  var client_instance = get_dashboard_and_render.buildStagecraftApiClient(req); 
   var error_count = 0;
 
   client_instance.on('error', function () {
@@ -29,3 +33,7 @@ module.exports = function (req, res, renderContent) {
 
   return client_instance;
 };
+
+get_dashboard_and_render.buildStagecraftApiClient = buildStagecraftApiClient;
+
+module.exports = get_dashboard_and_render;
