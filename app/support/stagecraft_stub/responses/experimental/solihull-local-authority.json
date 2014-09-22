@@ -75,7 +75,7 @@
       }
     },
     {
-      "slug": "missed_bin-by-ward",
+      "slug": "missed-bin-by-ward",
       "module-type": "table",
       "title": "Missed bins by ward",
       "description": "Wards where missed bins were reported in the past week",
