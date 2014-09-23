@@ -1,10 +1,8 @@
 var requirejs = require('requirejs');
 
 var PageConfig = requirejs('page_config');
-var controllerMap = require('./server/controller_map')();
 
-var StagecraftApiClient = requirejs('stagecraft_api_client');
-
+var get_dashboard_and_render = require('./server/mixins/get_dashboard_and_render');
 
 var renderContent = function (req, res, model) {
   model.set(PageConfig.commonConfig(req));
@@ -30,37 +28,13 @@ var renderContent = function (req, res, model) {
 };
 
 var setup = function (req, res) {
-  var model = setup.getStagecraftApiClient(req);
-  model.set('script', true);
-
-  model.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
-  model.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
-  var error_count = 0;
-
-  model.on('error', function () {
-    if(error_count === 1){
-      model.off();
-      res.status(model.get('status'));
-      setup.renderContent(req, res, model);
-    }
-    error_count ++; 
-  });
-  model.on('sync', function () {
-    model.off();
-    res.status(model.get('status'));
-    setup.renderContent(req, res, model);
-  });
-
-  model.setPath(req.url.replace('/performance', ''));
-};
-
-setup.getStagecraftApiClient = function (req) {
-  return new StagecraftApiClient({}, {
-    ControllerMap: controllerMap, 
-    requestId: req.get('Request-Id'),
-  });
+  var client_instance = setup.get_dashboard_and_render(req, res, setup.renderContent);
+  //I have no idea what this does, can't find anything obvious in the docs or this app.
+  client_instance.set('script', true);
+  client_instance.setPath(req.url.replace('/performance', ''));
 };
 
 setup.renderContent = renderContent;
+setup.get_dashboard_and_render = get_dashboard_and_render;
 
 module.exports = setup;
