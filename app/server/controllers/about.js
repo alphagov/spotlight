@@ -13,6 +13,6 @@ module.exports = function (req, res) {
   });
   view.render();
 
-  res.set('Cache-Control', 'public, max-age=900');
+  res.set('Cache-Control', 'public, max-age=7200');
   res.send(view.html);
 };

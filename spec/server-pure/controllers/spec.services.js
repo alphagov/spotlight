@@ -126,7 +126,7 @@ describe('Services Controller', function () {
 
   it('has an explicit caching policy', function () {
     controller(req, res);
-    expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=120');
+    expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });
 
 });
