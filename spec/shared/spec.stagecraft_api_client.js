@@ -22,8 +22,8 @@ function (StagecraftApiClient, Backbone) {
           ControllerMap: ControllerMap
         });
         client.stagecraftUrlRoot = 'http://stagecraft';
-        client.urlRoot = 'http://fallback/';
-        client.path = 'foo';
+        client.urlRoot = 'http://fallback';
+        client.path = '/foo';
         old_sync = Backbone.sync;
       });
       afterEach(function () {
@@ -102,7 +102,7 @@ function (StagecraftApiClient, Backbone) {
           ControllerMap: ControllerMap
         });
         client.stagecraftUrlRoot = 'http://boosh/public/dashboards';
-        client.urlRoot = 'http://testdomain/';
+        client.urlRoot = 'http://testdomain';
       });
       describe('when fallback is false', function () {
         describe('when there is a path', function () {
@@ -124,7 +124,7 @@ function (StagecraftApiClient, Backbone) {
         describe('when there is a path', function () {
           it('should use the urlRoot with the path', function () {
             client.fallback = true; 
-            client.setPath('foo/bar');
+            client.setPath('/foo/bar');
             expect(client.url()).toEqual('http://testdomain/foo/bar');
           });
         });

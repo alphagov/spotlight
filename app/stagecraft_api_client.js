@@ -24,7 +24,7 @@ function (Model) {
         if(this.path.length){
           return this.urlRoot + this.path;
         } else {
-          return this.urlRoot + 'dashboards';
+          return this.urlRoot + '/dashboards';
         }
       } else {
         if(this.path.length){

@@ -40,7 +40,7 @@ describe('get_dashboard_and_render', function () {
         ControllerMap: controllerMap,
         requestId: 'Xb35Gt'
       });
-    expect(client_instance.urlRoot).toEqual('http://localhost:8989/stagecraft-stub/');
+    expect(client_instance.urlRoot).toEqual('http://localhost:8989/stagecraft-stub');
     expect(client_instance.stagecraftUrlRoot).toEqual('urlURL/public/dashboards');
   });
   describe('on sync of client_instance', function() {

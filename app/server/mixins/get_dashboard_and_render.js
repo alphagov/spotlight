@@ -8,7 +8,7 @@ var buildStagecraftApiClient = function(req){
     ControllerMap: controllerMap,
     requestId: req.get('Request-Id')
   });
-  this_client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub/';
+  this_client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
   this_client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';
   return this_client_instance;
 };
