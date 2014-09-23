@@ -124,7 +124,7 @@ describe('processRequest middleware', function () {
       var controller = processRequest.renderContent(req, res, model);
       controller.html = 'test content';
       controller.trigger('ready');
-      expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=120');
+      expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=600');
     });
 
     it('instructs search engines not to index unpublished dashboards', function () {

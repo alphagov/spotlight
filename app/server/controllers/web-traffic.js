@@ -35,6 +35,6 @@ module.exports = function (req, res) {
   });
   view.render();
 
-  res.set('Cache-Control', 'public, max-age=120');
+  res.set('Cache-Control', 'public, max-age=600');
   res.send(view.html);
 };
