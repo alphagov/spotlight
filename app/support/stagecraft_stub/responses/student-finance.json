@@ -24,58 +24,114 @@
   "description-extra": "The Student Loans Company also ensures students receive their payments, maintain their account and make repayments. The service varies across the devolved administrations: customers in England receive the full service from SLC; in Wales and Northern Ireland the service is delivered with the support of local authority partners; in Scotland it is delivered in partnership with SAAS.",
   "modules": [
     {
-      "slug": "comparison-of-applications-by-stage",
-      "module-type": "comparison",
-      "title": "Applications at each stage of completion",
-      "description": "New online applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current and previous academic year",
-      "category": "stage",
-      "comparison": [
-        "academic_year:2014/15",
-        "academic_year:2013/14"
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Department for Business, Innovation and Skills"
       ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-student-finance-applications-full-time-study",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "The total cost for all aspects of processing a student finance application including: mail handling, staff processing time, customer advice, subsequent payment (up to 9 per applicant per annum), identity assurance, data sharing with higher education institutions and UCAS. The transactional costs quoted are approximate and subject to refinement.",
+        "<br />",
+        "Data source: Department for Business, Innovation and Skills",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-student-finance-applications-full-time-study",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "classes": "cols3",
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "The total cost for all aspects of processing a student finance application including: mail handling, staff processing time, customer advice, subsequent payment (up to 9 per applicant per annum), identity assurance, data sharing with higher education institutions and UCAS. The transactional costs quoted are approximate and subject to refinement.",
+        "<br />",
+        "Data source: Department for Business, Innovation and Skills",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:bis-student-finance-applications-full-time-study",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "applications-by-stage",
+      "module-type": "grouped_timeseries",
+      "title": "Applications at each stage of completion",
+      "description": "New online applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current year",
+      "category": "stage",
       "axis-period": "month",
       "value-attribute": "count:sum",
       "show-line-labels": true,
+      "show-total-lines": false,
       "use_stack": false,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education online applications started and submitted for the 2014/15 academic year with comparable numbers for the 2013/14 academic year"
+        "Shows the number of new Student Finance England full-time higher education online applications started and submitted for current year.  The data includes applications started and submitted for the 2013/14 and 2014/2015 academic year."
       ],
       "axes": {
-        "x": {
-          "label": "Date",
-          "format": "date",
-          "key": [
-            "_start_at",
-            "_end_at"
-          ]
-        },
         "y": [
           {
-            "label": "Started - 2014/15",
+            "label": "Started",
             "groupId": "started",
-            "comparison": "academic_year:2014/15",
             "format": "integer"
           },
           {
-            "label": "Submitted - 2014/15",
+            "label": "Submitted",
             "groupId": "submitted",
-            "comparison": "academic_year:2014/15",
             "format": "integer"
-          },
-          {
-            "label": "Started - 2013/14",
-            "groupId": "started",
-            "comparison": "academic_year:2013/14",
-            "format": "integer",
-            "timeshift": 52
-          },
-          {
-            "label": "Submitted - 2013/14",
-            "groupId": "submitted",
-            "comparison": "academic_year:2013/14",
-            "format": "integer",
-            "timeshift": 52
           }
         ]
       },
@@ -84,12 +140,10 @@
         "data-type": "transactions-by-channel",
         "query-params": {
           "period": "week",
-          "duration": 52,
           "filter_by": [
             "province:england",
             "application_type:full-time application",
-            "new_or_continuing:new",
-            "channel:digital"
+            "new_or_continuing:new"
           ],
           "start_at": "2014-01-01T00:00:00Z",
           "group_by": "stage",
@@ -196,6 +250,53 @@
             "count:sum"
           ],
           "group_by": "channel"
+        }
+      }
+    },
+    {
+      "slug": "user-satisfaction",
+      "module-type": "single_timeseries",
+      "title": "User satisfaction",
+      "description": "Overall satisfaction score includes all ratings weighted from 100% for 'very satisfied' to 0% for 'very dissatisfied'",
+      "info": [
+        "Data source: Student Loans Company",
+        "<a href='/service-manual/measurement/user-satisfaction' rel='external'>User satisfaction</a> is measured by surveying users at the point of transaction completion."
+      ],
+      "value-attribute": "satisfaction:sum",
+      "format-options": {
+        "type": "percent"
+      },
+      "axes": {
+              "x": {
+                "label": "Date",
+                "key": [
+                  "_start_at",
+                  "_end_at"
+                ],
+                "format": "date"
+              },
+              "y": [
+                {
+                  "label": "User satisfaction",
+                  "key": "satisfaction:sum",
+                  "format": "percent"
+                },
+                {
+                  "label": "Number of respondents",
+                  "key": "respondents"
+                }
+              ]
+            },
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "student-finance",
+        "data-type": "user-satisfaction",
+        "query-params": {
+          "period": "month",
+          "collect": [
+            "satisfaction:sum",
+            "respondents"
+          ]
         }
       }
     },
