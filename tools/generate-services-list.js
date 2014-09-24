@@ -7,13 +7,7 @@ var fs = require('graceful-fs'),
 var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/responses'),
     stagecraftStubGlob = path.resolve(stagecraftStubDir, '**/*.json');
 
-var dashboards = [
-  {
-    slug: 'licensing',
-    title: 'Licensing',
-    'dashboard-type': 'transaction'
-  }
-];
+var dashboards = [];
 
 var departments = [],
     agencies = [];
