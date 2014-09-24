@@ -1,0 +1,332 @@
+{
+  "slug": "civil-legal-aid-applications",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Civil legal aid applications",
+  "description": "To be provided by Legal Aid Agency.",
+  "department": {
+    "title": "Ministry of Justice",
+    "abbr": "MOJ"
+  },
+  "agency": {
+    "title": "Legal Aid Agency",
+    "abbr": "LAA"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Legal Aid",
+      "url": "https://www.gov.uk/legal-aid"
+    },
+    "improve-dashboard-message": true
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "costs": "Text to be provided by the Legal Aid team<br/>Information to be inserted here.",
+  "other-notes": "Other notes regarding the service can be inserted here.",
+  "modules": [
+      {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Ministry of Justice"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-legal-aid-applications-civil-cases",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Ministry of Justice",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur. These figures do not include the amounts paid for legal advice, family mediation and representation in court or tribunals."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-legal-aid-applications-civil-cases",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "classes": "cols3",
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "Data source: Ministry of Justice",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur. These figures do not include the amounts paid for legal advice, family mediation and representation in court or tribunals."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:moj-legal-aid-applications-civil-cases",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "application-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Applications processed per week",
+      "description": "<span class=\"group0\">Paper (CIS)</span> and <span class=\"group1\">digital (CCMS)</span> applications over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Ministry of Justice",
+        "Shows the number of applications processed, broken down by channel",
+        "Digital: applications made online (CCMS)",
+        "Paper form: applications made using a paper form (CIS)"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Paper (CIS)",
+            "groupId": "paper",
+            "format": "integer"
+          },
+          {
+            "label": "Digital (CCMS)",
+            "groupId": "digital",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications",
+            "transaction_state:processed"
+          ],
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "rejected-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Applications rejected per week",
+      "description": "<span class=\"group0\">Paper (CIS)</span> and <span class=\"group1\">digital (CCMS)</span> applications rejected due to incomplete or incorrect information over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Ministry of Justice",
+        "Shows the number of applications rejected, broken down by channel",
+        "Digital: applications made online (CCMS)",
+        "Paper form: applications made using a paper form (CIS)"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Paper (CIS)",
+            "groupId": "paper",
+            "format": "integer"
+          },
+          {
+            "label": "Digital (CCMS)",
+            "groupId": "digital",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications",
+            "transaction_state:rejected"
+          ],
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "How many applications are made digitally",
+      "description": "Proportion of applications made using the digital service",
+      "info": [
+        "Data source: Ministry of Justice",
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ],
+      "denominator-matcher": "^(digital|paper)$",
+      "numerator-matcher": "^digital$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications"
+          ],
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "processing-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Applications process outcomes per week",
+      "description": "Resulting outcome of application processing",
+      "category": "process_stage",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Ministry of Justice",
+        "Shows the number of applications processed, broken down by channel",
+        "Digital: applications made online (CCMS)",
+        "Paper form: applications made using a paper form (CIS)"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Issued",
+            "groupId": "issued",
+            "format": "integer"
+          },
+          {
+            "label": "Offered",
+            "groupId": "offered",
+            "format": "integer"
+          },
+          {
+            "label": "Refused",
+            "groupId": "refused",
+            "format": "integer"
+          },
+          {
+            "label": "Further information",
+            "groupId": "further-information",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications",
+            "transaction_state:processed"
+          ],
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "process_stage",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    }
+  ]
+}
