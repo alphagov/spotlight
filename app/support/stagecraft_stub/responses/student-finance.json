@@ -109,8 +109,8 @@
     {
       "slug": "applications-by-stage",
       "module-type": "grouped_timeseries",
-      "title": "Applications at each stage of completion",
-      "description": "New online applications <span class=\"group0\">started</span> and <span class=\"group1\">submitted</span> for the current year",
+      "title": "Applications started and submitted",
+      "description": "Applications for the current and previous academic year",
       "category": "stage",
       "axis-period": "month",
       "value-attribute": "count:sum",
@@ -119,7 +119,8 @@
       "use_stack": false,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education online applications started and submitted for current year.  The data includes applications started and submitted for the 2013/14 and 2014/2015 academic year."
+        "Digital applications are counted as ‘started’ when the applicant creates an application for student finance. They are counted as ‘submitted’ when they complete and submit the application. This data includes automated applications counted as started and submitted on the same day, these are submitted on behalf of non means tested students expected to re-apply for student finance. Automated applications are created over a two week period in the early part of each new business cycle i.e. the academic year of intended study.",
+        "Any paper applications received are data entered into the system by SLC staff. Paper applications are counted as ‘started’ and ‘submitted’ when the processing team starts the data entry of the application."
       ],
       "axes": {
         "y": [
@@ -295,7 +296,7 @@
           "period": "month",
           "collect": [
             "satisfaction:sum",
-            "respondents"
+            "respondents:set"
           ]
         }
       }
