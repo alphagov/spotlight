@@ -167,7 +167,7 @@
       "use_stack": true,
       "info": [
         "Data source: Student Loans Company",
-        "Shows the number of new Student Finance England full-time higher education applications submitted for the 2014/15 academic year, broken down by channel"
+        "These applications relate to the 2014/15 academic year."
       ],
       "axes": {
         "y": [
@@ -211,7 +211,8 @@
       "axis-period": "month",
       "info": [
         "Data source: Student Loans Company",
-        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of submitted applications that are made through a digital channel versus non-digital channels"
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of submitted applications that are made online compared to those made in paper form.",  
+        "Students can switch from filling in their application online to paper form but not the other way round."
       ],
       "numerator-matcher": "digital",
       "denominator-matcher": "[paper|digital]",
