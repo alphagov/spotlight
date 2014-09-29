@@ -27,7 +27,7 @@ var get_dashboard_and_render = function (req, res, renderContent) {
   });
   client_instance.on('sync', function () {
     client_instance.off();
-    res.status(client_instance.get('status'));
+    res.status(200);
     renderContent(req, res, client_instance);
   });
 
