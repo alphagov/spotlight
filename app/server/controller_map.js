@@ -37,6 +37,7 @@ module.exports = function () {
       user_satisfaction:      UserSatisfactionModule,
       user_satisfaction_graph: UserSatisfactionGraphModule,
       realtime:               VisitorsRealtimeModule
-    }
+    },
+    browse: true
   };
 };
