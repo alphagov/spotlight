@@ -35,7 +35,7 @@ function (Model) {
       }
     },
 
-    fallback: false, 
+    fallback: false,
 
     fetch: function (options) {
       options = _.extend({}, {
@@ -81,7 +81,8 @@ function (Model) {
         }
       }, this);
 
-      if (!controller) {
+      // the response from /dashboards in stagecraft doesn't return a page-type
+      if (!controller && this.path && this.path.length) {
         data.controller = controllerMap.error;
         data.status = 501;
       } else {
