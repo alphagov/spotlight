@@ -123,6 +123,14 @@
         "Any paper applications received are data entered into the system by SLC staff. Paper applications are counted as ‘started’ and ‘submitted’ when the processing team starts the data entry of the application."
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
         "y": [
           {
             "label": "Started",
@@ -170,6 +178,14 @@
         "These applications relate to the 2014/15 academic year."
       ],
       "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
         "y": [
           {
             "label": "Digital",
