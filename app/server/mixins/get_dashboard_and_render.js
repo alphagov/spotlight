@@ -6,7 +6,8 @@ var StagecraftApiClient = requirejs('stagecraft_api_client');
 var buildStagecraftApiClient = function(req){
   var this_client_instance = new StagecraftApiClient({}, {
     ControllerMap: controllerMap,
-    requestId: req.get('Request-Id')
+    requestId: req.get('Request-Id'),
+    govukRequestId: req.get('GOVUK-Request-Id')
   });
   this_client_instance.urlRoot = 'http://localhost:' + req.app.get('port') + '/stagecraft-stub';
   this_client_instance.stagecraftUrlRoot = req.app.get('stagecraftUrl') + '/public/dashboards';

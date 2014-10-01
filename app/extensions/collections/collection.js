@@ -27,7 +27,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         this.fetch({ reset: true });
       }, this);
       this.requestId = options.requestId || 'Not-Set';
-
+      this.govukRequestId = options.govukRequestId || 'Not-Set';
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
@@ -106,11 +106,20 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       }, this);
     },
 
-    fetch: function () {
+    fetch: function (options) {
       this.selectedItem = null;
       this.selectedIndex = null;
-      logger.info('Fetching <%s>', this.url(), { request_id: this.requestId });
-      return Backbone.Collection.prototype.fetch.apply(this, arguments);
+      options = _.extend({}, {
+        headers: {
+          'GOVUK-Request-Id': this.govukRequestId,
+          'Request-Id': this.requestId
+        }
+      }, options);
+      logger.info('Fetching <%s>', this.url(), {
+        request_id: this.requestId,
+        govuk_request_id: this.govukRequestId
+      });
+      return Backbone.Collection.prototype.fetch.call(this, options);
     },
 
     isXADate: function () {
