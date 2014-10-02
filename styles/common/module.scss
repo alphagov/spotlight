@@ -74,6 +74,12 @@
           width: 33%;
         }
       }
+
+      &.cols2, &.cols3 {
+        .visualisation-moreinfo {
+          width: 100%;
+        }
+      }
     }
   }
 }
