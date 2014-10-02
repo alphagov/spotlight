@@ -4,7 +4,7 @@
   "dashboard-type": "transaction",
   "published": true,
   "strapline": "Dashboard",
-  "title": "Tax disc renewals",
+  "title": "Vehicle tax renewals",
   "description": "If you drive or park your vehicle on public roads, you must ensure that you have valid vehicle tax for your vehicle.",
   "department": {
     "title": "Department for Transport",
@@ -16,7 +16,7 @@
   },
   "relatedPages": {
     "transaction": {
-      "title": "Renew a tax disc",
+      "title": "Renew vehicle tax (tax disc)",
       "url": "https://www.gov.uk/tax-disc"
     },
     "improve-dashboard-message": true
@@ -115,7 +115,7 @@
       "slug": "volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Renewals breakdown",
-      "description": "Tax disc renewals per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
+      "description": "Vehicle tax renewals per month broken into <span class='group0'>digital</span>, <span class='group1'>Post Office</span> and <span class='group2'>DVLA centre</span> applications",
       "category": "channel",
       "value-attribute": "volume:sum",
       "show-line-labels": true,
