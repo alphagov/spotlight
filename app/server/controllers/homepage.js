@@ -18,7 +18,7 @@ var renderContent = function(req, res, client_instance) {
 
   var client_instance_status = client_instance.get('status'); 
   var view;
-  if(client_instance_status === 200 || client_instance_status === 501) {
+  if(client_instance_status === 200) {
     view = new View({
       model: model,
       collection: collection
