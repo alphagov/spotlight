@@ -16,7 +16,8 @@ function (PageConfig) {
       var headers = jasmine.createSpy();
       headers.plan = function(prop) {
         return {
-          'Request-Id': 'a-uuid'
+          'Request-Id': 'a-uuid',
+          'GOVUK-Request-Id': '1231234123'
         }[prop];
       };
       req = {

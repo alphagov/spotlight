@@ -21,7 +21,8 @@ describe('Services Controller', function () {
   var req = _.extend({
     get: function(key) {
       return {
-        'Request-Id':'Xb35Gt'
+        'Request-Id':'Xb35Gt',
+        'GOVUK-Request-Id': '1231234123'
       }[key];
     },
     query: {}

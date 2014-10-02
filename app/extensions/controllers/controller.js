@@ -48,10 +48,18 @@ define([
         return null;
       };
 
+      var getGOVUKRequestId = function(m) {
+        if (m.get('parent')) {
+          return m.get('parent').get('govukRequestId');
+        }
+        return null;
+      };
+
       if (this.collectionClass && !this.collection) {
         this.collection = new this.collectionClass(this.collectionData(), _.extend({
           dataSource: this.model.get('data-source'),
-          requestId: getRequestId(this.model)
+          requestId: getRequestId(this.model),
+          govukRequestId: getGOVUKRequestId(this.model)
         }, this.collectionOptions()));
       }
 

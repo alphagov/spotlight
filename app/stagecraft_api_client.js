@@ -11,6 +11,7 @@ function (Model) {
     initialize: function (attrs, options) {
       this.controllers = options.ControllerMap;
       this.requestId = options.requestId || 'Not-Set';
+      this.govukRequestId = options.govukRequestId || 'Not-Set';
       Model.prototype.initialize.apply(this, arguments);
     },
 
@@ -40,11 +41,18 @@ function (Model) {
     fetch: function (options) {
       options = _.extend({}, {
         validate: true,
+        headers: {
+          'GOVUK-Request-Id': this.govukRequestId,
+          'Request-Id': this.requestId
+        },
         error: _.bind(function () {
           this.fetchFallback(options);
         }, this)
       }, options);
-      logger.info('Fetching <%s>', this.url(), { request_id: this.requestId });
+      logger.info('Fetching <%s>', this.url(), {
+        request_id: this.requestId,
+        govuk_request_id: this.govukRequestId
+      });
       Model.prototype.fetch.call(this, options);
     },
 
