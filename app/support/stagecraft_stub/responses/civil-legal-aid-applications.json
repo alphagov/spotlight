@@ -5,7 +5,7 @@
   "published": false,
   "strapline": "Dashboard",
   "title": "Civil legal aid applications",
-  "description": "To be provided by Legal Aid Agency.",
+  "description": "Text to be provided by Legal Aid Agency.",
   "department": {
     "title": "Ministry of Justice",
     "abbr": "MOJ"
@@ -23,8 +23,8 @@
   },
   "customer-type": "Individuals",
   "business-model": "Taxpayers",
-  "costs": "Text to be provided by the Legal Aid team<br/>Information to be inserted here.",
-  "other-notes": "Other notes regarding the service can be inserted here.",
+  "costs": "Text to be provided by Legal Aid Agency.",
+  "other-notes": "Text to be provided by the Legal Aid Agency.",
   "modules": [
       {
       "slug": "transactions-per-year",
@@ -116,9 +116,7 @@
       "use_stack": true,
       "info": [
         "Data source: Ministry of Justice",
-        "Shows the number of applications processed, broken down by channel",
-        "Digital: applications made online (CCMS)",
-        "Paper form: applications made using a paper form (CIS)"
+        "Text to be provided by Legal Aid Agency."
       ],
       "axes": {
         "x": {
@@ -151,61 +149,6 @@
             "service:legal-aid-civil-claims",
             "transaction:applications",
             "transaction_state:processed"
-          ],
-          "start_at": "2014-03-31T00:00:00Z",
-          "group_by": "channel",
-          "collect": [
-            "count:sum"
-          ]
-        }
-      }
-    },
-    {
-      "slug": "rejected-volumetrics",
-      "module-type": "grouped_timeseries",
-      "title": "Applications rejected per week",
-      "description": "<span class=\"group0\">Paper (CIS)</span> and <span class=\"group1\">digital (CCMS)</span> applications rejected due to incomplete or incorrect information over time",
-      "category": "channel",
-      "value-attribute": "count:sum",
-      "show-line-labels": true,
-      "use_stack": true,
-      "info": [
-        "Data source: Ministry of Justice",
-        "Shows the number of applications rejected, broken down by channel",
-        "Digital: applications made online (CCMS)",
-        "Paper form: applications made using a paper form (CIS)"
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": [
-            "_start_at",
-            "_end_at"
-          ],
-          "format": "date"
-        },
-        "y": [
-          {
-            "label": "Paper (CIS)",
-            "groupId": "paper",
-            "format": "integer"
-          },
-          {
-            "label": "Digital (CCMS)",
-            "groupId": "digital",
-            "format": "integer"
-          }
-        ]
-      },
-      "data-source": {
-        "data-group": "legal-aid",
-        "data-type": "transactions-by-channel",
-        "query-params": {
-          "period": "week",
-          "filter_by": [
-            "service:legal-aid-civil-claims",
-            "transaction:applications",
-            "transaction_state:rejected"
           ],
           "start_at": "2014-03-31T00:00:00Z",
           "group_by": "channel",
@@ -267,7 +210,7 @@
       "slug": "processing-volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications process outcomes per week",
-      "description": "Resulting outcome of application processing",
+      "description": "Text to be provided by Legal Aid Agency.",
       "category": "process_stage",
       "value-attribute": "count:sum",
       "show-line-labels": true,
@@ -325,6 +268,99 @@
           "collect": [
             "count:sum"
           ]
+        }
+      }
+    },
+    {
+      "slug": "application-rejections",
+      "module-type": "single_timeseries",
+      "title": "Applications rejected per month",
+      "description": "Number of applications rejected due to incomplete or incorrect information.",
+      "info": [
+        "Data source: Ministry of Justice",
+        "Shows the number of applications rejected each month due to incorrect or invalid information provided by users"
+      ],
+      "value-attribute": "count:sum",
+      "format-options": {
+        "type": "integer"
+      },
+      "axes": {
+              "x": {
+                "label": "Date",
+                "key": [
+                  "_start_at",
+                  "_end_at"
+                ],
+                "format": "date"
+              },
+              "y": [
+                {
+                  "label": "Rejections",
+                  "key": "count:sum",
+                  "format": "integer"
+                }
+              ]
+            },
+      "axis-period": "month",
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "rejection-reasons",
+        "query-params": {
+          "period": "month",
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications"
+          ],
+          "start_at": "2014-03-31T00:00:00Z",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "rejection-reasons",
+      "module-type": "table",
+      "title": "Rejection reasons",
+      "description": "Reasons applications were rejected",
+      "axes": {
+        "x": {
+          "label": "Description",
+          "key": "reason_text"
+        },
+        "y": [
+          {
+            "label": "Volume last month",
+            "key": "count:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of total errors",
+            "key": "percentOfTotal(count:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-order": "descending",
+      "info": [
+        "Data source: Ministry of Justice",
+        "specific rejection reasons are grouped into categories and reported monthly.</li>"
+      ],
+      "sort-by": "count:sum",
+      "data-source": {
+        "data-group": "legal-aid",
+        "data-type": "rejection-reasons",
+        "query-params": {
+          "filter_by": [
+            "service:legal-aid-civil-claims",
+            "transaction:applications"
+          ],
+          "group_by": "reason_text",
+          "collect": [
+            "count:sum"
+          ],
+          "period": "month",
+          "duration": 1
         }
       }
     }
