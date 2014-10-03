@@ -29,7 +29,6 @@ var renderContent = function (req, res, model) {
 
 var setup = function (req, res) {
   var client_instance = setup.get_dashboard_and_render(req, res, setup.renderContent);
-  //I have no idea what this does, can't find anything obvious in the docs or this app.
   client_instance.set('script', true);
   client_instance.setPath(req.url.replace('/performance', ''));
 };
