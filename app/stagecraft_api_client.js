@@ -16,7 +16,7 @@ function (Model) {
     },
 
     setPath: function (path) {
-      this.path = path;
+      this.path = path.split('?')[0];
       this.fetch();
     },
 

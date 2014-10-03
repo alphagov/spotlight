@@ -154,6 +154,14 @@ function (StagecraftApiClient, Backbone) {
         client.setPath('foo/bar');
         expect(client.fetch.callCount).toEqual(2);
       });
+
+      it('does not pass query parameters onto the API request', function () {
+        var client = new StagecraftApiClient({}, {
+          ControllerMap: ControllerMap
+        });
+        client.setPath('/carers-allowance?cachebust');
+        expect(client.path).toEqual('/carers-allowance');
+      });
     });
 
     describe('parse', function () {
