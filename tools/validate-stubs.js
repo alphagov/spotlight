@@ -52,8 +52,16 @@ var testDirectory = function (fileGlob) {
         var validateModule = function (module) {
           var moduleDefer = Q.defer();
           var schema;
+          schema = require('../schema/modules/comparison');
+          var file_path = path.resolve(__dirname, '../schema/modules_json/comparison_schema.json')
+          fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
+          schema = require('../schema/modules/completion_numbers');
+          var file_path = path.resolve(__dirname, '../schema/modules_json/completion_numbers.json')
+          fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           try {
             schema = require('../schema/modules/' + module['module-type']);
+            file_path = path.resolve(__dirname, '../schema/modules_json/' + module['module-type'] + '_schema.json')
+            fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           } catch (e) {
             schema = require('../schema/module');
           }
