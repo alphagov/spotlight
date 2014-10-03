@@ -47,7 +47,7 @@ glob(stagecraftStubGlob, function (err, files) {
     return readModule(file);
   })).then(function () {
     console.log('Writing ' + dashboards.length + ' dashboards into dashboards.json');
-    fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards }, null, 2) + '\n');
+    fs.writeFileSync(stagecraftStubDir + '/dashboards.json', JSON.stringify({ items: dashboards, 'page-type': 'browse' }, null, 2) + '\n');
   });
 
 });
