@@ -1,3 +1,9 @@
+![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
+
+[![Build status](https://travis-ci.org/alphagov/spotlight.svg?branch=master)](https://travis-ci.org/alphagov/spotlight)
+
+[![Dependency status](https://gemnasium.com/alphagov/spotlight.svg)](https://gemnasium.com/alphagov/spotlight)
+
 # Spotlight #
 
 Hybrid rendering app for the GOV.UK Performance Platform using [Backbone][]
@@ -161,11 +167,3 @@ heroku addons:add logentries
 You can then access the logs from your app's dashboard on Heroku (under the "Add-ons" section).
 
 [buildpack]: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
-
-## App status ##
-
-![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
-
-[![Build status](https://travis-ci.org/alphagov/spotlight.svg?branch=master)](https://travis-ci.org/alphagov/spotlight)
-
-[![Dependency status](https://gemnasium.com/alphagov/spotlight.svg)](https://gemnasium.com/alphagov/spotlight)
