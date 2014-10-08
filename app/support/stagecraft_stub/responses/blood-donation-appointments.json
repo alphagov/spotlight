@@ -1,0 +1,378 @@
+{
+  "slug": "blood-donation-appointments",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Blood donation appointments",
+  "description": "Text to be provided by NHSBT.",
+  "department": {
+    "title": "Department of Health",
+    "abbr": "DoH"
+  },
+  "agency": {
+    "title": "NHS Blood and Transplant",
+    "abbr": "NHSBT"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Blood donation appointments",
+      "url": "http://www.blood.co.uk/index.aspx"
+    },
+    "improve-dashboard-message": true
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "costs": "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations.",
+  "other-notes": "The website for the service was updated at the end of 2013, resulting in significant reduction in calls to make or cancel appointments. This in turn has resulted in a fall in cost per transaction.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Department of Health"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations. ",
+        "<br />",
+        "Data source: Department of Health",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "classes": "cols3",
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations. ",
+        "<br />",
+        "Data source: Department of Health",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "appointment-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment booking and cancellation volumes",
+      "description": "Appointment <span class=\"group0\">bookings</span> and <span class=\"group1\">cancellations</span> over time",
+      "category": "transaction",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Appointment booking",
+            "groupId": "appointment-booking",
+            "format": "integer"
+          },
+          {
+            "label": "Appointment cancellation",
+            "groupId": "appointment-cancellation",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "transaction",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "appointment-booking-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment booking volumes by channel",
+      "description": "Appointment bookings by channel over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Donor Centre",
+            "groupId": "donor-centre",
+            "format": "integer"
+          },
+          {
+            "label": "Donor management",
+            "groupId": "donor-management",
+            "format": "integer"
+          },
+          {
+            "label": "National call centre",
+            "groupId": "ncc",
+            "format": "integer"
+          },
+          {
+            "label": "Online",
+            "groupId": "portal",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile donor session",
+            "groupId": "session",
+            "format": "integer"
+          },
+          {
+            "label": "Session management",
+            "groupId": "session-management",
+            "format": "integer"
+          },
+          {
+            "label": "Pulse",
+            "groupId": "pulse",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "filter_by": [
+            "transaction:appointment-booking"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "appointment-cancellation-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment cancellation volumes by channel",
+      "description": "Appointment cancellations by channel over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Donor Centre",
+            "groupId": "donor-centre",
+            "format": "integer"
+          },
+          {
+            "label": "Donor management",
+            "groupId": "donor-management",
+            "format": "integer"
+          },
+          {
+            "label": "National call centre",
+            "groupId": "ncc",
+            "format": "integer"
+          },
+          {
+            "label": "Online",
+            "groupId": "portal",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile donor session",
+            "groupId": "session",
+            "format": "integer"
+          },
+          {
+            "label": "Session management",
+            "groupId": "session-management",
+            "format": "integer"
+          },
+          {
+            "label": "Pulse",
+            "groupId": "pulse",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "filter_by":[
+            "transaction:appointment-cancellation"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service."
+      ],
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "How many donation appointments or cancellations are made digitally",
+      "description": "Proportion of appointments made using the digital service",
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "denominator-matcher": "^(portal|donor-centre|donor-management|ncc|session|session-management|pulse)$",
+      "numerator-matcher": "^portal$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    }
+  ]
+}
