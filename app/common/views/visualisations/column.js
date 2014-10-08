@@ -10,37 +10,33 @@ function (View, MostRecentNumberView) {
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
-      this.pinCollection();
-      this.addCollectionLabels();
+      var xAxisKey = this.collection.options.axes.x.key;
+
+      this.pinCollection(xAxisKey);
+      this.addCollectionLabels(xAxisKey);
     },
 
-    pinCollection: function () {
+    pinCollection: function (xAxisKey) {
       var valueAttr = this.collection.options.valueAttr;
       var groupedItem = this.collection.at(this.maxBars - 1);
       var itemToAddValue;
-      var update;
 
       this.collection.each(function (element, index) {
         if (index >= this.maxBars) {
           itemToAddValue = this.collection.at(index).get(valueAttr);
 
-          update = {};
-          update[valueAttr] = groupedItem.get(valueAttr) + itemToAddValue;
-
-          groupedItem.set(update);
-
+          groupedItem.set(valueAttr, groupedItem.get(valueAttr) + itemToAddValue);
         }
       }, this);
 
-      var handlingTime = groupedItem.get('handling_time') + '+';
-      groupedItem.set({'handling_time': handlingTime});
+      groupedItem.set(xAxisKey, groupedItem.get(xAxisKey) + '+');
 
       this.collection.remove(this.collection.slice(this.maxBars, this.collection.length));
     },
 
-    addCollectionLabels: function () {
+    addCollectionLabels: function (xAxisKey) {
       this.collection.models.forEach(function (model) {
-        model.set('title', model.get('handling_time'));
+        model.set('title', model.get(xAxisKey));
       });
     },
 
