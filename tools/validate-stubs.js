@@ -52,6 +52,10 @@ var testDirectory = function (fileGlob) {
         var validateModule = function (module) {
           var moduleDefer = Q.defer();
           var schema;
+          schema = require('../schema/module');
+          var file_path = path.resolve(__dirname, '../schema/modules_json/module_schema.json')
+          schema = stripDownSchema(schema);
+          fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           schema = require('../schema/modules/comparison');
           var file_path = path.resolve(__dirname, '../schema/modules_json/comparison_schema.json')
           schema = stripDownSchema(schema);

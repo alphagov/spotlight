@@ -1,0 +1,92 @@
+{
+  "id": "/ModuleCommon",
+  "type": "object",
+  "properties": {
+    "axes": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "#/definitions/axis"
+        },
+        "y": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/axis"
+          }
+        }
+      }
+    },
+    "axis-period": {
+      "type": "string",
+      "required": false,
+      "oneOf": [
+        {
+          "enum": [
+            "day",
+            "week",
+            "month",
+            "quarter"
+          ]
+        }
+      ]
+    },
+    "date-picker": {
+      "type": "object",
+      "required": false,
+      "properties": {
+        "start-date": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        }
+      }
+    },
+    "value-attribute": {
+      "type": "string"
+    },
+    "classes": {
+      "type": [
+        "array",
+        "string"
+      ]
+    }
+  },
+  "definitions": {
+    "axis": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "key": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
+        "format": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-03/schema#"
+}
