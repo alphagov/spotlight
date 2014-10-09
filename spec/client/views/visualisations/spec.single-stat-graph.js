@@ -52,6 +52,14 @@ function (SingleStatGraph, Collection, Model) {
         expect(tickFormat(120000)).toEqual('2m');
       });
 
+      it('should format ticks as percentages if specified', function () {
+        graph.formatOptions = {
+          type: 'percent'
+        };
+        var tickFormat = graph.components().yaxis.options.tickFormat.call(this);
+        expect(tickFormat(120000)).toContain('%');
+      });
+
     });
 
 
