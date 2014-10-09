@@ -17,26 +17,28 @@ function (View, MostRecentNumberView) {
     },
 
     pinCollection: function (xAxisKey) {
-      var valueAttr = this.collection.options.valueAttr;
-      var groupedItem = this.collection.at(this.maxBars - 1);
-      var itemToAddValue;
+      if (this.maxBars < this.collection.length) {
+        var valueAttr = this.collection.options.valueAttr;
+        var groupedItem = this.collection.at(this.maxBars - 1);
+        var itemToAddValue;
 
-      this.collection.each(function (element, index) {
-        if (index >= this.maxBars) {
-          itemToAddValue = this.collection.at(index).get(valueAttr);
+        this.collection.each(function (element, index) {
+          if (index >= this.maxBars) {
+            itemToAddValue = this.collection.at(index).get(valueAttr);
 
-          groupedItem.set(valueAttr, groupedItem.get(valueAttr) + itemToAddValue);
-        }
-      }, this);
+            groupedItem.set(valueAttr, groupedItem.get(valueAttr) + itemToAddValue);
+          }
+        }, this);
 
-      groupedItem.set(xAxisKey, groupedItem.get(xAxisKey) + '+');
+        groupedItem.set(xAxisKey, groupedItem.get(xAxisKey) + '+');
 
-      this.collection.remove(this.collection.slice(this.maxBars, this.collection.length));
+        this.collection.remove(this.collection.slice(this.maxBars, this.collection.length));
+      }
     },
 
     addCollectionLabels: function (xAxisKey) {
       this.collection.models.forEach(function (model) {
-        model.set('title', model.get(xAxisKey));
+        model.set('title', model.get(xAxisKey).toString());
       });
     },
 

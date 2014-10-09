@@ -113,6 +113,7 @@ define([
         view.maxBars = 4;
         view.pinCollection();
 
+        expect(view.collection.length).toBe(4);
         expect(view.collection.at(4)).toBe(undefined);
         expect(view.collection.at(5)).toBe(undefined);
         expect(view.collection.at(6)).toBe(undefined);
@@ -121,15 +122,39 @@ define([
         expect(view.collection.at(9)).toBe(undefined);
       });
 
-      it('adds a "+" to the "max-bar" model xAxisKey');
+      it('adds a "+" to the "max-bar" model xAxisKey', function () {
+        var xAxisKey = view.collection.options.axes.x.key;
+        view.maxBars = 4;
+        view.pinCollection(xAxisKey);
+
+        expect(view.collection.at(3).get(xAxisKey)).toBe('3+');
+      });
+
+      it('doesnt do anything to the collection if the maxBars attribute is greater than the collection length', function () {
+        expect(view.collection.length).toBe(10);
+
+        view.maxBars = 20;
+        view.pinCollection();
+
+        expect(view.collection.length).toBe(10);
+      });
     });
 
     describe('addCollectionLabels()', function () {
       it('adds a title attribute of the x-axis key to the collection for the bar chart', function () {
-        view.maxBars = 2;
-        view.initialize();
+        var xAxisKey = view.collection.options.axes.x.key;
+        view.addCollectionLabels(xAxisKey);
 
-        expect(view.collection.at(1).get('name')).toBe('1+');
+        expect(view.collection.at(0).get('title')).toBe('0');
+        expect(view.collection.at(1).get('title')).toBe('1');
+        expect(view.collection.at(2).get('title')).toBe('2');
+        expect(view.collection.at(3).get('title')).toBe('3');
+        expect(view.collection.at(4).get('title')).toBe('4');
+        expect(view.collection.at(5).get('title')).toBe('5');
+        expect(view.collection.at(6).get('title')).toBe('6');
+        expect(view.collection.at(7).get('title')).toBe('7');
+        expect(view.collection.at(8).get('title')).toBe('8');
+        expect(view.collection.at(9).get('title')).toBe('9');
       });
     });
 
