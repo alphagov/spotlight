@@ -16,7 +16,7 @@ function (Graph) {
         hover: { view: this.sharedComponents.hover },
         callout: { view: this.sharedComponents.callout }
       };
-      if (this.formatOptions && this.formatOptions.type === 'duration') {
+      if (this.formatOptions) {
         values.yaxis.options = {};
         var self = this;
         values.yaxis.options.tickFormat = function () {
