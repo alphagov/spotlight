@@ -54,14 +54,21 @@ var testDirectory = function (fileGlob) {
           var schema;
           schema = require('../schema/modules/comparison');
           var file_path = path.resolve(__dirname, '../schema/modules_json/comparison_schema.json')
+          schema = stripDownSchema(schema);
+          checkSchemaStrippedDown(schema); 
           fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           schema = require('../schema/modules/completion_numbers');
+          schema = stripDownSchema(schema);
           var file_path = path.resolve(__dirname, '../schema/modules_json/completion_numbers.json')
           fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           try {
             schema = require('../schema/modules/' + module['module-type']);
+            stripped_down_schema = stripDownSchema(schema);
+//console.log(schema);
+ //           console.log(stripped_down_schema);
             file_path = path.resolve(__dirname, '../schema/modules_json/' + module['module-type'] + '_schema.json')
-            fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
+            fs.writeFileSync(file_path, JSON.stringify(stripped_down_schema, null, 2));
+            console.log('HERE');
           } catch (e) {
             schema = require('../schema/module');
           }
@@ -138,6 +145,44 @@ var parseResults = function (results) {
   failed.forEach(function (err) {
     console.log(err);
   });
+};
+
+var stripDownSchema = function (schema) {
+  var stripped_down_schema = JSON.parse(JSON.stringify(schema));
+  /*console.log('yar');*/
+  /*console.log(stripped_down_schema);*/
+  /*console.log(stripped_down_schema['properties']);*/
+  /*console.log('^yar');*/
+  _.each(['slug', 'module-type', 'title', 'description', 'info', 'data-source'], function (attribute){
+    if(stripped_down_schema['properties']){
+      if(stripped_down_schema['properties'][attribute]){
+        delete stripped_down_schema['properties'][attribute]
+      }
+    } else {
+      if(stripped_down_schema['allOf'][0]['properties'][attribute]){
+        delete stripped_down_schema['allOf'][0]['properties'][attribute]
+      }
+      if(stripped_down_schema['allOf'][1]['properties'][attribute]){
+        delete stripped_down_schema['allOf'][1]['properties'][attribute]
+      }
+    }
+  });
+  if(stripped_down_schema['definitions']){
+    delete stripped_down_schema['definitions']['query-params']
+  }
+  stripped_down_schema['$schema'] = 'http://json-schema.org/draft-03/schema#'
+  return stripped_down_schema;
+};
+
+var checkSchemaStrippedDown = function (stripped_down_schema) {
+  var file_path = path.resolve(__dirname, '../stripped_down_comparison_schema.json');
+  correct_schema = JSON.parse(fs.readFileSync(file_path, encoding='utf8'));
+  if(JSON.stringify(stripped_down_schema) !== JSON.stringify(correct_schema)){
+    console.log('---------------------------');
+    console.log(correct_schema);
+    console.log(stripped_down_schema);
+    console.log('---------------------------');
+  }
 };
 
 testDirectory(stagecraftStubGlob)
