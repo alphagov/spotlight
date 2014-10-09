@@ -63,7 +63,7 @@ var testDirectory = function (fileGlob) {
           fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           schema = require('../schema/modules/completion_numbers');
           schema = stripDownSchema(schema);
-          var file_path = path.resolve(__dirname, '../schema/modules_json/completion_numbers.json')
+          var file_path = path.resolve(__dirname, '../schema/modules_json/completion_numbers_schema.json')
           fs.writeFileSync(file_path, JSON.stringify(schema, null, 2));
           try {
             schema = require('../schema/modules/' + module['module-type']);
