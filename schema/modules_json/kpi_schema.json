@@ -2,67 +2,6 @@
   "id": "/ModuleCommon",
   "type": "object",
   "properties": {
-    "slug": {
-      "type": "string",
-      "required": true,
-      "maxLength": 60,
-      "pattern": "^[-a-z0-9]+$"
-    },
-    "module-type": {
-      "type": "string",
-      "required": true,
-      "enum": [
-        "availability",
-        "bar_chart_with_number",
-        "comparison",
-        "completion_rate",
-        "grouped_timeseries",
-        "journey",
-        "kpi",
-        "list",
-        "realtime",
-        "single_timeseries",
-        "tab",
-        "table",
-        "user_satisfaction",
-        "user_satisfaction_graph"
-      ]
-    },
-    "title": {
-      "type": "string",
-      "required": true,
-      "maxLength": 60
-    },
-    "description": {
-      "type": "string",
-      "required": false,
-      "maxLength": 200
-    },
-    "info": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "minItems": 1
-    },
-    "data-source": {
-      "type": "object",
-      "required": true,
-      "properties": {
-        "data-group": {
-          "type": "string",
-          "required": true
-        },
-        "data-type": {
-          "type": "string",
-          "required": true
-        },
-        "query-params": {
-          "$ref": "#/definitions/query-params",
-          "required": false
-        }
-      }
-    },
     "axes": {
       "type": "object",
       "properties": {
@@ -194,74 +133,6 @@
     }
   },
   "definitions": {
-    "query-params": {
-      "type": "object",
-      "properties": {
-        "period": {
-          "allOf": [
-            {
-              "required": false
-            },
-            {
-              "type": "string",
-              "enum": [
-                "hour",
-                "day",
-                "week",
-                "month",
-                "quarter"
-              ]
-            }
-          ]
-        },
-        "start_at": {
-          "type": "string",
-          "required": false
-        },
-        "end_at": {
-          "type": "string",
-          "required": false
-        },
-        "duration": {
-          "type": "integer",
-          "required": false
-        },
-        "sort_by": {
-          "type": "string",
-          "required": false
-        },
-        "group_by": {
-          "oneOf": [
-            {
-              "type": "string",
-              "required": false
-            },
-            {
-              "type": "array",
-              "required": false,
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        "collect": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "string",
-            "pattern": ":(sum|mean|set)$"
-          }
-        },
-        "filter_by": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "axis": {
       "type": "object",
       "properties": {
@@ -296,5 +167,6 @@
         }
       }
     }
-  }
+  },
+  "$schema": "http://json-schema.org/draft-03/schema#"
 }

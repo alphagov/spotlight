@@ -2,20 +2,6 @@
   "id": "/ModuleTab",
   "type": "object",
   "properties": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "string",
-      "required": true,
-      "maxLength": 30,
-      "pattern": "^[-a-z0-9]+$"
-    },
-    "description": {
-      "type": "string",
-      "maxLength": 200
-    },
     "tabs": {
       "type": "array",
       "required": true,
@@ -31,5 +17,6 @@
         }
       }
     }
-  }
+  },
+  "$schema": "http://json-schema.org/draft-03/schema#"
 }
