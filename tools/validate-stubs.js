@@ -16,6 +16,7 @@ var Validator = jsonschema.Validator,
 var dashboardSchema = require('../schema/dashboard');
 
 var stagecraftStubGlob = path.resolve(__dirname, '../app/support/stagecraft_stub/responses/**/*.json');
+var defaultingToModule = [];
 
 var testDirectory = function (fileGlob) {
 
@@ -68,12 +69,14 @@ var testDirectory = function (fileGlob) {
           try {
             schema = require('../schema/modules/' + module['module-type']);
             stripped_down_schema = stripDownSchema(schema);
-//console.log(schema);
- //           console.log(stripped_down_schema);
             file_path = path.resolve(__dirname, '../schema/modules_json/' + module['module-type'] + '_schema.json')
             fs.writeFileSync(file_path, JSON.stringify(stripped_down_schema, null, 2));
             console.log('HERE');
           } catch (e) {
+            console.log("=====")
+            console.log(module['module-type'])
+            defaultingToModule = defaultingToModule.concat(module['module-type'])
+            console.log("^^^=====")
             schema = require('../schema/module');
           }
 
@@ -96,6 +99,7 @@ var testDirectory = function (fileGlob) {
               moduleDefer.resolve();
             }
           }
+          console.log(_.uniq(defaultingToModule).toString());
           return moduleDefer.promise;
         };
 
