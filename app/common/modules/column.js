@@ -16,13 +16,13 @@ function (Collection) {
 
       options.axes = _.merge({
           x: {
-            label: 'Dates',
+            label: 'Number of x',
             key: ['_start_at', 'end_at'],
             format: 'date'
           },
           y: [
             {
-              label: 'Number of applications',
+              label: 'Number of y',
               key: valueAttr,
               format: options.format
             }
