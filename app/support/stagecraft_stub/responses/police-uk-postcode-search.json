@@ -1,0 +1,277 @@
+{
+  "slug": "police-uk-postcode-search",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Police.uk postcode search",
+  "description": "Text to be provided by Home Office.",
+  "department": {
+    "title": "Home Office",
+    "abbr": "HO"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Police.uk",
+      "url": "http://www.police.uk"
+    },
+    "improve-dashboard-message": true
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "costs": "Text to be provided by Home Office.",
+  "modules": [
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page on the Police.uk site",
+      "info": [
+        "Data source: Google Analytics",
+        "Text to be provided by Home Office."
+      ],
+      "data-source": {
+        "data-group": "police-uk-postcode-search",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
+      "slug": "search-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Crime statistic postcode search volumes",
+      "description": "Text to be provided by Home Office.",
+      "category": "transaction",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Home Office",
+        "Text to be provided by Home Office.."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Appointment booking",
+            "groupId": "appointment-booking",
+            "format": "integer"
+          },
+          {
+            "label": "Appointment cancellation",
+            "groupId": "appointment-cancellation",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "police-uk-postcode-search",
+        "data-type": "postcode-searches",
+        "query-params": {
+          "period": "week",
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "transaction",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "how-users-access-the-content",
+      "title": "How users access the Police.uk site",
+      "description": "Which devices and browsers users are accessing the content from",
+      "module-type": "tab",
+      "tabs": [
+        {
+          "slug": "devices",
+          "module-type": "grouped_timeseries",
+          "title": "Devices",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "category": "deviceCategory",
+          "axis-period": "week",
+          "value-attribute": "sessions",
+          "show-line-labels": true,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "groupId": "desktop",
+                "format": "integer"
+              },
+              {
+                "label": "Mobile",
+                "groupId": "mobile",
+                "format": "integer"
+              },
+              {
+                "label": "Tablet",
+                "groupId": "tablet",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "police-uk-postcode-search",
+            "data-type": "device-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": "deviceCategory",
+              "collect": [
+                "sessions"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "browsers",
+          "module-type": "grouped_timeseries",
+          "title": "Browsers",
+          "category": "browser",
+          "axis-period": "week",
+          "value-attribute": "sessions",
+          "show-line-labels": true,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "group-mapping": {
+            "Chrome:(.)*": "Chrome",
+            "Safari:(.)*": "Safari",
+            "Internet Explorer:*": "InternetExplorer",
+            "Firefox:(.)*": "Firefox"
+          },
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Google Chrome",
+                "groupId": "Chrome",
+                "format": "integer"
+              },
+              {
+                "label": "Internet Explorer",
+                "groupId": "InternetExplorer",
+                "format": "integer"
+              },
+              {
+                "label": "Safari",
+                "groupId": "Safari",
+                "format": "integer"
+              },
+              {
+                "label": "Firefox",
+                "groupId": "Firefox",
+                "format": "integer"
+              },
+              {
+                "label": "Other",
+                "groupId": "other",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "police-uk-postcode-search",
+            "data-type": "browser-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": [
+                "browser"
+              ],
+              "collect": [
+                "sessions"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          },
+          "data-source": {
+            "data-group": "police-uk-postcode-search",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "day"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          },
+          "data-source": {
+            "data-group": "police-uk-postcode-search",
+            "data-type": "monitoring",
+            "query-params": {
+              "period": "hour"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

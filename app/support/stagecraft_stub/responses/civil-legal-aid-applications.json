@@ -53,59 +53,6 @@
       }
     },
     {
-      "slug": "total-cost",
-      "module-type": "kpi",
-      "title": "Total cost",
-      "classes": "cols3",
-      "value-attribute": "total_cost",
-      "format": {
-        "type": "currency",
-        "magnitude": true,
-        "sigfigs": 3
-      },
-      "info": [
-        "Data source: Ministry of Justice",
-        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur. These figures do not include the amounts paid for legal advice, family mediation and representation in court or tribunals."
-      ],
-      "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
-        "query-params": {
-          "filter_by": [
-            "service_id:moj-legal-aid-applications-civil-cases",
-            "type:seasonally-adjusted"
-          ],
-          "sort_by": "_timestamp:descending"
-        }
-      }
-    },
-    {
-      "slug": "cost-per-transaction",
-      "module-type": "kpi",
-      "title": "Cost per transaction",
-      "classes": "cols3",
-      "value-attribute": "cost_per_transaction",
-      "format": {
-        "type": "currency",
-        "pence": true
-      },
-      "info": [
-        "Data source: Ministry of Justice",
-        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur. These figures do not include the amounts paid for legal advice, family mediation and representation in court or tribunals."
-      ],
-      "data-source": {
-        "data-group": "transactional-services",
-        "data-type": "summaries",
-        "query-params": {
-          "filter_by": [
-            "service_id:moj-legal-aid-applications-civil-cases",
-            "type:seasonally-adjusted"
-          ],
-          "sort_by": "_timestamp:descending"
-        }
-      }
-    },
-    {
       "slug": "application-volumetrics",
       "module-type": "grouped_timeseries",
       "title": "Applications processed per week",
@@ -161,7 +108,7 @@
     {
       "slug": "digital-takeup",
       "module-type": "completion_rate",
-      "title": "How many applications are made digitally",
+      "title": "How many applications processed are made digitally",
       "description": "Proportion of applications made using the digital service",
       "info": [
         "Data source: Ministry of Justice",
@@ -209,12 +156,12 @@
     {
       "slug": "processing-volumetrics",
       "module-type": "grouped_timeseries",
-      "title": "Applications process outcomes per week",
+      "title": "Processed applications outcomes per week",
       "description": "Text to be provided by Legal Aid Agency.",
       "category": "process_stage",
       "value-attribute": "count:sum",
       "show-line-labels": true,
-      "use_stack": true,
+      "use_stack": false,
       "info": [
         "Data source: Ministry of Justice",
         "Shows the number of applications processed, broken down by channel",
@@ -363,6 +310,146 @@
           "duration": 1
         }
       }
+    },
+    {
+      "slug": "how-users-access-the-service",
+      "title": "How users access the civil legal aid applications service",
+      "description": "Which devices and browsers users are accessing the content from",
+      "module-type": "tab",
+      "tabs": [
+        {
+          "slug": "devices",
+          "module-type": "grouped_timeseries",
+          "title": "Devices",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "category": "deviceCategory",
+          "axis-period": "week",
+          "value-attribute": "sessions",
+          "show-line-labels": true,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "groupId": "desktop",
+                "format": "integer"
+              },
+              {
+                "label": "Mobile",
+                "groupId": "mobile",
+                "format": "integer"
+              },
+              {
+                "label": "Tablet",
+                "groupId": "tablet",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "legal-aid-civil-claims",
+            "data-type": "device-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": "deviceCategory",
+              "collect": [
+                "sessions"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "browsers",
+          "module-type": "grouped_timeseries",
+          "title": "Browsers",
+          "category": "browser",
+          "axis-period": "week",
+          "value-attribute": "sessions",
+          "show-line-labels": true,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "group-mapping": {
+            "Chrome:(.)*": "Chrome",
+            "Safari:(.)*": "Safari",
+            "Internet Explorer:[2-8]{1}(.)*": "OldIE",
+            "Internet Explorer:(9|1)(.)*": "NewIE",
+            "Firefox:(.)*": "Firefox"
+          },
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Google Chrome",
+                "groupId": "Chrome",
+                "format": "integer"
+              },
+              {
+                "label": "Internet Explorer (IE9+)",
+                "groupId": "NewIE",
+                "format": "integer"
+              },
+              {
+                "label": "Internet Explorer (pre IE9)",
+                "groupId": "OldIE",
+                "format": "integer"
+              },
+              {
+                "label": "Safari",
+                "groupId": "Safari",
+                "format": "integer"
+              },
+              {
+                "label": "Firefox",
+                "groupId": "Firefox",
+                "format": "integer"
+              },
+              {
+                "label": "Other",
+                "groupId": "other",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "legal-aid-civil-claims",
+            "data-type": "browser-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": [
+                "browser",
+                "browserVersion"
+              ],
+              "collect": [
+                "sessions"
+              ]
+            }
+          }
+        }
+      ]
     }
   ]
 }
