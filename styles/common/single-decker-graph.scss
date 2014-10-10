@@ -60,6 +60,16 @@
     }
   }
 
+  &.column-graph {
+    figure.graph{
+      .graph-wrapper{
+        svg{
+          max-height:200px;
+        }
+      }
+    }
+  }
+
   @media (max-width: 880px) {
 
     figure.graph {
