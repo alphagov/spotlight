@@ -3,6 +3,7 @@ var ErrorController      = require('./controllers/error');
 
 var AvailabilityModule            = require('./modules/availability');
 var BarChartWithNumberModule      = require('./modules/bar_chart_with_number');
+var ColumnModule                  = require('./modules/column');
 var ComparisonModule              = require('./modules/comparison');
 var CompletionRateModule          = require('./modules/completion_rate');
 var CompletionTableModule         = require('./modules/completion-table');
@@ -24,6 +25,7 @@ module.exports = function () {
     modules: {
       availability:           AvailabilityModule,
       bar_chart_with_number:  BarChartWithNumberModule,
+      column:                 ColumnModule,
       comparison:             ComparisonModule,
       completion_rate:        CompletionRateModule,
       completion_table:       CompletionTableModule,
