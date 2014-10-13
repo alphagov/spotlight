@@ -1,0 +1,1301 @@
+{
+  "slug": "blood-donation-appointments",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Blood donation appointments",
+  "description": "Text to be provided by NHSBT.",
+  "department": {
+    "title": "Department of Health",
+    "abbr": "DoH"
+  },
+  "agency": {
+    "title": "NHS Blood and Transplant",
+    "abbr": "NHSBT"
+  },
+  "relatedPages": {
+    "transaction": {
+      "title": "Blood donation appointments",
+      "url": "http://www.blood.co.uk/index.aspx"
+    },
+    "improve-dashboard-message": true
+  },
+  "customer-type": "Individuals",
+  "business-model": "Taxpayers",
+  "costs": "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations.",
+  "other-notes": "The website for the service was updated at the end of 2013, resulting in significant reduction in calls to make or cancel appointments. This in turn has resulted in a fall in cost per transaction.",
+  "modules": [
+    {
+      "slug": "transactions-per-year",
+      "module-type": "kpi",
+      "title": "Transactions per year",
+      "classes": "cols3",
+      "value-attribute": "number_of_transactions",
+      "format": {
+        "type": "number",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Data source: Department of Health"
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "total-cost",
+      "module-type": "kpi",
+      "title": "Total cost",
+      "classes": "cols3",
+      "value-attribute": "total_cost",
+      "format": {
+        "type": "currency",
+        "magnitude": true,
+        "sigfigs": 3
+      },
+      "info": [
+        "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations. ",
+        "<br />",
+        "Data source: Department of Health",
+        "Total cost is the overall cost per year of providing a service, including staff, IT and accommodation costs; the total cost is automatically calculated from volume and cost per transaction figures, and some rounding errors may occur."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "cost-per-transaction",
+      "module-type": "kpi",
+      "title": "Cost per transaction",
+      "classes": "cols3",
+      "value-attribute": "cost_per_transaction",
+      "format": {
+        "type": "currency",
+        "pence": true
+      },
+      "info": [
+        "Appointments can be made online, via the national call centre (NCC) or at a session or donor centre. Costs are calculated for online and NCC only as it is not possible to attribute a cost to making an appointment on session. If appointments were no longer made on sessions, the costs and number of staff on the session would not change. Costs for mailing appointment confirmations/DHCs are not included in the total costs to ensure that the 'total cost' and 'digital cost' are directly comparable. Although mailing costs can be added to the 'total cost', they cannot be separated out for 'digital costs' as many appointments made online still receive mail. The appointment transactions include cancellations. Approximately 80% of the transactions are appointments (initial or after a cancellation) and 20% are cancellations. ",
+        "<br />",
+        "Data source: Department of Health",
+        "<a href=\"https://www.gov.uk/service-manual/measurement/cost-per-transaction.html\">Cost per transaction</a> is the average cost of providing each successfully completed transaction, across all channels. Staff, IT and accommodation costs should be included."
+      ],
+      "data-source": {
+        "data-group": "transactional-services",
+        "data-type": "summaries",
+        "query-params": {
+          "filter_by": [
+            "service_id:dh-blood-donation-appointments",
+            "type:seasonally-adjusted"
+          ],
+          "sort_by": "_timestamp:descending"
+        }
+      }
+    },
+    {
+      "slug": "appointment-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment booking and cancellation volumes",
+      "description": "Appointment <span class=\"group0\">bookings</span> and <span class=\"group1\">cancellations</span> over time",
+      "category": "transaction",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Appointment booking",
+            "groupId": "appointment-booking",
+            "format": "integer"
+          },
+          {
+            "label": "Appointment cancellation",
+            "groupId": "appointment-cancellation",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2014-03-31T00:00:00Z",
+          "group_by": "transaction",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "appointment-booking-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment booking volumes by channel",
+      "description": "Appointment bookings by channel over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Donor Centre",
+            "groupId": "donor-centre",
+            "format": "integer"
+          },
+          {
+            "label": "Donor management",
+            "groupId": "donor-management",
+            "format": "integer"
+          },
+          {
+            "label": "National call centre",
+            "groupId": "ncc",
+            "format": "integer"
+          },
+          {
+            "label": "Online",
+            "groupId": "portal",
+            "format": "integer"
+          },
+          {
+            "label": "Mobile donor session",
+            "groupId": "session",
+            "format": "integer"
+          },
+          {
+            "label": "Session management",
+            "groupId": "session-management",
+            "format": "integer"
+          },
+          {
+            "label": "Pulse",
+            "groupId": "pulse",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "filter_by": [
+            "transaction:appointment-booking"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "appointment-cancellation-volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Appointment cancellation volumes by channel",
+      "description": "Appointment cancellations by channel over time",
+      "category": "channel",
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Donor Centre",
+            "groupId": "donor-centre",
+            "format": "percent"
+          },
+          {
+            "label": "Donor management",
+            "groupId": "donor-management",
+            "format": "percent"
+          },
+          {
+            "label": "National call centre",
+            "groupId": "ncc",
+            "format": "percent"
+          },
+          {
+            "label": "Online",
+            "groupId": "portal",
+            "format": "percent"
+          },
+          {
+            "label": "Mobile donor session",
+            "groupId": "session",
+            "format": "percent"
+          },
+          {
+            "label": "Session management",
+            "groupId": "session-management",
+            "format": "percent"
+          },
+          {
+            "label": "Pulse",
+            "groupId": "pulse",
+            "format": "percent"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "filter_by":[
+            "transaction:appointment-cancellation"
+          ],
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "live-digital-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page within the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service."
+      ],
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "realtime",
+        "query-params": {
+          "sort_by": "_timestamp:descending",
+          "limit": 722
+        }
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "How many donation appointments or cancellations are made digitally",
+      "description": "Proportion of appointments made using the digital service",
+      "info": [
+        "Data source: Department of Health",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "denominator-matcher": "^(portal|donor-centre|donor-management|ncc|session|session-management|pulse)$",
+      "numerator-matcher": "^portal$",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Digital take-up",
+            "key": "completion",
+            "format": "percent"
+          }
+        ]
+      },
+      "axis-period": "week",
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "transactions-by-channel",
+        "query-params": {
+          "period": "week",
+          "start_at": "2013-11-11T00:00:00Z",
+          "group_by": "channel",
+          "collect": [
+            "count:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "appointment-activity-volumetrics",
+      "module-type": "tab",
+      "title": "Appointment activity volumes",
+      "description": "Appointment activities on the digital channel over time across all devices and broken down by desktop, tablet and mobile.",
+      "info": [
+        "Data source: Google Analytics",
+        "Text to be provided by NHS Blood and Transplant."
+      ],
+      "tabs": [
+        {
+          "module-type": "grouped_timeseries",
+          "slug": "all-devices",
+          "title": "Total",
+          "description": "",
+          "category": "dataType",
+          "value-attribute": "count:sum",
+          "show-line-labels": true,
+          "show-total-lines": false,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Text to be provided by NHS Blood and Transplant."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": "date"
+            },
+            "y": [
+              {
+                "label": "Total visits",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful searches",
+                "key": "goal1Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Booking starts",
+                "key": "goal2Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful bookings",
+                "key": "goal2Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Registration starts",
+                "key": "goal3Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful registrations",
+                "key": "goal3Completions:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "completion-by-goal",
+            "query-params": {
+              "period": "week",
+              "start_at": "2013-11-11T00:00:00Z",
+              "group_by": "dataType",
+              "collect": [
+                "sessions:sum",
+                "goal1Completions:sum",
+                "goal2Starts:sum",
+                "goal2Completions:sum",
+                "goal3Starts:sum",
+                "goal3Completions:sum"
+              ]
+            }
+          }
+        },
+        {
+          "module-type": "grouped_timeseries",
+          "slug": "desktop",
+          "title": "Desktop",
+          "description": "",
+          "category": "deviceCategory",
+          "value-attribute": "count:sum",
+          "show-line-labels": true,
+          "show-total-lines": false,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Text to be provided by NHS Blood and Transplant."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": "date"
+            },
+            "y": [
+              {
+                "label": "Total visits",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful searches",
+                "key": "goal1Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Booking starts",
+                "key": "goal2Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful bookings",
+                "key": "goal2Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Registration starts",
+                "key": "goal3Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful registrations",
+                "key": "goal3Completions:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "completion-by-goal",
+            "query-params": {
+              "period": "week",
+              "start_at": "2013-11-11T00:00:00Z",
+              "group_by": "deviceCategory",
+              "filter_by": [
+                "deviceCategory:desktop"
+              ],
+              "collect": [
+                "sessions:sum",
+                "goal1Completions:sum",
+                "goal2Starts:sum",
+                "goal2Completions:sum",
+                "goal3Starts:sum",
+                "goal3Completions:sum"
+              ]
+            }
+          }
+        },
+        {
+          "module-type": "grouped_timeseries",
+          "slug": "tablet",
+          "title": "Tablet",
+          "description": "",
+          "category": "deviceCategory",
+          "value-attribute": "count:sum",
+          "show-line-labels": true,
+          "show-total-lines": false,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Text to be provided by NHS Blood and Transplant."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": "date"
+            },
+            "y": [
+              {
+                "label": "Total visits",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful searches",
+                "key": "goal1Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Booking starts",
+                "key": "goal2Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful bookings",
+                "key": "goal2Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Registration starts",
+                "key": "goal3Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful registrations",
+                "key": "goal3Completions:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "completion-by-goal",
+            "query-params": {
+              "period": "week",
+              "start_at": "2013-11-11T00:00:00Z",
+              "group_by": "deviceCategory",
+              "filter_by": [
+                "deviceCategory:tablet"
+              ],
+              "collect": [
+                "sessions:sum",
+                "goal1Completions:sum",
+                "goal2Starts:sum",
+                "goal2Completions:sum",
+                "goal3Starts:sum",
+                "goal3Completions:sum"
+              ]
+            }
+          }
+        },
+        {
+          "module-type": "grouped_timeseries",
+          "slug": "mobile",
+          "title": "Mobile",
+          "description": "",
+          "category": "deviceCategory",
+          "value-attribute": "count:sum",
+          "show-line-labels": true,
+          "show-total-lines": false,
+          "one-hundred-percent": false,
+          "use_stack": false,
+          "info": [
+            "Data source: Google Analytics",
+            "Text to be provided by NHS Blood and Transplant."
+          ],
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": "date"
+            },
+            "y": [
+              {
+                "label": "Total visits",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful searches",
+                "key": "goal1Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Booking starts",
+                "key": "goal2Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful bookings",
+                "key": "goal2Completions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Registration starts",
+                "key": "goal3Starts:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Successful registrations",
+                "key": "goal3Completions:sum",
+                "format": "integer"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "completion-by-goal",
+            "query-params": {
+              "period": "week",
+              "start_at": "2013-11-11T00:00:00Z",
+              "group_by": "deviceCategory",
+              "filter_by": [
+                "deviceCategory:mobile"
+              ],
+              "collect": [
+                "sessions:sum",
+                "goal1Completions:sum",
+                "goal2Starts:sum",
+                "goal2Completions:sum",
+                "goal3Starts:sum",
+                "goal3Completions:sum"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "module-type": "tab",
+      "slug": "top-referrers",
+      "title": "Sources of visitors",
+      "description": "Visitors arriving over the last week.",
+      "info": [
+        "Data source: Google Analytics",
+        "Text to be provided by NHS Blood and Transplant"
+      ],
+      "tabs": [
+        {
+          "module-type": "table",
+          "slug": "sources",
+          "title": "Sources",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Source of user",
+              "key": "source"
+            },
+            "y": [
+              {
+                "label": "Sessions",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "bounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Average Session duration rate",
+                "key": "avgSessionDuration",
+                "format": {
+                  "type": "duration",
+                  "unit": "m"
+                }
+              },
+              {
+                "label": "Search conversions",
+                "key": "goal1ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Booking conversions",
+                "key": "goal2ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Registration conversions",
+                "key": "goal3ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "sessions:sum",
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "conversions-by-source",
+            "query-params": {
+              "group_by": "source",
+              "collect": [
+                "sessions:sum",
+                "bounceRate",
+                "avgSessionDuration",
+                "percentNewSessions",
+                "goal1ConversionRate",
+                "goal2ConversionRate",
+                "goal3ConversionRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "medium",
+          "title": "Medium",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Medium of user",
+              "key": "medium"
+            },
+            "y": [
+              {
+                "label": "Sessions",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "bounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Average Session duration rate",
+                "key": "avgSessionDuration",
+                "format": {
+                  "type": "duration",
+                  "unit": "m"
+                }
+              },
+              {
+                "label": "Search conversions",
+                "key": "goal1ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Booking conversions",
+                "key": "goal2ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Registration conversions",
+                "key": "goal3ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "sessions:sum",
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "conversions-by-medium",
+            "query-params": {
+              "group_by": "medium",
+              "collect": [
+                "sessions:sum",
+                "bounceRate",
+                "avgSessionDuration",
+                "percentNewSessions",
+                "goal1ConversionRate",
+                "goal2ConversionRate",
+                "goal3ConversionRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "search",
+          "title": "Search",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Search",
+              "key": "keyword"
+            },
+            "y": [
+              {
+                "label": "Sessions",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "bounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Average Session duration rate",
+                "key": "avgSessionDuration",
+                "format": {
+                  "type": "duration",
+                  "unit": "m"
+                }
+              },
+              {
+                "label": "Search conversions",
+                "key": "goal1ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Booking conversions",
+                "key": "goal2ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Registration conversions",
+                "key": "goal3ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "sessions:sum",
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "conversions-by-keyword",
+            "query-params": {
+              "group_by": "keyword",
+              "collect": [
+                "sessions:sum",
+                "bounceRate",
+                "avgSessionDuration",
+                "percentNewSessions",
+                "goal1ConversionRate",
+                "goal2ConversionRate",
+                "goal3ConversionRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "social",
+          "title": "Social",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Social network",
+              "key": "socialNetwork"
+            },
+            "y": [
+              {
+                "label": "Sessions",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "bounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Average Session duration rate",
+                "key": "avgSessionDuration",
+                "format": {
+                  "type": "duration",
+                  "unit": "m"
+                }
+              },
+              {
+                "label": "Search conversions",
+                "key": "goal1ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Booking conversions",
+                "key": "goal2ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Registration conversions",
+                "key": "goal3ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "sessions:sum",
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "conversions-by-social-network",
+            "query-params": {
+              "group_by": "socialNetwork",
+              "collect": [
+                "sessions:sum",
+                "bounceRate",
+                "avgSessionDuration",
+                "percentNewSessions",
+                "goal1ConversionRate",
+                "goal2ConversionRate",
+                "goal3ConversionRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        },
+        {
+          "module-type": "table",
+          "slug": "landing-page",
+          "title": "Landing page",
+          "description": "",
+          "axes": {
+            "x": {
+              "label": "Landing page",
+              "key": "landingPagePath"
+            },
+            "y": [
+              {
+                "label": "Sessions",
+                "key": "sessions:sum",
+                "format": "integer"
+              },
+              {
+                "label": "Bounce rate",
+                "key": "bounceRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Average Session duration rate",
+                "key": "avgSessionDuration",
+                "format": {
+                  "type": "duration",
+                  "unit": "m"
+                }
+              },
+              {
+                "label": "Search conversions",
+                "key": "goal1ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Booking conversions",
+                "key": "goal2ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              },
+              {
+                "label": "Registration conversions",
+                "key": "goal3ConversionRate",
+                "format": {
+                  "type": "percent",
+                  "normalisation": 100
+                }
+              }
+            ]
+          },
+          "sort-order": "descending",
+          "sort-by": "sessions:sum",
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "conversions-by-landing-page",
+            "query-params": {
+              "group_by": "landingPagePath",
+              "collect": [
+                "sessions:sum",
+                "bounceRate",
+                "avgSessionDuration",
+                "percentNewSessions",
+                "goal1ConversionRate",
+                "goal2ConversionRate",
+                "goal3ConversionRate"
+              ],
+              "period": "week",
+              "duration": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "how-users-access-the-service",
+      "title": "How users access the blood donation appointments service",
+      "description": "Which devices and browsers users are accessing the service",
+      "module-type": "tab",
+      "tabs": [
+        {
+          "slug": "devices",
+          "module-type": "grouped_timeseries",
+          "title": "Devices",
+          "description": "<span class=\"group0\">Desktop</span>, <span class=\"group1\">mobile</span> and <span class=\"group2\">tablet</span> usage over the last 9 weeks.",
+          "category": "deviceCategory",
+          "axis-period": "week",
+          "value-attribute": "sessions:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": false,
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Desktop",
+                "groupId": "desktop",
+                "format": "percent"
+              },
+              {
+                "label": "Mobile",
+                "groupId": "mobile",
+                "format": "percent"
+              },
+              {
+                "label": "Tablet",
+                "groupId": "tablet",
+                "format": "percent"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "device-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": "deviceCategory",
+              "collect": [
+                "sessions:sum"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "browsers",
+          "module-type": "grouped_timeseries",
+          "title": "Browsers",
+          "category": "browser",
+          "axis-period": "week",
+          "value-attribute": "sessions:sum",
+          "show-line-labels": true,
+          "one-hundred-percent": true,
+          "use_stack": false,
+          "group-mapping": {
+            "Chrome:(.)*": "Chrome",
+            "Safari:(.)*": "Safari",
+            "Internet Explorer:[2-8]{1}(.)*": "OldIE",
+            "Internet Explorer:(9|1)(.)*": "NewIE",
+            "Firefox:(.)*": "Firefox"
+          },
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": [
+                "_start_at",
+                "_end_at"
+              ],
+              "format": {
+                "type": "dateRange",
+                "format": "D MMM YYYY"
+              }
+            },
+            "y": [
+              {
+                "label": "Google Chrome",
+                "groupId": "Chrome",
+                "format": "percent"
+              },
+              {
+                "label": "Internet Explorer (IE9+)",
+                "groupId": "NewIE",
+                "format": "percent"
+              },
+              {
+                "label": "Internet Explorer (pre IE9)",
+                "groupId": "OldIE",
+                "format": "percent"
+              },
+              {
+                "label": "Safari",
+                "groupId": "Safari",
+                "format": "percent"
+              },
+              {
+                "label": "Firefox",
+                "groupId": "Firefox",
+                "format": "percent"
+              },
+              {
+                "label": "Other",
+                "groupId": "other",
+                "format": "percent"
+              }
+            ]
+          },
+          "data-source": {
+            "data-group": "blood-donor-appointments",
+            "data-type": "browser-usage",
+            "query-params": {
+              "period": "week",
+              "duration": 9,
+              "group_by": [
+                "browser",
+                "browserVersion"
+              ],
+              "collect": [
+                "sessions:sum"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "new-visitors-vs-returning-visitors",
+      "module-type": "grouped_timeseries",
+      "title": "New and returning visitors",
+      "description": "Split between <span class=\"group0\">new</span> and <span class=\"group1\">returning</span> visitors to the service over the last 9 weeks.",
+      "category": "userType",
+      "axis-period": "week",
+      "value-attribute": "users:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics",
+        "Visits to Give Blood site which include the organisation's content. Returning visitors are those who have previously visited any part of the site. Weekly for the last 9 full weeks (Monday to Sunday)."
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": {
+            "type": "date",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "New visitors",
+            "groupId": "New Visitor",
+            "format": "percent"
+          },
+          {
+            "label": "Returning visitors",
+            "groupId": "Returning Visitor",
+            "format": "percent"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "blood-donor-appointments",
+        "data-type": "new-returning-count",
+        "query-params": {
+          "period": "week",
+          "duration": 9,
+          "group_by": "userType",
+          "collect": [
+            "users:sum"
+          ]
+        }
+      }
+    }
+  ]
+}
