@@ -3,20 +3,18 @@ define([
   'common/views/visualisations/most-recent-number'
 ],
 function (View, MostRecentNumberView) {
-  var BarChartView = View.extend({
+  var ColumnView = View.extend({
 
     maxBars: 10,
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
-      var xAxisKey = this.collection.options.axes.x.key;
-
-      this.pinCollection(xAxisKey);
-      this.addCollectionLabels(xAxisKey);
+      this.pinCollection();
     },
 
-    pinCollection: function (xAxisKey) {
+    pinCollection: function () {
+      var isPinned = false;
       if (this.maxBars < this.collection.length) {
         var valueAttr = this.collection.options.valueAttr;
         var groupedItem = this.collection.at(this.maxBars - 1);
@@ -30,16 +28,22 @@ function (View, MostRecentNumberView) {
           }
         }, this);
 
-        groupedItem.set(xAxisKey, groupedItem.get(xAxisKey) + '+');
-
         this.collection.remove(this.collection.slice(this.maxBars, this.collection.length));
+        isPinned = true;
       }
+      this.addCollectionLabels(isPinned);
     },
 
-    addCollectionLabels: function (xAxisKey) {
+    addCollectionLabels: function (isPinned) {
+      var lastItem = this.collection.last();
+
       this.collection.models.forEach(function (model) {
-        model.set('title', model.get(xAxisKey).toString());
-      });
+        model.set('title', model.get(this.pinTo).toString());
+      }, this);
+
+      if (isPinned) {
+        lastItem.set('title', lastItem.get('title') + '+');
+      }
     },
 
     views: function () {
@@ -60,5 +64,5 @@ function (View, MostRecentNumberView) {
 
   });
 
-  return BarChartView;
+  return ColumnView;
 });

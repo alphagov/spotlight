@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
-var View = requirejs('common/views/visualisations/column');
+var View = requirejs('common/views/visualisations/applications');
 var templatePath = path.resolve(__dirname, '../../templates/modules/column.html');
 var templater = require('../../mixins/templater');
 
