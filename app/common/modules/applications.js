@@ -34,7 +34,8 @@ function (Collection) {
     visualisationOptions: function () {
       return {
         maxBars: this.model.get('max-bars'),
-        target: this.model.get('target')
+        target: this.model.get('target'),
+        pinTo: this.model.get('pin-to')
       };
     }
   };
