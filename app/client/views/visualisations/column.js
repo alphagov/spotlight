@@ -3,7 +3,7 @@ define([
   'client/views/visualisations/bar-chart/bar-chart'
 ],
 function (View, BarChart) {
-  var BarChartView = View.extend({
+  var ColumnView = View.extend({
 
     views: function () {
       var valueAttr = this.collection.options.valueAttr;
@@ -24,5 +24,5 @@ function (View, BarChart) {
 
   });
 
-  return BarChartView;
+  return ColumnView;
 });
