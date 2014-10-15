@@ -18,6 +18,7 @@ function (ColumnView, TargetView) {
           view: TargetView,
           options: {
             target: this.target,
+            pinTo: this.pinTo,
             valueAttr: valueAttr,
             formatOptions: _.extend({}, formatOptions, { abbr: true })
           }
