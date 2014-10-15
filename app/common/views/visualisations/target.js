@@ -26,8 +26,8 @@ function (SingleStatView, Model) {
     render: function () {
       var content;
       content = '<' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '>';
-      content += '<span>' + this.getLabel() + '</span>';
-      content += '<span>' + this.getDateRange() + '</span>';
+      content += '<p>' + this.getLabel() + '</p>';
+      content += '<p class="period">' + this.getDateRange() + '</p>';
       this.$el.html(content);
     },
 
