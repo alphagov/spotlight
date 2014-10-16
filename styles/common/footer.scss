@@ -42,26 +42,25 @@
     ul {
       @include core-16;
       list-style: none;
-
-      padding: 10px 0 0;
-      margin: 0 15px 30px;
+      padding: 0;
+      margin: 0;
 
       @include media(tablet){
-        padding: 20px 0 0;
-        margin: 0 15px;
-      }
-      @include ie-lte(7){
-        padding: 0; // for some reason IE6-7 gives the ul padding to each of the floated children
+        float: left;
+        margin: 15px 0 0 0;
+        width: 50%;
       }
 
       li {
         display: block;
         margin-bottom: 5px;
 
+        padding: 10px 0 0;
+        margin: 0 15px 5px;
+
         @include media(tablet){
-          float: left;
-          margin: 15px 0 0 0;
-          width: 50%;
+          padding: 20px 0 0;
+          margin: 0 15px;
         }
       }
     }
