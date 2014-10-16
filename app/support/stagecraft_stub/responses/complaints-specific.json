@@ -1,0 +1,151 @@
+{
+  "slug": "site-activity",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Performance",
+  "title": "DVLA: Monitoring demand",
+  "department": {
+    "title": "Department for Transport",
+    "abbr": "DFT"
+  },
+  "tagline": "Some demo graphs for monitoring service demand.",
+  "modules": [
+    {
+      "slug": "govuk-search",
+      "module-type": "grouped_timeseries",
+      "title": "Search terms on GOV.UK",
+      "description": "Weekly search volumes on GOV.UK for DVLA-related keywords",
+      "category": "deviceCategory",
+      "axis-period": "month",
+      "value-attribute": "searchUniques:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": false,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Analytics"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": {
+            "type": "date",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "tax disc",
+            "groupId": "tax disc"
+          },
+          {
+            "label": "SORN",
+            "groupId": "sorn"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "dvsa-complaints-experimental",
+        "data-type": "govuk-searches",
+        "query-params": {
+          "period": "week",
+          "duration": 77,
+          "group_by": "searchKeyword",
+          "collect": [
+            "searchUniques:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "google-search",
+      "module-type": "grouped_timeseries",
+      "title": "Search volumes on Google",
+      "description": "Normalised monthly search trends across google.co.uk for DVLA-related services. From <a href='http://www.google.com/trends/explore'>Google Trends</a>.",
+      "category": "deviceCategory",
+      "axis-period": "month",
+      "value-attribute": "value:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": false,
+      "use_stack": false,
+      "info": [
+        "Data source: Google Trends"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": [
+            "_start_at",
+            "_end_at"
+          ],
+          "format": {
+            "type": "date",
+            "format": "D MMM YYYY"
+          }
+        },
+        "y": [
+          {
+            "label": "SORN",
+            "groupId": "sorn"
+          },
+          {
+            "label": "Tax disc",
+            "groupId": "tax disc"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "dvsa-complaints-experimental",
+        "data-type": "google-trends",
+        "query-params": {
+          "period": "month",
+          "duration": 18,
+          "group_by": "term",
+          "collect": [
+            "value:sum"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "govuk-problems",
+      "module-type": "single_timeseries",
+      "title": "Problem reports submitted on GOV.UK",
+      "description": "Monthly problem reports submitted on DVLA content via GOV.UK",
+      "info": [
+        "Data source: Zendesk"
+      ],
+      "value-attribute": "comment_count:sum",
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Number of reports"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "gov-uk-content",
+        "data-type": "top-urls",
+        "query-params": {
+          "period": "month",
+          "duration": 10,
+          "filter_by": [
+             "organisation_acronym:dvla"
+          ],
+          "collect": [
+            "comment_count:sum"
+          ]
+        }
+      }
+    }
+  ]
+}
