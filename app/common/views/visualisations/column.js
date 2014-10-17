@@ -10,6 +10,7 @@ function (View, MostRecentNumberView) {
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
 
+      this.pinTo = this.collection.options.pinTo;
       this.pinCollection();
     },
 
