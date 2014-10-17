@@ -1,6 +1,6 @@
 define([
   'common/views/visualisations/column',
-  'common/views/visualisations/target'
+  'common/views/visualisations/volumetrics/target'
 ],
 function (ColumnView, TargetView) {
   var ApplicationsView = ColumnView.extend({
