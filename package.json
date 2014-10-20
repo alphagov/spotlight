@@ -13,7 +13,7 @@
   },
   "private": true,
   "scripts": {
-    "test": "grunt test:unit",
+    "test": "grunt test:all",
     "start": "grunt",
     "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}"
   },
