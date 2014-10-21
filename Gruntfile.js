@@ -230,7 +230,7 @@ module.exports = function (grunt) {
           stderr: true,
           stdout: true
         },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path ./')
+        command: addArgs('node ./node_modules/cheapseats/index.js --reporter spec --standalone --path ./')
       },
       // Generates the page-per-thing module JSON stubs
       generate_services_list: {
