@@ -46,6 +46,19 @@ define([
         });
       });
 
+      it('does not propagate cachebusting params to module pages', function () {
+        controller = new DashboardController({
+          model: model,
+          url: '/test?v=iAmUpInYrCacheLikeBustingItLOL&soAmIm8=yesLol'
+        });
+
+        controller.render();
+        expect(moduleSpy).toHaveBeenCalledWith({
+          model: jasmine.any(Backbone.Model),
+          url: '/test/foo'
+        });
+      });
+
       it('does not add slugs to module url if page type is "module"', function () {
         model.set('page-type', 'module');
         controller.render();
