@@ -7,10 +7,13 @@ function (View, MostRecentNumberView) {
 
     maxBars: 10,
 
-    initialize: function () {
+    initialize: function (options) {
+      options = options || {};
+
       View.prototype.initialize.apply(this, arguments);
 
-      this.pinTo = this.collection.options.pinTo;
+      this.pinTo = options.pinTo;
+
       this.pinCollection();
     },
 

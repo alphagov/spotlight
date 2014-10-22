@@ -66,8 +66,6 @@ function (NumberView, Model) {
     getDateRange: function () {
       var presentMonth = _.last(this.collection.first().get('values'));
 
-      console.log(new Model(presentMonth));
-
       return this.formatPeriod(new Model(presentMonth), this.collection.getPeriod());
     },
 

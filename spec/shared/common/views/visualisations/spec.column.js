@@ -66,7 +66,8 @@ define([
       });
 
       view = new ColumnView({
-        collection: collection
+        collection: collection,
+        pinTo: 'name'
       });
     });
 
