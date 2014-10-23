@@ -9,8 +9,8 @@ define([
         this.modules,
         this.model,
         function (model) {
-          if(this.url && this.url.indexOf('?') !== -1){
-            this.url = this.url.split('?')[0];
+          if(this.url && (this.url.indexOf('?') !== -1 || this.url.indexOf('#') !== -1)) {
+            this.url = this.url.split('?')[0].split('#')[0];
           }
           return {
             url: model.get('parent').get('page-type') === 'module' ? this.url : this.url + '/' + model.get('slug')
