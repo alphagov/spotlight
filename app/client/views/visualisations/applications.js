@@ -1,14 +1,15 @@
 define([
-  'common/views/visualisations/column',
-  'client/views/visualisations/bar-chart/bar-chart'
+  'common/views/visualisations/applications',
+  'client/views/visualisations/bar-chart/simple-bar-chart'
 ],
 function (View, BarChart) {
-  var ColumnView = View.extend({
+  var ApplicationsView = View.extend({
 
     views: function () {
       var valueAttr = this.collection.options.valueAttr;
       var formatOptions = this.collection.options.format;
       var views = View.prototype.views.apply(this, arguments);
+
       return _.extend(views, {
         '.bar': {
           view: BarChart,
@@ -24,5 +25,5 @@ function (View, BarChart) {
 
   });
 
-  return ColumnView;
+  return ApplicationsView;
 });

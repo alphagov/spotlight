@@ -14,9 +14,12 @@
       font-weight: bold;
     }
 
-    .total-responses {
+    .total-responses,
+    .overview,
+    .delta {
       color: $black;
     }
+
   }
 
   ul.module-actions {

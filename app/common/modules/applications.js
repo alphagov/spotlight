@@ -16,13 +16,13 @@ function (Collection) {
 
       options.axes = _.merge({
           x: {
-            label: 'Number of x',
+            label: 'Dates',
             key: ['_start_at', 'end_at'],
             format: 'date'
           },
           y: [
             {
-              label: 'Number of y',
+              label: 'Number of applications',
               key: valueAttr,
               format: options.format
             }
@@ -33,8 +33,8 @@ function (Collection) {
 
     visualisationOptions: function () {
       return {
-        valueAttr: '_count',
         maxBars: this.model.get('max-bars'),
+        target: this.model.get('target'),
         pinTo: this.model.get('pin-to')
       };
     }

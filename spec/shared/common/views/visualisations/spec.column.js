@@ -61,11 +61,13 @@ define([
           x: {
             key: 'name'
           }
-        }
+        },
+        pinTo: 'name'
       });
 
       view = new ColumnView({
-        collection: collection
+        collection: collection,
+        pinTo: 'name'
       });
     });
 
@@ -122,12 +124,11 @@ define([
         expect(view.collection.at(9)).toBe(undefined);
       });
 
-      it('adds a "+" to the "max-bar" model xAxisKey', function () {
-        var xAxisKey = view.collection.options.axes.x.key;
+      it('adds a "+" to the "max-bar" model title', function () {
         view.maxBars = 4;
-        view.pinCollection(xAxisKey);
+        view.pinCollection();
 
-        expect(view.collection.at(3).get(xAxisKey)).toBe('3+');
+        expect(view.collection.at(3).get('title')).toBe('3+');
       });
 
       it('doesnt do anything to the collection if the maxBars attribute is greater than the collection length', function () {
@@ -141,9 +142,8 @@ define([
     });
 
     describe('addCollectionLabels()', function () {
-      it('adds a title attribute of the x-axis key to the collection for the bar chart', function () {
-        var xAxisKey = view.collection.options.axes.x.key;
-        view.addCollectionLabels(xAxisKey);
+      it('adds a title attribute of pinTo key to the collection for the bar chart', function () {
+        view.addCollectionLabels();
 
         expect(view.collection.at(0).get('title')).toBe('0');
         expect(view.collection.at(1).get('title')).toBe('1');
@@ -155,6 +155,79 @@ define([
         expect(view.collection.at(7).get('title')).toBe('7');
         expect(view.collection.at(8).get('title')).toBe('8');
         expect(view.collection.at(9).get('title')).toBe('9');
+      });
+
+      it('adds a + is isPinned is true', function () {
+        view.addCollectionLabels(true);
+
+        expect(view.collection.at(0).get('title')).toBe('0');
+        expect(view.collection.at(1).get('title')).toBe('1');
+        expect(view.collection.at(2).get('title')).toBe('2');
+        expect(view.collection.at(3).get('title')).toBe('3');
+        expect(view.collection.at(4).get('title')).toBe('4');
+        expect(view.collection.at(5).get('title')).toBe('5');
+        expect(view.collection.at(6).get('title')).toBe('6');
+        expect(view.collection.at(7).get('title')).toBe('7');
+        expect(view.collection.at(8).get('title')).toBe('8');
+        expect(view.collection.at(9).get('title')).toBe('9+');
+      });
+
+      it('does nothing if pinTo is not defined', function () {
+        view.pinTo = undefined;
+        view.collection.reset([
+          {
+            name: 0,
+            test: 1
+          },
+          {
+            name: 1,
+            test: 1
+          },
+          {
+            name: 2,
+            test: 1
+          },
+          {
+            name: 3,
+            test: 1
+          },
+          {
+            name: 4,
+            test: 1
+          },
+          {
+            name: 5,
+            test: 1
+          },
+          {
+            name: 6,
+            test: 1
+          },
+          {
+            name: 7,
+            test: 1
+          },
+          {
+            name: 8,
+            test: 1
+          },
+          {
+            name: 9,
+            test: 1
+          }
+        ]);
+        view.addCollectionLabels();
+
+        expect(view.collection.at(0).get('title')).toBe(undefined);
+        expect(view.collection.at(1).get('title')).toBe(undefined);
+        expect(view.collection.at(2).get('title')).toBe(undefined);
+        expect(view.collection.at(3).get('title')).toBe(undefined);
+        expect(view.collection.at(4).get('title')).toBe(undefined);
+        expect(view.collection.at(5).get('title')).toBe(undefined);
+        expect(view.collection.at(6).get('title')).toBe(undefined);
+        expect(view.collection.at(7).get('title')).toBe(undefined);
+        expect(view.collection.at(8).get('title')).toBe(undefined);
+        expect(view.collection.at(9).get('title')).toBe(undefined);
       });
     });
 
