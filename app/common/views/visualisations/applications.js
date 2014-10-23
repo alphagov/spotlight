@@ -14,7 +14,7 @@ function (ColumnView, TargetView) {
       var formatOptions = this.collection.options.format;
 
       return {
-        '.most-recent-number': {
+        '.summary-number': {
           view: TargetView,
           options: {
             target: this.target,

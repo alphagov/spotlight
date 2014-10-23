@@ -55,7 +55,7 @@ function (View, MostRecentNumberView) {
       var formatOptions = this.collection.options.format;
 
       return {
-        '.most-recent-number': {
+        '.summary-number': {
           view: MostRecentNumberView,
           options: {
             valueAttr: valueAttr,
