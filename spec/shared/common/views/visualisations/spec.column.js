@@ -171,6 +171,64 @@ define([
         expect(view.collection.at(8).get('title')).toBe('8');
         expect(view.collection.at(9).get('title')).toBe('9+');
       });
+
+      it('does nothing if pinTo is not defined', function () {
+        view.pinTo = undefined;
+        view.collection.reset([
+          {
+            name: 0,
+            test: 1
+          },
+          {
+            name: 1,
+            test: 1
+          },
+          {
+            name: 2,
+            test: 1
+          },
+          {
+            name: 3,
+            test: 1
+          },
+          {
+            name: 4,
+            test: 1
+          },
+          {
+            name: 5,
+            test: 1
+          },
+          {
+            name: 6,
+            test: 1
+          },
+          {
+            name: 7,
+            test: 1
+          },
+          {
+            name: 8,
+            test: 1
+          },
+          {
+            name: 9,
+            test: 1
+          }
+        ]);
+        view.addCollectionLabels();
+
+        expect(view.collection.at(0).get('title')).toBe(undefined);
+        expect(view.collection.at(1).get('title')).toBe(undefined);
+        expect(view.collection.at(2).get('title')).toBe(undefined);
+        expect(view.collection.at(3).get('title')).toBe(undefined);
+        expect(view.collection.at(4).get('title')).toBe(undefined);
+        expect(view.collection.at(5).get('title')).toBe(undefined);
+        expect(view.collection.at(6).get('title')).toBe(undefined);
+        expect(view.collection.at(7).get('title')).toBe(undefined);
+        expect(view.collection.at(8).get('title')).toBe(undefined);
+        expect(view.collection.at(9).get('title')).toBe(undefined);
+      });
     });
 
   });

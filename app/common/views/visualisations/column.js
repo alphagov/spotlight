@@ -39,14 +39,16 @@ function (View, MostRecentNumberView) {
     },
 
     addCollectionLabels: function (isPinned) {
-      var lastItem = this.collection.last();
+      if (this.pinTo) {
+        var lastItem = this.collection.last();
 
-      this.collection.models.forEach(function (model) {
-        model.set('title', model.get(this.pinTo).toString());
-      }, this);
+        this.collection.models.forEach(function (model) {
+          model.set('title', model.get(this.pinTo).toString());
+        }, this);
 
-      if (isPinned) {
-        lastItem.set('title', lastItem.get('title') + '+');
+        if (isPinned) {
+          lastItem.set('title', lastItem.get('title') + '+');
+        }
       }
     },
 
