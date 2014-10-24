@@ -48,18 +48,10 @@ As a bonus, this will let you test the image fallbacks using the
 
 First, you need to set up [the Performance Platform development environment][ppdev].
 
-Once you've got a machine that has the required system-level dependencies, you can install
-application dependencies with:
+Once you have a machine with the required system-level dependencies, you can run the application with:
 
 ```bash
-npm install
-```
-
-And finally run the application:
-
-```bash
-cd /var/apps/pp-development
-bundle install # install bowler
+cd /var/apps/pp-puppet/development
 bowl performance
 ```
 
