@@ -21,13 +21,13 @@ function (NumberView, Model) {
           var previousModelValue = new Model(previousModel[previousModel.length - 2]).get(this.valueAttr);
           total += previousModelValue;
 
-          if (target < model.get(this.pinTo)) {
+          if (_.isNumber(target) && target < model.get(this.pinTo)) {
             greaterThanTarget += previousModelValue;
           }
         } else {
           total += model.get(this.valueAttr);
 
-          if (target < model.get(this.pinTo)) {
+          if (_.isNumber(target) && target < model.get(this.pinTo)) {
             greaterThanTarget += model.get(this.valueAttr);
           }
         }
@@ -60,7 +60,14 @@ function (NumberView, Model) {
     },
 
     getLabel: function () {
-      return 'processed within ' + this.target + ' working days';
+      var label = '';
+      if (_.isNumber(this.target)) {
+        label += 'processed within ' + this.target + ' working days';
+      } else if (_.isString(this.target)) {
+        label += this.target;
+      }
+
+      return label;
     },
 
     getDateRange: function () {
