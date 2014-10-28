@@ -3,9 +3,12 @@ define([
   'extensions/models/model',
   'extensions/models/data_source',
   'backbone',
-  'moment-timezone'
+  'moment-timezone',
+  'json!fixtures/grouped.json',
+  'json!fixtures/group-multiple-keys.json'
 ],
-function (Collection, Model, DataSource, Backbone, moment) {
+function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture) {
+
   describe('Collection', function () {
 
     it('inherits from Backbone.Collection', function () {
@@ -568,11 +571,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
       var input;
 
-      beforeEach(function () {
-
-        input = require('json!fixtures/parse.json');
-
-      });
+      beforeEach(function () {});
 
       it('returns `data` property of response', function () {
 
@@ -610,9 +609,11 @@ function (Collection, Model, DataSource, Backbone, moment) {
           }
         });
 
+        var input = groupedFixture;
         var parsed = collection.parse({
-          data: input
+          data: groupedFixture
         });
+
         expect(parsed.length).toBe(3);
         expect(parsed[0]['uniqueEvents:sum']).toEqual(237);
         expect(parsed[0].values).toEqual(input[0].values);
@@ -636,7 +637,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
           }
         });
 
-        expect(collection.parse({ data: input }).length).toEqual(3);
+        expect(collection.parse({ data: groupedFixture }).length).toEqual(3);
       });
 
       describe('data grouped by multiple keys', function () {
@@ -644,9 +645,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
         var collection;
 
         beforeEach(function () {
-
-          input = require('json!fixtures/group-multiple-keys.json');
-
+          input = multipleKeysFixture;
           collection = new Collection([], {
             valueAttr: 'uniqueEvents:sum',
             axes: {

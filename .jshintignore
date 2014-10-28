@@ -15,6 +15,7 @@ config/**
 lib/**
 spec/helpers/**
 app/vendor/**
+app/fixtures/**
 app/support/**/*.js
 styles/**
 log/**
