@@ -570,7 +570,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
       beforeEach(function () {
 
-        input = require('json!../spec/shared/extensions/fixtures/parse.json');
+        input = require('json!fixtures/parse.json');
 
       });
 
@@ -645,7 +645,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
         beforeEach(function () {
 
-          input = require('json!../spec/shared/extensions/fixtures/group-multiple-keys.json');
+          input = require('json!fixtures/group-multiple-keys.json');
 
           collection = new Collection([], {
             valueAttr: 'uniqueEvents:sum',
