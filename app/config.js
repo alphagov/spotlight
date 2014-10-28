@@ -7,7 +7,8 @@ define(function (options) {
       tpl: 'vendor/tpl',
       Mustache: 'vendor/mustache',
       text: 'vendor/text',
-      stache: 'vendor/stache'
+      stache: 'vendor/stache',
+      json: 'vendor/requirejs-plugins/json'
     }
   };
 
@@ -21,6 +22,8 @@ define(function (options) {
     config.paths.modernizr = 'vendor/modernizr';
     config.paths.moment = 'vendor/moment';
     config.paths['moment-timezone'] = 'vendor/moment-timezone';
+    config.paths['text'] = 'vendor/text';
+    config.paths.json = 'vendor/requirejs-plugins/json';
 
     config.shim = {
       backbone: {
