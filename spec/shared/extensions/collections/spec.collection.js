@@ -3,9 +3,12 @@ define([
   'extensions/models/model',
   'extensions/models/data_source',
   'backbone',
-  'moment-timezone'
+  'moment-timezone',
+  'json!fixtures/grouped.json',
+  'json!fixtures/group-multiple-keys.json'
 ],
-function (Collection, Model, DataSource, Backbone, moment) {
+function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture) {
+
   describe('Collection', function () {
 
     it('inherits from Backbone.Collection', function () {
@@ -568,70 +571,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
 
       var input;
 
-      beforeEach(function () {
-        input = [
-          {
-            '_count': 2.0,
-            '_group_count': 1,
-            'eventDestination': 'add-extra-instructions-for-the-attorneys',
-            'uniqueEvents:sum': 500.0,
-            'values': [
-              {
-                '_count': 2.0,
-                '_end_at': '2014-06-30T00:00:00+00:00',
-                '_start_at': '2014-06-23T00:00:00+00:00',
-                'uniqueEvents:sum': 263.0
-              },
-              {
-                '_count': 2.0,
-                '_end_at': '2014-07-07T00:00:00+00:00',
-                '_start_at': '2014-06-30T00:00:00+00:00',
-                'uniqueEvents:sum': 237.0
-              }
-            ]
-          },
-          {
-            '_count': 1.0,
-            '_group_count': 1,
-            'eventDestination': 'applying-for-a-reduction-of-the-fee',
-            'uniqueEvents:sum': 200.0,
-            'values': [
-              {
-                '_count': 1.0,
-                '_end_at': '2014-06-30T00:00:00+00:00',
-                '_start_at': '2014-06-23T00:00:00+00:00',
-                'uniqueEvents:sum': 141.0
-              },
-              {
-                '_count': 2.0,
-                '_end_at': '2014-07-07T00:00:00+00:00',
-                '_start_at': '2014-06-30T00:00:00+00:00',
-                'uniqueEvents:sum': 59.0
-              }
-            ]
-          },
-          {
-            '_count': 1.0,
-            '_group_count': 1,
-            'eventDestination': 'can-i-do-it-all-using-this-tool',
-            'uniqueEvents:sum': 200.0,
-            'values': [
-              {
-                '_count': 1.0,
-                '_end_at': '2014-06-30T00:00:00+00:00',
-                '_start_at': '2014-06-23T00:00:00+00:00',
-                'uniqueEvents:sum': 187.0
-              },
-              {
-                '_count': 2.0,
-                '_end_at': '2014-07-07T00:00:00+00:00',
-                '_start_at': '2014-06-30T00:00:00+00:00',
-                'uniqueEvents:sum': 13.0
-              }
-            ]
-          }
-        ];
-      });
+      beforeEach(function () {});
 
       it('returns `data` property of response', function () {
 
@@ -669,9 +609,11 @@ function (Collection, Model, DataSource, Backbone, moment) {
           }
         });
 
+        var input = groupedFixture;
         var parsed = collection.parse({
-          data: input
+          data: groupedFixture
         });
+
         expect(parsed.length).toBe(3);
         expect(parsed[0]['uniqueEvents:sum']).toEqual(237);
         expect(parsed[0].values).toEqual(input[0].values);
@@ -695,7 +637,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
           }
         });
 
-        expect(collection.parse({ data: input }).length).toEqual(3);
+        expect(collection.parse({ data: groupedFixture }).length).toEqual(3);
       });
 
       describe('data grouped by multiple keys', function () {
@@ -703,105 +645,7 @@ function (Collection, Model, DataSource, Backbone, moment) {
         var collection;
 
         beforeEach(function () {
-          input = [
-            {
-              'eventDestination': 'a',
-              'subCategory': 'a',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 260.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 240.0
-                }
-              ]
-            },
-            {
-              'eventDestination': 'a',
-              'subCategory': 'b',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 263.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 237.0
-                }
-              ]
-            },
-            {
-              'eventDestination': 'b',
-              'subCategory': 'a',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 140.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 60.0
-                }
-              ]
-            },
-            {
-              'eventDestination': 'b',
-              'subCategory': 'b',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 141.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 59.0
-                }
-              ]
-            },
-            {
-              'eventDestination': 'c',
-              'subCategory': 'a',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 190.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 10.0
-                }
-              ]
-            },
-            {
-              'eventDestination': 'c',
-              'subCategory': 'b',
-              'values': [
-                {
-                  '_end_at': '2014-06-30T00:00:00+00:00',
-                  '_start_at': '2014-06-23T00:00:00+00:00',
-                  'uniqueEvents:sum': 187.0
-                },
-                {
-                  '_end_at': '2014-07-07T00:00:00+00:00',
-                  '_start_at': '2014-06-30T00:00:00+00:00',
-                  'uniqueEvents:sum': 13.0
-                }
-              ]
-            }
-          ];
-
+          input = multipleKeysFixture;
           collection = new Collection([], {
             valueAttr: 'uniqueEvents:sum',
             axes: {

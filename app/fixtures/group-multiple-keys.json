@@ -1,0 +1,98 @@
+[
+  {
+    "eventDestination": "a",
+    "subCategory": "a",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 260.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 240.0
+    }
+    ]
+  },
+  {
+    "eventDestination": "a",
+    "subCategory": "b",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 263.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 237.0
+    }
+    ]
+  },
+  {
+    "eventDestination": "b",
+    "subCategory": "a",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 140.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 60.0
+    }
+    ]
+  },
+  {
+    "eventDestination": "b",
+    "subCategory": "b",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 141.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 59.0
+    }
+    ]
+  },
+  {
+    "eventDestination": "c",
+    "subCategory": "a",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 190.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 10.0
+    }
+    ]
+  },
+  {
+    "eventDestination": "c",
+    "subCategory": "b",
+    "values": [
+    {
+      "_end_at": "2014-06-30T00:00:00+00:00",
+      "_start_at": "2014-06-23T00:00:00+00:00",
+      "uniqueEvents:sum": 187.0
+    },
+    {
+      "_end_at": "2014-07-07T00:00:00+00:00",
+      "_start_at": "2014-06-30T00:00:00+00:00",
+      "uniqueEvents:sum": 13.0
+    }
+    ]
+  }
+]
