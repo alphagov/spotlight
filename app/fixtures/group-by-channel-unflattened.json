@@ -1,0 +1,61 @@
+
+{
+  "data": [
+    {
+      "_count": 22.0,
+      "_group_count": 1,
+      "channel": "health_and_welfare_digital_applications",
+      "count:sum": 1174.0,
+      "values": [
+        {
+          "_count": 22.0,
+          "_end_at": "2014-10-01T00:00:00+00:00",
+          "_start_at": "2014-09-01T00:00:00+00:00",
+          "count:sum": 1174.0
+        }
+      ]
+    },
+    {
+      "_count": 22.0,
+      "_group_count": 1,
+      "channel": "health_and_welfare_paper_applications",
+      "count:sum": 7881.0,
+      "values": [
+        {
+          "_count": 22.0,
+          "_end_at": "2014-10-01T00:00:00+00:00",
+          "_start_at": "2014-09-01T00:00:00+00:00",
+          "count:sum": 7881.0
+        }
+      ]
+    },
+    {
+      "_count": 22.0,
+      "_group_count": 1,
+      "channel": "property_and_financial_digital_applications",
+      "count:sum": 2281.0,
+      "values": [
+        {
+          "_count": 22.0,
+          "_end_at": "2014-10-01T00:00:00+00:00",
+          "_start_at": "2014-09-01T00:00:00+00:00",
+          "count:sum": 2281.0
+        }
+      ]
+    },
+    {
+      "_count": 22.0,
+      "_group_count": 1,
+      "channel": "property_and_financial_paper_applications",
+      "count:sum": 16523.0,
+      "values": [
+        {
+          "_count": 22.0,
+          "_end_at": "2014-10-01T00:00:00+00:00",
+          "_start_at": "2014-09-01T00:00:00+00:00",
+          "count:sum": 16523.0
+        }
+      ]
+    }
+  ]
+}
