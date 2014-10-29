@@ -5,9 +5,11 @@ define([
   'backbone',
   'moment-timezone',
   'json!fixtures/grouped.json',
-  'json!fixtures/group-multiple-keys.json'
+  'json!fixtures/group-multiple-keys.json',
+  'json!fixtures/group-by-channel-unflattened.json',
+  'json!fixtures/group-by-channel-flattened.json'
 ],
-function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture) {
+function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture, unflattenedFixture, flattenedFixture) {
 
   describe('Collection', function () {
 
@@ -494,73 +496,74 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
         expect(collection.getTableRows([['a', 'c'], 'b']))
           .toEqual([[[1, 'foo'], 2], [[3, 'bar'], 4]]);
       });
+    });
 
-      describe('processors', function () {
+    describe('processors', function () {
+
+      var collection;
+
+      beforeEach(function () {
+        collection = new Collection([
+          { a: 1, b: 2, 'sum(c)': 'foo' },
+          { a: 3, b: 4, 'sum(c)': 'bar' }
+        ]);
+      });
+
+      describe('getProcessors', function () {
+
+        it('parses keys into processor objects', function () {
+          expect(collection.getProcessors(['sum(a)'])).toEqual([{ fn: 'sum', key: 'a' }]);
+        });
+
+        it('does not return keys which have data', function () {
+          expect(collection.getProcessors(['sum(c)'])).toEqual([]);
+          expect(collection.getProcessors(['sum(a)', 'sum(c)'])).toEqual([{ fn: 'sum', key: 'a' }]);
+        });
+
+      });
+
+      describe('applyProcessors', function () {
+
+        var toString;
 
         beforeEach(function () {
-          collection = new Collection([
-            { a: 1, b: 2, 'sum(c)': 'foo' },
-            { a: 3, b: 4, 'sum(c)': 'bar' }
-          ]);
+          toString = jasmine.createSpy('toString').andCallFake(function (val) {
+            return val.toString();
+          });
+          collection.processors.toString = function () {
+            return toString;
+          };
+          spyOn(collection.processors, 'toString').andCallThrough();
         });
 
-        describe('getProcessors', function () {
-
-          it('parses keys into processor objects', function () {
-            expect(collection.getProcessors(['sum(a)'])).toEqual([{ fn: 'sum', key: 'a' }]);
-          });
-
-          it('does not return keys which have data', function () {
-            expect(collection.getProcessors(['sum(c)'])).toEqual([]);
-            expect(collection.getProcessors(['sum(a)', 'sum(c)'])).toEqual([{ fn: 'sum', key: 'a' }]);
-          });
-
+        it('gets processors', function () {
+          spyOn(collection, 'getProcessors').andReturn([]);
+          collection.applyProcessors(['toString(a)']);
+          expect(collection.getProcessors).toHaveBeenCalledWith(['toString(a)']);
         });
 
-        describe('applyProcessors', function () {
+        it('sets processed properties on models', function () {
+          collection.applyProcessors(['toString(a)']);
+          expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
+        });
 
-          var toString;
+        it('calls processor methods with value and model as arguments', function () {
+          collection.applyProcessors(['toString(a)']);
+          expect(toString.calls.length).toEqual(2);
+          expect(toString.calls[0].args).toEqual([1, jasmine.any(Backbone.Model)]);
+          expect(toString.calls[1].args).toEqual([3, jasmine.any(Backbone.Model)]);
+        });
 
-          beforeEach(function () {
-            toString = jasmine.createSpy('toString').andCallFake(function (val) {
-              return val.toString();
-            });
-            collection.processors.toString = function () {
-              return toString;
-            };
-            spyOn(collection.processors, 'toString').andCallThrough();
-          });
+        it('calls processor factory method once with context of the collection and an argument of the key', function () {
+          collection.applyProcessors(['toString(a)']);
+          expect(collection.processors.toString.calls.length).toEqual(1);
+          expect(collection.processors.toString.calls[0].object).toEqual(collection);
+          expect(collection.processors.toString.calls[0].args).toEqual(['a']);
+        });
 
-          it('gets processors', function () {
-            spyOn(collection, 'getProcessors').andReturn([]);
-            collection.applyProcessors(['toString(a)']);
-            expect(collection.getProcessors).toHaveBeenCalledWith(['toString(a)']);
-          });
-
-          it('sets processed properties on models', function () {
-            collection.applyProcessors(['toString(a)']);
-            expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
-          });
-
-          it('calls processor methods with value and model as arguments', function () {
-            collection.applyProcessors(['toString(a)']);
-            expect(toString.calls.length).toEqual(2);
-            expect(toString.calls[0].args).toEqual([1, jasmine.any(Backbone.Model)]);
-            expect(toString.calls[1].args).toEqual([3, jasmine.any(Backbone.Model)]);
-          });
-
-          it('calls processor factory method once with context of the collection and an argument of the key', function () {
-            collection.applyProcessors(['toString(a)']);
-            expect(collection.processors.toString.calls.length).toEqual(1);
-            expect(collection.processors.toString.calls[0].object).toEqual(collection);
-            expect(collection.processors.toString.calls[0].args).toEqual(['a']);
-          });
-
-          it('can handle arrays of keys', function () {
-            collection.applyProcessors([['a', 'toString(a)']]);
-            expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
-          });
-
+        it('can handle arrays of keys', function () {
+          collection.applyProcessors([['a', 'toString(a)']]);
+          expect(collection.pluck('toString(a)')).toEqual(['1', '3']);
         });
 
       });
@@ -789,6 +792,52 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
       });
 
     });
+
+    describe('parsing flat and non-flat data', function () {
+
+      var unflatDataSource;
+      var flatDataSource;
+
+      beforeEach( function () {
+        // lasting-power-of-attorney/transactions-by-channel?collect=count%3Asum&group_by=channel&period=month&duration=1&flatten=true
+        unflatDataSource = {
+          'data-group': 'lasting-power-of-attorney',
+          'data-type': 'transactions-by-channel',
+          'query-params': {
+            'group_by': 'channel',
+            'collect': [
+              'count:sum'
+            ],
+            'period': 'month',
+            'duration': 1
+          }
+        };
+        flatDataSource = _.extend({}, unflatDataSource, {
+          'query-params': _.extend({}, unflatDataSource['query-params'], {
+            'flatten': true
+          })
+        });
+      });
+
+      it('should look the same', function () {
+
+        var collectionUnflat = new Collection(undefined, {
+          dataSource: unflatDataSource
+        });
+        var collectionFlat = new Collection(undefined, {
+          dataSource: flatDataSource
+        });
+
+        var unflattenedParse = collectionUnflat.parse(unflattenedFixture);
+        var flattenedParse = collectionFlat.parse(flattenedFixture);
+
+        expect(unflattenedParse.length).toEqual(flattenedParse.length);
+        expect(unflattenedParse[0]['_count']).toEqual(flattenedParse[0]['_count']);
+        expect(unflattenedParse[0]['_end_at']).toEqual(flattenedParse[0]['_end_at']);
+
+      });
+    });
+
 
   });
 });

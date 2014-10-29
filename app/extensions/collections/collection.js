@@ -44,6 +44,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       var data = response.data;
 
       data = this.flatten(data);
+
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
           // cast all datetime strings to moment
@@ -74,7 +75,27 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return data;
     },
 
+    _unflatten: function (data) {
+
+      return _.map(data, function (dataset) {
+
+        // TODO move this to a proper counting step
+        dataset['_group_count'] = 1;
+
+        dataset['values'] = [_.omit(dataset, ['values', 'channel'])];
+
+        dataset = _.omit(dataset, ['_start_at', '_end_at']);
+        return dataset;
+      });
+
+    },
+
     flatten: function (data) {
+
+      if (this._isFlat()) {
+        data = this._unflatten(data);
+      }
+
       var groupedBy = this.dataSource.groupedBy();
       if (groupedBy && data.length) {
         var axes = this.getYAxes();
