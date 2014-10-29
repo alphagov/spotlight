@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "0.10.31"
+  - "0.10"
 install:
   - travis_retry npm install -g grunt-cli@0.1.9
   - travis_retry npm install
@@ -14,8 +14,13 @@ branches:
     - master
 env:
   - TEST_CMD: test:unit
-  - TEST_CMD: shell:cheapseats:--range:0..10
-  # - TEST_CMD: shell:cheapseats:--range:100..
+  - TEST_CMD: shell:cheapseats:--range:0..1
+# Add back in when we're out of emergency mode
+#   - TEST_CMD: shell:cheapseats:--range:0..50
+#   - TEST_CMD: shell:cheapseats:--range:51..100
+#   - TEST_CMD: shell:cheapseats:--range:101..150
+#   - TEST_CMD: shell:cheapseats:--range:151..
+#
 script: "grunt $TEST_CMD"
 matrix:
   fast_finish: true
