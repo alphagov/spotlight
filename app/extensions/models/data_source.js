@@ -50,6 +50,11 @@ function (Backbone, Mustache, _, moment) {
       return (queryParams && queryParams['group_by']) || null;
     },
 
+    isFlat: function () {
+      var queryParams = this.get('query-params');
+      return (queryParams && queryParams['flatten']) || false;
+    },
+
     configureTimespans: function (queryParams) {
       if (queryParams.start_at && !queryParams.end_at && !queryParams.duration) {
         queryParams.end_at = moment();
