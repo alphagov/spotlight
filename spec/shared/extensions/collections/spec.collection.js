@@ -7,9 +7,11 @@ define([
   'json!fixtures/grouped.json',
   'json!fixtures/group-multiple-keys.json',
   'json!fixtures/group-by-channel-unflattened.json',
-  'json!fixtures/group-by-channel-flattened.json'
+  'json!fixtures/group-by-channel-flattened.json',
+  'json!fixtures/multiple-per-channel-unflat.json',
+  'json!fixtures/multiple-per-channel-flat.json'
 ],
-function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture, unflattenedFixture, flattenedFixture) {
+function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multipleKeysFixture, unflattenedFixture, flattenedFixture, multiChannelUnflat, multiChannelFlat) {
 
   describe('Collection', function () {
 
@@ -835,8 +837,35 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
         expect(unflattenedParse[0]['_count']).toEqual(flattenedParse[0]['_count']);
         expect(unflattenedParse[0]['_end_at']).toEqual(flattenedParse[0]['_end_at']);
 
+
+      });
+
+      it('should look the same when calling groupByValue', function () {
+        var fixture = multiChannelFlat;
+        var collection = new Collection();
+        var parsedData = _.sortBy(collection.groupByValue(fixture, 'channel', ['count:sum'])['data'], 'channel');
+        var sortedUnFlatData = _.sortBy(multiChannelUnflat['data'], 'channel');
+        expect(parsedData).toEqual(sortedUnFlatData);
+      });
+
+      it('finds value', function () {
+        var collection = new Collection(),
+        data = {
+          data: [
+                  {
+                    foo: 'bar'
+                  },
+                  {
+                    foo: 'boff'
+                  }
+                ]
+        };
+
+        expect(collection.findValue(data, 'foo', 'bar')).toEqual({foo:'bar'});
+        expect(collection.findValue(data, 'bar', 'boff')).toEqual(false);
       });
     });
+
 
 
   });

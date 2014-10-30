@@ -75,12 +75,48 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return data;
     },
 
+    groupByValue: function (data, value, collect) {
+      var grouped = {
+        data: []
+      };
+
+      // get values as keys
+      _.each(data.data, function (dataset) {
+        var current = this.findValue(grouped, value, dataset[value]);
+        if (current === false ) {
+          current =
+          {
+            'channel': dataset[value],
+            'values': [],
+            '_count': 0,
+            '_group_count': 0
+          };
+          for (var i=0; i < collect.length; i++) {
+            current[collect[i]] = 0;
+          }
+          grouped['data'].push(current);
+        }
+        current['_count'] += dataset['_count'];
+        current['_group_count'] += 1;
+        for (var j=0; j < collect.length; j++) {
+          current[collect[j]] += dataset[collect[j]];
+        }
+        current.values.push(_.omit(dataset, ['channel']));
+      }, this);
+      return grouped;
+    },
+
+    findValue: function (data, key, value) {
+      return _.find(data['data'], function (dataset) {
+        return dataset[key] === value;
+      }) || false;
+    },
+
     _unflatten: function (data) {
 
-      return _.map(data, function (dataset) {
+      // var groupCount = this.getGroupCount(data);
 
-        // TODO move this to a proper counting step
-        dataset['_group_count'] = 1;
+      return _.map(data, function (dataset) {
 
         dataset['values'] = [_.omit(dataset, ['values', 'channel'])];
 
@@ -88,12 +124,13 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         return dataset;
       });
 
+
     },
 
     flatten: function (data) {
 
       if (this._isFlat()) {
-        data = this._unflatten(data);
+        data = this.groupByValue({'data': data}, this.dataSource.groupedBy(), this.dataSource.getCollect())['data'];
       }
 
       var groupedBy = this.dataSource.groupedBy();
