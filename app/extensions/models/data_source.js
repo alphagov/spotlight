@@ -30,6 +30,7 @@ function (Backbone, Mustache, _, moment) {
           this.configureTimespans(rawQueryParams));
       }
 
+      // return url + '&flatten=true';
       return url;
     },
 
@@ -48,6 +49,16 @@ function (Backbone, Mustache, _, moment) {
     groupedBy: function () {
       var queryParams = this.get('query-params');
       return (queryParams && queryParams['group_by']) || null;
+    },
+
+    isFlat: function () {
+      var queryParams = this.get('query-params');
+      return (queryParams && queryParams['flatten']) || false;
+    },
+
+    getCollect: function () {
+      var queryParams = this.get('query-params');
+      return (queryParams && queryParams['collect']) || false;
     },
 
     configureTimespans: function (queryParams) {

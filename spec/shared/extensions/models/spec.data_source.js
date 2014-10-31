@@ -24,6 +24,29 @@ function(DataSource, moment) {
       });
     });
 
+    describe('isFlat', function () {
+      it('should return false if flatten param is undefined', function () {
+        var source = new DataSource({ 'query-params': {}});
+        expect(source.isFlat()).toBe(false);
+      });
+      it('should return false if flatten param is false', function () {
+        var source = new DataSource({ 'query-params': {
+          'flatten': false
+        }});
+        expect(source.isFlat()).toBe(false);
+      });
+      it('should return true if flatten param is true', function () {
+        var source = new DataSource({ 'query-params': {
+          'flatten': true
+        }});
+        expect(source.isFlat()).toBe(true);
+      });
+      it('should return false if query-params is undefined', function () {
+        var source = new DataSource({});
+        expect(source.isFlat()).toBe(false);
+      });
+    });
+
     describe('buildUrl', function () {
       it('should format dates properly', function () {
         var startAt = moment('2014-07-01T01:00:00Z').utc(),

@@ -31,6 +31,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
+    _isFlat : function () {
+      return this.dataSource.isFlat();
+    },
+
     getPeriod: function () {
       var queryParams = this.dataSource.get('query-params');
       return queryParams ? queryParams.period : undefined;
@@ -40,6 +44,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       var data = response.data;
 
       data = this.flatten(data);
+
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
           // cast all datetime strings to moment
@@ -70,7 +75,64 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return data;
     },
 
+    groupByValue: function (data, value, collect) {
+      var grouped = {
+        data: []
+      };
+
+      // get values as keys
+      _.each(data.data, function (dataset) {
+        var current = this.findValue(grouped, value, dataset[value]);
+        if (current === false ) {
+          current =
+          {
+            'channel': dataset[value],
+            'values': [],
+            '_count': 0,
+            '_group_count': 0
+          };
+          for (var i=0; i < collect.length; i++) {
+            current[collect[i]] = 0;
+          }
+          grouped['data'].push(current);
+        }
+        current['_count'] += dataset['_count'];
+        current['_group_count'] += 1;
+        for (var j=0; j < collect.length; j++) {
+          current[collect[j]] += dataset[collect[j]];
+        }
+        current.values.push(_.omit(dataset, ['channel']));
+      }, this);
+      return grouped;
+    },
+
+    findValue: function (data, key, value) {
+      return _.find(data['data'], function (dataset) {
+        return dataset[key] === value;
+      }) || false;
+    },
+
+    _unflatten: function (data) {
+
+      // var groupCount = this.getGroupCount(data);
+
+      return _.map(data, function (dataset) {
+
+        dataset['values'] = [_.omit(dataset, ['values', 'channel'])];
+
+        dataset = _.omit(dataset, ['_start_at', '_end_at']);
+        return dataset;
+      });
+
+
+    },
+
     flatten: function (data) {
+
+      if (this._isFlat()) {
+        data = this.groupByValue({'data': data}, this.dataSource.groupedBy(), this.dataSource.getCollect())['data'];
+      }
+
       var groupedBy = this.dataSource.groupedBy();
       if (groupedBy && data.length) {
         var axes = this.getYAxes();

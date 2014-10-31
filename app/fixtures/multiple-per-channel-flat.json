@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "_count": 23.0,
+      "_end_at": "2014-08-01T00:00:00+00:00",
+      "_start_at": "2014-07-01T00:00:00+00:00",
+      "channel": "health_and_welfare_digital_applications",
+      "count:sum": 1070.0
+    },
+    {
+      "_count": 23.0,
+      "_end_at": "2014-08-01T00:00:00+00:00",
+      "_start_at": "2014-07-01T00:00:00+00:00",
+      "channel": "property_and_financial_digital_applications",
+      "count:sum": 2142.0
+    },
+    {
+      "_count": 23.0,
+      "_end_at": "2014-08-01T00:00:00+00:00",
+      "_start_at": "2014-07-01T00:00:00+00:00",
+      "channel": "property_and_financial_paper_applications",
+      "count:sum": 17732.0
+    },
+    {
+      "_count": 23.0,
+      "_end_at": "2014-08-01T00:00:00+00:00",
+      "_start_at": "2014-07-01T00:00:00+00:00",
+      "channel": "health_and_welfare_paper_applications",
+      "count:sum": 7838.0
+    },
+    {
+      "_count": 21.0,
+      "_end_at": "2014-09-01T00:00:00+00:00",
+      "_start_at": "2014-08-01T00:00:00+00:00",
+      "channel": "health_and_welfare_digital_applications",
+      "count:sum": 1045.0
+    },
+    {
+      "_count": 21.0,
+      "_end_at": "2014-09-01T00:00:00+00:00",
+      "_start_at": "2014-08-01T00:00:00+00:00",
+      "channel": "property_and_financial_digital_applications",
+      "count:sum": 2059.0
+    },
+    {
+      "_count": 21.0,
+      "_end_at": "2014-09-01T00:00:00+00:00",
+      "_start_at": "2014-08-01T00:00:00+00:00",
+      "channel": "property_and_financial_paper_applications",
+      "count:sum": 14986.0
+    },
+    {
+      "_count": 21.0,
+      "_end_at": "2014-09-01T00:00:00+00:00",
+      "_start_at": "2014-08-01T00:00:00+00:00",
+      "channel": "health_and_welfare_paper_applications",
+      "count:sum": 7115.0
+    },
+    {
+      "_count": 22.0,
+      "_end_at": "2014-10-01T00:00:00+00:00",
+      "_start_at": "2014-09-01T00:00:00+00:00",
+      "channel": "health_and_welfare_digital_applications",
+      "count:sum": 1174.0
+    },
+    {
+      "_count": 22.0,
+      "_end_at": "2014-10-01T00:00:00+00:00",
+      "_start_at": "2014-09-01T00:00:00+00:00",
+      "channel": "property_and_financial_digital_applications",
+      "count:sum": 2281.0
+    },
+    {
+      "_count": 22.0,
+      "_end_at": "2014-10-01T00:00:00+00:00",
+      "_start_at": "2014-09-01T00:00:00+00:00",
+      "channel": "property_and_financial_paper_applications",
+      "count:sum": 16523.0
+    },
+    {
+      "_count": 22.0,
+      "_end_at": "2014-10-01T00:00:00+00:00",
+      "_start_at": "2014-09-01T00:00:00+00:00",
+      "channel": "health_and_welfare_paper_applications",
+      "count:sum": 7881.0
+    }
+  ]
+}
