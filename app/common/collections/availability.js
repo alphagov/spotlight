@@ -5,7 +5,8 @@ function (Collection) {
   var AvailabilityCollection = Collection.extend({
 
     queryParams: {
-      collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean']
+      collect: ['downtime:sum', 'uptime:sum', 'unmonitored:sum', 'avgresponse:mean'],
+      flatten: true
     },
 
     parse: function () {

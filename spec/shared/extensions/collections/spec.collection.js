@@ -801,7 +801,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
       var flatDataSource;
 
       beforeEach( function () {
-        // lasting-power-of-attorney/transactions-by-channel?collect=count%3Asum&group_by=channel&period=month&duration=1&flatten=true
+        // lasting-power-of-attorney/transactions-by-channel?collect=count%3Asum&group_by=channel&period=month&duration=1
         unflatDataSource = {
           'data-group': 'lasting-power-of-attorney',
           'data-type': 'transactions-by-channel',
@@ -814,6 +814,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
             'duration': 1
           }
         };
+        // the above with &flatten=true
         flatDataSource = _.extend({}, unflatDataSource, {
           'query-params': _.extend({}, unflatDataSource['query-params'], {
             'flatten': true

@@ -30,7 +30,6 @@ function (Backbone, Mustache, _, moment) {
           this.configureTimespans(rawQueryParams));
       }
 
-      // return url + '&flatten=true';
       return url;
     },
 
