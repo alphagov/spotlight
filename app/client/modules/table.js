@@ -13,7 +13,7 @@ define([
       return {
         id: 'list',
         title: 'List',
-        queryParams: this.model.get('query-params'),
+        queryParams: _.extend(queryPararms, this.model.get('query-params'), {'flatten':true}),
         axes: this.model.get('axes')
       };
     }
