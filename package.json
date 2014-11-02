@@ -57,7 +57,7 @@
     "requirejs": "2.1.14",
     "sanitizer": "0.1.1",
     "uglify-js": "2.4.14",
-    "winston-alphagov": "0.7.4",
+    "winston": "0.8.1",
     "xmlhttprequest": "1.6.0"
   },
   "devDependencies": {

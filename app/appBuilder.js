@@ -3,7 +3,7 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-var winston = require('winston-alphagov');
+var winston = require('winston');
 var requirejs = require('requirejs');
 var basicAuth = require('node-basicauth');
 
