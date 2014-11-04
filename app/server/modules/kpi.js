@@ -10,6 +10,12 @@ module.exports = ModuleController.extend({
   visualisationClass: View,
   collectionClass: Collection,
 
-  hasTable: false
+  hasTable: false,
+
+  collectionOptions: function () {
+    return {
+      dataSource: _.extend({}, this.model.get('data-source'), {'query-params': _.extend({'flatten': true}, this.model.get('data-source')['query-params'])}),
+    };
+  }
 
 });
