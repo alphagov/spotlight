@@ -864,6 +864,34 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
         expect(collection.findValue(data, 'foo', 'bar')).toEqual({foo:'bar'});
         expect(collection.findValue(data, 'bar', 'boff')).toEqual(false);
       });
+
+      it('returns the same values when no group has been passed', function () {
+        delete unflatDataSource['query-params']['group_by'];
+        delete flatDataSource['query-params']['group_by'];
+
+        var collection = new Collection(undefined, {
+          dataSource: unflatDataSource
+        });
+        var collectionFlat = new Collection(undefined, {
+          dataSource: flatDataSource
+        });
+        var data = {
+          data: [
+                  {
+                    foo: 'bar'
+                  },
+                  {
+                    foo: 'boff'
+                  }
+                ]
+        };
+
+        var parsedWithFlat = collectionFlat.parse(data);
+        var parsedWithUnFlat = collection.parse(data);
+
+        expect(parsedWithFlat).toEqual(parsedWithUnFlat);
+
+      });
     });
 
 

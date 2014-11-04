@@ -17,6 +17,7 @@ define([
 
       options.dataSource = options.dataSource || {};
       options.dataSource['query-params'] = _.extend(dateRange, options.dataSource['query-params']);
+      options.dataSource['query-params'] = _.extend(options.dataSource['query-params'], {flatten: true});
 
       Collection.prototype.initialize.apply(this, arguments);
     },

@@ -129,7 +129,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
 
     flatten: function (data) {
 
-      if (this._isFlat()) {
+      if (this._isFlat() && this.dataSource.groupedBy()) {
         data = this.groupByValue({'data': data}, this.dataSource.groupedBy(), this.dataSource.getCollect())['data'];
       }
 
@@ -150,6 +150,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
           }, this);
         }
       }
+
       return data;
     },
 
