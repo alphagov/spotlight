@@ -12,6 +12,7 @@
       "type": "string",
       "required": true,
       "enum": [
+        "applications",
         "availability",
         "bar_chart_with_number",
         "comparison",
