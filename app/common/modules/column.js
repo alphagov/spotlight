@@ -28,9 +28,6 @@ function (Collection) {
             }
           ]
         }, this.model.get('axes'));
-
-      console.log('column options', options);
-
       return options;
     },
 

@@ -23,6 +23,46 @@
   "other-notes": "The number of transactions given is the annual number of applications processed, whether successful or not.",
   "modules": [
       {
+        "slug": "ralphs-clueless-column-module",
+        "module-type": "applications",
+       "value-attribute": "count:sum",
+        "title": "How Long Does Ralph Take to figure out a new module?",
+        "description": "I literally have no idea what I'm doing",
+        "info": [
+          "Ralph has no idea what he's doing."
+        ],
+        "max-bars": 22,
+        "pin-to": "handling_time",
+        "target":20,
+        "axes": {
+          "y": [
+            {
+              "label": "Number of times page has been refreshed",
+              "key": "count:sum",
+              "format": "integer"
+            }
+          ],
+          "x": {
+           "label": "Time in days",
+           "key": "title",
+           "format": "string"
+          }
+        },
+        "data-source": {
+          "data-group": "legal-aid",
+          "data-type": "handling-time-volumes",
+          "query-params": {
+            "duration": 20,
+            "period":"week",
+            "group_by": "handling_time",
+            "end_at": "2014-08-04T00:00:00+00:00",
+            "collect": [
+              "count:sum"
+            ]
+          }
+        }
+      },
+      {
       "slug": "transactions-per-year",
       "module-type": "kpi",
       "title": "Transactions per year",
@@ -301,50 +341,6 @@
             "uniqueEvents:sum"
           ],
           "group_by": "eventLabel"
-        }
-      }
-    },
-    {
-      "slug": "applications",
-      "module-type": "column",
-      "title": "Applications",
-      "description": "Proportion of users who start and complete their application using the digital service",
-      "info": [
-        "Data source: Google Analytics",
-        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a claim and were able to complete it.",
-        "It is calculated as percentage of unique visitors who arrived at the final page of the service out of those who arrived at the start page."
-      ],
-      "axes": {
-        "x": {
-          "label": "Date",
-          "key": [
-            "_start_at",
-            "_end_at"
-          ],
-          "format": "date"
-        },
-        "y": [
-          {
-            "label": "Paper form",
-            "groupId": "paper",
-            "format": "integer"
-          },
-          {
-            "label": "Digital",
-            "groupId": "digital",
-            "format": "integer"
-          }
-        ]
-      },
-      "data-source": {
-        "data-group": "carers-allowance",
-        "data-type": "transactions-by-channel",
-        "query-params": {
-          "period": "week",
-          "group_by": "channel",
-          "collect": [
-            "count:sum"
-          ]
         }
       }
     },
