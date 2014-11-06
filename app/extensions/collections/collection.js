@@ -86,11 +86,11 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         if (current === false ) {
           current =
           {
-            'channel': dataset[value],
             'values': [],
             '_count': 0,
             '_group_count': 0
           };
+          current[value] = dataset[value];
           for (var i=0; i < collect.length; i++) {
             current[collect[i]] = 0;
           }
@@ -101,7 +101,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         for (var j=0; j < collect.length; j++) {
           current[collect[j]] += dataset[collect[j]];
         }
-        current.values.push(_.omit(dataset, ['channel']));
+        current.values.push(_.omit(dataset, value));
       }, this);
       return grouped;
     },
