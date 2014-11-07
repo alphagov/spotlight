@@ -8,28 +8,29 @@ function (Collection) {
     collectionClass: Collection,
 
     collectionOptions: function () {
-      return {
-        numeratorMatcher: new RegExp(this.model.get('numerator-matcher')),
-        denominatorMatcher: new RegExp(this.model.get('denominator-matcher')),
-        matchingAttribute: this.model.get('group-by'),
-        valueAttr: this.model.get('value-attribute') || 'uniqueEvents',
-        axisPeriod: this.model.get('axis-period') || this.model.get('period'),
-        axes: _.merge({
-          x: {
-            label: 'Date of Application',
-            key: ['_start_at', '_end_at'],
-            format: 'date'
-          },
-          y: [
-            {
-              label: 'Number of applications',
-              key: 'uniqueEvents',
-              format: this.model.get('format-options') || 'integer'
-            }
-          ]
-        }, this.model.get('axes')),
-        defaultValue: this.model.get('default-value')
-      };
+      var options = {};
+      options.numeratorMatcher = new RegExp(this.model.get('numerator-matcher')),
+      options.denominatorMatcher = new RegExp(this.model.get('denominator-matcher')),
+      options.matchingAttribute = this.model.get('group-by'),
+      options.valueAttr = this.model.get('value-attribute') || 'uniqueEvents',
+      options.axisPeriod = this.model.get('axis-period') || this.model.get('period'),
+      options.axes = _.merge({
+        x: {
+          label: 'Date of Application',
+          key: ['_start_at', '_end_at'],
+          format: 'date'
+        },
+        y: [
+          {
+            label: 'Number of applications',
+            key: 'uniqueEvents',
+            format: this.model.get('format-options') || 'integer'
+          }
+        ]
+      }, this.model.get('axes')),
+
+      options.defaultValue = this.model.get('default-value')
+      return options;
     },
 
     visualisationOptions: function () {
