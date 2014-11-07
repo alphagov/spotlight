@@ -311,7 +311,6 @@ module.exports = function (grunt) {
     'copy:govuk_template',
     'clean',
     'copy:assets',
-    'shell:validate_module_stubs',
     'shell:generate_services_list'
   ]);
 
