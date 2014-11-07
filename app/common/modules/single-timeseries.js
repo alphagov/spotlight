@@ -28,8 +28,11 @@ function (Collection) {
           }
         ]
       }, this.model.get('axes')),
-
-      options.defaultValue = this.model.get('default-value')
+      options.dataSource = this.model.get('data-source');
+      options.dataSource['query-params'] = _.extend(options.dataSource['query-params'], {
+        flatten:true
+      });
+      options.defaultValue = this.model.get('default-value');
       return options;
     },
 
