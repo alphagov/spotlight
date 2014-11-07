@@ -4,7 +4,8 @@ define([
 function (CompletionCollection) {
   describe('Completion rate collection', function () {
 
-    var mockResponse;
+    var mockResponse,
+    flatMockResponse;
 
     beforeEach(function () {
       mockResponse = {
@@ -60,6 +61,47 @@ function (CompletionCollection) {
         ]
       };
 
+      flatMockResponse = {
+        data: [
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                eventCategory: 'start',
+                'uniqueEvents:sum': 15.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                eventCategory: 'start',
+                'uniqueEvents:sum': 25.0
+              },
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                eventCategory: 'confirm',
+                'uniqueEvents:sum': 8.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                eventCategory: 'confirm',
+                'uniqueEvents:sum': 12.0
+              },
+              {
+                _end_at: '2013-12-02T00:00:00+00:00',
+                _start_at: '2013-11-25T00:00:00+00:00',
+                eventCategory: 'done',
+                'uniqueEvents:sum': 10.0
+              },
+              {
+                _end_at: '2013-12-09T00:00:00+00:00',
+                _start_at: '2013-12-02T00:00:00+00:00',
+                eventCategory: 'done',
+                'uniqueEvents:sum': null
+              }
+        ]
+      };
+
     });
 
     it('throws if no denominatorMatcher is defined', function () {
@@ -99,6 +141,39 @@ function (CompletionCollection) {
         expect(result[1]._end).toEqual(null);
         expect(result[0].completion).toEqual(2 / 3);
         expect(result[1].completion).toEqual(0);
+      });
+
+      it('should parse flat responses', function () {
+        var collection = new CompletionCollection({}, {
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum',
+          flat: true
+        });
+
+        var result = collection.parse(flatMockResponse);
+
+        expect(result.length).toEqual(2);
+        expect(result[0]._start).toEqual(15);
+        expect(result[1]._start).toEqual(25);
+        expect(result[0]._end).toEqual(10);
+        expect(result[1]._end).toEqual(null);
+        expect(result[0].completion).toEqual(2 / 3);
+        expect(result[1].completion).toEqual(0);
+      });
+
+      it('should parse flat responses with null matchingAttribute', function () {
+        var collection = new CompletionCollection({}, {
+          denominatorMatcher: 'start',
+          numeratorMatcher: 'done',
+          matchingAttribute: 'eventCategory',
+          valueAttr: 'uniqueEvents:sum',
+          flat: true
+        });
+        delete flatMockResponse['data'][0]['eventCategory'];
+        var result = collection.parse(flatMockResponse);
+        expect(result.length).toEqual(1);
       });
 
       it('should handle an empty data response', function () {
