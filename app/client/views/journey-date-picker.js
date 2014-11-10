@@ -8,7 +8,7 @@ define([
 
     update: function () {
       var to = this.getMoment(this.$('#date-to').val()).day(this.MONDAY);
-      var from = to.clone().subtract(this.interval, 1);
+      var from = to.clone().subtract(1, this.interval);
 
       this.setHashParams({
         to: this.$('#date-to').val()

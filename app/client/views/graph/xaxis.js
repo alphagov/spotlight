@@ -111,7 +111,7 @@ function (d3, Axis) {
         },
         tickFormat: function () {
           return _.bind(function (d) {
-            return this.getMoment(d).subtract('days', 1).format('D MMM');
+            return this.getMoment(d).subtract(1, 'days').format('D MMM');
           }, this);
         }
       },
@@ -135,9 +135,9 @@ function (d3, Axis) {
         },
         tickFormat: function () {
           return _.bind(function (d) {
-            var val = this.getMoment(d).subtract('months', 1).format('MMM');
+            var val = this.getMoment(d).subtract(1, 'months').format('MMM');
             if (d.getMonth() === 0) {
-              val += ' ' + this.getMoment(d).subtract('months', 1).format('YYYY');
+              val += ' ' + this.getMoment(d).subtract(1, 'months').format('YYYY');
             }
             return val;
           }, this);

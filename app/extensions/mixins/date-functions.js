@@ -14,7 +14,7 @@ function (moment) {
       var oldOffset = this.zone();
       var result = oldDateFunction.apply(this, arguments);
       var newOffset = this.zone();
-      this.add('minutes', newOffset - oldOffset);//restore proper time
+      this.add(newOffset - oldOffset, 'minutes');//restore proper time
       return result;
     } else {
       return oldDateFunction.apply(this, arguments);
@@ -28,7 +28,7 @@ function (moment) {
       var oldOffset = this.zone();
       var result = oldStartOfFunction.apply(this, arguments);
       var newOffset = this.zone();
-      this.add('minutes', newOffset - oldOffset);//restore proper time
+      this.add(newOffset - oldOffset, 'minutes');//restore proper time
       return result;
     } else {
       return oldStartOfFunction.apply(this, arguments);
