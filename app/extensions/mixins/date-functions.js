@@ -38,7 +38,7 @@ function (moment) {
   /* Configure Moment locale options as per our style guide
    * www.gov.uk/design-principles/style-guide/style-points#style-dates-and-times
    */
-  moment.lang('en', {
+  moment.locale('en', {
     calendar: {
       lastDay:  '[yesterday at] LT',
       sameDay:  '[today at] LT',
