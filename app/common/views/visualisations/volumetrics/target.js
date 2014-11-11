@@ -41,9 +41,18 @@ function (NumberView, Model) {
     },
 
     render: function () {
-      var content;
-      content = '<span class="summary">' + this.getDateRange() + '</span>';
-      content += '<' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '>';
+      var content = '';
+
+      if (_.isNumber(this.target)) {
+        content += '<span class="summary">' + this.getDateRange() + '</span>';
+      }
+
+      content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
+
+      if (_.isString(this.target)) {
+        content += '<span class="period">' + this.getDateRange() + '</span>';
+      }
+
       content += '<p class="overview">' + this.getLabel() + '</p>';
 
       var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
@@ -63,8 +72,6 @@ function (NumberView, Model) {
       var label = '';
       if (_.isNumber(this.target)) {
         label += 'processed within ' + this.target + ' working days';
-      } else if (_.isString(this.target)) {
-        label += this.target;
       }
 
       return label;
