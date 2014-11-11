@@ -173,7 +173,7 @@ function (CompletionCollection) {
         });
         delete flatMockResponse['data'][0]['eventCategory'];
         var result = collection.parse(flatMockResponse);
-        expect(result.length).toEqual(1);
+        expect(result.length).toEqual(2);
       });
 
       it('should handle an empty data response', function () {
@@ -253,6 +253,40 @@ function (CompletionCollection) {
         expect(result[0].completion).toEqual(null);
         expect(result[1].completion).toEqual(null);
 
+      });
+    });
+
+    describe('calculateCompletion', function () {
+      it('supports regular expressions that require multiple data points', function () {
+        var data = [
+          {
+            '_count': 1.0,
+            '_end_at': '2014-11-01T00:00:00+00:00',
+            '_start_at': '2014-10-01T00:00:00+00:00',
+            'channel': 'paper',
+            'count:sum': 3098.0
+          },
+          {
+            '_count': 1.0,
+            '_end_at': '2014-11-01T00:00:00+00:00',
+            '_start_at': '2014-10-01T00:00:00+00:00',
+            'channel': 'digital',
+            'count:sum': 461.0
+          }
+        ];
+
+        var collection = new CompletionCollection({}, {
+          denominatorMatcher: '^digital|paper$',
+          numeratorMatcher: '^digital$',
+          matchingAttribute: 'channel',
+          valueAttr: 'count:sum',
+          flat: true
+        });
+
+        var result = collection.calculateCompletion(data);
+
+        expect(result.length).toEqual(1);
+        expect(result[0].completion).toEqual(461 / 3559);
       });
     });
 

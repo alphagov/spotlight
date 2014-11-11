@@ -12,38 +12,55 @@ define([
       var values = [],
       data = response.data;
       if (data && data.length > 0 && (data[0].values || this.flat)) {
-        values = this.calculateCompletion(response.data);
+        values = this.calculateCompletion(data);
       }
       return values;
     },
 
     calculateCompletion: function (dataset) {
       if (this.flat) {
-        return _.map(_.filter(dataset, function(data) {
-          return data[this.matchingAttribute] && data[this.matchingAttribute].match(this.denominatorMatcher);
-        }, this), function (model) {
+        var timeGroupedData = _.groupBy(dataset, function (elem) {
+          return elem['_start_at'];
+        });
+
+        var parsedData = _.map(timeGroupedData, function (value) {
+
           var matchingStart, matchingEnd;
-          if (model[this.valueAttr] !== null) {
-            matchingStart = _.find(dataset, function (data) {
-              return data['_start_at'] === model['_start_at'] && data[this.matchingAttribute] && data[this.matchingAttribute].match(this.denominatorMatcher);
-            }, this);
-            matchingEnd = _.find(dataset, function (data) {
-              return data['_end_at'] === model['_end_at'] && data[this.matchingAttribute] && data[this.matchingAttribute].match(this.numeratorMatcher);
-            }, this);
-          }
-          var totals = {};
-          totals['start'] = (matchingStart ? matchingStart[this.valueAttr]: null);
-          totals['end'] = (matchingEnd ? matchingEnd[this.valueAttr]: null);
 
-          var value = {
-            _start_at: this.getMoment(model._start_at),
-            _end_at: this.getMoment(model._end_at),
-            _start: totals.start,
-            _end: totals.end
+          matchingStart = _.filter(value, function (data) {
+            return data[this.matchingAttribute] && data[this.valueAttr] && data[this.matchingAttribute].match(this.denominatorMatcher);
+          }, this);
+
+          matchingEnd = _.filter(value, function (data) {
+            return data[this.matchingAttribute] && data[this.valueAttr] && data[this.matchingAttribute].match(this.numeratorMatcher);
+          }, this);
+
+          var parsedDatum = {
+            _start_at: this.getMoment(value[0]._start_at),
+            _end_at: this.getMoment(value[0]._end_at)
           };
-          return _.extend(this.defaultValueAttrs(value), value);
 
+          if (matchingStart.length > 0) {
+            parsedDatum._start = _.reduce(matchingStart, function (memo, elem) {
+              return memo + elem[this.valueAttr];
+            }, 0, this);
+          } else {
+            parsedDatum._start = null;
+          }
+
+          if (matchingEnd.length > 0) {
+            parsedDatum._end = _.reduce(matchingEnd, function (memo, elem) {
+              return memo + elem[this.valueAttr];
+            }, 0, this);
+          } else {
+            parsedDatum._end = null;
+          }
+
+          return _.extend(this.defaultValueAttrs(parsedDatum), parsedDatum);
         }, this);
+
+        return parsedData;
+
       } else {
         return _.map(dataset[0].values, function (model, i){
           var totals = _.reduce(dataset, function (memo, d) {
