@@ -15,7 +15,7 @@ function (Collection) {
         { type: 'integer', magnitude: true, sigfigs: 3, pad: true };
 
       options.dataSource = this.model.get('data-source');
-      options.dataSource['query-params'] = _.extend(options.dataSource['query-params'], {flatten:true});
+      options.dataSource['query-params'] = _.extend({flatten:true}, options.dataSource['query-params']);
 
       options.axes = _.merge({
           x: {
