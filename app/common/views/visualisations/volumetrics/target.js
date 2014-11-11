@@ -21,13 +21,13 @@ function (NumberView, Model) {
           var previousModelValue = new Model(previousModel[previousModel.length - 2]).get(this.valueAttr);
           total += previousModelValue;
 
-          if (target < model.get(this.pinTo)) {
+          if (_.isNumber(target) && target < model.get(this.pinTo)) {
             greaterThanTarget += previousModelValue;
           }
         } else {
           total += model.get(this.valueAttr);
 
-          if (target < model.get(this.pinTo)) {
+          if (_.isNumber(target) && target < model.get(this.pinTo)) {
             greaterThanTarget += model.get(this.valueAttr);
           }
         }
@@ -41,9 +41,18 @@ function (NumberView, Model) {
     },
 
     render: function () {
-      var content;
-      content = '<span class="summary">' + this.getDateRange() + '</span>';
-      content += '<' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '>';
+      var content = '';
+
+      if (_.isNumber(this.target)) {
+        content += '<span class="summary">' + this.getDateRange() + '</span>';
+      }
+
+      content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
+
+      if (_.isString(this.target)) {
+        content += '<span class="period">' + this.getDateRange() + '</span>';
+      }
+
       content += '<p class="overview">' + this.getLabel() + '</p>';
 
       var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
@@ -60,7 +69,12 @@ function (NumberView, Model) {
     },
 
     getLabel: function () {
-      return 'processed within ' + this.target + ' working days';
+      var label = '';
+      if (_.isNumber(this.target)) {
+        label += 'processed within ' + this.target + ' working days';
+      }
+
+      return label;
     },
 
     getDateRange: function () {

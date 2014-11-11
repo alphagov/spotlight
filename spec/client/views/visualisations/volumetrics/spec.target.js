@@ -207,7 +207,7 @@ function (TargetView, View, Collection) {
           view.render();
           expect(view.$el.html()).toEqual(
             '<span class="summary">28 July to 3 Aug 2014</span>' +
-            '<strong>50%</strong>' +
+            '<div class="stat"><strong>50%</strong></div>' +
             '<p class="overview">processed within 15 working days</p>' +
             '<div class="delta">' +
               '<span class="no-change">no change</span> <span>on last week</span>' +

@@ -18,6 +18,7 @@ var TableModule                   = require('./modules/table');
 var UserSatisfactionModule        = require('./modules/user_satisfaction');
 var UserSatisfactionGraphModule   = require('./modules/user_satisfaction_graph');
 var VisitorsRealtimeModule        = require('./modules/visitors-realtime');
+var HeadlineFigureModule          = require('./modules/headline-figure');
 
 module.exports = function () {
   return {
@@ -40,7 +41,8 @@ module.exports = function () {
       table:                  TableModule,
       user_satisfaction:      UserSatisfactionModule,
       user_satisfaction_graph: UserSatisfactionGraphModule,
-      realtime:               VisitorsRealtimeModule
+      realtime:               VisitorsRealtimeModule,
+      headline_figure:        HeadlineFigureModule
     },
     browse: true
   };

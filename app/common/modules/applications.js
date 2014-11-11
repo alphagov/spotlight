@@ -36,6 +36,7 @@ function (Collection) {
 
     visualisationOptions: function () {
       return {
+        valueAttr: this.model.get('value-attribute'),
         maxBars: this.model.get('max-bars'),
         target: this.model.get('target'),
         pinTo: this.model.get('pin-to')
