@@ -42,8 +42,8 @@ define([
         }
 
         if (period === 'week') {
-          from = from.add('day', 1);
-          to = to.endOf('week').add('day', 1);
+          from = from.add(1, 'day');
+          to = to.endOf('week').add(1, 'day');
         }
 
         this.hideError();
@@ -61,7 +61,7 @@ define([
       var lastDate = hashParams.to || this.collection.last().get('_end_at');
       var from = this.makeSelect({ id: 'date-from' }, {
         selected: this.getMoment(firstDate).startOf(this.interval).format(this.dateFormat),
-        upperBound: this.getMoment().subtract(this.interval, 1).startOf(this.interval)
+        upperBound: this.getMoment().subtract(1, this.interval).startOf(this.interval)
       });
       var to = this.makeSelect({ id: 'date-to' }, {
         selected: this.getMoment(lastDate).startOf(this.interval).format(this.dateFormat)
@@ -88,7 +88,7 @@ define([
       while (!date.isAfter(now)) {
         var option = '<option value="' + date.format(this.dateFormat) + '">' + date.format(options.format) + '</option>';
         $select.prepend(option);
-        date = date.add(this.interval, 1);
+        date = date.add(1, this.interval);
       }
       $select.val(options.selected);
 

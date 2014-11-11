@@ -307,7 +307,7 @@ define([
     });
     // avoid overlapping at the ends of a range i.e. 1 Mar-1 Apr => 1 Mar-31 Mar
     if (options.subtract) {
-      value[1] = moment(value[1]).subtract(options.subtract, 1);
+      value[1] = moment(value[1]).subtract(1, options.subtract);
     }
 
     var start = formatters.date(value[0], options);

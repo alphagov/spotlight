@@ -51,7 +51,7 @@ module.exports = SingleStatView.extend({
     var currentDate = model.get(this.timeAttr);
 
     // Get previous value from collection.
-    previousDate = currentDate.clone().subtract(this.deltaPeriod, this.delta);
+    previousDate = currentDate.clone().subtract(this.delta, this.deltaPeriod);
     var matchingValues = this.collection.find(function (d) {
       return (d.get(this.timeAttr).valueOf() === previousDate.valueOf());
     }, this);

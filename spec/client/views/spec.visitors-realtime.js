@@ -96,7 +96,7 @@ function (VisitorsRealtimeView, Collection, Model, template) {
 
       var testData = [
         {
-          '_timestamp': testCollection.moment().subtract('minutes', 3),
+          '_timestamp': testCollection.moment().subtract(3, 'minutes'),
           'unique_visitors': 3
         },
         {

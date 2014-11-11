@@ -13,7 +13,7 @@ function (GroupedCollection, DataSource, moment) {
       var options = this.dataSource.get('query-params');
       params.duration = this.duration();
       if (options.startAt) {
-        params.start_at = moment(options.startAt).subtract(this.getPeriod(), this.timeshift()).format(format);
+        params.start_at = moment(options.startAt).subtract(this.timeshift(), this.getPeriod()).format(format);
         params.duration = this.standardDuration();
       }
       return params;
@@ -54,8 +54,8 @@ function (GroupedCollection, DataSource, moment) {
           model._original_end_at = model._end_at;
           var _start_at = moment(model._start_at);
           var _end_at = moment(model._start_at);
-          _start_at.add(this.getPeriod(), axis.timeshift).format(format);
-          _end_at.add(this.getPeriod(), axis.timeshift).format(format);
+          _start_at.add(axis.timeshift, this.getPeriod()).format(format);
+          _end_at.add(axis.timeshift, this.getPeriod()).format(format);
 
           if (target.values[i + axis.timeshift]) {
             target.values[i + axis.timeshift]['timeshift' + axis.timeshift + ':' + axis.groupId + ':' + this.valueAttr] = model[this.valueAttr];
