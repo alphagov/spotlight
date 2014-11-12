@@ -149,7 +149,7 @@ function (CompletionCollection) {
           numeratorMatcher: 'done',
           matchingAttribute: 'eventCategory',
           valueAttr: 'uniqueEvents:sum',
-          flat: true
+          flattenEverything: true
         });
 
         var result = collection.parse(flatMockResponse);
@@ -169,7 +169,7 @@ function (CompletionCollection) {
           numeratorMatcher: 'done',
           matchingAttribute: 'eventCategory',
           valueAttr: 'uniqueEvents:sum',
-          flat: true
+          flattenEverything: true
         });
         delete flatMockResponse['data'][0]['eventCategory'];
         var result = collection.parse(flatMockResponse);
@@ -280,7 +280,7 @@ function (CompletionCollection) {
           numeratorMatcher: '^digital$',
           matchingAttribute: 'channel',
           valueAttr: 'count:sum',
-          flat: true
+          flattenEverything: true
         });
 
         var result = collection.calculateCompletion(data);

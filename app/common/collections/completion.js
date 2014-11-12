@@ -1,8 +1,7 @@
 define([
-  'extensions/collections/collection',
-  'extensions/models/data_source'
+  'extensions/collections/collection'
 ],
-function (Collection, DataSource) {
+function (Collection) {
 
   var CompletionCollection = Collection.extend({
 
@@ -11,8 +10,6 @@ function (Collection, DataSource) {
       this.denominatorMatcher = options.denominatorMatcher;
       this.numeratorMatcher = options.numeratorMatcher;
       this.matchingAttribute = options.matchingAttribute;
-      this.dataSource = new DataSource(options.dataSource);
-      this.flat = options.flat || this._isFlat() || false;
 
       Collection.prototype.initialize.apply(this, arguments);
       if (!this.denominatorMatcher) {

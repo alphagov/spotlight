@@ -11,14 +11,14 @@ define([
     parse: function (response) {
       var values = [],
       data = response.data;
-      if (data && data.length > 0 && (data[0].values || this.flat)) {
+      if (data && data.length > 0 && (data[0].values || this._isFlat())) {
         values = this.calculateCompletion(data);
       }
       return values;
     },
 
     calculateCompletion: function (dataset) {
-      if (this.flat) {
+      if (this._isFlat()) {
         var timeGroupedData = _.groupBy(dataset, function (elem) {
           return elem['_start_at'];
         });
