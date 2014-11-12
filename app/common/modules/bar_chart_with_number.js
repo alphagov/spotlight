@@ -15,6 +15,8 @@ function (Collection) {
       options.format = this.model.get('format') ||
         { type: 'integer', magnitude: true, sigfigs: 3, pad: true };
 
+      options['dataSource'] = _.extend({}, this.model.get('data-source'), {'query-params': _.extend({'flatten': true}, this.model.get('data-source')['query-params'])});
+
       options.axes = _.merge({
           x: {
             label: 'Dates',
