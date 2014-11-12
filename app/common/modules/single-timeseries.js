@@ -28,6 +28,10 @@ function (Collection) {
           }
         ]
       }, this.model.get('axes')),
+      options.dataSource = this.model.get('data-source');
+      options.dataSource['query-params'] = _.extend({
+        flatten:true
+      }, options.dataSource['query-params']);
       options.defaultValue = this.model.get('default-value');
       return options;
     },

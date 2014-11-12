@@ -16,7 +16,7 @@ define([
       var dateRange = this.lastWeekDateRange(this.getMoment(), options.weeksAgo || 0);
 
       options.dataSource = options.dataSource || {};
-      options.dataSource['query-params'] = _.extend(dateRange, options.dataSource['query-params']);
+      options.dataSource['query-params'] = _.extend({flatten: true}, dateRange, options.dataSource['query-params']);
 
       Collection.prototype.initialize.apply(this, arguments);
     },
