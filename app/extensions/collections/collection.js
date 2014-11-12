@@ -22,7 +22,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         this.valueAttr = options.valueAttr;
       }
 
-      this.dataSource = new DataSource(options.dataSource);
+      this.dataSource = new DataSource(options.dataSource, {
+        flattenEverything: options.flattenEverything
+      });
       this.dataSource.on('change', function () {
         this.fetch({ reset: true });
       }, this);
