@@ -20,7 +20,9 @@ function (Backbone, Mustache, _, moment) {
     buildUrl: function (customQueryParams) {
       var url = Mustache.render(this.backdropUrl, this.attributes),
           rawQueryParams = _.merge(
-            {},
+            {
+              flatten: true
+            },
             this.get('query-params') || {},
             customQueryParams
           );
