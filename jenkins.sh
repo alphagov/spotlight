@@ -1,6 +1,7 @@
 #!/bin/bash
-set -e
+set -ex
 
 npm install
 
-npm test
+grunt test:unit
+grunt shell:cheapseats:--range:0..1
