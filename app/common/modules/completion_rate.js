@@ -28,8 +28,7 @@ function (CompletionRateCollection) {
               format: 'percent'
             }
           ]
-        }, this.model.get('axes')),
-      dataSource: _.extend({}, this.model.get('data-source'), {'query-params': _.extend({'flatten': true}, this.model.get('data-source')['query-params'])})
+        }, this.model.get('axes'))
       };
     },
 

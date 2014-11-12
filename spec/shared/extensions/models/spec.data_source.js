@@ -45,6 +45,18 @@ function(DataSource, moment) {
         var source = new DataSource({});
         expect(source.isFlat()).toBe(false);
       });
+      describe('if flatten everything', function () {
+        it('should return false if flatten param is false', function () {
+          var source = new DataSource({ 'query-params': {
+            'flatten': false
+          }}, { flattenEverything: true });
+          expect(source.isFlat()).toBe(false);
+        });
+        it('should return false if query-params is undefined', function () {
+          var source = new DataSource({}, { flattenEverything: true });
+          expect(source.isFlat()).toBe(true);
+        });
+      });
     });
 
     describe('buildUrl', function () {
@@ -91,6 +103,19 @@ function(DataSource, moment) {
         source.backdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
 
         expect(source.buildUrl()).toBe('perf.service/foo/bar');
+      });
+
+      describe('if flatten everything', function () {
+        it('should contain the data group and type', function () {
+          var source = new DataSource({
+                'data-group': 'foo',
+                'data-type': 'bar'
+              }, { flattenEverything: true });
+
+          source.backdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
+
+          expect(source.buildUrl()).toBe('perf.service/foo/bar?flatten=true');
+        });
       });
     });
 

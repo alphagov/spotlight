@@ -17,10 +17,15 @@ function (Backbone, Mustache, _, moment) {
 
     backdropUrl: backdropUrl,
 
+    initialize: function(data, options) {
+      Backbone.Model.prototype.initialize.apply(this, arguments);
+      this.options = options || {};
+    },
+
     buildUrl: function (customQueryParams) {
       var url = Mustache.render(this.backdropUrl, this.attributes),
           rawQueryParams = _.merge(
-            {},
+            this.options.flattenEverything ? { flatten: true } : {},
             this.get('query-params') || {},
             customQueryParams
           );
@@ -51,8 +56,14 @@ function (Backbone, Mustache, _, moment) {
     },
 
     isFlat: function () {
-      var queryParams = this.get('query-params');
-      return (queryParams && queryParams['flatten']) || false;
+      var queryParams = this.get('query-params'),
+          isFlat = !!this.options.flattenEverything;
+
+      if (queryParams && queryParams['flatten'] !== undefined) {
+        isFlat = queryParams['flatten'];
+      }
+
+      return isFlat;
     },
 
     getCollect: function () {

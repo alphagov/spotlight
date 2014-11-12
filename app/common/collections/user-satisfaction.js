@@ -17,8 +17,7 @@ define([
         'rating_4:sum',
         'rating_5:sum',
         'total:sum'
-      ],
-      flatten: true
+      ]
     },
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
