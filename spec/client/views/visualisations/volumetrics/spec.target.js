@@ -231,8 +231,7 @@ function (TargetView, View, Collection) {
           }, { parse: true });
 
           spyOn(TargetView.prototype, 'getDateRange').andReturn('28 July to 3 Aug 2014');
-          spyOn(TargetView.prototype, 'getValue').andReturn('no data');
-          spyOn(TargetView.prototype, 'getLabel').andReturn('processed within 15 working days');
+          spyOn(TargetView.prototype, 'getValue').andReturn(false);
           spyOn(TargetView.prototype, 'getTargetPercent').andReturn(1);
           spyOn(TargetView.prototype, 'getPreviousDateRange').andReturn('21 to 27 July 2014');
         });
@@ -241,8 +240,8 @@ function (TargetView, View, Collection) {
           view.render();
           expect(view.$el.html()).toEqual(
             '<span class="summary">28 July to 3 Aug 2014</span>' +
-            '<div class="stat"><strong>no data</strong></div>' +
-            '<p class="overview">processed within 15 working days</p>' +
+            '<div class="stat no-data"><strong>no data</strong></div>' +
+            '<p class="overview"></p>' +
             '<div class="delta">' +
               '<span class="no-change">no change </span><span>on last week</span>' +
             '</div>' +

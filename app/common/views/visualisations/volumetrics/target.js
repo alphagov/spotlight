@@ -12,7 +12,7 @@ function (NumberView, Model) {
         return this.format(value, 'percent');
       }
 
-      return 'no data';
+      return false;
     },
 
     getTargetPercent: function (previous) {
@@ -47,13 +47,18 @@ function (NumberView, Model) {
     },
 
     render: function () {
+      var value = this.getValue();
+      var stat = value ?
+        '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>'
+        : '<div class="stat no-data"><' + this.valueTag + '>no data</' + this.valueTag + '></div>';
       var content = '';
 
       if (_.isNumber(this.target)) {
         content += '<span class="summary">' + this.getDateRange() + '</span>';
       }
 
-      content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
+      // content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
+      content += stat;
 
       if (_.isString(this.target)) {
         content += '<span class="period">' + this.getDateRange() + '</span>';
@@ -76,7 +81,7 @@ function (NumberView, Model) {
 
     getLabel: function () {
       var label = '';
-      if (_.isNumber(this.target)) {
+      if (_.isNumber(this.target) && this.getValue()) {
         label += 'processed within ' + this.target + ' working days';
       }
 
