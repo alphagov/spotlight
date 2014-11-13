@@ -41,7 +41,19 @@ if (environment.match(/^development/)) {
 }
 
 var http = require('http'),
+    https = require('https'),
+    keepAliveAgent = require('agentkeepalive'),
     path = require('path');
+
+
+var agent = new keepAliveAgent({
+  maxSockets: 100,
+  maxFreeSockets: 10,
+  timeout: 60000,
+  keepAliveTimeout: 30000 // free socket keepalive for 30 seconds
+});
+
+http.globalAgent = https.globalAgent = agent;
 
 var rootDir = path.join(__dirname, '..');
 var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
