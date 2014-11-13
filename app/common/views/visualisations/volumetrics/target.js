@@ -6,7 +6,13 @@ function (NumberView, Model) {
   var TargetNumberView = NumberView.extend({
 
     getValue: function () {
-      return this.format(this.getTargetPercent(), 'percent');
+      var value = this.getTargetPercent();
+
+      if (_.isNumber(value) && _.isFinite(value)) {
+        return this.format(value, 'percent');
+      }
+
+      return false;
     },
 
     getTargetPercent: function (previous) {
@@ -41,13 +47,17 @@ function (NumberView, Model) {
     },
 
     render: function () {
+      var value = this.getValue();
+      var stat = value ?
+        '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>'
+        : '<div class="stat no-data"><' + this.valueTag + '>no data</' + this.valueTag + '></div>';
       var content = '';
 
       if (_.isNumber(this.target)) {
         content += '<span class="summary">' + this.getDateRange() + '</span>';
       }
 
-      content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
+      content += stat;
 
       if (_.isString(this.target)) {
         content += '<span class="period">' + this.getDateRange() + '</span>';
@@ -57,8 +67,8 @@ function (NumberView, Model) {
 
       var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
       var decInc = percentageChange < 0 ? 'decrease' : 'increase';
-      if (percentageChange === 0) {
-        content += '<div class="delta"><span class="no-change">no change</span> <span>on last week</span></div>';
+      if (percentageChange === 0 || !_.isFinite(percentageChange)) {
+        content += '<div class="delta"><span class="no-change">no change </span><span>on last week</span></div>';
       } else {
         content += '<div class="delta"><span class="' + decInc + '">' + this.percentageDifference() + '</span> <span>on last week</span></div>';
       }
@@ -70,7 +80,7 @@ function (NumberView, Model) {
 
     getLabel: function () {
       var label = '';
-      if (_.isNumber(this.target)) {
+      if (_.isNumber(this.target) && this.getValue()) {
         label += 'processed within ' + this.target + ' working days';
       }
 

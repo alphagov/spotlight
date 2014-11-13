@@ -114,21 +114,6 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       }) || false;
     },
 
-    _unflatten: function (data) {
-
-      // var groupCount = this.getGroupCount(data);
-
-      return _.map(data, function (dataset) {
-
-        dataset['values'] = [_.omit(dataset, ['values', 'channel'])];
-
-        dataset = _.omit(dataset, ['_start_at', '_end_at']);
-        return dataset;
-      });
-
-
-    },
-
     flatten: function (data) {
 
       if (this._isFlat() && this.dataSource.groupedBy()) {
