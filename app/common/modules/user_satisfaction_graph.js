@@ -32,7 +32,7 @@ function (UserSatisfactionCollection) {
               format: 'percent'
             },
             {
-              label: 'Not satisfied',
+              label: 'Very dissatisfied',
               key: 'rating_1:sum',
               format: 'integer'
             },
