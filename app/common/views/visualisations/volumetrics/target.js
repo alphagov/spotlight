@@ -57,7 +57,6 @@ function (NumberView, Model) {
         content += '<span class="summary">' + this.getDateRange() + '</span>';
       }
 
-      // content += '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>';
       content += stat;
 
       if (_.isString(this.target)) {
