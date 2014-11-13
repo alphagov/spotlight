@@ -210,7 +210,41 @@ function (TargetView, View, Collection) {
             '<div class="stat"><strong>50%</strong></div>' +
             '<p class="overview">processed within 15 working days</p>' +
             '<div class="delta">' +
-              '<span class="no-change">no change</span> <span>on last week</span>' +
+              '<span class="no-change">no change </span><span>on last week</span>' +
+            '</div>' +
+            '<p class="overview">21 to 27 July 2014</p>'
+          );
+        });
+
+      });
+
+      describe('rendering without data', function () {
+
+        beforeEach(function () {
+          collection.reset({
+            data: [
+              { count: 1, goal: 10, values: [
+                { count: 0 },
+                { count: 0 }
+              ]},
+            ]
+          }, { parse: true });
+
+          spyOn(TargetView.prototype, 'getDateRange').andReturn('28 July to 3 Aug 2014');
+          spyOn(TargetView.prototype, 'getValue').andReturn('no data');
+          spyOn(TargetView.prototype, 'getLabel').andReturn('processed within 15 working days');
+          spyOn(TargetView.prototype, 'getTargetPercent').andReturn(1);
+          spyOn(TargetView.prototype, 'getPreviousDateRange').andReturn('21 to 27 July 2014');
+        });
+
+        it('shows the correct data', function () {
+          view.render();
+          expect(view.$el.html()).toEqual(
+            '<span class="summary">28 July to 3 Aug 2014</span>' +
+            '<div class="stat"><strong>no data</strong></div>' +
+            '<p class="overview">processed within 15 working days</p>' +
+            '<div class="delta">' +
+              '<span class="no-change">no change </span><span>on last week</span>' +
             '</div>' +
             '<p class="overview">21 to 27 July 2014</p>'
           );

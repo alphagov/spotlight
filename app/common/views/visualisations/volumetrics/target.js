@@ -6,7 +6,13 @@ function (NumberView, Model) {
   var TargetNumberView = NumberView.extend({
 
     getValue: function () {
-      return this.format(this.getTargetPercent(), 'percent');
+      var value = this.getTargetPercent();
+
+      if (_.isNumber(value) && _.isFinite(value)) {
+        return this.format(value, 'percent');
+      }
+
+      return 'no data';
     },
 
     getTargetPercent: function (previous) {
@@ -57,8 +63,8 @@ function (NumberView, Model) {
 
       var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
       var decInc = percentageChange < 0 ? 'decrease' : 'increase';
-      if (percentageChange === 0) {
-        content += '<div class="delta"><span class="no-change">no change</span> <span>on last week</span></div>';
+      if (percentageChange === 0 || !_.isFinite(percentageChange)) {
+        content += '<div class="delta"><span class="no-change">no change </span><span>on last week</span></div>';
       } else {
         content += '<div class="delta"><span class="' + decInc + '">' + this.percentageDifference() + '</span> <span>on last week</span></div>';
       }
