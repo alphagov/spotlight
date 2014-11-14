@@ -2,15 +2,16 @@ var GoogleClientLogin = require('googleclientlogin').GoogleClientLogin;
 var GoogleSpreadsheets = require('google-spreadsheets');
 var _ = require('underscore');
 var fs = require('fs');
+var request = require('request');
 var rimraf = require('rimraf');
-var googleCredentials = require('./config.json');
+var generatorConfig = require('./config.json');
 
 var googleAuth = new GoogleClientLogin(_.extend({
   email: 'email@digital.cabinet-office.gov.uk',
   password: 'password',
   service: 'spreadsheets',
   accountType: GoogleClientLogin.accountTypes.google
-}, googleCredentials));
+}, {'email': generatorConfig.email, 'password': generatorConfig.password}));
 
 var redirects = ['source,destination'],
   txUrl = '/performance/transactions-explorer/service-details/',
@@ -187,7 +188,37 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             ]
           });
 
-          fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
+          // Get this dashboard from Stagecraft based on the slug so that
+          // we can update it.
+
+          var requestOptions = {
+            url: 'https://' + generatorConfig['stagecraft-host'] + '/dashboard/' + row.slug,
+            headers: {
+              'Authorization': 'Bearer ' + generatorConfig['signon-token']
+            }
+          };
+
+          request(requestOptions, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+              var bodyData = JSON.parse(body);
+
+              output['id'] = bodyData['id'];
+
+              fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
+
+              var postOptions = _.extend(requestOptions, {'body': output, 'json': true});
+              request.post(postOptions, function (err, res, body) {
+                if (!error && response.statusCode === 200) {
+                  console.log('Successful POST to update', row.slug);
+                } else {
+                  console.log('Errored while POSTing to update', row.slug);
+                  console.log(body);
+                }
+              });
+            } else {
+              console.log('Error while making a GET request for', row.slug);
+            }
+          });
 
           redirects.push([txUrl + row.slug, spotlightUrl + row.slug].join());
         });

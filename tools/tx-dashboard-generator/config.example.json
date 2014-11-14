@@ -1,4 +1,6 @@
 {
   "email": "name@digital.cabinet-office.gov.uk",
-  "password": "app-specific-password"
+  "password": "google-app-specific-password",
+  "stagecraft-host": "stagecraft.development.performance.service.gov.uk",
+  "signon-token": "bearer-token-with-dashboard-access-in-signon"
 }
