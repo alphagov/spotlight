@@ -4,6 +4,12 @@ define([
 function (Collection) {
 
   return Collection.extend({
+    initialize: function (models, options) {
+      if(options !== undefined){
+        options.flattenEverything = false;
+      }
+      return Collection.prototype.initialize.apply(this, arguments);
+    },
 
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
