@@ -12,6 +12,7 @@ function (Model) {
       this.controllers = options.ControllerMap;
       this.requestId = options.requestId || 'Not-Set';
       this.govukRequestId = options.govukRequestId || 'Not-Set';
+      this.requestContext = undefined;
       Model.prototype.initialize.apply(this, arguments);
     },
 
@@ -53,6 +54,12 @@ function (Model) {
         request_id: this.requestId,
         govuk_request_id: this.govukRequestId
       });
+
+      this.reqContext = {
+        start: new Date().getTime(),
+        url: this.url()
+      };
+
       Model.prototype.fetch.call(this, options);
     },
 
@@ -71,6 +78,14 @@ function (Model) {
     },
 
     parse: function (data, options) {
+      var rc = this.reqContext;
+      rc.elapsed = new Date().getTime() - rc.start;
+      logger.info('Fetched <%s> in %s ms', rc.url, rc.elapsed,
+      {
+        request_id: this.requestId,
+        govuk_request_id: this.govukRequestId
+      });
+
       var controller;
       var controllerMap = this.controllers || options.ControllerMap;
 

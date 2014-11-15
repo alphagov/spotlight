@@ -30,6 +30,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       }, this);
       this.requestId = options.requestId || 'Not-Set';
       this.govukRequestId = options.govukRequestId || 'Not-Set';
+      this.reqContext = undefined;
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
@@ -43,6 +44,15 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     },
 
     parse: function (response) {
+      var rc = this.reqContext;
+      rc.elapsed = new Date().getTime() - rc.start;
+
+      logger.info('Fetched <%s> in %s ms', rc.url, rc.elapsed,
+      {
+        request_id: this.requestId,
+        govuk_request_id: this.govukRequestId
+      });
+
       var data = response.data;
 
       data = this.flatten(data);
@@ -169,6 +179,12 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         request_id: this.requestId,
         govuk_request_id: this.govukRequestId
       });
+
+      this.reqContext = {
+        start: new Date().getTime(),
+        url: this.url()
+      };
+
       return Backbone.Collection.prototype.fetch.call(this, options);
     },
 
