@@ -76,13 +76,15 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'title': 'Total cost',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
-            'classes': 'cols3',
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
               'sort_by': '_timestamp:descending'
             },
-            'value-attribute': 'total_cost',
-            'format': { 'type': 'currency', 'magnitude': true, 'sigfigs': 3 }
+            'options': {
+              'value-attribute': 'total_cost',
+              'format': { 'type': 'currency', 'magnitude': true, 'sigfigs': 3 },
+              'classes': 'cols3'
+            }
           };
 
           var costPerTrans = {
@@ -91,13 +93,15 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'title': 'Cost per transaction',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
-            'classes': 'cols3',
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
               'sort_by': '_timestamp:descending'
             },
-            'value-attribute': 'cost_per_transaction',
-            'format': { 'type': 'currency', 'pence': true }
+            'options': {
+              'value-attribute': 'cost_per_transaction',
+              'format': { 'type': 'currency', 'pence': true },
+              'classes': 'cols3'
+            }
           };
 
           if (!_.isObject(row.notesoncosts)) {
@@ -133,13 +137,15 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'title': 'Transactions per year',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
-            'classes': 'cols3',
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:seasonally-adjusted'],
               'sort_by': '_timestamp:descending'
             },
-            'value-attribute': 'number_of_transactions',
-            'format': { 'type': 'number', 'magnitude': true, 'sigfigs': 3 },
+            'options': {
+              'value-attribute': 'number_of_transactions',
+              'format': { 'type': 'number', 'magnitude': true, 'sigfigs': 3 },
+              'classes': 'cols3'
+            },
             'info': [
               'Data source: ' + row.department
             ]
@@ -153,8 +159,10 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'description': 'Total number of transactions each quarter',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
-            'value-attribute': 'number_of_transactions',
-            'axis-period': 'quarter',
+            'options': {
+              'value-attribute': 'number_of_transactions',
+              'axis-period': 'quarter'
+            },
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:quarterly'],
               'sort_by': '_timestamp:ascending'
@@ -172,11 +180,13 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'description': 'Digital take-up rates each quarter',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
-            'value-attribute': 'digital_takeup',
-            'axis-period': 'quarter',
-            'format': { 'type': 'percent' },
-            'axes': {
-              'y': [{'label': 'Percentage digital take-up'}]
+            'options': {
+              'value-attribute': 'digital_takeup',
+              'format': { 'type': 'percent' },
+              'axis-period': 'quarter',
+              'axes': {
+                'y': [{'label': 'Percentage digital take-up'}]
+              }
             },
             'query-params': {
               'filter_by': ['service_id:' + output.slug, 'type:quarterly'],
@@ -204,11 +214,23 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
 
               output['id'] = bodyData['id'];
 
+              var order = 0;
+              _.each(output['modules'], function (module) {
+                var moduleData = _.find(bodyData['modules'], function (mod) {
+                  return mod['slug'] === module['slug'];
+                });
+                module['id'] = moduleData['id'];
+                module['order'] = order;
+                order += 1;
+                module['type_id'] = moduleData['type']['id'];
+                module['description'] = moduleData['description'];
+              });
+
               fs.writeFileSync('./dashboards/' + row.slug + '.json', JSON.stringify(output, null, 2));
 
               var postOptions = _.extend(requestOptions, {'body': output, 'json': true});
               request.post(postOptions, function (err, res, body) {
-                if (!error && response.statusCode === 200) {
+                if (!error && res.statusCode === 200) {
                   console.log('Successful POST to update', row.slug);
                 } else {
                   console.log('Errored while POSTing to update', row.slug);
