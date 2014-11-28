@@ -1,6 +1,18 @@
 <!-- report_a_problem -->
 <div class="report-a-problem-container">
   <h2>Help us improve GOV.UK</h2>
+
+  <p>
+    The form on this page is for reporting problems with this dashboard.
+  </p>
+
+  {{#relatedPages.transaction.url}}
+  <p>
+    If you've had problems with the service that this dashboard is providing data for, please
+    <a href="{{ relatedPages.transaction.url }}">send details to the team responsible for the service</a>.
+  </p>
+  {{/relatedPages.transaction.url}}
+
   <form accept-charset="UTF-8" action="/contact/govuk/problem_reports" method="post">
     <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
     <input id="url" name="url" type="hidden" value="{{{ govukUrl }}}">
