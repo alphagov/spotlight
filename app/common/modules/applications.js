@@ -7,9 +7,10 @@ function (Collection) {
     collectionClass: Collection,
 
     collectionOptions: function () {
-      var valueAttr = this.model.get('value-attribute') || '_count';
+      var valueAttr = this.model.get('value-attribute') || 'count:sum';
       var options = {
-        valueAttr: valueAttr
+        valueAttr: valueAttr,
+        flattenEverything: false
       };
       options.format = this.model.get('format') ||
         { type: 'integer', magnitude: true, sigfigs: 3, pad: true };
