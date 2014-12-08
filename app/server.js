@@ -41,7 +41,16 @@ if (environment.match(/^development/)) {
 }
 
 var http = require('http'),
-    path = require('path');
+    https = require('https'),
+    path = require('path'),
+    spdy = require('spdy');
+
+// Use SPDY to talk to backing services. Seems like a great fit, minimise TLS connection
+// overhead and multiplex requests to the same limited number of domains.
+https.globalAgent = spdy.createAgent({
+  host: 'www.google.com',
+  port: 443
+});
 
 var rootDir = path.join(__dirname, '..');
 var app = require('./appBuilder').getApp(environment, rootDir, argv.REQUIRE_BASE_URL);
