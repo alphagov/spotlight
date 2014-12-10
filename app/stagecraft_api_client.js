@@ -71,6 +71,17 @@ function (Model) {
     },
 
     parse: function (data, options) {
+
+      function addControllerMap(module) {
+        module.controller = controllerMap.modules[module['module-type']];
+        if (module.controller) {
+          // requiring the controller map from within a module causes a circular dependency
+          // so add the map as a property for modules that need it i.e. tabs
+          module.controller.map = controllerMap.modules;
+        }
+        _.each(module.modules, addControllerMap);
+      }
+
       var controller;
       var controllerMap = this.controllers || options.ControllerMap;
 
@@ -80,14 +91,7 @@ function (Model) {
         controller = controllerMap.dashboard;
       }
 
-      _.each(data.modules, function (module) {
-        module.controller = controllerMap.modules[module['module-type']];
-        if (module.controller) {
-          // requiring the controller map from within a module causes a circular dependency
-          // so add the map as a property for modules that need it i.e. tabs
-          module.controller.map = controllerMap.modules;
-        }
-      }, this);
+      _.each(data.modules, addControllerMap);
 
       if (!controller) {
         data.controller = controllerMap.error;
