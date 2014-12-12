@@ -181,6 +181,48 @@ describe('ContentDashboardView', function () {
 
 });
 
+describe('setBigScreenFlag', function () {
+
+  var model;
+
+  beforeEach(function () {
+    model = new Model({
+      foo: 'bar',
+      title: 'Carer\'s Allowance'
+    });
+  });
+
+  function getContext(model) {
+    var view = new TransactionDashboardView({
+      model: model
+    });
+    spyOn(view, 'loadTemplate').andReturn('rendered');
+    view.getContent();
+    return view.loadTemplate.argsForCall[0][1];
+  }
+
+  it('shows a big screen link on detailed (transaction) dashboards', function () {
+    model.set('dashboard-type', 'transaction');
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('shows a big screen link on detailed (other) dashboards', function () {
+    model.set('dashboard-type', 'transaction');
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('shows a big screen link on overview dashboards', function () {
+    model.set('dashboard-type', 'high-volume-transaction');
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('doesn\'t show a big screen link on service dashboards', function () {
+    model.set('dashboard-type', 'service-group');
+    expect(getContext(model).hasBigScreenView).toEqual(false);
+  });
+
+});
+
 describe('TransactionDashboardView', function () {
 
   var view, model;
@@ -195,6 +237,7 @@ describe('TransactionDashboardView', function () {
     });
     spyOn(view, 'loadTemplate').andReturn('rendered');
   });
+
 
   describe('getContent', function () {
 

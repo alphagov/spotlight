@@ -13,9 +13,10 @@
 
   </main>
 
+  <aside role='complementary'>
   {{# relatedPages }}
 
-    <aside class='related-pages' role='complementary'>
+    <div class='related-pages'>
 
       {{# relatedPages.transaction }}
       <div class="related-transaction" itemscope itemtype="{{ schemaOrgItemType }}">
@@ -40,9 +41,14 @@
       </div>
       {{/ relatedPages.other.length }}
 
-    </aside>
+    </div>
 
   {{/ relatedPages }}
+
+  {{# hasBigScreenView }}
+    <div class="big-screen-link-container"><a class="big-screen-link" href="/big-screen/{{ slug }}">View in big screen</a></div>
+  {{/ hasBigScreenView }}
+  </aside>
 
 </header>
 

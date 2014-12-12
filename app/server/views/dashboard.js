@@ -16,6 +16,13 @@ module.exports = View.extend({
     }
 
     this.dashboardType = this.model.get('dashboard-type');
+
+    this.model.set('hasBigScreenView', this.setBigScreenFlag());
+  },
+
+  setBigScreenFlag: function() {
+    return _.contains(['transaction', 'other', 'high-volume-transaction'],
+      this.model.get('dashboard-type'));
   },
 
   getContent: function () {
