@@ -18,9 +18,9 @@
     <aside class='related-pages' role='complementary'>
 
       {{# relatedPages.transaction }}
-      <div class="related-transaction">
+      <div class="related-transaction" itemscope itemtype="{{ schemaOrgItemType }}">
         <h3>Visit this service</h3>
-        <a href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
+        <a itemprop="name" href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
       </div>
       {{/ relatedPages.transaction }}
 
@@ -74,9 +74,9 @@
       <aside class='related-pages' role='complementary'>
 
         {{# relatedPages.transaction }}
-        <div class="related-transaction">
+        <div class="related-transaction" itemscope itemtype="{{ schemaOrgItemType }}">
           <h3>Visit this service</h3>
-          <a href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
+          <a itemprop="name" href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
         </div>
         {{/ relatedPages.transaction }}
 

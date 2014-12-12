@@ -119,6 +119,12 @@ describe('DashboardView', function () {
     });
   });
 
+  describe('getSchemaOrgItemType', function () {
+    it('has a schema.org itemtype of GovernmentService', function () {
+      expect(view.getSchemaOrgItemType()).toEqual('http://schema.org/GovernmentService');
+    });
+  });
+
 });
 
 describe('ContentDashboardView', function () {
@@ -165,6 +171,10 @@ describe('ContentDashboardView', function () {
         { title: 'Content Dashboard' }
       ]);
 
+    });
+
+    it('has a schema.org itemtype of GovernmentOrganization', function () {
+      expect(view.getSchemaOrgItemType()).toEqual('http://schema.org/GovernmentOrganization');
     });
 
   });

@@ -32,6 +32,7 @@ module.exports = View.extend({
 
     context.header = this.getPageHeader();
     context.dashboardType = this.dashboardType;
+    context.schemaOrgItemType = this.getSchemaOrgItemType();
     context.tagline = this.getTagline();
     context.hasFooter = false;
 
@@ -44,6 +45,10 @@ module.exports = View.extend({
 
   getPageHeader: function () {
     return this.model.get('title');
+  },
+
+  getSchemaOrgItemType: function () {
+    return 'http://schema.org/GovernmentService';
   },
 
   getPageTitleItems: function () {
