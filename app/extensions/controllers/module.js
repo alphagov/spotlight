@@ -30,10 +30,13 @@ define([
         className: this.className,
         id: this.id,
         requiresSvg: this.requiresSvg,
-        url: this.url,
         hasTable: this.hasTable,
         hasDatePicker: this.hasDatePicker
       };
+
+      if (this.model.get('module-type') !== 'section') {
+        options.url = this.url;
+      }
 
       return options;
     },
