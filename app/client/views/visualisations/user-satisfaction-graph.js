@@ -70,27 +70,21 @@ function (SingleTimeseriesView, UserSatisfactionView, VolumetricsNumberView, Col
         selectModel = _.isArray(selectModel) ? selectModel[0] : selectModel;
       }
 
-      var ratings = [],
-        attr, val, valueAttr;
-
-      _.each([
-        'Very dissatisfied',
-        'Dissatisfied',
-        'Neither satisfied or dissatisfied',
-        'Satisfied',
-        'Very satisfied'
-      ], function (label, i) {
-        attr = this.valueAttr + '_' + (i + 1) + ':sum';
-        if (selectModel) {
-          val = selectModel.get(attr);
-          valueAttr = selectModel.get(valueAttr);
-        } else {
-          val = this.collection.total(attr);
-        }
-        ratings.push({ count: val, title: label});
-      }, this);
-
-      return ratings;
+      return _.map(
+          this.collection.options.axes.y.slice(1),
+          function (axis) {
+            var val;
+            if (selectModel) {
+              val = selectModel.get(axis.key);
+            } else {
+              val = this.collection.total(axis.key);
+            }
+            return {
+              count: val,
+              title: axis.label,
+            };
+          }, this
+      );
     },
 
     views: function () {

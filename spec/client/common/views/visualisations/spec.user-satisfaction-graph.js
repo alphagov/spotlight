@@ -7,12 +7,51 @@ define([
 function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
   describe('User satisfaction graph', function () {
 
-    var collection, view;
+    var collection, view,
+        axes = {
+          x: {
+            label: 'Date',
+            key: '_start_at',
+            format: 'date'
+          },
+          y: [
+            {
+              label: 'User Satisfaction',
+              key: 'rating',
+              format: 'percent'
+            },
+            {
+              label: 'Very dissatisfied',
+              key: 'rating_1:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Dissatisfied',
+              key: 'rating_2:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Neither satisfied or dissatisfied',
+              key: 'rating_3:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Satisfied',
+              key: 'rating_4:sum',
+              format: 'integer'
+            },
+            {
+              label: 'Very satisfied',
+              key: 'rating_5:sum',
+              format: 'integer'
+            }
+          ]
+        };
 
     beforeEach(function () {
       var $el = $('<div><div class="volumetrics-bar-selected"><p class="total-responses"><p><p class="volumetrics-bar-period"></p></div></div>');
       spyOn(CompletionRateView.prototype, 'views').andReturn({});
-      collection = new Collection([], { min: 1, max: 5 });
+      collection = new Collection([], { min: 1, max: 5, axes: axes });
       var data = [
         {
           'total:sum': 229.0,

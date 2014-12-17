@@ -9,30 +9,37 @@ define([
       }
       return (score - this.options.min) / (this.options.max - this.options.min);
     },
-    queryParams: {
-      collect: [
-        'rating_1:sum',
-        'rating_2:sum',
-        'rating_3:sum',
-        'rating_4:sum',
-        'rating_5:sum',
-        'total:sum'
-      ]
+    queryParams: function () {
+      return (!this.options.migrated) ? {
+        collect: [
+          'rating_1:sum',
+          'rating_2:sum',
+          'rating_3:sum',
+          'rating_4:sum',
+          'rating_5:sum',
+          'total:sum'
+        ]
+      } : {};
     },
     parse: function () {
       var data = Collection.prototype.parse.apply(this, arguments);
-      _.each(data, function (datapoint) {
-        var score = 0;
-        _.each(_.range(this.options.min, this.options.max + 1), function (i) {
-          score += (datapoint['rating_' + i + ':sum'] * i);
-        });
-        var mean = score / datapoint['total:sum'];
-        datapoint[this.valueAttr + ':sum'] = score;
-        datapoint[this.valueAttr] = this.toPercent(mean);
-      }, this);
+
+      if (!this.options.migrated) {
+        _.each(data, function (datapoint) {
+          var score = 0;
+          _.each(_.range(this.options.min, this.options.max + 1), function (i) {
+            score += (datapoint['rating_' + i + ':sum'] * i);
+          });
+          var mean = score / datapoint['total:sum'];
+          datapoint[this.valueAttr + ':sum'] = score;
+          datapoint[this.valueAttr] = this.toPercent(mean);
+        }, this);
+      }
+
       if (this.options.trim) {
         this.trim(data, this.options.trim);
       }
+
       return data;
     },
 
