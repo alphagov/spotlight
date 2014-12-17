@@ -14,11 +14,12 @@ function (UserSatisfactionCollection) {
         title: 'User satisfaction',
         min: 1,
         max: 5,
-        totalAttr: 'totalRatings',
+        totalAttr: this.model.get('total-attribute') || 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
         axisPeriod: this.model.get('axis-period'),
         trim: this.model.get('trim') === false ? false : true,
         format: this.model.get('format') || 'integer',
+        migrated: this.model.get('migrated') === true,
         axes: _.merge({
           x: {
             label: 'Date',
@@ -63,7 +64,7 @@ function (UserSatisfactionCollection) {
 
     visualisationOptions: function () {
       return {
-        totalAttr: 'totalRatings',
+        totalAttr: this.model.get('total-attribute') || 'totalRatings',
         valueAttr: this.model.get('value-attribute'),
         formatOptions: this.model.get('format') || 'integer',
         url: this.url
