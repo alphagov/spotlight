@@ -25,6 +25,7 @@
         "single_timeseries",
         "tab",
         "table",
+        "section",
         "user_satisfaction",
         "user_satisfaction_graph"
       ]
