@@ -1,15 +1,15 @@
 define([
   'client/controllers/module',
   'common/modules/section',
-  'client/views/visualisations/section'
+  'extensions/views/view'
 ],
-function (ModuleController, SectionController, SectionView) {
+function (ModuleController, SectionController, View) {
 
   var parent = ModuleController.extend(SectionController);
 
   var SectionModule = parent.extend({
 
-    visualisationClass: SectionView,
+    visualisationClass: View,
 
     initialize: function () {
       var controllerMap = SectionModule.map;
