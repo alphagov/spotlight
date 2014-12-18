@@ -29,14 +29,11 @@ define([
         visualisationOptions: this.visualisationOptions,
         className: this.className,
         id: this.id,
+        url: this.url,
         requiresSvg: this.requiresSvg,
         hasTable: this.hasTable,
         hasDatePicker: this.hasDatePicker
       };
-
-      if (this.model.get('module-type') !== 'section') {
-        options.url = this.url;
-      }
 
       return options;
     },

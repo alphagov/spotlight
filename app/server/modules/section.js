@@ -6,8 +6,13 @@ var SectionView = require('../views/modules/section');
 
 var parent = ModuleController.extend(SectionController);
 
+var oldViewOptions = parent.prototype.viewOptions;
+
 var SectionModule = parent.extend({
   visualisationClass: SectionView,
+  viewOptions: function () {
+    return _.extend(oldViewOptions.apply(this, arguments), {'url': null});
+  },
 
   initialize: function () {
     this.modules = _.map(this.model.get('modules'), function (module) {
