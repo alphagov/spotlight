@@ -14,7 +14,7 @@ function (UserSatisfactionCollection) {
         title: 'User satisfaction',
         min: 1,
         max: 5,
-        totalAttr: this.model.get('total-attribute') || 'totalRatings',
+        totalAttr: this.model.get('total-attribute') || 'total:sum',
         valueAttr: this.model.get('value-attribute'),
         axisPeriod: this.model.get('axis-period'),
         trim: this.model.get('trim') === false ? false : true,
@@ -64,7 +64,7 @@ function (UserSatisfactionCollection) {
 
     visualisationOptions: function () {
       return {
-        totalAttr: this.model.get('total-attribute') || 'totalRatings',
+        totalAttr: this.model.get('total-attribute') || 'total:sum',
         valueAttr: this.model.get('value-attribute'),
         formatOptions: this.model.get('format') || 'integer',
         url: this.url

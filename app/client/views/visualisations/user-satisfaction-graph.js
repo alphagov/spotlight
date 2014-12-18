@@ -52,8 +52,8 @@ function (SingleTimeseriesView, UserSatisfactionView, VolumetricsNumberView, Col
           output = '';
 
       if (model) {
-        if (model.get('total:sum')) {
-          output = '(' + model.get('total:sum') + ' total responses)';
+        if (model.get(this.totalAttr)) {
+          output = '(' + model.get(this.totalAttr) + ' total responses)';
         } else {
           output = 'no-data';
         }
