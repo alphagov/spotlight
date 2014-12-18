@@ -89,7 +89,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
         el: $el,
         collection: collection,
         valueAttr: 'rating',
-        totalAttr: 'totalRatings',
+        totalAttr: 'total:sum',
         sortBy: '_timestamp:ascending',
         limit: 0,
         min: 1,
