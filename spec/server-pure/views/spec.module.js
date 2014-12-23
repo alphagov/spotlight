@@ -53,20 +53,6 @@ describe('ModuleView', function () {
     expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading"><a href="/foo/bar">A Title</a></h2><p>Description</p><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
   });
 
-  it('renders a module with description and info', function () {
-    model.set('description', 'Description');
-    model.set('info', ['Info line 1', 'Info line 2']);
-    moduleView.render();
-    expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading"><a href="/foo/bar">A Title</a></h2><p>Description</p><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
-  });
-
-  it('renders a module with description and info link', function () {
-    model.set('description', 'Description');
-    model.set('info', ['<a href="https://example.com/">Info line 1</a> with trailing text', 'Info line 2']);
-    moduleView.render();
-    expect(getContent()).toEqual('<section aria-labelledby="slug-heading" role="region" class="testclass"><h2 id="slug-heading"><a href="/foo/bar">A Title</a></h2><p>Description</p><div class="visualisation"><div class="visualisation-inner">test content</div><div class="visualisation-moreinfo"></div></div></section>');
-  });
-
   it('renders a standalone module with description', function () {
     model.get('parent').set('page-type', 'module');
     model.set('description', 'Description');
