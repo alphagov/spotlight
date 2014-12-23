@@ -169,7 +169,7 @@ function(DataSource, moment) {
       it('should add an end_at when start_at no duration', function () {
         var source = new DataSource(),
             withTimespan = source.configureTimespans({
-              start_at: 'some date'
+              start_at: '2014-12-23T13:58:00Z'
             });
 
         expect(withTimespan.end_at).not.toBe(undefined);
@@ -188,8 +188,8 @@ function(DataSource, moment) {
         var source = new DataSource(),
             withTimespan = source.configureTimespans({
               period: 'week',
-              start_at: 'some date',
-              end_at: 'some date'
+              start_at: '2014-12-15T00:00:00Z',
+              end_at: '2014-12-22T00:00:00Z'
             });
 
         expect(withTimespan.duration).toBe(undefined);
@@ -199,8 +199,8 @@ function(DataSource, moment) {
         var source = new DataSource(),
             withTimespan = source.configureTimespans({
               period: 'week',
-              start_at: 'some date',
-              end_at: 'some date',
+              start_at: '2014-12-15T00:00:00Z',
+              end_at: '2014-12-22T00:00:00Z',
               duration: 20
             });
 
