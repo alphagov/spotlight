@@ -1,3 +1,7 @@
+// Please note that this is no longer the canonical source for Performance Platform formatters.
+// Formatters have been extracted to the client:
+//   https://github.com/alphagov/performanceplatform-client.js/blob/master/lib/utils/formatter.js
+// Bug fixes should be made there - this file is deprecated and will be removed in the future.
 define([
   'moment-timezone'
 ], function (moment) {
