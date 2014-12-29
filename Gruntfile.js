@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         },
         options: {
           includePaths: [
-            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
+            'node_modules/govuk_frontend_toolkit/stylesheets'
           ],
           style: 'nested',
           sourceComments: 'map'
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
         ],
         options: {
           includePaths: [
-            'node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/stylesheets'
+            'node_modules/govuk_frontend_toolkit/stylesheets'
           ],
           outputStyle: 'compressed'
         }
