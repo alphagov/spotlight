@@ -181,7 +181,7 @@ describe('ContentDashboardView', function () {
 
 });
 
-describe('setBigScreenFlag', function () {
+describe('hasBigScreenFlag', function () {
 
   var model;
 
@@ -203,21 +203,81 @@ describe('setBigScreenFlag', function () {
 
   it('shows a big screen link on detailed (transaction) dashboards', function () {
     model.set('dashboard-type', 'transaction');
+    model.set('modules', [{ 'module-type': 'kpi' }]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
 
   it('shows a big screen link on detailed (other) dashboards', function () {
-    model.set('dashboard-type', 'transaction');
+    model.set('dashboard-type', 'other');
+    model.set('modules', [{ 'module-type': 'kpi' }]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
 
   it('shows a big screen link on overview dashboards', function () {
     model.set('dashboard-type', 'high-volume-transaction');
+    model.set('modules', [{ 'module-type': 'kpi' }]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
 
   it('doesn\'t show a big screen link on service dashboards', function () {
     model.set('dashboard-type', 'service-group');
+    model.set('modules', [{ 'module-type': 'kpi' }]);
+    expect(getContext(model).hasBigScreenView).toEqual(false);
+  });
+
+  it('should\'t show the link if there are no supported modules', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'availablity' },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(false);
+  });
+
+  it('should show the link if there is a kpi module', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'kpi' },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should show the link if there is a kpi module', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'realtime' },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should show the link if there is a single_timeseries module', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'single_timeseries' },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should show the link if there is a user_satisfaction_graph module and its using user-satisfaction-score dataset', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'user_satisfaction_graph',
+        'data-source': { 'data-type': 'user-satisfaction-score' } },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should\'t show the link if there is a user_satisfaction_graph module and its using not a user-satisfaction-score dataset', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'user_satisfaction_graph',
+        'data-source': { 'data-type': 'customer-satisfaction' } },
+    ]);
     expect(getContext(model).hasBigScreenView).toEqual(false);
   });
 
