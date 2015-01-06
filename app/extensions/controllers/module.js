@@ -29,8 +29,8 @@ define([
         visualisationOptions: this.visualisationOptions,
         className: this.className,
         id: this.id,
-        requiresSvg: this.requiresSvg,
         url: this.url,
+        requiresSvg: this.requiresSvg,
         hasTable: this.hasTable,
         hasDatePicker: this.hasDatePicker
       };

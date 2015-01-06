@@ -14,6 +14,7 @@ define([
   'client/modules/column',
   'client/modules/visitors-realtime',
   'client/modules/applications',
+  'client/modules/section',
   'client/controllers/services'
 ],
 function (DashboardController,
@@ -21,7 +22,7 @@ function (DashboardController,
   AvailabilityModule, BarChartWithNumberModule, ComparisonModule, TimeseriesModule,
   CompletionRateModule, GroupedTimeseriesModule, JourneyModule,
   TabModule, TableModule, CompletionTableModule,
-  UserSatisfactionGraphModule, ColumnModule, VisitorsRealtimeModule, ApplicationsModule, ServicesController) {
+  UserSatisfactionGraphModule, ColumnModule, VisitorsRealtimeModule, ApplicationsModule, SectionModule, ServicesController) {
 
   var ControllerMap = {
     dashboard: DashboardController,
@@ -40,7 +41,8 @@ function (DashboardController,
       user_satisfaction_graph: UserSatisfactionGraphModule,
       realtime:               VisitorsRealtimeModule,
       column:                 ColumnModule,
-      applications:           ApplicationsModule
+      applications:           ApplicationsModule,
+      section:                SectionModule
     }
   };
 

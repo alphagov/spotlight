@@ -194,6 +194,26 @@ function (StagecraftApiClient, Backbone) {
         expect(data.modules[0].controller).toBe(client.controllers.modules.realtime);
         expect(data.modules[0]['metadata-for-module']).toEqual('preserved');
       });
+      it('assigns the controller map to each module including nested modules', function () {
+        var data = client.parse({
+          'page-type': 'dashboard',
+          'some-metadata': 'should be preserved',
+          'modules': [
+            {
+              'module-type': 'realtime',
+              'metadata-for-module': 'preserved',
+              'modules': [
+                {
+                  'module-type': 'realtime',
+                  'metadata-for-module': 'preserved'
+                }
+              ]
+            }
+          ]
+        });
+        expect(data.modules[0].controller.map).toBe(ControllerMap.modules);
+        expect(data.modules[0].modules[0].controller.map).toBe(ControllerMap.modules);
+      });
 
       it('maps to ErrorController when the page type is unknown', function () {
         var data = client.parse({'page-type': 'not-implemented'});
