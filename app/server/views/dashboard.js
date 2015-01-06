@@ -17,12 +17,26 @@ module.exports = View.extend({
 
     this.dashboardType = this.model.get('dashboard-type');
 
-    this.model.set('hasBigScreenView', this.setBigScreenFlag());
+    this.model.set('hasBigScreenView', this.hasBigScreenFlag());
   },
 
-  setBigScreenFlag: function() {
-    return _.contains(['transaction', 'other', 'high-volume-transaction'],
-      this.model.get('dashboard-type'));
+  hasBigScreenFlag: function() {
+    var supportedDashboardType, hasSupportedModules;
+
+    supportedDashboardType = _.contains(['transaction', 'other', 'high-volume-transaction'],
+      this.model.get('dashboard-type')
+    );
+
+    hasSupportedModules = _.any(this.model.get('modules'), function(module) {
+      var moduleType = module['module-type'];
+      return moduleType === 'kpi' ||
+             moduleType === 'realtime' ||
+             moduleType === 'single_timeseries' ||
+             (moduleType === 'user_satisfaction_graph' &&
+              module['data-source']['data-type'] === 'user-satisfaction-score');
+    });
+
+    return supportedDashboardType && hasSupportedModules;
   },
 
   getContent: function () {
