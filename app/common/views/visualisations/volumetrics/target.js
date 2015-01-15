@@ -1,8 +1,9 @@
 define([
   'common/views/visualisations/volumetrics/number',
+  'client/views/graph/missing-data',
   'extensions/models/model'
 ],
-function (NumberView, Model) {
+function (NumberView, MissingData, Model) {
   var TargetNumberView = NumberView.extend({
 
     getValue: function () {
@@ -47,35 +48,43 @@ function (NumberView, Model) {
     },
 
     render: function () {
-      var value = this.getValue();
-      var stat = value ?
-        '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>'
-        : '<div class="stat no-data"><' + this.valueTag + '>no data</' + this.valueTag + '></div>';
-      var content = '';
-
-      if (_.isNumber(this.target)) {
-        content += '<span class="summary">' + this.getDateRange() + '</span>';
-      }
-
-      content += stat;
-
-      if (_.isString(this.target)) {
-        content += '<span class="period">' + this.getDateRange() + '</span>';
-      }
-
-      content += '<p class="overview">' + this.getLabel() + '</p>';
-
-      var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
-      var decInc = percentageChange < 0 ? 'decrease' : 'increase';
-      if (percentageChange === 0 || !_.isFinite(percentageChange)) {
-        content += '<div class="delta"><span class="no-change">no change </span><span>on last week</span></div>';
+      if (this.collection.isEmpty()) {
+        this.missingData = new MissingData({
+          el: this.$el
+        });
+        this.missingData.render();
+        return;
       } else {
-        content += '<div class="delta"><span class="' + decInc + '">' + this.percentageDifference() + '</span> <span>on last week</span></div>';
+        var value = this.getValue();
+        var stat = value ?
+          '<div class="stat"><' + this.valueTag + '>' + this.getValue() + '</' + this.valueTag + '></div>'
+          : '<div class="stat no-data"><' + this.valueTag + '>no data</' + this.valueTag + '></div>';
+        var content = '';
+
+        if (_.isNumber(this.target)) {
+          content += '<span class="summary">' + this.getDateRange() + '</span>';
+        }
+
+        content += stat;
+
+        if (_.isString(this.target)) {
+          content += '<span class="period">' + this.getDateRange() + '</span>';
+        }
+
+        content += '<p class="overview">' + this.getLabel() + '</p>';
+
+        var percentageChange = this.getTargetPercent() - this.getTargetPercent(true);
+        var decInc = percentageChange < 0 ? 'decrease' : 'increase';
+        if (percentageChange === 0 || !_.isFinite(percentageChange)) {
+          content += '<div class="delta"><span class="no-change">no change </span><span>on last week</span></div>';
+        } else {
+          content += '<div class="delta"><span class="' + decInc + '">' + this.percentageDifference() + '</span> <span>on last week</span></div>';
+        }
+
+        content += '<p class="overview">' + this.getPreviousDateRange() + '</p>';
+
+        this.$el.html(content);
       }
-
-      content += '<p class="overview">' + this.getPreviousDateRange() + '</p>';
-
-      this.$el.html(content);
     },
 
     getLabel: function () {
