@@ -104,7 +104,6 @@ module.exports = View.extend(templater).extend({
         footerTop: this.loadTemplate(footerTopTemplate, 'mustache'),
         footerSupportLinks: this.loadTemplate(footerLinksTemplate, 'mustache'),
         content: this.loadTemplate(contentTemplate, {
-          hasSurvey: this.hasSurvey(),
           breadcrumbs: this.loadTemplate(this.breadcrumbsTemplate, this.getBreadcrumbs(), 'mustache'),
           content: this.getContent(),
           reportAProblem: this.getReportForm()
