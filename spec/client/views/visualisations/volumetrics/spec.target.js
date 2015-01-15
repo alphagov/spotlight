@@ -251,6 +251,18 @@ function (TargetView, View, Collection) {
 
       });
 
+      describe('no data', function () {
+        beforeEach(function () {
+          collection.reset();
+        });
+
+        it('renders "no data"', function () {
+          view.render();
+          expect(view.$el.find('span')).toHaveClass('no-data');
+          expect(view.$el.find('.no-data').text()).toEqual('(no data)');
+        });
+      });
+
       describe('the delta change', function () {
 
         it('shows increase delta when theres a positive change over the previous period', function () {
