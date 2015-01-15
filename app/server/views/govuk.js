@@ -64,10 +64,6 @@ module.exports = View.extend(templater).extend({
     ];
   },
 
-  hasSurvey: function () {
-    return false;
-  },
-
   getBreadcrumbs: function () {
     var breadcrumbs = this.getBreadcrumbCrumbs().filter(_.identity);
     breadcrumbs = this.ellipsifyBreadcrumbs(breadcrumbs);

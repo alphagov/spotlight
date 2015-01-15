@@ -13,12 +13,4 @@ describe('Homepage', function () {
     expect(view instanceof BaseView).toBe(true);
   });
 
-  describe('hasSurvey', function () {
-
-    it('Should display our survey', function () {
-      expect(view.hasSurvey()).toBe(true);
-    });
-
-  });
-
 });
