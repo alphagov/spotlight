@@ -14,10 +14,6 @@ module.exports = BaseView.extend({
     return [];
   },
 
-  hasSurvey: function () {
-    return true;
-  },
-
   getContent: function () {
 
     // the GOV.UK content dashboard should be removed from the list
