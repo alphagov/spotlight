@@ -13,7 +13,7 @@
       margin-bottom: 40px;
 
       @include media(desktop) {
-        width: (600px / $govuk-page-width) * 100%;
+        width: (600px / $site-width) * 100%;
       }
     }
 
@@ -29,7 +29,7 @@
 
     .footer-right {
       @include media(desktop) {
-        width: (465px / $govuk-page-width) * 100%;
+        width: (465px / $site-width) * 100%;
       }
     }
 

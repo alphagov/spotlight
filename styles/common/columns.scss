@@ -2,15 +2,15 @@
   .cols2,
   #content section.cols2,
   #content article.cols2 {
-    width: 465px / $govuk-page-width * 100%;
+    width: 465px / $site-width * 100%;
     float: left;
     clear: none;
     margin-right: 0;
-    margin-left: 30px / $govuk-page-width * 100%;
+    margin-left: 30px / $site-width * 100%;
   }
 
   #content section.module.cols2 {
-    width: 480px / $govuk-page-width * 100%;
+    width: 480px / $site-width * 100%;
     margin-left: 0;
   }
 
@@ -20,8 +20,8 @@
     margin-left: 0;
   }
 
-  $third_width: 300px / $govuk-page-width * 100%;
-  $third_margin: 30px / $govuk-page-width * 100%;
+  $third_width: 300px / $site-width * 100%;
+  $third_margin: 30px / $site-width * 100%;
 
   #content section.cols3,
   #content article.cols3,
