@@ -1,27 +1,9 @@
 
-#wrapper {
-  border-bottom: 10px solid $govuk-blue;
-}
-
-#wrapper * {
-  @include box-sizing(border-box);
-}
-
-#content,
-.content-centered {
-  @include box-sizing(border-box);
-  display: block;
-  margin: 0 auto;
-  max-width: 1020px;
-  padding: 15px;
-  // Opera requires display:block for max-width to work...
-  @include media(tablet) {
-    padding: 0 30px;
-  }
+main {
+  @extend %site-width-container;
 }
 
 #content {
-  background-color: $white;
 
   section {
     clear: left;
@@ -48,4 +30,8 @@
 
 .performance-hidden {
   display:none;
+}
+
+#footer {
+  border-top: 10px solid $govuk-blue;
 }
