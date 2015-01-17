@@ -1,98 +1,188 @@
-<div id='homepage-content'>
+<div id="homepage">
 
   <header>
     <section>
       <h1>Performance</h1>
-      <p class="lead">
-        Performance platform is a new approach to improving government services, using data
-      </p>
+      <p class="lead">Performance platform is a new approach to improving government services, using data</p>
+      <!-- <p><a href="/performance/about">Find out more</a></p> -->
     </section>
   </header>
 
-  <section id="service-dashboards">
-    <h2>Service dashboards</h2>
-    <div class="cols3 service-listing">
-      <h3>Detailed dashboards</h3>
-      <p class="count"><%= services.length + serviceGroups.length %></p>
-    </div>
-    <div class="cols3 add3">
-      <p>Services providing regularly updated, detailed data to GOV.UK</p>
-      <div class="cols2 service-listing">
-        <ul>
-          <% _.each(services, function (service, i) { %>
-            <li><a href="/performance/<%= service.slug %>"><%= service.title %></a></li>
-            <% if (i + 1 === Math.ceil((services.length + serviceGroups.length) / 2)) { %>
-              </ul>
-            </div>
-            <div class="cols2 service-listing">
-              <ul>
-            <% } %>
-          <% }); %>
-        </ul>
-        <% if (serviceGroups.length) { %>
-          <dl>
-            <dt class="service_groups">Service groups</dt>
-            <dd>
-              <ol>
-                <% _.each(serviceGroups, function (service, i) { %>
-                  <li><a href="/performance/<%= service.slug %>"><%= service.title %></a></li>
-                <% }); %>
-              </ol>
-            </dd>
-          </dl>
-        <% } %>
-      </div>
-    </div>
-  </section>
-  <section id="overview-dashboards">
-    <div class="cols3 service-listing">
-      <h3>Overview dashboards</h3>
-      <p class="count"><%= highVolumeServices.length %></p>
-    </div>
-    <div class="cols3 add3">
-      <p>Services providing quarterly data to GOV.UK</p>
-      <p><a href="/performance/services"><strong>View all services</strong></a></p>
-    </div>
-  </section>
-  <section id="activity-dashboards">
-    <h2>GOV.UK activity dashboards</h2>
-    <div class="cols3 service-listing">
-      <h3>Activity dashboards</h3>
-      <p class="count"><%= contentDashboards.length + 1 %></p>
-    </div>
-    <div class="cols3 add3">
-      <p>Web traffic on our site, including a look at how our content is being used.</p>
-      <p><a href="/performance/site-activity"><strong>GOV.UK site activity overview</strong></a></p>
-      <h3 class="underline">Department activity dashboards</h3>
-      <div class="cols2 service-listing">
-        <ul>
-          <% _.each(contentDashboards, function (contentDashboard, i) { %>
-            <li><a href="/performance/<%= contentDashboard.slug %>"><%= contentDashboard.title %></a></li>
-            <% if (i + 1 === Math.ceil(contentDashboards.length / 2)) { %>
-              </ul>
-            </div>
-            <div class="cols2 service-listing">
-              <ul>
-            <% } %>
-          <% }); %>
-        </ul>
-      </div>
-    </div>
+  <section id="dashboard-counts">
+    <ul>
+      <li><strong>768</strong> service stage dashboards</li>
+      <li><strong>38</strong> department&apos;s web traffic</li>
+      <li><strong>11</strong> prototypes</li>
+    </ul>
   </section>
 
-  <section class="service-listing" id="transactions-explorer">
+  <section id="dashboard-showcase">
+    <ul>
+      <li>
+        <h2>Prison visit bookings</h2>
+        <ul>
+          <li><strong>43</strong> users online now</li>
+          <li><strong>£3.80</strong> per booking</li>
+          <li><strong>39%</strong> use the digital service</li>
+          <li><strong>92%</strong> user satisfaction</li>
+          <li><strong>84%</strong> complete successfully</li>
+        </ul>
+      </li>
+      <li>
+        <h2>Vehicle tax renewals</h2>
+        <ul>
+          <li><strong>43</strong> users online now</li>
+          <li><strong>£3.80</strong> per booking</li>
+          <li><strong>39%</strong> use the digital service</li>
+          <li><strong>92%</strong> user satisfaction</li>
+          <li><strong>84%</strong> complete successfully</li>
+        </ul>
+      </li>
+      <li>
+        <h2>Carer&apos;s Allowance applications</h2>
+        <ul>
+          <li><strong>43</strong> users online now</li>
+          <li><strong>£3.80</strong> per booking</li>
+          <li><strong>39%</strong> use the digital service</li>
+          <li><strong>92%</strong> user satisfaction</li>
+          <li><strong>84%</strong> complete successfully</li>
+        </ul>
+      </li>
+      <li>
+        <h2>Voter registrations</h2>
+        <ul>
+          <li><strong>43</strong> users online now</li>
+          <li><strong>£3.80</strong> per booking</li>
+          <li><strong>39%</strong> use the digital service</li>
+          <li><strong>92%</strong> user satisfaction</li>
+          <li><strong>84%</strong> complete successfully</li>
+        </ul>
+      </li>
+    </ul>
+    <p><a href="/performance/services" title="List of 768 dashboards for service stages">See all 768 service stage dashboards</a></p>
+  </section>
+
+  <section id="service-stage-top-5s">
+    <article id="top-5-cost-per-transaction">
+      <h2>Cost per transaction</h2>
+      <p>How much does it cost the taxpayer?</p>
+      <table>
+        <tr>
+          <td><a href="/performance/defra-single-payment-scheme-sps-claims" title="Performance data: Single Payment Scheme (SPS) claims">Single Payment Scheme (SPS) claims</a></td>
+          <td>£691.00</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/dwp-child-maintenance" title="Performance data: Child maintenance transactions">Child maintenance transactions</a></td>
+          <td>£463.00</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/dwp-jobseekers-allowance-jsa-claims-maintained" title="Performance data: Jobseeker&apos;s Allowance (JSA): existing claims">Jobseeker&apos;s Allowance (JSA): existing claims</a></td>
+          <td>£322.00</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/dwp-jobseekers-allowance-jsa-claims-maintained" title="Performance data: Employment and Support Allowance (ESA): new claims">Employment and Support Allowance (ESA): new claims</a></td>
+          <td>£233.00</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/home-office-visas-immigration-applications" title="Performance data: Visa applications">Visa applications</a></td>
+          <td>£182.00</td>
+        </tr>
+      </table>
+      <p><a href="/performance/services?sort-by=cost-per-transaction&sort-order=descending" title="List dashboards for service stages sorted by cost per transaction">See all</a></p>
+    </article>
+
+    <article id="top-5-user-satisfaction">
+      <h2>User satisfaction</h2>
+      <p>How satisfied are the people who use it?</p>
+      <table>
+        <tr>
+          <td><a href="/performance/renew-patent" title="Performance data: Patent renewals">Patent renewals</a></td>
+          <td>94.4%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/tax-disc" title="Performance data: Vehicle tax renewals">Vehicle tax renewals</a></td>
+          <td>94.0%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/view-driving-licence" title="Performance data: Driving license information views">Driving license information views</a></td>
+          <td>92.8%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/register-to-vote" title="Performance data: Voter registration">Voter registration</a></td>
+          <td>90.8%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/sorn" title="Performance data: SORN (statutory off-road notification) applications">SORN (statutory off-road notification) applications</a></td>
+          <td>90.3%</td>
+        </tr>
+      </table>
+      <p><a href="/performance/services?sort-by=user-satisfaction&sort-order=descending" title="List dashboards for service stages sorted by user satisfaction">See all</a></p>
+    </article>
+
+    <article id="top-5-completion-rate">
+      <h2>Completion rate</h2>
+      <p>How many people manage to use the service successfully?</p>
+      <table>
+        <tr>
+          <td><a href="/performance/pay-legalisation-drop-off" title="Performance data: Document legalisation: payments for drop-off service">Document legalisation: payments for drop-off service</a></td>
+          <td>88.5%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/prison-visits" title="Performance data: Prison visit bookings">Prison visit bookings</a></td>
+          <td>88.2%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/renew-patent" title="Performance data: Patent renewals">Patent renewals</a></td>
+          <td>85.0%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/pay-register-birth-abroad" title="Performance data: Register a birth abroad: payments">Register a birth abroad: payments</a></td>
+          <td>81.8%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/pay-legalisation-post" title="Performance data: Document legalisation: payments for service by post">Document legalisation: payments for service by post</a></td>
+          <td>72.8%</td>
+        </tr>
+      </table>
+      <p><a href="/performance/services?sort-by=completion-rate&sort-order=descending" title="List dashboards for service stages sorted by completion rate">See all</a></p>
+    </article>
+
+    <article id="top-5-digital-take-up">
+      <h2>Digital take-up</h2>
+      <p>How many people use the digital service?</p>
+      <table>
+        <tr>
+          <td><a href="/performance/hmrc-stamp-duty-reserve-tax" title="Performance data: Stamp Duty Reserve Tax transactions">Stamp Duty Reserve Tax transactions</a></td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/dwp-universal-jobmatch-cv-uploads" title="Performance data: Universal Jobmatch: CV uploads">Universal Jobmatch: CV uploads</a></td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/co-signing-an-e-petition" title="Performance data: e-petition signatures">e-petition signatures</a></td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/bis-title-register-views" title="Performance data: Land Registry: title register views">Land Registry: title register views</a></td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td><a href="/performance/dwp-universal-jobmatch-jobseeker-accounts-created" title="Performance data: Universal Jobmatch: jobseeker accounts created">Universal Jobmatch: jobseeker accounts created</a></td>
+          <td>100%</td>
+        </tr>
+      </table>
+      <p><a href="/performance/services?sort-by=digital-take-up&sort-order=descending" title="List dashboards for service stages sorted by user satisfaction">See all</a></p>
+    </article>
+  </section>
+
+  <section id="transactions-explorer">
     <h2>Transactions Explorer</h2>
-    <div class="row">
-      <div class="cols3">
-        <p>An overview of all transaction-based services the government provides.</p>
-        <p><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">View all services</a></p>
-      </div>
-      <div class="cols3 add3">
-        <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
-          <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>">
-        </a>
-      </div>
-    </div>
+    <p><strong>1.71bn</strong> transactions per year handled by central government</p>
+    <p><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">See an overview of all the transactions government provides</a></p>
+    <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
+      <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer-2x.png'] %>">
+    </a>
   </section>
 
 </div>
