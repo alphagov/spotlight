@@ -22,7 +22,6 @@ $govuk-page-width: 960px;
 }
 
 #content {
-
   background-color: $white;
 
   section {
@@ -38,6 +37,12 @@ $govuk-page-width: 960px;
 
     .visualisation {
       width: 100%;
+    }
+
+    h1, h2, h3, p {
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }
