@@ -32,13 +32,6 @@
       }
     }
 
-    p.tagline {
-      @include core-16;
-      display: block;
-      margin: 1em 0 -1em 0;
-      padding: 0.5em 0 1em 0;
-    }
-
     aside {
       h2 {
         @include bold-19;
