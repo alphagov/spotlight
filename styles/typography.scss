@@ -36,15 +36,6 @@ h3 {
   margin-top: 20px/19px * 1em;
 }
 
-// Remove margin-top from first h1-3 in any section/div/aside/main
-section, aside, div, main {
-  h1, h2, h3, p {
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-}
-
 // Links
 
 // External link style
