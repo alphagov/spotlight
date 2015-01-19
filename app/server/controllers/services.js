@@ -12,7 +12,10 @@ var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
 var renderContent = function (req, res, client_instance) {
   var services = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.SERVICES),
-      collection = new DashboardCollection(services);
+      collection;
+
+  services = addServiceDataToCollection(services, client_instance.get('transactions'));
+  collection = new DashboardCollection(services);
 
   var departments = collection.getDepartments();
   var agencies = collection.getAgencies();
@@ -30,9 +33,9 @@ var renderContent = function (req, res, client_instance) {
     noun: 'service'
   }));
 
-  var client_instance_status = client_instance.get('status'); 
+  var client_instance_status = client_instance.get('status');
   var view;
-  if(client_instance_status === 200) {
+  if (client_instance_status === 200) {
     view = new View({
       model: model,
       collection: collection
@@ -48,6 +51,26 @@ var renderContent = function (req, res, client_instance) {
   res.set('Cache-Control', 'public, max-age=7200');
   res.send(view.html);
 };
+
+function addServiceDataToCollection (services, serviceData) {
+  var dashboard;
+
+  _.each(serviceData, function(item) {
+    var slug = item['dashboard-slug'];
+
+    // only bother looking for the dashboard if we don't already have it
+    if (!dashboard || (dashboard.slug !== slug)) {
+      dashboard = _.findWhere(services, {
+        slug: slug
+      });
+    }
+    delete item._id;
+    delete item._timestamp;
+    delete item['dashboard-slug'];
+    _.extend(dashboard, item);
+  });
+  return services;
+}
 
 module.exports = function (req, res) {
   var client_instance = get_dashboard_and_render(req, res, renderContent);

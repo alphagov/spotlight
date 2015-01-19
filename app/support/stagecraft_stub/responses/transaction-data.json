@@ -1,0 +1,88 @@
+[
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "total-cost": null
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "transactions-per-year": 89074589
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "cost-per-transaction": 306
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "tx-digital-takeup": 0.2
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "digital-takeup": 0.25
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "completion-rate": 0.35
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "accelerated-possession-eviction",
+    "user-satisfaction-score": 0.75
+  },
+
+
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "total-cost": 345983458
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "transactions-per-year": 23534666
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "cost-per-transaction": 250
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "tx-digital-takeup": 0.41
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "digital-takeup": 0.43
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "completion-rate": 0.73
+  },
+  {
+    "_id": "some base64 string",
+    "_timestamp": "2014-10-12T00:00:00Z",
+    "dashboard-slug": "bis-accounts-filing",
+    "user-satisfaction-score": 0.63
+  }
+]

@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 var _ = require('lodash');
 
 var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
+var transactions = require('../../../app/support/stagecraft_stub/responses/transaction-data');
 var controller = require('../../../app/server/controllers/services');
 var ServicesView = require('../../../app/server/views/services');
 var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
@@ -30,7 +31,7 @@ describe('Services Controller', function () {
   var res = {
     send: jasmine.createSpy(),
     set: jasmine.createSpy(),
-    status: jasmine.createSpy(),
+    status: jasmine.createSpy()
   };
   var client_instance;
 
@@ -45,9 +46,9 @@ describe('Services Controller', function () {
       this.html = 'html string';
     });
     client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
-    client_instance.set({'status': 200, 'items': dashboards.items});
-    spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function () {
-      return client_instance; 
+    spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function (req) {
+      client_instance.set({'status': 200, 'items': dashboards.items, 'transactions': transactions});
+      return client_instance;
     });
   });
 
@@ -131,6 +132,25 @@ describe('Services Controller', function () {
     controller(req, res);
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
+  });
+
+  iit('adds KPIs to each service model', function () {
+    var services,
+      service;
+    controller(req, res);
+    client_instance.trigger('sync');
+    services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
+    service = _.findWhere(services, {
+      slug: 'bis-accounts-filing'
+    });
+
+    expect(service['total-cost']).toEqual(345983458);
+    expect(service['transactions-per-year']).toEqual(23534666);
+    expect(service['cost-per-transaction']).toEqual(250);
+    expect(service['tx-digital-takeup']).toEqual(0.41);
+    expect(service['digital-takeup']).toEqual(0.43);
+    expect(service['completion-rate']).toEqual(0.73);
+    expect(service['user-satisfaction-score']).toEqual(0.63);
   });
 
   it('creates a services view', function () {
