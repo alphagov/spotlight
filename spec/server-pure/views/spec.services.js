@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 var ServicesView = require('../../../app/server/views/services');
 
 var BaseView = require('../../../app/server/views/govuk');
-var FilteredListView = requirejs('common/views/filtered_list');
+var TableView = requirejs('extensions/views/table');
 
 describe('Services View', function () {
 
@@ -13,6 +13,7 @@ describe('Services View', function () {
   beforeEach(function () {
     model = new Backbone.Model();
     collection = new Backbone.Collection();
+    collection.options = {};
     view = new ServicesView({
       model: model,
       collection: collection
@@ -49,25 +50,25 @@ describe('Services View', function () {
   describe('getContent', function () {
 
     beforeEach(function () {
-      spyOn(FilteredListView.prototype, 'initialize');
-      spyOn(FilteredListView.prototype, 'render').andCallFake(function () {
-        this.html = '<div id="filtered_list" />';
+      spyOn(TableView.prototype, 'initialize');
+      spyOn(TableView.prototype, 'render').andCallFake(function () {
+        this.$el.html('<div id="list"></div>');
       });
       spyOn(ServicesView.prototype, 'loadTemplate');
     });
 
-    it('instantiates a FilteredListView', function () {
+    it('instantiates a TableView', function () {
       view.getContent();
-      expect(FilteredListView.prototype.initialize).toHaveBeenCalledWith({
+      expect(TableView.prototype.initialize).toHaveBeenCalledWith({
         model: model,
         collection: collection
       });
     });
 
-    it('renders the FilteredListView into the template', function () {
+    it('renders the TableView into the template', function () {
       view.getContent();
       var options = view.loadTemplate.mostRecentCall.args[1];
-      expect(options.list).toEqual('<div id="filtered_list" />');
+      expect(options.table).toEqual('<div id="list"></div>');
     });
 
   });

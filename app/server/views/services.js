@@ -2,7 +2,7 @@ var requirejs = require('requirejs');
 var path = require('path');
 
 var BaseView = require('./govuk');
-var FilteredListView = requirejs('common/views/filtered_list');
+var TableView = requirejs('extensions/views/table');
 
 var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 
@@ -25,15 +25,26 @@ module.exports = BaseView.extend({
 
   getContent: function () {
 
-    var list = new FilteredListView({
+    this.collection.options.axes = {
+      x: {
+        label: 'Transaction name',
+        key: 'title'
+      },
+      y: [{
+        label: 'Department name',
+        key: 'department.title'
+      }]
+
+    };
+    var table = new TableView({
       model: this.model,
       collection: this.collection
     });
 
-    list.render();
+    table.render();
 
     return this.loadTemplate(contentTemplate, _.extend({
-      list: list.html,
+      table: table.$el.html(),
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),

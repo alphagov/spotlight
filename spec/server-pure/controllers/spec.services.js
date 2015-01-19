@@ -47,7 +47,8 @@ describe('Services Controller', function () {
     });
     client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
     spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function (req) {
-      client_instance.set({'status': 200, 'items': dashboards.items, 'transactions': transactions});
+      // take fresh copies of JSON responses for each test in case any test modifies them
+      client_instance.set({'status': 200, 'items': JSON.parse(JSON.stringify(dashboards.items)), 'transactions': JSON.parse(JSON.stringify(transactions))});
       return client_instance;
     });
   });
@@ -134,7 +135,7 @@ describe('Services Controller', function () {
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
 
-  iit('adds KPIs to each service model', function () {
+  it('adds KPIs to each service model', function () {
     var services,
       service;
     controller(req, res);
