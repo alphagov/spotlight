@@ -1,17 +1,15 @@
 <header>
 
-  <main>
-
+  <section>
     <h1>
       {{# strapline }}<span class="strapline">{{ strapline }}</span>{{/ strapline }}
       {{ header }}
     </h1>
 
-    <p class="tagline">
-    {{{ tagline }}}
-    </p>
-
-  </main>
+    {{# description }}
+      <p class="description">{{{ description }}}</p>
+    {{/ description }}
+  </section>
 
   <aside role='complementary'>
   {{# relatedPages }}
@@ -148,17 +146,17 @@
 
 
       {{# description-extra }}
-      <p>{{{ description-extra }}}</p>
+      <p class="notes">{{{ description-extra }}}</p>
       {{/ description-extra }}
 
       {{# costs }}
       <h4>Notes on costs</h4>
-      <p>{{{ costs }}}</p>
+      <p class="notes">{{{ costs }}}</p>
       {{/ costs }}
 
       {{# other-notes }}
       <h4>Other notes</h4>
-      <p>{{{ other-notes }}}</p>
+      <p class="notes">{{{ other-notes }}}</p>
       {{/ other-notes }}
 
     </div>
@@ -167,4 +165,3 @@
 
 </footer>
 {{/ hasFooter }}
-

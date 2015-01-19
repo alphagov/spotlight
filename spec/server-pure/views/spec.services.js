@@ -31,21 +31,6 @@ describe('Services View', function () {
 
   });
 
-  describe('getBreadcrumbCrumbs', function () {
-
-    it('returns breadcrumbs', function () {
-      expect(view.getBreadcrumbCrumbs().length).toEqual(2);
-      expect(view.getBreadcrumbCrumbs()[0]).toEqual({
-        path: '/performance',
-        title: 'Performance'
-      });
-      expect(view.getBreadcrumbCrumbs()[1]).toEqual({
-        title: 'Services'
-      });
-    });
-
-  });
-
   describe('getContent', function () {
 
     beforeEach(function () {

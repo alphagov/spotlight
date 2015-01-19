@@ -12,7 +12,7 @@ $govuk-page-width: 960px;
 .content-centered {
   @include box-sizing(border-box);
   display: block;
-  margin: 0 auto;
+  margin: 30px auto 0;
   max-width: 1020px;
   padding: 15px;
   // Opera requires display:block for max-width to work...
@@ -22,7 +22,6 @@ $govuk-page-width: 960px;
 }
 
 #content {
-
   background-color: $white;
 
   section {
@@ -38,6 +37,12 @@ $govuk-page-width: 960px;
 
     .visualisation {
       width: 100%;
+    }
+
+    h1, h2, h3, p {
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }
