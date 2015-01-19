@@ -10,9 +10,14 @@ var PageConfig = requirejs('page_config');
 
 var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
+var transactions = require('../../support/stagecraft_stub/responses/transaction-data');
+
 var renderContent = function (req, res, client_instance) {
   var services = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.SERVICES),
       collection;
+
+  // temp
+  client_instance.set('transactions', transactions);
 
   services = addServiceDataToCollection(services, client_instance.get('transactions'));
   collection = new DashboardCollection(services);
