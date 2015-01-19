@@ -38,6 +38,8 @@ var renderContent = function (req, res, client_instance) {
     noun: 'service'
   }));
 
+  model.set('sort-by', 'cost-per-transaction');
+
   var client_instance_status = client_instance.get('status');
   var view;
   if (client_instance_status === 200) {
@@ -69,10 +71,13 @@ function addServiceDataToCollection (services, serviceData) {
         slug: slug
       });
     }
-    delete item._id;
-    delete item._timestamp;
-    delete item['dashboard-slug'];
-    _.extend(dashboard, item);
+    if (dashboard) {
+      delete item._id;
+      delete item._timestamp;
+      delete item['dashboard-slug'];
+      _.extend(dashboard, item);
+    }
+
   });
   return services;
 }
