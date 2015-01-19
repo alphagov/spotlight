@@ -14,3 +14,10 @@ global.config = {};
 global._ = require('lodash');
 global.$ = require('jquery');
 global.isClient = false;
+global.logger = {
+  info: function () {},
+  debug: function () {},
+  error: function () {},
+  log: function () {},
+  warn: function () {}
+};
