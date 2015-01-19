@@ -142,7 +142,7 @@ describe('Services Controller', function () {
     client_instance.trigger('sync');
     services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
     service = _.findWhere(services, {
-      slug: 'bis-accounts-filing'
+      slug: 'dwp-carers-allowance-claims-maintained'
     });
 
     expect(service['total-cost']).toEqual(345983458);

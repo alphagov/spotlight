@@ -2,43 +2,43 @@
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "total-cost": null
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "transactions-per-year": 89074589
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "cost-per-transaction": 306
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "tx-digital-takeup": 0.2
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "digital-takeup": 0.25
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "completion-rate": 0.35
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "accelerated-possession-eviction",
+    "dashboard-slug": "dwp-attendance-allowance-claims-maintained",
     "user-satisfaction-score": 0.75
   },
 
@@ -46,43 +46,43 @@
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "total-cost": 345983458
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "transactions-per-year": 23534666
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "cost-per-transaction": 250
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "tx-digital-takeup": 0.41
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "digital-takeup": 0.43
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "completion-rate": 0.73
   },
   {
     "_id": "some base64 string",
     "_timestamp": "2014-10-12T00:00:00Z",
-    "dashboard-slug": "bis-accounts-filing",
+    "dashboard-slug": "dwp-carers-allowance-claims-maintained",
     "user-satisfaction-score": 0.63
   }
 ]
