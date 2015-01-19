@@ -30,10 +30,16 @@ module.exports = BaseView.extend({
         label: 'Transaction name',
         key: 'title'
       },
-      y: [{
-        label: 'Department name',
-        key: 'department.title'
-      }]
+      y: [
+        {
+          label: 'Department name',
+          key: 'department.title'
+        },
+        {
+          label: 'Cost per transaction',
+          key: 'cost-per-transaction'
+        }
+      ]
 
     };
     var table = new TableView({
