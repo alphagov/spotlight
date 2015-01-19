@@ -1,9 +1,9 @@
 define([
   'modernizr',
   'extensions/views/view',
-  'common/views/filtered_list'
+  'client/views/table'
 ],
-function (Modernizr, View, FilteredListView) {
+function (Modernizr, View, TableView) {
   return View.extend({
 
     events: _.extend({}, View.prototype.events, {
@@ -23,8 +23,9 @@ function (Modernizr, View, FilteredListView) {
 
     views: function () {
       return {
-        '#services-list': {
-          view: FilteredListView
+        '.visualisation-table': {
+          view: TableView,
+          options: this.visualisationOptions
         }
       };
     },
