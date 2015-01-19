@@ -1,23 +1,10 @@
 table {
-  margin-top: 1em;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border-left: 1px solid darken($grey-2, 10%);
-  border-right: 1px solid darken($grey-2, 10%);
   &.touch-table {
     margin-left: 1.5em;
     margin-right: 1.5em;
     width: calc(100% - 3em);
   }
 
-  thead {
-    border-top: 1px solid darken($grey-2, 10%);
-    background-color: $grey-3;
-  }
-
-  tbody {
-    border-bottom: 1px solid darken($grey-2, 10%);
-  }
 
   &.floated-header {
     thead {
@@ -32,33 +19,9 @@ table {
     }
   }
 
-  tbody {
-    tr {
-      &:first-of-type td {
-        border-top: none;
-      }
 
-      &:last-of-type td {
-        border-bottom: none;
-      }
-    }
-  }
-
-  th, td {
-    @include core-16($tabular-numbers: true);
-    padding: 0.7em 1em 0.7em 1em;
-  }
 
   th {
-    text-align: left;
-    font-weight: bold;
-    background-color: $grey-3;
-    line-height: 1.25em;
-    border-right: 1px solid darken($grey-2, 10%);
-
-    &:last-of-type {
-      border-right: none;
-    }
 
     a {
       text-decoration: none;
@@ -78,32 +41,53 @@ table {
     &.asc a:after {
       content: "\00a0\00a0\25B2";
     }
-  }
 
-  td {
-    background: mix($grey-3, $grey-4, 50%);
-
-    border: dotted 1px $grey-2;
-
-    &:first-of-type {
-      border-left: none;
-    }
-
-    &:last-of-type {
-      border-right: none;
-    }
   }
 
   .currency, .percent, .integer, .number {
     text-align: right;
   }
 
-  tr:nth-child(even) td {
-    background: $white;
-  }
 }
 
 .visualisation-table.visuallyhidden {
   max-height: 28em;
   overflow: auto;
+}
+
+
+
+// Tables
+// ==========================================================================
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+table th,
+table td {
+  @include core-16;
+  //padding: 0.7em 1em 0.7em 1em;
+  padding: 12px 20px 9px 0; //em(12, 16) em(20, 16) em(9, 16) 0;
+
+  text-align: left;
+  color: #0b0c0c;
+  border-bottom: 1px solid $border-colour;
+}
+
+table th {
+  font-weight: 700;
+}
+
+// Right align headings for numeric content
+table th.numeric {
+  text-align: right;
+}
+
+// Use tabular numbers for numeric table cells
+table td.numeric {
+  @include core-16($tabular-numbers: true);
+  text-align: right;
 }
