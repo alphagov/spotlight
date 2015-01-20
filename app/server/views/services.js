@@ -25,23 +25,6 @@ module.exports = BaseView.extend({
 
   getContent: function () {
 
-    this.collection.options.axes = {
-      x: {
-        label: 'Transaction name',
-        key: 'title'
-      },
-      y: [
-        {
-          label: 'Department name',
-          key: 'department.title'
-        },
-        {
-          label: 'Cost per transaction',
-          key: 'cost-per-transaction'
-        }
-      ]
-
-    };
     var table = new TableView({
       model: this.model,
       collection: this.collection

@@ -19,6 +19,9 @@ define([
     collectionData: function () {
       return this.model.get('data');
     },
+    collectionOptions: function() {
+      return this.model.get('axesOptions');
+    },
     viewOptions: function () {
       return {
         el: '#content'

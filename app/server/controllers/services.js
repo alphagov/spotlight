@@ -10,17 +10,47 @@ var PageConfig = requirejs('page_config');
 
 var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
+var serviceAxes = {
+  axes: {
+    x: {
+      key: 'title',
+      label: 'Transaction name'
+    },
+    y: [
+      {
+        label: 'Department name',
+        key: 'department.title'
+      },
+      {
+        key: 'total-cost',
+        label: 'Total cost',
+        format: 'currency'
+      },
+      {
+        key: 'transactions-per-year',
+        label: 'Transactions per year',
+        format: 'integer'
+      },
+      {
+        label: 'Cost per transaction',
+        key: 'cost-per-transaction',
+        format: 'currency'
+      }
+    ]
+  }
+};
 
 var renderContent = function (req, res, client_instance) {
   var services = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.SERVICES),
-      collection;
+    collection;
 
   // temp
   var transactions = require('../../support/stagecraft_stub/responses/transaction-data');
   client_instance.set('transactions', JSON.parse(JSON.stringify(transactions)));
 
+  services = addKPIsToCollection(services);
   services = addServiceDataToCollection(services, client_instance.get('transactions'));
-  collection = new DashboardCollection(services);
+  collection = new DashboardCollection(services, serviceAxes);
 
   var departments = collection.getDepartments();
   var agencies = collection.getAgencies();
@@ -35,10 +65,12 @@ var renderContent = function (req, res, client_instance) {
     agencies: agencies,
     data: services,
     script: true,
-    noun: 'service'
+    noun: 'service',
+    axesOptions: serviceAxes
   }));
 
-  model.set('sort-by', 'cost-per-transaction');
+  //TODO - why could this not be set on the model options above?
+  model.set('sort-by', 'transactions-per-year');
 
   var client_instance_status = client_instance.get('status');
   var view;
@@ -59,10 +91,26 @@ var renderContent = function (req, res, client_instance) {
   res.send(view.html);
 };
 
+function addKPIsToCollection(services) {
+  var kpis = {
+    'total-cost': null,
+    'transactions-per-year': null,
+    'cost-per-transaction': null,
+    'tx-digital-takeup': null,
+    'digital-takeup': null,
+    'completion-rate': null,
+    'user-satisfaction-score': null
+  };
+  _.each(services, function(service) {
+    _.extend(service, kpis);
+  });
+  return services;
+}
+
 function addServiceDataToCollection (services, serviceData) {
   var dashboard;
 
-  _.each(serviceData, function(item) {
+  _.each(serviceData, function (item) {
     var slug = item['dashboard-slug'];
 
     // only bother looking for the dashboard if we don't already have it
