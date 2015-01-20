@@ -6,8 +6,12 @@ function (TableView, Modernizr) {
 
   return TableView.extend({
 
-    initialize: function () {
+    initialize: function (options) {
       this.$table = this.$('table');
+
+      this.options = _.extend({
+        scrollable: true
+      }, options || {});
 
       this.tableCollection = new this.collection.constructor(this.collection.models, this.collection.options);
 
@@ -150,7 +154,7 @@ function (TableView, Modernizr) {
       }
       body.attr('width', '');
 
-      if (body.length > headers.length) {
+      if (this.options.scrollable && (body.length > headers.length)) {
         _.each(headers, function (th, index) {
           body[index].width = body[index].offsetWidth;
         }, this);

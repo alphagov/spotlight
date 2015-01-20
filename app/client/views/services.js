@@ -25,7 +25,9 @@ function (Modernizr, View, TableView) {
       return {
         '.visualisation-table': {
           view: TableView,
-          options: this.visualisationOptions
+          options: {
+            scrollable: false
+          }
         }
       };
     },
