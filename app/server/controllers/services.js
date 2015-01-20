@@ -19,7 +19,7 @@ var serviceAxes = {
     y: [
       {
         label: 'Department name',
-        key: 'department.title'
+        key: 'departmentTitle'
       },
       {
         key: 'total-cost',
@@ -48,7 +48,7 @@ var renderContent = function (req, res, client_instance) {
   var transactions = require('../../support/stagecraft_stub/responses/transaction-data');
   client_instance.set('transactions', JSON.parse(JSON.stringify(transactions)));
 
-  services = addKPIsToCollection(services);
+  services = formatCollectionData(services);
   services = addServiceDataToCollection(services, client_instance.get('transactions'));
   collection = new DashboardCollection(services, serviceAxes);
 
@@ -91,7 +91,7 @@ var renderContent = function (req, res, client_instance) {
   res.send(view.html);
 };
 
-function addKPIsToCollection(services) {
+function formatCollectionData(services) {
   var kpis = {
     'total-cost': null,
     'transactions-per-year': null,
@@ -103,6 +103,7 @@ function addKPIsToCollection(services) {
   };
   _.each(services, function(service) {
     _.extend(service, kpis);
+    service.departmentTitle = (service.department && service.department.title) || '';
   });
   return services;
 }
