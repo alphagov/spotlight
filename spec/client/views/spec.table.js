@@ -13,6 +13,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       beforeEach(function () {
         spyOn(Table.prototype, 'renderSort');
         spyOn(Table.prototype, 'syncToTableCollection');
+        spyOn(Table.prototype, 'filterCollection');
         spyOn(BaseTable.prototype, 'initialize');
         table = new Table({
           model: new Model(),
@@ -41,6 +42,12 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       it('calls initialize on TableView', function () {
         expect(BaseTable.prototype.initialize).toHaveBeenCalled();
       });
+
+      it('listens to filter on the model', function () {
+        table.model.trigger('change:filter');
+        expect(table.filterCollection).toHaveBeenCalled();
+      });
+
     });
 
     describe('syncToTableCollection', function () {
