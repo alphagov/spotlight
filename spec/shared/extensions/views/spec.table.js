@@ -118,7 +118,7 @@ function (Table, View, Collection, $) {
       it('will render with "no data" when a row has null values', function () {
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('td').eq(3).text())
-          .toEqual('no data');
+          .toEqual('');
       });
 
       it('will call collection.getTableRows with the column keys', function () {

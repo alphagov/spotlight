@@ -64,7 +64,7 @@ function (View, Formatters) {
       }
 
       cellContent = (cellContent === null || cellContent === undefined) ?
-          'no data' : cellContent;
+          '' : cellContent;
 
       return '<td class="' + className + '">' + cellContent + '</td>';
     },
