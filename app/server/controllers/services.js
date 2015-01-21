@@ -13,28 +13,39 @@ var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 var serviceAxes = {
   axes: {
     x: {
-      key: 'title',
+      key: 'titleLink',
       label: 'Transaction name'
     },
     y: [
-      {
-        label: 'Department name',
-        key: 'departmentTitle'
-      },
-      {
-        key: 'total-cost',
-        label: 'Total cost',
-        format: 'currency'
-      },
       {
         key: 'transactions-per-year',
         label: 'Transactions per year',
         format: 'integer'
       },
       {
+        key: 'total-cost',
+        label: 'Cost per year',
+        format: 'currency'
+      },
+      {
         label: 'Cost per transaction',
         key: 'cost-per-transaction',
         format: 'currency'
+      },
+      {
+        label: 'Digital take-up',
+        key: 'digital-take-up',
+        format: 'percentage'
+      },
+      {
+        label: 'User satisfaction',
+        key: 'user-satisfaction-score',
+        format: 'percentage'
+      },
+      {
+        label: 'Completion rate',
+        key: 'completion-rate',
+        format: 'percentage'
       }
     ]
   }
@@ -103,7 +114,8 @@ function formatCollectionData(services) {
   };
   _.each(services, function(service) {
     _.extend(service, kpis);
-    service.departmentTitle = (service.department && service.department.title) || '';
+    service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
+
   });
   return services;
 }
