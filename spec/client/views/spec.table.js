@@ -24,7 +24,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -56,7 +56,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -94,7 +94,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -163,7 +163,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
 
         table.render();
@@ -299,7 +299,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
