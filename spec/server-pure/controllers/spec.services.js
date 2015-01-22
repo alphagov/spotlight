@@ -10,6 +10,46 @@ var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard
 
 var PageConfig = requirejs('page_config');
 
+var serviceAxes = {
+  axes: {
+    x: {
+      key: 'titleLink',
+      label: 'Transaction name'
+    },
+    y: [
+      {
+        key: 'transactions-per-year',
+        label: 'Transactions per year',
+        format: 'integer'
+      },
+      {
+        key: 'total-cost',
+        label: 'Cost per year',
+        format: 'currency'
+      },
+      {
+        label: 'Cost per transaction',
+        key: 'cost-per-transaction',
+        format: 'currency'
+      },
+      {
+        label: 'Digital take-up',
+        key: 'digital-take-up',
+        format: 'percentage'
+      },
+      {
+        label: 'User satisfaction',
+        key: 'user-satisfaction-score',
+        format: 'percentage'
+      },
+      {
+        label: 'Completion rate',
+        key: 'completion-rate',
+        format: 'percentage'
+      }
+    ]
+  }
+}
 describe('Services Controller', function () {
 
   var fake_app = {'app': {'get': function(key){
@@ -53,6 +93,10 @@ describe('Services Controller', function () {
     });
   });
 
+  afterEach(function() {
+    this.removeAllSpies();
+  });
+
   it('is a function', function () {
     expect(typeof controller).toEqual('function');
   });
@@ -71,7 +115,8 @@ describe('Services Controller', function () {
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true,
-      noun: 'service'
+      noun: 'service',
+      axesOptions: serviceAxes
     });
   });
 
@@ -89,7 +134,8 @@ describe('Services Controller', function () {
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true,
-      noun: 'service'
+      noun: 'service',
+      axesOptions: serviceAxes
     });
   });
 
@@ -107,7 +153,8 @@ describe('Services Controller', function () {
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true,
-      noun: 'service'
+      noun: 'service',
+      axesOptions: serviceAxes
     });
   });
 
@@ -125,7 +172,8 @@ describe('Services Controller', function () {
       agencies: jasmine.any(Array),
       data: jasmine.any(Array),
       script: true,
-      noun: 'service'
+      noun: 'service',
+      axesOptions: serviceAxes
     });
   });
 
