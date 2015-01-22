@@ -57,7 +57,7 @@ var renderContent = function (req, res, client_instance) {
 
   // temp
   var transactions = require('../../support/stagecraft_stub/responses/transaction-data');
-  client_instance.set('transactions', JSON.parse(JSON.stringify(transactions)));
+  client_instance.set('transactions', _.cloneDeep(transactions));
 
   services = formatCollectionData(services);
   services = addServiceDataToCollection(services, client_instance.get('transactions'));
