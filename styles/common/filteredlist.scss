@@ -32,19 +32,16 @@
 
       @include media(desktop) {
         margin-top: 3em;
-        width: 24%;
       }
 
       select, input {
         margin-bottom: 1em;
-        max-width: 100%;
       }
 
       select {
         @include core-14;
         background: $white;
         line-height: 1.8;
-        width: 100%;
 
         @include media(desktop) {
           @include appearance(none);
@@ -120,42 +117,8 @@
       }
     }
 
-    dl {
-      margin: 0;
-
-      dt {
-        @include core-19($tabular-numbers: true);
-      }
-
-      dd {
-        margin:0 0 1em 0;
-
-        ol {
-          padding:0;
-          margin:0;
-          list-style:none;
-
-          li {
-            border-bottom: 1px solid $grey-3;
-            padding:.3em 0;
-            clear: both;
-            overflow: auto;
-
-            a {
-              float: left;
-              max-width: 80%;
-            }
-
-            .department {
-              color: $grey-1;
-
-              @include media(tablet) {
-                float: right;
-              }
-            }
-          }
-        }
-      }
+    table {
+      table-layout: fixed;
     }
   }
 }

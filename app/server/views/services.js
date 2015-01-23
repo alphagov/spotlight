@@ -37,8 +37,7 @@ module.exports = BaseView.extend({
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
-      agencies: this.model.get('agencies'),
-      agencyFilter: this.model.get('agencyFilter')
+      agencies: this.model.get('agencies')
     }, {
       heading: this.heading,
       tagline: this.tagline,

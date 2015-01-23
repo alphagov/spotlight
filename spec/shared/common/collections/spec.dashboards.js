@@ -84,11 +84,10 @@ define([
           collection.reset(data);
         });
 
-        it('filters the collection using a combination of search string, dept and agency', function () {
+        it('filters the collection using a combination of search string and dept', function () {
           var filter = {
               text: 'GP',
-              department: 'dh',
-              agency: 'nhs-england'
+              department: 'dh'
             },
             models = collection.filterServices(filter);
           expect(models[0].get('title')).toEqual('Written GP referrals to first outpatient appointment');
@@ -107,7 +106,7 @@ define([
 
         it('filters on agency only', function () {
           var filter = {
-              agency: 'nhsbsa'
+              department: 'agency:nhsbsa'
             },
             models;
           models = collection.filterServices(filter);

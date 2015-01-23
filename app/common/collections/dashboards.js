@@ -8,8 +8,7 @@ function (Collection) {
     filterServices: function (filter) {
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
-        departmentFilter = (filter.department || null),
-        agencyFilter = (filter.agency || null);
+        departmentFilter = (filter.department || null);
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
@@ -22,12 +21,16 @@ function (Collection) {
           return false;
         }
 
-        if (departmentFilter && this.getSlug(department) !== departmentFilter) {
-          return false;
-        }
-
-        if (agencyFilter && this.getSlug(agency) !== agencyFilter) {
-          return false;
+        if (departmentFilter) {
+          if (departmentFilter.indexOf('agency:') === 0) {
+            if (this.getSlug(agency) !== departmentFilter.replace('agency:', '')) {
+              return false;
+            }
+          } else {
+            if (this.getSlug(department) !== departmentFilter) {
+              return false;
+            }
+          }
         }
 
         return true;
@@ -73,8 +76,7 @@ function (Collection) {
       });
       return values;
     }
-
-
+    
   }, {
     SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group'],
     CONTENT: ['content']
