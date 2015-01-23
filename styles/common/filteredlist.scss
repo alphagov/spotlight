@@ -108,6 +108,9 @@
 
     table {
       table-layout: fixed;
+      th:first-child {
+        width: 28%;
+      }
     }
   }
 }
