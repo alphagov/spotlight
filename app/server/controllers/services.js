@@ -82,6 +82,7 @@ var renderContent = function (req, res, client_instance) {
 
   //TODO - why could this not be set on the model options above?
   model.set('sort-by', 'transactions-per-year');
+  model.set('sort-order', 'descending');
 
   var client_instance_status = client_instance.get('status');
   var view;
