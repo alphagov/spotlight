@@ -22,8 +22,6 @@ function (TableView, Modernizr) {
 
       this.listenTo(this.collection, 'sync', this.syncToTableCollection);
 
-      this.listenTo(this.model, 'change:filter change:departmentFilter change:agencyFilter', this.filterCollection);
-
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
 
       TableView.prototype.initialize.apply(this, arguments);
@@ -35,16 +33,6 @@ function (TableView, Modernizr) {
 
     syncToTableCollection: function () {
       this.tableCollection.reset(this.collection.toJSON());
-    },
-
-    filterCollection: function () {
-      var filteredList = this.collection.filterServices({
-        text: this.model.get('filter'),
-        department: this.model.get('departmentFilter'),
-        agency: this.model.get('agencyFilter')
-      });
-
-      this.tableCollection.reset(filteredList);
     },
 
     renderSort: function () {
