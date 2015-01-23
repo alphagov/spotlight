@@ -8,8 +8,7 @@ var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 
 module.exports = BaseView.extend({
 
-  heading: 'Services',
-  tagline: 'Services providing performance data to GOV.UK',
+  heading: 'Find a dashboard',
   example: 'Licensing',
 
   getPageTitle: function () {
@@ -40,7 +39,6 @@ module.exports = BaseView.extend({
       agencies: this.model.get('agencies')
     }, {
       heading: this.heading,
-      tagline: this.tagline,
       example: this.example,
       noun: this.model.get('noun')
     }));

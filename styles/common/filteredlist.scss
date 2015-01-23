@@ -1,30 +1,18 @@
 #content {
   #filter-wrapper {
-    padding-top: 1.5em;
-    border-top: 5px solid $govuk-blue;
-    position: relative;
 
     label {
       display: block;
-
-      &.primary-filter {
-        @include core-36($tabular-numbers: true);
-        display: inline;
-        margin-right:.5em;
-      }
+      font-weight: bold;
     }
 
     input {
       font-size: 1em;
       margin: 0;
-      width: 16em;
+      width: 100%;
       padding: .2em .5em;
       position:relative;
       top: 0;
-
-      @include media(tablet) {
-        top: -0.3em;
-      }
     }
 
     #faceted-search {
@@ -42,6 +30,7 @@
         @include core-14;
         background: $white;
         line-height: 1.8;
+        width: 100%;
 
         @include media(desktop) {
           @include appearance(none);
@@ -49,7 +38,7 @@
           @include border-radius(4px);
           background: $grey-3 file-url('images/dropdown-arrow-small.png') no-repeat right center;
           border: 1px solid $border-colour;
-          padding: 0.1em 0.4em;
+          padding: 0.4em 25px 0.4em 0.4em;
         }
       }
     }
@@ -65,15 +54,15 @@
   }
 
   section.filtered-list {
-    padding: 0;
-    margin-top: 1.5em;
-    border-top: none;
+    padding: 1em 0 0 0;
+    margin-top: 1em;
+    border-top: 2px solid $grey-3;
 
     @include media(desktop) {
       width: 100%;
 
       body.js-enabled & {
-        margin-top: 3em;
+        margin-top: 2em;
       }
     }
 
