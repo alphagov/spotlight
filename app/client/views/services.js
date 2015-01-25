@@ -1,9 +1,10 @@
 define([
   'modernizr',
   'extensions/views/view',
-  'client/views/services-table'
+  'client/views/services-table',
+  'client/views/summary-figure'
 ],
-function (Modernizr, View, TableView) {
+function (Modernizr, View, TableView, SummaryFigureView) {
   return View.extend({
 
     events: _.extend({}, View.prototype.events, {
@@ -27,6 +28,9 @@ function (Modernizr, View, TableView) {
           options: {
             scrollable: false
           }
+        },
+        '.summary-figure': {
+          view: SummaryFigureView
         }
       };
     },

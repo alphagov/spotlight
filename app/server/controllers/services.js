@@ -73,10 +73,11 @@ var renderContent = function (req, res, client_instance) {
     departmentFilter: req.query.department || null,
     departments: departments,
     agencyFilter: req.query.agency || null,
+    filteredCount: services.length,
     agencies: agencies,
     data: services,
     script: true,
-    noun: 'service',
+    noun: 'transaction',
     axesOptions: serviceAxes
   }));
 
