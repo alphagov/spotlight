@@ -11,47 +11,6 @@ var Collection = requirejs('./extensions/collections/collection');
 
 var PageConfig = requirejs('page_config');
 
-var serviceAxes = {
-  axes: {
-    x: {
-      key: 'titleLink',
-      label: 'Transaction name'
-    },
-    y: [
-      {
-        key: 'transactions-per-year',
-        label: 'Transactions per year',
-        format: 'integer'
-      },
-      {
-        key: 'total-cost',
-        label: 'Cost per year',
-        format: 'currency'
-      },
-      {
-        label: 'Cost per transaction',
-        key: 'cost-per-transaction',
-        format: 'currency'
-      },
-      {
-        label: 'Digital take-up',
-        key: 'digital-take-up',
-        format: 'percentage'
-      },
-      {
-        label: 'User satisfaction',
-        key: 'user-satisfaction-score',
-        format: 'percentage'
-      },
-      {
-        label: 'Completion rate',
-        key: 'completion-rate',
-        format: 'percentage'
-      }
-    ]
-  }
-};
-
 describe('Services Controller', function () {
 
   var fake_app = {'app': {'get': function(key){
