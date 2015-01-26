@@ -66,8 +66,6 @@ var renderContent = function (req, res, client_instance) {
     collection;
   var transactions = new Collection([], {dataSource: dataSource});
 
-  transactions.fetch();
-
   transactions.on('sync', function () {
     services = formatCollectionData(services);
     services = addServiceDataToCollection(services,  transactions.toJSON());
@@ -108,6 +106,8 @@ var renderContent = function (req, res, client_instance) {
     res.set('Cache-Control', 'public, max-age=7200');
     res.send(view.html);
   });
+
+  transactions.fetch();
 
 };
 
