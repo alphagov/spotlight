@@ -1,7 +1,7 @@
 define([
   'modernizr',
   'extensions/views/view',
-  'client/views/services-table',
+  'client/views/table',
   'client/views/summary-figure'
 ],
 function (Modernizr, View, TableView, SummaryFigureView) {
@@ -15,10 +15,6 @@ function (Modernizr, View, TableView, SummaryFigureView) {
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
-
-      if (this.$('#filter').val() || this.$('#department').val()) {
-        this.filter();
-      }
     },
 
     views: function () {

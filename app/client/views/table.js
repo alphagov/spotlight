@@ -20,7 +20,7 @@ function (TableView, Modernizr) {
 
       this.listenTo(this.tableCollection, 'reset', this.renderSort);
 
-      this.listenTo(this.collection, 'sync', this.syncToTableCollection);
+      this.listenTo(this.collection, 'sync reset', this.syncToTableCollection);
 
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
 

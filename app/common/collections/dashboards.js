@@ -36,9 +36,6 @@ function (Collection) {
         return true;
       }, this);
 
-      this.filteredCount = filteredDashboards.length;
-      this.trigger('change:filteredCount', this.filteredCount);
-
       return filteredDashboards;
     },
 

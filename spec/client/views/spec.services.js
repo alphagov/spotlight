@@ -1,18 +1,17 @@
 define([
-    'client/views/services-table',
+    'client/views/services',
     'common/collections/dashboards',
     'extensions/models/model',
     'jquery'
   ],
-  function (ServicesTable, DashboardCollection, Model, $) {
+  function (ServicesView, DashboardCollection, Model, $) {
 
     describe('filter', function () {
 
       beforeEach(function () {
-        var $el = $('<div><table><thead><tr><td class="" width=""><a href="/performance/bis-apprenticeship-vacancies-applications">Apprenticeships: applications for vacancies</a></td><td class="integer" width=""></td><td class="currency" width=""></td><td class="currency" width=""></td><td class="percentage" width=""></td><td class="percentage" width=""></td><td class="percentage" width=""></td></tr><tr><th scope="col" data-key="titleLink" aria-sort="none" width=""><a href="#">Transaction name</a></th> <th scope="col" data-key="transactions-per-year" aria-sort="ascending" class="asc" width=""><a href="#">Transactions per year</a></th><th scope="col" data-key="total-cost" aria-sort="none" width=""><a href="#">Cost per year</a></th><th scope="col" data-key="cost-per-transaction" aria-sort="none" width=""><a href="#">Cost per transaction</a></th><th scope="col" data-key="digital-take-up" aria-sort="none" width=""><a href="#">Digital take-up</a></th><th scope="col" data-key="user-satisfaction-score" aria-sort="none" width=""><a href="#">User satisfaction</a></th><th scope="col" data-key="completion-rate" aria-sort="none" width=""><a href="#">Completion rate</a></th></tr></thead><tbody><tr><td class="" width=""><a href="/performance/dwp-attendance-allowance-claims-maintained">Attendance Allowance: existing claims</a></td><td class="integer" width="">89,074,589</td><td class="currency" width=""></td><td class="currency" width="">£306</td><td class="percentage" width=""></td><td class="percentage" width="">0.75</td><td class="percentage" width="">0.35</td></tr><tr><td class="" width=""><a href="/performance/dwp-carers-allowance-claims-maintained">Carers Allowance: existing claims</a></td><td class="integer" width="">23,534,666</td><td class="currency" width="">£345,983,458</td><td class="currency" width="">£250</td><td class="percentage" width=""></td><td class="percentage" width="">0.63</td><td class="percentage" width="">0.73</td></tr></table></div>');
+        var $el = $('<div class="visualisation-table"><table><thead><tr><td class="" width=""><a href="/performance/bis-apprenticeship-vacancies-applications">Apprenticeships: applications for vacancies</a></td><td class="integer" width=""></td><td class="currency" width=""></td><td class="currency" width=""></td><td class="percentage" width=""></td><td class="percentage" width=""></td><td class="percentage" width=""></td></tr><tr><th scope="col" data-key="titleLink" aria-sort="none" width=""><a href="#">Transaction name</a></th> <th scope="col" data-key="transactions-per-year" aria-sort="ascending" class="asc" width=""><a href="#">Transactions per year</a></th><th scope="col" data-key="total-cost" aria-sort="none" width=""><a href="#">Cost per year</a></th><th scope="col" data-key="cost-per-transaction" aria-sort="none" width=""><a href="#">Cost per transaction</a></th><th scope="col" data-key="digital-take-up" aria-sort="none" width=""><a href="#">Digital take-up</a></th><th scope="col" data-key="user-satisfaction-score" aria-sort="none" width=""><a href="#">User satisfaction</a></th><th scope="col" data-key="completion-rate" aria-sort="none" width=""><a href="#">Completion rate</a></th></tr></thead><tbody><tr><td class="" width=""><a href="/performance/dwp-attendance-allowance-claims-maintained">Attendance Allowance: existing claims</a></td><td class="integer" width="">89,074,589</td><td class="currency" width=""></td><td class="currency" width="">£306</td><td class="percentage" width=""></td><td class="percentage" width="">0.75</td><td class="percentage" width="">0.35</td></tr><tr><td class="" width=""><a href="/performance/dwp-carers-allowance-claims-maintained">Carers Allowance: existing claims</a></td><td class="integer" width="">23,534,666</td><td class="currency" width="">£345,983,458</td><td class="currency" width="">£250</td><td class="percentage" width=""></td><td class="percentage" width="">0.63</td><td class="percentage" width="">0.73</td></tr></table></div>');
 
-        this.tableConfig = {
-          el: $el,
+        this.config = {
           model: new Model(),
           collection: new DashboardCollection([
               {
@@ -112,18 +111,18 @@ define([
       });
 
       it('listens to filter on the model', function () {
-        spyOn(ServicesTable.prototype, 'filterCollection');
-        this.table = new ServicesTable(this.tableConfig);
-        this.table.render();
-        this.table.model.trigger('change:filter');
-        expect(this.table.filterCollection).toHaveBeenCalled();
+        spyOn(ServicesView.prototype, 'filter');
+        this.services = new ServicesView(this.config);
+        this.services.render();
+        this.services.model.trigger('change:filter');
+        expect(this.services.filter).toHaveBeenCalled();
       });
 
       it('shows only rows that match the supplied filter', function () {
-        this.table = new ServicesTable(this.tableConfig);
-        this.table.render();
-        this.table.model.set('filter', 'vacancies');
-        expect(this.table.$el.find('tbody td a').first().html()).toEqual('Apprenticeships: applications for vacancies');
+        this.services = new ServicesView(this.config);
+        this.services.render();
+        this.services.model.set('filter', 'vacancies');
+        expect(this.services.$el.find('tbody td a').first().html()).toEqual('Apprenticeships: applications for vacancies');
       });
 
     });

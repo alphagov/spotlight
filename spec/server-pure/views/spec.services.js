@@ -1,6 +1,6 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
-
+var DashboardCollection = requirejs('common/collections/dashboards');
 var ServicesView = require('../../../app/server/views/services');
 
 var BaseView = require('../../../app/server/views/govuk');
@@ -12,7 +12,7 @@ describe('Services View', function () {
 
   beforeEach(function () {
     model = new Backbone.Model();
-    collection = new Backbone.Collection();
+    collection = new DashboardCollection();
     collection.options = {};
     view = new ServicesView({
       model: model,
@@ -41,7 +41,7 @@ describe('Services View', function () {
         title: 'Performance'
       });
       expect(view.getBreadcrumbCrumbs()[1]).toEqual({
-        title: 'Services'
+        title: 'Find a dashboard'
       });
     });
 
@@ -59,10 +59,7 @@ describe('Services View', function () {
 
     it('instantiates a TableView', function () {
       view.getContent();
-      expect(TableView.prototype.initialize).toHaveBeenCalledWith({
-        model: model,
-        collection: collection
-      });
+      expect(TableView.prototype.initialize).toHaveBeenCalled();
     });
 
     it('renders the TableView into the template', function () {

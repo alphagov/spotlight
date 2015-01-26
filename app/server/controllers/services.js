@@ -72,8 +72,6 @@ var renderContent = function (req, res, client_instance) {
     filter: sanitizer.escape(req.query.filter || ''),
     departmentFilter: req.query.department || null,
     departments: departments,
-    agencyFilter: req.query.agency || null,
-    filteredCount: services.length,
     agencies: agencies,
     data: services,
     script: true,

@@ -7,14 +7,14 @@ function (View) {
 
     initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
-      this.listenTo(this.collection, 'change:filteredCount', this.render);
+      this.listenTo(this.collection, 'reset', this.render);
     },
 
-    render: function(c) {
+    render: function() {
       var unit = this.model.get('noun'),
         count;
 
-      count = (typeof c === 'object') ? c.context.filteredCount : c;
+      count = this.collection.length;
       this.$el.find('.summary-figure-count').html(count);
       if (count !== 1) {
         unit += 's';

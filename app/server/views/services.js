@@ -11,6 +11,20 @@ module.exports = BaseView.extend({
   heading: 'Find a dashboard',
   example: 'Licensing',
 
+  initialize: function () {
+    this.filterCollection = new this.collection.constructor(this.collection.models, this.collection.options);
+    this.updateCollectionFilter();
+  },
+
+  updateCollectionFilter: function () {
+    var filteredList = this.collection.filterServices({
+      text: this.model.get('filter'),
+      department: this.model.get('departmentFilter')
+    });
+
+    this.filterCollection.reset(filteredList);
+  },
+
   getPageTitle: function () {
     return 'Services - GOV.UK';
   },
@@ -26,7 +40,7 @@ module.exports = BaseView.extend({
 
     var table = new TableView({
       model: this.model,
-      collection: this.collection
+      collection: this.filterCollection
     });
 
     table.render();
@@ -37,7 +51,7 @@ module.exports = BaseView.extend({
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
       agencies: this.model.get('agencies'),
-      filteredCount: this.model.get('filteredCount')
+      filteredCount: this.filterCollection.length
     }, {
       heading: this.heading,
       example: this.example,
