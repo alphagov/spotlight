@@ -104,77 +104,33 @@ describe('Services Controller', function () {
   it('creates a model containing config and page settings', function () {
     controller(req, res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service',
-      axesOptions: serviceAxes
-    });
+      'page-type': 'services'
+    }));
   });
 
   it('passes query params filter to model if defined', function () {
     controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: 'foo',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service',
-      axesOptions: serviceAxes
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      filter: 'foo'}));
   });
 
   it('passes department filter to model if set', function () {
     controller(_.extend({ query: { department: 'home-office' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '',
-      departmentFilter: 'home-office',
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service',
-      axesOptions: serviceAxes
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      departmentFilter: 'home-office'
+    }));
   });
 
   it('sanitizes user input before rendering it', function () {
     controller(_.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '&lt;script&gt;alert(1)&lt;/script&gt;',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service',
-      axesOptions: serviceAxes
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      filter: '&lt;script&gt;alert(1)&lt;/script&gt;'
+    }));
   });
 
   it('creates a collection', function () {
