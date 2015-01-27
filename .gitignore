@@ -13,7 +13,7 @@ public/*
 dist
 node_modules
 _SpecRunner.html
-dashboards
+/dashboards
 
 *.log
 *.log.json
