@@ -3,61 +3,59 @@
 @import '_url-helpers';
 $path: '/spotlight/stylesheets/';
 
-@import
   // govuk_frontend_toolkit
-  '_colours',
-  '_grid_layout',
-  '_typography',
-  'design-patterns/_buttons',
+  @import 'colours';
+  @import 'grid_layout';
+  @import 'typography';
+  @import 'design-patterns/buttons';
+
+  // govuk_elements
+  @import 'elements/tables';
 
   // Spotlight
-  'colours',
-  'typography',
-  'change', // Green/red increase/decrease arrows
-  'common/layout',
-  'common/columns',
-  'common/raw',
-
-  // Header
-  'common/navigation',
-  'common/breadcrumbs',
-  'common/header',
-  'common/related_pages',
-  'common/big_screen_link',
-
-  // Module meta
-  'common/module',
-  'common/module_more_info',
-  'common/sections',
-  'common/tabs',
-  'common/tooltip',
-  'common/visualisation_fallback',
-
-  // Modules
-  'common/graph',
-  'common/impact_number',
-  'common/journey',
-  'common/single-decker-graph',
-  'common/double-decker-graph',
-  'common/sparkline',
-  'common/grouped_timeseries',
-  'common/visitors_realtime',
-  'common/list',
-  'common/kpi',
-  'common/user_satisfaction',
-  // 'common/table',
-  'elements/tables', // Try govuk_elements table styling
-  'common/bar_chart_with_number',
-  'common/filteredlist',
-
-  // Components
-  'common/date-picker',
-
-  // Footer
-  'common/dashboard-footer',
-  'common/report_a_problem',
-  'common/footer',
+  @import 'common/layout';
+  @import 'common/navigation';
+  @import 'common/breadcrumbs';
+  @import 'common/header';
+  @import 'common/typography';
+  @import 'common/colours';
+  @import 'common/columns';
+  @import 'common/report-a-problem';
+  @import 'common/footer';
 
   // Special pages
-  'pages/homepage',
-  'pages/prototypes';
+  @import 'pages/homepage';
+  @import 'pages/prototypes';
+
+  // Dashboards
+  @import 'dashboards/visit-this-service';
+  @import 'dashboards/big-screen-link';
+  @import 'dashboards/raw';
+  @import 'dashboards/dashboard-footer';
+
+  // Module meta
+  @import 'modules/module';
+  @import 'modules/module-more-info';
+  @import 'modules/sections';
+  @import 'modules/tabs';
+  @import 'modules/tooltip';
+  @import 'modules/visualisation-fallback';
+
+  // Modules
+  @import 'modules/graph';
+  @import 'modules/impact-number';
+  @import 'modules/change-arrows'; // Green/red increase/decrease arrows
+  @import 'modules/journey';
+  @import 'modules/single-decker-graph';
+  @import 'modules/double-decker-graph';
+  @import 'modules/sparkline';
+  @import 'modules/grouped-timeseries';
+  @import 'modules/visitors-realtime';
+  @import 'modules/list';
+  @import 'modules/kpi';
+  @import 'modules/user-satisfaction';
+  @import 'modules/bar-chart-with-number';
+  @import 'modules/filtered-list';
+
+  // Components
+  @import 'modules/date-picker';
