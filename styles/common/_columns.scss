@@ -1,7 +1,7 @@
 @include media(desktop) {
   .cols2,
-  #content section.cols2,
-  #content article.cols2 {
+  #content #dashboard section.cols2,
+  #content #dashboard article.cols2 {
     width: 465px / $site-width * 100%;
     float: left;
     clear: none;
@@ -15,16 +15,16 @@
   }
 
   .cols2:first-of-type,
-  #content section.cols2:first-of-type,
-  #content article.cols2:first-of-type {
+  #content #dashboard section.cols2:first-of-type,
+  #content #dashboard article.cols2:first-of-type {
     margin-left: 0;
   }
 
   $third_width: 300px / $site-width * 100%;
   $third_margin: 30px / $site-width * 100%;
 
-  #content section.cols3,
-  #content article.cols3,
+  #content #dashboard section.cols3,
+  #content #dashboard article.cols3,
   .cols3 {
     width: $third_width;
     float: left;
@@ -38,8 +38,8 @@
   }
 
   .cols3:first-of-type,
-  #content section.cols3:first-of-type,
-  #content article.cols3:first-of-type {
+  #content #dashboard section.cols3:first-of-type,
+  #content #dashboard article.cols3:first-of-type {
     margin-left: 0;
   }
 

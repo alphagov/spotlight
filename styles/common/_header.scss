@@ -1,41 +1,43 @@
 #content {
-  header {
-    @extend %grid-row;
-    padding-bottom: $gutter-half;
+  #dashboard, #homepage, #dashboard-list, .module-page, #prototypes-content {
+    header {
+      @extend %grid-row;
+      padding-bottom: $gutter-half;
 
-    section {
-      @include grid-column( 2/3 );
+      section {
+        @include grid-column( 2/3 );
+        border-top: none;
+        margin: 0;
+      }
+      aside {
+        @include grid-column( 1/3 );
+        h2 {
+          @include bold-19;
+        }
+        p {
+          @include core-16;
+        }
+      }
+    }
+
+    #unpublished-warning {
       border-top: none;
-      margin: 0;
-    }
-    aside {
-      @include grid-column( 1/3 );
+      border-left: 10px solid $mellow-red;
+      color: $mellow-red;
+      min-height: 5em;
+      padding: 0 0 0 1em;
+
       h2 {
-        @include bold-19;
+        @include bold-36;
       }
+
       p {
-        @include core-16;
-      }
-    }
-  }
+        @include bold-24;
 
-  #unpublished-warning {
-    border-top: none;
-    border-left: 10px solid $mellow-red;
-    color: $mellow-red;
-    min-height: 5em;
-    padding: 0 0 0 1em;
-
-    h2 {
-      @include bold-36;
-    }
-
-    p {
-      @include bold-24;
-
-      @include media(desktop) {
-        margin-bottom: 0;
-        width: 66%;
+        @include media(desktop) {
+          margin-bottom: 0;
+          width: 66%;
+        }
       }
     }
   }
