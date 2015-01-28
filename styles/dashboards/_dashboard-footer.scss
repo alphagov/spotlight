@@ -1,40 +1,34 @@
 #content {
   footer {
     clear: both;
-    overflow: hidden;
-    margin: 1em 0 4em 0;
-    padding-top: 1.5em;
-    width: 100%;
     border-top: 1px solid $grey-2;
+    padding-top: $gutter;
+    padding-bottom: $gutter*1.5;
 
     .description {
       @include bold-24();
+      @include grid-column( 2/3 );
       margin-top: 0;
-      margin-bottom: 40px;
-
-      @include media(desktop) {
-        width: (600px / $site-width) * 100%;
-      }
+      margin-bottom: $gutter;
     }
 
     .footer-text {
       @include bold-24();
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: $gutter;
     }
 
     .footer-left {
       padding-right: 30px;
+      @include grid-column( 1/3 );
     }
 
     .footer-right {
-      @include media(desktop) {
-        width: (465px / $site-width) * 100%;
-      }
+      @include grid-column( 2/3 );
     }
 
     .related-pages {
-      margin-bottom: 30px;
+      margin-bottom: $gutter;
     }
 
     h3 {

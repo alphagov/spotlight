@@ -1,6 +1,7 @@
 #content {
   header {
     @extend %grid-row;
+    padding-bottom: $gutter-half;
 
     section {
       @include grid-column( 2/3 );

@@ -35,7 +35,7 @@ main {
   border-top: 10px solid $govuk-blue;
 }
 
-.grid-row {
+.grid-row, .row {
   @extend %grid-row;
 }
 .outdent-to-full-width {
