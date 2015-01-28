@@ -3,9 +3,11 @@ var Backbone = require('backbone');
 var _ = require('lodash');
 
 var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
+var transactions = require('../../../app/support/stagecraft_stub/responses/transaction-data');
 var controller = require('../../../app/server/controllers/services');
 var ServicesView = require('../../../app/server/views/services');
 var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
+var Collection = requirejs('./extensions/collections/collection');
 
 var PageConfig = requirejs('page_config');
 
@@ -30,7 +32,7 @@ describe('Services Controller', function () {
   var res = {
     send: jasmine.createSpy(),
     set: jasmine.createSpy(),
-    status: jasmine.createSpy(),
+    status: jasmine.createSpy()
   };
   var client_instance;
 
@@ -41,14 +43,25 @@ describe('Services Controller', function () {
     spyOn(Backbone.Model.prototype, 'initialize');
     spyOn(Backbone.Collection.prototype, 'initialize');
     spyOn(ServicesView.prototype, 'initialize');
+    spyOn(Collection.prototype, 'fetch').andCallFake(function () {
+      this.reset(_.cloneDeep(transactions.data), {silent: true});
+      this.trigger('sync');
+    });
     spyOn(ServicesView.prototype, 'render').andCallFake(function () {
       this.html = 'html string';
     });
     client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
-    client_instance.set({'status': 200, 'items': dashboards.items});
     spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function () {
-      return client_instance; 
+      client_instance.set({
+        'status': 200,
+        'items': _.cloneDeep(dashboards.items)
+      });
+      return client_instance;
     });
+  });
+
+  afterEach(function() {
+    this.removeAllSpies();
   });
 
   it('is a function', function () {
@@ -58,79 +71,57 @@ describe('Services Controller', function () {
   it('creates a model containing config and page settings', function () {
     controller(req, res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service'
-    });
+      'page-type': 'services'
+    }));
   });
 
   it('passes query params filter to model if defined', function () {
     controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: 'foo',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service'
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      filter: 'foo'}));
   });
 
   it('passes department filter to model if set', function () {
     controller(_.extend({ query: { department: 'home-office' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '',
-      departmentFilter: 'home-office',
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service'
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      departmentFilter: 'home-office'
+    }));
   });
 
   it('sanitizes user input before rendering it', function () {
     controller(_.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
     client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith({
-      config: 'setting',
-      title: 'Services',
-      'page-type': 'services',
-      filter: '&lt;script&gt;alert(1)&lt;/script&gt;',
-      departmentFilter: null,
-      departments: jasmine.any(Array),
-      agencyFilter: null,
-      agencies: jasmine.any(Array),
-      data: jasmine.any(Array),
-      script: true,
-      noun: 'service'
-    });
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      filter: '&lt;script&gt;alert(1)&lt;/script&gt;'
+    }));
   });
 
   it('creates a collection', function () {
     controller(req, res);
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
+  });
+
+  it('adds KPIs to each service model', function () {
+    var services,
+      service;
+    controller(req, res);
+    client_instance.trigger('sync');
+    services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
+    service = _.findWhere(services, {
+      slug: 'accelerated-possession-eviction'
+    });
+
+    expect(service['total_cost']).toEqual(345983458);
+    expect(service['transactions_per_year']).toEqual(23534666);
+    expect(service['cost_per_transaction']).toEqual(250);
+    expect(service['digital_takeup']).toEqual(0.43);
+    expect(service['completion_rate']).toEqual(0.73);
+    expect(service['user_satisfaction_score']).toEqual(0.63);
   });
 
   it('creates a services view', function () {
