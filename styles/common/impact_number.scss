@@ -1,6 +1,10 @@
 .impact-number {
   margin-bottom: 0.25em;
 
+  &.emphasis {
+    font-weight: bold;
+  }
+
   strong {
     @include bold-80();
     margin-top: 10px;
@@ -9,6 +13,17 @@
 
     @include media(tablet) {
       @include bold-48();
+    }
+  }
+
+
+  .align-top {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 0.4em;
+    vertical-align: top;
+    &:first-child {
+      margin-left: 0;
     }
   }
 
@@ -33,6 +48,7 @@
       display: inline;
     }
   }
+
 }
 
 .stat-description {
