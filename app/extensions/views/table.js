@@ -6,10 +6,10 @@ function (View, Formatters) {
 
   var TableView = View.extend({
     initialize: function (options) {
-      options = options || {};
-      var collection = this.collection = options.collection;
+      this.options = options || {};
+      var collection = this.collection = this.options.collection;
 
-      this.valueAttr = options.valueAttr;
+      this.valueAttr = this.options.valueAttr;
       this.period = collection.getPeriod();
 
       View.prototype.initialize.apply(this, arguments);
@@ -18,13 +18,18 @@ function (View, Formatters) {
     },
 
     prepareTable: function () {
-      this.$table = $('<table></table>');
+      var cls,
+        caption;
+
+      cls = (this.options.collapseOnNarrowViewport === true) ? ' class="table-collapsible"' : '';
+      caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
+      this.$table = $('<table' + cls + '>' + caption + '</table>');
       this.$table.appendTo(this.$el);
     },
 
     render: function () {
       if (this.$table) {
-        this.$table.empty();
+        this.$table.find('thead,tbody').remove();
         this.$table.removeClass('floated-header');
       } else {
         this.prepareTable();
@@ -56,17 +61,29 @@ function (View, Formatters) {
 
     renderRow: function (columns, cellContent, index) {
       var column = columns[index],
-          className = '';
+          className = '',
+          label = '',
+          scope = '',
+          tag = 'td';
 
       if (column.format) {
         cellContent = this.format(cellContent, column.format);
         className = _.isString(column.format) ? column.format : column.format.type;
+        className = ' class="' + className + '"';
       }
 
       cellContent = (cellContent === null || cellContent === undefined) ?
-          'no data' : cellContent;
+          '' : cellContent;
+      if (index === 0) {
+        if (this.options.firstColumnIsHeading === true) {
+          scope = ' scope="row"';
+          tag = 'th';
+        }
+      } else {
+        label = ' data-title="' + columns[index].label + ': "';
+      }
 
-      return '<td class="' + className + '">' + cellContent + '</td>';
+      return '<' + tag + className + label + scope + '>' + cellContent + '</' + tag + '>';
     },
 
     renderBody: function (collection) {
@@ -108,6 +125,7 @@ function (View, Formatters) {
         }, this);
         if (axes.x) {
           cols.unshift(axes.x);
+          this.options.firstColumnIsHeading = true;
         }
       }
       return _.filter(cols);
