@@ -1,0 +1,56 @@
+
+main {
+  @extend %site-width-container;
+}
+
+#content {
+  section {
+    clear: left;
+    float: left;
+    width: 100%;
+    position: relative;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-top: 1em;
+
+    border-top: 1px solid $grey-2;
+
+    .visualisation {
+      width: 100%;
+    }
+
+    h1, h2, h3, p {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.performance-hidden {
+  display:none;
+}
+
+#footer {
+  border-top: 10px solid $govuk-blue;
+}
+
+.grid-row, .row {
+  @extend %grid-row;
+}
+.outdent-to-full-width {
+  @extend %outdent-to-full-width;
+}
+
+.column-quarter {
+  @include grid-column( 1/4 );
+}
+.column-half {
+  @include grid-column( 1/2 );
+}
+.column-third {
+  @include grid-column( 1/3 );
+}
+.column-two-thirds {
+  @include grid-column( 2/3 );
+}

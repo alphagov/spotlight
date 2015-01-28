@@ -39,7 +39,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-digest": "0.1.2",
     "grunt-jasmine-node-new": "0.3.2",
-    "grunt-sass": "0.12.1",
+    "grunt-sass": "0.17.0",
     "grunt-shell": "0.7.0",
     "jquery": "1.8.3",
     "jshint": "2.5.1",
