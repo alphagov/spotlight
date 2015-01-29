@@ -2,6 +2,15 @@
 #homepage {
   @import '../elements/lists';
 
+  header {
+    @extend %grid-row;
+    @extend %outdent-to-full-width;
+    color: white;
+    background-color: $performance-brand;
+    border-top: 0;
+    h1, p.lead { margin-bottom: $gutter-half; }
+  }
+
   #dashboard-counts {
     @extend %grid-row;
     margin-top: $gutter;
@@ -28,13 +37,70 @@
     }
   }
 
-  header {
-    @extend %grid-row;
-    @extend %outdent-to-full-width;
-    color: white;
-    background-color: $performance-brand;
-    border-top: 0;
-    h1, p.lead { margin-bottom: $gutter-half; }
+  #dashboard-showcase {
+    ul li.showcase-item {
+      display: block;
+      @extend %grid-row;
+      color: white;
+      @include bold-19;
+      @extend %outdent-to-full-width;
+      padding-bottom: $gutter-one-third;
+      margin-bottom: $gutter-half;
+
+      h2 {
+        @include grid-column( 1/3 );
+        height: 100%;
+        margin-top: $gutter-two-thirds;
+      }
+      ul {
+        @include grid-column( 2/3 );
+        margin-top: $gutter-half;
+        li {
+          @include grid-column( 1/2 );
+          padding: 0;
+          margin-bottom: $gutter-one-third;
+          &.users-online-now {
+            width: 100%;
+            strong {
+              @include bold-36;
+            }
+          }
+          strong {
+            @include bold-24;
+          }
+        }
+      }
+      &.attorney-generals-office { background-color: $attorney-generals-office; }
+      &.cabinet-office { background-color: $cabinet-office; }
+      &.civil-service { background-color: $civil-service; }
+      &.department-for-business-innovation-skills { background-color: $department-for-business-innovation-skills; }
+      &.department-for-communities-and-local-government { background-color: $department-for-communities-and-local-government; }
+      &.department-for-culture-media-sport { background-color: $department-for-culture-media-sport; }
+      &.department-for-education { background-color: $department-for-education; }
+      &.department-for-environment-food-rural-affairs { background-color: $department-for-environment-food-rural-affairs; }
+      &.department-for-international-development { background-color: $department-for-international-development; }
+      &.department-for-transport { background-color: $department-for-transport; }
+      &.department-for-work-pensions { background-color: $department-for-work-pensions; }
+      &.department-of-energy-climate-change { background-color: $department-of-energy-climate-change; }
+      &.department-of-health { background-color: $department-of-health; }
+      &.foreign-commonwealth-office { background-color: $foreign-commonwealth-office; }
+      &.government-equalities-office { background-color: $government-equalities-office; }
+      &.hm-government { background-color: $hm-government; }
+      &.hm-revenue-customs { background-color: $hm-revenue-customs; }
+      &.hm-treasury { background-color: $hm-treasury; }
+      &.home-office { background-color: $home-office; }
+      &.ministry-of-defence { background-color: $ministry-of-defence; }
+      &.ministry-of-justice { background-color: $ministry-of-justice; }
+      &.northern-ireland-office { background-color: $northern-ireland-office; }
+      &.office-of-the-advocate-general-for-scotland { background-color: $office-of-the-advocate-general-for-scotland; }
+      &.office-of-the-leader-of-the-house-of-lords { background-color: $office-of-the-leader-of-the-house-of-lords; }
+      &.scotland-office { background-color: $scotland-office; }
+      // Note: the 'the' part here will get dropped
+      &.the-office-of-the-leader-of-the-house-of-commons { background-color: $the-office-of-the-leader-of-the-house-of-commons; }
+      &.uk-export-finance { background-color: $uk-export-finance; }
+      &.uk-trade-investment { background-color: $uk-trade-investment; }
+      &.wales-office { background-color: $wales-office; }
+    }
   }
 
 }
