@@ -1,4 +1,32 @@
+
 #homepage {
+  @import '../elements/lists';
+
+  #dashboard-counts {
+    @extend %grid-row;
+    margin-top: $gutter;
+    margin-bottom: $gutter*2;
+    ul li {
+      @include grid-column( 1/3 );
+      @include bold-24;
+      position: relative;
+      a {
+        text-decoration: none;
+        display: block;
+        &:visited { color: $link-colour; }
+        &:active { color: $link-active-colour; }
+        &:hover { color: $link-hover-colour; }
+        strong { @include bold-60; }
+        span {
+          top: 25px;
+          padding-left: 10px;
+          display: inline-block;
+          position: absolute;
+          width: 50%;
+        }
+      }
+    }
+  }
 
   header {
     @extend %grid-row;
