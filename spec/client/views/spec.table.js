@@ -24,7 +24,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -56,7 +56,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -68,11 +68,6 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
           '_timestamp': '2014-07-03T13:17:04+00:00',
           value: 'model 2'
         }]);
-
-        expect(table.collection.at(0).get('value')).toEqual('model 2');
-        expect(table.tableCollection.at(0).get('value')).toEqual('model 1');
-
-        table.syncToTableCollection();
 
         expect(table.collection.at(0).get('value')).toEqual('model 2');
         expect(table.tableCollection.at(0).get('value')).toEqual('model 2');
@@ -94,7 +89,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -130,7 +125,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       });
     });
 
-    describe('sortCol', function () {
+    describe('sort', function () {
       var table;
 
       beforeEach(function () {
@@ -163,7 +158,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
 
         table.render();
@@ -283,6 +278,59 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
         expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
       });
+
+      it('sorts links by the link text only', function () {
+        var sortByValue = table.$table.find('thead th:last');
+
+        table.collection.reset([
+          {
+            '_timestamp': '2014-07-03T13:21:04+00:00',
+            value: '<a href="c">hello a</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:19:04+00:00',
+            value: '<a href="a">hello b</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:23:04+00:00',
+            value: '<a href="b">hello c</a>'
+          }
+        ]);
+
+        sortByValue.find('a').click();
+
+        expect(table.tableCollection.at(0).get('value')).toEqual('<a href="b">hello c</a>');
+        expect(table.tableCollection.at(1).get('value')).toEqual('<a href="a">hello b</a>');
+        expect(table.tableCollection.at(2).get('value')).toEqual('<a href="c">hello a</a>');
+      });
+
+      it('puts blank values last when sorting descending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+            value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+        var sortByValue = table.$table.find('thead th:last');
+
+        sortByValue.find('a').click();
+        expect(table.tableCollection.at(3).get('value')).toBeNull();
+      });
+
+      it('puts blank values last when sorting ascending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+          value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+        var sortByValue = table.$table.find('thead th:last');
+
+        sortByValue.find('a').click();
+        sortByValue.find('a').click();
+        expect(table.tableCollection.at(3).get('value')).toBeNull();
+      });
+
     });
 
     describe('render', function () {
@@ -299,7 +347,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 

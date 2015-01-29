@@ -1,37 +1,53 @@
 <header>
-  <h1><%= heading %></h1>
-  <p class="lead"><%= tagline %></p>
+  <section>
+    <h1><%= heading %></h1>
+  </section>
 </header>
 
 <form id="filter-wrapper" class="services" method="get" action="">
-  <label for="filter" class="primary-filter">Find a <%= noun %> named:</label>
-  <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" />
+
 
   <div id="faceted-search">
+    <div class="cols3">
+      <div class="impact-number emphasis summary-figure" aria-live="assertive">
+        <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">transactions</span>
+      </div>
+    </div>
+    <div class="cols3">
+      <label for="filter">Show me transactions called</label>
+      <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" type="search" />
+    </div>
     <% if (departments.length) {%>
-    <label for="department">Department:</label>
-    <select id="department" name="department">
-      <option value="">All departments</option>
-      <% _.each(departments, function (department) { %>
-        <option value="<%= department.slug %>" <% if (department.slug === departmentFilter) { %>selected<% } %>><%= department.title %></option>
-      <% }); %>
-    </select>
+    <div class="cols3">
+      <label for="department">Provided by</label>
+      <select id="department" name="department">
+        <option value="">All departments and agencies</option>
+        <optgroup label="Departments">
+          <% _.each(departments, function (department) { %>
+          <option value="<%= department.slug %>"
+          <% if (department.slug === departmentFilter) { %>selected<% } %>><%= department.title
+          %></option>
+          <% }); %>
+        </optgroup>
+        <% if (agencies.length) {%>
+        <optgroup label="Agencies">
+          <% _.each(agencies, function (agency) { %>
+          <option value="agency:<%= agency.slug %>"
+          <% if ('agency:' + agency.slug === departmentFilter) { %>selected<% } %>><%= agency.title
+          %></option>
+          <% }); %>
+        </optgroup>
+        <% }%>
+      </select>
+    </div>
     <% }%>
 
-    <% if (agencies.length) {%>
-    <label for="agency">Agency:</label>
-    <select id="agency" name="agency">
-      <option value="">All agencies</option>
-      <% _.each(agencies, function (agency) { %>
-        <option value="<%= agency.slug %>" <% if (agency.slug === agencyFilter) { %>selected<% } %>><%= agency.title %></option>
-      <% }); %>
-    </select>
-    <% }%>
-
-    <input type="submit" value="Filter dashboards" id="filter-submit-button" />
+    <input type="submit" value="Filter dashboards" id="filter-submit-button"/>
   </div>
+
+
 </form>
 
-<section id="services-list" class="filtered-list">
-  <%= list %>
+<section class="filtered-list visualisation-table">
+  <%= table %>
 </section>
