@@ -403,11 +403,11 @@ define([
         describe('abbreviated figures', function () {
 
           it('wraps abbreviated values in an abbr tag', function () {
-            expect(Formatters.format(12345678, { type: 'number', magnitude: true, pad: true, abbr: true })).toEqual('<abbr title="12,345,678">12.3m</abbr>');
+            expect(Formatters.format(12345678, { type: 'number', magnitude: true, pad: true, abbr: true })).toEqual('<abbr aria-label="12,345,678" title="12,345,678">12.3m</abbr>');
           });
 
           it('includes currency symbols where appropriate', function () {
-            expect(Formatters.format(12345678, { type: 'currency', magnitude: true, pad: true, abbr: true })).toEqual('<abbr title="£12,345,678">£12.3m</abbr>');
+            expect(Formatters.format(12345678, { type: 'currency', magnitude: true, pad: true, abbr: true })).toEqual('<abbr aria-label="£12,345,678" title="£12,345,678">£12.3m</abbr>');
           });
 
           it('does not wrap unabbreviated values', function () {

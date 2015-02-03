@@ -24,7 +24,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -56,7 +56,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -68,11 +68,6 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
           '_timestamp': '2014-07-03T13:17:04+00:00',
           value: 'model 2'
         }]);
-
-        expect(table.collection.at(0).get('value')).toEqual('model 2');
-        expect(table.tableCollection.at(0).get('value')).toEqual('model 1');
-
-        table.syncToTableCollection();
 
         expect(table.collection.at(0).get('value')).toEqual('model 2');
         expect(table.tableCollection.at(0).get('value')).toEqual('model 2');
@@ -94,7 +89,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -130,14 +125,14 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       });
     });
 
-    describe('sortCol', function () {
+    describe('sort', function () {
       var table;
 
       beforeEach(function () {
         var $el = $('<div/>');
         $el.html(
-          '<table><thead><tr><th scope="col" width="0" data-key="_timestamp"><a href="#">date</a></th>' +
-          '<th scope="col" width="0" data-key="value"><a href="#">another</a></th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
+          '<table><thead><tr><th scope="col" width="0" data-key="_timestamp">date</th>' +
+          '<th scope="col" width="0" data-key="value">another</th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
           '<td class="" width="0">hello</td></tr>' +
           '<tr><td class="" width="">2014-07-03T13:19:04+00:00</td>' +
           '<td class="" width="">hello world</td></tr>' +
@@ -163,7 +158,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
 
         table.render();
@@ -178,8 +173,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         sortByDate.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('desc');
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        expect(sortByDate.hasClass('desc')).toEqual(true);
+        expect(sortByValue.hasClass('desc')).toEqual(false);
       });
 
       it('adds a class of asc if the col already desc', function () {
@@ -192,8 +187,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         sortByDate.find('a').click();
         sortByDate.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('asc');
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        expect(sortByDate.hasClass('asc')).toEqual(true);
+        expect(sortByValue.hasClass('asc')).toEqual(false);
       });
 
       it('it removes asc from other cols', function () {
@@ -203,13 +198,13 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         sortByDate.find('a').click();
         sortByDate.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('asc');
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        expect(sortByDate.hasClass('asc')).toEqual(true);
+        expect(sortByValue.hasClass('asc')).toEqual(false);
 
         sortByValue.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('');
-        expect(sortByValue.attr('class')).toEqual('desc');
+        expect(sortByDate.hasClass('desc')).toEqual(false);
+        expect(sortByValue.hasClass('desc')).toEqual(true);
       });
 
       it('it removes desc from other cols', function () {
@@ -218,13 +213,13 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         sortByDate.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('desc');
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        expect(sortByDate.hasClass('desc')).toEqual(true);
+        expect(sortByValue.hasClass('desc')).toEqual(false);
 
         sortByValue.find('a').click();
 
-        expect(sortByDate.attr('class')).toEqual('');
-        expect(sortByValue.attr('class')).toEqual('desc');
+        expect(sortByDate.hasClass('desc')).toEqual(false);
+        expect(sortByValue.hasClass('desc')).toEqual(true);
       });
 
       it('sorts the tableCollection desc', function () {
@@ -283,6 +278,66 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
         expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
       });
+
+      it('sorts links by the link text only', function () {
+        var sortByValue = table.$table.find('thead th:last');
+
+        table.collection.reset([
+          {
+            '_timestamp': '2014-07-03T13:21:04+00:00',
+            value: '<a href="c">hello a</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:19:04+00:00',
+            value: '<a href="a">hello b</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:23:04+00:00',
+            value: '<a href="b">hello c</a>'
+          }
+        ]);
+
+        sortByValue.find('a').click();
+
+        expect(table.tableCollection.at(0).get('value')).toEqual('<a href="b">hello c</a>');
+        expect(table.tableCollection.at(1).get('value')).toEqual('<a href="a">hello b</a>');
+        expect(table.tableCollection.at(2).get('value')).toEqual('<a href="c">hello a</a>');
+      });
+
+      it('puts blank values last when sorting descending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+            value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+        var sortByValue = table.$table.find('thead th:last');
+
+        sortByValue.find('a').click();
+        expect(table.tableCollection.at(3).get('value')).toBeNull();
+      });
+
+      it('puts blank values last when sorting ascending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+          value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+        var sortByValue = table.$table.find('thead th:last');
+
+        sortByValue.find('a').click();
+        sortByValue.find('a').click();
+        expect(table.tableCollection.at(3).get('value')).toBeNull();
+      });
+
+      it('stores the sort column and order in the browser address', function() {
+        var sortByValue = table.$table.find('thead th:last');
+        spyOn(Table.prototype, 'replaceUrlParams');
+        sortByValue.find('a').click();
+        expect(Table.prototype.replaceUrlParams.calls[0].args[0]).toEqual('sortby=value&sortorder=descending');
+      });
+
     });
 
     describe('render', function () {
@@ -299,7 +354,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          }),
+          })
         });
       });
 
@@ -307,7 +362,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         var isTouch = Modernizr.touch;
         var touchTable = new Table({
           model: new Model(),
-          collection: new Collection({
+          collection: new Collection([], {
             axes: {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]

@@ -16,6 +16,7 @@ define(function (options) {
     // additional setup for client
     config.paths.jquery = 'vendor/jquery';
     config.paths.jqueryxdr = 'vendor/jquery.xdr';
+    config.paths.jquerydeparam = 'vendor/jquery-deparam';
     config.paths.lodash = 'vendor/lodash';
     config.paths.backbone = 'vendor/backbone';
     config.paths.d3 = 'vendor/d3';
@@ -31,6 +32,10 @@ define(function (options) {
         exports: 'Backbone'
       },
       jqueryxdr: {
+        deps: ['jquery'],
+        exports: '$'
+      },
+      jquerydeparam: {
         deps: ['jquery'],
         exports: '$'
       },
