@@ -49,6 +49,56 @@ function (Collection) {
       }
     },
 
+    getAggregateValues: function (collectionResult) {
+      collectionResult = collectionResult || this.models;
+      var aggregatedValues = {
+        percentages: {},
+        totals: {}
+      };
+      var axes = this.options.axes.y;
+      _.each(collectionResult, function (model) {
+        _.each(axes, function (axis) {
+          var axisKey = axis.key;
+          var key = (axis.format === 'percent') ? 'percentages' : 'totals';
+          var val = model.get(axisKey);
+
+          if (aggregatedValues[key] && aggregatedValues[key][axisKey]) {
+            if (val) {
+              aggregatedValues[key][axisKey].value += val;
+              aggregatedValues[key][axisKey].valueTimesVolume += (val * model.get('number_of_transactions'));
+              aggregatedValues[key][axisKey].valueCount++;
+            }
+
+          } else {
+            aggregatedValues[key][axisKey] = {
+              title: axis.label,
+              value: val || 0,
+              valueTimesVolume: (val * model.get('number_of_transactions')) || 0,
+              valueCount: (val) ? 1 : 0,
+              format: {
+                type: axis.format,
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            };
+          }
+        });
+      });
+
+      _.each(axes, function (axis) {
+        var key = (axis.format === 'percent') ? 'percentages' : 'totals',
+          weightedAverage;
+
+        if (aggregatedValues[key] && aggregatedValues[key][axis.key] && aggregatedValues.totals.number_of_transactions.value) {
+          weightedAverage = (aggregatedValues[key][axis.key].valueTimesVolume / aggregatedValues.totals.number_of_transactions.value);
+          aggregatedValues[key][axis.key].weighted_average = Math.round(weightedAverage * 100) / 100;
+        }
+      });
+
+      return aggregatedValues;
+    },
+
     filterDashboards: function () {
       var types = _.isArray(arguments[0]) ? arguments[0] : _.toArray(arguments);
       return _.map(this.filter(function (service) {

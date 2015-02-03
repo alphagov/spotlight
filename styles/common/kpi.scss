@@ -1,79 +1,98 @@
-#content section.kpi,
-#content section.headline_figure {
+#content {
+  section.kpi,
+  section.headline_figure {
 
-  min-height:160px;
+    min-height: 160px;
 
-  .impact-number strong {
-    @include bold-48();
-  }
+    .impact-number strong {
+      @include bold-48();
+    }
 
-  .period {
-    margin-top: 5px;
-  }
+    .period {
+      margin-top: 5px;
+    }
 
-  .visualisation {
+    .visualisation {
 
-    overflow: hidden;
-    position: relative;
+      overflow: hidden;
+      position: relative;
 
-    .stat {
-      strong {
-        margin-bottom: 3px;
-        display: inline-block;
-        padding-right: 10px;
+      .stat {
+        strong {
+          margin-bottom: 3px;
+          display: inline-block;
+          padding-right: 10px;
+        }
+        .no-data {
+          color: $grey-2;
+          font-weight: normal;
+        }
+        abbr[title] {
+          border-bottom: 0 none;
+        }
       }
-      .no-data {
-        color: $grey-2;
-        font-weight: normal;
+
+      .delta {
+        .change {
+          @include core-24();
+        }
       }
+
     }
 
-    .delta {
-      .change {
-        @include core-24();
+    @media(max-width: 850px) {
+
+      .delta {
+        left: 9em;
       }
-    }
 
-  }
+      .stat strong {
+        margin-bottom: 8px;
+      }
 
-  @media(max-width: 850px) {
-
-    .delta {
-      left: 9em;
-    }
-
-    .stat strong {
-      margin-bottom: 8px;
-    }
-
-    .delta {
+      .delta {
         @include core-16();
+      }
+
     }
 
-  }
+    @media(max-width: 640px) {
 
-  @media(max-width: 640px) {
+      min-height: 0;
 
-    .delta {
-      left: 8em;
-      bottom: 2px;
-    }
+      .delta {
+        left: 8em;
+        bottom: 2px;
+      }
 
-    .stat strong {
-      margin-bottom: 5px;
-    }
+      .stat strong {
+        margin-bottom: 5px;
+      }
 
-    &.cols3 {
-      .stat strong,
-      .stat strong.no-data {
-        font-size: 48px;
+      &.cols3 {
+        .stat strong,
+        .stat strong.no-data {
+          font-size: 48px;
+        }
       }
     }
   }
+
+  .service-kpis {
+    border-top: 1px solid $grey-2;
+    section.kpi {
+      border-top: 0 none;
+    }
+  }
+
 }
 
 @media(max-width: 640px) {
   #content section.kpi.cols3 .stat strong {
     font-size: 48px;
+  }
+
+  .summary-figure {
+    margin-bottom: 30px;
   }
 }

@@ -120,6 +120,24 @@ describe('Services Controller', function () {
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
 
+  it('adds KPIs to each service model', function () {
+    var services,
+      service;
+    controller(req, res);
+    client_instance.trigger('sync');
+    services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
+    service = _.findWhere(services, {
+      slug: 'accelerated-possession-eviction'
+    });
+
+    expect(service['total_cost']).toEqual(345983458);
+    expect(service['number_of_transactions']).toEqual(23534666);
+    expect(service['cost_per_transaction']).toEqual(250);
+    expect(service['digital_takeup']).toEqual(0.43);
+    expect(service['completion_rate']).toEqual(0.73);
+    expect(service['user_satisfaction_score']).toEqual(0.63);
+  });
+
   it('creates a services view', function () {
     controller(req, res);
     client_instance.trigger('sync');

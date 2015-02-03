@@ -13,7 +13,8 @@ p {
   margin-bottom: 20px/19px * 1em;
 }
 
-h1 {
+h1,
+.heading-1 {
   @include bold-48;
   span {
     @include core-27;
@@ -25,13 +26,15 @@ h1 {
   margin-bottom: 45px/48px * 1em;
 }
 
-h2 {
+h2,
+.heading-2 {
   @include bold-24;
   margin-top: 45px/24px * 1em;
   margin-bottom: 15px/24px * 1em;
 }
 
-h3 {
+h3,
+.heading-3 {
   @include bold-19;
   margin-top: 20px/19px * 1em;
 }

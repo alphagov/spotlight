@@ -46,4 +46,15 @@
   .cols3.add3 {
     width: $third_width * 2 + $third_margin;
   }
+
+}
+
+.cols-row {
+  @extend %grid-row;
+}
+
+
+.cols-row-no-margin {
+  margin-left: 0;
+  margin-right: 0;
 }

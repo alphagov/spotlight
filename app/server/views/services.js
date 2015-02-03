@@ -36,6 +36,21 @@ module.exports = BaseView.extend({
     ];
   },
 
+  getAggregateValues: function () {
+    var aggVals = this.filterCollection.getAggregateValues();
+
+    _.each(aggVals, function (kpi) {
+      if (kpi.weighted_average) {
+        kpi.formattedValue = this.format(kpi.weighted_average, kpi.format);
+      }
+    }, this);
+
+    return _.map(this.collection.options.axes.y, function (kpiAxes) {
+      var kpiName = kpiAxes.key;
+      return _.findWhere(aggVals, {key: kpiName}) || kpiAxes;
+    });
+  },
+
   getContent: function () {
 
     var table = new TableView({
