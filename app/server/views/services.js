@@ -2,15 +2,28 @@ var requirejs = require('requirejs');
 var path = require('path');
 
 var BaseView = require('./govuk');
-var FilteredListView = requirejs('common/views/filtered_list');
+var TableView = requirejs('extensions/views/table');
 
 var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 
 module.exports = BaseView.extend({
 
-  heading: 'Services',
-  tagline: 'Services providing performance data to GOV.UK',
+  heading: 'Service dashboards',
   example: 'Licensing',
+
+  initialize: function () {
+    this.filterCollection = new this.collection.constructor(this.collection.models, this.collection.options);
+    this.updateCollectionFilter();
+  },
+
+  updateCollectionFilter: function () {
+    var filteredList = this.collection.filterServices({
+      text: this.model.get('filter'),
+      department: this.model.get('departmentFilter')
+    });
+
+    this.filterCollection.reset(filteredList);
+  },
 
   getPageTitle: function () {
     return 'Services - GOV.UK';
@@ -25,23 +38,26 @@ module.exports = BaseView.extend({
 
   getContent: function () {
 
-    var list = new FilteredListView({
+    var table = new TableView({
       model: this.model,
-      collection: this.collection
+      collection: this.filterCollection,
+      collapseOnNarrowViewport: true,
+      caption: 'Table showing a list of transactions, which can be filtered and sorted',
+      id: 'services-list'
     });
 
-    list.render();
+    table.render();
 
     return this.loadTemplate(contentTemplate, _.extend({
-      list: list.html,
+      table: table.$el.html(),
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
       agencies: this.model.get('agencies'),
-      agencyFilter: this.model.get('agencyFilter')
+      filteredCount: this.filterCollection.length,
+      aggregateVals: this.getAggregateValues()
     }, {
       heading: this.heading,
-      tagline: this.tagline,
       example: this.example,
       noun: this.model.get('noun')
     }));

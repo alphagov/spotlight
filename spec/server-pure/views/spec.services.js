@@ -1,18 +1,21 @@
 var requirejs = require('requirejs');
 var Backbone = require('backbone');
-
+var ServicesCollection = requirejs('common/collections/services');
 var ServicesView = require('../../../app/server/views/services');
+var servicesController = require('../../../app/server/controllers/services');
 
 var BaseView = require('../../../app/server/views/govuk');
-var FilteredListView = requirejs('common/views/filtered_list');
+var TableView = requirejs('extensions/views/table');
 
 describe('Services View', function () {
 
   var view, model, collection;
 
   beforeEach(function () {
-    model = new Backbone.Model();
-    collection = new Backbone.Collection();
+    model = new Backbone.Model({
+      axesOptions: servicesController.serviceAxes.axes
+    });
+    collection = new ServicesCollection([], servicesController.serviceAxes);
     view = new ServicesView({
       model: model,
       collection: collection
@@ -40,7 +43,7 @@ describe('Services View', function () {
         title: 'Performance'
       });
       expect(view.getBreadcrumbCrumbs()[1]).toEqual({
-        title: 'Services'
+        title: 'Service dashboards'
       });
     });
 
@@ -49,25 +52,22 @@ describe('Services View', function () {
   describe('getContent', function () {
 
     beforeEach(function () {
-      spyOn(FilteredListView.prototype, 'initialize');
-      spyOn(FilteredListView.prototype, 'render').andCallFake(function () {
-        this.html = '<div id="filtered_list" />';
+      spyOn(TableView.prototype, 'initialize');
+      spyOn(TableView.prototype, 'render').andCallFake(function () {
+        this.$el.html('<div id="list"></div>');
       });
       spyOn(ServicesView.prototype, 'loadTemplate');
     });
 
-    it('instantiates a FilteredListView', function () {
+    it('instantiates a TableView', function () {
       view.getContent();
-      expect(FilteredListView.prototype.initialize).toHaveBeenCalledWith({
-        model: model,
-        collection: collection
-      });
+      expect(TableView.prototype.initialize).toHaveBeenCalled();
     });
 
-    it('renders the FilteredListView into the template', function () {
+    it('renders the TableView into the template', function () {
       view.getContent();
       var options = view.loadTemplate.mostRecentCall.args[1];
-      expect(options.list).toEqual('<div id="filtered_list" />');
+      expect(options.table).toEqual('<div id="list"></div>');
     });
 
   });
