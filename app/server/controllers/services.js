@@ -34,7 +34,7 @@ var renderContent = function (req, res, client_instance) {
     var agencies = collection.getAgencies();
 
     var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-      title: 'Service dashboards',
+      title: 'Services data',
       'page-type': 'services',
       filter: sanitizer.escape(req.query.filter || ''),
       departmentFilter: req.query.department || null,

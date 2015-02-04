@@ -29,7 +29,7 @@ describe('Services View', function () {
   describe('getPageTitle', function () {
 
     it('returns services page title', function () {
-      expect(view.getPageTitle()).toEqual('Services - GOV.UK');
+      expect(view.getPageTitle()).toEqual('Services data - GOV.UK');
     });
 
   });
@@ -43,7 +43,7 @@ describe('Services View', function () {
         title: 'Performance'
       });
       expect(view.getBreadcrumbCrumbs()[1]).toEqual({
-        title: 'Service dashboards'
+        title: 'Services data'
       });
     });
 

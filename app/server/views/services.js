@@ -8,7 +8,7 @@ var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 
 module.exports = BaseView.extend({
 
-  heading: 'Service dashboards',
+  heading: 'Services data',
   example: 'Licensing',
 
   initialize: function () {
@@ -26,7 +26,7 @@ module.exports = BaseView.extend({
   },
 
   getPageTitle: function () {
-    return 'Services - GOV.UK';
+    return 'Services data - GOV.UK';
   },
 
   getBreadcrumbCrumbs: function () {
