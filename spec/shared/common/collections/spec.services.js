@@ -144,16 +144,117 @@ define([
             });
         });
 
+      });
+
+      describe('applyWeightedAverages', function () {
+        var weightedAverages;
+
+        beforeEach(function () {
+          this.collection = new Collection(dashboardData, servicesAxes);
+          weightedAverages = this.collection.applyWeightedAverages({
+            percentages: [{
+              key: 'digital_takeup',
+              label: 'Digital take-up',
+              isWeighted: true,
+              value: 1.4,
+              valueTimesVolume: 1570,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'percent',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            },
+            {
+              key: 'user_satisfaction_score',
+              label: 'User satisfaction',
+              isWeighted: true,
+              value: 1.6,
+              valueTimesVolume: 2470,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'percent',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            },
+            {
+              key: 'completion_rate',
+              label: 'Completion rate',
+              isWeighted: true,
+              value: 0.9000000000000001,
+              valueTimesVolume: 1280,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'percent',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            }],
+            totals: [{
+              key: 'number_of_transactions',
+              label: 'Transactions per year',
+              isWeighted: true,
+              value: 3900,
+              valueTimesVolume: 5810000,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'integer',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            },
+            {
+              key: 'total_cost',
+              label: 'Cost per year',
+              isWeighted: true,
+              value: 12321,
+              valueTimesVolume: 23402000,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'currency',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            },
+            {
+              key: 'cost_per_transaction',
+              label: 'Cost per transaction',
+              isWeighted: true,
+              value: 20.64,
+              valueTimesVolume: 39996,
+              volume: 3900,
+              valueCount: 3,
+              format: {
+                type: 'currency',
+                sigfigs: 3,
+                magnitude: true,
+                abbr: true
+              }
+            }]
+          });
+        });
+
         it('returns a weighted average for each metric', function () {
-          var cost_per_transaction = this.collection.getAggregateValues()[2],
-            digital_takeup = this.collection.getAggregateValues()[3];
+          var cost_per_transaction = weightedAverages[2],
+            digital_takeup = weightedAverages[3];
 
           expect(cost_per_transaction.weighted_average).toEqual(10.3);
           expect(digital_takeup.weighted_average).toBeCloseTo(0.4);
         });
 
         it('sets the weighted_average to be the total value for number_of_transactions', function () {
-          var number_of_transactions = this.collection.getAggregateValues()[0];
+          var number_of_transactions = weightedAverages[0];
 
           expect(number_of_transactions.weighted_average).toEqual(number_of_transactions.value);
           expect(number_of_transactions.isWeighted).toBe(false);

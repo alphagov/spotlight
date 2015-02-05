@@ -48,6 +48,14 @@ define([
           });
         });
 
+        return this.applyWeightedAverages(aggregatedValues);
+      },
+
+      applyWeightedAverages: function (aggregatedValues) {
+
+        var axes = this.options.axes.y;
+        var kpi;
+
         _.each(axes, function (axis) {
           var key = (axis.format === 'percent' || axis.format.type === 'percent') ?
               'percentages' : 'totals',
