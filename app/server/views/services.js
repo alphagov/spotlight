@@ -52,12 +52,11 @@ module.exports = BaseView.extend({
   },
 
   getContent: function () {
-
     var table = new TableView({
       model: this.model,
       collection: this.filterCollection,
       collapseOnNarrowViewport: true,
-      caption: 'Table showing a list of transactions, which can be filtered and sorted',
+      caption: 'List of services, which can be filtered and sorted',
       id: 'services-list'
     });
 
