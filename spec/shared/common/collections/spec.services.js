@@ -151,8 +151,7 @@ define([
 
         beforeEach(function () {
           this.collection = new Collection(dashboardData, servicesAxes);
-          weightedAverages = this.collection.applyWeightedAverages({
-            percentages: [{
+          weightedAverages = this.collection.applyWeightedAverages([{
               key: 'digital_takeup',
               label: 'Digital take-up',
               isWeighted: true,
@@ -196,8 +195,8 @@ define([
                 magnitude: true,
                 abbr: true
               }
-            }],
-            totals: [{
+            },
+            {
               key: 'number_of_transactions',
               label: 'Transactions per year',
               isWeighted: true,
@@ -241,20 +240,19 @@ define([
                 magnitude: true,
                 abbr: true
               }
-            }]
-          });
+            }]);
         });
 
         it('returns a weighted average for each metric', function () {
-          var cost_per_transaction = weightedAverages[2],
-            digital_takeup = weightedAverages[3];
+          var cost_per_transaction = weightedAverages[5],
+            digital_takeup = weightedAverages[0];
 
           expect(cost_per_transaction.weighted_average).toEqual(10.3);
           expect(digital_takeup.weighted_average).toBeCloseTo(0.4);
         });
 
         it('sets the weighted_average to be the total value for number_of_transactions', function () {
-          var number_of_transactions = weightedAverages[0];
+          var number_of_transactions = weightedAverages[3];
 
           expect(number_of_transactions.weighted_average).toEqual(number_of_transactions.value);
           expect(number_of_transactions.isWeighted).toBe(false);

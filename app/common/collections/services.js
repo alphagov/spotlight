@@ -4,20 +4,15 @@ define([
   function (Dashboard) {
     return Dashboard.extend({
       getAggregateValues: function () {
-        var aggregatedValues = {
-          percentages: [],
-          totals: []
-        };
+        var aggregatedValues = [];
         var axes = this.options.axes.y;
         var kpi;
 
         _.each(this.models, function (model) {
           _.each(axes, function (axis) {
             var axisKey = axis.key;
-            var key = (axis.format === 'percent' || axis.format.type === 'percent') ? 'percentages' :
-              'totals';
             var val = model.get(axisKey);
-            kpi = _.findWhere(aggregatedValues[key], {key: axisKey});
+            kpi = _.findWhere(aggregatedValues, {key: axisKey});
 
             if (kpi) {
               if (val) {
@@ -29,7 +24,7 @@ define([
                 }
               }
             } else {
-              aggregatedValues[key].push({
+              aggregatedValues.push({
                 key: axisKey,
                 label: axis.label,
                 isWeighted: true,
@@ -54,14 +49,10 @@ define([
       applyWeightedAverages: function (aggregatedValues) {
 
         var axes = this.options.axes.y;
-        var kpi;
+        var kpi, weightedAverage;
 
         _.each(axes, function (axis) {
-          var key = (axis.format === 'percent' || axis.format.type === 'percent') ?
-              'percentages' : 'totals',
-            weightedAverage;
-
-          kpi = _.findWhere(aggregatedValues[key], {key: axis.key});
+          kpi = _.findWhere(aggregatedValues, {key: axis.key});
 
           if (kpi) {
             if (axis.key === 'number_of_transactions' || axis.key === 'total_cost') {
@@ -77,7 +68,8 @@ define([
           }
         }, this);
 
-        return aggregatedValues.totals.concat(aggregatedValues.percentages);
+        return aggregatedValues;
       }
     });
+
   });
