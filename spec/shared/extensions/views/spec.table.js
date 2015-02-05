@@ -94,7 +94,7 @@ function (Table, View, Collection, $) {
       it('empties the table if $table exists and removes class', function () {
         spyOn(table, 'renderHead');
         spyOn(table, 'renderBody');
-        table.$table = $('<table><tr><td>test table value</td></tr></table>');
+        table.$table = $('<table><tbody><tr><td>test table value</td></tr></tbody></table>');
         table.$table.addClass('floated-header');
 
         table.render();
@@ -118,7 +118,7 @@ function (Table, View, Collection, $) {
       it('will render with "no data" when a row has null values', function () {
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('td').eq(3).text())
-          .toEqual('no data');
+          .toEqual('');
       });
 
       it('will call collection.getTableRows with the column keys', function () {
@@ -154,7 +154,7 @@ function (Table, View, Collection, $) {
         table.collection.options.axes.y[1].format = 'percent';
         table.render();
         expect(table.format).toHaveBeenCalledWith(10, 'percent');
-        expect(table.$el.find('tbody tr').eq(0).find('td').eq(2).text())
+        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).text())
           .toEqual('10%');
       });
 
@@ -163,14 +163,14 @@ function (Table, View, Collection, $) {
         table.collection.options.axes.y[1].format = 'integer';
         table.render();
         expect(table.format).toHaveBeenCalledWith(10, 'integer');
-        expect(table.$el.find('tbody tr').eq(0).find('td').eq(2).hasClass('integer'))
+        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).hasClass('integer'))
           .toBe(true);
       });
 
       it('it doesnt add a class if no formater', function () {
         table.render();
-        expect(table.$el.find('tbody tr').eq(0).find('td').eq(2).attr('class'))
-          .toEqual('');
+        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).attr('class'))
+          .toBeFalsy();
       });
 
       it('sorts table rows', function () {

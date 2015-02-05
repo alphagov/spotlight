@@ -1,48 +1,29 @@
 #content {
   #filter-wrapper {
-    padding-top: 1.5em;
-    border-top: 5px solid $govuk-blue;
-    position: relative;
 
     label {
       display: block;
-
-      &.primary-filter {
-        @include core-36($tabular-numbers: true);
-        display: inline;
-        margin-right:.5em;
-      }
+      font-weight: bold;
     }
 
     input {
-      font-size: 1em;
       margin: 0;
-      width: 16em;
-      padding: .2em .5em;
+      width: 100%;
+      padding: .4em .5em;
       position:relative;
       top: 0;
-
-      @include media(tablet) {
-        top: -0.3em;
-      }
     }
 
     #faceted-search {
-      margin: 1em 0 0 0;
-      position: absolute;
-
-      @include media(desktop) {
-        margin-top: 3em;
-        width: 24%;
-      }
+      @extend %contain-floats;
+      margin: 1em 0;
 
       select, input {
+        @include core-16;
         margin-bottom: 1em;
-        max-width: 100%;
       }
 
       select {
-        @include core-14;
         background: $white;
         line-height: 1.8;
         width: 100%;
@@ -53,14 +34,19 @@
           @include border-radius(4px);
           background: $grey-3 file-url('images/dropdown-arrow-small.png') no-repeat right center;
           border: 1px solid $border-colour;
-          padding: 0.1em 0.4em;
+          padding: 0.2em 25px 0.2em 0.4em;
         }
+      }
+      select::-ms-expand {
+        display: none;
       }
     }
 
     #filter-submit-button {
       @include button;
       margin-top: 1em;
+      width: auto;
+      float: right;
 
       body.js-enabled & {
         display: none;
@@ -69,18 +55,13 @@
   }
 
   section.filtered-list {
-    padding: 0;
-    margin-top: 1.5em;
-    border-top: none;
+    padding: 1em 0 0 0;
+    margin-top: 0;
+    margin-bottom: 3em;
+    border-top: 2px solid $grey-3;
 
     @include media(desktop) {
-      float: right;
-      margin-top: -10.5em;
-      width: 70%;
-
-      body.js-enabled & {
-        margin-top: 3em;
-      }
+      width: 100%;
     }
 
     header {
@@ -123,42 +104,5 @@
       }
     }
 
-    dl {
-      margin: 0;
-
-      dt {
-        @include core-19($tabular-numbers: true);
-      }
-
-      dd {
-        margin:0 0 1em 0;
-
-        ol {
-          padding:0;
-          margin:0;
-          list-style:none;
-
-          li {
-            border-bottom: 1px solid $grey-3;
-            padding:.3em 0;
-            clear: both;
-            overflow: auto;
-
-            a {
-              float: left;
-              max-width: 80%;
-            }
-
-            .department {
-              color: $grey-1;
-
-              @include media(tablet) {
-                float: right;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }

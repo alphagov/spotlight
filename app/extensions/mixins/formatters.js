@@ -269,7 +269,7 @@ define([
       if (formatter.abbr && formatter.magnitude) {
         var unmagnituded = formatters[formatter.type](value, _.extend({}, formatter, { magnitude: false, pad: false }));
         if (val !== unmagnituded) {
-          return '<abbr title="' + unmagnituded + '">' + val + '</abbr>';
+          return '<abbr aria-label="' + unmagnituded + '" title="' + unmagnituded + '">' + val + '</abbr>';
         }
       }
       return val;

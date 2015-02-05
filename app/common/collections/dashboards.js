@@ -5,18 +5,15 @@ function (Collection) {
   return Collection.extend({
     comparator: 'title',
 
-    alphabetise: function (filter) {
-      var groups = { count: 0 };
-
+    filterServices: function (filter) {
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
-          departmentFilter = (filter.department || null),
-          agencyFilter = (filter.agency || null);
+        departmentFilter = (filter.department || null);
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
-            department = dashboard.get('department') || { title: '', abbr: '' },
-            agency = dashboard.get('agency') || { title: '', abbr: '' };
+          department = dashboard.get('department') || { title: '', abbr: '' },
+          agency = dashboard.get('agency') || { title: '', abbr: '' };
 
         // Remove the dashboard from the list if it doesn't match the text filter
         var textSearchFields = [title, department.abbr.toUpperCase(), department.title.toUpperCase()];
@@ -24,25 +21,22 @@ function (Collection) {
           return false;
         }
 
-        if (departmentFilter && this.getSlug(department) !== departmentFilter) {
-          return false;
-        }
-
-        if (agencyFilter && this.getSlug(agency) !== agencyFilter) {
-          return false;
+        if (departmentFilter) {
+          if (departmentFilter.indexOf('agency:') === 0) {
+            if (this.getSlug(agency) !== departmentFilter.replace('agency:', '')) {
+              return false;
+            }
+          } else {
+            if (this.getSlug(department) !== departmentFilter) {
+              return false;
+            }
+          }
         }
 
         return true;
       }, this);
 
-      _.each(filteredDashboards, function (model) {
-        var key = model.get('title').toUpperCase().substr(0, 1);
-        groups[key] = groups[key] || [];
-        groups[key].push(model.toJSON());
-        groups.count++;
-      });
-
-      return groups;
+      return filteredDashboards;
     },
 
     getSlug: function (organisation) {

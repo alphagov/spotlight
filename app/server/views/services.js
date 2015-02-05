@@ -2,18 +2,31 @@ var requirejs = require('requirejs');
 var path = require('path');
 
 var BaseView = require('./govuk');
-var FilteredListView = requirejs('common/views/filtered_list');
+var TableView = requirejs('extensions/views/table');
 
 var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 
 module.exports = BaseView.extend({
 
-  heading: 'Services',
-  tagline: 'Services providing performance data to GOV.UK',
+  heading: 'Services data',
   example: 'Licensing',
 
+  initialize: function () {
+    this.filterCollection = new this.collection.constructor(this.collection.models, this.collection.options);
+    this.updateCollectionFilter();
+  },
+
+  updateCollectionFilter: function () {
+    var filteredList = this.collection.filterServices({
+      text: this.model.get('filter'),
+      department: this.model.get('departmentFilter')
+    });
+
+    this.filterCollection.reset(filteredList);
+  },
+
   getPageTitle: function () {
-    return 'Services - GOV.UK';
+    return 'Services data - GOV.UK';
   },
 
   getBreadcrumbCrumbs: function () {
@@ -23,25 +36,42 @@ module.exports = BaseView.extend({
     ];
   },
 
-  getContent: function () {
+  formatAggregateValues: function () {
+    var aggVals = this.filterCollection.getAggregateValues();
 
-    var list = new FilteredListView({
+    _.each(aggVals, function (kpi) {
+      if (kpi.weighted_average) {
+        kpi.formattedValue = this.format(kpi.weighted_average, kpi.format);
+      }
+    }, this);
+
+    return _.map(this.collection.options.axes.y, function (kpiAxes) {
+      var kpiName = kpiAxes.key;
+      return _.findWhere(aggVals, {key: kpiName}) || kpiAxes;
+    });
+  },
+
+  getContent: function () {
+    var table = new TableView({
       model: this.model,
-      collection: this.collection
+      collection: this.filterCollection,
+      collapseOnNarrowViewport: true,
+      caption: 'List of services, which can be filtered and sorted',
+      id: 'services-list'
     });
 
-    list.render();
+    table.render();
 
     return this.loadTemplate(contentTemplate, _.extend({
-      list: list.html,
+      table: table.$el.html(),
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
       agencies: this.model.get('agencies'),
-      agencyFilter: this.model.get('agencyFilter')
+      filteredCount: this.filterCollection.length,
+      aggregateVals: this.formatAggregateValues()
     }, {
       heading: this.heading,
-      tagline: this.tagline,
       example: this.example,
       noun: this.model.get('noun')
     }));
