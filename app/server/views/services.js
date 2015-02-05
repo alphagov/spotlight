@@ -36,7 +36,7 @@ module.exports = BaseView.extend({
     ];
   },
 
-  getAggregateValues: function () {
+  formatAggregateValues: function () {
     var aggVals = this.filterCollection.getAggregateValues();
 
     _.each(aggVals, function (kpi) {
@@ -69,7 +69,7 @@ module.exports = BaseView.extend({
       departmentFilter: this.model.get('departmentFilter'),
       agencies: this.model.get('agencies'),
       filteredCount: this.filterCollection.length,
-      aggregateVals: this.getAggregateValues()
+      aggregateVals: this.formatAggregateValues()
     }, {
       heading: this.heading,
       example: this.example,
