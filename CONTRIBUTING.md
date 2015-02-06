@@ -28,3 +28,8 @@ point that they're unreadable, compression will take care of that. They should b
 lowercase words separated by hyphens.
 
 Module-level JSON for Stagecraft is generated as part of the build process.
+
+## Visual changes
+
+For visual changes, it can be helpful to provide images in your pull-request
+showing before and after to highlight the differences.
