@@ -9,7 +9,7 @@ var contentTemplate = path.resolve(__dirname, '../templates/services.html');
 module.exports = BaseView.extend({
 
   heading: 'Services data',
-  example: 'Licensing',
+  example: 'Driving licences',
 
   initialize: function () {
     this.filterCollection = new this.collection.constructor(this.collection.models, this.collection.options);
