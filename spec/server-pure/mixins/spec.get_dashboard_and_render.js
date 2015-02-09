@@ -28,7 +28,8 @@ describe('get_dashboard_and_render', function () {
         'get': function(key) {
           return request_attrs[key];
         }
-      }
+      },
+      originalUrl: ''
     };
     fakeStatusCall = jasmine.createSpy('status'); 
     fake_response = {status: fakeStatusCall};
@@ -36,7 +37,9 @@ describe('get_dashboard_and_render', function () {
   it('should set up the correct client_instance', function(){
     var client_instance = get_dashboard_and_render(fake_request, fake_response, fakeRenderContent);
     expect(StagecraftApiClient.prototype.initialize).toHaveBeenCalledWith(
-      {}, 
+      {
+        params: {}
+      },
       {
         ControllerMap: controllerMap,
         requestId: 'Xb35Gt',

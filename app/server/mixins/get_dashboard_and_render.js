@@ -2,9 +2,12 @@ var requirejs = require('requirejs');
 
 var controllerMap = require('../../server/controller_map')();
 var StagecraftApiClient = requirejs('stagecraft_api_client');
+var url = require('url');
 
 var buildStagecraftApiClient = function(req){
-  var this_client_instance = new StagecraftApiClient({}, {
+  var this_client_instance = new StagecraftApiClient({
+    params: url.parse(req.originalUrl, true).query
+  }, {
     ControllerMap: controllerMap,
     requestId: req.get('Request-Id'),
     govukRequestId: req.get('GOVUK-Request-Id')

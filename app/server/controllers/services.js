@@ -44,8 +44,10 @@ var renderContent = function (req, res, client_instance) {
       script: true,
       noun: 'service',
       axesOptions: servicesController.serviceAxes,
-      'sort-by':  sanitizer.escape(req.query.sortby || 'number_of_transactions'),
-      'sort-order':  sanitizer.escape(req.query.sortorder || 'descending')
+      params: _.extend({
+        sortby:  'number_of_transactions',
+        sortorder:  'descending'
+      }, client_instance.get('params'))
     }));
 
     var client_instance_status = client_instance.get('status');
