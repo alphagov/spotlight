@@ -152,20 +152,20 @@ define([
         beforeEach(function () {
           this.collection = new Collection(dashboardData, servicesAxes);
           weightedAverages = this.collection.applyWeightedAverages([{
-              key: 'digital_takeup',
-              label: 'Digital take-up',
-              isWeighted: true,
-              value: 1.4,
-              valueTimesVolume: 1570,
-              volume: 3900,
-              valueCount: 3,
-              format: {
-                type: 'percent',
-                sigfigs: 3,
-                magnitude: true,
-                abbr: true
-              }
-            },
+            'key': 'digital_takeup',
+            'label': 'Digital take-up',
+            'isWeighted': true,
+            'value': 1.8901081855159454,
+            'valueTimesVolume': 1324601.0754938435,
+            'volume': 1369650,
+            'valueCount': 2,
+            'format': {
+              'type': 'percent',
+              'sigfigs': 3,
+              'magnitude': true,
+              'abbr': true
+            }
+          },
             {
               key: 'user_satisfaction_score',
               label: 'User satisfaction',
@@ -248,7 +248,7 @@ define([
             digital_takeup = weightedAverages[0];
 
           expect(cost_per_transaction.weighted_average).toEqual(10.3);
-          expect(digital_takeup.weighted_average).toBeCloseTo(0.4);
+          expect(digital_takeup.weighted_average).toBeCloseTo(0.97);
         });
 
         it('sets the weighted_average to be the total value for number_of_transactions', function () {
