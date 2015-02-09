@@ -12,6 +12,7 @@ function (Model) {
       this.controllers = options.ControllerMap;
       this.requestId = options.requestId || 'Not-Set';
       this.govukRequestId = options.govukRequestId || 'Not-Set';
+      this.set('params', attrs.params);
       Model.prototype.initialize.apply(this, arguments);
     },
 

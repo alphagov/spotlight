@@ -27,7 +27,10 @@ describe('Services Controller', function () {
         'GOVUK-Request-Id': '1231234123'
       }[key];
     },
-    query: {}
+    originalUrl: '',
+    query: {
+      filter: ''
+    }
   }, fake_app);
   var res = {
     send: jasmine.createSpy(),
@@ -56,6 +59,10 @@ describe('Services Controller', function () {
         'status': 200,
         'items': _.cloneDeep(dashboards.items)
       });
+      client_instance.set('params', {
+        sortby: 'completion_rate',
+        sortorder: 'ascending'
+      });
       return client_instance;
     });
   });
@@ -75,20 +82,6 @@ describe('Services Controller', function () {
       config: 'setting',
       'page-type': 'services'
     }));
-  });
-
-  it('passes query params sort column to model if defined', function () {
-    controller(_.extend({ query: { sortby: 'completion_rate' } }, fake_app), res);
-    client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
-      'sort-by': 'completion_rate'}));
-  });
-
-  it('passes query params sort order to model if defined', function () {
-    controller(_.extend({ query: { sortorder: 'ascending' } }, fake_app), res);
-    client_instance.trigger('sync');
-    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
-      'sort-order': 'ascending'}));
   });
 
   it('passes query params filter to model if defined', function () {

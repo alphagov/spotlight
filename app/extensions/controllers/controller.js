@@ -111,7 +111,7 @@ define([
 
         var model = new Model(definition);
         model.set('parent', parentModel);
-
+        model.set('params', parentModel.get('params'));
         var options = _.isFunction(moduleOptions) ? moduleOptions(model) : moduleOptions;
 
         var module = new definition.controller(_.merge({ model: model }, options));

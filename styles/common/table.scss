@@ -28,15 +28,15 @@ table {
       }
     }
 
-    &.desc a:after,
-    &.asc a:after {
+    &.descending a:after,
+    &.ascending a:after {
       content: "\00a0\00a0\25BC";
       font-size: 8px;
       position: absolute;
       top: 0.7em;
     }
 
-    &.asc a:after {
+    &.ascending a:after {
       content: "\00a0\00a0\25B2";
     }
 

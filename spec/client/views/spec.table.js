@@ -11,8 +11,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
     describe('initialize', function () {
       var table;
       beforeEach(function () {
-        spyOn(Table.prototype, 'renderSort');
-        spyOn(Table.prototype, 'syncToTableCollection');
+        spyOn(Table.prototype, 'render');
         spyOn(BaseTable.prototype, 'initialize');
         table = new Table({
           model: new Model(),
@@ -28,49 +27,13 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         });
       });
 
-      it('listens to sort on the tableCollection', function () {
-        table.tableCollection.trigger('sort');
-        expect(table.renderSort).toHaveBeenCalled();
-      });
-
-      it('listens to sync on the collection', function () {
-        table.collection.trigger('sync');
-        expect(table.syncToTableCollection).toHaveBeenCalled();
+      it('listens to sort on the collection', function () {
+        table.collection.trigger('sort');
+        expect(table.render).toHaveBeenCalled();
       });
 
       it('calls initialize on TableView', function () {
         expect(BaseTable.prototype.initialize).toHaveBeenCalled();
-      });
-    });
-
-    describe('syncToTableCollection', function () {
-      var table;
-      beforeEach(function () {
-        table = new Table({
-          model: new Model(),
-          collection: new Collection({
-            '_timestamp': '2014-07-03T13:19:04+00:00',
-            value: 'model 1'
-          }, {
-            axes: {
-              x: { label: 'date', key: 'timestamp' },
-              y: [{ label: 'another', key: 'value' }]
-            }
-          })
-        });
-      });
-
-      it('copies the models from the collection to the tableCollection', function () {
-        expect(table.collection.at(0).get('value')).toEqual('model 1');
-        expect(table.tableCollection.at(0).get('value')).toEqual('model 1');
-
-        table.collection.reset([{
-          '_timestamp': '2014-07-03T13:17:04+00:00',
-          value: 'model 2'
-        }]);
-
-        expect(table.collection.at(0).get('value')).toEqual('model 2');
-        expect(table.tableCollection.at(0).get('value')).toEqual('model 2');
       });
     });
 
@@ -93,32 +56,11 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         });
       });
 
-      it('removes the tbody', function () {
-        //put something into the tbody
-        table.prepareTable();
-        table.$table.html('<tbody><tr><td>1234</td></tr></tbdoy>');
-
-        expect(table.$table.find('tbody').length).toEqual(1);
-        table.renderSort();
-
-        expect(table.$table.find('tbody').length).toEqual(0);
-      });
-
-      it('calls renderBody with the tableCollection', function () {
-        table.tableCollection = 'foo';
-
-        expect(table.renderBody).not.toHaveBeenCalled();
-
-        table.renderSort();
-
-        expect(table.renderBody).toHaveBeenCalledWith('foo');
-      });
-
       it('calls render', function () {
 
         expect(table.render).not.toHaveBeenCalled();
 
-        table.renderSort();
+        table.render();
 
         expect(table.render).toHaveBeenCalled();
 
@@ -131,8 +73,9 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       beforeEach(function () {
         var $el = $('<div/>');
         $el.html(
-          '<table><thead><tr><th scope="col" width="0" data-key="_timestamp">date</th>' +
-          '<th scope="col" width="0" data-key="value">another</th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
+          '<table><thead><tr><th scope="col" width="0" data-key="_timestamp">' +
+          '<a class="js-sort" href="#" role="button">date</a></th>' +
+          '<th scope="col" width="0" data-key="value"><a class="js-sort" href="#" role="button">another</a></th></tr></thead><tbody><tr><td class="" width="0">2014-07-03T13:21:04+00:00</td>' +
           '<td class="" width="0">hello</td></tr>' +
           '<tr><td class="" width="">2014-07-03T13:19:04+00:00</td>' +
           '<td class="" width="">hello world</td></tr>' +
@@ -164,171 +107,58 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         table.render();
       });
 
+      function dateColumn() {
+        return table.$table.find('thead th:first');
+      }
+
+      function valueColumn() {
+        return table.$table.find('thead th:last');
+      }
+
       it('adds a class of desc if the col isnt sorted', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        expect(dateColumn().attr('class')).toEqual('');
+        expect(valueColumn().attr('class')).toEqual('');
 
-        expect(sortByDate.attr('class')).toEqual(undefined);
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        dateColumn().find('a').click();
 
-        sortByDate.find('a').click();
-
-        expect(sortByDate.hasClass('desc')).toEqual(true);
-        expect(sortByValue.hasClass('desc')).toEqual(false);
+        expect(dateColumn().hasClass('descending')).toEqual(true);
+        expect(valueColumn().hasClass('descending')).toEqual(false);
       });
 
-      it('adds a class of asc if the col already desc', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+      it('adds a class of ascending if the col already descending', function () {
+        expect(dateColumn().attr('class')).toEqual('');
+        expect(valueColumn().attr('class')).toEqual('');
 
-        expect(sortByDate.attr('class')).toEqual(undefined);
-        expect(sortByValue.attr('class')).toEqual(undefined);
+        dateColumn().find('a').click();
+        dateColumn().find('a').click();
 
-        sortByDate.find('a').click();
-        sortByDate.find('a').click();
-
-        expect(sortByDate.hasClass('asc')).toEqual(true);
-        expect(sortByValue.hasClass('asc')).toEqual(false);
+        expect(dateColumn().hasClass('ascending')).toEqual(true);
+        expect(valueColumn().hasClass('ascending')).toEqual(false);
       });
 
       it('it removes asc from other cols', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        dateColumn().find('a').click();
+        dateColumn().find('a').click();
 
-        sortByDate.find('a').click();
-        sortByDate.find('a').click();
+        expect(dateColumn().hasClass('ascending')).toEqual(true);
+        expect(valueColumn().hasClass('ascending')).toEqual(false);
 
-        expect(sortByDate.hasClass('asc')).toEqual(true);
-        expect(sortByValue.hasClass('asc')).toEqual(false);
+        valueColumn().find('a').click();
 
-        sortByValue.find('a').click();
-
-        expect(sortByDate.hasClass('desc')).toEqual(false);
-        expect(sortByValue.hasClass('desc')).toEqual(true);
+        expect(dateColumn().hasClass('descending')).toEqual(false);
+        expect(valueColumn().hasClass('descending')).toEqual(true);
       });
 
       it('it removes desc from other cols', function () {
-        var sortByDate = table.$table.find('thead th:first'),
-            sortByValue = table.$table.find('thead th:last');
+        dateColumn().find('a').click();
 
-        sortByDate.find('a').click();
+        expect(dateColumn().hasClass('descending')).toEqual(true);
+        expect(valueColumn().hasClass('descending')).toEqual(false);
 
-        expect(sortByDate.hasClass('desc')).toEqual(true);
-        expect(sortByValue.hasClass('desc')).toEqual(false);
+        valueColumn().find('a').click();
 
-        sortByValue.find('a').click();
-
-        expect(sortByDate.hasClass('desc')).toEqual(false);
-        expect(sortByValue.hasClass('desc')).toEqual(true);
-      });
-
-      it('sorts the tableCollection desc', function () {
-        var sortByValue = table.$table.find('thead th:last');
-
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(2).get('value')).toEqual('hello world');
-
-        sortByValue.find('a').click();
-
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(2).get('value')).toEqual('hello');
-      });
-
-      it('sorts the tableCollection asc', function () {
-        var sortByValue = table.$table.find('thead th:last');
-
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(2).get('value')).toEqual('hello world');
-
-        sortByValue.find('a').click();
-        sortByValue.find('a').click();
-
-        expect(table.tableCollection.at(0).get('value')).toEqual('hello');
-        expect(table.tableCollection.at(1).get('value')).toEqual('hello world');
-        expect(table.tableCollection.at(2).get('value')).toEqual('hello world');
-      });
-
-      it('secondary sorts on the _timestamp attr', function () {
-        var sortByValue = table.$table.find('thead th:last');
-
-        expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
-        expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.tableCollection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
-
-        sortByValue.find('a').click();
-
-        expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
-        expect(table.tableCollection.at(2).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
-      });
-
-      it('doesnt sort the main collection', function () {
-        var sortByValue = table.$table.find('thead th:last');
-
-        sortByValue.find('a').click();
-
-        expect(table.tableCollection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.tableCollection.at(1).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
-        expect(table.tableCollection.at(2).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
-
-        expect(table.collection.at(0).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
-        expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
-        expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
-      });
-
-      it('sorts links by the link text only', function () {
-        var sortByValue = table.$table.find('thead th:last');
-
-        table.collection.reset([
-          {
-            '_timestamp': '2014-07-03T13:21:04+00:00',
-            value: '<a href="c">hello a</a>'
-          },
-          {
-            '_timestamp': '2014-07-03T13:19:04+00:00',
-            value: '<a href="a">hello b</a>'
-          },
-          {
-            '_timestamp': '2014-07-03T13:23:04+00:00',
-            value: '<a href="b">hello c</a>'
-          }
-        ]);
-
-        sortByValue.find('a').click();
-
-        expect(table.tableCollection.at(0).get('value')).toEqual('<a href="b">hello c</a>');
-        expect(table.tableCollection.at(1).get('value')).toEqual('<a href="a">hello b</a>');
-        expect(table.tableCollection.at(2).get('value')).toEqual('<a href="c">hello a</a>');
-      });
-
-      it('puts blank values last when sorting descending', function() {
-        table.collection.unshift({
-          '_timestamp': '2014-07-03T13:21:04+00:00',
-            value: null
-        });
-        table.collection.trigger('reset');
-        table.render();
-        var sortByValue = table.$table.find('thead th:last');
-
-        sortByValue.find('a').click();
-        expect(table.tableCollection.at(3).get('value')).toBeNull();
-      });
-
-      it('puts blank values last when sorting ascending', function() {
-        table.collection.unshift({
-          '_timestamp': '2014-07-03T13:21:04+00:00',
-          value: null
-        });
-        table.collection.trigger('reset');
-        table.render();
-        var sortByValue = table.$table.find('thead th:last');
-
-        sortByValue.find('a').click();
-        sortByValue.find('a').click();
-        expect(table.tableCollection.at(3).get('value')).toBeNull();
+        expect(dateColumn().hasClass('descending')).toEqual(false);
+        expect(valueColumn().hasClass('descending')).toEqual(true);
       });
 
       it('stores the sort column and order in the browser address', function() {
@@ -344,6 +174,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       var table;
 
       beforeEach(function () {
+        spyOn(BaseTable.prototype, 'render');
         table = new Table({
           model: new Model(),
           collection: new Collection({
@@ -373,7 +204,6 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         Modernizr.touch = true;
         touchTable.$el.append($table);
-        touchTable.$table = $table;
         touchTable.render();
         expect($table.attr('class')).toContain('touch-table');
         Modernizr.touch = isTouch;
@@ -385,7 +215,6 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         var $table = $('<table>' + tableHeader + tableBody + '</table>');
         table.$el.append($table);
-        table.$table = $table;
         table.render();
 
         expect($table.attr('class')).toContain('floated-header');
@@ -397,26 +226,11 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         var $table = $('<table>' + tableHeader + tableBody + '</table>');
         table.$el.append($table);
-        table.$table = $table;
         table.render();
 
         expect($table.attr('class')).toNotEqual('floated-header');
       });
 
-      it('renders links in the thead', function () {
-        var tableHeader = '<thead><tr><th>Col1</th><th>Col2</th></tr></thead>',
-            tableBody = '<tbody><tr><td>No data available</td></tr></tbody>';
-
-        var $table = $('<table>' + tableHeader + tableBody + '</table>');
-        table.$el.append($table);
-        table.$table = $table;
-
-        expect($table.find('thead a').length).toEqual(0);
-
-        table.render();
-
-        expect($table.find('thead a').length).toEqual(2);
-      });
     });
 
   });

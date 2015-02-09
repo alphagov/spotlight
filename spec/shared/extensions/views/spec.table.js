@@ -2,9 +2,10 @@ define([
   'extensions/views/table',
   'extensions/views/view',
   'extensions/collections/collection',
+    'backbone',
   'jquery'
 ],
-function (Table, View, Collection, $) {
+function (Table, View, Collection, Backbone, $) {
   describe('Table', function () {
     it('inherits from View', function () {
       var table = new Table({
@@ -57,26 +58,31 @@ function (Table, View, Collection, $) {
 
       beforeEach(function () {
         spyOn(Table.prototype, 'prepareTable').andCallThrough();
-        table = new Table({
-          collection: {
-            on: jasmine.createSpy(),
-            options: {
-              axes: {
-                x: {
-                  label: 'date',
-                  key: 'timestamp'
-                },
-                y: [
-                  { label: 'another', key: 'value' },
-                  { label: 'onemore', key: 'value', timeshift: 52 },
-                  { label: 'last', key: 'value' }
-                ]
-              }
-            },
-            getTableRows: function () {},
-            sortByAttr: function () {},
-            getPeriod: function () { return 'week'; }
+        var Collection = Backbone.Collection.extend({
+          on: jasmine.createSpy(),
+          options: {
+            axes: {
+              x: {
+                label: 'date',
+                key: 'timestamp'
+              },
+              y: [
+                { label: 'another', key: 'value' },
+                { label: 'onemore', key: 'value', timeshift: 52 },
+                { label: 'last', key: 'number_of_transactions' }
+              ]
+            }
           },
+          getTableRows: function () {},
+          sortByAttr: function () {},
+          getPeriod: function () { return 'week'; }
+        });
+        table = new Table({
+          model: new Backbone.Model({
+            'sort-by': 'number_of_transactions',
+            'sort-order': 'descending'
+          }),
+          collection: new Collection([]),
           valueAttr: 'value'
         });
         spyOn(table.collection, 'getTableRows').andReturn([['01/02/01', 'foo', 10, null]]);
@@ -108,13 +114,6 @@ function (Table, View, Collection, $) {
         expect(Table.prototype.prepareTable).toHaveBeenCalled();
       });
 
-      it('does not call prepareTable if it has previously been called', function () {
-        table.prepareTable();
-        Table.prototype.prepareTable.reset();
-        table.render();
-        expect(Table.prototype.prepareTable).not.toHaveBeenCalled();
-      });
-
       it('will render with "no data" when a row has null values', function () {
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('td').eq(3).text())
@@ -124,7 +123,7 @@ function (Table, View, Collection, $) {
       it('will call collection.getTableRows with the column keys', function () {
         table.render();
         expect(table.collection.getTableRows)
-          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'value']);
+          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'number_of_transactions']);
       });
 
       it('does not crash if no data is provided', function () {
@@ -135,7 +134,7 @@ function (Table, View, Collection, $) {
       it('will append the timeshift duration to the column header', function () {
         table.render();
         expect(table.$el.find('thead th').eq(2).text())
-          .toEqual('onemore (52 weeks ago)');
+          .toEqual('onemore (52 weeks ago) Click to sort');
       });
 
       describe('getColumns', function () {
@@ -144,7 +143,7 @@ function (Table, View, Collection, $) {
               { key: 'timestamp', label: 'date' },
               { key: 'value', label: 'another' },
               { key: 'timeshift52:value', label: 'onemore', timeshift: 52 },
-              { key: 'value', label: 'last' }
+              { key: 'number_of_transactions', label: 'last' }
             ]);
         });
       });
@@ -167,25 +166,10 @@ function (Table, View, Collection, $) {
           .toBe(true);
       });
 
-      it('it doesnt add a class if no formater', function () {
+      it('it doesnt add a class if no formatter', function () {
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).attr('class'))
           .toBeFalsy();
-      });
-
-      it('sorts table rows', function () {
-        spyOn(table.collection, 'sortByAttr');
-        table.sortBy = 'value';
-        table.sortOrder = 'descending';
-        table.render();
-        expect(table.collection.sortByAttr).toHaveBeenCalledWith('value', true);
-
-        table.collection.sortByAttr.reset();
-
-        table.sortBy = 'timestamp';
-        table.sortOrder = 'ascending';
-        table.render();
-        expect(table.collection.sortByAttr).toHaveBeenCalledWith('timestamp', false);
       });
 
       it('adds column keys as data attrs to header cells', function () {
@@ -193,7 +177,7 @@ function (Table, View, Collection, $) {
         expect(table.$('th:eq(0)').attr('data-key')).toEqual('timestamp');
         expect(table.$('th:eq(1)').attr('data-key')).toEqual('value');
         expect(table.$('th:eq(2)').attr('data-key')).toEqual('timeshift52:value');
-        expect(table.$('th:eq(3)').attr('data-key')).toEqual('value');
+        expect(table.$('th:eq(3)').attr('data-key')).toEqual('number_of_transactions');
       });
 
       it('adds first key as data attrs to header cell if key is an array', function () {
@@ -202,7 +186,178 @@ function (Table, View, Collection, $) {
         expect(table.$('th:eq(0)').attr('data-key')).toEqual('start');
       });
 
+      it('marks the "transactions per year" column as sorted (descending)' +
+        ' if no sort is specified in the URL', function() {
+        table.render();
+        expect(table.$('thead th.descending').attr('data-key')).toEqual('number_of_transactions');
+      });
+
+      it('adds a link to non-default columns to sort by descending', function() {
+        table.render();
+        expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
+          .toEqual('?sortby=timestamp&sortorder=descending#filtered-list');
+      });
+
+      it('add a link to the default column to sort by ascending', function() {
+        table.render();
+        expect(table.$('thead th.descending a').attr('href'))
+          .toEqual('?sortby=number_of_transactions&sortorder=ascending#filtered-list');
+      });
+
+      it('adds a link to sort by ascending to the default column if it changes', function() {
+        table.model.set('sort-by', 'timestamp');
+        table.render();
+        expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
+          .toEqual('?sortby=timestamp&sortorder=ascending#filtered-list');
+      });
+
+      it('marks each cell in the sorted column', function() {
+        var result = true;
+        table.render();
+        table.$('[data-key="number_of_transactions"]').each(function() {
+          if (!$(this).hasClass('sort-column')) {
+            result = false;
+          }
+        });
+        expect(result).toEqual(true);
+      });
+
+
     });
 
+    describe('sort', function() {
+      var table;
+
+      beforeEach(function () {
+        spyOn(Table.prototype, 'prepareTable').andCallThrough();
+        table = new Table({
+          model: new Backbone.Model({
+            'sort-by': 'number_of_transactions',
+            'sort-order': 'descending',
+            params: {
+              sortby: 'title'
+            }
+          }),
+          collection: new Collection([
+              {
+                '_timestamp': '2014-07-03T13:21:04+00:00',
+                value: 'hello'
+              },
+              {
+                '_timestamp': '2014-07-03T13:19:04+00:00',
+                value: 'hello world'
+              },
+              {
+                '_timestamp': '2014-07-03T13:23:04+00:00',
+                value: 'hello world'
+              }
+            ],
+            {
+              axes: {
+                x: {label: 'date', key: 'timestamp'},
+                y: [{label: 'another', key: 'value'}]
+              }
+            })
+        });
+      });
+
+      it('overrides default sort if a sort order has been stored in the URL', function() {
+        expect(table.model.get('sort-by')).toEqual('title');
+        expect(table.model.get('sort-order')).toEqual('descending');
+      });
+
+      it('sorts the tableCollection desc', function () {
+
+        expect(table.collection.at(0).get('value')).toEqual('hello');
+        expect(table.collection.at(1).get('value')).toEqual('hello world');
+        expect(table.collection.at(2).get('value')).toEqual('hello world');
+
+        table.model.set('sort-by', 'value');
+
+        expect(table.collection.at(0).get('value')).toEqual('hello world');
+        expect(table.collection.at(1).get('value')).toEqual('hello world');
+        expect(table.collection.at(2).get('value')).toEqual('hello');
+      });
+
+      it('sorts the tableCollection asc', function () {
+
+        expect(table.collection.at(0).get('value')).toEqual('hello');
+        expect(table.collection.at(1).get('value')).toEqual('hello world');
+        expect(table.collection.at(2).get('value')).toEqual('hello world');
+
+
+        table.model.set('sort-by', 'value');
+        table.model.set('sort-order', 'ascending');
+
+        expect(table.collection.at(0).get('value')).toEqual('hello');
+        expect(table.collection.at(1).get('value')).toEqual('hello world');
+        expect(table.collection.at(2).get('value')).toEqual('hello world');
+      });
+
+      it('secondary sorts on the _timestamp attr', function () {
+
+        expect(table.collection.at(0).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+        expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
+        expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
+
+        table.model.set('sort-by', 'value');
+
+        expect(table.collection.at(0).get('_timestamp')).toEqual('2014-07-03T13:19:04+00:00');
+        expect(table.collection.at(1).get('_timestamp')).toEqual('2014-07-03T13:23:04+00:00');
+        expect(table.collection.at(2).get('_timestamp')).toEqual('2014-07-03T13:21:04+00:00');
+      });
+
+      it('sorts links by the link text only', function () {
+
+        table.collection.reset([
+          {
+            '_timestamp': '2014-07-03T13:21:04+00:00',
+            value: '<a href="c">hello a</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:19:04+00:00',
+            value: '<a href="a">hello b</a>'
+          },
+          {
+            '_timestamp': '2014-07-03T13:23:04+00:00',
+            value: '<a href="b">hello c</a>'
+          }
+        ]);
+
+        table.model.set('sort-by', 'value');
+
+        expect(table.collection.at(0).get('value')).toEqual('<a href="b">hello c</a>');
+        expect(table.collection.at(1).get('value')).toEqual('<a href="a">hello b</a>');
+        expect(table.collection.at(2).get('value')).toEqual('<a href="c">hello a</a>');
+      });
+
+      it('puts blank values last when sorting descending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+          value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+
+        table.model.set('sort-by', 'value');
+        expect(table.collection.at(3).get('value')).toBeNull();
+      });
+
+      it('puts blank values last when sorting ascending', function() {
+        table.collection.unshift({
+          '_timestamp': '2014-07-03T13:21:04+00:00',
+          value: null
+        });
+        table.collection.trigger('reset');
+        table.render();
+
+        table.model.set('sort-by', 'value');
+        table.model.set('sort-order', 'ascending');
+
+        expect(table.collection.at(3).get('value')).toBeNull();
+      });
+
+
+    });
   });
 });
