@@ -52,6 +52,7 @@ define([
         var kpi, weightedAverage;
 
         _.each(axes, function (axis) {
+          var decimalPlaces;
           kpi = _.findWhere(aggregatedValues, {key: axis.key});
 
           if (kpi) {
@@ -60,8 +61,9 @@ define([
               kpi.weighted_average = kpi.value;
             } else {
               if (kpi.volume) {
+                decimalPlaces = (kpi.format.type === 'percent') ? 3 : 1;
                 weightedAverage = (kpi.valueTimesVolume / kpi.volume);
-                kpi.weighted_average = parseFloat(weightedAverage.toFixed(1));
+                kpi.weighted_average = parseFloat(weightedAverage.toFixed(decimalPlaces));
               }
             }
             kpi.allRowsHaveValues = (kpi.valueCount === this.length);
