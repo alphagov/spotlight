@@ -40,7 +40,7 @@ function (View, Formatters) {
       var cls,
         caption;
 
-      this.$el.empty();
+      this.$('table').remove();
       cls = (this.options.collapseOnNarrowViewport === true) ? ' class="table-collapsible"' : '';
       caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
       this.$table = $('<table' + cls + '>' + caption + '</table>');

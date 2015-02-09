@@ -85,7 +85,10 @@ function (Table, View, Collection, Backbone, $) {
           collection: new Collection([]),
           valueAttr: 'value'
         });
-        spyOn(table.collection, 'getTableRows').andReturn([['01/02/01', 'foo', 10, null]]);
+        spyOn(table.collection, 'getTableRows').andReturn([
+          ['01/02/01', 'foo', 10, null],
+          ['04/03/12', 'bar', 5, null]
+        ]);
       });
 
       it('renders no data if there are no rows', function () {
@@ -184,6 +187,12 @@ function (Table, View, Collection, Backbone, $) {
         table.collection.options.axes.x.key = ['start', 'end'];
         table.render();
         expect(table.$('th:eq(0)').attr('data-key')).toEqual('start');
+      });
+
+      it('adds the row index as an attribute to the first cell in a row', function () {
+        table.render();
+        expect(table.$('tbody tr:eq(0) th:eq(0)').attr('data-title')).toEqual('1');
+        expect(table.$('tbody tr:eq(1) th:eq(0)').attr('data-title')).toEqual('2');
       });
 
       it('marks the "transactions per year" column as sorted (descending)' +
