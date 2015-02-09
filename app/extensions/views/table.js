@@ -6,21 +6,41 @@ function (View, Formatters) {
 
   var TableView = View.extend({
     initialize: function (options) {
+
       this.options = options || {};
-      var collection = this.collection = this.options.collection;
+      var existingCollection = this.options.collection || this.collection;
+
+      this.collection = new existingCollection.constructor(existingCollection.toJSON(), existingCollection.options);
+
 
       this.valueAttr = this.options.valueAttr;
-      this.period = collection.getPeriod();
+      this.period = this.collection.getPeriod();
 
       View.prototype.initialize.apply(this, arguments);
 
-      this.listenTo(collection, 'reset add remove', this.render);
+      this.listenTo(this.collection, 'reset add remove', this.render);
+      this.initSort();
+    },
+
+    initSort: function() {
+      if (this.model) {
+        this.listenTo(this.model, 'change:sort-by change:sort-order', _.bind(function() {
+          this.sort();
+        }, this));
+
+        if (this.model.get('params')) {
+          this.model.get('params').sortby && this.model.set('sort-by', this.model.get('params').sortby, {silent: true});
+          this.model.get('params').sortorder && this.model.set('sort-order', this.model.get('params').sortorder, {silent: true});
+          this.sort();
+        }
+      }
     },
 
     prepareTable: function () {
       var cls,
         caption;
 
+      this.$el.empty();
       cls = (this.options.collapseOnNarrowViewport === true) ? ' class="table-collapsible"' : '';
       caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
       this.$table = $('<table' + cls + '>' + caption + '</table>');
@@ -28,23 +48,19 @@ function (View, Formatters) {
     },
 
     render: function () {
-      if (this.$table) {
-        this.$table.find('thead,tbody').remove();
-        this.$table.removeClass('floated-header');
-      } else {
-        this.prepareTable();
-      }
-
-      if (this.sortBy) {
-        this.collection.sortByAttr(this.sortBy, this.sortOrder === 'descending');
-      }
-
+      this.prepareTable();
       $(this.renderHead()).appendTo(this.$table);
       $(this.renderBody()).appendTo(this.$table);
+
     },
 
     renderHead: function () {
-      var head = '';
+      var head = '',
+        cls,
+        sortOrder = this.model && this.model.get('sort-order'),
+        sortUrlParam,
+        sortBy = this.model && this.model.get('sort-by');
+
       head += _.map(this.getColumns(), function (column) {
         var label = column.label;
         var key = column.key;
@@ -54,21 +70,36 @@ function (View, Formatters) {
         if (_.isArray(column.key)) {
           key = column.key[0];
         }
-        return '<th scope="col" data-key="' + key + '">' + label + '</th>';
+        if ((sortOrder === 'ascending') || (sortBy !== key)) {
+          sortUrlParam = 'descending';
+        } else {
+          sortUrlParam = 'ascending';
+        }
+        cls = (sortBy === key) ? sortOrder + ' sort-column' : '';
+        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '#filtered-list" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
       }, this).join('\n');
+
       return '<thead><tr>' + head + '</tr></thead>';
     },
 
     renderRow: function (columns, cellContent, index) {
       var column = columns[index],
-          className = '',
-          attrs = '',
-          tag = 'td';
+        key = column.key,
+        className = '',
+        sortColClass = '',
+        attrs = '',
+        tag = 'td';
+
+      if (_.isArray(column.key)) {
+        key = column.key[0];
+      }
+      if (this.model && this.model.get('sort-by') === key) {
+        sortColClass = ' sort-column';
+      }
 
       if (column.format) {
         cellContent = this.format(cellContent, column.format);
         className = _.isString(column.format) ? column.format : column.format.type;
-        className = ' class="' + className + '"';
       }
 
       cellContent = (cellContent === null || cellContent === undefined) ?
@@ -82,7 +113,8 @@ function (View, Formatters) {
         attrs = ' data-title="' + column.label + ': "';
       }
 
-      return '<' + tag + className + attrs + ' data-key="' + column.key + '">' + cellContent + '</' + tag + '>';
+      className = ' class="' + className + sortColClass + '"';
+      return '<' + tag + attrs + className + ' data-key="' + key + '">' + cellContent + '</' + tag + '>';
     },
 
     renderBody: function (collection) {
@@ -128,6 +160,83 @@ function (View, Formatters) {
         }
       }
       return _.filter(cols);
+    },
+
+    sort: function (sortBy, sortOrder) {
+
+      sortBy = sortBy || this.model.get('sort-by');
+      sortOrder = sortOrder || this.model.get('sort-order') || 'descending';
+
+      if (!sortBy) {
+        return;
+      }
+
+      this.collection.comparator = _.bind(function (a, b) {
+        var firstVal = a.get(sortBy),
+          firstTime = a.get('_timestamp') || a.get('_start_at'),
+          secondVal = b.get(sortBy),
+          secondTime = b.get('_timestamp') || b.get('_start_at'),
+          nullValues = (firstVal === null && secondVal === null),
+          ret = 0;
+
+        if (firstVal && typeof firstVal === 'string') {
+          firstVal = this.stripLink(firstVal).toLowerCase();
+        }
+        if (secondVal && typeof secondVal === 'string') {
+          secondVal = this.stripLink(secondVal).toLowerCase();
+        }
+
+        if (nullValues) {
+          if (firstTime < secondTime) {
+            ret = -1;
+          } else if (firstTime > secondTime) {
+            ret = 1;
+          }
+          if (sortOrder === 'descending') {
+            ret = -ret;
+          }
+        } else {
+          if (firstVal === null) {
+            ret = 1;
+          } else if (secondVal === null) {
+            ret = -1;
+          } else {
+            if (firstVal < secondVal) {
+              ret = -1;
+            } else if (firstVal > secondVal) {
+              ret = 1;
+            }
+            if (sortOrder === 'descending') {
+              ret = -ret;
+            }
+          }
+
+        }
+
+        return ret;
+      }, this);
+
+      this.collection.sort();
+    },
+
+    stripLink: function (str) {
+      var $link = $('<div>' + str + '</div>').find('a');
+      if ($link.length) {
+        return $link.html();
+      }
+      return str;
+    },
+
+    mergeSortParams: function(queryString, sortBy, sortOrder) {
+      var params = $.deparam(queryString);
+      if (sortBy) {
+        params.sortby = sortBy;
+      }
+      if (sortOrder) {
+        params.sortorder = sortOrder;
+      }
+
+      return $.param(params);
     }
 
   });

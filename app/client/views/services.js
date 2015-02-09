@@ -26,7 +26,8 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
         '.visualisation-table': {
           view: TableView,
           options: {
-            scrollable: false
+            scrollable: false,
+            collapseOnNarrowViewport: true
           }
         },
         '.summary-figure': {
