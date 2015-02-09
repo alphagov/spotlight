@@ -159,3 +159,14 @@ heroku addons:add logentries
 You can then access the logs from your app's dashboard on Heroku (under the "Add-ons" section).
 
 [buildpack]: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
+
+## Contributing
+
+For Javascript, follow the [styleguide](https://github.com/alphagov/styleguides/blob/master/js.md) (apart from the sections on gov.uk modules as we don't use these)
+
+Functionality should work without Javascript where possible.
+
+All content should work well with screenreaders (at least Voiceover and JAWS).
+'Work well' means
+- a screenreader user can orientate themselves effectively and use the page.
+- async updates are reported to the user (an 'accessibility' module exists for this).
