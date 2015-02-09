@@ -9,6 +9,6 @@ module.exports = View.extend(templater).extend({
 
   templatePath: templatePath,
 
-  templateType: 'mustache',
+  templateType: 'mustache'
 
 });
