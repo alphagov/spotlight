@@ -82,8 +82,9 @@ function (View, Formatters) {
       return '<thead><tr>' + head + '</tr></thead>';
     },
 
-    renderRow: function (columns, cellContent, index) {
-      var column = columns[index],
+    renderRow: function (obj, cellContent, index) {
+      var columns = obj.columns,
+        column = columns[index],
         key = column.key,
         className = '',
         sortColClass = '',
@@ -106,7 +107,7 @@ function (View, Formatters) {
           '<abbr title="No data provided">—</abbr>' : cellContent;
       if (index === 0) {
         if (this.options.firstColumnIsHeading === true) {
-          attrs = ' scope="row"';
+          attrs = ' data-title="' + obj.rowIndex + '" scope="row"';
           tag = 'th';
         }
       } else {
@@ -119,16 +120,20 @@ function (View, Formatters) {
 
     renderBody: function (collection) {
       collection = collection || this.collection;
-      var columns = this.getColumns(),
-          keys = _.pluck(columns, 'key'),
+      var param = {
+            columns: this.getColumns(),
+            rowIndex: 1
+          },
+          keys = _.pluck(param.columns, 'key'),
           rows = collection.getTableRows(keys),
           body = '';
 
       if (rows.length > 0) {
         body += _.map(rows, function (row) {
           var rowContent =
-            _.map(row, this.renderRow.bind(this, columns)).join('\n');
+            _.map(row, this.renderRow.bind(this, param)).join('\n');
 
+          param.rowIndex++;
           return '<tr>' + rowContent + '</tr>';
         }, this).join('\n');
       } else {
