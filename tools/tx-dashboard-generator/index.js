@@ -1,3 +1,5 @@
+//working apart from encoding
+
 var GoogleClientLogin = require('googleclientlogin').GoogleClientLogin;
 var GoogleSpreadsheets = require('google-spreadsheets');
 var _ = require('underscore');
@@ -74,6 +76,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'slug': 'total-cost',
             'module-type': 'kpi',
             'title': 'Total cost',
+            'modules': [],
             'data-group': 'transactional-services',
             'data-type': 'summaries',
             'query-params': {
@@ -90,6 +93,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           var costPerTrans = {
             'slug': 'cost-per-transaction',
             'module-type': 'kpi',
+            'modules': [],
             'title': 'Cost per transaction',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
@@ -135,6 +139,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'slug': 'transactions-per-year',
             'module-type': 'kpi',
             'title': 'Transactions per year',
+            'modules': [],
             'data-group': 'transactional-services',
             'data-type': 'summaries',
             'query-params': {
@@ -156,6 +161,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'slug': 'transactions-per-quarter',
             'module-type': 'bar_chart_with_number',
             'title': 'Transactions per quarter',
+            'modules': [],
             'description': 'Total number of transactions each quarter',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
@@ -177,6 +183,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
             'slug': 'digital-take-up-per-quarter',
             'module-type': 'bar_chart_with_number',
             'title': 'Digital take-up',
+            'modules': [],
             'description': 'Digital take-up rates each quarter',
             'data-group': 'transactional-services',
             'data-type': 'summaries',
@@ -202,7 +209,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
           // we can update it.
 
           var requestOptions = {
-            url: 'https://' + generatorConfig['stagecraft-host'] + '/dashboard/' + row.slug,
+            url: 'http://' + generatorConfig['stagecraft-host'] + '/dashboard/' + row.slug,
             headers: {
               'Authorization': 'Bearer ' + generatorConfig['signon-token']
             }
@@ -233,6 +240,7 @@ googleAuth.on(GoogleClientLogin.events.login, function () {
                 if (!error && res.statusCode === 200) {
                   console.log('Successful POST to update', row.slug);
                 } else {
+                  console.log(res);
                   console.log('Errored while POSTing to update', row.slug);
                   console.log(body);
                 }
