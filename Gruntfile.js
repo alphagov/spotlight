@@ -232,6 +232,9 @@ module.exports = function (grunt) {
         },
         command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path ./')
       },
+      nightwatch: {
+        command: addArgs('./node_modules/nightwatch/bin/nightwatch')
+      },
       // Generates the page-per-thing module JSON stubs
       generate_services_list: {
         options: {
@@ -357,6 +360,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('cheapseats', [
     'shell:cheapseats'
+  ]);
+
+  grunt.registerTask('nightwatch', [
+    'shell:nightwatch'
   ]);
 
   grunt.registerTask('cheapseats:unpublished', [
