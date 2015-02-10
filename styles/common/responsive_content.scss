@@ -1,0 +1,6 @@
+.mq-small-only {
+  display: none;
+  @include media(0, 767px) {
+    display: block;
+  }
+}
