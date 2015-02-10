@@ -79,25 +79,32 @@ table thead th:first-child {
 }
 table thead th {
   font-weight: normal;
-  text-align: right;
   vertical-align: top;
 }
 
 // Right align headings for numeric content
-table th.numeric {
+table th.numeric,
+table th.integer,
+table th.currency,
+table th.percent {
   text-align: right;
 }
 
 
 // Use tabular numbers for numeric table cells
-table .integer,
-table .currency,
-table .percent {
+table tbody .integer,
+table tbody .currency,
+table tbody .percent {
   @include core-16($tabular-numbers: true);
   text-align: right;
 }
 
-table .sort-column {
+table tbody .url {
+  word-break: break-all;
+}
+
+table thead .sort-column,
+table tbody .sort-column {
   font-weight: bold;
 }
 
@@ -122,13 +129,13 @@ table .sort-column {
       border-bottom: 1px solid $border-colour;
       margin-bottom: 15px;
     }
-    th {
+    thead th {
       display: block;
       text-align: left;
       border-bottom: 0;
       padding: 3px 0;
     }
-    tbody th, td {
+    tbody th, tbody td {
       display: block;
       text-align: left;
       border-bottom: 0;
