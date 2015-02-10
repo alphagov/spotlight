@@ -40,6 +40,7 @@
     "grunt-digest": "0.1.2",
     "grunt-jasmine-node-new": "0.3.2",
     "grunt-sass": "0.17.0",
+    "grunt-phantom": "0.2.1",
     "grunt-shell": "0.7.0",
     "jquery": "1.8.3",
     "jquery-deparam": "0.1.0",

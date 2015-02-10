@@ -284,6 +284,13 @@ module.exports = function (grunt) {
       files: {
         src: ['public/**/*.*']
       }
+    },
+    phantom: {
+      options: {
+        port: 4444
+      },
+      nightwatch: {
+      }
     }
   });
 
@@ -299,7 +306,8 @@ module.exports = function (grunt) {
     'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-shell',
-    'grunt-concurrent'
+    'grunt-concurrent',
+    'grunt-phantom'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -364,6 +372,11 @@ module.exports = function (grunt) {
 
   grunt.registerTask('nightwatch', [
     'shell:nightwatch'
+  ]);
+
+  grunt.registerTask('functional', [
+    'phantom',
+    'nightwatch'
   ]);
 
   grunt.registerTask('cheapseats:unpublished', [
