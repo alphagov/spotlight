@@ -363,7 +363,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:all', [
     'test:unit',
-    'shell:cheapseats'
+    'shell:cheapseats',
+    'test:functional'
   ]);
 
   grunt.registerTask('cheapseats', [
@@ -374,7 +375,7 @@ module.exports = function (grunt) {
     'shell:nightwatch'
   ]);
 
-  grunt.registerTask('functional', [
+  grunt.registerTask('test:functional', [
     'phantom',
     'nightwatch'
   ]);
