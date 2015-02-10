@@ -101,7 +101,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
-          })
+          }),
+          saveSortInUrl: true
         });
 
         table.render();
@@ -161,11 +162,20 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         expect(valueColumn().hasClass('descending')).toEqual(true);
       });
 
-      it('stores the sort column and order in the browser address', function() {
+      it('stores the sort column and order in the browser address if option set', function() {
         var sortByValue = table.$table.find('thead th:last');
         spyOn(Table.prototype, 'replaceUrlParams');
         sortByValue.find('a').click();
         expect(Table.prototype.replaceUrlParams.calls[0].args[0]).toEqual('sortby=value&sortorder=descending');
+      });
+
+      it('doesnt store the sort column and order in the browser address if option not set',
+        function() {
+        var sortByValue = table.$table.find('thead th:last');
+        table.options.saveSortInUrl = false;
+        spyOn(Table.prototype, 'replaceUrlParams');
+        sortByValue.find('a').click();
+        expect(Table.prototype.replaceUrlParams.calls.length).toEqual(0);
       });
 
     });

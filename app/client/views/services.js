@@ -28,7 +28,8 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
           options: {
             scrollable: false,
             collapseOnNarrowViewport: true,
-            caption: 'List of services, which can be filtered and sorted'
+            caption: 'List of services, which can be filtered and sorted',
+            saveSortInUrl: true
           }
         },
         '.summary-figure': {

@@ -13,7 +13,8 @@ function (TableView, Modernizr, accessibility, $) {
       TableView.prototype.initialize.apply(this, arguments);
 
       this.options = _.extend({
-        scrollable: true
+        scrollable: true,
+        saveSortInUrl: false
       }, options || {});
 
       this.sortFields = _.cloneDeep(this.collection.options.axes.y);
@@ -30,7 +31,7 @@ function (TableView, Modernizr, accessibility, $) {
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
       this.listenTo(this.model, 'sort-changed-external', _.bind(function(data) {
         this.screenreaderAnnounceSortChange(data['sort-by'], data['sort-order']);
-        this.updateUrlWithSort();
+        this.options.saveSortInUrl && this.updateUrlWithSort();
       }, this));
 
     },
@@ -60,7 +61,7 @@ function (TableView, Modernizr, accessibility, $) {
         });
       }
       this.screenreaderAnnounceSortChange(sortBy, this.model.get('sort-order'));
-      this.updateUrlWithSort();
+      this.options.saveSortInUrl && this.updateUrlWithSort();
     },
 
     render: function () {
