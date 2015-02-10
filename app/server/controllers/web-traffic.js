@@ -11,23 +11,30 @@ var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
 var renderContent = function (req, res, client_instance) {
-  var contentDashboards = new DashboardCollection(client_instance.get('items')).filterDashboards(DashboardCollection.CONTENT),
-      collection = new DashboardCollection(contentDashboards);
+  var contentDashboards,
+    collection;
 
-  var departments = collection.getDepartments();
-  var agencies = collection.getAgencies();
+  contentDashboards = new DashboardCollection(client_instance.get('items'))
+    .filterDashboards(DashboardCollection.CONTENT);
+
+  _.each(contentDashboards, function (service) {
+    service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
+  });
+
+  collection = new DashboardCollection(contentDashboards, controller.axesOptions);
 
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
     title: 'Web traffic',
     'page-type': 'services',
     filter: sanitizer.escape(req.query.filter || ''),
-    departmentFilter: req.query.department || null,
-    departments: departments,
-    agencyFilter: req.query.agency || null,
-    agencies: agencies,
     data: contentDashboards,
     script: true,
-    noun: 'dashboard'
+    noun: 'service',
+    axesOptions: controller.axesOptions,
+    params: {
+      sortby: 'titleLink',
+      sortorder: 'ascending'
+    }
   }));
 
   var client_instance_status = client_instance.get('status'); 
@@ -49,7 +56,19 @@ var renderContent = function (req, res, client_instance) {
   res.send(view.html);
 };
 
-module.exports = function (req, res) {
+function controller (req, res) {
   var client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
+}
+
+controller.axesOptions = {
+  axes: {
+    x: {
+      key: 'titleLink',
+      label: 'Service name'
+    },
+    y: []
+  }
 };
+
+module.exports = controller;
