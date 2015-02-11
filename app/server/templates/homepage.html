@@ -1,7 +1,8 @@
 <div id='homepage-content'>
-  <div class="outdent-to-full-viewport-width performance-brand">
+  <div class="outdent-to-full-viewport-width brand-performance">
     <div class="outdent-to-full-viewport-width-inner hero-banner vertical-padding-medium">
       <h1 class="hero-banner-heading">Performance</h1>
+
       <div class="hero-banner-strapline">
         Performance data for government services
       </div>
@@ -10,6 +11,7 @@
 
   <div class="vertical-padding-medium grid-row" aria-labelledby="header-dashboard-counts">
     <h2 class="visuallyhidden" id="header-dashboard-counts">Dashboard counts</h2>
+
     <div class="column-third">
       <a class="impact-link" href="/performance/services">
         <span class="impact-link-figure"><%= serviceCount %></span> <span class="impact-link-label">service stage dashboards</span>
@@ -17,7 +19,8 @@
     </div>
     <div class="column-third">
       <a class="impact-link" href="/performance/web-traffic">
-        <span class="impact-link-figure"><%= webTrafficCount %></span> <span class="impact-link-label">departments' web traffic</span>
+        <span class="impact-link-figure"><%= webTrafficCount %></span> <span
+              class="impact-link-label">departments' web traffic</span>
       </a>
     </div>
     <div class="column-third">
@@ -27,16 +30,55 @@
     </div>
   </div>
 
+  <div class="homepage-showcase" aria-labelledby="selected-dashboards">
+    <h2 class="visuallyhidden" id="selected-dashboards">Selected dashboards</h2>
+    <% _.each(showcaseServices, function (service, index) { %>
+    <div class="brand-<%= service.deptCode %> brand-interactive outdent-to-full-width vertical-spacing-small grid-row">
+      <div class="column-third">
+        <h3 class="heading-2"><a class="link-unstyled" href="/performance/<%= service.slug %>"><%= service.title %></a></h3>
+      </div>
+      <div class="column-third">
+        <div class="homepage-showcase-item">
+          <a class="link-unstyled" href="/performance/<%= service.slug %>#cost-per-transaction">
+            <span class="homepage-showcase-figure"><%= service.cost_per_transaction %></span> per transaction
+          </a>
+        </div>
+        <div class="homepage-showcase-item">
+          <a class="link-unstyled" href="/performance/<%= service.slug %>#digital_takeup">
+            <span class="homepage-showcase-figure"><%= service.digital_takeup %></span> use the digital service
+          </a>
+        </div>
+      </div>
+      <div class="column-third">
+        <div class="homepage-showcase-item">
+          <a class="link-unstyled" href="/performance/<%= service.slug %>#user-satisfaction-score">
+            <span class="homepage-showcase-figure"><%= service.user_satisfaction_score %></span> users satisfied
+          </a>
+        </div>
+        <div class="homepage-showcase-item">
+          <a class="link-unstyled" href="/performance/<%= service.slug %>#completion-rate">
+            <span class="homepage-showcase-figure"><%= service.completion_rate %></span> complete successfully
+          </a>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
   <section class="service-listing" id="transactions-explorer">
     <h2>Transactions Explorer</h2>
+
     <div class="row">
       <div class="cols3">
         <p>An overview of all transaction-based services the government provides.</p>
-        <p><a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">View all services</a></p>
+
+        <p>
+          <a href="/performance/transactions-explorer/all-services/by-transactions-per-year/descending">View
+            all services</a></p>
       </div>
       <div class="cols3 add3">
         <a href='/performance/transactions-explorer/all-services/by-transactions-per-year/descending'>
-          <img alt="" src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>">
+          <img alt=""
+               src="<%= assetPath %>images/<%= assetDigest['homepage-transactions-explorer.png'] %>">
         </a>
       </div>
     </div>

@@ -48,12 +48,29 @@ section, aside, div, main {
   }
 }
 
+.text-small {
+  @include core-16;
+}
+
 // Links
 
 // External link style
 a[rel="external"] {
   @include external-link-default;
   @include external-link-19;
+}
+
+.link-unstyled {
+  text-decoration: none;
+  &:link,
+  &:visited,
+  &:hover {
+    color: inherit;
+  }
+}
+
+.link-large {
+  @include core-19;
 }
 
 @mixin remove-link-underlines() {

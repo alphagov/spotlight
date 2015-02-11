@@ -46,11 +46,29 @@
 }
 
 
+
 $vertical-unit: $gutter-half;
+
+
+.vertical-spacing-small {
+  margin-top: $vertical-unit;
+  margin-bottom: $vertical-unit;
+  padding-top: $vertical-unit;
+  padding-bottom: $vertical-unit;
+}
 
 .vertical-padding-medium {
   padding-top: $vertical-unit * 2;
   padding-bottom: $vertical-unit * 2;
+}
+
+.vertical-margin-small {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.outdent-to-full-width {
+  @extend %outdent-to-full-width;
 }
 
 .outdent-to-full-viewport-width {

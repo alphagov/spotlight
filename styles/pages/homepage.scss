@@ -1,3 +1,19 @@
+.homepage {
+  overflow-x: hidden;
+}
 .homepage #global-header-bar {
   display: none;
+}
+
+.homepage-showcase-item {
+  @include bold-19;
+  margin-bottom: 5px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.homepage-showcase-figure {
+  @include bold-24;
+  display: inline-block;
 }
