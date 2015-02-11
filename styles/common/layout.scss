@@ -44,3 +44,29 @@
 .performance-hidden {
   display:none;
 }
+
+
+$vertical-unit: $gutter-half;
+
+.vertical-padding-medium {
+  padding-top: $vertical-unit * 2;
+  padding-bottom: $vertical-unit * 2;
+}
+
+.outdent-to-full-viewport-width {
+  @extend %outdent-to-full-width;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  @media (min-width: 1024px) {
+    margin-left: -50%;
+    margin-right: -50%;
+  }
+}
+
+.outdent-to-full-viewport-width-inner {
+  max-width: $site-width;
+
+  @media (min-width: 1024px){
+    margin: 0 auto;
+  }
+}
