@@ -2,7 +2,10 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
-var View = require('../views/services');
+var ServicesView = require('../views/services');
+var HomepageView = require('../views/homepage');
+var View;
+
 var ErrorView = require('../views/error');
 
 var ServicesCollection = requirejs('common/collections/services');
@@ -21,8 +24,11 @@ var dataSource = {
 
 var renderContent = function (req, res, client_instance) {
 
-  var services = new ServicesCollection(client_instance.get('items')).filterDashboards(ServicesCollection.SERVICES),
+  var servicesCollection = new ServicesCollection(client_instance.get('items')),
+    services = servicesCollection.filterDashboards(ServicesCollection.SERVICES),
+    contentDashboards = servicesCollection.filterDashboards(ServicesCollection.CONTENT),
     collection;
+
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
@@ -52,10 +58,12 @@ var renderContent = function (req, res, client_instance) {
 
     var client_instance_status = client_instance.get('status');
     var view;
+
     if (client_instance_status === 200) {
       view = new View({
         model: model,
-        collection: collection
+        collection: collection,
+        contentDashboards: contentDashboards
       });
     } else {
       view = new ErrorView({
@@ -112,8 +120,10 @@ function addServiceDataToCollection (services, serviceData) {
   return services;
 }
 
-function servicesController (req, res) {
-  var client_instance = get_dashboard_and_render(req, res, renderContent);
+function servicesController (type, req, res) {
+  var client_instance;
+  View = (type === 'services') ? ServicesView : HomepageView;
+  client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
 }
 
