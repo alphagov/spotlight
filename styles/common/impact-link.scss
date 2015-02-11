@@ -1,0 +1,22 @@
+.impact-link {
+
+  @include bold-24;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+
+  .impact-link-figure {
+    @include bold-60;
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  .impact-link-label {
+    display: inline-block;
+    padding-left: 10px;
+    vertical-align: text-top;
+    white-space: normal;
+    width: 60%;
+  }
+
+}

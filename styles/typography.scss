@@ -87,3 +87,17 @@ a[rel="external"] {
     }
   }
 }
+
+
+//TODO - move to frontend toolkit?
+
+@mixin core-60($line-height: (60 / 60), $line-height-640: (45 / 40), $tabular-numbers: false, $font-weight: 400) {
+  $font-size: 60px;
+  $font-size-640: 40px;
+  $font-size-print: 24pt;
+  @include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
+}
+
+@mixin bold-60($line-height: (60 / 60), $line-height-640: (45 / 40), $tabular-numbers: false) {
+  @include core-60($line-height, $line-height-640, $tabular-numbers: $tabular-numbers, $font-weight: 700);
+}
