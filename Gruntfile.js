@@ -289,8 +289,7 @@ module.exports = function (grunt) {
       options: {
         port: 4444
       },
-      nightwatch: {
-      }
+      nightwatch: {}
     }
   });
 
@@ -377,6 +376,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:functional', [
     'phantom',
+    'nightwatch'
+  ]);
+
+  grunt.registerTask('test:functional:selenium', [
     'nightwatch'
   ]);
 
