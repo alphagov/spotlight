@@ -14,6 +14,10 @@ module.exports = BaseView.extend({
     return [];
   },
 
+  getBodyClasses: function() {
+    return 'homepage';
+  },
+
   getContent: function () {
 
     // the GOV.UK content dashboard should be removed from the list

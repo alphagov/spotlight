@@ -13,4 +13,8 @@ describe('Homepage', function () {
     expect(view instanceof BaseView).toBe(true);
   });
 
+  it('sets body class', function () {
+    expect(view.getBodyClasses()).toBe('homepage');
+  });
+
 });
