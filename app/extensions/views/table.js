@@ -75,7 +75,11 @@ function (View, Formatters) {
         } else {
           sortUrlParam = 'ascending';
         }
-        cls = (sortBy === key) ? sortOrder + ' sort-column' : '';
+        cls = (sortBy === key) ? sortOrder + ' sort-column ' : '';
+
+        if (column.format) {
+          cls += _.isString(column.format) ? column.format : column.format.type;
+        }
         return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '#filtered-list" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
       }, this).join('\n');
 
