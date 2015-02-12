@@ -32,9 +32,23 @@ var renderContent = function (req, res, client_instance) {
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
+    var showcaseServiceSlugs = ['prison-visits', 'tax-disc', 'carers-allowance', 'register-to-vote'],
+      showcaseServices = [];
     services = formatCollectionData(services);
     services = addServiceDataToCollection(services,  transactions.toJSON());
     collection = new ServicesCollection(services, servicesController.serviceAxes);
+
+    _.each(showcaseServiceSlugs, function (slug) {
+      showcaseServices.push(_.findWhere(services, function(service) {
+        if (slug === service.slug) {
+          service.deptCode = (service.department && service.department.abbr &&
+            service.department.abbr.toLowerCase()) || '';
+          return true;
+        } else {
+          return false;
+        }
+      }));
+    });
 
     var departments = collection.getDepartments();
     var agencies = collection.getAgencies();
@@ -63,7 +77,8 @@ var renderContent = function (req, res, client_instance) {
       view = new View({
         model: model,
         collection: collection,
-        contentDashboards: contentDashboards
+        contentDashboards: contentDashboards,
+        showcaseServices: showcaseServices
       });
     } else {
       view = new ErrorView({
