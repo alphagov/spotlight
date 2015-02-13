@@ -1,8 +1,10 @@
 var path = require('path');
-
+var requirejs = require('requirejs');
 var templatePath = path.resolve(__dirname, '../templates/homepage.html');
 
+var Backbone = require('backbone');
 var BaseView = require('./govuk');
+var TableView = requirejs('extensions/views/table');
 
 module.exports = BaseView.extend({
 
@@ -14,13 +16,13 @@ module.exports = BaseView.extend({
     return [];
   },
 
-  getBodyClasses: function() {
+  getBodyClasses: function () {
     return 'homepage';
   },
 
-  formatKpis: function(services) {
+  formatKpis: function (services) {
     _.each(services, function (service) {
-      _.each(this.collection.options.axes.y, function(kpi) {
+      _.each(this.collection.options.axes.y, function (kpi) {
         if (service[kpi.key] === null) {
           service[kpi.key] = '?';
         }
@@ -29,13 +31,48 @@ module.exports = BaseView.extend({
     }, this);
   },
 
+  renderServicesTable: function(sortField) {
+    var table,
+      optionsCopy,
+      caption;
+
+    optionsCopy = _.cloneDeep(this.collection.options);
+
+    optionsCopy.axes = {
+      x: optionsCopy.axes.x,
+      y: _.where(optionsCopy.axes.y, function(kpi) {
+        return (kpi.key === sortField);
+      })
+    };
+    caption = optionsCopy.axes.y[0].label;
+    
+    table = new TableView({
+      model: new Backbone.Model({
+        params: {
+          sortby:  sortField,
+          sortorder:  'descending'
+        }
+      }),
+      collection: new this.collection.constructor(this.collection.toJSON(), optionsCopy),
+      caption: 'The 5 top performing services, by ' + caption,
+      rowLimit: 5,
+      hideHeader: true
+    });
+    table.render();
+    return table.$el.html();
+  },
+
   getContent: function () {
     this.formatKpis(this.showcaseServices);
     return this.loadTemplate(templatePath, _.extend({
       services: this.collection,
       serviceCount: this.collection.length,
       webTrafficCount: this.contentDashboards.length,
-      showcaseServices: this.showcaseServices
+      showcaseServices: this.showcaseServices,
+      tableCost: this.renderServicesTable('cost_per_transaction'),
+      tableSatisfaction: this.renderServicesTable('user_satisfaction_score'),
+      tableCompletion: this.renderServicesTable('completion_rate'),
+      tableDigital: this.renderServicesTable('digital_takeup')
     }, this.model.toJSON()));
 
   }

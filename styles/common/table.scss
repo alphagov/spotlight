@@ -108,6 +108,10 @@ table tbody .sort-column {
   font-weight: bold;
 }
 
+.table-no-header .sort-column {
+  font-weight: normal;
+}
+
 .table-collapsible {
 
   th:first-child {

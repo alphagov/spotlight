@@ -64,6 +64,37 @@
     </div>
     <% }); %>
   </div>
+  <p><a class="link-large" href="/performance/services">See data on all <%= serviceCount %> transactional services</a></p>
+
+  <h2 class="visuallyhidden">Highest performing services</h2>
+  <div class="grid-row">
+    <div class="column-half" aria-labelledby="top-services-cost">
+      <h2 class="vertical-margin-small" id="top-services-cost">Cost per transaction</h2>
+      <p class="text-small">How much do government services cost the taxpayer per user?</p>
+      <%= tableCost %>
+      <p><a class="text-small" href="/performance/services?sortby=cost_per_transaction&sortorder=descending#filtered-list">See all</a></p>
+    </div>
+    <div class="column-half" aria-labelledby="top-services-satisfaction">
+      <h2 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h2>
+      <p class="text-small">How satisfied are the people who use government services?</p>
+      <%= tableSatisfaction %>
+      <p><a class="text-small" href="/performance/services?sortby=user_satisfaction_score&sortorder=descending#filtered-list">See all</a></p>
+    </div>
+  </div>
+  <div class="grid-row">
+    <div class="column-half" aria-labelledby="top-services-completion">
+      <h2 class="vertical-margin-small" id="top-services-completion">Completion rate</h2>
+      <p class="text-small">How many people manage to use government services successfully?</p>
+      <%= tableCompletion %>
+      <p><a class="text-small" href="/performance/services?sortby=completion_rate&sortorder=descending#filtered-list">See all</a></p>
+    </div>
+    <div class="column-half" aria-labelledby="top-services-takeup">
+      <h2 class="vertical-margin-small" id="top-services-takeup">Digital take-up</h2>
+      <p class="text-small">How many people use government digital services?</p>
+      <%= tableDigital %>
+      <p><a class="text-small" href="/performance/services?sortby=digital_takeup&sortorder=descending#filtered-list">See all</a></p>
+    </div>
+  </div>
   <section class="service-listing" id="transactions-explorer">
     <h2>Transactions Explorer</h2>
 
