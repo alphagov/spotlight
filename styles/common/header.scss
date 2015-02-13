@@ -51,23 +51,14 @@
   }
 
   #unpublished-warning {
-    border-top: none;
+    @extend %grid-row;
     border-left: 10px solid $mellow-red;
     color: $mellow-red;
-    min-height: 5em;
     padding: 0 0 0 1em;
-
-    h2 {
-      @include bold-36;
-    }
 
     p {
       @include bold-24;
-
-      @include media(desktop) {
-        margin-bottom: 0;
-        width: 66%;
-      }
+      @include grid-column( 2/3 );
     }
   }
 }
