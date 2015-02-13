@@ -62,6 +62,10 @@ $vertical-unit: $gutter-half;
   padding-bottom: $vertical-unit * 2;
 }
 
+.vertical-margin-top-small {
+  margin-top: $vertical-unit;
+}
+
 .vertical-margin-small {
   margin-top: 0;
   margin-bottom: 5px;

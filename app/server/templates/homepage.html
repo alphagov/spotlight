@@ -64,17 +64,19 @@
     </div>
     <% }); %>
   </div>
-  <p><a class="link-large" href="/performance/services">See data on all <%= serviceCount %> transactional services</a></p>
+  <div class="vertical-spacing-small"><a class="link-large" href="/performance/services">See data on all <%= serviceCount %> transactional services</a></div>
 
   <h2 class="visuallyhidden">Highest performing services</h2>
   <div class="grid-row">
-    <div class="column-half" aria-labelledby="top-services-cost">
+    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-cost">
+      <div class="icon-cost-per-transaction"></div>
       <h2 class="vertical-margin-small" id="top-services-cost">Cost per transaction</h2>
       <p class="text-small">How much do government services cost the taxpayer per user?</p>
       <%= tableCost %>
       <p><a class="text-small" href="/performance/services?sortby=cost_per_transaction&sortorder=descending#filtered-list">See all</a></p>
     </div>
-    <div class="column-half" aria-labelledby="top-services-satisfaction">
+    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-satisfaction">
+      <div class="icon-user-satisfaction"></div>
       <h2 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h2>
       <p class="text-small">How satisfied are the people who use government services?</p>
       <%= tableSatisfaction %>
@@ -82,13 +84,15 @@
     </div>
   </div>
   <div class="grid-row">
-    <div class="column-half" aria-labelledby="top-services-completion">
+    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-completion">
+      <div class="icon-completion-rate"></div>
       <h2 class="vertical-margin-small" id="top-services-completion">Completion rate</h2>
       <p class="text-small">How many people manage to use government services successfully?</p>
       <%= tableCompletion %>
       <p><a class="text-small" href="/performance/services?sortby=completion_rate&sortorder=descending#filtered-list">See all</a></p>
     </div>
-    <div class="column-half" aria-labelledby="top-services-takeup">
+    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-takeup">
+      <div class="icon-digital-takeup"></div>
       <h2 class="vertical-margin-small" id="top-services-takeup">Digital take-up</h2>
       <p class="text-small">How many people use government digital services?</p>
       <%= tableDigital %>
