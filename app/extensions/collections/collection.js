@@ -304,9 +304,16 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       };
     },
 
-    getTableRows: function (keys) {
+    /**
+     *
+     * @param keys
+     * @param {integer} [rowLimit] - if not supplied, all rows will be processed
+     * @returns {*}
+     */
+    getTableRows: function (keys, rowLimit) {
+      var models = rowLimit ? this.first(rowLimit) : this.models;
       this.applyProcessors(keys);
-      return this.map(function (model) {
+      return models.map(function (model) {
         return _.map(keys, function (key) {
           var value;
           if (_.isArray(key)) {
