@@ -232,14 +232,14 @@ function (Table, View, Collection, Backbone, $) {
         table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
-          .toEqual('?sortby=timestamp&sortorder=descending#filtered-list');
+          .toEqual('?sortby=timestamp&sortorder=descending');
       });
 
       it('add a link to the default column to sort by ascending', function() {
         table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th.descending a').attr('href'))
-          .toEqual('?sortby=number_of_transactions&sortorder=ascending#filtered-list');
+          .toEqual('?sortby=number_of_transactions&sortorder=ascending');
       });
 
       it('adds a link to sort by ascending to the default column if it changes', function() {
@@ -247,7 +247,7 @@ function (Table, View, Collection, Backbone, $) {
         table.model.set('sort-by', 'timestamp');
         table.render();
         expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
-          .toEqual('?sortby=timestamp&sortorder=ascending#filtered-list');
+          .toEqual('?sortby=timestamp&sortorder=ascending');
       });
 
       it('marks each cell in the sorted column', function() {

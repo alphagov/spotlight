@@ -81,7 +81,7 @@ function (View, Formatters) {
         if (column.format) {
           cls += _.isString(column.format) ? column.format : column.format.type;
         }
-        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '#filtered-list" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
+        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
       }, this).join('\n');
       headCls = (this.options.hideHeader) ? 'visuallyhidden' : '';
       return '<thead class="' + headCls + '"><tr>' + head + '</tr></thead>';

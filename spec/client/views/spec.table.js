@@ -131,16 +131,16 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       });
 
       function dateColumn() {
-        return table.$table.find('thead th:first');
+        return table.$('thead th:first');
       }
 
       function valueColumn() {
-        return table.$table.find('thead th:last');
+        return table.$('thead th:last');
       }
 
       it('adds a class of desc if the col isnt sorted', function () {
-        expect(dateColumn().attr('class')).toEqual('');
-        expect(valueColumn().attr('class')).toEqual('');
+        expect(dateColumn().attr('class')).toEqual(undefined);
+        expect(valueColumn().attr('class')).toEqual(undefined);
 
         dateColumn().find('a').click();
 
@@ -149,8 +149,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       });
 
       it('adds a class of ascending if the col already descending', function () {
-        expect(dateColumn().attr('class')).toEqual('');
-        expect(valueColumn().attr('class')).toEqual('');
+        expect(dateColumn().attr('class')).toEqual(undefined);
+        expect(valueColumn().attr('class')).toEqual(undefined);
 
         dateColumn().find('a').click();
         dateColumn().find('a').click();
@@ -185,7 +185,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       });
 
       it('stores the sort column and order in the browser address if option set', function() {
-        var sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$('thead th:last');
         spyOn(Table.prototype, 'replaceUrlParams');
         sortByValue.find('a').click();
         expect(Table.prototype.replaceUrlParams.calls[0].args[0]).toEqual('sortby=value&sortorder=descending');
@@ -193,7 +193,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
       it('doesnt store the sort column and order in the browser address if option not set',
         function() {
-        var sortByValue = table.$table.find('thead th:last');
+        var sortByValue = table.$('thead th:last');
         table.options.saveSortInUrl = false;
         spyOn(Table.prototype, 'replaceUrlParams');
         sortByValue.find('a').click();
@@ -247,6 +247,10 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
 
         var $table = $('<table>' + tableHeader + tableBody + '</table>');
         table.$el.append($table);
+        table.collection.push({
+          '_timestamp': '2014-07-03T13:19:04+00:00',
+          value: 'row 2'
+        });
         table.render();
 
         expect($table.attr('class')).toContain('floated-header');
