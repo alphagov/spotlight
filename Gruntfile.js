@@ -306,7 +306,8 @@ module.exports = function (grunt) {
     'grunt-contrib-watch',
     'grunt-shell',
     'grunt-concurrent',
-    'grunt-phantom'
+    'grunt-phantom',
+    'grunt-selenium-webdriver'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -376,11 +377,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:functional', [
     'phantom',
-    'nightwatch'
+    'shell:nightwatch'
   ]);
 
   grunt.registerTask('test:functional:selenium', [
-    'nightwatch'
+    'selenium_start',
+    'shell:nightwatch',
+    'selenium_stop'
   ]);
 
   grunt.registerTask('cheapseats:unpublished', [
