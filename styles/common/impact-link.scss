@@ -1,19 +1,25 @@
 .impact-link {
-
-  @include bold-24;
+  @include bold-19;
   text-decoration: none;
   display: block;
   white-space: nowrap;
 
+  @include media(desktop) {
+    @include bold-24;
+  }
+
   .impact-link-figure {
-    @include bold-60;
+    @include bold-48;
     display: inline-block;
     vertical-align: text-bottom;
+    @include media(desktop) {
+      @include bold-60;
+    }
   }
 
   .impact-link-label {
     display: inline-block;
-    padding-left: 10px;
+    padding-left: 0.5em;
     vertical-align: text-top;
     white-space: normal;
     width: 60%;
