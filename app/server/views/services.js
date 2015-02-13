@@ -12,6 +12,7 @@ module.exports = BaseView.extend({
   example: 'Driving licences',
 
   initialize: function () {
+    this.contentTemplate = contentTemplate;
     this.filterCollection = new this.collection.constructor(this.collection.models, this.collection.options);
     this.updateCollectionFilter();
   },
@@ -37,7 +38,12 @@ module.exports = BaseView.extend({
   },
 
   formatAggregateValues: function () {
-    var aggVals = this.filterCollection.getAggregateValues();
+    var aggVals;
+    if (!this.filterCollection.getAggregateValues) {
+      return;
+    }
+
+    aggVals = this.filterCollection.getAggregateValues();
 
     _.each(aggVals, function (kpi) {
       if (kpi.weighted_average) {
@@ -62,7 +68,7 @@ module.exports = BaseView.extend({
 
     table.render();
 
-    return this.loadTemplate(contentTemplate, _.extend({
+    return this.loadTemplate(this.contentTemplate, _.extend({
       table: table.$el.html(),
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
