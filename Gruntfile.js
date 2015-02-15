@@ -263,6 +263,9 @@ module.exports = function (grunt) {
           }
         },
         command: './node_modules/supervisor/lib/cli-wrapper.js -w app -i app/vendor -e "js|html" -n error app/server'
+      },
+      functional_spotlight: {
+        command: 'node ./tests/tools/server_and_test.js'
       }
     },
     // Runs development tasks concurrently
@@ -373,6 +376,11 @@ module.exports = function (grunt) {
 
   grunt.registerTask('nightwatch', [
     'shell:nightwatch'
+  ]);
+
+  grunt.registerTask('test:functional:ci', [
+    'phantom',
+    'shell:functional_spotlight'
   ]);
 
   grunt.registerTask('test:functional', [

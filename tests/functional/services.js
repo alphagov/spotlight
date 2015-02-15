@@ -2,7 +2,7 @@ module.exports = {
 
   beforeEach: function (client) {
     client
-      .url('http://www.gov.uk/performance/services')
+      .url('http://localhost:3057/performance/services')
       .waitForElementVisible('body', 1000);
   },
 
