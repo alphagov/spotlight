@@ -17,7 +17,8 @@ function (TableView, Modernizr, accessibility, $) {
         saveSortInUrl: false
       }, options || {});
 
-      this.sortFields = _.cloneDeep(this.collection.options.axes.y);
+      this.sortFields = this.collection.options.axes.y ?
+        _.cloneDeep(this.collection.options.axes.y) : [];
       if (this.collection.options.axes.x) {
         this.sortFields.unshift(this.collection.options.axes.x);
       }
