@@ -4,6 +4,10 @@ var cp = require('child_process'),
 var serverProcess,
     exitcode = 1;
 
+function driver() {
+  return childProcess('./tests/tools/phantomjs', ['--webdriver', '4444', '--ssl-protocol', 'tlsv1'], 'running on port 4444');
+}
+
 function nightwatch() {
   return childProcess('nightwatch', []);
 }
@@ -12,13 +16,19 @@ function grunt() {
   return childProcess('grunt', ['build:development']);
 }
 
-function childProcess(bin, args) {
+function childProcess(bin, args, search) {
   var promise = Q.defer();
   var child = cp.spawn(bin, args, {
     cwd: './'
   });
   child.stdout.on('data', function (data) {
     process.stdout.write(data);
+
+    if (search) {
+      if (data.toString().match(search)) {
+        promise.resolve();
+      }
+    }
   });
   child.stderr.on('data', function (data) {
     process.stdout.write(data);
@@ -74,6 +84,7 @@ function kill() {
 
 
 grunt()
+  .then(driver)
   .then(server)
   .then(nightwatch)
   .then(function () {

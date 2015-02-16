@@ -379,7 +379,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test:functional:ci', [
-    'phantom',
     'shell:functional_spotlight'
   ]);
 
