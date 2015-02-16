@@ -4,7 +4,6 @@ var sanitizer = require('sanitizer');
 
 var ServicesView = require('../views/services');
 var HomepageView = require('../views/homepage');
-var View;
 
 var ErrorView = require('../views/error');
 
@@ -61,7 +60,7 @@ var renderContent = function (req, res, client_instance) {
       departments: departments,
       agencies: agencies,
       data: services,
-      script: true,
+      script: (servicesController.type === 'services') ? true : false,
       noun: 'service',
       axesOptions: servicesController.serviceAxes,
       params: _.extend({
@@ -72,7 +71,7 @@ var renderContent = function (req, res, client_instance) {
 
     var client_instance_status = client_instance.get('status');
     var view;
-
+    var View = (servicesController.type === 'services') ? ServicesView : HomepageView;
     if (client_instance_status === 200) {
       view = new View({
         model: model,
@@ -137,7 +136,7 @@ function addServiceDataToCollection (services, serviceData) {
 
 function servicesController (type, req, res) {
   var client_instance;
-  View = (type === 'services') ? ServicesView : HomepageView;
+  servicesController.type = type;
   client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
 }
