@@ -2,7 +2,9 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var sanitizer = require('sanitizer');
 
-var View = require('../views/services');
+var ServicesView = require('../views/services');
+var HomepageView = require('../views/homepage');
+
 var ErrorView = require('../views/error');
 
 var ServicesCollection = requirejs('common/collections/services');
@@ -21,14 +23,31 @@ var dataSource = {
 
 var renderContent = function (req, res, client_instance) {
 
-  var services = new ServicesCollection(client_instance.get('items')).filterDashboards(ServicesCollection.SERVICES),
+  var servicesCollection = new ServicesCollection(client_instance.get('items')),
+    services = servicesCollection.filterDashboards(ServicesCollection.SERVICES),
+    contentDashboards = servicesCollection.filterDashboards(ServicesCollection.CONTENT),
     collection;
+
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
+    var showcaseServiceSlugs = ['pay-register-birth-abroad', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'],
+      showcaseServices = [];
     services = formatCollectionData(services);
     services = addServiceDataToCollection(services,  transactions.toJSON());
     collection = new ServicesCollection(services, servicesController.serviceAxes);
+
+    _.each(showcaseServiceSlugs, function (slug) {
+      showcaseServices.push(_.findWhere(services, function(service) {
+        if (slug === service.slug) {
+          service.deptCode = (service.department && service.department.abbr &&
+            service.department.abbr.toLowerCase()) || '';
+          return true;
+        } else {
+          return false;
+        }
+      }));
+    });
 
     var departments = collection.getDepartments();
     var agencies = collection.getAgencies();
@@ -41,7 +60,7 @@ var renderContent = function (req, res, client_instance) {
       departments: departments,
       agencies: agencies,
       data: services,
-      script: true,
+      script: (servicesController.type === 'services') ? true : false,
       noun: 'service',
       axesOptions: servicesController.serviceAxes,
       params: _.extend({
@@ -52,10 +71,13 @@ var renderContent = function (req, res, client_instance) {
 
     var client_instance_status = client_instance.get('status');
     var view;
+    var View = (servicesController.type === 'services') ? ServicesView : HomepageView;
     if (client_instance_status === 200) {
       view = new View({
         model: model,
-        collection: collection
+        collection: collection,
+        contentDashboards: contentDashboards,
+        showcaseServices: showcaseServices
       });
     } else {
       view = new ErrorView({
@@ -112,8 +134,10 @@ function addServiceDataToCollection (services, serviceData) {
   return services;
 }
 
-function servicesController (req, res) {
-  var client_instance = get_dashboard_and_render(req, res, renderContent);
+function servicesController (type, req, res) {
+  var client_instance;
+  servicesController.type = type;
+  client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
 }
 

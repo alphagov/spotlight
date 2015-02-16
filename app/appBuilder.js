@@ -95,11 +95,11 @@ module.exports = {
 
     app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
 
-    app.get('/performance', require('./server/controllers/homepage'));
+    app.get('/performance', _.bind(require('./server/controllers/services'), this, 'home'));
 
     app.get('/performance/about', require('./server/controllers/about'));
 
-    app.get('/performance/services', require('./server/controllers/services'));
+    app.get('/performance/services', _.bind(require('./server/controllers/services'), this, 'services'));
 
     app.get('/performance/web-traffic', require('./server/controllers/web-traffic'));
 

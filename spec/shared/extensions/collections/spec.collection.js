@@ -498,6 +498,11 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
         expect(collection.getTableRows([['a', 'c'], 'b']))
           .toEqual([[[1, 'foo'], 2], [[3, 'bar'], 4]]);
       });
+
+      it('limits the result set', function () {
+        var expected = [[1, 2]];
+        expect(collection.getTableRows(['a', 'b'], 1)).toEqual(expected);
+      });
     });
 
     describe('processors', function () {

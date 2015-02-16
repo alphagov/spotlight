@@ -69,13 +69,53 @@ function (TableView, Modernizr, accessibility, $) {
     },
 
     render: function () {
+      var bodyHtml;
 
-      TableView.prototype.render.apply(this, arguments);
+      /* Could have just called render on the superclass to re-render the whole table including
+      headings. The reason it's better just to re-render the body and update the classes on the
+      header row, is keyboard focus remains on the selected column header link === better accessibility
+       */
+      this.$('tbody').remove();
+      bodyHtml = TableView.prototype.renderBody.apply(this);
+      this.$('table').append(bodyHtml);
+
+      this.updateSortHeadings();
 
       if (Modernizr.touch) {
         this.$('table').addClass('touch-table');
       }
       this.adjustCellWidths();
+
+    },
+
+    updateSortHeadings: function () {
+      var sortBy = this.model.get('sort-by'),
+        sortOrder = this.model.get('sort-order'),
+        $sortedCells,
+        classDesc = 'descending',
+        classAsc = 'ascending';
+
+      if (sortBy) {
+        var ths = this.$('thead th'),
+          $allCells = this.$('th,td'),
+          th = this.$('thead th[data-key="' + sortBy + '"]');
+
+        ths.removeClass(classAsc);
+        ths.removeClass(classDesc);
+        ths.removeAttr('aria-sort');
+
+        if (sortOrder === 'descending') {
+          th.addClass(classDesc);
+          th.attr('aria-sort', 'descending');
+        } else {
+          th.addClass(classAsc);
+          th.attr('aria-sort', 'ascending');
+        }
+
+        $allCells.removeClass('sort-column');
+        $sortedCells = this.$('[data-key="' + this.model.get('sort-by') + '"]');
+        $sortedCells.addClass('sort-column');
+      }
 
     },
 

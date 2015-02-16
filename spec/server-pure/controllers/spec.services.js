@@ -76,7 +76,7 @@ describe('Services Controller', function () {
   });
 
   it('creates a model containing config and page settings', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
@@ -85,14 +85,14 @@ describe('Services Controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
+    controller('services', _.extend({ query: { filter: 'foo' } }, fake_app), res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: 'foo'}));
   });
 
   it('passes department filter to model if set', function () {
-    controller(_.extend({ query: { department: 'home-office' } }, fake_app), res);
+    controller('services', _.extend({ query: { department: 'home-office' } }, fake_app), res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       departmentFilter: 'home-office'
@@ -100,7 +100,7 @@ describe('Services Controller', function () {
   });
 
   it('sanitizes user input before rendering it', function () {
-    controller(_.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
+    controller('services', _.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: '&lt;script&gt;alert(1)&lt;/script&gt;'
@@ -108,7 +108,7 @@ describe('Services Controller', function () {
   });
 
   it('creates a collection', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
@@ -116,7 +116,7 @@ describe('Services Controller', function () {
   it('adds KPIs to each service model', function () {
     var services,
       service;
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
     service = _.findWhere(services, {
@@ -132,28 +132,28 @@ describe('Services Controller', function () {
   });
 
   it('creates a services view', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
-    expect(ServicesView.prototype.initialize).toHaveBeenCalledWith({
+    expect(ServicesView.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       model: jasmine.any(Backbone.Model),
       collection: jasmine.any(Backbone.Collection)
-    });
+    }));
   });
 
   it('renders the services view', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     expect(ServicesView.prototype.render).toHaveBeenCalled();
   });
 
   it('sends the services view html', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     expect(res.send).toHaveBeenCalledWith('html string');
   });
 
   it('has an explicit caching policy', function () {
-    controller(req, res);
+    controller('services', req, res);
     client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });

@@ -1,4 +1,3 @@
-$govuk-page-width: 960px;
 
 #wrapper {
   border-bottom: 10px solid $govuk-blue;
@@ -44,4 +43,52 @@ $govuk-page-width: 960px;
 
 .performance-hidden {
   display:none;
+}
+
+
+
+$vertical-unit: $gutter-half;
+
+
+.vertical-spacing-small {
+  margin-top: $vertical-unit;
+  margin-bottom: $vertical-unit;
+  padding-top: $vertical-unit;
+  padding-bottom: $vertical-unit;
+}
+
+.vertical-padding-medium {
+  padding-top: $vertical-unit * 2;
+  padding-bottom: $vertical-unit * 2;
+}
+
+.vertical-margin-top-small {
+  margin-top: $vertical-unit;
+}
+
+.vertical-margin-small {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.outdent-to-full-width {
+  @extend %outdent-to-full-width;
+}
+
+.outdent-to-full-viewport-width {
+  @extend %outdent-to-full-width;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  @media (min-width: 1024px) {
+    margin-left: -50%;
+    margin-right: -50%;
+  }
+}
+
+.outdent-to-full-viewport-width-inner {
+  max-width: $site-width;
+
+  @media (min-width: 1024px){
+    margin: 0 auto;
+  }
 }

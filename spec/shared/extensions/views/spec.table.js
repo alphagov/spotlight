@@ -54,11 +54,15 @@ function (Table, View, Collection, Backbone, $) {
     });
 
     describe('render', function () {
-      var table;
+      var table,
+        tableOptions;
 
       beforeEach(function () {
         spyOn(Table.prototype, 'prepareTable').andCallThrough();
-        var Collection = Backbone.Collection.extend({
+        var collection,
+          Collection;
+
+        Collection = Backbone.Collection.extend({
           on: jasmine.createSpy(),
           options: {
             axes: {
@@ -77,21 +81,23 @@ function (Table, View, Collection, Backbone, $) {
           sortByAttr: function () {},
           getPeriod: function () { return 'week'; }
         });
-        table = new Table({
+        collection = new Collection([]);
+        tableOptions = {
           model: new Backbone.Model({
             'sort-by': 'number_of_transactions',
             'sort-order': 'descending'
           }),
-          collection: new Collection([]),
+          collection: collection,
           valueAttr: 'value'
-        });
-        spyOn(table.collection, 'getTableRows').andReturn([
+        };
+        spyOn(collection, 'getTableRows').andReturn([
           ['01/02/01', 'foo', 10, null],
           ['04/03/12', 'bar', 5, null]
         ]);
       });
 
       it('renders no data if there are no rows', function () {
+        table = new Table(tableOptions);
         table.collection.getTableRows.andReturn([]);
         table.render();
 
@@ -101,6 +107,7 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('empties the table if $table exists and removes class', function () {
+        table = new Table(tableOptions);
         spyOn(table, 'renderHead');
         spyOn(table, 'renderBody');
         table.$table = $('<table><tbody><tr><td>test table value</td></tr></tbody></table>');
@@ -113,28 +120,40 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('calls prepareTable if table property is not set', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(Table.prototype.prepareTable).toHaveBeenCalled();
       });
 
+      it('hides the table header if config option set', function () {
+        tableOptions.hideHeader = true;
+        table = new Table(tableOptions);
+        table.render();
+        expect(table.$el.find('thead').hasClass('visuallyhidden')).toEqual(true);
+      });
+
       it('will render with "no data" when a row has null values', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('td').eq(3).text())
           .toEqual('');
       });
 
       it('will call collection.getTableRows with the column keys', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.collection.getTableRows)
-          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'number_of_transactions']);
+          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'number_of_transactions'] , undefined);
       });
 
       it('does not crash if no data is provided', function () {
+        table = new Table(tableOptions);
         table.collection.getTableRows.andReturn([[]]);
         expect(_.bind(table.render, table)).not.toThrow();
       });
 
       it('will append the timeshift duration to the column header', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$el.find('thead th').eq(2).text())
           .toEqual('onemore (52 weeks ago) Click to sort');
@@ -142,6 +161,7 @@ function (Table, View, Collection, Backbone, $) {
 
       describe('getColumns', function () {
         it('returns an array of consolidated axes data', function () {
+          table = new Table(tableOptions);
           expect(table.getColumns()).toEqual([
               { key: 'timestamp', label: 'date' },
               { key: 'value', label: 'another' },
@@ -152,6 +172,7 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('formats cell content if a formatter is defined', function () {
+        table = new Table(tableOptions);
         spyOn(table, 'format').andReturn('10%');
         table.collection.options.axes.y[1].format = 'percent';
         table.render();
@@ -161,6 +182,7 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('it adds a class if a formatter is defined', function () {
+        table = new Table(tableOptions);
         spyOn(table, 'format').andReturn('10');
         table.collection.options.axes.y[1].format = 'integer';
         table.render();
@@ -170,12 +192,14 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('it doesnt add a class if no formatter', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).attr('class'))
           .toBeFalsy();
       });
 
       it('adds column keys as data attrs to header cells', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$('th:eq(0)').attr('data-key')).toEqual('timestamp');
         expect(table.$('th:eq(1)').attr('data-key')).toEqual('value');
@@ -184,12 +208,14 @@ function (Table, View, Collection, Backbone, $) {
       });
 
       it('adds first key as data attrs to header cell if key is an array', function () {
+        table = new Table(tableOptions);
         table.collection.options.axes.x.key = ['start', 'end'];
         table.render();
         expect(table.$('th:eq(0)').attr('data-key')).toEqual('start');
       });
 
       it('adds the row index as an attribute to the first cell in a row', function () {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$('tbody tr:eq(0) th:eq(0)').attr('data-title')).toEqual('1');
         expect(table.$('tbody tr:eq(1) th:eq(0)').attr('data-title')).toEqual('2');
@@ -197,31 +223,36 @@ function (Table, View, Collection, Backbone, $) {
 
       it('marks the "transactions per year" column as sorted (descending)' +
         ' if no sort is specified in the URL', function() {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th.descending').attr('data-key')).toEqual('number_of_transactions');
       });
 
       it('adds a link to non-default columns to sort by descending', function() {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
-          .toEqual('?sortby=timestamp&sortorder=descending#filtered-list');
+          .toEqual('?sortby=timestamp&sortorder=descending');
       });
 
       it('add a link to the default column to sort by ascending', function() {
+        table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th.descending a').attr('href'))
-          .toEqual('?sortby=number_of_transactions&sortorder=ascending#filtered-list');
+          .toEqual('?sortby=number_of_transactions&sortorder=ascending');
       });
 
       it('adds a link to sort by ascending to the default column if it changes', function() {
+        table = new Table(tableOptions);
         table.model.set('sort-by', 'timestamp');
         table.render();
         expect(table.$('thead th[data-key="timestamp"] a').attr('href'))
-          .toEqual('?sortby=timestamp&sortorder=ascending#filtered-list');
+          .toEqual('?sortby=timestamp&sortorder=ascending');
       });
 
       it('marks each cell in the sorted column', function() {
         var result = true;
+        table = new Table(tableOptions);
         table.render();
         table.$('[data-key="number_of_transactions"]').each(function() {
           if (!$(this).hasClass('sort-column')) {

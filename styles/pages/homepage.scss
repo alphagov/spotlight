@@ -1,129 +1,19 @@
-#homepage-content, #about-content {
-  @extend %contain-floats;
+.homepage {
+  overflow-x: hidden;
+}
+.homepage #global-header-bar {
+  display: none;
+}
 
-  section {
-    margin-top: 0;
-    margin-bottom: 2em;
-    padding-top: 0;
-    border-top: none;
-  }
-
-  > header {
-    margin-top: 1.5em;
-    padding-bottom: 0;
-    border: none;
-
-    section {
-      margin-bottom: 0;
-
-      @include media(desktop) {
-        float: left;
-        width: (600 / 960) * 100%;
-      }
-    }
-  }
-
-  > section {
-    h2 {
-      @include bold-24;
-      margin-bottom: 0.75em;
-
-      border-bottom: 5px solid $govuk-blue;
-    }
-
-    h3 {
-      @include bold-19;
-      margin-top: 1em;
-      &.underline {
-        border-bottom: 1px solid $grey-3;
-      }
-    }
-
-    p, dl, ul, ol {
-      @include core-19;
-    }
-
-    p {
-      margin: 0.2em 0 1em 0;
-    }
-  }
-
-  a strong {
-    @include bold-24;
-  }
-
-  article {
-    min-height: 0;
-  }
-
-  .service-listing {
-
-    h3 {
-      margin: 0 0 1em 0;
-    }
-
-    p.count {
-      @include bold-80($tabular-numbers: true) ;
-      margin:0;
-    }
-
-    dl, ol, ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    dt {
-      margin: 0;
-      padding: 0;
-
-      &.service_groups {
-        margin-top: 0.75em;
-        font-weight: bold;
-      }
-    }
-
-    dd {
-      margin: 0 0 0.75em 0;
-      padding: 0;
-    }
-
-    li {
-      border-top: 1px solid $grey-3;
-      padding:.3em 0;
-
-      &:first-child {
-        border-top: none;
-      }
-      &:last-child {
-        border-bottom: 1px solid $grey-3;
-      }
-    }
-
-  }
-
-  img {
-    display: block;
-    width: 100%;
+.homepage-showcase-item {
+  @include bold-19;
+  margin-bottom: 5px;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-@include media(desktop) {
-  #about-content {
-    section {
-      width: (712.5 / 960) * 100%;
-    }
-  }
-}
-
-#about-content {
-  & ol {
-    > li {
-      list-style-type: decimal;
-    }
-  }
-
-  & ul > li {
-    list-style: disc;
-  }
+.homepage-showcase-figure {
+  @include bold-24;
+  display: inline-block;
 }

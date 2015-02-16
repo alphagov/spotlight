@@ -6,14 +6,17 @@ $path: '/spotlight/stylesheets/';
 @import
   // govuk_frontend_toolkit
   '_colours',
-  '_conditionals',
-  '_css3',
   '_typography',
   'design-patterns/_buttons',
   'design-patterns/_alpha-beta',
   '_grid_layout',
 
+  //elements
+  'elements/layout',
+
+
   'colours',
+  'brands',
   'typography',
   'change',
   'common/responsive_content',
@@ -22,6 +25,7 @@ $path: '/spotlight/stylesheets/';
   'common/layout',
   'common/columns',
   'common/raw',
+  'common/icons',
 
   // Header
   'common/navigation',
@@ -41,6 +45,7 @@ $path: '/spotlight/stylesheets/';
   // Modules
   'common/graph',
   'common/impact_number',
+  'common/impact-link',
   'common/journey',
   'common/single-decker-graph',
   'common/double-decker-graph',
@@ -56,6 +61,7 @@ $path: '/spotlight/stylesheets/';
 
   // Components
   'common/date-picker',
+  'common/hero-banner',
 
   // Footer
   'common/dashboard-footer',

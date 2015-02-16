@@ -37,13 +37,14 @@ function (View, Formatters) {
     },
 
     prepareTable: function () {
-      var cls,
+      var cls = '',
         caption;
 
       this.$('table').remove();
-      cls = (this.options.collapseOnNarrowViewport === true) ? ' class="table-collapsible"' : '';
+      cls += (this.options.collapseOnNarrowViewport === true) ? ' table-collapsible' : '';
+      cls += (this.options.hideHeader === true) ? ' table-no-header' : '';
       caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
-      this.$table = $('<table' + cls + '>' + caption + '</table>');
+      this.$table = $('<table class="' + cls + '">' + caption + '</table>');
       this.$table.appendTo(this.$el);
     },
 
@@ -51,7 +52,6 @@ function (View, Formatters) {
       this.prepareTable();
       $(this.renderHead()).appendTo(this.$table);
       $(this.renderBody()).appendTo(this.$table);
-
     },
 
     renderHead: function () {
@@ -59,7 +59,8 @@ function (View, Formatters) {
         cls,
         sortOrder = this.model && this.model.get('sort-order'),
         sortUrlParam,
-        sortBy = this.model && this.model.get('sort-by');
+        sortBy = this.model && this.model.get('sort-by'),
+        headCls;
 
       head += _.map(this.getColumns(), function (column) {
         var label = column.label;
@@ -80,10 +81,10 @@ function (View, Formatters) {
         if (column.format) {
           cls += _.isString(column.format) ? column.format : column.format.type;
         }
-        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '#filtered-list" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
+        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
       }, this).join('\n');
-
-      return '<thead><tr>' + head + '</tr></thead>';
+      headCls = (this.options.hideHeader) ? 'visuallyhidden' : '';
+      return '<thead class="' + headCls + '"><tr>' + head + '</tr></thead>';
     },
 
     renderRow: function (obj, cellContent, index) {
@@ -129,7 +130,7 @@ function (View, Formatters) {
             rowIndex: 1
           },
           keys = _.pluck(param.columns, 'key'),
-          rows = collection.getTableRows(keys),
+          rows = collection.getTableRows(keys, this.options.rowLimit),
           body = '';
 
       if (rows.length > 0) {

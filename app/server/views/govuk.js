@@ -54,6 +54,10 @@ module.exports = View.extend(templater).extend({
     return items.join(' - ');
   },
 
+  getBodyClasses: function() {
+    return '';
+  },
+
   getMetaDescription: function () {
     return null;
   },
@@ -96,7 +100,7 @@ module.exports = View.extend(templater).extend({
         bodyEnd: this.loadTemplate(this.bodyEndTemplate, baseContext),
         topOfPage: '',
         pageTitle: this.getPageTitle(),
-        bodyClasses: '',
+        bodyClasses: this.getBodyClasses(),
         headerClass: 'with-proposition',
         htmlLang: 'en',
         propositionHeader: this.loadTemplate(navigationTemplate, 'mustache'),

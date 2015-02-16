@@ -1,8 +1,10 @@
 var path = require('path');
-
+var requirejs = require('requirejs');
 var templatePath = path.resolve(__dirname, '../templates/homepage.html');
 
+var Backbone = require('backbone');
 var BaseView = require('./govuk');
+var TableView = requirejs('extensions/views/table');
 
 module.exports = BaseView.extend({
 
@@ -14,21 +16,63 @@ module.exports = BaseView.extend({
     return [];
   },
 
-  getContent: function () {
+  getBodyClasses: function () {
+    return 'homepage';
+  },
 
-    // the GOV.UK content dashboard should be removed from the list
-    // as it has an explicit link in the homepage template
-    var contentDashboards = this.collection.filterDashboards('content');
+  formatKpis: function (services) {
+    _.each(services, function (service) {
+      _.each(this.collection.options.axes.y, function (kpi) {
+        if (service[kpi.key] === null) {
+          service[kpi.key] = '?';
+        }
+        service[kpi.key] = this.format(service[kpi.key], kpi.format);
+      }, this);
+    }, this);
+  },
 
-    contentDashboards = _.filter(contentDashboards, function (dashboard) {
-      return dashboard.slug !== 'site-activity';
+  renderServicesTable: function(sortField, sortOrder) {
+    var table,
+      optionsCopy,
+      caption;
+
+    optionsCopy = _.cloneDeep(this.collection.options);
+
+    optionsCopy.axes = {
+      x: optionsCopy.axes.x,
+      y: _.where(optionsCopy.axes.y, function(kpi) {
+        return (kpi.key === sortField);
+      })
+    };
+    caption = optionsCopy.axes.y[0].label;
+    
+    table = new TableView({
+      model: new Backbone.Model({
+        params: {
+          sortby:  sortField,
+          sortorder:  sortOrder || 'descending'
+        }
+      }),
+      collection: new this.collection.constructor(this.collection.toJSON(), optionsCopy),
+      caption: 'The 5 top performing services, by ' + caption,
+      rowLimit: 5,
+      hideHeader: true
     });
+    table.render();
+    return table.$el.html();
+  },
 
+  getContent: function () {
+    this.formatKpis(this.showcaseServices);
     return this.loadTemplate(templatePath, _.extend({
-      services: this.collection.filterDashboards('transaction', 'other'),
-      serviceGroups: this.collection.filterDashboards('service-group'),
-      highVolumeServices: this.collection.filterDashboards('high-volume-transaction'),
-      contentDashboards: contentDashboards
+      services: this.collection,
+      serviceCount: this.collection.length,
+      webTrafficCount: this.contentDashboards.length,
+      showcaseServices: this.showcaseServices,
+      tableCost: this.renderServicesTable('cost_per_transaction', 'ascending'),
+      tableSatisfaction: this.renderServicesTable('user_satisfaction_score'),
+      tableCompletion: this.renderServicesTable('completion_rate'),
+      tableDigital: this.renderServicesTable('digital_takeup')
     }, this.model.toJSON()));
 
   }
