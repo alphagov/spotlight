@@ -31,7 +31,7 @@ module.exports = BaseView.extend({
     }, this);
   },
 
-  renderServicesTable: function(sortField) {
+  renderServicesTable: function(sortField, sortOrder) {
     var table,
       optionsCopy,
       caption;
@@ -50,7 +50,7 @@ module.exports = BaseView.extend({
       model: new Backbone.Model({
         params: {
           sortby:  sortField,
-          sortorder:  'descending'
+          sortorder:  sortOrder || 'descending'
         }
       }),
       collection: new this.collection.constructor(this.collection.toJSON(), optionsCopy),
@@ -69,7 +69,7 @@ module.exports = BaseView.extend({
       serviceCount: this.collection.length,
       webTrafficCount: this.contentDashboards.length,
       showcaseServices: this.showcaseServices,
-      tableCost: this.renderServicesTable('cost_per_transaction'),
+      tableCost: this.renderServicesTable('cost_per_transaction', 'ascending'),
       tableSatisfaction: this.renderServicesTable('user_satisfaction_score'),
       tableCompletion: this.renderServicesTable('completion_rate'),
       tableDigital: this.renderServicesTable('digital_takeup')
