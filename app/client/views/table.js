@@ -18,7 +18,10 @@ function (TableView, Modernizr, accessibility, $) {
       }, options || {});
 
       this.sortFields = _.cloneDeep(this.collection.options.axes.y);
-      this.sortFields.unshift(this.collection.options.axes.x);
+      if (this.collection.options.axes.x) {
+        this.sortFields.unshift(this.collection.options.axes.x);
+      }
+
       this.sortFields = _.object(_.pluck(this.sortFields, 'key'), this.sortFields);
 
       this.listenTo(this.collection, 'sort', this.render);
