@@ -97,8 +97,6 @@ module.exports = {
 
     app.get('/performance', require('./server/controllers/homepage'));
 
-    app.get('/performance/about', require('./server/controllers/about'));
-
     app.get('/performance/services', require('./server/controllers/services'));
 
     app.get('/performance/web-traffic', require('./server/controllers/web-traffic'));
