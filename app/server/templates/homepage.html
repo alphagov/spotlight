@@ -69,14 +69,18 @@
   <h2 class="visuallyhidden">Highest performing services</h2>
   <div class="grid-row">
     <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-cost">
-      <div class="icon-cost-per-transaction"></div>
+      <div class="icon-top-services">
+        <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt="" />
+      </div>
       <h2 class="vertical-margin-small" id="top-services-cost">Cost per transaction</h2>
       <p class="text-small">How much do government services cost the taxpayer per user?</p>
       <%= tableCost %>
       <p><a class="text-small" href="/performance/services?sortby=cost_per_transaction&sortorder=descending#filtered-list">See all</a></p>
     </div>
     <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-satisfaction">
-      <div class="icon-user-satisfaction"></div>
+      <div class="icon-top-services">
+        <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
+      </div>
       <h2 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h2>
       <p class="text-small">How satisfied are the people who use government services?</p>
       <%= tableSatisfaction %>
@@ -85,14 +89,18 @@
   </div>
   <div class="grid-row">
     <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-completion">
-      <div class="icon-completion-rate"></div>
+      <div class="icon-top-services">
+        <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
+      </div>
       <h2 class="vertical-margin-small" id="top-services-completion">Completion rate</h2>
       <p class="text-small">How many people manage to use government services successfully?</p>
       <%= tableCompletion %>
       <p><a class="text-small" href="/performance/services?sortby=completion_rate&sortorder=descending#filtered-list">See all</a></p>
     </div>
     <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-takeup">
-      <div class="icon-digital-takeup"></div>
+      <div class="icon-top-services">
+        <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
+      </div>
       <h2 class="vertical-margin-small" id="top-services-takeup">Digital take-up</h2>
       <p class="text-small">How many people use government digital services?</p>
       <%= tableDigital %>
