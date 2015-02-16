@@ -9,32 +9,54 @@ define([
 function (Table, BaseTable, Collection, Model, $, Modernizr) {
   describe('Table', function () {
     describe('initialize', function () {
-      var table;
+      var table,
+        options;
+
       beforeEach(function () {
         spyOn(Table.prototype, 'render');
         spyOn(BaseTable.prototype, 'initialize');
-        table = new Table({
+        options = {
           model: new Model(),
           collection: new Collection({
             '_timestamp': '2014-07-03T13:19:04+00:00',
-            value: 'hello world'
+            value: 'hello world',
+            options: {
+              axes: {
+                x: { label: 'date', key: 'timestamp' },
+                y: [{ label: 'another', key: 'value' }]
+              }
+            }
           }, {
             axes: {
               x: { label: 'date', key: 'timestamp' },
               y: [{ label: 'another', key: 'value' }]
             }
           })
-        });
+        };
       });
 
       it('listens to sort on the collection', function () {
+        table = new Table(options);
         table.collection.trigger('sort');
         expect(table.render).toHaveBeenCalled();
       });
 
       it('calls initialize on TableView', function () {
+        table = new Table(options);
         expect(BaseTable.prototype.initialize).toHaveBeenCalled();
       });
+
+      it('uses an X axis if supplied', function () {
+        table = new Table(options);
+        expect(table.sortFields.timestamp.label).toEqual('date');
+      });
+
+      it('doesnt try to use an X axis if one isnt supplied', function () {
+        delete options.collection.options.axes.x;
+        table = new Table(options);
+        expect(table.sortFields.timestamp).toBeUndefined();
+      });
+
     });
 
     describe('renderSort', function () {
