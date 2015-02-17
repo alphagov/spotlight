@@ -104,7 +104,14 @@ function (View, accessibility) {
         'sort-order': newSortOrder
       });
 
-      $target.length && $('html, body').animate({ scrollTop: $target.offset().top});
+      if ($target.length) {
+        $('html, body').animate(
+          { scrollTop: $target.offset().top},
+          function() {
+            $target.attr('tabindex', -1).focus();
+          });
+
+      }
     },
 
     render: function () {
