@@ -5,7 +5,7 @@ var serverProcess,
     exitcode = 1;
 
 function driver() {
-  return childProcess('./tests/tools/phantomjs', ['--webdriver', '4444', '--ssl-protocol', 'tlsv1'], 'running on port 4444');
+  return childProcess('./tests/tools/phantomjs', ['--webdriver', '4444', '--ssl-protocol', 'tlsv1'], 'running on port 4444', true);
 }
 
 function nightwatch() {
@@ -16,13 +16,16 @@ function grunt() {
   return childProcess('grunt', ['build:development']);
 }
 
-function childProcess(bin, args, search) {
+function childProcess(bin, args, search, mute) {
+  mute = mute || false;
   var promise = Q.defer();
   var child = cp.spawn(bin, args, {
     cwd: './'
   });
   child.stdout.on('data', function (data) {
-    process.stdout.write(data);
+    if (!mute) {
+      process.stdout.write(data);
+    }
 
     if (search) {
       if (data.toString().match(search)) {
@@ -31,7 +34,9 @@ function childProcess(bin, args, search) {
     }
   });
   child.stderr.on('data', function (data) {
-    process.stdout.write(data);
+    if (!mute) {
+      process.stdout.write(data);
+    }
   });
   child.on('exit', function (err) {
     process.stdout.write('\n');
