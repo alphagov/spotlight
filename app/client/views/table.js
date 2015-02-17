@@ -26,11 +26,7 @@ function (TableView, Modernizr, accessibility, $) {
       this.sortFields = _.object(_.pluck(this.sortFields, 'key'), this.sortFields);
 
       this.listenTo(this.collection, 'sort', this.render);
-
-      this.listenTo(this.collection, 'reset', _.bind(function() {
-        accessibility.updateLiveRegion(this.collection.length + ' transactions in list');
-        this.render();
-      }, this));
+      this.listenTo(this.collection, 'reset', this.render);
 
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
       this.listenTo(this.model, 'sort-changed-external', _.bind(function(data) {

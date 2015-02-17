@@ -1,7 +1,8 @@
 define([
-  'extensions/views/view'
+  'extensions/views/view',
+    'client/accessibility'
 ],
-function (View) {
+function (View, accessibility) {
 
   return View.extend({
 
@@ -11,7 +12,11 @@ function (View) {
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
-      this.listenTo(this.collection, 'reset', this.render);
+      this.listenTo(this.collection, 'reset', _.bind(function() {
+        accessibility.updateLiveRegion('Totals and averages updated for ' + this.collection.length
+        );
+        this.render();
+      }, this));
     },
 
     getAggregateValues: function () {
