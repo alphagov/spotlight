@@ -100,6 +100,17 @@ function (TableView, Modernizr, accessibility, $) {
         ths.removeClass(classDesc);
         ths.removeAttr('aria-sort');
 
+        ths
+          .find('.js-click-sort')
+          .remove()
+          .end()
+          .find('.js-sort')
+          .append(' <span class="js-click-sort visuallyhidden">Click to sort</span>');
+
+        th
+          .find('.js-click-sort')
+          .remove();
+
         if (sortOrder === 'descending') {
           th.addClass(classDesc);
           th.attr('aria-sort', 'descending');

@@ -60,7 +60,9 @@ function (View, Formatters) {
         sortOrder = this.model && this.model.get('sort-order'),
         sortUrlParam,
         sortBy = this.model && this.model.get('sort-by'),
-        headCls;
+        sortOrderAttr,
+        headCls,
+        clickLabel;
 
       head += _.map(this.getColumns(), function (column) {
         var label = column.label;
@@ -76,12 +78,20 @@ function (View, Formatters) {
         } else {
           sortUrlParam = 'ascending';
         }
-        cls = (sortBy === key) ? sortOrder + ' sort-column ' : '';
+        if (sortBy === key) {
+          cls = sortOrder + ' sort-column ';
+          clickLabel = '';
+          sortOrderAttr = sortOrder;
+        } else {
+          cls = '';
+          clickLabel = ' <span class="js-click-sort visuallyhidden">Click to sort</span>';
+          sortOrderAttr = '';
+        }
 
         if (column.format) {
           cls += _.isString(column.format) ? column.format : column.format.type;
         }
-        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + cls + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '" role="button">' + label + ' <span class="visuallyhidden">Click to sort</span></a></th>';
+        return '<th scope="col" data-key="' + key + '" class="' + cls + '" aria-sort="' + sortOrderAttr + '" role="columnheader"><a class="js-sort" href="?sortby=' + key + '&sortorder=' + sortUrlParam + '" role="button">' + label + clickLabel + '</a></th>';
       }, this).join('\n');
       headCls = (this.options.hideHeader) ? 'visuallyhidden' : '';
       return '<thead class="' + headCls + '"><tr>' + head + '</tr></thead>';

@@ -235,7 +235,7 @@ function (Table, View, Collection, Backbone, $) {
           .toEqual('?sortby=timestamp&sortorder=descending');
       });
 
-      it('add a link to the default column to sort by ascending', function() {
+      it('adds a link to the default column to sort by ascending', function() {
         table = new Table(tableOptions);
         table.render();
         expect(table.$('thead th.descending a').attr('href'))
@@ -262,6 +262,17 @@ function (Table, View, Collection, Backbone, $) {
         expect(result).toEqual(true);
       });
 
+      it('adds a click to sort label for screenreaders to all columns except the sorted one',
+        function() {
+          var unsortedCols;
+
+          table = new Table(tableOptions);
+          table.render();
+          unsortedCols = table.$('thead th:not(.sort-column) .js-click-sort');
+          expect(unsortedCols.length).toEqual(3);
+          expect(unsortedCols.first().text()).toEqual('Click to sort');
+          expect(table.$('thead th.sort-column .js-click-sort').length).toEqual(0);
+      });
 
     });
 

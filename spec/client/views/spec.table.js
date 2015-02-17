@@ -200,6 +200,17 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         expect(Table.prototype.replaceUrlParams.calls.length).toEqual(0);
       });
 
+      it('adds a click to sort label for screenreaders to all columns except the sorted one',
+        function() {
+          dateColumn().find('a').click();
+          expect(dateColumn().find('.js-click-sort').length).toEqual(0);
+          expect(valueColumn().find('.js-click-sort').length).toEqual(1);
+          valueColumn().find('a').click();
+          expect(valueColumn().find('.js-click-sort').length).toEqual(0);
+          expect(dateColumn().find('.js-click-sort').length).toEqual(1);
+        });
+
+
     });
 
     describe('render', function () {
