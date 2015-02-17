@@ -79,6 +79,8 @@ $vertical-unit: $gutter-half;
   @extend %outdent-to-full-width;
   padding-left: $gutter;
   padding-right: $gutter;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
   @media (min-width: 1024px) {
     margin-left: -50%;
     margin-right: -50%;
