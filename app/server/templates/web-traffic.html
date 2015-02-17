@@ -4,24 +4,24 @@
 
   <div id="faceted-search">
     <div class="cols3">
-      <h2 class="visuallyhidden">Number of services</h2>
-      <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
+      <h2 class="visuallyhidden">Number of dashboards</h2>
+      <p class="visuallyhidden">The dashboards list can be filtered by keyword and department or agency.</p>
       <div class="impact-number emphasis summary-figure">
-        <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">services</span>
+        <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">dashboards</span>
       </div>
     </div>
-    <h2 class="visuallyhidden">Filter services by keyword or department</h2>
+    <h2 class="visuallyhidden">Filter dashboards by keyword or department</h2>
     <div class="cols3">
-      <label for="filter" id="filter-keywords">Show me services called</label>
+      <label for="filter" id="filter-keywords">Show me dashboards called</label>
       <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" type="search" />
     </div>
-    <input type="submit" value="Filter services" id="filter-submit-button"/>
+    <input type="submit" value="Filter dashboards" id="filter-submit-button"/>
   </div>
 
 </form>
 
 <section class="filtered-list visualisation-table" id="filtered-list">
-  <h2 class="visuallyhidden">List of services</h2>
+  <h2 class="visuallyhidden">List of dashboards</h2>
   <div class="heading-3 mq-small-only">Sort by:</div>
   <%= table %>
 </section>

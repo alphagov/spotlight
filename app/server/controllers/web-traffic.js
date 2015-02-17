@@ -29,7 +29,7 @@ var renderContent = function (req, res, client_instance) {
     filter: sanitizer.escape(req.query.filter || ''),
     data: contentDashboards,
     script: true,
-    noun: 'service',
+    noun: 'dashboard',
     axesOptions: controller.axesOptions,
     params: {
       sortby: 'titleLink',
@@ -65,7 +65,7 @@ controller.axesOptions = {
   axes: {
     x: {
       key: 'titleLink',
-      label: 'Service name'
+      label: 'Dashboard name'
     },
     y: []
   }

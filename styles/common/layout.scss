@@ -58,8 +58,12 @@ $vertical-unit: $gutter-half;
 }
 
 .vertical-padding-medium {
-  padding-top: $vertical-unit * 2;
-  padding-bottom: $vertical-unit * 2;
+  padding-top: $vertical-unit;
+  padding-bottom: $vertical-unit;
+  @include media(tablet) {
+    padding-top: $vertical-unit * 2;
+    padding-bottom: $vertical-unit * 2;
+  }
 }
 
 .vertical-margin-top-small {

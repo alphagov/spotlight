@@ -9,7 +9,7 @@ var TableView = requirejs('extensions/views/table');
 module.exports = BaseView.extend({
 
   getPageTitle: function () {
-    return 'Our performance - GOV.UK';
+    return 'Performance - GOV.UK';
   },
 
   getBreadcrumbCrumbs: function () {

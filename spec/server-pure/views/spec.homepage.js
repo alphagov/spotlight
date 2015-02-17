@@ -59,7 +59,7 @@ describe('Homepage View', function () {
   describe('getPageTitle', function () {
 
     it('returns page title', function () {
-      expect(view.getPageTitle()).toEqual('Our performance - GOV.UK');
+      expect(view.getPageTitle()).toEqual('Performance - GOV.UK');
     });
 
   });
