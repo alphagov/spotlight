@@ -31,7 +31,7 @@ var renderContent = function (req, res, client_instance) {
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
-    var showcaseServiceSlugs = ['pay-register-birth-abroad', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'],
+    var showcaseServiceSlugs = ['prison-visits', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'],
       showcaseServices = [];
     services = formatCollectionData(services);
     services = addServiceDataToCollection(services,  transactions.toJSON());
