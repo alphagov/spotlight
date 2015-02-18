@@ -6,7 +6,12 @@
     margin-top: 0;
   }
   > img {
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -o-transform-origin: top left;
     transform-origin: top left;
+
     @include scale(0.5, 0.5);
     @include media(tablet) {
       @include scale(1, 1);
