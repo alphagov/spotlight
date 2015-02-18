@@ -8,7 +8,7 @@ module.exports = {
   beforeEach: function (client) {
     client
       .url('http://localhost:3057/performance/services')
-      .waitForElementVisible('body.js-enabled.ready.loaded', 5000);
+      .waitForElementVisible('body.js-enabled.ready.loaded', 20000);
   },
 
   'Sections Exist': function (client) {
