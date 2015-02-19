@@ -382,6 +382,10 @@ module.exports = function (grunt) {
     'shell:nightwatch'
   ]);
 
+  grunt.registerTask('test:functional:chrome', [
+    'shell:nightwatch:-e chrome'
+  ]);
+
   grunt.registerTask('test:functional:all', [
     'shell:nightwatch:-e default,chrome,phantomjs'
   ]);
