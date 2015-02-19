@@ -26,11 +26,7 @@ function (TableView, Modernizr, accessibility, $) {
       this.sortFields = _.object(_.pluck(this.sortFields, 'key'), this.sortFields);
 
       this.listenTo(this.collection, 'sort', this.render);
-
-      this.listenTo(this.collection, 'reset', _.bind(function() {
-        accessibility.updateLiveRegion(this.collection.length + ' transactions in list');
-        this.render();
-      }, this));
+      this.listenTo(this.collection, 'reset', this.render);
 
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
       this.listenTo(this.model, 'sort-changed-external', _.bind(function(data) {
@@ -103,6 +99,17 @@ function (TableView, Modernizr, accessibility, $) {
         ths.removeClass(classAsc);
         ths.removeClass(classDesc);
         ths.removeAttr('aria-sort');
+
+        ths
+          .find('.js-click-sort')
+          .remove()
+          .end()
+          .find('.js-sort')
+          .append(' <span class="js-click-sort visuallyhidden">Click to sort</span>');
+
+        th
+          .find('.js-click-sort')
+          .remove();
 
         if (sortOrder === 'descending') {
           th.addClass(classDesc);
