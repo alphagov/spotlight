@@ -4,12 +4,8 @@ var cp = require('child_process'),
 var serverProcess,
     exitcode = 1;
 
-function driver() {
-  return childProcess('./tests/tools/phantomjs', ['--webdriver', '4444', '--ssl-protocol', 'tlsv1'], 'running on port 4444', true);
-}
-
 function nightwatch() {
-  return childProcess('nightwatch', []);
+  return childProcess('nightwatch', ['--env=phantomjs']);
 }
 
 function grunt() {
@@ -89,7 +85,6 @@ function kill() {
 
 
 grunt()
-  .then(driver)
   .then(server)
   .then(nightwatch)
   .then(function () {

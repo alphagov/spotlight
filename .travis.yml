@@ -22,7 +22,6 @@ env:
 #   - TEST_CMD: shell:cheapseats:--range:101..150
 #   - TEST_CMD: shell:cheapseats:--range:151..
 #
-before_script: ./install_phantomjs.sh
 script: "grunt $TEST_CMD"
 matrix:
   fast_finish: true

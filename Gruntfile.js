@@ -287,12 +287,6 @@ module.exports = function (grunt) {
       files: {
         src: ['public/**/*.*']
       }
-    },
-    phantom: {
-      options: {
-        port: 4444
-      },
-      nightwatch: {}
     }
   });
 
@@ -308,9 +302,7 @@ module.exports = function (grunt) {
     'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-shell',
-    'grunt-concurrent',
-    'grunt-phantom',
-    'grunt-selenium-webdriver'
+    'grunt-concurrent'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });
@@ -383,14 +375,15 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test:functional', [
-    'phantom',
+    'shell:nightwatch:-e phantomjs'
+  ]);
+
+  grunt.registerTask('test:functional:ff', [
     'shell:nightwatch'
   ]);
 
-  grunt.registerTask('test:functional:selenium', [
-    'selenium_start',
-    'shell:nightwatch',
-    'selenium_stop'
+  grunt.registerTask('test:functional:all', [
+    'shell:nightwatch:-e default,chrome,phantomjs'
   ]);
 
   grunt.registerTask('cheapseats:unpublished', [

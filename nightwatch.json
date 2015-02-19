@@ -6,13 +6,13 @@
   "globals_path" : "",
 
   "selenium" : {
-    "start_process" : false,
-    "server_path" : "",
+    "start_process" : true,
+    "server_path" : "./node_modules/selenium-server/lib/runner/selenium-server-standalone-2.43.1.jar",
     "log_path" : "",
     "host" : "127.0.0.1",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.chrome.driver" : "",
+      "webdriver.chrome.driver" : "./node_modules/chromedriver/lib/chromedriver/chromedriver",
       "webdriver.ie.driver" : ""
     }
   },
@@ -31,6 +31,24 @@
         "browserName": "firefox",
         "javascriptEnabled": true,
         "acceptSslCerts": true
+      }
+    },
+    "phantomjs" : {
+      "desiredCapabilities" : {
+        "browserName" : "phantomjs",
+        "javascriptEnabled" : true,
+        "acceptSslCerts" : true,
+        "phantomjs.binary.path" : "./node_modules/phantomjs/bin/phantomjs"
+      }
+    },
+    "chrome": {
+      "desiredCapabilities" : {
+        "browserName" : "chrome"
+      }
+    },
+    "firefox": {
+      "desiredCapabilities" : {
+        "browserName" : "firefox"
       }
     }
   }
