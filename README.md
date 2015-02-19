@@ -72,9 +72,13 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 - `grunt test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
 
 ##### Functional tests #####
-As part of the CI (travis) `grunt test:functional:ci` is run. This spins up an instance of spotlight, phantomjs, and nightwtach to run the tests in a headless environment.
+As part of the CI (travis) `grunt test:functional:ci` is run. This spins up an instance of spotlight, nightwatch and phantomjs to run the tests in a headless environment.
 
-To assist with debugging the functional tests can also be run in a selenium webdriver using the following command `grunt test:functional:selenium`
+To assist with debugging the functional tests can also be run in a selenium webdriver using the following command `grunt test:functional:ff`
+
+If you want to run against firefox,chrome and phantom you can also do `grunt test:functional:all`.
+
+All the functional tasks except `ci` will require a server to be running already.
 
 [cheapseats]: https://github.com/alphagov/cheapseats
 
