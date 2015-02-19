@@ -232,6 +232,9 @@ module.exports = function (grunt) {
         },
         command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path ./')
       },
+      nightwatch: {
+        command: addArgs('./node_modules/nightwatch/bin/nightwatch')
+      },
       // Generates the page-per-thing module JSON stubs
       generate_services_list: {
         options: {
@@ -260,6 +263,9 @@ module.exports = function (grunt) {
           }
         },
         command: './node_modules/supervisor/lib/cli-wrapper.js -w app -i app/vendor -e "js|html" -n error app/server'
+      },
+      functional_spotlight: {
+        command: 'node ./tests/tools/server_and_test.js'
       }
     },
     // Runs development tasks concurrently
@@ -352,11 +358,36 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:all', [
     'test:unit',
-    'shell:cheapseats'
+    'shell:cheapseats',
+    'test:functional'
   ]);
 
   grunt.registerTask('cheapseats', [
     'shell:cheapseats'
+  ]);
+
+  grunt.registerTask('nightwatch', [
+    'shell:nightwatch'
+  ]);
+
+  grunt.registerTask('test:functional:ci', [
+    'shell:functional_spotlight'
+  ]);
+
+  grunt.registerTask('test:functional', [
+    'shell:nightwatch:-e phantomjs'
+  ]);
+
+  grunt.registerTask('test:functional:ff', [
+    'shell:nightwatch'
+  ]);
+
+  grunt.registerTask('test:functional:chrome', [
+    'shell:nightwatch:-e chrome'
+  ]);
+
+  grunt.registerTask('test:functional:all', [
+    'shell:nightwatch:-e default,chrome,phantomjs'
   ]);
 
   grunt.registerTask('cheapseats:unpublished', [

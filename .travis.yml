@@ -15,6 +15,7 @@ branches:
 env:
   - TEST_CMD: test:unit
   - TEST_CMD: shell:cheapseats:--range:0..1
+  - TEST_CMD: test:functional:ci
 # Add back in when we're out of emergency mode
 #   - TEST_CMD: shell:cheapseats:--range:0..50
 #   - TEST_CMD: shell:cheapseats:--range:51..100

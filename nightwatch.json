@@ -1,0 +1,56 @@
+{
+  "src_folders" : ["tests/functional"],
+  "output_folder" : "tests/reports",
+  "custom_commands_path" : "",
+  "custom_assertions_path" : "tests/nightwatch/assert",
+  "globals_path" : "",
+
+  "selenium" : {
+    "start_process" : true,
+    "server_path" : "./node_modules/selenium-server/lib/runner/selenium-server-standalone-2.43.1.jar",
+    "log_path" : "",
+    "host" : "127.0.0.1",
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "./node_modules/chromedriver/lib/chromedriver/chromedriver",
+      "webdriver.ie.driver" : ""
+    }
+  },
+
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "http://localhost",
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : true,
+        "path" : "tests/nightwatch/screenshots"
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+    "phantomjs" : {
+      "desiredCapabilities" : {
+        "browserName" : "phantomjs",
+        "javascriptEnabled" : true,
+        "acceptSslCerts" : true,
+        "phantomjs.binary.path" : "./node_modules/phantomjs/bin/phantomjs"
+      }
+    },
+    "chrome": {
+      "desiredCapabilities" : {
+        "browserName" : "chrome"
+      }
+    },
+    "firefox": {
+      "desiredCapabilities" : {
+        "browserName" : "firefox"
+      }
+    }
+  }
+}
+
