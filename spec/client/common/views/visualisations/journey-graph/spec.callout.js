@@ -1,14 +1,111 @@
 define([
   'client/views/visualisations/journey-graph/callout',
-  'common/collections/journey_series'
+  'common/collections/journey_series',
+  'extensions/models/model'
 ],
-function (JourneyCallout, JourneySeriesCollection) {
+function (JourneyCallout, JourneySeriesCollection, Model) {
   describe('JourneyCallout', function () {
+
+    describe('onChangeSelected', function () {
+
+      var callout, model, collection;
+      beforeEach(function () {
+
+        var Collection = JourneySeriesCollection.extend({
+          getMoment: function() {
+            return JourneySeriesCollection.prototype.getMoment('2013-06-03T00:00:00+00:00');
+          }
+        });
+
+        collection  = new Collection([], {
+          matchingAttribute: 'title',
+          valueAttr: 'uniqueEvents',
+          axes: {
+            y: [
+              { groupId: 'Stage 1' },
+              { groupId: 'Stage 2' },
+              { groupId: 'Stage 3' }
+            ]
+          },
+          dataSource: {
+            'query-params': {
+              start_at: undefined,
+              end_at: undefined
+            }
+          }
+        });
+        collection.reset({
+          data: [
+            { title: 'Stage 1', uniqueEvents: 20 },
+            { title: 'Stage 2', uniqueEvents: 15 },
+            { title: 'Stage 3', uniqueEvents: 10 }
+          ]
+        }, { parse: true });
+
+        model = new Model({
+          title: 'test title',
+          fraction: 0.3,
+          a: 20,
+          b: 30,
+          c: 'foo'
+        });
+
+        model.collection = collection;
+        callout = new JourneyCallout({
+          getHeader: jasmine.createSpy().andReturn('test header'),
+          collection: collection,
+          graph: {
+            scaleFactor: jasmine.createSpy(),
+            getXPos: function () {
+              return model.get('a');
+            },
+            getYPos: function () {
+              return model.get('b');
+            },
+            valueAttr: 'a'
+          },
+          scales: {
+            x: function (v) {
+              return v;
+            },
+            y: function (v) {
+              return v;
+            }
+          },
+          margin: {
+            left: 10,
+            top: 20
+          }
+        });
+        spyOn(callout, 'renderContent').andCallThrough();
+        callout.render();
+      });
+
+      it('hides when no model is selected', function () {
+        callout.onChangeSelected(null, null);
+        expect(callout.calloutEl).toHaveClass('performance-hidden');
+        expect(callout.renderContent).not.toHaveBeenCalled();
+      });
+
+      it('shows when a model is selected', function () {
+        callout.onChangeSelected(model, 1);
+        expect(callout.calloutEl).not.toHaveClass('performance-hidden');
+        expect(callout.renderContent).toHaveBeenCalled();
+      });
+
+      it('passes value attribute to renderContent if a particular group is selected', function () {
+        callout.graph.scaleFactor.andReturn(1);
+        callout.onChangeSelected(model, 2, { valueAttr: 'foo' });
+
+        expect(callout.renderContent).toHaveBeenCalledWith(callout.calloutEl, model, 'foo');
+      });
+    });
 
     describe('rendering', function () {
       var d3 = JourneyCallout.prototype.d3;
 
       var el, wrapper, collection, view;
+
       beforeEach(function () {
 
         el = $('<div></div>').appendTo($('body'));
