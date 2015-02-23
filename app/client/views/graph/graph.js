@@ -345,10 +345,6 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
       View.prototype.render.apply(this, arguments);
 
-      if (this.collection.options) {
-        this.currency = this.collection.options.currency;
-      }
-
       this.resizeWithCalloutHidden();
 
       this.scales.x = this.calcXScale();

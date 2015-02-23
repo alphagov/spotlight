@@ -101,8 +101,11 @@ function (Component) {
     },
 
     getFormatOptions: function () {
-      var format = this.graph.currency ? 'currency' : 'number';
-      return { type: format, magnitude: true, pad: true };
+      return _.extend({
+          type: 'number',
+          magnitude: true,
+          pad: true
+        }, this.graph.formatOptions);
     },
 
     renderValuePercentage: function (value, percentage) {

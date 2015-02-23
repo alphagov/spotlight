@@ -16,8 +16,9 @@ function (require, Axis) {
       return this.graph.hasData() ? this.graph.numYTicks : 0;
     },
     tickFormat: function () {
+      var currency = this.graph.formatOptions && this.graph.formatOptions.type === 'currency';
       if (this.scales.y.tickValueList) {
-        return this.numberListFormatter(this.scales.y.tickValueList, this.graph.currency);
+        return this.numberListFormatter(this.scales.y.tickValueList,  currency);
       }
     },
     tickValues: function () {
