@@ -70,7 +70,7 @@ describe('Services Controller', function () {
     }));
   });
 
-  it('passes query params filter to model if defined', function () {
+  it('passes a keyword filter to the model if defined in the querystring', function () {
     var queryReq = _.cloneDeep(req);
     queryReq.query.filter = 'foo';
     client_instance = controller('services', queryReq, res);
@@ -79,13 +79,21 @@ describe('Services Controller', function () {
       filter: 'foo'}));
   });
 
-  it('passes department filter to model if set', function () {
+  it('passes a department filter to the model if set in the querystring', function () {
     var queryReq = _.cloneDeep(req);
     queryReq.query.department = 'home-office';
     client_instance = controller('services', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       departmentFilter: 'home-office'
+    }));
+  });
+
+  it('passes a services filter to the model if set in the querystring', function () {
+    controller('services', _.extend({ query: { service: 'carers-allowance' } }, fake_app), res);
+    client_instance.trigger('sync');
+    expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
+      serviceFilter: 'carers-allowance'
     }));
   });
 
