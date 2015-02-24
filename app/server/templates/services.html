@@ -1,23 +1,15 @@
 <h1><%= heading %></h1>
 
-<form id="filter-wrapper" class="services cols-row cols-row-no-margin" method="get" action="">
-
-  <div id="faceted-search">
+<form id="filter-wrapper" method="get" action="">
+  <div id="faceted-search" class="cols-row cols-row-no-margin vertical-spacing-bottom">
+    <h2 class="visuallyhidden">Filter services by keyword, service or department</h2>
     <div class="cols3">
-      <h2 class="visuallyhidden">Number of services</h2>
-      <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
-      <div class="impact-number emphasis summary-figure">
-        <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">services</span>
-      </div>
-    </div>
-    <h2 class="visuallyhidden">Filter services by keyword or department</h2>
-    <div class="cols3">
-      <label for="filter" id="filter-keywords">Show me services called</label>
+      <label for="filter" id="filter-keywords">Service name contains</label>
       <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" type="search" />
     </div>
     <% if (departments.length) {%>
     <div class="cols3">
-      <label for="department" id="filter-department"><span aria-hidden="true">Provided by</span><span class="visuallyhidden">Select a department or agency to filter services by</span></label>
+      <label for="department" id="filter-department"><span aria-hidden="true">Department</span><span class="visuallyhidden">Select a department or agency to filter services by</span></label>
       <select id="department" name="department">
         <option value="">All departments and agencies</option>
         <optgroup label="Departments">
@@ -39,6 +31,18 @@
       </select>
     </div>
     <% }%>
+    <div class="cols3">
+      <label for="service" id="filter-service"><span aria-hidden="true">Service</span><span class="visuallyhidden">Select a service to filter services by</span></label>
+      <select id="service" name="service">
+        <option value="">All services</option>
+        <% _.each(services, function (service) { %>
+        <option
+                value="<%= service.slug %>"<% if (service.slug === serviceFilter) { %>selected<% } %>>
+        <%= service.title
+        %></option>
+        <% }); %>
+      </select>
+    </div>
 
     <input type="submit" value="Filter services" id="filter-submit-button"/>
   </div>
@@ -46,6 +50,15 @@
 
 </form>
 
+<div class="cols-row cols-row-no-margin vertical-spacing-bottom">
+  <div class="cols3">
+    <h2 class="visuallyhidden">Number of services</h2>
+    <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
+    <div class="impact-number emphasis summary-figure">
+      <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">services</span>
+    </div>
+  </div>
+</div>
 
 <div class="service-kpis">
   <h2 class="visuallyhidden">Totals and averages for filtered services</h2>
