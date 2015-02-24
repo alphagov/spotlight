@@ -15,7 +15,8 @@ define([
     updateCollectionFilter: function () {
       var filteredList = this.unfilteredCollection.filterServices({
         text: this.model.get('filter'),
-        department: this.model.get('departmentFilter')
+        department: this.model.get('departmentFilter'),
+        service: this.model.get('serviceFilter')
       });
 
       this.collection.reset(filteredList);

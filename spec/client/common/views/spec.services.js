@@ -12,7 +12,7 @@ define([
           trackEvent: function () {}
         }
       };
-      this.$el = $('<div><input id="filter" value="passport"/><select id="department"><option value="">All</option><option value="home-office">Home Office</option></select></div>');
+      this.$el = $('<div><input id="filter" value="passport"/><select id="department"><option value="">All</option><option value="home-office">Home Office</option></select><select id="service"><option value="">All</option><option value="service1">Service 1</option></select></div>');
       this.view = new ServicesView({
         el: this.$el,
         model: new Backbone.Model()
@@ -28,6 +28,9 @@ define([
       this.$el.find('#filter').val('');
       this.view.filter();
       expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?department=home-office');
+      this.$el.find('#service').val('service1');
+      this.view.filter();
+      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?department=home-office&service=service1');
     });
 
     it('sends filter events to analytics', function() {
