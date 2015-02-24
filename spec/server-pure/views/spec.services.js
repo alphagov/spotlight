@@ -9,7 +9,7 @@ var TableView = requirejs('extensions/views/table');
 
 describe('Services View', function () {
 
-  var view, model, collection;
+  var view, model, collection, viewOptions;
 
   beforeEach(function () {
     model = new Backbone.Model({
@@ -30,19 +30,25 @@ describe('Services View', function () {
       number_of_transactions: 2000
     }], servicesController.serviceAxes);
 
-    view = new ServicesView({
+    viewOptions = {
       model: model,
       collection: collection
-    });
+    };
+  });
+
+  afterEach(function () {
+    this.removeAllSpies();
   });
 
   it('extends govuk view', function () {
+    view = new ServicesView(viewOptions);
     expect(view instanceof BaseView).toBe(true);
   });
 
   describe('getPageTitle', function () {
 
     it('returns services page title', function () {
+      view = new ServicesView(viewOptions);
       expect(view.getPageTitle()).toEqual('Services data - GOV.UK');
     });
 
@@ -51,6 +57,7 @@ describe('Services View', function () {
   describe('getBreadcrumbCrumbs', function () {
 
     it('returns breadcrumbs', function () {
+      view = new ServicesView(viewOptions);
       expect(view.getBreadcrumbCrumbs().length).toEqual(2);
       expect(view.getBreadcrumbCrumbs()[0]).toEqual({
         path: '/performance',
@@ -60,7 +67,21 @@ describe('Services View', function () {
         title: 'Services data'
       });
     });
+  });
 
+  it('does an initial filter on the collection', function () {
+    spyOn(collection, 'filterServices').andCallThrough();
+    model.set({
+      filter: '',
+      departmentFilter: 'Department of Health',
+      serviceFilter: 'carers-allowance'
+    });
+    view = new ServicesView(viewOptions);
+    expect(collection.filterServices).toHaveBeenCalledWith(jasmine.objectContaining({
+      text: '',
+      department: 'Department of Health',
+      service: 'carers-allowance'
+    }));
   });
 
   describe('getContent', function () {
@@ -71,6 +92,8 @@ describe('Services View', function () {
         this.$el.html('<div id="list"></div>');
       });
       spyOn(ServicesView.prototype, 'loadTemplate');
+
+      view = new ServicesView(viewOptions);
     });
 
     it('instantiates a TableView', function () {

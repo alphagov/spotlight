@@ -133,10 +133,12 @@ define([
           collection.reset(dashboardData);
         });
 
-        it('filters the collection using a combination of search string and dept', function () {
+        it('filters the collection using a combination of search string, department and service',
+          function () {
           var filter = {
-              text: 'GP',
-              department: 'dh'
+              text: 'health',
+              department: 'dh',
+              service: 'referrals'
             },
             models = collection.filterServices(filter);
           expect(models[0].get('title')).toEqual('Written GP referrals to first outpatient appointment');
@@ -171,6 +173,16 @@ define([
           models = collection.filterServices(filter);
           expect(models.length).toEqual(2);
           expect(models[0].get('title')).toEqual('Job search adviser interventions');
+        });
+
+        it('filters on service only', function () {
+          var filter = {
+              service: 'prepayment'
+            },
+            models;
+          models = collection.filterServices(filter);
+          expect(models.length).toEqual(1);
+          expect(models[0].get('title')).toEqual('Prescriptions: prepayment certificates issued');
         });
 
       });

@@ -8,12 +8,14 @@ function (Collection) {
     filterServices: function (filter) {
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
-        departmentFilter = (filter.department || null);
+          departmentFilter = (filter.department || null),
+          serviceFilter = (filter.service || null);
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
           department = dashboard.get('department') || { title: '', abbr: '' },
-          agency = dashboard.get('agency') || { title: '', abbr: '' };
+            agency = dashboard.get('agency') || {title: '', abbr: ''},
+            service = dashboard.get('service') || {title: '', abbr: '', slug: ''};
 
         // Remove the dashboard from the list if it doesn't match the text filter
         var textSearchFields = [title, department.abbr.toUpperCase(), department.title.toUpperCase()];
