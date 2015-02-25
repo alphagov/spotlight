@@ -1,6 +1,10 @@
 .grouped_timeseries {
   figure.graph {
     clear: both;
+    .graph-wrapper .inner {
+      border-bottom: 2px solid $grey-2;
+      left: 60px;
+    }
   }
   #content & .more-info-link {
     margin-bottom: 14px;
@@ -8,8 +12,5 @@
   svg {
     min-height: 150px;
     position: relative;
-  }
-  .inner {
-    border-bottom: 2px solid $grey-2;
   }
 }
