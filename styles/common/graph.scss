@@ -548,11 +548,10 @@ figure.graph {
 
       .summary {
         border: none;
-        border-right: 1px solid $grey-2;
         float: left;
         margin: 0 18px 0 0;
         padding: 0 18px 0 0;
-        width: 35%;
+        width: 100%;
         margin-top: 0 !important;
 
         .percentage {
@@ -562,11 +561,16 @@ figure.graph {
         .timeperiod {
           margin-top: 4px;
         }
+
+        .total {
+          float: left;
+          width: 33%;
+        }
       }
 
       ol {
         float: left;
-
+        width: 66%;
         li {
           cursor: default;
           float: left;

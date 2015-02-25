@@ -89,10 +89,6 @@ function (LineLabel, Collection, Model) {
 
     describe('render', function () {
 
-      beforeEach(function () {
-        spyOn(lineLabel, 'renderSummary');
-      });
-
       it('always renders percentages for non-null values', function () {
         lineLabel.render();
         var labels = lineLabel.$el.find('figcaption ol li');

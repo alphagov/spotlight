@@ -400,10 +400,13 @@ function (LineLabel, Collection, Model) {
         };
 
         it('marks selected label and line as selected and others as not selected', function () {
+          var littleLines,
+            labels;
+
           lineLabel.render();
-          var littleLines = wrapper.select('.labels');
-          var labels = lineLabel.$el.find('figcaption ol li');
           lineLabel.onChangeSelected(collection.at(0), 0, { valueAttr: '_value' });
+          littleLines = wrapper.select('.labels');
+          labels = lineLabel.$el.find('figcaption ol li');
           expect(hasClass(labels.eq(0), 'selected')).toBe(false);
           expect(hasClass(labels.eq(1), 'selected')).toBe(true);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(true);
@@ -413,6 +416,8 @@ function (LineLabel, Collection, Model) {
           expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(true);
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(false);
           lineLabel.onChangeSelected(collection.at(0), 0, { valueAttr: '_count' });
+          littleLines = wrapper.select('.labels');
+          labels = lineLabel.$el.find('figcaption ol li');
           expect(hasClass(labels.eq(0), 'selected')).toBe(true);
           expect(hasClass(labels.eq(1), 'selected')).toBe(false);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
@@ -422,6 +427,8 @@ function (LineLabel, Collection, Model) {
           expect(hasClass(littleLines.select('line:nth-child(1)'), 'not-selected')).toBe(false);
           expect(hasClass(littleLines.select('line:nth-child(2)'), 'not-selected')).toBe(true);
           lineLabel.onChangeSelected(null);
+          littleLines = wrapper.select('.labels');
+          labels = lineLabel.$el.find('figcaption ol li');
           expect(hasClass(labels.eq(0), 'selected')).toBe(false);
           expect(hasClass(labels.eq(1), 'selected')).toBe(false);
           expect(hasClass(labels.eq(0), 'not-selected')).toBe(false);
