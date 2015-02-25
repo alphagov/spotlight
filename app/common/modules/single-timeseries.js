@@ -36,7 +36,7 @@ function (Collection) {
       return {
         valueAttr: 'uniqueEvents',
         totalAttr: 'mean',
-        formatOptions: this.model.get('format') || { type: 'number', magnitude: true, pad: true }
+        formatOptions: this.model.get('format') || this.model.get('format-options') || { type: 'number', magnitude: true, pad: true }
       };
     }
 
