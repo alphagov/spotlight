@@ -113,6 +113,33 @@ function (YAxis, Graph, Collection) {
 
     });
 
+    describe('tickFormat()', function () {
+      it('uses the numberListFormatter if theres a tick value list from the graph', function () {
+        var view = viewForValues(0, 10, true, 10);
+        spyOn(view, 'numberListFormatter');
+        view.scales.y.tickValueList = [];
+
+        view.tickFormat();
+
+        expect(view.numberListFormatter).toHaveBeenCalled();
+      });
+
+      it('uses the standard formatter with formatOptions when its a duration', function () {
+        var view = viewForValues(0, 10, true, 10);
+        spyOn(view, 'format');
+        view.scales.y.tickValueList = undefined;
+        view.graph.formatOptions = {
+          type: 'duration'
+        };
+
+        var formatter = view.tickFormat();
+
+        formatter(1000);
+
+        expect(view.format).toHaveBeenCalledWith(1000, view.graph.formatOptions);
+      });
+    });
+
 
   });
 });

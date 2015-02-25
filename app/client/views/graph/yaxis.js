@@ -20,6 +20,11 @@ function (require, Axis) {
       if (this.scales.y.tickValueList) {
         return this.numberListFormatter(this.scales.y.tickValueList,  currency);
       }
+      if (this.graph.formatOptions && this.graph.formatOptions.type === 'duration') {
+        return _.bind(function (d) {
+          return this.format(d, this.graph.formatOptions);
+        }, this);
+      }
     },
     tickValues: function () {
       if (this.graph.showStartAndEndTicks && this.scales.y.tickValueList) {
