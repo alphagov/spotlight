@@ -4,7 +4,7 @@ define(['jquery'],
       createLiveRegion: function() {
         var $liveRegionContainer = $('.live-region-container');
         if ($liveRegionContainer.length === 0) {
-          return $('<div class="visuallyhidden live-region-container" aria-live="polite"></div>').appendTo('body');
+          return $('<div class="visuallyhidden live-region-container" aria-live="assertive" role="alert"></div>').appendTo('body');
         } else {
           return $liveRegionContainer;
         }
@@ -18,9 +18,10 @@ define(['jquery'],
         if (!$liveRegionContainer || !$liveRegionContainer.length) {
           $liveRegionContainer = this.createLiveRegion();
         }
-        $liveRegionContainer.empty();
-        $liveRegionContainer.text(text);
 
+        $liveRegionContainer
+          .empty()
+          .html(text); // using html instead of text seems to work better with JAWS
       }
     };
 
