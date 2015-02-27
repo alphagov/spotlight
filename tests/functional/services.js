@@ -39,10 +39,10 @@ module.exports = {
       .end();
   },
 
-  'Services filter': function (client) {
+  'Service gropu filter': function (client) {
     client
       .assert.containsText(this.selectors.filterTable, 'Vehicle tax renewals')
-      .click('#service option[value="my-service"]')
+      .click('#service-group option[value="my-service"]')
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.doesNotContainText(this.selectors.filterTable, 'Vehicle tax renewals')
       .assert.containsText(this.selectors.filterTable, 'My transaction')
@@ -60,7 +60,7 @@ module.exports = {
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.doesNotContainText(this.selectors.filterTable, 'Digital Services Store')
       .assert.containsText(this.selectors.filterTable, 'Digital Marketplace')
-      .click('#service option[value="my-service"]')
+      .click('#service-group option[value="my-service"]')
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.containsText(this.selectors.filterTable, 'My transaction')
       .assert.containsText(this.selectors.filterTable, 'Second transaction')

@@ -32,13 +32,13 @@
     </div>
     <% }%>
     <div class="cols3">
-      <label for="service" id="filter-service"><span aria-hidden="true">Service</span><span class="visuallyhidden">Select a service to filter services by</span></label>
-      <select id="service" name="service">
-        <option value="">All services</option>
-        <% _.each(services, function (service) { %>
+      <label for="service-group" id="filter-service-group"><span aria-hidden="true">Service group</span><span class="visuallyhidden">Select a service group to filter services by</span></label>
+      <select id="service-group" name="service-group">
+        <option value="">All service groups</option>
+        <% _.each(serviceGroups, function (serviceGroup) { %>
         <option
-                value="<%= service.slug %>"<% if (service.slug === serviceFilter) { %>selected<% } %>>
-        <%= service.title
+                value="<%= serviceGroup.slug %>"<% if (serviceGroup.slug === serviceGroupFilter) { %>selected<% } %>>
+        <%= serviceGroup.title
         %></option>
         <% }); %>
       </select>

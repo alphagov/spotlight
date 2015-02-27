@@ -74,13 +74,13 @@ describe('Services View', function () {
     model.set({
       filter: '',
       departmentFilter: 'Department of Health',
-      serviceFilter: 'carers-allowance'
+      serviceGroupFilter: 'carers-allowance'
     });
     view = new ServicesView(viewOptions);
     expect(collection.filterServices).toHaveBeenCalledWith(jasmine.objectContaining({
       text: '',
       department: 'Department of Health',
-      service: 'carers-allowance'
+      serviceGroup: 'carers-allowance'
     }));
   });
 

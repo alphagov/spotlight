@@ -11,7 +11,7 @@ define([
       model = new Backbone.Model({
         filter: '',
         departmentFilter: '',
-        serviceFilter: ''
+        serviceGroupFilter: ''
       });
       controller = new ServicesController({
         model: model,
@@ -39,10 +39,10 @@ define([
     });
 
     it('filters the service when its filter value changes', function () {
-      model.set('serviceFilter', 'bar');
+      model.set('serviceGroupFilter', 'bar');
       expect(controller.unfilteredCollection.filterServices)
         .toHaveBeenCalledWith(jasmine.objectContaining({
-          service: 'bar'
+          serviceGroup: 'bar'
         }));
     });
   });

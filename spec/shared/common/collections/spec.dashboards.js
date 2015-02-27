@@ -123,7 +123,7 @@ define([
 
         it('doesn\'t override the existing slug for services', function() {
           collection.reset(dashboardData);
-          expect(collection.getServices()[1].slug).toEqual('referrals');
+          expect(collection.getServiceGroups()[1].slug).toEqual('referrals');
         });
 
       });
@@ -138,7 +138,7 @@ define([
           var filter = {
               text: 'health',
               department: 'dh',
-              service: 'referrals'
+              serviceGroup: 'referrals'
             },
             models = collection.filterServices(filter);
           expect(models[0].get('title')).toEqual('Written GP referrals to first outpatient appointment');
@@ -175,9 +175,9 @@ define([
           expect(models[0].get('title')).toEqual('Job search adviser interventions');
         });
 
-        it('filters on service only', function () {
+        it('filters on service group only', function () {
           var filter = {
-              service: 'prepayment'
+              serviceGroup: 'prepayment'
             },
             models;
           models = collection.filterServices(filter);

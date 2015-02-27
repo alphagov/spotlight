@@ -21,7 +21,7 @@ module.exports = BaseView.extend({
     var filteredList = this.collection.filterServices({
       text: this.model.get('filter'),
       department: this.model.get('departmentFilter'),
-      service: this.model.get('serviceFilter')
+      serviceGroup: this.model.get('serviceGroupFilter')
     });
 
     this.filterCollection.reset(filteredList);
@@ -74,8 +74,8 @@ module.exports = BaseView.extend({
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
-      services: this.model.get('services'),
-      serviceFilter: this.model.get('serviceFilter'),
+      serviceGroups: this.model.get('serviceGroups'),
+      serviceGroupFilter: this.model.get('serviceGroupFilter'),
       agencies: this.model.get('agencies'),
       filteredCount: this.filterCollection.length,
       aggregateVals: this.formatAggregateValues()

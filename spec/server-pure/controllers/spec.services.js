@@ -90,10 +90,10 @@ describe('Services Controller', function () {
   });
 
   it('passes a services filter to the model if set in the querystring', function () {
-    controller('services', _.extend({ query: { service: 'carers-allowance' } }, fake_app), res);
+    controller('services', _.extend({ query: { servicegroup: 'carers-allowance' } }, fake_app), res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
-      serviceFilter: 'carers-allowance'
+      serviceGroupFilter: 'carers-allowance'
     }));
   });
 

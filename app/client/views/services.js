@@ -4,9 +4,10 @@ define([
   'client/views/table',
   'client/views/summary-figure',
   'client/views/services-kpi',
-  'jquerydeparam'
+  'jquerydeparam',
+  'lodash'
 ],
-function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
+function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
   return View.extend({
 
     analyticsCategory: 'ppServices',
@@ -22,7 +23,7 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
       'change #department': function() {
         this.filter('departmentFilter');
       },
-      'change #service': function() {
+      'change #service-group': function() {
         this.filter('serviceGroupFilter');
       },
       'click .filter-remove': 'removeFilter'
@@ -67,12 +68,12 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
     filter: function (type) {
       var filterVal = this.$('#filter').val(),
         deptFilterVal = this.$('#department').val(),
-        serviceFilterVal = this.$('#service').val();
+        serviceGroupFilterVal = this.$('#service-group').val();
 
       this.model.set({
         filter: filterVal,
         departmentFilter: deptFilterVal,
-        serviceFilter: serviceFilterVal
+        serviceGroupFilter: serviceGroupFilterVal
       }, {silent: true});
 
       this.model.trigger('filterChanged');
@@ -90,10 +91,10 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
         } else {
           delete params.department;
         }
-        if (serviceFilterVal) {
-          params.service = serviceFilterVal;
+        if (serviceGroupFilterVal) {
+          params.servicegroup = serviceGroupFilterVal;
         } else {
-          delete params.service;
+          delete params.servicegroup;
         }
 
         params = $.param(params);

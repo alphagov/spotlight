@@ -60,17 +60,17 @@ var renderContent = function (req, res, client_instance) {
 
     var departments = collection.getDepartments();
     var agencies = collection.getAgencies();
-    var serviceTitles = collection.getServices();
+    var serviceGroups = collection.getServiceGroups();
 
     var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
       title: 'Services data',
       'page-type': 'services',
       filter: sanitizer.escape(req.query.filter || ''),
       departmentFilter: req.query.department || null,
-      serviceFilter: req.query.service || null,
+      serviceGroupFilter: req.query.servicegroup || null,
       departments: departments,
       agencies: agencies,
-      services: serviceTitles,
+      serviceGroups: serviceGroups,
       data: services,
       script: (servicesController.type === 'services') ? true : false,
       noun: 'service',
