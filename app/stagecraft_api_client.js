@@ -22,53 +22,69 @@ function (Model) {
     },
 
     url: function () {
-      if(this.fallback) {
-        if(this.path.length){
-          return this.urlRoot + this.path;
-        } else {
-          return this.urlRoot + '/dashboards';
-        }
+      if(this.path.length){
+        return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
       } else {
-        if(this.path.length){
-          return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
-        } else {
-          return this.stagecraftUrlRoot;
-        }
+        return this.stagecraftUrlRoot;
       }
     },
 
     fallback: false, 
 
     fetch: function (options) {
+      var requestId = this.requestId,
+          govukRequestId = this.govukRequestId,
+          success = options && options.success,
+          error = options && options.error,
+          start = Date.now(),
+          url = this.url();
+
       options = _.extend({}, {
         validate: true,
         headers: {
           'GOVUK-Request-Id': this.govukRequestId,
           'Request-Id': this.requestId
         },
-        error: _.bind(function () {
-          this.fetchFallback(options);
-        }, this)
       }, options);
+      options.success = function () {
+        var duration = Date.now() - start;
+
+        logger.info('Success for <%s>', url, {
+          request_id: requestId,
+          govuk_request_id: govukRequestId,
+          time: duration,
+          args: arguments
+        });
+
+        if (_.isFunction(success)) {
+          return success.apply(this, arguments);
+        }
+      };
+      options.error = _.bind(function () {
+        var duration = Date.now() - start;
+
+        this.set('controller', this.controllers.error);
+        this.set('status', xhr.status);
+        this.set('errorText', xhr.responseText);
+
+        logger.info('Error for <%s>', url, {
+          request_id: requestId,
+          govuk_request_id: govukRequestId,
+          time: duration,
+          args: arguments
+        });
+
+        if (_.isFunction(error)) {
+          return error.apply(this, arguments);
+        }
+      }, this);
+
       logger.info('Fetching <%s>', this.url(), {
         request_id: this.requestId,
         govuk_request_id: this.govukRequestId
       });
-      Model.prototype.fetch.call(this, options);
-    },
 
-    fetchFallback: function (options) {
-      this.fallback = true;
-      options = _.extend({}, options, {
-        validate: true,
-        error: _.bind(function (model, xhr) {
-          this.set('controller', this.controllers.error);
-          this.set('status', xhr.status);
-          this.set('errorText', xhr.responseText);
-        }, this)
-      });
-      this.fetch(options);
-      this.fallback = false;
+      Model.prototype.fetch.call(this, options);
     },
 
     parse: function (data, options) {

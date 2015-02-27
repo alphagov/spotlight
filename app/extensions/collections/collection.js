@@ -157,18 +157,56 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     },
 
     fetch: function (options) {
+      var requestId = this.requestId,
+          govukRequestId = this.govukRequestId,
+          success = options && options.success,
+          error = options && options.error,
+          start = Date.now(),
+          url = this.url();
+
       this.selectedItem = null;
       this.selectedIndex = null;
+
       options = _.extend({}, {
         headers: {
-          'GOVUK-Request-Id': this.govukRequestId,
-          'Request-Id': this.requestId
+          'GOVUK-Request-Id': govukRequestId,
+          'Request-Id': requestId
         }
       }, options);
-      logger.info('Fetching <%s>', this.url(), {
-        request_id: this.requestId,
-        govuk_request_id: this.govukRequestId
+      options.success = function () {
+        var duration = Date.now() - start;
+
+        logger.info('Success for <%s>', url, {
+          request_id: requestId,
+          govuk_request_id: govukRequestId,
+          time: duration,
+          args: arguments
+        });
+
+        if (_.isFunction(success)) {
+          return success.apply(this, arguments);
+        }
+      };
+      options.error = function () {
+        var duration = Date.now() - start;
+
+        logger.info('Error for <%s>', url, {
+          request_id: requestId,
+          govuk_request_id: govukRequestId,
+          time: duration,
+          args: arguments
+        });
+
+        if (_.isFunction(error)) {
+          return error.apply(this, arguments);
+        }
+      };
+
+      logger.info('Fetching <%s>', url, {
+        request_id: requestId,
+        govuk_request_id: govukRequestId
       });
+
       return Backbone.Collection.prototype.fetch.call(this, options);
     },
 
