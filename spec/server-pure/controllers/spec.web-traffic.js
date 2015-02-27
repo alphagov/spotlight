@@ -2,7 +2,7 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var _ = require('lodash');
 
-var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
+var dashboards = require('../../stubs/stagecraft/dashboards');
 var controller = require('../../../app/server/controllers/web-traffic');
 var View = require('../../../app/server/views/web-traffic');
 var ServicesView = require('../../../app/server/views/services');

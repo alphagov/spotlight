@@ -2,8 +2,8 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var _ = require('lodash');
 
-var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
-var transactions = require('../../../app/support/backdrop_stub/responses/transaction-data');
+var dashboards = require('../../stubs/stagecraft/dashboards');
+var transactions = require('../../stubs/backdrop/transaction-data');
 var controller = require('../../../app/server/controllers/services');
 var ServicesView = require('../../../app/server/views/services');
 var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
