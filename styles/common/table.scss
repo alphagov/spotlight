@@ -138,6 +138,9 @@ table tbody .sort-column {
       text-align: left;
       border-bottom: 0;
       padding: 3px 0;
+      &:first-child {
+        width: 100%;
+      }
     }
     tbody th, tbody td {
       display: block;
@@ -164,3 +167,4 @@ table tbody .sort-column {
     }
   }
 }
+
