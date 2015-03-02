@@ -13,8 +13,8 @@
     <h2 class="visuallyhidden" id="header-dashboard-counts">Dashboard counts</h2>
 
     <div class="column-third">
-      <a class="impact-link" href="/performance/services">
-        <span class="impact-link-figure"><%= serviceCount %></span> <span class="impact-link-label">service dashboards</span>
+      <a class="impact-link services-link" href="/performance/services">
+        <span class="impact-link-figure services-count"><%= serviceCount %></span> <span class="impact-link-label">service dashboards</span>
       </a>
     </div>
     <div class="column-third">
@@ -35,7 +35,7 @@
     <% _.each(showcaseServices, function (service, index) { %>
     <div class="brand-<%= service.deptCode %> brand-interactive outdent-to-full-width vertical-spacing-small grid-row">
       <div class="column-third">
-        <h3 class="heading-2"><a class="link-unstyled" href="/performance/<%= service.slug %>"><%= service.title %></a></h3>
+        <h3 class="heading-2"><a class="link-unstyled showcase-heading-link-<%= index %>" href="/performance/<%= service.slug %>"><%= service.title %></a></h3>
       </div>
       <div class="column-third">
         <div class="homepage-showcase-item">
@@ -68,7 +68,7 @@
 
   <h2 class="visuallyhidden">Highest performing services</h2>
   <div class="grid-row">
-    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-cost">
+    <div class="column-half vertical-margin-top-small top-services-cost" aria-labelledby="top-services-cost">
       <div class="icon-top-services">
         <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt="" />
       </div>
@@ -77,7 +77,7 @@
       <%= tableCost %>
       <p><a class="text-small" href="/performance/services?sortby=cost_per_transaction&sortorder=ascending#filtered-list">See all</a></p>
     </div>
-    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-satisfaction">
+    <div class="column-half vertical-margin-top-small top-services-satisfaction" aria-labelledby="top-services-satisfaction">
       <div class="icon-top-services">
         <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
       </div>
@@ -88,7 +88,7 @@
     </div>
   </div>
   <div class="grid-row">
-    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-completion">
+    <div class="column-half vertical-margin-top-small top-services-completion" aria-labelledby="top-services-completion">
       <div class="icon-top-services">
         <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
       </div>
@@ -97,7 +97,7 @@
       <%= tableCompletion %>
       <p><a class="text-small" href="/performance/services?sortby=completion_rate&sortorder=descending#filtered-list">See all</a></p>
     </div>
-    <div class="column-half vertical-margin-top-small" aria-labelledby="top-services-takeup">
+    <div class="column-half vertical-margin-top-small top-services-takeup" aria-labelledby="top-services-takeup">
       <div class="icon-top-services">
         <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
       </div>
