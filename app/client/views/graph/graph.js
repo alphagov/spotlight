@@ -371,6 +371,10 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
 
     hasTotalLine: function () {
       return false;
+    },
+
+    hasTotalLabel: function () {
+      return true;
     }
 
   });

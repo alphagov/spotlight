@@ -49,7 +49,8 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
     visualisationOptions: function () {
       return {
         valueAttr: this.model.get('value-attribute'),
-        formatOptions: this.model.get('format')
+        formatOptions: this.model.get('format'),
+        showTotalLabel: this.model.get('show-total-label')
       };
     }
 

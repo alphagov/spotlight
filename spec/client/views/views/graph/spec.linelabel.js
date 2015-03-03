@@ -68,6 +68,9 @@ function (LineLabel, Collection, Model) {
           hasTotalLine: function () {
             return false;
           },
+          hasTotalLabel: function () {
+            return true;
+          },
           modelToDate: function () {
             return '2014-01-01';
           },
@@ -309,6 +312,13 @@ function (LineLabel, Collection, Model) {
 
           it('does not render a total for graphs with a total line', function () {
             graph.hasTotalLine = function () { return true; };
+            lineLabel.render();
+            var textLabel = lineLabel.$el.find('figcaption .total');
+            expect(textLabel.length).toEqual(0);
+          });
+
+          it('does not render a total when hasTotalLabel is false', function () {
+            graph.hasTotalLabel = function () { return false; };
             lineLabel.render();
             var textLabel = lineLabel.$el.find('figcaption .total');
             expect(textLabel.length).toEqual(0);

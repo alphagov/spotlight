@@ -148,7 +148,9 @@ function (Component) {
 
       var summary = '<span class="timeperiod">' + output + '</span>';
 
-      if (!this.graph.isOneHundredPercent() && !this.graph.hasTotalLine()) {
+      if (!this.graph.isOneHundredPercent() &&
+        !this.graph.hasTotalLine() &&
+        this.graph.hasTotalLabel()) {
         var total = model.get('total:' + this.graph.valueAttr);
         var formattedTotal = total ? this.format(total, this.getFormatOptions()) : '(no data)';
         summary += ('<span class="total">Total: <strong>' + formattedTotal + '</strong></span>');
