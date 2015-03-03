@@ -77,7 +77,6 @@ define([
           ]);
         });
 
-
         it('updates figure when the filtered services count changes', function () {
           var $el = $('<div><div class="digital_takeup"><div class="impact-number"><strong>35%</strong></div></div></div>');
           this.summary = new ServicesKPIView({
@@ -90,6 +89,24 @@ define([
           this.summary.collection.reset([{}]);
 
           expect(this.summary.$el.find('strong').html()).toEqual('14.3%');
+        });
+
+        it('makes updates available to a screenreader', function () {
+          var $liveRegionContainer = $('.live-region-container');
+          this.summary = new ServicesKPIView({
+            el: '<div />',
+            model: new Model({
+              noun: 'service'
+            }),
+            collection: new ServicesCollection([], servicesAxes)
+          });
+          this.summary.collection.reset([]);
+          expect($liveRegionContainer.text()).toEqual('Totals and averages updated for 0 services');
+          this.summary.collection.reset([{}]);
+          expect($liveRegionContainer.text()).toEqual('Totals and averages updated for 1 service');
+          this.summary.collection.reset([{},{}]);
+          expect($liveRegionContainer.text()).toEqual('Totals and averages updated for 2 services');
+          $liveRegionContainer.remove();
         });
 
         it('adds a weighted average count for the kpi when the there is some results', function () {

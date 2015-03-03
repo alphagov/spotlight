@@ -13,8 +13,11 @@ function (View, accessibility) {
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
       this.listenTo(this.collection, 'reset', _.bind(function() {
-        accessibility.updateLiveRegion('Totals and averages updated for ' + this.collection.length
-        );
+        var unit = this.model.get('noun');
+        if (this.collection.length !== 1) {
+          unit += 's';
+        }
+        accessibility.updateLiveRegion('Totals and averages updated for ' + this.collection.length + ' ' + unit);
         this.render();
       }, this));
     },
