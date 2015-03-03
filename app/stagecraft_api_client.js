@@ -46,7 +46,13 @@ function (Model) {
           'GOVUK-Request-Id': this.govukRequestId,
           'Request-Id': this.requestId
         },
-        error: _.bind(function () {
+        error: _.bind(function (model, xhr) {
+          logger.info('failed to fetch stagecraft response',
+                      {
+                        'path': model.path,
+                        'status': xhr.status,
+                        'errorText': xhr.responseText
+                      });
           this.fetchFallback(options);
         }, this)
       }, options);
