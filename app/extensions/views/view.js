@@ -165,7 +165,8 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
         day: 'D MMM YYYY',
         week: 'D MMM YYYY',
         month: 'MMMM YYYY',
-        quarter: 'MMM YYYY'
+        quarter: 'MMM YYYY',
+        year: 'YYYY'
       };
       return formats[period];
     },
