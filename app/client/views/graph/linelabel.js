@@ -168,7 +168,7 @@ function (Component) {
       var that = this;
       var lines = this.graph.getLines();
 
-      var labelWrapper = this.figcaption.selectAll('ol').data(['one-wrapper']);
+      var labelWrapper = this.figcaption.select('div.summary').selectAll('ol').data(['one-wrapper']);
       labelWrapper.enter().append('ol').classed('squares', function () {
         return that.showSquare;
       }).classed('has-links', function () {
