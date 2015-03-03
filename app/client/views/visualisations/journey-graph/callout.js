@@ -1,18 +1,74 @@
 define([
-  'client/views/graph/callout'
+  'client/views/graph/component',
+  'extensions/mixins/pivot'
 ],
-function (Callout) {
+function (Component, Pivot) {
 
-  var JourneyCallout = Callout.extend({
+  var JourneyCallout = Component.extend({
+
+    events: {
+      'mousemove': 'onMouseMove'
+    },
 
     horizontal: 'centre',
     vertical: 'bottom',
     xOffset: 0,
     yOffset: 0,
     constrainToBounds: false,
+    classed: 'callout',
 
     blockMarginFraction: 0.2,
     barMarginFraction: 0.05,
+
+    initialize: function (options) {
+      Component.prototype.initialize.apply(this, arguments);
+      options = options || {};
+      this.showPercentage = options.showPercentage;
+    },
+
+    render: function () {
+      if (!this.calloutEl) {
+        this.calloutEl = $('<div></div>').addClass(this.classed + ' performance-hidden').appendTo(this.$el);
+      }
+    },
+
+    onChangeSelected: function (model, index, options) {
+      var el = this.calloutEl;
+      if (!model) {
+        el.addClass('performance-hidden');
+        return;
+      }
+      options = options || {};
+      this.renderContent(el, model, options.valueAttr);
+      el.removeClass('performance-hidden');
+
+      var scaleFactor = this.graph.scaleFactor();
+
+      var basePos = {
+        x: this.x(index) * scaleFactor,
+        y: this.y(index, options.valueAttr) * scaleFactor
+      };
+
+      var pivotingEl = this.getPivotingElement();
+
+      var pos = this.applyPivot(basePos, {
+        horizontal: this.horizontal,
+        vertical: this.vertical,
+        xOffset: this.xOffset,
+        yOffset: this.yOffset,
+        constrainToBounds: this.constrainToBounds,
+        width: pivotingEl.width(),
+        height: pivotingEl.height()
+      }, {
+        width: this.graph.innerWidth * scaleFactor,
+        height: this.graph.innerHeight * scaleFactor
+      });
+
+      pivotingEl.css({
+        left: pos.x + this.margin.left * scaleFactor,
+        top: pos.y + this.margin.top * scaleFactor
+      });
+    },
 
     x: function (index) {
       var blockWidth = this.scales.x(1) - this.scales.x(0);
@@ -30,6 +86,15 @@ function (Callout) {
 
     y: function () {
       return 0;
+    },
+
+    onMouseMove: function () {
+      return false;
+    },
+
+    getHeader: function (el, model) {
+      var period = this.graph.collection.query.get('period') || 'week';
+      return this.formatPeriod(model, period);
     },
 
     getPivotingElement: function () {
@@ -73,6 +138,8 @@ function (Callout) {
 
 
   });
+
+  _.extend(JourneyCallout.prototype, Pivot);
 
   return JourneyCallout;
 });

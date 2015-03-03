@@ -28,7 +28,6 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
       return {
         valueAttr: this.model.get('value-attribute'),
         category: this.model.get('category'),
-        currency: this.model.get('currency'),
         showTotalLines: this.model.get('show-total-lines'),
         isOneHundredPercent: this.model.get('one-hundred-percent'),
         useStack: this.model.get('use_stack'),
@@ -50,8 +49,8 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
 
     visualisationOptions: function () {
       return {
-        currency: this.model.get('currency'),
-        valueAttr: this.model.get('value-attribute')
+        valueAttr: this.model.get('value-attribute'),
+        formatOptions: this.model.get('format')
       };
     }
 

@@ -24,7 +24,7 @@ function (Collection) {
           {
             label: 'Number of applications',
             key: 'uniqueEvents',
-            format: this.model.get('format-options') || 'integer'
+            format: this.model.get('format') || this.model.get('format-options') || 'integer'
           }
         ]
       }, this.model.get('axes')),
@@ -36,7 +36,7 @@ function (Collection) {
       return {
         valueAttr: 'uniqueEvents',
         totalAttr: 'mean',
-        formatOptions: this.model.get('format-options') || { type: 'number', magnitude: true, pad: true }
+        formatOptions: this.model.get('format') || this.model.get('format-options') || { type: 'number', magnitude: true, pad: true }
       };
     }
 

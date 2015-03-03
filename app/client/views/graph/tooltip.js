@@ -37,11 +37,17 @@ function (Component, Pivot) {
       if (value === null) {
         return '(no data)';
       }
-      var format = this.graph.currency ? 'currency' : 'number';
+
+      var format = _.extend({
+          type: 'number',
+          magnitude: true,
+          pad: true
+        }, this.graph.formatOptions);
+
       if (this.graph.isOneHundredPercent()) {
-        format = 'percent';
+        format.type = 'percent';
       }
-      return this.format(value, { type: format, magnitude: true, pad: true });
+      return this.format(value, format);
     },
 
     onChangeSelected: function (model, index, options) {

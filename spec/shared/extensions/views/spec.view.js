@@ -209,14 +209,6 @@ function (View, Model, Backbone) {
           expect(formatter(30000)).toBe('30k');
         });
 
-        it('should format with currency prefix if required', function () {
-          var formatter = View.prototype.numberListFormatter([0, 1000], 'gbp');
-          expect(formatter(200)).toBe('£200');
-
-          formatter = View.prototype.numberListFormatter([0, 100000], 'gbp');
-          expect(formatter(20000)).toBe('£20k');
-        });
-
       });
 
       describe('when labels go over 1,000,000', function () {

@@ -379,16 +379,6 @@ function (Graph, Collection, Model, View, d3) {
         spyOn(graph, 'resizeWithCalloutHidden');
       });
 
-      it('sets the currency on render, if defined', function () {
-        graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
-        graph.calcYScale = jasmine.createSpy().andReturn('test y scale');
-        graph.collection.options = {
-          currency: 'gbp'
-        };
-        graph.render();
-        expect(graph.currency).toEqual('gbp');
-      });
-
       it('resizes the graph', function () {
         graph.calcXScale = jasmine.createSpy().andReturn('test x scale');
         graph.calcYScale = jasmine.createSpy().andReturn('test y scale');

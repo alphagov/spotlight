@@ -9,13 +9,12 @@ function (View, StackedGraph, LineGraph) {
     views: function () {
       var useStack = this.model.get('use_stack'),
           graph = useStack ? StackedGraph : LineGraph;
-
       return {
         '.categories': {
           view: graph,
           options: {
-            currency: this.currency,
-            valueAttr: this.valueAttr
+            valueAttr: this.valueAttr,
+            formatOptions: this.formatOptions
           }
         }
       };
