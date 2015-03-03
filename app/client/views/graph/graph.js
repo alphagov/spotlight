@@ -51,8 +51,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       this.componentInstances = [];
       var defaultComponentOptions = this.getDefaultComponentOptions();
       _.each(this.prop('components'), function (definition) {
-        var options = _.extend({}, defaultComponentOptions, definition.options);
-        this.componentInstances.push(new definition.view(options));
+        var defOptions = _.extend({}, defaultComponentOptions, definition.options);
+        this.componentInstances.push(new definition.view(defOptions));
       }, this);
 
       $(window).on('resize.' + this.cid, _.bind(this.render, this));
