@@ -306,11 +306,6 @@ figure.graph {
         font-size: 14px;
       }
 
-      .value {
-        font-size: 21px;
-        font-weight: bold;
-      }
-
       .timeperiod {
         display: block;
         border-bottom: 1px solid $grey-2;
@@ -583,7 +578,7 @@ figure.graph {
           width: 28%;
         }
         &.labels-for-total li {
-          width: 42%;
+          width: 38%;
         }
       }
     }
