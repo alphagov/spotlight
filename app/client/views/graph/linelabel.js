@@ -169,11 +169,13 @@ function (Component) {
       var lines = this.graph.getLines();
 
       var labelWrapper = this.figcaption.select('div.summary').selectAll('ol').data(['one-wrapper']);
-      labelWrapper.enter().append('ol').classed('squares', function () {
-        return that.showSquare;
-      }).classed('has-links', function () {
+      labelWrapper.enter().append('ol').classed('squares', _.bind(function () {
+        return this.showSquare;
+      }, this)).classed('has-links', function () {
         return _.any(lines, function (line) { return line.href; });
-      });
+      }).classed('labels-for-total', _.bind(function () {
+        return !this.graph.isOneHundredPercent() && !this.graph.hasTotalLine();
+      }, this));
 
       var selection = labelWrapper.selectAll('li')
         .data(lines);
@@ -229,12 +231,14 @@ function (Component) {
         });
       });
 
+      this.positions = _.clone(positions);
+
       positions = positions.sort(function (a, b) {
         return a.ideal - b.ideal;
       });
 
       // optimise positions
-      positions = this.positions = this.calcPositions(positions, {
+      positions = this.calcPositions(positions, {
         min: this.overlapLabelTop + this.summaryHeight,
         max: this.graph.innerHeight + this.overlapLabelBottom
       });

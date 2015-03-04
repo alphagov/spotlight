@@ -592,7 +592,7 @@ function (LineLabel, Collection, Model) {
         expect(startPositions[0]).toEqual({
           ideal: 49, // yScale was applied to '_count' attribute of last element in line 'a'
           size: 20,
-          key: 'a',
+          key: 'a'
         });
         expect(lineLabel.scales.y).toHaveBeenCalledWith(8);
         expect(startPositions[1]).toEqual({
@@ -642,7 +642,7 @@ function (LineLabel, Collection, Model) {
           interactive: false,
           collection: {
             on: jasmine.createSpy()
-          },
+          }
         });
         lineLabel.offset = 100;
         lineLabel.linePaddingInner = 20;
