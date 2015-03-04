@@ -173,6 +173,8 @@ function (Component) {
         return that.showSquare;
       }).classed('has-links', function () {
         return _.any(lines, function (line) { return line.href; });
+      }).classed('labels-for-total', function () {
+        return !that.graph.isOneHundredPercent() && !that.graph.hasTotalLine();
       });
 
       var selection = labelWrapper.selectAll('li')

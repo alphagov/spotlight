@@ -570,13 +570,19 @@ figure.graph {
 
       ol {
         float: left;
-        width: 66%;
+        width: 100%;
+        &.labels-for-total {
+          width: 66%;
+        }
         li {
           cursor: default;
           float: left;
           margin-bottom: 12px;
           position: static;
           margin-top: 0;
+          width: 28%;
+        }
+        &.labels-for-total li {
           width: 42%;
         }
       }
