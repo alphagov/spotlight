@@ -365,6 +365,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       return View.prototype.remove.apply(this, arguments);
     },
 
+    //TODO: these methods should all be some sort of default options
     isOneHundredPercent: function () {
       return false;
     },
