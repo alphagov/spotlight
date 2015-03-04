@@ -28,7 +28,6 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
       return {
         valueAttr: this.model.get('value-attribute'),
         category: this.model.get('category'),
-        showTotalLines: this.model.get('show-total-lines'),
         isOneHundredPercent: this.model.get('one-hundred-percent'),
         useStack: this.model.get('use_stack'),
         axisPeriod: this.model.get('axis-period'),
@@ -50,7 +49,8 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
     visualisationOptions: function () {
       return {
         valueAttr: this.model.get('value-attribute'),
-        formatOptions: this.model.get('format')
+        formatOptions: this.model.get('format'),
+        showTotalLabel: this.model.get('show-total-label')
       };
     }
 

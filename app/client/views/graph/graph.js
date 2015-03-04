@@ -51,8 +51,8 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       this.componentInstances = [];
       var defaultComponentOptions = this.getDefaultComponentOptions();
       _.each(this.prop('components'), function (definition) {
-        var options = _.extend({}, defaultComponentOptions, definition.options);
-        this.componentInstances.push(new definition.view(options));
+        var defOptions = _.extend({}, defaultComponentOptions, definition.options);
+        this.componentInstances.push(new definition.view(defOptions));
       }, this);
 
       $(window).on('resize.' + this.cid, _.bind(this.render, this));
@@ -365,12 +365,17 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
       return View.prototype.remove.apply(this, arguments);
     },
 
+    //TODO: these methods should all be some sort of default options
     isOneHundredPercent: function () {
       return false;
     },
 
     hasTotalLine: function () {
       return false;
+    },
+
+    hasTotalLabel: function () {
+      return true;
     }
 
   });

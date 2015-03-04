@@ -14,7 +14,8 @@ function (View, StackedGraph, LineGraph) {
           view: graph,
           options: {
             valueAttr: this.valueAttr,
-            formatOptions: this.formatOptions
+            formatOptions: this.formatOptions,
+            showTotalLabel: this.showTotalLabel
           }
         }
       };

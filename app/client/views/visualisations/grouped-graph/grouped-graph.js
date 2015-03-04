@@ -91,6 +91,10 @@ function (Graph, LineLabel) {
       return _.any(this.getLines(), function (line) {
         return this.collection.defined(line.key).length > 0;
       }, this);
+    },
+
+    hasTotalLabel: function () {
+      return _.isUndefined(this.showTotalLabel) ? true : this.showTotalLabel;
     }
 
   });

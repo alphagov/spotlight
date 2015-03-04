@@ -33,6 +33,9 @@ function (LineLabel, Collection, Model) {
         hasTotalLine: function () {
           return false;
         },
+        hasTotalLabel: function () {
+          return true;
+        },
         getYPos: function (i, attr) { return collection.at(i).get(attr) ? 2 * collection.at(i).get(attr) : null; },
         getY0Pos: function (i, attr) { return collection.at(i).get(attr); },
         modelToDate: function () {
