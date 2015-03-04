@@ -80,7 +80,10 @@ function (Component) {
       events[eventName + ' li'] = function (e) {
         var target = $(e.currentTarget);
         var index = $(this.figcaption.node()).find('li').index(target);
-        this.selectLine(this.positions[index].key);
+        var pos = _.findWhere(this.positions, {
+          lineIndex: index
+        });
+        this.selectLine(pos.key);
         e.stopPropagation();
       };
 
@@ -221,7 +224,7 @@ function (Component) {
       var positions = [];
       var scale = this.scales.y;
       var that = this;
-      selection.each(function (line) {
+      selection.each(function (line, lineIndex) {
         var y = that.getYIdeal(line.key);
 
         var size = $(this).height();
@@ -229,18 +232,17 @@ function (Component) {
         positions.push({
           ideal: scale(y),
           size: size,
-          key: line.key
+          key: line.key,
+          lineIndex: lineIndex
         });
       });
-
-      this.positions = _.clone(positions);
 
       positions = positions.sort(function (a, b) {
         return a.ideal - b.ideal;
       });
 
       // optimise positions
-      positions = this.calcPositions(positions, {
+      positions = this.positions = this.calcPositions(positions, {
         min: this.overlapLabelTop + this.summaryHeight,
         max: this.graph.innerHeight + this.overlapLabelBottom
       });

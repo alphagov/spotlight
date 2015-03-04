@@ -602,13 +602,15 @@ function (LineLabel, Collection, Model) {
         expect(startPositions[0]).toEqual({
           ideal: 49, // yScale was applied to '_count' attribute of last element in line 'a'
           size: 20,
-          key: 'a'
+          key: 'a',
+          lineIndex: 0
         });
         expect(lineLabel.scales.y).toHaveBeenCalledWith(8);
         expect(startPositions[1]).toEqual({
           ideal: 64, // yScale was applied to '_count' attribute of last element in line 'b'
           size: 20,
-          key: 'b'
+          key: 'b',
+          lineIndex: 1
         });
 
         expect($(wrapper.selectAll('li')[0][0]).prop('style').top).toEqual('20px');
@@ -624,13 +626,15 @@ function (LineLabel, Collection, Model) {
         expect(startPositions[0]).toEqual({
           ideal: 16, // yScale was applied to '_count' attribute of penultimate element in line 'a'
           size: 20,
-          key: 'a'
+          key: 'a',
+          lineIndex: 0
         });
         expect(lineLabel.scales.y).toHaveBeenCalledWith(5);
         expect(startPositions[1]).toEqual({
           ideal: 25, // yScale was applied to '_count' attribute of penultimate element in line 'b'
           size: 20,
-          key: 'b'
+          key: 'b',
+          lineIndex: 1
         });
       });
 
