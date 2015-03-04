@@ -634,15 +634,6 @@ function (LineLabel, Collection, Model) {
         });
       });
 
-      it('sorts elements by ideal position before calculating positions', function () {
-        collection.last().set('a', 8);
-        collection.last().set('b', 4);
-        lineLabel.setLabelPositions(wrapper.selectAll('li'));
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
-        expect(startPositions[0].key).toEqual('b');
-        expect(startPositions[1].key).toEqual('a');
-      });
-
     });
 
     describe('renderLines', function () {

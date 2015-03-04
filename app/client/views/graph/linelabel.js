@@ -233,14 +233,8 @@ function (Component) {
         });
       });
 
-      this.positions = _.clone(positions);
-
-      positions = positions.sort(function (a, b) {
-        return a.ideal - b.ideal;
-      });
-
       // optimise positions
-      positions = this.calcPositions(positions, {
+      this.positions = positions = this.calcPositions(positions, {
         min: this.overlapLabelTop + this.summaryHeight,
         max: this.graph.innerHeight + this.overlapLabelBottom
       });
