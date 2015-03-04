@@ -1,19 +1,27 @@
+/**
+Didn't use core font generators here as needed control over line heights at desktop not mobile
+breakpoint, to keep base lines of large number and text in line
+*/
 .impact-link {
-  @include bold-19;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.1;
   text-decoration: none;
   display: block;
   white-space: nowrap;
 
   @include media(desktop) {
-    @include bold-24;
+    font-size: 24px;
   }
 
   .impact-link-figure {
-    @include bold-48;
+    font-size: 40px;
     display: inline-block;
     vertical-align: text-bottom;
+
     @include media(desktop) {
-      @include bold-60;
+      font-size: 60px;
+      line-height: 1.05;
     }
   }
 
@@ -26,3 +34,4 @@
   }
 
 }
+

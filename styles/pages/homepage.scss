@@ -8,8 +8,10 @@
 .homepage-showcase-item {
   @include bold-19;
   margin-bottom: 5px;
-  &:last-child {
-    margin-bottom: 0;
+  @include media(tablet) {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -22,3 +24,4 @@
   width: 100%;
   max-width: 602px;
 }
+
