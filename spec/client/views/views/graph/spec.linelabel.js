@@ -732,6 +732,48 @@ function (LineLabel, Collection, Model) {
 
     });
 
+    describe('getFormatOptions', function () {
+      var line;
+      beforeEach(function () {
+        line = new LineLabel({
+          interactive: false,
+          collection: new Collection([]),
+          graph: {}
+        });
+      });
+
+      it('will return format defaults', function () {
+        expect(line.getFormatOptions()).toEqual({
+          type : 'number',
+          magnitude : true,
+          pad : true
+        });
+      });
+
+      it('will extend the format options with the formatOptions from the dashboard', function () {
+        line.graph.formatOptions = {
+          type: 'currency',
+          dps: 2
+        };
+        expect(line.getFormatOptions()).toEqual({
+          type : 'currency',
+          magnitude : true,
+          pad : true,
+          dps : 2
+        });
+      });
+
+      it('will extend the format options when formatOptions is a string', function () {
+        line.graph.formatOptions = 'percent';
+        expect(line.getFormatOptions()).toEqual({
+          type : 'percent',
+          magnitude : true,
+          pad : true
+        });
+      });
+
+    });
+
     describe('calcPositions', function () {
 
       var line;

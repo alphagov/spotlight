@@ -104,11 +104,15 @@ function (Component) {
     },
 
     getFormatOptions: function () {
+      var formatOptions = _.isString(this.graph.formatOptions) ?  {
+        type: this.graph.formatOptions
+      } : this.graph.formatOptions;
+
       return _.extend({
           type: 'number',
           magnitude: true,
           pad: true
-        }, this.graph.formatOptions);
+        }, formatOptions);
     },
 
     renderValuePercentage: function (value, percentage) {
