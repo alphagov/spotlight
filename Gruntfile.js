@@ -126,7 +126,7 @@ module.exports = function (grunt) {
             consolidate: true
           }
         }
-      },
+      }
     },
     // Sets up server-side Jasmine node tests
     // Lints our JavaScript
@@ -223,8 +223,17 @@ module.exports = function (grunt) {
       }
     },
     shell: {
-      // Runs cheapseats tests
+      // Runs subset of cheapseats tests
       cheapseats: {
+        options: {
+          failOnError: true,
+          stderr: true,
+          stdout: true
+        },
+        command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path --quickrun ./')
+      },
+      // Runs all cheapseats tests
+      cheapseats_full_run: {
         options: {
           failOnError: true,
           stderr: true,

@@ -68,7 +68,8 @@ Tests are divided into ones that work on both client and server (`test/spec/shar
 
 - `grunt jasmine_node` executes shared and server Jasmine tests in Node.js
 - `grunt jasmine` executes shared and client Jasmine tests in PhantomJS
-- `grunt shell:cheapseats` executes feature tests using [cheapseats][]
+- `grunt shell:cheapseats` executes feature tests using [cheapseats][] with a small subset of dashboards, for speed
+- `grunt shell:cheapseats_full_run` runs cheapseats with all dashboards
 - `grunt test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
 
 ##### Functional tests #####
