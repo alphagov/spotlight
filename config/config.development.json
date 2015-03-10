@@ -6,5 +6,6 @@
   "screenshotServiceUrl": "http://localhost:3060",
   "govukHost": "www.alphagov.co.uk",
   "stagecraftUrl": "https://stagecraft.production.performance.service.gov.uk",
-  "statsdPrefix": "pp.apps.spotlight"
+  "statsdPrefix": "pp.apps.spotlight",
+  "bigScreenBaseURL": "https://www.performance.service.gov.uk"
 }

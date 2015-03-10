@@ -14,6 +14,7 @@ function () {
       environment: req.app.get('environment'),
       backdropUrl: req.app.get('backdropUrl'),
       clientRequiresCors: req.app.get('clientRequiresCors'),
+      bigScreenBaseURL: req.app.get('bigScreenBaseURL'),
       requestId: req.get('Request-Id'),
       govukRequestId: req.get('GOVUK-Request-Id')
     };
