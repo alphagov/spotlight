@@ -152,6 +152,20 @@ module.exports = function (grunt) {
         })
       }
     },
+    concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: [
+          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/google-analytics-classic-tracker.js',
+          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/google-analytics-universal-tracker.js',
+          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/tracker.js',
+          'app/client/analytics.js'
+        ],
+        dest: 'public/javascripts/analytics.js'
+      }
+    },
     // Copies templates and assets from external modules and dirs
     copy: {
       govuk_template: {
@@ -306,6 +320,7 @@ module.exports = function (grunt) {
     'grunt-contrib-jshint',
     'grunt-contrib-clean',
     'grunt-contrib-requirejs',
+    'grunt-contrib-concat',
     'grunt-digest',
     'grunt-sass',
     'grunt-contrib-copy',
@@ -331,6 +346,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:development', [
     'build:common',
+    'concat',
     'sass:development',
     'digest'
   ]);
@@ -340,6 +356,7 @@ module.exports = function (grunt) {
     'sass:production',
     'requirejs:production',
     'requirejs:production-no-d3',
+    'concat',
     'digest'
   ]);
 

@@ -32,7 +32,6 @@ describe('GovUkView', function () {
 
     var context = view.loadTemplate.mostRecentCall.args[1];
     expect(context.head.trim().indexOf('<link href="/testAssetPath/stylesheets/spotlight-cachebust.css" media="all" rel="stylesheet" type="text/css">')).not.toBe(-1);
-    expect(context.head.trim().indexOf('google-analytics.com')).not.toBe(-1);
     expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
     var content = context.content.replace(/\s+/g, ' ').trim();
