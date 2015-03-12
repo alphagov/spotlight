@@ -131,10 +131,22 @@ module.exports = function (grunt) {
     // Sets up server-side Jasmine node tests
     // Lints our JavaScript
     jshint: {
-      files: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/**/*.js'],
-      options: {
-        reporter: require('jshint-stylish'),
-        jshintrc: true
+      browser: {
+        src: ['app/client/*.js', 'spec/client/*.js'],
+        options: {
+          reporter: require('jshint-stylish'),
+          jshintrc: true,
+          config: './node_modules/performanceplatform-js-style-configs/.jshintrc-browser.json'
+        }
+      },
+      node: {
+        src: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/**/*.js',
+          '!app/client/*.js', '!spec/client/*.js'],
+        options: {
+          reporter: require('jshint-stylish'),
+          jshintrc: true,
+          config: './node_modules/performanceplatform-js-style-configs/.jshintrc-node.json'
+        }
       }
     },
     // Creates a single big JS file
