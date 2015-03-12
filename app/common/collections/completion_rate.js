@@ -20,7 +20,7 @@ define([
     calculateCompletion: function (dataset) {
       if (this._isFlat()) {
         var timeGroupedData = _.groupBy(dataset, function (elem) {
-          return elem['_start_at'];
+          return elem._start_at;
         });
 
         var parsedData = _.map(timeGroupedData, function (value) {

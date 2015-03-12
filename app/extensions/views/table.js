@@ -29,8 +29,12 @@ function (View, Formatters) {
         }, this));
 
         if (this.model.get('params')) {
-          this.model.get('params').sortby && this.model.set('sort-by', this.model.get('params').sortby, {silent: true});
-          this.model.get('params').sortorder && this.model.set('sort-order', this.model.get('params').sortorder, {silent: true});
+          if (this.model.get('params').sortby) {
+            this.model.set('sort-by', this.model.get('params').sortby, {silent: true});
+          }
+          if (this.model.get('params').sortorder) {
+            this.model.set('sort-order', this.model.get('params').sortorder, {silent: true});
+          }
           this.sort();
         }
       }

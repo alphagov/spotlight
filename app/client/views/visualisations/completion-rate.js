@@ -1,7 +1,8 @@
 define([
   'common/views/visualisations/completion_rate',
-  'client/views/visualisations/percentage-graph'
-], function (View, GraphView) {
+  'client/views/visualisations/percentage-graph',
+  'lodash'
+], function (View, GraphView, _) {
 
   return View.extend({
 

@@ -2,9 +2,10 @@ define([
   'extensions/views/table',
   'modernizr',
   'client/accessibility',
-    'jquerydeparam'
+    'jquerydeparam',
+    'lodash'
 ],
-function (TableView, Modernizr, accessibility, $) {
+function (TableView, Modernizr, accessibility, $, _) {
 
   return TableView.extend({
 
@@ -31,7 +32,9 @@ function (TableView, Modernizr, accessibility, $) {
       this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
       this.listenTo(this.model, 'sort-changed-external', _.bind(function(data) {
         this.screenreaderAnnounceSortChange(data['sort-by'], data['sort-order']);
-        this.options.saveSortInUrl && this.updateUrlWithSort();
+        if (this.options.saveSortInUrl) {
+          this.updateUrlWithSort();
+        }
       }, this));
 
     },
@@ -61,7 +64,9 @@ function (TableView, Modernizr, accessibility, $) {
         });
       }
       this.screenreaderAnnounceSortChange(sortBy, this.model.get('sort-order'));
-      this.options.saveSortInUrl && this.updateUrlWithSort();
+      if (this.options.saveSortInUrl) {
+        this.updateUrlWithSort();
+      }
     },
 
     render: function () {
