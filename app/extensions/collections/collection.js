@@ -96,10 +96,10 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
           for (var i=0; i < collect.length; i++) {
             current[collect[i]] = 0;
           }
-          grouped['data'].push(current);
+          grouped.data.push(current);
         }
-        current['_count'] += dataset['_count'];
-        current['_group_count'] += 1;
+        current._count += dataset._count;
+        current._group_count += 1;
         for (var j=0; j < collect.length; j++) {
           current[collect[j]] += dataset[collect[j]];
         }
@@ -109,7 +109,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     },
 
     findValue: function (data, key, value) {
-      return _.find(data['data'], function (dataset) {
+      return _.find(data.data, function (dataset) {
         return dataset[key] === value;
       }) || false;
     },
@@ -117,7 +117,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
     flatten: function (data) {
 
       if (this._isFlat() && this.dataSource.groupedBy()) {
-        data = this.groupByValue({'data': data}, this.dataSource.groupedBy(), this.dataSource.getCollect())['data'];
+        data = this.groupByValue({'data': data}, this.dataSource.groupedBy(), this.dataSource.getCollect()).data;
       }
 
       var groupedBy = this.dataSource.groupedBy();

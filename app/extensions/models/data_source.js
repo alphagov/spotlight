@@ -52,15 +52,15 @@ function (Backbone, Mustache, _, moment) {
 
     groupedBy: function () {
       var queryParams = this.get('query-params');
-      return (queryParams && queryParams['group_by']) || null;
+      return (queryParams && queryParams.group_by) || null;
     },
 
     isFlat: function () {
       var queryParams = this.get('query-params'),
           isFlat = !!this.options.flattenEverything;
 
-      if (queryParams && queryParams['flatten'] !== undefined) {
-        isFlat = queryParams['flatten'];
+      if (queryParams && queryParams.flatten !== undefined) {
+        isFlat = queryParams.flatten;
       }
 
       return isFlat;
@@ -68,7 +68,7 @@ function (Backbone, Mustache, _, moment) {
 
     getCollect: function () {
       var queryParams = this.get('query-params');
-      return (queryParams && queryParams['collect']) || false;
+      return (queryParams && queryParams.collect) || false;
     },
 
     configureTimespans: function (queryParams) {

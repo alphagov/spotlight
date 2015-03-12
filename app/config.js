@@ -23,7 +23,7 @@ define(function (options) {
     config.paths.modernizr = 'vendor/modernizr';
     config.paths.moment = 'vendor/moment';
     config.paths['moment-timezone'] = 'vendor/moment-timezone';
-    config.paths['text'] = 'vendor/text';
+    config.paths.text = 'vendor/text';
     config.paths.json = 'vendor/requirejs-plugins/json';
 
     config.shim = {

@@ -1,7 +1,8 @@
 define([
-  'common/collections/single-timeseries'
+  'common/collections/single-timeseries',
+  'lodash'
 ],
-function (Collection) {
+function (Collection, _) {
   return {
     requiresSvg: true,
     hasDatePicker: true,
@@ -9,11 +10,11 @@ function (Collection) {
 
     collectionOptions: function () {
       var options = {};
-      options.numeratorMatcher = new RegExp(this.model.get('numerator-matcher')),
-      options.denominatorMatcher = new RegExp(this.model.get('denominator-matcher')),
-      options.matchingAttribute = this.model.get('group-by'),
-      options.valueAttr = this.model.get('value-attribute') || 'uniqueEvents',
-      options.axisPeriod = this.model.get('axis-period') || this.model.get('period'),
+      options.numeratorMatcher = new RegExp(this.model.get('numerator-matcher'));
+      options.denominatorMatcher = new RegExp(this.model.get('denominator-matcher'));
+      options.matchingAttribute = this.model.get('group-by');
+      options.valueAttr = this.model.get('value-attribute') || 'uniqueEvents';
+      options.axisPeriod = this.model.get('axis-period') || this.model.get('period');
       options.axes = _.merge({
         x: {
           label: 'Date of Application',
@@ -27,7 +28,7 @@ function (Collection) {
             format: this.model.get('format') || this.model.get('format-options') || 'integer'
           }
         ]
-      }, this.model.get('axes')),
+      }, this.model.get('axes'));
       options.defaultValue = this.model.get('default-value');
       return options;
     },

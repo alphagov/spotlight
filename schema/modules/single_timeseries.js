@@ -32,7 +32,7 @@ _.extend(moduleSchema.properties, {
   },
   'default-value': {
     type: 'integer'
-  },
+  }
 });
 
 module.exports = moduleSchema;

@@ -32,7 +32,7 @@ module.exports = {
       app.set('bigScreenBaseURL', global.config.bigScreenBaseURL);
       app.use(morgan('dev'));
       app.use(compression());
-      app.use('/spotlight', express['static'](path.join(rootDir, 'public')));
+      app.use('/spotlight', express.static(path.join(rootDir, 'public')));
     }());
 
     if (environment === 'development') {
@@ -47,10 +47,10 @@ module.exports = {
       app.set('assetDigest', assetDigest);
 
       app.use(errorHandler());
-      app.use('/app', express['static'](path.join(rootDir, 'app')));
+      app.use('/app', express.static(path.join(rootDir, 'app')));
       app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
-      app.use('/.grunt', express['static'](path.join(rootDir, '.grunt')));
-      app.use('/spec', express['static'](path.join(rootDir, 'spec')));
+      app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
+      app.use('/spec', express.static(path.join(rootDir, 'spec')));
       app.use('/tests', function (req, res) {
         res.sendfile(path.join(rootDir, '_SpecRunner.html'));
       });
@@ -66,7 +66,7 @@ module.exports = {
         level: 'info',
         colorize: false,
         json: true,
-        logstash: true,
+        logstash: true
       });
       global.logger.remove(winston.transports.Console);
       app.set('etag', 'strong');
@@ -77,7 +77,7 @@ module.exports = {
     // /stagecraft-stub.
     if (process.env.BASIC_AUTH_USER && process.env.BASIC_AUTH_PASS) {
       var auth = {};
-      auth[process['env']['BASIC_AUTH_USER']] = process.env.BASIC_AUTH_PASS;
+      auth[process.env.BASIC_AUTH_USER] = process.env.BASIC_AUTH_PASS;
       app.get('/performance*', basicAuth(auth));
     }
 

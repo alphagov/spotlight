@@ -40,7 +40,7 @@ function (NumberView, MissingData, Model) {
         }
       }, this);
 
-      return targetPercent = targetPercent - (greaterThanTarget / total);
+      return targetPercent - (greaterThanTarget / total);
     },
 
     percentageDifference: function () {
