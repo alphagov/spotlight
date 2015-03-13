@@ -10,8 +10,10 @@ function (View, accessibility) {
       'click .js-sort-by': 'updateSort'
     },
 
-    initialize: function () {
+    initialize: function (options) {
       View.prototype.initialize.apply(this, arguments);
+      this.options = options || {};
+
       this.listenTo(this.collection, 'reset', _.bind(function() {
         var unit = this.model.get('noun');
         if (this.collection.length !== 1) {
@@ -114,6 +116,13 @@ function (View, accessibility) {
             $target.attr('tabindex', -1).focus();
           });
 
+      }
+
+      if (this.options.analytics && this.options.analytics.category) {
+        GOVUK.analytics.trackEvent(this.analytics.category, 'summaryLinkClicked', {
+          label: newSortField,
+          nonInteraction: true
+        });
       }
     },
 

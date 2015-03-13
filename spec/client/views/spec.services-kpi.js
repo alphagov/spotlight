@@ -172,6 +172,31 @@ define([
           this.summary.$el.find('.js-sort-by').click();
           expect(this.summary.model.get('sort-order')).toEqual('ascending');
         });
+
+
+        it('sends sort events to analytics', function() {
+          var $el = $('<div><div class="digital_takeup"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by" data-sort-by="number_of_transactions"><span class="value-count">17</span> out of <span class="filtered-count">116</span></a></div></div></div>');
+
+          ServicesCollection.prototype.getAggregateValues.andReturn([]);
+
+          this.summary = new ServicesKPIView({
+            el: $el,
+            model: new Model({
+              'sort-by': 'cost_per_transaction'
+            }),
+            collection: new ServicesCollection([], servicesAxes),
+            analytics: {
+              category: 'ppServices'
+            }
+          });
+
+          spyOn(window.GOVUK.analytics, 'trackEvent');
+          this.summary.$el.find('.js-sort-by').click();
+          expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'summaryLinkClicked', {
+            label: 'number_of_transactions',
+            nonInteraction: true
+          });
+        });
       });
 
 
