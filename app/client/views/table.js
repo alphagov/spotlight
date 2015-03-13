@@ -40,10 +40,10 @@ function (TableView, Modernizr, accessibility, $, _) {
     },
 
     events: {
-      'click .js-sort': 'sortCol'
+      'click .js-sort': 'sortColumnClicked'
     },
 
-    sortCol: function (e) {
+    sortColumnClicked: function (e) {
       e.preventDefault();
 
       var th = $(e.target).closest('th'),
@@ -66,6 +66,14 @@ function (TableView, Modernizr, accessibility, $, _) {
       this.screenreaderAnnounceSortChange(sortBy, this.model.get('sort-order'));
       if (this.options.saveSortInUrl) {
         this.updateUrlWithSort();
+      }
+
+      if (this.options.analytics && this.options.analytics.category) {
+        GOVUK.analytics.trackEvent(this.analytics.category, 'sort', {
+          label: this.model.get('sort-by'),
+          value: this.model.get('sort-order') === 'ascending' ? 0 : 1,
+          nonInteraction: true
+        });
       }
     },
 
