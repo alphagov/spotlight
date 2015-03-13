@@ -132,7 +132,7 @@ module.exports = function (grunt) {
     // Lints our JavaScript
     jshint: {
       browser: {
-        src: ['app/client/*.js', 'spec/client/*.js'],
+        src: ['app/client/**/*.js', 'spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
           jshintrc: true,
@@ -141,7 +141,7 @@ module.exports = function (grunt) {
       },
       node: {
         src: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/**/*.js',
-          '!app/client/*.js', '!spec/client/*.js'],
+          '!app/client/**/*.js', '!spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
           jshintrc: true,

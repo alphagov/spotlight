@@ -5,27 +5,45 @@ define([
 
   describe('Services View', function () {
 
-    var $el;
-
     beforeEach(function () {
       spyOn(window.history, 'replaceState');
-      $el = $('<div><input id="filter"/><select id="department"><option value="">All</option><option value="home-office">Home Office</option></select></div>');
+      window.GOVUK = {
+        analytics: {
+          trackEvent: function () {}
+        }
+      };
+      this.$el = $('<div><input id="filter" value="passport"/><select id="department"><option value="">All</option><option value="home-office">Home Office</option></select></div>');
+      this.view = new ServicesView({
+        el: this.$el,
+        model: new Backbone.Model()
+      });
     });
 
     it('uses the history API to update the URL after filtering', function () {
-      $el.find('#filter').val('passport');
-      var view = new ServicesView({
-        el: $el,
-        model: new Backbone.Model()
-      });
-      view.filter();
+      this.view.filter();
       expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport');
-      $el.find('#department').val('home-office');
-      view.filter();
+      this.$el.find('#department').val('home-office');
+      this.view.filter();
       expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport&department=home-office');
-      $el.find('#filter').val('');
-      view.filter();
+      this.$el.find('#filter').val('');
+      this.view.filter();
       expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?department=home-office');
+    });
+
+    it('sends filter events to analytics', function() {
+
+      spyOn(window.GOVUK.analytics, 'trackEvent');
+      this.$el.find('#filter').val('carer').trigger('search');
+      expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'filter', {
+        label: 'carer',
+        nonInteraction: true
+      });
+
+      this.$el.find('#department').val('home-office').trigger('change');
+      expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'departmentFilter', {
+        label: 'home-office',
+        nonInteraction: true
+      });
     });
 
   });

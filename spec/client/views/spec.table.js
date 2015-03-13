@@ -104,6 +104,11 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
           '<tr><td class="" width="">2014-07-03T13:23:04+00:00</td>' +
           '<td class="" width="">hello world</td></tr></tbody></table>'
         );
+        window.GOVUK = {
+          analytics: {
+            trackEvent: function () {}
+          }
+        };
         table = new Table({
           el: $el,
           model: new Model(),
@@ -124,7 +129,10 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
               y: [{ label: 'another', key: 'value' }]
             }
           }),
-          saveSortInUrl: true
+          saveSortInUrl: true,
+          analytics: {
+            category: 'ppServices'
+          }
         });
 
         table.render();
@@ -210,6 +218,28 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
           expect(dateColumn().find('.js-click-sort').length).toEqual(1);
         });
 
+      it('sends sort events to analytics', function() {
+
+        spyOn(window.GOVUK.analytics, 'trackEvent');
+        dateColumn().find('a').click();
+        expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'sort', {
+          label: '_timestamp',
+          value: 1,
+          nonInteraction: true
+        });
+        valueColumn().find('a').click();
+        expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'sort', {
+          label: 'value',
+          value: 1,
+          nonInteraction: true
+        });
+        valueColumn().find('a').click();
+        expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'sort', {
+          label: 'value',
+          value: 0,
+          nonInteraction: true
+        });
+      });
 
     });
 

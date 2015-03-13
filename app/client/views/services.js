@@ -9,11 +9,19 @@ define([
 function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
   return View.extend({
 
+    analyticsCategory: 'ppServices',
+
     events: _.extend({}, View.prototype.events, {
-      'keyup #filter': 'filter',
-      'search #filter': 'filter',
+      'keyup #filter': function() {
+        this.filter('filter');
+      },
+      'search #filter': function() {
+        this.filter('filter');
+      },
       'submit #filter-wrapper': 'filterFormSubmit',
-      'change #department': 'filter',
+      'change #department': function() {
+        this.filter('departmentFilter');
+      },
       'click .filter-remove': 'removeFilter'
     }),
 
@@ -28,14 +36,22 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
           options: {
             collapseOnNarrowViewport: true,
             caption: 'List of services, which can be filtered and sorted',
-            saveSortInUrl: true
+            saveSortInUrl: true,
+            analytics: {
+              category: this.analyticsCategory
+            }
           }
         },
         '.summary-figure': {
           view: SummaryFigureView
         },
         '.service-kpis': {
-          view: ServicesKPIS
+          view: ServicesKPIS,
+          options: {
+            analytics: {
+              category: this.analyticsCategory
+            }
+          }
         }
       };
     },
@@ -45,7 +61,7 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
       this.filter();
     },
 
-    filter: function () {
+    filter: function (type) {
       var filterVal = this.$('#filter').val(),
         deptFilterVal = this.$('#department').val();
 
@@ -69,12 +85,21 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
         params = $.param(params);
         window.history.replaceState(null, null, '?' + params);
       }
+
+      this.filterAnalytics(type, this.model.get(type));
     },
 
     removeFilter: function (event) {
       var filter = $(event.target).data('filter');
       this.$('#' + filter).val('');
       this.model.set(filter + 'Filter', null);
+    },
+
+    filterAnalytics: function(type, value) {
+      GOVUK.analytics.trackEvent(this.analyticsCategory, type, {
+        label: value,
+        nonInteraction: true
+      });
     }
 
   });
