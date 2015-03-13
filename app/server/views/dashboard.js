@@ -32,6 +32,7 @@ module.exports = View.extend({
       return moduleType === 'kpi' ||
              moduleType === 'realtime' ||
              moduleType === 'single_timeseries' ||
+             moduleType === 'grouped_timeseries'||
              (moduleType === 'user_satisfaction_graph' &&
               module['data-source']['data-type'] === 'user-satisfaction-score');
     });

@@ -228,7 +228,7 @@ describe('hasBigScreenFlag', function () {
   it('should\'t show the link if there are no supported modules', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
+      { 'module-type': 'tab' },
       { 'module-type': 'availablity' },
     ]);
     expect(getContext(model).hasBigScreenView).toEqual(false);
@@ -237,16 +237,14 @@ describe('hasBigScreenFlag', function () {
   it('should show the link if there is a kpi module', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
       { 'module-type': 'kpi' },
     ]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
 
-  it('should show the link if there is a kpi module', function() {
+  it('should show the link if there is a realtime module', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
       { 'module-type': 'realtime' },
     ]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
@@ -255,8 +253,15 @@ describe('hasBigScreenFlag', function () {
   it('should show the link if there is a single_timeseries module', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
       { 'module-type': 'single_timeseries' },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should show the link if there is a grouped_timeseries module', function() {
+    model.set('dashboard-type', 'transaction');
+    model.set('modules', [
+      { 'module-type': 'grouped_timeseries' },
     ]);
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
@@ -264,7 +269,6 @@ describe('hasBigScreenFlag', function () {
   it('should show the link if there is a user_satisfaction_graph module and its using user-satisfaction-score dataset', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
       { 'module-type': 'user_satisfaction_graph',
         'data-source': { 'data-type': 'user-satisfaction-score' } },
     ]);
@@ -274,7 +278,6 @@ describe('hasBigScreenFlag', function () {
   it('should\'t show the link if there is a user_satisfaction_graph module and its using not a user-satisfaction-score dataset', function() {
     model.set('dashboard-type', 'transaction');
     model.set('modules', [
-      { 'module-type': 'grouped_timeseries' },
       { 'module-type': 'user_satisfaction_graph',
         'data-source': { 'data-type': 'customer-satisfaction' } },
     ]);
