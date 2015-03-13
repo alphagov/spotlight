@@ -67,8 +67,12 @@ Accepts the options (unit: ['ms', 's', 'm'], pad: [true, false])
 
 ###Currency
 
-Accepts the options (symbol: defaults to '£', pence, dps)
-
+Accepts the options (symbol: defaults to '£', pence, dps). The magnitude option formats the value to the nearest significant scale. For example:
+```
+2990000000 > 2.9bn
+1315000 > 1.3m
+450000 > 450k
+```
 ```
 { sigfigs: 3, magnitude: true, type: 'currency' }
 ```
@@ -91,7 +95,12 @@ Calls number after it does a Math.round on the value.
 
 ###Number
 
-Accepts the options (commans: [true, false], sigfigs, fixed, dps)
+Accepts the options (commans: [true, false], sigfigs, fixed, dps). The magnitude option formats the value to the nearest significant scale. For example:
+```
+2990000000 > 2.9bn
+1315000 > 1.3m
+450000 > 450k
+```
 
 ```
 { sigfigs: 3, magnitude: true, type: 'number' }
