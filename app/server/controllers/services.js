@@ -31,14 +31,13 @@ var renderContent = function (req, res, client_instance) {
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
-    var showcaseServiceSlugs = ['prison-visits', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'],
-      showcaseServices = [];
+    var showcaseServices = [];
     services = formatCollectionData(services);
     services = addServiceDataToCollection(services,  transactions.toJSON());
     collection = new ServicesCollection(services, servicesController.serviceAxes);
 
-    _.each(showcaseServiceSlugs, function (slug) {
-      showcaseServices.push(_.findWhere(services, function(service) {
+    _.each(servicesController.showcaseServiceSlugs, function (slug) {
+      var showcaseService = _.findWhere(services, function(service) {
         if (slug === service.slug) {
           service.deptCode = (service.department && service.department.abbr &&
             service.department.abbr.toLowerCase()) || '';
@@ -46,7 +45,12 @@ var renderContent = function (req, res, client_instance) {
         } else {
           return false;
         }
-      }));
+      });
+      if (showcaseService) {
+        showcaseServices.push(showcaseService);
+      } else {
+        global.logger.error('Could not find showcase service: ' + slug);
+      }
     });
 
     var departments = collection.getDepartments();
@@ -140,6 +144,8 @@ function servicesController (type, req, res) {
   client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
 }
+
+servicesController.showcaseServiceSlugs = ['prison-visits', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'];
 
 servicesController.serviceAxes = {
   axes: {

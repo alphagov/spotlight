@@ -140,6 +140,27 @@ describe('Services Controller', function () {
     }));
   });
 
+  it('creates a list of showcase services', function () {
+    var showcaseServices;
+    controller('services', req, res);
+    client_instance.trigger('sync');
+    showcaseServices = ServicesView.prototype.initialize.calls[0].args[0].showcaseServices;
+    expect(_.pluck(showcaseServices, 'slug')).toEqual(controller.showcaseServiceSlugs);
+  });
+
+  it('only lists showcase services that have data', function () {
+    var showcaseServices,
+      dashboardList;
+    controller('services', req, res);
+    dashboardList = _.reject(client_instance.get('items'),
+      {slug: controller.showcaseServiceSlugs[0]});
+
+    client_instance.set('items', dashboardList);
+    client_instance.trigger('sync');
+    showcaseServices = ServicesView.prototype.initialize.calls[0].args[0].showcaseServices;
+    expect(_.pluck(showcaseServices, 'slug')).toEqual(controller.showcaseServiceSlugs.slice(1));
+  });
+
   it('renders the services view', function () {
     controller('services', req, res);
     client_instance.trigger('sync');
