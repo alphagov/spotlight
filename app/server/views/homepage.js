@@ -68,6 +68,7 @@ module.exports = BaseView.extend({
       services: this.collection,
       serviceCount: this.collection.length,
       webTrafficCount: this.contentDashboards.length,
+      otherCount: this.otherDashboards.length,
       showcaseServices: this.showcaseServices,
       tableCost: this.renderServicesTable('cost_per_transaction', 'ascending'),
       tableSatisfaction: this.renderServicesTable('user_satisfaction_score'),
