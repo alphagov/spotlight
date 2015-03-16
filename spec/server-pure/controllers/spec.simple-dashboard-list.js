@@ -3,14 +3,14 @@ var Backbone = require('backbone');
 var _ = require('lodash');
 
 var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
-var controller = require('../../../app/server/controllers/web-traffic');
-var View = require('../../../app/server/views/web-traffic');
+var controller = require('../../../app/server/controllers/simple-dashboard-list');
+var View = require('../../../app/server/views/simple-dashboard-list');
 var ServicesView = require('../../../app/server/views/services');
 var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
 
 var PageConfig = requirejs('page_config');
 
-describe('Web traffic Controller', function () {
+describe('Simple dashboard list controller', function () {
 
   var fake_app = {'app': {'get': function(key){
       return {
@@ -67,7 +67,7 @@ describe('Web traffic Controller', function () {
   });
 
   it('creates a model containing config and page settings', function () {
-    controller(req, res);
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
@@ -76,20 +76,20 @@ describe('Web traffic Controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller(_.extend({ query: { filter: 'foo' } }, fake_app), res);
+    controller('web-traffic', _.extend({ query: { filter: 'foo' } }, fake_app), res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: 'foo'}));
   });
 
   it('creates a collection', function () {
-    controller(req, res);
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
 
-  it('creates a web traffic view', function () {
-    controller(req, res);
+  it('creates a view', function () {
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(View.prototype.initialize).toHaveBeenCalledWith({
       model: jasmine.any(Backbone.Model),
@@ -98,19 +98,19 @@ describe('Web traffic Controller', function () {
   });
 
   it('renders the services view', function () {
-    controller(req, res);
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(ServicesView.prototype.render).toHaveBeenCalled();
   });
 
   it('sends the services view html', function () {
-    controller(req, res);
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(res.send).toHaveBeenCalledWith('html string');
   });
 
   it('has an explicit caching policy', function () {
-    controller(req, res);
+    controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });
