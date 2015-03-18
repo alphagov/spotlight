@@ -1,10 +1,10 @@
 var requirejs = require('requirejs');
 
 var Dashboard = require('../../../app/server/controllers/dashboard');
-var DashboardView = require('../../../app/server/views/dashboard');
 var ContentDashboardView = require('../../../app/server/views/dashboards/content');
 var TransactionDashboardView = require('../../../app/server/views/dashboards/transaction');
 var DeptDashboardView = require('../../../app/server/views/dashboards/department');
+var OtherDashboardView = require('../../../app/server/views/dashboards/other');
 
 var Controller = requirejs('extensions/controllers/controller');
 var Model = requirejs('extensions/models/model');
@@ -56,7 +56,7 @@ describe('Dashboard', function () {
       controller = new Dashboard({
         model: model
       });
-      expect(controller.viewClass).toEqual(DashboardView);
+      expect(controller.viewClass).toEqual(OtherDashboardView);
 
     });
 

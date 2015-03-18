@@ -3,6 +3,7 @@ var requirejs = require('requirejs');
 var DashboardView = require('../../../app/server/views/dashboard');
 var ContentDashboardView = require('../../../app/server/views/dashboards/content');
 var TransactionDashboardView = require('../../../app/server/views/dashboards/transaction');
+var OtherDashboardView = require('../../../app/server/views/dashboards/other');
 var DeptDashboardView = require('../../../app/server/views/dashboards/department');
 
 var Model = requirejs('extensions/models/model');
@@ -449,5 +450,43 @@ describe('DeptDashboardView', function () {
     });
 
   });
+
+});
+
+
+describe('OtherDashboardView', function () {
+
+  var view, model;
+  beforeEach(function () {
+    model = new Model({
+      foo: 'bar',
+      'dashboard-type': 'other',
+      title: 'Cabinet Office IT',
+      description: 'Test description',
+      department: {
+        title: 'Cabinet Office'
+      }
+    });
+    view = new OtherDashboardView({
+      model: model,
+      contentTemplate: jasmine.createSpy().andReturn('rendered')
+    });
+    spyOn(view, 'loadTemplate').andReturn('rendered');
+  });
+
+  describe('getTagline', function () {
+
+    it('returns the description', function () {
+      expect(view.getTagline()).toEqual('Test description');
+    });
+
+  });
+
+  it('displays a footer on detailed dashboards', function () {
+    view.getContent();
+    var context = view.loadTemplate.argsForCall[0][1];
+    expect(context.hasFooter).toEqual(true);
+  });
+
 
 });
