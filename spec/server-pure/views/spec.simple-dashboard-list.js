@@ -2,18 +2,19 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var ServicesCollection = requirejs('common/collections/services');
 var ServicesView = require('../../../app/server/views/services');
-var WebTrafficView = require('../../../app/server/views/web-traffic');
-var webtrafficController = require('../../../app/server/controllers/web-traffic');
+var View = require('../../../app/server/views/simple-dashboard-list');
+var controller = require('../../../app/server/controllers/simple-dashboard-list');
 
 var TableView = requirejs('extensions/views/table');
 
-describe('Web traffic View', function () {
+describe('Simple dashboard list view', function () {
 
   var view, model, collection;
 
   beforeEach(function () {
     model = new Backbone.Model({
-      axesOptions: webtrafficController.axesOptions.axes
+      axesOptions: controller.axesOptions.axes,
+      title: 'Web traffic'
     });
 
     collection = new ServicesCollection([{
@@ -26,9 +27,9 @@ describe('Web traffic View', function () {
         title: 'NHS Business Services Authority',
         abbr: 'NHSBSA'
       }
-    }], webtrafficController.axesOptions);
+    }], controller.axesOptions);
 
-    view = new WebTrafficView({
+    view = new View({
       model: model,
       collection: collection
     });
@@ -53,15 +54,15 @@ describe('Web traffic View', function () {
       spyOn(TableView.prototype, 'render').andCallFake(function () {
         this.$el.html('<div id="list"></div>');
       });
-      spyOn(WebTrafficView.prototype, 'loadTemplate');
+      spyOn(View.prototype, 'loadTemplate');
     });
 
-    xit('instantiates a TableView', function () {
+    it('instantiates a TableView', function () {
       view.getContent();
       expect(TableView.prototype.initialize).toHaveBeenCalled();
     });
 
-    xit('renders the TableView into the template', function () {
+    it('renders the TableView into the template', function () {
       view.getContent();
       var options = view.loadTemplate.mostRecentCall.args[1];
       expect(options.table).toEqual('<div id="list"></div>');

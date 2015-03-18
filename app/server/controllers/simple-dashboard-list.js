@@ -4,18 +4,36 @@ var sanitizer = require('sanitizer');
 
 var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
+var View = require('../views/simple-dashboard-list');
 var ErrorView = require('../views/error');
-var View = require('../views/web-traffic');
 
 var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
+function controllerSettings(type) {
+  switch (type) {
+    case 'web-traffic':
+      return {
+        title: 'Web traffic dashboards',
+        example: 'Cabinet office',
+        dashboardTypes: DashboardCollection.CONTENT
+      };
+    case 'other':
+      return {
+        title: 'Other performance dashboards',
+        example: 'G-cloud',
+        dashboardTypes: DashboardCollection.OTHER
+      };
+  }
+}
+
 var renderContent = function (req, res, client_instance) {
   var contentDashboards,
-    collection;
+    collection,
+    settings = controllerSettings(controller.type);
 
   contentDashboards = new DashboardCollection(client_instance.get('items'))
-    .filterDashboards(DashboardCollection.CONTENT);
+    .filterDashboards(settings.dashboardTypes);
 
   _.each(contentDashboards, function (service) {
     service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
@@ -24,7 +42,8 @@ var renderContent = function (req, res, client_instance) {
   collection = new DashboardCollection(contentDashboards, controller.axesOptions);
 
   var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
-    title: 'Web traffic',
+    title: settings.title,
+    example: settings.example,
     'page-type': 'services',
     filter: sanitizer.escape(req.query.filter || ''),
     data: contentDashboards,
@@ -56,8 +75,10 @@ var renderContent = function (req, res, client_instance) {
   res.send(view.html);
 };
 
-function controller (req, res) {
-  var client_instance = get_dashboard_and_render(req, res, renderContent);
+function controller (type, req, res) {
+  var client_instance;
+  controller.type = type;
+  client_instance = get_dashboard_and_render(req, res, renderContent);
   client_instance.setPath('');
 }
 

@@ -102,7 +102,9 @@ module.exports = {
 
     app.get('/performance/services', _.bind(require('./server/controllers/services'), this, 'services'));
 
-    app.get('/performance/web-traffic', require('./server/controllers/web-traffic'));
+    app.get('/performance/web-traffic', _.bind(require('./server/controllers/simple-dashboard-list'), this, 'web-traffic'));
+
+    app.get('/performance/other', _.bind(require('./server/controllers/simple-dashboard-list'), this, 'other'));
 
     app.get('/performance/prototypes', require('./server/controllers/prototypes'));
 

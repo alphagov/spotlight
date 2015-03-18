@@ -78,7 +78,8 @@ function (Collection) {
     }
 
   }, {
-    SERVICES: ['transaction', 'high-volume-transaction', 'other', 'service-group'],
-    CONTENT: ['content']
+    SERVICES: ['transaction', 'high-volume-transaction', 'service-group'],
+    CONTENT: ['content'],
+    OTHER: ['other']
   });
 });

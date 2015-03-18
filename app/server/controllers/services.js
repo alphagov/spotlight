@@ -26,6 +26,7 @@ var renderContent = function (req, res, client_instance) {
   var servicesCollection = new ServicesCollection(client_instance.get('items')),
     services = servicesCollection.filterDashboards(ServicesCollection.SERVICES),
     contentDashboards = servicesCollection.filterDashboards(ServicesCollection.CONTENT),
+    otherDashboards = servicesCollection.filterDashboards(ServicesCollection.OTHER),
     collection;
 
   var transactions = new Collection([], {dataSource: dataSource});
@@ -81,6 +82,7 @@ var renderContent = function (req, res, client_instance) {
         model: model,
         collection: collection,
         contentDashboards: contentDashboards,
+        otherDashboards: otherDashboards,
         showcaseServices: showcaseServices
       });
     } else {
@@ -204,3 +206,4 @@ servicesController.serviceAxes = {
 };
 
 module.exports = servicesController;
+
