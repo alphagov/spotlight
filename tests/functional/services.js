@@ -35,7 +35,7 @@ module.exports = {
       .click('#department option[value="co"]')
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.doesNotContainText(this.selectors.filterTable, 'Vehicle tax renewals')
-      .assert.containsText(this.selectors.filterTable, 'e-petition signatures')
+      .assert.containsText(this.selectors.filterTable, 'Voter registration')
       .end();
   },
 
@@ -44,12 +44,11 @@ module.exports = {
       .assert.containsText(this.selectors.filterTable, 'Vehicle tax renewals')
       .click('#department option[value="co"]')
       .waitForElementVisible(this.selectors.filterTable, 1000)
-      .assert.containsText(this.selectors.filterTable, 'Digital Services Store')
-      .assert.containsText(this.selectors.filterTable, 'Digital Marketplace')
-      .setValue(this.selectors.textFilter, 'Digital Marketplace')
+      .assert.containsText(this.selectors.filterTable, 'Voter registration')
+      .setValue(this.selectors.textFilter, 'Voter registration')
       .waitForElementVisible(this.selectors.filterTable, 1000)
-      .assert.doesNotContainText(this.selectors.filterTable, 'Digital Services Store')
-      .assert.containsText(this.selectors.filterTable, 'Digital Marketplace')
+      .assert.doesNotContainText(this.selectors.filterTable, 'petition signatures')
+      .assert.containsText(this.selectors.filterTable, 'Voter registration')
       .end();
   },
 
