@@ -25,7 +25,7 @@ module.exports = {
       .setValue(this.selectors.textFilter, 'PAYE')
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.doesNotContainText(this.selectors.filterTable, 'Vehicle tax renewals')
-      .assert.containsText(this.selectors.filterTable, 'PAYE transactions')
+      .assert.containsText(this.selectors.filterTable, 'PAYE for employees')
       .end();
   },
 
