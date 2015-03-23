@@ -65,8 +65,12 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
       var filterVal = this.$('#filter').val(),
         deptFilterVal = this.$('#department').val();
 
-      this.model.set('filter', filterVal);
-      this.model.set('departmentFilter', deptFilterVal);
+      this.model.set({
+        filter: filterVal,
+        departmentFilter: deptFilterVal
+      }, {silent: true});
+
+      this.model.trigger('filterChanged');
 
       if (Modernizr.history) {
         var params = $.deparam(window.location.search.substr(1));

@@ -9,7 +9,7 @@ define([
     clientRenderOnInit: true,
 
     initialize: function() {
-      this.listenTo(this.model, 'change:filter change:departmentFilter', this.updateCollectionFilter);
+      this.listenTo(this.model, 'filterChanged', this.updateCollectionFilter);
     },
 
     updateCollectionFilter: function () {
