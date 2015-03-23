@@ -4,7 +4,7 @@ define([
   'client/views/table',
   'client/views/summary-figure',
   'client/views/services-kpi',
-    'jquerydeparam'
+  'jquerydeparam'
 ],
 function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
   return View.extend({
