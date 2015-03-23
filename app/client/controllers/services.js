@@ -24,7 +24,6 @@ define([
     renderView: function (options) {
       this.unfilteredCollection = new ServicesCollection(this.collection.models, this.collection.options);
 
-      this.updateCollectionFilter();
       options = _.extend({}, this.viewOptions(), options);
       if (!this.view) {
         this.view = new this.viewClass(options);
