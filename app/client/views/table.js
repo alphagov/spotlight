@@ -28,7 +28,6 @@ function (TableView, Modernizr, accessibility, $, _) {
 
       this.listenTo(this.collection, 'sort', this.render);
 
-      this.listenTo(this.model, 'change:sort-by change:sort-order', function () { this.sort(); });
       this.listenTo(this.model, 'sort-changed-external', _.bind(function(data) {
         this.screenreaderAnnounceSortChange(data['sort-by'], data['sort-order']);
         if (this.options.saveSortInUrl) {
@@ -60,7 +59,8 @@ function (TableView, Modernizr, accessibility, $, _) {
         this.model.set({
           'sort-order': 'descending',
           'sort-by': sortBy
-        });
+        }, {silent: true});
+        this.sort();
       }
       this.screenreaderAnnounceSortChange(sortBy, this.model.get('sort-order'));
       if (this.options.saveSortInUrl) {
