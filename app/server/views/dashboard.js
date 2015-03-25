@@ -21,11 +21,7 @@ module.exports = View.extend({
   },
 
   hasBigScreenFlag: function() {
-    var supportedDashboardType, hasSupportedModules;
-
-    supportedDashboardType = _.contains(['transaction', 'other', 'high-volume-transaction'],
-      this.model.get('dashboard-type')
-    );
+    var hasSupportedModules;
 
     hasSupportedModules = _.any(this.model.get('modules'), function(module) {
       var moduleType = module['module-type'];
@@ -33,11 +29,12 @@ module.exports = View.extend({
              moduleType === 'realtime' ||
              moduleType === 'single_timeseries' ||
              moduleType === 'grouped_timeseries'||
+             moduleType === 'table'||
              (moduleType === 'user_satisfaction_graph' &&
               module['data-source']['data-type'] === 'user-satisfaction-score');
     });
 
-    return supportedDashboardType && hasSupportedModules;
+    return hasSupportedModules;
   },
 
   getContent: function () {
