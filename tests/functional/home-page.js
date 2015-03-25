@@ -27,7 +27,7 @@ module.exports = {
 
   'Showcase services are present': function (client) {
     client
-      .assert.containsText(this.selectors.showcaseService1Heading, 'Prison visit bookings')
+      .assert.containsText(this.selectors.showcaseService1Heading, 'Bookings for prison visits')
       .end();
   },
 

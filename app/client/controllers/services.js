@@ -9,7 +9,7 @@ define([
     clientRenderOnInit: true,
 
     initialize: function() {
-      this.listenTo(this.model, 'change:filter change:departmentFilter', this.updateCollectionFilter);
+      this.listenTo(this.model, 'filterChanged', this.updateCollectionFilter);
     },
 
     updateCollectionFilter: function () {
@@ -24,7 +24,6 @@ define([
     renderView: function (options) {
       this.unfilteredCollection = new ServicesCollection(this.collection.models, this.collection.options);
 
-      this.updateCollectionFilter();
       options = _.extend({}, this.viewOptions(), options);
       if (!this.view) {
         this.view = new this.viewClass(options);

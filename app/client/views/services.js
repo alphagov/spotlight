@@ -4,7 +4,7 @@ define([
   'client/views/table',
   'client/views/summary-figure',
   'client/views/services-kpi',
-    'jquerydeparam'
+  'jquerydeparam'
 ],
 function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
   return View.extend({
@@ -65,8 +65,12 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
       var filterVal = this.$('#filter').val(),
         deptFilterVal = this.$('#department').val();
 
-      this.model.set('filter', filterVal);
-      this.model.set('departmentFilter', deptFilterVal);
+      this.model.set({
+        filter: filterVal,
+        departmentFilter: deptFilterVal
+      }, {silent: true});
+
+      this.model.trigger('filterChanged');
 
       if (Modernizr.history) {
         var params = $.deparam(window.location.search.substr(1));
