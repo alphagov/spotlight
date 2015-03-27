@@ -2,21 +2,22 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var _ = require('lodash');
 
-var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
-var transactions = require('../../../app/support/backdrop_stub/responses/transaction-data');
+var dashboards = require('../../../tests/stagecraft_stub/dashboards');
+var transactions = require('../../../tests/backdrop_stub/transaction-data');
 var controller = require('../../../app/server/controllers/services');
+var StagecraftApiClient = requirejs('stagecraft_api_client');
 var ServicesView = require('../../../app/server/views/services');
-var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
 var Collection = requirejs('./extensions/collections/collection');
 
 var PageConfig = requirejs('page_config');
 
 describe('Services Controller', function () {
-
+  var client_instance;
   var fake_app = {'app': {'get': function(key){
       return {
         'port':'8989',
-        'stagecraftUrl':'the url'
+        'stagecraftUrl':'the url',
+        'assetPath': '/spotlight/'
       }[key];
     }}
   };
@@ -37,7 +38,6 @@ describe('Services Controller', function () {
     set: jasmine.createSpy(),
     status: jasmine.createSpy()
   };
-  var client_instance;
 
   beforeEach(function () {
     spyOn(PageConfig, 'commonConfig').andReturn({
@@ -53,30 +53,16 @@ describe('Services Controller', function () {
     spyOn(ServicesView.prototype, 'render').andCallFake(function () {
       this.html = 'html string';
     });
-    client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
-    spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function () {
-      client_instance.set({
-        'status': 200,
-        'items': _.cloneDeep(dashboards.items)
-      });
-      client_instance.set('params', {
-        sortby: 'completion_rate',
-        sortorder: 'ascending'
-      });
-      return client_instance;
-    });
+
+    spyOn(StagecraftApiClient.prototype, 'fetch').andCallFake(function () {});
   });
 
   afterEach(function() {
     this.removeAllSpies();
   });
 
-  it('is a function', function () {
-    expect(typeof controller).toEqual('function');
-  });
-
   it('creates a model containing config and page settings', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
@@ -85,14 +71,18 @@ describe('Services Controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller('services', _.extend({ query: { filter: 'foo' } }, fake_app), res);
+    var queryReq = _.cloneDeep(req);
+    queryReq.query.filter = 'foo';
+    client_instance = controller('services', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: 'foo'}));
   });
 
   it('passes department filter to model if set', function () {
-    controller('services', _.extend({ query: { department: 'home-office' } }, fake_app), res);
+    var queryReq = _.cloneDeep(req);
+    queryReq.query.department = 'home-office';
+    client_instance = controller('services', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       departmentFilter: 'home-office'
@@ -100,7 +90,9 @@ describe('Services Controller', function () {
   });
 
   it('sanitizes user input before rendering it', function () {
-    controller('services', _.extend({ query: { filter: '<script>alert(1)</script>' } }, fake_app), res);
+    var queryReq = _.cloneDeep(req);
+    queryReq.query.filter = '<script>alert(1)</script>';
+    client_instance = controller('services', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: '&lt;script&gt;alert(1)&lt;/script&gt;'
@@ -108,7 +100,11 @@ describe('Services Controller', function () {
   });
 
   it('creates a collection', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
@@ -116,7 +112,11 @@ describe('Services Controller', function () {
   it('adds KPIs to each service model', function () {
     var services,
       service;
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     services = Backbone.Collection.prototype.initialize.mostRecentCall.args[0];
     service = _.findWhere(services, {
@@ -132,7 +132,11 @@ describe('Services Controller', function () {
   });
 
   it('creates a services view', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(ServicesView.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       model: jasmine.any(Backbone.Model),
@@ -142,7 +146,11 @@ describe('Services Controller', function () {
 
   it('creates a list of showcase services', function () {
     var showcaseServices;
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     showcaseServices = ServicesView.prototype.initialize.calls[0].args[0].showcaseServices;
     expect(_.pluck(showcaseServices, 'slug')).toEqual(controller.showcaseServiceSlugs);
@@ -151,7 +159,11 @@ describe('Services Controller', function () {
   it('only lists showcase services that have data', function () {
     var showcaseServices,
       dashboardList;
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     dashboardList = _.reject(client_instance.get('items'),
       {slug: controller.showcaseServiceSlugs[0]});
 
@@ -162,19 +174,31 @@ describe('Services Controller', function () {
   });
 
   it('renders the services view', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(ServicesView.prototype.render).toHaveBeenCalled();
   });
 
   it('sends the services view html', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(res.send).toHaveBeenCalledWith('html string');
   });
 
   it('has an explicit caching policy', function () {
-    controller('services', req, res);
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });

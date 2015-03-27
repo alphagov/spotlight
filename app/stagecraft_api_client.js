@@ -22,7 +22,7 @@ function (Model) {
     },
 
     url: function () {
-      if(this.path.length){
+      if(this.path && this.path.length){
         return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
       } else {
         return this.stagecraftUrlRoot;
@@ -45,7 +45,6 @@ function (Model) {
           this.set('controller', this.controllers.error);
           this.set('status', xhr.status);
           this.set('errorText', xhr.responseText);
-          this.trigger('error');
         }, this)
       }, options);
       logger.info('Fetching <%s>', this.url(), {
