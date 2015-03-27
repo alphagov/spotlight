@@ -140,7 +140,7 @@ module.exports = function (grunt) {
         }
       },
       node: {
-        src: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js', 'tools/**/*.js',
+        src: ['app/**/*.js', 'app/**/*.json', 'spec/**/*.js',
           '!app/client/**/*.js', '!spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
@@ -270,24 +270,6 @@ module.exports = function (grunt) {
       nightwatch: {
         command: addArgs('./node_modules/nightwatch/bin/nightwatch')
       },
-      // Generates the page-per-thing module JSON stubs
-      generate_services_list: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: 'node tools/generate-services-list.js'
-      },
-      // Generates the page-per-thing module JSON stubs
-      validate_module_stubs: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: addArgs('node tools/validate-stubs.js')
-      },
       // Supervises the node process in development
       supervisor: {
         options: {
@@ -352,8 +334,7 @@ module.exports = function (grunt) {
     'copy:vendor',
     'copy:govuk_template',
     'clean',
-    'copy:assets',
-    'shell:generate_services_list'
+    'copy:assets'
   ]);
 
   grunt.registerTask('build:development', [
@@ -372,21 +353,11 @@ module.exports = function (grunt) {
     'digest'
   ]);
 
-  grunt.registerTask('test:stubs', [
-    'shell:validate_module_stubs'
-  ]);
-
-  grunt.registerTask('test:stubs:unpublished', [
-    'shell:validate_module_stubs:--unpublished'
-  ]);
-
   grunt.registerTask('test:unit', [
     'copy:vendor',
     'copy:govuk_template',
     'clean',
     'copy:assets',
-    'shell:validate_module_stubs',
-    'shell:generate_services_list',
     'sass:development',
     'digest',
     'jasmine',
