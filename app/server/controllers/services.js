@@ -32,16 +32,17 @@ var renderContent = function (req, res, client_instance) {
   var transactions = new Collection([], {dataSource: dataSource});
 
   transactions.on('sync', function () {
-    var showcaseServices = [];
+    var showcaseServices = [],
+      maxShowcaseServices = 4;
     services = formatCollectionData(services);
-    services = addServiceDataToCollection(services,  transactions.toJSON());
+    services = addServiceDataToCollection(services, transactions.toJSON());
     collection = new ServicesCollection(services, servicesController.serviceAxes);
 
-    _.each(servicesController.showcaseServiceSlugs, function (slug) {
-      var showcaseService = _.findWhere(services, function(service) {
+    _.each(_.shuffle(servicesController.showcaseServiceSlugs), function (slug) {
+      var showcaseService = _.findWhere(services, function (service) {
         if (slug === service.slug) {
           service.deptCode = (service.department && service.department.abbr &&
-            service.department.abbr.toLowerCase()) || '';
+          service.department.abbr.toLowerCase().replace(' ', '-')) || '';
           return true;
         } else {
           return false;
@@ -49,6 +50,9 @@ var renderContent = function (req, res, client_instance) {
       });
       if (showcaseService) {
         showcaseServices.push(showcaseService);
+        if (showcaseServices.length === maxShowcaseServices) {
+          return false;
+        }
       } else {
         global.logger.error('Could not find showcase service: ' + slug);
       }
@@ -148,7 +152,18 @@ function servicesController (type, req, res) {
   return client_instance;
 }
 
-servicesController.showcaseServiceSlugs = ['prison-visits', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'];
+servicesController.showcaseServiceSlugs = [
+  'prison-visits',
+  'book-practical-driving-test',
+  'carers-allowance',
+  'renew-patent',
+  'accelerated-possession-eviction',
+  'registered-traveller',
+  'change-practical-driving-test',
+  'lasting-power-of-attorney',
+  'pay-register-death-abroad',
+  'pay-register-birth-abroad'
+];
 
 servicesController.serviceAxes = {
   axes: {

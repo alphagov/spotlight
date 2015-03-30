@@ -106,7 +106,7 @@
   @include brand-colour($hm-treasury);
 }
 
-.brand-ho {
+.brand-home-office {
   @extend %brand;
   @include brand-colour($home-office);
 }
