@@ -48,7 +48,6 @@ module.exports = {
 
       app.use(errorHandler());
       app.use('/app', express.static(path.join(rootDir, 'app')));
-      app.get('/backdrop-stub/:service/:api_name', requirejs('./support/backdrop_stub/backdrop_stub_controller'));
       app.use('/.grunt', express.static(path.join(rootDir, '.grunt')));
       app.use('/spec', express.static(path.join(rootDir, 'spec')));
       app.use('/tests', function (req, res) {
@@ -93,8 +92,6 @@ module.exports = {
     app.get('/_status', require('./healthcheck_controller'));
 
     app.get('*.png', require('./render_png'));
-
-    app.get('/stagecraft-stub/*', require('./support/stagecraft_stub/stagecraft_stub_controller'));
 
     app.get('/performance', _.bind(require('./server/controllers/services'), this, 'home'));
 

@@ -56,7 +56,7 @@ var renderContent = function (req, res, client_instance) {
     }
   }));
 
-  var client_instance_status = client_instance.get('status'); 
+  var client_instance_status = client_instance.get('status');
   var view;
   if(client_instance_status === 200) {
     view = new View({
@@ -79,7 +79,9 @@ function controller (type, req, res) {
   var client_instance;
   controller.type = type;
   client_instance = get_dashboard_and_render(req, res, renderContent);
-  client_instance.setPath('');
+  client_instance.fetch();
+
+  return client_instance;
 }
 
 controller.axesOptions = {

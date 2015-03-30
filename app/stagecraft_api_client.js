@@ -22,22 +22,12 @@ function (Model) {
     },
 
     url: function () {
-      if(this.fallback) {
-        if(this.path.length){
-          return this.urlRoot + this.path;
-        } else {
-          return this.urlRoot + '/dashboards';
-        }
+      if(this.path && this.path.length){
+        return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
       } else {
-        if(this.path.length){
-          return this.stagecraftUrlRoot + '?slug=' + this.path.replace(/^\//, '');
-        } else {
-          return this.stagecraftUrlRoot;
-        }
+        return this.stagecraftUrlRoot;
       }
     },
-
-    fallback: false, 
 
     fetch: function (options) {
       options = _.extend({}, {
@@ -47,13 +37,14 @@ function (Model) {
           'Request-Id': this.requestId
         },
         error: _.bind(function (model, xhr) {
-          logger.info('failed to fetch stagecraft response',
-                      {
-                        'path': model.path,
-                        'status': xhr.status,
-                        'errorText': xhr.responseText
-                      });
-          this.fetchFallback(options);
+          logger.info('failed to fetch stagecraft response', {
+            'path': model.path,
+            'status': xhr.status,
+            'errorText': xhr.responseText
+          });
+          this.set('controller', this.controllers.error);
+          this.set('status', xhr.status);
+          this.set('errorText', xhr.responseText);
         }, this)
       }, options);
       logger.info('Fetching <%s>', this.url(), {
@@ -61,20 +52,6 @@ function (Model) {
         govuk_request_id: this.govukRequestId
       });
       Model.prototype.fetch.call(this, options);
-    },
-
-    fetchFallback: function (options) {
-      this.fallback = true;
-      options = _.extend({}, options, {
-        validate: true,
-        error: _.bind(function (model, xhr) {
-          this.set('controller', this.controllers.error);
-          this.set('status', xhr.status);
-          this.set('errorText', xhr.responseText);
-        }, this)
-      });
-      this.fetch(options);
-      this.fallback = false;
     },
 
     parse: function (data, options) {

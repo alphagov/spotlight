@@ -2,11 +2,11 @@ var requirejs = require('requirejs');
 var Backbone = require('backbone');
 var _ = require('lodash');
 
-var dashboards = require('../../../app/support/stagecraft_stub/responses/dashboards');
+var dashboards = require('../../../tests/stagecraft_stub/dashboards');
 var controller = require('../../../app/server/controllers/simple-dashboard-list');
 var View = require('../../../app/server/views/simple-dashboard-list');
 var ServicesView = require('../../../app/server/views/services');
-var get_dashboard_and_render = require('../../../app/server/mixins/get_dashboard_and_render');
+var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 var PageConfig = requirejs('page_config');
 
@@ -15,7 +15,8 @@ describe('Simple dashboard list controller', function () {
   var fake_app = {'app': {'get': function(key){
       return {
         'port':'8989',
-        'stagecraftUrl':'the url'
+        'stagecraftUrl':'the url',
+        'assetPath': '/spotlight/'
       }[key];
     }}
   };
@@ -48,18 +49,8 @@ describe('Simple dashboard list controller', function () {
     spyOn(ServicesView.prototype, 'render').andCallFake(function () {
       this.html = 'html string';
     });
-    client_instance = get_dashboard_and_render.buildStagecraftApiClient(req);
-    spyOn(get_dashboard_and_render, 'buildStagecraftApiClient').andCallFake(function () {
-      client_instance.set({
-        'status': 200,
-        'items': _.cloneDeep(dashboards.items)
-      });
-      client_instance.set('params', {
-        sortby: 'completion_rate',
-        sortorder: 'ascending'
-      });
-      return client_instance;
-    });
+
+    spyOn(StagecraftApiClient.prototype, 'fetch').andCallFake(function () {});
   });
 
   afterEach(function() {
@@ -67,7 +58,7 @@ describe('Simple dashboard list controller', function () {
   });
 
   it('creates a model containing config and page settings', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       config: 'setting',
@@ -76,20 +67,30 @@ describe('Simple dashboard list controller', function () {
   });
 
   it('passes query params filter to model if defined', function () {
-    controller('web-traffic', _.extend({ query: { filter: 'foo' } }, fake_app), res);
+    var queryReq = _.cloneDeep(req);
+    queryReq.query.filter = 'foo';
+    client_instance = controller('web-traffic', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       filter: 'foo'}));
   });
 
   it('creates a collection', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(Backbone.Collection.prototype.initialize).toHaveBeenCalledWith(jasmine.any(Array));
   });
 
   it('creates a view', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(View.prototype.initialize).toHaveBeenCalledWith({
       model: jasmine.any(Backbone.Model),
@@ -98,19 +99,31 @@ describe('Simple dashboard list controller', function () {
   });
 
   it('renders the services view', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(ServicesView.prototype.render).toHaveBeenCalled();
   });
 
   it('sends the services view html', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(res.send).toHaveBeenCalledWith('html string');
   });
 
   it('has an explicit caching policy', function () {
-    controller('web-traffic', req, res);
+    client_instance = controller('web-traffic', req, res);
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
     client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
   });

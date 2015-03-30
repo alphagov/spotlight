@@ -31,7 +31,7 @@ describe('get_dashboard_and_render', function () {
       },
       originalUrl: ''
     };
-    fakeStatusCall = jasmine.createSpy('status'); 
+    fakeStatusCall = jasmine.createSpy('status');
     fake_response = {status: fakeStatusCall};
   });
   it('should set up the correct client_instance', function(){
@@ -45,7 +45,6 @@ describe('get_dashboard_and_render', function () {
         requestId: 'Xb35Gt',
         govukRequestId: '1231234123'
       });
-    expect(client_instance.urlRoot).toEqual('http://localhost:8989/stagecraft-stub');
     expect(client_instance.stagecraftUrlRoot).toEqual('urlURL/public/dashboards');
   });
   describe('on sync of client_instance', function() {
@@ -60,18 +59,8 @@ describe('get_dashboard_and_render', function () {
     });
   });
   describe('on error of client_instance', function() {
-    it('it should do nothing', function(){
+    it('it should return an error', function(){
       var client_instance = get_dashboard_and_render(fake_request, fake_response, fakeRenderContent);
-      var offSpy = spyOn(StagecraftApiClient.prototype, 'off').andCallThrough();
-      client_instance.set({'status': 404});
-      client_instance.trigger('error');
-      expect(offSpy.callCount).toEqual(0);
-      expect(fakeStatusCall.callCount).toEqual(0);
-      expect(fakeRenderContent.callCount).toEqual(0);
-    });
-    describe('on second error of client_instance', function() {
-      it('it should renderContent correctly', function(){
-        var client_instance = get_dashboard_and_render(fake_request, fake_response, fakeRenderContent);
         var offSpy = spyOn(StagecraftApiClient.prototype, 'off').andCallThrough();
         client_instance.set({'status': 404});
         client_instance.trigger('error');
@@ -79,7 +68,6 @@ describe('get_dashboard_and_render', function () {
         expect(offSpy).toHaveBeenCalled();
         expect(fakeStatusCall).toHaveBeenCalledWith(404);
         expect(fakeRenderContent).toHaveBeenCalledWith(fake_request, fake_response, client_instance);
-      });
     });
   });
 });

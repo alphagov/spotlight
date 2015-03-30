@@ -144,7 +144,8 @@ function servicesController (type, req, res) {
   var client_instance;
   servicesController.type = type;
   client_instance = get_dashboard_and_render(req, res, renderContent);
-  client_instance.setPath('');
+  client_instance.fetch();
+  return client_instance;
 }
 
 servicesController.showcaseServiceSlugs = ['prison-visits', 'book-practical-driving-test', 'carers-allowance', 'renew-patent'];
