@@ -24,6 +24,7 @@ define([
 
     it('filters when the text filter value changes', function () {
       model.set('filter', 'baz');
+      model.trigger('filterChanged');
       expect(controller.unfilteredCollection.filterServices)
         .toHaveBeenCalledWith(jasmine.objectContaining({
           text: 'baz'
@@ -32,6 +33,7 @@ define([
 
     it('filters when the department filter value changes', function () {
       model.set('departmentFilter', 'foo');
+      model.trigger('filterChanged');
       expect(controller.unfilteredCollection.filterServices)
         .toHaveBeenCalledWith(jasmine.objectContaining({
           department: 'foo'
@@ -40,6 +42,7 @@ define([
 
     it('filters the service when its filter value changes', function () {
       model.set('serviceGroupFilter', 'bar');
+      model.trigger('filterChanged');
       expect(controller.unfilteredCollection.filterServices)
         .toHaveBeenCalledWith(jasmine.objectContaining({
           serviceGroup: 'bar'

@@ -21,16 +21,16 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
       },
       'submit #filter-wrapper': 'filterFormSubmit',
       'change #department': function() {
-        this.filter('departmentFilter');
+        this.filter('department');
       },
       'change #service-group': function() {
-        this.filter('serviceGroupFilter');
-      },
-      'click .filter-remove': 'removeFilter'
+        this.filter('service-group');
+      }
     }),
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
+      this.model.on('removeFilter', _.bind(this.removeFilter, this));
     },
 
     views: function () {
@@ -73,7 +73,9 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
       this.model.set({
         filter: filterVal,
         departmentFilter: deptFilterVal,
-        serviceGroupFilter: serviceGroupFilterVal
+        departmentFilterTitle: this.collection.getDepartmentFilterTitle(deptFilterVal),
+        serviceGroupFilter: serviceGroupFilterVal,
+        serviceGroupFilterTitle: this.collection.getServiceGroupFilterTitle(serviceGroupFilterVal)
       }, {silent: true});
 
       this.model.trigger('filterChanged');
@@ -101,16 +103,31 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
         window.history.replaceState(null, null, '?' + params);
       }
 
-      this.filterAnalytics(type, this.model.get(type));
+      this.filterAnalytics(type);
     },
 
-    removeFilter: function (event) {
-      var filter = $(event.target).data('filter');
-      this.$('#' + filter).val('');
-      this.model.set(filter + 'Filter', null);
+    removeFilter: function (filter) {
+      var $filter = this.$('#' + filter);
+
+      if ($filter.length) {
+        $filter.val('');
+        this.filter(filter);
+      }
     },
 
-    filterAnalytics: function(type, value) {
+    filterAnalytics: function(type) {
+      var value;
+
+      switch (type) {
+        case 'filter':
+          value = this.model.get('filter');
+          break;
+        case 'department':
+          value = this.model.get('departmentFilter');
+          break;
+        case 'service-group':
+          value = this.model.get('serviceGroupFilter');
+      }
       GOVUK.analytics.trackEvent(this.analyticsCategory, type, {
         label: value,
         nonInteraction: true

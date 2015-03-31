@@ -50,13 +50,22 @@
 
 </form>
 
-<div class="cols-row cols-row-no-margin vertical-spacing-bottom">
-  <div class="cols3">
-    <h2 class="visuallyhidden">Number of services</h2>
-    <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
-    <div class="impact-number emphasis summary-figure">
-      <strong class="align-top summary-figure-count"><%= filteredCount %></strong><span class="align-top summary-figure-unit">services</span>
-    </div>
+<div class="vertical-spacing-bottom">
+  <h2 class="visuallyhidden">Number of services</h2>
+  <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
+  <div class="impact-number summary-figure">
+    <strong class="align-top impact-figure-with-desc summary-figure-count"><%= filteredCount %></strong>
+    <span class="impact-number-description summary-figure-description">
+      <span class="summary-figure-unit emphasis">services</span>
+      <% if (filter) {%>containing <span class="emphasis">"<%= filter %>"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>
+      <% } %>
+      <% if (departmentFilterTitle) {%>
+        provided by <span class="emphasis"><%= departmentFilterTitle %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>
+      <% } %>
+      <% if (serviceGroupFilterTitle) {%>
+        within <span class="emphasis"><%= serviceGroupFilterTitle %></span><button class="btn-remove btn-inline" data-filter="service-group" type="button">×</button>
+      <% } %>
+    </span>
   </div>
 </div>
 

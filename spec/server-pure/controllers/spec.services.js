@@ -12,34 +12,39 @@ var Collection = requirejs('./extensions/collections/collection');
 var PageConfig = requirejs('page_config');
 
 describe('Services Controller', function () {
-  var client_instance;
-  var fake_app = {'app': {'get': function(key){
-      return {
-        'port':'8989',
-        'stagecraftUrl':'the url',
-        'assetPath': '/spotlight/'
-      }[key];
-    }}
-  };
-  var req = _.extend({
-    get: function(key) {
-      return {
-        'Request-Id':'Xb35Gt',
-        'GOVUK-Request-Id': '1231234123'
-      }[key];
-    },
-    originalUrl: '',
-    query: {
-      filter: ''
-    }
-  }, fake_app);
-  var res = {
-    send: jasmine.createSpy(),
-    set: jasmine.createSpy(),
-    status: jasmine.createSpy()
-  };
+  var client_instance,
+    fake_app,
+    req,
+    res;
 
   beforeEach(function () {
+    fake_app = {'app': {'get': function(key){
+        return {
+          'port':'8989',
+          'stagecraftUrl':'the url',
+          'assetPath': '/spotlight/'
+        }[key];
+      }}
+    };
+    req = _.extend({
+      get: function(key) {
+        return {
+          'Request-Id':'Xb35Gt',
+          'GOVUK-Request-Id': '1231234123'
+        }[key];
+      },
+      originalUrl: '',
+      query: {
+        filter: ''
+      }
+    }, fake_app);
+    res = {
+      send: jasmine.createSpy(),
+      set: jasmine.createSpy(),
+      status: jasmine.createSpy()
+    };
+
+
     spyOn(PageConfig, 'commonConfig').andReturn({
       config: 'setting'
     });
@@ -90,7 +95,9 @@ describe('Services Controller', function () {
   });
 
   it('passes a services filter to the model if set in the querystring', function () {
-    controller('services', _.extend({ query: { servicegroup: 'carers-allowance' } }, fake_app), res);
+    var queryReq = _.cloneDeep(req);
+    queryReq.query.servicegroup = 'carers-allowance';
+    client_instance = controller('services', queryReq, res);
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       serviceGroupFilter: 'carers-allowance'

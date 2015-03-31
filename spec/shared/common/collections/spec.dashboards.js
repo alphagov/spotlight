@@ -13,7 +13,8 @@ define([
           },
           agency: {
             title: 'NHS Business Services Authority',
-            abbr: 'NHSBSA'
+            abbr: 'NHSBSA',
+            slug: 'business-services-authority'
           },
           service: {
             title: 'Service 1',
@@ -121,9 +122,9 @@ define([
           expect(collection.getSlug(department)).toEqual('unknown-organisation');
         });
 
-        it('doesn\'t override the existing slug for services', function() {
-          collection.reset(dashboardData);
-          expect(collection.getServiceGroups()[1].slug).toEqual('referrals');
+        it('uses the slug if present', function() {
+          var department = {slug: 'bar-stool'};
+          expect(collection.getSlug(department)).toEqual('bar-stool');
         });
 
       });
@@ -157,7 +158,7 @@ define([
 
         it('filters on agency only', function () {
           var filter = {
-              department: 'agency:nhsbsa'
+              department: 'agency:business-services-authority'
             },
             models;
           models = collection.filterServices(filter);
