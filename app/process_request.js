@@ -14,7 +14,7 @@ var renderContent = function (req, res, model) {
   });
 
   controller.once('ready', function () {
-    res.set('Cache-Control', 'public, max-age=600');
+    res.set('Cache-Control', controller.cacheOptions());
     if (model.get('published') !== true) {
       res.set('X-Robots-Tag', 'none');
     }
