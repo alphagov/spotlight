@@ -4,6 +4,7 @@ var processRequest = require('../../app/process_request');
 
 var Model = requirejs('extensions/models/model');
 var Controller = requirejs('extensions/controllers/controller');
+var ErrorController = require('../../app/server/controllers/error');
 var View = requirejs('extensions/views/view');
 
 describe('processRequest middleware', function () {
@@ -91,6 +92,20 @@ describe('processRequest middleware', function () {
       controller.html = 'test content';
       controller.trigger('ready');
       expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=600');
+    });
+
+    it('has an explicit caching policy for errors', function () {
+      var ConcreteController = ErrorController.extend({
+          render: jasmine.createSpy()
+        });
+
+      model = new Model({
+        controller: ConcreteController
+      });
+      var controller = processRequest.renderContent(req, res, model);
+      controller.html = 'test content';
+      controller.trigger('ready');
+      expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=5');
     });
 
     it('instructs search engines not to index unpublished dashboards', function () {

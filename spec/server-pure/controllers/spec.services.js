@@ -46,7 +46,9 @@ describe('Services Controller', function () {
 
 
     spyOn(PageConfig, 'commonConfig').andReturn({
-      config: 'setting'
+      config: 'setting',
+      assetPath: '/test-spotlight/',
+      assetDigest: 'testAssetDigest'
     });
     spyOn(Backbone.Model.prototype, 'initialize');
     spyOn(Backbone.Collection.prototype, 'initialize');
@@ -222,6 +224,15 @@ describe('Services Controller', function () {
     });
     client_instance.trigger('sync');
     expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=7200');
+  });
+
+  it('has a shorter explicit caching policy for errors', function () {
+    client_instance = controller('services', req, res);
+    client_instance.set({
+      'status': 500
+    });
+    client_instance.trigger('sync');
+    expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=5');
   });
 
 });
