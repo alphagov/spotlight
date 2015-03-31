@@ -3,7 +3,7 @@ module.exports = {
     servicesLink: '.services-link',
     servicesCount: '.services-count',
     servicesPageCount: '.summary-figure-count',
-    showcaseService1Heading: '.showcase-heading-link-0',
+    showcaseService: '.brand-interactive',
     topServicesCostItems: '.top-services-cost tbody a'
   },
 
@@ -25,10 +25,11 @@ module.exports = {
       });
   },
 
-  'Showcase services are present': function (client) {
-    client
-      .assert.containsText(this.selectors.showcaseService1Heading, 'Bookings for prison visits')
-      .end();
+  '4 showcase services are present': function (client) {
+    client.elements('css selector', this.selectors.showcaseService, function(result) {
+      this.assert.equal(result.value.length, 4);
+      this.end();
+    });
   },
 
   'Top 5 services are present': function (client) {

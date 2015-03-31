@@ -145,7 +145,9 @@ describe('Services Controller', function () {
   });
 
   it('creates a list of showcase services', function () {
-    var showcaseServices;
+    var showcaseServices,
+      slugs;
+
     client_instance = controller('services', req, res);
     client_instance.set({
       'status': 200,
@@ -153,12 +155,15 @@ describe('Services Controller', function () {
     });
     client_instance.trigger('sync');
     showcaseServices = ServicesView.prototype.initialize.calls[0].args[0].showcaseServices;
-    expect(_.pluck(showcaseServices, 'slug')).toEqual(controller.showcaseServiceSlugs);
+    slugs = _.pluck(showcaseServices, 'slug');
+    expect(slugs).toEqual(_.intersection(slugs, controller.showcaseServiceSlugs));
   });
 
   it('only lists showcase services that have data', function () {
     var showcaseServices,
-      dashboardList;
+      dashboardList,
+      slugs;
+
     client_instance = controller('services', req, res);
     client_instance.set({
       'status': 200,
@@ -169,8 +174,9 @@ describe('Services Controller', function () {
 
     client_instance.set('items', dashboardList);
     client_instance.trigger('sync');
+    slugs = _.pluck(showcaseServices, 'slug');
     showcaseServices = ServicesView.prototype.initialize.calls[0].args[0].showcaseServices;
-    expect(_.pluck(showcaseServices, 'slug')).toEqual(controller.showcaseServiceSlugs.slice(1));
+    expect(slugs).toEqual(_.intersection(slugs, controller.showcaseServiceSlugs.slice(1)));
   });
 
   it('renders the services view', function () {
