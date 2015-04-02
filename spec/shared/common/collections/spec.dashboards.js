@@ -13,8 +13,15 @@ define([
           },
           agency: {
             title: 'NHS Business Services Authority',
-            abbr: 'NHSBSA'
+            abbr: 'NHSBSA',
+            slug: 'business-services-authority'
           },
+          service: {
+            title: 'Service 1',
+            abbr: 'S1',
+            slug: 'prepayment'
+          },
+          slug: 'prepayment-certificates',
           total_cost: 11121,
           number_of_transactions: 2000,
           cost_per_transaction: 19.4,
@@ -32,6 +39,12 @@ define([
             title: 'NHS England',
             abbr: 'NHS England'
           },
+          service: {
+            title: 'Service 2',
+            abbr: 'S2',
+            slug: 'referrals'
+          },
+          slug: 'dh-written-gp-referrals-to-first-outpatient-appointment',
           total_cost: 800,
           number_of_transactions: 1000,
           cost_per_transaction: 0.8,
@@ -108,6 +121,12 @@ define([
           var department = {foo: 'bar'};
           expect(collection.getSlug(department)).toEqual('unknown-organisation');
         });
+
+        it('uses the slug if present', function() {
+          var department = {slug: 'bar-stool'};
+          expect(collection.getSlug(department)).toEqual('bar-stool');
+        });
+
       });
 
       describe('filterServices', function () {
@@ -115,10 +134,12 @@ define([
           collection.reset(dashboardData);
         });
 
-        it('filters the collection using a combination of search string and dept', function () {
+        it('filters the collection using a combination of search string, department and service',
+          function () {
           var filter = {
-              text: 'GP',
-              department: 'dh'
+              text: 'health',
+              department: 'dh',
+              serviceGroup: 'referrals'
             },
             models = collection.filterServices(filter);
           expect(models[0].get('title')).toEqual('Written GP referrals to first outpatient appointment');
@@ -137,7 +158,7 @@ define([
 
         it('filters on agency only', function () {
           var filter = {
-              department: 'agency:nhsbsa'
+              department: 'agency:business-services-authority'
             },
             models;
           models = collection.filterServices(filter);
@@ -153,6 +174,16 @@ define([
           models = collection.filterServices(filter);
           expect(models.length).toEqual(2);
           expect(models[0].get('title')).toEqual('Job search adviser interventions');
+        });
+
+        it('filters on service group only', function () {
+          var filter = {
+              serviceGroup: 'prepayment'
+            },
+            models;
+          models = collection.filterServices(filter);
+          expect(models.length).toEqual(1);
+          expect(models[0].get('title')).toEqual('Prescriptions: prepayment certificates issued');
         });
 
       });

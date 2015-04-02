@@ -1,9 +1,21 @@
 define([
-  'extensions/views/view'
+  'extensions/views/view',
+  'lodash',
+  'jquery'
 ],
-function (View) {
+function (View, _, $) {
 
   return View.extend({
+
+    templates: {
+      filter: ' containing <span class="emphasis filter-value">"$1"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>',
+      departmentFilterTitle: ' provided by <span class="emphasis filter-value">$1</span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>',
+      serviceGroupFilterTitle: ' within <span class="emphasis filter-value">$1</span><button class="btn-remove btn-inline" data-filter="service-group" type="button">×</button>'
+    },
+
+    events: {
+      'click .btn-remove': 'removeFilter'
+    },
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
@@ -11,15 +23,34 @@ function (View) {
     },
 
     render: function() {
-      var unit = this.model.get('noun'),
-        count;
+      this.$('.summary-figure-count').html(this.collection.length);
+      this.updateFilterDescription();
+    },
 
-      count = this.collection.length;
-      this.$el.find('.summary-figure-count').html(count);
-      if (count !== 1) {
+    updateFilterDescription: function() {
+      var filterDescription,
+        unit;
+
+      unit = this.model.get('noun');
+      if (this.collection.length !== 1) {
         unit += 's';
       }
-      this.$el.find('.summary-figure-unit').html(unit);
+      filterDescription = '<span class="summary-figure-unit emphasis">' + unit + '</span>';
+
+      _.each(this.templates, function(template, key) {
+        var val = this.model.get(key);
+        if (val) {
+          filterDescription += template.replace('$1', val);
+        }
+      }, this);
+      this.$el.find('.summary-figure-description')
+        .empty()
+        .append(filterDescription);
+    },
+
+    removeFilter: function(e) {
+      var filterName = $(e.target).attr('data-filter');
+      this.model.trigger('removeFilter', filterName);
     }
 
   });

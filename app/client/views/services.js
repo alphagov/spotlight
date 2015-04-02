@@ -4,9 +4,10 @@ define([
   'client/views/table',
   'client/views/summary-figure',
   'client/views/services-kpi',
-  'jquerydeparam'
+  'jquerydeparam',
+  'lodash'
 ],
-function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
+function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
   return View.extend({
 
     analyticsCategory: 'ppServices',
@@ -20,13 +21,16 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
       },
       'submit #filter-wrapper': 'filterFormSubmit',
       'change #department': function() {
-        this.filter('departmentFilter');
+        this.filter('department');
       },
-      'click .filter-remove': 'removeFilter'
+      'change #service-group': function() {
+        this.filter('service-group');
+      }
     }),
 
     initialize: function () {
       View.prototype.initialize.apply(this, arguments);
+      this.model.on('removeFilter', _.bind(this.removeFilter, this));
     },
 
     views: function () {
@@ -63,11 +67,15 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
 
     filter: function (type) {
       var filterVal = this.$('#filter').val(),
-        deptFilterVal = this.$('#department').val();
+        deptFilterVal = this.$('#department').val(),
+        serviceGroupFilterVal = this.$('#service-group').val();
 
       this.model.set({
         filter: filterVal,
-        departmentFilter: deptFilterVal
+        departmentFilter: deptFilterVal,
+        departmentFilterTitle: this.collection.getDepartmentFilterTitle(deptFilterVal),
+        serviceGroupFilter: serviceGroupFilterVal,
+        serviceGroupFilterTitle: this.collection.getServiceGroupFilterTitle(serviceGroupFilterVal)
       }, {silent: true});
 
       this.model.trigger('filterChanged');
@@ -85,21 +93,41 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $) {
         } else {
           delete params.department;
         }
+        if (serviceGroupFilterVal) {
+          params.servicegroup = serviceGroupFilterVal;
+        } else {
+          delete params.servicegroup;
+        }
 
         params = $.param(params);
         window.history.replaceState(null, null, '?' + params);
       }
 
-      this.filterAnalytics(type, this.model.get(type));
+      this.filterAnalytics(type);
     },
 
-    removeFilter: function (event) {
-      var filter = $(event.target).data('filter');
-      this.$('#' + filter).val('');
-      this.model.set(filter + 'Filter', null);
+    removeFilter: function (filter) {
+      var $filter = this.$('#' + filter);
+
+      if ($filter.length) {
+        $filter.val('');
+        this.filter(filter);
+      }
     },
 
-    filterAnalytics: function(type, value) {
+    filterAnalytics: function(type) {
+      var value;
+
+      switch (type) {
+        case 'filter':
+          value = this.model.get('filter');
+          break;
+        case 'department':
+          value = this.model.get('departmentFilter');
+          break;
+        case 'service-group':
+          value = this.model.get('serviceGroupFilter');
+      }
       GOVUK.analytics.trackEvent(this.analyticsCategory, type, {
         label: value,
         nonInteraction: true

@@ -16,6 +16,20 @@
     }
   }
 
+  .impact-figure-with-desc {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .emphasis {
+    font-weight: bold;
+  }
+
+  .impact-number-description {
+    @include core-16();
+    display: block;
+    line-height: 1.4;
+  }
 
   .align-top {
     display: inline-block;

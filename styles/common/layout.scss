@@ -66,6 +66,12 @@ $vertical-unit: $gutter-half;
   }
 }
 
+.vertical-spacing-bottom {
+  margin-bottom: $vertical-unit;
+  padding-bottom: $vertical-unit;
+
+}
+
 .vertical-margin-top-small {
   margin-top: $vertical-unit;
 }

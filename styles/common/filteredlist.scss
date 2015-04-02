@@ -13,17 +13,30 @@
       position:relative;
       top: 0;
     }
+    ::-webkit-input-placeholder {
+      color: $grey-1;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      color: $grey-1;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: $grey-1;
+    }
+
+    :-ms-input-placeholder {
+      color: $grey-1;
+    }
 
     #faceted-search {
-      @extend %contain-floats;
-      margin: 1em 0;
 
-      select, input {
+      input {
         @include core-16;
-        margin-bottom: 1em;
       }
 
       select {
+        @include core-16;
         background: $white;
         line-height: 1.8;
         width: 100%;

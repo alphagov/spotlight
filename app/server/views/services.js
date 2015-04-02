@@ -20,7 +20,8 @@ module.exports = BaseView.extend({
   updateCollectionFilter: function () {
     var filteredList = this.collection.filterServices({
       text: this.model.get('filter'),
-      department: this.model.get('departmentFilter')
+      department: this.model.get('departmentFilter'),
+      serviceGroup: this.model.get('serviceGroupFilter')
     });
 
     this.filterCollection.reset(filteredList);
@@ -73,6 +74,10 @@ module.exports = BaseView.extend({
       filter: this.model.get('filter'),
       departments: this.model.get('departments'),
       departmentFilter: this.model.get('departmentFilter'),
+      departmentFilterTitle: this.model.get('departmentFilterTitle'),
+      serviceGroups: this.model.get('serviceGroups'),
+      serviceGroupFilter: this.model.get('serviceGroupFilter'),
+      serviceGroupFilterTitle: this.model.get('serviceGroupFilterTitle'),
       agencies: this.model.get('agencies'),
       filteredCount: this.filterCollection.length,
       aggregateVals: this.formatAggregateValues()

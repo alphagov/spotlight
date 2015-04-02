@@ -1,19 +1,31 @@
 define([
-  'extensions/collections/collection'
+  'extensions/collections/collection',
+  'lodash'
 ],
-function (Collection) {
+function (Collection, _) {
   return Collection.extend({
     comparator: 'title',
+
+    initialize: function(models) {
+      Collection.prototype.initialize.apply(this, arguments);
+      this.departmentList = this.getPropertyList(models, 'department');
+      this.agencyList = this.getPropertyList(models, 'agency');
+      this.departmentsAndAgencies = this.departmentList.concat(this.agencyList);
+      this.serviceGroupList = this.getPropertyList(models, 'service');
+    },
 
     filterServices: function (filter) {
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
-        departmentFilter = (filter.department || null);
+          departmentFilter = (filter.department || null),
+          serviceGroupFilter = (filter.serviceGroup || null);
+
 
       var filteredDashboards = this.filter(function (dashboard) {
         var title = dashboard.get('title').toUpperCase(),
           department = dashboard.get('department') || { title: '', abbr: '' },
-          agency = dashboard.get('agency') || { title: '', abbr: '' };
+            agency = dashboard.get('agency') || {title: '', abbr: ''},
+            serviceGroup = dashboard.get('service') || {title: '', abbr: '', slug: ''};
 
         // Remove the dashboard from the list if it doesn't match the text filter
         var textSearchFields = [title, department.abbr.toUpperCase(), department.title.toUpperCase()];
@@ -32,6 +44,9 @@ function (Collection) {
             }
           }
         }
+        if (serviceGroupFilter && serviceGroup.slug !== serviceGroupFilter) {
+          return false;
+        }
 
         return true;
       }, this);
@@ -40,7 +55,9 @@ function (Collection) {
     },
 
     getSlug: function (organisation) {
-      if (organisation.abbr) {
+      if (organisation.slug) {
+        return organisation.slug;
+      } else if (organisation.abbr) {
         return organisation.abbr.toLowerCase().replace(/ /g, '-');
       } else if (organisation.title) {
         return organisation.title.toLowerCase().replace(/ /g, '-');
@@ -56,25 +73,37 @@ function (Collection) {
       }), function (m) { return m.toJSON(); });
     },
 
-    getDepartments: function () {
-      return this.getPropertyList('department');
-    },
-
-    getAgencies: function () {
-      return this.getPropertyList('agency');
-    },
-
-    getPropertyList: function (prop) {
-      var values = this.pluck(prop);
+    getPropertyList: function (models, prop) {
+      var values = _.pluck(models, prop);
       values = _.filter(values, _.identity);
       values = _.sortBy(values, 'title');
-      values = _.uniq(values, true, function (o) { return o.title; });
-      values = _.map(values, function (a) {
-        return _.extend(a, {
-          slug: (a.abbr || a.title).toLowerCase().replace(/ /g, '-')
-        });
+      values = _.uniq(values, true, function (o) {
+        return o.title;
       });
+      /* each item should have a slug provided by the API, but in case it
+      doesn't, provide a fallback */
+      values = _.map(values, _.bind(function (a) {
+        return _.extend({
+          slug: this.getSlug(a)
+        }, a);
+      }, this));
+
       return values;
+    },
+
+    getDepartmentFilterTitle: function(departmentFilter) {
+      var departmentFilterObject;
+
+      if (departmentFilter) {
+        departmentFilter = departmentFilter.replace('agency:', '');
+        departmentFilterObject = _.find(this.departmentsAndAgencies, {slug: departmentFilter});
+      }
+      return (departmentFilterObject && departmentFilterObject.title) || '';
+    },
+
+    getServiceGroupFilterTitle: function(serviceGroupFilter) {
+      var serviceGroupFilterObject = _.find(this.serviceGroupList, {slug: serviceGroupFilter});
+      return (serviceGroupFilterObject && serviceGroupFilterObject.title) || '';
     }
 
   }, {
