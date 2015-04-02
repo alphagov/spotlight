@@ -18,8 +18,6 @@ define([
     collectionOptions: function () {},
     collectionData: function () { return []; },
 
-    cacheOptions: function() { return 'public, max-age=600'; },
-
     renderView: function (options) {
       options = _.extend({}, this.viewOptions(), options);
 

@@ -85,16 +85,14 @@ var renderContent = function (req, res, client_instance) {
         otherDashboards: otherDashboards,
         showcaseServices: showcaseServices
       });
-      // only mark good responses as being cacheable
-      res.set('Cache-Control', 'public, max-age=7200');
     } else {
       view = new ErrorView({
         model: model,
         collection: collection
       });
-      res.set('Cache-Control', 'public, max-age=5');
     }
     view.render();
+    res.set('Cache-Control', 'public, max-age=7200');
     res.send(view.html);
   });
 

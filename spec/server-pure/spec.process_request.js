@@ -4,7 +4,6 @@ var processRequest = require('../../app/process_request');
 
 var Model = requirejs('extensions/models/model');
 var Controller = requirejs('extensions/controllers/controller');
-var ErrorController = requirejs('server/controllers/error');
 var View = requirejs('extensions/views/view');
 
 describe('processRequest middleware', function () {
@@ -88,17 +87,6 @@ describe('processRequest middleware', function () {
     });
 
     it('has an explicit caching policy', function () {
-      var controller = processRequest.renderContent(req, res, model);
-      controller.html = 'test content';
-      controller.trigger('ready');
-      expect(res.set).toHaveBeenCalledWith('Cache-Control', 'public, max-age=600');
-    });
-
-    it('has an explicit caching policy for errors', function () {
-      model = new Model({
-        controller: ErrorController
-      });
-
       var controller = processRequest.renderContent(req, res, model);
       controller.html = 'test content';
       controller.trigger('ready');
