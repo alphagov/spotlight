@@ -250,6 +250,34 @@ describe('hasBigScreenFlag', function () {
     expect(getContext(model).hasBigScreenView).toEqual(true);
   });
 
+  it('should show the link if there is a section module that contains a kpi module', function() {
+    model.set('modules', [
+      {
+        'module-type': 'section',
+        'modules': [
+          {
+            'module-type': 'kpi'
+          }
+        ]
+       },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(true);
+  });
+
+  it('should\'t show the link if there are no supported modules in the section module', function() {
+    model.set('modules', [
+      {
+        'module-type': 'section',
+        'modules': [
+          {
+            'module-type': 'availablity'
+          }
+        ]
+       },
+    ]);
+    expect(getContext(model).hasBigScreenView).toEqual(false);
+  });
+
   it('should show the link if there is a user_satisfaction_graph module and its using user-satisfaction-score dataset', function() {
     model.set('modules', [
       { 'module-type': 'user_satisfaction_graph',
