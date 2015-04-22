@@ -38,7 +38,7 @@ define([
         to = to.endOf(this.interval);
 
         if (to.isAfter(now)) {
-          to = now;
+          to = now.subtract(1, 'day');
         }
 
         if (period === 'week') {

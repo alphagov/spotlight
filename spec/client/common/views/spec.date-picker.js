@@ -130,7 +130,7 @@ define([
 
         expect(collection.dataSource.setQueryParam).toHaveBeenCalledWith({
           start_at: '2013-06-01T00:00:00Z',
-          end_at: '2014-07-18T01:02:03Z'
+          end_at: '2014-07-17T01:02:03Z'
         });
 
       });
