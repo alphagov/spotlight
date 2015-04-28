@@ -69,7 +69,7 @@
     "xmlhttprequest": "1.6.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#69d31d8a12607bbd43b0350904cdc57891a3c37f",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#63ce6caecd6e5a772c248fe3f9fa03fd30121327",
     "performanceplatform-js-style-configs": "0.0.2",
     "supervisor": "0.5.7"
   }

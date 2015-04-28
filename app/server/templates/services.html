@@ -11,8 +11,8 @@
     <div class="cols3">
       <label for="department" id="filter-department"><span aria-hidden="true">Department</span><span class="visuallyhidden">Select a department or agency to filter services by</span></label>
       <select id="department" name="department">
-        <option value="">All departments and agencies</option>
-        <optgroup label="Departments">
+        <option value="">All departments</option>
+        <optgroup label="Ministerial departments">
           <% _.each(departments, function (department) { %>
           <option value="<%= department.slug %>"
           <% if (department.slug === departmentFilter) { %>selected<% } %>><%= department.title
@@ -20,7 +20,7 @@
           <% }); %>
         </optgroup>
         <% if (agencies.length) {%>
-        <optgroup label="Agencies">
+        <optgroup label="Other departments &amp; public bodies">
           <% _.each(agencies, function (agency) { %>
           <option value="agency:<%= agency.slug %>"
           <% if ('agency:' + agency.slug === departmentFilter) { %>selected<% } %>><%= agency.title
