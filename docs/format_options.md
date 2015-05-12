@@ -65,6 +65,15 @@ Accepts the options (unit: ['ms', 's', 'm'], pad: [true, false])
 { type: 'duration', unit: 'm' }
 ```
 
+The default options for duration are:
+
+```
+{
+  unit: 'ms',
+  pad: true
+}
+```
+
 ###Currency
 
 Accepts the options (symbol: defaults to '£', pence, dps). The magnitude option formats the value to the nearest significant scale. For example:
@@ -77,12 +86,30 @@ Accepts the options (symbol: defaults to '£', pence, dps). The magnitude option
 { sigfigs: 3, magnitude: true, type: 'currency' }
 ```
 
+The default options for currency are:
+
+```
+{
+   symbol: '£',
+   pence: (true for anything less than 10 or false for anything greater than 10)
+}
+```
+
 ###Percent
 
-Accepts the options (dps, normalisation, showSigns)
+Accepts the options (dps [decimal places], normalisation, showSigns)
 
 ```
 { type: 'percent' }
+```
+
+The default options for percent are:
+
+```
+{
+   dps: 1,
+   normalisation: 1.0
+}
 ```
 
 ###Integer
@@ -106,6 +133,15 @@ Accepts the options (commans: [true, false], sigfigs, fixed, dps). The magnitude
 { sigfigs: 3, magnitude: true, type: 'number' }
 ```
 
+The default options for number are:
+
+```
+{
+   commas: true,
+   sigfigs: 3
+}
+```
+
 ###Date
 
 Accepts the options (format: 'D MMMM YYYY')
@@ -114,11 +150,27 @@ Accepts the options (format: 'D MMMM YYYY')
 { type: 'date' }
 ```
 
+The default options for date are:
+
+```
+{
+   format: 'D MMMM YYYY'
+}
+```
+
 ###Time
 
 Accepts the options (format: 'h:mma')
 
 ```
 { type: 'time' }
+```
+
+The default options for time are:
+
+```
+{
+   format: 'h:mma'
+}
 ```
 
