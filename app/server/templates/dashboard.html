@@ -81,12 +81,12 @@
 
       <aside class='related-pages' role='complementary'>
 
-        {{# relatedPages.transaction }}
+        {{# relatedPages.transaction.url }}
         <div class="related-transaction" itemscope itemtype="{{ schemaOrgItemType }}">
           <h3>Visit this service</h3>
           <a itemprop="name" href="{{{ relatedPages.transaction.url }}}">{{ relatedPages.transaction.title }}</a>
         </div>
-        {{/ relatedPages.transaction }}
+        {{/ relatedPages.transaction.url }}
 
         {{# relatedPages.other.length }}
         <div class="related-other">
