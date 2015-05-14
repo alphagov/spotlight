@@ -173,7 +173,7 @@ You can then access the logs from your app's dashboard on Heroku (under the "Add
 
 ## Contributing
 
-For Javascript, follow the [styleguide](https://github.com/alphagov/styleguides/blob/master/js.md) (apart from the sections on gov.uk modules as we don't use these)
+For Javascript, follow the [styleguide](https://github.com/alphagov/styleguides/blob/master/js.md) (apart from the sections on GOV.UK modules as we don't use these)
 
 Functionality should work without Javascript where possible.
 
