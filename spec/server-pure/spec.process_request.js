@@ -30,6 +30,7 @@ describe('processRequest middleware', function () {
       get: headers,
       originalUrl: 'test url',
       route: {},
+      path: '/performance/carers-allowance',
       url: '/performance/carers-allowance'
     };
     res = {
@@ -51,6 +52,16 @@ describe('processRequest middleware', function () {
     it('removes the /performance part of the slug when setting the path', function () {
       processRequest(req, res);
       expect(client.setPath).toHaveBeenCalledWith('/carers-allowance');
+    });
+
+    it('it will 404 on requests with & that are not query params', function () {
+      req.path = '/performance/carers-allowance&';
+      //we need to create a fake controller map here as process_request links to the error controller on 404
+      client.controllers = {
+        error: true
+      };
+      processRequest(req, res);
+      expect(client.get('status')).toEqual(404);
     });
 
   });
