@@ -5,6 +5,7 @@ var PageConfig = requirejs('page_config');
 var get_dashboard_and_render = require('./server/mixins/get_dashboard_and_render');
 
 var renderContent = function (req, res, model) {
+
   model.set(PageConfig.commonConfig(req));
 
   var ControllerClass = model.get('controller');
@@ -29,8 +30,14 @@ var renderContent = function (req, res, model) {
 
 var setup = function (req, res) {
   var client_instance = setup.get_dashboard_and_render(req, res, setup.renderContent);
-  client_instance.set('script', true);
-  client_instance.setPath(req.url.replace('/performance', ''));
+  if (req.path.indexOf('&') > 0) {
+    client_instance.set('status', 404);
+    client_instance.set('controller', client_instance.controllers.error);
+    client_instance.trigger('error');
+  } else {
+    client_instance.set('script', true);
+    client_instance.setPath(req.path.replace('/performance', ''));
+  }
 };
 
 setup.renderContent = renderContent;
