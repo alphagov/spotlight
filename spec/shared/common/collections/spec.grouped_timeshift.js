@@ -10,7 +10,6 @@ function (GroupedTimeshiftCollection, DataSource) {
       var collection = new GroupedTimeshiftCollection([], {
         valueAttr: 'value',
         period: 'week',
-        category: 'group',
         axes: {
           x: {
             'label': 'Date',
@@ -39,7 +38,6 @@ function (GroupedTimeshiftCollection, DataSource) {
       var collection = new GroupedTimeshiftCollection([], {
         valueAttr: 'value',
         period: 'week',
-        category: 'group',
         startAt: '2014-04-02T00:00:00',
         axes: {
           x: {
@@ -250,7 +248,6 @@ function (GroupedTimeshiftCollection, DataSource) {
         var collection = new GroupedTimeshiftCollection([], {
           valueAttr: 'value',
           period: 'week',
-          category: 'key',
           duration: 2,
           axes: {
             x: {
@@ -288,7 +285,6 @@ function (GroupedTimeshiftCollection, DataSource) {
         var collection = new GroupedTimeshiftCollection([], {
           valueAttr: 'value',
           period: 'week',
-          category: 'key',
           duration: 2,
           axes: {
             x: {
@@ -332,7 +328,6 @@ function (GroupedTimeshiftCollection, DataSource) {
         var collection = new GroupedTimeshiftCollection([], {
           valueAttr: 'value',
           period: 'week',
-          category: 'key',
           duration: 2,
           axes: {
             x: {
