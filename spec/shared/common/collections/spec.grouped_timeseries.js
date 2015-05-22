@@ -72,7 +72,6 @@ function (GroupedTimeseries) {
           }
         },
         valueAttr: 'some:value',
-        category: 'some-category',
         axes: {
           x: {
             'label': 'Date',
@@ -173,7 +172,6 @@ function (GroupedTimeseries) {
             }
           },
           valueAttr: 'some:value',
-          category: 'some-category',
           axes: {
             x: {
               'label': 'Date',
@@ -213,7 +211,6 @@ function (GroupedTimeseries) {
           'data-type': 'some-type',
           'data-group': 'some-group',
           valueAttr: 'some:value',
-          category: 'some-category',
           period: 'month',
           axes: {
             x: {

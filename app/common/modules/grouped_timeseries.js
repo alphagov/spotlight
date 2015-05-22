@@ -27,7 +27,6 @@ function (GroupedTimeseriesCollection, GroupedTimeshiftCollection) {
     collectionOptions: function () {
       return {
         valueAttr: this.model.get('value-attribute'),
-        category: this.model.get('category'),
         isOneHundredPercent: this.model.get('one-hundred-percent'),
         useStack: this.model.get('use_stack'),
         axisPeriod: this.model.get('axis-period'),
