@@ -170,9 +170,8 @@ module.exports = function (grunt) {
       },
       dist: {
         src: [
-          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/google-analytics-classic-tracker.js',
           'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/google-analytics-universal-tracker.js',
-          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/tracker.js',
+          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/analytics.js',
           'app/client/analytics.js'
         ],
         dest: 'public/javascripts/analytics.js'
