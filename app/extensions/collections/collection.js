@@ -4,9 +4,10 @@ define([
   'extensions/mixins/date-functions',
   'extensions/mixins/collection-processors',
   'extensions/models/model',
-  'extensions/models/data_source'
+  'extensions/models/data_source',
+  'moment-timezone'
 ],
-function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
+function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, moment) {
 
   var Collection = Backbone.Collection.extend({
 
@@ -74,6 +75,14 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
           }
         }, this);
       }
+
+      //remove models from the collection that are in the future
+      _.remove(data, function (item) {
+        return (item._end_at &&
+          moment(item._end_at).isAfter(moment().utc()));
+      });
+
+
       return data;
     },
 
@@ -387,7 +396,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return this.length > 0;
     },
 
-    lastDefined: function () {
+    lastDefined: function (attr) {
       return this.defined.apply(this, arguments).pop();
     },
 
