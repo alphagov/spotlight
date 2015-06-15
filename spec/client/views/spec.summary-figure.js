@@ -41,6 +41,15 @@ define([
           expect(this.summary.$el.find('.filter-value').length).toEqual(0);
         });
 
+        it('stops someone from injecting HTML!', function() {
+          this.summary.model.set('filter', '<h1>I am a hacker!</h1>');
+          this.summary.collection.reset([{}]);
+          expect(this.summary.$el.find('.filter-value').html()).toEqual('"&lt;h1&gt;I am a hacker!&lt;/h1&gt;"');
+          this.summary.model.set('filter', '');
+          this.summary.collection.reset([{}]);
+          expect(this.summary.$el.find('.filter-value').length).toEqual(0);
+        });
+
         it('updates when department filter changes', function() {
           this.summary.model.set('departmentFilterTitle', 'test2');
           this.summary.collection.reset([{}]);

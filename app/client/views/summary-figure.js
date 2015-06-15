@@ -8,9 +8,9 @@ function (View, _, $) {
   return View.extend({
 
     templates: {
-      filter: ' containing <span class="emphasis filter-value">"$1"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>',
-      departmentFilterTitle: ' provided by <span class="emphasis filter-value">$1</span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>',
-      serviceGroupFilterTitle: ' within <span class="emphasis filter-value">$1</span><button class="btn-remove btn-inline" data-filter="service-group" type="button">×</button>'
+      filter: ' containing <span class="emphasis filter-value">"<%- filter %>"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>',
+      departmentFilterTitle: ' provided by <span class="emphasis filter-value"><%- filter %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>',
+      serviceGroupFilterTitle: ' within <span class="emphasis filter-value"><%- filter %></span><button class="btn-remove btn-inline" data-filter="service-group" type="button">×</button>'
     },
 
     events: {
@@ -40,7 +40,8 @@ function (View, _, $) {
       _.each(this.templates, function(template, key) {
         var val = this.model.get(key);
         if (val) {
-          filterDescription += template.replace('$1', val);
+          var compiled = _.template(template);
+          filterDescription += compiled({ filter: val });
         }
       }, this);
       this.$el.find('.summary-figure-description')
