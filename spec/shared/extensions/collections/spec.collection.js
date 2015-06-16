@@ -708,6 +708,47 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
 
       });
 
+      describe('data in the future', function () {
+        var collection;
+        var futureDate = moment().utc().add(1, 'day').format();
+
+        var collectionArray = [
+          {
+            '_count': 1.0,
+            '_end_at': '2015-05-25T00:00:00+00:00',
+            '_start_at': '2015-05-18T00:00:00+00:00',
+            'visitors:sum': 11390.0
+          },
+          {
+            '_count': 2.0,
+            '_end_at': '2015-06-08T00:00:00+00:00',
+            '_start_at': '2015-06-01T00:00:00+00:00',
+            'visitors:sum': 22850.0
+          },
+          {
+            '_count': 1.0,
+            '_end_at': futureDate,
+            '_start_at': '2015-05-25T00:00:00+00:00',
+            'visitors:sum': 12069.0
+          }
+        ];
+
+        beforeEach(function () {
+          collection = new Collection(collectionArray);
+        });
+
+        it('the collection should not contain models from the future', function () {
+          var parsedData = collection.parse({data: collectionArray});
+
+          expect(parsedData.length).toEqual(2);
+          expect(parsedData[0]._count).toEqual(1);
+          expect(parsedData[0]['visitors:sum']).toEqual(11390);
+
+          expect(parsedData[1]._count).toEqual(2);
+          expect(parsedData[1]['visitors:sum']).toEqual(22850);
+        });
+      });
+
     });
 
     describe('trim', function () {
@@ -900,6 +941,72 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
       });
     });
 
+    describe('defined', function () {
+      var collection;
+      beforeEach(function () {
+        collection = new Collection([
+          {
+            '_count': 1.0,
+            '_end_at': '2015-05-25T00:00:00+00:00',
+            '_start_at': '2015-05-18T00:00:00+00:00',
+            'visitors:sum': 11390.0
+          },
+          {
+            '_count': 1.0,
+            '_end_at': '2015-06-01T00:00:00+00:00',
+            '_start_at': '2015-05-25T00:00:00+00:00',
+            'visitors:sum': 12069.0
+          },
+          {
+            '_end_at': '2015-06-08T00:00:00+00:00',
+            '_start_at': '2015-06-01T00:00:00+00:00',
+            'visitors:sum': 22850.0
+          }
+        ]);
+      });
+
+      it('returns a list of models that have that attribute defined', function () {
+        expect(collection.defined('_count').length).toEqual(2);
+      });
+
+      it('it returns a list of modules that have those attributes defined (in an array)', function () {
+        expect(collection.defined(['_count', 'visitors:sum']).length).toEqual(3);
+      });
+
+      it('it returns a list of modules that have those attributes defined', function () {
+        expect(collection.defined('_count', 'visitors:sum').length).toEqual(3);
+      });
+    });
+
+    describe('lastDefined', function () {
+      var collection;
+
+      var collectionArray = [
+        {
+          '_count': 1.0,
+          '_end_at': '2015-05-25T00:00:00+00:00',
+          '_start_at': '2015-05-18T00:00:00+00:00',
+          'visitors:sum': 11390.0
+        },
+        {
+          '_end_at': '2015-06-08T00:00:00+00:00',
+          '_start_at': '2015-06-01T00:00:00+00:00',
+          'visitors:sum': 22850.0
+        }
+      ];
+
+      beforeEach(function () {
+        collection = new Collection(collectionArray);
+      });
+
+      it('should return the last defined model that matches the key', function () {
+        expect(collection.lastDefined('visitors:sum').toJSON()).toEqual({
+          '_end_at': '2015-06-08T00:00:00+00:00',
+          '_start_at': '2015-06-01T00:00:00+00:00',
+          'visitors:sum': 22850.0
+        });
+      });
+    });
 
 
   });
