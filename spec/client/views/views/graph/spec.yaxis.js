@@ -138,6 +138,21 @@ function (YAxis, Graph, Collection) {
 
         expect(view.format).toHaveBeenCalledWith(1000, view.graph.formatOptions);
       });
+
+      it('uses the standard formatter with formatOptions when its a percentage', function () {
+        var view = viewForValues(0, 10, true, 10);
+        spyOn(view, 'format');
+        view.scales.y.tickValueList = undefined;
+        view.graph.formatOptions = 'percent';
+
+        var formatter = view.tickFormat();
+
+        expect(typeof formatter).toEqual('function');
+
+        formatter(0.1);
+
+        expect(view.format).toHaveBeenCalledWith(0.1, view.graph.formatOptions);
+      });
     });
 
 

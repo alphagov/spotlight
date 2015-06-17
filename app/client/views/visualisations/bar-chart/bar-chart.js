@@ -20,14 +20,7 @@ function (Graph, XAxis, Bar, Hover) {
           }
         },
         yaxis: {
-          view: this.sharedComponents.yaxis,
-          options: (this.formatOptions === 'percent' || this.formatOptions.type === 'percent') ? {
-            tickFormat: function () {
-              return function (d) {
-                return that.format(d, that.formatOptions);
-              };
-            }
-          } : {}
+          view: this.sharedComponents.yaxis
         },
         bar: { view: Bar },
         hover: { view: Hover }
