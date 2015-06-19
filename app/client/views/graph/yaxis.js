@@ -17,13 +17,15 @@ function (require, Axis) {
     },
     tickFormat: function () {
       var currency = this.graph.formatOptions && this.graph.formatOptions.type === 'currency';
-      if (this.scales.y.tickValueList) {
-        return this.numberListFormatter(this.scales.y.tickValueList,  currency);
-      }
-      if (this.graph.formatOptions && this.graph.formatOptions.type === 'duration') {
+      if ((this.graph.formatOptions && this.graph.formatOptions.type === 'duration') ||
+          this.graph.formatOptions === 'percent' ||
+          (this.graph.formatOptions && this.graph.formatOptions.type === 'percent')) {
         return _.bind(function (d) {
           return this.format(d, this.graph.formatOptions);
         }, this);
+      }
+      if (this.scales.y.tickValueList) {
+        return this.numberListFormatter(this.scales.y.tickValueList,  currency);
       }
     },
     tickValues: function () {
