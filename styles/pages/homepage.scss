@@ -12,7 +12,7 @@
   }
 }
 .homepage-showcase-item {
-  @include bold-19;
+  @include core-19;
   margin-bottom: 5px;
   @include media(tablet) {
     &:last-child {
