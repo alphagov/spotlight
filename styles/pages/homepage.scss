@@ -4,7 +4,13 @@
 .homepage #global-header-bar {
   display: none;
 }
-
+.homepage-showcase {
+  hr {
+    border:none;
+    height:1px;
+    background-color: $grey-2;
+  }
+}
 .homepage-showcase-item {
   @include bold-19;
   margin-bottom: 5px;
@@ -24,4 +30,3 @@
   width: 100%;
   max-width: 602px;
 }
-
