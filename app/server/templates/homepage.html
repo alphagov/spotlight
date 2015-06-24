@@ -33,7 +33,7 @@
   <div class="homepage-showcase" aria-labelledby="selected-dashboards">
     <h2 class="visuallyhidden" id="selected-dashboards">Selected dashboards</h2>
     <% _.each(showcaseServices, function (service, index) { %>
-    <div class="brand-<%= service.deptCode %> brand-interactive outdent-to-full-width vertical-spacing-small grid-row">
+    <div class="brand-interactive outdent-to-full-width vertical-spacing-small grid-row">
       <div class="column-third">
         <h3 class="heading-2"><a class="link-unstyled showcase-heading-link-<%= index %>" href="/performance/<%= service.slug %>"><%= service.title %></a></h3>
       </div>
@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <hr>
     <% }); %>
   </div>
   <div class="vertical-spacing-small"><a class="link-large" href="/performance/services">See data on all <%= serviceCount %> services</a></div>
