@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+var Mustache = require('Mustache');
 
 module.exports = {
   configure: function (env, options) {
@@ -13,7 +14,11 @@ module.exports = {
       env = 'development_personal';
     }
 
-    var config = JSON.parse(fs.readFileSync(path.join('config', configFileName(env))));
+    var fileContents = fs.readFileSync(path.join('config', configFileName(env)), 'utf8');
+
+    var renderedMustache = Mustache.render(fileContents, {govukAppDomain: process.env.GOVUK_APP_DOMAIN})
+
+    var config = JSON.parse(renderedMustache);
 
     var filteredOptions = _.pick(options, _.keys(config));
     return _.extend(config, filteredOptions);

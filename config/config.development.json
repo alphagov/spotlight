@@ -1,10 +1,12 @@
 {
   "assetPath": "/spotlight/",
   "port": 3057,
+  {{=<% %>=}}
   "backdropUrl": "https://www.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
+  <%={{ }}=%>
   "screenshotTargetUrl": "http://localhost:3057",
   "screenshotServiceUrl": "http://localhost:3060",
-  "govukHost": "www.alphagov.co.uk",
+  "govukHost": "www.{{ govukAppDomain }}",
   "stagecraftUrl": "https://stagecraft.production.performance.service.gov.uk",
   "statsdPrefix": "pp.apps.spotlight",
   "bigScreenBaseURL": "https://www.performance.service.gov.uk"
