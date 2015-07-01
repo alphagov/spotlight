@@ -47,7 +47,7 @@ module.exports = BaseView.extend({
     aggVals = this.filterCollection.getAggregateValues();
 
     _.each(aggVals, function (kpi) {
-      if (kpi.weighted_average) {
+      if (kpi.weighted_average || kpi.weighted_average === 0) {
         kpi.formattedValue = this.format(kpi.weighted_average, kpi.format);
       }
     }, this);

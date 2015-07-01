@@ -28,7 +28,7 @@ function (View, accessibility) {
       var aggregateVals = this.collection.getAggregateValues();
 
       _.each(aggregateVals, function (kpi) {
-        if (kpi.weighted_average) {
+        if (kpi.weighted_average || kpi.weighted_average === 0) {
           kpi.formattedValue = this.format(kpi.weighted_average, kpi.format);
         }
       }, this);
