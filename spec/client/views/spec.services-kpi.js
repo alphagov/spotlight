@@ -262,6 +262,36 @@ define([
           expect(this.summary.$el.find('.visualisation-moreinfo').text()).toEqual('total for all 3 services');
 
         });
+
+        it('shows 0 when then weighted average is 0', function () {
+          var $el = $('<div><div class="number_of_transactions"><div class="impact-number"><strong>35%</strong></div></div></div>');
+
+          ServicesCollection.prototype.getAggregateValues.andReturn([{
+            'key': 'number_of_transactions',
+            'title': 'Transactions per year',
+            'value': 0,
+            'valueTimesVolume': 0,
+            'valueCount': 1,
+            'allRowsHaveValues': true,
+            'weighted_average': 0,
+            'format': {
+              'type': 'percent',
+              'sigfigs': 3,
+              'magnitude': true,
+              'abbr': true
+            }
+          }]);
+
+          this.summary = new ServicesKPIView({
+            el: $el,
+            model: new Model(),
+            collection: new ServicesCollection([], servicesAxes)
+          });
+          this.summary.collection.reset([{}, {}, {}]);
+
+          expect(this.summary.$el.find('strong').html()).toEqual('0%');
+
+        });
       });
     });
 
