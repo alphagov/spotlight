@@ -14,8 +14,10 @@ var morgan  = require('morgan');
 
 module.exports = {
   getApp: function (environment, rootDir, requireBaseUrl) {
-    var app;
-    app = express();
+    var app = express(),
+        transactionVolumesCSV = fs.readFileSync(
+            path.join(rootDir, 'assets', 'data', 'transaction-volumes.csv'));
+
     app.disable('x-powered-by');
 
     (function () {
@@ -104,6 +106,13 @@ module.exports = {
     app.get('/performance/other', _.bind(require('./server/controllers/simple-dashboard-list'), this, 'other'));
 
     app.get('/performance/prototypes', require('./server/controllers/prototypes'));
+
+    app.get('/performance/data/transaction-volumes.csv', function (req, res) {
+      res.set('Content-Type', 'text/csv; charset=utf-8');
+      res.set('Content-Disposition', 'attachment;filename=transaction-volumes.csv');
+      res.send(transactionVolumesCSV);
+      res.end();
+    });
 
     app.get('/performance/*', require('./process_request'));
 
