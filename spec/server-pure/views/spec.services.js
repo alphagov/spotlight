@@ -130,6 +130,65 @@ describe('Services View', function () {
       expect(view.formatAggregateValues()[5].key).toEqual('completion_rate');
     });
 
+    describe('with more than one service/transaction', function () {
+      beforeEach(function () {
+        model = new Backbone.Model({
+          axesOptions: servicesController.serviceAxes.axes
+        });
+
+        collection = new ServicesCollection([
+          {
+            title: 'Prescriptions: prepayment certificates issued',
+            department: {
+              title: 'Department of Health',
+              abbr: 'DH'
+            },
+            agency: {
+              title: 'NHS Business Services Authority',
+              abbr: 'NHSBSA'
+            },
+            completion_rate: 0.4,
+            number_of_transactions: 2000,
+            digital_takeup: 0.5 
+          },
+          {
+            title: 'Prescriptions: prepayment certificates issued',
+            department: {
+              title: 'Department of Health',
+              abbr: 'DH'
+            },
+            agency: {
+              title: 'NHS Business Services Authority',
+              abbr: 'NHSBSA'
+            },
+            completion_rate: 0.4,
+            number_of_transactions: 2000,
+            digital_takeup: 0 
+          }
+        ], servicesController.serviceAxes);
+
+        viewOptions = {
+          model: model,
+          collection: collection
+        };
+        view = new ServicesView(viewOptions);
+      });
+
+      afterEach(function () {
+        this.removeAllSpies();
+      });
+
+      it('adds a formatted value for kpis with a weighted_average', function () {
+        expect(view.formatAggregateValues()[0].formattedValue).toEqual('4,000');
+        expect(view.formatAggregateValues()[1].formattedValue).toBeUndefined();
+        expect(view.formatAggregateValues()[2].formattedValue).toBeUndefined();
+        expect(view.formatAggregateValues()[3].formattedValue).toEqual('25%');
+        expect(view.formatAggregateValues()[4].formattedValue).toBeUndefined();
+        expect(view.formatAggregateValues()[5].formattedValue).toEqual('40%');
+      });
+
+    });
+
   });
 
 });
