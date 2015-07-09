@@ -16,7 +16,7 @@ define([
             kpi = _.findWhere(aggregatedValues, {key: axisKey});
 
             if (kpi) {
-              if (val && number_of_transactions) {
+              if ((val || val === 0) && number_of_transactions) {
                 kpi.value += val;
                 kpi.valueTimesVolume += (val * model.get('number_of_transactions'));
                 // if the axisKey is total_cost then this has this potential
@@ -24,7 +24,7 @@ define([
                 // shouldn't matter.
                 kpi.volume += model.get('number_of_transactions');
                 kpi.valueCount++;
-              } else if (val && axisKey === 'total_cost') {
+              } else if ((val || val === 0) && axisKey === 'total_cost') {
                 kpi.value += val;
                 kpi.valueTimesVolume += val;
                 kpi.valueCount++;
