@@ -27,9 +27,15 @@ breakpoint, to keep base lines of large number and text in line
 
   .impact-link-label {
     display: inline-block;
-    padding-left: 0.5em;
+    //padding-left: 0.5em;
     white-space: normal;
-    width: 60%;
+    //width: 60%;
   }
 
+}
+
+.separate-impact-links {
+  margin-top:$gutter * 0.5;
+  padding-top:$gutter * 0.5;
+  border-top:1px solid $grey-2;
 }

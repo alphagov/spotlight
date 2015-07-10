@@ -1,5 +1,15 @@
 .homepage {
   overflow-x: hidden;
+
+  p {
+    max-width:650px;
+  }
+  hr {
+    clear: both;
+    border: 5px solid #0b0c0c;
+    border-width: 5px 0 0;
+    margin: 60px 30px 30px;
+  }
 }
 .homepage #global-header-bar {
   display: none;
@@ -29,4 +39,135 @@
 .homepage-tx {
   width: 100%;
   max-width: 602px;
+}
+.overview {
+  margin-top:$gutter * 0.5;
+
+  @include media(tablet) {
+    padding-right:$gutter;
+    margin-top:$gutter;
+    margin-bottom:$gutter * 2;
+  }
+}
+
+.data-visuals {
+  margin-top:$gutter;
+}
+
+.the-kpis {
+  @include media(tablet) {
+    padding-right:$gutter;
+  }
+}
+
+.kpi {
+  margin-bottom: $gutter;
+}
+
+.data-visuals {
+  img {
+    width: 100%;
+    max-width:400px;
+    margin-top:$gutter;
+  }
+}
+.what-we-do {
+  @include core-27;
+}
+
+.ruled-top {
+  border-top:1px solid $grey-2;
+  padding-top: 20px;
+}
+
+.actions {
+  margin-top:$gutter * 3;
+}
+
+form {
+  margin-top:$gutter * 0.5;
+  max-width:600px;
+}
+
+form#header-search:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+form#header-search input.submit {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #0b0c0c;
+  border-width: 0 0 0 1px;
+  border-left-color: #222;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  overflow: hidden;
+  text-indent: -5000px;
+  cursor: pointer;
+  color: #fff;
+  background: #0b0c0c url(https://assets.digital.cabinet-office.gov.uk/frontend/homepage/search-button-62a2c0513eea29af4d7d10836901c77a.png) no-repeat 2px 50%;
+}
+
+form#header-search input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  min-width: 0;
+  display: block;
+  margin: 0;
+  border: 0;
+  height: 40px;
+  padding: 6px 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+form#header-search .header-search-content {
+  position: relative;
+  background: #fff;
+}
+
+form#header-search label {
+  float: none;
+  position: absolute;
+  left: 0;
+  top: 1px;
+  z-index: 2;
+  width: 100%;
+  margin-right: 0;
+  color: #6f777b;
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 15px;
+  overflow: hidden;
+  display: block;
+  margin-right: 10px;
+  max-width:500px;
+}
+
+form#header-search input#search-main {
+  font-family: "nta",Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.47368;
+  font-weight: 400;
+  text-transform: none;
+  position: relative;
+  padding: 6px;
+  z-index: 3;
+}
+
+form#header-search input#search-main {
+  width: 86%;
+  width: -webkit-calc(100% - 37px);
+  width: calc(100% - 37px);
 }

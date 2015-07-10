@@ -1,112 +1,113 @@
 <div id='homepage-content'>
   <div class="outdent-to-full-viewport-width brand-performance">
     <div class="outdent-to-full-viewport-width-inner hero-banner vertical-padding-medium">
-      <h1 class="hero-banner-heading">Performance</h1>
+      <h1 class="hero-banner-heading">Performance Platform</h1>
 
       <div class="hero-banner-strapline">
-        Performance data for government services
+        Data and statistics to help government departments improve public services
       </div>
+
+      <!-- <form id="header-search" class="site-search" action="/performance/services" method="get" role="search">
+        <div class="header-search-content">
+          <label for="search-main">Search for a dashboard</label>
+          <input type="search" name="filter" id="search-main" title="Search" class="js-search-focus"><input class="submit" type="submit" value="Search">
+        </div>
+      </form> -->
     </div>
   </div>
 
   <div class="vertical-padding-medium grid-row" aria-labelledby="header-dashboard-counts">
-    <h2 class="visuallyhidden" id="header-dashboard-counts">Dashboard counts</h2>
+    <div class="column-two-thirds">
+      <div class="overview">
+      <p class="what-we-do">The Performance Platform collects and publishes data to show how <a href="performance/services">government services</a> are being used.
+        Departments can then act on this data to improve services for their users.</p>
+      </div>
 
-    <div class="column-third">
+      <div class="the-kpis">
+      <h2>Helping departments measure services</h2>
+      <p>To understand how government services are performing we measure four key performance indicators (KPIs).
+With these metrics, government departments can better see where improvements are needed.</p>
+      </div>
+    </div>
+
+    <div class="column-third data-visuals">
+
       <a class="impact-link services-link" href="/performance/services">
-        <span class="impact-link-figure services-count"><%= serviceCount %></span> <span class="impact-link-label">service dashboards</span>
+        <span class="impact-link-figure services-count"><%= serviceCount %></span><br />
+        <span class="impact-link-label">service dashboards</span>
       </a>
-    </div>
-    <div class="column-third">
-      <a class="impact-link" href="/performance/web-traffic">
-        <span class="impact-link-figure"><%= webTrafficCount %></span> <span
-              class="impact-link-label">web traffic dashboards</span>
+
+      <a class="impact-link separate-impact-links" href="/performance/web-traffic">
+        <span class="impact-link-figure"><%= webTrafficCount %></span><br />
+        <span class="impact-link-label">web traffic dashboards</span>
       </a>
-    </div>
-    <div class="column-third">
-      <a class="impact-link" href="/performance/other">
-        <span class="impact-link-figure"><%= otherCount %></span> <span class="impact-link-label">other dashboards</span>
-      </a>
+
+      <img src="https://dl.dropboxusercontent.com/u/1312500/performance-platform/graph.png" />
+
     </div>
   </div>
 
-  <div class="homepage-showcase" aria-labelledby="selected-dashboards">
-    <h2 class="visuallyhidden" id="selected-dashboards">Selected dashboards</h2>
-    <% _.each(showcaseServices, function (service, index) { %>
-    <div class="brand-interactive outdent-to-full-width vertical-spacing-small grid-row">
-      <div class="column-third">
-        <h3 class="heading-2"><a class="link-unstyled showcase-heading-link-<%= index %>" href="/performance/<%= service.slug %>"><%= service.title %></a></h3>
-      </div>
-      <div class="column-third">
-        <div class="homepage-showcase-item">
-          <a class="link-unstyled" href="/performance/<%= service.slug %>#cost-per-transaction">
-            <span class="homepage-showcase-figure"><%= service.cost_per_transaction %></span> per transaction
-          </a>
-        </div>
-        <div class="homepage-showcase-item">
-          <a class="link-unstyled" href="/performance/<%= service.slug %>#digital_takeup">
-            <span class="homepage-showcase-figure"><%= service.digital_takeup %></span> use the digital service
-          </a>
-        </div>
-      </div>
-      <div class="column-third">
-        <div class="homepage-showcase-item">
-          <a class="link-unstyled" href="/performance/<%= service.slug %>#user-satisfaction-score">
-            <span class="homepage-showcase-figure"><%= service.user_satisfaction_score %></span> users satisfied
-          </a>
-        </div>
-        <div class="homepage-showcase-item">
-          <a class="link-unstyled" href="/performance/<%= service.slug %>#completion-rate">
-            <span class="homepage-showcase-figure"><%= service.completion_rate %></span> complete successfully
-          </a>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <% }); %>
-  </div>
-  <div class="vertical-spacing-small"><a class="link-large" href="/performance/services">See data on all <%= serviceCount %> services</a></div>
 
-  <h2 class="visuallyhidden">Highest performing services</h2>
   <div class="grid-row">
-    <div class="column-half vertical-margin-top-small top-services-cost" aria-labelledby="top-services-cost">
-      <div class="icon-top-services">
+    <div class="column-half kpi">
+      <div class="icon-top-services ruled-top">
         <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt="" />
       </div>
       <h2 class="vertical-margin-small" id="top-services-cost">Cost per transaction</h2>
-      <p class="text-small">How much do government services cost the taxpayer per user?</p>
-      <%= tableCost %>
-      <p><a class="text-small" href="/performance/services?sortby=cost_per_transaction&sortorder=ascending#filtered-list">See all</a></p>
+      <p>The cost to the taxpayer per user of a government service.<br />
+      <a href="https://www.gov.uk/service-manual/measurement/cost-per-transaction.html">See how this is calculated</a></p>
     </div>
-    <div class="column-half vertical-margin-top-small top-services-satisfaction" aria-labelledby="top-services-satisfaction">
-      <div class="icon-top-services">
+    <div class="column-half kpi">
+      <div class="icon-top-services ruled-top">
         <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
       </div>
       <h2 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h2>
-      <p class="text-small">How satisfied are the people who use government services?</p>
-      <%= tableSatisfaction %>
-      <p><a class="text-small" href="/performance/services?sortby=user_satisfaction_score&sortorder=descending#filtered-list">See all</a></p>
+      <p>The level of satisfaction from 0 to 100% of people who use government services.<br />
+      <a href="https://www.gov.uk/service-manual/measurement/user-satisfaction.html">See how this is calculated</a></p>
     </div>
   </div>
   <div class="grid-row">
-    <div class="column-half vertical-margin-top-small top-services-completion" aria-labelledby="top-services-completion">
-      <div class="icon-top-services">
+    <div class="column-half kpi">
+      <div class="icon-top-services ruled-top">
         <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
       </div>
       <h2 class="vertical-margin-small" id="top-services-completion">Completion rate</h2>
-      <p class="text-small">How many people manage to use government services successfully?</p>
-      <%= tableCompletion %>
-      <p><a class="text-small" href="/performance/services?sortby=completion_rate&sortorder=descending#filtered-list">See all</a></p>
+      <p>The number of people who manage to successfully use a government service.<br />
+      <a href="https://www.gov.uk/service-manual/measurement/completion-rate.html">See how this is calculated</a></p>
     </div>
-    <div class="column-half vertical-margin-top-small top-services-takeup" aria-labelledby="top-services-takeup">
-      <div class="icon-top-services">
+    <div class="column-half kpi">
+      <div class="icon-top-services ruled-top">
         <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
       </div>
       <h2 class="vertical-margin-small" id="top-services-takeup">Digital take-up</h2>
-      <p class="text-small">How many people use government digital services?</p>
-      <%= tableDigital %>
-      <p><a class="text-small" href="/performance/services?sortby=digital_takeup&sortorder=descending#filtered-list">See all</a></p>
+      <p>The number of people using government services online.<br />
+      <a href="https://www.gov.uk/service-manual/measurement/digital-takeup.html">See how this is calculated</a></p>
     </div>
   </div>
 
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <p>If you require other metrics for a service, contact the Performance Platform team on <a href="mailto:performance@digital.cabinet-office.gov.uk">performance@digital.cabinet-office.gov.uk</a></p>
+    </div>
+    <div class="column-third">&nbsp;</div>
+  </div>
+
+  <!-- <div class="grid-row">
+    <div class="column-full">
+      <hr id="next-steps" aria-hidden="true">
+    </div>
+  </div> -->
+
+  <div class="grid-row">
+    <div class="column-half actions">
+      <h2>Are you responsible for improving government services?</h2>
+      <p><a href="http://performance-platform.readthedocs.org/en/latest/">Get a dashboard</a></p>
+
+      <h2>Are you interested in how public services are performing?</h2>
+      <p><a href="https://www.gov.uk/performance/services">Explore 803 services</a></p>
+    </div>
+    <div class="column-half actions">
+
+    </div>
+  </div>
 </div>

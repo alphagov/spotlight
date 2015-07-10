@@ -1,9 +1,12 @@
 .icon-top-services {
-  height: 45px;
+  height: 65px;
   margin-top: $vertical-unit * 2;
+  //padding-top:$gutter * 0.5;
+  //padding-bottom: $gutter;
   @include media(tablet) {
-    height: 90px;
+    height: 75px;
     margin-top: 0;
+
   }
   > img {
     -webkit-transform-origin: top left;
@@ -14,7 +17,7 @@
 
     @include scale(0.5, 0.5);
     @include media(tablet) {
-      @include scale(1, 1);
+      @include scale(0.6, 0.6);
     }
   }
   .lte-ie8 & {

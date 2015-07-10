@@ -4,5 +4,6 @@
 }
 
 .hero-banner-strapline {
-  @include core-24;
+  @include core-19;
+  max-width:550px;
 }
