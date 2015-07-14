@@ -65,3 +65,6 @@
 .column-two-thirds {
   @include grid-column( 2/3 );
 }
+.column-full-width {
+  @include grid-column( 1/1 );
+}
