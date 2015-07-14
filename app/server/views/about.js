@@ -10,13 +10,6 @@ module.exports = BaseView.extend(templater).extend({
     return 'About Performance - GOV.UK';
   },
 
-  getBreadcrumbCrumbs: function () {
-    return [
-      {'path': '/performance', 'title': 'Performance'},
-      {'title': 'About'}
-    ];
-  },
-
   getContent: function () {
     return this.loadTemplate(path.resolve(__dirname, '../templates/about.html'), this.model.toJSON());
   }

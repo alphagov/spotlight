@@ -12,10 +12,6 @@ module.exports = BaseView.extend({
     return 'Performance - GOV.UK';
   },
 
-  getBreadcrumbCrumbs: function () {
-    return [];
-  },
-
   getBodyClasses: function () {
     return 'homepage';
   },
@@ -45,7 +41,7 @@ module.exports = BaseView.extend({
       })
     };
     caption = optionsCopy.axes.y[0].label;
-    
+
     table = new TableView({
       model: new Backbone.Model({
         params: {

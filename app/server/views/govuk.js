@@ -9,7 +9,6 @@ var pr = path.resolve.bind(path, __dirname);
 var headTemplate = pr('../templates/page-components/head.html');
 var bodyEndTemplate = pr('../templates/page-components/body-end.html');
 var navigationTemplate = pr('../templates/page-components/navigation.html');
-var breadcrumbsTemplate = pr('../templates/page-components/breadcrumbs.html');
 var govukTemplate = pr('../templates/page-components/govuk_template.html');
 var footerTopTemplate = pr('../templates/page-components/footer_top.html');
 var footerLinksTemplate = pr('../templates/page-components/footer_links.html');
@@ -28,7 +27,6 @@ module.exports = View.extend(templater).extend({
   templateType: 'mustache',
   bodyEndTemplate: bodyEndTemplate,
   reportAProblemTemplate: reportAProblemTemplate,
-  breadcrumbsTemplate: breadcrumbsTemplate,
 
   getContent: function () {
     return '';
@@ -62,28 +60,6 @@ module.exports = View.extend(templater).extend({
     return null;
   },
 
-  getBreadcrumbCrumbs: function () {
-    return [
-      {'path': '/performance', 'title': 'Performance'}
-    ];
-  },
-
-  getBreadcrumbs: function () {
-    var breadcrumbs = this.getBreadcrumbCrumbs().filter(_.identity);
-    breadcrumbs = this.ellipsifyBreadcrumbs(breadcrumbs);
-    return {'breadcrumbs': breadcrumbs};
-  },
-
-  ellipsifyBreadcrumbs: function (breadcrumbs) {
-    _.each(breadcrumbs, function (b) {
-      b.original_title = b.title;
-      if (b.title.length > 35) {
-        b.title = b.title.substring(0, 32) + '…';
-      }
-    });
-    return breadcrumbs;
-  },
-
   getReportForm: function () {
     return this.loadTemplate(this.reportAProblemTemplate, this.model.toJSON(), 'mustache');
   },
@@ -108,7 +84,6 @@ module.exports = View.extend(templater).extend({
         footerTop: this.loadTemplate(footerTopTemplate, 'mustache'),
         footerSupportLinks: this.loadTemplate(footerLinksTemplate, 'mustache'),
         content: this.loadTemplate(contentTemplate, {
-          breadcrumbs: this.loadTemplate(this.breadcrumbsTemplate, this.getBreadcrumbs(), 'mustache'),
           content: this.getContent(),
           reportAProblem: this.getReportForm()
         }, 'mustache')

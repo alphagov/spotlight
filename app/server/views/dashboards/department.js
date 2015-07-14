@@ -9,12 +9,4 @@ module.exports = DashboardView.extend({
             '</strong> are currently performing.';
   },
 
-  getBreadcrumbCrumbs: function () {
-    var crumbs = DashboardView.prototype.getBreadcrumbCrumbs.apply(this, arguments);
-    crumbs.push({
-      'title': this.model.get('department').title
-    });
-    return crumbs;
-  }
-
 });

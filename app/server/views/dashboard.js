@@ -91,11 +91,4 @@ module.exports = View.extend({
     return items;
   },
 
-  getBreadcrumbCrumbs: function () {
-    var crumbs = [
-      {'path': '/performance', 'title': 'Performance'}
-    ];
-    return crumbs;
-  }
-
 });
