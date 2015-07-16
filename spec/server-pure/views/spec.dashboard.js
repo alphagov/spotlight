@@ -102,24 +102,6 @@ describe('DashboardView', function () {
     });
   });
 
-  describe('getBreadcrumbCrumbs', function () {
-
-
-
-    it('calculates correct crumbs for policies', function () {
-      model.set({
-        policy: {
-          title: 'Housing',
-          tagline: 'The government is helping local councils and developers work with local communities to plan and build better places to live for everyone.'
-        }
-      });
-      view.dashboardType = 'policy';
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' }
-      ]);
-    });
-  });
-
   describe('getSchemaOrgItemType', function () {
     it('has a schema.org itemtype of GovernmentService', function () {
       expect(view.getSchemaOrgItemType()).toEqual('http://schema.org/GovernmentService');
@@ -141,43 +123,6 @@ describe('ContentDashboardView', function () {
       model: model,
       contentTemplate: jasmine.createSpy().andReturn('rendered')
     });
-  });
-
-  describe('getBreadcrumbCrumbs', function () {
-
-    it('returns the default breadcrumbs with page title', function () {
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Activity on GOV.UK' },
-        { title: 'Content Dashboard'}
-      ]);
-    });
-
-    it('does not add the title again to top-level site-activity dashboard', function () {
-      model.set('slug', 'site-activity');
-      model.set('title', 'Activity on GOV.UK');
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Activity on GOV.UK' }
-      ]);
-    });
-
-    it('does not include additional dashboard title on page-per-thing pages [bugfix]', function () {
-
-      model.set('page-type', 'module');
-
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Activity on GOV.UK' },
-        { title: 'Content Dashboard' }
-      ]);
-
-    });
-
-    it('has a schema.org itemtype of GovernmentOrganization', function () {
-      expect(view.getSchemaOrgItemType()).toEqual('http://schema.org/GovernmentOrganization');
-    });
-
   });
 
 });
@@ -347,74 +292,6 @@ describe('TransactionDashboardView', function () {
 
   });
 
-  describe('getBreadcrumbCrumbs', function () {
-
-    it('calculates correct crumbs for transactions', function () {
-      model.set({
-        department: {
-          title: 'Department for Work and Pensions'
-        }
-      });
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Department for Work and Pensions' }
-      ]);
-    });
-
-    it('fails gracefully when department is not set', function () {
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' }
-      ]);
-    });
-
-    it('includes department when defined', function () {
-      model.set({
-        department: {
-          title: 'Cabinet Office'
-        }
-      });
-
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Cabinet Office' }
-      ]);
-    });
-
-    it('includes agency when defined', function () {
-      model.set({
-        department: {
-          title: 'Department for Work and Pensions'
-        },
-        agency: {
-          title: 'Agency Name'
-        }
-      });
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Department for Work and Pensions' },
-        { title: 'Agency Name'}
-      ]);
-    });
-
-    it('includes top-level dashboard title on page-per-thing pages', function () {
-
-      model.set('page-type', 'module');
-      model.set({
-        department: {
-          title: 'Department for Work and Pensions'
-        }
-      });
-
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Department for Work and Pensions' },
-        { title: 'Carer\'s Allowance' }
-      ]);
-
-    });
-
-  });
-
 });
 
 describe('DeptDashboardView', function () {
@@ -439,23 +316,6 @@ describe('DeptDashboardView', function () {
 
     it('returns the correct tagline', function () {
       expect(view.getTagline()).toEqual('This dashboard shows information about how selected services run by the <strong>Department for Work and Pensions</strong> are currently performing.');
-    });
-
-  });
-
-  describe('getBreadcrumbCrumbs', function () {
-
-    it('calculates correct crumbs for departments', function () {
-      model.set({
-        'dashboard-type': 'department',
-        department: {
-          title: 'Department for Work and Pensions'
-        }
-      });
-      expect(view.getBreadcrumbCrumbs()).toEqual([
-        { path: '/performance', title: 'Performance' },
-        { title: 'Department for Work and Pensions' }
-      ]);
     });
 
   });

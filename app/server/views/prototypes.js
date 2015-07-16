@@ -9,10 +9,6 @@ module.exports = View.extend({
     return 'Performance prototypes - GOV.UK';
   },
 
-  getBreadcrumbCrumbs: function () {
-    return [];
-  },
-
   getContent: function () {
     return this.loadTemplate(templatePath, this.model.toJSON());
   }

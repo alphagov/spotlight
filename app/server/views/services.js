@@ -31,13 +31,6 @@ module.exports = BaseView.extend({
     return 'Services data - GOV.UK';
   },
 
-  getBreadcrumbCrumbs: function () {
-    return [
-      {'path': '/performance', 'title': 'Performance'},
-      {'title': this.heading}
-    ];
-  },
-
   formatAggregateValues: function () {
     var aggVals;
     if (!this.filterCollection.getAggregateValues) {

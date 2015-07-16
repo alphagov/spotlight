@@ -28,7 +28,7 @@ describe('Services View', function () {
       },
       completion_rate: 0.4,
       number_of_transactions: 2000,
-      digital_takeup: 0 
+      digital_takeup: 0
     }], servicesController.serviceAxes);
 
     viewOptions = {
@@ -53,21 +53,6 @@ describe('Services View', function () {
       expect(view.getPageTitle()).toEqual('Services data - GOV.UK');
     });
 
-  });
-
-  describe('getBreadcrumbCrumbs', function () {
-
-    it('returns breadcrumbs', function () {
-      view = new ServicesView(viewOptions);
-      expect(view.getBreadcrumbCrumbs().length).toEqual(2);
-      expect(view.getBreadcrumbCrumbs()[0]).toEqual({
-        path: '/performance',
-        title: 'Performance'
-      });
-      expect(view.getBreadcrumbCrumbs()[1]).toEqual({
-        title: 'Services data'
-      });
-    });
   });
 
   it('does an initial filter on the collection', function () {
@@ -149,7 +134,7 @@ describe('Services View', function () {
             },
             completion_rate: 0.4,
             number_of_transactions: 2000,
-            digital_takeup: 0.5 
+            digital_takeup: 0.5
           },
           {
             title: 'Prescriptions: prepayment certificates issued',
@@ -163,7 +148,7 @@ describe('Services View', function () {
             },
             completion_rate: 0.4,
             number_of_transactions: 2000,
-            digital_takeup: 0 
+            digital_takeup: 0
           }
         ], servicesController.serviceAxes);
 

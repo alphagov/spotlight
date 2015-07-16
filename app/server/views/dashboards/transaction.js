@@ -21,24 +21,4 @@ module.exports = DashboardView.extend({
             '</strong> service is currently performing.';
   },
 
-  getBreadcrumbCrumbs: function () {
-    var crumbs = DashboardView.prototype.getBreadcrumbCrumbs.apply(this, arguments);
-    if (this.model.get('department')) {
-      crumbs.push({
-        title: this.model.get('department').title
-      });
-    }
-    if (this.model.get('agency')) {
-      crumbs.push({
-        title: this.model.get('agency').title
-      });
-    }
-    if (this.model.get('page-type') === 'module') {
-      crumbs.push({
-        title: this.model.get('title')
-      });
-    }
-    return crumbs;
-  }
-
 });

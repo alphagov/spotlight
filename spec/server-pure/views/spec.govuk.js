@@ -18,7 +18,7 @@ describe('GovUkView', function () {
     });
   });
 
-  it('renders a page with breadcrumbs and content view in GOV.UK style', function () {
+  it('renders a page with content view in GOV.UK style', function () {
 
     var view = new GovUkView({
       model: model
@@ -35,42 +35,7 @@ describe('GovUkView', function () {
     expect(context.pageTitle).toEqual('Performance - GOV.UK');
 
     var content = context.content.replace(/\s+/g, ' ').trim();
-    expect(content).toEqual('<div id="global-breadcrumb"> <ol class="group"> <li> <a href="/performance"> <span title="Performance"> Performance </span> </a> </li> </ol> </div> <div id="wrapper"> <main id="content" class="group" role="main"> test_content report_a_problem </main> </div>');
-  });
-
-  it('doesn\'t display the breadcrumb wrapper if there are no breadcrumbs', function () {
-    var view = new GovUkView({
-      model: model,
-    });
-
-    spyOn(view, 'loadTemplate').andCallThrough();
-    spyOn(view, 'getBreadcrumbCrumbs').andReturn([]);
-
-    view.render();
-
-    var context = view.loadTemplate.mostRecentCall.args[1];
-    var content = context.content.replace(/\s+/g, ' ').trim();
-
-    expect(content.indexOf('breadcrumb')).toEqual(-1);
-  });
-
-  it('adds ellipses to very long breadcrumbs', function () {
-    var ellipsisView = new GovUkView({
-      model: model,
-    });
-
-    spyOn(ellipsisView, 'loadTemplate').andCallThrough();
-    spyOn(ellipsisView, 'getBreadcrumbCrumbs').andReturn([
-      {'path': '/performance', 'title': 'Performance'},
-      {'path': '/url', 'title': 'A very very very very very very very long department name'}
-    ]);
-
-    ellipsisView.render();
-
-    var context = ellipsisView.loadTemplate.mostRecentCall.args[1];
-    var content = context.content.replace(/\s+/g, ' ').trim();
-
-    expect(content).toContain('A very very very very very very …');
+    expect(content).toEqual('<div id="wrapper"> <main id="content" class="group" role="main"> test_content report_a_problem </main> </div>');
   });
 
 });
