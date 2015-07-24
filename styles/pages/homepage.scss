@@ -66,13 +66,49 @@
   }
 }
 
-.area-title {
+.cross-gov-row {
+  padding: $gutter/2 0 $gutter;
+   background-color: $grey-3;
+  @media (max-width: 1024px) {
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+  p {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.homepage-subheading {
   @include heading-36;
   font-weight: bold;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .kpi {
-  margin: $gutter 0;
+  padding-top: $gutter/2;
+  h3 {
+    @include heading-24;
+    font-weight: bold;
+    padding-bottom: 0px !important;
+
+    @media (max-width: 640px) {
+      @include heading-27;
+      font-weight: bold;
+    }
+  }
+}
+
+.kpi-example {
+  h4 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  a {
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .data-visuals {
@@ -80,9 +116,13 @@
     width: 100%;
     max-width:400px;
   }
+  @media (max-width: 640px) {
+    display: none;
+  }
 }
 .what-we-do {
   @include core-19;
+  margin-bottom: 5px;
 }
 
 .ruled-top {

@@ -79,6 +79,12 @@ $vertical-unit: $gutter-half;
 
 }
 
+.vertical-spacing-bottom-half {
+  margin-bottom: $vertical-unit/2;
+  padding-bottom: $vertical-unit/2;
+
+}
+
 .vertical-margin-top-small {
   margin-top: $vertical-unit;
 }
@@ -115,3 +121,5 @@ $vertical-unit: $gutter-half;
     margin: 0 auto;
   }
 }
+
+
