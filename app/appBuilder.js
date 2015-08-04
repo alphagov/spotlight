@@ -63,7 +63,7 @@ module.exports = {
       });
     } else {
       global.logger.add(winston.transports.File, {
-        filename: 'log/spotlight.log.json',
+        filename: 'log/production.json.log',
         level: 'info',
         colorize: false,
         json: true,
