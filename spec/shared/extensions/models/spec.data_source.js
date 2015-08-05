@@ -101,6 +101,7 @@ function(DataSource, moment) {
             });
 
         source.backdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
+        source.externalBackdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
 
         expect(source.buildUrl()).toBe('perf.service/foo/bar');
       });
@@ -113,6 +114,7 @@ function(DataSource, moment) {
               }, { flattenEverything: true });
 
           source.backdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
+          source.externalBackdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
 
           expect(source.buildUrl()).toBe('perf.service/foo/bar?flatten=true');
         });

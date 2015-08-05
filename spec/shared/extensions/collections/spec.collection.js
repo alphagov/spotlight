@@ -74,6 +74,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
       beforeEach(function () {
         TestCollection = Collection.extend({
           backdropUrl: '//testdomain/{{ data-group }}/foo/{{ data-type }}',
+          externalBackdropUrl: '//testdomain/{{ data-group }}/foo/{{ data-type }}',
           'data-group': 'service',
           'data-type': 'apiname'
         });
@@ -87,6 +88,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
         expect(collection.url()).toEqual('//testdomain/foo/bar');
       });
 
@@ -102,6 +104,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
         expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&b=foo');
       });
 
@@ -116,6 +119,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
         expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&a=foo');
       });
 
@@ -127,6 +131,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
         collection.testProp = 'foobar';
         collection.queryParams = function() {
           return {
@@ -149,6 +154,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
         expect(collection.url()).toEqual('//testdomain/foo/bar?a=1&somedate=2013-03-08T14%3A53%3A26Z');
       });
     });
@@ -430,6 +436,7 @@ function (Collection, Model, DataSource, Backbone, moment, groupedFixture, multi
           }
         });
         collection.dataSource.backdropUrl =  '/backdrop-stub/{{ data-group }}/{{ data-type }}';
+        collection.dataSource.externalBackdropUrl =  '/backdrop-stub/{{ data-group }}/{{ data-type }}';
       });
 
       it('gets initialized with the query parameters', function () {
