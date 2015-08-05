@@ -27,6 +27,7 @@ module.exports = {
       app.set('assetPath', global.config.assetPath);
       app.set('assetDigest', JSON.parse(fs.readFileSync(path.join(rootDir, 'public', 'asset-digest.json'), {encoding: 'utf8'})));
       app.set('backdropUrl', global.config.backdropUrl);
+      app.set('externalBackdropUrl', global.config.externalBackdropUrl);
       app.set('govukHost', global.config.govukHost);
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
@@ -63,7 +64,7 @@ module.exports = {
       });
     } else {
       global.logger.add(winston.transports.File, {
-        filename: 'log/spotlight.log.json',
+        filename: 'log/production.json.log',
         level: 'info',
         colorize: false,
         json: true,

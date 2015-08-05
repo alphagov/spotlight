@@ -75,7 +75,14 @@ define([
         this.listenToOnce(this.collection, 'reset', function () {
           this.renderView(renderViewOptions);
         }, this);
-        this.listenToOnce(this.collection, 'error', function () {
+        this.listenToOnce(this.collection, 'error', function (collection, resp) {
+          var context = { backdrop_url: collection.url(),
+            status: resp.status, response_text: resp.responseText,
+            govuk_request_id: collection.options.govukRequestId
+          };
+          logger.info('Error Fetching %s - %s %s ', collection.url(),
+            resp.status, resp.responseText, context
+          );
           this.viewClass = ErrorView;
           this.renderView(renderViewOptions);
         }, this);

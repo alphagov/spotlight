@@ -7,6 +7,7 @@ describe('environmentConfig', function () {
   var args = {
     _: [],
     backdropUrl: 'http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}',
+    externalBackdropUrl: 'http://localhost:3057/backdrop-stub/{{ data-group }}/{{ data-type }}',
     '$0': 'node ./app/server.js',
     screenshotTargetUrl: 'http://localhost:3057'
   };
@@ -17,6 +18,7 @@ describe('environmentConfig', function () {
   beforeEach(function () {
     resultingConfigObject = environmentJson;
     resultingConfigObject.backdropUrl = args.backdropUrl;
+    resultingConfigObject.externalBackdropUrl = args.externalBackdropUrl;
     resultingConfigObject.screenshotTargetUrl = args.screenshotTargetUrl;
     spyOn(fs, 'existsSync').andReturn(false);
   });

@@ -6,16 +6,19 @@ define([
 ],
 function (Backbone, Mustache, _, moment) {
 
-  var backdropUrl;
+  var backdropUrl, externalBackdropUrl;
   if (isServer) {
     backdropUrl = config.backdropUrl;
+    externalBackdropUrl = config.externalBackdropUrl;
   } else if (isClient) {
-    backdropUrl = GOVUK.config.backdropUrl;
+    backdropUrl = GOVUK.config.externalBackdropUrl;
+    externalBackdropUrl = GOVUK.config.externalBackdropUrl;
   }
 
   var DataSource = Backbone.Model.extend({
 
     backdropUrl: backdropUrl,
+    externalBackdropUrl: externalBackdropUrl,
 
     initialize: function(data, options) {
       Backbone.Model.prototype.initialize.apply(this, arguments);

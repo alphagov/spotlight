@@ -94,6 +94,7 @@ function (GroupedTimeseries) {
         }
       });
       collection.dataSource.backdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
+      collection.dataSource.externalBackdropUrl = '//testdomain/{{ data-group }}/{{ data-type }}';
     });
 
     describe('parse', function () {
