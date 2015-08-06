@@ -1,5 +1,4 @@
 .icon-top-services {
-  height: 65px;
   margin-top: $vertical-unit * 2;
   //padding-top:$gutter * 0.5;
   //padding-bottom: $gutter;
@@ -26,4 +25,9 @@
   @media (max-width: 640px) {
     display: none;
   }
+}
+
+.icon-for-kpi {
+  float: right;
+  margin-right: 100px;
 }

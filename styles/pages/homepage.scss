@@ -60,7 +60,7 @@
 }
 
 .the-kpis {
-  margin-top: $gutter;
+  margin-top: $gutter*2;
   @include media(tablet) {
     padding-right:$gutter;
   }
@@ -68,7 +68,6 @@
 
 .cross-gov-row {
   padding: $gutter/2 0 $gutter;
-   background-color: $grey-3;
   @media (max-width: 1024px) {
     padding-left: $gutter;
     padding-right: $gutter;
@@ -87,7 +86,7 @@
 }
 
 .kpi {
-  padding-top: $gutter/2;
+  padding-top: $gutter;
   h3 {
     @include heading-24;
     font-weight: bold;

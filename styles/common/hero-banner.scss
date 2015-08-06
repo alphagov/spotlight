@@ -5,5 +5,10 @@
 
 .hero-banner-strapline {
   @include core-19;
-  max-width:550px;
+  a {
+  	color: white;
+  	&:hover {
+  		text-decoration: none;
+  	}
+  }
 }
