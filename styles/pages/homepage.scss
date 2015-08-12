@@ -50,19 +50,25 @@
   }
 }
 
-.flip-image-horizontally {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
+.across-gov {
+  h3 {
+    @include core-24;
+    font-weight: bold;
+  }
 }
 
 .the-kpis {
   margin-top: $gutter*2;
   @include media(tablet) {
     padding-right:$gutter;
+  }
+}
+
+.kpi-actions {
+  list-style: none;
+  margin-left: -42px;
+  li {
+    margin-bottom: 5px;
   }
 }
 
@@ -81,21 +87,31 @@
 .homepage-subheading {
   @include heading-36;
   font-weight: bold;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
+}
+
+.impact-link-figure {
+  float: left;
+}
+
+.impact-link-label {
+  float: left;
+  margin-left: 5px;
+  margin-top: 0px !important;
 }
 
 .kpi {
-  padding-top: $gutter;
+  margin-bottom: 15px;
   h3 {
     @include heading-24;
     font-weight: bold;
-    padding-bottom: 0px !important;
 
     @media (max-width: 640px) {
       @include heading-27;
       font-weight: bold;
     }
+  }
+  p {
+    margin-bottom: 5px;
   }
 }
 

@@ -85,6 +85,16 @@ $vertical-unit: $gutter-half;
 
 }
 
+.vertical-spacing {
+  margin-top: $vertical-unit*2;
+  padding-bottom: $vertical-unit*2;
+}
+
+
+.vertical-margin-top-large {
+  margin-top: $vertical-unit*4;
+}
+
 .vertical-margin-top {
   margin-top: $vertical-unit*2;
 }

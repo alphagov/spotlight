@@ -9,7 +9,7 @@
             Data and statistics to help government departments improve public services
           </p>
           <p>
-            The Performance Platform collects and publishes data to show how <a href="performance/services">digital&nbsp;government&nbsp;services</a> are being used.
+            The Performance Platform collects and publishes data to show how digital government services are being used.
           </p>  
           <p>
             Departments can then act on this data to improve services for their users.
@@ -22,166 +22,128 @@
     </div>
   </div>
 
-
+  
 
   <div class='grid-row'>
+    <div class='column-two-thirds vertical-margin-top-large'>
+      <h2 class='homepage-subheading'>
+        How departments measure services
+      </h2>
+      <p>
+        To understand how government services are performing we measure 4&nbsp;metrics. With this data, government departments can see where improvements are needed.
+      </p>
 
-    <div class='column-third'>
-      <a class="impact-link separate-impact-links" href="/performance/web-services">
-        <span class="impact-link-figure"><%= serviceCount %></span><br />
-        <span class="impact-link-label">service dashboards</span>
-      </a>
-    </div>
-
-    <div class='column-third'>
-      <a class="impact-link separate-impact-links" href="/performance/web-traffic">
-        <span class="impact-link-figure"><%= webTrafficCount %></span><br />
-        <span class="impact-link-label">web traffic dashboards</span>
-      </a>
     </div>
   </div>
 
-  <div class='grid-row '>
-    <div class="the-kpis column-two-thirds">
-      <h2 class='homepage-subheading'>How departments measure services</h2>
-      <p>To understand how government services are performing we measure 4  metrics. With this data, government departments can see where improvements are needed.</p>
+  <div class='grid-row'>
+    <div class='column-two-thirds kpi'>
+      <h3 class="" id="top-services-cost">
+        Cost per transaction
+      </h3>
+      <p>
+        What it costs government to run a service.
+      </p>
+      <p>
+        eg the cost of running the servers, paying staff and heating the building.
+      </p>
     </div>
-  </div>
-
-
-  <div class="grid-row">
-
-    <div class='kpi'>
-      <div class="column-two-thirds">
-        <h3 class="" id="top-services-cost">Cost per transaction</h3>
-        <p class='kpi-example'>
-          What it costs government to run a service.
-        </p>
-
+    <div class='column-third'>
+      <div class="icon-top-services">
+         <img class='image-for-kpi cost-per-transaction' src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt=""/>
       </div>
     </div>
   </div>
-  <div class=" icon-for-kpi">
-    <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt=""/>
-  </div>
 
-  <div class='grid-row '>
-
-    <div class='kpi-example column-third'>
-      <h4>Renew a passport</h4>
-      <p>
-        It costs <a href='https://www.gov.uk/performance/home-office-passport-applications'>£61</a> to administrate, produce and issue a passport. 
-      </p>
-    </div>
-    <div class='kpi-example column-third'>
-      <h4>Vehicle tax renewal</h4>
-      <p>
-        It costs <a href='#'>£1.27</a> to process vehicle tax renewal.
-      </p>
-    </div>
-  </div>
-
-</div>
-
-<div class="grid-row">
-  <div class='kpi'>
-    <div class="column-two-thirds">
-      <h3 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h3>
+  <div class='grid-row'>
+    <div class='column-two-thirds kpi'>
+      <h3 class="" id="top-services-cost">
+        User satisfaction
+      </h3>
       <p>
         Satisfaction is calculated by asking people to rate a service once they've finished using it.
       </p>
+
+    </div>
+    <div class='column-third'>
+      <div class="icon-top-services">
+        <img class='image-for-kpi user-satisfaction' src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
+      </div>
     </div>
   </div>
-</div>
-<div class=" icon-for-kpi ">
-  <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
-</div>
 
-<div class='grid-row '>
-  <div class='kpi-example column-third'>
-    <h4>Voter registration</h4>
-    <p>
-      The majority of people are <a href='https://www.gov.uk/performance/register-to-vote/user-satisfaction'>very&nbsp;satisfied</a> with the register to vote service.
-    </p>
-  </div>
-  <div class='kpi-example column-third'>
-    <h4>Register a birth abroad</h4>
-    <p>
-      The majority of people are <a href='https://www.gov.uk/performance/pay-register-birth-abroad/user-satisfaction'>satisfied</a> with the register a birth abroad service.
-    </p>
-  </div>
-</div>
-
-
-<div class="grid-row">
-  <div class='kpi'>
-    <div class="column-two-thirds">
-      <h3 class="vertical-margin-small" id="top-services-completion">Completion rate</h3>
-      <p>The number of people who manage to successfully complete a government service once they have started it.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class='grid-row '>
-  <div class='kpi-example column-third'>
-    <h4>Voter registration</h4>
-    <p>
-      People are <a href='https://www.gov.uk/performance/register-to-vote/user-satisfaction'>94%</a> satisfied with the service when they register to vote.
-    </p>
-  </div>
-  <div class='kpi-example column-third'>
-    <h4>Register a birth abroad</h4>
-    <p>
-      People are <a href='https://www.gov.uk/performance/pay-register-birth-abroad/user-satisfaction'>82%</a> satisfied with the service when they register a birth abroad online.
-    </p>
-  </div>
-  <div class=" icon-for-kpi ">
-    <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
-  </div>
-  
-</div>
-
-<div class='grid-row'>
-  <div class='kpi'>
-    <div class="column-two-thirds">
-      <h3 class="vertical-margin-small" id="top-services-takeup">Digital take-up
+  <div class='grid-row'>
+    <div class='column-two-thirds kpi'>
+      <h3 class="" id="top-services-cost">
+        Completion rate
       </h3>
-      <p>The number of people using government services online.<br />
-        <a href="https://www.gov.uk/service-manual/measurement/digital-takeup.html">See how this is calculated</a>
+      <p>
+        The percentage of people who successfully complete a government service once they have started it.
+      </p>
+    </div>
+    <div class='column-third'>
+      <div class="icon-top-services">
+        <img class='image-for-kpi completion-rate' src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class='grid-row'>
+    <div class='column-two-thirds kpi'>
+      <h3 class="" id="top-services-cost">
+        Digital take-up
+      </h3>
+      <p>
+       The percentage of people using government services online compared to other channels (eg phone or post).
+      </p>
+    </div>
+    <div class='column-third'>
+      <div class="icon-top-services">
+        <img class='image-for-kpi digital-take-up' src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class='grid-row'>
+    <div class='column-two-thirds kpi vertical-spacing-bottom'>
+      <h3 class="" id="top-services-cost">
+        Other ways services are measured
+      </h3>
+      <p>
+       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
       </p>
     </div>
   </div>
-</div>
 
-<div class='grid-row ruled-bottom'>
-  <div class='kpi-example column-third'>
-    <h4>Voter registration</h4>
-    <p>
-      People are <a href='https://www.gov.uk/performance/register-to-vote/user-satisfaction'>94%</a> satisfied with the service when they register to vote.
-    </p>
-  </div>
-  <div class='kpi-example column-third'>
-    <h4>Register a birth abroad</h4>
-    <p>
-      People are <a href='https://www.gov.uk/performance/pay-register-birth-abroad/user-satisfaction'>82%</a> satisfied with the service when they register a birth abroad online.
-    </p>
-  </div>
-      <div class="icon-for-kpi">
-    <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
-  </div>
+  <!--
+  <div class='grid-row'>
 
-</div>
+    <div class='column-half vertical-margin-top across-gov'>
+      <h3>See how services are doing</h3>
+      <a class="impact-link separate-impact-links" href="/performance/web-services">
+        <div class="impact-link-figure"><%= serviceCount %></div>
+        <div class="impact-link-label">service<br> dashboards</div>
+      </a>
+    </div>
 
-<div class="grid-row vertical-padding-medium">
-  <div class=''>
-    <div class="column-half">
-      <h2>Are you responsible for improving government services?</h2>
+    <div class='column-half vertical-margin-top across-gov'>
+      <h3>See how many people are using services</h3>
+      <a class="impact-link separate-impact-links" href="/performance/web-traffic">
+        <div class="impact-link-figure"><%= webTrafficCount %></div>
+        <div class="impact-link-label">web traffic<br> dashboards</div>
+      </a>
+    </div>
+  </div>
+-->
+
+
+
+  <div class='grid-row ruled-top'>
+    <div class='column-two-thirds kpi vertical-spacing'>
+      <h3 class="" id="top-services-cost">
+        Are you responsible for improving government services?
+      </h3>
       <p><a href="http://performance-platform.readthedocs.org/en/latest/">Get a dashboard</a></p>
     </div>
-    <div class='column-half'>
-      <h2>Are you interested in how public services are performing?</h2>
-      <p><a href="https://www.gov.uk/performance/services">Explore 803 services</a></p>
-    </div>
   </div>
-</div>
+

@@ -14,7 +14,7 @@
     -o-transform-origin: top left;
     transform-origin: top left;
 
-    @include scale(0.5, 0.5);
+    @include scale(1.5, 1.5);
     @include media(tablet) {
       @include scale(0.6, 0.6);
     }
@@ -27,7 +27,22 @@
   }
 }
 
-.icon-for-kpi {
-  float: right;
-  margin-right: 100px;
+.image-for-kpi {
+}
+
+.cost-per-transaction {
+  width: 190px;
+}
+
+.user-satisfaction {
+  width: 190px;
+}
+
+.completion-rate {
+  width: 190px;
+}
+
+.digital-take-up {
+  width: 140px;
+  margin-left: 15px;
 }
