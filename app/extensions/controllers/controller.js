@@ -87,7 +87,16 @@ define([
     },
 
     renderModules: function (modules, parentModel, moduleOptions, renderOptions, callback) {
-      var remaining = modules.length;
+      var remaining = modules.length,
+        log_time = function (message, fn) {
+        return function() {
+          var start = process.hrtime();
+          fn(arguments);
+          var diff = process.hrtime(start);
+          logger.info('%s took %dms', message, diff[0] * 1e3 + diff[1] * 1e-6);
+        };
+      };
+      // require('stats/time-function');
 
       callback = _.isFunction(callback) ? callback : function () {};
       if (remaining === 0) {
