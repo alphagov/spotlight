@@ -61,6 +61,7 @@
     "phantomjs": "1.9.15",
     "q": "1.0.1",
     "requirejs": "2.1.14",
+    "response-time": "^2.3.1",
     "sanitizer": "0.1.1",
     "selenium-server": "2.43.1",
     "spdy": "1.29.1",

@@ -11,6 +11,7 @@ var basicAuth = require('node-basicauth');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
 var morgan  = require('morgan');
+var responseTime = require('response-time')
 
 module.exports = {
   getApp: function (environment, rootDir, requireBaseUrl) {
@@ -22,6 +23,7 @@ module.exports = {
 
     (function () {
       app.use(require('./stats'));
+      app.use(responseTime(function (req, res, time) { console.log('render time %d', time);}));
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);
@@ -114,7 +116,16 @@ module.exports = {
       res.end();
     });
 
-    app.get('/performance/*', require('./process_request'));
+
+    app.get('/performance/*', function(req, res, next) {
+      console.time('rendering');
+      next();
+    }, 
+    require('./process_request'),
+    function(req, res, next) {
+      console.timeEnd('rendering');
+    }
+           );
 
     return app;
   }

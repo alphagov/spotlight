@@ -23,12 +23,17 @@ var renderContent = function (req, res, model) {
     res.send(controller.html);
   });
 
+  console.time('render');
+  var start = process.hrtime();
   controller.render({ init: true });
+  var diff = process.hrtime(start)
+  console.log('render took %d nanoseconds', diff[0] * 1e9 + diff[1]);
+  console.timeEnd('render');
 
   return controller;
 };
 
-var setup = function (req, res) {
+var setup = function (req, res, next) {
   var client_instance = setup.get_dashboard_and_render(req, res, setup.renderContent);
   if (req.path.indexOf('&') > 0) {
     client_instance.set('status', 404);
@@ -38,6 +43,7 @@ var setup = function (req, res) {
     client_instance.set('script', true);
     client_instance.setPath(req.path.replace('/performance', ''));
   }
+  next();
 };
 
 setup.renderContent = renderContent;

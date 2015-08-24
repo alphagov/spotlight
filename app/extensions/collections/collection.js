@@ -44,6 +44,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
     },
 
     parse: function (response) {
+      var start = process.hrtime();
       var data = response.data;
 
       data = this.flatten(data);
@@ -83,6 +84,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
       });
 
 
+
+      var diff = process.hrtime(start)
+      console.log('parse took %d ms', diff[0] * 1e3 + diff[1] * 1e-6);
       return data;
     },
 
