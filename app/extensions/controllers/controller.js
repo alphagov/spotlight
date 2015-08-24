@@ -112,11 +112,14 @@ define([
         }
       }, this);
 
-      return _.map(modules, function (definition) {
+      return _.map(modules, log_time('module', function (definition) {
+        var start = process.hrtime();
 
+        logger.info('beginning module render');
         if (!definition.controller) {
           // some modules don't have client-side controllers
           loaded();
+          logger.info('no definition');
           return;
         }
 
@@ -131,8 +134,10 @@ define([
 
         module.render(_.isFunction(renderOptions) ? renderOptions(model) : renderOptions);
 
+        var diff = process.hrtime(start);
+        logger.info('module %s render took %d nanoseconds', module ,diff[0] * 1e9 + diff[1]);
         return module;
-      }, this);
+      }), this);
     }
   });
 
