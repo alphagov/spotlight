@@ -13,6 +13,7 @@ function () {
       assetDigest: req.app.get('assetDigest'),
       environment: req.app.get('environment'),
       backdropUrl: req.app.get('backdropUrl'),
+      externalBackdropUrl: req.app.get('externalBackdropUrl'),
       clientRequiresCors: req.app.get('clientRequiresCors'),
       bigScreenBaseURL: req.app.get('bigScreenBaseURL'),
       requestId: req.get('Request-Id'),

@@ -19,7 +19,8 @@ describe('processRequest middleware', function () {
         environment: environment,
         requirePath: '/testRequirePath',
         assetPath: '/testAssetPath',
-        backdropUrl: '//testBackdrop/'
+        backdropUrl: '//testBackdrop/',
+        externalBackdropUrl: '//testBackdrop/'
       }[id];
     };
     var headers = jasmine.createSpy();

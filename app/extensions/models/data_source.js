@@ -10,7 +10,7 @@ function (Backbone, Mustache, _, moment) {
   if (isServer) {
     backdropUrl = config.backdropUrl;
   } else if (isClient) {
-    backdropUrl = GOVUK.config.backdropUrl;
+    backdropUrl = GOVUK.config.externalBackdropUrl;
   }
 
   var DataSource = Backbone.Model.extend({
