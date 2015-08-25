@@ -57,7 +57,7 @@ module.exports = View.extend(templater).extend({
 
   templateContext: function () {
     if (this.collection) {
-      this.jsonUrl = this.collection.url();
+      this.jsonUrl = this.collection.externalUrl();
     }
     return _.extend(
       View.prototype.templateContext.call(this),

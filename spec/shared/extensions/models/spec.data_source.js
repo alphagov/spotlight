@@ -163,6 +163,19 @@ function(DataSource, moment) {
 
         expect(source.buildUrl()).toContain('foo=bar');
       });
+
+      it('should generate a json url', function () {
+        var source = new DataSource({
+          'data-group': 'foo',
+          'data-type': 'bar'
+        });
+
+        source.backdropUrl = 'perf.service/{{ data-group }}/{{ data-type }}';
+        source.externalBackdropUrl = 'extperf.service/{{ data-group }}/{{ data-type }}';
+
+        expect(source.buildUrl({}, true)).toBe('extperf.service/foo/bar');
+
+      });
     });
 
     describe('configureTimespans', function () {

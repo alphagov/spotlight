@@ -6,9 +6,10 @@ define([
 ],
 function (Backbone, Mustache, _, moment) {
 
-  var backdropUrl;
+  var backdropUrl, externalBackdropUrl;
   if (isServer) {
     backdropUrl = config.backdropUrl;
+    externalBackdropUrl = config.externalBackdropUrl;
   } else if (isClient) {
     backdropUrl = GOVUK.config.externalBackdropUrl;
   }
@@ -16,14 +17,16 @@ function (Backbone, Mustache, _, moment) {
   var DataSource = Backbone.Model.extend({
 
     backdropUrl: backdropUrl,
+    externalBackdropUrl: externalBackdropUrl,
 
     initialize: function(data, options) {
       Backbone.Model.prototype.initialize.apply(this, arguments);
       this.options = options || {};
     },
 
-    buildUrl: function (customQueryParams) {
-      var url = Mustache.render(this.backdropUrl, this.attributes),
+    buildUrl: function (customQueryParams, external) {
+      var backdropUrl = (external ? this.externalBackdropUrl : this.backdropUrl),
+          url = Mustache.render(backdropUrl, this.attributes),
           rawQueryParams = _.merge(
             this.options.flattenEverything ? { flatten: true } : {},
             this.get('query-params') || {},
