@@ -219,6 +219,14 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
     },
 
     /**
+     * Constructs a Backdrop query for the current environment, externally
+     * available
+     */
+    externalUrl: function () {
+      return this.dataSource.buildUrl(this.prop('queryParams'), true);
+    },
+
+    /**
      * Sets a new attribute-specific comparator to sort by and then re-sorts.
      * This will trigger a reset event.
      * Uses custom comparator if one is defined for attribute,
