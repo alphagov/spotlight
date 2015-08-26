@@ -40,30 +40,30 @@ define([
       }, this), 0);
     },
 
+    getRequestIdMap: function () {
+      var parentModel = this.model.get('parent'),
+          requestId = 'Not-Set',
+          govukRequestId = 'Not-Set';
+
+      if (parentModel) {
+        requestId = parentModel.get('requestId') || 'Not-Set';
+        govukRequestId = parentModel.get('govukRequestId') || 'Not-Set';
+      }
+      
+      return {
+        request_id: requestId,
+        govuk_request_id: govukRequestId
+      };
+    },
+
     render: function (options) {
       options = options || {};
-
-      var getRequestId = function(m) {
-        if (m.get('parent')) {
-          return m.get('parent').get('requestId');
-        }
-        return null;
-      };
-
-      var getGOVUKRequestId = function(m) {
-        if (m.get('parent')) {
-          return m.get('parent').get('govukRequestId');
-        }
-        return null;
-      };
 
       if (this.collectionClass && !this.collection) {
         this.collection = new this.collectionClass(this.collectionData(), _.extend({
           dataSource: this.model.get('data-source'),
-          flattenEverything: true,
-          requestId: getRequestId(this.model),
-          govukRequestId: getGOVUKRequestId(this.model)
-        }, this.collectionOptions()));
+          flattenEverything: true
+        }, this.getRequestIdMap(), this.collectionOptions()));
       }
 
       var renderViewOptions = _.merge({

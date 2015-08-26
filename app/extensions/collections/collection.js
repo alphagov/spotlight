@@ -29,8 +29,8 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
       this.dataSource.on('change', function () {
         this.fetch({ reset: true });
       }, this);
-      this.requestId = options.requestId || 'Not-Set';
-      this.govukRequestId = options.govukRequestId || 'Not-Set';
+      this.requestId = options.request_id || 'Not-Set';
+      this.govukRequestId = options.govuk_request_id || 'Not-Set';
       Backbone.Collection.prototype.initialize.apply(this, arguments);
     },
 
