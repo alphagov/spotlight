@@ -87,7 +87,6 @@ describe('processRequest middleware', function () {
       expect(model.get('environment')).toEqual('development');
       expect(controller.model).toBe(model);
       expect(controller.url).toEqual('test url');
-      expect(controller.render).toHaveBeenCalled();
     });
 
     it('sends a response once content is rendered', function () {

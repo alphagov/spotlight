@@ -1,6 +1,7 @@
 var requirejs = require('requirejs');
 
 var PageConfig = requirejs('page_config');
+var Performance = requirejs('extensions/mixins/performance');
 
 var get_dashboard_and_render = require('./server/mixins/get_dashboard_and_render');
 
@@ -10,16 +11,23 @@ var renderContent = function (req, res, model) {
 
   var ControllerClass = model.get('controller');
   var controller = new ControllerClass({
-    model: model,
-    url: req.originalUrl
-  });
+        model: model,
+        url: req.originalUrl
+      }),
+      slug = model.get('slug');
+
+  Performance.timeRender(
+    'dashboard-' + slug + '-render',
+    { },
+    controller
+  );
 
   controller.once('ready', function () {
     res.set('Cache-Control', controller.cacheOptions());
     if (model.get('published') !== true) {
       res.set('X-Robots-Tag', 'none');
     }
-    req['spotlight-dashboard-slug'] = model.get('slug');
+    req['spotlight-dashboard-slug'] = slug;
     res.send(controller.html);
   });
 

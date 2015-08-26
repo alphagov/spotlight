@@ -1,8 +1,9 @@
 define([
   'backbone',
   'extensions/models/model',
-  'extensions/views/error'
-], function (Backbone, Model, ErrorView) {
+  'extensions/views/error',
+  'extensions/mixins/performance'
+], function (Backbone, Model, ErrorView, Performance) {
 
   var Controller = function (options) {
     options = options || {};
@@ -20,7 +21,7 @@ define([
 
     cacheOptions: function() { return 'public, max-age=600'; },
 
-    renderView: function (options) {
+    renderView: function (options, diffTimers) {
       options = _.extend({}, this.viewOptions(), options);
 
       if (!this.view) {
@@ -28,9 +29,18 @@ define([
       }
 
       var view = this.view;
-      view.render();
 
-      this.html = view.html || view.$el[0].outerHTML;
+      Performance.timeIt(
+        'module-' + this.model.get('slug') + '-render',
+        this.getRequestIdMap(),
+        function () {
+          view.render();
+
+          this.html = view.html || view.$el[0].outerHTML;
+        }.bind(this),
+        diffTimers
+      );
+
       this.ready();
     },
 
@@ -67,17 +77,27 @@ define([
       }
 
       var renderViewOptions = _.merge({
-        collection: this.collection,
-        model: this.model
-      }, options);
+            collection: this.collection,
+            model: this.model
+          }, options),
+          slug = this.model.get('slug');
+
+      var diffTimers = Performance.timerDiff('module-' + slug + '-diff');
 
       if (this.collection && this.collection.isEmpty()) {
+        Performance.timeCollection(
+          'module-' + slug + '-data',
+          this.getRequestIdMap(),
+          this.collection,
+          diffTimers
+        );
+
         this.listenToOnce(this.collection, 'reset', function () {
-          this.renderView(renderViewOptions);
+          this.renderView(renderViewOptions, diffTimers);
         }, this);
         this.listenToOnce(this.collection, 'error', function () {
           this.viewClass = ErrorView;
-          this.renderView(renderViewOptions);
+          this.renderView(renderViewOptions, diffTimers);
         }, this);
 
         this.collection.fetch({ reset: true });
