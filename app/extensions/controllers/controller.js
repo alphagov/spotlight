@@ -1,8 +1,9 @@
 define([
   'backbone',
   'extensions/models/model',
-  'extensions/views/error'
-], function (Backbone, Model, ErrorView) {
+  'extensions/views/error',
+  'extensions/mixins/performance'
+], function (Backbone, Model, ErrorView, Performance) {
 
   var Controller = function (options) {
     options = options || {};
@@ -20,7 +21,7 @@ define([
 
     cacheOptions: function() { return 'public, max-age=600'; },
 
-    renderView: function (options) {
+    renderView: function (options, diffTimers) {
       options = _.extend({}, this.viewOptions(), options);
 
       if (!this.view) {
@@ -28,9 +29,18 @@ define([
       }
 
       var view = this.view;
-      view.render();
 
-      this.html = view.html || view.$el[0].outerHTML;
+      Performance.timeIt(
+        'module-' + this.model.get('slug') + '-render',
+        this.getRequestIdMap(),
+        function () {
+          view.render();
+
+          this.html = view.html || view.$el[0].outerHTML;
+        }.bind(this),
+        diffTimers
+      );
+
       this.ready();
     },
 
@@ -40,40 +50,50 @@ define([
       }, this), 0);
     },
 
+    getRequestIdMap: function () {
+      var parentModel = this.model.get('parent'),
+          requestId = 'Not-Set',
+          govukRequestId = 'Not-Set';
+
+      if (parentModel) {
+        requestId = parentModel.get('requestId') || 'Not-Set';
+        govukRequestId = parentModel.get('govukRequestId') || 'Not-Set';
+      }
+      
+      return {
+        request_id: requestId,
+        govuk_request_id: govukRequestId
+      };
+    },
+
     render: function (options) {
       options = options || {};
-
-      var getRequestId = function(m) {
-        if (m.get('parent')) {
-          return m.get('parent').get('requestId');
-        }
-        return null;
-      };
-
-      var getGOVUKRequestId = function(m) {
-        if (m.get('parent')) {
-          return m.get('parent').get('govukRequestId');
-        }
-        return null;
-      };
 
       if (this.collectionClass && !this.collection) {
         this.collection = new this.collectionClass(this.collectionData(), _.extend({
           dataSource: this.model.get('data-source'),
-          flattenEverything: true,
-          requestId: getRequestId(this.model),
-          govukRequestId: getGOVUKRequestId(this.model)
-        }, this.collectionOptions()));
+          flattenEverything: true
+        }, this.getRequestIdMap(), this.collectionOptions()));
       }
 
       var renderViewOptions = _.merge({
-        collection: this.collection,
-        model: this.model
-      }, options);
+            collection: this.collection,
+            model: this.model
+          }, options),
+          slug = this.model.get('slug');
+
+      var diffTimers = Performance.timerDiff('module-' + slug + '-diff');
 
       if (this.collection && this.collection.isEmpty()) {
+        Performance.timeCollection(
+          'module-' + slug + '-data',
+          this.getRequestIdMap(),
+          this.collection,
+          diffTimers
+        );
+
         this.listenToOnce(this.collection, 'reset', function () {
-          this.renderView(renderViewOptions);
+          this.renderView(renderViewOptions, diffTimers);
         }, this);
         this.listenToOnce(this.collection, 'error', function (collection, resp) {
           if (collection && resp) {
@@ -86,7 +106,7 @@ define([
             );
           }
           this.viewClass = ErrorView;
-          this.renderView(renderViewOptions);
+          this.renderView(renderViewOptions, diffTimers);
         }, this);
 
         this.collection.fetch({ reset: true });
