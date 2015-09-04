@@ -47,6 +47,7 @@ define([
         }
 
         this.hideError();
+        console.log("HERE!!!!!!!!!!!!!")
         this.collection.dataSource.setQueryParam({
           start_at: from.format(this.dateFormat),
           end_at: to.format(this.dateFormat),
