@@ -215,6 +215,15 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
      * Constructs a Backdrop query for the current environment
      */
     url: function () {
+      console.log("URL");
+      var e = new Error('dummy');
+      var stack = e.stack.replace(/^[^\(]+?[\n$]/gm, '')
+        .replace(/^\s+at\s+/gm, '')
+        .replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
+        .split('\n');
+      console.log(stack);
+      console.log(this.dataSource.buildUrl(this.prop('queryParams')));
+      console.log("^URL");
       return this.dataSource.buildUrl(this.prop('queryParams'));
     },
 
@@ -228,6 +237,9 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource, mome
       console.log(this.dataSource.get('query-params'));
       //select happens client side so potentially doesn rerender with changed url however, reloading after doesn't work either and this doesn't have what I think the dataSource query params are going to be after such a page reload - it has the old ones... First thing to go is get the browser url to render the correct json link
       console.log("YAR");
+      console.log("externalUrl");
+      console.log(this.dataSource.buildUrl(this.dataSource.get('query-params'), true));
+      console.log("^externalUrl");
       return this.dataSource.buildUrl(this.dataSource.get('query-params'), true);
     },
 

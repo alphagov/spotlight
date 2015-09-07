@@ -25,6 +25,8 @@ function (Backbone, Mustache, _, moment) {
     },
 
     buildUrl: function (customQueryParams, external) {
+      console.log(this.externalBackdropUrl);
+      console.log(this.externalBackdrop);
       var backdropUrl = (external ? this.externalBackdropUrl : this.backdropUrl),
           url = Mustache.render(backdropUrl, this.attributes),
           rawQueryParams = _.merge(
@@ -32,6 +34,8 @@ function (Backbone, Mustache, _, moment) {
             this.get('query-params') || {},
             customQueryParams
           );
+      console.log(backdropUrl);
+      console.log(url);
 
       if (!_.isEmpty(rawQueryParams)) {
         url += '?' + this._objectToQueryString(

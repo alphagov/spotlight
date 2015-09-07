@@ -58,6 +58,11 @@ module.exports = View.extend(templater).extend({
   templateContext: function () {
     if (this.collection) {
       console.log(this.collection.externalUrl());
+      /*var hashParams = this.getHashParams();*/
+      // no window
+      // so don't work.
+      /*console.log(hashParams);*/
+      /*console.log("HASHPARAMS!!!??!!")*/
       this.jsonUrl = this.collection.externalUrl();
     }
     return _.extend(
