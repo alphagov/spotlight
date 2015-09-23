@@ -1,8 +1,9 @@
 define([
   'common/views/module',
   'client/views/table',
-  'client/views/date-picker'
-], function (ModuleView, Table, DatePicker) {
+  'client/views/date-picker',
+  'client/views/json-summary'
+], function (ModuleView, Table, DatePicker, JsonSummary) {
 
   return ModuleView.extend({
 
@@ -23,6 +24,9 @@ define([
             view: this.datePickerClass
           };
         }
+        views['.json-summary'] = {
+            view: JsonSummary
+        };
       }
       return _.extend(ModuleView.prototype.views.apply(this, arguments), views);
     }
