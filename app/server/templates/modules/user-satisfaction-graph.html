@@ -3,21 +3,17 @@
     <div class="volumetrics-completion-selected"></div>
     <p class="total-responses"></p>
   </div>
-  <div class="graph timeseries-graph volumetrics-completion" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-completion figure"{{/fallbackUrl}}>
-    {{#fallbackUrl}}
-      <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-completion figure" /></noscript>
-    {{/fallbackUrl}}
+  <div class="graph timeseries-graph volumetrics-completion">
+      <noscript><div class="visualisation-table-fallback"></div></noscript>
   </div>
 </div>
 {{#hasBarChart}}
-<div class="graph journey volumetrics-bar-selected" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.volumetrics-bar-selected"{{/fallbackUrl}}>
+<div class="graph journey volumetrics-bar-selected">
 
   <h3>Breakdown of survey rating</h3>
   <p>The proportion of each response for the user satisfaction survey rating above</p>
   <p class="volumetrics-bar-period"></p>
 
-  {{#fallbackUrl}}
-    <noscript><img src="{{fallbackUrl}}?selector=.volumetrics-bar-selected" /></noscript>
-  {{/fallbackUrl}}
+    <noscript><div class="visualisation-table-fallback"></div></noscript>
 </div>
 {{/hasBarChart}}

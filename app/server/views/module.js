@@ -5,6 +5,7 @@ var View = requirejs('common/views/module');
 var templatePath = path.resolve(__dirname, '../templates/module.html');
 
 var Table = requirejs('extensions/views/table');
+var TableFallback = requirejs('extensions/views/table_fallback');
 
 var templater = require('../mixins/templater');
 
@@ -72,6 +73,7 @@ module.exports = View.extend(templater).extend({
   },
 
   views: function () {
+    var pageType = this.model.get('parent').get('page-type');
     var views = this.visualisationClass ? {
       '.visualisation-inner': {
         view: this.visualisationClass,
@@ -83,6 +85,12 @@ module.exports = View.extend(templater).extend({
         view: Table,
         options: this.visualisationOptions
       };
+      if (pageType !== 'module') {
+        views['.visualisation-table-fallback'] = {
+          view: TableFallback,
+          options: this.visualisationOptions
+        };
+      }
     }
     return views;
   }

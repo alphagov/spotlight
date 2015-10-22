@@ -6,9 +6,12 @@
 
   <div class="sparkline">
     <span class="sparkline-title"></span>
-    <div class="sparkline-graph" {{#fallbackUrl}}data-src="{{fallbackUrl}}?selector=.sparkline-graph"{{/fallbackUrl}}>
-      {{#fallbackUrl}}<noscript><img src="{{fallbackUrl}}?selector=.sparkline-graph"/></noscript>{{/fallbackUrl}}
+    <div class="sparkline-graph">
     </div>
   </div>
+   <noscript>
+      <div class="visualisation-table-fallback">
+      </div>
+   </noscript>
 
 </p>

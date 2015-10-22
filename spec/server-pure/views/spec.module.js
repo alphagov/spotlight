@@ -91,15 +91,6 @@ describe('ModuleView', function () {
     expect(moduleView.$('aside.more-info.download ul li:eq(0) a').text()).toEqual('JSON');
   });
 
-  it('renders a standalone module with png download link for svg modules', function () {
-    model.get('parent').set('page-type', 'module');
-    moduleView.requiresSvg = true;
-    moduleView.render();
-    expect(moduleView.$('aside.more-info.download ul li').length).toEqual(2);
-    expect(moduleView.$('aside.more-info.download ul li:eq(1) a').attr('href')).toEqual('/foo/bar.png?selector=.visualisation-inner');
-    expect(moduleView.$('aside.more-info.download ul li:eq(1) a').text()).toEqual('PNG');
-  });
-
   it('renders a table when hasTable is true and there are axes on the collection', function () {
     moduleView.hasTable = true;
     var collectionWithAxes = new Collection({}, { 'axes': true });
