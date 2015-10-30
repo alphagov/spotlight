@@ -8,6 +8,9 @@ define([
     viewClass: ModuleView,
 
     render: function () {
+      if ($('.no-js')) {
+        $('.no-js').removeClass('no-js');
+      }
       if (this.requiresSvg && !this.Modernizr.inlinesvg) {
         // Do not try to render an SVG in a non-SVG browser
         this.trigger('ready');
