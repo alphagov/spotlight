@@ -20,7 +20,32 @@ every browser.
 ### Development ###
 
 **Just Spotlight:** The simplest way to get started is to run just this
-app, against production data. You can run the app as follows:
+app, against production data.
+
+Firstly, it is recommended that you set up Node Version Manager ([nvm][]) on your host.
+
+[nvm]: https://github.com/creationix/nvm
+
+Next checkout the Spotlight repo and create an .nvmrc file in its
+root directory containing the version of node specified in the 'engines' entry
+in `package.json` e.g. 0.10.26.
+
+Now install the specified version of node using nvm:
+
+```bash
+nvm install 0.10.26
+```
+
+To check you have the correct version of node installed:
+
+```bash
+nvm which
+
+Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <0.10.26>
+/Users/<username>/.nvm/v0.10.26/bin/node
+```
+
+You can then run the app as follows:
 
 ```bash
 npm install -g grunt-cli # install grunt globally
