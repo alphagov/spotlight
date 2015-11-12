@@ -45,6 +45,13 @@ Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <0.10.26>
 /Users/<username>/.nvm/v0.10.26/bin/node
 ```
 
+Now tell nvm to use the version of node specified in the `.nvmrc` file:
+
+
+```bash
+nvm use
+```
+
 You can then run the app as follows:
 
 ```bash
