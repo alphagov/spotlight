@@ -10,6 +10,7 @@ var basicAuth = require('node-basicauth');
 // Express middleware modules which have been separated out now
 var compression = require('compression');
 var errorHandler = require('errorhandler');
+var error = require('./error');
 var morgan  = require('morgan');
 
 module.exports = {
@@ -94,7 +95,9 @@ module.exports = {
 
     app.get('/_status', require('./healthcheck_controller'));
 
-    app.get('*.png', require('./render_png'));
+    app.get('*.png', function (req, res) {
+      error.render(410, req, res);
+    });
 
     app.get('/performance', _.bind(require('./server/controllers/services'), this, 'home'));
 
