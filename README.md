@@ -22,7 +22,7 @@ every browser.
 **Just Spotlight:** The simplest way to get started is to run just this
 app, against production data.
 
-Firstly, it is recommended that you set up Node Version Manager ([nvm][]) on your host.
+Firstly, it is recommended that you set up Node Version Manager on your host. See the ([nvm]) README for installation instructions.
 
 [nvm]: https://github.com/creationix/nvm
 
@@ -60,7 +60,9 @@ npm install
 grunt
 ```
 
-Now you should be able to connect to the app at `http://localhost:3057`.
+Now you should be able to connect to the app at `http://localhost:3057`. If you're running the app from the govuk vm, you need to replace localhost with the IP address of your [vagrant] machine in the url. Currently this is: `http://10.1.1.254:3057`
+
+[vagrant]: https://github.com/alphagov/govuk-puppet/tree/master/development#extras
 
 The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
