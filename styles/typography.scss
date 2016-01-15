@@ -60,6 +60,12 @@ a[rel="external"] {
   @include external-link-19;
 }
 
+.heading-small {
+  @include bold-36;
+  margin-top: 45px/24px * 1em;
+  margin-bottom: 15px/24px * 1em;
+}
+
 .link-unstyled {
   text-decoration: none;
   &:link,

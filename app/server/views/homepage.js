@@ -66,10 +66,6 @@ module.exports = BaseView.extend({
       webTrafficCount: this.contentDashboards.length,
       otherCount: this.otherDashboards.length,
       showcaseServices: this.showcaseServices,
-      tableCost: this.renderServicesTable('cost_per_transaction', 'ascending'),
-      tableSatisfaction: this.renderServicesTable('user_satisfaction_score'),
-      tableCompletion: this.renderServicesTable('completion_rate'),
-      tableDigital: this.renderServicesTable('digital_takeup')
     }, this.model.toJSON()));
 
   }
