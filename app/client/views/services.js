@@ -22,9 +22,6 @@ function (Modernizr, View, TableView, SummaryFigureView, ServicesKPIS, $, _) {
       'submit #filter-wrapper': 'filterFormSubmit',
       'change #department': function() {
         this.filter('department');
-      },
-      'change #service-group': function() {
-        this.filter('service-group');
       }
     }),
 

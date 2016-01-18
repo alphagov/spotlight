@@ -3,12 +3,12 @@
 <form id="filter-wrapper" method="get" action="">
   <div id="faceted-search" class="cols-row cols-row-no-margin vertical-spacing-bottom">
     <h2 class="visuallyhidden">Filter services by keyword, service or department</h2>
-    <div class="cols3">
+    <div class="cols2">
       <label for="filter" id="filter-keywords">Service name contains</label>
       <input id="filter" placeholder="Example: <%= example %>" name="filter" value="<%= filter %>" type="search" />
     </div>
     <% if (departments.length) {%>
-    <div class="cols3">
+    <div class="cols2">
       <label for="department" id="filter-department"><span aria-hidden="true">Department</span><span class="visuallyhidden">Select a department or agency to filter services by</span></label>
       <select id="department" name="department">
         <option value="">All departments</option>
@@ -31,18 +31,6 @@
       </select>
     </div>
     <% }%>
-    <div class="cols3">
-      <label for="service-group" id="filter-service-group"><span aria-hidden="true">Service group</span><span class="visuallyhidden">Select a service group to filter services by</span></label>
-      <select id="service-group" name="service-group">
-        <option value="">All service groups</option>
-        <% _.each(serviceGroups, function (serviceGroup) { %>
-        <option
-                value="<%= serviceGroup.slug %>"<% if (serviceGroup.slug === serviceGroupFilter) { %>selected<% } %>>
-        <%= serviceGroup.title
-        %></option>
-        <% }); %>
-      </select>
-    </div>
 
     <input type="submit" value="Filter services" id="filter-submit-button"/>
   </div>
@@ -61,9 +49,6 @@
       <% } %>
       <% if (departmentFilterTitle) {%>
         provided by <span class="emphasis"><%= departmentFilterTitle %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>
-      <% } %>
-      <% if (serviceGroupFilterTitle) {%>
-        within <span class="emphasis"><%= serviceGroupFilterTitle %></span><button class="btn-remove btn-inline" data-filter="service-group" type="button">×</button>
       <% } %>
     </span>
   </div>
@@ -110,13 +95,6 @@
         </div>
       </div>
     </section>
-    <%
-    // 3 modules per row
-    if (index === 2) {
-    %>
-    </div>
-    <div class="cols-row cols-row-no-margin">
-    <% } %>
     <% }); %>
   </div>
 
