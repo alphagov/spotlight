@@ -186,7 +186,7 @@ function (View, Formatters) {
               label: 'Department',
               format: 'sentence'
             }
-          )
+          );
           this.options.firstColumnIsHeading = true;
         }
       }

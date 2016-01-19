@@ -13,6 +13,8 @@ var PageConfig = requirejs('page_config');
 
 var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
+var tools = require('./tools');
+
 var dataSource = {
   'data-group': 'service-aggregates',
   'data-type': 'latest-dataset-values',
@@ -125,13 +127,7 @@ function formatCollectionData(services) {
   _.each(services, function (service) {
     _.extend(service, kpis);
     service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
-    if ("department" in service){
-      service.department_name = service.department.title
-    } else if ("agency" in service) {
-      service.department_name = service.agency.title
-    } else {
-      service.department_name = '<abbr title="Unknown">—</abbr>'
-    }
+    service.department_name = tools.get_department_name(service);
   });
 
   return services;
