@@ -48,11 +48,6 @@ define([
         label: 'home-office',
         nonInteraction: true
       });
-      this.$el.find('#service-group').val('service1').trigger('change');
-      expect(window.GOVUK.analytics.trackEvent).toHaveBeenCalledWith('ppServices', 'service-group', {
-        label: 'service1',
-        nonInteraction: true
-      });
     });
 
   });
