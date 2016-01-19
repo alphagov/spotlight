@@ -180,6 +180,13 @@ function (View, Formatters) {
         }, this);
         if (axes.x) {
           cols.unshift(axes.x);
+          cols.unshift(
+            {
+              key: 'department_name',
+              label: 'Department',
+              format: 'sentence'
+            }
+          )
           this.options.firstColumnIsHeading = true;
         }
       }
