@@ -2,10 +2,15 @@ var _ = require('lodash');
 
 var getRequirejsConfig = function () {
   var requirejsConfig;
+  // Define a temporary function so that we can 'read' in the application settings.
+  // The settings file assumes the existence of a function called 'define'.
   global.define = function (config) {
     requirejsConfig = config({ isBuild: true });
   };
+  // Read the settings
   require('./app/config');
+  // Remove the function
+  delete global.define;
 
   return _.extend(requirejsConfig, {
     baseUrl: 'app',
