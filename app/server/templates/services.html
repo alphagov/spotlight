@@ -38,66 +38,68 @@
 
 </form>
 
-<div class="vertical-spacing-bottom">
-  <h2 class="visuallyhidden">Number of services</h2>
-  <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
-  <div class="impact-number summary-figure">
-    <strong class="align-top impact-figure-with-desc summary-figure-count"><%= filteredCount %></strong>
-    <span class="impact-number-description summary-figure-description">
-      <span class="summary-figure-unit emphasis">services</span>
-      <% if (filter) {%>containing <span class="emphasis">"<%= filter %>"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>
-      <% } %>
-      <% if (departmentFilterTitle) {%>
-        provided by <span class="emphasis"><%= departmentFilterTitle %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>
-      <% } %>
-    </span>
+<div class="services vertical-spacing-bottom">
+  <div class="cols2">
+    <h2 class="visuallyhidden">Number of services</h2>
+    <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
+    <div class="impact-number summary-figure">
+      <strong class="align-top impact-figure-with-desc summary-figure-count"><%= filteredCount %></strong>
+      <span class="impact-number-description summary-figure-description">
+        <span class="summary-figure-unit emphasis">services</span>
+        <% if (filter) {%>containing <span class="emphasis">"<%= filter %>"</span><button class="btn-remove btn-inline" data-filter="filter" type="button">×</button>
+        <% } %>
+        <% if (departmentFilterTitle) {%>
+          provided by <span class="emphasis"><%= departmentFilterTitle %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>
+        <% } %>
+      </span>
+    </div>
   </div>
-</div>
 
-<div class="service-kpis">
-  <h2 class="visuallyhidden">Totals and averages for filtered services</h2>
-  <div class="cols-row cols-row-no-margin">
-    <% _.each(aggregateVals, function (kpi, index) { %>
-    <section class="module kpi cols3 <%= kpi.key %>">
-      <h3 class="heading-2"><%= kpi.label %></h3>
-      <div class="visualisation">
-        <div class="visualisation-inner">
-          <div class="stat">
-            <p class="single-stat-headline impact-number">
-              <% if (kpi.formattedValue) {%>
-                <strong><%= kpi.formattedValue %></strong>
+  <div class="cols2 service-kpis">
+    <h2 class="visuallyhidden">Totals and averages for filtered services</h2>
+    <div class="cols-row cols-row-no-margin">
+      <% _.each(aggregateVals, function (kpi, index) { %>
+      <div class="vertical-spacing-bottom module kpi <%= kpi.key %>">
+        <h3 class="heading-2"><%= kpi.label %></h3>
+        <div class="visualisation">
+          <div class="visualisation-inner">
+            <div class="stat">
+              <p class="single-stat-headline impact-number">
+                <% if (kpi.formattedValue) {%>
+                  <strong><%= kpi.formattedValue %></strong>
+                <% } else { %>
+                  <strong class="no-data">no data</strong>
+                <% } %>
+              </p>
+            </div>
+          </div>
+
+          <div class="text-small visualisation-moreinfo<% if (!kpi.formattedValue) {%> hidden<% } %>">
+            <% if (filteredCount > 1) { %>
+            <% if (kpi.isWeighted) { %>
+              weighted average
+            <% } else { %>
+              total
+            <% } %> for
+            <% } %>
+            <a href="#filtered-list" class="js-sort-by" data-sort-by="<%= kpi.key %>">
+            <% if (kpi.allRowsHaveValues === true) { %>
+              <% if (filteredCount === 1) { %>
+                1 service
               <% } else { %>
-                <strong class="no-data">no data</strong>
+                all <%= filteredCount %> services
               <% } %>
-            </p>
+            <% } else { %>
+            <%= kpi.valueCount %> services out of <%= filteredCount %>
+            <% } %>
+            </a>
           </div>
         </div>
-
-        <div class="visualisation-moreinfo<% if (!kpi.formattedValue) {%> hidden<% } %>">
-          <% if (filteredCount > 1) { %>
-          <% if (kpi.isWeighted) { %>
-            weighted average
-          <% } else { %>
-            total
-          <% } %> for
-          <% } %>
-          <a href="#filtered-list" class="js-sort-by" data-sort-by="<%= kpi.key %>">
-          <% if (kpi.allRowsHaveValues === true) { %>
-            <% if (filteredCount === 1) { %>
-              1 service
-            <% } else { %>
-              all <%= filteredCount %> services
-            <% } %>
-          <% } else { %>
-          <%= kpi.valueCount %> services out of <%= filteredCount %>
-          <% } %>
-          </a>
-        </div>
       </div>
-    </section>
-    <% }); %>
-  </div>
+      <% }); %>
+    </div>
 
+  </div>
 </div>
 
 <section class="filtered-list visualisation-table" id="filtered-list">
