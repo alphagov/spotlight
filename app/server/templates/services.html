@@ -42,7 +42,7 @@
   <div class="cols2">
     <h2 class="visuallyhidden">Number of services</h2>
     <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
-    <div class="impact-number summary-figure">
+    <div class="impact-number summary-figure cols-row cols-row-no-margin">
       <strong class="align-top impact-figure-with-desc summary-figure-count"><%= filteredCount %></strong>
       <span class="impact-number-description summary-figure-description">
         <span class="summary-figure-unit emphasis">services</span>
@@ -52,6 +52,10 @@
           provided by <span class="emphasis"><%= departmentFilterTitle %></span><button class="btn-remove btn-inline" data-filter="department" type="button">×</button>
         <% } %>
       </span>
+    </div>
+    <h2 class="visuallyhidden">CSV file of full data set</h2>
+    <div class="cols-row cols-row-no-margin vertical-spacing-bottom">
+      <a href="/performance/data/transaction-volumes.csv">Download the full data set (CSV)</a>
     </div>
   </div>
 
