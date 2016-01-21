@@ -25,19 +25,5 @@ module.exports = {
       });
   },
 
-  '4 showcase services are present': function (client) {
-    client.elements('css selector', this.selectors.showcaseService, function(result) {
-      this.assert.equal(result.value.length, 4);
-      this.end();
-    });
-  },
-
-  'Top 5 services are present': function (client) {
-    client.elements('css selector', this.selectors.topServicesCostItems, function(result) {
-        this.assert.equal(result.value.length, 5);
-        this.end();
-      });
-  }
-
 };
 

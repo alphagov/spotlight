@@ -10,6 +10,8 @@ var ErrorView = require('../views/error');
 var DashboardCollection = requirejs('common/collections/dashboards');
 var PageConfig = requirejs('page_config');
 
+var tools = require('./tools');
+
 function controllerSettings(type) {
   switch (type) {
     case 'web-traffic':
@@ -37,6 +39,7 @@ var renderContent = function (req, res, client_instance) {
 
   _.each(contentDashboards, function (service) {
     service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
+    service.department_name = tools.get_department_name(service);
   });
 
   collection = new DashboardCollection(contentDashboards, controller.axesOptions);

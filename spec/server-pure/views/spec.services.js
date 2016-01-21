@@ -99,20 +99,10 @@ describe('Services View', function () {
 
     it('adds a formatted value for kpis with a weighted_average', function () {
       expect(view.formatAggregateValues()[0].formattedValue).toEqual('2,000');
-      expect(view.formatAggregateValues()[1].formattedValue).toBeUndefined();
-      expect(view.formatAggregateValues()[2].formattedValue).toBeUndefined();
-      expect(view.formatAggregateValues()[3].formattedValue).toEqual('0%');
-      expect(view.formatAggregateValues()[4].formattedValue).toBeUndefined();
-      expect(view.formatAggregateValues()[5].formattedValue).toEqual('40%');
     });
 
     it('ensures all results are present even for ones with no values', function () {
       expect(view.formatAggregateValues()[0].key).toEqual('number_of_transactions');
-      expect(view.formatAggregateValues()[1].key).toEqual('total_cost');
-      expect(view.formatAggregateValues()[2].key).toEqual('cost_per_transaction');
-      expect(view.formatAggregateValues()[3].key).toEqual('digital_takeup');
-      expect(view.formatAggregateValues()[4].key).toEqual('user_satisfaction_score');
-      expect(view.formatAggregateValues()[5].key).toEqual('completion_rate');
     });
 
     describe('with more than one service/transaction', function () {
@@ -165,11 +155,6 @@ describe('Services View', function () {
 
       it('adds a formatted value for kpis with a weighted_average', function () {
         expect(view.formatAggregateValues()[0].formattedValue).toEqual('4,000');
-        expect(view.formatAggregateValues()[1].formattedValue).toBeUndefined();
-        expect(view.formatAggregateValues()[2].formattedValue).toBeUndefined();
-        expect(view.formatAggregateValues()[3].formattedValue).toEqual('25%');
-        expect(view.formatAggregateValues()[4].formattedValue).toBeUndefined();
-        expect(view.formatAggregateValues()[5].formattedValue).toEqual('40%');
       });
 
     });

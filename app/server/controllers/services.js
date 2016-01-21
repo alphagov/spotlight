@@ -13,6 +13,8 @@ var PageConfig = requirejs('page_config');
 
 var get_dashboard_and_render = require('../mixins/get_dashboard_and_render');
 
+var tools = require('./tools');
+
 var dataSource = {
   'data-group': 'service-aggregates',
   'data-type': 'latest-dataset-values',
@@ -125,7 +127,9 @@ function formatCollectionData(services) {
   _.each(services, function (service) {
     _.extend(service, kpis);
     service.titleLink = '<a href="/performance/' + service.slug + '">' + service.title + '</a>';
+    service.department_name = tools.get_department_name(service);
   });
+
   return services;
 }
 
@@ -182,48 +186,8 @@ servicesController.serviceAxes = {
     y: [
       {
         key: 'number_of_transactions',
-        label: 'Transactions per year',
+        label: 'Completed transactions per year',
         format: 'integer'
-      },
-      {
-        key: 'total_cost',
-        label: 'Annual cost',
-        format: 'currency'
-      },
-      {
-        label: 'Cost per transaction',
-        key: 'cost_per_transaction',
-        format: {
-          type: 'currency',
-          pence: true
-        }
-      },
-      {
-        label: 'Digital take-up',
-        key: 'digital_takeup',
-        format: {
-          type: 'percent',
-          dps: 1,
-          fixed: 1
-        }
-      },
-      {
-        label: 'User satisfaction',
-        key: 'user_satisfaction_score',
-        format: {
-          type: 'percent',
-          dps: 1,
-          fixed: 1
-        }
-      },
-      {
-        label: 'Completion rate',
-        key: 'completion_rate',
-        format: {
-          type: 'percent',
-          dps: 1,
-          fixed: 1
-        }
       }
     ]
   }
