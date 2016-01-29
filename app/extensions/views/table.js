@@ -179,7 +179,28 @@ function (View, Formatters) {
           return column;
         }, this);
         if (axes.x) {
-          if (axes.x.constructor === Array){
+          /*
+            As the x-axis can be either a single object or a list of columns
+            we need to determine whether the x-axis is an array.
+            There are multiple ways to determine whether an object is an array
+            in javascript:
+            1. Check if the constructor is of type Array:
+              axes.x.constructor === Array
+            2. Check if the x axis object is an array:
+              Array.isArray(axes.x)
+            3. Check if the x axis is an instance of array:
+              axes.x instanceof Array
+
+            However, none of these work consistently. Whilst the web site can
+            detect an array if any of these methods are used, the unit and
+            integration tests do not. The cheapseats tests only work with
+            options 1 and 3, and the unit tests only work with option 2.
+
+            length is property that is exclusive to arrays.
+            If an object doesn't have a length property, the expression returns
+            a falsy value.
+          */
+          if (axes.x.length > 0){
             _.each(axes.x, function(element){ cols.unshift(element);});
           }
           else {

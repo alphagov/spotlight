@@ -91,8 +91,8 @@ function (Table, View, Collection, Backbone, $) {
           valueAttr: 'value'
         };
         spyOn(collection, 'getTableRows').andReturn([
-          ['dept', '01/02/01', 'foo', 10, null],
-          ['agency', '04/03/12', 'bar', 5, null]
+          ['01/02/01', 'foo', 10, null],
+          ['04/03/12', 'bar', 5, null]
         ]);
       });
 
@@ -143,7 +143,7 @@ function (Table, View, Collection, Backbone, $) {
         table = new Table(tableOptions);
         table.render();
         expect(table.collection.getTableRows)
-          .toHaveBeenCalledWith(['department_name', 'timestamp', 'value', 'timeshift52:value', 'number_of_transactions'] , undefined);
+          .toHaveBeenCalledWith(['timestamp', 'value', 'timeshift52:value', 'number_of_transactions'] , undefined);
       });
 
       it('does not crash if no data is provided', function () {
@@ -155,7 +155,7 @@ function (Table, View, Collection, Backbone, $) {
       it('will append the timeshift duration to the column header', function () {
         table = new Table(tableOptions);
         table.render();
-        expect(table.$el.find('thead th').eq(3).text())
+        expect(table.$el.find('thead th').eq(2).text())
           .toEqual('onemore (52 weeks ago) Click to sort');
       });
 
@@ -163,12 +163,27 @@ function (Table, View, Collection, Backbone, $) {
         it('returns an array of consolidated axes data', function () {
           table = new Table(tableOptions);
           expect(table.getColumns()).toEqual([
-              { key: 'department_name', label: 'Department', format: 'sentence'},
               { key: 'timestamp', label: 'date' },
               { key: 'value', label: 'another' },
               { key: 'timeshift52:value', label: 'onemore', timeshift: 52 },
               { key: 'number_of_transactions', label: 'last' }
             ]);
+        });
+
+        it('allows the x-axis to be an array', function () {
+          tableOptions.collection.options.axes.x = [
+                { label: 'second value', key: 'second' },
+                { label: 'first value', key: 'first' }
+          ];
+
+          table = new Table(tableOptions);
+          expect(table.getColumns()).toEqual([
+                { key: 'first', label: 'first value' },
+                { key: 'second', label: 'second value' },
+                { key: 'value', label: 'another' },
+                { key: 'timeshift52:value', label: 'onemore', timeshift: 52 },
+                { key: 'number_of_transactions', label: 'last' }
+              ]);
         });
       });
 
@@ -178,7 +193,7 @@ function (Table, View, Collection, Backbone, $) {
         table.collection.options.axes.y[1].format = 'percent';
         table.render();
         expect(table.format).toHaveBeenCalledWith(10, 'percent');
-        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(3).text())
+        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).text())
           .toEqual('10%');
       });
 
@@ -188,7 +203,7 @@ function (Table, View, Collection, Backbone, $) {
         table.collection.options.axes.y[1].format = 'integer';
         table.render();
         expect(table.format).toHaveBeenCalledWith(10, 'integer');
-        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(3).hasClass('integer'))
+        expect(table.$el.find('tbody tr').eq(0).find('th,td').eq(2).hasClass('integer'))
           .toBe(true);
       });
 
@@ -202,18 +217,17 @@ function (Table, View, Collection, Backbone, $) {
       it('adds column keys as data attrs to header cells', function () {
         table = new Table(tableOptions);
         table.render();
-        expect(table.$('th:eq(0)').attr('data-key')).toEqual('department_name');
-        expect(table.$('th:eq(1)').attr('data-key')).toEqual('timestamp');
-        expect(table.$('th:eq(2)').attr('data-key')).toEqual('value');
-        expect(table.$('th:eq(3)').attr('data-key')).toEqual('timeshift52:value');
-        expect(table.$('th:eq(4)').attr('data-key')).toEqual('number_of_transactions');
+        expect(table.$('th:eq(0)').attr('data-key')).toEqual('timestamp');
+        expect(table.$('th:eq(1)').attr('data-key')).toEqual('value');
+        expect(table.$('th:eq(2)').attr('data-key')).toEqual('timeshift52:value');
+        expect(table.$('th:eq(3)').attr('data-key')).toEqual('number_of_transactions');
       });
 
       it('adds first key as data attrs to header cell if key is an array', function () {
         table = new Table(tableOptions);
         table.collection.options.axes.x.key = ['start', 'end'];
         table.render();
-        expect(table.$('th:eq(0)').attr('data-key')).toEqual('department_name');
+        expect(table.$('th:eq(0)').attr('data-key')).toEqual('start');
       });
 
       it('adds the row index as an attribute to the first cell in a row', function () {
@@ -271,7 +285,7 @@ function (Table, View, Collection, Backbone, $) {
           table = new Table(tableOptions);
           table.render();
           unsortedCols = table.$('thead th:not(.sort-column) .js-click-sort');
-          expect(unsortedCols.length).toEqual(4);
+          expect(unsortedCols.length).toEqual(3);
           expect(unsortedCols.first().text()).toEqual('Click to sort');
           expect(table.$('thead th.sort-column .js-click-sort').length).toEqual(0);
       });
