@@ -179,14 +179,12 @@ function (View, Formatters) {
           return column;
         }, this);
         if (axes.x) {
-          cols.unshift(axes.x);
-          cols.unshift(
-            {
-              key: 'department_name',
-              label: 'Department',
-              format: 'sentence'
-            }
-          );
+          if (axes.x.constructor === Array){
+            _.each(axes.x, function(element){ cols.unshift(element);});
+          }
+          else {
+            cols.unshift(axes.x);
+          }
           this.options.firstColumnIsHeading = true;
         }
       }

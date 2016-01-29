@@ -179,10 +179,17 @@ servicesController.showcaseServiceSlugs = [
 
 servicesController.serviceAxes = {
   axes: {
-    x: {
-      key: 'titleLink',
-      label: 'Service name'
-    },
+    x: [
+      {
+        key: 'titleLink',
+        label: 'Service name'
+      },
+      {
+        key: 'department_name',
+        label: 'Department',
+        format: 'sentence'
+      }
+    ],
     y: [
       {
         key: 'number_of_transactions',
