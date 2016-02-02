@@ -215,3 +215,91 @@ All content should work well with screenreaders (at least Voiceover and JAWS).
 'Work well' means
 - a screenreader user can orientate themselves effectively and use the page.
 - async updates are reported to the user (an 'accessibility' module exists for this).
+
+## Notes for Developers ##
+### Tables ###
+
+Tables are used in the following places:
+
+1. To display a list of dashboards on the services, web-traffic and other dashboards pages
+2. To display data on a dashboard, e.g. [a web-traffic dashboard][1]
+3. To be displayed instead of a graph if javascript is disabled.
+
+[1]: https://www.gov.uk/performance/site-activity-department-for-communities-and-local-government
+
+
+#### Configuration ####
+
+As there are more tables underpinning graphs than any other tables in spotlight, table columns are configured as though they are the axes on a graph.
+
+Columns defined in the x-axis will appear before those in the y-axis.
+
+For example, axes defined as:
+
+    axes: {
+        x: {
+          key: 'key_X',
+          label: 'Label X'
+        },
+        y: [
+          {
+            key: 'key_Y_one',
+            label: 'Label Y1',
+            format: 'integer'
+          },
+          {
+            key: 'key_Y_two',
+            label: 'Label Y2',
+            format: 'integer'
+          }
+        ]
+    }
+
+Will be displayed as:
+
+<table>
+  <tr>
+   <th>Label X</th>
+   <th>Label Y1</th>
+   <th>Label Y2</th>
+  </tr>
+  <tr>
+   <td>Value X</td>
+   <td>Value Y One</td>
+   <td>Value Y Two</td>
+  </tr>
+</table>
+
+The y-axis only accepts a list of column configuration.
+
+The x-axis will accept a list or a single value. If a list is provided, the columns will appear in reverse order in the table.
+For example, x-axis columns defined as:
+
+    x: [
+      {
+        key: 'key_X_one',
+        label: 'Label X1'
+      },
+      {
+        key: 'key_X_two',
+        label: 'Label X2'
+      }
+    ]
+
+
+Will be displayed as:
+
+<table>
+  <tr>
+   <th>Label X2</th>
+   <th>Label X1</th>
+  </tr>
+  <tr>
+   <td>Value X Two</td>
+   <td>Value X One</td>
+  </tr>
+</table>
+
+Axes configuration is most commonly found in the module visualisation settings, and can be edited via the admin app.
+
+Configuration for tables displaying lists of dashboards can be found in their respective controllers.
