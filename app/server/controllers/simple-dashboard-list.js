@@ -89,10 +89,17 @@ function controller (type, req, res) {
 
 controller.axesOptions = {
   axes: {
-    x: {
-      key: 'titleLink',
-      label: 'Dashboard name'
-    },
+    x: [
+      {
+        key: 'titleLink',
+        label: 'Dashboard name'
+      },
+      {
+        key: 'department_name',
+        label: 'Department',
+        format: 'sentence'
+      }
+    ],
     y: []
   }
 };
