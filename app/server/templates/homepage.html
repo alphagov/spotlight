@@ -9,70 +9,61 @@
     </div>
   </div>
 
-  <div class="vertical-padding-medium grid-row" aria-labelledby="header-dashboard-counts">
+  <div class="vertical-padding-medium-top grid-row" aria-labelledby="header-dashboard-counts">
     <h2 class="visuallyhidden" id="header-dashboard-counts">Dashboard counts</h2>
 
     <div class="column-third">
-      <h2 class="vertical-margin-top-small">See how well services are doing</h2>
       <a class="impact-link services-link" href="/performance/services">
         <span class="impact-link-figure services-count"><%= serviceCount %></span> <span class="impact-link-label">service dashboards</span>
       </a>
+      <p class="lead vertical-margin-top-small">See how well services are doing</p>
     </div>
     <div class="column-third">
-      <h2 class="vertical-margin-top-small">See how many people are using services</h2>
       <a class="impact-link" href="/performance/web-traffic">
         <span class="impact-link-figure"><%= webTrafficCount %></span> <span
               class="impact-link-label">web traffic dashboards</span>
       </a>
+      <p class="lead vertical-margin-top-small">See how many people are using services</p>
     </div>
     <div class="column-third">
-      <h2 class="vertical-margin-top-small">See other stats about government services</h2>
       <a class="impact-link" href="/performance/other">
         <span class="impact-link-figure"><%= otherCount %></span> <span class="impact-link-label">other dashboards</span>
       </a>
+      <p class="lead vertical-margin-top-small">See other stats about government services</p>
     </div>
   </div>
 
-  <div class="vertical-padding-medium" aria-labelledby="measuring-services">
-    <h1 class="vertical-margin-top-small heading-small">What we measure</h1>
-    <p class="vertical-margin-small">To understand how government services are performing we measure 4 metrics.</p>
+  <div aria-labelledby="measuring-services">
+    <h1 class="vertical-margin-top-small heading-small">Measuring how services are performing</h1>
   </div>
   <div class="grid-row">
-    <div class="column-quarter vertical-margin-top-small top-services-cost" aria-labelledby="top-services-cost">
-      <div class="icon-top-services">
-        <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" alt="" />
-      </div>
+    <div class="column-half vertical-margin-top-small top-services-cost" aria-labelledby="top-services-cost">
+      <img src="<%= assetPath %>images/<%= assetDigest['cost-per-transaction.svg'] %>" class="icon-top-services" alt="" />
       <h2 class="vertical-margin-small" id="top-services-cost">Cost per transaction</h2>
-      <p>The average cost to government of each transaction.</p>
+      <p class="lead">The average cost to government of each transaction.</p>
     </div>
-    <div class="column-quarter vertical-margin-top-small top-services-satisfaction" aria-labelledby="top-services-satisfaction">
-      <div class="icon-top-services">
-        <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" alt="" />
-      </div>
+    <div class="column-half vertical-margin-top-small top-services-satisfaction" aria-labelledby="top-services-satisfaction">
+      <img src="<%= assetPath %>images/<%= assetDigest['user-satisfaction.svg'] %>" class="icon-top-services" alt="" />
       <h2 class="vertical-margin-small" id="top-services-satisfaction">User satisfaction</h2>
-      <p>Satisfaction is calculated by asking people to rate a service.</p>
+      <p class="lead">Satisfaction is calculated by asking people to rate a service.</p>
     </div>
-    <div class="column-quarter vertical-margin-top-small top-services-completion" aria-labelledby="top-services-completion">
-      <div class="icon-top-services">
-        <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" alt="" />
-      </div>
+    <div class="column-half vertical-margin-top-small top-services-completion" aria-labelledby="top-services-completion">
+      <img src="<%= assetPath %>images/<%= assetDigest['completion-rate.svg'] %>" class="icon-top-services" alt="" />
       <h2 class="vertical-margin-small" id="top-services-completion">Completion rate</h2>
-      <p>The percentage of people who successfully complete a government service.</p>
+      <p class="lead">The percentage of people who successfully complete a government service.</p>
     </div>
-    <div class="column-quarter vertical-margin-top-small top-services-takeup" aria-labelledby="top-services-takeup">
-      <div class="icon-top-services">
-        <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" alt="" />
-      </div>
+    <div class="column-half vertical-margin-top-small top-services-takeup" aria-labelledby="top-services-takeup">
+      <img src="<%= assetPath %>images/<%= assetDigest['digital-takeup.svg'] %>" class="icon-top-services" alt="" />
       <h2 class="vertical-margin-small" id="top-services-takeup">Digital take-up</h2>
-      <p>The percentage of people using government services online compared to other methods (eg phone or post).</p>
+      <p class="lead">The percentage of people using government services online compared to other methods (eg phone or post).</p>
     </div>
-  </div>
-  <div class="vertical-padding-small" aria-labelledby="measuring-services">
-    <div class="vertical-spacing-small"><a href="https://www.gov.uk/service-manual/measurement/index.html">Find out about how these metrics are defined and measured</a></div>
-    <hr>
+    <p class="lead column-two-thirds">
+      <a href="https://www.gov.uk/service-manual/measurement/index.html" aria-labelledby="measuring-services">Find out about how these metrics are defined and measured</a>
+    </p>
+
   </div>
   <div class="vertical-padding-medium" aria-labelledby="get-a-dashboard">
     <h2 class="vertical-margin-top-small" id="get-a-dashboard">Are you responsible for publishing data about your service?</h2>
-    <p><a href="http://performance-platform.readthedocs.org">Get a dashboard</a></p>
+    <p class="lead"><a href="http://performance-platform.readthedocs.org">Get a dashboard</a></p>
   </div>
 </div>

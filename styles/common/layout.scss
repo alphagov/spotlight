@@ -66,6 +66,13 @@ $vertical-unit: $gutter-half;
   }
 }
 
+.vertical-padding-medium-top {
+  padding-top: $vertical-unit;
+  @include media(tablet) {
+    padding-top: $vertical-unit * 2;
+  }
+}
+
 .vertical-spacing-bottom {
   margin-bottom: $vertical-unit;
   padding-bottom: $vertical-unit;
