@@ -88,6 +88,11 @@ $vertical-unit: $gutter-half;
   margin-bottom: 5px;
 }
 
+.vertical-margin-medium {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .outdent-to-full-width {
   @extend %outdent-to-full-width;
 }
