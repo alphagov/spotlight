@@ -196,11 +196,11 @@ function (View, Formatters) {
             integration tests do not. The cheapseats tests only work with
             options 1 and 3, and the unit tests only work with option 2.
 
-            length is property that is exclusive to arrays.
-            If an object doesn't have a length property, the expression returns
-            a falsy value.
+            Used the code from http://javascript.crockford.com/remedial.html to
+            determine whether or not an object is an array. (see the section on
+            overloading the typeOf function)
           */
-          if (axes.x.length > 0){
+          if (Object.prototype.toString.call(axes.x) == '[object Array]'){
             _.each(axes.x, function(element){ cols.unshift(element);});
           }
           else {
