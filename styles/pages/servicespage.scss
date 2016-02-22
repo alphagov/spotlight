@@ -1,0 +1,18 @@
+.servicespage {
+  .services {
+    margin: 2em 0 1em 0;
+  }
+
+  .service-kpis .number_of_transactions {
+    .impact-number .no-data {
+      display: inline-block;
+      @include core-48()
+    }
+
+    .summary-figure-unit {
+      @include core-16();
+      font-weight: bold;
+      text-transform: lowercase;
+    }
+  }
+}

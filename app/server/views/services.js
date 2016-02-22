@@ -28,6 +28,10 @@ module.exports = BaseView.extend({
     this.filterCollection.reset(filteredList);
   },
 
+  getBodyClasses: function () {
+    return 'servicespage';
+  },
+
   getPageTitle: function () {
     return 'Services data - GOV.UK';
   },

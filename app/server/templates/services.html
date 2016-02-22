@@ -38,7 +38,7 @@
 
 </form>
 
-<div class="services vertical-spacing-bottom">
+<div class="services group vertical-spacing-bottom">
   <div class="cols2">
     <h2 class="visuallyhidden">Number of services</h2>
     <p class="visuallyhidden">The services list can be filtered by keyword and department or agency.</p>
@@ -54,7 +54,7 @@
       </span>
     </div>
     <h2 class="visuallyhidden">CSV file of full data set</h2>
-    <div class="cols-row cols-row-no-margin vertical-spacing-bottom">
+    <div class="cols-row cols-row-no-margin vertical-spacing-bottom text-small">
       <a href="/performance/data/transaction-volumes.csv">Download cost per transaction and volume data (CSV)</a>
     </div>
   </div>
@@ -64,16 +64,16 @@
     <div class="cols-row cols-row-no-margin">
       <% _.each(aggregateVals, function (kpi, index) { %>
       <div class="vertical-spacing-bottom module kpi <%= kpi.key %>">
-        <h3 class="heading-2"><%= kpi.label %></h3>
         <div class="visualisation">
-          <div class="visualisation-inner">
+          <div class="visualisation-inner impact-number group">
             <div class="stat">
-              <p class="single-stat-headline impact-number">
+              <p class="single-stat-headliner">
                 <% if (kpi.formattedValue) {%>
-                  <strong><%= kpi.formattedValue %></strong>
+                  <strong class="align-top impact-figure-with-desc"><%= kpi.formattedValue %></strong>
                 <% } else { %>
-                  <strong class="no-data">no data</strong>
+                  <strong class="no-data align-top impact-figure-with-desc">no data</strong>
                 <% } %>
+                <span class="summary-figure-unit"><%= kpi.label %></h3>
               </p>
             </div>
           </div>
