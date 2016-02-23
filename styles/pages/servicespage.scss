@@ -15,4 +15,21 @@
       text-transform: lowercase;
     }
   }
+
+  @include media(desktop) {
+    thead [data-key="number_of_transactions"] {
+      position: relative;
+      a {
+        position: absolute;
+        width: 15em;
+        left: -9em;
+      }
+    }
+  }
+
+  #content {
+    section.filtered-list {
+      padding-top: 0;
+    }
+  }
 }
