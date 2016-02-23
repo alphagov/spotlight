@@ -13,7 +13,7 @@
   display: block;
   margin: 0 auto;
   max-width: 1020px;
-  padding: 15px;
+  padding: 0 15px;
   // Opera requires display:block for max-width to work...
   @include media(tablet) {
     padding: 0 30px;
