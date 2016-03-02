@@ -1,5 +1,6 @@
 var path = require('path');
 var requirejs = require('requirejs');
+var fs = require('fs');
 var templatePath = path.resolve(__dirname, '../templates/homepage.html');
 
 var Backbone = require('backbone');
@@ -66,6 +67,7 @@ module.exports = BaseView.extend({
       webTrafficCount: this.contentDashboards.length,
       otherCount: this.otherDashboards.length,
       showcaseServices: this.showcaseServices,
+      get_in_touch: fs.readFileSync(path.resolve(__dirname, '../templates/page-components/get_in_touch.html'))
     }, this.model.toJSON()));
 
   }

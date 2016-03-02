@@ -1,6 +1,10 @@
 .homepage {
   overflow-x: hidden;
+  .column-third {
+    margin-bottom: 1.2em;
+  }
 }
+
 .homepage #global-header-bar {
   display: none;
 }

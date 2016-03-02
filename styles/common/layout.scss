@@ -13,7 +13,7 @@
   display: block;
   margin: 0 auto;
   max-width: 1020px;
-  padding: 15px;
+  padding: 0 15px;
   // Opera requires display:block for max-width to work...
   @include media(tablet) {
     padding: 0 30px;
@@ -66,6 +66,13 @@ $vertical-unit: $gutter-half;
   }
 }
 
+.vertical-padding-medium-top {
+  padding-top: $vertical-unit;
+  @include media(tablet) {
+    padding-top: $vertical-unit * 2;
+  }
+}
+
 .vertical-spacing-bottom {
   margin-bottom: $vertical-unit;
   padding-bottom: $vertical-unit;
@@ -79,6 +86,11 @@ $vertical-unit: $gutter-half;
 .vertical-margin-small {
   margin-top: 0;
   margin-bottom: 5px;
+}
+
+.vertical-margin-medium {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .outdent-to-full-width {

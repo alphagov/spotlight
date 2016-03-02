@@ -1,5 +1,6 @@
 var requirejs = require('requirejs');
 var path = require('path');
+var fs = require('fs');
 
 var BaseView = require('./govuk');
 var TableView = requirejs('extensions/views/table');
@@ -25,6 +26,10 @@ module.exports = BaseView.extend({
     });
 
     this.filterCollection.reset(filteredList);
+  },
+
+  getBodyClasses: function () {
+    return 'servicespage';
   },
 
   getPageTitle: function () {
@@ -77,7 +82,8 @@ module.exports = BaseView.extend({
     }, {
       heading: this.heading,
       example: this.example,
-      noun: this.model.get('noun')
+      noun: this.model.get('noun'),
+      get_in_touch: fs.readFileSync(path.resolve(__dirname, '../templates/page-components/get_in_touch.html'))
     }));
 
   }

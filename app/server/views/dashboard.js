@@ -1,5 +1,5 @@
 var path = require('path');
-
+var fs = require('fs');
 var View = require('./govuk');
 var template = path.resolve(__dirname, '../templates/dashboard.html');
 var pptTemplate = path.resolve(__dirname, '../templates/module-page.html');
@@ -65,6 +65,7 @@ module.exports = View.extend({
     context.schemaOrgItemType = this.getSchemaOrgItemType();
     context.tagline = this.getTagline();
     context.hasFooter = false;
+    context.get_in_touch = fs.readFileSync(path.resolve(__dirname, '../templates/page-components/get_in_touch.html'));
 
     return context;
   },
