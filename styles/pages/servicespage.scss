@@ -17,12 +17,13 @@
   }
 
   @include media(desktop) {
-    thead [data-key="number_of_transactions"] {
+    thead {
       position: relative;
-      a {
-        position: absolute;
-        width: 15em;
-        left: -9em;
+      [data-key="number_of_transactions"] {
+        a {
+          position: absolute;
+          right: 1.2em;
+        }
       }
     }
   }
