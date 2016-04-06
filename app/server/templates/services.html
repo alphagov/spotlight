@@ -55,7 +55,7 @@
     </div>
     <h2 class="visuallyhidden">CSV file of full data set</h2>
     <div class="cols-row cols-row-no-margin vertical-spacing-bottom text-small">
-      <a href="/performance/data/transaction-volumes.csv">Download cost per transaction and volume data (CSV)</a>
+      <a rel="download" href="/performance/data/transaction-volumes.csv">Download cost per transaction and volume data (CSV)</a>
     </div>
   </div>
 
@@ -111,3 +111,14 @@
   <div class="heading-3 mq-small-only">Sort by:</div>
   <%= table %>
 </section>
+
+<% if (process.env.NODE_ENV == 'production') { %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js""></script>
+
+<script>
+  $(document).ready(function() {
+      GOVUK.analyticsPlugins.downloadLinkTracker({selector: 'a[rel=download]'});
+    }
+  );
+</script>
+<% } %>

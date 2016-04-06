@@ -177,6 +177,7 @@ module.exports = function (grunt) {
         src: [
           'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/google-analytics-universal-tracker.js',
           'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/analytics.js',
+          'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/download-link-tracker.js',
           'app/client/analytics.js'
         ],
         dest: 'public/javascripts/analytics.js'
