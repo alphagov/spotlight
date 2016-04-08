@@ -22,6 +22,9 @@ module.exports = {
     app.disable('x-powered-by');
 
     (function () {
+      // The number of milliseconds in one day
+      var oneDay = 86400000;
+
       app.use(require('./stats'));
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
@@ -36,7 +39,7 @@ module.exports = {
       app.set('bigScreenBaseURL', global.config.bigScreenBaseURL);
       app.use(morgan('dev'));
       app.use(compression());
-      app.use('/spotlight', express.static(path.join(rootDir, 'public')));
+      app.use('/spotlight', express.static(path.join(rootDir, 'public'), { maxAge: oneDay }));
     }());
 
     if (environment === 'development') {
