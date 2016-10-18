@@ -5,6 +5,5 @@
   "externalBackdropUrl": "https://www.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
   "govukHost": "www.alphagov.co.uk",
   "stagecraftUrl": "https://stagecraft.production.performance.service.gov.uk",
-  "statsdPrefix": "pp.apps.spotlight",
   "bigScreenBaseURL": "https://www.performance.service.gov.uk"
 }
