@@ -2,7 +2,7 @@ var morgan  = require('morgan');
 
 var StatsD = require('node-statsd').StatsD;
 var client = new StatsD({
-  prefix: global.config.statsdPrefix || ''
+  prefix: 'pp.apps.spotlight'
 });
 
 var stats = {
