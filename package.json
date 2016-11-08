@@ -63,7 +63,7 @@
     "requirejs": "2.1.14",
     "sanitizer": "0.1.1",
     "selenium-server": "2.43.1",
-    "spdy": "1.29.1",
+    "spdy": "3.4.4",
     "uglify-js": "2.4.14",
     "winston": "0.8.1",
     "xmlhttprequest": "1.6.0"
