@@ -21,11 +21,11 @@ module.exports = {
 
   'Text filter': function (client) {
     client
-      .assert.containsText(this.selectors.filterTable, 'Department for Business, Innovation & Skills')
+      .assert.containsText(this.selectors.filterTable, 'Department for Business, Energy & Industrial Strategy')
       .assert.containsText(this.selectors.filterTable, 'Debt Relief Order (DRO) applicatons')
       .setValue(this.selectors.textFilter, ['prison', client.Keys.ENTER])
       .waitForElementVisible(this.selectors.filterTable, 1000)
-      .assert.doesNotContainText(this.selectors.filterTable, 'Department for Business, Innovation & Skills')
+      .assert.doesNotContainText(this.selectors.filterTable, 'Department for Business, Energy & Industrial Strategy')
       .assert.doesNotContainText(this.selectors.filterTable, 'Debt Relief Order (DRO) applicatons')
       .assert.containsText(this.selectors.filterTable, 'Ministry of Justice')
       .assert.containsText(this.selectors.filterTable, 'Bookings for prison visits')
