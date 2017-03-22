@@ -22,7 +22,7 @@ module.exports = {
   'Text filter': function (client) {
     client
       .assert.containsText(this.selectors.filterTable, 'Department for Business, Energy & Industrial Strategy')
-      .assert.containsText(this.selectors.filterTable, 'Debt Relief Order (DRO) applicatons')
+      .assert.containsText(this.selectors.filterTable, 'Debt Relief Order (DRO) applications')
       .setValue(this.selectors.textFilter, ['prison', client.Keys.ENTER])
       .waitForElementVisible(this.selectors.filterTable, 1000)
       .assert.doesNotContainText(this.selectors.filterTable, 'Department for Business, Energy & Industrial Strategy')

@@ -1,12 +1,19 @@
 var requirejs = require('requirejs');
+var url = require('url');
+var sanitizer = require('sanitizer');
+var StagecraftApiClient = requirejs('stagecraft_api_client');
 
 var controllerMap = require('../../server/controller_map')();
-var StagecraftApiClient = requirejs('stagecraft_api_client');
-var url = require('url');
+
+var sanitizeObject = function (object) {
+  return _.mapValues(object, function(value) {
+    return sanitizer.escape(value);
+  });
+};
 
 var buildStagecraftApiClient = function (req) {
   var this_client_instance = new StagecraftApiClient({
-    params: url.parse(req.originalUrl, true).query
+    params: sanitizeObject(url.parse(req.originalUrl, true).query)
   }, {
     ControllerMap: controllerMap,
     requestId: req.get('Request-Id'),
