@@ -31,6 +31,7 @@ describe('get_dashboard_and_render', function () {
       },
       originalUrl: ''
     };
+
     fakeStatusCall = jasmine.createSpy('status');
     fake_response = {status: fakeStatusCall};
   });
@@ -39,6 +40,23 @@ describe('get_dashboard_and_render', function () {
     expect(StagecraftApiClient.prototype.initialize).toHaveBeenCalledWith(
       {
         params: {}
+      },
+      {
+        ControllerMap: controllerMap,
+        requestId: 'Xb35Gt',
+        govukRequestId: '1231234123'
+      });
+    expect(client_instance.stagecraftUrlRoot).toEqual('urlURL/public/dashboards');
+  });
+  it('should escape XSS attempts in queries', function(){
+    fake_request.originalUrl = 'http://localhost:3057/performance/central-government-websites?sortby=percentOfTotal(count:sum)%22%27--!%3E%3C/Title/%3C/Style/%3C/script/%3C/Textarea/%3C/Noscr%20ipt/%3C/Pre/%3C/Xmp%3E%3CSvg/Onload=confirm`OPENBUGBOUNTY`%3E&sortorder=descending';
+    var client_instance = get_dashboard_and_render(fake_request, fake_response, fakeRenderContent);
+    expect(StagecraftApiClient.prototype.initialize).toHaveBeenCalledWith(
+      {
+        params: {
+          sortby: 'percentOfTotal(count:sum)&#34;\'--!&gt;&lt;/Title/&lt;/Style/&lt;/script/&lt;/Textarea/&lt;/Noscr ipt/&lt;/Pre/&lt;/Xmp&gt;&lt;Svg/Onload=confirm`OPENBUGBOUNTY`&gt;',
+          sortorder: 'descending'
+        }
       },
       {
         ControllerMap: controllerMap,
