@@ -3,7 +3,6 @@ sudo: false
 node_js:
   - "0.10"
 install:
-  - travis_retry npm install -g grunt-cli@0.1.9
   - travis_retry npm install
 notifications:
   email: false
@@ -23,6 +22,6 @@ env:
 #   - TEST_CMD: shell:cheapseats:--range:101..150
 #   - TEST_CMD: shell:cheapseats:--range:151..
 #
-script: "grunt $TEST_CMD"
+script: "npm run $TEST_CMD"
 matrix:
   fast_finish: true

@@ -13,9 +13,20 @@
   },
   "private": true,
   "scripts": {
+    "build:production": "grunt build:production",
+    "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}",
     "test": "grunt test:all",
+    "shell:cheapseats": "grunt shell:cheapseats",
+    "shell:cheapseats_full_run": "grunt shell:cheapseats_full_run",
+    "test:functional": "grunt test:functional",
+    "test:functional:ci": "grunt test:functional:ci",
+    "test:functional:ff": "grunt test:functional:ff",
+    "test:functional:all": "grunt test:functional:all",
+    "jasmine_node": "grunt jasmine_node",
+    "jasmine": "grunt jasmine",
+    "test:unit": "grunt test:unit",
     "start": "grunt",
-    "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}"
+    "jasmine:spotlight:build": "grunt jasmine:spotlight:build"
   },
   "dependencies": {
     "argh": "0.1.3",

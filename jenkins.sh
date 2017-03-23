@@ -3,5 +3,5 @@ set -e
 
 npm install
 
-grunt test:unit
-grunt shell:cheapseats
+npm run test:unit
+npm run shell:cheapseats
