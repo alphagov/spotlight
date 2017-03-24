@@ -21,22 +21,7 @@ function (Collection, _) {
 
     departmentValid: function(departmentFilter) {
       var valid = _.map(this.departmentList, this.getSlug);
-      console.log('{{{}}}', valid);
       return _.include(valid, departmentFilter);
-    },
-
-    serviceGroupValid: function(serviceGroupFilter) {
-      var valid = _.map(this.serviceGroupList, this.getSlug);
-      return _.include(valid, serviceGroupFilter);
-    },
-
-    sanitizeServiceGroup: function(serviceGroup) {
-      serviceGroup = serviceGroup || {};
-      if (this.serviceGroupValid(serviceGroup)) {
-        return serviceGroup;
-      } else {
-        return null;
-      }
     },
 
     sanitizeDepartmentOrAgency: function(departmentOrAgency) {

@@ -64,10 +64,13 @@ var renderContent = function (req, res, client_instance) {
     departmentFilter = collection.sanitizeDepartmentOrAgency(departmentFilter);
 
     var departmentFilterTitle = collection.getDepartmentFilterTitle(departmentFilter);
-    var serviceGroupFilter = req.query.servicegroup || null;
-    serviceGroupFilter = collection.sanitizeServiceGroup(serviceGroupFilter);
 
-    var serviceGroupFilterTitle = collection.getServiceGroupFilterTitle(serviceGroupFilter);
+
+    // TODO: service group filtering is no longer part of the UI.
+    // These fields can be removed.
+    // https://github.com/alphagov/spotlight/commit/c75f2e61660282b7c5c0e0d5d332994a53e9b814#diff-647e7ae623674ca999138c918d8f51b9
+    var serviceGroupFilter = null;
+    var serviceGroupFilterTitle = '';
 
     var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
       title: 'Services data',

@@ -90,19 +90,31 @@ describe('Services Controller', function () {
     var queryReq = _.cloneDeep(req);
     queryReq.query.department = 'home-office';
     client_instance = controller('services', queryReq, res);
+
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
+
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
       departmentFilter: 'home-office'
     }));
   });
 
-  it('passes a services filter to the model if set in the querystring', function () {
+  it('passes a null department filter to the model if set to an invalid value in the querystring', function () {
     var queryReq = _.cloneDeep(req);
-    queryReq.query.servicegroup = 'carers-allowance';
+    queryReq.query.department = 'gnome-office';
     client_instance = controller('services', queryReq, res);
+
+    client_instance.set({
+      'status': 200,
+      'items': _.cloneDeep(dashboards.items)
+    });
+
     client_instance.trigger('sync');
     expect(Backbone.Model.prototype.initialize).toHaveBeenCalledWith(jasmine.objectContaining({
-      serviceGroupFilter: 'carers-allowance'
+      departmentFilter: null
     }));
   });
 
