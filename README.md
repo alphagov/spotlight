@@ -55,9 +55,8 @@ nvm use
 You can then run the app as follows:
 
 ```bash
-npm install -g grunt-cli # install grunt globally
 npm install
-grunt
+npm start
 ```
 
 Now you should be able to connect to the app at `http://localhost:3057`. If you're running the app from the govuk vm, you need to replace localhost with the IP address of your [vagrant] machine in the url. Currently this is: `http://10.1.1.254:3057`
@@ -98,20 +97,20 @@ bowl performance
 
 Tests are divided into ones that work on both client and server (`test/spec/shared`), ones that are server-only (`test/spec/server`) and ones that are client-only (`test/spec/client`).
 
-`grunt test:all` runs all three of these tests, as well as linting the codebase:
+`npm test` runs all three of these tests, as well as linting the codebase:
 
-- `grunt jasmine_node` executes shared and server Jasmine tests in Node.js
-- `grunt jasmine` executes shared and client Jasmine tests in PhantomJS
-- `grunt shell:cheapseats` executes feature tests using [cheapseats][] with a small subset of dashboards, for speed
-- `grunt shell:cheapseats_full_run` runs cheapseats with all dashboards
-- `grunt test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
+- `npm run jasmine_node` executes shared and server Jasmine tests in Node.js
+- `npm run jasmine` executes shared and client Jasmine tests in PhantomJS
+- `npm run shell:cheapseats` executes feature tests using [cheapseats][] with a small subset of dashboards, for speed
+- `npm run shell:cheapseats_full_run` runs cheapseats with all dashboards
+- `npm run test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
 
 ##### Functional tests #####
-As part of the CI (travis) `grunt test:functional:ci` is run. This spins up an instance of spotlight, nightwatch and phantomjs to run the tests in a headless environment.
+As part of the CI (travis) `npm run test:functional:ci` is run. This spins up an instance of spotlight, nightwatch and phantomjs to run the tests in a headless environment.
 
-To assist with debugging the functional tests can also be run in a selenium webdriver using the following command `grunt test:functional:ff`
+To assist with debugging the functional tests can also be run in a selenium webdriver using the following command `npm run test:functional:ff`
 
-If you want to run against firefox,chrome and phantom you can also do `grunt test:functional:all`.
+If you want to run against firefox,chrome and phantom you can also do `npm run test:functional:all`.
 
 All the functional tasks except `ci` will require a server to be running already.
 
@@ -124,7 +123,7 @@ components are available at `/tests`. The specrunner gets automatically
 recreated on server start and when the specfiles change. Due to a
 [bug in grunt-contrib-watch][watch-20], new spec files are not currently
 detected automatically. When you add a new spec file, either restart the
-app or run `grunt jasmine:spotlight:build`.
+app or run `npm run jasmine:spotlight:build`.
 
 [watch-20]: https://github.com/gruntjs/grunt-contrib-watch/issues/20
 
@@ -138,7 +137,7 @@ to view the console.
 
 ### Production ###
 
-`grunt build:production` to create a production release.
+`npm run build:production` to create a production release.
 
 `NODE_ENV=production node app/server.js` to run the app in production mode.
 
