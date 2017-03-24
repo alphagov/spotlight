@@ -61,8 +61,12 @@ var renderContent = function (req, res, client_instance) {
     });
 
     var departmentFilter = req.query.department || null;
+    departmentFilter = collection.sanitizeDepartmentOrAgency(departmentFilter);
+
     var departmentFilterTitle = collection.getDepartmentFilterTitle(departmentFilter);
     var serviceGroupFilter = req.query.servicegroup || null;
+    serviceGroupFilter = collection.sanitizeServiceGroup(serviceGroupFilter);
+
     var serviceGroupFilterTitle = collection.getServiceGroupFilterTitle(serviceGroupFilter);
 
     var model = new Backbone.Model(_.extend(PageConfig.commonConfig(req), {
@@ -201,4 +205,3 @@ servicesController.serviceAxes = {
 };
 
 module.exports = servicesController;
-
