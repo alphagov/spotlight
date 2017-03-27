@@ -13,6 +13,8 @@ module.exports = View.extend({
     return this.loadTemplate(templatePath, context);
   },
 
+  getReportForm: function() { return ''; },
+
   errors: {
     '404': {
       title: 'This page cannot be found',

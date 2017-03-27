@@ -40,11 +40,10 @@ function (Model) {
           logger.info('failed to fetch stagecraft response', {
             'path': model.path,
             'status': xhr.status,
-            'errorText': xhr.responseText
+            'responseText': xhr.responseText
           });
           this.set('controller', this.controllers.error);
           this.set('status', xhr.status);
-          this.set('errorText', xhr.responseText);
         }, this)
       }, options);
       logger.info('Fetching <%s>', this.url(), {

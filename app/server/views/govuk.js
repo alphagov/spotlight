@@ -1,6 +1,8 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
+var serialize = require('serialize-javascript');
+
 var View = requirejs('extensions/views/view');
 var templater = require('../mixins/templater');
 
@@ -68,12 +70,17 @@ module.exports = View.extend(templater).extend({
     var baseContext = this.model.toJSON();
     baseContext.model = this.model;
 
+    var serializedModel = serialize(this.model.toJSON(), { isJSON: true });
+
+    var headContext = _.extend(baseContext, { metaDescription: this.getMetaDescription() });
+    var bodyEndContext = _.extend(baseContext, { serializedModel: serializedModel });
+
     return _.extend(
       View.prototype.templateContext.apply(this, arguments),
       baseContext,
       {
-        head: this.loadTemplate(headTemplate, _.extend(baseContext, { metaDescription: this.getMetaDescription() })),
-        bodyEnd: this.loadTemplate(this.bodyEndTemplate, baseContext),
+        head: this.loadTemplate(headTemplate, headContext),
+        bodyEnd: this.loadTemplate(this.bodyEndTemplate, bodyEndContext),
         topOfPage: '',
         pageTitle: this.getPageTitle(),
         bodyClasses: this.getBodyClasses(),

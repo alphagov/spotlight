@@ -1,6 +1,6 @@
 <script type="text/javascript">
   GOVUK = GOVUK || {};
-  GOVUK.config = <%= JSON.stringify(model.toJSON()) %>;
+  GOVUK.config = <%= serializedModel %>;
 </script>
 
 <% if (model.get('script')) { %>

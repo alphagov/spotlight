@@ -70,12 +70,6 @@ function (StagecraftApiClient, Backbone) {
             Backbone.sync = fake_sync;
             spyOn(Backbone, 'sync').andCallThrough();
           });
-          it('it should set error attributes on the model', function () {
-            client.fetch();
-            expect(client.get('status')).toEqual(404);
-            expect(client.get('errorText')).toEqual('file not found');
-            expect(Backbone.sync.calls.length).toEqual(1);
-          });
         });
         describe('on a 502', function (){
           beforeEach(function () {
@@ -84,12 +78,6 @@ function (StagecraftApiClient, Backbone) {
             };
             Backbone.sync = fake_sync;
             spyOn(Backbone, 'sync').andCallThrough();
-          });
-          it('it should set error attributes on the model', function () {
-            client.fetch();
-            expect(client.get('status')).toEqual(502);
-            expect(client.get('errorText')).toEqual('bad gateway');
-            expect(Backbone.sync.calls.length).toEqual(1);
           });
         });
       });

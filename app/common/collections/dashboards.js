@@ -14,6 +14,34 @@ function (Collection, _) {
       this.serviceGroupList = this.getPropertyList(models, 'service');
     },
 
+    agencyValid: function(agencyFilter) {
+      var valid = _.map(this.agencyList, this.getSlug);
+      return _.include(valid, agencyFilter);
+    },
+
+    departmentValid: function(departmentFilter) {
+      var valid = _.map(this.departmentList, this.getSlug);
+      return _.include(valid, departmentFilter);
+    },
+
+    sanitizeDepartmentOrAgency: function(departmentOrAgency) {
+      if(departmentOrAgency === null || departmentOrAgency === undefined) {
+        return departmentOrAgency;
+      }
+
+      var isAgency = departmentOrAgency.indexOf('agency:') === 0;
+
+      if (isAgency && !this.agencyValid(departmentOrAgency.replace('agency:', ''))) {
+        return null;
+      }
+
+      if (!isAgency && !this.departmentValid(departmentOrAgency)) {
+        return null;
+      }
+
+      return departmentOrAgency;
+    },
+
     filterServices: function (filter) {
       filter = filter || {};
       var textFilter = (filter.text || '').toUpperCase(),
