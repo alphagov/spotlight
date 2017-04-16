@@ -1,0 +1,238 @@
+{
+  "slug": "book-practical-driving-test",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Practical driving test bookings",
+  "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>More performance information for the <strong>practical driving test</strong> can be found <a href='/performance/practical-driving-test'>here</a>. The performance dashboard for the <strong>Practical driving test changes and cancellations</strong> service can be found <a href='/performance/change-practical-driving-test'>here</a>",
+  "department": {
+     "title": "Department for Transport",
+     "abbr": "DfT"
+  },
+  "agency": {
+     "title": "Driver and Vehicle Standards Agency",
+     "abbr": "DVSA"
+  },
+  "relatedPages": {
+    "improve-dashboard-message": true,
+    "transaction": {
+      "title": "Book your official practical driving or riding test",
+      "url" : "https://www.gov.uk/book-practical-driving-test"
+    }
+  },
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
+  "modules": [
+    {
+      "slug": "user-satisfaction",
+      "module-type": "user_satisfaction_graph",
+      "title": "User satisfaction",
+      "description": "Average score of satisfied responses",
+      "data-group": "book-practical-driving-test",
+      "data-type": "customer-satisfaction",
+      "duration": 60,
+      "info": [
+        "Data source: GOV.UK user feedback database",
+        "User satisfaction is measured by surveying users at the point of transaction completion. It is measured on a five-point scale, from most satisfied to least satisfied. The mean of these responses is converted to a percentage for display purposes."
+      ],
+      "period": "day",
+      "value-attribute": "rating"
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Bookings breakdown",
+      "description": "Practical driving test bookings <span class=\"group0\">online</span>, by <span class=\"group1\">telephone</span> and by <span class=\"group2\">post</span>",
+      "data-group": "driving-test-practical",
+      "data-type": "transactions-by-channel",
+      "category": "channel",
+      "filter-by": ["sector:public","action:book"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Driver and Vehicle Standards Agency",
+        "Practical driving test (public users) booking, broken down by channel"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Online",
+            "categoryId": "online",
+            "format": "integer"
+          },
+          {
+            "label": "Telephone",
+            "categoryId": "phone",
+            "format": "integer"
+          },
+          {
+            "label": "Post",
+            "categoryId": "post",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "digital-takeup",
+      "module-type": "completion_rate",
+      "title": "Digital take-up",
+      "description": "",
+      "data-group": "driving-test-practical",
+      "data-type": "transactions-by-channel",
+      "filter-by": ["sector:public","action:book"],
+      "duration": 13,
+      "info": [
+        "Data source: Driver and Vehicle Standards Agency",
+        "<a href='/service-manual/measurement/digital-takeup' rel='external'>Digital take-up</a> measures the percentage of completed applications that are made through a digital channel versus non-digital channels."
+      ],
+      "numerator-matcher": "online",
+      "denominator-matcher": "[online|phone|post]",
+      "matching-attribute": "channel",
+      "value-attribute": "count:sum"
+    },
+    {
+      "slug": "completion-rate",
+      "module-type": "completion_rate",
+      "title": "Completion rate",
+      "description": "",
+      "data-group": "driving-test-practical-public",
+      "data-type": "journey",
+      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "duration": 13,
+      "info": [
+        "Data source: Google Analytics",
+        "<a href='/service-manual/measurement/completion-rate' rel='external'>Completion rate</a> measures the proportion of people who started a a booking and were able to complete it.",
+        "It is calculated as percentage of unique visitors who arrived at the final stage of the service out of those who arrived at the start."
+      ],
+      "denominator-matcher": "choose-type-of-test",
+      "numerator-matcher": "booking-complete",
+      "matching-attribute": "eventAction"
+    },
+    {
+      "slug": "users-at-each-step",
+      "module-type": "journey",
+      "title": "Users at each step",
+      "description": "Number of users who completed important steps of the transaction last week",
+      "info": [
+        "Data source: Google Analytics",
+        "The total number of users who arrived at each step.",
+        "Number of users is measured using the count of unique events from each step."
+      ],
+      "data-group": "driving-test-practical-public",
+      "data-type": "journey",
+      "filter-by": ["eventCategory:pp-book-practical-driving-test-public"],
+      "matching-attribute": "eventAction",
+      "axes": {
+        "y": [
+          {"journeyId": "choose-type-of-test", "label": "Choose type of test", "format": "integer"},
+          {"journeyId": "enter-licence-details", "label": "Enter licence details", "format": "integer"},
+          {"journeyId": "choose-test-centre", "label": "Choose test centre", "format": "integer"},
+          {"journeyId": "choose-date-and-time", "label": "Choose date and time", "format": "integer"},
+          {"journeyId": "enter-your-details", "label": "Enter your details", "format": "integer"},
+          {"journeyId": "enter-payment-details", "label": "Enter payment details", "format": "integer"},
+          {"journeyId": "confirm-all-details", "label": "Confirm all details", "format": "integer"},
+          {"journeyId": "booking-complete", "label": "Booking complete", "format": "integer"}
+        ]
+      }
+    },
+    {
+      "slug": "help-usage",
+      "module-type": "table",
+      "title": "Help usage",
+      "description": "Number of occurences of users selecting online help during the booking process",
+      "data-group": "driving-test-practical-public",
+      "data-type": "journey-help",
+      "query-params": {
+        "filter_by": ["eventCategory:pp-book-practical-driving-test-public","eventType:help"],
+        "group_by": "eventDetail",
+        "collect": ["uniqueEvents:sum"],
+        "period": "week",
+        "duration": 1
+      },
+      "axes": {
+        "x": {
+          "label": "Help usage",
+          "key": "eventDetail",
+          "format": {
+            "type": "sentence",
+            "uppercase": ["dvsa"]
+          }
+        },
+        "y": [
+          {
+            "label": "Volume last week",
+            "key": "uniqueEvents:sum",
+            "format": "integer"
+          },
+          {
+            "label": "Percentage of total help usage",
+            "key": "percentOfTotal(uniqueEvents:sum)",
+            "format": "percent"
+          }
+        ]
+      },
+      "sort-by": "uniqueEvents:sum",
+      "sort-order": "descending",
+      "info": [
+        "<li>Data source: <abbr title='Driver and Vehicle Standards Agency'>DVSA</abbr> database</li>",
+        "<li>More than one help use may be logged per user.</li>"
+      ]
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "day",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "hour",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "slug": "practical-driving-test",
+  "page-type": "dashboard",
+  "dashboard-type": "transaction",
+  "published": false,
+  "strapline": "Dashboard",
+  "title": "Practical driving test (public users)",
+  "description": "Before you can drive on public roads, you need to show you can drive safely by passing the practical driving test and the driving theory test.<br><br>This dashboard provides additional information to the :<br><a href='/performance/book-practical-driving-test'>Practical driving test bookings</a> dashboard<br><a href='/performance/change-practical-driving-test'>Practical driving test changes and cancellations</a> dashboard",
+  "department": {
+     "title": "Department for Transport",
+     "abbr": "DfT"
+  },
+  "agency": {
+     "title": "Driver and Vehicle Standards Agency",
+     "abbr": "DVSA"
+  },
+  "relatedPages": {
+    "improve-dashboard-message": true,
+    "transaction": {
+        "title": "Book your official practical driving or riding test",
+        "url" : "https://www.gov.uk/book-practical-driving-test"
+    }
+  },
+  "customer-type": "Individuals",
+  "business-model": "Fees and charges",
+  "modules": [
+    {
+      "slug": "live-service-usage",
+      "module-type": "realtime",
+      "title": "Live service usage",
+      "description": "Live number of users on any page across the service",
+      "info": [
+        "Data source: Google Analytics",
+        "Shows the estimated number of users currently accessing the service on GOV.UK."
+      ],
+      "data-group": "driving-test-practical-public",
+      "data-type": "realtime"
+    },
+    {
+      "slug": "volumetrics",
+      "module-type": "grouped_timeseries",
+      "title": "Bookings, changes and cancellations breakdown",
+      "description": "Practical driving test <span class=\"group0\">bookings</span> and <span class=\"group1\">changes and cancellations</span>",
+      "data-group": "driving-test-practical",
+      "data-type": "transactions-by-channel",
+      "category": "action",
+      "filter-by": ["sector:public"],
+      "period": "week",
+      "axis-period": "month",
+      "duration": 52,
+      "value-attribute": "count:sum",
+      "show-line-labels": true,
+      "show-total-lines": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Driver and Vehicle Standards Agency",
+        "Practical driving test (public users) bookings and changes (including cancellations), broken down by channel"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Bookings",
+            "categoryId": "book",
+            "format": "integer"
+          },
+          {
+            "label": "Changes and cancellations",
+            "categoryId": "change",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "device-type",
+      "module-type": "grouped_timeseries",
+      "title": "How people access the service",
+      "description": "Breakdown of <span class=\"group2\">desktop</span>, <span class=\"group0\">mobile</span> and <span class=\"group1\">tablet</span> usage on this service over time",
+      "data-group": "driving-test-practical-public",
+      "data-type": "device-usage",
+      "category": "deviceCategory",
+      "period": "week",
+      "duration": 13,
+      "value-attribute": "visitors:sum",
+      "show-line-labels": true,
+      "one-hundred-percent": true,
+      "use_stack": true,
+      "info": [
+        "Data source: Google Analytics",
+        "Desktop category includes traffic from desktops and laptops"
+      ],
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": ["_start_at", "_end_at"],
+          "format": "dateRange"
+        },
+        "y": [
+          {
+            "label": "Mobile",
+            "categoryId": "mobile",
+            "format": "integer"
+          },
+          {
+            "label": "Tablet",
+            "categoryId": "tablet",
+            "format": "integer"
+          },
+          {
+            "label": "Desktop",
+            "categoryId": "desktop",
+            "format": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "service-availability",
+      "module-type": "tab",
+      "title": "Service availability",
+      "info": [
+        "Data source: Pingdom",
+        "Page load time measures the time taken for a sample page within the service to load.",
+        "<a href='/service-manual/operations/uptime-and-availability' rel='external'>Uptime</a> measures the percentage of time that the service was observed to be available."
+      ],
+      "tabs": [
+        {
+          "title": "30 days",
+          "slug": "30-days",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "day",
+          "axes": {
+            "x": {
+              "label": "Date",
+              "key": "_timestamp",
+              "format": "date"
+            }
+          }
+        },
+        {
+          "title": "24 hours",
+          "slug": "24-hours",
+          "module-type": "availability",
+          "description": "",
+          "data-group": "driving-test-practical-public",
+          "data-type": "monitoring",
+          "period": "hour",
+          "axes": {
+            "x": {
+              "label": "Time",
+              "key": "_timestamp",
+              "format": "time"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
