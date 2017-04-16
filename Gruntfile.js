@@ -23,7 +23,9 @@ var getRequirejsConfig = function () {
       'client/logger'
     ],
     wrap: true,
-    optimize: 'uglify'
+    optimize: 'uglify2',
+    generateSourceMaps: true,
+    preserveLicenseComments: false
   });
 };
 
