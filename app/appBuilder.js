@@ -32,7 +32,6 @@ module.exports = {
       app.set('assetDigest', JSON.parse(fs.readFileSync(path.join(rootDir, 'public', 'asset-digest.json'), {encoding: 'utf8'})));
       app.set('backdropUrl', global.config.backdropUrl);
       app.set('externalBackdropUrl', global.config.externalBackdropUrl);
-      app.set('govukHost', global.config.govukHost);
       app.set('clientRequiresCors', global.config.clientRequiresCors);
       app.set('port', global.config.port);
       app.set('stagecraftUrl', global.config.stagecraftUrl);

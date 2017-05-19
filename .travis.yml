@@ -13,6 +13,9 @@ branches:
   only:
     - master
 env:
+  global:
+  - GOVUK_WEBSITE_ROOT: 'https://www.gov.uk'
+  matrix:
   - TEST_CMD: test:unit
   - TEST_CMD: shell:cheapseats
   - TEST_CMD: test:functional:ci

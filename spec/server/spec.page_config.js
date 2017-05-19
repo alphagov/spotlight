@@ -10,7 +10,6 @@ function (PageConfig) {
       get.plan = function (prop) {
         return {
           assetPath: '/path/to/assets/',
-          govukHost: 'www.gov.uk',
           bigScreenBaseURL: 'https://www.performance.service.gov.uk'
         }[prop];
       };

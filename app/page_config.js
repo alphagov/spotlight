@@ -1,7 +1,7 @@
 define([],
 function () {
   var getGovUkUrl = function (req) {
-    return ['https://', req.app.get('govukHost'), req.originalUrl].join('');
+    return [process.env.GOVUK_WEBSITE_ROOT, req.originalUrl].join('');
   };
 
   var commonConfig = function (req) {
