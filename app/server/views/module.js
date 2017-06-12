@@ -58,7 +58,8 @@ module.exports = View.extend(templater).extend({
 
   templateContext: function () {
     if (this.collection) {
-      this.jsonUrl = this.collection.externalUrl();
+      this.jsonUrl = this.collection.externalUrl() + "&format=json";
+      this.csvUrl = this.collection.externalUrl() + "&format=csv";
     }
     return _.extend(
       View.prototype.templateContext.call(this),
@@ -66,6 +67,7 @@ module.exports = View.extend(templater).extend({
         url: this.url,
         fallbackUrl: this.requiresSvg && this.url ? (this.url + '.png') : null,
         jsonUrl: this.jsonUrl,
+        csvUrl: this.csvUrl,
         hasTable: this.hasTable,
         pageType: this.model.get('parent').get('page-type')
       }
