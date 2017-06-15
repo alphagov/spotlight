@@ -31,6 +31,10 @@ function (PageConfig) {
     });
 
     describe('getGovUkUrl', function () {
+      beforeEach(function () {
+        process.env.GOVUK_WEBSITE_ROOT = 'https://www.gov.uk';
+      });
+
       it('returns the equivalent page location on GOV.UK', function () {
         expect(PageConfig.getGovUkUrl(req)).toEqual('https://www.gov.uk/performance/foo');
       });
