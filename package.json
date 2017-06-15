@@ -81,7 +81,7 @@
     "serialize-javascript": "^1.3.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#9e7e51c5ae9b1d59ffa165debc1c697e102a4388",
+    "cheapseats": "git+https://github.com/alphagov/cheapseats#c63cd5fd35b6d985fd25b54d44cb3e0efdb45cf0",
     "performanceplatform-js-style-configs": "0.0.2",
     "supervisor": "0.5.7"
   }
