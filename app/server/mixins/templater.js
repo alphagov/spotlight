@@ -1,4 +1,14 @@
 var fs = require('fs');
+var cache = require('memory-cache');
+
+var fetchTemplate = function (path) {
+  var template = cache.get(path);
+  if (template === null) {
+    var templateSource =  fs.readFileSync(path).toString();
+    template = cache.put(path, templateSource);
+  }
+  return template;
+};
 
 module.exports = {
 
@@ -16,7 +26,7 @@ module.exports = {
     data = data || {};
     type = type || 'underscore';
 
-    var template = fs.readFileSync(path);
+    var template = fetchTemplate(path);
 
     if (type === 'mustache') {
       return require('mustache').render(template.toString(), data);
@@ -27,4 +37,5 @@ module.exports = {
     }
 
   }
+
 };
