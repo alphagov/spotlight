@@ -12,7 +12,7 @@ function (JsonSummary, Model, Collection, $) {
 
     beforeEach(function () {
       $el = $('<li class="json-summary"></li>');
-      $el.html('<a href="<jsonUrl>">JSON</a>');
+      $el.html('<a href="<jsonUrl>">JSON</a> | <a href="<csvUrl>">CSV</a>');
       view = new JsonSummary({
         el: $el,
         model: model,

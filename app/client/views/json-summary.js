@@ -10,14 +10,13 @@ define([
 
     render: function(){
 
-        var jsonUpdated = this.collection.url();
-        var jsonLink;
-
+        var url = this.collection.url();
+        var urlJson = url+'&format=json';
+        var urlCSV = url + '&format=csv';
         var $newEl;
         var $oldEl = this.$el;
 
-        jsonLink = '<a href="' + jsonUpdated + '">JSON</a>';
-        $newEl = $(jsonLink);
+        $newEl = $('<a href="' + urlJson + '">JSON</a> | <a href="' + urlCSV + '">CSV</a>');
 
         this.setElement($newEl);
         $oldEl.replaceWith($newEl);
