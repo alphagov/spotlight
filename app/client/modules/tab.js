@@ -1,17 +1,15 @@
 define([
   'client/controllers/module',
   'common/modules/tab',
-  'client/views/visualisations/tab',
-  'extensions/collections/collection'
+  'client/views/visualisations/tab'
 ],
-function (ModuleController, TabController, TabView, Collection) {
+function (ModuleController, TabController, TabView) {
 
   var parent = ModuleController.extend(TabController);
 
   var TabModule = parent.extend({
 
     visualisationClass: TabView,
-    collectionClass: Collection,
 
     initialize: function () {
       var controllerMap = TabModule.map;
