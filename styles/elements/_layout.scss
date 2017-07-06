@@ -58,6 +58,7 @@
 }
 .column-half {
   @include grid-column( 1/2 );
+  margin-bottom: 2em;
 }
 .column-third {
   @include grid-column( 1/3 );
