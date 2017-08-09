@@ -1,0 +1,11 @@
+{
+  "assetPath": "https://assets-origin.integration.publishing.service.gov.uk/spotlight/",
+  "port": 3057,
+  "backdropUrl": "https://www.preview.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
+  "externalBackdropUrl": "https://www.preview.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
+  "stagecraftUrl": "https://stagecraft.preview.performance.service.gov.uk",
+  "screenshotTargetUrl": "http://localhost:3057",
+  "screenshotServiceUrl": "http://localhost:3060",
+  "clientRequiresCors": true,
+  "bigScreenBaseURL": "/performance"
+}
