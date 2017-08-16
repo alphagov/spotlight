@@ -1,5 +1,5 @@
 var requirejs = require('requirejs');
-var $ = require('jquery');
+var $ = require('jquery')(require('jsdom').jsdom().defaultView);
 
 var ModuleView = require('../../../app/server/views/module');
 
