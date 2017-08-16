@@ -48,14 +48,14 @@ function (View, Formatters) {
       cls += (this.options.collapseOnNarrowViewport === true) ? ' table-collapsible' : '';
       cls += (this.options.hideHeader === true) ? ' table-no-header' : '';
       caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
-      this.$table = $('<table class="' + cls + '">' + caption + '</table>');
-      this.$table.appendTo(this.$el);
+      this.$el.append('<table class="' + cls + '">' + caption + '</table>');
+      this.$table = this.$('table')
     },
 
     render: function () {
       this.prepareTable();
-      $(this.renderHead()).appendTo(this.$table);
-      $(this.renderBody()).appendTo(this.$table);
+      this.$table.append(this.renderHead())
+      this.$table.append(this.renderBody())
     },
 
     renderHead: function () {
