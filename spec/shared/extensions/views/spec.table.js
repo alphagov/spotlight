@@ -2,10 +2,14 @@ define([
   'extensions/views/table',
   'extensions/views/view',
   'extensions/collections/collection',
-    'backbone',
-  'jquery'
+  'backbone',
+  'jquery',
+  'jsdom'
 ],
-function (Table, View, Collection, Backbone, $) {
+function (Table, View, Collection, Backbone, $, jsdom) {
+
+  var $ = $(jsdom.jsdom().defaultView);
+
   describe('Table', function () {
     it('inherits from View', function () {
       var table = new Table({

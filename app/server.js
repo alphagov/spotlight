@@ -17,8 +17,7 @@ var environment = process.env.NODE_ENV || argv.env || 'development';
 //- setting server $ stuff
 var backbone = require('backbone'),
     XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-global.$ = backbone.$ = global.jQuery = require('jquery');
+global.$ = backbone.$ = global.jQuery = require('jquery')(require('jsdom').jsdom().defaultView);
 
 $.support.cors = true;
 
