@@ -22,7 +22,7 @@ function (TableView) {
       this.initSort();
     }
 
-    });
+  });
 
    _.extend(TableViewFallback.prototype);
 
