@@ -23,7 +23,7 @@ function controllerSettings(type) {
     case 'other':
       return {
         title: 'Other performance dashboards',
-        example: 'G-cloud',
+        example: 'G-Cloud',
         dashboardTypes: DashboardCollection.OTHER
       };
   }
