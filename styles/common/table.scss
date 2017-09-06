@@ -76,6 +76,10 @@ table {
   overflow: auto;
 }
 
+.js-enabled .visualisation-table-fallback {
+  display: none;
+}
+
 // Tables
 // ==========================================================================
 
