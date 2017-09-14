@@ -5,7 +5,6 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 .idea
-.nvmrc
 
 .DS_Store
 public/*
