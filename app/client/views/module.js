@@ -24,9 +24,11 @@ define([
             view: this.datePickerClass
           };
         }
-        views['.json-summary'] = {
-            view: JsonSummary
-        };
+        if (this.collection) {
+          views['.json-summary'] = {
+              view: JsonSummary
+          };
+        }
       }
       return _.extend(ModuleView.prototype.views.apply(this, arguments), views);
     }
