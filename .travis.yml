@@ -2,7 +2,7 @@ dist: trusty
 sudo: false
 language: node_js
 node_js:
-  - "0.10"
+  - "6"
 services:
   - docker
 env:
