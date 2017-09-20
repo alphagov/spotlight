@@ -368,6 +368,7 @@ module.exports = function (grunt) {
     'sass:development',
     'digest',
     'jasmine_node',
+    'jshint'
   ]);
 
   grunt.registerTask('test:all', [
