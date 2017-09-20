@@ -49,13 +49,13 @@ function (View, Formatters) {
       cls += (this.options.hideHeader === true) ? ' table-no-header' : '';
       caption = (this.options.caption) ? '<caption class="visuallyhidden">' + this.options.caption + '</caption>' : '';
       this.$el.append('<table class="' + cls + '">' + caption + '</table>');
-      this.$table = this.$('table')
+      this.$table = this.$('table');
     },
 
     render: function () {
       this.prepareTable();
-      this.$table.append(this.renderHead())
-      this.$table.append(this.renderBody())
+      this.$table.append(this.renderHead());
+      this.$table.append(this.renderBody());
     },
 
     renderHead: function () {

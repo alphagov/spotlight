@@ -140,6 +140,7 @@ module.exports = function (grunt) {
         src: ['app/client/**/*.js', 'spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
+          reporterOutput: "",
           jshintrc: true,
           config: './node_modules/performanceplatform-js-style-configs/.jshintrc-browser.json'
         }
@@ -149,6 +150,7 @@ module.exports = function (grunt) {
           '!app/client/**/*.js', '!spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
+          reporterOutput: "",
           jshintrc: true,
           config: './node_modules/performanceplatform-js-style-configs/.jshintrc-node.json'
         }

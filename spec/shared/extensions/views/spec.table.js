@@ -8,7 +8,7 @@ define([
 ],
 function (Table, View, Collection, Backbone, $, jsdom) {
 
-  var $ = $(jsdom.jsdom().defaultView);
+  $ = $(jsdom.jsdom().defaultView);
 
   describe('Table', function () {
     it('inherits from View', function () {
