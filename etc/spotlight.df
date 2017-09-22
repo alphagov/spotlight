@@ -6,15 +6,15 @@ RUN mkdir -p $PROJECT_LOCATION
 WORKDIR $PROJECT_LOCATION
 
 ENV NVM_DIR /usr/local/.nvm
-ENV NODE_VERSION 0.10.26
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/v$NODE_VERSION/bin:$PATH
+ENV NODE_VERSION 6.11.2
+ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update --fix-missing \
     && apt-get update --fix-missing \
     && apt-get install -y curl git python build-essential libssl-dev \
-    && curl https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash \
+    && curl https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
