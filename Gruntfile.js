@@ -92,7 +92,6 @@ module.exports = function (grunt) {
     // Sets up server-side Jasmine node tests
     jasmine_node: {
       legacy: {
-        verbose: false,
         src: './spec/helpers',
         options: {
           specFolders: [
@@ -113,7 +112,6 @@ module.exports = function (grunt) {
         }
       },
       server: {
-        verbose: false,
         src: './spec/server-pure',
         options: {
           specFolders: [
