@@ -42,7 +42,7 @@ requirejsOrig.config({
 
 requirejsOrig.config(requirejs('config'));
 var backbone = require('backbone');
-backbone.$ = require('jquery');
+backbone.$ = require('jquery')(require('jsdom').jsdom().defaultView);
 
 global._ = require('lodash');
 

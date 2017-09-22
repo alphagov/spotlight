@@ -1,7 +1,9 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
-require('backbone').$ = require('jquery');
+var jquery = require('jquery')(require('jsdom').jsdom().defaultView)
+
+require('backbone').$ = jquery;
 
 requirejs.config({
   baseUrl: path.join(process.cwd(), 'app')
@@ -12,7 +14,7 @@ requirejs.config(requirejs('config'));
 global.isServer = true;
 global.config = {};
 global._ = require('lodash');
-global.$ = require('jquery');
+global.$ = jquery;
 global.isClient = false;
 global.logger = {
   info: function () {},

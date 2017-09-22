@@ -261,7 +261,7 @@ module.exports = function (grunt) {
           stderr: true,
           stdout: true
         },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path --quickrun ./')
+        command: addArgs('node ./node_modules/cheapseats/index.js --reporter spec-retry --standalone --path --quickrun ./')
       },
       // Runs all cheapseats tests
       cheapseats_full_run: {
@@ -270,7 +270,7 @@ module.exports = function (grunt) {
           stderr: true,
           stdout: true
         },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter dot-retry --standalone --path ./')
+        command: addArgs('node ./node_modules/cheapseats/index.js --reporter spec-retry --standalone --path ./')
       },
       nightwatch: {
         command: addArgs('./node_modules/nightwatch/bin/nightwatch')
@@ -365,9 +365,7 @@ module.exports = function (grunt) {
     'copy:assets',
     'sass:development',
     'digest',
-    'jasmine',
     'jasmine_node',
-    'jshint'
   ]);
 
   grunt.registerTask('test:all', [
