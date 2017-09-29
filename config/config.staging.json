@@ -3,7 +3,7 @@
   "port": 3057,
   "backdropUrl": "https://www.staging.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
   "externalBackdropUrl": "https://www.staging.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
-  "stagecraftUrl": "https://stagecraft-staging.cloudapps.digital",
+  "stagecraftUrl": "https://performance-platform-stagecraft-staging.cloudapps.digital",
   "screenshotTargetUrl": "http://localhost:3057",
   "screenshotServiceUrl": "http://localhost:3060",
   "clientRequiresCors": true,

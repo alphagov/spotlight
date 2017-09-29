@@ -7,7 +7,7 @@ services:
   - docker
 env:
   global:
-    - GOVUK_WEBSITE_ROOT_STAGING=https://www-origin.integration.publishing.service.gov.uk
+    - GOVUK_WEBSITE_ROOT_STAGING=https://www-origin.staging.publishing.service.gov.uk
     - GOVUK_WEBSITE_ROOT_PRODUCTION=https://www.gov.uk
     - PAAS_USER=pp-deploy@digital.cabinet-office.gov.uk
     - PAAS_SERVICE=performance-platform-spotlight
