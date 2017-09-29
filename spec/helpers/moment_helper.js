@@ -8,23 +8,34 @@
     return isMoment(o) ? o.format() : o;
   };
 
-  jasmine.getEnv().addEqualityTester(function(aMoment, anotherMoment) {
+  var tester = function(aMoment, anotherMoment) {
     if (isMoment(aMoment) && isMoment(anotherMoment)) {
       return (aMoment.unix() === anotherMoment.unix());
     }
-  });
+  }
+
+  jasmine.addCustomEqualityTester = function(tester) {
+    env.addCustomEqualityTester(tester);
+  };
 
   jasmine.getEnv().beforeEach(function() {
-    this.addMatchers({
-      toBeMoment: function(expected) {
-        var actual = this.actual;
-        var notText = this.isNot ? " not" : "";
+    jasmine.addMatchers({
 
-        this.message = function () {
-          return "Expected " + format(actual) + notText + " to be moment " + format(expected);
-        };
+      toBeMoment: function(util, customEqualityTesters) {
+        return {
+          compare: function(actual, expected) {
 
-        return isMoment(actual) && isMoment(expected) && actual.unix() === expected.unix();
+            var notText = this.isNot ? " not " : ":";
+
+            var passed = isMoment(actual) && isMoment(expected) && actual.unix() === expected.unix();
+            var message = "Expected " + format(actual) + notText + " to be moment " + format(expected);
+
+            return {
+              pass: passed,
+              message: message
+            }
+          }
+        }
       }
     });
   });
