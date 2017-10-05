@@ -38,7 +38,9 @@ module.exports = {
       app.set('bigScreenBaseURL', global.config.bigScreenBaseURL);
       app.use(morgan('dev'));
       app.use(compression());
-      app.use('/spotlight', express.static(path.join(rootDir, 'public'), { maxAge: oneDay }));
+
+      // Serve static files from the configured assetPath.
+      app.use(global.config.assetPath, express.static(path.join(rootDir, 'public'), { maxAge: oneDay }));
     }());
 
     if (environment === 'development') {
