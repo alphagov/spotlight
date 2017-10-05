@@ -22,7 +22,7 @@ function (JsonSummary, Model, Collection, $) {
 
     describe('render', function () {
       it('should update element to add new url assigned', function () {
-        spyOn(collection, 'url').andReturn('newUrl');
+        spyOn(collection, 'url').and.returnValue('newUrl');
         var $oldEl = view.$el;
         view.render();
         expect($oldEl).not.toEqual(view.$el);

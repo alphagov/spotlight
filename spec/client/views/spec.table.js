@@ -305,7 +305,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         table.$el.append($table);
         table.render();
 
-        expect($table.attr('class')).toNotEqual('floated-header');
+        expect($table.attr('class')).not.toEqual('floated-header');
       });
 
     });

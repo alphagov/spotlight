@@ -1,16 +1,26 @@
 define([
   'client/views/visualisations/visitors-realtime',
   'common/collections/realtime',
-  'extensions/models/model',
-  'stache!server/templates/modules/visitors-realtime'
+  'extensions/models/model'
 ],
-function (VisitorsRealtimeView, Collection, Model, template) {
+function (VisitorsRealtimeView, Collection, Model) {
   describe('VisitorsRealtimeView', function () {
 
     var collection, view, $el;
     beforeEach(function () {
       $el = $('<div/>');
-      $el.html(template());
+      $el.html('<p>' +
+        '<div class="stat">' +
+        '<p class="impact-number"><strong>{{{ value }}}</strong></p>' +
+        '<span class="stat-description" role="presentation">{{{ label }}}</span>' +
+        '</div>' +
+        '<div class="sparkline">' +
+        '<span class="sparkline-title"></span>' +
+        '<div class="sparkline-graph"></div>' +
+        '</div>' +
+        '<div class="visualisation-table-fallback"></div>' +
+        '</p>');
+
       collection = new Collection([], { title: 'foo', id: 'bar', period: 'hours', duration: 24 });
       var data = [
         {
@@ -61,7 +71,7 @@ function (VisitorsRealtimeView, Collection, Model, template) {
           it('should call onChangeSelected', function () {
             spyOn(VisitorsRealtimeView.prototype, 'onChangeSelected');
             view.initialize();
-            VisitorsRealtimeView.prototype.onChangeSelected.reset();
+            VisitorsRealtimeView.prototype.onChangeSelected.calls.reset();
 
             expect(view.onChangeSelected).not.toHaveBeenCalled();
 
@@ -210,7 +220,7 @@ function (VisitorsRealtimeView, Collection, Model, template) {
             }
           }
         };
-        spyOn(view, 'moment').andReturn({
+        spyOn(view, 'moment').and.returnValue({
           fromNow: function () {
             return '12 years ago';
           }

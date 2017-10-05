@@ -18,7 +18,7 @@ define([
             axes:{}
           });
 
-        spyOn(ServicesCollection.prototype, 'filterServices').andCallFake(function () {
+        spyOn(ServicesCollection.prototype, 'filterServices').and.callFake(function () {
           return [{}];
         });
         spyOn(TableView.prototype, 'render');
@@ -33,7 +33,7 @@ define([
           collection: collection
         });
         // will have been called once on initial render, so reset calls count
-        TableView.prototype.render.reset();
+        TableView.prototype.render.calls.reset();
 
         controller.view.filter('filter');
 

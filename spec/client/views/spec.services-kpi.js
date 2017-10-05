@@ -52,14 +52,10 @@ define([
         spyOn(ServicesCollection.prototype, 'getAggregateValues');
       });
 
-      afterEach(function(){
-        this.removeAllSpies();
-      });
-
       describe('services count changes', function () {
 
         beforeEach(function () {
-          ServicesCollection.prototype.getAggregateValues.andReturn([
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([
             {
               'key': 'digital_takeup',
               'title': 'Digital take-up',
@@ -75,6 +71,11 @@ define([
               }
             }
           ]);
+          window.GOVUK = {
+            analytics: {
+              trackEvent: function () {}
+            }
+          };
         });
 
         it('updates figure when the filtered services count changes', function () {
@@ -126,7 +127,7 @@ define([
         it('hides the weighted average summary text when the collection (results) are empty', function () {
           var $el = $('<div><div class="digital_takeup"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by">17 out of 116</a></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([{
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([{
             'key': 'digital_takeup',
             'title': 'Digital take-up',
             'value': 0,
@@ -155,7 +156,7 @@ define([
         it('sets the list sort order when the link is clicked', function () {
           var $el = $('<div><div class="digital_takeup"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by" data-sort-by="number_of_transactions"><span class="value-count">17</span> out of <span class="filtered-count">116</span></a></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([]);
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([]);
 
           this.summary = new ServicesKPIView({
             el: $el,
@@ -177,7 +178,7 @@ define([
         it('sends sort events to analytics', function() {
           var $el = $('<div><div class="digital_takeup"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by" data-sort-by="number_of_transactions"><span class="value-count">17</span> out of <span class="filtered-count">116</span></a></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([]);
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([]);
 
           this.summary = new ServicesKPIView({
             el: $el,
@@ -205,7 +206,7 @@ define([
         it('shows a link only without prefix text when there is 1 filtered transaction', function () {
           var $el = $('<div><div class="digital_takeup"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by" data-sort-by="number_of_transactions"><span class="value-count">17</span> out of <span class="filtered-count">116</span></a></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([{
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([{
             'key': 'digital_takeup',
             'title': 'Digital take-up',
             'value': 0,
@@ -236,7 +237,7 @@ define([
         it('shows "total for all x services" when all services have values for the given KPI', function () {
           var $el = $('<div><div class="number_of_transactions"><div class="visualisation-moreinfo">weighted average for <a href="#filtered-list" class="js-sort-by" data-sort-by="number_of_transactions"><span class="value-count">17</span> out of <span class="filtered-count">116</span></a></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([{
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([{
             'key': 'number_of_transactions',
             'title': 'Transactions per year',
             'value': 0,
@@ -266,7 +267,7 @@ define([
         it('shows 0 when then weighted average is 0', function () {
           var $el = $('<div><div class="number_of_transactions"><div class="impact-number"><strong>35%</strong></div></div></div>');
 
-          ServicesCollection.prototype.getAggregateValues.andReturn([{
+          ServicesCollection.prototype.getAggregateValues.and.returnValue([{
             'key': 'number_of_transactions',
             'title': 'Transactions per year',
             'value': 0,
