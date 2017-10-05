@@ -84,7 +84,8 @@ module.exports = function (grunt) {
           specs: [
             'spec/client/spec.accessibility.js',
             'spec/client/spec.client_bootstrap.js',
-            'spec/client/common/modules/*.js'
+            'spec/client/common/modules/*.js',
+            'spec/client/common/views/spec.date-picker.js'
           ],
           template: 'spec/index.html',
           keepRunner: true,

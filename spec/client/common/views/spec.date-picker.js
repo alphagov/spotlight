@@ -23,7 +23,7 @@ define([
       model = new Model({
         'date-picker': {}
       });
-      spyOn(DatePicker.prototype, 'getMoment').andCallFake(function (d) {
+      spyOn(DatePicker.prototype, 'getMoment').and.callFake(function (d) {
         if (d) {
           return this.moment(d).utc();
         } else {
@@ -31,7 +31,7 @@ define([
         }
       });
       spyOn(DatePicker.prototype, 'setHashParams');
-      spyOn(DatePicker.prototype, 'getHashParams').andReturn({});
+      spyOn(DatePicker.prototype, 'getHashParams').and.returnValue({});
       datepicker = new DatePicker({
         model: model,
         collection: collection
@@ -87,7 +87,7 @@ define([
     describe('events', function () {
 
       beforeEach(function () {
-        spyOn(collection.dataSource, 'setQueryParam').andCallThrough();
+        spyOn(collection.dataSource, 'setQueryParam').and.callThrough();
         datepicker.render();
       });
 
