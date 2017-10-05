@@ -50,7 +50,7 @@ function (UserSatisfactionGraphView, CompletionRateView, Collection, Model) {
 
     beforeEach(function () {
       var $el = $('<div><div class="volumetrics-bar-selected"><p class="total-responses"><p><p class="volumetrics-bar-period"></p></div></div>');
-      spyOn(CompletionRateView.prototype, 'views').andReturn({});
+      spyOn(CompletionRateView.prototype, 'views').and.returnValue({});
       collection = new Collection([], { min: 1, max: 5, axes: axes });
       var data = [
         {

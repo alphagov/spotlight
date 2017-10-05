@@ -52,7 +52,7 @@ function (JourneyCallout, JourneySeriesCollection, Model) {
 
         model.collection = collection;
         callout = new JourneyCallout({
-          getHeader: jasmine.createSpy().andReturn('test header'),
+          getHeader: jasmine.createSpy().and.returnValue('test header'),
           collection: collection,
           graph: {
             scaleFactor: jasmine.createSpy(),
@@ -77,7 +77,7 @@ function (JourneyCallout, JourneySeriesCollection, Model) {
             top: 20
           }
         });
-        spyOn(callout, 'renderContent').andCallThrough();
+        spyOn(callout, 'renderContent').and.callThrough();
         callout.render();
       });
 
@@ -94,7 +94,7 @@ function (JourneyCallout, JourneySeriesCollection, Model) {
       });
 
       it('passes value attribute to renderContent if a particular group is selected', function () {
-        callout.graph.scaleFactor.andReturn(1);
+        callout.graph.scaleFactor.and.returnValue(1);
         callout.onChangeSelected(model, 2, { valueAttr: 'foo' });
 
         expect(callout.renderContent).toHaveBeenCalledWith(callout.calloutEl, model, 'foo');
@@ -143,7 +143,7 @@ function (JourneyCallout, JourneySeriesCollection, Model) {
           blockMarginFraction: 0.2,
           barMarginFraction: 0.2,
           graph: {
-            scaleFactor: jasmine.createSpy().andReturn(1),
+            scaleFactor: jasmine.createSpy().and.returnValue(1),
             valueAttr: 'uniqueEvents'
           },
           margin: {
