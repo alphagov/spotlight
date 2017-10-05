@@ -1,5 +1,5 @@
 {
-  "assetPath": "/spotlight/",
+  "assetPath": "/performance/assets/",
   "port": 3057,
   "backdropUrl": "https://www.staging.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
   "externalBackdropUrl": "https://www.staging.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
