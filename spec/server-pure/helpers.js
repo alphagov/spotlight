@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 var path = require('path');
 
-var jquery = require('jquery')(require('jsdom').jsdom().defaultView)
+var jquery = require('jquery')(require('jsdom').jsdom().defaultView);
 
 require('backbone').$ = jquery;
 
