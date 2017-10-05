@@ -86,11 +86,13 @@ module.exports = function (grunt) {
             'spec/client/spec.client_bootstrap.js',
             'spec/client/common/modules/*.js',
             'spec/client/common/views/spec.date-picker.js'
+            // 'spec/client/common/views/spec.services.js', js-deparam
           ],
           template: 'spec/index.html',
           keepRunner: true,
           vendor: [
             'app/vendor/jquery.js',
+            // 'app/vendor/jquery-deparam.js',
             'app/vendor/require.js'
           ]
         }
