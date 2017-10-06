@@ -93,7 +93,8 @@ module.exports = function (grunt) {
             '!spec/client/preprocessors/spec.visualisation_fallback.js', // fallback images (expect async)
             'spec/client/views/*.js',
             '!spec/client/views/spec.services.js', // js-deparam
-            '!spec/client/views/spec.table.js' // js-deparam
+            '!spec/client/views/spec.table.js', // js-deparam
+            'spec/client/views/views/graph/*.js'
           ],
           template: 'spec/index.html',
           keepRunner: true,
