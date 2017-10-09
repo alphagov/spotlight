@@ -34,7 +34,7 @@
     "chromedriver": "2.26.0",
     "colors": "0.6.2",
     "compression": "1.7.0",
-    "d3": "3.5.17",
+    "d3": "3.3.7",
     "errorhandler": "1.5.0",
     "express": "4.15.4",
     "glob": "7.0.3",
