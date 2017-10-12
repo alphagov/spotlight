@@ -28,7 +28,7 @@ function (UserSatisfaction, BarChart, Collection, Backbone) {
 
     describe('components()', function () {
       beforeEach(function () {
-        spyOn(BarChart.prototype, 'components').andReturn({
+        spyOn(BarChart.prototype, 'components').and.returnValue({
           hover: {
             view: {}
           },

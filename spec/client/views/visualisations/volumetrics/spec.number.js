@@ -27,7 +27,7 @@ function (VolumetricsNumberView, View, Collection) {
 
     describe('formatValue', function () {
       it('should call the view format method with the value', function () {
-        spyOn(View.prototype, 'format').andReturn('456');
+        spyOn(View.prototype, 'format').and.returnValue('456');
         var returnValue;
         returnValue = subject.formatValue('123');
         expect(View.prototype.format).toHaveBeenCalledWith('123', { type: 'number', magnitude: true, pad: true });
@@ -46,7 +46,7 @@ function (VolumetricsNumberView, View, Collection) {
 
       it('should call the view format method with null if there is no last defined models in the collection', function () {
         spyOn(VolumetricsNumberView.prototype, 'formatValue');
-        spyOn(Collection.prototype, 'lastDefined').andReturn(undefined);
+        spyOn(Collection.prototype, 'lastDefined').and.returnValue(undefined);
 
         subject.getValue();
 
@@ -82,7 +82,7 @@ function (VolumetricsNumberView, View, Collection) {
         });
 
         it('should return the appropriately formatted label for arbitrary periods', function () {
-          collection.dataSource.setQueryParam('period', 'month');
+          spyOn(collection.dataSource, 'get').and.returnValue({period: 'month'});
           expect(subject.getLabel()).toEqual('July 2014');
         });
 
@@ -95,7 +95,7 @@ function (VolumetricsNumberView, View, Collection) {
         var fakeSelection = {
           selectedModel: collection.at(0)
         };
-        spyOn(View.prototype, 'format').andReturn('456');
+        spyOn(View.prototype, 'format').and.returnValue('456');
         var returnValue;
         returnValue = subject.getValueSelected(fakeSelection);
         expect(View.prototype.format).toHaveBeenCalledWith(1, { type : 'number', magnitude : true, pad : true });
@@ -108,7 +108,7 @@ function (VolumetricsNumberView, View, Collection) {
         var fakeSelection = {
           selectedModel: collection.at(0)
         };
-        spyOn(View.prototype, 'formatPeriod').andReturn('456');
+        spyOn(View.prototype, 'formatPeriod').and.returnValue('456');
         var returnValue;
         returnValue = subject.getLabelSelected(fakeSelection);
         expect(View.prototype.formatPeriod).toHaveBeenCalledWith(collection.at(0), 'week');

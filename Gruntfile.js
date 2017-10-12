@@ -95,7 +95,7 @@ module.exports = function (grunt) {
             '!spec/client/views/spec.services.js', // js-deparam
             '!spec/client/views/spec.table.js', // js-deparam
             'spec/client/views/views/graph/*.js',
-            'spec/client/views/visualisations/*.js'
+            'spec/client/views/visualisations/**/*.js'
           ],
           template: 'spec/index.html',
           keepRunner: true,
