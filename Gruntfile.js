@@ -82,8 +82,7 @@ module.exports = function (grunt) {
         options: {
           helpers: ['spec/helpers/*.js'],
           specs: [
-            'spec/shared/**/spec.*.js',
-            'spec/client/**/spec.*.js'
+            'spec/client/spec.accessibility.js'
           ],
           template: 'spec/index.html',
           keepRunner: true
