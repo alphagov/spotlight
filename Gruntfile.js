@@ -82,10 +82,15 @@ module.exports = function (grunt) {
         options: {
           helpers: ['spec/helpers/*.js'],
           specs: [
+            'spec/client/spec.client_bootstrap.js',
             'spec/client/spec.accessibility.js'
           ],
           template: 'spec/index.html',
-          keepRunner: true
+          keepRunner: true,
+          vendor: [
+            'app/vendor/jquery.js',
+            'app/vendor/require.js'
+          ]
         }
       }
     },
