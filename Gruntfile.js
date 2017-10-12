@@ -88,7 +88,8 @@ module.exports = function (grunt) {
             'spec/client/common/views/spec.date-picker.js',
             // 'spec/client/common/views/spec.services.js', js-deparam
             'spec/client/common/views/visualisations/**/*.js',
-            'spec/client/controllers/*.js'
+            'spec/client/controllers/*.js',
+            'spec/client/extensions/**/*.js'
           ],
           template: 'spec/index.html',
           keepRunner: true,
