@@ -11,7 +11,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
 
     var graph, model, collection, data;
     beforeEach(function () {
-      spyOn(Graph.prototype, 'initialize').andCallThrough();
+      spyOn(Graph.prototype, 'initialize').and.callThrough();
       model = new Model({
         'value-attribute': 'someAttr',
         axes: {
@@ -177,7 +177,7 @@ function (LineGraph, Collection, LineSet, LineLabel, Graph, Model) {
       beforeEach(function () {
 
         collection.reset(data, { parse: true });
-        collection.getCurrentSelection = jasmine.createSpy().andReturn({});
+        collection.getCurrentSelection = jasmine.createSpy().and.returnValue({});
         graph.innerWidth = 444;
         graph.innerHeight = 333;
 
