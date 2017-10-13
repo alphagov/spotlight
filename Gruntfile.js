@@ -384,6 +384,7 @@ module.exports = function (grunt) {
     'copy:assets',
     'sass:development',
     'digest',
+    'jasmine',
     'jasmine_node',
     'jshint'
   ]);
