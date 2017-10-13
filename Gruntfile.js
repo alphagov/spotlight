@@ -80,7 +80,7 @@ module.exports = function (grunt) {
       spotlight: {
         src: ['app/**/*.js'],
         options: {
-          helpers: ['spec/helpers/*.js'],
+          helpers: ['spec/helpers/*.js', '!spec/helpers/server-*.js'],
           specs: [
             'spec/client/spec.accessibility.js',
             'spec/client/spec.client_bootstrap.js',
@@ -118,6 +118,7 @@ module.exports = function (grunt) {
           ],
           useHelpers: true,
           specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          helperNameMatcher: '^(?!client-).+', // load only helpers *not* containing 'client-' in their filename
           match: '.*',
           useRequireJs: 'spec/requirejs-setup.js',
           verbose: false,
@@ -137,6 +138,7 @@ module.exports = function (grunt) {
           ],
           useHelpers: true,
           specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          helperNameMatcher: '^(?!client-).+', // load only helpers *not* containing 'client-' in their filename
           match: '.*',
           verbose: false,
           jUnit: {
