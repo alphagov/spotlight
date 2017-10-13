@@ -80,28 +80,18 @@ module.exports = function (grunt) {
       spotlight: {
         src: ['app/**/*.js'],
         options: {
-          helpers: ['spec/helpers/*.js', '!spec/helpers/server-*.js'],
+          helpers: [
+            'spec/helpers/*.js',
+            '!spec/helpers/server-*.js'
+          ],
           specs: [
-            'spec/client/spec.accessibility.js',
-            'spec/client/spec.client_bootstrap.js',
-            'spec/client/common/modules/*.js',
-            'spec/client/common/views/spec.date-picker.js',
-            // 'spec/client/common/views/spec.services.js', js-deparam
-            'spec/client/common/views/visualisations/**/*.js',
-            'spec/client/controllers/*.js',
-            'spec/client/extensions/**/*.js',
-            '!spec/client/preprocessors/spec.visualisation_fallback.js', // fallback images (expect async)
-            'spec/client/views/*.js',
-            '!spec/client/views/spec.services.js', // js-deparam
-            '!spec/client/views/spec.table.js', // js-deparam
-            'spec/client/views/views/graph/*.js',
-            'spec/client/views/visualisations/**/*.js'
+            'spec/client/**/*.js',
+            '!spec/client/preprocessors/spec.visualisation_fallback.js' // fallback images (expect async)
           ],
           template: 'spec/index.html',
-          keepRunner: true,
+          keepRunner: false,
           vendor: [
             'app/vendor/jquery.js',
-            // 'app/vendor/jquery-deparam.js',
             'app/vendor/require.js'
           ]
         }
