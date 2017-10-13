@@ -89,7 +89,8 @@ module.exports = function (grunt) {
             // 'spec/client/common/views/spec.services.js', js-deparam
             'spec/client/common/views/visualisations/**/*.js',
             'spec/client/controllers/*.js',
-            'spec/client/extensions/**/*.js'
+            'spec/client/extensions/**/*.js',
+            '!spec/client/preprocessors/spec.visualisation_fallback.js' // fallback images (expect async)
           ],
           template: 'spec/index.html',
           keepRunner: true,
