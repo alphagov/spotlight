@@ -12,6 +12,12 @@ define([
     describe('Services view', function () {
 
       it('should render the view when a filter event occurs', function () {
+        window.GOVUK = {
+          analytics: {
+            trackEvent: function () {}
+          }
+        };
+
         var controller,
           model = new Backbone.Model(),
           collection = new ServicesCollection([], {
@@ -37,7 +43,7 @@ define([
 
         controller.view.filter('filter');
 
-        expect(TableView.prototype.render.calls.length).toEqual(1);
+        expect(TableView.prototype.render.calls.count()).toEqual(1);
       });
 
     });
