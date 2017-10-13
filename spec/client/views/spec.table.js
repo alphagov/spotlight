@@ -93,6 +93,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       var table;
 
       beforeEach(function () {
+        // clear window.location.search
+        window.history.replaceState({}, '', window.location.href.split('?')[0]);
         var $el = $('<div/>');
         $el.html(
           '<table><thead><tr><th scope="col" width="0" data-key="_timestamp">' +
