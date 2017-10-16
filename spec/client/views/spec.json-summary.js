@@ -12,7 +12,7 @@ function (JsonSummary, Model, Collection, $) {
 
     beforeEach(function () {
       $el = $('<li class="json-summary"></li>');
-      $el.html('<a href="<jsonUrl>">JSON</a> | <a href="<csvUrl>">CSV</a>');
+      $el.html('<a href="url&format=json">JSON</a> | <a href="url&format=csv">CSV</a>');
       view = new JsonSummary({
         el: $el,
         model: model,
@@ -23,10 +23,13 @@ function (JsonSummary, Model, Collection, $) {
     describe('render', function () {
       it('should update element to add new url assigned', function () {
         spyOn(collection, 'url').and.returnValue('newUrl');
-        var $oldEl = view.$el;
         view.render();
-        expect($oldEl).not.toEqual(view.$el);
-        expect(view.$el.attr('href')).toContain('newUrl');
+        expect(view.$el.prop('tagName')).toEqual('LI');
+        var $links = view.$el.find('a');
+
+        expect($links.length).toEqual(2);
+        expect($links.first().attr('href')).toEqual('newUrl&format=json');
+        expect($links.last().attr('href')).toEqual('newUrl&format=csv');
       });
 
     });
