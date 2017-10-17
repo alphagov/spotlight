@@ -13,13 +13,7 @@ define([
       var url = this.collection.url();
       var urlJson = url+'&format=json';
       var urlCSV = url + '&format=csv';
-      var $newEl;
-      var $oldEl = this.$el;
-
-      $newEl = $('<a href="' + urlJson + '">JSON</a> | <a href="' + urlCSV + '">CSV</a>');
-
-      this.setElement($newEl);
-      $oldEl.replaceWith($newEl);
+      this.$el.html( $('<a href="' + urlJson + '">JSON</a> | <a href="' + urlCSV + '">CSV</a>') );
 
       return this;
     }
