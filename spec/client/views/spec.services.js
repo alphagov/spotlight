@@ -12,13 +12,19 @@ define([
     describe('Services view', function () {
 
       it('should render the view when a filter event occurs', function () {
+        window.GOVUK = {
+          analytics: {
+            trackEvent: function () {}
+          }
+        };
+
         var controller,
           model = new Backbone.Model(),
           collection = new ServicesCollection([], {
             axes:{}
           });
 
-        spyOn(ServicesCollection.prototype, 'filterServices').andCallFake(function () {
+        spyOn(ServicesCollection.prototype, 'filterServices').and.callFake(function () {
           return [{}];
         });
         spyOn(TableView.prototype, 'render');
@@ -33,11 +39,11 @@ define([
           collection: collection
         });
         // will have been called once on initial render, so reset calls count
-        TableView.prototype.render.reset();
+        TableView.prototype.render.calls.reset();
 
         controller.view.filter('filter');
 
-        expect(TableView.prototype.render.calls.length).toEqual(1);
+        expect(TableView.prototype.render.calls.count()).toEqual(1);
       });
 
     });

@@ -7,8 +7,8 @@ define([
   describe('Services View', function () {
 
     beforeEach(function () {
+      // clear window.location.search
       window.history.replaceState({}, '', window.location.href.split('?')[0]);
-      spyOn(window.history, 'replaceState');
       window.GOVUK = {
         analytics: {
           trackEvent: function () {}
@@ -24,16 +24,16 @@ define([
 
     it('uses the history API to update the URL after filtering', function () {
       this.view.filter('filter');
-      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport');
+      expect(window.location.search).toEqual('?filter=passport');
       this.$el.find('#department').val('home-office');
       this.view.filter('department');
-      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?filter=passport&department=home-office');
+      expect(window.location.search).toEqual('?filter=passport&department=home-office');
       this.$el.find('#filter').val('');
       this.view.filter('filter');
-      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?department=home-office');
+      expect(window.location.search).toEqual('?department=home-office');
       this.$el.find('#service-group').val('service1');
       this.view.filter('service-group');
-      expect(window.history.replaceState).toHaveBeenCalledWith(null, null, '?department=home-office&servicegroup=service1');
+      expect(window.location.search).toEqual('?department=home-office&servicegroup=service1');
     });
 
     it('sends filter events to analytics', function() {

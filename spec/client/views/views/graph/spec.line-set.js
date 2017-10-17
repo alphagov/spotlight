@@ -51,14 +51,26 @@ define([
     describe('initialize', function () {
 
       it('calls up to component initialize', function () {
-        spyOn(Component.prototype, 'initialize').andCallThrough();
+        spyOn(Component.prototype, 'initialize').and.callThrough();
         lineset = new LineSet({
           graph: graph,
           collection: collection
         });
+        /*
+        Note:
+        because of variable hoisting, we have to include the `el: undefined`
+        argument in the expectation.
+        The base Backbone.View object adds an "el" key to the passed-in 'options'
+        argument at the very end of the View::initialize method, which jasmine
+        then sees as part of the initial argument passed to the View object.
+
+        So we have to "expect" that an `el: undefined` argument was passed,
+        whether it was or not
+        */
         expect(Component.prototype.initialize).toHaveBeenCalledWith({
           graph: graph,
-          collection: collection
+          collection: collection,
+          el: undefined
         });
       });
 
@@ -102,7 +114,7 @@ define([
       var e;
 
       beforeEach(function () {
-        spyOn(Line.prototype, 'x').andCallFake(_.identity);
+        spyOn(Line.prototype, 'x').and.callFake(_.identity);
         e = {
           slice: 4,
           x: 1,

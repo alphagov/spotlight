@@ -108,7 +108,7 @@ function (LineLabel, Collection, Model) {
           { ideal: 80, min: 80, size: 30, key: '_value' }
         ];
         spyOn(lineLabel, 'setLabelPositions');
-        getPeriodSpy = spyOn(collection, 'getPeriod').andReturn('week');
+        getPeriodSpy = spyOn(collection, 'getPeriod').and.returnValue('week');
       });
 
       afterEach(function () {
@@ -270,28 +270,28 @@ function (LineLabel, Collection, Model) {
           // for hour due to issues with Travis and timezones
 
           it('renders a summary time period for day', function () {
-            getPeriodSpy.andReturn('day');
+            getPeriodSpy.and.returnValue('day');
             lineLabel.render();
             var textLabel = lineLabel.$el.find('figcaption .timeperiod');
             expect(textLabel.text()).toEqual('1 May 2014');
           });
 
           it('renders a summary time period for week', function () {
-            getPeriodSpy.andReturn('week');
+            getPeriodSpy.and.returnValue('week');
             lineLabel.render();
             var textLabel = lineLabel.$el.find('figcaption .timeperiod');
             expect(textLabel.text()).toEqual('1 May 2014');
           });
 
           it('renders a summary time period for month', function () {
-            getPeriodSpy.andReturn('month');
+            getPeriodSpy.and.returnValue('month');
             lineLabel.render();
             var textLabel = lineLabel.$el.find('figcaption .timeperiod');
             expect(textLabel.text()).toEqual('May 2014');
           });
 
           it('renders a summary time period for quarter', function () {
-            getPeriodSpy.andReturn('quarter');
+            getPeriodSpy.and.returnValue('quarter');
             lineLabel.render();
             var textLabel = lineLabel.$el.find('figcaption .timeperiod');
             expect(textLabel.text()).toEqual('May 2014');
@@ -363,6 +363,15 @@ function (LineLabel, Collection, Model) {
           el.remove();
         });
 
+        /*
+        NOTE: the initial svg returned by the "d3.select" in graph.js
+        gives different results in the browser vs phantom
+
+        These following tests don't calculate correctly in a browser, because
+        the inital width of the svg node seems to be fixed at 600px
+        */
+        if (window.callPhantom) {
+
         describe('events', function () {
 
           beforeEach(function () {
@@ -399,6 +408,8 @@ function (LineLabel, Collection, Model) {
             expect(collection.selectItem).toHaveBeenCalledWith(2, { valueAttr: '_value', force: true });
           });
         });
+
+        }
       });
 
       describe('onChangeSelected', function () {
@@ -536,10 +547,6 @@ function (LineLabel, Collection, Model) {
           { a: 7, b: 8 }
         ]);
 
-        var yScale = jasmine.createSpy();
-        yScale.plan = function (val) {
-          return val * val;
-        };
         graph = {
           valueAttr: 'a',
           innerWidth: 100,
@@ -554,7 +561,7 @@ function (LineLabel, Collection, Model) {
         };
         lineLabel = new LineLabel({
           scales: {
-            y: yScale
+            y: function (val) { return val * val; },
           },
           interactive: false,
           collection: collection,
@@ -567,6 +574,8 @@ function (LineLabel, Collection, Model) {
           linePaddingOuter: 30,
           graph: graph
         });
+
+        spyOn(lineLabel.scales, 'y').and.callThrough();
 
         el = $('<div></div>').appendTo($('body'));
         wrapper = lineLabel.d3.select(el[0]);
@@ -584,7 +593,7 @@ function (LineLabel, Collection, Model) {
         ]);
         enterSelection = selection.enter().append('li').attr('style', 'display:block;height:20px;position:absolute;');
 
-        spyOn(lineLabel, 'calcPositions').andReturn([
+        spyOn(lineLabel, 'calcPositions').and.returnValue([
           { min: 20, key: 'a' },
           { min: 30, key: 'b' }
         ]);
@@ -597,7 +606,7 @@ function (LineLabel, Collection, Model) {
       it('positions labels vertically so they do not collide', function () {
         lineLabel.setLabelPositions(figcaption.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
+        var startPositions = lineLabel.calcPositions.calls.first().args[0];
         expect(lineLabel.scales.y).toHaveBeenCalledWith(7);
         expect(startPositions[0]).toEqual({
           ideal: 49, // yScale was applied to '_count' attribute of last element in line 'a'
@@ -621,7 +630,7 @@ function (LineLabel, Collection, Model) {
         collection.last().set('a', null).set('b', null);
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
         expect(lineLabel.calcPositions).toHaveBeenCalled();
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
+        var startPositions = lineLabel.calcPositions.calls.first().args[0];
         expect(lineLabel.scales.y).toHaveBeenCalledWith(4);
         expect(startPositions[0]).toEqual({
           ideal: 16, // yScale was applied to '_count' attribute of penultimate element in line 'a'
@@ -642,7 +651,7 @@ function (LineLabel, Collection, Model) {
         collection.last().set('a', 8);
         collection.last().set('b', 4);
         lineLabel.setLabelPositions(wrapper.selectAll('li'));
-        var startPositions = lineLabel.calcPositions.argsForCall[0][0];
+        var startPositions = lineLabel.calcPositions.calls.first().args[0];
         expect(startPositions[0].key).toEqual('b');
         expect(startPositions[1].key).toEqual('a');
       });

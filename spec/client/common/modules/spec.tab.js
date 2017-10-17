@@ -10,13 +10,13 @@ define([
     beforeEach(function () {
 
       fooRender = jasmine.createSpy();
-      fooModule = jasmine.createSpy().andReturn({
+      fooModule = jasmine.createSpy().and.returnValue({
         render: fooRender,
         once: function () {}
       });
 
       barRender = jasmine.createSpy(),
-      barModule = jasmine.createSpy().andReturn({
+      barModule = jasmine.createSpy().and.returnValue({
         render: barRender,
         once: function () {}
       });
@@ -54,10 +54,10 @@ define([
 
     it('should render the tabs when the activeIndex changes', function () {
       tabModule.ready();
-      fooModule.reset();
-      fooRender.reset();
-      barModule.reset();
-      barRender.reset();
+      fooModule.calls.reset();
+      fooRender.calls.reset();
+      barModule.calls.reset();
+      barRender.calls.reset();
 
       tabModule.model.set('activeIndex', 1);
 

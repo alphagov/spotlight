@@ -150,7 +150,7 @@ function (Bar, Collection) {
       it('renders with a simulated inner stroke for each model in collection', function () {
 
         view.strokeAlign = 'inner';
-        spyOn(view, 'getStrokeWidth').andReturn(2);
+        spyOn(view, 'getStrokeWidth').and.returnValue(2);
         view.blockMarginFraction = 0;
         view.barMarginFraction = 0;
         view.render();
@@ -224,13 +224,13 @@ function (Bar, Collection) {
 
       it('selects the closest item', function () {
         view.onHover({ x: 9, y: 0 });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0]);
+        expect(collection.selectItem.calls.mostRecent().args).toEqual([0]);
         view.onHover({ x: 11, y: 0 });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0]);
+        expect(collection.selectItem.calls.mostRecent().args).toEqual([0]);
         view.onHover({ x: 19, y: 0 });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0]);
+        expect(collection.selectItem.calls.mostRecent().args).toEqual([0]);
         view.onHover({ x: 21, y: 0 });
-        expect(collection.selectItem.mostRecentCall.args).toEqual([1]);
+        expect(collection.selectItem.calls.mostRecent().args).toEqual([1]);
       });
 
       it('optionally toggles selection when the new item is the currently selected item', function () {
@@ -238,7 +238,7 @@ function (Bar, Collection) {
         view.collection.selectedItem = view.collection.at(0);
         view.collection.selectItem(0);
         view.onHover({ x: 9, y: 0, toggle: true});
-        expect(collection.selectItem.mostRecentCall.args).toEqual([0, { toggle: true }]);
+        expect(collection.selectItem.calls.mostRecent().args).toEqual([0, { toggle: true }]);
       });
     });
   });

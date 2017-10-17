@@ -40,7 +40,7 @@ function (Axis) {
           innerHeight: 100
         }
       });
-      spyOn(view.d3.svg, 'axis').andCallThrough();
+      spyOn(view.d3.svg, 'axis').and.callThrough();
 
       view.render();
 
@@ -63,7 +63,7 @@ function (Axis) {
         },
         tickValues: [[2, 4, 6]]
       });
-      spyOn(view.d3.svg, 'axis').andCallThrough();
+      spyOn(view.d3.svg, 'axis').and.callThrough();
 
       view.render();
       var ticks = wrapper.selectAll('.tick')[0];

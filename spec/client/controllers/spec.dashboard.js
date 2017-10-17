@@ -10,7 +10,7 @@ define([
 
     beforeEach(function () {
       renderSpy = jasmine.createSpy();
-      moduleSpy = jasmine.createSpy().andReturn({
+      moduleSpy = jasmine.createSpy().and.returnValue({
         render: renderSpy,
         once: function () {}
       });
@@ -30,8 +30,8 @@ define([
 
       it('creates instances of modules and renders them', function () {
         controller.render();
-        expect(moduleSpy.calls.length).toEqual(2);
-        expect(renderSpy.calls.length).toEqual(2);
+        expect(moduleSpy.calls.count()).toEqual(2);
+        expect(renderSpy.calls.count()).toEqual(2);
       });
 
       it('adds slugs to module urls', function () {

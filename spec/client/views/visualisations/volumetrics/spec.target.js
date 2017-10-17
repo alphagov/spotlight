@@ -36,7 +36,7 @@ function (TargetView, View, Collection) {
 
       beforeEach(function () {
         spyOn(TargetView.prototype, 'format');
-        spyOn(TargetView.prototype, 'getTargetPercent').andReturn(0.5);
+        spyOn(TargetView.prototype, 'getTargetPercent').and.returnValue(0.5);
       });
 
       it('should call the view format method with getTargetPercent()', function () {
@@ -195,12 +195,12 @@ function (TargetView, View, Collection) {
       describe('the main render', function () {
 
         beforeEach(function () {
-          spyOn(TargetView.prototype, 'getDateRange').andReturn('28 July to 3 Aug 2014');
-          spyOn(TargetView.prototype, 'getValue').andReturn('50%');
-          spyOn(TargetView.prototype, 'getLabel').andReturn('processed within 15 working days');
-          spyOn(TargetView.prototype, 'getTargetPercent').andReturn(1);
-          spyOn(TargetView.prototype, 'percentageDifference').andReturn('0%');
-          spyOn(TargetView.prototype, 'getPreviousDateRange').andReturn('21 to 27 July 2014');
+          spyOn(TargetView.prototype, 'getDateRange').and.returnValue('28 July to 3 Aug 2014');
+          spyOn(TargetView.prototype, 'getValue').and.returnValue('50%');
+          spyOn(TargetView.prototype, 'getLabel').and.returnValue('processed within 15 working days');
+          spyOn(TargetView.prototype, 'getTargetPercent').and.returnValue(1);
+          spyOn(TargetView.prototype, 'percentageDifference').and.returnValue('0%');
+          spyOn(TargetView.prototype, 'getPreviousDateRange').and.returnValue('21 to 27 July 2014');
         });
 
         it('shows the correct data', function () {
@@ -230,10 +230,10 @@ function (TargetView, View, Collection) {
             ]
           }, { parse: true });
 
-          spyOn(TargetView.prototype, 'getDateRange').andReturn('28 July to 3 Aug 2014');
-          spyOn(TargetView.prototype, 'getValue').andReturn(false);
-          spyOn(TargetView.prototype, 'getTargetPercent').andReturn(1);
-          spyOn(TargetView.prototype, 'getPreviousDateRange').andReturn('21 to 27 July 2014');
+          spyOn(TargetView.prototype, 'getDateRange').and.returnValue('28 July to 3 Aug 2014');
+          spyOn(TargetView.prototype, 'getValue').and.returnValue(false);
+          spyOn(TargetView.prototype, 'getTargetPercent').and.returnValue(1);
+          spyOn(TargetView.prototype, 'getPreviousDateRange').and.returnValue('21 to 27 July 2014');
         });
 
         it('shows the correct data', function () {
@@ -251,17 +251,27 @@ function (TargetView, View, Collection) {
 
       });
 
-      describe('no data', function () {
-        beforeEach(function () {
-          collection.reset();
+      /*
+      NOTE:
+      the 'no-data' template is missing when testing this locally in a browser
+      (ie, directly from file:// .. /_Specfile.html) because trying to load
+      the template from another directory is a prohibited cross-origin request
+       */
+      if ( window.callPhantom ) {
+
+        describe('no data', function () {
+          beforeEach(function () {
+            collection.reset();
+          });
+
+          it('renders "no data"', function () {
+            view.render();
+            expect(view.$el.find('span')).toHaveClass('no-data');
+            expect(view.$el.find('.no-data').text()).toEqual('(no data)');
+          });
         });
 
-        it('renders "no data"', function () {
-          view.render();
-          expect(view.$el.find('span')).toHaveClass('no-data');
-          expect(view.$el.find('.no-data').text()).toEqual('(no data)');
-        });
-      });
+      }
 
       describe('the delta change', function () {
 
@@ -344,7 +354,7 @@ function (TargetView, View, Collection) {
       it('calls formatPeriod with the last model from values', function () {
         view.getDateRange();
 
-        expect(TargetView.prototype.formatPeriod.calls[0].args[0].toJSON()).toEqual({count: 400});
+        expect(TargetView.prototype.formatPeriod.calls.first().args[0].toJSON()).toEqual({count: 400});
       });
 
     });
@@ -366,7 +376,7 @@ function (TargetView, View, Collection) {
       it('calls formatPeriod with the second to last model from values', function () {
         view.getPreviousDateRange();
 
-        expect(TargetView.prototype.formatPeriod.calls[0].args[0].toJSON()).toEqual({count: 200});
+        expect(TargetView.prototype.formatPeriod.calls.first().args[0].toJSON()).toEqual({count: 200});
       });
 
     });

@@ -50,8 +50,8 @@ function (Component, d3) {
           interactive: true
         });
         expect(graph.on).toHaveBeenCalled();
-        expect(graph.on.argsForCall[0][0]).toEqual('hover');
-        var callback = graph.on.argsForCall[0][1];
+        expect(graph.on.calls.first().args[0]).toEqual('hover');
+        var callback = graph.on.calls.first().args[1];
 
         callback();
         expect(view.onHover).toHaveBeenCalled();
@@ -66,8 +66,8 @@ function (Component, d3) {
           }
         });
         expect(graph.on).toHaveBeenCalled();
-        expect(graph.on.argsForCall[0][0]).toEqual('hover');
-        var callback = graph.on.argsForCall[0][1];
+        expect(graph.on.calls.first().args[0]).toEqual('hover');
+        var callback = graph.on.calls.first().args[1];
 
         callback.call(view, {
           foo: false
@@ -85,7 +85,7 @@ function (Component, d3) {
           graph: graph,
           collection: collection
         });
-        expect(view.collection.on.argsForCall[0][0]).toEqual('change:selected');
+        expect(view.collection.on.calls.first().args[0]).toEqual('change:selected');
       });
     });
 
@@ -96,7 +96,7 @@ function (Component, d3) {
           classed: jasmine.createSpy()
         };
         wrapper = {
-          append: jasmine.createSpy().andReturn(componentWrapper)
+          append: jasmine.createSpy().and.returnValue(componentWrapper)
         };
         view = new Component({
           wrapper: wrapper,

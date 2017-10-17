@@ -93,6 +93,8 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
       var table;
 
       beforeEach(function () {
+        // clear window.location.search
+        window.history.replaceState({}, '', window.location.href.split('?')[0]);
         var $el = $('<div/>');
         $el.html(
           '<table><thead><tr><th scope="col" width="0" data-key="_timestamp">' +
@@ -196,7 +198,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         var sortByValue = table.$('thead th:last');
         spyOn(Table.prototype, 'replaceUrlParams');
         sortByValue.find('a').click();
-        expect(Table.prototype.replaceUrlParams.calls[0].args[0]).toEqual('sortby=value&sortorder=descending');
+        expect(Table.prototype.replaceUrlParams.calls.first().args[0]).toEqual('sortby=value&sortorder=descending');
       });
 
       it('doesnt store the sort column and order in the browser address if option not set',
@@ -205,7 +207,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         table.options.saveSortInUrl = false;
         spyOn(Table.prototype, 'replaceUrlParams');
         sortByValue.find('a').click();
-        expect(Table.prototype.replaceUrlParams.calls.length).toEqual(0);
+        expect(Table.prototype.replaceUrlParams.calls.count()).toEqual(0);
       });
 
       it('adds a click to sort label for screenreaders to all columns except the sorted one',
@@ -305,7 +307,7 @@ function (Table, BaseTable, Collection, Model, $, Modernizr) {
         table.$el.append($table);
         table.render();
 
-        expect($table.attr('class')).toNotEqual('floated-header');
+        expect($table.attr('class')).not.toEqual('floated-header');
       });
 
     });

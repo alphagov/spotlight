@@ -125,15 +125,19 @@ function (Hover) {
       describe('onMouseMove', function () {
 
         beforeEach(function () {
-          jasmine.Clock.useMock();
+          jasmine.clock().install();
+        });
+
+        afterEach(function() {
+          jasmine.clock().uninstall();
         });
 
         it('calculates the mouse move position when the graph is not scaled', function () {
-          spyOn(graphWrapper, 'offset').andReturn({
+          spyOn(graphWrapper, 'offset').and.returnValue({
             left: 200,
             top: 200
           });
-          component.graph.scaleFactor.andReturn(1);
+          component.graph.scaleFactor.and.returnValue(1);
           component.onMouseMove({
             pageX: 300,
             pageY: 300
@@ -142,16 +146,16 @@ function (Hover) {
         });
 
         it('calculates the mouse move position when the graph is scaled, allowing for throttling', function () {
-          spyOn(graphWrapper, 'offset').andReturn({
+          spyOn(graphWrapper, 'offset').and.returnValue({
             left: 100,
             top: 100
           });
-          component.graph.scaleFactor.andReturn(0.5);
+          component.graph.scaleFactor.and.returnValue(0.5);
           component.onMouseMove({
             pageX: 150,
             pageY: 150
           });
-          jasmine.Clock.tick(1000);
+          jasmine.clock().tick(1000);
           expect(component.selectPoint).toHaveBeenCalledWith(90, 80);
         });
       });
@@ -217,11 +221,11 @@ function (Hover) {
         });
 
         it('calculates the touch position when the graph is not scaled', function () {
-          spyOn(graphWrapper, 'offset').andReturn({
+          spyOn(graphWrapper, 'offset').and.returnValue({
             left: 200,
             top: 200
           });
-          component.graph.scaleFactor.andReturn(1);
+          component.graph.scaleFactor.and.returnValue(1);
           component.startX = 300;
           component.startY = 300;
           component.endX = 300;
@@ -231,11 +235,11 @@ function (Hover) {
         });
 
         it('calculates the touch position when the graph is scaled', function () {
-          spyOn(graphWrapper, 'offset').andReturn({
+          spyOn(graphWrapper, 'offset').and.returnValue({
             left: 100,
             top: 100
           });
-          component.graph.scaleFactor.andReturn(0.5);
+          component.graph.scaleFactor.and.returnValue(0.5);
           component.startX = 150;
           component.startY = 150;
           component.endX = 150;

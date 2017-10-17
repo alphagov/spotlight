@@ -80,20 +80,26 @@ module.exports = function (grunt) {
       spotlight: {
         src: ['app/**/*.js'],
         options: {
-          helpers: ['spec/helpers/*.js'],
+          helpers: [
+            'spec/helpers/*.js',
+            '!spec/helpers/server-*.js'
+          ],
           specs: [
-            'spec/shared/**/spec.*.js',
-            'spec/client/**/spec.*.js'
+            'spec/client/**/*.js',
+            '!spec/client/preprocessors/spec.visualisation_fallback.js' // fallback images (expect async)
           ],
           template: 'spec/index.html',
-          keepRunner: true
+          keepRunner: false,
+          vendor: [
+            'app/vendor/jquery.js',
+            'app/vendor/require.js'
+          ]
         }
       }
     },
     // Sets up server-side Jasmine node tests
     jasmine_node: {
       legacy: {
-        verbose: false,
         src: './spec/helpers',
         options: {
           specFolders: [
@@ -102,6 +108,7 @@ module.exports = function (grunt) {
           ],
           useHelpers: true,
           specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          helperNameMatcher: '^(?!client-).+', // load only helpers *not* containing 'client-' in their filename
           match: '.*',
           useRequireJs: 'spec/requirejs-setup.js',
           verbose: false,
@@ -114,7 +121,6 @@ module.exports = function (grunt) {
         }
       },
       server: {
-        verbose: false,
         src: './spec/server-pure',
         options: {
           specFolders: [
@@ -122,6 +128,7 @@ module.exports = function (grunt) {
           ],
           useHelpers: true,
           specNameMatcher: 'spec.*', // load only specs containing specNameMatcher
+          helperNameMatcher: '^(?!client-).+', // load only helpers *not* containing 'client-' in their filename
           match: '.*',
           verbose: false,
           jUnit: {
@@ -140,6 +147,7 @@ module.exports = function (grunt) {
         src: ['app/client/**/*.js', 'spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
+          reporterOutput: "",
           jshintrc: true,
           config: './node_modules/performanceplatform-js-style-configs/.jshintrc-browser.json'
         }
@@ -149,6 +157,7 @@ module.exports = function (grunt) {
           '!app/client/**/*.js', '!spec/client/**/*.js'],
         options: {
           reporter: require('jshint-stylish'),
+          reporterOutput: "",
           jshintrc: true,
           config: './node_modules/performanceplatform-js-style-configs/.jshintrc-node.json'
         }
@@ -365,7 +374,9 @@ module.exports = function (grunt) {
     'copy:assets',
     'sass:development',
     'digest',
+    'jasmine',
     'jasmine_node',
+    'jshint'
   ]);
 
   grunt.registerTask('test:all', [

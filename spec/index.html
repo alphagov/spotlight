@@ -5,12 +5,12 @@
   <title>Jasmine Spec Runner</title>
 
 <% css.forEach(function(style) { %>
-  <link rel="stylesheet" type="text/css" href="/<%= style %>">
+  <link rel="stylesheet" type="text/css" href="./<%= style %>">
 <% }) %>
 
 <% with (scripts) { %>
 
-  <% [].concat(jasmine, vendor, helpers, reporters).forEach(function(script) { %>
+  <% [].concat(jasmine, vendor).forEach(function(script) { %>
   <script src="<%= script %>"></script>
   <% }) %>
 
@@ -20,11 +20,43 @@
       "<%= spec %>",
       <% }) %>
     ];
+
+
+  // It seems like we need a bunch of nested requires
+
+  // Load Jasmine - This will still create all of the normal Jasmine browser globals unless `boot.js` is re-written to use the
+  // AMD or UMD specs. `boot.js` will do a bunch of configuration and attach it's initializers to `window.onload()`. Because
+  // we are using RequireJS `window.onload()` has already been triggered so we have to manually call it again. This will
+  // initialize the HTML Reporter and execute the environment.
+
+  require(['.grunt/grunt-contrib-jasmine/boot.js'], function () {
+
+    require([
+
+      <% [].concat(helpers, reporters).forEach(function(script) { %>
+      "<%= script %>",
+      <% }) %>
+
+    ], function () {
+
+      require(['app/config.js'], function (requireConfig) {
+        requireConfig.baseUrl = 'app/';
+        require.config(requireConfig);
+
+        // Load the specs
+        require(specs, function () {
+
+          // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
+          window.onload();
+        });
+      });
+    });
+  });
+
   </script>
 
-  <script data-main="./spec/testrunner.js" src="./app/vendor/require.js"></script>
-
 <% }; %>
+
 </head>
 <body>
 </body>

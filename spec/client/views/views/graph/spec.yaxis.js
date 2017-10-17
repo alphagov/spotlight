@@ -107,7 +107,7 @@ function (YAxis, Graph, Collection) {
 
       it('returns zero if the graph has no data', function () {
         var view = viewForValues(0, 10, true, 10);
-        spyOn(view.graph, 'hasData').andReturn(false);
+        spyOn(view.graph, 'hasData').and.returnValue(false);
         expect(view.ticks()).toEqual(0);
       });
 

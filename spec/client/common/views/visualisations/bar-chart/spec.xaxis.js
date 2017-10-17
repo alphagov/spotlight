@@ -50,8 +50,8 @@ function (XAxis, Collection) {
         graph: {
           innerWidth: 0,
           innerHeight: 0,
-          getPeriod: jasmine.createSpy().andReturn('quarter'),
-          getAxisPeriod: jasmine.createSpy().andReturn('quarter')
+          getPeriod: jasmine.createSpy().and.returnValue('quarter'),
+          getAxisPeriod: jasmine.createSpy().and.returnValue('quarter')
         }
       });
 

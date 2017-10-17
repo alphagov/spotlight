@@ -11,7 +11,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
 
     var graph, model, collection, data;
     beforeEach(function () {
-      spyOn(Graph.prototype, 'initialize').andCallThrough();
+      spyOn(Graph.prototype, 'initialize').and.callThrough();
       model = new Model({
         'value-attribute': 'someAttr',
         axes: {
@@ -139,7 +139,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
 
       beforeEach(function () {
         collection.reset(data, { parse: true });
-        spyOn(graph, 'getY0Pos').andReturn(10);
+        spyOn(graph, 'getY0Pos').and.returnValue(10);
       });
 
       it('adds the baseline position to the model value', function () {
@@ -160,7 +160,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
 
       beforeEach(function () {
         collection.reset(data, { parse: true });
-        spyOn(Graph.prototype, 'getYPos').andCallThrough();
+        spyOn(Graph.prototype, 'getYPos').and.callThrough();
       });
 
       it('sums the values for subsequent stacks', function () {
@@ -169,7 +169,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
         expect(Graph.prototype.getYPos).toHaveBeenCalledWith(0, 'hackney:_count');
         expect(output).toEqual(6);
 
-        Graph.prototype.getYPos.reset();
+        Graph.prototype.getYPos.calls.reset();
 
         output = graph.getY0Pos(2, 'hackney:_count');
         expect(Graph.prototype.getYPos).not.toHaveBeenCalledWith(2, 'croydon:_count');
@@ -190,7 +190,7 @@ function (StackedGraph, Collection, StackSet, StackedLineLabel, Graph, Model) {
       beforeEach(function () {
 
         collection.reset(data, { parse: true });
-        collection.getCurrentSelection = jasmine.createSpy().andReturn({});
+        collection.getCurrentSelection = jasmine.createSpy().and.returnValue({});
         graph.innerWidth = 444;
         graph.innerHeight = 333;
 

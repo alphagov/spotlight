@@ -15,6 +15,9 @@ if (typeof global === 'object') {
   global.isClient = false;
   global.isServer = false;
   obj = global;
+
+  global._ = require('lodash');
+  global.jQuery = global.$ = require('jquery')(require('jsdom').jsdom().defaultView);
 }
 
 obj.logger = logger;
