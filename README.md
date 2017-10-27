@@ -1,5 +1,3 @@
-![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
-
 [![Build status](https://travis-ci.org/alphagov/spotlight.svg?branch=master)](https://travis-ci.org/alphagov/spotlight)
 
 [![Dependency status](https://gemnasium.com/alphagov/spotlight.svg)](https://gemnasium.com/alphagov/spotlight)
