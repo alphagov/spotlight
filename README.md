@@ -91,12 +91,12 @@ bowl performance
 
 #### Command line ####
 
-Tests are divided into ones that work on both client and server (`test/spec/shared`), ones that are server-only (`test/spec/server`) and ones that are client-only (`test/spec/client`).
+The Jasmine tests are divided into ones that work on the client (`test/spec/client`), and ones that work on the server (`test/spec/server` and `test/spec/shared`). The client tests are run using Jasmine v2.x, while the server tests are using Jasmine v1.x. It used to be that both were written for Jasmine v1, but after upgrading node versions our client tests needed to be upgraded.
 
-`npm test` runs all three of these tests, as well as linting the codebase:
+`npm test` runs both client and server tests, as well as linting the codebase:
 
-- `npm run jasmine_node` executes shared and server Jasmine tests in Node.js
-- `npm run jasmine` executes shared and client Jasmine tests in PhantomJS
+- `npm run jasmine_node` executes server Jasmine tests in Node.js
+- `npm run jasmine` executes client Jasmine tests in PhantomJS
 - `npm run shell:cheapseats` executes feature tests using [cheapseats][] with a small subset of dashboards, for speed
 - `npm run shell:cheapseats_full_run` runs cheapseats with all dashboards
 - `npm run test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
