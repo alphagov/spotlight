@@ -26,12 +26,12 @@ Firstly, it is recommended that you set up Node Version Manager on your host. Se
 
 Next checkout the Spotlight repo and create an .nvmrc file in its
 root directory containing the version of node specified in the 'engines' entry
-in `package.json` e.g. 0.10.26.
+in `package.json` e.g. `6.11.2`.
 
 Now install the specified version of node using nvm:
 
 ```bash
-nvm install 0.10.26
+nvm install 6.11.2
 ```
 
 To check you have the correct version of node installed:
@@ -39,8 +39,8 @@ To check you have the correct version of node installed:
 ```bash
 nvm which
 
-Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <0.10.26>
-/Users/<username>/.nvm/v0.10.26/bin/node
+Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <6.11.2>
+/Users/<username>/.nvm/versions/node/v6.11.2/bin/node
 ```
 
 Now tell nvm to use the version of node specified in the `.nvmrc` file:
