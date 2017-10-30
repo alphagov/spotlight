@@ -29,7 +29,7 @@
     "jasmine:spotlight:build": "grunt jasmine:spotlight:build"
   },
   "dependencies": {
-    "argh": "0.1.3",
+    "argh": "^0.1.4",
     "backbone": "1.1.0",
     "chromedriver": "2.26.0",
     "colors": "0.6.2",
@@ -57,15 +57,15 @@
     "grunt-sass": "2.0.0",
     "grunt-shell": "2.1.0",
     "jquery": "1.11.1",
-    "jquery-deparam": "0.1.0",
+    "jquery-deparam": "^0.5.3",
     "jsdom": "^3.1.2",
     "jshint": "2.9.5",
     "jshint-stylish": "0.2.0",
     "jsonschema": "0.4.0",
     "lodash": "2.4.1",
-    "memory-cache": "0.1.6",
+    "memory-cache": "^0.2.0",
     "minimatch": "^3.0.4",
-    "moment-timezone": "0.2.4",
+    "moment-timezone": "^0.5.13",
     "mustache": "2.3.0",
     "nightwatch": "0.9.16",
     "node-basicauth": "0.0.9",
@@ -75,7 +75,7 @@
     "phantomjs-prebuilt": "2.1.15",
     "q": "1.0.1",
     "requirejs": "2.1.14",
-    "sanitizer": "0.1.1",
+    "sanitizer": "^0.1.3",
     "selenium-server": "2.43.1",
     "serialize-javascript": "^1.3.0",
     "spdy": "^3.4.7",
@@ -86,6 +86,6 @@
   "devDependencies": {
     "cheapseats": "git+https://github.com/alphagov/cheapseats#fa4da27030c99322d6dc13d549a69ea47125d164",
     "performanceplatform-js-style-configs": "0.0.2",
-    "supervisor": "0.5.7"
+    "supervisor": "^0.12.0"
   }
 }
