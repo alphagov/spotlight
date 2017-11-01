@@ -53,7 +53,7 @@
     "grunt-contrib-requirejs": "1.0.0",
     "grunt-contrib-watch": "1.0.0",
     "grunt-digest": "0.1.2",
-    "grunt-jasmine-node-new": "0.3.2",
+    "grunt-jasmine-node-new": "git+https://github.com/rossjones/grunt-jasmine-node",
     "grunt-sass": "2.0.0",
     "grunt-shell": "2.1.0",
     "jquery": "1.11.1",
