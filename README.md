@@ -1,5 +1,3 @@
-![Latest tag](https://img.shields.io/github/tag/alphagov/spotlight.svg)
-
 [![Build status](https://travis-ci.org/alphagov/spotlight.svg?branch=master)](https://travis-ci.org/alphagov/spotlight)
 
 [![Dependency status](https://gemnasium.com/alphagov/spotlight.svg)](https://gemnasium.com/alphagov/spotlight)
@@ -28,12 +26,12 @@ Firstly, it is recommended that you set up Node Version Manager on your host. Se
 
 Next checkout the Spotlight repo and create an .nvmrc file in its
 root directory containing the version of node specified in the 'engines' entry
-in `package.json` e.g. 0.10.26.
+in `package.json` e.g. `6.11.2`.
 
 Now install the specified version of node using nvm:
 
 ```bash
-nvm install 0.10.26
+nvm install 6.11.2
 ```
 
 To check you have the correct version of node installed:
@@ -41,8 +39,8 @@ To check you have the correct version of node installed:
 ```bash
 nvm which
 
-Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <0.10.26>
-/Users/<username>/.nvm/v0.10.26/bin/node
+Found '/Users/<username>/<path to>/spotlight/.nvmrc' with version <6.11.2>
+/Users/<username>/.nvm/versions/node/v6.11.2/bin/node
 ```
 
 Now tell nvm to use the version of node specified in the `.nvmrc` file:
@@ -59,9 +57,7 @@ npm install
 npm start
 ```
 
-Now you should be able to connect to the app at `http://localhost:3057`. If you're running the app from the govuk vm, you need to replace localhost with the IP address of your [vagrant] machine in the url. Currently this is: `http://10.1.1.254:3057`
-
-[vagrant]: https://github.com/alphagov/govuk-puppet/tree/master/development#extras
+Now you should be able to connect to the app at `http://localhost:3057`.
 
 The app uses [node-supervisor][] and [grunt-contrib-watch][] to monitor changes,
 automatically restart the server and recompile Sass.
@@ -95,12 +91,12 @@ bowl performance
 
 #### Command line ####
 
-Tests are divided into ones that work on both client and server (`test/spec/shared`), ones that are server-only (`test/spec/server`) and ones that are client-only (`test/spec/client`).
+The Jasmine tests are divided into ones that work on the client (`test/spec/client`), and ones that work on the server (`test/spec/server` and `test/spec/shared`). The client tests are run using Jasmine v2.x, while the server tests are using Jasmine v1.x. It used to be that both were written for Jasmine v1, but after upgrading node versions our client tests needed to be upgraded.
 
-`npm test` runs all three of these tests, as well as linting the codebase:
+`npm test` runs both client and server tests, as well as linting the codebase:
 
-- `npm run jasmine_node` executes shared and server Jasmine tests in Node.js
-- `npm run jasmine` executes shared and client Jasmine tests in PhantomJS
+- `npm run jasmine_node` executes server Jasmine tests in Node.js
+- `npm run jasmine` executes client Jasmine tests in PhantomJS
 - `npm run shell:cheapseats` executes feature tests using [cheapseats][] with a small subset of dashboards, for speed
 - `npm run shell:cheapseats_full_run` runs cheapseats with all dashboards
 - `npm run test:functional` executes functional tests using [nightwatch][https://github.com/beatfactor/nightwatch]
@@ -115,17 +111,6 @@ If you want to run against firefox,chrome and phantom you can also do `npm run t
 All the functional tasks except `ci` will require a server to be running already.
 
 [cheapseats]: https://github.com/alphagov/cheapseats
-
-#### In the browser ####
-
-When the app is running in development mode, Jasmine tests for shared
-components are available at `/tests`. The specrunner gets automatically
-recreated on server start and when the specfiles change. Due to a
-[bug in grunt-contrib-watch][watch-20], new spec files are not currently
-detected automatically. When you add a new spec file, either restart the
-app or run `npm run jasmine:spotlight:build`.
-
-[watch-20]: https://github.com/gruntjs/grunt-contrib-watch/issues/20
 
 #### Debugging locally ####
 
