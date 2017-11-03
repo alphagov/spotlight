@@ -1,7 +1,7 @@
 {
   "assetPath": "/performance/assets/",
   "port": 3057,
-  "backdropUrl": "https://www.staging.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
+  "backdropUrl": "https://performance-platform-backdrop-read-staging.cloudapps.digital/data/{{ data-group }}/{{ data-type }}",
   "externalBackdropUrl": "https://performance-platform-backdrop-read-staging.cloudapps.digital/data/{{ data-group }}/{{ data-type }}",
   "stagecraftUrl": "https://performance-platform-stagecraft-staging.cloudapps.digital",
   "screenshotTargetUrl": "http://localhost:3057",
