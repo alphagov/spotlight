@@ -32,3 +32,13 @@ body:not(.homepage) {
     }
   }
 }
+
+/*
+  It was either this hack or mess with the default govuk page template.
+  `app/server/templates/page-components/govuk_template.html` is copied directly
+  from `node_modules/govuk_template_mustache/...`.
+  Keeping it as-is means we don't end up copying and pasting stuff.
+*/
+.survey-wrapper + #global-header-bar {
+  display: none;
+}
