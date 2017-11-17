@@ -1,0 +1,44 @@
+.survey-wrapper {
+  background-color: $white;
+}
+
+.survey {
+  @extend .content-centered;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  p {
+    display: table;
+    margin: 0;
+    @include core-16;
+  }
+}
+
+body:not(.homepage) {
+
+  .survey-wrapper {
+    background-color: $govuk-blue;
+  }
+
+  .survey {
+    color: $white;
+
+    a, a:visited {
+      color: $white;
+    }
+
+    a:hover, a:active {
+      color: $light-blue-25;
+    }
+  }
+}
+
+/*
+  It was either this hack or mess with the default govuk page template.
+  `app/server/templates/page-components/govuk_template.html` is copied directly
+  from `node_modules/govuk_template_mustache/...`.
+  Keeping it as-is means we don't end up copying and pasting stuff.
+*/
+.survey-wrapper + #global-header-bar {
+  display: none;
+}
