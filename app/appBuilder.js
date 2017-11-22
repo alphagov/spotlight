@@ -25,7 +25,6 @@ module.exports = {
       // The number of milliseconds in one day
       var oneDay = 86400000;
 
-      app.use(require('./stats'));
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);

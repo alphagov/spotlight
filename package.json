@@ -70,7 +70,6 @@
     "node-basicauth": "0.0.9",
     "node-opencv": "0.0.2-security",
     "node-sass": "4.5.3",
-    "node-statsd": "0.0.7",
     "optimist": "0.6.1",
     "phantomjs-prebuilt": "2.1.15",
     "q": "1.0.1",
