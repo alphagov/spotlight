@@ -12,7 +12,7 @@ function (JsonSummary, Model, Collection, $) {
 
     beforeEach(function () {
       $el = $('<li class="json-summary"></li>');
-      $el.html('<a href="url&format=json">JSON</a> | <a href="url&format=csv">CSV</a>');
+      $el.html('<a href="url&format=json">JSON</a>');
       view = new JsonSummary({
         el: $el,
         model: model,
@@ -27,9 +27,8 @@ function (JsonSummary, Model, Collection, $) {
         expect(view.$el.prop('tagName')).toEqual('LI');
         var $links = view.$el.find('a');
 
-        expect($links.length).toEqual(2);
+        expect($links.length).toEqual(1);
         expect($links.first().attr('href')).toEqual('newUrl&format=json');
-        expect($links.last().attr('href')).toEqual('newUrl&format=csv');
       });
 
     });
