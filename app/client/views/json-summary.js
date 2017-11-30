@@ -12,8 +12,7 @@ define([
 
       var url = this.collection.url();
       var urlJson = url+'&format=json';
-      var urlCSV = url + '&format=csv';
-      this.$el.html( $('<a href="' + urlJson + '">JSON</a> | <a href="' + urlCSV + '">CSV</a>') );
+      this.$el.html( $('<a href="' + urlJson + '">JSON</a>') );
 
       return this;
     }
