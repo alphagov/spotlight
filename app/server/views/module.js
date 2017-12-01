@@ -59,7 +59,6 @@ module.exports = View.extend(templater).extend({
   templateContext: function () {
     if (this.collection) {
       this.jsonUrl = this.collection.externalUrl() + "&format=json";
-      this.csvUrl = this.collection.externalUrl() + "&format=csv";
     }
     return _.extend(
       View.prototype.templateContext.call(this),
