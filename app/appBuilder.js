@@ -11,7 +11,6 @@ var basicAuth = require('node-basicauth');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
 var error = require('./error');
-var morgan  = require('morgan');
 
 module.exports = {
   getApp: function (environment, rootDir, requireBaseUrl) {
@@ -25,7 +24,6 @@ module.exports = {
       // The number of milliseconds in one day
       var oneDay = 86400000;
 
-      app.use(require('./stats'));
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);
@@ -36,7 +34,6 @@ module.exports = {
       app.set('port', global.config.port);
       app.set('stagecraftUrl', global.config.stagecraftUrl);
       app.set('bigScreenBaseURL', global.config.bigScreenBaseURL);
-      app.use(morgan('dev'));
       app.use(compression());
 
       // Serve static files from the configured assetPath.
