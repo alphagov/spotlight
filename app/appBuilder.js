@@ -11,7 +11,6 @@ var basicAuth = require('node-basicauth');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
 var error = require('./error');
-var morgan  = require('morgan');
 
 module.exports = {
   getApp: function (environment, rootDir, requireBaseUrl) {
@@ -35,7 +34,6 @@ module.exports = {
       app.set('port', global.config.port);
       app.set('stagecraftUrl', global.config.stagecraftUrl);
       app.set('bigScreenBaseURL', global.config.bigScreenBaseURL);
-      app.use(morgan('dev'));
       app.use(compression());
 
       // Serve static files from the configured assetPath.
