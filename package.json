@@ -37,6 +37,7 @@
     "d3": "3.3.7",
     "errorhandler": "1.5.0",
     "express": "4.15.4",
+    "express-rate-limit": "^2.9.0",
     "glob": "7.0.3",
     "govuk_frontend_toolkit": "4.9.1",
     "govuk_template_mustache": "0.12.0",
