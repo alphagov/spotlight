@@ -25,7 +25,7 @@ module.exports = {
     (function () {
       // The number of milliseconds in one day
       var oneDay = 86400000;
-      var scrapers = /^Pcore-HTTP.*/i
+      var scrapers = /^Pcore-HTTP.*|.*360Spider.*/i
 
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
@@ -40,9 +40,8 @@ module.exports = {
       app.use(compression());
 
       var limiter = new rateLimit({
-        // Skip rate-limiting if the user-agent doesn't match our scraper
-        // regex, otherwise limit-away!
-
+        // Rate-limit all requests from clients where the user-agent matches
+        // our scraper regex above.
         skip: function(req, res) {
           var source = req.headers['user-agent'] || "";
           return !source.match(scrapers);
