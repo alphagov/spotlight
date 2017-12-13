@@ -25,7 +25,7 @@ module.exports = {
     (function () {
       // The number of milliseconds in one day
       var oneDay = 86400000;
-      var scrapers = /^Pcore-HTTP.*|.*360Spider.*/i
+      var scrapers = /^Pcore-HTTP.*|.*360Spider.*/i;
 
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
