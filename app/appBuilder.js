@@ -40,15 +40,21 @@ module.exports = {
       app.use(compression());
 
       var limiter = new rateLimit({
-        // Rate-limit all requests from clients where the user-agent matches
-        // our scraper regex above.
+        // Returning false will increment the counter
         skip: function(req, res) {
+          // Ignore 'assets' URLs
+          if (req.originalUrl.indexOf('assets') !== -1) {
+            return true;
+          }
+
+          // Rate-limit all requests from clients where the user-agent matches our scraper regex above.
           var source = req.headers['user-agent'] || "";
           return !source.match(scrapers);
         },
         windowMs: 60 * 1000, // 1 minute
         max: 60, // limit each IP to 60 requests per minute if skip: returns false
         delayMs: 0, // disable delaying
+        skipFailedRequests: true, //  when true failed requests (response status >= 400) won't be counted
         message: "Too many requests from this IP. Please get in touch if you require the raw data.",
       });
 
