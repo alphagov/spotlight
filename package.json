@@ -16,8 +16,6 @@
     "build:production": "grunt build:production",
     "lint": "[ -z \"$LINTFILES\" ] && LINTFILES=\"** app/support/**/**/*.json\"; ./node_modules/jshint/bin/jshint ${LINTFILES}",
     "test": "grunt test:all",
-    "shell:cheapseats": "grunt shell:cheapseats",
-    "shell:cheapseats_full_run": "grunt shell:cheapseats_full_run",
     "test:functional": "grunt test:functional",
     "test:functional:ci": "grunt test:functional:ci",
     "test:functional:ff": "grunt test:functional:ff",
@@ -81,7 +79,6 @@
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
-    "cheapseats": "git+https://github.com/alphagov/cheapseats#fa4da27030c99322d6dc13d549a69ea47125d164",
     "performanceplatform-js-style-configs": "0.0.2",
     "supervisor": "^0.12.0",
     "npm-check": "^5.5.2"

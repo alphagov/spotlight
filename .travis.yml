@@ -21,13 +21,7 @@ env:
     - secure: S0kaaQQ9l28pPb/1UIuieWVUvK4nSuLHYA5T0K/1+EceyvHNhbWSIe/AsKsWdGxtjZ+uwHGg4YuR5HSHRHBE6V31gUtwTsswJrlnCntqwVPWM9QRPv4OBhMYT7yUaEhoED5GB6OdS6s/A+UBf8+jpHukwS6kQP0urMUIvhKOt9I=
   matrix:
     - TEST_CMD: test:unit
-    - TEST_CMD: shell:cheapseats
     - TEST_CMD: test:functional:ci
-# Add back in when we're out of emergency mode
-#   - TEST_CMD: shell:cheapseats:--range:0..50
-#   - TEST_CMD: shell:cheapseats:--range:51..100
-#   - TEST_CMD: shell:cheapseats:--range:101..150
-#   - TEST_CMD: shell:cheapseats:--range:151..
 
 notifications:
   email: false
