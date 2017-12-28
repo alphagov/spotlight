@@ -16,36 +16,6 @@ module.exports = View.extend({
     }
 
     this.dashboardType = this.model.get('dashboard-type');
-
-    this.model.set('hasBigScreenView', this.hasBigScreenFlag());
-  },
-
-  hasBigScreenFlag: function() {
-    var hasSupportedModules;
-
-    var dashboardsModules = [];
-    _.each(this.model.get('modules'), function (module) {
-      dashboardsModules.push(module);
-
-      if(module.modules) {
-        _.each(module.modules, function (submodule) {
-          dashboardsModules.push(submodule);
-        });
-      }
-    });
-
-    hasSupportedModules = _.any(dashboardsModules, function(module) {
-      var moduleType = module['module-type'];
-      return moduleType === 'kpi' ||
-         moduleType === 'realtime' ||
-         moduleType === 'single_timeseries' ||
-         moduleType === 'grouped_timeseries'||
-         moduleType === 'table'||
-         (moduleType === 'user_satisfaction_graph' &&
-          module['data-source']['data-type'] === 'user-satisfaction-score');
-    });
-
-    return hasSupportedModules;
   },
 
   getContent: function () {

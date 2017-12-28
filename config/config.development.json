@@ -3,6 +3,5 @@
   "port": 3057,
   "backdropUrl": "https://www.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
   "externalBackdropUrl": "https://www.performance.service.gov.uk/data/{{ data-group }}/{{ data-type }}",
-  "stagecraftUrl": "https://performance-platform-stagecraft-production.cloudapps.digital",
-  "bigScreenBaseURL": "https://www.performance.service.gov.uk"
+  "stagecraftUrl": "https://performance-platform-stagecraft-production.cloudapps.digital"
 }

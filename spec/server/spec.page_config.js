@@ -10,7 +10,6 @@ function (PageConfig) {
       get.plan = function (prop) {
         return {
           assetPath: '/path/to/assets/',
-          bigScreenBaseURL: 'https://www.performance.service.gov.uk'
         }[prop];
       };
       var headers = jasmine.createSpy();
@@ -44,10 +43,6 @@ function (PageConfig) {
       it('contains assetPath property', function () {
         var commonConfig = PageConfig.commonConfig(req);
         expect(commonConfig.assetPath).toEqual('/path/to/assets/');
-      });
-      it('contains bigScreenBaseURL property', function () {
-        var commonConfig = PageConfig.commonConfig(req);
-        expect(commonConfig.bigScreenBaseURL).toEqual('https://www.performance.service.gov.uk');
       });
       it('contains assetPath property', function () {
         var commonConfig = PageConfig.commonConfig(req);

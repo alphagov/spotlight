@@ -15,7 +15,6 @@ function () {
       backdropUrl: req.app.get('backdropUrl'),
       externalBackdropUrl: req.app.get('externalBackdropUrl'),
       clientRequiresCors: req.app.get('clientRequiresCors'),
-      bigScreenBaseURL: req.app.get('bigScreenBaseURL'),
       requestId: req.get('Request-Id'),
       govukRequestId: req.get('GOVUK-Request-Id')
     };
