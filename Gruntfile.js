@@ -263,24 +263,6 @@ module.exports = function (grunt) {
       }
     },
     shell: {
-      // Runs subset of cheapseats tests
-      cheapseats: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter spec --standalone --path --quickrun ./')
-      },
-      // Runs all cheapseats tests
-      cheapseats_full_run: {
-        options: {
-          failOnError: true,
-          stderr: true,
-          stdout: true
-        },
-        command: addArgs('node ./node_modules/cheapseats/index.js --reporter spec --standalone --path ./')
-      },
       nightwatch: {
         command: addArgs('./node_modules/nightwatch/bin/nightwatch')
       },
@@ -381,12 +363,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:all', [
     'test:unit',
-    'shell:cheapseats',
     'test:functional'
-  ]);
-
-  grunt.registerTask('cheapseats', [
-    'shell:cheapseats'
   ]);
 
   grunt.registerTask('nightwatch', [
@@ -411,10 +388,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:functional:all', [
     'shell:nightwatch:-e default,chrome,phantomjs'
-  ]);
-
-  grunt.registerTask('cheapseats:unpublished', [
-    'shell:cheapseats:--unpublished'
   ]);
 
   // Default task
