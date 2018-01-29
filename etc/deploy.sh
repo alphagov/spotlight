@@ -26,4 +26,4 @@ cf set-env $PAAS_SERVICE GOVUK_WEBSITE_ROOT $APP_GOVUK_WEBSITE_ROOT
 cf push $PAAS_SERVICE --docker-image $DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER
 
 # create and map routes
-cf map-route $PAAS_SERVICE cloudapps.digital --hostname $PAAS_SERVICE-$PAAS_SPACE
+# cf map-route $PAAS_SERVICE cloudapps.digital --hostname $PAAS_SERVICE-$PAAS_SPACE
