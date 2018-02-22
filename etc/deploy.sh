@@ -10,7 +10,7 @@ fi
 
 PAAS_SPACE=$1
 docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-docker build --file=$DOCKER_FILE --tag=$DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER .
+docker build --squash --file=$DOCKER_FILE --tag=$DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER .
 docker push $DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER
 wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
 echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
