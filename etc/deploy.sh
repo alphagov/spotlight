@@ -19,8 +19,8 @@ sudo apt-get update && sudo apt-get install cf-cli
 cf login -u $PAAS_USER -p $PAAS_PASSWORD -a https://api.cloud.service.gov.uk -o gds-performance-platform -s $PAAS_SPACE
 
 # set environmental variables
-cf set-env $PAAS_SERVICE NODE_ENV $PAAS_SPACE
-cf set-env $PAAS_SERVICE GOVUK_WEBSITE_ROOT $APP_GOVUK_WEBSITE_ROOT
+#cf set-env $PAAS_SERVICE NODE_ENV $PAAS_SPACE
+#cf set-env $PAAS_SERVICE GOVUK_WEBSITE_ROOT $APP_GOVUK_WEBSITE_ROOT
 
 # deploy apps
 cf push $PAAS_SERVICE --docker-image $DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER -n new-$PAAS_SERVICE-$PAAS_SPACE
