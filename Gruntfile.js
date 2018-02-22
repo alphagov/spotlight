@@ -40,13 +40,13 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
-    // Removes the contents of the republic directory
-    clean: ['republic/'],
+    // Removes the contents of the spotlight_assets directory
+    clean: ['spotlight_assets/'],
     // Builds Sass in development and production
     sass: {
       development: {
         files: {
-          'republic/stylesheets/spotlight.css': 'styles/index.scss'
+          'spotlight_assets/stylesheets/spotlight.css': 'styles/index.scss'
         },
         options: {
           includePaths: [
@@ -58,12 +58,12 @@ module.exports = function (grunt) {
       },
       production: {
         files: [
-          { 'republic/stylesheets/spotlight.css': 'styles/index.scss' },
+          { 'spotlight_assets/stylesheets/spotlight.css': 'styles/index.scss' },
           {
             expand: true,
             cwd: 'node_modules/govuk_template_mustache/assets/stylesheets',
             src: ['*.css'],
-            dest: 'republic/stylesheets',
+            dest: 'spotlight_assets/stylesheets',
             ext: '.css'
           }
         ],
@@ -167,13 +167,13 @@ module.exports = function (grunt) {
     requirejs: {
       production: {
         options: _.extend({}, requirejsConfig, {
-          out: 'republic/javascripts/spotlight.js',
+          out: 'spotlight_assets/javascripts/spotlight.js',
           d3: true
         })
       },
       'production-no-d3': {
         options: _.extend({}, requirejsConfig, {
-          out: 'republic/javascripts/spotlight-no-d3.js',
+          out: 'spotlight_assets/javascripts/spotlight-no-d3.js',
           d3: false
         })
       }
@@ -189,7 +189,7 @@ module.exports = function (grunt) {
           'node_modules/govuk_frontend_toolkit/javascripts/govuk/analytics/download-link-tracker.js',
           'app/client/analytics.js'
         ],
-        dest: 'republic/javascripts/analytics.js'
+        dest: 'spotlight_assets/javascripts/analytics.js'
       }
     },
     // Copies templates and assets from external modules and dirs
@@ -207,7 +207,7 @@ module.exports = function (grunt) {
             expand: true,
             src: '**',
             cwd: 'node_modules/govuk_template_mustache/assets',
-            dest: 'republic/'
+            dest: 'spotlight_assets/'
           }
         ]
       },
@@ -217,7 +217,7 @@ module.exports = function (grunt) {
             expand: true,
             src: '**',
             cwd: 'assets',
-            dest: 'republic/'
+            dest: 'spotlight_assets/'
           }
         ]
       },
@@ -293,12 +293,12 @@ module.exports = function (grunt) {
     // Creates an asset digest for cachebusting URLs
     digest: {
       options: {
-        out: 'republic/asset-digest.json',
+        out: 'spotlight_assets/asset-digest.json',
         separator: '-',
         algorithm: 'md5'
       },
       files: {
-        src: ['republic/**/*.*']
+        src: ['spotlight_assets/**/*.*']
       }
     }
   });

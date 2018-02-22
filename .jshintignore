@@ -10,7 +10,7 @@ assets/**
 node_modules/**
 **/node_modules/**
 vendor/**
-republic/**
+spotlight_assets/**
 config/**
 lib/**
 spec/helpers/**
