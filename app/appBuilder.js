@@ -30,7 +30,7 @@ module.exports = {
       app.set('environment', environment);
       app.set('requirePath', requireBaseUrl || '/app/');
       app.set('assetPath', global.config.assetPath);
-      app.set('assetDigest', JSON.parse(fs.readFileSync(path.join(rootDir, 'public', 'asset-digest.json'), {encoding: 'utf8'})));
+      app.set('assetDigest', JSON.parse(fs.readFileSync(path.join(rootDir, 'republic', 'asset-digest.json'), {encoding: 'utf8'})));
       app.set('backdropUrl', global.config.backdropUrl);
       app.set('externalBackdropUrl', global.config.externalBackdropUrl);
       app.set('clientRequiresCors', global.config.clientRequiresCors);
@@ -61,7 +61,7 @@ module.exports = {
       app.use('/performance', limiter);
 
       // Serve static files from the configured assetPath.
-      app.use(global.config.assetPath, express.static(path.join(rootDir, 'public'), { maxAge: oneDay }));
+      app.use(global.config.assetPath, express.static(path.join(rootDir, 'republic'), { maxAge: oneDay }));
     }());
 
     if (environment === 'development') {
