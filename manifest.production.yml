@@ -1,0 +1,12 @@
+---
+applications:
+  - name: performance-platform-spotlight
+    memory: 1G
+    buildpack: nodejs_buildpack
+    command: "npm run build:production && node app/server"
+    routes:
+    - route: performance-platform-spotlight-production
+    env:
+      NODE_VERSION: "6.12.2"
+      NODE_ENV: production
+      GOVUK_WEBSITE_ROOT: https://www.gov.uk
