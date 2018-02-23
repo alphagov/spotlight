@@ -2,6 +2,7 @@
 applications:
   - name: performance-platform-spotlight
     memory: 1G
+    instances: 6
     buildpack: nodejs_buildpack
     command: "npm run build:production && node app/server"
     routes:
