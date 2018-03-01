@@ -3,22 +3,14 @@ sudo: false
 language: node_js
 node_js:
   - "6"
-services:
-  - docker
 env:
   global:
     - GOVUK_WEBSITE_ROOT_STAGING=https://www-origin.staging.publishing.service.gov.uk
     - GOVUK_WEBSITE_ROOT_PRODUCTION=https://www.gov.uk
     - PAAS_USER=pp-deploy@digital.cabinet-office.gov.uk
     - PAAS_SERVICE=performance-platform-spotlight
-    - DOCKER_USER=ppdeploy
-    - DOCKER_REPOSITORY=ppdeploy
-    - DOCKER_IMAGE=spotlight
-    - DOCKER_FILE=etc/spotlight.df
     # PAAS_PASSWORD
     - secure: VawTvYxefQiTk+Bk3i9RBW8MOGtQ3QzrJvrSJrxTv0yq7SnHLtJbqfC6poSQE/qX90vWSx+8m6dafc3GjJg2XDoTdr2UOqf/jBKqYqZVM9sQeEI4DYyXLOxd2fcDjPPZYhihamdeyu4qxF/DwGrU+7COoNHsMmyZ5n/FjKhYYCk=
-    # DOCKER_PASSWORD for user ppdeploy
-    - secure: S0kaaQQ9l28pPb/1UIuieWVUvK4nSuLHYA5T0K/1+EceyvHNhbWSIe/AsKsWdGxtjZ+uwHGg4YuR5HSHRHBE6V31gUtwTsswJrlnCntqwVPWM9QRPv4OBhMYT7yUaEhoED5GB6OdS6s/A+UBf8+jpHukwS6kQP0urMUIvhKOt9I=
   matrix:
     - TEST_CMD: test:unit
     - TEST_CMD: test:functional:ci
