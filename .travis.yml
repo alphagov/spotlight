@@ -11,9 +11,6 @@ env:
     - PAAS_SERVICE=performance-platform-spotlight
     # PAAS_PASSWORD
     - secure: VawTvYxefQiTk+Bk3i9RBW8MOGtQ3QzrJvrSJrxTv0yq7SnHLtJbqfC6poSQE/qX90vWSx+8m6dafc3GjJg2XDoTdr2UOqf/jBKqYqZVM9sQeEI4DYyXLOxd2fcDjPPZYhihamdeyu4qxF/DwGrU+7COoNHsMmyZ5n/FjKhYYCk=
-  matrix:
-    - TEST_CMD: test:unit
-    - TEST_CMD: test:functional:ci
 
 notifications:
   email: false
@@ -26,10 +23,8 @@ install:
   - travis_retry npm install
 
 script:
-  - "npm run $TEST_CMD"
-
-matrix:
-  fast_finish: true
+  - "npm run test:unit"
+  - "npm run test:functional:ci"
 
 before_deploy:
   - chmod +x etc/deploy.sh
