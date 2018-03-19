@@ -17,7 +17,6 @@ var footerLinksTemplate = pr('../templates/page-components/footer_links.html');
 var reportAProblemTemplate = pr('../templates/page-components/report_a_problem.html');
 var cookieMessageTemplate = pr('../templates/page-components/cookie_message.html');
 var contentTemplate = pr('../templates/page-components/content.html');
-var surveyTemplate = pr('../templates/page-components/survey.html');
 
 
 /**
@@ -91,7 +90,6 @@ module.exports = View.extend(templater).extend({
         cookieMessage: this.loadTemplate(cookieMessageTemplate, 'mustache'),
         footerTop: this.loadTemplate(footerTopTemplate, 'mustache'),
         footerSupportLinks: this.loadTemplate(footerLinksTemplate, 'mustache'),
-        afterHeader: this.loadTemplate(surveyTemplate),
         content: this.loadTemplate(contentTemplate, {
           content: this.getContent(),
           reportAProblem: this.getReportForm()
