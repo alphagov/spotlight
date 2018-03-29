@@ -9,5 +9,5 @@ applications:
     - route: performance-platform-spotlight-staging
     env:
       NODE_VERSION: "6.12.2"
-      NODE_ENV: production
+      NODE_ENV: staging
       GOVUK_WEBSITE_ROOT: https://www.gov.uk
