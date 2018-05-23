@@ -9,7 +9,7 @@
     "url": "https://github.com/alphagov/spotlight.git"
   },
   "engines": {
-    "node": "6.12.2"
+    "node": "6.13.1"
   },
   "private": true,
   "scripts": {
