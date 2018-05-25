@@ -1,4 +1,6 @@
 ---
+services:
+  - logit-ssl-drain-spotlight
 applications:
   - name: performance-platform-spotlight
     memory: 1G
