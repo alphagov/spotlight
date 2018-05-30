@@ -27,9 +27,6 @@ script:
   - "npm run test:unit"
   - "npm run test:functional:ci"
 
-before_deploy:
-  - chmod +x etc/deploy.sh
-
 deploy:
   - provider: script
     script: APP_GOVUK_WEBSITE_ROOT=$GOVUK_WEBSITE_ROOT_STAGING etc/deploy.sh staging
