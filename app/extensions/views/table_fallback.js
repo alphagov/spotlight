@@ -15,11 +15,12 @@ function (TableView) {
       this.valueAttr = this.options.valueAttr;
       this.period = this.collection.getPeriod();
 
-      this.collection.models = this.collection.last(6);
-      this.collection.length = this.collection.models.length;
-
-      this.listenTo(this.collection, 'reset add remove', this.render);
-      this.initSort();
+      if (this.collection.models.length > 0) {
+        this.collection.models = this.collection.last(6);
+        this.collection.length = this.collection.models.length;
+        this.listenTo(this.collection, 'reset add remove', this.render);
+        this.initSort();
+      }
     }
 
   });
