@@ -1,6 +1,6 @@
 ---
 services:
-  - logit-ssl-drain-spotlight
+  - logit-ssl-drain
 applications:
   - name: performance-platform-spotlight
     memory: 1G
