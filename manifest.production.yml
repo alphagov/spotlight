@@ -7,6 +7,7 @@ applications:
     instances: 6
     buildpack: nodejs_buildpack
     command: "npm run build:production && node app/server"
+    stack: cflinuxfs3
     routes:
     - route: performance-platform-spotlight-production
     env:

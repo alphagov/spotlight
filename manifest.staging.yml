@@ -5,6 +5,7 @@ applications:
     instances: 2
     buildpack: nodejs_buildpack
     command: "npm run build:production && node app/server"
+    stack: cflinuxfs3
     routes:
     - route: performance-platform-spotlight-staging
     env:
