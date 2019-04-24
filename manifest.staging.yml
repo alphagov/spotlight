@@ -7,7 +7,7 @@ applications:
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
     routes:
-    - route: performance-platform-spotlight-staging
+    - route: performance-platform-spotlight-staging.cloudapps.digital
     env:
       NODE_VERSION: "6.12.2"
       NODE_ENV: staging
