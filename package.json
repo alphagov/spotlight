@@ -54,7 +54,7 @@
     "grunt-jasmine-node-new": "git+https://github.com/rossjones/grunt-jasmine-node",
     "grunt-sass": "2.0.0",
     "grunt-shell": "2.1.0",
-    "jquery": "1.11.1",
+    "jquery": "3.4.0",
     "jquery-deparam": "^0.5.3",
     "jsdom": "^3.1.2",
     "jshint-stylish": "^2.2.1",
