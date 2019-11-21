@@ -15,7 +15,7 @@
 
   <form accept-charset="UTF-8" action="/contact/govuk/problem_reports" method="post">
     <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-    <input id="url" name="url" type="hidden" value="{{{ govukUrl }}}">
+    <input id="url" name="url" type="hidden" value="{{ govukUrl }}">
     {{#source}}
     <input id="source" name="source" type="hidden" value="{{ source }}">
     {{/source}}
