@@ -2,7 +2,7 @@
 services:
   - logit-ssl-drain
 applications:
-  - name: performance-platform-spotlight
+  - name: performance-platform-spotlight-production
     memory: 1G
     instances: 6
     buildpack: nodejs_buildpack
