@@ -6,8 +6,9 @@ applications:
     buildpack: nodejs_buildpack
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
-    routes:
-    - route: performance-platform-spotlight-staging.cloudapps.digital
+    no-route: true # disabling routing during maintainance
+    # routes:
+    # - route: performance-platform-spotlight-staging.cloudapps.digital
     env:
       NODE_VERSION: "6.12.2"
       NODE_ENV: staging
