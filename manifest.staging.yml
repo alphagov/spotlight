@@ -2,13 +2,15 @@
 applications:
   - name: performance-platform-spotlight-staging
     memory: 1G
+    buildpacks:
+      - "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
     instances: 2
-    buildpack: nodejs_buildpack
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
-    routes:
-    - route: performance-platform-spotlight-staging.cloudapps.digital
+    no-route: true # disabling routing during maintainance
+    # routes:
+    # - route: performance-platform-spotlight-staging.cloudapps.digital
     env:
-      NODE_VERSION: "6.12.2"
+      NODE_VERSION: "6.17.1"
       NODE_ENV: staging
       GOVUK_WEBSITE_ROOT: https://www.gov.uk
