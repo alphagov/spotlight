@@ -11,5 +11,5 @@ applications:
     # - route: performance-platform-spotlight-staging.cloudapps.digital
     env:
       NODE_VERSION: "6.17.1"
-      NODE_ENV: staging
+      NODE_ENV: production
       GOVUK_WEBSITE_ROOT: https://www.gov.uk
