@@ -2,8 +2,7 @@
 applications:
   - name: performance-platform-spotlight-staging
     memory: 1G
-    buildpacks:
-      - "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
+    buildpack: "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
     instances: 2
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
