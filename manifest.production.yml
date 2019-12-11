@@ -5,8 +5,7 @@ applications:
   - name: performance-platform-spotlight-production
     memory: 1G
     instances: 6
-    buildpacks:
-      - "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
+    buildpack: "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
     no-route: true # temp disable while in maintainance
