@@ -6,9 +6,8 @@ applications:
     instances: 2
     command: "npm run build:production && node app/server"
     stack: cflinuxfs3
-    no-route: true # disabling routing during maintainance
-    # routes:
-    # - route: performance-platform-spotlight-staging.cloudapps.digital
+    routes:
+    - route: performance-platform-spotlight-staging.apps.internal
     env:
       NODE_VERSION: "6.17.1"
       NODE_ENV: production
