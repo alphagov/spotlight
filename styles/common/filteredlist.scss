@@ -67,6 +67,68 @@
     }
   }
 
+  form.download-data {
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input {
+      margin: 0;
+      width: 100%;
+      padding: .4em .5em;
+      position:relative;
+      top: 0;
+    }
+    ::-webkit-input-placeholder {
+      color: $grey-1;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      color: $grey-1;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: $grey-1;
+    }
+
+    :-ms-input-placeholder {
+      color: $grey-1;
+    }
+
+
+    input {
+      @include core-16;
+    }
+
+    select {
+      @include core-16;
+      background: $white;
+      line-height: 1.8;
+      width: 100%;
+
+      @include media(desktop) {
+        @include appearance(none);
+        @include box-shadow(1px 1px 1px $white);
+        @include border-radius(4px);
+        background: $grey-3 file-url('images/dropdown-arrow-small.png') no-repeat right center;
+        border: 1px solid $border-colour;
+        padding: 0.2em 25px 0.2em 0.4em;
+      }
+    }
+    select::-ms-expand {
+      display: none;
+    }
+
+    input.download-submit {
+      @include button;
+      margin-top: 1em;
+      width: auto;
+	  display:block;
+    }
+  }
+
   section.filtered-list {
     padding: 1em 0 0 0;
     margin-top: 0;

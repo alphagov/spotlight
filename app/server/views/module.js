@@ -58,15 +58,32 @@ module.exports = View.extend(templater).extend({
 
   templateContext: function () {
     if (this.collection) {
-      this.jsonUrl = this.collection.externalUrl() + "&format=json";
+      var baseParams = Object.assign({}, this.collection.prop('queryParams'));
+      delete baseParams.start_at;
+      delete baseParams.end_at;
+      delete baseParams.duration;
+      var downloadUrlFull = this.collection.dataSource.buildUrl(baseParams, true);
+      var downloadParams = {};
+      try {
+        downloadParams = JSON.parse('{"' + decodeURIComponent(decodeURI(downloadUrlFull.replace(/[^?]+\?/,''))
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g,'":"')
+        ) + '"}');
+	  } catch(e) {
+         console.log('failed to decode downloadParams', e);
+      }
+      delete downloadParams.duration;
+      this.downloadUrl = downloadUrlFull.split('?')[0];
+      this.downloadParams = downloadParams;
     }
     return _.extend(
       View.prototype.templateContext.call(this),
       {
         url: this.url,
         fallbackUrl: this.requiresSvg && this.url ? (this.url + '.png') : null,
-        jsonUrl: this.jsonUrl,
-        csvUrl: this.csvUrl,
+        downloadUrl: this.downloadUrl,
+        downloadParams: this.downloadParams,
         hasTable: this.hasTable,
         pageType: this.model.get('parent').get('page-type')
       }

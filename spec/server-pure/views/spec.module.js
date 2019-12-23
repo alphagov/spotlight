@@ -88,7 +88,7 @@ describe('ModuleView', function () {
     model.get('parent').set('page-type', 'module');
     moduleView.render();
     expect(moduleView.$('aside.more-info.download ul li').length).toEqual(1);
-    expect(moduleView.$('aside.more-info.download ul li:eq(0) a').text()).toEqual('JSON');
+    expect(moduleView.$('aside.more-info.download form').length).toEqual(1);
   });
 
   it('renders a table when hasTable is true and there are axes on the collection', function () {

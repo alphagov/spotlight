@@ -37,8 +37,55 @@
 <aside class="more-info download" role="complementary">
   <h2 id="download">Download the data</h2>
   <ul>
-    <li class="json-summary"><a href="<%= jsonUrl %>">JSON</a></li>
+    <li>Historical data is available for download in CSV or JSON formats. You should be able to open CSV formatted data for viewing in spreadsheet software like Microsoft Excel or Google Sheets.</li>
   </ul>
+  <form class="download-data" method="get" action="<%= downloadUrl %>">
+    <% _.each(downloadParams, function(v, k){ %>
+	  <input type="hidden" name="<%= k %>" value="<%= v %>" />
+    <% }) %>
+    <label>From</label>
+    <select class="download-start-at" name="start_at">
+      <% _.times(6, function(i){ %>
+        <% year = (new Date()).getFullYear() - i + 1 %>
+        <option value="<%= year %>-01-01T00:00:00Z">January <%= year %></option>
+        <option value="<%= year %>-02-01T00:00:00Z">February <%= year %></option>
+        <option value="<%= year %>-03-01T00:00:00Z">March <%= year %></option>
+        <option value="<%= year %>-04-01T00:00:00Z">April <%= year %></option>
+        <option value="<%= year %>-05-01T00:00:00Z">May <%= year %></option>
+        <option value="<%= year %>-06-01T00:00:00Z">June <%= year %></option>
+        <option value="<%= year %>-07-01T00:00:00Z">July <%= year %></option>
+        <option value="<%= year %>-08-01T00:00:00Z">August <%= year %></option>
+        <option value="<%= year %>-09-01T00:00:00Z">September <%= year %></option>
+        <option value="<%= year %>-10-01T00:00:00Z">October <%= year %></option>
+        <option value="<%= year %>-11-01T00:00:00Z">November <%= year %></option>
+        <option value="<%= year %>-12-01T00:00:00Z">December <%= year %></option>
+      <% }) %>
+    </select>
+    <label>to</label>
+    <select class="download-end-at" name="end_at">
+      <% _.times(6, function(i){ %>
+        <% year = (new Date()).getFullYear() - i + 1 %>
+        <option value="<%= year %>-01-01T00:00:00Z">January <%= year %></option>
+        <option value="<%= year %>-02-01T00:00:00Z">February <%= year %></option>
+        <option value="<%= year %>-03-01T00:00:00Z">March <%= year %></option>
+        <option value="<%= year %>-04-01T00:00:00Z">April <%= year %></option>
+        <option value="<%= year %>-05-01T00:00:00Z">May <%= year %></option>
+        <option value="<%= year %>-06-01T00:00:00Z">June <%= year %></option>
+        <option value="<%= year %>-07-01T00:00:00Z">July <%= year %></option>
+        <option value="<%= year %>-08-01T00:00:00Z">August <%= year %></option>
+        <option value="<%= year %>-09-01T00:00:00Z">September <%= year %></option>
+        <option value="<%= year %>-10-01T00:00:00Z">October <%= year %></option>
+        <option value="<%= year %>-11-01T00:00:00Z">November <%= year %></option>
+        <option value="<%= year %>-12-01T00:00:00Z">December <%= year %></option>
+      <% }) %>
+    </select>
+    <label>in format</label>
+    <select class="download-format" name="format">
+      <option value="csv">CSV</option>
+      <option value="json">JSON</option>
+    </select>
+    <input class="download-submit" type="submit" value="Download" />
+  </form>
 </aside>
 
 
