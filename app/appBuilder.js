@@ -128,6 +128,8 @@ module.exports = {
 
     app.get('/performance/about', require('./server/controllers/about'));
 
+    app.get('/performance/accessibility', require('./server/controllers/accessibility'));
+
     app.get('/performance/services', _.bind(require('./server/controllers/services'), this, 'services'));
 
     app.get('/performance/web-traffic', _.bind(require('./server/controllers/simple-dashboard-list'), this, 'web-traffic'));

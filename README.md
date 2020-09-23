@@ -287,3 +287,18 @@ Will be displayed as:
 Axes configuration is most commonly found in the module visualisation settings, and can be edited via the admin app.
 
 Configuration for tables displaying lists of dashboards can be found in their respective controllers.
+
+
+## Route service
+
+A [route
+service](https://docs.cloud.service.gov.uk/deploying_services/route_services/#user-provided-route-services)
+is deployed in front of spotlight to [limit access](https://github.com/alphagov/paas-ip-authentication-route-service) to the spotlight origin
+application to only the concourse and GDS office IPs.
+
+To alter the list of approved IPs you can do the following in the `production` space:
+
+```
+cf set-env performance-platform-spotlight-rtsvc ALLOWED_IPS '1.2.3.4/32; 5.6.7.8/32'
+```
+
