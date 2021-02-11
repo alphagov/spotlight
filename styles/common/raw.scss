@@ -1,7 +1,6 @@
 body.raw {
   #skiplink-container,
   #global-cookie-message,
-  #deprecation-message,
   #global-header-bar .header-bar,
   #global-header,
   #footer,
@@ -49,4 +48,13 @@ body.raw {
       display: table-row-group;
     }
   }
+}
+
+#deprecation-message {
+  display: block;
+  max-width: 990px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
 }
