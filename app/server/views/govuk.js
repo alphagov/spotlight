@@ -16,6 +16,7 @@ var footerTopTemplate = pr('../templates/page-components/footer_top.html');
 var footerLinksTemplate = pr('../templates/page-components/footer_links.html');
 var reportAProblemTemplate = pr('../templates/page-components/report_a_problem.html');
 var cookieMessageTemplate = pr('../templates/page-components/cookie_message.html');
+var deprecationMessageTemplate = pr('../templates/page-components/deprecation_message.html');
 var contentTemplate = pr('../templates/page-components/content.html');
 
 
@@ -88,6 +89,7 @@ module.exports = View.extend(templater).extend({
         htmlLang: 'en',
         propositionHeader: this.loadTemplate(navigationTemplate, 'mustache'),
         cookieMessage: this.loadTemplate(cookieMessageTemplate, 'mustache'),
+        deprecationMessage: this.loadTemplate(deprecationMessageTemplate, 'mustache'),
         footerTop: this.loadTemplate(footerTopTemplate, 'mustache'),
         footerSupportLinks: this.loadTemplate(footerLinksTemplate, 'mustache'),
         content: this.loadTemplate(contentTemplate, {

@@ -194,13 +194,6 @@ module.exports = function (grunt) {
     },
     // Copies templates and assets from external modules and dirs
     copy: {
-      govuk_template: {
-        src: 'node_modules/govuk_template_mustache/views/layouts/govuk_template.html',
-        dest: 'app/server/templates/page-components/',
-        expand: true,
-        flatten: true,
-        filter: 'isFile'
-      },
       govuk_assets: {
         files: [
           {
@@ -328,7 +321,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:common', [
     'copy:vendor',
-    'copy:govuk_template',
     'clean',
     'copy:assets'
   ]);
@@ -351,7 +343,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:unit', [
     'copy:vendor',
-    'copy:govuk_template',
     'clean',
     'copy:assets',
     'sass:development',

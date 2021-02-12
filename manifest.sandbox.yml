@@ -1,0 +1,15 @@
+---
+applications:
+  - name: performance-platform-spotlight-sandbox
+    memory: 1G
+    buildpack: "https://github.com/alphagov/spotlight/releases/download/oldjs_buildpack/nodejs_buildpack-cached-cflinuxfs3-v1.6.48.zip"
+    instances: 2
+    command: "npm run build:production && node app/server"
+    stack: cflinuxfs3
+    routes:
+    - route: performance-platform-spotlight-sandbox.apps.internal
+    - route: performance-platform-spotlight-sandbox.cloudapps.digital
+    env:
+      NODE_VERSION: "6.17.1"
+      NODE_ENV: production
+      GOVUK_WEBSITE_ROOT: https://www.gov.uk
